@@ -1,7 +1,4 @@
-#include "constants/abilities.h"
-
-// Shared Pokédex entries
-const u8 gPichuPokedexText[] = _(
+#include "constants/abilities.h"const u8 gPichuPokedexText[] = _(
     "It is still inept at retaining electricity.\n"
     "When it is startled, it discharges power\n"
     "accidentally. It gets better at holding\n"
@@ -118,9 +115,6 @@ const u8 gOgerponWellspringMaskPokedexText[] = _("");
 const u8 gOgerponHearthflameMaskPokedexText[] = _("");
 
 const u8 gOgerponCornerstoneMaskPokedexText[] = _("");
-
-// Macros for ease of use.
-
 #define EVOLUTION(...) (const struct Evolution[]) { __VA_ARGS__, { EVOLUTIONS_END }, }
 
 #define FRONT_PIC(sprite, width, height)                    \
@@ -157,10 +151,7 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _("");
 
 #define LEARNSETS(learn)                                    \
         .levelUpLearnset = s ## learn##LevelUpLearnset,     \
-        .teachableLearnset = s ## learn##TeachableLearnset
-
-// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
-// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
+        .teachableLearnset = s ## learn##TeachableLearnset// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
 #define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
 
 #define FLIP    0
@@ -295,28 +286,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_VENUSAUR}),
     },
 
-#define VENUSAUR_MISC_INFO                                                  \
-        .types = { TYPE_GRASS, TYPE_POISON },                               \
-        .catchRate = 45,                                                    \
-        .evYield_SpAttack  = 2,                                             \
-        .evYield_SpDefense = 1,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },                \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .speciesName = _("Venusaur"),                                       \
-        .natDexNum = NATIONAL_DEX_VENUSAUR,                                 \
-        .categoryName = _("Seed"),                                          \
-        .footprint = gMonFootprint_Venusaur,                                \
-        LEARNSETS(Venusaur),                                                \
-        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,                  \
-        .formChangeTable = sVenusaurFormChangeTable
-
     [SPECIES_VENUSAUR] =
     {
-        VENUSAUR_MISC_INFO,
+        .types = { TYPE_GRASS, TYPE_POISON },
+        .catchRate = 45,
+        .evYield_SpAttack  = 2,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Venusaur"),
+        .natDexNum = NATIONAL_DEX_VENUSAUR,
+        .categoryName = _("Seed"),
+        .footprint = gMonFootprint_Venusaur,
+        LEARNSETS(Venusaur),
+        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
+        .formChangeTable = sVenusaurFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 82,
         .baseDefense   = 83,
@@ -376,7 +364,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(VenusaurMega, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_VenusaurMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(VenusaurMega, 64, 64),
         .backPicYOffset = 8,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
@@ -413,10 +400,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(VenusaurGigantamax, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_VenusaurGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(VenusaurGigantamax, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(VenusaurGigantamax),
         ICON(VenusaurGigantamax, 0),
         .isGigantamax = TRUE,
@@ -522,25 +507,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
     },
 
-#define CHARIZARD_MISC_INFO                                             \
-        .catchRate = 45,                                                \
-        .evYield_SpAttack  = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },           \
-        .speciesName = _("Charizard"),                                  \
-        .natDexNum = NATIONAL_DEX_CHARIZARD,                            \
-        .categoryName = _("Flame"),                                     \
-        .footprint = gMonFootprint_Charizard,                           \
-        LEARNSETS(Charizard),                                           \
-        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,             \
-        .formChangeTable = sCharizardFormChangeTable
-
     [SPECIES_CHARIZARD] =
     {
-        CHARIZARD_MISC_INFO,
+        .catchRate = 45,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
+        .speciesName = _("Charizard"),
+        .natDexNum = NATIONAL_DEX_CHARIZARD,
+        .categoryName = _("Flame"),
+        .footprint = gMonFootprint_Charizard,
+        LEARNSETS(Charizard),
+        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
+        .formChangeTable = sCharizardFormChangeTable,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -602,7 +584,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CharizardMegaX, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_CharizardMegaX,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CharizardMegaX, 64, 64),
         .backPicYOffset = 1,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
@@ -639,7 +620,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CharizardMegaY, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_CharizardMegaY,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CharizardMegaY, 64, 64),
         .backPicYOffset = 1,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
@@ -675,10 +655,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CharizardGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_CharizardGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CharizardGigantamax, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CharizardGigantamax),
         ICON(CharizardGigantamax, 0),
         .isGigantamax = TRUE,
@@ -784,27 +762,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLASTOISE}),
     },
 
-#define BLASTOISE_MISC_INFO                                             \
-        .types = { TYPE_WATER, TYPE_WATER },                            \
-        .catchRate = 45,                                                \
-        .evYield_SpDefense = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },          \
-        .bodyColor = BODY_COLOR_BLUE,                                   \
-        .speciesName = _("Blastoise"),                                  \
-        .natDexNum = NATIONAL_DEX_BLASTOISE,                            \
-        .categoryName = _("Shellfish"),                                 \
-        .footprint = gMonFootprint_Blastoise,                           \
-        LEARNSETS(Blastoise),                                           \
-        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,             \
-        .formChangeTable = sBlastoiseFormChangeTable
-
     [SPECIES_BLASTOISE] =
     {
-        BLASTOISE_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 45,
+        .evYield_SpDefense = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Blastoise"),
+        .natDexNum = NATIONAL_DEX_BLASTOISE,
+        .categoryName = _("Shellfish"),
+        .footprint = gMonFootprint_Blastoise,
+        LEARNSETS(Blastoise),
+        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
+        .formChangeTable = sBlastoiseFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 83,
         .baseDefense   = 100,
@@ -864,7 +839,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BlastoiseMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_BlastoiseMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(BlastoiseMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
@@ -898,10 +872,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BlastoiseGigantamax, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_BlastoiseGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(BlastoiseGigantamax, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(BlastoiseGigantamax),
         ICON(BlastoiseGigantamax, 0),
         .isGigantamax = TRUE,
@@ -1006,38 +978,35 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
     },
 
-#define BUTTERFREE_MISC_INFO                                                        \
-        .baseHP        = 60,                                                        \
-        .baseAttack    = 45,                                                        \
-        .baseDefense   = 50,                                                        \
-        .baseSpeed     = 70,                                                        \
-        .baseSpDefense = 80,                                                        \
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 90 : 80,                        \
-        .types = { TYPE_BUG, TYPE_FLYING },                                         \
-        .catchRate = 45,                                                            \
-        .expYield = 178,                                                            \
-        .evYield_SpAttack  = 2,                                                     \
-        .evYield_SpDefense = 1,                                                     \
-        .itemRare = ITEM_SILVER_POWDER,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 15,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                              \
-        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                              \
-        .speciesName = _("Butterfree"),                                             \
-        .cryId = CRY_BUTTERFREE,                                                    \
-        .natDexNum = NATIONAL_DEX_BUTTERFREE,                                       \
-        .categoryName = _("Butterfly"),                                             \
-        .footprint = gMonFootprint_Butterfree,                                      \
-        LEARNSETS(Butterfree),                                                      \
-        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,                        \
-        .formChangeTable = sButterfreeFormChangeTable
-
     [SPECIES_BUTTERFREE] =
     {
-        BUTTERFREE_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 50,
+        .baseSpeed     = 70,
+        .baseSpDefense = 80,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 90 : 80,
+        .types = { TYPE_BUG, TYPE_FLYING },
+        .catchRate = 45,
+        .expYield = 178,
+        .evYield_SpAttack  = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_SILVER_POWDER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Butterfree"),
+        .cryId = CRY_BUTTERFREE,
+        .natDexNum = NATIONAL_DEX_BUTTERFREE,
+        .categoryName = _("Butterfly"),
+        .footprint = gMonFootprint_Butterfree,
+        LEARNSETS(Butterfree),
+        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,
+        .formChangeTable = sButterfreeFormChangeTable,
         .height = 11,
         .weight = 320,
         .description = COMPOUND_STRING(
@@ -1078,11 +1047,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ButterfreeGigantamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_ButterfreeGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(ButterfreeGigantamax, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ButterfreeGigantamax),
         ICON(ButterfreeGigantamax, 0),
         .isGigantamax = TRUE,
@@ -1191,29 +1158,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #define BEEDRILL_ATTACK (P_UPDATED_STATS >= GEN_6 ? 90 : 80)
 
-#define BEEDRILL_MISC_INFO                                  \
-        .types = { TYPE_BUG, TYPE_POISON },                 \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 2,                             \
-        .evYield_SpDefense = 1,                             \
-        .itemRare = ITEM_POISON_BARB,                       \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },      \
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .speciesName = _("Beedrill"),                       \
-        .natDexNum = NATIONAL_DEX_BEEDRILL,                 \
-        .categoryName = _("Poison Bee"),                    \
-        .footprint = gMonFootprint_Beedrill,                \
-        LEARNSETS(Beedrill),                                \
-        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,  \
-        .formChangeTable = sBeedrillFormChangeTable
-
     [SPECIES_BEEDRILL] =
     {
-        BEEDRILL_MISC_INFO,
+        .types = { TYPE_BUG, TYPE_POISON },
+        .catchRate = 45,
+        .evYield_Attack    = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Beedrill"),
+        .natDexNum = NATIONAL_DEX_BEEDRILL,
+        .categoryName = _("Poison Bee"),
+        .footprint = gMonFootprint_Beedrill,
+        LEARNSETS(Beedrill),
+        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
+        .formChangeTable = sBeedrillFormChangeTable,
         .baseHP        = 65,
         .baseDefense   = 40,
         .baseSpeed     = 75,
@@ -1273,7 +1237,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BeedrillMega, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_BeedrillMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(BeedrillMega, 64, 64),
         .backPicYOffset = 5,
@@ -1385,27 +1348,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #define PIDGEOT_SPEED (P_UPDATED_STATS >= GEN_6 ? 101 : 91)
 
-#define PIDGEOT_MISC_INFO                                   \
-        .types = { TYPE_NORMAL, TYPE_FLYING },              \
-        .catchRate = 45,                                    \
-        .evYield_Speed     = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },\
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Pidgeot"),                        \
-        .natDexNum = NATIONAL_DEX_PIDGEOT,                  \
-        .categoryName = _("Bird"),                          \
-        .footprint = gMonFootprint_Pidgeot,                 \
-        LEARNSETS(Pidgeot),                                 \
-        .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,   \
-        .formChangeTable = sPidgeotFormChangeTable
-
     [SPECIES_PIDGEOT] =
     {
-        PIDGEOT_MISC_INFO,
+        .types = { TYPE_NORMAL, TYPE_FLYING },
+        .catchRate = 45,
+        .evYield_Speed     = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Pidgeot"),
+        .natDexNum = NATIONAL_DEX_PIDGEOT,
+        .categoryName = _("Bird"),
+        .footprint = gMonFootprint_Pidgeot,
+        LEARNSETS(Pidgeot),
+        .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,
+        .formChangeTable = sPidgeotFormChangeTable,
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 75,
@@ -1464,7 +1424,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PidgeotMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_PidgeotMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(PidgeotMega, 64, 64),
         .backPicYOffset = 7,
@@ -1477,40 +1436,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PIDGEY
 
 #if P_FAMILY_RATTATA
-#define RATTATA_FAMILY_MISC_INFO                            \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
+#define RATTATA_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
-#define RATTATA_MISC_INFO                                   \
-        .baseHP        = 30,                                \
-        .baseAttack    = 56,                                \
-        .baseDefense   = 35,                                \
-        .baseSpeed     = 72,                                \
-        .baseSpAttack  = 25,                                \
-        .baseSpDefense = 35,                                \
-        .catchRate = 255,                                   \
-        .expYield = 51,                                     \
-        .evYield_Speed     = 1,                             \
-        .speciesName = _("Rattata"),                        \
-        .cryId = CRY_RATTATA,                               \
-        .natDexNum = NATIONAL_DEX_RATTATA,                  \
-        .categoryName = _("Mouse"),                         \
-        .footprint = gMonFootprint_Rattata,                 \
+#define RATTATA_MISC_INFO
+        .baseHP        = 30,
+        .baseAttack    = 56,
+        .baseDefense   = 35,
+        .baseSpeed     = 72,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 35,
+        .catchRate = 255,
+        .expYield = 51,
+        .evYield_Speed     = 1,
+        .speciesName = _("Rattata"),
+        .cryId = CRY_RATTATA,
+        .natDexNum = NATIONAL_DEX_RATTATA,
+        .categoryName = _("Mouse"),
+        .footprint = gMonFootprint_Rattata,
         .formSpeciesIdTable = sRattataFormSpeciesIdTable
 
-#define RATICATE_MISC_INFO                  \
-        .catchRate = 127,                   \
-        .expYield = 145,                    \
-        .evYield_Speed     = 2,             \
-        .speciesName = _("Raticate"),       \
-        .cryId = CRY_RATICATE,              \
-        .natDexNum = NATIONAL_DEX_RATICATE, \
-        .categoryName = _("Mouse"),         \
-        .height = 7,                        \
-        .footprint = gMonFootprint_Raticate,\
+#define RATICATE_MISC_INFO
+        .catchRate = 127,
+        .expYield = 145,
+        .evYield_Speed     = 2,
+        .speciesName = _("Raticate"),
+        .cryId = CRY_RATICATE,
+        .natDexNum = NATIONAL_DEX_RATICATE,
+        .categoryName = _("Mouse"),
+        .height = 7,
+        .footprint = gMonFootprint_Raticate,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable
 
     [SPECIES_RATTATA] =
@@ -1606,10 +1565,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RattataAlolan, 40, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_RattataAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(RattataAlolan, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RattataAlolan),
         ICON(RattataAlolan, 2),
         LEARNSETS(RattataAlolan),
@@ -1644,10 +1601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RaticateAlolan, 56, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_RaticateAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(RaticateAlolan, 64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RaticateAlolan),
         ICON(RaticateAlolan, 2),
         LEARNSETS(RaticateAlolan),
@@ -1857,42 +1812,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_FAMILY_PIKACHU
 #if P_GEN_2_CROSS_EVOS
-#define PICHU_MISC_INFO                                                         \
-        .baseHP        = 20,                                                    \
-        .baseAttack    = 40,                                                    \
-        .baseDefense   = 15,                                                    \
-        .baseSpeed     = 60,                                                    \
-        .baseSpAttack  = 35,                                                    \
-        .baseSpDefense = 35,                                                    \
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },                              \
-        .catchRate = 190,                                                       \
-        .expYield = 41,                                                         \
-        .evYield_Speed     = 1,                                                 \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 10,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },        \
-        .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                         \
-        .speciesName = _("Pichu"),                                              \
-        .cryId = CRY_PICHU,                                                     \
-        .natDexNum = NATIONAL_DEX_PICHU,                                        \
-        .categoryName = _("Tiny Mouse"),                                        \
-        .height = 3,                                                            \
-        .weight = 20,                                                           \
-        .description = gPichuPokedexText,                                       \
-        .pokemonScale = 508,                                                    \
-        .pokemonOffset = 20,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .footprint = gMonFootprint_Pichu,                                       \
-        LEARNSETS(Pichu),                                                       \
-        .formSpeciesIdTable = sPichuFormSpeciesIdTable
 
     [SPECIES_PICHU] =
     {
-        PICHU_MISC_INFO,
+        .baseHP        = 20,
+        .baseAttack    = 40,
+        .baseDefense   = 15,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 35,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+        .catchRate = 190,
+        .expYield = 41,
+        .evYield_Speed     = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Pichu"),
+        .cryId = CRY_PICHU,
+        .natDexNum = NATIONAL_DEX_PICHU,
+        .categoryName = _("Tiny Mouse"),
+        .height = 3,
+        .weight = 20,
+        .description = gPichuPokedexText,
+        .pokemonScale = 508,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Pichu,
+        LEARNSETS(Pichu),
+        .formSpeciesIdTable = sPichuFormSpeciesIdTable,
         FRONT_PIC(Pichu, 32, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Pichu,
@@ -1912,46 +1865,44 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PichuSpikyEared, 32, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_PichuSpikyEared,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PichuSpikyEared, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PichuSpikyEared),
         ICON(PichuSpikyEared, 1),
     },
 #endif //P_GEN_2_CROSS_EVOS
 
-#define PIKACHU_MISC_INFO                                                       \
-        .baseHP        = 35,                                                    \
-        .baseAttack    = 55,                                                    \
-        .baseDefense   = P_UPDATED_STATS >= GEN_6 ? 40 : 30,                    \
-        .baseSpeed     = 90,                                                    \
-        .baseSpAttack  = 50,                                                    \
-        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 50 : 40,                    \
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },                              \
-        .catchRate = 190,                                                       \
-        .expYield = 112,                                                        \
-        .evYield_Speed     = 2,                                                 \
-        .itemRare = ITEM_LIGHT_BALL,                                            \
-        .eggCycles = 10,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                         \
-        .speciesName = _("Pikachu"),                                            \
-        .cryId = CRY_PIKACHU,                                                   \
-        .natDexNum = NATIONAL_DEX_PIKACHU,                                      \
-        .categoryName = _("Mouse"),                                             \
-        .footprint = gMonFootprint_Pikachu,                                     \
-        LEARNSETS(Pikachu),                                                     \
+#define PIKACHU_MISC_INFO
+        .baseHP        = 35,
+        .baseAttack    = 55,
+        .baseDefense   = P_UPDATED_STATS >= GEN_6 ? 40 : 30,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 50,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 50 : 40,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+        .catchRate = 190,
+        .expYield = 112,
+        .evYield_Speed     = 2,
+        .itemRare = ITEM_LIGHT_BALL,
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Pikachu"),
+        .cryId = CRY_PIKACHU,
+        .natDexNum = NATIONAL_DEX_PIKACHU,
+        .categoryName = _("Mouse"),
+        .footprint = gMonFootprint_Pikachu,
+        LEARNSETS(Pikachu),
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable
 
 #define PIKACHU_REGULAR_SIZE_INFO   \
-        .height = 4,                \
-        .weight = 60,               \
-        .pokemonScale = 479,        \
-        .pokemonOffset = 19,        \
-        .trainerScale = 256,        \
+        .height = 4,
+        .weight = 60,
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
         .trainerOffset = 0
 
     [SPECIES_PIKACHU] =
@@ -1982,11 +1933,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_COSPLAY_PIKACHU_FORMS
-#define PIKACHU_COSPLAY_MISC_INFO                                   \
-    PIKACHU_MISC_INFO,                                              \
-    PIKACHU_REGULAR_SIZE_INFO,                                      \
-    .genderRatio = MON_FEMALE,                                      \
-    .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
+#define PIKACHU_COSPLAY_MISC_INFO
+    PIKACHU_MISC_INFO,
+    PIKACHU_REGULAR_SIZE_INFO,
+    .genderRatio = MON_FEMALE,
+    .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
     .description = gPikachuPokedexText
 
     [SPECIES_PIKACHU_COSPLAY]   =
@@ -1995,10 +1946,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuCosplay, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuCosplay,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuCosplay, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuCosplay),
         ICON(PikachuCosplay, 2),
     },
@@ -2009,10 +1958,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuRockStar, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuRockStar,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuRockStar, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuRockStar),
         ICON(PikachuRockStar, 1),
     },
@@ -2024,10 +1971,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuBelle, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuBelle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuBelle, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuBelle),
         ICON(PikachuBelle, 0),
     },
@@ -2039,10 +1984,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuPopStar, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuPopStar,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuPopStar, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuPopStar),
         ICON(PikachuPopStar, 0),
     },
@@ -2053,10 +1996,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuPhD, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuPhD,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuPhD, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuPhD),
         ICON(PikachuPhD, 1),
     },
@@ -2067,10 +2008,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuLibre, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuLibre,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuLibre, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuLibre),
         ICON(PikachuLibre, 0),
     },
@@ -2079,10 +2018,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_CAP_PIKACHU_FORMS
 
-#define PIKACHU_CAP_MISC_INFO                                       \
-    PIKACHU_MISC_INFO,                                              \
-    PIKACHU_REGULAR_SIZE_INFO,                                      \
-    .genderRatio = MON_MALE,                                        \
+#define PIKACHU_CAP_MISC_INFO
+    PIKACHU_MISC_INFO,
+    PIKACHU_REGULAR_SIZE_INFO,
+    .genderRatio = MON_MALE,
     .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED }
 
     [SPECIES_PIKACHU_ORIGINAL_CAP] =
@@ -2097,10 +2036,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuOriginalCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuOriginalCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuOriginalCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuOriginalCap),
         ICON(PikachuOriginalCap, 0),
     },
@@ -2116,10 +2053,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuHoennCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuHoennCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuHoennCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuHoennCap),
         ICON(PikachuHoennCap, 0),
     },
@@ -2135,10 +2070,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuSinnohCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuSinnohCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuSinnohCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuSinnohCap),
         ICON(PikachuSinnohCap, 0),
     },
@@ -2154,10 +2087,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuUnovaCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuUnovaCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuUnovaCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuUnovaCap),
         ICON(PikachuUnovaCap, 0),
     },
@@ -2173,10 +2104,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuKalosCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuKalosCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuKalosCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuKalosCap),
         ICON(PikachuKalosCap, 0),
     },
@@ -2192,10 +2121,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuAlolaCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuAlolaCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuAlolaCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuAlolaCap),
         ICON(PikachuAlolaCap, 0),
     },
@@ -2212,10 +2139,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuPartnerCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuPartnerCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuPartnerCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuPartnerCap),
         ICON(PikachuPartnerCap, 0),
     },
@@ -2231,10 +2156,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuWorldCap, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuWorldCap,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuWorldCap, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuWorldCap),
         ICON(PikachuWorldCap, 0),
     },
@@ -2258,10 +2181,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PikachuGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_PikachuGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuGigantamax, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PikachuGigantamax),
         ICON(PikachuGigantamax, 2),
         .formChangeTable = sPikachuFormChangeTable,
@@ -2271,25 +2192,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #define RAICHU_SPEED (P_UPDATED_STATS >= GEN_6 ? 110 : 100)
 
-#define RAICHU_MISC_INFO                                    \
-        .catchRate = 75,                                    \
-        .expYield = 218,                                    \
-        .evYield_Speed     = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 10,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },  \
-        .speciesName = _("Raichu"),                         \
-        .cryId = CRY_RAICHU,                                \
-        .natDexNum = NATIONAL_DEX_RAICHU,                   \
-        .categoryName = _("Mouse"),                         \
-        .footprint = gMonFootprint_Raichu,                  \
-        .formSpeciesIdTable = sRaichuFormSpeciesIdTable
-
     [SPECIES_RAICHU] =
     {
-        RAICHU_MISC_INFO,
+        .catchRate = 75,
+        .expYield = 218,
+        .evYield_Speed     = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
+        .speciesName = _("Raichu"),
+        .cryId = CRY_RAICHU,
+        .natDexNum = NATIONAL_DEX_RAICHU,
+        .categoryName = _("Mouse"),
+        .footprint = gMonFootprint_Raichu,
+        .formSpeciesIdTable = sRaichuFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 90,
         .baseDefense   = 55,
@@ -2351,11 +2269,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RaichuAlolan, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RaichuAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(RaichuAlolan, 56, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RaichuAlolan),
         ICON(RaichuAlolan, 2),
         LEARNSETS(RaichuAlolan),
@@ -2364,36 +2280,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PIKACHU
 
 #if P_FAMILY_SANDSHREW
-#define SANDSHREW_FAMILY_MISC_INFO                          \
-        .itemRare = ITEM_GRIP_CLAW,                         \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
+#define SANDSHREW_FAMILY_MISC_INFO
+        .itemRare = ITEM_GRIP_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
-#define SANDSHREW_MISC_INFO                                 \
-        .catchRate = 255,                                   \
-        .expYield = 60,                                     \
-        .evYield_Defense   = 1,                             \
-        .speciesName = _("Sandshrew"),                      \
-        .cryId = CRY_SANDSHREW,                             \
-        .natDexNum = NATIONAL_DEX_SANDSHREW,                \
-        .categoryName = _("Mouse"),                         \
-        .footprint = gMonFootprint_Sandshrew,               \
-        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable, \
+#define SANDSHREW_MISC_INFO
+        .catchRate = 255,
+        .expYield = 60,
+        .evYield_Defense   = 1,
+        .speciesName = _("Sandshrew"),
+        .cryId = CRY_SANDSHREW,
+        .natDexNum = NATIONAL_DEX_SANDSHREW,
+        .categoryName = _("Mouse"),
+        .footprint = gMonFootprint_Sandshrew,
+        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
         SANDSHREW_FAMILY_MISC_INFO
 
-#define SANDSLASH_MISC_INFO                                 \
-        .catchRate = 90,                                    \
-        .expYield = 158,                                    \
-        .evYield_Defense   = 2,                             \
-        .speciesName = _("Sandslash"),                      \
-        .cryId = CRY_SANDSLASH,                             \
-        .natDexNum = NATIONAL_DEX_SANDSLASH,                \
-        .categoryName = _("Mouse"),                         \
-        .footprint = gMonFootprint_Sandslash,               \
-        .formSpeciesIdTable = sSandslashFormSpeciesIdTable, \
+#define SANDSLASH_MISC_INFO
+        .catchRate = 90,
+        .expYield = 158,
+        .evYield_Defense   = 2,
+        .speciesName = _("Sandslash"),
+        .cryId = CRY_SANDSLASH,
+        .natDexNum = NATIONAL_DEX_SANDSLASH,
+        .categoryName = _("Mouse"),
+        .footprint = gMonFootprint_Sandslash,
+        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
         SANDSHREW_FAMILY_MISC_INFO
 
     [SPECIES_SANDSHREW] =
@@ -2494,10 +2410,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SandshrewAlolan, 40, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_SandshrewAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandshrewAlolan, 56, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SandshrewAlolan),
         ICON(SandshrewAlolan, 0),
         LEARNSETS(SandshrewAlolan),
@@ -2531,10 +2445,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SandslashAlolan, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_SandslashAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandslashAlolan, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SandslashAlolan),
         ICON(SandslashAlolan, 0),
         LEARNSETS(SandslashAlolan),
@@ -2993,54 +2905,54 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CLEFAIRY
 
 #if P_FAMILY_VULPIX
-#define VULPIX_FAMILY_MISC_INFO                             \
-        .genderRatio = PERCENT_FEMALE(75),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
+#define VULPIX_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
-#define VULPIX_MISC_INFO                                \
-        .baseHP        = 38,                            \
-        .baseAttack    = 41,                            \
-        .baseDefense   = 40,                            \
-        .baseSpeed     = 65,                            \
-        .baseSpAttack  = 50,                            \
-        .baseSpDefense = 65,                            \
-        .catchRate = 190,                               \
-        .expYield = 60,                                 \
-        .evYield_Speed     = 1,                         \
-        .speciesName = _("Vulpix"),                     \
-        .cryId = CRY_VULPIX,                            \
-        .natDexNum = NATIONAL_DEX_VULPIX,               \
-        .categoryName = _("Fox"),                       \
-        .height = 6,                                    \
-        .weight = 99,                                   \
-        .pokemonScale = 542,                            \
-        .pokemonOffset = 19,                            \
-        .trainerScale = 256,                            \
-        .trainerOffset = 0,                             \
-        .footprint = gMonFootprint_Vulpix,              \
-        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,\
+#define VULPIX_MISC_INFO
+        .baseHP        = 38,
+        .baseAttack    = 41,
+        .baseDefense   = 40,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 65,
+        .catchRate = 190,
+        .expYield = 60,
+        .evYield_Speed     = 1,
+        .speciesName = _("Vulpix"),
+        .cryId = CRY_VULPIX,
+        .natDexNum = NATIONAL_DEX_VULPIX,
+        .categoryName = _("Fox"),
+        .height = 6,
+        .weight = 99,
+        .pokemonScale = 542,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Vulpix,
+        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
         VULPIX_FAMILY_MISC_INFO
 
-#define NINETALES_MISC_INFO                                 \
-        .catchRate = 75,                                    \
-        .expYield = 177,                                    \
-        .evYield_Speed     = 1,                             \
-        .evYield_SpDefense = 1,                             \
-        .speciesName = _("Ninetales"),                      \
-        .cryId = CRY_NINETALES,                             \
-        .natDexNum = NATIONAL_DEX_NINETALES,                \
-        .categoryName = _("Fox"),                           \
-        .height = 11,                                       \
-        .weight = 199,                                      \
-        .pokemonScale = 339,                                \
-        .pokemonOffset = 10,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Ninetales,               \
-        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable, \
+#define NINETALES_MISC_INFO
+        .catchRate = 75,
+        .expYield = 177,
+        .evYield_Speed     = 1,
+        .evYield_SpDefense = 1,
+        .speciesName = _("Ninetales"),
+        .cryId = CRY_NINETALES,
+        .natDexNum = NATIONAL_DEX_NINETALES,
+        .categoryName = _("Fox"),
+        .height = 11,
+        .weight = 199,
+        .pokemonScale = 339,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Ninetales,
+        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
         VULPIX_FAMILY_MISC_INFO
 
     [SPECIES_VULPIX] =
@@ -3114,10 +3026,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(VulpixAlolan, 48, 48),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_VulpixAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(VulpixAlolan, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(VulpixAlolan),
         ICON(VulpixAlolan, 2),
         LEARNSETS(VulpixAlolan),
@@ -3146,10 +3056,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(NinetalesAlolan, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_NinetalesAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(NinetalesAlolan, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NinetalesAlolan),
         ICON(NinetalesAlolan, 2),
         LEARNSETS(NinetalesAlolan),
@@ -3879,45 +3787,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_VENONAT
 
 #if P_FAMILY_DIGLETT
-#define DIGLETT_FAMILY_MISC_INFO                            \
-        .itemRare = ITEM_SOFT_SAND,                         \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
+#define DIGLETT_FAMILY_MISC_INFO
+        .itemRare = ITEM_SOFT_SAND,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         .bodyColor = BODY_COLOR_BROWN
 
-#define DIGLETT_MISC_INFO                                   \
-        .catchRate = 255,                                   \
-        .expYield = 53,                                     \
-        .evYield_Speed     = 1,                             \
-        .speciesName = _("Diglett"),                        \
-        .cryId = CRY_DIGLETT,                               \
-        .natDexNum = NATIONAL_DEX_DIGLETT,                  \
-        .categoryName = _("Mole"),                          \
-        .height = 2,                                        \
-        .pokemonScale = 833,                                \
-        .pokemonOffset = 25,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Diglett,                 \
-        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,   \
+#define DIGLETT_MISC_INFO
+        .catchRate = 255,
+        .expYield = 53,
+        .evYield_Speed     = 1,
+        .speciesName = _("Diglett"),
+        .cryId = CRY_DIGLETT,
+        .natDexNum = NATIONAL_DEX_DIGLETT,
+        .categoryName = _("Mole"),
+        .height = 2,
+        .pokemonScale = 833,
+        .pokemonOffset = 25,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Diglett,
+        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         DIGLETT_FAMILY_MISC_INFO
 
-#define DUGTRIO_MISC_INFO                   \
-        .catchRate = 50,                    \
-        .expYield = 149,                    \
-        .evYield_Speed     = 2,             \
-        .speciesName = _("Dugtrio"),        \
-        .cryId = CRY_DUGTRIO,               \
-        .natDexNum = NATIONAL_DEX_DUGTRIO,  \
-        .categoryName = _("Mole"),          \
-        .height = 7,                        \
-        .pokemonScale = 406,                \
-        .pokemonOffset = 18,                \
-        .trainerScale = 256,                \
-        .trainerOffset = 0,                 \
+#define DUGTRIO_MISC_INFO
+        .catchRate = 50,
+        .expYield = 149,
+        .evYield_Speed     = 2,
+        .speciesName = _("Dugtrio"),
+        .cryId = CRY_DUGTRIO,
+        .natDexNum = NATIONAL_DEX_DUGTRIO,
+        .categoryName = _("Mole"),
+        .height = 7,
+        .pokemonScale = 406,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         DIGLETT_FAMILY_MISC_INFO
 
 #define DUGTRIO_ATTACK (P_UPDATED_STATS >= GEN_7 ? 100 : 80)
@@ -4004,10 +3912,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DiglettAlolan, 32, 40),
         .frontPicYOffset = 19,
         .frontAnimFrames = sAnims_DiglettAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DiglettAlolan, 40, 48),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DiglettAlolan),
         ICON(DiglettAlolan, 2),
         LEARNSETS(DiglettAlolan),
@@ -4036,10 +3942,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DugtrioAlolan, 48, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_DugtrioAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DugtrioAlolan, 64, 32),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DugtrioAlolan),
         ICON(DugtrioAlolan, 2),
         LEARNSETS(DugtrioAlolan),
@@ -4049,36 +3953,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DIGLETT
 
 #if P_FAMILY_MEOWTH
-#define MEOWTH_MISC_INFO                                                    \
-        .catchRate = 255,                                                   \
-        .expYield = 58,                                                     \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                  \
-        .speciesName = _("Meowth"),                                         \
-        .cryId = CRY_MEOWTH,                                                \
-        .natDexNum = NATIONAL_DEX_MEOWTH,                                   \
-        .categoryName = _("Scratch Cat"),                                   \
-        .footprint = gMonFootprint_Meowth,                                  \
+#define MEOWTH_MISC_INFO
+        .catchRate = 255,
+        .expYield = 58,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Meowth"),
+        .cryId = CRY_MEOWTH,
+        .natDexNum = NATIONAL_DEX_MEOWTH,
+        .categoryName = _("Scratch Cat"),
+        .footprint = gMonFootprint_Meowth,
         .formSpeciesIdTable = sMeowthFormSpeciesIdTable
 
-#define PERSIAN_MISC_INFO                                   \
-        .catchRate = 90,                                    \
-        .expYield = 154,                                    \
-        .evYield_Speed     = 2,                             \
-        .itemRare = ITEM_QUICK_CLAW,                        \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .speciesName = _("Persian"),                        \
-        .cryId = CRY_PERSIAN,                               \
-        .natDexNum = NATIONAL_DEX_PERSIAN,                  \
-        .categoryName = _("Classy Cat"),                    \
-        .footprint = gMonFootprint_Persian,                 \
+#define PERSIAN_MISC_INFO
+        .catchRate = 90,
+        .expYield = 154,
+        .evYield_Speed     = 2,
+        .itemRare = ITEM_QUICK_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Persian"),
+        .cryId = CRY_PERSIAN,
+        .natDexNum = NATIONAL_DEX_PERSIAN,
+        .categoryName = _("Classy Cat"),
+        .footprint = gMonFootprint_Persian,
         .formSpeciesIdTable = sPersianFormSpeciesIdTable
 
     [SPECIES_MEOWTH] =
@@ -4186,10 +4090,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MeowthAlolan, 48, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_MeowthAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MeowthAlolan, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MeowthAlolan),
         ICON(MeowthAlolan, 2),
         LEARNSETS(MeowthAlolan),
@@ -4223,10 +4125,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PersianAlolan, 56, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_PersianAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PersianAlolan, 64, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PersianAlolan),
         ICON(PersianAlolan, 2),
         LEARNSETS(PersianAlolan),
@@ -4262,10 +4162,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MeowthGalarian, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_MeowthGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MeowthGalarian, 64, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MeowthGalarian),
         ICON(MeowthGalarian, 0),
         LEARNSETS(MeowthGalarian),
@@ -4309,10 +4207,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Perrserker, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Perrserker,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Perrserker, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Perrserker),
         ICON(Perrserker, 2),
         .footprint = gMonFootprint_Perrserker,
@@ -4346,10 +4242,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MeowthGigantamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_MeowthGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MeowthGigantamax, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MeowthGigantamax),
         ICON(MeowthGigantamax, 1),
         LEARNSETS(Meowth),
@@ -4592,48 +4486,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Annihilape, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Annihilape,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Annihilape, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Annihilape),
         ICON(Annihilape, 0),
-        //.footprint = gMonFootprint_Annihilape,
         LEARNSETS(Annihilape),
     },
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_MANKEY
 
 #if P_FAMILY_GROWLITHE
-#define GROWLITHE_FAMILY_MISC_INFO                                                  \
-        .genderRatio = PERCENT_FEMALE(25),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_SLOW,                                                  \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                          \
+#define GROWLITHE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         .bodyColor = BODY_COLOR_BROWN
 
-#define GROWLITHE_MISC_INFO                                 \
-        .catchRate = 190,                                   \
-        .expYield = 70,                                     \
-        .evYield_Attack    = 1,                             \
-        .speciesName = _("Growlithe"),                      \
-        .cryId = CRY_GROWLITHE,                             \
-        .natDexNum = NATIONAL_DEX_GROWLITHE,                \
-        .footprint = gMonFootprint_Growlithe,               \
-        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable, \
+#define GROWLITHE_MISC_INFO
+        .catchRate = 190,
+        .expYield = 70,
+        .evYield_Attack    = 1,
+        .speciesName = _("Growlithe"),
+        .cryId = CRY_GROWLITHE,
+        .natDexNum = NATIONAL_DEX_GROWLITHE,
+        .footprint = gMonFootprint_Growlithe,
+        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
         GROWLITHE_FAMILY_MISC_INFO
 
-#define ARCANINE_MISC_INFO                                  \
-        .catchRate = 75,                                    \
-        .expYield = 194,                                    \
-        .evYield_Attack    = 2,                             \
-        .speciesName = _("Arcanine"),                       \
-        .cryId = CRY_ARCANINE,                              \
-        .natDexNum = NATIONAL_DEX_ARCANINE,                 \
-        .categoryName = _("Legendary"),                     \
-        .footprint = gMonFootprint_Arcanine,                \
-        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,  \
+#define ARCANINE_MISC_INFO
+        .catchRate = 75,
+        .expYield = 194,
+        .evYield_Attack    = 2,
+        .speciesName = _("Arcanine"),
+        .cryId = CRY_ARCANINE,
+        .natDexNum = NATIONAL_DEX_ARCANINE,
+        .categoryName = _("Legendary"),
+        .footprint = gMonFootprint_Arcanine,
+        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
         GROWLITHE_FAMILY_MISC_INFO
 
     [SPECIES_GROWLITHE] =
@@ -4735,10 +4626,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GrowlitheHisuian, 48, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_GrowlitheHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GrowlitheHisuian, 56, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GrowlitheHisuian),
         ICON(GrowlitheHisuian, 0),
         LEARNSETS(GrowlitheHisuian),
@@ -4771,10 +4660,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ArcanineHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ArcanineHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ArcanineHisuian, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ArcanineHisuian),
         ICON(ArcanineHisuian, 0),
         LEARNSETS(ArcanineHisuian),
@@ -5095,28 +4982,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #define ALAKAZAM_SP_DEF (P_UPDATED_STATS >= GEN_6 ? 95 : 85)
 
-#define ALAKAZAM_MISC_INFO                                          \
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },                    \
-        .catchRate = 50,                                            \
-        .evYield_SpAttack  = 3,                                     \
-        .itemRare = ITEM_TWISTED_SPOON,                             \
-        .genderRatio = PERCENT_FEMALE(25),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_SLOW,                           \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },\
-        .bodyColor = BODY_COLOR_BROWN,                              \
-        .speciesName = _("Alakazam"),                               \
-        .natDexNum = NATIONAL_DEX_ALAKAZAM,                         \
-        .categoryName = _("Psi"),                                   \
-        .footprint = gMonFootprint_Alakazam,                        \
-        LEARNSETS(Alakazam),                                        \
-        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,          \
-        .formChangeTable = sAlakazamFormChangeTable
-
     [SPECIES_ALAKAZAM] =
     {
-        ALAKAZAM_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .catchRate = 50,
+        .evYield_SpAttack  = 3,
+        .itemRare = ITEM_TWISTED_SPOON,
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Alakazam"),
+        .natDexNum = NATIONAL_DEX_ALAKAZAM,
+        .categoryName = _("Psi"),
+        .footprint = gMonFootprint_Alakazam,
+        LEARNSETS(Alakazam),
+        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,
+        .formChangeTable = sAlakazamFormChangeTable,
         .baseHP        = 55,
         .baseAttack    = 50,
         .baseDefense   = 45,
@@ -5176,7 +5060,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AlakazamMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AlakazamMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(AlakazamMega, 64, 64),
         .backPicYOffset = 0,
@@ -5289,37 +5172,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_MACHAMP}),
     },
 
-#define MACHAMP_MISC_INFO                                                   \
-        .baseHP        = 90,                                                \
-        .baseAttack    = 130,                                               \
-        .baseDefense   = 80,                                                \
-        .baseSpeed     = 55,                                                \
-        .baseSpAttack  = 65,                                                \
-        .baseSpDefense = 85,                                                \
-        .types = { TYPE_FIGHTING, TYPE_FIGHTING },                          \
-        .catchRate = 45,                                                    \
-        .expYield = 227,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .itemRare = ITEM_FOCUS_BAND,                                        \
-        .genderRatio = PERCENT_FEMALE(25),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },        \
-        .abilities = { ABILITY_GUTS, ABILITY_NO_GUARD, ABILITY_STEADFAST }, \
-        .bodyColor = BODY_COLOR_GRAY,                                       \
-        .speciesName = _("Machamp"),                                        \
-        .cryId = CRY_MACHAMP,                                               \
-        .natDexNum = NATIONAL_DEX_MACHAMP,                                  \
-        .categoryName = _("Superpower"),                                    \
-        .footprint = gMonFootprint_Machamp,                                 \
-        LEARNSETS(Machamp),                                                 \
-        .formSpeciesIdTable = sMachampFormSpeciesIdTable,                   \
-        .formChangeTable = sMachampFormChangeTable
-
     [SPECIES_MACHAMP] =
     {
-        MACHAMP_MISC_INFO,
+        .baseHP        = 90,
+        .baseAttack    = 130,
+        .baseDefense   = 80,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 85,
+        .types = { TYPE_FIGHTING, TYPE_FIGHTING },
+        .catchRate = 45,
+        .expYield = 227,
+        .evYield_Attack    = 3,
+        .itemRare = ITEM_FOCUS_BAND,
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .abilities = { ABILITY_GUTS, ABILITY_NO_GUARD, ABILITY_STEADFAST },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Machamp"),
+        .cryId = CRY_MACHAMP,
+        .natDexNum = NATIONAL_DEX_MACHAMP,
+        .categoryName = _("Superpower"),
+        .footprint = gMonFootprint_Machamp,
+        LEARNSETS(Machamp),
+        .formSpeciesIdTable = sMachampFormSpeciesIdTable,
+        .formChangeTable = sMachampFormChangeTable,
         .height = 16,
         .weight = 1300,
         .description = COMPOUND_STRING(
@@ -5357,10 +5237,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MachampGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_MachampGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MachampGigantamax, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MachampGigantamax),
         ICON(MachampGigantamax, 0),
         .isGigantamax = TRUE,
@@ -5619,78 +5497,78 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_EVERSTONE,                                         \
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL }
 
-#define GEODUDE_FAMILY_MISC_INFO                                \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 15,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
+#define GEODUDE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
         .bodyColor = BODY_COLOR_BROWN
 
-#define GEODUDE_MISC_INFO                                   \
-        .baseHP        = 40,                                \
-        .baseAttack    = 80,                                \
-        .baseDefense   = 100,                               \
-        .baseSpeed     = 20,                                \
-        .baseSpAttack  = 30,                                \
-        .baseSpDefense = 30,                                \
-        .catchRate = 255,                                   \
-        .expYield = 60,                                     \
-        .evYield_Defense   = 1,                             \
-        .speciesName = _("Geodude"),                        \
-        .cryId = CRY_GEODUDE,                               \
-        .natDexNum = NATIONAL_DEX_GEODUDE,                  \
-        .categoryName = _("Rock"),                          \
-        .height = 4,                                        \
-        .pokemonScale = 347,                                \
-        .pokemonOffset = 18,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Geodude,                 \
-        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,   \
+#define GEODUDE_MISC_INFO
+        .baseHP        = 40,
+        .baseAttack    = 80,
+        .baseDefense   = 100,
+        .baseSpeed     = 20,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 30,
+        .catchRate = 255,
+        .expYield = 60,
+        .evYield_Defense   = 1,
+        .speciesName = _("Geodude"),
+        .cryId = CRY_GEODUDE,
+        .natDexNum = NATIONAL_DEX_GEODUDE,
+        .categoryName = _("Rock"),
+        .height = 4,
+        .pokemonScale = 347,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Geodude,
+        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
         GEODUDE_FAMILY_MISC_INFO
 
-#define GRAVELER_MISC_INFO                                  \
-        .baseHP        = 55,                                \
-        .baseAttack    = 95,                                \
-        .baseDefense   = 115,                               \
-        .baseSpeed     = 35,                                \
-        .baseSpAttack  = 45,                                \
-        .baseSpDefense = 45,                                \
-        .catchRate = 120,                                   \
-        .expYield = 137,                                    \
-        .evYield_Defense   = 2,                             \
-        .speciesName = _("Graveler"),                       \
-        .cryId = CRY_GRAVELER,                              \
-        .natDexNum = NATIONAL_DEX_GRAVELER,                 \
-        .categoryName = _("Rock"),                          \
-        .height = 10,                                       \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 2,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Graveler,                \
-        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,  \
+#define GRAVELER_MISC_INFO
+        .baseHP        = 55,
+        .baseAttack    = 95,
+        .baseDefense   = 115,
+        .baseSpeed     = 35,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 45,
+        .catchRate = 120,
+        .expYield = 137,
+        .evYield_Defense   = 2,
+        .speciesName = _("Graveler"),
+        .cryId = CRY_GRAVELER,
+        .natDexNum = NATIONAL_DEX_GRAVELER,
+        .categoryName = _("Rock"),
+        .height = 10,
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Graveler,
+        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
         GEODUDE_FAMILY_MISC_INFO
 
 #define GOLEM_ATTACK (P_UPDATED_STATS >= GEN_6 ? 120 : 110)
 
-#define GOLEM_MISC_INFO                                 \
-        .baseHP        = 80,                            \
-        .baseAttack    = GOLEM_ATTACK,                  \
-        .baseDefense   = 130,                           \
-        .baseSpeed     = 45,                            \
-        .baseSpAttack  = 55,                            \
-        .baseSpDefense = 65,                            \
-        .catchRate = 45,                                \
-        .expYield = 223,                                \
-        .evYield_Defense   = 3,                         \
-        .speciesName = _("Golem"),                      \
-        .cryId = CRY_GOLEM,                             \
-        .natDexNum = NATIONAL_DEX_GOLEM,                \
-        .categoryName = _("Megaton"),                   \
-        .footprint = gMonFootprint_Golem,               \
-        .formSpeciesIdTable = sGolemFormSpeciesIdTable, \
+#define GOLEM_MISC_INFO
+        .baseHP        = 80,
+        .baseAttack    = GOLEM_ATTACK,
+        .baseDefense   = 130,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 65,
+        .catchRate = 45,
+        .expYield = 223,
+        .evYield_Defense   = 3,
+        .speciesName = _("Golem"),
+        .cryId = CRY_GOLEM,
+        .natDexNum = NATIONAL_DEX_GOLEM,
+        .categoryName = _("Megaton"),
+        .footprint = gMonFootprint_Golem,
+        .formSpeciesIdTable = sGolemFormSpeciesIdTable,
         GEODUDE_FAMILY_MISC_INFO
 
     [SPECIES_GEODUDE] =
@@ -5771,7 +5649,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #if P_ALOLAN_FORMS
 #define ALOLAN_GEODUDE_FAMILY_INFO                                              \
         .types = { TYPE_ROCK, TYPE_ELECTRIC },                                  \
-        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },\
+        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .isAlolanForm = TRUE
 
     [SPECIES_GEODUDE_ALOLAN] =
@@ -5788,11 +5666,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GeodudeAlolan, 48, 32),
         .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_GeodudeAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 16,
         BACK_PIC(GeodudeAlolan, 64, 56),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GeodudeAlolan),
         ICON(GeodudeAlolan, 2),
         LEARNSETS(GeodudeAlolan),
@@ -5813,10 +5689,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GravelerAlolan, 64, 56),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_GravelerAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GravelerAlolan, 64, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GravelerAlolan),
         ICON(GravelerAlolan, 2),
         LEARNSETS(GravelerAlolan),
@@ -5843,10 +5717,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GolemAlolan, 56, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_GolemAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GolemAlolan, 64, 48),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GolemAlolan),
         ICON(GolemAlolan, 2),
         LEARNSETS(GolemAlolan),
@@ -5860,50 +5732,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY },  \
         .bodyColor = BODY_COLOR_YELLOW
 
-#define PONYTA_FAMILY_MISC_INFO                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
+#define PONYTA_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
-#define PONYTA_MISC_INFO                                \
-        .baseHP        = 50,                            \
-        .baseAttack    = 85,                            \
-        .baseDefense   = 55,                            \
-        .baseSpeed     = 90,                            \
-        .baseSpAttack  = 65,                            \
-        .baseSpDefense = 65,                            \
-        .catchRate = 190,                               \
-        .expYield = 82,                                 \
-        .evYield_Speed     = 1,                         \
-        .speciesName = _("Ponyta"),                     \
-        .cryId = CRY_PONYTA,                            \
-        .natDexNum = NATIONAL_DEX_PONYTA,               \
-        .footprint = gMonFootprint_Ponyta,              \
-        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,\
+#define PONYTA_MISC_INFO
+        .baseHP        = 50,
+        .baseAttack    = 85,
+        .baseDefense   = 55,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 65,
+        .catchRate = 190,
+        .expYield = 82,
+        .evYield_Speed     = 1,
+        .speciesName = _("Ponyta"),
+        .cryId = CRY_PONYTA,
+        .natDexNum = NATIONAL_DEX_PONYTA,
+        .footprint = gMonFootprint_Ponyta,
+        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
         PONYTA_FAMILY_MISC_INFO
 
-#define RAPIDASH_MISC_INFO                                  \
-        .baseHP        = 65,                                \
-        .baseAttack    = 100,                               \
-        .baseDefense   = 70,                                \
-        .baseSpeed     = 105,                               \
-        .baseSpAttack  = 80,                                \
-        .baseSpDefense = 80,                                \
-        .catchRate = 60,                                    \
-        .expYield = 175,                                    \
-        .evYield_Speed     = 2,                             \
-        .speciesName = _("Rapidash"),                       \
-        .cryId = CRY_RAPIDASH,                              \
-        .natDexNum = NATIONAL_DEX_RAPIDASH,                 \
-        .height = 17,                                       \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 0,                                 \
-        .trainerScale = 289,                                \
-        .trainerOffset = 1,                                 \
-        .footprint = gMonFootprint_Rapidash,                \
-        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,  \
+#define RAPIDASH_MISC_INFO
+        .baseHP        = 65,
+        .baseAttack    = 100,
+        .baseDefense   = 70,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 80,
+        .catchRate = 60,
+        .expYield = 175,
+        .evYield_Speed     = 2,
+        .speciesName = _("Rapidash"),
+        .cryId = CRY_RAPIDASH,
+        .natDexNum = NATIONAL_DEX_RAPIDASH,
+        .height = 17,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 289,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Rapidash,
+        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
         PONYTA_FAMILY_MISC_INFO
 
     [SPECIES_PONYTA] =
@@ -5960,7 +5832,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #define GALARIAN_PONYTA_FAMILY_INFO                                                 \
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },\
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
         .bodyColor = BODY_COLOR_WHITE,                                              \
         .isGalarianForm = TRUE
 
@@ -5985,10 +5857,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PonytaGalarian, 64, 56),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_PonytaGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PonytaGalarian, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PonytaGalarian),
         ICON(PonytaGalarian, 2),
         LEARNSETS(PonytaGalarian),
@@ -6010,10 +5880,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RapidashGalarian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RapidashGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(RapidashGalarian, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RapidashGalarian),
         ICON(RapidashGalarian, 2),
         LEARNSETS(RapidashGalarian),
@@ -6022,64 +5890,64 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PONYTA
 
 #if P_FAMILY_SLOWPOKE
-#define SLOWPOKE_MISC_INFO                                      \
-        .baseHP        = 90,                                    \
-        .baseAttack    = 65,                                    \
-        .baseDefense   = 65,                                    \
-        .baseSpeed     = 15,                                    \
-        .baseSpAttack  = 40,                                    \
-        .baseSpDefense = 40,                                    \
-        .catchRate = 190,                                       \
-        .expYield = 63,                                         \
-        .evYield_HP        = 1,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },  \
-        .bodyColor = BODY_COLOR_PINK,                           \
-        .speciesName = _("Slowpoke"),                           \
-        .natDexNum = NATIONAL_DEX_SLOWPOKE,                     \
-        .categoryName = _("Dopey"),                             \
-        .height = 12,                                           \
-        .weight = 360,                                          \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 10,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Slowpoke,                    \
+#define SLOWPOKE_MISC_INFO
+        .baseHP        = 90,
+        .baseAttack    = 65,
+        .baseDefense   = 65,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 40,
+        .catchRate = 190,
+        .expYield = 63,
+        .evYield_HP        = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Slowpoke"),
+        .natDexNum = NATIONAL_DEX_SLOWPOKE,
+        .categoryName = _("Dopey"),
+        .height = 12,
+        .weight = 360,
+        .pokemonScale = 256,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Slowpoke,
         .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable
 
-#define SLOWBRO_MISC_INFO                                       \
-        .catchRate = 75,                                        \
-        .itemRare = ITEM_KINGS_ROCK,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },  \
-        .bodyColor = BODY_COLOR_PINK,                           \
-        .speciesName = _("Slowbro"),                            \
-        .cryId = CRY_SLOWBRO,                                   \
-        .natDexNum = NATIONAL_DEX_SLOWBRO,                      \
-        .categoryName = _("Hermit Crab"),                       \
-        .footprint = gMonFootprint_Slowbro,                     \
+#define SLOWBRO_MISC_INFO
+        .catchRate = 75,
+        .itemRare = ITEM_KINGS_ROCK,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Slowbro"),
+        .cryId = CRY_SLOWBRO,
+        .natDexNum = NATIONAL_DEX_SLOWBRO,
+        .categoryName = _("Hermit Crab"),
+        .footprint = gMonFootprint_Slowbro,
         .formSpeciesIdTable = sSlowbroFormSpeciesIdTable
 
-#define SLOWKING_MISC_INFO                                      \
-        .catchRate = 70,                                        \
-        .expYield = 172,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },  \
-        .bodyColor = BODY_COLOR_PINK,                           \
-        .speciesName = _("Slowking"),                           \
-        .cryId = CRY_SLOWKING,                                  \
-        .natDexNum = NATIONAL_DEX_SLOWKING,                     \
-        .weight = 795,                                          \
-        .footprint = gMonFootprint_Slowking,                    \
+#define SLOWKING_MISC_INFO
+        .catchRate = 70,
+        .expYield = 172,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Slowking"),
+        .cryId = CRY_SLOWKING,
+        .natDexNum = NATIONAL_DEX_SLOWKING,
+        .weight = 795,
+        .footprint = gMonFootprint_Slowking,
         .formSpeciesIdTable = sSlowkingFormSpeciesIdTable
 
     [SPECIES_SLOWPOKE] =
@@ -6212,7 +6080,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SlowbroMega, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SlowbroMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SlowbroMega, 64, 48),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
@@ -6239,10 +6106,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SlowpokeGalarian, 56, 32),
         .frontPicYOffset = 19,
         .frontAnimFrames = sAnims_SlowpokeGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SlowpokeGalarian, 64, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SlowpokeGalarian),
         ICON(SlowpokeGalarian, 1),
         LEARNSETS(SlowpokeGalarian),
@@ -6278,10 +6143,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SlowbroGalarian, 64, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_SlowbroGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SlowbroGalarian, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SlowbroGalarian),
         ICON(SlowbroGalarian, 0),
         LEARNSETS(SlowbroGalarian),
@@ -6315,10 +6178,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SlowkingGalarian, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SlowkingGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SlowkingGalarian, 56, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SlowkingGalarian),
         ICON(SlowkingGalarian, 2),
         LEARNSETS(SlowkingGalarian),
@@ -6485,26 +6346,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #if P_FAMILY_FARFETCHD
 #define FARFETCHD_ATTACK (P_UPDATED_STATS >= GEN_7 ? 90 : 65)
 
-#define FARFETCHD_MISC_INFO                                 \
-        .catchRate = 45,                                    \
-        .expYield = 132,                                    \
-        .evYield_Attack    = 1,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FIELD }, \
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Farfetch'd"),                     \
-        .cryId = CRY_FARFETCHD,                             \
-        .natDexNum = NATIONAL_DEX_FARFETCHD,                \
-        .categoryName = _("Wild Duck"),                     \
-        .footprint = gMonFootprint_Farfetchd,               \
-        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable
-
     [SPECIES_FARFETCHD] =
     {
-        FARFETCHD_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 132,
+        .evYield_Attack    = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Farfetch'd"),
+        .cryId = CRY_FARFETCHD,
+        .natDexNum = NATIONAL_DEX_FARFETCHD,
+        .categoryName = _("Wild Duck"),
+        .footprint = gMonFootprint_Farfetchd,
+        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
         .baseHP        = 52,
         .baseDefense   = 55,
         .baseSpeed     = 60,
@@ -6564,10 +6422,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(FarfetchdGalarian, 64, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_FarfetchdGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(FarfetchdGalarian, 64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(FarfetchdGalarian),
         ICON(FarfetchdGalarian, 1),
         LEARNSETS(FarfetchdGalarian),
@@ -6613,10 +6469,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Sirfetchd, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Sirfetchd,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sirfetchd, 64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sirfetchd),
         ICON(Sirfetchd, 1),
         .footprint = gMonFootprint_Sirfetchd,
@@ -6826,54 +6680,54 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SEEL
 
 #if P_FAMILY_GRIMER
-#define GRIMER_FAMILY_MISC_INFO                                     \
-        .itemRare = ITEM_BLACK_SLUDGE,                              \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
+#define GRIMER_FAMILY_MISC_INFO
+        .itemRare = ITEM_BLACK_SLUDGE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS }
 
-#define GRIMER_MISC_INFO                                \
-        .baseHP        = 80,                            \
-        .baseAttack    = 80,                            \
-        .baseDefense   = 50,                            \
-        .baseSpeed     = 25,                            \
-        .baseSpAttack  = 40,                            \
-        .baseSpDefense = 50,                            \
-        .catchRate = 190,                               \
-        .expYield = 65,                                 \
-        .evYield_HP        = 1,                         \
-        .speciesName = _("Grimer"),                     \
-        .cryId = CRY_GRIMER,                            \
-        .natDexNum = NATIONAL_DEX_GRIMER,               \
-        .categoryName = _("Sludge"),                    \
-        .footprint = gMonFootprint_Grimer,              \
-        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,\
+#define GRIMER_MISC_INFO
+        .baseHP        = 80,
+        .baseAttack    = 80,
+        .baseDefense   = 50,
+        .baseSpeed     = 25,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 50,
+        .catchRate = 190,
+        .expYield = 65,
+        .evYield_HP        = 1,
+        .speciesName = _("Grimer"),
+        .cryId = CRY_GRIMER,
+        .natDexNum = NATIONAL_DEX_GRIMER,
+        .categoryName = _("Sludge"),
+        .footprint = gMonFootprint_Grimer,
+        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
         GRIMER_FAMILY_MISC_INFO
 
-#define MUK_MISC_INFO                                   \
-        .baseHP        = 105,                           \
-        .baseAttack    = 105,                           \
-        .baseDefense   = 75,                            \
-        .baseSpeed     = 50,                            \
-        .baseSpAttack  = 65,                            \
-        .baseSpDefense = 100,                           \
-        .catchRate = 75,                                \
-        .expYield = 175,                                \
-        .evYield_HP        = 1,                         \
-        .evYield_Attack    = 1,                         \
-        .speciesName = _("Muk"),                        \
-        .cryId = CRY_MUK,                               \
-        .natDexNum = NATIONAL_DEX_MUK,                  \
-        .categoryName = _("Sludge"),                    \
-        .footprint = gMonFootprint_Muk,                 \
-        .formSpeciesIdTable = sMukFormSpeciesIdTable,   \
+#define MUK_MISC_INFO
+        .baseHP        = 105,
+        .baseAttack    = 105,
+        .baseDefense   = 75,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 100,
+        .catchRate = 75,
+        .expYield = 175,
+        .evYield_HP        = 1,
+        .evYield_Attack    = 1,
+        .speciesName = _("Muk"),
+        .cryId = CRY_MUK,
+        .natDexNum = NATIONAL_DEX_MUK,
+        .categoryName = _("Sludge"),
+        .footprint = gMonFootprint_Muk,
+        .formSpeciesIdTable = sMukFormSpeciesIdTable,
         GRIMER_FAMILY_MISC_INFO
 
 #define KANTONIAN_GRIMER_FAMILY_INFO                                                \
-        .types = { TYPE_POISON, TYPE_POISON },                                      \
-        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH }, \
+        .types = { TYPE_POISON, TYPE_POISON },
+        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
         .bodyColor = BODY_COLOR_PURPLE
 
     [SPECIES_GRIMER] =
@@ -6957,10 +6811,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GrimerAlolan, 56, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_GrimerAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GrimerAlolan, 64, 40),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GrimerAlolan),
         ICON(GrimerAlolan, 1),
         LEARNSETS(GrimerAlolan),
@@ -6986,10 +6838,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MukAlolan, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_MukAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MukAlolan, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MukAlolan),
         ICON(MukAlolan, 0),
         LEARNSETS(MukAlolan),
@@ -7206,27 +7056,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #define GENGAR_ABILITIES {ABILITY_LEVITATE, ABILITY_NONE}
 #endif
 
-#define GENGAR_MISC_INFO                                            \
-        .types = { TYPE_GHOST, TYPE_POISON },                       \
-        .catchRate = 45,                                            \
-        .evYield_SpAttack  = 3,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_SLOW,                           \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .bodyColor = BODY_COLOR_PURPLE,                             \
-        .speciesName = _("Gengar"),                                 \
-        .natDexNum = NATIONAL_DEX_GENGAR,                           \
-        .categoryName = _("Shadow"),                                \
-        .footprint = gMonFootprint_Gengar,                          \
-        LEARNSETS(Gengar),                                          \
-        .formSpeciesIdTable = sGengarFormSpeciesIdTable,            \
-        .formChangeTable = sGengarFormChangeTable
-
     [SPECIES_GENGAR] =
     {
-        GENGAR_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_POISON },
+        .catchRate = 45,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Gengar"),
+        .natDexNum = NATIONAL_DEX_GENGAR,
+        .categoryName = _("Shadow"),
+        .footprint = gMonFootprint_Gengar,
+        LEARNSETS(Gengar),
+        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
+        .formChangeTable = sGengarFormChangeTable,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 60,
@@ -7284,7 +7131,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GengarMega, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_GengarMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GengarMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -7317,10 +7163,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GengarGigantamax, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_GengarGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GengarGigantamax, 64, 64),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GengarGigantamax),
         ICON(GengarGigantamax, 2),
     },
@@ -7378,28 +7222,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_GEN_2_CROSS_EVOS
-#define STEELIX_MISC_INFO                                       \
-        .types = { TYPE_STEEL, TYPE_GROUND },                   \
-        .catchRate = 25,                                        \
-        .evYield_Defense   = 2,                                 \
-        .itemRare = ITEM_METAL_COAT,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
-        .bodyColor = BODY_COLOR_GRAY,                           \
-        .speciesName = _("Steelix"),                            \
-        .natDexNum = NATIONAL_DEX_STEELIX,                      \
-        .categoryName = _("Iron Snake"),                        \
-        .footprint = gMonFootprint_Steelix,                     \
-        LEARNSETS(Steelix),                                     \
-        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,       \
-        .formChangeTable = sSteelixFormChangeTable
 
     [SPECIES_STEELIX] =
     {
-        STEELIX_MISC_INFO,
+        .types = { TYPE_STEEL, TYPE_GROUND },
+        .catchRate = 25,
+        .evYield_Defense   = 2,
+        .itemRare = ITEM_METAL_COAT,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Steelix"),
+        .natDexNum = NATIONAL_DEX_STEELIX,
+        .categoryName = _("Iron Snake"),
+        .footprint = gMonFootprint_Steelix,
+        LEARNSETS(Steelix),
+        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
+        .formChangeTable = sSteelixFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 85,
         .baseDefense   = 200,
@@ -7461,7 +7303,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SteelixMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SteelixMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SteelixMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -7623,37 +7464,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_KINGLER}),
     },
 
-#define KINGLER_MISC_INFO                                                               \
-        .baseHP        = 55,                                                            \
-        .baseAttack    = 130,                                                           \
-        .baseDefense   = 115,                                                           \
-        .baseSpeed     = 75,                                                            \
-        .baseSpAttack  = 50,                                                            \
-        .baseSpDefense = 50,                                                            \
-        .types = { TYPE_WATER, TYPE_WATER },                                            \
-        .catchRate = 60,                                                                \
-        .expYield = 166,                                                                \
-        .evYield_Attack    = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },                          \
-        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_SHEER_FORCE },\
-        .bodyColor = BODY_COLOR_RED,                                                    \
-        .noFlip = TRUE,                                                                 \
-        .speciesName = _("Kingler"),                                                    \
-        .cryId = CRY_KINGLER,                                                           \
-        .natDexNum = NATIONAL_DEX_KINGLER,                                              \
-        .categoryName = _("Pincer"),                                                    \
-        .footprint = gMonFootprint_Kingler,                                             \
-        LEARNSETS(Kingler),                                                             \
-        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,                               \
-        .formChangeTable = sKinglerFormChangeTable
-
     [SPECIES_KINGLER] =
     {
-        KINGLER_MISC_INFO,
+        .baseHP        = 55,
+        .baseAttack    = 130,
+        .baseDefense   = 115,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 50,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 60,
+        .expYield = 166,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_3, EGG_GROUP_WATER_3 },
+        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = TRUE,
+        .speciesName = _("Kingler"),
+        .cryId = CRY_KINGLER,
+        .natDexNum = NATIONAL_DEX_KINGLER,
+        .categoryName = _("Pincer"),
+        .footprint = gMonFootprint_Kingler,
+        LEARNSETS(Kingler),
+        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,
+        .formChangeTable = sKinglerFormChangeTable,
         .height = 13,
         .weight = 600,
         .description = COMPOUND_STRING(
@@ -7692,10 +7530,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(KinglerGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_KinglerGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(KinglerGigantamax, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(KinglerGigantamax),
         ICON(KinglerGigantamax, 0),
         .isGigantamax = TRUE,
@@ -7704,57 +7540,57 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KRABBY
 
 #if P_FAMILY_VOLTORB
-#define VOLTORB_FAMILY_MISC_INFO                                                \
-        .genderRatio = MON_GENDERLESS,                                          \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },                  \
-        .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH }, \
+#define VOLTORB_FAMILY_MISC_INFO
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
         .bodyColor = BODY_COLOR_RED
 
-#define VOLTORB_MISC_INFO                                   \
-        .baseHP        = 40,                                \
-        .baseAttack    = 30,                                \
-        .baseDefense   = 50,                                \
-        .baseSpeed     = 100,                               \
-        .baseSpAttack  = 55,                                \
-        .baseSpDefense = 55,                                \
-        .catchRate = 190,                                   \
-        .expYield = 66,                                     \
-        .evYield_Speed     = 1,                             \
-        .speciesName = _("Voltorb"),                        \
-        .cryId = CRY_VOLTORB,                               \
-        .natDexNum = NATIONAL_DEX_VOLTORB,                  \
-        .height = 5,                                        \
-        .pokemonScale = 364,                                \
-        .pokemonOffset = -8,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Voltorb,                 \
-        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,   \
+#define VOLTORB_MISC_INFO
+        .baseHP        = 40,
+        .baseAttack    = 30,
+        .baseDefense   = 50,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 55,
+        .catchRate = 190,
+        .expYield = 66,
+        .evYield_Speed     = 1,
+        .speciesName = _("Voltorb"),
+        .cryId = CRY_VOLTORB,
+        .natDexNum = NATIONAL_DEX_VOLTORB,
+        .height = 5,
+        .pokemonScale = 364,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Voltorb,
+        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
         VOLTORB_FAMILY_MISC_INFO
 
-#define ELECTRODE_MISC_INFO                                     \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 50,                                    \
-        .baseDefense   = 70,                                    \
-        .baseSpAttack  = 80,                                    \
-        .baseSpDefense = 80,                                    \
-        .baseSpeed     = P_UPDATED_STATS >= GEN_7 ? 150 : 140,  \
-        .catchRate = 60,                                        \
-        .expYield = 172,                                        \
-        .evYield_Speed     = 2,                                 \
-        .speciesName = _("Electrode"),                          \
-        .cryId = CRY_ELECTRODE,                                 \
-        .natDexNum = NATIONAL_DEX_ELECTRODE,                    \
-        .height = 12,                                           \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Electrode,                   \
-        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,     \
+#define ELECTRODE_MISC_INFO
+        .baseHP        = 60,
+        .baseAttack    = 50,
+        .baseDefense   = 70,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 80,
+        .baseSpeed     = P_UPDATED_STATS >= GEN_7 ? 150 : 140,
+        .catchRate = 60,
+        .expYield = 172,
+        .evYield_Speed     = 2,
+        .speciesName = _("Electrode"),
+        .cryId = CRY_ELECTRODE,
+        .natDexNum = NATIONAL_DEX_ELECTRODE,
+        .height = 12,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Electrode,
+        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
         VOLTORB_FAMILY_MISC_INFO
 
     [SPECIES_VOLTORB] =
@@ -7819,10 +7655,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(VoltorbHisuian, 32, 32),
         .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_VoltorbHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(VoltorbHisuian, 48, 32),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(VoltorbHisuian),
         ICON(VoltorbHisuian, 0),
         LEARNSETS(VoltorbHisuian),
@@ -7844,10 +7678,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ElectrodeHisuian, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_ElectrodeHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ElectrodeHisuian, 64, 40),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ElectrodeHisuian),
         ICON(ElectrodeHisuian, 1),
         LEARNSETS(ElectrodeHisuian),
@@ -7907,21 +7739,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_EXEGGUTOR_ALOLAN}),
     },
 
-#define EXEGGUTOR_MISC_INFO                                 \
-        .catchRate = 45,                                    \
-        .expYield = 186,                                    \
-        .evYield_SpAttack  = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },  \
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .speciesName = _("Exeggutor"),                      \
-        .cryId = CRY_EXEGGUTOR,                             \
-        .natDexNum = NATIONAL_DEX_EXEGGUTOR,                \
-        .categoryName = _("Coconut"),                       \
-        .footprint = gMonFootprint_Exeggutor,               \
+#define EXEGGUTOR_MISC_INFO
+        .catchRate = 45,
+        .expYield = 186,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Exeggutor"),
+        .cryId = CRY_EXEGGUTOR,
+        .natDexNum = NATIONAL_DEX_EXEGGUTOR,
+        .categoryName = _("Coconut"),
+        .footprint = gMonFootprint_Exeggutor,
         .formSpeciesIdTable = sExeggutorFormSpeciesIdTable
 
 #define EXEGGUTOR_SP_DEF (P_UPDATED_STATS >= GEN_7 ? 75 : 65)
@@ -7986,10 +7818,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ExeggutorAlolan, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_ExeggutorAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ExeggutorAlolan, 64, 56),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ExeggutorAlolan),
         ICON(ExeggutorAlolan, 1),
         LEARNSETS(ExeggutorAlolan),
@@ -8050,37 +7880,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_MAROWAK_ALOLAN}),
     },
 
-#define MAROWAK_MISC_INFO                                       \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 80,                                    \
-        .baseDefense   = 110,                                   \
-        .baseSpeed     = 45,                                    \
-        .baseSpAttack  = 50,                                    \
-        .baseSpDefense = 80,                                    \
-        .catchRate = 75,                                        \
-        .expYield = 149,                                        \
-        .evYield_Defense   = 2,                                 \
-        .itemRare = ITEM_THICK_CLUB,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },  \
-        .speciesName = _("Marowak"),                            \
-        .cryId = CRY_MAROWAK,                                   \
-        .natDexNum = NATIONAL_DEX_MAROWAK,                      \
-        .categoryName = _("Bone Keeper"),                       \
-        .height = 10,                                           \
-        .pokemonScale = 293,                                    \
-        .pokemonOffset = 12,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Marowak,                     \
-        .formSpeciesIdTable = sMarowakFormSpeciesIdTable
-
     [SPECIES_MAROWAK] =
     {
-        MAROWAK_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 80,
+        .baseDefense   = 110,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 80,
+        .catchRate = 75,
+        .expYield = 149,
+        .evYield_Defense   = 2,
+        .itemRare = ITEM_THICK_CLUB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
+        .speciesName = _("Marowak"),
+        .cryId = CRY_MAROWAK,
+        .natDexNum = NATIONAL_DEX_MAROWAK,
+        .categoryName = _("Bone Keeper"),
+        .height = 10,
+        .pokemonScale = 293,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Marowak,
+        .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_LIGHTNING_ROD, ABILITY_BATTLE_ARMOR },
         .bodyColor = BODY_COLOR_BROWN,
@@ -8118,10 +7945,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MarowakAlolan, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_MarowakAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MarowakAlolan, 56, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MarowakAlolan),
         ICON(MarowakAlolan, 1),
         LEARNSETS(MarowakAlolan),
@@ -8484,32 +8309,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_WEEZING_GALARIAN}),
     },
 
-#define WEEZING_MISC_INFO                                           \
-        .baseHP        = 65,                                        \
-        .baseAttack    = 90,                                        \
-        .baseDefense   = 120,                                       \
-        .baseSpeed     = 60,                                        \
-        .baseSpAttack  = 85,                                        \
-        .baseSpDefense = 70,                                        \
-        .catchRate = 60,                                            \
-        .expYield = 172,                                            \
-        .evYield_Defense   = 2,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .noFlip = TRUE,                                             \
-        .speciesName = _("Weezing"),                                \
-        .cryId = CRY_WEEZING,                                       \
-        .natDexNum = NATIONAL_DEX_WEEZING,                          \
-        .categoryName = _("Poison Gas"),                            \
-        .footprint = gMonFootprint_Weezing,                         \
-        .formSpeciesIdTable = sWeezingFormSpeciesIdTable
-
     [SPECIES_WEEZING] =
     {
-        WEEZING_MISC_INFO,
+        .baseHP        = 65,
+        .baseAttack    = 90,
+        .baseDefense   = 120,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 70,
+        .catchRate = 60,
+        .expYield = 172,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .noFlip = TRUE,
+        .speciesName = _("Weezing"),
+        .cryId = CRY_WEEZING,
+        .natDexNum = NATIONAL_DEX_WEEZING,
+        .categoryName = _("Poison Gas"),
+        .footprint = gMonFootprint_Weezing,
+        .formSpeciesIdTable = sWeezingFormSpeciesIdTable,
         .types = { TYPE_POISON, TYPE_POISON },
         .itemRare = ITEM_SMOKE_BALL,
         #if P_UPDATED_ABILITIES >= GEN_8
@@ -8565,11 +8387,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(WeezingGalarian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_WeezingGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 6,
         BACK_PIC(WeezingGalarian, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(WeezingGalarian),
         ICON(WeezingGalarian, 1),
         LEARNSETS(WeezingGalarian),
@@ -8985,32 +8805,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TANGELA
 
 #if P_FAMILY_KANGASKHAN
-#define KANGASKHAN_MISC_INFO                                    \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                  \
-        .catchRate = 45,                                        \
-        .evYield_HP        = 2,                                 \
-        .genderRatio = MON_FEMALE,                              \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },  \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .speciesName = _("Kangaskhan"),                         \
-        .natDexNum = NATIONAL_DEX_KANGASKHAN,                   \
-        .categoryName = _("Parent"),                            \
-        .height = 22,                                           \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 387,                                    \
-        .trainerOffset = 8,                                     \
-        .footprint = gMonFootprint_Kangaskhan,                  \
-        LEARNSETS(Kangaskhan),                                  \
-        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,    \
-        .formChangeTable = sKangaskhanFormChangeTable
 
     [SPECIES_KANGASKHAN] =
     {
-        KANGASKHAN_MISC_INFO,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 45,
+        .evYield_HP        = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Kangaskhan"),
+        .natDexNum = NATIONAL_DEX_KANGASKHAN,
+        .categoryName = _("Parent"),
+        .height = 22,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
+        .footprint = gMonFootprint_Kangaskhan,
+        LEARNSETS(Kangaskhan),
+        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,
+        .formChangeTable = sKangaskhanFormChangeTable,
         .baseHP        = 105,
         .baseAttack    = 95,
         .baseDefense   = 80,
@@ -9060,7 +8878,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(KangaskhanMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_KangaskhanMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(KangaskhanMega, 64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -9485,23 +9302,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_GEN_4_CROSS_EVOS
 
-#define MR_MIME_MISC_INFO                                           \
-        .catchRate = 45,                                            \
-        .expYield = 161,                                            \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 25,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },\
-        .speciesName = _("Mr. Mime"),                               \
-        .cryId = CRY_MR_MIME,                                       \
-        .natDexNum = NATIONAL_DEX_MR_MIME,                          \
-        .footprint = gMonFootprint_MrMime,                          \
-        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable
-
     [SPECIES_MR_MIME] =
     {
-        MR_MIME_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 161,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .speciesName = _("Mr. Mime"),
+        .cryId = CRY_MR_MIME,
+        .natDexNum = NATIONAL_DEX_MR_MIME,
+        .footprint = gMonFootprint_MrMime,
+        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable,
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 65,
@@ -9569,10 +9383,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MrMimeGalarian, 56, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_MrMimeGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MrMimeGalarian, 64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MrMimeGalarian),
         ICON(MrMimeGalarian, 0),
         LEARNSETS(MrMimeGalarian),
@@ -9616,10 +9428,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MrRime, 56, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_MrRime,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MrRime, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MrRime),
         ICON(MrRime, 0),
         .footprint = gMonFootprint_MrRime,
@@ -9682,27 +9492,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_GEN_2_CROSS_EVOS
-#define SCIZOR_MISC_INFO                                \
-        .types = { TYPE_BUG, TYPE_STEEL },              \
-        .catchRate = 25,                                \
-        .evYield_Attack    = 2,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 25,                                \
-        .friendship = STANDARD_FRIENDSHIP,              \
-        .growthRate = GROWTH_MEDIUM_FAST,               \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },  \
-        .bodyColor = BODY_COLOR_RED,                    \
-        .speciesName = _("Scizor"),                     \
-        .natDexNum = NATIONAL_DEX_SCIZOR,               \
-        .categoryName = _("Pincer"),                    \
-        .footprint = gMonFootprint_Scizor,              \
-        LEARNSETS(Scizor),                              \
-        .formSpeciesIdTable = sScizorFormSpeciesIdTable,\
-        .formChangeTable = sScizorFormChangeTable
 
     [SPECIES_SCIZOR] =
     {
-        SCIZOR_MISC_INFO,
+        .types = { TYPE_BUG, TYPE_STEEL },
+        .catchRate = 25,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Scizor"),
+        .natDexNum = NATIONAL_DEX_SCIZOR,
+        .categoryName = _("Pincer"),
+        .footprint = gMonFootprint_Scizor,
+        LEARNSETS(Scizor),
+        .formSpeciesIdTable = sScizorFormSpeciesIdTable,
+        .formChangeTable = sScizorFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 130,
         .baseDefense   = 100,
@@ -9764,7 +9572,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ScizorMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ScizorMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ScizorMega, 64, 56),
         .backPicYOffset = 4,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -9812,13 +9619,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Kleavor, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Kleavor,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kleavor, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Kleavor),
         ICON(Kleavor, 2),
-        //.footprint = gMonFootprint_Kleavor,
         LEARNSETS(Kleavor),
     },
 #endif //P_GEN_8_CROSS_EVOS
@@ -10235,26 +10039,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MAGMAR
 
 #if P_FAMILY_PINSIR
-#define PINSIR_MISC_INFO                                \
-        .catchRate = 45,                                \
-        .evYield_Attack    = 2,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 25,                                \
-        .friendship = STANDARD_FRIENDSHIP,              \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },  \
-        .bodyColor = BODY_COLOR_BROWN,                  \
-        .speciesName = _("Pinsir"),                     \
-        .natDexNum = NATIONAL_DEX_PINSIR,               \
-        .categoryName = _("Stag Beetle"),               \
-        .footprint = gMonFootprint_Pinsir,              \
-        LEARNSETS(Pinsir),                              \
-        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,\
-        .formChangeTable = sPinsirFormChangeTable
 
     [SPECIES_PINSIR] =
     {
-        PINSIR_MISC_INFO,
+        .catchRate = 45,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Pinsir"),
+        .natDexNum = NATIONAL_DEX_PINSIR,
+        .categoryName = _("Stag Beetle"),
+        .footprint = gMonFootprint_Pinsir,
+        LEARNSETS(Pinsir),
+        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,
+        .formChangeTable = sPinsirFormChangeTable,
         .baseHP        = 65,
         .baseAttack    = 125,
         .baseDefense   = 100,
@@ -10315,7 +10117,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PinsirMega, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_PinsirMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(PinsirMega, 64, 56),
         .backPicYOffset = 7,
@@ -10328,35 +10129,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PINSIR
 
 #if P_FAMILY_TAUROS
-#define TAUROS_MISC_INFO                                    \
-        .baseHP        = 75,                                \
-        .baseAttack    = 100,                               \
-        .baseDefense   = 95,                                \
-        .baseSpeed     = 110,                               \
-        .baseSpAttack  = 40,                                \
-        .baseSpDefense = 70,                                \
-        .catchRate = 45,                                    \
-        .expYield = 172,                                    \
-        .genderRatio = MON_MALE,                            \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .speciesName = _("Tauros"),                         \
-        .cryId = CRY_TAUROS,                                \
-        .natDexNum = NATIONAL_DEX_TAUROS,                   \
-        .categoryName = _("Wild Bull"),                     \
-        .height = 14,                                       \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 0,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Tauros,                  \
-        .formSpeciesIdTable = sTaurosFormSpeciesIdTable
 
     [SPECIES_TAUROS] =
     {
-        TAUROS_MISC_INFO,
+        .baseHP        = 75,
+        .baseAttack    = 100,
+        .baseDefense   = 95,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 70,
+        .catchRate = 45,
+        .expYield = 172,
+        .genderRatio = MON_MALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Tauros"),
+        .cryId = CRY_TAUROS,
+        .natDexNum = NATIONAL_DEX_TAUROS,
+        .categoryName = _("Wild Bull"),
+        .height = 14,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Tauros,
+        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
@@ -10398,7 +10197,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TaurosPaldeanCombatBreed, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_TaurosPaldean,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TaurosPaldeanCombatBreed, 64, 48),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -10424,7 +10222,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TaurosPaldeanBlazeBreed, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_TaurosPaldean,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TaurosPaldeanBlazeBreed, 64, 48),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -10450,7 +10247,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TaurosPaldeanAquaBreed, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_TaurosPaldean,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TaurosPaldeanAquaBreed, 64, 48),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -10513,31 +10309,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     },
 
-#define GYARADOS_MISC_INFO                                  \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 5,                                     \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_DRAGON },\
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Gyarados"),                       \
-        .natDexNum = NATIONAL_DEX_GYARADOS,                 \
-        .categoryName = _("Atrocious"),                     \
-        .height = 65,                                       \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 6,                                 \
-        .trainerScale = 481,                                \
-        .trainerOffset = 13,                                \
-        .footprint = gMonFootprint_Gyarados,                \
-        LEARNSETS(Gyarados),                                \
-        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,  \
-        .formChangeTable = sGyaradosFormChangeTable
-
     [SPECIES_GYARADOS] =
     {
-        GYARADOS_MISC_INFO,
+        .catchRate = 45,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 5,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Gyarados"),
+        .natDexNum = NATIONAL_DEX_GYARADOS,
+        .categoryName = _("Atrocious"),
+        .height = 65,
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 481,
+        .trainerOffset = 13,
+        .footprint = gMonFootprint_Gyarados,
+        LEARNSETS(Gyarados),
+        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,
+        .formChangeTable = sGyaradosFormChangeTable,
         .baseHP        = 95,
         .baseAttack    = 125,
         .baseDefense   = 79,
@@ -10590,7 +10383,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GyaradosMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_GyaradosMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 6,
         BACK_PIC(GyaradosMega, 64, 64),
         .backPicYOffset = 2,
@@ -10603,38 +10395,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MAGIKARP
 
 #if P_FAMILY_LAPRAS
-#define LAPRAS_MISC_INFO                                                                \
-        .baseHP        = 130,                                                           \
-        .baseAttack    = 85,                                                            \
-        .baseDefense   = 80,                                                            \
-        .baseSpeed     = 60,                                                            \
-        .baseSpAttack  = 85,                                                            \
-        .baseSpDefense = 95,                                                            \
-        .types = { TYPE_WATER, TYPE_ICE },                                              \
-        .catchRate = 45,                                                                \
-        .expYield = 187,                                                                \
-        .evYield_HP        = 2,                                                         \
-        .itemCommon = ITEM_MYSTIC_WATER,                                                \
-        .itemRare = ITEM_MYSTIC_WATER,                                                  \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 40,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },                          \
-        .abilities = { ABILITY_WATER_ABSORB, ABILITY_SHELL_ARMOR, ABILITY_HYDRATION },  \
-        .bodyColor = BODY_COLOR_BLUE,                                                   \
-        .speciesName = _("Lapras"),                                                     \
-        .cryId = CRY_LAPRAS,                                                            \
-        .natDexNum = NATIONAL_DEX_LAPRAS,                                               \
-        .categoryName = _("Transport"),                                                 \
-        .footprint = gMonFootprint_Lapras,                                              \
-        LEARNSETS(Lapras),                                                              \
-        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,                                \
-        .formChangeTable = sLaprasFormChangeTable
 
     [SPECIES_LAPRAS] =
     {
-        LAPRAS_MISC_INFO,
+        .baseHP        = 130,
+        .baseAttack    = 85,
+        .baseDefense   = 80,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 95,
+        .types = { TYPE_WATER, TYPE_ICE },
+        .catchRate = 45,
+        .expYield = 187,
+        .evYield_HP        = 2,
+        .itemCommon = ITEM_MYSTIC_WATER,
+        .itemRare = ITEM_MYSTIC_WATER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .abilities = { ABILITY_WATER_ABSORB, ABILITY_SHELL_ARMOR, ABILITY_HYDRATION },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Lapras"),
+        .cryId = CRY_LAPRAS,
+        .natDexNum = NATIONAL_DEX_LAPRAS,
+        .categoryName = _("Transport"),
+        .footprint = gMonFootprint_Lapras,
+        LEARNSETS(Lapras),
+        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,
+        .formChangeTable = sLaprasFormChangeTable,
         .height = 25,
         .weight = 2200,
         .description = COMPOUND_STRING(
@@ -10672,10 +10462,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LaprasGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LaprasGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LaprasGigantamax, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(LaprasGigantamax),
         ICON(LaprasGigantamax, 2),
         .isGigantamax = TRUE,
@@ -10735,36 +10523,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DITTO
 
 #if P_FAMILY_EEVEE
-#define EEVEE_MISC_INFO                                                                 \
-        .baseHP        = 55,                                                            \
-        .baseAttack    = 55,                                                            \
-        .baseDefense   = 50,                                                            \
-        .baseSpeed     = 55,                                                            \
-        .baseSpAttack  = 45,                                                            \
-        .baseSpDefense = 65,                                                            \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                                          \
-        .catchRate = 45,                                                                \
-        .expYield = 65,                                                                 \
-        .evYield_SpDefense = 1,                                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                                            \
-        .eggCycles = 35,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                              \
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION },  \
-        .bodyColor = BODY_COLOR_BROWN,                                                  \
-        .speciesName = _("Eevee"),                                                      \
-        .cryId = CRY_EEVEE,                                                             \
-        .natDexNum = NATIONAL_DEX_EEVEE,                                                \
-        .categoryName = _("Evolution"),                                                 \
-        .footprint = gMonFootprint_Eevee,                                               \
-        LEARNSETS(Eevee),                                                               \
-        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,                                 \
-        .formChangeTable = sEeveeFormChangeTable
 
     [SPECIES_EEVEE] =
     {
-        EEVEE_MISC_INFO,
+        .baseHP        = 55,
+        .baseAttack    = 55,
+        .baseDefense   = 50,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 65,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 45,
+        .expYield = 65,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Eevee"),
+        .cryId = CRY_EEVEE,
+        .natDexNum = NATIONAL_DEX_EEVEE,
+        .categoryName = _("Evolution"),
+        .footprint = gMonFootprint_Eevee,
+        LEARNSETS(Eevee),
+        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
+        .formChangeTable = sEeveeFormChangeTable,
         .height = 3,
         .weight = 65,
         .description = COMPOUND_STRING(
@@ -10814,10 +10600,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EeveeGigantamax, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_EeveeGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EeveeGigantamax, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EeveeGigantamax),
         ICON(EeveeGigantamax, 2),
         .isGigantamax = TRUE,
@@ -11556,27 +11340,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KABUTO
 
 #if P_FAMILY_AERODACTYL
-#define AERODACTYL_MISC_INFO                                \
-        .types = { TYPE_ROCK, TYPE_FLYING },                \
-        .catchRate = 45,                                    \
-        .evYield_Speed     = 2,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 35,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },\
-        .bodyColor = BODY_COLOR_PURPLE,                     \
-        .speciesName = _("Aerodactyl"),                     \
-        .natDexNum = NATIONAL_DEX_AERODACTYL,               \
-        .categoryName = _("Fossil"),                        \
-        .footprint = gMonFootprint_Aerodactyl,              \
-        LEARNSETS(Aerodactyl),                              \
-        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,\
-        .formChangeTable = sAerodactylFormChangeTable
 
     [SPECIES_AERODACTYL] =
     {
-        AERODACTYL_MISC_INFO,
+        .types = { TYPE_ROCK, TYPE_FLYING },
+        .catchRate = 45,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Aerodactyl"),
+        .natDexNum = NATIONAL_DEX_AERODACTYL,
+        .categoryName = _("Fossil"),
+        .footprint = gMonFootprint_Aerodactyl,
+        LEARNSETS(Aerodactyl),
+        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
+        .formChangeTable = sAerodactylFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 105,
         .baseDefense   = 65,
@@ -11635,7 +11417,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AerodactylMega, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_AerodactylMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(AerodactylMega, 64, 64),
         .backPicYOffset = 8,
@@ -11700,38 +11481,35 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_GEN_4_CROSS_EVOS
 
-#define SNORLAX_MISC_INFO                                                       \
-        .baseHP        = 160,                                                   \
-        .baseAttack    = 110,                                                   \
-        .baseDefense   = 65,                                                    \
-        .baseSpeed     = 30,                                                    \
-        .baseSpAttack  = 65,                                                    \
-        .baseSpDefense = 110,                                                   \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                                  \
-        .catchRate = 25,                                                        \
-        .expYield = 189,                                                        \
-        .evYield_HP        = 2,                                                 \
-        .itemCommon = ITEM_LEFTOVERS,                                           \
-        .itemRare = ITEM_LEFTOVERS,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                    \
-        .eggCycles = 40,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_SLOW,                                              \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },                  \
-        .abilities = { ABILITY_IMMUNITY, ABILITY_THICK_FAT, ABILITY_GLUTTONY }, \
-        .bodyColor = BODY_COLOR_BLACK,                                          \
-        .speciesName = _("Snorlax"),                                            \
-        .cryId = CRY_SNORLAX,                                                   \
-        .natDexNum = NATIONAL_DEX_SNORLAX,                                      \
-        .categoryName = _("Sleeping"),                                          \
-        .footprint = gMonFootprint_Snorlax,                                     \
-        LEARNSETS(Snorlax),                                                     \
-        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,                       \
-        .formChangeTable = sSnorlaxFormChangeTable
-
     [SPECIES_SNORLAX] =
     {
-        SNORLAX_MISC_INFO,
+        .baseHP        = 160,
+        .baseAttack    = 110,
+        .baseDefense   = 65,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 110,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 25,
+        .expYield = 189,
+        .evYield_HP        = 2,
+        .itemCommon = ITEM_LEFTOVERS,
+        .itemRare = ITEM_LEFTOVERS,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
+        .abilities = { ABILITY_IMMUNITY, ABILITY_THICK_FAT, ABILITY_GLUTTONY },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Snorlax"),
+        .cryId = CRY_SNORLAX,
+        .natDexNum = NATIONAL_DEX_SNORLAX,
+        .categoryName = _("Sleeping"),
+        .footprint = gMonFootprint_Snorlax,
+        LEARNSETS(Snorlax),
+        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,
+        .formChangeTable = sSnorlaxFormChangeTable,
         .height = 21,
         .weight = 4600,
         .description = COMPOUND_STRING(
@@ -11769,10 +11547,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SnorlaxGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SnorlaxGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SnorlaxGigantamax, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SnorlaxGigantamax),
         ICON(SnorlaxGigantamax, 3),
         .isGigantamax = TRUE,
@@ -11781,27 +11557,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SNORLAX
 
 #if P_FAMILY_ARTICUNO
-#define ARTICUNO_MISC_INFO                                              \
-        .catchRate = 3,                                                 \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .friendship = 35,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .speciesName = _("Articuno"),                                   \
-        .cryId = CRY_ARTICUNO,                                          \
-        .natDexNum = NATIONAL_DEX_ARTICUNO,                             \
-        .height = 17,                                                   \
-        .pokemonScale = 256,                                            \
-        .pokemonOffset = 0,                                             \
-        .trainerScale = 309,                                            \
-        .trainerOffset = 2,                                             \
-        .footprint = gMonFootprint_Articuno,                            \
-        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,              \
-        .isLegendary = TRUE
 
     [SPECIES_ARTICUNO] =
     {
-        ARTICUNO_MISC_INFO,
+        .catchRate = 3,
+        .genderRatio = MON_GENDERLESS,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .speciesName = _("Articuno"),
+        .cryId = CRY_ARTICUNO,
+        .natDexNum = NATIONAL_DEX_ARTICUNO,
+        .height = 17,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 309,
+        .trainerOffset = 2,
+        .footprint = gMonFootprint_Articuno,
+        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 85,
         .baseDefense   = 100,
@@ -11858,11 +11632,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ArticunoGalarian, 64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_ArticunoGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 10,
         BACK_PIC(ArticunoGalarian, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ArticunoGalarian),
         ICON(ArticunoGalarian, 2),
         LEARNSETS(ArticunoGalarian),
@@ -11872,28 +11644,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ARTICUNO
 
 #if P_FAMILY_ZAPDOS
-#define ZAPDOS_MISC_INFO                                                \
-        .catchRate = 3,                                                 \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .friendship = 35,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .bodyColor = BODY_COLOR_YELLOW,                                 \
-        .speciesName = _("Zapdos"),                                     \
-        .cryId = CRY_ZAPDOS,                                            \
-        .natDexNum = NATIONAL_DEX_ZAPDOS,                               \
-        .height = 16,                                                   \
-        .pokemonScale = 256,                                            \
-        .pokemonOffset = 0,                                             \
-        .trainerScale = 318,                                            \
-        .trainerOffset = 3,                                             \
-        .footprint = gMonFootprint_Zapdos,                              \
-        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,                \
-        .isLegendary = TRUE
 
     [SPECIES_ZAPDOS] =
     {
-        ZAPDOS_MISC_INFO,
+        .catchRate = 3,
+        .genderRatio = MON_GENDERLESS,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Zapdos"),
+        .cryId = CRY_ZAPDOS,
+        .natDexNum = NATIONAL_DEX_ZAPDOS,
+        .height = 16,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 318,
+        .trainerOffset = 3,
+        .footprint = gMonFootprint_Zapdos,
+        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 90,
         .baseDefense   = 85,
@@ -11954,10 +11724,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZapdosGalarian, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ZapdosGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZapdosGalarian, 56, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZapdosGalarian),
         ICON(ZapdosGalarian, 0),
         LEARNSETS(ZapdosGalarian),
@@ -11967,27 +11735,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ZAPDOS
 
 #if P_FAMILY_MOLTRES
-#define MOLTRES_MISC_INFO                                               \
-        .catchRate = 3,                                                 \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .friendship = 35,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .speciesName = _("Moltres"),                                    \
-        .cryId = CRY_MOLTRES,                                           \
-        .natDexNum = NATIONAL_DEX_MOLTRES,                              \
-        .height = 20,                                                   \
-        .pokemonScale = 270,                                            \
-        .pokemonOffset = 0,                                             \
-        .trainerScale = 387,                                            \
-        .trainerOffset = 8,                                             \
-        .footprint = gMonFootprint_Moltres,                             \
-        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,               \
-        .isLegendary = TRUE
 
     [SPECIES_MOLTRES] =
     {
-        MOLTRES_MISC_INFO,
+        .catchRate = 3,
+        .genderRatio = MON_GENDERLESS,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .speciesName = _("Moltres"),
+        .cryId = CRY_MOLTRES,
+        .natDexNum = NATIONAL_DEX_MOLTRES,
+        .height = 20,
+        .pokemonScale = 270,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
+        .footprint = gMonFootprint_Moltres,
+        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 90,
@@ -12045,10 +11811,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MoltresGalarian, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_MoltresGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MoltresGalarian, 56, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MoltresGalarian),
         ICON(MoltresGalarian, 0),
         LEARNSETS(MoltresGalarian),
@@ -12206,22 +11970,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DRATINI
 
 #if P_FAMILY_MEWTWO
-#define SPECIES_MEWTWO_MISC_INFO                                        \
-        .catchRate = 3,                                                 \
-        .evYield_SpAttack  = 3,                                         \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .bodyColor = BODY_COLOR_PURPLE,                                 \
-        .speciesName = _("Mewtwo"),                                     \
-        .natDexNum = NATIONAL_DEX_MEWTWO,                               \
-        .categoryName = _("Genetic"),                                   \
-        .footprint = gMonFootprint_Mewtwo,                              \
-        LEARNSETS(Mewtwo),                                              \
-        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,                \
-        .formChangeTable = sMewtwoFormChangeTable,                      \
+#define SPECIES_MEWTWO_MISC_INFO
+        .catchRate = 3,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Mewtwo"),
+        .natDexNum = NATIONAL_DEX_MEWTWO,
+        .categoryName = _("Genetic"),
+        .footprint = gMonFootprint_Mewtwo,
+        LEARNSETS(Mewtwo),
+        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
+        .formChangeTable = sMewtwoFormChangeTable,
         .isLegendary = TRUE
 
     [SPECIES_MEWTWO] =
@@ -12288,7 +12052,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MewtwoMegaX, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_MewtwoMegaX,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MewtwoMegaX, 56, 64),
         .backPicYOffset = 1,
         .backAnimId = BACK_ANIM_GROW_STUTTER,
@@ -12324,7 +12087,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MewtwoMegaY, 40, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_MewtwoMegaY,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 3,
         BACK_PIC(MewtwoMegaY, 64, 64),
         .backPicYOffset = 2,
@@ -12636,25 +12398,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
     },
 
-#define TYPHLOSION_MISC_INFO                                            \
-        .catchRate = 45,                                                \
-        .expYield = 240,                                                \
-        .evYield_SpAttack  = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },              \
-        .bodyColor = BODY_COLOR_YELLOW,                                 \
-        .speciesName = _("Typhlosion"),                                 \
-        .cryId = CRY_TYPHLOSION,                                        \
-        .natDexNum = NATIONAL_DEX_TYPHLOSION,                           \
-        .footprint = gMonFootprint_Typhlosion,                          \
-        .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable
-
     [SPECIES_TYPHLOSION] =
     {
-        TYPHLOSION_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 240,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Typhlosion"),
+        .cryId = CRY_TYPHLOSION,
+        .natDexNum = NATIONAL_DEX_TYPHLOSION,
+        .footprint = gMonFootprint_Typhlosion,
+        .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -12715,10 +12474,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TyphlosionHisuian, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_TyphlosionHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TyphlosionHisuian, 64, 56),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TyphlosionHisuian),
         ICON(TyphlosionHisuian, 1),
         LEARNSETS(TyphlosionHisuian),
@@ -13722,27 +13479,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_AMPHAROS}),
     },
 
-#define AMPHAROS_MISC_INFO                                  \
-        .catchRate = 45,                                    \
-        .evYield_SpAttack  = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },\
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .speciesName = _("Ampharos"),                       \
-        .natDexNum = NATIONAL_DEX_AMPHAROS,                 \
-        .categoryName = _("Light"),                         \
-        .height = 14,                                       \
-        .weight = 615,                                      \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 4,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Ampharos,                \
-        LEARNSETS(Ampharos),                                \
-        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,  \
+#define AMPHAROS_MISC_INFO
+        .catchRate = 45,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Ampharos"),
+        .natDexNum = NATIONAL_DEX_AMPHAROS,
+        .categoryName = _("Light"),
+        .height = 14,
+        .weight = 615,
+        .pokemonScale = 256,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Ampharos,
+        LEARNSETS(Ampharos),
+        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,
         .formChangeTable = sAmpharosFormChangeTable
 
 #define AMPHAROS_DEFENSE (P_UPDATED_STATS >= GEN_6 ? 85 : 75)
@@ -13799,7 +13556,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AmpharosMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AmpharosMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AmpharosMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
@@ -14522,35 +14278,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_YANMA
 
 #if P_FAMILY_WOOPER
-#define WOOPER_MISC_INFO                                                        \
-        .baseHP        = 55,                                                    \
-        .baseAttack    = 45,                                                    \
-        .baseDefense   = 45,                                                    \
-        .baseSpeed     = 15,                                                    \
-        .baseSpAttack  = 25,                                                    \
-        .baseSpDefense = 25,                                                    \
-        .catchRate = 255,                                                       \
-        .expYield = 42,                                                         \
-        .evYield_HP        = 1,                                                 \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },                    \
-        .speciesName = _("Wooper"),                                             \
-        .cryId = CRY_WOOPER,                                                    \
-        .natDexNum = NATIONAL_DEX_WOOPER,                                       \
-        .height = 4,                                                            \
-        .pokemonScale = 479,                                                    \
-        .pokemonOffset = 21,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .footprint = gMonFootprint_Wooper,                                      \
-        .formSpeciesIdTable = sWooperFormSpeciesIdTable
 
     [SPECIES_WOOPER] =
     {
-        WOOPER_MISC_INFO,
+        .baseHP        = 55,
+        .baseAttack    = 45,
+        .baseDefense   = 45,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 25,
+        .catchRate = 255,
+        .expYield = 42,
+        .evYield_HP        = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
+        .speciesName = _("Wooper"),
+        .cryId = CRY_WOOPER,
+        .natDexNum = NATIONAL_DEX_WOOPER,
+        .height = 4,
+        .pokemonScale = 479,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Wooper,
+        .formSpeciesIdTable = sWooperFormSpeciesIdTable,
         .types = { TYPE_WATER, TYPE_GROUND },
         .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BLUE,
@@ -14648,7 +14402,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 12,
         .backAnimId = BACK_ANIM_V_STRETCH,
         PALETTES(WooperPaldean),
-        //ICON(WooperPaldean, 0),
         LEARNSETS(WooperPaldean),
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CLODSIRE}),
     },
@@ -14690,13 +14443,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Clodsire, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Clodsire,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Clodsire, 64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Clodsire),
         ICON(Clodsire, 2),
-        //.footprint = gMonFootprint_Clodsire,
         LEARNSETS(Clodsire),
     },
 #endif //P_PALDEAN_FORMS
@@ -14907,50 +14657,48 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MISDREAVUS
 
 #if P_FAMILY_UNOWN
-#define UNOWN_MISC_INFO(letter)                                         \
-        .baseHP        = 48,                                            \
-        .baseAttack    = 72,                                            \
-        .baseDefense   = 48,                                            \
-        .baseSpeed     = 48,                                            \
-        .baseSpAttack  = 72,                                            \
-        .baseSpDefense = 48,                                            \
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },                        \
-        .catchRate = 225,                                               \
-        .expYield = 118,                                                \
-        .evYield_Attack    = 1,                                         \
-        .evYield_SpAttack  = 1,                                         \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 40,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                               \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },                \
-        .bodyColor = BODY_COLOR_BLACK,                                  \
-        .speciesName = _("Unown"),                                      \
-        .cryId = CRY_UNOWN,                                             \
-        .natDexNum = NATIONAL_DEX_UNOWN,                                \
-        .categoryName = _("Symbol"),                                    \
-        .height = 5,                                                    \
-        .weight = 50,                                                   \
-        .description = gUnownPokedexText,                               \
-        .pokemonScale = 411,                                            \
-        .pokemonOffset = 2,                                             \
-        .trainerScale = 256,                                            \
-        .trainerOffset = 0,                                             \
-        .frontPicYOffset = 16,                                          \
-        .frontAnimFrames = sAnims_Unown,                                \
-        .frontAnimId = ANIM_ZIGZAG_FAST,                                \
-        .enemyMonElevation = 8,                                         \
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                    \
-        PALETTES(Unown),                                                \
-        ICON(Unown ##letter, 0),                                        \
-        .footprint = gMonFootprint_Unown,                               \
-        LEARNSETS(Unown),                                               \
-        .formSpeciesIdTable = sUnownFormSpeciesIdTable
 
     [SPECIES_UNOWN] =
     {
-        UNOWN_MISC_INFO(A),
+        .baseHP        = 48,
+        .baseAttack    = 72,
+        .baseDefense   = 48,
+        .baseSpeed     = 48,
+        .baseSpAttack  = 72,
+        .baseSpDefense = 48,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .catchRate = 225,
+        .expYield = 118,
+        .evYield_Attack    = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Unown"),
+        .cryId = CRY_UNOWN,
+        .natDexNum = NATIONAL_DEX_UNOWN,
+        .categoryName = _("Symbol"),
+        .height = 5,
+        .weight = 50,
+        .description = gUnownPokedexText,
+        .pokemonScale = 411,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 16,
+        .frontAnimFrames = sAnims_Unown,
+        .frontAnimId = ANIM_ZIGZAG_FAST,
+        .enemyMonElevation = 8,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTES(Unown),
+        ICON(Unown ##letter, 0),
+        .footprint = gMonFootprint_Unown,
+        LEARNSETS(Unown),
+        .formSpeciesIdTable = sUnownFormSpeciesIdTable,
         FRONT_PIC(UnownA, 24, 40),
         BACK_PIC(UnownA, 24, 48),
         .backPicYOffset = 8,
@@ -15385,13 +15133,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Farigiraf, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Farigiraf,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Farigiraf, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Farigiraf),
         ICON(Farigiraf, 0),
-        //.footprint = gMonFootprint_Farigiraf,
         LEARNSETS(Farigiraf),
     },
 #endif //P_GEN_9_CROSS_EVOS
@@ -15546,48 +15291,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_GEN_9_CROSS_EVOS
-#define DUDUNSPARCE_MISC_INFO(segments)                                             \
-        .baseHP        = 125,                                                       \
-        .baseAttack    = 100,                                                       \
-        .baseDefense   = 80,                                                        \
-        .baseSpeed     = 55,                                                        \
-        .baseSpAttack  = 85,                                                        \
-        .baseSpDefense = 75,                                                        \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                                      \
-        .catchRate = 45,                                                            \
-        .expYield = 182,                                                            \
-        .evYield_HP = 2,                                                            \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                          \
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                             \
-        .speciesName = _("Dudunsprce"),                                             \
-        .cryId = CRY_DUDUNSPARCE,                                                   \
-        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,                                      \
-        .categoryName = _("Land Snake"),                                            \
-        .pokemonScale = 356,                                                        \
-        .pokemonOffset = 17,                                                        \
-        .trainerScale = 256,                                                        \
-        .trainerOffset = 0,                                                         \
-        FRONT_PIC(Dudunsparce ##segments##Segment, 64, 64),                         \
-        .frontPicYOffset = 10,                                                      \
-        .frontAnimFrames = sAnims_Dudunsparce,                                      \
-        BACK_PIC(Dudunsparce ##segments##Segment, 64, 64),                          \
-        .backPicYOffset = 11,                                                       \
-        PALETTES(Dudunsparce),                                                      \
-        ICON(Dudunsparce, 0),                                                       \
-        LEARNSETS(Dudunsparce),                                                     \
-        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Dudunsparce,
 
     [SPECIES_DUDUNSPARCE_TWO_SEGMENT] =
     {
-        DUDUNSPARCE_MISC_INFO(Two),
+        .baseHP        = 125,
+        .baseAttack    = 100,
+        .baseDefense   = 80,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 45,
+        .expYield = 182,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Dudunsprce"),
+        .cryId = CRY_DUDUNSPARCE,
+        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+        .categoryName = _("Land Snake"),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Dudunsparce ##segments##Segment, 64, 64),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Dudunsparce,
+        BACK_PIC(Dudunsparce ##segments##Segment, 64, 64),
+        .backPicYOffset = 11,
+        PALETTES(Dudunsparce),
+        ICON(Dudunsparce, 0),
+        LEARNSETS(Dudunsparce),
+        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
         .height = 36,
         .weight = 392,
         .description = COMPOUND_STRING(
@@ -15818,39 +15558,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SNUBBULL
 
 #if P_FAMILY_QWILFISH
-#define QWILFISH_MISC_INFO                                                              \
-        .baseHP        = 65,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,                            \
-        .baseSpeed     = 85,                                                            \
-        .baseSpAttack  = 55,                                                            \
-        .baseSpDefense = 55,                                                            \
-        .catchRate = 45,                                                                \
-        .expYield = 88,                                                                 \
-        .evYield_Attack    = 1,                                                         \
-        .itemRare = ITEM_POISON_BARB,                                                   \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },                          \
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },  \
-        .speciesName = _("Qwilfish"),                                                   \
-        .cryId = CRY_QWILFISH,                                                          \
-        .natDexNum = NATIONAL_DEX_QWILFISH,                                             \
-        .categoryName = _("Balloon"),                                                   \
-        .height = 5,                                                                    \
-        .weight = 39,                                                                   \
-        .pokemonScale = 430,                                                            \
-        .pokemonOffset = 0,                                                             \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        .footprint = gMonFootprint_Qwilfish,                                            \
-        .formSpeciesIdTable = sQwilfishFormSpeciesIdTable
 
     [SPECIES_QWILFISH] =
     {
-        QWILFISH_MISC_INFO,
+        .baseHP        = 65,
+        .baseAttack    = 95,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 55,
+        .catchRate = 45,
+        .expYield = 88,
+        .evYield_Attack    = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
+        .speciesName = _("Qwilfish"),
+        .cryId = CRY_QWILFISH,
+        .natDexNum = NATIONAL_DEX_QWILFISH,
+        .categoryName = _("Balloon"),
+        .height = 5,
+        .weight = 39,
+        .pokemonScale = 430,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Qwilfish,
+        .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
         .types = { TYPE_WATER, TYPE_POISON },
         .bodyColor = BODY_COLOR_GRAY,
         .description = COMPOUND_STRING(
@@ -15885,11 +15623,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(QwilfishHisuian, 48, 40),
         .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_QwilfishHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 9,
         BACK_PIC(QwilfishHisuian, 56, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(QwilfishHisuian),
         ICON(QwilfishHisuian, 0),
         LEARNSETS(QwilfishHisuian),
@@ -15934,13 +15670,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Overqwil, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Overqwil,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Overqwil, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Overqwil),
         ICON(Overqwil, 2),
-        //.footprint = gMonFootprint_Overqwil,
         LEARNSETS(Overqwil),
     },
 #endif //P_HISUIAN_FORMS
@@ -15999,27 +15732,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SHUCKLE
 
 #if P_FAMILY_HERACROSS
-#define HERACROSS_MISC_INFO                                 \
-        .types = { TYPE_BUG, TYPE_FIGHTING },               \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },      \
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Heracross"),                      \
-        .natDexNum = NATIONAL_DEX_HERACROSS,                \
-        .categoryName = _("Single Horn"),                   \
-        .footprint = gMonFootprint_Heracross,               \
-        LEARNSETS(Heracross),                               \
-        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable, \
-        .formChangeTable = sHeracrossFormChangeTable
 
     [SPECIES_HERACROSS] =
     {
-        HERACROSS_MISC_INFO,
+        .types = { TYPE_BUG, TYPE_FIGHTING },
+        .catchRate = 45,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Heracross"),
+        .natDexNum = NATIONAL_DEX_HERACROSS,
+        .categoryName = _("Single Horn"),
+        .footprint = gMonFootprint_Heracross,
+        LEARNSETS(Heracross),
+        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable,
+        .formChangeTable = sHeracrossFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 125,
         .baseDefense   = 75,
@@ -16080,7 +15811,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(HeracrossMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_HeracrossMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(HeracrossMega, 56, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -16092,38 +15822,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_HERACROSS
 
 #if P_FAMILY_SNEASEL
-#define SNEASEL_MISC_INFO                                   \
-        .baseHP        = 55,                                \
-        .baseAttack    = 95,                                \
-        .baseDefense   = 55,                                \
-        .baseSpeed     = 115,                               \
-        .baseSpAttack  = 35,                                \
-        .baseSpDefense = 75,                                \
-        .catchRate = 60,                                    \
-        .expYield = 86,                                     \
-        .evYield_Speed     = 1,                             \
-        .itemRare = ITEM_QUICK_CLAW,                        \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .noFlip = TRUE,                                     \
-        .speciesName = _("Sneasel"),                        \
-        .cryId = CRY_SNEASEL,                               \
-        .natDexNum = NATIONAL_DEX_SNEASEL,                  \
-        .categoryName = _("Sharp Claw"),                    \
-        .height = 9,                                        \
-        .pokemonScale = 413,                                \
-        .pokemonOffset = -3,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Sneasel,                 \
-        .formSpeciesIdTable = sSneaselFormSpeciesIdTable
 
     [SPECIES_SNEASEL] =
     {
-        SNEASEL_MISC_INFO,
+        .baseHP        = 55,
+        .baseAttack    = 95,
+        .baseDefense   = 55,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 75,
+        .catchRate = 60,
+        .expYield = 86,
+        .evYield_Speed     = 1,
+        .itemRare = ITEM_QUICK_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .noFlip = TRUE,
+        .speciesName = _("Sneasel"),
+        .cryId = CRY_SNEASEL,
+        .natDexNum = NATIONAL_DEX_SNEASEL,
+        .categoryName = _("Sharp Claw"),
+        .height = 9,
+        .pokemonScale = 413,
+        .pokemonOffset = -3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Sneasel,
+        .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .types = { TYPE_DARK, TYPE_ICE },
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET },
         .bodyColor = BODY_COLOR_BLACK,
@@ -16219,11 +15947,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC_FEMALE(SneaselHisuian, 56, 56),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_SneaselHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SneaselHisuian, 56, 64),
         BACK_PIC_FEMALE(SneaselHisuian, 56, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SneaselHisuian),
         ICON(SneaselHisuian, 2),
         LEARNSETS(SneaselHisuian),
@@ -16269,13 +15995,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Sneasler, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Sneasler,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sneasler, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sneasler),
         ICON(Sneasler, 2),
-        //.footprint = gMonFootprint_Sneasler,
         LEARNSETS(Sneasler),
     },
 #endif //P_HISUIAN_FORMS
@@ -16383,23 +16106,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_GEN_8_CROSS_EVOS
-#define URSALUNA_MISC_INFO                                  \
-        .expYield = 275,                                    \
-        .types = { TYPE_GROUND, TYPE_NORMAL },              \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Ursaluna"),                       \
-        .cryId = CRY_URSALUNA,                              \
-        .natDexNum = NATIONAL_DEX_URSALUNA,                 \
-        .categoryName = _("Peat"),                          \
-        .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable
 
     [SPECIES_URSALUNA] =
     {
-        URSALUNA_MISC_INFO,
+        .expYield = 275,
+        .types = { TYPE_GROUND, TYPE_NORMAL },
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Ursaluna"),
+        .cryId = CRY_URSALUNA,
+        .natDexNum = NATIONAL_DEX_URSALUNA,
+        .categoryName = _("Peat"),
+        .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,
         .baseHP        = 130,
         .baseAttack    = 140,
         .baseDefense   = 105,
@@ -16423,13 +16144,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Ursaluna, 56, 56),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Ursaluna,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Ursaluna, 64, 40),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Ursaluna),
         ICON(Ursaluna, 2),
-        //.footprint = gMonFootprint_Ursaluna,
         LEARNSETS(Ursaluna),
     },
 
@@ -16455,15 +16173,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 369,
         .trainerOffset = 7,
         FRONT_PIC(UrsalunaBloodmoon, 64, 64),
-        //.frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrsalunaBloodmoon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrsalunaBloodmoon, 64, 40),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrsalunaBloodmoon),
-        //ICON(UrsalunaBloodmoon, 0),
-        //.footprint = gMonFootprint_UrsalunaBloodmoon,
         LEARNSETS(UrsalunaBloodmoon),
     },
 #endif //P_GEN_8_CROSS_EVOS
@@ -16722,30 +16435,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #define CORSOLA_HP       (P_UPDATED_STATS >= GEN_7 ? 65 : 55)
 #define CORSOLA_DEFENSES (P_UPDATED_STATS >= GEN_7 ? 95 : 85)
 
-#define CORSOLA_MISC_INFO                                       \
-        .catchRate = 60,                                        \
-        .expYield = 144,                                        \
-        .evYield_SpDefense = 1,                                 \
-        .genderRatio = PERCENT_FEMALE(75),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_FAST,                              \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },  \
-        .speciesName = _("Corsola"),                            \
-        .cryId = CRY_CORSOLA,                                   \
-        .natDexNum = NATIONAL_DEX_CORSOLA,                      \
-        .categoryName = _("Coral"),                             \
-        .height = 6,                                            \
-        .pokemonScale = 410,                                    \
-        .pokemonOffset = 15,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Corsola,                     \
-        .formSpeciesIdTable = sCorsolaFormSpeciesIdTable
-
     [SPECIES_CORSOLA] =
     {
-        CORSOLA_MISC_INFO,
+        .catchRate = 60,
+        .expYield = 144,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_3 },
+        .speciesName = _("Corsola"),
+        .cryId = CRY_CORSOLA,
+        .natDexNum = NATIONAL_DEX_CORSOLA,
+        .categoryName = _("Coral"),
+        .height = 6,
+        .pokemonScale = 410,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Corsola,
+        .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
         .baseHP        = CORSOLA_HP,
         .baseAttack    = 55,
         .baseDefense   = CORSOLA_DEFENSES,
@@ -16797,10 +16507,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CorsolaGalarian, 48, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_CorsolaGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CorsolaGalarian, 56, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CorsolaGalarian),
         ICON(CorsolaGalarian, 0),
         LEARNSETS(CorsolaGalarian),
@@ -16845,10 +16553,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cursola, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cursola,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cursola, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cursola),
         ICON(Cursola, 0),
         .footprint = gMonFootprint_Cursola,
@@ -17206,27 +16912,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HOUNDOOM}),
     },
 
-#define HOUNDOOM_MISC_INFO                                  \
-        .types = { TYPE_DARK, TYPE_FIRE },                  \
-        .catchRate = 45,                                    \
-        .evYield_SpAttack  = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .speciesName = _("Houndoom"),                       \
-        .natDexNum = NATIONAL_DEX_HOUNDOOM,                 \
-        .categoryName = _("Dark"),                          \
-        .footprint = gMonFootprint_Houndoom,                \
-        LEARNSETS(Houndoom),                                \
-        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,  \
-        .formChangeTable = sHoundoomFormChangeTable
-
     [SPECIES_HOUNDOOM] =
     {
-        HOUNDOOM_MISC_INFO,
+        .types = { TYPE_DARK, TYPE_FIRE },
+        .catchRate = 45,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Houndoom"),
+        .natDexNum = NATIONAL_DEX_HOUNDOOM,
+        .categoryName = _("Dark"),
+        .footprint = gMonFootprint_Houndoom,
+        LEARNSETS(Houndoom),
+        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,
+        .formChangeTable = sHoundoomFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 90,
         .baseDefense   = 50,
@@ -17286,7 +16989,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(HoundoomMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_HoundoomMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(HoundoomMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -17485,13 +17187,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Wyrdeer, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Wyrdeer,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wyrdeer, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wyrdeer),
         ICON(Wyrdeer, 2),
-        //.footprint = gMonFootprint_Wyrdeer,
         LEARNSETS(Wyrdeer),
     },
 #endif //P_GEN_8_CROSS_EVOS
@@ -17859,27 +17558,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_TYRANITAR}),
     },
 
-#define TYRANITAR_MISC_INFO                                     \
-        .types = { TYPE_ROCK, TYPE_DARK },                      \
-        .catchRate = 45,                                        \
-        .evYield_Attack    = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },  \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .speciesName = _("Tyranitar"),                          \
-        .natDexNum = NATIONAL_DEX_TYRANITAR,                    \
-        .categoryName = _("Armor"),                             \
-        .footprint = gMonFootprint_Tyranitar,                   \
-        LEARNSETS(Tyranitar),                                   \
-        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,     \
-        .formChangeTable = sTyranitarFormChangeTable
-
     [SPECIES_TYRANITAR] =
     {
-        TYRANITAR_MISC_INFO,
+        .types = { TYPE_ROCK, TYPE_DARK },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Tyranitar"),
+        .natDexNum = NATIONAL_DEX_TYRANITAR,
+        .categoryName = _("Armor"),
+        .footprint = gMonFootprint_Tyranitar,
+        LEARNSETS(Tyranitar),
+        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,
+        .formChangeTable = sTyranitarFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 134,
         .baseDefense   = 110,
@@ -17939,7 +17635,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TyranitarMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_TyranitarMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TyranitarMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -18205,26 +17900,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SCEPTILE}),
     },
 
-#define SCEPTILE_MISC_INFO                                  \
-        .catchRate = 45,                                    \
-        .evYield_Speed     = 3,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },\
-        .bodyColor = BODY_COLOR_GREEN,                      \
-        .speciesName = _("Sceptile"),                       \
-        .natDexNum = NATIONAL_DEX_SCEPTILE,                 \
-        .categoryName = _("Forest"),                        \
-        .footprint = gMonFootprint_Sceptile,                \
-        LEARNSETS(Sceptile),                                \
-        .formSpeciesIdTable = sSceptileFormSpeciesIdTable,  \
-        .formChangeTable = sSceptileFormChangeTable
-
     [SPECIES_SCEPTILE] =
     {
-        SCEPTILE_MISC_INFO,
+        .catchRate = 45,
+        .evYield_Speed     = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Sceptile"),
+        .natDexNum = NATIONAL_DEX_SCEPTILE,
+        .categoryName = _("Forest"),
+        .footprint = gMonFootprint_Sceptile,
+        LEARNSETS(Sceptile),
+        .formSpeciesIdTable = sSceptileFormSpeciesIdTable,
+        .formChangeTable = sSceptileFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 85,
         .baseDefense   = 65,
@@ -18285,7 +17977,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SceptileMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SceptileMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SceptileMega, 64, 64),
         .backPicYOffset = 3,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -18397,33 +18088,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLAZIKEN}),
     },
 
-#define BLAZIKEN_MISC_INFO                                  \
-        .types = { TYPE_FIRE, TYPE_FIGHTING },              \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 3,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_RED,                        \
-        .speciesName = _("Blaziken"),                       \
-        .natDexNum = NATIONAL_DEX_BLAZIKEN,                 \
-        .categoryName = _("Blaze"),                         \
-        .height = 19,                                       \
-        .weight = 520,                                      \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 0,                                 \
-        .trainerScale = 301,                                \
-        .trainerOffset = 4,                                 \
-        .footprint = gMonFootprint_Blaziken,                \
-        LEARNSETS(Blaziken),                                \
-        .formSpeciesIdTable = sBlazikenFormSpeciesIdTable,  \
-        .formChangeTable = sBlazikenFormChangeTable
-
     [SPECIES_BLAZIKEN] =
     {
-        BLAZIKEN_MISC_INFO,
+        .types = { TYPE_FIRE, TYPE_FIGHTING },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Blaziken"),
+        .natDexNum = NATIONAL_DEX_BLAZIKEN,
+        .categoryName = _("Blaze"),
+        .height = 19,
+        .weight = 520,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 301,
+        .trainerOffset = 4,
+        .footprint = gMonFootprint_Blaziken,
+        LEARNSETS(Blaziken),
+        .formSpeciesIdTable = sBlazikenFormSpeciesIdTable,
+        .formChangeTable = sBlazikenFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 120,
         .baseDefense   = 70,
@@ -18472,7 +18160,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BlazikenMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_BlazikenMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(BlazikenMega, 56, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
@@ -18580,27 +18267,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SWAMPERT}),
     },
 
-#define SWAMPERT_MISC_INFO                                      \
-        .types = { TYPE_WATER, TYPE_GROUND },                   \
-        .catchRate = 45,                                        \
-        .evYield_Attack    = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(12.5),                    \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },  \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Swampert"),                           \
-        .natDexNum = NATIONAL_DEX_SWAMPERT,                     \
-        .categoryName = _("Mud Fish"),                          \
-        .footprint = gMonFootprint_Swampert,                    \
-        LEARNSETS(Swampert),                                    \
-        .formSpeciesIdTable = sSwampertFormSpeciesIdTable,      \
-        .formChangeTable = sSwampertFormChangeTable
-
     [SPECIES_SWAMPERT] =
     {
-        SWAMPERT_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_GROUND },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Swampert"),
+        .natDexNum = NATIONAL_DEX_SWAMPERT,
+        .categoryName = _("Mud Fish"),
+        .footprint = gMonFootprint_Swampert,
+        LEARNSETS(Swampert),
+        .formSpeciesIdTable = sSwampertFormSpeciesIdTable,
+        .formChangeTable = sSwampertFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 110,
         .baseDefense   = 90,
@@ -18659,7 +18343,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SwampertMega, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_SwampertMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SwampertMega, 64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
@@ -18768,63 +18451,63 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_POOCHYENA
 
 #if P_FAMILY_ZIGZAGOON
-#define ZIGZAGOON_MISC_INFO                                                     \
-        .baseHP        = 38,                                                    \
-        .baseAttack    = 30,                                                    \
-        .baseDefense   = 41,                                                    \
-        .baseSpeed     = 60,                                                    \
-        .baseSpAttack  = 30,                                                    \
-        .baseSpDefense = 41,                                                    \
-        .catchRate = 255,                                                       \
-        .expYield = 56,                                                         \
-        .evYield_Speed     = 1,                                                 \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 15,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                      \
-        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },  \
-        .speciesName = _("Zigzagoon"),                                          \
-        .cryId = CRY_ZIGZAGOON,                                                 \
-        .natDexNum = NATIONAL_DEX_ZIGZAGOON,                                    \
-        .categoryName = _("Tiny Raccoon"),                                      \
-        .height = 4,                                                            \
-        .weight = 175,                                                          \
-        .pokemonScale = 560,                                                    \
-        .pokemonOffset = 22,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .footprint = gMonFootprint_Zigzagoon,                                   \
+#define ZIGZAGOON_MISC_INFO
+        .baseHP        = 38,
+        .baseAttack    = 30,
+        .baseDefense   = 41,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 41,
+        .catchRate = 255,
+        .expYield = 56,
+        .evYield_Speed     = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
+        .speciesName = _("Zigzagoon"),
+        .cryId = CRY_ZIGZAGOON,
+        .natDexNum = NATIONAL_DEX_ZIGZAGOON,
+        .categoryName = _("Tiny Raccoon"),
+        .height = 4,
+        .weight = 175,
+        .pokemonScale = 560,
+        .pokemonOffset = 22,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Zigzagoon,
         .formSpeciesIdTable = sZigzagoonFormSpeciesIdTable
 
-#define LINOONE_MISC_INFO                                                       \
-        .baseHP        = 78,                                                    \
-        .baseAttack    = 70,                                                    \
-        .baseDefense   = 61,                                                    \
-        .baseSpeed     = 100,                                                   \
-        .baseSpAttack  = 50,                                                    \
-        .baseSpDefense = 61,                                                    \
-        .catchRate = 90,                                                        \
-        .expYield = 147,                                                        \
-        .evYield_Speed     = 2,                                                 \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 15,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                      \
-        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Linoone"),                                            \
-        .cryId = CRY_LINOONE,                                                   \
-        .natDexNum = NATIONAL_DEX_LINOONE,                                      \
-        .categoryName = _("Rushing"),                                           \
-        .height = 5,                                                            \
-        .weight = 325,                                                          \
-        .pokemonScale = 321,                                                    \
-        .pokemonOffset = 7,                                                     \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .footprint = gMonFootprint_Linoone,                                     \
+#define LINOONE_MISC_INFO
+        .baseHP        = 78,
+        .baseAttack    = 70,
+        .baseDefense   = 61,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 61,
+        .catchRate = 90,
+        .expYield = 147,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Linoone"),
+        .cryId = CRY_LINOONE,
+        .natDexNum = NATIONAL_DEX_LINOONE,
+        .categoryName = _("Rushing"),
+        .height = 5,
+        .weight = 325,
+        .pokemonScale = 321,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Linoone,
         .formSpeciesIdTable = sLinooneFormSpeciesIdTable
 
     [SPECIES_ZIGZAGOON] =
@@ -18889,10 +18572,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZigzagoonGalarian, 56, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_ZigzagoonGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZigzagoonGalarian, 56, 48),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZigzagoonGalarian),
         ICON(ZigzagoonGalarian, 0),
         LEARNSETS(ZigzagoonGalarian),
@@ -18912,10 +18593,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LinooneGalarian, 64, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_LinooneGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LinooneGalarian, 64, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(LinooneGalarian),
         ICON(LinooneGalarian, 0),
         LEARNSETS(LinooneGalarian),
@@ -18960,10 +18639,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Obstagoon, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Obstagoon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Obstagoon, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Obstagoon),
         ICON(Obstagoon, 0),
         .footprint = gMonFootprint_Obstagoon,
@@ -19833,33 +19510,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM_MALE, ITEM_DAWN_STONE, SPECIES_GALLADE}),
     },
 
-#define GARDEVOIR_MISC_INFO                                 \
-        .catchRate = 45,                                    \
-        .evYield_SpAttack  = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,               \
-        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },      \
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .speciesName = _("Gardevoir"),                      \
-        .natDexNum = NATIONAL_DEX_GARDEVOIR,                \
-        .categoryName = _("Embrace"),                       \
-        .height = 16,                                       \
-        .weight = 484,                                      \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 0,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Gardevoir,               \
-        LEARNSETS(Gardevoir),                               \
-        .formSpeciesIdTable = sGardevoirFormSpeciesIdTable, \
-        .formChangeTable = sGardevoirFormChangeTable
-
     [SPECIES_GARDEVOIR] =
     {
-        GARDEVOIR_MISC_INFO,
+        .catchRate = 45,
+        .evYield_SpAttack  = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
+        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Gardevoir"),
+        .natDexNum = NATIONAL_DEX_GARDEVOIR,
+        .categoryName = _("Embrace"),
+        .height = 16,
+        .weight = 484,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Gardevoir,
+        LEARNSETS(Gardevoir),
+        .formSpeciesIdTable = sGardevoirFormSpeciesIdTable,
+        .formChangeTable = sGardevoirFormChangeTable,
         .baseHP        = 68,
         .baseAttack    = 65,
         .baseDefense   = 65,
@@ -19906,7 +19580,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GardevoirMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_GardevoirMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GardevoirMega, 48, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
@@ -19917,32 +19590,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_MEGA_EVOLUTIONS
 
 #if P_GEN_4_CROSS_EVOS
-#define GALLADE_MISC_INFO                                   \
-        .types = { TYPE_PSYCHIC, TYPE_FIGHTING },           \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 3,                             \
-        .genderRatio = MON_MALE,                            \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,               \
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .speciesName = _("Gallade"),                        \
-        .natDexNum = NATIONAL_DEX_GALLADE,                  \
-        .categoryName = _("Blade"),                         \
-        .height = 16,                                       \
-        .pokemonScale = 259,                                \
-        .pokemonOffset = 1,                                 \
-        .trainerScale = 296,                                \
-        .trainerOffset = 1,                                 \
-        .footprint = gMonFootprint_Gallade,                 \
-        LEARNSETS(Gallade),                                 \
-        .formSpeciesIdTable = sGalladeFormSpeciesIdTable,   \
-        .formChangeTable = sGalladeFormChangeTable
 
     [SPECIES_GALLADE] =
     {
-        GALLADE_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_FIGHTING },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Gallade"),
+        .natDexNum = NATIONAL_DEX_GALLADE,
+        .categoryName = _("Blade"),
+        .height = 16,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Gallade,
+        LEARNSETS(Gallade),
+        .formSpeciesIdTable = sGalladeFormSpeciesIdTable,
+        .formChangeTable = sGalladeFormChangeTable,
         .baseHP        = 68,
         .baseAttack    = 125,
         .baseDefense   = 65,
@@ -19995,7 +19666,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GalladeMega, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_GalladeMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GalladeMega, 64, 64),
         .backPicYOffset = 3,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -20954,29 +20624,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SKITTY
 
 #if P_FAMILY_SABLEYE
-#define SABLEYE_MISC_INFO                                           \
-        .types = { TYPE_DARK, TYPE_GHOST },                         \
-        .catchRate = 45,                                            \
-        .evYield_Attack    = 1,                                     \
-        .evYield_Defense   = 1,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 25,                                            \
-        .friendship = 35,                                           \
-        .growthRate = GROWTH_MEDIUM_SLOW,                           \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },\
-        .bodyColor = BODY_COLOR_PURPLE,                             \
-        .speciesName = _("Sableye"),                                \
-        .natDexNum = NATIONAL_DEX_SABLEYE,                          \
-        .categoryName = _("Darkness"),                              \
-        .height = 5,                                                \
-        .footprint = gMonFootprint_Sableye,                         \
-        LEARNSETS(Sableye),                                         \
-        .formSpeciesIdTable = sSableyeFormSpeciesIdTable,           \
-        .formChangeTable = sSableyeFormChangeTable
 
     [SPECIES_SABLEYE] =
     {
-        SABLEYE_MISC_INFO,
+        .types = { TYPE_DARK, TYPE_GHOST },
+        .catchRate = 45,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Sableye"),
+        .natDexNum = NATIONAL_DEX_SABLEYE,
+        .categoryName = _("Darkness"),
+        .height = 5,
+        .footprint = gMonFootprint_Sableye,
+        LEARNSETS(Sableye),
+        .formSpeciesIdTable = sSableyeFormSpeciesIdTable,
+        .formChangeTable = sSableyeFormChangeTable,
         .baseHP        = 50,
         .baseAttack    = 75,
         .baseDefense   = 75,
@@ -21033,7 +20701,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SableyeMega, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_SableyeMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SableyeMega, 64, 64),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_H_VIBRATE,
@@ -21051,28 +20718,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #define MAWILE_TYPES { TYPE_STEEL, TYPE_STEEL }
 #endif
 
-#define MAWILE_MISC_INFO                                    \
-        .types = MAWILE_TYPES,                              \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 1,                             \
-        .evYield_Defense   = 1,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_FAST,                          \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },  \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .speciesName = _("Mawile"),                         \
-        .natDexNum = NATIONAL_DEX_MAWILE,                   \
-        .categoryName = _("Deceiver"),                      \
-        .footprint = gMonFootprint_Mawile,                  \
-        LEARNSETS(Mawile),                                  \
-        .formSpeciesIdTable = sMawileFormSpeciesIdTable,    \
-        .formChangeTable = sMawileFormChangeTable
-
     [SPECIES_MAWILE] =
     {
-        MAWILE_MISC_INFO,
+        .types = MAWILE_TYPES,
+        .catchRate = 45,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Mawile"),
+        .natDexNum = NATIONAL_DEX_MAWILE,
+        .categoryName = _("Deceiver"),
+        .footprint = gMonFootprint_Mawile,
+        LEARNSETS(Mawile),
+        .formSpeciesIdTable = sMawileFormSpeciesIdTable,
+        .formChangeTable = sMawileFormChangeTable,
         .baseHP        = 50,
         .baseAttack    = 85,
         .baseDefense   = 85,
@@ -21132,7 +20796,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MawileMega, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_MawileMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MawileMega, 64, 64),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -21242,27 +20905,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_AGGRON}),
     },
 
-#define AGGRON_MISC_INFO                                        \
-        .catchRate = 45,                                        \
-        .evYield_Defense   = 3,                                 \
-        .itemRare = ITEM_HARD_STONE,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 35,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },  \
-        .bodyColor = BODY_COLOR_GRAY,                           \
-        .speciesName = _("Aggron"),                             \
-        .natDexNum = NATIONAL_DEX_AGGRON,                       \
-        .categoryName = _("Iron Armor"),                        \
-        .footprint = gMonFootprint_Aggron,                      \
-        LEARNSETS(Aggron),                                      \
-        .formSpeciesIdTable = sAggronFormSpeciesIdTable,        \
-        .formChangeTable = sAggronFormChangeTable
-
     [SPECIES_AGGRON] =
     {
-        AGGRON_MISC_INFO,
+        .catchRate = 45,
+        .evYield_Defense   = 3,
+        .itemRare = ITEM_HARD_STONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 35,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_MONSTER },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Aggron"),
+        .natDexNum = NATIONAL_DEX_AGGRON,
+        .categoryName = _("Iron Armor"),
+        .footprint = gMonFootprint_Aggron,
+        LEARNSETS(Aggron),
+        .formSpeciesIdTable = sAggronFormSpeciesIdTable,
+        .formChangeTable = sAggronFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 180,
@@ -21323,7 +20983,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AggronMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AggronMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AggronMega, 64, 56),
         .backPicYOffset = 7,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -21385,33 +21044,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_MEDICHAM}),
     },
 
-#define MEDICHAM_MISC_INFO                                          \
-        .types = { TYPE_FIGHTING, TYPE_PSYCHIC },                   \
-        .catchRate = 90,                                            \
-        .evYield_Speed     = 2,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },\
-        .bodyColor = BODY_COLOR_RED,                                \
-        .speciesName = _("Medicham"),                               \
-        .natDexNum = NATIONAL_DEX_MEDICHAM,                         \
-        .categoryName = _("Meditate"),                              \
-        .height = 13,                                               \
-        .weight = 315,                                              \
-        .pokemonScale = 298,                                        \
-        .pokemonOffset = 5,                                         \
-        .trainerScale = 256,                                        \
-        .trainerOffset = 0,                                         \
-        .footprint = gMonFootprint_Medicham,                        \
-        LEARNSETS(Medicham),                                        \
-        .formSpeciesIdTable = sMedichamFormSpeciesIdTable,          \
-        .formChangeTable = sMedichamFormChangeTable
-
     [SPECIES_MEDICHAM] =
     {
-        MEDICHAM_MISC_INFO,
+        .types = { TYPE_FIGHTING, TYPE_PSYCHIC },
+        .catchRate = 90,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Medicham"),
+        .natDexNum = NATIONAL_DEX_MEDICHAM,
+        .categoryName = _("Meditate"),
+        .height = 13,
+        .weight = 315,
+        .pokemonScale = 298,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Medicham,
+        LEARNSETS(Medicham),
+        .formSpeciesIdTable = sMedichamFormSpeciesIdTable,
+        .formChangeTable = sMedichamFormChangeTable,
         .baseHP        = 60,
         .baseAttack    = 60,
         .baseDefense   = 75,
@@ -21460,7 +21116,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MedichamMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_MedichamMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MedichamMega, 64, 64),
         .backPicYOffset = 1,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -21520,27 +21175,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_MANECTRIC}),
     },
 
-#define MANECTRIC_MISC_INFO                                 \
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },          \
-        .catchRate = 45,                                    \
-        .evYield_Speed     = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .speciesName = _("Manectric"),                      \
-        .natDexNum = NATIONAL_DEX_MANECTRIC,                \
-        .categoryName = _("Discharge"),                     \
-        .footprint = gMonFootprint_Manectric,               \
-        LEARNSETS(Manectric),                               \
-        .formSpeciesIdTable = sManectricFormSpeciesIdTable, \
-        .formChangeTable = sManectricFormChangeTable
-
     [SPECIES_MANECTRIC] =
     {
-        MANECTRIC_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+        .catchRate = 45,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Manectric"),
+        .natDexNum = NATIONAL_DEX_MANECTRIC,
+        .categoryName = _("Discharge"),
+        .footprint = gMonFootprint_Manectric,
+        LEARNSETS(Manectric),
+        .formSpeciesIdTable = sManectricFormSpeciesIdTable,
+        .formChangeTable = sManectricFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 75,
         .baseDefense   = 60,
@@ -21598,7 +21250,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ManectricMega, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_ManectricMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ManectricMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
@@ -22131,28 +21782,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SHARPEDO}),
     },
 
-#define SHARPEDO_MISC_INFO                                      \
-        .types = { TYPE_WATER, TYPE_DARK },                     \
-        .catchRate = 60,                                        \
-        .evYield_Attack    = 2,                                 \
-        .itemRare = ITEM_DEEP_SEA_TOOTH,                        \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },  \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Sharpedo"),                           \
-        .natDexNum = NATIONAL_DEX_SHARPEDO,                     \
-        .categoryName = _("Brutal"),                            \
-        .footprint = gMonFootprint_Sharpedo,                    \
-        LEARNSETS(Sharpedo),                                    \
-        .formSpeciesIdTable = sSharpedoFormSpeciesIdTable,      \
-        .formChangeTable = sSharpedoFormChangeTable
-
     [SPECIES_SHARPEDO] =
     {
-        SHARPEDO_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_DARK },
+        .catchRate = 60,
+        .evYield_Attack    = 2,
+        .itemRare = ITEM_DEEP_SEA_TOOTH,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Sharpedo"),
+        .natDexNum = NATIONAL_DEX_SHARPEDO,
+        .categoryName = _("Brutal"),
+        .footprint = gMonFootprint_Sharpedo,
+        LEARNSETS(Sharpedo),
+        .formSpeciesIdTable = sSharpedoFormSpeciesIdTable,
+        .formChangeTable = sSharpedoFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 120,
         .baseDefense   = 40,
@@ -22211,7 +21859,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SharpedoMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SharpedoMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 1,
         BACK_PIC(SharpedoMega, 64, 64),
         .backPicYOffset = 3,
@@ -22372,28 +22019,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_CAMERUPT}),
     },
 
-#define CAMERUPT_MISC_INFO                                  \
-        .types = { TYPE_FIRE, TYPE_GROUND },                \
-        .catchRate = 150,                                   \
-        .evYield_Attack    = 1,                             \
-        .evYield_SpAttack  = 1,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_RED,                        \
-        .speciesName = _("Camerupt"),                       \
-        .natDexNum = NATIONAL_DEX_CAMERUPT,                 \
-        .categoryName = _("Eruption"),                      \
-        .footprint = gMonFootprint_Camerupt,                \
-        LEARNSETS(Camerupt),                                \
-        .formSpeciesIdTable = sCameruptFormSpeciesIdTable,  \
-        .formChangeTable = sCameruptFormChangeTable
-
     [SPECIES_CAMERUPT] =
     {
-        CAMERUPT_MISC_INFO,
+        .types = { TYPE_FIRE, TYPE_GROUND },
+        .catchRate = 150,
+        .evYield_Attack    = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Camerupt"),
+        .natDexNum = NATIONAL_DEX_CAMERUPT,
+        .categoryName = _("Eruption"),
+        .footprint = gMonFootprint_Camerupt,
+        LEARNSETS(Camerupt),
+        .formSpeciesIdTable = sCameruptFormSpeciesIdTable,
+        .formChangeTable = sCameruptFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 100,
         .baseDefense   = 70,
@@ -22454,7 +22098,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CameruptMega, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_CameruptMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CameruptMega, 64, 64),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
@@ -22974,26 +22617,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ALTARIA}),
     },
 
-#define ALTARIA_MISC_INFO                                   \
-        .catchRate = 45,                                    \
-        .evYield_SpDefense = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_ERRATIC,                       \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_DRAGON },\
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Altaria"),                        \
-        .natDexNum = NATIONAL_DEX_ALTARIA,                  \
-        .categoryName = _("Humming"),                       \
-        .footprint = gMonFootprint_Altaria,                 \
-        LEARNSETS(Altaria),                                 \
-        .formSpeciesIdTable = sAltariaFormSpeciesIdTable,   \
-        .formChangeTable = sAltariaFormChangeTable
-
     [SPECIES_ALTARIA] =
     {
-        ALTARIA_MISC_INFO,
+        .catchRate = 45,
+        .evYield_SpDefense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Altaria"),
+        .natDexNum = NATIONAL_DEX_ALTARIA,
+        .categoryName = _("Humming"),
+        .footprint = gMonFootprint_Altaria,
+        LEARNSETS(Altaria),
+        .formSpeciesIdTable = sAltariaFormSpeciesIdTable,
+        .formChangeTable = sAltariaFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 70,
         .baseDefense   = 90,
@@ -23054,7 +22694,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AltariaMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AltariaMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 6,
         BACK_PIC(AltariaMega, 64, 48),
         .backPicYOffset = 10,
@@ -23868,42 +23507,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_FEEBAS
 
 #if P_FAMILY_CASTFORM
-#define CASTFORM_MISC_INFO                                      \
-        .baseHP        = 70,                                    \
-        .baseAttack    = 70,                                    \
-        .baseDefense   = 70,                                    \
-        .baseSpeed     = 70,                                    \
-        .baseSpAttack  = 70,                                    \
-        .baseSpDefense = 70,                                    \
-        .catchRate = 45,                                        \
-        .expYield = 147,                                        \
-        .evYield_HP        = 1,                                 \
-        .itemCommon = ITEM_MYSTIC_WATER,                        \
-        .itemRare = ITEM_MYSTIC_WATER,                          \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },  \
-        .abilities = { ABILITY_FORECAST, ABILITY_NONE },        \
-        .speciesName = _("Castform"),                           \
-        .cryId = CRY_CASTFORM,                                  \
-        .natDexNum = NATIONAL_DEX_CASTFORM,                     \
-        .categoryName = _("Weather"),                           \
-        .height = 3,                                            \
-        .weight = 8,                                            \
-        .pokemonScale = 435,                                    \
-        .pokemonOffset = -5,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Castform,                    \
-        LEARNSETS(Castform),                                    \
-        .formSpeciesIdTable = sCastformFormSpeciesIdTable,      \
-        .formChangeTable = sCastformFormChangeTable
 
     [SPECIES_CASTFORM_NORMAL] =
     {
-        CASTFORM_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 70,
+        .baseDefense   = 70,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 70,
+        .catchRate = 45,
+        .expYield = 147,
+        .evYield_HP        = 1,
+        .itemCommon = ITEM_MYSTIC_WATER,
+        .itemRare = ITEM_MYSTIC_WATER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_FORECAST, ABILITY_NONE },
+        .speciesName = _("Castform"),
+        .cryId = CRY_CASTFORM,
+        .natDexNum = NATIONAL_DEX_CASTFORM,
+        .categoryName = _("Weather"),
+        .height = 3,
+        .weight = 8,
+        .pokemonScale = 435,
+        .pokemonOffset = -5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Castform,
+        LEARNSETS(Castform),
+        .formSpeciesIdTable = sCastformFormSpeciesIdTable,
+        .formChangeTable = sCastformFormChangeTable,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .bodyColor = BODY_COLOR_GRAY,
         .description = COMPOUND_STRING(
@@ -24091,28 +23728,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_BANETTE}),
     },
 
-#define BANETTE_MISC_INFO                                           \
-        .types = { TYPE_GHOST, TYPE_GHOST },                        \
-        .catchRate = 45,                                            \
-        .evYield_Attack    = 2,                                     \
-        .itemRare = ITEM_SPELL_TAG,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 25,                                            \
-        .friendship = 35,                                           \
-        .growthRate = GROWTH_FAST,                                  \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .bodyColor = BODY_COLOR_BLACK,                              \
-        .speciesName = _("Banette"),                                \
-        .natDexNum = NATIONAL_DEX_BANETTE,                          \
-        .categoryName = _("Marionette"),                            \
-        .footprint = gMonFootprint_Banette,                         \
-        LEARNSETS(Banette),                                         \
-        .formSpeciesIdTable = sBanetteFormSpeciesIdTable,           \
-        .formChangeTable = sBanetteFormChangeTable
-
     [SPECIES_BANETTE] =
     {
-        BANETTE_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        .catchRate = 45,
+        .evYield_Attack    = 2,
+        .itemRare = ITEM_SPELL_TAG,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Banette"),
+        .natDexNum = NATIONAL_DEX_BANETTE,
+        .categoryName = _("Marionette"),
+        .footprint = gMonFootprint_Banette,
+        LEARNSETS(Banette),
+        .formSpeciesIdTable = sBanetteFormSpeciesIdTable,
+        .formChangeTable = sBanetteFormChangeTable,
         .baseHP        = 64,
         .baseAttack    = 115,
         .baseDefense   = 65,
@@ -24170,7 +23804,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BanetteMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_BanetteMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(BanetteMega, 64, 64),
         .backPicYOffset = 0,
@@ -24497,33 +24130,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CHIMECHO
 
 #if P_FAMILY_ABSOL
-#define ABSOL_MISC_INFO                                     \
-        .types = { TYPE_DARK, TYPE_DARK },                  \
-        .catchRate = 30,                                    \
-        .evYield_Attack    = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .noFlip = TRUE,                                     \
-        .speciesName = _("Absol"),                          \
-        .natDexNum = NATIONAL_DEX_ABSOL,                    \
-        .categoryName = _("Disaster"),                      \
-        .height = 12,                                       \
-        .pokemonScale = 301,                                \
-        .pokemonOffset = 3,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Absol,                   \
-        LEARNSETS(Absol),                                   \
-        .formSpeciesIdTable = sAbsolFormSpeciesIdTable,     \
-        .formChangeTable = sAbsolFormChangeTable
 
     [SPECIES_ABSOL] =
     {
-        ABSOL_MISC_INFO,
+        .types = { TYPE_DARK, TYPE_DARK },
+        .catchRate = 30,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = TRUE,
+        .speciesName = _("Absol"),
+        .natDexNum = NATIONAL_DEX_ABSOL,
+        .categoryName = _("Disaster"),
+        .height = 12,
+        .pokemonScale = 301,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Absol,
+        LEARNSETS(Absol),
+        .formSpeciesIdTable = sAbsolFormSpeciesIdTable,
+        .formChangeTable = sAbsolFormChangeTable,
         .baseHP        = 65,
         .baseAttack    = 130,
         .baseDefense   = 60,
@@ -24573,7 +24204,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AbsolMega, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_AbsolMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AbsolMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -24636,27 +24266,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM_FEMALE, ITEM_DAWN_STONE, SPECIES_FROSLASS}),
     },
 
-#define GLALIE_MISC_INFO                                    \
-        .types = { TYPE_ICE, TYPE_ICE },                    \
-        .catchRate = 75,                                    \
-        .evYield_HP        = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_MINERAL },\
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .speciesName = _("Glalie"),                         \
-        .natDexNum = NATIONAL_DEX_GLALIE,                   \
-        .categoryName = _("Face"),                          \
-        .footprint = gMonFootprint_Glalie,                  \
-        LEARNSETS(Glalie),                                  \
-        .formSpeciesIdTable = sGlalieFormSpeciesIdTable,    \
-        .formChangeTable = sGlalieFormChangeTable
-
     [SPECIES_GLALIE] =
     {
-        GLALIE_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE },
+        .catchRate = 75,
+        .evYield_HP        = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Glalie"),
+        .natDexNum = NATIONAL_DEX_GLALIE,
+        .categoryName = _("Face"),
+        .footprint = gMonFootprint_Glalie,
+        LEARNSETS(Glalie),
+        .formSpeciesIdTable = sGlalieFormSpeciesIdTable,
+        .formChangeTable = sGlalieFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -24715,7 +24342,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GlalieMega, 56, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_GlalieMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(GlalieMega, 64, 48),
         .backPicYOffset = 10,
@@ -25277,28 +24903,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_SALAMENCE}),
     },
 
-#define SALAMENCE_MISC_INFO                                 \
-        .types = { TYPE_DRAGON, TYPE_FLYING },              \
-        .catchRate = 45,                                    \
-        .evYield_Attack    = 3,                             \
-        .itemRare = ITEM_DRAGON_FANG,                       \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 40,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },\
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Salamence"),                      \
-        .natDexNum = NATIONAL_DEX_SALAMENCE,                \
-        .categoryName = _("Dragon"),                        \
-        .footprint = gMonFootprint_Salamence,               \
-        LEARNSETS(Salamence),                               \
-        .formSpeciesIdTable = sSalamenceFormSpeciesIdTable, \
-        .formChangeTable = sSalamenceFormChangeTable
-
     [SPECIES_SALAMENCE] =
     {
-        SALAMENCE_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_FLYING },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .itemRare = ITEM_DRAGON_FANG,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Salamence"),
+        .natDexNum = NATIONAL_DEX_SALAMENCE,
+        .categoryName = _("Dragon"),
+        .footprint = gMonFootprint_Salamence,
+        LEARNSETS(Salamence),
+        .formSpeciesIdTable = sSalamenceFormSpeciesIdTable,
+        .formChangeTable = sSalamenceFormChangeTable,
         .baseHP        = 95,
         .baseAttack    = 135,
         .baseDefense   = 80,
@@ -25358,7 +24981,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SalamenceMega, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_SalamenceMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SalamenceMega, 56, 64),
         .backPicYOffset = 1,
         .backAnimId = BACK_ANIM_H_SHAKE,
@@ -25469,28 +25091,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_METAGROSS}),
     },
 
-#define METAGROSS_MISC_INFO                                     \
-        .types = { TYPE_STEEL, TYPE_PSYCHIC },                  \
-        .catchRate = 3,                                         \
-        .evYield_Defense   = 3,                                 \
-        .itemRare = ITEM_METAL_COAT,                            \
-        .genderRatio = MON_GENDERLESS,                          \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Metagross"),                          \
-        .natDexNum = NATIONAL_DEX_METAGROSS,                    \
-        .categoryName = _("Iron Leg"),                          \
-        .footprint = gMonFootprint_Metagross,                   \
-        LEARNSETS(Metagross),                                   \
-        .formSpeciesIdTable = sMetagrossFormSpeciesIdTable,     \
-        .formChangeTable = sMetagrossFormChangeTable
-
     [SPECIES_METAGROSS] =
     {
-        METAGROSS_MISC_INFO,
+        .types = { TYPE_STEEL, TYPE_PSYCHIC },
+        .catchRate = 3,
+        .evYield_Defense   = 3,
+        .itemRare = ITEM_METAL_COAT,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Metagross"),
+        .natDexNum = NATIONAL_DEX_METAGROSS,
+        .categoryName = _("Iron Leg"),
+        .footprint = gMonFootprint_Metagross,
+        LEARNSETS(Metagross),
+        .formSpeciesIdTable = sMetagrossFormSpeciesIdTable,
+        .formChangeTable = sMetagrossFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 135,
         .baseDefense   = 130,
@@ -25548,7 +25167,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MetagrossMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_MetagrossMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(MetagrossMega, 64, 56),
         .backPicYOffset = 6,
@@ -25713,27 +25331,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_REGISTEEL
 
 #if P_FAMILY_LATIAS
-#define LATIAS_MISC_INFO                                                \
-        .types = { TYPE_DRAGON, TYPE_PSYCHIC },                         \
-        .catchRate = 3,                                                 \
-        .evYield_SpDefense = 3,                                         \
-        .genderRatio = MON_FEMALE,                                      \
-        .eggCycles = 120,                                               \
-        .friendship = 90,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .speciesName = _("Latias"),                                     \
-        .natDexNum = NATIONAL_DEX_LATIAS,                               \
-        .categoryName = _("Eon"),                                       \
-        .footprint = gMonFootprint_Latias,                              \
-        LEARNSETS(Latias),                                              \
-        .formSpeciesIdTable = sLatiasFormSpeciesIdTable,                \
-        .formChangeTable = sLatiasFormChangeTable,                      \
-        .isLegendary = TRUE
 
     [SPECIES_LATIAS] =
     {
-        LATIAS_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_PSYCHIC },
+        .catchRate = 3,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .speciesName = _("Latias"),
+        .natDexNum = NATIONAL_DEX_LATIAS,
+        .categoryName = _("Eon"),
+        .footprint = gMonFootprint_Latias,
+        LEARNSETS(Latias),
+        .formSpeciesIdTable = sLatiasFormSpeciesIdTable,
+        .formChangeTable = sLatiasFormChangeTable,
+        .isLegendary = TRUE,
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 90,
@@ -25795,7 +25411,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LatiasMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LatiasMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(LatiasMega, 64, 64),
         .backPicYOffset = 1,
@@ -25808,27 +25423,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LATIAS
 
 #if P_FAMILY_LATIOS
-#define LATIOS_MISC_INFO                                                \
-        .types = { TYPE_DRAGON, TYPE_PSYCHIC },                         \
-        .catchRate = 3,                                                 \
-        .evYield_SpAttack = 3,                                          \
-        .genderRatio = MON_MALE,                                        \
-        .eggCycles = 120,                                               \
-        .friendship = 90,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .isLegendary = TRUE,                                            \
-        .speciesName = _("Latios"),                                     \
-        .natDexNum = NATIONAL_DEX_LATIOS,                               \
-        .categoryName = _("Eon"),                                       \
-        .footprint = gMonFootprint_Latios,                              \
-        LEARNSETS(Latios),                                              \
-        .formSpeciesIdTable = sLatiosFormSpeciesIdTable,                \
-        .formChangeTable = sLatiosFormChangeTable
 
     [SPECIES_LATIOS] =
     {
-        LATIOS_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_PSYCHIC },
+        .catchRate = 3,
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .isLegendary = TRUE,
+        .speciesName = _("Latios"),
+        .natDexNum = NATIONAL_DEX_LATIOS,
+        .categoryName = _("Eon"),
+        .footprint = gMonFootprint_Latios,
+        LEARNSETS(Latios),
+        .formSpeciesIdTable = sLatiosFormSpeciesIdTable,
+        .formChangeTable = sLatiosFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 90,
         .baseDefense   = 80,
@@ -25890,7 +25503,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LatiosMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LatiosMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(LatiosMega, 64, 64),
         .backPicYOffset = 1,
@@ -25903,29 +25515,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LATIOS
 
 #if P_FAMILY_KYOGRE
-#define KYOGRE_MISC_INFO                                                \
-        .types = { TYPE_WATER, TYPE_WATER },                            \
-        .catchRate = 3,                                                 \
-        .expYield = 302,                                                \
-        .evYield_SpAttack  = 3,                                         \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .bodyColor = BODY_COLOR_BLUE,                                   \
-        .isLegendary = TRUE,                                            \
-        .speciesName = _("Kyogre"),                                     \
-        .natDexNum = NATIONAL_DEX_KYOGRE,                               \
-        .categoryName = _("Sea Basin"),                                 \
-        .footprint = gMonFootprint_Kyogre,                              \
-        LEARNSETS(Kyogre),                                              \
-        .formSpeciesIdTable = sKyogreFormSpeciesIdTable,                \
-        .formChangeTable = sKyogreFormChangeTable
 
     [SPECIES_KYOGRE] =
     {
-        KYOGRE_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 3,
+        .expYield = 302,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_BLUE,
+        .isLegendary = TRUE,
+        .speciesName = _("Kyogre"),
+        .natDexNum = NATIONAL_DEX_KYOGRE,
+        .categoryName = _("Sea Basin"),
+        .footprint = gMonFootprint_Kyogre,
+        LEARNSETS(Kyogre),
+        .formSpeciesIdTable = sKyogreFormSpeciesIdTable,
+        .formChangeTable = sKyogreFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 90,
@@ -25982,7 +25592,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(KyogrePrimal, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_KyogrePrimal,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(KyogrePrimal, 64, 32),
         .backPicYOffset = 18,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
@@ -25994,29 +25603,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KYOGRE
 
 #if P_FAMILY_GROUDON
-#define GROUDON_MISC_INFO                                               \
-        .catchRate = 3,                                                 \
-        .expYield = 302,                                                \
-        .evYield_Attack    = 3,                                         \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .bodyColor = BODY_COLOR_RED,                                    \
-        .isLegendary = TRUE,                                            \
-        .speciesName = _("Groudon"),                                    \
-        .cryId = CRY_GROUDON,                                           \
-        .natDexNum = NATIONAL_DEX_GROUDON,                              \
-        .categoryName = _("Continent"),                                 \
-        .footprint = gMonFootprint_Groudon,                             \
-        LEARNSETS(Groudon),                                             \
-        .formSpeciesIdTable = sGroudonFormSpeciesIdTable,               \
-        .formChangeTable = sGroudonFormChangeTable
 
     [SPECIES_GROUDON] =
     {
-        GROUDON_MISC_INFO,
+        .catchRate = 3,
+        .expYield = 302,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_RED,
+        .isLegendary = TRUE,
+        .speciesName = _("Groudon"),
+        .cryId = CRY_GROUDON,
+        .natDexNum = NATIONAL_DEX_GROUDON,
+        .categoryName = _("Continent"),
+        .footprint = gMonFootprint_Groudon,
+        LEARNSETS(Groudon),
+        .formSpeciesIdTable = sGroudonFormSpeciesIdTable,
+        .formChangeTable = sGroudonFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 140,
@@ -26073,7 +25680,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GroudonPrimal, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_GroudonPrimal,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_GroudonPrimal,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 8,
@@ -26086,31 +25692,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_GROUDON
 
 #if P_FAMILY_RAYQUAZA
-#define RAYQUAZA_MISC_INFO                                              \
-        .types = { TYPE_DRAGON, TYPE_FLYING },                          \
-        .catchRate = 45,                                                \
-        .expYield = 306,                                                \
-        .evYield_Attack    = 2,                                         \
-        .evYield_SpAttack  = 1,                                         \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .bodyColor = BODY_COLOR_GREEN,                                  \
-        .speciesName = _("Rayquaza"),                                   \
-        .cryId = CRY_RAYQUAZA,                                          \
-        .natDexNum = NATIONAL_DEX_RAYQUAZA,                             \
-        .categoryName = _("Sky High"),                                  \
-        .footprint = gMonFootprint_Rayquaza,                            \
-        LEARNSETS(Rayquaza),                                            \
-        .formSpeciesIdTable = sRayquazaFormSpeciesIdTable,              \
-        .formChangeTable = sRayquazaFormChangeTable,                    \
-        .isLegendary = TRUE
 
     [SPECIES_RAYQUAZA] =
     {
-        RAYQUAZA_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_FLYING },
+        .catchRate = 45,
+        .expYield = 306,
+        .evYield_Attack    = 2,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Rayquaza"),
+        .cryId = CRY_RAYQUAZA,
+        .natDexNum = NATIONAL_DEX_RAYQUAZA,
+        .categoryName = _("Sky High"),
+        .footprint = gMonFootprint_Rayquaza,
+        LEARNSETS(Rayquaza),
+        .formSpeciesIdTable = sRayquazaFormSpeciesIdTable,
+        .formChangeTable = sRayquazaFormChangeTable,
+        .isLegendary = TRUE,
         .baseHP        = 105,
         .baseAttack    = 150,
         .baseDefense   = 90,
@@ -26167,7 +25771,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RayquazaMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RayquazaMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(RayquazaMega, 64, 64),
         .backPicYOffset = 0,
@@ -26233,35 +25836,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_JIRACHI
 
 #if P_FAMILY_DEOXYS
-#define DEOXYS_MISC_INFO                                                \
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },                        \
-        .catchRate = 3,                                                 \
-        .expYield = 270,                                                \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },\
-        .abilities = { ABILITY_PRESSURE, ABILITY_NONE },                \
-        .bodyColor = BODY_COLOR_RED,                                    \
-        .isMythical = TRUE,                                             \
-        .speciesName = _("Deoxys"),                                     \
-        .cryId = CRY_DEOXYS,                                            \
-        .natDexNum = NATIONAL_DEX_DEOXYS,                               \
-        .categoryName = _("DNA"),                                       \
-        .height = 17,                                                   \
-        .weight = 608,                                                  \
-        .description = gDeoxysNormalPokedexText,                        \
-        .pokemonScale = 256,                                            \
-        .pokemonOffset = 0,                                             \
-        .trainerScale = 290,                                            \
-        .trainerOffset = 2,                                             \
-        .footprint = gMonFootprint_Deoxys,                              \
-        .formSpeciesIdTable = sDeoxysFormSpeciesIdTable
 
     [SPECIES_DEOXYS_NORMAL] =
     {
-        DEOXYS_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .catchRate = 3,
+        .expYield = 270,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_RED,
+        .isMythical = TRUE,
+        .speciesName = _("Deoxys"),
+        .cryId = CRY_DEOXYS,
+        .natDexNum = NATIONAL_DEX_DEOXYS,
+        .categoryName = _("DNA"),
+        .height = 17,
+        .weight = 608,
+        .description = gDeoxysNormalPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 2,
+        .footprint = gMonFootprint_Deoxys,
+        .formSpeciesIdTable = sDeoxysFormSpeciesIdTable,
         .baseHP        = 50,
         .baseAttack    = 150,
         .baseDefense   = 50,
@@ -27507,45 +27108,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SHIELDON
 
 #if P_FAMILY_BURMY
-#define BURMY_MISC_INFO                                                     \
-        .baseHP        = 40,                                                \
-        .baseAttack    = 29,                                                \
-        .baseDefense   = 45,                                                \
-        .baseSpeed     = 36,                                                \
-        .baseSpAttack  = 29,                                                \
-        .baseSpDefense = 45,                                                \
-        .types = { TYPE_BUG, TYPE_BUG },                                    \
-        .catchRate = 120,                                                   \
-        .expYield = 45,                                                     \
-        .evYield_SpDefense = 1,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 15,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                      \
-        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT }, \
-        .speciesName = _("Burmy"),                                          \
-        .cryId = CRY_BURMY,                                                 \
-        .natDexNum = NATIONAL_DEX_BURMY,                                    \
-        .categoryName = _("Bagworm"),                                       \
-        .height = 2,                                                        \
-        .weight = 34,                                                       \
-        .pokemonScale = 682,                                                \
-        .pokemonOffset = 24,                                                \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        .frontAnimFrames = sAnims_Burmy,                                    \
-        .frontAnimId = ANIM_V_STRETCH,                                      \
-        .enemyMonElevation = 10,                                            \
-        .backAnimId = BACK_ANIM_H_SHAKE,                                    \
-        .footprint = gMonFootprint_Burmy,                                   \
-        LEARNSETS(Burmy),                                                   \
-        .formSpeciesIdTable = sBurmyFormSpeciesIdTable,                     \
-        .formChangeTable = sBurmyFormChangeTable
 
     [SPECIES_BURMY_PLANT_CLOAK] =
     {
-        BURMY_MISC_INFO,
+        .baseHP        = 40,
+        .baseAttack    = 29,
+        .baseDefense   = 45,
+        .baseSpeed     = 36,
+        .baseSpAttack  = 29,
+        .baseSpDefense = 45,
+        .types = { TYPE_BUG, TYPE_BUG },
+        .catchRate = 120,
+        .expYield = 45,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT },
+        .speciesName = _("Burmy"),
+        .cryId = CRY_BURMY,
+        .natDexNum = NATIONAL_DEX_BURMY,
+        .categoryName = _("Bagworm"),
+        .height = 2,
+        .weight = 34,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Burmy,
+        .frontAnimId = ANIM_V_STRETCH,
+        .enemyMonElevation = 10,
+        .backAnimId = BACK_ANIM_H_SHAKE,
+        .footprint = gMonFootprint_Burmy,
+        LEARNSETS(Burmy),
+        .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
+        .formChangeTable = sBurmyFormChangeTable,
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
             "If its cloak is even slightly damaged, it\n"
@@ -27600,38 +27199,35 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
     },
 
-#define WORMADAM_MISC_INFO                                                      \
-        .catchRate = 45,                                                        \
-        .expYield = 148,                                                        \
-        .itemRare = ITEM_SILVER_POWDER,                                         \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 15,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                          \
-        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT },  \
-        .speciesName = _("Wormadam"),                                           \
-        .cryId = CRY_WORMADAM,                                                  \
-        .natDexNum = NATIONAL_DEX_WORMADAM,                                     \
-        .categoryName = _("Bagworm"),                                           \
-        .height = 5,                                                            \
-        .weight = 65,                                                           \
-        .pokemonScale = 432,                                                    \
-        .pokemonOffset = 13,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .frontPicYOffset = 10,                                                  \
-        .frontAnimFrames = sAnims_Wormadam,                                     \
-        .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,                            \
-        .enemyMonElevation = 8,                                                 \
-        .backPicYOffset = 2,                                                    \
-        .backAnimId = BACK_ANIM_V_SHAKE,                                        \
-        .footprint = gMonFootprint_Wormadam,                                    \
-        .formSpeciesIdTable = sWormadamFormSpeciesIdTable
-
     [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
-        WORMADAM_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 148,
+        .itemRare = ITEM_SILVER_POWDER,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT },
+        .speciesName = _("Wormadam"),
+        .cryId = CRY_WORMADAM,
+        .natDexNum = NATIONAL_DEX_WORMADAM,
+        .categoryName = _("Bagworm"),
+        .height = 5,
+        .weight = 65,
+        .pokemonScale = 432,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Wormadam,
+        .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,
+        .enemyMonElevation = 8,
+        .backPicYOffset = 2,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .footprint = gMonFootprint_Wormadam,
+        .formSpeciesIdTable = sWormadamFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 59,
         .baseDefense   = 85,
@@ -28055,42 +27651,39 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_CHERRIM_OVERCAST}),
     },
 
-#define CHERRIM_MISC_INFO                                   \
-        .baseHP        = 70,                                \
-        .baseAttack    = 60,                                \
-        .baseDefense   = 70,                                \
-        .baseSpeed     = 85,                                \
-        .baseSpAttack  = 87,                                \
-        .baseSpDefense = 78,                                \
-        .types = { TYPE_GRASS, TYPE_GRASS },                \
-        .catchRate = 75,                                    \
-        .expYield = 158,                                    \
-        .evYield_SpAttack  = 2,                             \
-        .itemRare = ITEM_MIRACLE_SEED,                      \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },  \
-        .abilities = { ABILITY_FLOWER_GIFT, ABILITY_NONE }, \
-        .speciesName = _("Cherrim"),                        \
-        .cryId = CRY_CHERRIM,                               \
-        .natDexNum = NATIONAL_DEX_CHERRIM,                  \
-        .categoryName = _("Blossom"),                       \
-        .height = 5,                                        \
-        .weight = 93,                                       \
-        .pokemonScale = 432,                                \
-        .pokemonOffset = 13,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Cherrim,                 \
-        LEARNSETS(Cherrim),                                 \
-        .formSpeciesIdTable = sCherrimFormSpeciesIdTable,   \
-        .formChangeTable = sCherrimFormChangeTable
-
     [SPECIES_CHERRIM_OVERCAST] =
     {
-        CHERRIM_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 60,
+        .baseDefense   = 70,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 87,
+        .baseSpDefense = 78,
+        .types = { TYPE_GRASS, TYPE_GRASS },
+        .catchRate = 75,
+        .expYield = 158,
+        .evYield_SpAttack  = 2,
+        .itemRare = ITEM_MIRACLE_SEED,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_GRASS },
+        .abilities = { ABILITY_FLOWER_GIFT, ABILITY_NONE },
+        .speciesName = _("Cherrim"),
+        .cryId = CRY_CHERRIM,
+        .natDexNum = NATIONAL_DEX_CHERRIM,
+        .categoryName = _("Blossom"),
+        .height = 5,
+        .weight = 93,
+        .pokemonScale = 432,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Cherrim,
+        LEARNSETS(Cherrim),
+        .formSpeciesIdTable = sCherrimFormSpeciesIdTable,
+        .formChangeTable = sCherrimFormChangeTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It's motionless, save for the occasional\n"
@@ -28130,44 +27723,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CHERUBI
 
 #if P_FAMILY_SHELLOS
-#define SHELLOS_MISC_INFO                                                               \
-        .baseHP        = 76,                                                            \
-        .baseAttack    = 48,                                                            \
-        .baseDefense   = 48,                                                            \
-        .baseSpeed     = 34,                                                            \
-        .baseSpAttack  = 57,                                                            \
-        .baseSpDefense = 62,                                                            \
-        .types = { TYPE_WATER, TYPE_WATER },                                            \
-        .catchRate = 190,                                                               \
-        .expYield = 65,                                                                 \
-        .evYield_HP        = 1,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },                        \
-        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
-        .speciesName = _("Shellos"),                                                    \
-        .cryId = CRY_SHELLOS,                                                           \
-        .natDexNum = NATIONAL_DEX_SHELLOS,                                              \
-        .categoryName = _("Sea Slug"),                                                  \
-        .height = 3,                                                                    \
-        .weight = 63,                                                                   \
-        .pokemonScale = 530,                                                            \
-        .pokemonOffset = 13,                                                            \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        .frontAnimFrames = sAnims_Shellos,                                              \
-        .frontAnimId = ANIM_V_STRETCH,                                                  \
-        .backPicYOffset = 8,                                                            \
-        .backAnimId = BACK_ANIM_H_SPRING,                                               \
-        .footprint = gMonFootprint_Shellos,                                             \
-        LEARNSETS(Shellos),                                                             \
-        .formSpeciesIdTable = sShellosFormSpeciesIdTable
 
     [SPECIES_SHELLOS_WEST_SEA] =
     {
-        SHELLOS_MISC_INFO,
+        .baseHP        = 76,
+        .baseAttack    = 48,
+        .baseDefense   = 48,
+        .baseSpeed     = 34,
+        .baseSpAttack  = 57,
+        .baseSpDefense = 62,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 190,
+        .expYield = 65,
+        .evYield_HP        = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },
+        .speciesName = _("Shellos"),
+        .cryId = CRY_SHELLOS,
+        .natDexNum = NATIONAL_DEX_SHELLOS,
+        .categoryName = _("Sea Slug"),
+        .height = 3,
+        .weight = 63,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Shellos,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_H_SPRING,
+        .footprint = gMonFootprint_Shellos,
+        LEARNSETS(Shellos),
+        .formSpeciesIdTable = sShellosFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It oozes a purple fluid to deter enemies.\n"
@@ -28199,45 +27790,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST_SEA}),
     },
 
-#define GASTRODON_MISC_INFO                                                             \
-        .baseHP        = 111,                                                           \
-        .baseAttack    = 83,                                                            \
-        .baseDefense   = 68,                                                            \
-        .baseSpeed     = 39,                                                            \
-        .baseSpAttack  = 92,                                                            \
-        .baseSpDefense = 82,                                                            \
-        .types = { TYPE_WATER, TYPE_GROUND },                                           \
-        .catchRate = 75,                                                                \
-        .expYield = 166,                                                                \
-        .evYield_HP        = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },                        \
-        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
-        .speciesName = _("Gastrodon"),                                                  \
-        .cryId = CRY_GASTRODON,                                                         \
-        .natDexNum = NATIONAL_DEX_GASTRODON,                                            \
-        .categoryName = _("Sea Slug"),                                                  \
-        .height = 9,                                                                    \
-        .weight = 299,                                                                  \
-        .pokemonScale = 338,                                                            \
-        .pokemonOffset = 8,                                                             \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        .frontPicYOffset = 8,                                                           \
-        .frontAnimFrames = sAnims_Gastrodon,                                            \
-        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,                                     \
-        .backPicYOffset = 3,                                                            \
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                                    \
-        .footprint = gMonFootprint_Gastrodon,                                           \
-        LEARNSETS(Gastrodon),                                                           \
-        .formSpeciesIdTable = sGastrodonFormSpeciesIdTable
-
     [SPECIES_GASTRODON_WEST_SEA] =
     {
-        GASTRODON_MISC_INFO,
+        .baseHP        = 111,
+        .baseAttack    = 83,
+        .baseDefense   = 68,
+        .baseSpeed     = 39,
+        .baseSpAttack  = 92,
+        .baseSpDefense = 82,
+        .types = { TYPE_WATER, TYPE_GROUND },
+        .catchRate = 75,
+        .expYield = 166,
+        .evYield_HP        = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },
+        .speciesName = _("Gastrodon"),
+        .cryId = CRY_GASTRODON,
+        .natDexNum = NATIONAL_DEX_GASTRODON,
+        .categoryName = _("Sea Slug"),
+        .height = 9,
+        .weight = 299,
+        .pokemonScale = 338,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 8,
+        .frontAnimFrames = sAnims_Gastrodon,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .footprint = gMonFootprint_Gastrodon,
+        LEARNSETS(Gastrodon),
+        .formSpeciesIdTable = sGastrodonFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It appears on shallow-water beaches to\n"
@@ -28414,26 +28002,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
     },
 
-#define LOPUNNY_MISC_INFO                                       \
-        .catchRate = 60,                                        \
-        .evYield_Speed     = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = 140,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE }, \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .speciesName = _("Lopunny"),                            \
-        .natDexNum = NATIONAL_DEX_LOPUNNY,                      \
-        .categoryName = _("Rabbit"),                            \
-        .footprint = gMonFootprint_Lopunny,                     \
-        LEARNSETS(Lopunny),                                     \
-        .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,       \
-        .formChangeTable = sLopunnyFormChangeTable
-
     [SPECIES_LOPUNNY] =
     {
-        LOPUNNY_MISC_INFO,
+        .catchRate = 60,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 140,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Lopunny"),
+        .natDexNum = NATIONAL_DEX_LOPUNNY,
+        .categoryName = _("Rabbit"),
+        .footprint = gMonFootprint_Lopunny,
+        LEARNSETS(Lopunny),
+        .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,
+        .formChangeTable = sLopunnyFormChangeTable,
         .baseHP        = 65,
         .baseAttack    = 76,
         .baseDefense   = 84,
@@ -28494,7 +28079,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LopunnyMega, 56, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_LopunnyMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LopunnyMega, 64, 64),
         .backPicYOffset = 3,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
@@ -29002,33 +28586,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_GARCHOMP}),
     },
 
-#define GARCHOMP_MISC_INFO                                      \
-        .types = { TYPE_DRAGON, TYPE_GROUND },                  \
-        .catchRate = 45,                                        \
-        .evYield_Attack    = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },   \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Garchomp"),                           \
-        .natDexNum = NATIONAL_DEX_GARCHOMP,                     \
-        .categoryName = _("Mach"),                              \
-        .height = 19,                                           \
-        .weight = 950,                                          \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 1,                                     \
-        .trainerScale = 326,                                    \
-        .trainerOffset = 4,                                     \
-        .footprint = gMonFootprint_Garchomp,                    \
-        LEARNSETS(Garchomp),                                    \
-        .formSpeciesIdTable = sGarchompFormSpeciesIdTable,      \
-        .formChangeTable = sGarchompFormChangeTable
-
     [SPECIES_GARCHOMP] =
     {
-        GARCHOMP_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_GROUND },
+        .catchRate = 45,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Garchomp"),
+        .natDexNum = NATIONAL_DEX_GARCHOMP,
+        .categoryName = _("Mach"),
+        .height = 19,
+        .weight = 950,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 326,
+        .trainerOffset = 4,
+        .footprint = gMonFootprint_Garchomp,
+        LEARNSETS(Garchomp),
+        .formSpeciesIdTable = sGarchompFormSpeciesIdTable,
+        .formChangeTable = sGarchompFormChangeTable,
         .baseHP        = 108,
         .baseAttack    = 130,
         .baseDefense   = 95,
@@ -29076,7 +28657,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GarchompMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_GarchompMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GarchompMega, 64, 56),
         .backPicYOffset = 4,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -29136,28 +28716,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP_DAY, 0, SPECIES_LUCARIO}),
     },
 
-#define LUCARIO_MISC_INFO                                       \
-        .types = { TYPE_FIGHTING, TYPE_STEEL },                 \
-        .catchRate = 45,                                        \
-        .evYield_Attack    = 1,                                 \
-        .evYield_SpAttack  = 1,                                 \
-        .genderRatio = PERCENT_FEMALE(12.5),                    \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE }, \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Lucario"),                            \
-        .natDexNum = NATIONAL_DEX_LUCARIO,                      \
-        .categoryName = _("Aura"),                              \
-        .footprint = gMonFootprint_Lucario,                     \
-        LEARNSETS(Lucario),                                     \
-        .formSpeciesIdTable = sLucarioFormSpeciesIdTable,       \
-        .formChangeTable = sLucarioFormChangeTable
-
     [SPECIES_LUCARIO] =
     {
-        LUCARIO_MISC_INFO,
+        .types = { TYPE_FIGHTING, TYPE_STEEL },
+        .catchRate = 45,
+        .evYield_Attack    = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Lucario"),
+        .natDexNum = NATIONAL_DEX_LUCARIO,
+        .categoryName = _("Aura"),
+        .footprint = gMonFootprint_Lucario,
+        LEARNSETS(Lucario),
+        .formSpeciesIdTable = sLucarioFormSpeciesIdTable,
+        .formChangeTable = sLucarioFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 70,
@@ -29216,7 +28793,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LucarioMega, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_LucarioMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LucarioMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
@@ -29737,29 +29313,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW}),
     },
 
-#define ABOMASNOW_MISC_INFO                                 \
-        .types = { TYPE_GRASS, TYPE_ICE },                  \
-        .catchRate = 60,                                    \
-        .evYield_Attack    = 1,                             \
-        .evYield_SpAttack  = 1,                             \
-        .itemRare = ITEM_NEVER_MELT_ICE,                    \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },\
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .speciesName = _("Abomasnow"),                      \
-        .natDexNum = NATIONAL_DEX_ABOMASNOW,                \
-        .categoryName = _("Frost Tree"),                    \
-        .footprint = gMonFootprint_Abomasnow,               \
-        LEARNSETS(Abomasnow),                               \
-        .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable, \
-        .formChangeTable = sAbomasnowFormChangeTable
-
     [SPECIES_ABOMASNOW] =
     {
-        ABOMASNOW_MISC_INFO,
+        .types = { TYPE_GRASS, TYPE_ICE },
+        .catchRate = 60,
+        .evYield_Attack    = 1,
+        .evYield_SpAttack  = 1,
+        .itemRare = ITEM_NEVER_MELT_ICE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Abomasnow"),
+        .natDexNum = NATIONAL_DEX_ABOMASNOW,
+        .categoryName = _("Frost Tree"),
+        .footprint = gMonFootprint_Abomasnow,
+        LEARNSETS(Abomasnow),
+        .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,
+        .formChangeTable = sAbomasnowFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 92,
         .baseDefense   = 75,
@@ -29819,7 +29392,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AbomasnowMega, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_AbomasnowMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AbomasnowMega, 64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -29831,35 +29403,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SNOVER
 
 #if P_FAMILY_ROTOM
-#define ROTOM_MISC_INFO                                             \
-        .catchRate = 45,                                            \
-        .evYield_Speed     = 1,                                     \
-        .evYield_SpAttack  = 1,                                     \
-        .genderRatio = MON_GENDERLESS,                              \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
-        .bodyColor = BODY_COLOR_RED,                                \
-        .speciesName = _("Rotom"),                                  \
-        .cryId = CRY_ROTOM,                                         \
-        .natDexNum = NATIONAL_DEX_ROTOM,                            \
-        .categoryName = _("Plasma"),                                \
-        .height = 3,                                                \
-        .weight = 3,                                                \
-        .pokemonScale = 530,                                        \
-        .pokemonOffset = 13,                                        \
-        .trainerScale = 256,                                        \
-        .trainerOffset = 0,                                         \
-        .footprint = gMonFootprint_Rotom,                           \
-        LEARNSETS(Rotom),                                           \
-        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
-        .formChangeTable = sRotomFormChangeTable
 
     [SPECIES_ROTOM] =
     {
-        ROTOM_MISC_INFO,
+        .catchRate = 45,
+        .evYield_Speed     = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Rotom"),
+        .cryId = CRY_ROTOM,
+        .natDexNum = NATIONAL_DEX_ROTOM,
+        .categoryName = _("Plasma"),
+        .height = 3,
+        .weight = 3,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Rotom,
+        LEARNSETS(Rotom),
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,
+        .formChangeTable = sRotomFormChangeTable,
         .baseHP        = 50,
         .baseAttack    = 50,
         .baseDefense   = 77,
@@ -30165,31 +29735,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_AZELF
 
 #if P_FAMILY_DIALGA
-#define DIALGA_MISC_INFO                                                    \
-        .types = { TYPE_STEEL, TYPE_DRAGON },                               \
-        .catchRate = 3,                                                     \
-        .expYield = 306,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY }, \
-        .bodyColor = BODY_COLOR_WHITE,                                      \
-        .speciesName = _("Dialga"),                                         \
-        .cryId = CRY_DIALGA,                                                \
-        .natDexNum = NATIONAL_DEX_DIALGA,                                   \
-        .categoryName = _("Temporal"),                                      \
-        .footprint = gMonFootprint_Dialga,                                  \
-        LEARNSETS(Dialga),                                                  \
-        .formSpeciesIdTable = sDialgaFormSpeciesIdTable,                    \
-        .formChangeTable = sDialgaFormChangeTable,                          \
-        .isLegendary = TRUE
 
     [SPECIES_DIALGA] =
     {
-        DIALGA_MISC_INFO,
+        .types = { TYPE_STEEL, TYPE_DRAGON },
+        .catchRate = 3,
+        .expYield = 306,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Dialga"),
+        .cryId = CRY_DIALGA,
+        .natDexNum = NATIONAL_DEX_DIALGA,
+        .categoryName = _("Temporal"),
+        .footprint = gMonFootprint_Dialga,
+        LEARNSETS(Dialga),
+        .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
+        .formChangeTable = sDialgaFormChangeTable,
+        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 120,
         .baseDefense   = 120,
@@ -30241,41 +29809,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DialgaOrigin, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DialgaOrigin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DialgaOrigin, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DialgaOrigin),
         ICON(DialgaOrigin, 0),
     },
 #endif //P_FAMILY_DIALGA
 
 #if P_FAMILY_PALKIA
-#define PALKIA_MISC_INFO                                                    \
-        .types = { TYPE_WATER, TYPE_DRAGON },                               \
-        .catchRate = 3,                                                     \
-        .expYield = 306,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY }, \
-        .bodyColor = BODY_COLOR_PURPLE,                                     \
-        .speciesName = _("Palkia"),                                         \
-        .cryId = CRY_PALKIA,                                                \
-        .natDexNum = NATIONAL_DEX_PALKIA,                                   \
-        .categoryName = _("Spatial"),                                       \
-        .footprint = gMonFootprint_Palkia,                                  \
-        LEARNSETS(Palkia),                                                  \
-        .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,                    \
-        .formChangeTable = sPalkiaFormChangeTable,                          \
-        .isLegendary = TRUE
 
     [SPECIES_PALKIA] =
     {
-        PALKIA_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_DRAGON },
+        .catchRate = 3,
+        .expYield = 306,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Palkia"),
+        .cryId = CRY_PALKIA,
+        .natDexNum = NATIONAL_DEX_PALKIA,
+        .categoryName = _("Spatial"),
+        .footprint = gMonFootprint_Palkia,
+        LEARNSETS(Palkia),
+        .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
+        .formChangeTable = sPalkiaFormChangeTable,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -30327,10 +29891,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(PalkiaOrigin, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_PalkiaOrigin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PalkiaOrigin, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PalkiaOrigin),
         ICON(PalkiaOrigin, 2),
     },
@@ -30437,30 +29999,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_REGIGIGAS
 
 #if P_FAMILY_GIRATINA
-#define GIRATINA_MISC_INFO                                                  \
-        .types = { TYPE_GHOST, TYPE_DRAGON },                               \
-        .catchRate = 3,                                                     \
-        .expYield = 306,                                                    \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_BLACK,                                      \
-        .speciesName = _("Giratina"),                                       \
-        .cryId = CRY_GIRATINA,                                              \
-        .natDexNum = NATIONAL_DEX_GIRATINA,                                 \
-        .categoryName = _("Renegade"),                                      \
-        .footprint = gMonFootprint_Giratina,                                \
-        LEARNSETS(Giratina),                                                \
-        .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,                  \
-        .formChangeTable = sGiratinaFormChangeTable,                        \
-        .isLegendary = TRUE
 
     [SPECIES_GIRATINA_ALTERED] =
     {
-        GIRATINA_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_DRAGON },
+        .catchRate = 3,
+        .expYield = 306,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Giratina"),
+        .cryId = CRY_GIRATINA,
+        .natDexNum = NATIONAL_DEX_GIRATINA,
+        .categoryName = _("Renegade"),
+        .footprint = gMonFootprint_Giratina,
+        LEARNSETS(Giratina),
+        .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
+        .formChangeTable = sGiratinaFormChangeTable,
+        .isLegendary = TRUE,
         .baseHP        = 150,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -30728,29 +30288,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DARKRAI
 
 #if P_FAMILY_SHAYMIN
-#define SHAYMIN_MISC_INFO                                                   \
-        .catchRate = 45,                                                    \
-        .expYield = 270,                                                    \
-        .evYield_HP        = 3,                                             \
-        .itemCommon = ITEM_LUM_BERRY,                                       \
-        .itemRare = ITEM_LUM_BERRY,                                         \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 100,                                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .speciesName = _("Shaymin"),                                        \
-        .natDexNum = NATIONAL_DEX_SHAYMIN,                                  \
-        .categoryName = _("Gratitude"),                                     \
-        .footprint = gMonFootprint_Shaymin,                                 \
-        .formSpeciesIdTable = sShayminFormSpeciesIdTable,                   \
-        .formChangeTable = sShayminFormChangeTable,                         \
-        .isMythical = TRUE
 
     [SPECIES_SHAYMIN_LAND] =
     {
-        SHAYMIN_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 270,
+        .evYield_HP        = 3,
+        .itemCommon = ITEM_LUM_BERRY,
+        .itemRare = ITEM_LUM_BERRY,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 100,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Shaymin"),
+        .natDexNum = NATIONAL_DEX_SHAYMIN,
+        .categoryName = _("Gratitude"),
+        .footprint = gMonFootprint_Shaymin,
+        .formSpeciesIdTable = sShayminFormSpeciesIdTable,
+        .formChangeTable = sShayminFormChangeTable,
+        .isMythical = TRUE,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -30821,50 +30379,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SHAYMIN
 
 #if P_FAMILY_ARCEUS
-#define ARCEUS_SPECIES_INFO(type, typeName)                                 \
-    {                                                                       \
-        .baseHP        = 120,                                               \
-        .baseAttack    = 120,                                               \
-        .baseDefense   = 120,                                               \
-        .baseSpeed     = 120,                                               \
-        .baseSpAttack  = 120,                                               \
-        .baseSpDefense = 120,                                               \
-        .types = { type, type },                                            \
-        .catchRate = 3,                                                     \
-        .expYield = 324,                                                    \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },                   \
-        .bodyColor = BODY_COLOR_WHITE,                                      \
-        .speciesName = _("Arceus"),                                         \
-        .cryId = CRY_ARCEUS,                                                \
-        .natDexNum = NATIONAL_DEX_ARCEUS,                                   \
-        .categoryName = _("Alpha"),                                         \
-        .height = 32,                                                       \
-        .weight = 3200,                                                     \
-        .description = gArceusPokedexText,                                  \
-        .pokemonScale = 256,                                                \
-        .pokemonOffset = 0,                                                 \
-        .trainerScale = 495,                                                \
-        .trainerOffset = 10,                                                \
-        FRONT_PIC(Arceus, 64, 64),                                          \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Arceus,                                   \
-        .frontAnimId = ANIM_GROW_VIBRATE,                                   \
-        BACK_PIC(Arceus, 64, 64),                                           \
-        .backPicYOffset = 3,                                                \
-        .backAnimId = BACK_ANIM_GROW_STUTTER,                               \
-        PALETTES(Arceus ##typeName),                                         \
-        ICON(Arceus, 1),                                                    \
-        .footprint = gMonFootprint_Arceus,                                  \
-        LEARNSETS(Arceus),                                                  \
-        .formSpeciesIdTable = sArceusFormSpeciesIdTable,                    \
-        .formChangeTable = sArceusFormChangeTable,                          \
-        .isMythical = TRUE,                                                 \
+#define ARCEUS_SPECIES_INFO
+    {
+        .baseHP        = 120,
+        .baseAttack    = 120,
+        .baseDefense   = 120,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 120,
+        .types = { type, type },
+        .catchRate = 3,
+        .expYield = 324,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Arceus"),
+        .cryId = CRY_ARCEUS,
+        .natDexNum = NATIONAL_DEX_ARCEUS,
+        .categoryName = _("Alpha"),
+        .height = 32,
+        .weight = 3200,
+        .description = gArceusPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 495,
+        .trainerOffset = 10,
+        FRONT_PIC(Arceus, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Arceus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(Arceus, 64, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        PALETTES(Arceus ##typeName),
+        ICON(Arceus, 1),
+        .footprint = gMonFootprint_Arceus,
+        LEARNSETS(Arceus),
+        .formSpeciesIdTable = sArceusFormSpeciesIdTable,
+        .formChangeTable = sArceusFormChangeTable,
+        .isMythical = TRUE,
     }
 
     [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL, Normal),
@@ -31326,30 +30884,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_SAMUROTT_HISUIAN}),
     },
 
-#define SAMUROTT_MISC_INFO                                                  \
-        .catchRate = 45,                                                    \
-        .expYield = 238,                                                    \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                  \
-        .bodyColor = BODY_COLOR_BLUE,                                       \
-        .speciesName = _("Samurott"),                                       \
-        .cryId = CRY_SAMUROTT,                                              \
-        .natDexNum = NATIONAL_DEX_SAMUROTT,                                 \
-        .categoryName = _("Formidable"),                                    \
-        .height = 15,                                                       \
-        .pokemonScale = 268,                                                \
-        .pokemonOffset = 2,                                                 \
-        .trainerScale = 271,                                                \
-        .trainerOffset = 0,                                                 \
-        .footprint = gMonFootprint_Samurott,                                \
-        .formSpeciesIdTable = sSamurottFormSpeciesIdTable
-
     [SPECIES_SAMUROTT] =
     {
-        SAMUROTT_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 238,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Samurott"),
+        .cryId = CRY_SAMUROTT,
+        .natDexNum = NATIONAL_DEX_SAMUROTT,
+        .categoryName = _("Formidable"),
+        .height = 15,
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Samurott,
+        .formSpeciesIdTable = sSamurottFormSpeciesIdTable,
         .baseHP        = 95,
         .baseAttack    = 100,
         .baseDefense   = 85,
@@ -31396,10 +30951,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SamurottHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SamurottHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SamurottHisuian, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SamurottHisuian),
         ICON(SamurottHisuian, 0),
         LEARNSETS(SamurottHisuian),
@@ -32736,22 +32289,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_FAMILY_DRILBUR
 
-#define AUDINO_MISC_INFO                                    \
-        .catchRate = 255,                                   \
-        .evYield_HP        = 2,                             \
-        .itemCommon = ITEM_ORAN_BERRY,                      \
-        .itemRare = ITEM_SITRUS_BERRY,                      \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_FAST,                          \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },  \
-        .speciesName = _("Audino"),                         \
-        .natDexNum = NATIONAL_DEX_AUDINO,                   \
-        .categoryName = _("Hearing"),                       \
-        .footprint = gMonFootprint_Audino,                  \
-        LEARNSETS(Audino),                                  \
-        .formSpeciesIdTable = sAudinoFormSpeciesIdTable,    \
+#define AUDINO_MISC_INFO
+        .catchRate = 255,
+        .evYield_HP        = 2,
+        .itemCommon = ITEM_ORAN_BERRY,
+        .itemRare = ITEM_SITRUS_BERRY,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .speciesName = _("Audino"),
+        .natDexNum = NATIONAL_DEX_AUDINO,
+        .categoryName = _("Hearing"),
+        .footprint = gMonFootprint_Audino,
+        LEARNSETS(Audino),
+        .formSpeciesIdTable = sAudinoFormSpeciesIdTable,
         .formChangeTable = sAudinoFormChangeTable
 
 #if P_FAMILY_AUDINO
@@ -32820,10 +32373,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AudinoMega, 48, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_AudinoMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AudinoMega, 56, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AudinoMega),
         ICON(AudinoMega, 1),
         .isMegaEvolution = TRUE,
@@ -33688,26 +33239,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_LILLIGANT_HISUIAN}),
     },
 
-#define LILLIGANT_MISC_INFO                                 \
-        .catchRate = 75,                                    \
-        .expYield = 168,                                    \
-        .itemRare = ITEM_ABSORB_BULB,                       \
-        .genderRatio = MON_FEMALE,                          \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },  \
-        .bodyColor = BODY_COLOR_GREEN,                      \
-        .noFlip = TRUE,                                     \
-        .speciesName = _("Lilligant"),                      \
-        .cryId = CRY_LILLIGANT,                             \
-        .natDexNum = NATIONAL_DEX_LILLIGANT,                \
-        .footprint = gMonFootprint_Lilligant,               \
-        .formSpeciesIdTable = sLilligantFormSpeciesIdTable
-
     [SPECIES_LILLIGANT] =
     {
-        LILLIGANT_MISC_INFO,
+        .catchRate = 75,
+        .expYield = 168,
+        .itemRare = ITEM_ABSORB_BULB,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_GRASS },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("Lilligant"),
+        .cryId = CRY_LILLIGANT,
+        .natDexNum = NATIONAL_DEX_LILLIGANT,
+        .footprint = gMonFootprint_Lilligant,
+        .formSpeciesIdTable = sLilligantFormSpeciesIdTable,
         .baseHP        = 70,
         .baseAttack    = 60,
         .baseDefense   = 75,
@@ -33770,10 +33318,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(LilligantHisuian, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LilligantHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LilligantHisuian, 56, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(LilligantHisuian),
         ICON(LilligantHisuian, 1),
         LEARNSETS(LilligantHisuian),
@@ -33783,39 +33329,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PETILIL
 
 #if P_FAMILY_BASCULIN
-#define BASCULIN_MISC_INFO                                      \
-        .baseHP        = 70,                                    \
-        .baseAttack    = 92,                                    \
-        .baseDefense   = 65,                                    \
-        .baseSpeed     = 98,                                    \
-        .baseSpAttack  = 80,                                    \
-        .baseSpDefense = 55,                                    \
-        .types = { TYPE_WATER, TYPE_WATER },                    \
-        .catchRate = 190,                                       \
-        .expYield = 161,                                        \
-        .evYield_Speed     = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },  \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .speciesName = _("Basculin"),                           \
-        .cryId = CRY_BASCULIN,                                  \
-        .natDexNum = NATIONAL_DEX_BASCULIN,                     \
-        .height = 10,                                           \
-        .weight = 180,                                          \
-        .pokemonScale = 316,                                    \
-        .pokemonOffset = 7,                                     \
-        .trainerScale = 257,                                    \
-        .trainerOffset = 0,                                     \
-        .enemyMonElevation = 6,                                 \
-        .footprint = gMonFootprint_Basculin,                    \
-        .formSpeciesIdTable = sBasculinFormSpeciesIdTable
 
     [SPECIES_BASCULIN_RED_STRIPED] =
     {
-        BASCULIN_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 92,
+        .baseDefense   = 65,
+        .baseSpeed     = 98,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 55,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 190,
+        .expYield = 161,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Basculin"),
+        .cryId = CRY_BASCULIN,
+        .natDexNum = NATIONAL_DEX_BASCULIN,
+        .height = 10,
+        .weight = 180,
+        .pokemonScale = 316,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .enemyMonElevation = 6,
+        .footprint = gMonFootprint_Basculin,
+        .formSpeciesIdTable = sBasculinFormSpeciesIdTable,
         .itemRare = ITEM_DEEP_SEA_TOOTH,
         .abilities = { ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Hostile"),
@@ -33885,40 +33429,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_BASCULEGION_FEMALE}),
     },
 
-#define BASCULEGION_MISC_INFO                                                               \
-        .types = { TYPE_WATER, TYPE_GHOST },                                                \
-        .catchRate = 45,                                                                    \
-        .expYield = 265,                                                                    \
-        .evYield_HP     = 3,                                                                \
-        .eggCycles = 20,                                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                                   \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },                              \
-        .abilities = { ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },    \
-        .bodyColor = BODY_COLOR_GREEN,                                                      \
-        .speciesName = _("Bsculegion"),                                                     \
-        .cryId = CRY_BASCULEGION,                                                           \
-        .natDexNum = NATIONAL_DEX_BASCULEGION,                                              \
-        .categoryName = _("Big Fish"),                                                      \
-        .height = 30,                                                                       \
-        .weight = 1100,                                                                     \
-        .pokemonScale = 275,                                                                \
-        .pokemonOffset = 7,                                                                 \
-        .trainerScale = 256,                                                                \
-        .trainerOffset = 0,                                                                 \
-        .frontAnimFrames = sAnims_Basculegion,                                              \
-        .frontPicYOffset = 0,                                                               \
-        .enemyMonElevation = 5,                                                             \
-        .backPicYOffset = 0,                                                                \
-        LEARNSETS(Basculegion),                                                             \
-        .formSpeciesIdTable = sBasculegionFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Basculegion,
-
     [SPECIES_BASCULEGION_MALE] =
     {
-        BASCULEGION_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_GHOST },
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_HP     = 3,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .abilities = { ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Bsculegion"),
+        .cryId = CRY_BASCULEGION,
+        .natDexNum = NATIONAL_DEX_BASCULEGION,
+        .categoryName = _("Big Fish"),
+        .height = 30,
+        .weight = 1100,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Basculegion,
+        .frontPicYOffset = 0,
+        .enemyMonElevation = 5,
+        .backPicYOffset = 0,
+        LEARNSETS(Basculegion),
+        .formSpeciesIdTable = sBasculegionFormSpeciesIdTable,
         .baseHP        = 120,
         .baseAttack    = 112,
         .baseDefense   = 65,
@@ -34106,32 +33644,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SANDILE
 
 #if P_FAMILY_DARUMAKA
-#define DARUMAKA_MISC_INFO                                                  \
-        .baseHP        = 70,                                                \
-        .baseAttack    = 90,                                                \
-        .baseDefense   = 45,                                                \
-        .baseSpeed     = 50,                                                \
-        .baseSpAttack  = 15,                                                \
-        .baseSpDefense = 45,                                                \
-        .catchRate = 120,                                                   \
-        .expYield = 63,                                                     \
-        .evYield_Attack    = 1,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                  \
-        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_INNER_FOCUS }, \
-        .speciesName = _("Darumaka"),                                       \
-        .cryId = CRY_DARUMAKA,                                              \
-        .natDexNum = NATIONAL_DEX_DARUMAKA,                                 \
-        .categoryName = _("Zen Charm"),                                     \
-        .footprint = gMonFootprint_Darumaka,                                \
-        .formSpeciesIdTable = sDarumakaFormSpeciesIdTable
 
     [SPECIES_DARUMAKA] =
     {
-        DARUMAKA_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 90,
+        .baseDefense   = 45,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 15,
+        .baseSpDefense = 45,
+        .catchRate = 120,
+        .expYield = 63,
+        .evYield_Attack    = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_INNER_FOCUS },
+        .speciesName = _("Darumaka"),
+        .cryId = CRY_DARUMAKA,
+        .natDexNum = NATIONAL_DEX_DARUMAKA,
+        .categoryName = _("Zen Charm"),
+        .footprint = gMonFootprint_Darumaka,
+        .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .bodyColor = BODY_COLOR_RED,
         .height = 6,
@@ -34158,45 +33694,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD_MODE}),
     },
 
-#define DARMANITAN_MISC_INFO                                \
-        .catchRate = 60,                                    \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .speciesName = _("Darmanitan"),                     \
-        .cryId = CRY_DARMANITAN,                            \
-        .natDexNum = NATIONAL_DEX_DARMANITAN,               \
-        .footprint = gMonFootprint_Darmanitan,              \
+#define DARMANITAN_MISC_INFO
+        .catchRate = 60,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Darmanitan"),
+        .cryId = CRY_DARMANITAN,
+        .natDexNum = NATIONAL_DEX_DARMANITAN,
+        .footprint = gMonFootprint_Darmanitan,
         .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable
 
-#define DARMANITAN_STANDARD_MISC_INFO   \
-        .baseHP        = 105,           \
-        .baseAttack    = 140,           \
-        .baseDefense   = 55,            \
-        .baseSpeed     = 95,            \
-        .baseSpAttack  = 30,            \
-        .baseSpDefense = 55,            \
-        .expYield = 168,                \
-        .evYield_Attack    = 2,         \
+#define DARMANITAN_STANDARD_MISC_INFO
+        .baseHP        = 105,
+        .baseAttack    = 140,
+        .baseDefense   = 55,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 55,
+        .expYield = 168,
+        .evYield_Attack    = 2,
         DARMANITAN_MISC_INFO
 
-#define DARMANITAN_ZEN_MODE_MISC_INFO   \
-        .expYield = 189,                \
-        .evYield_SpAttack  = 2,         \
-        .categoryName = _("Blazing"),   \
+#define DARMANITAN_ZEN_MODE_MISC_INFO
+        .expYield = 189,
+        .evYield_SpAttack  = 2,
+        .categoryName = _("Blazing"),
         DARMANITAN_MISC_INFO
 
-#define DARMANITAN_UNOVAN_MISC_INFO                                         \
-        .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE },\
-        .height = 13,                                                       \
-        .weight = 929,                                                      \
-        .pokemonScale = 272,                                                \
-        .pokemonOffset = 3,                                                 \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        LEARNSETS(Darmanitan),                                              \
+#define DARMANITAN_UNOVAN_MISC_INFO
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE },
+        .height = 13,
+        .weight = 929,
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        LEARNSETS(Darmanitan),
         .formChangeTable = sDarmanitanFormChangeTable
 
     [SPECIES_DARMANITAN_STANDARD_MODE] =
@@ -34264,10 +33800,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DarumakaGalarian, 40, 40),
         .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_DarumakaGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DarumakaGalarian, 56, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DarumakaGalarian),
         ICON(DarumakaGalarian, 0),
         LEARNSETS(DarumakaGalarian),
@@ -34275,22 +33809,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
     },
 
-#define DARMANITAN_GALARIAN_MISC_INFO                                           \
-        .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },\
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .height = 17,                                                           \
-        .weight = 1200,                                                         \
-        .pokemonScale = 272,                                                    \
-        .pokemonOffset = 3,                                                     \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        LEARNSETS(DarmanitanGalarian),                                          \
-        .formChangeTable = sDarmanitanGalarianFormChangeTable,                  \
-        .isGalarianForm = TRUE
-
     [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] =
     {
-        DARMANITAN_GALARIAN_MISC_INFO,
+        .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .height = 17,
+        .weight = 1200,
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        LEARNSETS(DarmanitanGalarian),
+        .formChangeTable = sDarmanitanGalarianFormChangeTable,
+        .isGalarianForm = TRUE,
         DARMANITAN_STANDARD_MISC_INFO,
         .types = { TYPE_ICE, TYPE_ICE },
         .categoryName = _("Zen Charm"),
@@ -34299,10 +33830,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DarmanitanGalarianStandardMode, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DarmanitanGalarianStandardMode,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DarmanitanGalarianStandardMode, 56, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DarmanitanGalarianStandardMode),
         ICON(DarmanitanGalarianStandardMode, 0),
     },
@@ -34323,10 +33852,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DarmanitanGalarianZenMode, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_DarmanitanGalarianZenMode,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DarmanitanGalarianZenMode, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DarmanitanGalarianZenMode),
         ICON(DarmanitanGalarianZenMode, 0),
     },
@@ -34633,32 +34160,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SIGILYPH
 
 #if P_FAMILY_YAMASK
-#define YAMASK_MISC_INFO                                            \
-        .catchRate = 190,                                           \
-        .expYield = 61,                                             \
-        .evYield_Defense   = 1,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 25,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },    \
-        .bodyColor = BODY_COLOR_BLACK,                              \
-        .speciesName = _("Yamask"),                                 \
-        .cryId = CRY_YAMASK,                                        \
-        .natDexNum = NATIONAL_DEX_YAMASK,                           \
-        .categoryName = _("Spirit"),                                \
-        .height = 5,                                                \
-        .weight = 15,                                               \
-        .pokemonScale = 432,                                        \
-        .pokemonOffset = 13,                                        \
-        .trainerScale = 256,                                        \
-        .trainerOffset = 0,                                         \
-        .footprint = gMonFootprint_Yamask,                          \
-        .formSpeciesIdTable = sYamaskFormSpeciesIdTable
 
     [SPECIES_YAMASK] =
     {
-        YAMASK_MISC_INFO,
+        .catchRate = 190,
+        .expYield = 61,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Yamask"),
+        .cryId = CRY_YAMASK,
+        .natDexNum = NATIONAL_DEX_YAMASK,
+        .categoryName = _("Spirit"),
+        .height = 5,
+        .weight = 15,
+        .pokemonScale = 432,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Yamask,
+        .formSpeciesIdTable = sYamaskFormSpeciesIdTable,
         .baseHP        = 38,
         .baseAttack    = 30,
         .baseDefense   = 85,
@@ -34752,11 +34277,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(YamaskGalarian, 48, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_YamaskGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(YamaskGalarian, 40, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(YamaskGalarian),
         ICON(YamaskGalarian, 2),
         LEARNSETS(YamaskGalarian),
@@ -34800,11 +34323,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Runerigus, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Runerigus,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(Runerigus, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Runerigus),
         ICON(Runerigus, 2),
         .footprint = gMonFootprint_Runerigus,
@@ -35058,39 +34579,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GARBODOR}),
     },
 
-#define GARBODOR_MISC_INFO                                                      \
-        .baseHP        = 80,                                                    \
-        .baseAttack    = 95,                                                    \
-        .baseDefense   = 82,                                                    \
-        .baseSpeed     = 75,                                                    \
-        .baseSpAttack  = 60,                                                    \
-        .baseSpDefense = 82,                                                    \
-        .types = { TYPE_POISON, TYPE_POISON },                                  \
-        .catchRate = 60,                                                        \
-        .expYield = 166,                                                        \
-        .evYield_Attack    = 2,                                                 \
-        .itemCommon = ITEM_SILK_SCARF,                                          \
-        .itemRare = ITEM_BLACK_SLUDGE,                                          \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },                  \
-        .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH }, \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .noFlip = TRUE,                                                         \
-        .speciesName = _("Garbodor"),                                           \
-        .cryId = CRY_GARBODOR,                                                  \
-        .natDexNum = NATIONAL_DEX_GARBODOR,                                     \
-        .categoryName = _("Trash Heap"),                                        \
-        .footprint = gMonFootprint_Garbodor,                                    \
-        LEARNSETS(Garbodor),                                                    \
-        .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,                      \
-        .formChangeTable = sGarbodorFormChangeTable
-
     [SPECIES_GARBODOR] =
     {
-        GARBODOR_MISC_INFO,
+        .baseHP        = 80,
+        .baseAttack    = 95,
+        .baseDefense   = 82,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 82,
+        .types = { TYPE_POISON, TYPE_POISON },
+        .catchRate = 60,
+        .expYield = 166,
+        .evYield_Attack    = 2,
+        .itemCommon = ITEM_SILK_SCARF,
+        .itemRare = ITEM_BLACK_SLUDGE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("Garbodor"),
+        .cryId = CRY_GARBODOR,
+        .natDexNum = NATIONAL_DEX_GARBODOR,
+        .categoryName = _("Trash Heap"),
+        .footprint = gMonFootprint_Garbodor,
+        LEARNSETS(Garbodor),
+        .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,
+        .formChangeTable = sGarbodorFormChangeTable,
         .height = 19,
         .weight = 1073,
         .description = COMPOUND_STRING(
@@ -35128,10 +34646,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GarbodorGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_GarbodorGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GarbodorGigantamax, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GarbodorGigantamax),
         ICON(GarbodorGigantamax, 0),
         .isGigantamax = TRUE,
@@ -35140,54 +34656,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TRUBBISH
 
 #if P_FAMILY_ZORUA
-#define ZORUA_MISC_INFO                                     \
-        .catchRate = 75,                                    \
-        .expYield = 66,                                     \
-        .evYield_SpAttack  = 1,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 25,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .speciesName = _("Zorua"),                          \
-        .cryId = CRY_ZORUA,                                 \
-        .natDexNum = NATIONAL_DEX_ZORUA,                    \
-        .height = 7,                                        \
-        .weight = 125,                                      \
-        .pokemonScale = 365,                                \
-        .pokemonOffset = 12,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Zorua,                   \
-        .formSpeciesIdTable = sZoruaFormSpeciesIdTable
-
-#define ZOROARK_MISC_INFO                                   \
-        .catchRate = 45,                                    \
-        .expYield = 179,                                    \
-        .evYield_SpAttack  = 2,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .speciesName = _("Zoroark"),                        \
-        .cryId = CRY_ZOROARK,                               \
-        .natDexNum = NATIONAL_DEX_ZOROARK,                  \
-        .height = 16,                                       \
-        .pokemonScale = 259,                                \
-        .pokemonOffset = 1,                                 \
-        .trainerScale = 296,                                \
-        .trainerOffset = 1,                                 \
-        .footprint = gMonFootprint_Zoroark,                 \
-        .formSpeciesIdTable = sZoroarkFormSpeciesIdTable
 
     [SPECIES_ZORUA] =
     {
-        ZORUA_MISC_INFO,
+        .catchRate = 75,
+        .expYield = 66,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Zorua"),
+        .cryId = CRY_ZORUA,
+        .natDexNum = NATIONAL_DEX_ZORUA,
+        .height = 7,
+        .weight = 125,
+        .pokemonScale = 365,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Zorua,
+        .formSpeciesIdTable = sZoruaFormSpeciesIdTable,
         .baseHP        = 40,
         .baseAttack    = 65,
         .baseDefense   = 40,
@@ -35216,7 +34708,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZOROARK] =
     {
-        ZOROARK_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 179,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Zoroark"),
+        .cryId = CRY_ZOROARK,
+        .natDexNum = NATIONAL_DEX_ZOROARK,
+        .height = 16,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Zoroark,
+        .formSpeciesIdTable = sZoroarkFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 105,
         .baseDefense   = 60,
@@ -35260,10 +34771,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZoruaHisuian, 48, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_ZoruaHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZoruaHisuian, 56, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZoruaHisuian),
         ICON(ZoruaHisuian, 0),
         LEARNSETS(ZoruaHisuian),
@@ -35288,10 +34797,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZoroarkHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ZoroarkHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZoroarkHisuian, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZoroarkHisuian),
         ICON(ZoroarkHisuian, 0),
         LEARNSETS(ZoroarkHisuian),
@@ -35938,47 +35445,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_VANILLITE
 
 #if P_FAMILY_DEERLING
-#define DEERLING_MISC_INFO                                                              \
-        .baseHP        = 60,                                                            \
-        .baseAttack    = 60,                                                            \
-        .baseDefense   = 50,                                                            \
-        .baseSpeed     = 75,                                                            \
-        .baseSpAttack  = 40,                                                            \
-        .baseSpDefense = 50,                                                            \
-        .types = { TYPE_NORMAL, TYPE_GRASS },                                           \
-        .catchRate = 190,                                                               \
-        .expYield = 67,                                                                 \
-        .evYield_Speed     = 1,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                              \
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
-        .speciesName = _("Deerling"),                                                   \
-        .cryId = CRY_DEERLING,                                                          \
-        .natDexNum = NATIONAL_DEX_DEERLING,                                             \
-        .categoryName = _("Season"),                                                    \
-        .height = 6,                                                                    \
-        .weight = 195,                                                                  \
-        .pokemonScale = 422,                                                            \
-        .pokemonOffset = 14,                                                            \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        FRONT_PIC(Deerling, 32, 48),                                                    \
-        .frontPicYOffset = 11,                                                          \
-        .frontAnimFrames = sAnims_Deerling,                                             \
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
-        BACK_PIC(Deerling, 48, 56),                                                     \
-        .backPicYOffset = 9,                                                            \
-        .backAnimId = BACK_ANIM_H_SLIDE,                                                \
-        .footprint = gMonFootprint_Deerling,                                            \
-        LEARNSETS(Deerling),                                                            \
-        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable
 
     [SPECIES_DEERLING_SPRING] =
     {
-        DEERLING_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 60,
+        .baseDefense   = 50,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 50,
+        .types = { TYPE_NORMAL, TYPE_GRASS },
+        .catchRate = 190,
+        .expYield = 67,
+        .evYield_Speed     = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE },
+        .speciesName = _("Deerling"),
+        .cryId = CRY_DEERLING,
+        .natDexNum = NATIONAL_DEX_DEERLING,
+        .categoryName = _("Season"),
+        .height = 6,
+        .weight = 195,
+        .pokemonScale = 422,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Deerling, 32, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_Deerling,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Deerling, 48, 56),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_H_SLIDE,
+        .footprint = gMonFootprint_Deerling,
+        LEARNSETS(Deerling),
+        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PINK,
         .description = COMPOUND_STRING(
             "Their coloring changes according to the\n"
@@ -36020,46 +35525,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_WINTER}),
     },
 
-#define SAWSBUCK_MISC_INFO                                                              \
-        .baseHP        = 80,                                                            \
-        .baseAttack    = 100,                                                           \
-        .baseDefense   = 70,                                                            \
-        .baseSpeed     = 95,                                                            \
-        .baseSpAttack  = 60,                                                            \
-        .baseSpDefense = 70,                                                            \
-        .types = { TYPE_NORMAL, TYPE_GRASS },                                           \
-        .catchRate = 75,                                                                \
-        .expYield = 166,                                                                \
-        .evYield_Attack    = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                              \
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
-        .bodyColor = BODY_COLOR_BROWN,                                                  \
-        .speciesName = _("Sawsbuck"),                                                   \
-        .cryId = CRY_SAWSBUCK,                                                          \
-        .natDexNum = NATIONAL_DEX_SAWSBUCK,                                             \
-        .categoryName = _("Season"),                                                    \
-        .height = 19,                                                                   \
-        .weight = 925,                                                                  \
-        .pokemonScale = 256,                                                            \
-        .pokemonOffset = 1,                                                             \
-        .trainerScale = 326,                                                            \
-        .trainerOffset = 4,                                                             \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Sawsbuck,                                             \
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
-        .backPicYOffset = 5,                                                            \
-        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,                                         \
-        .footprint = gMonFootprint_Sawsbuck,                                            \
-        LEARNSETS(Sawsbuck),                                                            \
-        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable
-
     [SPECIES_SAWSBUCK_SPRING] =
     {
-        SAWSBUCK_MISC_INFO,
+        .baseHP        = 80,
+        .baseAttack    = 100,
+        .baseDefense   = 70,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 70,
+        .types = { TYPE_NORMAL, TYPE_GRASS },
+        .catchRate = 75,
+        .expYield = 166,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Sawsbuck"),
+        .cryId = CRY_SAWSBUCK,
+        .natDexNum = NATIONAL_DEX_SAWSBUCK,
+        .categoryName = _("Season"),
+        .height = 19,
+        .weight = 925,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 326,
+        .trainerOffset = 4,
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Sawsbuck,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPicYOffset = 5,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        .footprint = gMonFootprint_Sawsbuck,
+        LEARNSETS(Sawsbuck),
+        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Some people call Sawsbuck the harbingers\n"
             "of spring because the plants growing on\n"
@@ -37658,29 +37160,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SHELMET
 
 #if P_FAMILY_STUNFISK
-#define STUNFISK_MISC_INFO                                          \
-        .catchRate = 75,                                            \
-        .expYield = 165,                                            \
-        .evYield_HP        = 2,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },    \
-        .speciesName = _("Stunfisk"),                               \
-        .cryId = CRY_STUNFISK,                                      \
-        .natDexNum = NATIONAL_DEX_STUNFISK,                         \
-        .categoryName = _("Trap"),                                  \
-        .height = 7,                                                \
-        .pokemonScale = 365,                                        \
-        .pokemonOffset = 14,                                        \
-        .trainerScale = 256,                                        \
-        .trainerOffset = 0,                                         \
-        .footprint = gMonFootprint_Stunfisk,                        \
-        .formSpeciesIdTable = sStunfiskFormSpeciesIdTable
 
     [SPECIES_STUNFISK] =
     {
-        STUNFISK_MISC_INFO,
+        .catchRate = 75,
+        .expYield = 165,
+        .evYield_HP        = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS },
+        .speciesName = _("Stunfisk"),
+        .cryId = CRY_STUNFISK,
+        .natDexNum = NATIONAL_DEX_STUNFISK,
+        .categoryName = _("Trap"),
+        .height = 7,
+        .pokemonScale = 365,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Stunfisk,
+        .formSpeciesIdTable = sStunfiskFormSpeciesIdTable,
         .baseHP        = 109,
         .baseAttack    = 66,
         .baseDefense   = 84,
@@ -37730,10 +37230,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(StunfiskGalarian, 48, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_StunfiskGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(StunfiskGalarian, 64, 24),
         .backPicYOffset = 23,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(StunfiskGalarian),
         ICON(StunfiskGalarian, 1),
         LEARNSETS(StunfiskGalarian),
@@ -38125,13 +37623,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Kingambit, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Kingambit,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kingambit, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Kingambit),
         ICON(Kingambit, 3),
-        //.footprint = gMonFootprint_Kingambit,
         LEARNSETS(Kingambit),
     },
 #endif //P_GEN_9_CROSS_EVOS
@@ -38236,23 +37731,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_BRAVIARY_HISUIAN}),
     },
 
-#define BRAVIARY_MISC_INFO                                      \
-        .catchRate = 60,                                        \
-        .expYield = 179,                                        \
-        .genderRatio = MON_MALE,                                \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },    \
-        .speciesName = _("Braviary"),                           \
-        .cryId = CRY_BRAVIARY,                                  \
-        .natDexNum = NATIONAL_DEX_BRAVIARY,                     \
-        .footprint = gMonFootprint_Braviary,                    \
-        .formSpeciesIdTable = sBraviaryFormSpeciesIdTable
-
     [SPECIES_BRAVIARY] =
     {
-        BRAVIARY_MISC_INFO,
+        .catchRate = 60,
+        .expYield = 179,
+        .genderRatio = MON_MALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .speciesName = _("Braviary"),
+        .cryId = CRY_BRAVIARY,
+        .natDexNum = NATIONAL_DEX_BRAVIARY,
+        .footprint = gMonFootprint_Braviary,
+        .formSpeciesIdTable = sBraviaryFormSpeciesIdTable,
         .baseHP        = 100,
         .baseAttack    = 123,
         .baseDefense   = 75,
@@ -38314,11 +37806,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BraviaryHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_BraviaryHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 3,
         BACK_PIC(BraviaryHisuian, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(BraviaryHisuian),
         ICON(BraviaryHisuian, 2),
         LEARNSETS(BraviaryHisuian),
@@ -38919,30 +38409,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_VIRIZION
 
 #if P_FAMILY_TORNADUS
-#define TORNADUS_MISC_INFO                                                  \
-        .types = { TYPE_FLYING, TYPE_FLYING },                              \
-        .catchRate = 3,                                                     \
-        .expYield = 261,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .genderRatio = MON_MALE,                                            \
-        .eggCycles = 120,                                                   \
-        .friendship = 90,                                                   \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Tornadus"),                                       \
-        .natDexNum = NATIONAL_DEX_TORNADUS,                                 \
-        .categoryName = _("Cyclone"),                                       \
-        .weight = 630,                                                      \
-        .footprint = gMonFootprint_Tornadus,                                \
-        LEARNSETS(Tornadus),                                                \
-        .formSpeciesIdTable = sTornadusFormSpeciesIdTable,                  \
-        .formChangeTable = sTornadusFormChangeTable
 
     [SPECIES_TORNADUS_INCARNATE] =
     {
-        TORNADUS_MISC_INFO,
+        .types = { TYPE_FLYING, TYPE_FLYING },
+        .catchRate = 3,
+        .expYield = 261,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_GREEN,
+        .isLegendary = TRUE,
+        .speciesName = _("Tornadus"),
+        .natDexNum = NATIONAL_DEX_TORNADUS,
+        .categoryName = _("Cyclone"),
+        .weight = 630,
+        .footprint = gMonFootprint_Tornadus,
+        LEARNSETS(Tornadus),
+        .formSpeciesIdTable = sTornadusFormSpeciesIdTable,
+        .formChangeTable = sTornadusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -39004,29 +38492,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TORNADUS
 
 #if P_FAMILY_THUNDURUS
-#define THUNDURUS_MISC_INFO                                                 \
-        .types = { TYPE_ELECTRIC, TYPE_FLYING },                            \
-        .catchRate = 3,                                                     \
-        .expYield = 261,                                                    \
-        .genderRatio = MON_MALE,                                            \
-        .eggCycles = 120,                                                   \
-        .friendship = 90,                                                   \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_BLUE,                                       \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Thundurus"),                                      \
-        .natDexNum = NATIONAL_DEX_THUNDURUS,                                \
-        .categoryName = _("Bolt Strike"),                                   \
-        .weight = 610,                                                      \
-        .footprint = gMonFootprint_Thundurus,                               \
-        LEARNSETS(Thundurus),                                               \
-        .formSpeciesIdTable = sThundurusFormSpeciesIdTable,                 \
-        .formChangeTable = sThundurusFormChangeTable
 
     [SPECIES_THUNDURUS_INCARNATE] =
     {
-        THUNDURUS_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_FLYING },
+        .catchRate = 3,
+        .expYield = 261,
+        .genderRatio = MON_MALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_BLUE,
+        .isLegendary = TRUE,
+        .speciesName = _("Thundurus"),
+        .natDexNum = NATIONAL_DEX_THUNDURUS,
+        .categoryName = _("Bolt Strike"),
+        .weight = 610,
+        .footprint = gMonFootprint_Thundurus,
+        LEARNSETS(Thundurus),
+        .formSpeciesIdTable = sThundurusFormSpeciesIdTable,
+        .formChangeTable = sThundurusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -39191,29 +38677,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ZEKROM
 
 #if P_FAMILY_LANDORUS
-#define LANDORUS_MISC_INFO                                                  \
-        .types = { TYPE_GROUND, TYPE_FLYING },                              \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .genderRatio = MON_MALE,                                            \
-        .eggCycles = 120,                                                   \
-        .friendship = 90,                                                   \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_BROWN,                                      \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Landorus"),                                       \
-        .natDexNum = NATIONAL_DEX_LANDORUS,                                 \
-        .categoryName = _("Abundance"),                                     \
-        .weight = 680,                                                      \
-        .footprint = gMonFootprint_Landorus,                                \
-        LEARNSETS(Landorus),                                                \
-        .formSpeciesIdTable = sLandorusFormSpeciesIdTable,                  \
-        .formChangeTable = sLandorusFormChangeTable
 
     [SPECIES_LANDORUS_INCARNATE] =
     {
-        LANDORUS_MISC_INFO,
+        .types = { TYPE_GROUND, TYPE_FLYING },
+        .catchRate = 3,
+        .expYield = 270,
+        .genderRatio = MON_MALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_BROWN,
+        .isLegendary = TRUE,
+        .speciesName = _("Landorus"),
+        .natDexNum = NATIONAL_DEX_LANDORUS,
+        .categoryName = _("Abundance"),
+        .weight = 680,
+        .footprint = gMonFootprint_Landorus,
+        LEARNSETS(Landorus),
+        .formSpeciesIdTable = sLandorusFormSpeciesIdTable,
+        .formChangeTable = sLandorusFormChangeTable,
         .baseHP        = 89,
         .baseAttack    = 125,
         .baseDefense   = 90,
@@ -39277,27 +38761,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LANDORUS
 
 #if P_FAMILY_KYUREM
-#define KYUREM_MISC_INFO                                                    \
-        .types = { TYPE_DRAGON, TYPE_ICE },                                 \
-        .catchRate = 3,                                                     \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_GRAY,                                       \
-        .noFlip = TRUE,                                                     \
-        .speciesName = _("Kyurem"),                                         \
-        .natDexNum = NATIONAL_DEX_KYUREM,                                   \
-        .categoryName = _("Boundary"),                                      \
-        .weight = 3250,                                                     \
-        .footprint = gMonFootprint_Kyurem,                                  \
-        .formSpeciesIdTable = sKyuremFormSpeciesIdTable,                    \
-        .isLegendary = TRUE
 
     [SPECIES_KYUREM] =
     {
-        KYUREM_MISC_INFO,
+        .types = { TYPE_DRAGON, TYPE_ICE },
+        .catchRate = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = TRUE,
+        .speciesName = _("Kyurem"),
+        .natDexNum = NATIONAL_DEX_KYUREM,
+        .categoryName = _("Boundary"),
+        .weight = 3250,
+        .footprint = gMonFootprint_Kyurem,
+        .formSpeciesIdTable = sKyuremFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .baseHP        = 125,
         .baseAttack    = 130,
         .baseDefense   = 90,
@@ -39404,43 +38886,41 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KYUREM
 
 #if P_FAMILY_KELDEO
-#define KELDEO_MISC_INFO                                                    \
-        .baseHP        = 91,                                                \
-        .baseAttack    = 72,                                                \
-        .baseDefense   = 90,                                                \
-        .baseSpeed     = 108,                                               \
-        .baseSpAttack  = 129,                                               \
-        .baseSpDefense = 90,                                                \
-        .types = { TYPE_WATER, TYPE_FIGHTING },                             \
-        .catchRate = 3,                                                     \
-        .expYield = 261,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 80,                                                    \
-        .friendship = 35,                                                   \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE },                   \
-        .bodyColor = BODY_COLOR_YELLOW,                                     \
-        .isMythical = TRUE,                                                 \
-        .speciesName = _("Keldeo"),                                         \
-        .cryId = CRY_KELDEO,                                                \
-        .natDexNum = NATIONAL_DEX_KELDEO,                                   \
-        .categoryName = _("Colt"),                                          \
-        .height = 14,                                                       \
-        .weight = 485,                                                      \
-        .pokemonScale = 265,                                                \
-        .pokemonOffset = 2,                                                 \
-        .trainerScale = 262,                                                \
-        .trainerOffset = 0,                                                 \
-        .footprint = gMonFootprint_Keldeo,                                  \
-        LEARNSETS(Keldeo),                                                  \
-        .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,                    \
-        .formChangeTable = sKeldeoFormChangeTable
 
     [SPECIES_KELDEO_ORDINARY] =
     {
-        KELDEO_MISC_INFO,
+        .baseHP        = 91,
+        .baseAttack    = 72,
+        .baseDefense   = 90,
+        .baseSpeed     = 108,
+        .baseSpAttack  = 129,
+        .baseSpDefense = 90,
+        .types = { TYPE_WATER, TYPE_FIGHTING },
+        .catchRate = 3,
+        .expYield = 261,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 80,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .isMythical = TRUE,
+        .speciesName = _("Keldeo"),
+        .cryId = CRY_KELDEO,
+        .natDexNum = NATIONAL_DEX_KELDEO,
+        .categoryName = _("Colt"),
+        .height = 14,
+        .weight = 485,
+        .pokemonScale = 265,
+        .pokemonOffset = 2,
+        .trainerScale = 262,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Keldeo,
+        LEARNSETS(Keldeo),
+        .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
+        .formChangeTable = sKeldeoFormChangeTable,
         .description = COMPOUND_STRING(
             "When it is resolute, its body fills with\n"
             "power and it becomes swifter. It crosses\n"
@@ -39476,39 +38956,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KELDEO
 
 #if P_FAMILY_MELOETTA
-#define MELOETTA_MISC_INFO                                                  \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .evYield_Speed     = 1,                                             \
-        .itemCommon = ITEM_STAR_PIECE,                                      \
-        .itemRare = ITEM_STAR_PIECE,                                        \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 100,                                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE },                \
-        .bodyColor = BODY_COLOR_WHITE,                                      \
-        .noFlip = TRUE,                                                     \
-        .isMythical = TRUE,                                                 \
-        .speciesName = _("Meloetta"),                                       \
-        .cryId = CRY_MELOETTA,                                              \
-        .natDexNum = NATIONAL_DEX_MELOETTA,                                 \
-        .categoryName = _("Melody"),                                        \
-        .height = 6,                                                        \
-        .weight = 65,                                                       \
-        .pokemonScale = 422,                                                \
-        .pokemonOffset = 12,                                                \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        .footprint = gMonFootprint_Meloetta,                                \
-        LEARNSETS(Meloetta),                                                \
-        .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,                  \
-        .formChangeTable = sMeloettaFormChangeTable
 
     [SPECIES_MELOETTA_ARIA] =
     {
-        MELOETTA_MISC_INFO,
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Speed     = 1,
+        .itemCommon = ITEM_STAR_PIECE,
+        .itemRare = ITEM_STAR_PIECE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 100,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = TRUE,
+        .isMythical = TRUE,
+        .speciesName = _("Meloetta"),
+        .cryId = CRY_MELOETTA,
+        .natDexNum = NATIONAL_DEX_MELOETTA,
+        .categoryName = _("Melody"),
+        .height = 6,
+        .weight = 65,
+        .pokemonScale = 422,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Meloetta,
+        LEARNSETS(Meloetta),
+        .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,
+        .formChangeTable = sMeloettaFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 77,
         .baseDefense   = 77,
@@ -39563,52 +39041,52 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MELOETTA
 
 #if P_FAMILY_GENESECT
-#define GENESECT_SPECIES_INFO(form)                                         \
-    {                                                                       \
-        .baseHP        = 71,                                                \
-        .baseAttack    = 120,                                               \
-        .baseDefense   = 95,                                                \
-        .baseSpeed     = 99,                                                \
-        .baseSpAttack  = 120,                                               \
-        .baseSpDefense = 95,                                                \
-        .types = { TYPE_BUG, TYPE_STEEL },                                  \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .evYield_Attack    = 1,                                             \
-        .evYield_Speed     = 1,                                             \
-        .evYield_SpAttack  = 1,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_DOWNLOAD, ABILITY_NONE },                    \
-        .bodyColor = BODY_COLOR_PURPLE,                                     \
-        .speciesName = _("Genesect"),                                       \
-        .cryId = CRY_GENESECT,                                              \
-        .natDexNum = NATIONAL_DEX_GENESECT,                                 \
-        .categoryName = _("Paleozoic"),                                     \
-        .height = 15,                                                       \
-        .weight = 825,                                                      \
-        .description = gGenesectPokedexText,                                \
-        .pokemonScale = 268,                                                \
-        .pokemonOffset = 2,                                                 \
-        .trainerScale = 271,                                                \
-        .trainerOffset = 0,                                                 \
-        FRONT_PIC(Genesect, 56, 64),                                        \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Genesect,                                 \
-        .frontAnimId = ANIM_H_VIBRATE,                                      \
-        BACK_PIC(Genesect, 64, 48),                                         \
-        .backPicYOffset = 8,                                                \
-        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                    \
-        PALETTES(form),                                                     \
-        ICON(Genesect, 2),                                                  \
-        .footprint = gMonFootprint_Genesect,                                \
-        LEARNSETS(Genesect),                                                \
-        .formSpeciesIdTable = sGenesectFormSpeciesIdTable,                  \
-        .formChangeTable = sGenesectFormChangeTable,                        \
-        .isMythical = TRUE,                                                 \
+#define GENESECT_SPECIES_INFO
+    {
+        .baseHP        = 71,
+        .baseAttack    = 120,
+        .baseDefense   = 95,
+        .baseSpeed     = 99,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 95,
+        .types = { TYPE_BUG, TYPE_STEEL },
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Attack    = 1,
+        .evYield_Speed     = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_DOWNLOAD, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Genesect"),
+        .cryId = CRY_GENESECT,
+        .natDexNum = NATIONAL_DEX_GENESECT,
+        .categoryName = _("Paleozoic"),
+        .height = 15,
+        .weight = 825,
+        .description = gGenesectPokedexText,
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        FRONT_PIC(Genesect, 56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Genesect,
+        .frontAnimId = ANIM_H_VIBRATE,
+        BACK_PIC(Genesect, 64, 48),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
+        PALETTES(form),
+        ICON(Genesect, 2),
+        .footprint = gMonFootprint_Genesect,
+        LEARNSETS(Genesect),
+        .formSpeciesIdTable = sGenesectFormSpeciesIdTable,
+        .formChangeTable = sGenesectFormChangeTable,
+        .isMythical = TRUE,
     }
 
     [SPECIES_GENESECT]             = GENESECT_SPECIES_INFO(Genesect),
@@ -40005,49 +39483,46 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GRENINJA}),
     },
 
-#define GRENINJA_NORMAL_MISC_INFO           \
-        .baseHP        = 72,                \
-        .baseAttack    = 95,                \
-        .baseDefense   = 67,                \
-        .baseSpeed     = 122,               \
-        .baseSpAttack  = 103,               \
-        .baseSpDefense = 71,                \
-        .expYield = 239,                    \
-        .description = gGreninjaPokedexText,\
-        FRONT_PIC(Greninja, 64, 56),        \
-        .frontPicYOffset = 7,               \
-        .frontAnimFrames = sAnims_Greninja, \
-        BACK_PIC(Greninja, 64, 48),         \
-        .backPicYOffset = 11,               \
-        PALETTES(Greninja),                 \
+#define GRENINJA_NORMAL_MISC_INFO
+        .baseHP        = 72,
+        .baseAttack    = 95,
+        .baseDefense   = 67,
+        .baseSpeed     = 122,
+        .baseSpAttack  = 103,
+        .baseSpDefense = 71,
+        .expYield = 239,
+        .description = gGreninjaPokedexText,
+        FRONT_PIC(Greninja, 64, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Greninja,
+        BACK_PIC(Greninja, 64, 48),
+        .backPicYOffset = 11,
+        PALETTES(Greninja),
         ICON(Greninja, 0)
-
-#define GRENINJA_MISC_INFO                              \
-        .types = { TYPE_WATER, TYPE_DARK },             \
-        .catchRate = 45,                                \
-        .evYield_Speed     = 3,                         \
-        .eggCycles = 20,                                \
-        .friendship = STANDARD_FRIENDSHIP,              \
-        .growthRate = GROWTH_MEDIUM_SLOW,               \
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = TRUE,                                 \
-        .speciesName = _("Greninja"),                   \
-        .cryId = CRY_GRENINJA,                          \
-        .natDexNum = NATIONAL_DEX_GRENINJA,             \
-        .categoryName = _("Ninja"),                     \
-        .height = 15,                                   \
-        .weight = 400,                                  \
-        .pokemonScale = 268,                            \
-        .pokemonOffset = 2,                             \
-        .trainerScale = 271,                            \
-        .trainerOffset = 0,                             \
-        .footprint = gMonFootprint_Greninja,            \
-        LEARNSETS(Greninja),                            \
-        .formSpeciesIdTable = sGreninjaFormSpeciesIdTable
 
     [SPECIES_GRENINJA] =
     {
-        GRENINJA_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_DARK },
+        .catchRate = 45,
+        .evYield_Speed     = 3,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = TRUE,
+        .speciesName = _("Greninja"),
+        .cryId = CRY_GRENINJA,
+        .natDexNum = NATIONAL_DEX_GRENINJA,
+        .categoryName = _("Ninja"),
+        .height = 15,
+        .weight = 400,
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Greninja,
+        LEARNSETS(Greninja),
+        .formSpeciesIdTable = sGreninjaFormSpeciesIdTable,
         GRENINJA_NORMAL_MISC_INFO,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1 },
@@ -40440,53 +39915,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ICY_SNOW}),
     },
 
-#define VIVILLON_MISC_INFO(form, color, iconPal)                                            \
-        .baseHP        = 80,                                                                \
-        .baseAttack    = 52,                                                                \
-        .baseDefense   = 50,                                                                \
-        .baseSpeed     = 89,                                                                \
-        .baseSpAttack  = 90,                                                                \
-        .baseSpDefense = 50,                                                                \
-        .types = { TYPE_BUG, TYPE_FLYING },                                                 \
-        .catchRate = 45,                                                                    \
-        .expYield = 185,                                                                    \
-        .evYield_HP        = 1,                                                             \
-        .evYield_Speed     = 1,                                                             \
-        .evYield_SpAttack  = 1,                                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                                  \
-        .eggCycles = 15,                                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                                   \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                                      \
-        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },  \
-        .bodyColor = color,                                                                 \
-        .speciesName = _("Vivillon"),                                                       \
-        .cryId = CRY_VIVILLON,                                                              \
-        .natDexNum = NATIONAL_DEX_VIVILLON,                                                 \
-        .categoryName = _("Scale"),                                                         \
-        .height = 12,                                                                       \
-        .weight = 170,                                                                      \
-        .pokemonScale = 282,                                                                \
-        .pokemonOffset = 4,                                                                 \
-        .trainerScale = 256,                                                                \
-        .trainerOffset = 0,                                                                 \
-        FRONT_PIC(Vivillon ##form, 64, 64),                                                 \
-        .frontPicYOffset = 0,                                                               \
-        .frontAnimFrames = sAnims_Vivillon,                                                 \
-        .frontAnimId = ANIM_ZIGZAG_SLOW,                                                    \
-        .enemyMonElevation = 9,                                                             \
-        BACK_PIC(Vivillon ##form, 64, 64),                                                  \
-        .backPicYOffset = 0,                                                                \
-        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                                    \
-        PALETTES(Vivillon ##form),                                                           \
-        ICON(Vivillon ##form, iconPal),                                                     \
-        .footprint = gMonFootprint_Vivillon,                                                \
-        LEARNSETS(Vivillon),                                                                \
-        .formSpeciesIdTable = sVivillonFormSpeciesIdTable
-
     [SPECIES_VIVILLON_ICY_SNOW] =
     {
-        VIVILLON_MISC_INFO(IcySnow, BODY_COLOR_WHITE, 0),
+        .baseHP        = 80,
+        .baseAttack    = 52,
+        .baseDefense   = 50,
+        .baseSpeed     = 89,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 50,
+        .types = { TYPE_BUG, TYPE_FLYING },
+        .catchRate = 45,
+        .expYield = 185,
+        .evYield_HP        = 1,
+        .evYield_Speed     = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .bodyColor = color,
+        .speciesName = _("Vivillon"),
+        .cryId = CRY_VIVILLON,
+        .natDexNum = NATIONAL_DEX_VIVILLON,
+        .categoryName = _("Scale"),
+        .height = 12,
+        .weight = 170,
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Vivillon ##form, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Vivillon,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .enemyMonElevation = 9,
+        BACK_PIC(Vivillon ##form, 64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
+        PALETTES(Vivillon ##form),
+        ICON(Vivillon ##form, iconPal),
+        .footprint = gMonFootprint_Vivillon,
+        LEARNSETS(Vivillon),
+        .formSpeciesIdTable = sVivillonFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
@@ -40767,52 +40239,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LITLEO
 
 #if P_FAMILY_FLABEBE
-#define FLABEBE_MISC_INFO(Form, FORM, iconPal)                                  \
-        .baseHP        = 44,                                                    \
-        .baseAttack    = 38,                                                    \
-        .baseDefense   = 39,                                                    \
-        .baseSpeed     = 42,                                                    \
-        .baseSpAttack  = 61,                                                    \
-        .baseSpDefense = 79,                                                    \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 225,                                                       \
-        .expYield = 61,                                                         \
-        .evYield_SpDefense = 1,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                      \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Flabébé"),                                            \
-        .cryId = CRY_FLABEBE,                                                   \
-        .natDexNum = NATIONAL_DEX_FLABEBE,                                      \
-        .categoryName = _("Single Bloom"),                                      \
-        .height = 1,                                                            \
-        .weight = 1,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Flabebe, 48, 56),                                             \
-        .frontPicYOffset = 6,                                                   \
-        .frontAnimFrames = sAnims_Flabebe,                                      \
-        .frontAnimId = ANIM_H_SLIDE_SLOW,                                       \
-        .enemyMonElevation = 6,                                                 \
-        BACK_PIC(Flabebe, 64, 40),                                              \
-        .backPicYOffset = 12,                                                   \
-        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                              \
-        PALETTES(Flabebe##Form##Flower),                                         \
-        ICON(Flabebe##Form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Flabebe,                                     \
-        LEARNSETS(Flabebe),                                                     \
-        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,                       \
-        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ ##FORM##_FLOWER})
 
     [SPECIES_FLABEBE_RED_FLOWER] =
     {
-        FLABEBE_MISC_INFO(Red, RED, 1),
+        .baseHP        = 44,
+        .baseAttack    = 38,
+        .baseDefense   = 39,
+        .baseSpeed     = 42,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 79,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 225,
+        .expYield = 61,
+        .evYield_SpDefense = 1,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Flabébé"),
+        .cryId = CRY_FLABEBE,
+        .natDexNum = NATIONAL_DEX_FLABEBE,
+        .categoryName = _("Single Bloom"),
+        .height = 1,
+        .weight = 1,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Flabebe, 48, 56),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = sAnims_Flabebe,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .enemyMonElevation = 6,
+        BACK_PIC(Flabebe, 64, 40),
+        .backPicYOffset = 12,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        PALETTES(Flabebe##Form##Flower),
+        ICON(Flabebe##Form##Flower, iconPal),
+        .footprint = gMonFootprint_Flabebe,
+        LEARNSETS(Flabebe),
+        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ ##FORM##_FLOWER}),
         .description = COMPOUND_STRING(
             "When it finds a flower it likes, it dwells\n"
             "on that flower its whole life long.\n"
@@ -40844,50 +40314,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
             ""),
     },
 
-#define FLOETTE_MISC_INFO(form, FORM, iconPal)                                  \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 120,                                                       \
-        .evYield_SpDefense = 2,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Floette"),                                            \
-        .natDexNum = NATIONAL_DEX_FLOETTE,                                      \
-        .categoryName = _("Single Bloom"),                                      \
-        .height = 2,                                                            \
-        .weight = 9,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .frontAnimFrames = sAnims_Floette,                                      \
-        .frontAnimId = ANIM_V_SLIDE_WOBBLE,                                     \
-        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                              \
-        PALETTES(Floette ##form##Flower),                                        \
-        ICON(Floette##form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Floette,                                     \
+#define FLOETTE_MISC_INFO
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 120,
+        .evYield_SpDefense = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Floette"),
+        .natDexNum = NATIONAL_DEX_FLOETTE,
+        .categoryName = _("Single Bloom"),
+        .height = 2,
+        .weight = 9,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Floette,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        PALETTES(Floette ##form##Flower),
+        ICON(Floette##form##Flower, iconPal),
+        .footprint = gMonFootprint_Floette,
         .formSpeciesIdTable = sFloetteFormSpeciesIdTable
 
 #define FLOETTE_NORMAL_INFO(form, FORM, iconPal)                                                \
-        .baseHP        = 54,                                                                    \
-        .baseAttack    = 45,                                                                    \
-        .baseDefense   = 47,                                                                    \
-        .baseSpeed     = 52,                                                                    \
-        .baseSpAttack  = 75,                                                                    \
-        .baseSpDefense = 98,                                                                    \
-        .expYield = 130,                                                                        \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                                      \
-        .cryId = CRY_FLOETTE,                                                                   \
-        FRONT_PIC(Floette, 48, 64),                                                             \
-        .frontPicYOffset = 3,                                                                   \
-        .enemyMonElevation = 4,                                                                 \
-        BACK_PIC(Floette, 64, 64),                                                              \
-        .backPicYOffset = 2,                                                                    \
-        LEARNSETS(Floette),                                                                     \
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ ##FORM##_FLOWER}),\
+        .baseHP        = 54,
+        .baseAttack    = 45,
+        .baseDefense   = 47,
+        .baseSpeed     = 52,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 98,
+        .expYield = 130,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .cryId = CRY_FLOETTE,
+        FRONT_PIC(Floette, 48, 64),
+        .frontPicYOffset = 3,
+        .enemyMonElevation = 4,
+        BACK_PIC(Floette, 64, 64),
+        .backPicYOffset = 2,
+        LEARNSETS(Floette),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ ##FORM##_FLOWER}),
         FLOETTE_MISC_INFO(form, FORM, iconPal)
 
     [SPECIES_FLOETTE_RED_FLOWER] =
@@ -40945,50 +40415,47 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(FloetteEternalFlower),
     },
 
-#define FLORGES_MISC_INFO(Form, iconPal)                                        \
-        .baseHP        = 78,                                                    \
-        .baseAttack    = 65,                                                    \
-        .baseDefense   = 68,                                                    \
-        .baseSpeed     = 75,                                                    \
-        .baseSpAttack  = 112,                                                   \
-        .baseSpDefense = 154,                                                   \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 45,                                                        \
-        .expYield = 248,                                                        \
-        .evYield_SpDefense = 3,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                      \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Florges"),                                            \
-        .cryId = CRY_FLORGES,                                                   \
-        .natDexNum = NATIONAL_DEX_FLORGES,                                      \
-        .categoryName = _("Garden"),                                            \
-        .height = 11,                                                           \
-        .weight = 100,                                                          \
-        .pokemonScale = 320,                                                    \
-        .pokemonOffset = 7,                                                     \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Florges, 64, 64),                                             \
-        .frontPicYOffset = 0,                                                   \
-        .frontAnimFrames = sAnims_Florges,                                      \
-        .frontAnimId = ANIM_V_SLIDE_SLOW,                                       \
-        BACK_PIC(Florges, 64, 48),                                              \
-        .backPicYOffset = 9,                                                    \
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                            \
-        PALETTES(Florges##Form##Flower),                                         \
-        ICON(Florges##Form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Florges,                                     \
-        LEARNSETS(Florges),                                                     \
-        .formSpeciesIdTable = sFlorgesFormSpeciesIdTable
-
     [SPECIES_FLORGES_RED_FLOWER] =
     {
-        FLORGES_MISC_INFO(Red, 0),
+        .baseHP        = 78,
+        .baseAttack    = 65,
+        .baseDefense   = 68,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 112,
+        .baseSpDefense = 154,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 248,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Florges"),
+        .cryId = CRY_FLORGES,
+        .natDexNum = NATIONAL_DEX_FLORGES,
+        .categoryName = _("Garden"),
+        .height = 11,
+        .weight = 100,
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Florges, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Florges,
+        .frontAnimId = ANIM_V_SLIDE_SLOW,
+        BACK_PIC(Florges, 64, 48),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTES(Florges##Form##Flower),
+        ICON(Florges##Form##Flower, iconPal),
+        .footprint = gMonFootprint_Florges,
+        LEARNSETS(Florges),
+        .formSpeciesIdTable = sFlorgesFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It claims exquisite flower gardens as its\n"
             "territory. In times long past, governors of\n"
@@ -41218,45 +40685,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PANCHAM
 
 #if P_FAMILY_FURFROU
-#define FURFROU_MISC_INFO                                   \
-        .baseHP        = 75,                                \
-        .baseAttack    = 80,                                \
-        .baseDefense   = 60,                                \
-        .baseSpeed     = 102,                               \
-        .baseSpAttack  = 65,                                \
-        .baseSpDefense = 90,                                \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },              \
-        .catchRate = 160,                                   \
-        .expYield = 165,                                    \
-        .evYield_Speed     = 1,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .abilities = { ABILITY_FUR_COAT, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .speciesName = _("Furfrou"),                        \
-        .cryId = CRY_FURFROU,                               \
-        .natDexNum = NATIONAL_DEX_FURFROU,                  \
-        .categoryName = _("Poodle"),                        \
-        .height = 12,                                       \
-        .weight = 280,                                      \
-        .description = gFurfrouPokedexText,                 \
-        .pokemonScale = 282,                                \
-        .pokemonOffset = 4,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .frontAnimFrames = sAnims_Furfrou,                  \
-        .frontAnimId = ANIM_H_SLIDE,                        \
-        .backAnimId = BACK_ANIM_V_STRETCH,                  \
-        .footprint = gMonFootprint_Furfrou,                 \
-        LEARNSETS(Furfrou),                                 \
-        .formSpeciesIdTable = sFurfrouFormSpeciesIdTable
 
     [SPECIES_FURFROU_NATURAL] =
     {
-        FURFROU_MISC_INFO,
+        .baseHP        = 75,
+        .baseAttack    = 80,
+        .baseDefense   = 60,
+        .baseSpeed     = 102,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 90,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 160,
+        .expYield = 165,
+        .evYield_Speed     = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_FUR_COAT, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Furfrou"),
+        .cryId = CRY_FURFROU,
+        .natDexNum = NATIONAL_DEX_FURFROU,
+        .categoryName = _("Poodle"),
+        .height = 12,
+        .weight = 280,
+        .description = gFurfrouPokedexText,
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Furfrou,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .footprint = gMonFootprint_Furfrou,
+        LEARNSETS(Furfrou),
+        .formSpeciesIdTable = sFurfrouFormSpeciesIdTable,
         FRONT_PIC(FurfrouNatural, 48, 64),
         .frontPicYOffset = 3,
         BACK_PIC(FurfrouNatural, 56, 64),
@@ -41407,41 +40872,38 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_FEMALE, 25, SPECIES_MEOWSTIC_FEMALE}),
     },
 
-#define MEOWSTIC_MISC_INFO                                  \
-        .baseHP        = 74,                                \
-        .baseAttack    = 48,                                \
-        .baseDefense   = 76,                                \
-        .baseSpeed     = 104,                               \
-        .baseSpAttack  = 83,                                \
-        .baseSpDefense = 81,                                \
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },            \
-        .catchRate = 75,                                    \
-        .expYield = 163,                                    \
-        .evYield_Speed     = 2,                             \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .speciesName = _("Meowstic"),                       \
-        .cryId = CRY_MEOWSTIC,                              \
-        .natDexNum = NATIONAL_DEX_MEOWSTIC,                 \
-        .categoryName = _("Constraint"),                    \
-        .height = 6,                                        \
-        .weight = 85,                                       \
-        .pokemonScale = 422,                                \
-        .pokemonOffset = 12,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .frontAnimFrames = sAnims_Meowstic,                 \
-        .frontAnimId = ANIM_GROW_VIBRATE,                   \
-        .backPicYOffset = 9,                                \
-        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,          \
-        .footprint = gMonFootprint_Meowstic,                \
-        .formSpeciesIdTable = sMeowsticFormSpeciesIdTable
-
     [SPECIES_MEOWSTIC_MALE] =
     {
-        MEOWSTIC_MISC_INFO,
+        .baseHP        = 74,
+        .baseAttack    = 48,
+        .baseDefense   = 76,
+        .baseSpeed     = 104,
+        .baseSpAttack  = 83,
+        .baseSpDefense = 81,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .catchRate = 75,
+        .expYield = 163,
+        .evYield_Speed     = 2,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Meowstic"),
+        .cryId = CRY_MEOWSTIC,
+        .natDexNum = NATIONAL_DEX_MEOWSTIC,
+        .categoryName = _("Constraint"),
+        .height = 6,
+        .weight = 85,
+        .pokemonScale = 422,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Meowstic,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
+        .footprint = gMonFootprint_Meowstic,
+        .formSpeciesIdTable = sMeowsticFormSpeciesIdTable,
         .genderRatio = MON_MALE,
         .abilities = { ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_PRANKSTER },
         .bodyColor = BODY_COLOR_BLUE,
@@ -41574,30 +41036,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
     },
 
-#define AEGISLASH_MISC_INFO                                     \
-        .types = { TYPE_STEEL, TYPE_GHOST },                    \
-        .catchRate = 45,                                        \
-        .expYield = 234,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
-        .abilities = { ABILITY_STANCE_CHANGE, ABILITY_NONE },   \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .speciesName = _("Aegislash"),                          \
-        .cryId = CRY_AEGISLASH,                                 \
-        .natDexNum = NATIONAL_DEX_AEGISLASH,                    \
-        .categoryName = _("Royal Sword"),                       \
-        .height = 17,                                           \
-        .weight = 530,                                          \
-        .pokemonScale = 259,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 290,                                    \
-        .trainerOffset = 1,                                     \
-        .footprint = gMonFootprint_Aegislash,                   \
-        LEARNSETS(Aegislash),                                   \
-        .formSpeciesIdTable = sAegislashFormSpeciesIdTable,     \
+#define AEGISLASH_MISC_INFO
+        .types = { TYPE_STEEL, TYPE_GHOST },
+        .catchRate = 45,
+        .expYield = 234,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_STANCE_CHANGE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Aegislash"),
+        .cryId = CRY_AEGISLASH,
+        .natDexNum = NATIONAL_DEX_AEGISLASH,
+        .categoryName = _("Royal Sword"),
+        .height = 17,
+        .weight = 530,
+        .pokemonScale = 259,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Aegislash,
+        LEARNSETS(Aegislash),
+        .formSpeciesIdTable = sAegislashFormSpeciesIdTable,
         .formChangeTable = sAegislashFormChangeTable
 
 #define AEGISLASH_MAIN_STAT (P_UPDATED_STATS >= GEN_8 ? 140 : 150)
@@ -42742,26 +42204,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_SLIGGOO_HISUIAN}),
     },
 
-#define SLIGGOO_MISC_INFO                                       \
-        .catchRate = 45,                                        \
-        .expYield = 158,                                        \
-        .evYield_SpDefense = 2,                                 \
-        .itemRare = ITEM_SHED_SHELL,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },    \
-        .bodyColor = BODY_COLOR_PURPLE,                         \
-        .speciesName = _("Sliggoo"),                            \
-        .cryId = CRY_SLIGGOO,                                   \
-        .natDexNum = NATIONAL_DEX_SLIGGOO,                      \
-        .footprint = gMonFootprint_Sliggoo,                     \
-        .formSpeciesIdTable = sSliggooFormSpeciesIdTable
-
     [SPECIES_SLIGGOO] =
     {
-        SLIGGOO_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 158,
+        .evYield_SpDefense = 2,
+        .itemRare = ITEM_SHED_SHELL,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Sliggoo"),
+        .cryId = CRY_SLIGGOO,
+        .natDexNum = NATIONAL_DEX_SLIGGOO,
+        .footprint = gMonFootprint_Sliggoo,
+        .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
         .baseHP        = 68,
         .baseAttack    = 75,
         .baseDefense   = 53,
@@ -42796,25 +42255,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_FOG, 50, SPECIES_GOODRA}),
     },
 
-#define GOODRA_MISC_INFO                                        \
-        .catchRate = 45,                                        \
-        .expYield = 270,                                        \
-        .evYield_SpDefense = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },    \
-        .bodyColor = BODY_COLOR_PURPLE,                         \
-        .speciesName = _("Goodra"),                             \
-        .cryId = CRY_GOODRA,                                    \
-        .natDexNum = NATIONAL_DEX_GOODRA,                       \
-        .footprint = gMonFootprint_Goodra,                      \
-        .formSpeciesIdTable = sGoodraFormSpeciesIdTable
-
     [SPECIES_GOODRA] =
     {
-        GOODRA_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 270,
+        .evYield_SpDefense = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Goodra"),
+        .cryId = CRY_GOODRA,
+        .natDexNum = NATIONAL_DEX_GOODRA,
+        .footprint = gMonFootprint_Goodra,
+        .formSpeciesIdTable = sGoodraFormSpeciesIdTable,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 70,
@@ -42871,10 +42327,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SliggooHisuian, 48, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_SliggooHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SliggooHisuian, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SliggooHisuian),
         ICON(SliggooHisuian, 2),
         LEARNSETS(SliggooHisuian),
@@ -42906,10 +42360,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GoodraHisuian, 56, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_GoodraHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GoodraHisuian, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GoodraHisuian),
         ICON(GoodraHisuian, 2),
         LEARNSETS(GoodraHisuian),
@@ -43069,33 +42521,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PHANTUMP
 
 #if P_FAMILY_PUMPKABOO
-#define PUMPKABOO_MISC_INFO                                                 \
-        .types = { TYPE_GHOST, TYPE_GRASS },                                \
-        .catchRate = 120,                                                   \
-        .expYield = 67,                                                     \
-        .evYield_Defense   = 1,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },          \
-        .abilities = { ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA },   \
-        .bodyColor = BODY_COLOR_BROWN,                                      \
-        .speciesName = _("Pumpkaboo"),                                      \
-        .natDexNum = NATIONAL_DEX_PUMPKABOO,                                \
-        .categoryName = _("Pumpkin"),                                       \
-        .frontAnimFrames = sAnims_Pumpkaboo,                                \
-        .frontAnimId = ANIM_V_SLIDE_WOBBLE,                                 \
-        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,                              \
-        PALETTES(Pumpkaboo),                                                \
-        ICON(Pumpkaboo, 2),                                                 \
-        .footprint = gMonFootprint_Pumpkaboo,                               \
-        LEARNSETS(Pumpkaboo),                                               \
-        .formSpeciesIdTable = sPumpkabooFormSpeciesIdTable
 
     [SPECIES_PUMPKABOO_AVERAGE] =
     {
-        PUMPKABOO_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_GRASS },
+        .catchRate = 120,
+        .expYield = 67,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Pumpkaboo"),
+        .natDexNum = NATIONAL_DEX_PUMPKABOO,
+        .categoryName = _("Pumpkin"),
+        .frontAnimFrames = sAnims_Pumpkaboo,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
+        PALETTES(Pumpkaboo),
+        ICON(Pumpkaboo, 2),
+        .footprint = gMonFootprint_Pumpkaboo,
+        LEARNSETS(Pumpkaboo),
+        .formSpeciesIdTable = sPumpkabooFormSpeciesIdTable,
         .baseHP        = 49,
         .baseAttack    = 66,
         .baseDefense   = 70,
@@ -43202,33 +42652,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_SUPER}),
     },
 
-#define GOURGEIST_MISC_INFO                                                 \
-        .types = { TYPE_GHOST, TYPE_GRASS },                                \
-        .catchRate = 60,                                                    \
-        .expYield = 173,                                                    \
-        .evYield_Defense   = 2,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },          \
-        .abilities = { ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA },   \
-        .bodyColor = BODY_COLOR_BROWN,                                      \
-        .speciesName = _("Gourgeist"),                                      \
-        .natDexNum = NATIONAL_DEX_GOURGEIST,                                \
-        .categoryName = _("Pumpkin"),                                       \
-        .frontAnimFrames = sAnims_Gourgeist,                                \
-        .frontAnimId = ANIM_SHRINK_GROW,                                    \
-        .backAnimId = BACK_ANIM_V_STRETCH,                                  \
-        PALETTES(Gourgeist),                                                \
-        ICON(Gourgeist, 2),                                                 \
-        .footprint = gMonFootprint_Gourgeist,                               \
-        LEARNSETS(Gourgeist),                                               \
-        .formSpeciesIdTable = sGourgeistFormSpeciesIdTable
-
     [SPECIES_GOURGEIST_AVERAGE] =
     {
-        GOURGEIST_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_GRASS },
+        .catchRate = 60,
+        .expYield = 173,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Gourgeist"),
+        .natDexNum = NATIONAL_DEX_GOURGEIST,
+        .categoryName = _("Pumpkin"),
+        .frontAnimFrames = sAnims_Gourgeist,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        PALETTES(Gourgeist),
+        ICON(Gourgeist, 2),
+        .footprint = gMonFootprint_Gourgeist,
+        LEARNSETS(Gourgeist),
+        .formSpeciesIdTable = sGourgeistFormSpeciesIdTable,
         .baseHP        = 65,
         .baseAttack    = 90,
         .baseDefense   = 122,
@@ -43384,26 +42831,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_AVALUGG_HISUIAN}),
     },
 
-#define AVALUGG_MISC_INFO                               \
-        .catchRate = 55,                                \
-        .expYield = 180,                                \
-        .evYield_Defense   = 2,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 20,                                \
-        .friendship = STANDARD_FRIENDSHIP,              \
-        .growthRate = GROWTH_MEDIUM_FAST,               \
-        .eggGroups = BERGMITE_EGG_GROUPS,               \
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .speciesName = _("Avalugg"),                    \
-        .cryId = CRY_AVALUGG,                           \
-        .natDexNum = NATIONAL_DEX_AVALUGG,              \
-        .categoryName = _("Iceberg"),                   \
-        .footprint = gMonFootprint_Avalugg,             \
-        .formSpeciesIdTable = sAvaluggFormSpeciesIdTable
-
     [SPECIES_AVALUGG] =
     {
-        AVALUGG_MISC_INFO,
+        .catchRate = 55,
+        .expYield = 180,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = BERGMITE_EGG_GROUPS,
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Avalugg"),
+        .cryId = CRY_AVALUGG,
+        .natDexNum = NATIONAL_DEX_AVALUGG,
+        .categoryName = _("Iceberg"),
+        .footprint = gMonFootprint_Avalugg,
+        .formSpeciesIdTable = sAvaluggFormSpeciesIdTable,
         .baseHP        = 95,
         .baseAttack    = 117,
         .baseDefense   = 184,
@@ -43459,10 +42903,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AvaluggHisuian, 64, 48),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_AvaluggHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AvaluggHisuian, 64, 32),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AvaluggHisuian),
         ICON(AvaluggHisuian, 5),
         LEARNSETS(AvaluggHisuian),
@@ -43578,50 +43020,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_NOIBAT
 
 #if P_FAMILY_XERNEAS
-#define XERNEAS_MISC_INFO(Form)                                             \
+#define XERNEAS_MISC_INFO
     {                                                                       \
-        .baseHP        = 126,                                               \
-        .baseAttack    = 131,                                               \
-        .baseDefense   = 95,                                                \
-        .baseSpeed     = 99,                                                \
-        .baseSpAttack  = 131,                                               \
-        .baseSpDefense = 98,                                                \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                \
-        .catchRate = 45,                                                    \
-        .expYield = 306,                                                    \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_FAIRY_AURA, ABILITY_NONE },                  \
-        .bodyColor = BODY_COLOR_BLUE,                                       \
-        .speciesName = _("Xerneas"),                                        \
-        .cryId = CRY_XERNEAS,                                               \
-        .natDexNum = NATIONAL_DEX_XERNEAS,                                  \
-        .categoryName = _("Life"),                                          \
-        .height = 30,                                                       \
-        .weight = 2150,                                                     \
-        .description = gXerneasPokedexText,                                 \
-        .pokemonScale = 275,                                                \
-        .pokemonOffset = 7,                                                 \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        FRONT_PIC(Xerneas##Form, 64, 64),                                   \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Xerneas,                                  \
-        .frontAnimId = ANIM_GROW_VIBRATE,                                   \
-        BACK_PIC(Xerneas##Form, 64, 64),                                    \
-        .backPicYOffset = 0,                                                \
-        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,                            \
-        PALETTES(Xerneas##Form),                                             \
-        ICON(Xerneas##Form, 0),                                             \
-        .footprint = gMonFootprint_Xerneas,                                 \
-        LEARNSETS(Xerneas),                                                 \
-        .formSpeciesIdTable = sXerneasFormSpeciesIdTable,                   \
-        .formChangeTable = sXerneasFormChangeTable,                         \
-        .isLegendary = TRUE,                                                \
+        .baseHP        = 126,
+        .baseAttack    = 131,
+        .baseDefense   = 95,
+        .baseSpeed     = 99,
+        .baseSpAttack  = 131,
+        .baseSpDefense = 98,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 306,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_FAIRY_AURA, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Xerneas"),
+        .cryId = CRY_XERNEAS,
+        .natDexNum = NATIONAL_DEX_XERNEAS,
+        .categoryName = _("Life"),
+        .height = 30,
+        .weight = 2150,
+        .description = gXerneasPokedexText,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Xerneas##Form, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Xerneas,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(Xerneas##Form, 64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
+        PALETTES(Xerneas##Form),
+        ICON(Xerneas##Form, 0),
+        .footprint = gMonFootprint_Xerneas,
+        LEARNSETS(Xerneas),
+        .formSpeciesIdTable = sXerneasFormSpeciesIdTable,
+        .formChangeTable = sXerneasFormChangeTable,
+        .isLegendary = TRUE,
     }
 
     [SPECIES_XERNEAS_NEUTRAL] = XERNEAS_MISC_INFO(Neutral),
@@ -43680,95 +43122,93 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_YVELTAL
 
 #if P_FAMILY_ZYGARDE
-#define ZYGARDE_MISC_INFO(ability)                                          \
-        .types = { TYPE_DRAGON, TYPE_GROUND },                              \
-        .catchRate = 3,                                                     \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ability, ABILITY_NONE },                             \
-        .noFlip = TRUE,                                                     \
-        .speciesName = _("Zygarde"),                                        \
-        .natDexNum = NATIONAL_DEX_ZYGARDE,                                  \
-        .categoryName = _("Order"),                                         \
-        .footprint = gMonFootprint_Zygarde,                                 \
-        LEARNSETS(Zygarde),                                                 \
-        .formSpeciesIdTable = sZygardeFormSpeciesIdTable,                   \
+#define ZYGARDE_MISC_INFO
+        .types = { TYPE_DRAGON, TYPE_GROUND },
+        .catchRate = 3,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ability, ABILITY_NONE },
+        .noFlip = TRUE,
+        .speciesName = _("Zygarde"),
+        .natDexNum = NATIONAL_DEX_ZYGARDE,
+        .categoryName = _("Order"),
+        .footprint = gMonFootprint_Zygarde,
+        LEARNSETS(Zygarde),
+        .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
         .isLegendary = TRUE
 
-#define ZYGARDE_50_SPECIES_INFO(ability)                        \
-    {                                                           \
-        .baseHP        = 108,                                   \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 121,                                   \
-        .baseSpeed     = 95,                                    \
-        .baseSpAttack  = 81,                                    \
-        .baseSpDefense = 95,                                    \
-        .expYield = 270,                                        \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .cryId = CRY_ZYGARDE_50,                                \
-        .height = 50,                                           \
-        .weight = 3050,                                         \
-        .description = gZygarde50PokedexText,                   \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 721,                                    \
-        .trainerOffset = 19,                                    \
-        FRONT_PIC(Zygarde50, 64, 64),                           \
-        .frontPicYOffset = 0,                                   \
-        .frontAnimFrames = sAnims_Zygarde50,                    \
-        .frontAnimId = ANIM_TIP_MOVE_FORWARD,                   \
-        BACK_PIC(Zygarde50, 64, 64),                            \
-        .backPicYOffset = 4,                                    \
+#define ZYGARDE_50_SPECIES_INFO
+    {
+        .baseHP        = 108,
+        .baseAttack    = 100,
+        .baseDefense   = 121,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 81,
+        .baseSpDefense = 95,
+        .expYield = 270,
+        .bodyColor = BODY_COLOR_GREEN,
+        .cryId = CRY_ZYGARDE_50,
+        .height = 50,
+        .weight = 3050,
+        .description = gZygarde50PokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        FRONT_PIC(Zygarde50, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Zygarde50,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        BACK_PIC(Zygarde50, 64, 64),
+        .backPicYOffset = 4,
         .backAnimId = (ability == ABILITY_POWER_CONSTRUCT       \
             ? BACK_ANIM_SHAKE_GLOW_GREEN                        \
-            : BACK_ANIM_V_STRETCH),                             \
-        PALETTES(Zygarde50),                                    \
-        ICON(Zygarde50, 1),                                     \
+            : BACK_ANIM_V_STRETCH),
+        PALETTES(Zygarde50),
+        ICON(Zygarde50, 1),
         .formChangeTable = (ability == ABILITY_POWER_CONSTRUCT  \
             ? sZygarde50PowerConstructFormChangeTable           \
-            : sZygarde50AuraBreakFormChangeTable),              \
-        ZYGARDE_MISC_INFO(ability),                             \
+            : sZygarde50AuraBreakFormChangeTable),
+        ZYGARDE_MISC_INFO(ability),
     }
 
-#define ZYGARDE_10_SPECIES_INFO(ability)                        \
-    {                                                           \
-        .baseHP        = 54,                                    \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 71,                                    \
-        .baseSpeed     = 115,                                   \
-        .baseSpAttack  = 61,                                    \
-        .baseSpDefense = 85,                                    \
-        .expYield = 219,                                        \
-        .bodyColor = BODY_COLOR_BLACK,                          \
-        .cryId = CRY_ZYGARDE_10,                                \
-        .height = 12,                                           \
-        .weight = 335,                                          \
-        .description = gZygarde10PokedexText,                   \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 721,                                    \
-        .trainerOffset = 19,                                    \
-        FRONT_PIC(Zygarde10, 56, 64),                           \
-        .frontPicYOffset = 2,                                   \
-        .frontAnimFrames = sAnims_Zygarde10,                    \
-        BACK_PIC(Zygarde10, 64, 56),                            \
-        .backPicYOffset = 8,                                    \
+#define ZYGARDE_10_SPECIES_INFO
+    {
+        .baseHP        = 54,
+        .baseAttack    = 100,
+        .baseDefense   = 71,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 85,
+        .expYield = 219,
+        .bodyColor = BODY_COLOR_BLACK,
+        .cryId = CRY_ZYGARDE_10,
+        .height = 12,
+        .weight = 335,
+        .description = gZygarde10PokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        FRONT_PIC(Zygarde10, 56, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Zygarde10,
+        BACK_PIC(Zygarde10, 64, 56),
+        .backPicYOffset = 8,
         .backAnimId = (ability == ABILITY_POWER_CONSTRUCT       \
             ? BACK_ANIM_SHAKE_GLOW_GREEN                        \
-            : BACK_ANIM_JOLT_RIGHT),                            \
-        PALETTES(Zygarde10),                                    \
-        ICON(Zygarde10, 1),                                     \
+            : BACK_ANIM_JOLT_RIGHT),
+        PALETTES(Zygarde10),
+        ICON(Zygarde10, 1),
         .formChangeTable = (ability == ABILITY_POWER_CONSTRUCT  \
             ? sZygarde10PowerConstructFormChangeTable           \
-            : sZygarde10AuraBreakFormChangeTable),              \
-        ZYGARDE_MISC_INFO(ability),                             \
+            : sZygarde10AuraBreakFormChangeTable),
+        ZYGARDE_MISC_INFO(ability),
     }
-    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-
     [SPECIES_ZYGARDE_50_AURA_BREAK]      = ZYGARDE_50_SPECIES_INFO(ABILITY_AURA_BREAK),
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = ZYGARDE_50_SPECIES_INFO(ABILITY_POWER_CONSTRUCT),
     [SPECIES_ZYGARDE_10_AURA_BREAK]      = ZYGARDE_10_SPECIES_INFO(ABILITY_AURA_BREAK),
@@ -43807,24 +43247,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ZYGARDE
 
 #if P_FAMILY_DIANCIE
-#define DIANCE_MISC_INFO                                                    \
-        .types = { TYPE_ROCK, TYPE_FAIRY },                                 \
-        .catchRate = 3,                                                     \
-        .evYield_Defense   = 1,                                             \
-        .evYield_SpDefense = 2,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 25,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_PINK,                                       \
-        .speciesName = _("Diancie"),                                        \
-        .natDexNum = NATIONAL_DEX_DIANCIE,                                  \
-        .categoryName = _("Jewel"),                                         \
-        .footprint = gMonFootprint_Diancie,                                 \
-        LEARNSETS(Diancie),                                                 \
-        .formSpeciesIdTable = sDiancieFormSpeciesIdTable,                   \
-        .formChangeTable = sDiancieFormChangeTable,                         \
+#define DIANCE_MISC_INFO
+        .types = { TYPE_ROCK, TYPE_FAIRY },
+        .catchRate = 3,
+        .evYield_Defense   = 1,
+        .evYield_SpDefense = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Diancie"),
+        .natDexNum = NATIONAL_DEX_DIANCIE,
+        .categoryName = _("Jewel"),
+        .footprint = gMonFootprint_Diancie,
+        LEARNSETS(Diancie),
+        .formSpeciesIdTable = sDiancieFormSpeciesIdTable,
+        .formChangeTable = sDiancieFormChangeTable,
         .isMythical = TRUE
 
     [SPECIES_DIANCIE] =
@@ -43885,10 +43325,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DiancieMega, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DiancieMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DiancieMega, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DiancieMega),
         ICON(DiancieMega, 0),
         .isMegaEvolution = TRUE,
@@ -43897,26 +43335,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DIANCIE
 
 #if P_FAMILY_HOOPA
-#define HOOPA_MISC_INFO                                                     \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_MAGICIAN, ABILITY_NONE },                    \
-        .bodyColor = BODY_COLOR_PURPLE,                                     \
-        .speciesName = _("Hoopa"),                                          \
-        .natDexNum = NATIONAL_DEX_HOOPA,                                    \
-        .footprint = gMonFootprint_Hoopa,                                   \
-        .formSpeciesIdTable = sHoopaFormSpeciesIdTable,                     \
-        .formChangeTable = sHoopaFormChangeTable,                           \
-        .isMythical = TRUE
 
     [SPECIES_HOOPA_CONFINED] =
     {
-        HOOPA_MISC_INFO,
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_MAGICIAN, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Hoopa"),
+        .natDexNum = NATIONAL_DEX_HOOPA,
+        .footprint = gMonFootprint_Hoopa,
+        .formSpeciesIdTable = sHoopaFormSpeciesIdTable,
+        .formChangeTable = sHoopaFormChangeTable,
+        .isMythical = TRUE,
         .baseHP        = 80,
         .baseAttack    = 110,
         .baseDefense   = 60,
@@ -44135,31 +43571,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_DECIDUEYE_HISUIAN}),
     },
 
-#define DECIDUEYE_MISC_INFO                                     \
-        .catchRate = 45,                                        \
-        .expYield = 239,                                        \
-        .evYield_Attack    = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(12.5),                    \
-        .eggCycles = 15,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },    \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .speciesName = _("Decidueye"),                          \
-        .cryId = CRY_DECIDUEYE,                                 \
-        .natDexNum = NATIONAL_DEX_DECIDUEYE,                    \
-        .categoryName = _("Arrow Quill"),                       \
-        .height = 16,                                           \
-        .pokemonScale = 259,                                    \
-        .pokemonOffset = 1,                                     \
-        .trainerScale = 296,                                    \
-        .trainerOffset = 1,                                     \
-        .footprint = gMonFootprint_Decidueye,                   \
-        .formSpeciesIdTable = sDecidueyeFormSpeciesIdTable
-
     [SPECIES_DECIDUEYE] =
     {
-        DECIDUEYE_MISC_INFO,
+        .catchRate = 45,
+        .expYield = 239,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Decidueye"),
+        .cryId = CRY_DECIDUEYE,
+        .natDexNum = NATIONAL_DEX_DECIDUEYE,
+        .categoryName = _("Arrow Quill"),
+        .height = 16,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Decidueye,
+        .formSpeciesIdTable = sDecidueyeFormSpeciesIdTable,
         .baseHP        = 78,
         .baseAttack    = 107,
         .baseDefense   = 75,
@@ -44204,10 +43637,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DecidueyeHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DecidueyeHisuian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DecidueyeHisuian, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DecidueyeHisuian),
         ICON(DecidueyeHisuian, 0),
         LEARNSETS(DecidueyeHisuian),
@@ -44257,7 +43688,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_STRETCH,
         BACK_PIC(Litten, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Litten),
         ICON(Litten, 0),
         .footprint = gMonFootprint_Litten,
@@ -44305,7 +43735,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_STRETCH,
         BACK_PIC(Torracat, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Torracat),
         ICON(Torracat, 0),
         .footprint = gMonFootprint_Torracat,
@@ -44353,7 +43782,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE,
         BACK_PIC(Incineroar, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Incineroar),
         ICON(Incineroar, 0),
         .footprint = gMonFootprint_Incineroar,
@@ -44402,7 +43830,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         BACK_PIC(Popplio, 48, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Popplio),
         ICON(Popplio, 0),
         .footprint = gMonFootprint_Popplio,
@@ -44450,7 +43877,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW,
         BACK_PIC(Brionne, 48, 56),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Brionne),
         ICON(Brionne, 0),
         .footprint = gMonFootprint_Brionne,
@@ -44498,7 +43924,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
         BACK_PIC(Primarina, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Primarina),
         ICON(Primarina, 0),
         .footprint = gMonFootprint_Primarina,
@@ -44696,7 +44121,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_STRETCH,
         BACK_PIC(Yungoos, 48, 40),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Yungoos),
         ICON(Yungoos, 2),
         .footprint = gMonFootprint_Yungoos,
@@ -44745,7 +44169,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SHAKE,
         BACK_PIC(Gumshoos, 48, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Gumshoos),
         ICON(Gumshoos, 2),
         .footprint = gMonFootprint_Gumshoos,
@@ -44794,7 +44217,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SLIDE,
         BACK_PIC(Grubbin, 64, 32),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Grubbin),
         ICON(Grubbin, 0),
         .footprint = gMonFootprint_Grubbin,
@@ -44843,7 +44265,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_SLOW,
         BACK_PIC(Charjabug, 64, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Charjabug),
         ICON(Charjabug, 1),
         .footprint = gMonFootprint_Charjabug,
@@ -44893,7 +44314,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 8,
         BACK_PIC(Vikavolt, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Vikavolt),
         ICON(Vikavolt, 0),
         .footprint = gMonFootprint_Vikavolt,
@@ -44943,7 +44363,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE,
         BACK_PIC(Crabrawler, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Crabrawler),
         ICON(Crabrawler, 2),
         .footprint = gMonFootprint_Crabrawler,
@@ -44993,7 +44412,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
         BACK_PIC(Crabominable, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Crabominable),
         ICON(Crabominable, 2),
         .footprint = gMonFootprint_Crabominable,
@@ -45002,43 +44420,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CRABRAWLER
 
 #if P_FAMILY_ORICORIO
-#define ORICORIO_MISC_INFO                                      \
-        .baseHP        = 75,                                    \
-        .baseAttack    = 70,                                    \
-        .baseDefense   = 70,                                    \
-        .baseSpeed     = 93,                                    \
-        .baseSpAttack  = 98,                                    \
-        .baseSpDefense = 70,                                    \
-        .catchRate = 45,                                        \
-        .expYield = 167,                                        \
-        .evYield_SpAttack  = 2,                                 \
-        .itemRare = ITEM_HONEY,                                 \
-        .genderRatio = PERCENT_FEMALE(75),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },    \
-        .abilities = { ABILITY_DANCER, ABILITY_NONE },          \
-        .speciesName = _("Oricorio"),                           \
-        .natDexNum = NATIONAL_DEX_ORICORIO,                     \
-        .categoryName = _("Dancing"),                           \
-        .height = 6,                                            \
-        .weight = 34,                                           \
-        .pokemonScale = 422,                                    \
-        .pokemonOffset = 12,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .frontAnimFrames = sAnims_Oricorio,                     \
-        .backPicYOffset = 0,                                    \
-        .footprint = gMonFootprint_Oricorio,                    \
-        LEARNSETS(Oricorio),                                    \
-        .formSpeciesIdTable = sOricorioFormSpeciesIdTable,      \
-        .formChangeTable = sOricorioFormChangeTable
-        //.backAnimId = BACK_ANIM_NONE,                       \
 
     [SPECIES_ORICORIO_BAILE] =
     {
-        ORICORIO_MISC_INFO,
+        .baseHP        = 75,
+        .baseAttack    = 70,
+        .baseDefense   = 70,
+        .baseSpeed     = 93,
+        .baseSpAttack  = 98,
+        .baseSpDefense = 70,
+        .catchRate = 45,
+        .expYield = 167,
+        .evYield_SpAttack  = 2,
+        .itemRare = ITEM_HONEY,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .abilities = { ABILITY_DANCER, ABILITY_NONE },
+        .speciesName = _("Oricorio"),
+        .natDexNum = NATIONAL_DEX_ORICORIO,
+        .categoryName = _("Dancing"),
+        .height = 6,
+        .weight = 34,
+        .pokemonScale = 422,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Oricorio,
+        .backPicYOffset = 0,
+        .footprint = gMonFootprint_Oricorio,
+        LEARNSETS(Oricorio),
+        .formSpeciesIdTable = sOricorioFormSpeciesIdTable,
+        .formChangeTable = sOricorioFormChangeTable,
         .types = { TYPE_FIRE, TYPE_FLYING },
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_ORICORIO_BAILE,
@@ -45051,7 +44466,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 2,
         .frontAnimId = ANIM_CONCAVE_ARC_SMALL,
         BACK_PIC(OricorioBaile, 64, 64),
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioBaile),
         ICON(OricorioBaile, 0),
     },
@@ -45066,9 +44480,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             ""),
         FRONT_PIC(OricorioPomPom, 56, 56),
         .frontPicYOffset = 5,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OricorioPomPom, 64, 64),
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioPomPom),
         ICON(OricorioPomPom, 1),
     },
@@ -45083,9 +44495,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             ""),
         FRONT_PIC(OricorioPau, 56, 64),
         .frontPicYOffset = 3,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OricorioPau, 64, 64),
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioPau),
         ICON(OricorioPau, 1),
     },
@@ -45100,9 +44510,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             ""),
         FRONT_PIC(OricorioSensu, 64, 56),
         .frontPicYOffset = 4,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OricorioSensu, 64, 64),
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioSensu),
         ICON(OricorioSensu, 0),
     },
@@ -45210,47 +44618,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CUTIEFLY
 
 #if P_FAMILY_ROCKRUFF
-#define ROCKRUFF_MISC_INFO                                      \
-        .baseHP        = 45,                                    \
-        .baseAttack    = 65,                                    \
-        .baseDefense   = 40,                                    \
-        .baseSpeed     = 60,                                    \
-        .baseSpAttack  = 30,                                    \
-        .baseSpDefense = 40,                                    \
-        .types = { TYPE_ROCK, TYPE_ROCK },                      \
-        .catchRate = 190,                                       \
-        .expYield = 56,                                         \
-        .evYield_Attack    = 1,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 15,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },      \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .speciesName = _("Rockruff"),                           \
-        .cryId = CRY_ROCKRUFF,                                  \
-        .natDexNum = NATIONAL_DEX_ROCKRUFF,                     \
-        .categoryName = _("Puppy"),                             \
-        .height = 5,                                            \
-        .weight = 92,                                           \
-        .description = gRockruffPokedexText,                    \
-        .pokemonScale = 432,                                    \
-        .pokemonOffset = 13,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .frontPicYOffset = 11,                                  \
-        .frontAnimFrames = sAnims_Rockruff,                     \
-        .frontAnimId = ANIM_V_STRETCH,                          \
-        .backPicYOffset = 7,                                    \
-        PALETTES(Rockruff),                                     \
-        ICON(Rockruff, 2),                                      \
-        .footprint = gMonFootprint_Rockruff,                    \
-        LEARNSETS(Rockruff),                                    \
-        .formSpeciesIdTable = sRockruffFormSpeciesIdTable
 
     [SPECIES_ROCKRUFF] =
     {
-        ROCKRUFF_MISC_INFO,
+        .baseHP        = 45,
+        .baseAttack    = 65,
+        .baseDefense   = 40,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 40,
+        .types = { TYPE_ROCK, TYPE_ROCK },
+        .catchRate = 190,
+        .expYield = 56,
+        .evYield_Attack    = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Rockruff"),
+        .cryId = CRY_ROCKRUFF,
+        .natDexNum = NATIONAL_DEX_ROCKRUFF,
+        .categoryName = _("Puppy"),
+        .height = 5,
+        .weight = 92,
+        .description = gRockruffPokedexText,
+        .pokemonScale = 432,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_Rockruff,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backPicYOffset = 7,
+        PALETTES(Rockruff),
+        ICON(Rockruff, 2),
+        .footprint = gMonFootprint_Rockruff,
+        LEARNSETS(Rockruff),
+        .formSpeciesIdTable = sRockruffFormSpeciesIdTable,
         .abilities = { ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST },
         FRONT_PIC(Rockruff, 37, 39),
         BACK_PIC(Rockruff, 64, 56),
@@ -45265,35 +44671,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE },
         FRONT_PIC(Rockruff, 40, 48),
         BACK_PIC(Rockruff, 64, 56),
-        //.backAnimId = BACK_ANIM_NONE,
         .evolutions = EVOLUTION({EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
     },
 
-#define LYCANROC_MISC_INFO                                  \
-        .types = { TYPE_ROCK, TYPE_ROCK },                  \
-        .catchRate = 90,                                    \
-        .expYield = 170,                                    \
-        .evYield_Attack    = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .speciesName = _("Lycanroc"),                       \
-        .natDexNum = NATIONAL_DEX_LYCANROC,                 \
-        .categoryName = _("Wolf"),                          \
-        .weight = 250,                                      \
-        .pokemonScale = 366,                                \
-        .pokemonOffset = 7,                                 \
-        .trainerScale = 257,                                \
-        .trainerOffset = 0,                                 \
-        BACK_PIC(LycanrocMidday, 64, 56),                   \
-        .footprint = gMonFootprint_Lycanroc,                \
-        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable
-
     [SPECIES_LYCANROC_MIDDAY] =
     {
-        LYCANROC_MISC_INFO,
+        .types = { TYPE_ROCK, TYPE_ROCK },
+        .catchRate = 90,
+        .expYield = 170,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .speciesName = _("Lycanroc"),
+        .natDexNum = NATIONAL_DEX_LYCANROC,
+        .categoryName = _("Wolf"),
+        .weight = 250,
+        .pokemonScale = 366,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        BACK_PIC(LycanrocMidday, 64, 56),
+        .footprint = gMonFootprint_Lycanroc,
+        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
         .baseHP        = 75,
         .baseAttack    = 115,
         .baseDefense   = 65,
@@ -45374,33 +44776,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ROCKRUFF
 
 #if P_FAMILY_WISHIWASHI
-#define WISHIWASHI_MISC_INFO                                    \
-        .types = { TYPE_WATER, TYPE_WATER },                    \
-        .catchRate = 60,                                        \
-        .expYield = 61,                                         \
-        .evYield_HP        = 1,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 15,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_FAST,                              \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },  \
-        .abilities = { ABILITY_SCHOOLING, ABILITY_NONE },       \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Wishiwashi"),                         \
-        .natDexNum = NATIONAL_DEX_WISHIWASHI,                   \
-        .categoryName = _("Small Fry"),                         \
-        .pokemonScale = 682,                                    \
-        .pokemonOffset = 24,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Wishiwashi,                  \
-        LEARNSETS(Wishiwashi),                                  \
-        .formSpeciesIdTable = sWishiwashiFormSpeciesIdTable,    \
-        .formChangeTable = sWishiwashiFormChangeTable
 
     [SPECIES_WISHIWASHI_SOLO] =
     {
-        WISHIWASHI_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 60,
+        .expYield = 61,
+        .evYield_HP        = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .abilities = { ABILITY_SCHOOLING, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Wishiwashi"),
+        .natDexNum = NATIONAL_DEX_WISHIWASHI,
+        .categoryName = _("Small Fry"),
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Wishiwashi,
+        LEARNSETS(Wishiwashi),
+        .formSpeciesIdTable = sWishiwashiFormSpeciesIdTable,
+        .formChangeTable = sWishiwashiFormChangeTable,
         .baseHP        = 45,
         .baseAttack    = 20,
         .baseDefense   = 20,
@@ -45422,7 +44822,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 12,
         BACK_PIC(WishiwashiSolo, 56, 32),
         .backPicYOffset = 18,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(WishiwashiSolo),
         ICON(WishiwashiSolo, 2),
     },
@@ -45447,7 +44846,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE, //Todo
         BACK_PIC(WishiwashiSchool, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(WishiwashiSchool),
         ICON(WishiwashiSchool, 0),
     },
@@ -45495,7 +44893,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GLOW_PURPLE,
         BACK_PIC(Mareanie, 64, 48),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Mareanie),
         ICON(Mareanie, 2),
         .footprint = gMonFootprint_Mareanie,
@@ -45544,7 +44941,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
         BACK_PIC(Toxapex, 64, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Toxapex),
         ICON(Toxapex, 0),
         .footprint = gMonFootprint_Toxapex,
@@ -45594,7 +44990,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE,
         BACK_PIC(Mudbray, 64, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Mudbray),
         ICON(Mudbray, 2),
         .footprint = gMonFootprint_Mudbray,
@@ -45643,7 +45038,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE_TWICE,
         BACK_PIC(Mudsdale, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Mudsdale),
         ICON(Mudsdale, 0),
         .footprint = gMonFootprint_Mudsdale,
@@ -45693,7 +45087,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW,
         BACK_PIC(Dewpider, 40, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dewpider),
         ICON(Dewpider, 0),
         .footprint = gMonFootprint_Dewpider,
@@ -45742,7 +45135,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SHAKE,
         BACK_PIC(Araquanid, 64, 48),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Araquanid),
         ICON(Araquanid, 2),
         .footprint = gMonFootprint_Araquanid,
@@ -45792,7 +45184,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         BACK_PIC(Fomantis, 40, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Fomantis),
         ICON(Fomantis, 1),
         .footprint = gMonFootprint_Fomantis,
@@ -45841,7 +45232,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Lurantis, 56, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Lurantis),
         ICON(Lurantis, 1),
         .footprint = gMonFootprint_Lurantis,
@@ -45892,7 +45282,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_FLASH_YELLOW,
         BACK_PIC(Morelull, 40, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Morelull),
         ICON(Morelull, 0),
         .footprint = gMonFootprint_Morelull,
@@ -45942,7 +45331,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_GLOW_WHITE_SLOW,
         BACK_PIC(Shiinotic, 64, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Shiinotic),
         ICON(Shiinotic, 1),
         .footprint = gMonFootprint_Shiinotic,
@@ -45992,7 +45380,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GLOW_RED,
         BACK_PIC(Salandit, 56, 40),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Salandit),
         ICON(Salandit, 2),
         .footprint = gMonFootprint_Salandit,
@@ -46041,7 +45428,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Salazzle, 48, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Salazzle),
         ICON(Salazzle, 0),
         .footprint = gMonFootprint_Salazzle,
@@ -46090,7 +45476,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE,
         BACK_PIC(Stufful, 56, 40),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Stufful),
         ICON(Stufful, 0),
         .footprint = gMonFootprint_Stufful,
@@ -46138,7 +45523,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_STRETCH,
         BACK_PIC(Bewear, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bewear),
         ICON(Bewear, 0),
         .footprint = gMonFootprint_Bewear,
@@ -46188,7 +45572,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Bounsweet, 48, 40),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bounsweet),
         ICON(Bounsweet, 1),
         .footprint = gMonFootprint_Bounsweet,
@@ -46238,7 +45621,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Steenee, 56, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Steenee),
         ICON(Steenee, 1),
         .footprint = gMonFootprint_Steenee,
@@ -46288,7 +45670,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW,
         BACK_PIC(Tsareena, 56, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tsareena),
         ICON(Tsareena, 1),
         .footprint = gMonFootprint_Tsareena,
@@ -46340,7 +45721,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 8,
         BACK_PIC(Comfey, 64, 56),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Comfey),
         ICON(Comfey, 1),
         .footprint = gMonFootprint_Comfey,
@@ -46487,7 +45867,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE_H_SLIDE_FAST,
         BACK_PIC(Wimpod, 64, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wimpod),
         ICON(Wimpod, 2),
         .footprint = gMonFootprint_Wimpod,
@@ -46535,7 +45914,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
         BACK_PIC(Golisopod, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Golisopod),
         ICON(Golisopod, 2),
         .footprint = gMonFootprint_Golisopod,
@@ -46585,7 +45963,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         BACK_PIC(Sandygast, 40, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sandygast),
         ICON(Sandygast, 1),
         .footprint = gMonFootprint_Sandygast,
@@ -46634,7 +46011,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_VIBRATE,
         BACK_PIC(Palossand, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Palossand),
         ICON(Palossand, 2),
         .footprint = gMonFootprint_Palossand,
@@ -46683,7 +46059,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pyukumuku, 48, 32),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pyukumuku),
         ICON(Pyukumuku, 0),
         .footprint = gMonFootprint_Pyukumuku,
@@ -46733,7 +46108,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SHAKE,
         BACK_PIC(TypeNull, 56, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TypeNull),
         ICON(TypeNull, 0),
         .footprint = gMonFootprint_Type_Null,
@@ -46741,53 +46115,52 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SILVALLY_NORMAL}),
     },
 
-#define SILVALLY_SPECIES_INFO(type, palette)                                \
-    {                                                                       \
-        .baseHP        = 95,                                                \
-        .baseAttack    = 95,                                                \
-        .baseDefense   = 95,                                                \
-        .baseSpeed     = 95,                                                \
-        .baseSpAttack  = 95,                                                \
-        .baseSpDefense = 95,                                                \
-        .types = { type, type },                                            \
-        .catchRate = 3,                                                     \
-        .expYield = 257,                                                    \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_RKS_SYSTEM, ABILITY_NONE },                  \
-        .bodyColor = BODY_COLOR_GRAY,                                       \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Silvally"),                                       \
-        .cryId = CRY_SILVALLY,                                              \
-        .natDexNum = NATIONAL_DEX_SILVALLY,                                 \
-        .categoryName = _("Synthetic"),                                     \
-        .height = 23,                                                       \
-        .weight = 1005,                                                     \
+#define SILVALLY_SPECIES_INFO
+    {
+        .baseHP        = 95,
+        .baseAttack    = 95,
+        .baseDefense   = 95,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 95,
+        .types = { type, type },
+        .catchRate = 3,
+        .expYield = 257,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_RKS_SYSTEM, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .isLegendary = TRUE,
+        .speciesName = _("Silvally"),
+        .cryId = CRY_SILVALLY,
+        .natDexNum = NATIONAL_DEX_SILVALLY,
+        .categoryName = _("Synthetic"),
+        .height = 23,
+        .weight = 1005,
         .description = (type == TYPE_NORMAL                                 \
             ? gSilvallyNormalPokedexText                                    \
-            : gSilvallyMemoryPokedexText),                                  \
-        .pokemonScale = 256,                                                \
-        .pokemonOffset = 0,                                                 \
-        .trainerScale = 342,                                                \
-        .trainerOffset = 7,                                                 \
-        FRONT_PIC(Silvally, 64, 64),                                        \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Silvally,                                 \
-        .frontAnimId = ANIM_V_SHAKE,                                        \
-        BACK_PIC(Silvally, 56, 64),                                         \
-        .backPicYOffset = 0,                                                \
-        PALETTES(palette),                                                  \
-        ICON(Silvally, 0),                                                  \
-        .footprint = gMonFootprint_Silvally,                                \
-        LEARNSETS(Silvally),                                                \
-        .formSpeciesIdTable = sSilvallyFormSpeciesIdTable,                  \
-        .formChangeTable = sSilvallyFormChangeTable,                        \
+            : gSilvallyMemoryPokedexText),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 342,
+        .trainerOffset = 7,
+        FRONT_PIC(Silvally, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Silvally,
+        .frontAnimId = ANIM_V_SHAKE,
+        BACK_PIC(Silvally, 56, 64),
+        .backPicYOffset = 0,
+        PALETTES(palette),
+        ICON(Silvally, 0),
+        .footprint = gMonFootprint_Silvally,
+        LEARNSETS(Silvally),
+        .formSpeciesIdTable = sSilvallyFormSpeciesIdTable,
+        .formChangeTable = sSilvallyFormChangeTable,
    }
-        //.backAnimId = BACK_ANIM_NONE,
 
     [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL, SilvallyNormal),
     [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING, SilvallyFighting),
@@ -46810,82 +46183,78 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
-#define MINIOR_MISC_INFO(color)                                 \
-        .types = { TYPE_ROCK, TYPE_FLYING },                    \
-        .catchRate = 30,                                        \
-        .expYield = 154,                                        \
-        .evYield_Defense   = 1,                                 \
-        .evYield_SpDefense = 1,                                 \
-        .itemRare = ITEM_STAR_PIECE,                            \
-        .genderRatio = MON_GENDERLESS,                          \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
-        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE },    \
-        .bodyColor = color,                                     \
-        .noFlip = TRUE,                                         \
-        .speciesName = _("Minior"),                             \
-        .cryId = CRY_MINIOR,                                    \
-        .natDexNum = NATIONAL_DEX_MINIOR,                       \
-        .categoryName = _("Meteor"),                            \
-        .height = 3,                                            \
-        .pokemonScale = 530,                                    \
-        .pokemonOffset = 13,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Minior,                      \
-        LEARNSETS(Minior),                                      \
+#define MINIOR_MISC_INFO
+        .types = { TYPE_ROCK, TYPE_FLYING },
+        .catchRate = 30,
+        .expYield = 154,
+        .evYield_Defense   = 1,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_STAR_PIECE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE },
+        .bodyColor = color,
+        .noFlip = TRUE,
+        .speciesName = _("Minior"),
+        .cryId = CRY_MINIOR,
+        .natDexNum = NATIONAL_DEX_MINIOR,
+        .categoryName = _("Meteor"),
+        .height = 3,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Minior,
+        LEARNSETS(Minior),
         .formSpeciesIdTable = sMiniorFormSpeciesIdTable
 
-#define MINIOR_METEOR_SPECIES_INFO(Form)                        \
-    {                                                           \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 60,                                    \
-        .baseDefense   = 100,                                   \
-        .baseSpeed     = 60,                                    \
-        .baseSpAttack  = 60,                                    \
-        .baseSpDefense = 100,                                   \
-        .weight = 400,                                          \
-        FRONT_PIC(MiniorMeteor, 48, 40),                        \
-        .frontPicYOffset = 14,                                  \
-        .frontAnimFrames = sAnims_MiniorMeteor,                 \
-        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
-        .enemyMonElevation = 17,                                \
-        BACK_PIC(MiniorMeteor, 56, 40),                         \
-        .backPicYOffset = 14,                                   \
-        PALETTES(MiniorMeteor),                                 \
-        ICON(MiniorMeteor, 0),                                  \
-        .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN),                     \
+#define MINIOR_METEOR_SPECIES_INFO
+    {
+        .baseHP        = 60,
+        .baseAttack    = 60,
+        .baseDefense   = 100,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 100,
+        .weight = 400,
+        FRONT_PIC(MiniorMeteor, 48, 40),
+        .frontPicYOffset = 14,
+        .frontAnimFrames = sAnims_MiniorMeteor,
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,
+        .enemyMonElevation = 17,
+        BACK_PIC(MiniorMeteor, 56, 40),
+        .backPicYOffset = 14,
+        PALETTES(MiniorMeteor),
+        ICON(MiniorMeteor, 0),
+        .formChangeTable = sMinior ##Form##FormChangeTable,
+        MINIOR_MISC_INFO(BODY_COLOR_BROWN),
     }
-    //.backAnimId = BACK_ANIM_NONE,
-
-#define MINIOR_CORE_SPECIES_INFO(Form, color, iconPal)          \
-    {                                                           \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 60,                                    \
-        .baseSpeed     = 120,                                   \
-        .baseSpAttack  = 100,                                   \
-        .baseSpDefense = 60,                                    \
-        .weight = 3,                                            \
-        .description = gMiniorCorePokedexText,                  \
-        FRONT_PIC(MiniorCore, 48, 40),                          \
-        .frontPicYOffset = 16,                                  \
-        .frontAnimFrames = sAnims_MiniorMeteor,                 \
-        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
-        .enemyMonElevation = 17,                                \
-        BACK_PIC(MiniorCore, 56, 40),                           \
-        .backPicYOffset = 15,                                   \
-        .palette = gMonPalette_MiniorCore##Form,                \
-        .shinyPalette = gMonShinyPalette_MiniorCore,            \
-        ICON(MiniorCore##Form, iconPal),                        \
-        .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(color),                                \
+#define MINIOR_CORE_SPECIES_INFO
+    {
+        .baseHP        = 60,
+        .baseAttack    = 100,
+        .baseDefense   = 60,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 60,
+        .weight = 3,
+        .description = gMiniorCorePokedexText,
+        FRONT_PIC(MiniorCore, 48, 40),
+        .frontPicYOffset = 16,
+        .frontAnimFrames = sAnims_MiniorMeteor,
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,
+        .enemyMonElevation = 17,
+        BACK_PIC(MiniorCore, 56, 40),
+        .backPicYOffset = 15,
+        .palette = gMonPalette_MiniorCore##Form,
+        .shinyPalette = gMonShinyPalette_MiniorCore,
+        ICON(MiniorCore##Form, iconPal),
+        .formChangeTable = sMinior ##Form##FormChangeTable,
+        MINIOR_MISC_INFO(color),
     }
-    //.backAnimId = BACK_ANIM_NONE,
-
     [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO(Red),
     [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO(Orange),
     [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO(Yellow),
@@ -46943,7 +46312,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_DIP,
         BACK_PIC(Komala, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Komala),
         ICON(Komala, 2),
         .footprint = gMonFootprint_Komala,
@@ -46993,7 +46361,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_GLOW_RED,
         BACK_PIC(Turtonator, 64, 56),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Turtonator),
         ICON(Turtonator, 0),
         .footprint = gMonFootprint_Turtonator,
@@ -47052,43 +46419,41 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TOGEDEMARU
 
 #if P_FAMILY_MIMIKYU
-#define MIMIKYU_MISC_INFO                                           \
-        .baseHP        = 55,                                        \
-        .baseAttack    = 90,                                        \
-        .baseDefense   = 80,                                        \
-        .baseSpeed     = 96,                                        \
-        .baseSpAttack  = 50,                                        \
-        .baseSpDefense = 105,                                       \
-        .types = { TYPE_GHOST, TYPE_FAIRY },                        \
-        .catchRate = 45,                                            \
-        .expYield = 167,                                            \
-        .evYield_SpDefense = 2,                                     \
-        .itemRare = ITEM_CHESTO_BERRY,                              \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = STANDARD_FRIENDSHIP,                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .abilities = { ABILITY_DISGUISE, ABILITY_NONE },            \
-        .bodyColor = BODY_COLOR_YELLOW,                             \
-        .speciesName = _("Mimikyu"),                                \
-        .cryId = CRY_MIMIKYU,                                       \
-        .natDexNum = NATIONAL_DEX_MIMIKYU,                          \
-        .categoryName = _("Disguise"),                              \
-        .height = 2,                                                \
-        .weight = 7,                                                \
-        .pokemonScale = 682,                                        \
-        .pokemonOffset = 24,                                        \
-        .trainerScale = 256,                                        \
-        .trainerOffset = 0,                                         \
-        .footprint = gMonFootprint_Mimikyu,                         \
-        LEARNSETS(Mimikyu),                                         \
-        .formSpeciesIdTable = sMimikyuFormSpeciesIdTable,           \
-        .formChangeTable = sMimikyuFormChangeTable
 
     [SPECIES_MIMIKYU_DISGUISED] =
     {
-        MIMIKYU_MISC_INFO,
+        .baseHP        = 55,
+        .baseAttack    = 90,
+        .baseDefense   = 80,
+        .baseSpeed     = 96,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 105,
+        .types = { TYPE_GHOST, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 167,
+        .evYield_SpDefense = 2,
+        .itemRare = ITEM_CHESTO_BERRY,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_DISGUISE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Mimikyu"),
+        .cryId = CRY_MIMIKYU,
+        .natDexNum = NATIONAL_DEX_MIMIKYU,
+        .categoryName = _("Disguise"),
+        .height = 2,
+        .weight = 7,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Mimikyu,
+        LEARNSETS(Mimikyu),
+        .formSpeciesIdTable = sMimikyuFormSpeciesIdTable,
+        .formChangeTable = sMimikyuFormChangeTable,
         .description = COMPOUND_STRING(
             "A lonely Pokémon, it hides its terrifying\n"
             "appearance beneath an old rag so it can\n"
@@ -47100,7 +46465,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MimikyuDisguised, 56, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MimikyuDisguised),
         ICON(MimikyuDisguised, 1),
     },
@@ -47116,7 +46480,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MimikyuBusted, 64, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MimikyuBusted),
         ICON(MimikyuBusted, 1),
     },
@@ -47164,7 +46527,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_RISING_WOBBLE,
         BACK_PIC(Bruxish, 64, 48),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bruxish),
         ICON(Bruxish, 0),
         .footprint = gMonFootprint_Bruxish,
@@ -47265,7 +46627,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 2,
         BACK_PIC(Dhelmise, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dhelmise),
         ICON(Dhelmise, 1),
         .footprint = gMonFootprint_Dhelmise,
@@ -47464,7 +46825,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 9,
         BACK_PIC(TapuKoko, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TapuKoko),
         ICON(TapuKoko, 0),
         .footprint = gMonFootprint_Tapu_Koko,
@@ -47515,7 +46875,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 8,
         BACK_PIC(TapuLele, 56, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TapuLele),
         ICON(TapuLele, 0),
         .footprint = gMonFootprint_Tapu_Lele,
@@ -47566,7 +46925,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 5,
         BACK_PIC(TapuBulu, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TapuBulu),
         ICON(TapuBulu, 2),
         .footprint = gMonFootprint_Tapu_Bulu,
@@ -47618,7 +46976,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 6,
         BACK_PIC(TapuFini, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TapuFini),
         ICON(TapuFini, 0),
         .footprint = gMonFootprint_Tapu_Fini,
@@ -47669,7 +47026,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 7,
         BACK_PIC(Cosmog, 64, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cosmog),
         ICON(Cosmog, 2),
         .footprint = gMonFootprint_Cosmog,
@@ -47720,7 +47076,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 3,
         BACK_PIC(Cosmoem, 64, 40),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cosmoem),
         ICON(Cosmoem, 0),
         .footprint = gMonFootprint_Cosmoem,
@@ -47770,7 +47125,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Solgaleo, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Solgaleo),
         ICON(Solgaleo, 0),
         .footprint = gMonFootprint_Solgaleo,
@@ -47819,7 +47173,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 6,
         BACK_PIC(Lunala, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Lunala),
         ICON(Lunala, 2),
         .footprint = gMonFootprint_Lunala,
@@ -47870,7 +47223,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 6,
         BACK_PIC(Nihilego, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Nihilego),
         ICON(Nihilego, 0),
         .footprint = gMonFootprint_Nihilego,
@@ -47921,7 +47273,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
         BACK_PIC(Buzzwole, 64, 56),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Buzzwole),
         ICON(Buzzwole, 0),
         .footprint = gMonFootprint_Buzzwole,
@@ -47971,7 +47322,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW,
         BACK_PIC(Pheromosa, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pheromosa),
         ICON(Pheromosa, 2),
         .footprint = gMonFootprint_Pheromosa,
@@ -48021,7 +47371,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_FAST,
         BACK_PIC(Xurkitree, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Xurkitree),
         ICON(Xurkitree, 0),
         .footprint = gMonFootprint_Xurkitree,
@@ -48073,7 +47422,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_STUTTER_SLOW,
         BACK_PIC(Celesteela, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Celesteela),
         ICON(Celesteela, 0),
         .footprint = gMonFootprint_Celesteela,
@@ -48124,7 +47472,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 3,
         BACK_PIC(Kartana, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Kartana),
         ICON(Kartana, 0),
         .footprint = gMonFootprint_Kartana,
@@ -48174,7 +47521,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
         BACK_PIC(Guzzlord, 64, 56),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Guzzlord),
         ICON(Guzzlord, 0),
         .footprint = gMonFootprint_Guzzlord,
@@ -48183,28 +47529,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_GUZZLORD
 
 #if P_FAMILY_NECROZMA
-#define NECROZMA_MISC_INFO                                                  \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .noFlip = TRUE,                                                     \
-        .speciesName = _("Necrozma"),                                       \
-        .natDexNum = NATIONAL_DEX_NECROZMA,                                 \
-        .categoryName = _("Prism"),                                         \
-        .pokemonScale = 256,                                                \
-        .pokemonOffset = 3,                                                 \
-        .trainerScale = 369,                                                \
-        .trainerOffset = 7,                                                 \
-        .footprint = gMonFootprint_Necrozma,                                \
-        LEARNSETS(Necrozma),                                                \
-        .formSpeciesIdTable = sNecrozmaFormSpeciesIdTable,                  \
-        .isLegendary = TRUE
 
     [SPECIES_NECROZMA] =
     {
-        NECROZMA_MISC_INFO,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .noFlip = TRUE,
+        .speciesName = _("Necrozma"),
+        .natDexNum = NATIONAL_DEX_NECROZMA,
+        .categoryName = _("Prism"),
+        .pokemonScale = 256,
+        .pokemonOffset = 3,
+        .trainerScale = 369,
+        .trainerOffset = 7,
+        .footprint = gMonFootprint_Necrozma,
+        LEARNSETS(Necrozma),
+        .formSpeciesIdTable = sNecrozmaFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .baseHP        = 97,
         .baseAttack    = 107,
         .baseDefense   = 101,
@@ -48233,7 +47577,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 6,
         BACK_PIC(Necrozma, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Necrozma),
         ICON(Necrozma, 0),
     },
@@ -48262,10 +47605,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(NecrozmaDuskMane, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(NecrozmaDuskMane, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaDuskMane),
         ICON(NecrozmaDuskMane, 0),
         .cannotBeTraded = TRUE,
@@ -48295,11 +47636,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(NecrozmaDawnWings, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 6,
         BACK_PIC(NecrozmaDawnWings, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaDawnWings),
         ICON(NecrozmaDawnWings, 0),
         .cannotBeTraded = TRUE,
@@ -48332,11 +47671,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(NecrozmaUltra, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(NecrozmaUltra, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaUltra),
         ICON(NecrozmaUltra, 2),
         .cannotBeTraded = TRUE,
@@ -48347,50 +47684,47 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
-#define MAGEARNA_MISC_INFO(Form)                                            \
-        .baseHP        = 80,                                                \
-        .baseAttack    = 95,                                                \
-        .baseDefense   = 115,                                               \
-        .baseSpeed     = 65,                                                \
-        .baseSpAttack  = 130,                                               \
-        .baseSpDefense = 115,                                               \
-        .types = { TYPE_STEEL, TYPE_FAIRY },                                \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_SOUL_HEART, ABILITY_NONE },                  \
-        .speciesName = _("Magearna"),                                       \
-        .cryId = CRY_MAGEARNA,                                              \
-        .natDexNum = NATIONAL_DEX_MAGEARNA,                                 \
-        .categoryName = _("Artificial"),                                    \
-        .height = 10,                                                       \
-        .weight = 805,                                                      \
-        .pokemonScale = 305,                                                \
-        .pokemonOffset = 7,                                                 \
-        .trainerScale = 257,                                                \
-        .trainerOffset = 0,                                                 \
-        FRONT_PIC(Form, 56, 64),                                            \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Magearna,                                 \
-        .frontAnimId = ANIM_H_SLIDE_SLOW,                                   \
-        BACK_PIC(Form, 64, 56),                                             \
-        .backPicYOffset = 4,                                                \
-        PALETTES(Form),                                                     \
-        ICON(Form, 0),                                                      \
-        .footprint = gMonFootprint_Magearna,                                \
-        LEARNSETS(Magearna),                                                \
-        .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,                  \
-        .isMythical = TRUE
-    //.backAnimId = BACK_ANIM_NONE,
 
     [SPECIES_MAGEARNA] =
     {
-        MAGEARNA_MISC_INFO(Magearna),
+        .baseHP        = 80,
+        .baseAttack    = 95,
+        .baseDefense   = 115,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 115,
+        .types = { TYPE_STEEL, TYPE_FAIRY },
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_SOUL_HEART, ABILITY_NONE },
+        .speciesName = _("Magearna"),
+        .cryId = CRY_MAGEARNA,
+        .natDexNum = NATIONAL_DEX_MAGEARNA,
+        .categoryName = _("Artificial"),
+        .height = 10,
+        .weight = 805,
+        .pokemonScale = 305,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        FRONT_PIC(Form, 56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Magearna,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        BACK_PIC(Form, 64, 56),
+        .backPicYOffset = 4,
+        PALETTES(Form),
+        ICON(Form, 0),
+        .footprint = gMonFootprint_Magearna,
+        LEARNSETS(Magearna),
+        .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,
+        .isMythical = TRUE,
         .bodyColor = BODY_COLOR_GRAY,
         .description = COMPOUND_STRING(
             "This artificial Pokémon, constructed more\n"
@@ -48450,7 +47784,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SHAKE,
         BACK_PIC(Marshadow, 40, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Marshadow),
         ICON(Marshadow, 0),
         .footprint = gMonFootprint_Marshadow,
@@ -48501,7 +47834,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 9,
         BACK_PIC(Poipole, 48, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Poipole),
         ICON(Poipole, 0),
         .footprint = gMonFootprint_Poipole,
@@ -48550,7 +47882,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 7,
         BACK_PIC(Naganadel, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Naganadel),
         ICON(Naganadel, 0),
         .footprint = gMonFootprint_Naganadel,
@@ -48600,7 +47931,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Stakataka, 64, 48),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Stakataka),
         ICON(Stakataka, 0),
         .footprint = gMonFootprint_Stakataka,
@@ -48650,7 +47980,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_SHAKE_GLOW_RED,
         BACK_PIC(Blacephalon, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Blacephalon),
         ICON(Blacephalon, 0),
         .footprint = gMonFootprint_Blacephalon,
@@ -48699,7 +48028,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_STRETCH,
         BACK_PIC(Zeraora, 64, 56),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Zeraora),
         ICON(Zeraora, 0),
         .footprint = gMonFootprint_Zeraora,
@@ -48748,47 +48076,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_STUTTER_SLOW,
         BACK_PIC(Meltan, 40, 40),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Meltan),
         ICON(Meltan, 2),
         .footprint = gMonFootprint_Meltan,
         LEARNSETS(Meltan),
     },
 
-#define MELMETAL_MISC_INFO                                                  \
-        .baseHP        = 135,                                               \
-        .baseAttack    = 143,                                               \
-        .baseDefense   = 143,                                               \
-        .baseSpeed     = 34,                                                \
-        .baseSpAttack  = 80,                                                \
-        .baseSpDefense = 65,                                                \
-        .types = { TYPE_STEEL, TYPE_STEEL },                                \
-        .catchRate = 3,                                                     \
-        .expYield = 270,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_IRON_FIST, ABILITY_NONE },                   \
-        .bodyColor = BODY_COLOR_GRAY,                                       \
-        .speciesName = _("Melmetal"),                                       \
-        .cryId = CRY_MELMETAL,                                              \
-        .natDexNum = NATIONAL_DEX_MELMETAL,                                 \
-        .categoryName = _("Hex Nut"),                                       \
-        .pokemonScale = 257,                                                \
-        .pokemonOffset = 10,                                                \
-        .trainerScale = 423,                                                \
-        .trainerOffset = 8,                                                 \
-        .footprint = gMonFootprint_Melmetal,                                \
-        LEARNSETS(Melmetal),                                                \
-        .formChangeTable = sMelmetalFormChangeTable,                        \
-        .isMythical = TRUE
-
     [SPECIES_MELMETAL] =
     {
-        MELMETAL_MISC_INFO,
+        .baseHP        = 135,
+        .baseAttack    = 143,
+        .baseDefense   = 143,
+        .baseSpeed     = 34,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 65,
+        .types = { TYPE_STEEL, TYPE_STEEL },
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_IRON_FIST, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Melmetal"),
+        .cryId = CRY_MELMETAL,
+        .natDexNum = NATIONAL_DEX_MELMETAL,
+        .categoryName = _("Hex Nut"),
+        .pokemonScale = 257,
+        .pokemonOffset = 10,
+        .trainerScale = 423,
+        .trainerOffset = 8,
+        .footprint = gMonFootprint_Melmetal,
+        LEARNSETS(Melmetal),
+        .formChangeTable = sMelmetalFormChangeTable,
+        .isMythical = TRUE,
         .height = 25,
         .weight = 800,
         .description = COMPOUND_STRING(
@@ -48801,7 +48125,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Melmetal, 64, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Melmetal),
         ICON(Melmetal, 2),
     },
@@ -48818,10 +48141,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MelmetalGigantamax, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_MelmetalGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MelmetalGigantamax, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MelmetalGigantamax),
         ICON(MelmetalGigantamax, 0),
     },
@@ -48866,10 +48187,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Grookey, 40, 48),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Grookey,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Grookey, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Grookey),
         ICON(Grookey, 1),
         .footprint = gMonFootprint_Grookey,
@@ -48913,10 +48232,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Thwackey, 48, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Thwackey,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Thwackey, 56, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Thwackey),
         ICON(Thwackey, 1),
         .footprint = gMonFootprint_Thwackey,
@@ -48924,35 +48241,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_RILLABOOM}),
     },
 
-#define RILLABOOM_MISC_INFO                                                     \
-        .baseHP        = 100,                                                   \
-        .baseAttack    = 125,                                                   \
-        .baseDefense   = 90,                                                    \
-        .baseSpeed     = 85,                                                    \
-        .baseSpAttack  = 60,                                                    \
-        .baseSpDefense = 70,                                                    \
-        .types = { TYPE_GRASS, TYPE_GRASS },                                    \
-        .catchRate = 45,                                                        \
-        .expYield = 265,                                                        \
-        .evYield_Attack    = 3,                                                 \
-        .genderRatio = PERCENT_FEMALE(12.5),                                    \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },                      \
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GRASSY_SURGE },  \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .speciesName = _("Rillaboom"),                                          \
-        .cryId = CRY_RILLABOOM,                                                 \
-        .natDexNum = NATIONAL_DEX_RILLABOOM,                                    \
-        .categoryName = _("Drummer"),                                           \
-        .footprint = gMonFootprint_Rillaboom,                                   \
-        LEARNSETS(Rillaboom),                                                   \
-        .formChangeTable = sRillaboomFormChangeTable
-
     [SPECIES_RILLABOOM] =
     {
-        RILLABOOM_MISC_INFO,
+        .baseHP        = 100,
+        .baseAttack    = 125,
+        .baseDefense   = 90,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 70,
+        .types = { TYPE_GRASS, TYPE_GRASS },
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GRASSY_SURGE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Rillaboom"),
+        .cryId = CRY_RILLABOOM,
+        .natDexNum = NATIONAL_DEX_RILLABOOM,
+        .categoryName = _("Drummer"),
+        .footprint = gMonFootprint_Rillaboom,
+        LEARNSETS(Rillaboom),
+        .formChangeTable = sRillaboomFormChangeTable,
         .height = 21,
         .weight = 900,
         .pokemonScale = 256,
@@ -48966,10 +48280,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Rillaboom, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Rillaboom,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Rillaboom, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Rillaboom),
         ICON(Rillaboom, 1),
     },
@@ -48989,10 +48301,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RillaboomGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RillaboomGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(RillaboomGigantamax, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RillaboomGigantamax),
         ICON(RillaboomGigantamax, 1),
         .formSpeciesIdTable = sRillaboomFormSpeciesIdTable,
@@ -49039,10 +48349,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Scorbunny, 40, 56),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Scorbunny,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Scorbunny, 48, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Scorbunny),
         ICON(Scorbunny, 0),
         .footprint = gMonFootprint_Scorbunny,
@@ -49086,10 +48394,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Raboot, 40, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Raboot,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Raboot, 56, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Raboot),
         ICON(Raboot, 0),
         .footprint = gMonFootprint_Raboot,
@@ -49097,35 +48403,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_CINDERACE}),
     },
 
-#define CINDERACE_MISC_INFO                                             \
-        .baseHP        = 80,                                            \
-        .baseAttack    = 116,                                           \
-        .baseDefense   = 75,                                            \
-        .baseSpeed     = 119,                                           \
-        .baseSpAttack  = 65,                                            \
-        .baseSpDefense = 75,                                            \
-        .types = { TYPE_FIRE, TYPE_FIRE },                              \
-        .catchRate = 45,                                                \
-        .expYield = 265,                                                \
-        .evYield_Speed     = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },         \
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO },   \
-        .bodyColor = BODY_COLOR_WHITE,                                  \
-        .speciesName = _("Cinderace"),                                  \
-        .cryId = CRY_CINDERACE,                                         \
-        .natDexNum = NATIONAL_DEX_CINDERACE,                            \
-        .categoryName = _("Striker"),                                   \
-        .footprint = gMonFootprint_Cinderace,                           \
-        LEARNSETS(Cinderace),                                           \
-        .formChangeTable = sCinderaceFormChangeTable
-
     [SPECIES_CINDERACE] =
     {
-        CINDERACE_MISC_INFO,
+        .baseHP        = 80,
+        .baseAttack    = 116,
+        .baseDefense   = 75,
+        .baseSpeed     = 119,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 75,
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_Speed     = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
+        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Cinderace"),
+        .cryId = CRY_CINDERACE,
+        .natDexNum = NATIONAL_DEX_CINDERACE,
+        .categoryName = _("Striker"),
+        .footprint = gMonFootprint_Cinderace,
+        LEARNSETS(Cinderace),
+        .formChangeTable = sCinderaceFormChangeTable,
         .height = 14,
         .weight = 330,
         .description = COMPOUND_STRING(
@@ -49140,10 +48443,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cinderace, 40, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cinderace,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cinderace, 48, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cinderace),
         ICON(Cinderace, 0),
     },
@@ -49163,10 +48464,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CinderaceGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_CinderaceGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CinderaceGigantamax, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CinderaceGigantamax),
         ICON(CinderaceGigantamax, 0),
         .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,
@@ -49214,10 +48513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Sobble, 40, 56),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Sobble,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sobble, 40, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sobble),
         ICON(Sobble, 2),
         .footprint = gMonFootprint_Sobble,
@@ -49261,10 +48558,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Drizzile, 40, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Drizzile,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Drizzile, 56, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Drizzile),
         ICON(Drizzile, 2),
         .footprint = gMonFootprint_Drizzile,
@@ -49272,35 +48567,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_INTELEON}),
     },
 
-#define INTELEON_MISC_INFO                                              \
-        .baseHP        = 70,                                            \
-        .baseAttack    = 85,                                            \
-        .baseDefense   = 65,                                            \
-        .baseSpeed     = 120,                                           \
-        .baseSpAttack  = 125,                                           \
-        .baseSpDefense = 65,                                            \
-        .types = { TYPE_WATER, TYPE_WATER },                            \
-        .catchRate = 45,                                                \
-        .expYield = 265,                                                \
-        .evYield_Speed     = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },            \
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SNIPER }, \
-        .bodyColor = BODY_COLOR_BLUE,                                   \
-        .speciesName = _("Inteleon"),                                   \
-        .cryId = CRY_INTELEON,                                          \
-        .natDexNum = NATIONAL_DEX_INTELEON,                             \
-        .categoryName = _("Secret Agent"),                              \
-        .footprint = gMonFootprint_Inteleon,                            \
-        LEARNSETS(Inteleon),                                            \
-        .formChangeTable = sInteleonFormChangeTable
-
     [SPECIES_INTELEON] =
     {
-        INTELEON_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 85,
+        .baseDefense   = 65,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 125,
+        .baseSpDefense = 65,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 45,
+        .expYield = 265,
+        .evYield_Speed     = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SNIPER },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Inteleon"),
+        .cryId = CRY_INTELEON,
+        .natDexNum = NATIONAL_DEX_INTELEON,
+        .categoryName = _("Secret Agent"),
+        .footprint = gMonFootprint_Inteleon,
+        LEARNSETS(Inteleon),
+        .formChangeTable = sInteleonFormChangeTable,
         .height = 19,
         .weight = 452,
         .description = COMPOUND_STRING(
@@ -49315,10 +48607,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Inteleon, 48, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Inteleon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Inteleon, 56, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Inteleon),
         ICON(Inteleon, 0),
     },
@@ -49338,10 +48628,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(InteleonGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_InteleonGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(InteleonGigantamax, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(InteleonGigantamax),
         ICON(InteleonGigantamax, 0),
         .isGigantamax = TRUE,
@@ -49387,10 +48675,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Skwovet, 40, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Skwovet,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Skwovet, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Skwovet),
         ICON(Skwovet, 2),
         .footprint = gMonFootprint_Skwovet,
@@ -49436,10 +48722,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Greedent, 56, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Greedent,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Greedent, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Greedent),
         ICON(Greedent, 0),
         .footprint = gMonFootprint_Greedent,
@@ -49488,7 +48772,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_VIBRATE,
         BACK_PIC(Rookidee, 64, 32),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Rookidee),
         ICON(Rookidee, 0),
         .footprint = gMonFootprint_Rookidee,
@@ -49537,7 +48820,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 10,
         BACK_PIC(Corvisquire, 56, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Corvisquire),
         ICON(Corvisquire, 0),
         .footprint = gMonFootprint_Corvisquire,
@@ -49545,35 +48827,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CORVIKNIGHT}),
     },
 
-#define CORVIKNIGHT_MISC_INFO                                                       \
-        .baseHP        = 98,                                                        \
-        .baseAttack    = 87,                                                        \
-        .baseDefense   = 105,                                                       \
-        .baseSpeed     = 67,                                                        \
-        .baseSpAttack  = 53,                                                        \
-        .baseSpDefense = 85,                                                        \
-        .types = { TYPE_FLYING, TYPE_STEEL },                                       \
-        .catchRate = 45,                                                            \
-        .expYield = 248,                                                            \
-        .evYield_Defense   = 3,                                                     \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 15,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                           \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },                        \
-        .abilities = { ABILITY_PRESSURE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR },   \
-        .bodyColor = BODY_COLOR_PURPLE,                                             \
-        .speciesName = _("Corviknigh"),                                             \
-        .cryId = CRY_CORVIKNIGHT,                                                   \
-        .natDexNum = NATIONAL_DEX_CORVIKNIGHT,                                      \
-        .categoryName = _("Raven"),                                                 \
-        .footprint = gMonFootprint_Corviknight,                                     \
-        LEARNSETS(Corviknight),                                                     \
-        .formChangeTable = sCorviknightFormChangeTable
-
     [SPECIES_CORVIKNIGHT] =
     {
-        CORVIKNIGHT_MISC_INFO,
+        .baseHP        = 98,
+        .baseAttack    = 87,
+        .baseDefense   = 105,
+        .baseSpeed     = 67,
+        .baseSpAttack  = 53,
+        .baseSpDefense = 85,
+        .types = { TYPE_FLYING, TYPE_STEEL },
+        .catchRate = 45,
+        .expYield = 248,
+        .evYield_Defense   = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .abilities = { ABILITY_PRESSURE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Corviknigh"),
+        .cryId = CRY_CORVIKNIGHT,
+        .natDexNum = NATIONAL_DEX_CORVIKNIGHT,
+        .categoryName = _("Raven"),
+        .footprint = gMonFootprint_Corviknight,
+        LEARNSETS(Corviknight),
+        .formChangeTable = sCorviknightFormChangeTable,
         .height = 22,
         .weight = 750,
         .description = COMPOUND_STRING(
@@ -49591,7 +48870,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_VIBRATE,
         BACK_PIC(Corviknight, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Corviknight),
         ICON(Corviknight, 0),
     },
@@ -49611,10 +48889,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CorviknightGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_CorviknightGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CorviknightGigantamax, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CorviknightGigantamax),
         ICON(CorviknightGigantamax, 0),
         .formSpeciesIdTable = sCorviknightFormSpeciesIdTable,
@@ -49660,10 +48936,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Blipbug, 32, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Blipbug,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Blipbug, 40, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Blipbug),
         ICON(Blipbug, 0),
         .footprint = gMonFootprint_Blipbug,
@@ -49709,10 +48983,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dottler, 48, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Dottler,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dottler, 56, 32),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dottler),
         ICON(Dottler, 2),
         .footprint = gMonFootprint_Dottler,
@@ -49720,36 +48992,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ORBEETLE}),
     },
 
-#define ORBEETLE_MISC_INFO                                                  \
-        .baseHP        = 60,                                                \
-        .baseAttack    = 45,                                                \
-        .baseDefense   = 110,                                               \
-        .baseSpeed     = 90,                                                \
-        .baseSpAttack  = 80,                                                \
-        .baseSpDefense = 120,                                               \
-        .types = { TYPE_BUG, TYPE_PSYCHIC },                                \
-        .catchRate = 45,                                                    \
-        .expYield = 253,                                                    \
-        .evYield_SpDefense = 3,                                             \
-        .itemRare = ITEM_PSYCHIC_SEED,                                      \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 15,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                      \
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },   \
-        .bodyColor = BODY_COLOR_RED,                                        \
-        .speciesName = _("Orbeetle"),                                       \
-        .cryId = CRY_ORBEETLE,                                              \
-        .natDexNum = NATIONAL_DEX_ORBEETLE,                                 \
-        .categoryName = _("Seven Spot"),                                    \
-        .footprint = gMonFootprint_Orbeetle,                                \
-        LEARNSETS(Orbeetle),                                                \
-        .formChangeTable = sOrbeetleFormChangeTable
-
     [SPECIES_ORBEETLE] =
     {
-        ORBEETLE_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 110,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 120,
+        .types = { TYPE_BUG, TYPE_PSYCHIC },
+        .catchRate = 45,
+        .expYield = 253,
+        .evYield_SpDefense = 3,
+        .itemRare = ITEM_PSYCHIC_SEED,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Orbeetle"),
+        .cryId = CRY_ORBEETLE,
+        .natDexNum = NATIONAL_DEX_ORBEETLE,
+        .categoryName = _("Seven Spot"),
+        .footprint = gMonFootprint_Orbeetle,
+        LEARNSETS(Orbeetle),
+        .formChangeTable = sOrbeetleFormChangeTable,
         .height = 4,
         .weight = 408,
         .description = COMPOUND_STRING(
@@ -49764,11 +49033,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Orbeetle, 48, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Orbeetle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(Orbeetle, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Orbeetle),
         ICON(Orbeetle, 0),
     },
@@ -49788,10 +49055,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(OrbeetleGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_OrbeetleGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OrbeetleGigantamax, 64, 64),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OrbeetleGigantamax),
         ICON(OrbeetleGigantamax, 0),
         .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
@@ -49838,10 +49103,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Nickit, 56, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Nickit,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Nickit, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Nickit),
         ICON(Nickit, 2),
         .footprint = gMonFootprint_Nickit,
@@ -49886,10 +49149,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Thievul, 64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Thievul,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Thievul, 56, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Thievul),
         ICON(Thievul, 2),
         .footprint = gMonFootprint_Thievul,
@@ -49935,10 +49196,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Gossifleur, 48, 56),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Gossifleur,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Gossifleur, 56, 48),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Gossifleur),
         ICON(Gossifleur, 1),
         .footprint = gMonFootprint_Gossifleur,
@@ -49983,10 +49242,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Eldegoss, 48, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Eldegoss,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Eldegoss, 64, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Eldegoss),
         ICON(Eldegoss, 1),
         .footprint = gMonFootprint_Eldegoss,
@@ -50032,10 +49289,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Wooloo, 40, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Wooloo,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wooloo, 56, 32),
         .backPicYOffset = 18,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wooloo),
         ICON(Wooloo, 0),
         .footprint = gMonFootprint_Wooloo,
@@ -50080,10 +49335,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dubwool, 48, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Dubwool,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dubwool, 64, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dubwool),
         ICON(Dubwool, 2),
         .footprint = gMonFootprint_Dubwool,
@@ -50128,10 +49381,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Chewtle, 32, 48),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Chewtle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Chewtle, 56, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Chewtle),
         ICON(Chewtle, 0),
         .footprint = gMonFootprint_Chewtle,
@@ -50139,35 +49390,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_DREDNAW}),
     },
 
-#define DREDNAW_MISC_INFO                                                               \
-        .baseHP        = 90,                                                            \
-        .baseAttack    = 115,                                                           \
-        .baseDefense   = 90,                                                            \
-        .baseSpeed     = 74,                                                            \
-        .baseSpAttack  = 48,                                                            \
-        .baseSpDefense = 68,                                                            \
-        .types = { TYPE_WATER, TYPE_ROCK },                                             \
-        .catchRate = 75,                                                                \
-        .expYield = 170,                                                                \
-        .evYield_Attack    = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },                          \
-        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },   \
-        .bodyColor = BODY_COLOR_GREEN,                                                  \
-        .speciesName = _("Drednaw"),                                                    \
-        .cryId = CRY_DREDNAW,                                                           \
-        .natDexNum = NATIONAL_DEX_DREDNAW,                                              \
-        .categoryName = _("Bite"),                                                      \
-        .footprint = gMonFootprint_Drednaw,                                             \
-        LEARNSETS(Drednaw),                                                             \
-        .formChangeTable = sDrednawFormChangeTable
-
     [SPECIES_DREDNAW] =
     {
-        DREDNAW_MISC_INFO,
+        .baseHP        = 90,
+        .baseAttack    = 115,
+        .baseDefense   = 90,
+        .baseSpeed     = 74,
+        .baseSpAttack  = 48,
+        .baseSpDefense = 68,
+        .types = { TYPE_WATER, TYPE_ROCK },
+        .catchRate = 75,
+        .expYield = 170,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1 },
+        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Drednaw"),
+        .cryId = CRY_DREDNAW,
+        .natDexNum = NATIONAL_DEX_DREDNAW,
+        .categoryName = _("Bite"),
+        .footprint = gMonFootprint_Drednaw,
+        LEARNSETS(Drednaw),
+        .formChangeTable = sDrednawFormChangeTable,
         .height = 10,
         .weight = 1155,
         .description = COMPOUND_STRING(
@@ -50184,7 +49432,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Drednaw, 64, 40),
         .backPicYOffset = 18,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Drednaw),
         ICON(Drednaw, 0),
     },
@@ -50204,10 +49451,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DrednawGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DrednawGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DrednawGigantamax, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DrednawGigantamax),
         ICON(DrednawGigantamax, 0),
         .formSpeciesIdTable = sDrednawFormSpeciesIdTable,
@@ -50254,10 +49499,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Yamper, 40, 48),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Yamper,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Yamper, 48, 48),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Yamper),
         ICON(Yamper, 1),
         .footprint = gMonFootprint_Yamper,
@@ -50302,10 +49545,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Boltund, 48, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Boltund,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Boltund, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Boltund),
         ICON(Boltund, 1),
         .footprint = gMonFootprint_Boltund,
@@ -50354,7 +49595,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         BACK_PIC(Rolycoly, 64, 32),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Rolycoly),
         ICON(Rolycoly, 0),
         .footprint = gMonFootprint_Rolycoly,
@@ -50398,10 +49638,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Carkol, 48, 56),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Carkol,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Carkol, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Carkol),
         ICON(Carkol, 0),
         .footprint = gMonFootprint_Carkol,
@@ -50409,35 +49647,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COALOSSAL}),
     },
 
-#define COALOSSAL_MISC_INFO                                                             \
-        .baseHP        = 110,                                                           \
-        .baseAttack    = 80,                                                            \
-        .baseDefense   = 120,                                                           \
-        .baseSpeed     = 30,                                                            \
-        .baseSpAttack  = 80,                                                            \
-        .baseSpDefense = 90,                                                            \
-        .types = { TYPE_ROCK, TYPE_FIRE },                                              \
-        .catchRate = 45,                                                                \
-        .expYield = 255,                                                                \
-        .evYield_Defense   = 3,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 15,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                               \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },                          \
-        .abilities = { ABILITY_STEAM_ENGINE, ABILITY_FLAME_BODY, ABILITY_FLASH_FIRE },  \
-        .bodyColor = BODY_COLOR_BLACK,                                                  \
-        .speciesName = _("Coalossal"),                                                  \
-        .cryId = CRY_COALOSSAL,                                                         \
-        .natDexNum = NATIONAL_DEX_COALOSSAL,                                            \
-        .categoryName = _("Coal"),                                                      \
-        .footprint = gMonFootprint_Coalossal,                                           \
-        LEARNSETS(Coalossal),                                                           \
-        .formChangeTable = sCoalossalFormChangeTable
-
     [SPECIES_COALOSSAL] =
     {
-        COALOSSAL_MISC_INFO,
+        .baseHP        = 110,
+        .baseAttack    = 80,
+        .baseDefense   = 120,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 90,
+        .types = { TYPE_ROCK, TYPE_FIRE },
+        .catchRate = 45,
+        .expYield = 255,
+        .evYield_Defense   = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_STEAM_ENGINE, ABILITY_FLAME_BODY, ABILITY_FLASH_FIRE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Coalossal"),
+        .cryId = CRY_COALOSSAL,
+        .natDexNum = NATIONAL_DEX_COALOSSAL,
+        .categoryName = _("Coal"),
+        .footprint = gMonFootprint_Coalossal,
+        LEARNSETS(Coalossal),
+        .formChangeTable = sCoalossalFormChangeTable,
         .height = 28,
         .weight = 3105,
         .description = COMPOUND_STRING(
@@ -50455,7 +49690,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GLOW_RED,
         BACK_PIC(Coalossal, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Coalossal),
         ICON(Coalossal, 0),
     },
@@ -50475,10 +49709,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CoalossalGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_CoalossalGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CoalossalGigantamax, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CoalossalGigantamax),
         ICON(CoalossalGigantamax, 0),
         .formSpeciesIdTable = sCoalossalFormSpeciesIdTable,
@@ -50525,10 +49757,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Applin, 32, 40),
         .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_Applin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Applin, 40, 48),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Applin),
         ICON(Applin, 1),
         .footprint = gMonFootprint_Applin,
@@ -50538,35 +49768,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SYRUPY_APPLE, SPECIES_DIPPLIN}),
     },
 
-#define FLAPPLE_MISC_INFO                                                   \
-        .baseHP        = 70,                                                \
-        .baseAttack    = 110,                                               \
-        .baseDefense   = 80,                                                \
-        .baseSpeed     = 70,                                                \
-        .baseSpAttack  = 95,                                                \
-        .baseSpDefense = 60,                                                \
-        .types = { TYPE_GRASS, TYPE_DRAGON },                               \
-        .catchRate = 45,                                                    \
-        .expYield = 170,                                                    \
-        .evYield_Attack    = 2,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_ERRATIC,                                       \
-        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_DRAGON },                 \
-        .abilities = { ABILITY_RIPEN, ABILITY_GLUTTONY, ABILITY_HUSTLE },   \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .speciesName = _("Flapple"),                                        \
-        .cryId = CRY_FLAPPLE,                                               \
-        .natDexNum = NATIONAL_DEX_FLAPPLE,                                  \
-        .categoryName = _("Apple Wing"),                                    \
-        .footprint = gMonFootprint_Flapple,                                 \
-        LEARNSETS(Flapple),                                                 \
-        .formChangeTable = sFlappleFormChangeTable
-
     [SPECIES_FLAPPLE] =
     {
-        FLAPPLE_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 110,
+        .baseDefense   = 80,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 60,
+        .types = { TYPE_GRASS, TYPE_DRAGON },
+        .catchRate = 45,
+        .expYield = 170,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_DRAGON },
+        .abilities = { ABILITY_RIPEN, ABILITY_GLUTTONY, ABILITY_HUSTLE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Flapple"),
+        .cryId = CRY_FLAPPLE,
+        .natDexNum = NATIONAL_DEX_FLAPPLE,
+        .categoryName = _("Apple Wing"),
+        .footprint = gMonFootprint_Flapple,
+        LEARNSETS(Flapple),
+        .formChangeTable = sFlappleFormChangeTable,
         .height = 3,
         .weight = 10,
         .description = COMPOUND_STRING(
@@ -50580,11 +49807,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Flapple, 56, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Flapple,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 9,
         BACK_PIC(Flapple, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Flapple),
         ICON(Flapple, 1),
     },
@@ -50604,10 +49829,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(FlappleGigantamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_FlappleGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(FlappleGigantamax, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(FlappleGigantamax),
         ICON(FlappleGigantamax, 1),
         .formSpeciesIdTable = sFlappleFormSpeciesIdTable,
@@ -50615,35 +49838,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_GIGANTAMAX_FORMS
 
-#define APPLETUN_MISC_INFO                                                      \
-        .baseHP        = 110,                                                   \
-        .baseAttack    = 85,                                                    \
-        .baseDefense   = 80,                                                    \
-        .baseSpeed     = 30,                                                    \
-        .baseSpAttack  = 100,                                                   \
-        .baseSpDefense = 80,                                                    \
-        .types = { TYPE_GRASS, TYPE_DRAGON },                                   \
-        .catchRate = 45,                                                        \
-        .expYield = 170,                                                        \
-        .evYield_HP        = 2,                                                 \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_ERRATIC,                                           \
-        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_DRAGON },                     \
-        .abilities = { ABILITY_RIPEN, ABILITY_GLUTTONY, ABILITY_THICK_FAT },    \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .speciesName = _("Appletun"),                                           \
-        .cryId = CRY_APPLETUN,                                                  \
-        .natDexNum = NATIONAL_DEX_APPLETUN,                                     \
-        .categoryName = _("Apple Nectar"),                                      \
-        .footprint = gMonFootprint_Appletun,                                    \
-        LEARNSETS(Appletun),                                                    \
-        .formChangeTable = sAppletunFormChangeTable
-
     [SPECIES_APPLETUN] =
     {
-        APPLETUN_MISC_INFO,
+        .baseHP        = 110,
+        .baseAttack    = 85,
+        .baseDefense   = 80,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 80,
+        .types = { TYPE_GRASS, TYPE_DRAGON },
+        .catchRate = 45,
+        .expYield = 170,
+        .evYield_HP        = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = { EGG_GROUP_GRASS, EGG_GROUP_DRAGON },
+        .abilities = { ABILITY_RIPEN, ABILITY_GLUTTONY, ABILITY_THICK_FAT },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Appletun"),
+        .cryId = CRY_APPLETUN,
+        .natDexNum = NATIONAL_DEX_APPLETUN,
+        .categoryName = _("Apple Nectar"),
+        .footprint = gMonFootprint_Appletun,
+        LEARNSETS(Appletun),
+        .formChangeTable = sAppletunFormChangeTable,
         .height = 4,
         .weight = 130,
         .description = COMPOUND_STRING(
@@ -50657,10 +49877,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Appletun, 64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Appletun,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Appletun, 64, 56),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Appletun),
         ICON(Appletun, 1),
     },
@@ -50680,10 +49898,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AppletunGigantamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_AppletunGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AppletunGigantamax, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AppletunGigantamax),
         ICON(AppletunGigantamax, 1),
         .formSpeciesIdTable = sAppletunFormSpeciesIdTable,
@@ -50728,13 +49944,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dipplin, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Dipplin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dipplin, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dipplin),
         ICON(Dipplin, 1),
-        //.footprint = gMonFootprint_Dipplin,
         LEARNSETS(Dipplin),
     },
 #endif //P_GEN_9_CROSS_EVOS
@@ -50777,10 +49990,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Silicobra, 40, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Silicobra,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Silicobra, 56, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Silicobra),
         ICON(Silicobra, 1),
         .footprint = gMonFootprint_Silicobra,
@@ -50788,35 +49999,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SANDACONDA}),
     },
 
-#define SANDACONDA_MISC_INFO                                                        \
-        .baseHP        = 72,                                                        \
-        .baseAttack    = 107,                                                       \
-        .baseDefense   = 125,                                                       \
-        .baseSpeed     = 71,                                                        \
-        .baseSpAttack  = 65,                                                        \
-        .baseSpDefense = 70,                                                        \
-        .types = { TYPE_GROUND, TYPE_GROUND },                                      \
-        .catchRate = 120,                                                           \
-        .expYield = 179,                                                            \
-        .evYield_Defense   = 2,                                                     \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_DRAGON },                         \
-        .abilities = { ABILITY_SAND_SPIT, ABILITY_SHED_SKIN, ABILITY_SAND_VEIL },   \
-        .bodyColor = BODY_COLOR_GREEN,                                              \
-        .speciesName = _("Sandaconda"),                                             \
-        .cryId = CRY_SANDACONDA,                                                    \
-        .natDexNum = NATIONAL_DEX_SANDACONDA,                                       \
-        .categoryName = _("Sand Snake"),                                            \
-        .footprint = gMonFootprint_Sandaconda,                                      \
-        LEARNSETS(Sandaconda),                                                      \
-        .formChangeTable = sSandacondaFormChangeTable
-
     [SPECIES_SANDACONDA] =
     {
-        SANDACONDA_MISC_INFO,
+        .baseHP        = 72,
+        .baseAttack    = 107,
+        .baseDefense   = 125,
+        .baseSpeed     = 71,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 70,
+        .types = { TYPE_GROUND, TYPE_GROUND },
+        .catchRate = 120,
+        .expYield = 179,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_DRAGON },
+        .abilities = { ABILITY_SAND_SPIT, ABILITY_SHED_SKIN, ABILITY_SAND_VEIL },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Sandaconda"),
+        .cryId = CRY_SANDACONDA,
+        .natDexNum = NATIONAL_DEX_SANDACONDA,
+        .categoryName = _("Sand Snake"),
+        .footprint = gMonFootprint_Sandaconda,
+        LEARNSETS(Sandaconda),
+        .formChangeTable = sSandacondaFormChangeTable,
         .height = 38,
         .weight = 655,
         .description = COMPOUND_STRING(
@@ -50831,10 +50039,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Sandaconda, 64, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Sandaconda,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sandaconda, 64, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sandaconda),
         ICON(Sandaconda, 1),
     },
@@ -50855,10 +50061,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SandacondaGigantamax, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_SandacondaGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandacondaGigantamax, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SandacondaGigantamax),
         ICON(SandacondaGigantamax, 1),
         .formSpeciesIdTable = sSandacondaFormSpeciesIdTable,
@@ -50868,42 +50072,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SILICOBRA
 
 #if P_FAMILY_CRAMORANT
-#define CRAMORANT_MISC_INFO                                     \
-        .baseHP        = 70,                                    \
-        .baseAttack    = 85,                                    \
-        .baseDefense   = 55,                                    \
-        .baseSpeed     = 85,                                    \
-        .baseSpAttack  = 85,                                    \
-        .baseSpDefense = 95,                                    \
-        .types = { TYPE_FLYING, TYPE_WATER },                   \
-        .catchRate = 45,                                        \
-        .expYield = 166,                                        \
-        .evYield_SpDefense = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FLYING },   \
-        .abilities = { ABILITY_GULP_MISSILE, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Cramorant"),                          \
-        .cryId = CRY_CRAMORANT,                                 \
-        .natDexNum = NATIONAL_DEX_CRAMORANT,                    \
-        .categoryName = _("Gulp"),                              \
-        .height = 8,                                            \
-        .weight = 180,                                          \
-        .pokemonScale = 366,                                    \
-        .pokemonOffset = 7,                                     \
-        .trainerScale = 257,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Cramorant,                   \
-        LEARNSETS(Cramorant),                                   \
-        .formSpeciesIdTable = sCramorantFormSpeciesIdTable,     \
-        .formChangeTable = sCramorantFormChangeTable
 
     [SPECIES_CRAMORANT] =
     {
-        CRAMORANT_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 85,
+        .baseDefense   = 55,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 95,
+        .types = { TYPE_FLYING, TYPE_WATER },
+        .catchRate = 45,
+        .expYield = 166,
+        .evYield_SpDefense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FLYING },
+        .abilities = { ABILITY_GULP_MISSILE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Cramorant"),
+        .cryId = CRY_CRAMORANT,
+        .natDexNum = NATIONAL_DEX_CRAMORANT,
+        .categoryName = _("Gulp"),
+        .height = 8,
+        .weight = 180,
+        .pokemonScale = 366,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Cramorant,
+        LEARNSETS(Cramorant),
+        .formSpeciesIdTable = sCramorantFormSpeciesIdTable,
+        .formChangeTable = sCramorantFormChangeTable,
         .description = COMPOUND_STRING(
             "It's so strong that it can knock out some\n"
             "opponents in a single hit, but it also may\n"
@@ -50911,10 +50113,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cramorant, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cramorant,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cramorant, 56, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cramorant),
         ICON(Cramorant, 0),
     },
@@ -50927,10 +50127,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CramorantGulping, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cramorant,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CramorantGulping, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CramorantGulping),
         ICON(CramorantGulping, 0),
     },
@@ -50943,10 +50141,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CramorantGorging, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cramorant,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CramorantGorging, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CramorantGorging),
         ICON(CramorantGorging, 0),
     },
@@ -50990,10 +50186,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Arrokuda, 56, 32),
         .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_Arrokuda,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arrokuda, 48, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Arrokuda),
         ICON(Arrokuda, 2),
         .footprint = gMonFootprint_Arrokuda,
@@ -51038,10 +50232,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Barraskewda, 56, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Barraskewda,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Barraskewda, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Barraskewda),
         ICON(Barraskewda, 2),
         .footprint = gMonFootprint_Barraskewda,
@@ -51087,10 +50279,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Toxel, 40, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Toxel,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Toxel, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Toxel),
         ICON(Toxel, 2),
         .footprint = gMonFootprint_Toxel,
@@ -51099,32 +50289,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_NATURE_LOW_KEY, 30, SPECIES_TOXTRICITY_LOW_KEY}),
     },
 
-#define TOXTRICITY_MISC_INFO                                            \
-        .baseHP        = 75,                                            \
-        .baseAttack    = 98,                                            \
-        .baseDefense   = 70,                                            \
-        .baseSpeed     = 75,                                            \
-        .baseSpAttack  = 114,                                           \
-        .baseSpDefense = 70,                                            \
-        .types = { TYPE_ELECTRIC, TYPE_POISON },                        \
-        .catchRate = 45,                                                \
-        .expYield = 176,                                                \
-        .evYield_SpAttack  = 2,                                         \
-        .genderRatio = PERCENT_FEMALE(50),                              \
-        .eggCycles = 25,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },    \
-        .bodyColor = BODY_COLOR_PURPLE,                                 \
-        .speciesName = _("Toxtricity"),                                 \
-        .natDexNum = NATIONAL_DEX_TOXTRICITY,                           \
-        .categoryName = _("Punk"),                                      \
-        .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,            \
-        .formChangeTable = sToxtricityAmpedFormChangeTable
-
     [SPECIES_TOXTRICITY_AMPED] =
     {
-        TOXTRICITY_MISC_INFO,
+        .baseHP        = 75,
+        .baseAttack    = 98,
+        .baseDefense   = 70,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 114,
+        .baseSpDefense = 70,
+        .types = { TYPE_ELECTRIC, TYPE_POISON },
+        .catchRate = 45,
+        .expYield = 176,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_HUMAN_LIKE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Toxtricity"),
+        .natDexNum = NATIONAL_DEX_TOXTRICITY,
+        .categoryName = _("Punk"),
+        .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
+        .formChangeTable = sToxtricityAmpedFormChangeTable,
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
         .cryId = CRY_TOXTRICITY_AMPED,
         .height = 16,
@@ -51141,10 +50328,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ToxtricityAmped, 48, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Toxtricity,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ToxtricityAmped, 56, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ToxtricityAmped),
         ICON(ToxtricityAmped, 2),
         .footprint = gMonFootprint_Toxtricity,
@@ -51168,10 +50353,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ToxtricityGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ToxtricityGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ToxtricityGigantamax, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ToxtricityGigantamax),
         ICON(ToxtricityGigantamax, 0),
         .footprint = gMonFootprint_Toxtricity,
@@ -51196,10 +50379,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ToxtricityLowKey, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Toxtricity,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ToxtricityLowKey, 48, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ToxtricityLowKey),
         ICON(ToxtricityLowKey, 2),
         .footprint = gMonFootprint_Toxtricity,
@@ -51222,10 +50403,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ToxtricityGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ToxtricityGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ToxtricityGigantamax, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ToxtricityGigantamax),
         ICON(ToxtricityGigantamax, 0),
         .footprint = gMonFootprint_Toxtricity,
@@ -51275,7 +50454,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_VIBRATE,
         BACK_PIC(Sizzlipede, 40, 32),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sizzlipede),
         ICON(Sizzlipede, 0),
         .footprint = gMonFootprint_Sizzlipede,
@@ -51283,35 +50461,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_CENTISKORCH}),
     },
 
-#define CENTISKORCH_MISC_INFO                                                           \
-        .baseHP        = 100,                                                           \
-        .baseAttack    = 115,                                                           \
-        .baseDefense   = 65,                                                            \
-        .baseSpeed     = 65,                                                            \
-        .baseSpAttack  = 90,                                                            \
-        .baseSpDefense = 90,                                                            \
-        .types = { TYPE_FIRE, TYPE_BUG },                                               \
-        .catchRate = 75,                                                                \
-        .expYield = 184,                                                                \
-        .evYield_Attack    = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                                  \
-        .abilities = { ABILITY_FLASH_FIRE, ABILITY_WHITE_SMOKE, ABILITY_FLAME_BODY },   \
-        .bodyColor = BODY_COLOR_RED,                                                    \
-        .speciesName = _("Centiskorc"),                                                 \
-        .cryId = CRY_CENTISKORCH,                                                       \
-        .natDexNum = NATIONAL_DEX_CENTISKORCH,                                          \
-        .categoryName = _("Radiator"),                                                  \
-        .footprint = gMonFootprint_Centiskorch,                                         \
-        LEARNSETS(Centiskorch),                                                         \
-        .formChangeTable = sCentiskorchFormChangeTable
-
     [SPECIES_CENTISKORCH] =
     {
-        CENTISKORCH_MISC_INFO,
+        .baseHP        = 100,
+        .baseAttack    = 115,
+        .baseDefense   = 65,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 90,
+        .types = { TYPE_FIRE, TYPE_BUG },
+        .catchRate = 75,
+        .expYield = 184,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_WHITE_SMOKE, ABILITY_FLAME_BODY },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Centiskorc"),
+        .cryId = CRY_CENTISKORCH,
+        .natDexNum = NATIONAL_DEX_CENTISKORCH,
+        .categoryName = _("Radiator"),
+        .footprint = gMonFootprint_Centiskorch,
+        LEARNSETS(Centiskorch),
+        .formChangeTable = sCentiskorchFormChangeTable,
         .height = 30,
         .weight = 1200,
         .description = COMPOUND_STRING(
@@ -51326,10 +50501,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Centiskorch, 64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Centiskorch,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Centiskorch, 56, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Centiskorch),
         ICON(Centiskorch, 0),
     },
@@ -51349,10 +50522,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CentiskorchGigantamax, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_CentiskorchGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CentiskorchGigantamax, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CentiskorchGigantamax),
         ICON(CentiskorchGigantamax, 0),
         .formSpeciesIdTable = sCentiskorchFormSpeciesIdTable,
@@ -51399,10 +50570,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Clobbopus, 48, 40),
         .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Clobbopus,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Clobbopus, 64, 40),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Clobbopus),
         ICON(Clobbopus, 0),
         .footprint = gMonFootprint_Clobbopus,
@@ -51446,10 +50615,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Grapploct, 48, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Grapploct,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Grapploct, 56, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Grapploct),
         ICON(Grapploct, 2),
         .footprint = gMonFootprint_Grapploct,
@@ -51458,50 +50625,46 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CLOBBOPUS
 
 #if P_FAMILY_SINISTEA
-#define SINISTEA_MISC_INFO                                                      \
-        .baseHP        = 40,                                                    \
-        .baseAttack    = 45,                                                    \
-        .baseDefense   = 45,                                                    \
-        .baseSpeed     = 50,                                                    \
-        .baseSpAttack  = 74,                                                    \
-        .baseSpDefense = 54,                                                    \
-        .types = { TYPE_GHOST, TYPE_GHOST },                                    \
-        .catchRate = 120,                                                       \
-        .expYield = 62,                                                         \
-        .evYield_SpAttack  = 1,                                                 \
-        .genderRatio = MON_GENDERLESS,                                          \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },                \
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY }, \
-        .bodyColor = BODY_COLOR_PURPLE,                                         \
-        .speciesName = _("Sinistea"),                                           \
-        .cryId = CRY_SINISTEA,                                                  \
-        .natDexNum = NATIONAL_DEX_SINISTEA,                                     \
-        .categoryName = _("Black Tea"),                                         \
-        .height = 1,                                                            \
-        .weight = 2,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Sinistea, 40, 32),                                            \
-        .frontPicYOffset = 17,                                                  \
-        .frontAnimFrames = sAnims_Sinistea,                                     \
-        BACK_PIC(Sinistea, 48, 32),                                             \
-        .backPicYOffset = 16,                                                   \
-        PALETTES(Sinistea),                                                     \
-        ICON(Sinistea, 2),                                                      \
-        .footprint = gMonFootprint_Sinistea,                                    \
-        LEARNSETS(Sinistea),                                                    \
-        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
 
     [SPECIES_SINISTEA_PHONY] =
     {
-        SINISTEA_MISC_INFO,
+        .baseHP        = 40,
+        .baseAttack    = 45,
+        .baseDefense   = 45,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 74,
+        .baseSpDefense = 54,
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        .catchRate = 120,
+        .expYield = 62,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Sinistea"),
+        .cryId = CRY_SINISTEA,
+        .natDexNum = NATIONAL_DEX_SINISTEA,
+        .categoryName = _("Black Tea"),
+        .height = 1,
+        .weight = 2,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Sinistea, 40, 32),
+        .frontPicYOffset = 17,
+        .frontAnimFrames = sAnims_Sinistea,
+        BACK_PIC(Sinistea, 48, 32),
+        .backPicYOffset = 16,
+        PALETTES(Sinistea),
+        ICON(Sinistea, 2),
+        .footprint = gMonFootprint_Sinistea,
+        LEARNSETS(Sinistea),
+        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "This Pokémon is said to have been born\n"
             "when a lonely spirit possessed a cold,\n"
@@ -51519,50 +50682,45 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
     },
 
-#define POLTEAGEIST_MISC_INFO                                                   \
-        .baseHP        = 60,                                                    \
-        .baseAttack    = 65,                                                    \
-        .baseDefense   = 65,                                                    \
-        .baseSpeed     = 70,                                                    \
-        .baseSpAttack  = 134,                                                   \
-        .baseSpDefense = 114,                                                   \
-        .types = { TYPE_GHOST, TYPE_GHOST },                                    \
-        .catchRate = 60,                                                        \
-        .expYield = 178,                                                        \
-        .evYield_SpAttack  = 2,                                                 \
-        .genderRatio = MON_GENDERLESS,                                          \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },                \
-        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY }, \
-        .bodyColor = BODY_COLOR_PURPLE,                                         \
-        .speciesName = _("Polteageis"),                                         \
-        .cryId = CRY_POLTEAGEIST,                                               \
-        .natDexNum = NATIONAL_DEX_POLTEAGEIST,                                  \
-        .categoryName = _("Black Tea"),                                         \
-        .height = 2,                                                            \
-        .weight = 4,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Polteageist, 48, 48),                                         \
-        .frontPicYOffset = 11,                                                  \
-        .frontAnimFrames = sAnims_Polteageist,                                  \
-        BACK_PIC(Polteageist, 64, 40),                                          \
-        .backPicYOffset = 13,                                                   \
-        PALETTES(Polteageist),                                                  \
-        ICON(Polteageist, 2),                                                   \
-        .footprint = gMonFootprint_Polteageist,                                 \
-        LEARNSETS(Polteageist),                                                 \
-        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-
     [SPECIES_POLTEAGEIST_PHONY] =
     {
-        POLTEAGEIST_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 65,
+        .baseDefense   = 65,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 134,
+        .baseSpDefense = 114,
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        .catchRate = 60,
+        .expYield = 178,
+        .evYield_SpAttack  = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Polteageis"),
+        .cryId = CRY_POLTEAGEIST,
+        .natDexNum = NATIONAL_DEX_POLTEAGEIST,
+        .categoryName = _("Black Tea"),
+        .height = 2,
+        .weight = 4,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Polteageist, 48, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_Polteageist,
+        BACK_PIC(Polteageist, 64, 40),
+        .backPicYOffset = 13,
+        PALETTES(Polteageist),
+        ICON(Polteageist, 2),
+        .footprint = gMonFootprint_Polteageist,
+        LEARNSETS(Polteageist),
+        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "This species lives in antique teapots.\n"
             "Most pots are forgeries, but on rare\n"
@@ -51617,10 +50775,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Hatenna, 48, 48),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Hatenna,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Hatenna, 40, 40),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Hatenna),
         ICON(Hatenna, 0),
         .footprint = gMonFootprint_Hatenna,
@@ -51664,10 +50820,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Hattrem, 56, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Hattrem,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Hattrem, 56, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Hattrem),
         ICON(Hattrem, 0),
         .footprint = gMonFootprint_Hattrem,
@@ -51675,35 +50829,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_HATTERENE}),
     },
 
-#define HATTERENE_MISC_INFO                                                             \
-        .baseHP        = 57,                                                            \
-        .baseAttack    = 90,                                                            \
-        .baseDefense   = 95,                                                            \
-        .baseSpeed     = 29,                                                            \
-        .baseSpAttack  = 136,                                                           \
-        .baseSpDefense = 103,                                                           \
-        .types = { TYPE_PSYCHIC, TYPE_FAIRY },                                          \
-        .catchRate = 45,                                                                \
-        .expYield = 255,                                                                \
-        .evYield_SpAttack  = 3,                                                         \
-        .genderRatio = MON_FEMALE,                                                      \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                              \
-        .abilities = { ABILITY_HEALER, ABILITY_ANTICIPATION, ABILITY_MAGIC_BOUNCE },    \
-        .bodyColor = BODY_COLOR_PINK,                                                   \
-        .speciesName = _("Hatterene"),                                                  \
-        .cryId = CRY_HATTERENE,                                                         \
-        .natDexNum = NATIONAL_DEX_HATTERENE,                                            \
-        .categoryName = _("Silent"),                                                    \
-        .footprint = gMonFootprint_Hatterene,                                           \
-        LEARNSETS(Hatterene),                                                           \
-        .formChangeTable = sHattereneFormChangeTable
-
     [SPECIES_HATTERENE] =
     {
-        HATTERENE_MISC_INFO,
+        .baseHP        = 57,
+        .baseAttack    = 90,
+        .baseDefense   = 95,
+        .baseSpeed     = 29,
+        .baseSpAttack  = 136,
+        .baseSpDefense = 103,
+        .types = { TYPE_PSYCHIC, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 255,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_HEALER, ABILITY_ANTICIPATION, ABILITY_MAGIC_BOUNCE },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Hatterene"),
+        .cryId = CRY_HATTERENE,
+        .natDexNum = NATIONAL_DEX_HATTERENE,
+        .categoryName = _("Silent"),
+        .footprint = gMonFootprint_Hatterene,
+        LEARNSETS(Hatterene),
+        .formChangeTable = sHattereneFormChangeTable,
         .height = 21,
         .weight = 51,
         .description = COMPOUND_STRING(
@@ -51717,10 +50868,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Hatterene, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Hatterene,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Hatterene, 56, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Hatterene),
         ICON(Hatterene, 0),
     },
@@ -51740,10 +50889,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(HattereneGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_HattereneGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(HattereneGigantamax, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(HattereneGigantamax),
         ICON(HattereneGigantamax, 0),
         .formSpeciesIdTable = sHattereneFormSpeciesIdTable,
@@ -51790,10 +50937,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Impidimp, 48, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Impidimp,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Impidimp, 48, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Impidimp),
         ICON(Impidimp, 0),
         .footprint = gMonFootprint_Impidimp,
@@ -51838,10 +50983,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Morgrem, 48, 56),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Morgrem,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Morgrem, 56, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Morgrem),
         ICON(Morgrem, 0),
         .footprint = gMonFootprint_Morgrem,
@@ -51849,35 +50992,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GRIMMSNARL}),
     },
 
-#define GRIMMSNARL_MISC_INFO                                                    \
-        .baseHP        = 95,                                                    \
-        .baseAttack    = 120,                                                   \
-        .baseDefense   = 65,                                                    \
-        .baseSpeed     = 60,                                                    \
-        .baseSpAttack  = 95,                                                    \
-        .baseSpDefense = 75,                                                    \
-        .types = { TYPE_DARK, TYPE_FAIRY },                                     \
-        .catchRate = 45,                                                        \
-        .expYield = 255,                                                        \
-        .evYield_Attack    = 3,                                                 \
-        .genderRatio = MON_MALE,                                                \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_HUMAN_LIKE },                 \
-        .abilities = { ABILITY_PRANKSTER, ABILITY_FRISK, ABILITY_PICKPOCKET },  \
-        .bodyColor = BODY_COLOR_PURPLE,                                         \
-        .speciesName = _("Grimmsnarl"),                                         \
-        .cryId = CRY_GRIMMSNARL,                                                \
-        .natDexNum = NATIONAL_DEX_GRIMMSNARL,                                   \
-        .categoryName = _("Bulk Up"),                                           \
-        .footprint = gMonFootprint_Grimmsnarl,                                  \
-        LEARNSETS(Grimmsnarl),                                                  \
-        .formChangeTable = sGrimmsnarlFormChangeTable
-
     [SPECIES_GRIMMSNARL] =
     {
-        GRIMMSNARL_MISC_INFO,
+        .baseHP        = 95,
+        .baseAttack    = 120,
+        .baseDefense   = 65,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 75,
+        .types = { TYPE_DARK, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 255,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_HUMAN_LIKE },
+        .abilities = { ABILITY_PRANKSTER, ABILITY_FRISK, ABILITY_PICKPOCKET },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Grimmsnarl"),
+        .cryId = CRY_GRIMMSNARL,
+        .natDexNum = NATIONAL_DEX_GRIMMSNARL,
+        .categoryName = _("Bulk Up"),
+        .footprint = gMonFootprint_Grimmsnarl,
+        LEARNSETS(Grimmsnarl),
+        .formChangeTable = sGrimmsnarlFormChangeTable,
         .height = 15,
         .weight = 610,
         .description = COMPOUND_STRING(
@@ -51891,10 +51031,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Grimmsnarl, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Grimmsnarl,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Grimmsnarl, 64, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Grimmsnarl),
         ICON(Grimmsnarl, 0),
     },
@@ -51914,10 +51052,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GrimmsnarlGigantamax, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_GrimmsnarlGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GrimmsnarlGigantamax, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GrimmsnarlGigantamax),
         ICON(GrimmsnarlGigantamax, 0),
         .formSpeciesIdTable = sGrimmsnarlFormSpeciesIdTable,
@@ -51963,11 +51099,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Milcery, 40, 40),
         .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Milcery,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 10,
         BACK_PIC(Milcery, 56, 48),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Milcery),
         ICON(Milcery, 1),
         .footprint = gMonFootprint_Milcery,
@@ -51983,55 +51117,52 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL, 0, SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL}),
     },
 
-#define ALCREMIE_MISC_INFO(color)                                               \
-        .baseHP        = 65,                                                    \
-        .baseAttack    = 60,                                                    \
-        .baseDefense   = 75,                                                    \
-        .baseSpeed     = 64,                                                    \
-        .baseSpAttack  = 110,                                                   \
-        .baseSpDefense = 121,                                                   \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 100,                                                       \
-        .expYield = 173,                                                        \
-        .evYield_SpDefense = 2,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },                  \
-        .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_AROMA_VEIL },  \
+#define ALCREMIE_MISC_INFO
+        .baseHP        = 65,
+        .baseAttack    = 60,
+        .baseDefense   = 75,
+        .baseSpeed     = 64,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 121,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 100,
+        .expYield = 173,
+        .evYield_SpDefense = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_AROMA_VEIL },
         .bodyColor = color
 
-#define ALCREMIE_REGULAR_SPECIES_INFO(sweet, cream, color)  \
-    {                                                       \
-        ALCREMIE_MISC_INFO(color),                          \
-        .speciesName = _("Alcremie"),                       \
-        .cryId = CRY_ALCREMIE,                              \
-        .natDexNum = NATIONAL_DEX_ALCREMIE,                 \
-        .categoryName = _("Cream"),                         \
-        .height = 3,                                        \
-        .weight = 5,                                        \
-        .description = gAlcremie ##cream##PokedexText,      \
-        .pokemonScale = 530,                                \
-        .pokemonOffset = 13,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        FRONT_PIC(Alcremie ##sweet, 40, 56),                \
-        .frontPicYOffset = 7,                               \
-        .frontAnimFrames = sAnims_Alcremie,                 \
-        BACK_PIC(Alcremie ##sweet, 48, 56),                 \
-        .backPicYOffset = 9,                                \
-        .palette = gMonPalette_Alcremie ##sweet##cream,     \
-        .shinyPalette = gMonShinyPalette_Alcremie ##sweet,  \
-        ICON(AlcremieStrawberryVanillaCream, 1),            \
-        .footprint = gMonFootprint_Alcremie,                \
-        LEARNSETS(Alcremie),                                \
-        .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,  \
-        .formChangeTable = sAlcremieFormChangeTable,        \
+#define ALCREMIE_REGULAR_SPECIES_INFO
+    {
+        ALCREMIE_MISC_INFO(color),
+        .speciesName = _("Alcremie"),
+        .cryId = CRY_ALCREMIE,
+        .natDexNum = NATIONAL_DEX_ALCREMIE,
+        .categoryName = _("Cream"),
+        .height = 3,
+        .weight = 5,
+        .description = gAlcremie ##cream##PokedexText,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Alcremie ##sweet, 40, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Alcremie,
+        BACK_PIC(Alcremie ##sweet, 48, 56),
+        .backPicYOffset = 9,
+        .palette = gMonPalette_Alcremie ##sweet##cream,
+        .shinyPalette = gMonShinyPalette_Alcremie ##sweet,
+        ICON(AlcremieStrawberryVanillaCream, 1),
+        .footprint = gMonFootprint_Alcremie,
+        LEARNSETS(Alcremie),
+        .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,
+        .formChangeTable = sAlcremieFormChangeTable,
     }
-        //ICON(AlcremieStrawberry##cream##, 1),
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
 
     [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, VanillaCream, BODY_COLOR_WHITE),
     [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM]    = ALCREMIE_REGULAR_SPECIES_INFO(Strawberry, RubyCream,    BODY_COLOR_PINK),
@@ -52116,10 +51247,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(AlcremieGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_AlcremieGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AlcremieStrawberry, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AlcremieGigantamax),
         ICON(AlcremieGigantamax, 1),
         .footprint = gMonFootprint_Alcremie,
@@ -52167,10 +51296,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Falinks, 56, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Falinks,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Falinks, 64, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Falinks),
         ICON(Falinks, 0),
         .footprint = gMonFootprint_Falinks,
@@ -52215,10 +51342,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Pincurchin, 40, 40),
         .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Pincurchin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pincurchin, 56, 40),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pincurchin),
         ICON(Pincurchin, 0),
         .footprint = gMonFootprint_Pincurchin,
@@ -52265,10 +51390,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Snom, 40, 32),
         .frontPicYOffset = 20,
         .frontAnimFrames = sAnims_Snom,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Snom, 48, 32),
         .backPicYOffset = 17,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Snom),
         ICON(Snom, 0),
         .footprint = gMonFootprint_Snom,
@@ -52313,11 +51436,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Frosmoth, 64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Frosmoth,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(Frosmoth, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Frosmoth),
         ICON(Frosmoth, 0),
         .footprint = gMonFootprint_Frosmoth,
@@ -52363,10 +51484,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Stonjourner, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Stonjourner,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Stonjourner, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Stonjourner),
         ICON(Stonjourner, 2),
         .footprint = gMonFootprint_Stonjourner,
@@ -52375,35 +51494,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_STONJOURNER
 
 #if P_FAMILY_EISCUE
-#define EISCUE_MISC_INFO                                        \
-        .types = { TYPE_ICE, TYPE_ICE },                        \
-        .catchRate = 60,                                        \
-        .expYield = 165,                                        \
-        .evYield_Defense   = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },    \
-        .abilities = { ABILITY_ICE_FACE, ABILITY_NONE },        \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Eiscue"),                             \
-        .natDexNum = NATIONAL_DEX_EISCUE,                       \
-        .categoryName = _("Penguin"),                           \
-        .height = 14,                                           \
-        .weight = 890,                                          \
-        .pokemonScale = 265,                                    \
-        .pokemonOffset = 2,                                     \
-        .trainerScale = 262,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Eiscue,                      \
-        LEARNSETS(Eiscue),                                      \
-        .formSpeciesIdTable = sEiscueFormSpeciesIdTable,        \
-        .formChangeTable = sEiscueFormChangeTable
 
     [SPECIES_EISCUE_ICE_FACE] =
     {
-        EISCUE_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE },
+        .catchRate = 60,
+        .expYield = 165,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_ICE_FACE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Eiscue"),
+        .natDexNum = NATIONAL_DEX_EISCUE,
+        .categoryName = _("Penguin"),
+        .height = 14,
+        .weight = 890,
+        .pokemonScale = 265,
+        .pokemonOffset = 2,
+        .trainerScale = 262,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Eiscue,
+        LEARNSETS(Eiscue),
+        .formSpeciesIdTable = sEiscueFormSpeciesIdTable,
+        .formChangeTable = sEiscueFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 80,
         .baseDefense   = 110,
@@ -52419,10 +51536,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EiscueIceFace, 40, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Eiscue,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EiscueIceFace, 48, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EiscueIceFace),
         ICON(EiscueIceFace, 0),
     },
@@ -52442,40 +51557,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EiscueNoiceFace, 40, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Eiscue,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EiscueNoiceFace, 40, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EiscueNoiceFace),
         ICON(EiscueNoiceFace, 0),
     },
 #endif //P_FAMILY_EISCUE
 
 #if P_FAMILY_INDEEDEE
-#define INDEEDEE_MISC_INFO                                  \
-        .types = { TYPE_PSYCHIC, TYPE_NORMAL },             \
-        .catchRate = 30,                                    \
-        .expYield = 166,                                    \
-        .eggCycles = 40,                                    \
-        .friendship = 140,                                  \
-        .growthRate = GROWTH_FAST,                          \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },  \
-        .bodyColor = BODY_COLOR_PURPLE,                     \
-        .speciesName = _("Indeedee"),                       \
-        .natDexNum = NATIONAL_DEX_INDEEDEE,                 \
-        .categoryName = _("Emotion"),                       \
-        .height = 9,                                        \
-        .weight = 280,                                      \
-        .pokemonScale = 338,                                \
-        .pokemonOffset = 8,                                 \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .footprint = gMonFootprint_Indeedee,                \
-        .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable
 
     [SPECIES_INDEEDEE_MALE] =
     {
-        INDEEDEE_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_NORMAL },
+        .catchRate = 30,
+        .expYield = 166,
+        .eggCycles = 40,
+        .friendship = 140,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Indeedee"),
+        .natDexNum = NATIONAL_DEX_INDEEDEE,
+        .categoryName = _("Emotion"),
+        .height = 9,
+        .weight = 280,
+        .pokemonScale = 338,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Indeedee,
+        .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 55,
@@ -52494,10 +51605,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IndeedeeMale, 40, 56),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Indeedee,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IndeedeeMale, 56, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IndeedeeMale),
         ICON(IndeedeeMale, 2),
         LEARNSETS(IndeedeeMale),
@@ -52521,10 +51630,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IndeedeeFemale, 40, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Indeedee,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IndeedeeFemale, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IndeedeeFemale),
         ICON(IndeedeeFemale, 2),
         LEARNSETS(IndeedeeFemale),
@@ -52532,41 +51639,39 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_INDEEDEE
 
 #if P_FAMILY_MORPEKO
-#define MORPEKO_MISC_INFO                                       \
-        .baseHP        = 58,                                    \
-        .baseAttack    = 95,                                    \
-        .baseDefense   = 58,                                    \
-        .baseSpeed     = 97,                                    \
-        .baseSpAttack  = 70,                                    \
-        .baseSpDefense = 58,                                    \
-        .types = { TYPE_ELECTRIC, TYPE_DARK },                  \
-        .catchRate = 180,                                       \
-        .expYield = 153,                                        \
-        .evYield_Speed     = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 10,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },      \
-        .abilities = { ABILITY_HUNGER_SWITCH, ABILITY_NONE },   \
-        .bodyColor = BODY_COLOR_YELLOW,                         \
-        .speciesName = _("Morpeko"),                            \
-        .natDexNum = NATIONAL_DEX_MORPEKO,                      \
-        .categoryName = _("Two-Sided"),                         \
-        .height = 3,                                            \
-        .weight = 30,                                           \
-        .pokemonScale = 530,                                    \
-        .pokemonOffset = 13,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Morpeko,                     \
-        LEARNSETS(Morpeko),                                     \
-        .formSpeciesIdTable = sMorpekoFormSpeciesIdTable,       \
-        .formChangeTable = sMorpekoFormChangeTable
 
     [SPECIES_MORPEKO_FULL_BELLY] =
     {
-        MORPEKO_MISC_INFO,
+        .baseHP        = 58,
+        .baseAttack    = 95,
+        .baseDefense   = 58,
+        .baseSpeed     = 97,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 58,
+        .types = { TYPE_ELECTRIC, TYPE_DARK },
+        .catchRate = 180,
+        .expYield = 153,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_HUNGER_SWITCH, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Morpeko"),
+        .natDexNum = NATIONAL_DEX_MORPEKO,
+        .categoryName = _("Two-Sided"),
+        .height = 3,
+        .weight = 30,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Morpeko,
+        LEARNSETS(Morpeko),
+        .formSpeciesIdTable = sMorpekoFormSpeciesIdTable,
+        .formChangeTable = sMorpekoFormChangeTable,
         .cryId = CRY_MORPEKO_FULL_BELLY,
         .description = COMPOUND_STRING(
             "As it eats the seeds stored up in its\n"
@@ -52576,10 +51681,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MorpekoFullBelly, 32, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Morpeko,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MorpekoFullBelly, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MorpekoFullBelly),
         ICON(MorpekoFullBelly, 2),
     },
@@ -52593,10 +51696,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(MorpekoHangry, 32, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Morpeko,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MorpekoHangry, 48, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MorpekoHangry),
         ICON(MorpekoHangry, 2),
     },
@@ -52641,10 +51742,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cufant, 56, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Cufant,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cufant, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cufant),
         ICON(Cufant, 0),
         .footprint = gMonFootprint_Cufant,
@@ -52652,36 +51751,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COPPERAJAH}),
     },
 
-#define COPPERAJAH_MISC_INFO                                                        \
-        .baseHP        = 122,                                                       \
-        .baseAttack    = 130,                                                       \
-        .baseDefense   = 69,                                                        \
-        .baseSpeed     = 30,                                                        \
-        .baseSpAttack  = 80,                                                        \
-        .baseSpDefense = 69,                                                        \
-        .types = { TYPE_STEEL, TYPE_STEEL },                                        \
-        .catchRate = 90,                                                            \
-        .expYield = 175,                                                            \
-        .evYield_Attack    = 2,                                                     \
-        .itemRare = ITEM_LAGGING_TAIL,                                              \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 25,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_MINERAL },                        \
-        .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_HEAVY_METAL },    \
-        .bodyColor = BODY_COLOR_GREEN,                                              \
-        .speciesName = _("Copperajah"),                                             \
-        .cryId = CRY_COPPERAJAH,                                                    \
-        .natDexNum = NATIONAL_DEX_COPPERAJAH,                                       \
-        .categoryName = _("Copperderm"),                                            \
-        .footprint = gMonFootprint_Copperajah,                                      \
-        LEARNSETS(Copperajah),                                                      \
-        .formChangeTable = sCopperajahFormChangeTable
-
     [SPECIES_COPPERAJAH] =
     {
-        COPPERAJAH_MISC_INFO,
+        .baseHP        = 122,
+        .baseAttack    = 130,
+        .baseDefense   = 69,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 69,
+        .types = { TYPE_STEEL, TYPE_STEEL },
+        .catchRate = 90,
+        .expYield = 175,
+        .evYield_Attack    = 2,
+        .itemRare = ITEM_LAGGING_TAIL,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_HEAVY_METAL },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Copperajah"),
+        .cryId = CRY_COPPERAJAH,
+        .natDexNum = NATIONAL_DEX_COPPERAJAH,
+        .categoryName = _("Copperderm"),
+        .footprint = gMonFootprint_Copperajah,
+        LEARNSETS(Copperajah),
+        .formChangeTable = sCopperajahFormChangeTable,
         .height = 30,
         .weight = 6500,
         .description = COMPOUND_STRING(
@@ -52695,10 +51791,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Copperajah, 64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Copperajah,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Copperajah, 64, 32),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Copperajah),
         ICON(Copperajah, 0),
     },
@@ -52718,10 +51812,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CopperajahGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_CopperajahGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CopperajahGigantamax, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CopperajahGigantamax),
         ICON(CopperajahGigantamax, 0),
         .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
@@ -52769,10 +51861,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dracozolt, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Dracozolt,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dracozolt, 64, 56),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dracozolt),
         ICON(Dracozolt, 1),
         .footprint = gMonFootprint_Dracozolt,
@@ -52817,10 +51907,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Arctozolt, 56, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Arctozolt,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arctozolt, 56, 48),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Arctozolt),
         ICON(Arctozolt, 2),
         .footprint = gMonFootprint_Arctozolt,
@@ -52866,10 +51954,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dracovish, 48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Dracovish,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dracovish, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dracovish),
         ICON(Dracovish, 0),
         .footprint = gMonFootprint_Dracovish,
@@ -52915,10 +52001,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Arctovish, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Arctovish,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arctovish, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Arctovish),
         ICON(Arctovish, 0),
         .footprint = gMonFootprint_Arctovish,
@@ -52927,35 +52011,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ARCTOVISH
 
 #if P_FAMILY_DURALUDON
-#define DURALUDON_MISC_INFO                                                             \
-        .baseHP        = 70,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = 115,                                                           \
-        .baseSpeed     = 85,                                                            \
-        .baseSpAttack  = 120,                                                           \
-        .baseSpDefense = 50,                                                            \
-        .types = { TYPE_STEEL, TYPE_DRAGON },                                           \
-        .catchRate = 45,                                                                \
-        .expYield = 187,                                                                \
-        .evYield_SpAttack  = 2,                                                         \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 30,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_DRAGON },                           \
-        .abilities = { ABILITY_LIGHT_METAL, ABILITY_HEAVY_METAL, ABILITY_STALWART },    \
-        .bodyColor = BODY_COLOR_WHITE,                                                  \
-        .speciesName = _("Duraludon"),                                                  \
-        .cryId = CRY_DURALUDON,                                                         \
-        .natDexNum = NATIONAL_DEX_DURALUDON,                                            \
-        .categoryName = _("Alloy"),                                                     \
-        .footprint = gMonFootprint_Duraludon,                                           \
-        LEARNSETS(Duraludon),                                                           \
-        .formChangeTable = sDuraludonFormChangeTable
 
     [SPECIES_DURALUDON] =
     {
-        DURALUDON_MISC_INFO,
+        .baseHP        = 70,
+        .baseAttack    = 95,
+        .baseDefense   = 115,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 50,
+        .types = { TYPE_STEEL, TYPE_DRAGON },
+        .catchRate = 45,
+        .expYield = 187,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_DRAGON },
+        .abilities = { ABILITY_LIGHT_METAL, ABILITY_HEAVY_METAL, ABILITY_STALWART },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Duraludon"),
+        .cryId = CRY_DURALUDON,
+        .natDexNum = NATIONAL_DEX_DURALUDON,
+        .categoryName = _("Alloy"),
+        .footprint = gMonFootprint_Duraludon,
+        LEARNSETS(Duraludon),
+        .formChangeTable = sDuraludonFormChangeTable,
         .height = 18,
         .weight = 400,
         .description = COMPOUND_STRING(
@@ -52969,10 +52051,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Duraludon, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Duraludon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Duraludon, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Duraludon),
         ICON(Duraludon, 0),
     },
@@ -52992,10 +52072,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(DuraludonGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DuraludonGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(DuraludonGigantamax, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DuraludonGigantamax),
         ICON(DuraludonGigantamax, 0),
         .formSpeciesIdTable = sDuraludonFormSpeciesIdTable,
@@ -53042,11 +52120,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dreepy, 48, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Dreepy,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(Dreepy, 56, 40),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dreepy),
         ICON(Dreepy, 0),
         .footprint = gMonFootprint_Dreepy,
@@ -53090,11 +52166,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Drakloak, 64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Drakloak,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(Drakloak, 64, 48),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Drakloak),
         ICON(Drakloak, 0),
         .footprint = gMonFootprint_Drakloak,
@@ -53139,11 +52213,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dragapult, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Dragapult,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 3,
         BACK_PIC(Dragapult, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dragapult),
         ICON(Dragapult, 0),
         .footprint = gMonFootprint_Dragapult,
@@ -53152,33 +52224,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DREEPY
 
 #if P_FAMILY_ZACIAN
-#define ZACIAN_MISC_INFO                                                    \
-        .catchRate = 10,                                                    \
-        .evYield_Speed     = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_INTREPID_SWORD, ABILITY_NONE },              \
-        .bodyColor = BODY_COLOR_BLUE,                                       \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Zacian"),                                         \
-        .natDexNum = NATIONAL_DEX_ZACIAN,                                   \
-        .categoryName = _("Warrior"),                                       \
-        .height = 28,                                                       \
-        .pokemonScale = 275,                                                \
-        .pokemonOffset = 7,                                                 \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        .footprint = gMonFootprint_Zacian,                                  \
-        LEARNSETS(Zacian),                                                  \
-        .formSpeciesIdTable = sZacianFormSpeciesIdTable,                    \
-        .formChangeTable = sZacianFormChangeTable
 
     [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
     {
-        ZACIAN_MISC_INFO,
+        .catchRate = 10,
+        .evYield_Speed     = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_INTREPID_SWORD, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .isLegendary = TRUE,
+        .speciesName = _("Zacian"),
+        .natDexNum = NATIONAL_DEX_ZACIAN,
+        .categoryName = _("Warrior"),
+        .height = 28,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Zacian,
+        LEARNSETS(Zacian),
+        .formSpeciesIdTable = sZacianFormSpeciesIdTable,
+        .formChangeTable = sZacianFormChangeTable,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
         .baseDefense   = 115,
@@ -53196,10 +52266,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZacianHeroOfManyBattles, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Zacian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZacianHeroOfManyBattles, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZacianHeroOfManyBattles),
         ICON(ZacianHeroOfManyBattles, 2),
     },
@@ -53222,43 +52290,39 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZacianCrownedSword, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Zacian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZacianCrownedSword, 64, 56),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZacianCrownedSword),
         ICON(ZacianCrownedSword, 2),
     },
 #endif //P_FAMILY_ZACIAN
 
 #if P_FAMILY_ZAMAZENTA
-#define ZAMAZENTA_MISC_INFO                                                 \
-        .catchRate = 10,                                                    \
-        .evYield_Speed     = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_DAUNTLESS_SHIELD, ABILITY_NONE },            \
-        .bodyColor = BODY_COLOR_RED,                                        \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Zamazenta"),                                      \
-        .natDexNum = NATIONAL_DEX_ZAMAZENTA,                                \
-        .categoryName = _("Warrior"),                                       \
-        .height = 29,                                                       \
-        .pokemonScale = 275,                                                \
-        .pokemonOffset = 7,                                                 \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        .footprint = gMonFootprint_Zamazenta,                               \
-        LEARNSETS(Zamazenta),                                               \
-        .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,                 \
-        .formChangeTable = sZamazentaFormChangeTable
 
     [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
     {
-        ZAMAZENTA_MISC_INFO,
+        .catchRate = 10,
+        .evYield_Speed     = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_DAUNTLESS_SHIELD, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_RED,
+        .isLegendary = TRUE,
+        .speciesName = _("Zamazenta"),
+        .natDexNum = NATIONAL_DEX_ZAMAZENTA,
+        .categoryName = _("Warrior"),
+        .height = 29,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Zamazenta,
+        LEARNSETS(Zamazenta),
+        .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
+        .formChangeTable = sZamazentaFormChangeTable,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
         .baseDefense   = 115,
@@ -53277,10 +52341,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZamazentaHeroOfManyBattles, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Zamazenta,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZamazentaHeroOfManyBattles, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZamazentaHeroOfManyBattles),
         ICON(ZamazentaHeroOfManyBattles, 2),
     },
@@ -53303,38 +52365,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZamazentaCrownedShield, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Zamazenta,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZamazentaCrownedShield, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZamazentaCrownedShield),
         ICON(ZamazentaCrownedShield, 2),
     },
 #endif //P_FAMILY_ZAMAZENTA
 
 #if P_FAMILY_ETERNATUS
-#define ETERNATUS_MISC_INFO                                                 \
-        .types = { TYPE_POISON, TYPE_DRAGON },                              \
-        .catchRate = 255,                                                   \
-        .evYield_HP        = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_PRESSURE, ABILITY_NONE },                    \
-        .bodyColor = BODY_COLOR_PURPLE,                                     \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Eternatus"),                                      \
-        .natDexNum = NATIONAL_DEX_ETERNATUS,                                \
-        .categoryName = _("Gigantic"),                                      \
-        .footprint = gMonFootprint_Eternatus,                               \
-        LEARNSETS(Eternatus),                                               \
-        .formSpeciesIdTable = sEternatusFormSpeciesIdTable
 
     [SPECIES_ETERNATUS] =
     {
-        ETERNATUS_MISC_INFO,
+        .types = { TYPE_POISON, TYPE_DRAGON },
+        .catchRate = 255,
+        .evYield_HP        = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .isLegendary = TRUE,
+        .speciesName = _("Eternatus"),
+        .natDexNum = NATIONAL_DEX_ETERNATUS,
+        .categoryName = _("Gigantic"),
+        .footprint = gMonFootprint_Eternatus,
+        LEARNSETS(Eternatus),
+        .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
         .baseHP        = 140,
         .baseAttack    = 85,
         .baseDefense   = 95,
@@ -53357,11 +52415,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Eternatus, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Eternatus,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 4,
         BACK_PIC(Eternatus, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Eternatus),
         ICON(Eternatus, 0),
     },
@@ -53388,11 +52444,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EternatusEternamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Eternatus,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 13,
         BACK_PIC(EternatusEternamax, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EternatusEternamax),
         ICON(EternatusEternamax, 0),
     },
@@ -53436,10 +52490,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Kubfu, 40, 48),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Kubfu,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kubfu, 56, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Kubfu),
         ICON(Kubfu, 1),
         .footprint = gMonFootprint_Kubfu,
@@ -53450,39 +52502,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU_RAPID_STRIKE_STYLE}),
     },
 
-#define URSHIFU_MISC_INFO(style)                                            \
-        .baseHP        = 100,                                               \
-        .baseAttack    = 130,                                               \
-        .baseDefense   = 100,                                               \
-        .baseSpeed     = 97,                                                \
-        .baseSpAttack  = 63,                                                \
-        .baseSpDefense = 60,                                                \
-        .catchRate = 3,                                                     \
-        .expYield = 275,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 120,                                                   \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_UNSEEN_FIST, ABILITY_NONE },                 \
-        .bodyColor = BODY_COLOR_GRAY,                                       \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Urshifu"),                                        \
-        .natDexNum = NATIONAL_DEX_URSHIFU,                                  \
-        .categoryName = _("Wushu"),                                         \
-        .footprint = gMonFootprint_Urshifu,                                 \
+#define URSHIFU_MISC_INFO
+        .baseHP        = 100,
+        .baseAttack    = 130,
+        .baseDefense   = 100,
+        .baseSpeed     = 97,
+        .baseSpAttack  = 63,
+        .baseSpDefense = 60,
+        .catchRate = 3,
+        .expYield = 275,
+        .evYield_Attack    = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 120,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_UNSEEN_FIST, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .isLegendary = TRUE,
+        .speciesName = _("Urshifu"),
+        .natDexNum = NATIONAL_DEX_URSHIFU,
+        .categoryName = _("Wushu"),
+        .footprint = gMonFootprint_Urshifu,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable
-
-#define URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO       \
-        .types = { TYPE_FIGHTING, TYPE_DARK },      \
-        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,   \
-        LEARNSETS(UrshifuSingleStrikeStyle),        \
-        URSHIFU_MISC_INFO(SingleStrike)
 
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE] =
     {
-        URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO,
+        .types = { TYPE_FIGHTING, TYPE_DARK },
+        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
+        LEARNSETS(UrshifuSingleStrikeStyle),
+        URSHIFU_MISC_INFO(SingleStrike),
         .height = 19,
         .weight = 1050,
         .pokemonScale = 256,
@@ -53497,10 +52546,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(UrshifuSingleStrikeStyle, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Urshifu,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrshifuSingleStrikeStyle, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuSingleStrikeStyle),
         ICON(Urshifu, 2),
         .formChangeTable = sUrshifuSingleStrikeFormChangeTable,
@@ -53521,25 +52568,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrshifuSingleStrikeStyleGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuSingleStrikeStyleGigantamax),
         ICON(UrshifuSingleStrikeStyleGigantamax, 0),
         .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
-#define URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO        \
-        .types = { TYPE_FIGHTING, TYPE_WATER },     \
-        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,    \
-        LEARNSETS(UrshifuRapidStrikeStyle),         \
-        URSHIFU_MISC_INFO(RapidStrike)
-
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE] =
     {
-        URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO,
+        .types = { TYPE_FIGHTING, TYPE_WATER },
+        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
+        LEARNSETS(UrshifuRapidStrikeStyle),
+        URSHIFU_MISC_INFO(RapidStrike),
         .height = 19,
         .weight = 1050,
         .pokemonScale = 256,
@@ -53551,10 +52593,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(UrshifuRapidStrikeStyle, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Urshifu,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrshifuRapidStrikeStyle, 64, 56),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuRapidStrikeStyle),
         ICON(Urshifu, 2),
         .formChangeTable = sUrshifuRapidStrikeFormChangeTable,
@@ -53575,10 +52615,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(UrshifuRapidStrikeStyleGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrshifuRapidStrikeStyleGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrshifuRapidStrikeStyleGigantamax, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuRapidStrikeStyleGigantamax),
         ICON(UrshifuRapidStrikeStyleGigantamax, 0),
         .isGigantamax = TRUE,
@@ -53586,44 +52624,41 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_KUBFU
 
-
 #if P_FAMILY_ZARUDE
-#define ZARUDE_MISC_INFO                                                    \
-        .baseHP        = 105,                                               \
-        .baseAttack    = 120,                                               \
-        .baseDefense   = 105,                                               \
-        .baseSpeed     = 105,                                               \
-        .baseSpAttack  = 70,                                                \
-        .baseSpDefense = 95,                                                \
-        .types = { TYPE_DARK, TYPE_GRASS },                                 \
-        .catchRate = 3,                                                     \
-        .expYield = 300,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 120,                                                   \
-        .friendship = 0,                                                    \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ABILITY_LEAF_GUARD, ABILITY_NONE },                  \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .isMythical = TRUE,                                                 \
-        .speciesName = _("Zarude"),                                         \
-        .cryId = CRY_ZARUDE,                                                \
-        .natDexNum = NATIONAL_DEX_ZARUDE,                                   \
-        .categoryName = _("Rogue Monkey"),                                  \
-        .height = 18,                                                       \
-        .weight = 700,                                                      \
-        .pokemonScale = 267,                                                \
-        .pokemonOffset = 2,                                                 \
-        .trainerScale = 286,                                                \
-        .trainerOffset = 1,                                                 \
-        .footprint = gMonFootprint_Zarude,                                  \
-        LEARNSETS(Zarude),                                                  \
-        .formSpeciesIdTable = sZarudeFormSpeciesIdTable
 
     [SPECIES_ZARUDE] =
     {
-        ZARUDE_MISC_INFO,
+        .baseHP        = 105,
+        .baseAttack    = 120,
+        .baseDefense   = 105,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 95,
+        .types = { TYPE_DARK, TYPE_GRASS },
+        .catchRate = 3,
+        .expYield = 300,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ABILITY_LEAF_GUARD, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .isMythical = TRUE,
+        .speciesName = _("Zarude"),
+        .cryId = CRY_ZARUDE,
+        .natDexNum = NATIONAL_DEX_ZARUDE,
+        .categoryName = _("Rogue Monkey"),
+        .height = 18,
+        .weight = 700,
+        .pokemonScale = 267,
+        .pokemonOffset = 2,
+        .trainerScale = 286,
+        .trainerOffset = 1,
+        .footprint = gMonFootprint_Zarude,
+        LEARNSETS(Zarude),
+        .formSpeciesIdTable = sZarudeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Within dense forests, this Pokémon lives\n"
             "in a pack with others of its kind. It's\n"
@@ -53632,10 +52667,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Zarude, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Zarude,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Zarude, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Zarude),
         ICON(Zarude, 1),
     },
@@ -53647,10 +52680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ZarudeDada, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Zarude,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZarudeDada, 64, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ZarudeDada),
         ICON(ZarudeDada, 1),
     },
@@ -53694,11 +52725,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Regieleki, 64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Regieleki,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(Regieleki, 64, 48),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Regieleki),
         ICON(Regieleki, 0),
         .footprint = gMonFootprint_Regieleki,
@@ -53746,11 +52775,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Regidrago, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Regidrago,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(Regidrago, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Regidrago),
         ICON(Regidrago, 0),
         .footprint = gMonFootprint_Regidrago,
@@ -53796,10 +52823,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Glastrier, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Glastrier,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Glastrier, 56, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Glastrier),
         ICON(Glastrier, 0),
         .footprint = gMonFootprint_Glastrier,
@@ -53846,10 +52871,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Spectrier, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Spectrier,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Spectrier, 56, 56),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Spectrier),
         ICON(Spectrier, 0),
         .footprint = gMonFootprint_Spectrier,
@@ -53857,11 +52880,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_FAMILY_SPECTRIER
 
-#define CALYREX_MISC_INFO                                   \
-        .speciesName = _("Calyrex"),                        \
-        .natDexNum = NATIONAL_DEX_CALYREX,                  \
-        .footprint = gMonFootprint_Calyrex,                 \
-        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,   \
+#define CALYREX_MISC_INFO
+        .speciesName = _("Calyrex"),
+        .natDexNum = NATIONAL_DEX_CALYREX,
+        .footprint = gMonFootprint_Calyrex,
+        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
         .isLegendary = TRUE
 
 #if P_FAMILY_CALYREX
@@ -53901,10 +52924,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Calyrex, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Calyrex,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Calyrex, 56, 48),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Calyrex),
         ICON(Calyrex, 0),
         LEARNSETS(Calyrex),
@@ -53944,10 +52965,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CalyrexIceRider, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Calyrex,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CalyrexIceRider, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CalyrexIceRider),
         ICON(CalyrexIceRider, 0),
         LEARNSETS(CalyrexIceRider),
@@ -53987,10 +53006,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(CalyrexShadowRider, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Calyrex,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CalyrexShadowRider, 64, 56),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CalyrexShadowRider),
         ICON(CalyrexShadowRider, 0),
         LEARNSETS(CalyrexShadowRider),
@@ -54000,33 +53017,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CALYREX
 
 #if P_FAMILY_ENAMORUS
-#define ENAMORUS_MISC_INFO                                                  \
-        .types = { TYPE_FAIRY, TYPE_FLYING },                               \
-        .catchRate = 3,                                                     \
-        .expYield = 116,                                                    \
-        .evYield_SpAttack  = 3,                                             \
-        .genderRatio = MON_FEMALE,                                          \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .bodyColor = BODY_COLOR_PINK,                                       \
-        .isLegendary = TRUE,                                                \
-        .speciesName = _("Enamorus"),                                       \
-        .natDexNum = NATIONAL_DEX_ENAMORUS,                                 \
-        .categoryName = _("Love-Hate"),                                     \
-        .height = 16,                                                       \
-        .weight = 480,                                                      \
-        .pokemonScale = 259,                                                \
-        .pokemonOffset = 1,                                                 \
-        .trainerScale = 296,                                                \
-        .trainerOffset = 1,                                                 \
-        LEARNSETS(Enamorus),                                                \
-        .formSpeciesIdTable = sEnamorusFormSpeciesIdTable
 
     [SPECIES_ENAMORUS_INCARNATE] =
     {
-        ENAMORUS_MISC_INFO,
+        .types = { TYPE_FAIRY, TYPE_FLYING },
+        .catchRate = 3,
+        .expYield = 116,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .bodyColor = BODY_COLOR_PINK,
+        .isLegendary = TRUE,
+        .speciesName = _("Enamorus"),
+        .natDexNum = NATIONAL_DEX_ENAMORUS,
+        .categoryName = _("Love-Hate"),
+        .height = 16,
+        .weight = 480,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        LEARNSETS(Enamorus),
+        .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
         .baseHP        = 74,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -54043,14 +53058,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EnamorusIncarnate, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_EnamorusIncarnate,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(EnamorusIncarnate, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EnamorusIncarnate),
         ICON(EnamorusIncarnate, 1),
-        //.footprint = gMonFootprint_EnamorusIncarnate,
     },
 
     [SPECIES_ENAMORUS_THERIAN] =
@@ -54069,13 +53081,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(EnamorusTherian, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_EnamorusTherian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EnamorusTherian, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EnamorusTherian),
         ICON(EnamorusTherian, 1),
-        //.footprint = gMonFootprint_Enamorus,
     },
 #endif //P_FAMILY_ENAMORUS
 
@@ -54117,13 +53126,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Sprigatito, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Sprigatito,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sprigatito, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sprigatito),
         ICON(Sprigatito, 4),
-        //.footprint = gMonFootprint_Sprigatito,
         LEARNSETS(Sprigatito),
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLORAGATO}),
     },
@@ -54165,13 +53171,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Floragato, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Floragato,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Floragato, 64, 64),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Floragato),
         ICON(Floragato, 1),
-        //.footprint = gMonFootprint_Floragato,
         LEARNSETS(Floragato),
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_MEOWSCARADA}),
     },
@@ -54213,13 +53216,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Meowscarada, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Meowscarada,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Meowscarada, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Meowscarada),
         ICON(Meowscarada, 1),
-        //.footprint = gMonFootprint_Meowscarada,
         LEARNSETS(Meowscarada),
     },
 #endif //P_FAMILY_SPRIGATITO
@@ -54262,13 +53262,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Fuecoco, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Fuecoco,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Fuecoco, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Fuecoco),
         ICON(Fuecoco, 0),
-        //.footprint = gMonFootprint_Fuecoco,
         LEARNSETS(Fuecoco),
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CROCALOR}),
     },
@@ -54310,13 +53307,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Crocalor, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Crocalor,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Crocalor, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Crocalor),
         ICON(Crocalor, 0),
-        //.footprint = gMonFootprint_Crocalor,
         LEARNSETS(Crocalor),
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SKELEDIRGE}),
     },
@@ -54358,13 +53352,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Skeledirge, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Skeledirge,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Skeledirge, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Skeledirge),
         ICON(Skeledirge, 0),
-        //.footprint = gMonFootprint_Skeledirge,
         LEARNSETS(Skeledirge),
     },
 #endif //P_FAMILY_FUECOCO
@@ -54407,13 +53398,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Quaxly, 64, 64),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Quaxly,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Quaxly, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Quaxly),
         ICON(Quaxly, 2),
-        //.footprint = gMonFootprint_Quaxly,
         LEARNSETS(Quaxly),
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_QUAXWELL}),
     },
@@ -54455,13 +53443,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Quaxwell, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Quaxwell,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Quaxwell, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Quaxwell),
         ICON(Quaxwell, 0),
-        //.footprint = gMonFootprint_Quaxwell,
         LEARNSETS(Quaxwell),
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_QUAQUAVAL}),
     },
@@ -54503,13 +53488,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Quaquaval, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Quaquaval,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Quaquaval, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Quaquaval),
         ICON(Quaquaval, 0),
-        //.footprint = gMonFootprint_Quaquaval,
         LEARNSETS(Quaquaval),
     },
 #endif //P_FAMILY_QUAXLY
@@ -54552,42 +53534,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Lechonk, 64, 64),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Lechonk,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Lechonk, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Lechonk),
         ICON(Lechonk, 1),
-        //.footprint = gMonFootprint_Lechonk,
         LEARNSETS(Lechonk),
         .evolutions = EVOLUTION({EVO_LEVEL_MALE, 18, SPECIES_OINKOLOGNE_MALE},
                                 {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE_FEMALE}),
     },
 
-#define OINKOLOGNE_MISC_INFO                                \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },              \
-        .catchRate = 100,                                   \
-        .expYield = 171,                                    \
-        .evYield_HP = 2,                                    \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },  \
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .speciesName = _("Oinkologne"),                     \
-        .natDexNum = NATIONAL_DEX_OINKOLOGNE,               \
-        .categoryName = _("Hog"),                           \
-        .height = 10,                                       \
-        .weight = 1200,                                     \
-        .pokemonScale = 356,                                \
-        .pokemonOffset = 17,                                \
-        .trainerScale = 256,                                \
-        .trainerOffset = 0,                                 \
-        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable
-
     [SPECIES_OINKOLOGNE_MALE] =
     {
-        OINKOLOGNE_MISC_INFO,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 100,
+        .expYield = 171,
+        .evYield_HP = 2,
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Oinkologne"),
+        .natDexNum = NATIONAL_DEX_OINKOLOGNE,
+        .categoryName = _("Hog"),
+        .height = 10,
+        .weight = 1200,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable,
         .baseHP        = 110,
         .baseAttack    = 100,
         .baseDefense   = 75,
@@ -54604,13 +53580,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(OinkologneMale, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Oinkologne,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OinkologneMale, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OinkologneMale),
         ICON(OinkologneMale, 1),
-        //.footprint = gMonFootprint_Oinkologne,
         LEARNSETS(OinkologneMale),
 
     },
@@ -54632,13 +53605,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(OinkologneFemale, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Oinkologne,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OinkologneFemale, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OinkologneFemale),
         ICON(OinkologneFemale, 2),
-        //.footprint = gMonFootprint_Oinkologne,
         LEARNSETS(OinkologneFemale),
     },
 #endif //P_FAMILY_LECHONK
@@ -54681,13 +53651,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tarountula, 64, 64),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Tarountula,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tarountula, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tarountula),
         ICON(Tarountula, 1),
-        //.footprint = gMonFootprint_Tarountula,
         LEARNSETS(Tarountula),
         .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_SPIDOPS}),
     },
@@ -54729,13 +53696,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Spidops, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Spidops,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Spidops, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Spidops),
         ICON(Spidops, 1),
-        //.footprint = gMonFootprint_Spidops,
         LEARNSETS(Spidops),
     },
 #endif //P_FAMILY_TAROUNTULA
@@ -54778,13 +53742,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Nymble, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Nymble,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Nymble, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Nymble),
         ICON(Nymble, 0),
-        //.footprint = gMonFootprint_Nymble,
         LEARNSETS(Nymble),
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_LOKIX}),
     },
@@ -54826,13 +53787,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Lokix, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Lokix,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Lokix, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Lokix),
         ICON(Lokix, 0),
-        //.footprint = gMonFootprint_Lokix,
         LEARNSETS(Lokix),
     },
 #endif //P_FAMILY_NYMBLE
@@ -54875,13 +53833,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Pawmi, 64, 64),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Pawmi,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmi, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pawmi),
         ICON(Pawmi, 3),
-        //.footprint = gMonFootprint_Pawmi,
         LEARNSETS(Pawmi),
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_PAWMO}),
     },
@@ -54923,13 +53878,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Pawmo, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Pawmo,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmo, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pawmo),
         ICON(Pawmo, 3),
-        //.footprint = gMonFootprint_Pawmo,
         LEARNSETS(Pawmo),
         .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_PAWMOT}),
     },
@@ -54971,13 +53923,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Pawmot, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Pawmot,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmot, 64, 64),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Pawmot),
         ICON(Pawmot, 3),
-        //.footprint = gMonFootprint_Pawmot,
         LEARNSETS(Pawmot),
     },
 #endif //P_FAMILY_PAWMI
@@ -55020,53 +53969,47 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tandemaus, 64, 64),
         .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Tandemaus,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tandemaus, 64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tandemaus),
         ICON(Tandemaus, 0),
-        //.footprint = gMonFootprint_Tandemaus,
         LEARNSETS(Tandemaus),
         .evolutions = EVOLUTION({EVO_LEVEL_FAMILY_OF_FOUR, 25, SPECIES_MAUSHOLD_FAMILY_OF_FOUR},
                                 {EVO_LEVEL_FAMILY_OF_THREE, 25, SPECIES_MAUSHOLD_FAMILY_OF_THREE}),
     },
 
-#define MAUSHOLD_SPECIES_INFO                                                           \
-        .baseHP        = 74,                                                            \
-        .baseAttack    = 75,                                                            \
-        .baseDefense   = 70,                                                            \
-        .baseSpeed     = 111,                                                           \
-        .baseSpAttack  = 65,                                                            \
-        .baseSpDefense = 75,                                                            \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                                          \
-        .catchRate = 75,                                                                \
-        .expYield = 165,                                                                \
-        .evYield_Speed = 2,                                                             \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 10,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_FAST,                                                      \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },                              \
-        .abilities = { ABILITY_FRIEND_GUARD, ABILITY_CHEEK_POUCH, ABILITY_TECHNICIAN }, \
-        .bodyColor = BODY_COLOR_WHITE,                                                  \
-        .speciesName = _("Maushold"),                                                   \
-        .natDexNum = NATIONAL_DEX_MAUSHOLD,                                             \
-        .categoryName = _("Family"),                                                    \
-        .height = 3,                                                                    \
-        .pokemonScale = 356,                                                            \
-        .pokemonOffset = 17,                                                            \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        .frontPicYOffset = 15,                                                          \
-        .frontAnimFrames = sAnims_Maushold,                                             \
-        .backPicYOffset = 15,                                                           \
-        PALETTES(Maushold),                                                             \
-        LEARNSETS(Maushold),                                                            \
+#define MAUSHOLD_SPECIES_INFO
+        .baseHP        = 74,
+        .baseAttack    = 75,
+        .baseDefense   = 70,
+        .baseSpeed     = 111,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 75,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 75,
+        .expYield = 165,
+        .evYield_Speed = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_FRIEND_GUARD, ABILITY_CHEEK_POUCH, ABILITY_TECHNICIAN },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Maushold"),
+        .natDexNum = NATIONAL_DEX_MAUSHOLD,
+        .categoryName = _("Family"),
+        .height = 3,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 15,
+        .frontAnimFrames = sAnims_Maushold,
+        .backPicYOffset = 15,
+        PALETTES(Maushold),
+        LEARNSETS(Maushold),
         .formSpeciesIdTable = sMausholdFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Maushold,
 
     [SPECIES_MAUSHOLD_FAMILY_OF_THREE] =
     {
@@ -55133,13 +54076,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Fidough, 64, 64),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Fidough,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Fidough, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Fidough),
         ICON(Fidough, 1),
-        //.footprint = gMonFootprint_Fidough,
         LEARNSETS(Fidough),
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DACHSBUN}),
     },
@@ -55181,13 +54121,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dachsbun, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Dachsbun,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dachsbun, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dachsbun),
         ICON(Dachsbun, 0), // TODO
-        //.footprint = gMonFootprint_Dachsbun,
         LEARNSETS(Dachsbun),
     },
 #endif //P_FAMILY_FIDOUGH
@@ -55230,13 +54167,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Smoliv, 64, 64),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Smoliv,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Smoliv, 64, 64),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Smoliv),
         ICON(Smoliv, 1),
-        //.footprint = gMonFootprint_Smoliv,
         LEARNSETS(Smoliv),
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DOLLIV}),
     },
@@ -55278,13 +54212,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dolliv, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Dolliv,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dolliv, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dolliv),
         ICON(Dolliv, 1),
-        //.footprint = gMonFootprint_Dolliv,
         LEARNSETS(Dolliv),
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARBOLIVA}),
     },
@@ -55326,58 +54257,50 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Arboliva, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Arboliva,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arboliva, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Arboliva),
         ICON(Arboliva, 5),
-        //.footprint = gMonFootprint_Arboliva,
         LEARNSETS(Arboliva),
     },
 #endif //P_FAMILY_SMOLIV
 
 #if P_FAMILY_SQUAWKABILLY
-#define SQUAWKABILLY_MISC_INFO                                  \
-        .baseHP        = 82,                                    \
-        .baseAttack    = 96,                                    \
-        .baseDefense   = 51,                                    \
-        .baseSpeed     = 92,                                    \
-        .baseSpAttack  = 45,                                    \
-        .baseSpDefense = 51,                                    \
-        .types = { TYPE_NORMAL, TYPE_FLYING },                  \
-        .catchRate = 190,                                       \
-        .expYield = 146,                                        \
-        .evYield_Attack = 1,                                    \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 15,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_ERRATIC,                           \
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },    \
-        .speciesName = _("Sqawkabily"),                         \
-        .cryId = CRY_SQUAWKABILLY,                              \
-        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,                 \
-        .categoryName = _("Parrot"),                            \
-        .height = 6,                                            \
-        .weight = 24,                                           \
-        .pokemonScale = 356,                                    \
-        .pokemonOffset = 17,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        FRONT_PIC(Squawkabilly, 64, 64),                        \
-        .frontPicYOffset = 4,                                   \
-        .frontAnimFrames = sAnims_Squawkabilly,                 \
-        BACK_PIC(Squawkabilly, 64, 64),                         \
-        .backPicYOffset = 4,                                    \
-        LEARNSETS(Squawkabilly),                                \
-        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Squawkabilly,
 
     [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
     {
-        SQUAWKABILLY_MISC_INFO,
+        .baseHP        = 82,
+        .baseAttack    = 96,
+        .baseDefense   = 51,
+        .baseSpeed     = 92,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 51,
+        .types = { TYPE_NORMAL, TYPE_FLYING },
+        .catchRate = 190,
+        .expYield = 146,
+        .evYield_Attack = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING },
+        .speciesName = _("Sqawkabily"),
+        .cryId = CRY_SQUAWKABILLY,
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
+        .categoryName = _("Parrot"),
+        .height = 6,
+        .weight = 24,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Squawkabilly, 64, 64),
+        .frontPicYOffset = 4,
+        .frontAnimFrames = sAnims_Squawkabilly,
+        BACK_PIC(Squawkabilly, 64, 64),
+        .backPicYOffset = 4,
+        LEARNSETS(Squawkabilly),
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
@@ -55461,13 +54384,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Nacli, 64, 64),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Nacli,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Nacli, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Nacli),
         ICON(Nacli, 2),
-        //.footprint = gMonFootprint_Nacli,
         LEARNSETS(Nacli),
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_NACLSTACK}),
     },
@@ -55509,13 +54429,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Naclstack, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Naclstack,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Naclstack, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Naclstack),
         ICON(Naclstack, 2), // TODO: recolor
-        //.footprint = gMonFootprint_Naclstack,
         LEARNSETS(Naclstack),
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_GARGANACL}),
     },
@@ -55557,13 +54474,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Garganacl, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Garganacl,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Garganacl, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Garganacl),
         ICON(Garganacl, 2),
-        //.footprint = gMonFootprint_Garganacl,
         LEARNSETS(Garganacl),
     },
 #endif //P_FAMILY_NACLI
@@ -55606,13 +54520,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Charcadet, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Charcadet,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Charcadet, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Charcadet),
         ICON(Charcadet, 1),
-        //.footprint = gMonFootprint_Charcadet,
         LEARNSETS(Charcadet),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_AUSPICIOUS_ARMOR, SPECIES_ARMAROUGE},
                                 {EVO_ITEM, ITEM_MALICIOUS_ARMOR, SPECIES_CERULEDGE}),
@@ -55655,13 +54566,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Armarouge, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Armarouge,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Armarouge, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Armarouge),
         ICON(Armarouge, 0),
-        //.footprint = gMonFootprint_Armarouge,
         LEARNSETS(Armarouge),
     },
 
@@ -55702,13 +54610,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Ceruledge, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Ceruledge,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Ceruledge, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Ceruledge),
         ICON(Ceruledge, 2),
-        //.footprint = gMonFootprint_Ceruledge,
         LEARNSETS(Ceruledge),
     },
 #endif //P_FAMILY_CHARCADET
@@ -55751,14 +54656,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tadbulb, 64, 64),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Tadbulb,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 12,
         BACK_PIC(Tadbulb, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tadbulb),
         ICON(Tadbulb, 5), // TODO: Redo to 0
-        //.footprint = gMonFootprint_Tadbulb,
         LEARNSETS(Tadbulb),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_BELLIBOLT}),
     },
@@ -55800,13 +54702,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Bellibolt, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Bellibolt,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Bellibolt, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bellibolt),
         ICON(Bellibolt, 0),
-        //.footprint = gMonFootprint_Bellibolt,
         LEARNSETS(Bellibolt),
     },
 #endif //P_FAMILY_TADBULB
@@ -55849,13 +54748,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Wattrel, 64, 64),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Wattrel,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wattrel, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wattrel),
         ICON(Wattrel, 3),
-        //.footprint = gMonFootprint_Wattrel,
         LEARNSETS(Wattrel),
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_KILOWATTREL}),
     },
@@ -55897,13 +54793,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Kilowattrel, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Kilowattrel,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kilowattrel, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Kilowattrel),
         ICON(Kilowattrel, 3),
-        //.footprint = gMonFootprint_Kilowattrel,
         LEARNSETS(Kilowattrel),
     },
 #endif //P_FAMILY_WATTREL
@@ -55946,13 +54839,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Maschiff, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Maschiff,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Maschiff, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Maschiff),
         ICON(Maschiff, 3),
-        //.footprint = gMonFootprint_Maschiff,
         LEARNSETS(Maschiff),
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MABOSSTIFF}),
     },
@@ -55994,13 +54884,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Mabosstiff, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Mabosstiff,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Mabosstiff, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Mabosstiff),
         ICON(Mabosstiff, 5),
-        //.footprint = gMonFootprint_Mabosstiff,
         LEARNSETS(Mabosstiff),
     },
 #endif //P_FAMILY_MASCHIFF
@@ -56043,13 +54930,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Shroodle, 64, 64),
         .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_Shroodle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Shroodle, 64, 64),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Shroodle),
         ICON(Shroodle, 0),
-        //.footprint = gMonFootprint_Shroodle,
         LEARNSETS(Shroodle),
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_GRAFAIAI}),
     },
@@ -56091,13 +54975,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Grafaiai, 64, 64),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Grafaiai,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Grafaiai, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Grafaiai),
         ICON(Grafaiai, 0),
-        //.footprint = gMonFootprint_Grafaiai,
         LEARNSETS(Grafaiai),
     },
 #endif //P_FAMILY_SHROODLE
@@ -56140,13 +55021,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Bramblin, 64, 64),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Bramblin,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Bramblin, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bramblin),
         ICON(Bramblin, 3),
-        //.footprint = gMonFootprint_Bramblin,
         LEARNSETS(Bramblin),
         .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BRAMBLEGHAST}),
     },
@@ -56188,13 +55066,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Brambleghast, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Brambleghast,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Brambleghast, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Brambleghast),
         ICON(Brambleghast, 5),
-        //.footprint = gMonFootprint_Brambleghast,
         LEARNSETS(Brambleghast),
     },
 #endif //P_FAMILY_BRAMBLIN
@@ -56237,13 +55112,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Toedscool, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Toedscool,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Toedscool, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Toedscool),
         ICON(Toedscool, 0),
-        //.footprint = gMonFootprint_Toedscool,
         LEARNSETS(Toedscool),
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TOEDSCRUEL}),
     },
@@ -56285,13 +55157,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Toedscruel, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Toedscruel,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Toedscruel, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Toedscruel),
         ICON(Toedscruel, 0),
-        //.footprint = gMonFootprint_Toedscruel,
         LEARNSETS(Toedscruel),
     },
 #endif //P_FAMILY_TOEDSCOOL
@@ -56334,13 +55203,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Klawf, 64, 64),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Klawf,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Klawf, 64, 64),
         .backPicYOffset = 20,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Klawf),
         ICON(Klawf, 0),
-        //.footprint = gMonFootprint_Klawf,
         LEARNSETS(Klawf),
     },
 #endif //P_FAMILY_KLAWF
@@ -56383,13 +55249,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Capsakid, 64, 64),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Capsakid,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Capsakid, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Capsakid),
         ICON(Capsakid, 1),
-        //.footprint = gMonFootprint_Capsakid,
         LEARNSETS(Capsakid),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_SCOVILLAIN}),
     },
@@ -56431,13 +55294,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Scovillain, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Scovillain,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Scovillain, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Scovillain),
         ICON(Scovillain, 1),
-        //.footprint = gMonFootprint_Scovillain,
         LEARNSETS(Scovillain),
     },
 #endif //P_FAMILY_CAPSAKID
@@ -56480,13 +55340,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Rellor, 64, 64),
         .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_Rellor,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Rellor, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Rellor),
         ICON(Rellor, 5),
-        //.footprint = gMonFootprint_Rellor,
         LEARNSETS(Rellor),
         .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_RABSCA}),
     },
@@ -56528,13 +55385,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Rabsca, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Rabsca,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Rabsca, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Rabsca),
         ICON(Rabsca, 0),
-        //.footprint = gMonFootprint_Rabsca,
         LEARNSETS(Rabsca),
     },
 #endif //P_FAMILY_RELLOR
@@ -56577,13 +55431,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Flittle, 64, 64),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Flittle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Flittle, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Flittle),
         ICON(Flittle, 3),
-        //.footprint = gMonFootprint_Flittle,
         LEARNSETS(Flittle),
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ESPATHRA}),
     },
@@ -56625,13 +55476,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Espathra, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Espathra,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Espathra, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Espathra),
         ICON(Espathra, 5),
-        //.footprint = gMonFootprint_Espathra,
         LEARNSETS(Espathra),
     },
 #endif //P_FAMILY_FLITTLE
@@ -56674,13 +55522,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tinkatink, 64, 64),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Tinkatink,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkatink, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tinkatink),
         ICON(Tinkatink, 1),
-        //.footprint = gMonFootprint_Tinkatink,
         LEARNSETS(Tinkatink),
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_TINKATUFF}),
     },
@@ -56722,13 +55567,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tinkatuff, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Tinkatuff,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkatuff, 64, 64),
         .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tinkatuff),
         ICON(Tinkatuff, 4),
-        //.footprint = gMonFootprint_Tinkatuff,
         LEARNSETS(Tinkatuff),
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_TINKATON}),
     },
@@ -56770,13 +55612,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tinkaton, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Tinkaton,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkaton, 64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Tinkaton),
         ICON(Tinkaton, 4),
-        //.footprint = gMonFootprint_Tinkaton,
         LEARNSETS(Tinkaton),
     },
 #endif //P_FAMILY_TINKATINK
@@ -56818,13 +55657,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Wiglett, 64, 64),
         .frontPicYOffset = 19,
         .frontAnimFrames = sAnims_Wiglett,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wiglett, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wiglett),
         ICON(Wiglett, 0),
-        //.footprint = gMonFootprint_Wiglett,
         LEARNSETS(Wiglett),
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO}),
     },
@@ -56865,13 +55701,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Wugtrio, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Wugtrio,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wugtrio, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Wugtrio),
         ICON(Wugtrio, 0),
-        //.footprint = gMonFootprint_Wugtrio,
         LEARNSETS(Wugtrio),
     },
 #endif //P_FAMILY_WIGLETT
@@ -56914,14 +55747,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Bombirdier, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Bombirdier,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(Bombirdier, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Bombirdier),
         ICON(Bombirdier, 0),
-        //.footprint = gMonFootprint_Bombirdier,
         LEARNSETS(Bombirdier),
     },
 #endif //P_FAMILY_BOMBIRDIER
@@ -56963,44 +55793,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Finizen, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Finizen,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Finizen, 64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Finizen),
         ICON(Finizen, 0),
-        //.footprint = gMonFootprint_Finizen,
         LEARNSETS(Finizen),
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PALAFIN_ZERO}),
     },
 
-#define PALAFIN_MISC_INFO                                       \
-        .types = { TYPE_WATER, TYPE_WATER },                    \
-        .catchRate = 45,                                        \
-        .evYield_HP = 2,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2 },    \
-        .abilities = { ABILITY_ZERO_TO_HERO, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .speciesName = _("Palafin"),                            \
-        .natDexNum = NATIONAL_DEX_PALAFIN,                      \
-        .pokemonScale = 356,                                    \
-        .pokemonOffset = 17,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .frontAnimFrames = sAnims_Palafin,                      \
-        LEARNSETS(Palafin),                                     \
-        .formSpeciesIdTable = sPalafinFormSpeciesIdTable,       \
-        .formChangeTable = sPalafinZeroFormChangeTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.footprint = gMonFootprint_Palafin,
-
     [SPECIES_PALAFIN_ZERO] =
     {
-        PALAFIN_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_WATER },
+        .catchRate = 45,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2 },
+        .abilities = { ABILITY_ZERO_TO_HERO, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Palafin"),
+        .natDexNum = NATIONAL_DEX_PALAFIN,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Palafin,
+        LEARNSETS(Palafin),
+        .formSpeciesIdTable = sPalafinFormSpeciesIdTable,
+        .formChangeTable = sPalafinZeroFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 70,
         .baseDefense   = 72,
@@ -57021,7 +55843,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 7,
         BACK_PIC(PalafinZero, 64, 64),
         .backPicYOffset = 15,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PalafinZero),
         ICON(PalafinZero, 0),
     },
@@ -57046,7 +55867,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 0,
         BACK_PIC(PalafinHero, 64, 64),
         .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(PalafinHero),
         ICON(PalafinHero, 0),
     },
@@ -57090,13 +55910,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Varoom, 64, 64),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Varoom,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Varoom, 64, 64),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Varoom),
         ICON(Varoom, 5),
-        //.footprint = gMonFootprint_Varoom,
         LEARNSETS(Varoom),
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_REVAVROOM}),
     },
@@ -57138,13 +55955,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Revavroom, 64, 64),
         .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Revavroom,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Revavroom, 64, 64),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Revavroom),
         ICON(Revavroom, 5),
-        //.footprint = gMonFootprint_Revavroom,
         LEARNSETS(Revavroom),
     },
 #endif //P_FAMILY_VAROOM
@@ -57187,13 +56001,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cyclizar, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Cyclizar,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cyclizar, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cyclizar),
         ICON(Cyclizar, 1),
-        //.footprint = gMonFootprint_Cyclizar,
         LEARNSETS(Cyclizar),
     },
 #endif //P_FAMILY_CYCLIZAR
@@ -57236,13 +56047,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Orthworm, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Orthworm,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Orthworm, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Orthworm),
         ICON(Orthworm, 4),
-        //.footprint = gMonFootprint_Orthworm,
         LEARNSETS(Orthworm),
     },
 #endif //P_FAMILY_ORTHWORM
@@ -57285,14 +56093,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Glimmet, 64, 64),
         .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_Glimmet,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 11,
         BACK_PIC(Glimmet, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Glimmet),
         ICON(Glimmet, 0),
-        //.footprint = gMonFootprint_Glimmet,
         LEARNSETS(Glimmet),
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_GLIMMORA}),
     },
@@ -57334,14 +56139,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Glimmora, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Glimmora,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(Glimmora, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Glimmora),
         ICON(Glimmora, 0),
-        //.footprint = gMonFootprint_Glimmora,
         LEARNSETS(Glimmora),
     },
 #endif //P_FAMILY_GLIMMET
@@ -57384,13 +56186,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Greavard, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Greavard,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Greavard, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Greavard),
         ICON(Greavard, 2),
-        //.footprint = gMonFootprint_Greavard,
         LEARNSETS(Greavard),
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 30, SPECIES_HOUNDSTONE}),
     },
@@ -57432,13 +56231,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Houndstone, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Houndstone,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Houndstone, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Houndstone),
         ICON(Houndstone, 5),
-        //.footprint = gMonFootprint_Houndstone,
         LEARNSETS(Houndstone),
     },
 #endif //P_FAMILY_GREAVARD
@@ -57481,13 +56277,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Flamigo, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Flamigo,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Flamigo, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Flamigo),
         ICON(Flamigo, 4),
-        //.footprint = gMonFootprint_Flamigo,
         LEARNSETS(Flamigo),
     },
 #endif //P_FAMILY_FLAMIGO
@@ -57530,13 +56323,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cetoddle, 64, 64),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Cetoddle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cetoddle, 64, 64),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cetoddle),
         ICON(Cetoddle, 0),
-        //.footprint = gMonFootprint_Cetoddle,
         LEARNSETS(Cetoddle),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_CETITAN}),
     },
@@ -57578,13 +56368,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cetitan, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Cetitan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cetitan, 64, 64),
         .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cetitan),
         ICON(Cetitan, 0),
-        //.footprint = gMonFootprint_Cetitan,
         LEARNSETS(Cetitan),
     },
 #endif //P_FAMILY_CETODDLE
@@ -57627,14 +56414,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Veluza, 64, 64),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Veluza,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(Veluza, 64, 64),
         .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Veluza),
         ICON(Veluza, 4),
-        //.footprint = gMonFootprint_Veluza,
         LEARNSETS(Veluza),
     },
 #endif //P_FAMILY_VELUZA
@@ -57677,57 +56461,49 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Dondozo, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Dondozo,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 1,
         BACK_PIC(Dondozo, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Dondozo),
         ICON(Dondozo, 0),
-        //.footprint = gMonFootprint_Dondozo,
         LEARNSETS(Dondozo),
     },
 #endif //P_FAMILY_DONDOZO
 
 #if P_FAMILY_TATSUGIRI
-#define TATSUGIRI_MISC_INFO                                                     \
-        .baseHP        = 68,                                                    \
-        .baseAttack    = 50,                                                    \
-        .baseDefense   = 60,                                                    \
-        .baseSpeed     = 82,                                                    \
-        .baseSpAttack  = 120,                                                   \
-        .baseSpDefense = 95,                                                    \
-        .types = { TYPE_DRAGON, TYPE_WATER },                                   \
-        .catchRate = 100,                                                       \
-        .expYield = 166,                                                        \
-        .evYield_SpAttack = 2,                                                  \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 35,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                       \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },                  \
-        .abilities = { ABILITY_COMMANDER, ABILITY_NONE, ABILITY_STORM_DRAIN },  \
-        .speciesName = _("Tatsugiri"),                                          \
-        .natDexNum = NATIONAL_DEX_TATSUGIRI,                                    \
-        .categoryName = _("Mimicry"),                                           \
-        .height = 3,                                                            \
-        .weight = 80,                                                           \
-        .pokemonScale = 356,                                                    \
-        .pokemonOffset = 17,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .frontPicYOffset = 14,                                                  \
-        .frontAnimFrames = sAnims_Tatsugiri,                                    \
-        .backPicYOffset = 17,                                                   \
-        LEARNSETS(Tatsugiri),                                                   \
-        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Tatsugiri,
 
     [SPECIES_TATSUGIRI_CURLY] =
     {
-        TATSUGIRI_MISC_INFO,
+        .baseHP        = 68,
+        .baseAttack    = 50,
+        .baseDefense   = 60,
+        .baseSpeed     = 82,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 95,
+        .types = { TYPE_DRAGON, TYPE_WATER },
+        .catchRate = 100,
+        .expYield = 166,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2 },
+        .abilities = { ABILITY_COMMANDER, ABILITY_NONE, ABILITY_STORM_DRAIN },
+        .speciesName = _("Tatsugiri"),
+        .natDexNum = NATIONAL_DEX_TATSUGIRI,
+        .categoryName = _("Mimicry"),
+        .height = 3,
+        .weight = 80,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 14,
+        .frontAnimFrames = sAnims_Tatsugiri,
+        .backPicYOffset = 17,
+        LEARNSETS(Tatsugiri),
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PINK,
         .cryId = CRY_TATSUGIRI_CURLY,
         .description = COMPOUND_STRING(
@@ -57806,13 +56582,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(GreatTusk, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_GreatTusk,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GreatTusk, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GreatTusk),
         ICON(GreatTusk, 0),
-        //.footprint = gMonFootprint_GreatTusk,
         LEARNSETS(GreatTusk),
     },
 #endif //P_FAMILY_GREAT_TUSK
@@ -57856,13 +56629,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ScreamTail, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_ScreamTail,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ScreamTail, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ScreamTail),
         ICON(ScreamTail, 0),
-        //.footprint = gMonFootprint_ScreamTail,
         LEARNSETS(ScreamTail),
     },
 #endif //P_FAMILY_SCREAM_TAIL
@@ -57906,13 +56676,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(BruteBonnet, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_BruteBonnet,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(BruteBonnet, 64, 64),
         .backPicYOffset = 12,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(BruteBonnet),
         ICON(BruteBonnet, 1),
-        //.footprint = gMonFootprint_BruteBonnet,
         LEARNSETS(BruteBonnet),
     },
 #endif //P_FAMILY_BRUTE_BONNET
@@ -57958,14 +56725,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(FlutterMane, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_FlutterMane,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
         BACK_PIC(FlutterMane, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(FlutterMane),
         ICON(FlutterMane, 4),
-        //.footprint = gMonFootprint_FlutterMane,
         LEARNSETS(FlutterMane),
     },
 #endif //P_FAMILY_FLUTTER_MANE
@@ -58008,13 +56772,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SlitherWing, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SlitherWing,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SlitherWing, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SlitherWing),
         ICON(SlitherWing, 3),
-        //.footprint = gMonFootprint_SlitherWing,
         LEARNSETS(SlitherWing),
     },
 #endif //P_FAMILY_SLITHER_WING
@@ -58058,13 +56819,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(SandyShocks, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_SandyShocks,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandyShocks, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SandyShocks),
         ICON(SandyShocks, 0),
-        //.footprint = gMonFootprint_SandyShocks,
         LEARNSETS(SandyShocks),
     },
 #endif //P_FAMILY_SANDY_SHOCKS
@@ -58108,13 +56866,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronTreads, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_IronTreads,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronTreads, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronTreads),
         ICON(IronTreads, 0),
-        //.footprint = gMonFootprint_IronTreads,
         LEARNSETS(IronTreads),
     },
 #endif //P_FAMILY_IRON_TREADS
@@ -58158,13 +56913,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronBundle, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_IronBundle,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronBundle, 64, 64),
         .backPicYOffset = 9,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronBundle),
         ICON(IronBundle, 0),
-        //.footprint = gMonFootprint_IronBundle,
         LEARNSETS(IronBundle),
     },
 #endif //P_FAMILY_IRON_BUNDLE
@@ -58208,13 +56960,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronHands, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_IronHands,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronHands, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronHands),
         ICON(IronHands, 0),
-        //.footprint = gMonFootprint_IronHands,
         LEARNSETS(IronHands),
     },
 #endif //P_FAMILY_IRON_HANDS
@@ -58258,14 +57007,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronJugulis, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_IronJugulis,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
         BACK_PIC(IronJugulis, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronJugulis),
         ICON(IronJugulis, 2),
-        //.footprint = gMonFootprint_IronJugulis,
         LEARNSETS(IronJugulis),
     },
 #endif //P_FAMILY_IRON_JUGULIS
@@ -58309,14 +57055,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronMoth, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_IronMoth,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 8,
         BACK_PIC(IronMoth, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronMoth),
         ICON(IronMoth, 3),
-        //.footprint = gMonFootprint_IronMoth,
         LEARNSETS(IronMoth),
     },
 #endif //P_FAMILY_IRON_MOTH
@@ -58360,13 +57103,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronThorns, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_IronThorns,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronThorns, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronThorns),
         ICON(IronThorns, 1),
-        //.footprint = gMonFootprint_IronThorns,
         LEARNSETS(IronThorns),
     },
 #endif //P_FAMILY_IRON_THORNS
@@ -58409,13 +57149,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Frigibax, 64, 64),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Frigibax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Frigibax, 64, 64),
         .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Frigibax),
         ICON(Frigibax, 3),
-        //.footprint = gMonFootprint_Frigibax,
         LEARNSETS(Frigibax),
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARCTIBAX}),
     },
@@ -58457,13 +57194,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Arctibax, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Arctibax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arctibax, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Arctibax),
         ICON(Arctibax, 0),
-        //.footprint = gMonFootprint_Arctibax,
         LEARNSETS(Arctibax),
         .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_BAXCALIBUR}),
     },
@@ -58505,42 +57239,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Baxcalibur, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Baxcalibur,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Baxcalibur, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Baxcalibur),
         ICON(Baxcalibur, 0),
-        //.footprint = gMonFootprint_Baxcalibur,
         LEARNSETS(Baxcalibur),
     },
 #endif //P_FAMILY_FRIGIBAX
 
 #if P_FAMILY_GIMMIGHOUL
-#define GIMMIGHOUL_MISC_INFO                                                \
-        .types = { TYPE_GHOST, TYPE_GHOST },                                \
-        .catchRate = 45,                                                    \
-        .expYield = 60,                                                     \
-        .evYield_SpAttack = 1,                                              \
-        .genderRatio = MON_GENDERLESS,                                      \
-        .eggCycles = 50,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .speciesName = _("Gimmighoul"),                                     \
-        .cryId = CRY_GIMMIGHOUL,                                            \
-        .natDexNum = NATIONAL_DEX_GIMMIGHOUL,                               \
-        .frontAnimFrames = sAnims_Gimmighoul,                               \
-        LEARNSETS(Gimmighoul),                                              \
-        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,                \
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO})
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Gimmighoul,
 
     [SPECIES_GIMMIGHOUL_CHEST] =
     {
-        GIMMIGHOUL_MISC_INFO,
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        .catchRate = 45,
+        .expYield = 60,
+        .evYield_SpAttack = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .speciesName = _("Gimmighoul"),
+        .cryId = CRY_GIMMIGHOUL,
+        .natDexNum = NATIONAL_DEX_GIMMIGHOUL,
+        .frontAnimFrames = sAnims_Gimmighoul,
+        LEARNSETS(Gimmighoul),
+        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO}),
         .baseHP        = 45,
         .baseAttack    = 30,
         .baseDefense   = 70,
@@ -58634,13 +57360,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Gholdengo, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Gholdengo,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Gholdengo, 64, 64),
         .backPicYOffset = 6,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Gholdengo),
         ICON(Gholdengo, 0),
-        //.footprint = gMonFootprint_Gholdengo,
         LEARNSETS(Gholdengo),
     },
 #endif //P_FAMILY_GIMMIGHOUL
@@ -58684,13 +57407,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(WoChien, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_WoChien,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(WoChien, 64, 64),
         .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(WoChien),
         ICON(WoChien, 5),
-        //.footprint = gMonFootprint_WoChien,
         LEARNSETS(WoChien),
     },
 #endif //P_FAMILY_WO_CHIEN
@@ -58734,13 +57454,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ChienPao, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_ChienPao,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ChienPao, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ChienPao),
         ICON(ChienPao, 0),
-        //.footprint = gMonFootprint_ChienPao,
         LEARNSETS(ChienPao),
     },
 #endif //P_FAMILY_CHIEN_PAO
@@ -58784,13 +57501,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(TingLu, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_TingLu,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TingLu, 64, 64),
         .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(TingLu),
         ICON(TingLu, 0),
-        //.footprint = gMonFootprint_TingLu,
         LEARNSETS(TingLu),
     },
 #endif //P_FAMILY_TING_LU
@@ -58834,14 +57548,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(ChiYu, 64, 64),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_ChiYu,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 9,
         BACK_PIC(ChiYu, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ChiYu),
         ICON(ChiYu, 0),
-        //.footprint = gMonFootprint_ChiYu,
         LEARNSETS(ChiYu),
     },
 #endif //P_FAMILY_CHI_YU
@@ -58885,14 +57596,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(RoaringMoon, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RoaringMoon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 6,
         BACK_PIC(RoaringMoon, 64, 64),
         .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RoaringMoon),
         ICON(RoaringMoon, 3),
-        //.footprint = gMonFootprint_RoaringMoon,
         LEARNSETS(RoaringMoon),
     },
 #endif //P_FAMILY_ROARING_MOON
@@ -58935,13 +57643,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronValiant, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_IronValiant,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronValiant, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronValiant),
         ICON(IronValiant, 4),
-        //.footprint = gMonFootprint_IronValiant,
         LEARNSETS(IronValiant),
     },
 #endif //P_FAMILY_IRON_VALIANT
@@ -58986,13 +57691,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Koraidon, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Koraidon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Koraidon, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Koraidon),
         ICON(Koraidon, 0),
-        //.footprint = gMonFootprint_Koraidon,
         LEARNSETS(Koraidon),
     },
 #endif //P_FAMILY_KORAIDON
@@ -59037,13 +57739,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Miraidon, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Miraidon,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Miraidon, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Miraidon),
         ICON(Miraidon, 2),
-        //.footprint = gMonFootprint_Miraidon,
         LEARNSETS(Miraidon),
     },
 #endif //P_FAMILY_MIRAIDON
@@ -59084,13 +57783,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(WalkingWake, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_WalkingWake,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(WalkingWake, 64, 64),
         .backPicYOffset = 3,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(WalkingWake),
         ICON(WalkingWake, 2),
-        //.footprint = gMonFootprint_WalkingWake,
         LEARNSETS(WalkingWake),
     },
 #endif //P_FAMILY_WALKING_WAKE
@@ -59131,62 +57827,54 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(IronLeaves, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_IronLeaves,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronLeaves, 64, 64),
         .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(IronLeaves),
         ICON(IronLeaves, 1),
-        //.footprint = gMonFootprint_IronLeaves,
         LEARNSETS(IronLeaves),
     },
 #endif //P_FAMILY_IRON_LEAVES
 
 #if P_FAMILY_POLTCHAGEIST
-#define POLTCHAGEIST_MISC_INFO                                                  \
-        .baseHP        = 40,                                                    \
-        .baseAttack    = 45,                                                    \
-        .baseDefense   = 45,                                                    \
-        .baseSpeed     = 50,                                                    \
-        .baseSpAttack  = 74,                                                    \
-        .baseSpDefense = 54,                                                    \
-        .types = { TYPE_GRASS, TYPE_GHOST },                                    \
-        .catchRate = 120,                                                       \
-        .expYield = 62,                                                         \
-        .evYield_SpAttack  = 1,                                                 \
-        .genderRatio = MON_GENDERLESS,                                          \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },                \
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },  \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .speciesName = _("Ptchageist"),                                         \
-        .cryId = CRY_POLTCHAGEIST,                                              \
-        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,                                 \
-        .categoryName = _("Matcha"),                                            \
-        .height = 1,                                                            \
-        .weight = 11,                                                           \
-        .pokemonScale = 356,                                                    \
-        .pokemonOffset = 17,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Poltchageist, 64, 64),                                        \
-        .frontPicYOffset = 7,                                                   \
-        .frontAnimFrames = sAnims_Poltchageist,                                 \
-        .enemyMonElevation = 10,                                                \
-        BACK_PIC(Poltchageist, 64, 64),                                         \
-        .backPicYOffset = 5,                                                    \
-        PALETTES(Poltchageist),                                                 \
-        ICON(Poltchageist, 4),                                                  \
-        LEARNSETS(Poltchageist)
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Poltchageist,
 
     [SPECIES_POLTCHAGEIST_COUNTERFEIT] =
     {
-        POLTCHAGEIST_MISC_INFO,
+        .baseHP        = 40,
+        .baseAttack    = 45,
+        .baseDefense   = 45,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 74,
+        .baseSpDefense = 54,
+        .types = { TYPE_GRASS, TYPE_GHOST },
+        .catchRate = 120,
+        .expYield = 62,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Ptchageist"),
+        .cryId = CRY_POLTCHAGEIST,
+        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,
+        .categoryName = _("Matcha"),
+        .height = 1,
+        .weight = 11,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Poltchageist, 64, 64),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Poltchageist,
+        .enemyMonElevation = 10,
+        BACK_PIC(Poltchageist, 64, 64),
+        .backPicYOffset = 5,
+        PALETTES(Poltchageist),
+        ICON(Poltchageist, 4),
+        LEARNSETS(Poltchageist),
         .description = COMPOUND_STRING(
             "Supposedly, the regrets of a tea\n"
             "ceremony master who died before\n"
@@ -59202,50 +57890,44 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
     },
 
-#define SINISTCHA_MISC_INFO                                                     \
-        .baseHP        = 71,                                                    \
-        .baseAttack    = 60,                                                    \
-        .baseDefense   = 106,                                                   \
-        .baseSpeed     = 70,                                                    \
-        .baseSpAttack  = 121,                                                   \
-        .baseSpDefense = 80,                                                    \
-        .types = { TYPE_GRASS, TYPE_GHOST },                                    \
-        .catchRate = 60,                                                        \
-        .expYield = 178,                                                        \
-        .evYield_SpAttack  = 2,                                                 \
-        .genderRatio = MON_GENDERLESS,                                          \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },                \
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },  \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .speciesName = _("Sinistcha"),                                          \
-        .cryId = CRY_SINISTCHA,                                                 \
-        .natDexNum = NATIONAL_DEX_SINISTCHA,                                    \
-        .categoryName = _("Matcha"),                                            \
-        .height = 2,                                                            \
-        .weight = 22,                                                           \
-        .pokemonScale = 356,                                                    \
-        .pokemonOffset = 17,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Sinistcha, 64, 64),                                           \
-        .frontPicYOffset = 10,                                                  \
-        .frontAnimFrames = sAnims_Sinistcha,                                    \
-        .enemyMonElevation = 10,                                                \
-        BACK_PIC(Sinistcha, 64, 64),                                            \
-        .backPicYOffset = 13,                                                   \
-        PALETTES(Sinistcha),                                                    \
-        ICON(Sinistcha, 1),                                                     \
-        LEARNSETS(Sinistcha)
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Sinistcha,
-
     [SPECIES_SINISTCHA_UNREMARKABLE] =
     {
-        SINISTCHA_MISC_INFO,
+        .baseHP        = 71,
+        .baseAttack    = 60,
+        .baseDefense   = 106,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 121,
+        .baseSpDefense = 80,
+        .types = { TYPE_GRASS, TYPE_GHOST },
+        .catchRate = 60,
+        .expYield = 178,
+        .evYield_SpAttack  = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Sinistcha"),
+        .cryId = CRY_SINISTCHA,
+        .natDexNum = NATIONAL_DEX_SINISTCHA,
+        .categoryName = _("Matcha"),
+        .height = 2,
+        .weight = 22,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Sinistcha, 64, 64),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Sinistcha,
+        .enemyMonElevation = 10,
+        BACK_PIC(Sinistcha, 64, 64),
+        .backPicYOffset = 13,
+        PALETTES(Sinistcha),
+        ICON(Sinistcha, 1),
+        LEARNSETS(Sinistcha),
         .description = COMPOUND_STRING(
             "It pretends to be tea, trying to fool\n"
             "people into drinking it so it can\n"
@@ -59298,13 +57980,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Okidogi, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Okidogi,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Okidogi, 64, 64),
         .backPicYOffset = 16,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Okidogi),
         ICON(Okidogi, 1),
-        //.footprint = gMonFootprint_Okidogi,
         LEARNSETS(Okidogi),
         .isLegendary = TRUE,
     },
@@ -59349,13 +58028,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Munkidori, 64, 64),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Munkidori,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Munkidori, 64, 64),
         .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Munkidori),
         ICON(Munkidori, 0),
-        //.footprint = gMonFootprint_Munkidori,
         LEARNSETS(Munkidori),
     },
 #endif //P_FAMILY_MUNKIDORI
@@ -59399,64 +58075,56 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Fezandipiti, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Fezandipiti,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Fezandipiti, 64, 64),
         .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Fezandipiti),
         ICON(Fezandipiti, 0),
-        //.footprint = gMonFootprint_Fezandipiti,
         LEARNSETS(Fezandipiti),
     },
 #endif //P_FAMILY_FEZANDIPITI
 
 #if P_FAMILY_OGERPON
-#define OGERPON_SPECIES_INFO(Form, type, ability, color, tera)              \
-    {                                                                       \
-        .baseHP        = 80,                                                \
-        .baseAttack    = 120,                                               \
-        .baseDefense   = 84,                                                \
-        .baseSpeed     = 110,                                               \
-        .baseSpAttack  = 60,                                                \
-        .baseSpDefense = 96,                                                \
-        .types = { TYPE_GRASS, type },                                      \
-        .catchRate = 5,                                                     \
-        .expYield = 275,                                                    \
-        .evYield_Attack = 3,                                                \
-        .genderRatio = MON_FEMALE,                                          \
-        .eggCycles = 10,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_SLOW,                                          \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
-        .abilities = { ability, ABILITY_NONE },                             \
-        .bodyColor = color,                                                 \
-        .speciesName = _("Ogerpon"),                                        \
-        .cryId = CRY_OGERPON,                                               \
-        .natDexNum = NATIONAL_DEX_OGERPON,                                  \
-        .categoryName = _("Mask"),                                          \
-        .height = 12,                                                       \
-        .weight = 398,                                                      \
-        .description = gOgerpon##Form##PokedexText,                         \
-        .pokemonScale = 356,                                                \
-        .pokemonOffset = 17,                                                \
-        .trainerScale = 256,                                                \
-        .trainerOffset = 0,                                                 \
-        FRONT_PIC(Ogerpon##Form, 64, 64),                                   \
-        .frontPicYOffset = 0,                                               \
-        .frontAnimFrames = sAnims_Ogerpon,                                  \
-        BACK_PIC(Ogerpon##Form, 64, 64),                                    \
-        .backPicYOffset = 16,                                               \
-        .palette = gMonPalette_Ogerpon##Form,                               \
-        ICON(OgerponTealMask, 1),                                           \
-        LEARNSETS(Ogerpon),                                                 \
-        .formChangeTable = sOgerponFormChangeTable,                         \
-        .isLegendary = TRUE,                                                \
+#define OGERPON_SPECIES_INFO
+    {
+        .baseHP        = 80,
+        .baseAttack    = 120,
+        .baseDefense   = 84,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 96,
+        .types = { TYPE_GRASS, type },
+        .catchRate = 5,
+        .expYield = 275,
+        .evYield_Attack = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },
+        .abilities = { ability, ABILITY_NONE },
+        .bodyColor = color,
+        .speciesName = _("Ogerpon"),
+        .cryId = CRY_OGERPON,
+        .natDexNum = NATIONAL_DEX_OGERPON,
+        .categoryName = _("Mask"),
+        .height = 12,
+        .weight = 398,
+        .description = gOgerpon##Form##PokedexText,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Ogerpon##Form, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Ogerpon,
+        BACK_PIC(Ogerpon##Form, 64, 64),
+        .backPicYOffset = 16,
+        .palette = gMonPalette_Ogerpon##Form,
+        ICON(OgerponTealMask, 1),
+        LEARNSETS(Ogerpon),
+        .formChangeTable = sOgerponFormChangeTable,
+        .isLegendary = TRUE,
     }
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.shinyPalette = gMonShinyPalette_OgerponTealMask,
-        //ICON(Ogerpon##Form##, 1),
-        //.footprint = gMonFootprint_Ogerpon,
 
     [SPECIES_OGERPON_TEAL_MASK]             = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_DEFIANT,                   BODY_COLOR_GREEN, FALSE),
     [SPECIES_OGERPON_WELLSPRING_MASK]       = OGERPON_SPECIES_INFO(WellspringMask,  TYPE_WATER, ABILITY_WATER_ABSORB,              BODY_COLOR_BLUE, FALSE),
