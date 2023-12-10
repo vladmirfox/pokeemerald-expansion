@@ -15,26 +15,19 @@ SECTIONS {
     ewram 0x2000000 (NOLOAD) :
     ALIGN(4)
     {
-        src/*.o(ewram_data);
-        gflib/*.o(ewram_data);
+        gflib/malloc.o(ewram_data);
+        src/decompress.o(ewram_data);
+        . = 0x20000;
 
+        *.o(ewram_data);
     } > EWRAM
 
     iwram 0x3000000 (NOLOAD) :
     ALIGN(4)
     {
-        src/*.o(.bss);
-        gflib/*.o(.bss);
-        data/*.o(.bss);
-        *libc.a:*.o(.bss*);
-        *libnosys.a:*.o(.bss*);
-
-        src/m4a.o(.bss.code);
-
-        src/*.o(COMMON);
-        gflib/*.o(COMMON);
-        *libc.a:*.o(COMMON);
-        *libnosys.a:*.o(COMMON);
+        *(.bss);
+        *(.bss.*);
+        *(COMMON);
     } > IWRAM
 
     /* BEGIN ROM DATA */
@@ -48,8 +41,7 @@ SECTIONS {
         src/rom_header_rhh.o(.text.*);
         src/crt0.o(.text);
         src/main.o(.text);
-        gflib/*.o(.text*);
-        src/*.o(.text*);
+        *(.text*);
         asm/*.o(.text*);
     } > ROM =0
 
@@ -83,9 +75,7 @@ SECTIONS {
     .rodata :
     ALIGN(4)
     {
-        src/*.o(.rodata*);
-        gflib/*.o(.rodata*);
-        data/*.o(.rodata*);
+        *(.rodata*);
     } > ROM =0
 
     song_data :
