@@ -253,7 +253,7 @@
 #define F_SUMMARY_SCREEN_FLIP_SPRITE 0x80
 
 // Evolution types
-#define EVOLUTIONS_END                   0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
+#define EVOLUTIONS_END                    0xFFFF // Not an actual evolution, used to mark the end of an evolution array.
 #define EVO_NONE                          0xFFFE // Not an actual evolution, used to generate offspring that can't evolve into the specified species, like regional forms.
 #define EVO_FRIENDSHIP                    1      // Pokémon levels up with friendship ≥ 220
 #define EVO_FRIENDSHIP_DAY                2      // Pokémon levels up during the day with friendship ≥ 220
