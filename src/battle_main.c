@@ -4678,7 +4678,9 @@ s8 GetChosenMovePriority(u32 battler)
     u16 move;
 
     gProtectStructs[battler].pranksterElevated = 0;
-    if (gProtectStructs[battler].noValidMoves)
+    if (gBattleStruct->zmove.toBeUsed[battler])
+        move = gBattleStruct->zmove.toBeUsed[battler];
+    else if (gProtectStructs[battler].noValidMoves)
         move = MOVE_STRUGGLE;
     else
         move = gBattleMons[battler].moves[*(gBattleStruct->chosenMovePositions + battler)];
