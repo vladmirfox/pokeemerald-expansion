@@ -44,6 +44,9 @@
 
 #define BATTLE_BUFFER_LINK_SIZE 0x1000
 
+// Special indicator value for shellBellDmg in SpecialStatus
+#define IGNORE_SHELL_BELL 0xFFFF
+
 struct ResourceFlags
 {
     u32 flags[MAX_BATTLERS_COUNT];
@@ -167,7 +170,7 @@ struct ProtectStruct
 
 struct SpecialStatus
 {
-    s32 dmg;
+    s32 shellBellDmg;
     s32 physicalDmg;
     s32 specialDmg;
     u8 physicalBattlerId;
@@ -732,6 +735,8 @@ struct BattleStruct
     u8 isSkyBattle:1;
     u32 aiDelayTimer; // Counts number of frames AI takes to choose an action.
     u32 aiDelayFrames; // Number of frames it took to choose an action.
+    u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
+    u8 enduredDamage;
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 intrepidSwordBoost[NUM_BATTLE_SIDES];
     u8 dauntlessShieldBoost[NUM_BATTLE_SIDES];
@@ -742,9 +747,9 @@ struct BattleStruct
 // The assert below is to ensure palaceFlags is large enough to store these flags without overlap.
 STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLERS_COUNT + MAX_MON_MOVES, PalaceFlagsTooSmall)
 
-#define F_DYNAMIC_TYPE_1 (1 << 6)
-#define F_DYNAMIC_TYPE_2 (1 << 7)
-#define DYNAMIC_TYPE_MASK (F_DYNAMIC_TYPE_1 - 1)
+#define DYNAMIC_TYPE_MASK                 ((1 << 6) - 1)
+#define F_DYNAMIC_TYPE_IGNORE_PHYSICALITY  (1 << 6) // If set, the dynamic type's physicality won't be used for certain move effects.
+#define F_DYNAMIC_TYPE_SET                 (1 << 7) // Set for all dynamic types to distinguish a dynamic type of Normal (0) from no dynamic type.
 
 #define GET_MOVE_TYPE(move, typeArg)                                  \
 {                                                                     \
@@ -767,7 +772,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_RECOIL(move)(IS_EFFECT_RECOIL(gBattleMoves[move].effect))
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
-#define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
+#define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0) || (gBattleStruct->enduredDamage & gBitTable[gBattlerTarget]))
 #define BATTLER_DAMAGED(battlerId) ((gSpecialStatuses[battlerId].physicalDmg != 0 || gSpecialStatuses[battlerId].specialDmg != 0))
 
 #define IS_BATTLER_OF_TYPE(battlerId, type)((GetBattlerType(battlerId, 0) == type || GetBattlerType(battlerId, 1) == type || (GetBattlerType(battlerId, 2) != TYPE_MYSTERY && GetBattlerType(battlerId, 2) == type)))
@@ -994,7 +999,7 @@ extern u16 gChosenMove;
 extern u16 gCalledMove;
 extern s32 gBattleMoveDamage;
 extern s32 gHpDealt;
-extern s32 gTakenDmg[MAX_BATTLERS_COUNT];
+extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
 extern u8 gBattlerAttacker;
@@ -1020,7 +1025,7 @@ extern u8 gLastHitBy[MAX_BATTLERS_COUNT];
 extern u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT];
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
-extern u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT];
+extern u8 gBideTarget[MAX_BATTLERS_COUNT];
 extern u8 gUnusedFirstBattleVar2;
 extern u32 gSideStatuses[NUM_BATTLE_SIDES];
 extern struct SideTimer gSideTimers[NUM_BATTLE_SIDES];
