@@ -25988,7 +25988,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(KyogrePrimal),
         ICON(KyogrePrimal, 0),
-        .isPrimalRevesion = TRUE,
+        .isPrimalReversion = TRUE,
     },
 #endif //P_PRIMAL_REVERSIONS
 #endif //P_FAMILY_KYOGRE
@@ -26080,7 +26080,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(GroudonPrimal),
         ICON(GroudonPrimal, 0),
-        .isPrimalRevesion = TRUE,
+        .isPrimalReversion = TRUE,
     },
 #endif //P_PRIMAL_REVERSIONS
 #endif //P_FAMILY_GROUDON

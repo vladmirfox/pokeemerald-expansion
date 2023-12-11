@@ -385,7 +385,7 @@ struct SpeciesInfo /*0x8C*/
             u32 isUltraBeast:1;
             u32 isParadoxForm:1;
             u32 isMegaEvolution:1;
-            u32 isPrimalRevesion:1;
+            u32 isPrimalReversion:1;
             u32 isUltraBurst:1;
             u32 isGigantamax:1;
             u32 isAlolanForm:1;
