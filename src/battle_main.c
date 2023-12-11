@@ -4691,7 +4691,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     s8 priority;
     u16 ability = GetBattlerAbility(battler);
 
-    if (gBattleStruct->zmove.toBeUsed[battler])
+    if (gBattleStruct->zmove.toBeUsed[battler] && gBattleMoves[move].power != 0)
         move = gBattleStruct->zmove.toBeUsed[battler];
 
     priority = gBattleMoves[move].priority;
@@ -4703,7 +4703,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     {
         priority++;
     }
-    else if (ability == ABILITY_PRANKSTER && (IS_MOVE_STATUS(move) || gBattleStruct->zmove.splits[battler] == SPLIT_STATUS))
+    else if (ability == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battler].pranksterElevated = 1;
         priority++;
