@@ -48783,6 +48783,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,                                                             \
         .footprint = gMonFootprint_Melmetal,                                            \
         LEARNSETS(Melmetal),                                                            \
+        .formSpeciesIdTable = sMelmetalFormSpeciesIdTable,                              \
         .formChangeTable = sMelmetalFormChangeTable,                                    \
         .isMythical = TRUE
 
@@ -59449,6 +59450,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .palette = gMonPalette_Ogerpon##Form,                                           \
         ICON(OgerponTealMask, 1),                                                       \
         LEARNSETS(Ogerpon),                                                             \
+        .formSpeciesIdTable = sOgerponFormSpeciesIdTable,                               \
         .formChangeTable = sOgerponFormChangeTable,                                     \
         .isLegendary = TRUE,                                                            \
     }
