@@ -500,7 +500,7 @@
 #define P_FAMILY_SINISTEA                P_GEN_8_POKEMON
 #define P_FAMILY_HATENNA                 P_GEN_8_POKEMON
 #define P_FAMILY_IMPIDIMP                P_GEN_8_POKEMON
-#define P_FAMILY_MILCERY                 P_GEN_8_POKEMON
+#define P_FAMILY_MILCERY                 FALSE//P_GEN_8_POKEMON
 #define P_FAMILY_FALINKS                 P_GEN_8_POKEMON
 #define P_FAMILY_PINCURCHIN              P_GEN_8_POKEMON
 #define P_FAMILY_SNOM                    P_GEN_8_POKEMON
