@@ -14461,6 +14461,77 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
     },
 
+    [MOVE_ELECTRO_SHOT] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
+        //.power = ,
+        .type = TYPE_ELECTRIC,
+        //.accuracy = ,
+        //.pp = ,
+        //.secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_PSYCHIC_NOISE] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
+        //.power = ,
+        .type = TYPE_PSYCHIC,
+        //.accuracy = ,
+        //.pp = ,
+        //.secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_UPPER_HAND] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
+        //.power = ,
+        .type = TYPE_FIGHTING,
+        //.accuracy = ,
+        //.pp = ,
+        //.secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_THUNDERCLAP] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
+        //.power = ,
+        .type = TYPE_ELECTRIC,
+        //.accuracy = ,
+        //.pp = ,
+        //.secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_TACHYON_CUTTER] =
+    {
+        .effect = EFFECT_HIT,
+        //.power = ,
+        .type = TYPE_STEEL,
+        .accuracy = 0,
+        //.pp = ,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+        .strikeCount = 2,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
