@@ -3284,6 +3284,21 @@ static const u8 sIvyCudgelDescription[] = _(
     "Type changes with held mask.\n"
     "High critical-hit ratio.");
 
+static const u8 sElectroShotDescription[] = _(
+    "");
+
+static const u8 sPsychicNoiseDescription[] = _(
+    "");
+
+static const u8 sUpperHandDescription[] = _(
+    "");
+
+static const u8 sThunderclapDescription[] = _(
+    "");
+
+static const u8 sTachyonCutterDescription[] = _(
+    "");
+
 const u8 gNotDoneYetDescription[] = _(
     "This move can't be used. Its\n"
     "effect is in development.");
@@ -4127,4 +4142,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MATCHA_GOTCHA - 1] = sMatchaGotchaDescription,
     [MOVE_SYRUP_BOMB - 1] = sSyrupBombDescription,
     [MOVE_IVY_CUDGEL - 1] = sIvyCudgelDescription,
+    [MOVE_ELECTRO_SHOT - 1] = sElectroShotDescription,
+    [MOVE_PSYCHIC_NOISE - 1] = sPsychicNoiseDescription,
+    [MOVE_UPPER_HAND - 1] = sUpperHandDescription,
+    [MOVE_THUNDERCLAP - 1] = sThunderclapDescription,
+    [MOVE_TACHYON_CUTTER - 1] = sTachyonCutterDescription,
 };

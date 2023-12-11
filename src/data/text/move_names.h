@@ -835,6 +835,11 @@ const u8 gMoveNames[MOVES_COUNT_DYNAMAX][MOVE_NAME_LENGTH + 1] =
     [MOVE_MATCHA_GOTCHA] = _("Matcha Gotcha"),
     [MOVE_SYRUP_BOMB] = _("Syrup Bomb"),
     [MOVE_IVY_CUDGEL] = _("Ivy Cudgel"),
+    [MOVE_ELECTRO_SHOT] = _("Electro Shot"),
+    [MOVE_PSYCHIC_NOISE] = _("Psychic Noise"),
+    [MOVE_UPPER_HAND] = _("Upper Hand"),
+    [MOVE_THUNDERCLAP] = _("Thunderclap"),
+    [MOVE_TACHYON_CUTTER] = _("Tachyon Cutter"),
     // Max Moves
     [MOVE_MAX_GUARD] = _("Max Guard"),
     [MOVE_MAX_STRIKE] = _("Max Strike"),
@@ -1727,6 +1732,11 @@ const u8 gMoveNames[MOVES_COUNT_DYNAMAX][MOVE_NAME_LENGTH + 1] =
     [MOVE_MATCHA_GOTCHA] = _("MatchaGotcha"),
     [MOVE_SYRUP_BOMB] = _("Syrup Bomb"),
     [MOVE_IVY_CUDGEL] = _("Ivy Cudgel"),
+    [MOVE_ELECTRO_SHOT] = _("Electro Shot"),
+    [MOVE_PSYCHIC_NOISE] = _("PsychicNoise"),
+    [MOVE_UPPER_HAND] = _("Upper Hand"),
+    [MOVE_THUNDERCLAP] = _("Thunderclap"),
+    [MOVE_TACHYON_CUTTER] = _("TachyonCuttr"),
     // Max Moves
     [MOVE_MAX_GUARD] = _("M-Guard"),
     [MOVE_MAX_STRIKE] = _("M-Strike"),

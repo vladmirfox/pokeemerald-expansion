@@ -860,21 +860,11 @@ gBattleAnims_Moves::
 	.4byte Move_MATCHA_GOTCHA
 	.4byte Move_SYRUP_BOMB
 	.4byte Move_IVY_CUDGEL
-	.4byte Move_833
-	.4byte Move_834
-	.4byte Move_835
-	.4byte Move_836
-	.4byte Move_837
-	.4byte Move_838
-	.4byte Move_839
-	.4byte Move_840
-	.4byte Move_841
-	.4byte Move_842
-	.4byte Move_843
-	.4byte Move_844
-	.4byte Move_845
-	.4byte Move_846
-	.4byte Move_847
+	.4byte Move_ELECTRO_SHOT
+	.4byte Move_PSYCHIC_NOISE
+	.4byte Move_UPPER_HAND
+	.4byte Move_THUNDERCLAP
+	.4byte Move_TACHYON_CUTTER
 @@@@ Z MOVES
 	.4byte Move_BREAKNECK_BLITZ
 	.4byte Move_ALL_OUT_PUMMELING
@@ -16972,6 +16962,11 @@ Move_HYDRO_STEAM::
 Move_BLOOD_MOON::
 Move_MATCHA_GOTCHA::
 Move_IVY_CUDGEL::
+Move_ELECTRO_SHOT::
+Move_PSYCHIC_NOISE::
+Move_UPPER_HAND::
+Move_THUNDERCLAP::
+Move_TACHYON_CUTTER::
 	end @to do
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
