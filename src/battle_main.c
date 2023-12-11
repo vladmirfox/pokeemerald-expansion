@@ -4678,9 +4678,7 @@ s8 GetChosenMovePriority(u32 battler)
     u16 move;
 
     gProtectStructs[battler].pranksterElevated = 0;
-    if (gBattleStruct->zmove.toBeUsed[battler])
-        move = gBattleStruct->zmove.toBeUsed[battler];
-    else if (gProtectStructs[battler].noValidMoves)
+    if (gProtectStructs[battler].noValidMoves)
         move = MOVE_STRUGGLE;
     else
         move = gBattleMons[battler].moves[*(gBattleStruct->chosenMovePositions + battler)];
@@ -4693,6 +4691,9 @@ s8 GetMovePriority(u32 battler, u16 move)
     s8 priority;
     u16 ability = GetBattlerAbility(battler);
 
+    if (gBattleStruct->zmove.toBeUsed[battler])
+        move = gBattleStruct->zmove.toBeUsed[battler];
+
     priority = gBattleMoves[move].priority;
     if (ability == ABILITY_GALE_WINGS
     #if B_GALE_WINGS >= GEN_7
@@ -4702,7 +4703,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     {
         priority++;
     }
-    else if (ability == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
+    else if (ability == ABILITY_PRANKSTER && (IS_MOVE_STATUS(move) || gBattleStruct->zmove.splits[battler] == SPLIT_STATUS))
     {
         gProtectStructs[battler].pranksterElevated = 1;
         priority++;
