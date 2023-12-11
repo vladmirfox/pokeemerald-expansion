@@ -396,11 +396,11 @@ struct SpeciesInfo /*0x8C*/
             u32 allPerfectIVs:1;
             u32 padding4:18;
             // Move Data
- /* 0x80 */ const struct LevelUpMove *const levelUpLearnset;
- /* 0x84 */ const u16 *const teachableLearnset;
- /* 0x88 */ const struct Evolution *const evolutions;
- /* 0x84 */ const u16 *const formSpeciesIdTable;
- /* 0x84 */ const struct FormChange *const formChangeTable;
+ /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
+ /* 0x84 */ const u16 *teachableLearnset;
+ /* 0x88 */ const struct Evolution *evolutions;
+ /* 0x84 */ const u16 *formSpeciesIdTable;
+ /* 0x84 */ const struct FormChange *formChangeTable;
 };
 
 struct BattleMove
