@@ -1530,13 +1530,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PIDGEY
 
 #if P_FAMILY_RATTATA
-#define RATTATA_FAMILY_MISC_INFO
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
-
 #define RATTATA_MISC_INFO
         .baseHP        = 30,
         .baseAttack    = 56,
@@ -1567,7 +1560,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable
 
     SPECIES(SPECIES_RATTATA, (
-        RATTATA_FAMILY_MISC_INFO,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         RATTATA_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .abilities = { ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE },
@@ -1599,7 +1596,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_RATICATE, (
-        RATTATA_FAMILY_MISC_INFO,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         RATICATE_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 81,
@@ -1636,7 +1637,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_ALOLAN_FORMS
     SPECIES(SPECIES_RATTATA_ALOLAN, (
-        RATTATA_FAMILY_MISC_INFO,
         RATTATA_MISC_INFO,
         .types = { TYPE_DARK, TYPE_NORMAL },
         .itemRare = ITEM_PECHA_BERRY,
@@ -1668,7 +1668,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_RATICATE_ALOLAN, (
-        RATTATA_FAMILY_MISC_INFO,
         RATICATE_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 71,
@@ -2025,10 +2024,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_COSPLAY_PIKACHU_FORMS
 #define PIKACHU_COSPLAY_MISC_INFO
-    PIKACHU_MISC_INFO,                                              \
-    PIKACHU_REGULAR_SIZE_INFO,                                      \
-    .genderRatio = MON_FEMALE,                                      \
-    .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },\
+    PIKACHU_MISC_INFO,
+    PIKACHU_REGULAR_SIZE_INFO,
+    .genderRatio = MON_FEMALE,
+    .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
     .description = gPikachuPokedexText
 
     SPECIES(SPECIES_PIKACHU_COSPLAY, (
@@ -2116,9 +2115,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #if P_CAP_PIKACHU_FORMS
 
 #define PIKACHU_CAP_MISC_INFO
-    PIKACHU_MISC_INFO,                                              \
-    PIKACHU_REGULAR_SIZE_INFO,                                      \
-    .genderRatio = MON_MALE,                                        \
+    PIKACHU_MISC_INFO,
+    PIKACHU_REGULAR_SIZE_INFO,
+    .genderRatio = MON_MALE,
     .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED }
 
     SPECIES(SPECIES_PIKACHU_ORIGINAL_CAP, (
@@ -2389,14 +2388,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_PIKACHU
 
 #if P_FAMILY_SANDSHREW
-#define SANDSHREW_FAMILY_MISC_INFO
-        .itemRare = ITEM_GRIP_CLAW,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
-
 #define SANDSHREW_MISC_INFO
         .catchRate = 255,
         .expYield = 60,
@@ -2407,7 +2398,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mouse"),
         .footprint = gMonFootprint_Sandshrew,
         .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
-        SANDSHREW_FAMILY_MISC_INFO
+        .itemRare = ITEM_GRIP_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
 #define SANDSLASH_MISC_INFO
         .catchRate = 90,
@@ -2419,7 +2415,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mouse"),
         .footprint = gMonFootprint_Sandslash,
         .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
-        SANDSHREW_FAMILY_MISC_INFO
+        .itemRare = ITEM_GRIP_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
     SPECIES(SPECIES_SANDSHREW, (
         SANDSHREW_MISC_INFO,
@@ -3005,13 +3006,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CLEFAIRY
 
 #if P_FAMILY_VULPIX
-#define VULPIX_FAMILY_MISC_INFO
-        .genderRatio = PERCENT_FEMALE(75),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
-
 #define VULPIX_MISC_INFO
         .baseHP        = 38,
         .baseAttack    = 41,
@@ -3034,7 +3028,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Vulpix,
         .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
-        VULPIX_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
 #define NINETALES_MISC_INFO
         .catchRate = 75,
@@ -3053,7 +3051,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Ninetales,
         .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
-        VULPIX_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
     SPECIES(SPECIES_VULPIX, (
         VULPIX_MISC_INFO,
@@ -3873,15 +3875,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_VENONAT
 
 #if P_FAMILY_DIGLETT
-#define DIGLETT_FAMILY_MISC_INFO
-        .itemRare = ITEM_SOFT_SAND,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-        .bodyColor = BODY_COLOR_BROWN
-
 #define DIGLETT_MISC_INFO
         .catchRate = 255,
         .expYield = 53,
@@ -3897,7 +3890,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Diglett,
         .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
-        DIGLETT_FAMILY_MISC_INFO
+        .itemRare = ITEM_SOFT_SAND,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN
 
 #define DUGTRIO_MISC_INFO
         .catchRate = 50,
@@ -3912,7 +3911,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
-        DIGLETT_FAMILY_MISC_INFO
+        .itemRare = ITEM_SOFT_SAND,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN
 
 #define DUGTRIO_ATTACK (P_UPDATED_STATS >= GEN_7 ? 100 : 80)
 
@@ -4583,14 +4588,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MANKEY
 
 #if P_FAMILY_GROWLITHE
-#define GROWLITHE_FAMILY_MISC_INFO
-        .genderRatio = PERCENT_FEMALE(25),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-        .bodyColor = BODY_COLOR_BROWN
-
 #define GROWLITHE_MISC_INFO
         .catchRate = 190,
         .expYield = 70,
@@ -4600,7 +4597,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_GROWLITHE,
         .footprint = gMonFootprint_Growlithe,
         .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
-        GROWLITHE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN
 
 #define ARCANINE_MISC_INFO
         .catchRate = 75,
@@ -4612,7 +4614,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Legendary"),
         .footprint = gMonFootprint_Arcanine,
         .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
-        GROWLITHE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .bodyColor = BODY_COLOR_BROWN
 
     SPECIES(SPECIES_GROWLITHE, (
         GROWLITHE_MISC_INFO,
@@ -5571,19 +5578,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TENTACOOL
 
 #if P_FAMILY_GEODUDE
-#define KANTONIAN_GEODUDE_FAMILY_INFO
-        .types = { TYPE_ROCK, TYPE_GROUND },
-        .itemRare = ITEM_EVERSTONE,
-        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL }
-
-#define GEODUDE_FAMILY_MISC_INFO
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-        .bodyColor = BODY_COLOR_BROWN
-
 #define GEODUDE_MISC_INFO
         .baseHP        = 40,
         .baseAttack    = 80,
@@ -5605,7 +5599,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Geodude,
         .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
-        GEODUDE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_BROWN
 
 #define GRAVELER_MISC_INFO
         .baseHP        = 55,
@@ -5628,7 +5627,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Graveler,
         .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
-        GEODUDE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_BROWN
 
 #define GOLEM_ATTACK (P_UPDATED_STATS >= GEN_6 ? 120 : 110)
 
@@ -5648,10 +5652,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Megaton"),
         .footprint = gMonFootprint_Golem,
         .formSpeciesIdTable = sGolemFormSpeciesIdTable,
-        GEODUDE_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .bodyColor = BODY_COLOR_BROWN
 
     SPECIES(SPECIES_GEODUDE, (
-        KANTONIAN_GEODUDE_FAMILY_INFO,
+        .types = { TYPE_ROCK, TYPE_GROUND },
+        .itemRare = ITEM_EVERSTONE,
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
         GEODUDE_MISC_INFO,
         .weight = 200,
         .description = COMPOUND_STRING(
@@ -5674,7 +5685,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GRAVELER, (
-        KANTONIAN_GEODUDE_FAMILY_INFO,
+        .types = { TYPE_ROCK, TYPE_GROUND },
+        .itemRare = ITEM_EVERSTONE,
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
         GRAVELER_MISC_INFO,
         .weight = 1050,
         .description = COMPOUND_STRING(
@@ -5697,7 +5710,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GOLEM, (
-        KANTONIAN_GEODUDE_FAMILY_INFO,
+        .types = { TYPE_ROCK, TYPE_GROUND },
+        .itemRare = ITEM_EVERSTONE,
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
         GOLEM_MISC_INFO,
         .height = 14,
         .weight = 3000,
@@ -5723,13 +5738,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
 #if P_ALOLAN_FORMS
-#define ALOLAN_GEODUDE_FAMILY_INFO
+    SPECIES(SPECIES_GEODUDE_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE
-
-    SPECIES(SPECIES_GEODUDE_ALOLAN, (
-        ALOLAN_GEODUDE_FAMILY_INFO,
+        .isAlolanForm = TRUE,
         GEODUDE_MISC_INFO,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 203,
@@ -5753,7 +5765,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GRAVELER_ALOLAN, (
-        ALOLAN_GEODUDE_FAMILY_INFO,
+        .types = { TYPE_ROCK, TYPE_ELECTRIC },
+        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
+        .isAlolanForm = TRUE,
         GRAVELER_MISC_INFO,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 1100,
@@ -5777,7 +5791,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GOLEM_ALOLAN, (
-        ALOLAN_GEODUDE_FAMILY_INFO,
+        .types = { TYPE_ROCK, TYPE_ELECTRIC },
+        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
+        .isAlolanForm = TRUE,
         GOLEM_MISC_INFO,
         .itemCommon = ITEM_CELL_BATTERY,
         .height = 17,
@@ -5806,18 +5822,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_GEODUDE
 
 #if P_FAMILY_PONYTA
-#define KANTONIAN_PONYTA_FAMILY_INFO
-        .types = { TYPE_FIRE, TYPE_FIRE },
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY },
-        .bodyColor = BODY_COLOR_YELLOW
-
-#define PONYTA_FAMILY_MISC_INFO
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
-
 #define PONYTA_MISC_INFO
         .baseHP        = 50,
         .baseAttack    = 85,
@@ -5833,7 +5837,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_PONYTA,
         .footprint = gMonFootprint_Ponyta,
         .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
-        PONYTA_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
 #define RAPIDASH_MISC_INFO
         .baseHP        = 65,
@@ -5855,10 +5863,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 1,
         .footprint = gMonFootprint_Rapidash,
         .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
-        PONYTA_FAMILY_MISC_INFO
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD }
 
     SPECIES(SPECIES_PONYTA, (
-        KANTONIAN_PONYTA_FAMILY_INFO,
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY },
+        .bodyColor = BODY_COLOR_YELLOW,
         PONYTA_MISC_INFO,
         .categoryName = _("Fire Horse"),
         .height = 10,
@@ -5887,7 +5901,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_RAPIDASH, (
-        KANTONIAN_PONYTA_FAMILY_INFO,
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY },
+        .bodyColor = BODY_COLOR_YELLOW,
         RAPIDASH_MISC_INFO,
         .categoryName = _("Fire Horse"),
         .weight = 950,
@@ -5908,14 +5924,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Rapidash),
     )),
 
-#define GALARIAN_PONYTA_FAMILY_INFO
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
-        .bodyColor = BODY_COLOR_WHITE,
-        .isGalarianForm = TRUE
-
 #if P_GALARIAN_FORMS
     SPECIES(SPECIES_PONYTA_GALARIAN, (
-        GALARIAN_PONYTA_FAMILY_INFO,
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
+        .bodyColor = BODY_COLOR_WHITE,
+        .isGalarianForm = TRUE,
         PONYTA_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .categoryName = _("Unique Horn"),
@@ -5944,7 +5957,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_RAPIDASH_GALARIAN, (
-        GALARIAN_PONYTA_FAMILY_INFO,
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
+        .bodyColor = BODY_COLOR_WHITE,
+        .isGalarianForm = TRUE,
         RAPIDASH_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .categoryName = _("Unique Horn"),
@@ -6756,14 +6771,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SEEL
 
 #if P_FAMILY_GRIMER
-#define GRIMER_FAMILY_MISC_INFO
-        .itemRare = ITEM_BLACK_SLUDGE,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS }
-
 #define GRIMER_MISC_INFO
         .baseHP        = 80,
         .baseAttack    = 80,
@@ -6780,7 +6787,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Sludge"),
         .footprint = gMonFootprint_Grimer,
         .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
-        GRIMER_FAMILY_MISC_INFO
+        .itemRare = ITEM_BLACK_SLUDGE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS }
 
 #define MUK_MISC_INFO
         .baseHP        = 105,
@@ -6799,15 +6811,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Sludge"),
         .footprint = gMonFootprint_Muk,
         .formSpeciesIdTable = sMukFormSpeciesIdTable,
-        GRIMER_FAMILY_MISC_INFO
-
-#define KANTONIAN_GRIMER_FAMILY_INFO
-        .types = { TYPE_POISON, TYPE_POISON },
-        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
-        .bodyColor = BODY_COLOR_PURPLE
+        .itemRare = ITEM_BLACK_SLUDGE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS }
 
     SPECIES(SPECIES_GRIMER, (
-        KANTONIAN_GRIMER_FAMILY_INFO,
+        .types = { TYPE_POISON, TYPE_POISON },
+        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
+        .bodyColor = BODY_COLOR_PURPLE,
         GRIMER_MISC_INFO,
         .height = 9,
         .weight = 300,
@@ -6834,7 +6848,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_MUK, (
-        KANTONIAN_GRIMER_FAMILY_INFO,
+        .types = { TYPE_POISON, TYPE_POISON },
+        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
+        .bodyColor = BODY_COLOR_PURPLE,
         MUK_MISC_INFO,
         .height = 12,
         .weight = 300,
@@ -6861,14 +6877,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
 #if P_ALOLAN_FORMS
-#define ALOLAN_GRIMER_FAMILY_INFO
+    SPECIES(SPECIES_GRIMER_ALOLAN, (
         .types = { TYPE_POISON, TYPE_DARK },
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
         .bodyColor = BODY_COLOR_GREEN,
-        .isAlolanForm = TRUE
-
-    SPECIES(SPECIES_GRIMER_ALOLAN, (
-        ALOLAN_GRIMER_FAMILY_INFO,
+        .isAlolanForm = TRUE,
         GRIMER_MISC_INFO,
         .height = 7,
         .weight = 420,
@@ -6896,7 +6909,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     SPECIES(SPECIES_MUK_ALOLAN, (
         MUK_MISC_INFO,
-        ALOLAN_GRIMER_FAMILY_INFO,
+        .types = { TYPE_POISON, TYPE_DARK },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
+        .bodyColor = BODY_COLOR_GREEN,
+        .isAlolanForm = TRUE,
         .noFlip = TRUE,
         .height = 10,
         .weight = 520,
@@ -7615,15 +7631,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_KRABBY
 
 #if P_FAMILY_VOLTORB
-#define VOLTORB_FAMILY_MISC_INFO
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
-        .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
-        .bodyColor = BODY_COLOR_RED
-
 #define VOLTORB_MISC_INFO
         .baseHP        = 40,
         .baseAttack    = 30,
@@ -7644,7 +7651,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Voltorb,
         .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
-        VOLTORB_FAMILY_MISC_INFO
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
+        .bodyColor = BODY_COLOR_RED
 
 #define ELECTRODE_MISC_INFO
         .baseHP        = 60,
@@ -7666,7 +7679,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Electrode,
         .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
-        VOLTORB_FAMILY_MISC_INFO
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
+        .bodyColor = BODY_COLOR_RED
 
     SPECIES(SPECIES_VOLTORB, (
         VOLTORB_MISC_INFO,
