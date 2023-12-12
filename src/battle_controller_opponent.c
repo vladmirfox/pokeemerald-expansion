@@ -51,6 +51,7 @@ static void OpponentHandleChooseAction(u32 battler);
 static void OpponentHandleChooseMove(u32 battler);
 static bool32 CheckIfPartnerIsNaturalEnemy(u32 battler);
 static bool32 IsMonNaturalEnemy(u32 i, u16 speciesAttacker, u16 speciesTarget);
+static bool32 IsMonPredator(u32 i, u16 speciesAttacker, u16 speciesTarget);
 static void OpponentHandleChooseItem(u32 battler);
 static void OpponentHandleChoosePokemon(u32 battler);
 static void OpponentHandleHealthBarUpdate(u32 battler);
@@ -617,13 +618,16 @@ static void OpponentHandleChooseMove(u32 battler)
     }
 }
 
-static const u16 naturalEnemies[][3] =
+static const u16 predatorPrey[][3] =
 {
-    // Attacker              // Target
-    {SPECIES_ZANGOOSE,       SPECIES_SEVIPER},
-    {SPECIES_HEATMOR,        SPECIES_DURANT},
     {SPECIES_SABLEYE,        SPECIES_CARBINK},
     {SPECIES_MAREANIE,       SPECIES_CORSOLA},
+};
+
+static const u16 naturalEnemies[][3] =
+{
+    {SPECIES_ZANGOOSE,       SPECIES_SEVIPER},
+    {SPECIES_HEATMOR,        SPECIES_DURANT},
 #if B_WILD_NATURAL_ENEMIES_POKEDEX
     {SPECIES_PIDGEY,         SPECIES_SEEDOT},
     {SPECIES_PIDGEOTTO,      SPECIES_MAGIKARP},
@@ -770,19 +774,14 @@ static bool32 CheckIfPartnerIsNaturalEnemy(u32 battler)
     u16 speciesAttacker = gBattleMons[battler].species;
     u16 speciesTarget = gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(battler))].species;
 
-    if ((speciesAttacker == SPECIES_CARBINK) && (speciesTarget == SPECIES_SABLEYE))
-        return FALSE;
-
-    if ((speciesAttacker == SPECIES_CORSOLA) && (speciesTarget == SPECIES_MAREANIE))
-        return FALSE;
+    for (i = 0; i < ARRAY_COUNT(predatorPrey); i++)
+        if (IsMonPredator(i, speciesAttacker, speciesTarget))
+            return TRUE;
 
     for (i = 0; i < ARRAY_COUNT(naturalEnemies); i++)
-    {
-        if (!IsMonNaturalEnemy(i, speciesAttacker, speciesTarget))
-            continue;
+        if (IsMonNaturalEnemy(i, speciesAttacker, speciesTarget))
+            return TRUE;
 
-        return TRUE;
-    }
     return FALSE;
 }
 
@@ -790,6 +789,14 @@ static bool32 IsMonNaturalEnemy(u32 i, u16 speciesAttacker, u16 speciesTarget)
 {
     if ((speciesAttacker == naturalEnemies[i][0] && speciesTarget == naturalEnemies[i][1])
             || (speciesAttacker == naturalEnemies[i][1] && speciesTarget == naturalEnemies[i][0]))
+        return TRUE;
+
+    return FALSE;
+}
+
+static bool32 IsMonPredator(u32 i, u16 speciesAttacker, u16 speciesTarget)
+{
+    if (speciesAttacker == predatorPrey[i][0] && speciesTarget == predatorPrey[i][1])
         return TRUE;
 
     return FALSE;
