@@ -140,7 +140,7 @@ static const u8 sText_TenDashes2[] = _("----------");
 
 
 #define SCROLLING_MON_X 146
-#define HGSS_DECAPPED 0 //0 false, 1 true
+#define HGSS_DECAPPED 1 //0 false, 1 true
 #define HGSS_DARK_MODE 0 //0 false, 1 true
 #define HGSS_HIDE_UNSEEN_EVOLUTION_NAMES 0 //0 false, 1 true
 
@@ -5280,9 +5280,9 @@ static bool8 CalculateMoves(void)
     {
         if (CanSpeciesLearnTMHM(species, j))
         {
-            sStatsMoves[movesTotal] = ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + j);
+            sStatsMoves[movesTotal] = ItemIdToBattleMoveId(ITEM_TM01 + j);
             movesTotal++;
-            sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01_FOCUS_PUNCH + j);
+            sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
             numTMHMMoves++;
         }
     }
@@ -5305,7 +5305,7 @@ static bool8 CalculateMoves(void)
         {
             if (GetTMHMMoves(j) == move)
             {
-                sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01_FOCUS_PUNCH + j);
+                sStatsMovesTMHM_ID[numTMHMMoves] = (ITEM_TM01 + j);
                 numTMHMMoves++;
                 break;
             }
@@ -6256,11 +6256,11 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         //Print evo info and icons
         gTasks[taskId].data[3] = 0;
         PrintEvolutionTargetSpeciesAndMethod(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum), 0, sPokedexView->numPreEvolutions);
-        LoadSpritePalette(&sSpritePalette_Arrow);
+        LoadSpritePalette(&gSpritePalette_Arrow);
         GetSeenFlagTargetSpecies();
         if (sPokedexView->sEvoScreenData.numAllEvolutions != 0 && sPokedexView->sEvoScreenData.numSeen != 0)
         {
-            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&sSpriteTemplate_Arrow, 7, 58, 0);
+            sPokedexView->sEvoScreenData.arrowSpriteId = CreateSprite(&gSpriteTemplate_Arrow, 7, 58, 0);
             gSprites[sPokedexView->sEvoScreenData.arrowSpriteId].animNum = 2;
         }
         gMain.state++;
@@ -6535,13 +6535,13 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
             {
                 preEvolutionOne = i;
                 numPreEvolutions += 1;
-                #ifdef POKEMON_EXPANSION
+/*                 #ifdef POKEMON_EXPANSION
                     if (gEvolutionTable[i][j].method == EVO_MEGA_EVOLUTION)
                     {
                         CopyItemName(gEvolutionTable[i][j].param, gStringVar2); //item
                         isMega = TRUE;
                     }
-                #endif
+                #endif */
                 break;
             }
         }
@@ -6654,7 +6654,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 times += 1;
         #endif
         #ifdef POKEMON_EXPANSION
-            if (gEvolutionTable[species][i].method != 0 && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION)
+            if (gEvolutionTable[species][i].method != 0)
                 times += 1;
         #endif
     }
@@ -6780,9 +6780,9 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
                 StringCopy(gStringVar2, gMoveNames[gEvolutionTable[species][i].param]);
                 StringExpandPlaceholders(gStringVar4, gText_EVO_MOVE );
                 break;
-            case EVO_MOVE_TYPE:
+            case EVO_FRIENDSHIP_MOVE_TYPE:
                 StringCopy(gStringVar2, gTypeNames[gEvolutionTable[species][i].param]);
-                StringExpandPlaceholders(gStringVar4, gText_EVO_MOVE_TYPE );
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_MOVE_TYPE );
                 break;
             case EVO_MAPSEC:
                 StringCopy(gStringVar2, gRegionMapEntries[gEvolutionTable[species][i].param].name);
@@ -6947,7 +6947,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         //Print form icons
         gTasks[taskId].data[3] = 0;
         PrintForms(taskId, NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum));
-        LoadSpritePalette(&sSpritePalette_Arrow);
+        LoadSpritePalette(&gSpritePalette_Arrow);
         gMain.state++;
         break;
     case 5:
