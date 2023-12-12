@@ -1993,11 +1993,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formChangeTable = sPikachuFormChangeTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU},
                                 {EVO_NONE, 0, SPECIES_RAICHU_ALOLAN}),
-    )),
+    ),
 
 #if P_COSPLAY_PIKACHU_FORMS
-
-    SPECIES(SPECIES_PIKACHU_COSPLAY, (
+    FORM(SPECIES_PIKACHU_COSPLAY, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2012,7 +2011,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuCosplay, 2),
     )),
 
-    SPECIES(SPECIES_PIKACHU_ROCK_STAR, (
+    FORM(SPECIES_PIKACHU_ROCK_STAR, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2027,7 +2026,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuRockStar, 1),
     )),
 
-    SPECIES(SPECIES_PIKACHU_BELLE, (
+    FORM(SPECIES_PIKACHU_BELLE, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2043,7 +2042,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuBelle, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_POP_STAR, (
+    FORM(SPECIES_PIKACHU_POP_STAR, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2059,7 +2058,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuPopStar, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_PH_D, (
+    FORM(SPECIES_PIKACHU_PH_D, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2074,7 +2073,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuPhD, 1),
     )),
 
-    SPECIES(SPECIES_PIKACHU_LIBRE, (
+    FORM(SPECIES_PIKACHU_LIBRE, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = gPikachuPokedexText,
@@ -2088,12 +2087,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PikachuLibre),
         ICON(PikachuLibre, 0),
     )),
-
 #endif //P_COSPLAY_PIKACHU_FORMS
 
 #if P_CAP_PIKACHU_FORMS
-
-    SPECIES(SPECIES_PIKACHU_ORIGINAL_CAP, (
+    FORM(SPECIES_PIKACHU_ORIGINAL_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .noFlip = TRUE,
@@ -2113,7 +2110,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuOriginalCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_HOENN_CAP, (
+    FORM(SPECIES_PIKACHU_HOENN_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2132,7 +2129,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuHoennCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_SINNOH_CAP, (
+    FORM(SPECIES_PIKACHU_SINNOH_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2151,7 +2148,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuSinnohCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_UNOVA_CAP, (
+    FORM(SPECIES_PIKACHU_UNOVA_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2170,7 +2167,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuUnovaCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_KALOS_CAP, (
+    FORM(SPECIES_PIKACHU_KALOS_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2189,7 +2186,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuKalosCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_ALOLA_CAP, (
+    FORM(SPECIES_PIKACHU_ALOLA_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2208,7 +2205,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuAlolaCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_PARTNER_CAP, (
+    FORM(SPECIES_PIKACHU_PARTNER_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .noFlip = TRUE,
@@ -2228,7 +2225,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuPartnerCap, 0),
     )),
 
-    SPECIES(SPECIES_PIKACHU_WORLD_CAP, (
+    FORM(SPECIES_PIKACHU_WORLD_CAP, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
@@ -2246,12 +2243,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PikachuWorldCap),
         ICON(PikachuWorldCap, 0),
     )),
-
 #endif //P_CAP_PIKACHU_FORMS
 
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_PIKACHU_GIGANTAMAX, (
-        PIKACHU_MISC_INFO,
+    GIGANTAMAX_FORM(SPECIES_PIKACHU_GIGANTAMAX, (
         .genderRatio = PERCENT_FEMALE(50),
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
         .height = 210,
@@ -2273,11 +2267,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PikachuGigantamax, 2),
         .formChangeTable = sPikachuFormChangeTable,
         .isGigantamax = TRUE,
-    )),
-#endif //P_GIGANTAMAX_FORMS
-
+    ))),
 #define RAICHU_SPEED (P_UPDATED_STATS >= GEN_6 ? 110 : 100)
-
 
     SPECIES(SPECIES_RAICHU, (
         .catchRate = 75,
@@ -5677,10 +5668,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_ALOLAN_FORMS
     SPECIES(SPECIES_GEODUDE_ALOLAN, (
+        GEODUDE_MISC_INFO,
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .isAlolanForm = TRUE,
-        GEODUDE_MISC_INFO,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 203,
         .description = COMPOUND_STRING(
@@ -5703,10 +5694,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GRAVELER_ALOLAN, (
+        GRAVELER_MISC_INFO,
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .isAlolanForm = TRUE,
-        GRAVELER_MISC_INFO,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 1100,
         .description = COMPOUND_STRING(
@@ -5729,10 +5720,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_GOLEM_ALOLAN, (
+        GOLEM_MISC_INFO,
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .isAlolanForm = TRUE,
-        GOLEM_MISC_INFO,
         .itemCommon = ITEM_CELL_BATTERY,
         .height = 17,
         .weight = 3160,
@@ -5858,10 +5849,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_GALARIAN_FORMS
     SPECIES(SPECIES_PONYTA_GALARIAN, (
+        PONYTA_MISC_INFO,
         .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
         .bodyColor = BODY_COLOR_WHITE,
         .isGalarianForm = TRUE,
-        PONYTA_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .categoryName = _("Unique Horn"),
         .height = 8,
@@ -5889,10 +5880,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
     SPECIES(SPECIES_RAPIDASH_GALARIAN, (
+        RAPIDASH_MISC_INFO,
         .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
         .bodyColor = BODY_COLOR_WHITE,
         .isGalarianForm = TRUE,
-        RAPIDASH_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .categoryName = _("Unique Horn"),
         .weight = 800,
@@ -6793,11 +6784,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_ALOLAN_FORMS
     SPECIES(SPECIES_GRIMER_ALOLAN, (
+        GRIMER_MISC_INFO,
         .types = { TYPE_POISON, TYPE_DARK },
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
         .bodyColor = BODY_COLOR_GREEN,
         .isAlolanForm = TRUE,
-        GRIMER_MISC_INFO,
         .height = 7,
         .weight = 420,
         .description = COMPOUND_STRING(
@@ -33228,7 +33219,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Darumaka, 0),
         LEARNSETS(Darumaka),
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD_MODE}),
-    )),
+    ),
+
+    GALARIAN_FORM(SPECIES_DARUMAKA_GALARIAN, (
+        DARUMAKA_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .height = 7,
+        .weight = 400,
+        .description = COMPOUND_STRING(
+            ""),
+        .pokemonScale = 422,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(DarumakaGalarian, 40, 40),
+        .frontPicYOffset = 15,
+        .frontAnimFrames = sAnims_DarumakaGalarian,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(DarumakaGalarian, 56, 48),
+        .backPicYOffset = 11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(DarumakaGalarian),
+        ICON(DarumakaGalarian, 0),
+        LEARNSETS(DarumakaGalarian),
+        .isGalarianForm = TRUE,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
+    ))),
 
     SPECIES(SPECIES_DARMANITAN_STANDARD_MODE, (
         .baseHP        = 105,
@@ -33276,24 +33293,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         PALETTES(DarmanitanStandardMode),
         ICON(DarmanitanStandardMode, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_DARMANITAN_ZEN_MODE, (
+    FORM(SPECIES_DARMANITAN_ZEN_MODE, (
         .expYield = 189,
         .evYield_SpAttack = 2,
         .categoryName = _("Blazing"),
-        .catchRate = 60,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-        .speciesName = _("Darmanitan"),
-        .cryId = CRY_DARMANITAN,
-        .natDexNum = NATIONAL_DEX_DARMANITAN,
-        .footprint = gMonFootprint_Darmanitan,
-        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
-        DARMANITAN_UNOVAN_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 30,
         .baseDefense   = 105,
@@ -33315,35 +33320,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(DarmanitanZenMode, 0),
     )),
 
-#if P_GALARIAN_FORMS
-    SPECIES(SPECIES_DARUMAKA_GALARIAN, (
-        DARUMAKA_MISC_INFO,
-        .types = { TYPE_ICE, TYPE_ICE },
-        .bodyColor = BODY_COLOR_WHITE,
-        .height = 7,
-        .weight = 400,
-        .description = COMPOUND_STRING(
-            ""),
-        .pokemonScale = 422,
-        .pokemonOffset = 14,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(DarumakaGalarian, 40, 40),
-        .frontPicYOffset = 15,
-        .frontAnimFrames = sAnims_DarumakaGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(DarumakaGalarian, 56, 48),
-        .backPicYOffset = 11,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(DarumakaGalarian),
-        ICON(DarumakaGalarian, 0),
-        LEARNSETS(DarumakaGalarian),
-        .isGalarianForm = TRUE,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
-    )),
-
-
-    SPECIES(SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE, (
+    GALARIAN_FORM(SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE, (
         .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },
         .bodyColor = BODY_COLOR_WHITE,
         .height = 17,
@@ -33355,7 +33332,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(DarmanitanGalarian),
         .formChangeTable = sDarmanitanGalarianFormChangeTable,
         .isGalarianForm = TRUE,
-        DARMANITAN_STANDARD_MISC_INFO,
         .types = { TYPE_ICE, TYPE_ICE },
         .categoryName = _("Zen Charm"),
         .description = COMPOUND_STRING(
@@ -33371,22 +33347,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(DarmanitanGalarianStandardMode, 0),
     )),
 
-    SPECIES(SPECIES_DARMANITAN_GALARIAN_ZEN_MODE, (
-        DARMANITAN_GALARIAN_MISC_INFO,
+    GALARIAN_FORM(SPECIES_DARMANITAN_GALARIAN_ZEN_MODE, (
+        .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .height = 17,
+        .weight = 1200,
+        .pokemonScale = 272,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        LEARNSETS(DarmanitanGalarian),
+        .formChangeTable = sDarmanitanGalarianFormChangeTable,
+        .isGalarianForm = TRUE,
         .expYield = 189,
         .evYield_SpAttack = 2,
         .categoryName = _("Blazing"),
-        .catchRate = 60,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
-        .speciesName = _("Darmanitan"),
-        .cryId = CRY_DARMANITAN,
-        .natDexNum = NATIONAL_DEX_DARMANITAN,
-        .footprint = gMonFootprint_Darmanitan,
-        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
         .baseHP        = 105,
         .baseAttack    = 160,
         .baseDefense   = 55,
@@ -33405,8 +33380,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DarmanitanGalarianZenMode),
         ICON(DarmanitanGalarianZenMode, 0),
-    )),
-#endif //P_GALARIAN_FORMS
+    ))),
 #endif //P_FAMILY_DARUMAKA
 
 #if P_FAMILY_MARACTUS
@@ -35015,9 +34989,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DeerlingSpring),
         ICON(DeerlingSpring, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_SPRING}),
-    )),
-    SPECIES(SPECIES_DEERLING_SUMMER, (
-        DEERLING_MISC_INFO,
+    ),
+
+    FORM(SPECIES_DEERLING_SUMMER, (
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
             ""),
@@ -35025,8 +34999,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(DeerlingSummer, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_SUMMER}),
     )),
-    SPECIES(SPECIES_DEERLING_AUTUMN, (
-        DEERLING_MISC_INFO,
+
+    FORM(SPECIES_DEERLING_AUTUMN, (
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
             ""),
@@ -35034,16 +35008,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(DeerlingAutumn, 0),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_AUTUMN}),
     )),
-    SPECIES(SPECIES_DEERLING_WINTER, (
-        DEERLING_MISC_INFO,
+
+    FORM(SPECIES_DEERLING_WINTER, (
         .bodyColor = BODY_COLOR_BROWN,
         .description = COMPOUND_STRING(
             ""),
         PALETTES(DeerlingWinter),
         ICON(DeerlingWinter, 2),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_WINTER}),
-    )),
-
+    ))),
 
     SPECIES(SPECIES_SAWSBUCK_SPRING, (
         .baseHP        = 80,
@@ -35090,10 +35063,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(SawsbuckSpring, 48, 64),
         PALETTES(SawsbuckSpring),
         ICON(SawsbuckSpring, 1),
-    )),
+    ),
 
-    SPECIES(SPECIES_SAWSBUCK_SUMMER, (
-        SAWSBUCK_MISC_INFO,
+    FORM(SPECIES_SAWSBUCK_SUMMER, (
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(SawsbuckSummer, 64, 64),
@@ -35102,8 +35074,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SawsbuckSummer, 1),
     )),
 
-    SPECIES(SPECIES_SAWSBUCK_AUTUMN, (
-        SAWSBUCK_MISC_INFO,
+    FORM(SPECIES_SAWSBUCK_AUTUMN, (
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(SawsbuckAutumn, 64, 64),
@@ -35112,16 +35083,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SawsbuckAutumn, 1),
     )),
 
-    SPECIES(SPECIES_SAWSBUCK_WINTER, (
-        SAWSBUCK_MISC_INFO,
+    FORM(SPECIES_SAWSBUCK_WINTER, (
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(SawsbuckWinter, 56, 64),
         BACK_PIC(SawsbuckWinter, 48, 64),
         PALETTES(SawsbuckWinter),
         ICON(SawsbuckWinter, 1),
-    )),
-
+    ))),
 #endif //P_FAMILY_DEERLING
 
 #if P_FAMILY_EMOLGA
@@ -38962,11 +38931,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN },
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-    )),
+    ),
 
-    SPECIES(SPECIES_GRENINJA_BATTLE_BOND, (
-        GRENINJA_MISC_INFO,
-        GRENINJA_NORMAL_MISC_INFO,
+    FORM(SPECIES_GRENINJA_BATTLE_BOND, (
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .abilities = { ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE },
@@ -38975,8 +38942,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formChangeTable = sGreninjaBattleBondFormChangeTable,
     )),
 
-    SPECIES(SPECIES_GRENINJA_ASH, (
-        GRENINJA_MISC_INFO,
+    FORM(SPECIES_GRENINJA_ASH, (
         .baseHP        = 72,
         .baseAttack    = 145,
         .baseDefense   = 67,
@@ -39002,7 +38968,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_FLICKER_INCREASING,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .formChangeTable = sGreninjaBattleBondFormChangeTable,
-    )),
+    ))),
 #endif //P_FAMILY_FROAKIE
 
 #if P_FAMILY_BUNNELBY
@@ -40116,9 +40082,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 0,
         PALETTES(FurfrouNatural),
         ICON(FurfrouNatural, 0),
-    )),
-    SPECIES(SPECIES_FURFROU_HEART_TRIM, (
-        FURFROU_MISC_INFO,
+    ),
+
+    FORM(SPECIES_FURFROU_HEART_TRIM, (
         FRONT_PIC(FurfrouHeartTrim, 56, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouHeartTrim, 56, 64),
@@ -40126,8 +40092,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouHeartTrim),
         ICON(FurfrouHeartTrim, 0),
     )),
-    SPECIES(SPECIES_FURFROU_STAR_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_STAR_TRIM, (
         FRONT_PIC(FurfrouStarTrim, 56, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouStarTrim, 64, 64),
@@ -40135,8 +40101,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouStarTrim),
         ICON(FurfrouStarTrim, 0),
     )),
-    SPECIES(SPECIES_FURFROU_DIAMOND_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_DIAMOND_TRIM, (
         FRONT_PIC(FurfrouDiamondTrim, 48, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouDiamondTrim, 56, 64),
@@ -40144,8 +40110,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouDiamondTrim),
         ICON(FurfrouDiamondTrim, 0),
     )),
-    SPECIES(SPECIES_FURFROU_DEBUTANTE_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_DEBUTANTE_TRIM, (
         .noFlip = TRUE,
         FRONT_PIC(FurfrouDebutanteTrim, 48, 64),
         .frontPicYOffset = 2,
@@ -40154,8 +40120,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouDebutanteTrim),
         ICON(FurfrouDebutanteTrim, 2),
     )),
-    SPECIES(SPECIES_FURFROU_MATRON_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_MATRON_TRIM, (
         FRONT_PIC(FurfrouMatronTrim, 48, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouMatronTrim, 56, 64),
@@ -40163,8 +40129,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouMatronTrim),
         ICON(FurfrouMatronTrim, 2),
     )),
-    SPECIES(SPECIES_FURFROU_DANDY_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_DANDY_TRIM, (
         FRONT_PIC(FurfrouDandyTrim, 48, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouDandyTrim, 56, 64),
@@ -40172,8 +40138,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouDandyTrim),
         ICON(FurfrouDandyTrim, 1),
     )),
-    SPECIES(SPECIES_FURFROU_LA_REINE_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_LA_REINE_TRIM, (
         FRONT_PIC(FurfrouLaReineTrim, 48, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouLaReineTrim, 56, 64),
@@ -40181,8 +40147,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouLaReineTrim),
         ICON(FurfrouLaReineTrim, 0),
     )),
-    SPECIES(SPECIES_FURFROU_KABUKI_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_KABUKI_TRIM, (
         FRONT_PIC(FurfrouKabukiTrim, 56, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouKabukiTrim, 56, 64),
@@ -40190,15 +40156,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FurfrouKabukiTrim),
         ICON(FurfrouKabukiTrim, 0),
     )),
-    SPECIES(SPECIES_FURFROU_PHARAOH_TRIM, (
-        FURFROU_MISC_INFO,
+
+    FORM(SPECIES_FURFROU_PHARAOH_TRIM, (
         FRONT_PIC(FurfrouPharaohTrim, 48, 64),
         .frontPicYOffset = 2,
         BACK_PIC(FurfrouPharaohTrim, 56, 64),
         .backPicYOffset = 1,
         PALETTES(FurfrouPharaohTrim),
         ICON(FurfrouPharaohTrim, 0),
-    )),
+    ))),
 #endif //P_FAMILY_FURFROU
 
 #if P_FAMILY_ESPURR
@@ -42041,10 +42007,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 4,
         BACK_PIC(GourgeistAverage, 48, 64),
         .backPicYOffset = 3,
-    )),
+    ),
 
-    SPECIES(SPECIES_GOURGEIST_SMALL, (
-        GOURGEIST_MISC_INFO,
+    FORM(SPECIES_GOURGEIST_SMALL, (
         .baseHP        = 55,
         .baseAttack    = 85,
         .baseDefense   = 122,
@@ -42066,8 +42031,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 4,
     )),
 
-    SPECIES(SPECIES_GOURGEIST_LARGE, (
-        GOURGEIST_MISC_INFO,
+    FORM(SPECIES_GOURGEIST_LARGE, (
         .baseHP        = 75,
         .baseAttack    = 95,
         .baseDefense   = 122,
@@ -42089,8 +42053,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 2,
     )),
 
-    SPECIES(SPECIES_GOURGEIST_SUPER, (
-        GOURGEIST_MISC_INFO,
+    FORM(SPECIES_GOURGEIST_SUPER, (
         .baseHP        = 85,
         .baseAttack    = 100,
         .baseDefense   = 122,
@@ -42112,7 +42075,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 0,
         BACK_PIC(GourgeistSuper, 56, 64),
         .backPicYOffset = 1,
-    )),
+    ))),
 #endif //P_FAMILY_PUMPKABOO
 
 #if P_FAMILY_BERGMITE
@@ -43794,10 +43757,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioBaile),
         ICON(OricorioBaile, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_ORICORIO_POM_POM, (
-        ORICORIO_MISC_INFO,
+    FORM(SPECIES_ORICORIO_POM_POM, (
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
         .bodyColor = BODY_COLOR_YELLOW,
         .cryId = CRY_ORICORIO_POM_POM,
@@ -43812,8 +43774,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(OricorioPomPom, 1),
     )),
 
-    SPECIES(SPECIES_ORICORIO_PAU, (
-        ORICORIO_MISC_INFO,
+    FORM(SPECIES_ORICORIO_PAU, (
         .types = { TYPE_PSYCHIC, TYPE_FLYING },
         .bodyColor = BODY_COLOR_PINK,
         .cryId = CRY_ORICORIO_PAU,
@@ -43828,8 +43789,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(OricorioPau, 1),
     )),
 
-    SPECIES(SPECIES_ORICORIO_SENSU, (
-        ORICORIO_MISC_INFO,
+    FORM(SPECIES_ORICORIO_SENSU, (
         .types = { TYPE_GHOST, TYPE_FLYING },
         .bodyColor = BODY_COLOR_PURPLE,
         .cryId = CRY_ORICORIO_SENSU,
@@ -43842,7 +43802,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OricorioSensu),
         ICON(OricorioSensu, 0),
-    )),
+    ))),
 #endif //P_FAMILY_ORICORIO
 
 #if P_FAMILY_CUTIEFLY
@@ -44045,10 +44005,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LycanrocMidday),
         ICON(LycanrocMidday, 2),
         LEARNSETS(LycanrocMidday),
-    )),
+    ),
 
-    SPECIES(SPECIES_LYCANROC_MIDNIGHT, (
-        LYCANROC_MISC_INFO,
+    FORM(SPECIES_LYCANROC_MIDNIGHT, (
         .baseHP        = 85,
         .baseAttack    = 115,
         .baseDefense   = 75,
@@ -44072,8 +44031,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(LycanrocMidnight),
     )),
 
-    SPECIES(SPECIES_LYCANROC_DUSK, (
-        LYCANROC_MISC_INFO,
+    FORM(SPECIES_LYCANROC_DUSK, (
         .baseHP        = 75,
         .baseAttack    = 117,
         .baseDefense   = 65,
@@ -44095,7 +44053,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LycanrocDusk),
         ICON(LycanrocDusk, 0),
         LEARNSETS(LycanrocDusk),
-    )),
+    ))),
 #endif //P_FAMILY_ROCKRUFF
 
 #if P_FAMILY_WISHIWASHI
@@ -49493,10 +49451,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Cramorant),
         ICON(Cramorant, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_CRAMORANT_GULPING, (
-        CRAMORANT_MISC_INFO,
+    FORM(SPECIES_CRAMORANT_GULPING, (
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(CramorantGulping, 64, 64),
@@ -49510,8 +49467,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CramorantGulping, 0),
     )),
 
-    SPECIES(SPECIES_CRAMORANT_GORGING, (
-        CRAMORANT_MISC_INFO,
+    FORM(SPECIES_CRAMORANT_GORGING, (
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(CramorantGorging, 64, 64),
@@ -49523,7 +49479,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CramorantGorging),
         ICON(CramorantGorging, 0),
-    )),
+    ))),
 #endif //P_FAMILY_CRAMORANT
 
 #if P_FAMILY_ARROKUDA
@@ -49717,37 +49673,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(ToxtricityAmped, 2),
         .footprint = gMonFootprint_Toxtricity,
         LEARNSETS(ToxtricityAmped),
-    )),
+    ),
 
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_TOXTRICITY_AMPED_GIGANTAMAX, (
-        TOXTRICITY_MISC_INFO,
-        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
-        .cryId = CRY_TOXTRICITY_AMPED,
-        .height = 240,
-        .weight = 0,
-        .description = gToxtricityGigantamaxPokedexText,
-        .pokemonScale = 259,
-        .pokemonOffset = 1,
-        .trainerScale = 296,
-        .trainerOffset = 1,
-        FRONT_PIC(ToxtricityGigantamax, 64, 64),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_ToxtricityGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(ToxtricityGigantamax, 64, 64),
-        .backPicYOffset = 0,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(ToxtricityGigantamax),
-        ICON(ToxtricityGigantamax, 0),
-        .footprint = gMonFootprint_Toxtricity,
-        LEARNSETS(ToxtricityAmped),
-        .isGigantamax = TRUE,
-    )),
-#endif //P_GIGANTAMAX_FORMS
-
-    SPECIES(SPECIES_TOXTRICITY_LOW_KEY, (
-        TOXTRICITY_MISC_INFO,
+    FORM(SPECIES_TOXTRICITY_LOW_KEY, (
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
         .cryId = CRY_TOXTRICITY_LOW_KEY,
         .height = 16,
@@ -49771,9 +49699,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(ToxtricityLowKey),
     )),
 
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX, (
-        TOXTRICITY_MISC_INFO,
+    GIGANTAMAX_FORM(SPECIES_TOXTRICITY_AMPED_GIGANTAMAX, (
+        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
+        .cryId = CRY_TOXTRICITY_AMPED,
+        .height = 240,
+        .weight = 0,
+        .description = gToxtricityGigantamaxPokedexText,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        FRONT_PIC(ToxtricityGigantamax, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_ToxtricityGigantamax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(ToxtricityGigantamax, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(ToxtricityGigantamax),
+        ICON(ToxtricityGigantamax, 0),
+        .footprint = gMonFootprint_Toxtricity,
+        LEARNSETS(ToxtricityAmped),
+        .isGigantamax = TRUE,
+    )),
+
+    GIGANTAMAX_FORM(SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX, (
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
         .cryId = CRY_TOXTRICITY_LOW_KEY,
         .height = 240,
@@ -49795,7 +49745,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .footprint = gMonFootprint_Toxtricity,
         LEARNSETS(ToxtricityLowKey),
         .isGigantamax = TRUE,
-    )),
+    ))),
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_TOXEL
 
@@ -51930,36 +51880,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU_RAPID_STRIKE_STYLE}),
     )),
 
-#define URSHIFU_MISC_INFO(style)                                                        \
-        .baseHP        = 100,                                                           \
-        .baseAttack    = 130,                                                           \
-        .baseDefense   = 100,                                                           \
-        .baseSpeed     = 97,                                                            \
-        .baseSpAttack  = 63,                                                            \
-        .baseSpDefense = 60,                                                            \
-        .catchRate = 3,                                                                 \
-        .expYield = 275,                                                                \
-        .evYield_Attack = 3,                                                            \
-        .genderRatio = PERCENT_FEMALE(12.5),                                            \
-        .eggCycles = 120,                                                               \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_UNSEEN_FIST, ABILITY_NONE },                             \
-        .bodyColor = BODY_COLOR_GRAY,                                                   \
-        .isLegendary = TRUE,                                                            \
-        .speciesName = _("Urshifu"),                                                    \
-        .natDexNum = NATIONAL_DEX_URSHIFU,                                              \
-        .categoryName = _("Wushu"),                                                     \
-        .footprint = gMonFootprint_Urshifu,                                             \
-        .formSpeciesIdTable = sUrshifuFormSpeciesIdTable
-
-
     SPECIES(SPECIES_URSHIFU_SINGLE_STRIKE_STYLE, (
+        .baseHP        = 100,
+        .baseAttack    = 130,
+        .baseDefense   = 100,
+        .baseSpeed     = 97,
+        .baseSpAttack  = 63,
+        .baseSpDefense = 60,
+        .catchRate = 3,
+        .expYield = 275,
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 120,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_UNSEEN_FIST, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .isLegendary = TRUE,
+        .speciesName = _("Urshifu"),
+        .natDexNum = NATIONAL_DEX_URSHIFU,
+        .categoryName = _("Wushu"),
+        .footprint = gMonFootprint_Urshifu,
+        .formSpeciesIdTable = sUrshifuFormSpeciesIdTable
         .types = { TYPE_FIGHTING, TYPE_DARK },
         .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
         LEARNSETS(UrshifuSingleStrikeStyle),
-        URSHIFU_MISC_INFO(SingleStrike),
         .height = 19,
         .weight = 1050,
         .pokemonScale = 256,
@@ -51981,38 +51927,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(UrshifuSingleStrikeStyle),
         ICON(Urshifu, 2),
         .formChangeTable = sUrshifuSingleStrikeFormChangeTable,
-    )),
+    ),
 
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX, (
-        URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO,
-        .height = 290,
-        .weight = 0,
-        .pokemonScale = 256,
-        .pokemonOffset = 1,
-        .trainerScale = 326,
-        .trainerOffset = 4,
-        .description = COMPOUND_STRING(
-            ""),
-        FRONT_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_UrshifuSingleStrikeStyleGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
-        .backPicYOffset = 4,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(UrshifuSingleStrikeStyleGigantamax),
-        ICON(UrshifuSingleStrikeStyleGigantamax, 0),
-        .isGigantamax = TRUE,
-    )),
-#endif //P_GIGANTAMAX_FORMS
-
-
-    SPECIES(SPECIES_URSHIFU_RAPID_STRIKE_STYLE, (
+    FORM(SPECIES_URSHIFU_RAPID_STRIKE_STYLE, (
         .types = { TYPE_FIGHTING, TYPE_WATER },
         .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
         LEARNSETS(UrshifuRapidStrikeStyle),
-        URSHIFU_MISC_INFO(RapidStrike),
         .height = 19,
         .weight = 1050,
         .pokemonScale = 256,
@@ -52033,9 +51953,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formChangeTable = sUrshifuRapidStrikeFormChangeTable,
     )),
 
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, (
-        URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO,
+    GIGANTAMAX_FORM(SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX, (
+        .height = 290,
+        .weight = 0,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 326,
+        .trainerOffset = 4,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_UrshifuSingleStrikeStyleGigantamax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
+        .backPicYOffset = 4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(UrshifuSingleStrikeStyleGigantamax),
+        ICON(UrshifuSingleStrikeStyleGigantamax, 0),
+        .isGigantamax = TRUE,
+    )),
+
+    GIGANTAMAX_FORM(SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, (
         .height = 260,
         .weight = 0,
         .pokemonScale = 256,
@@ -52054,8 +51993,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(UrshifuRapidStrikeStyleGigantamax),
         ICON(UrshifuRapidStrikeStyleGigantamax, 0),
         .isGigantamax = TRUE,
-    )),
-#endif //P_GIGANTAMAX_FORMS
+    ))),
 #endif //P_FAMILY_KUBFU
 
 
@@ -53804,10 +53742,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "evenings, it gets very noisy."),
         PALETTES(SquawkabillyGreenPlumage),
         ICON(SquawkabillyGreenPlumage, 1),
-    )),
+    ),
 
-    SPECIES(SPECIES_SQUAWKABILLY_BLUE_PLUMAGE, (
-        SQUAWKABILLY_MISC_INFO,
+    FORM(SPECIES_SQUAWKABILLY_BLUE_PLUMAGE, (
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
@@ -53816,8 +53753,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SquawkabillyBluePlumage, 2),
     )),
 
-    SPECIES(SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE, (
-        SQUAWKABILLY_MISC_INFO,
+    FORM(SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE, (
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_YELLOW,
         .description = COMPOUND_STRING(
@@ -53826,15 +53762,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SquawkabillyYellowPlumage, 1),
     )),
 
-    SPECIES(SPECIES_SQUAWKABILLY_WHITE_PLUMAGE, (
-        SQUAWKABILLY_MISC_INFO,
+    FORM(SPECIES_SQUAWKABILLY_WHITE_PLUMAGE, (
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_WHITE,
         .description = COMPOUND_STRING(
             ""),
         PALETTES(SquawkabillyWhitePlumage),
         ICON(SquawkabillyWhitePlumage, 1),
-    )),
+    ))),
 #endif //P_FAMILY_SQUAWKABILLY
 
 #if P_FAMILY_NACLI
@@ -56100,10 +56035,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(TatsugiriCurly, 64, 64),
         PALETTES(TatsugiriCurly),
         ICON(TatsugiriCurly, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_TATSUGIRI_DROOPY, (
-        TATSUGIRI_MISC_INFO,
+    FORM(SPECIES_TATSUGIRI_DROOPY, (
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_TATSUGIRI_DROOPY,
         .description = COMPOUND_STRING(
@@ -56114,8 +56048,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(TatsugiriDroopy, 0),
     )),
 
-    SPECIES(SPECIES_TATSUGIRI_STRETCHY, (
-        TATSUGIRI_MISC_INFO,
+    FORM(SPECIES_TATSUGIRI_STRETCHY, (
         .bodyColor = BODY_COLOR_YELLOW,
         .description = COMPOUND_STRING(
             ""),
@@ -56123,7 +56056,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(TatsugiriStretchy, 64, 64),
         PALETTES(TatsugiriStretchy),
         ICON(TatsugiriStretchy, 0),
-    )),
+    ))),
 #endif //P_FAMILY_TATSUGIRI
 
 #if P_FAMILY_GREAT_TUSK
@@ -57525,16 +57458,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
     )),
 
-
     SPECIES(SPECIES_SINISTCHA_UNREMARKABLE, (
-        SINISTCHA_MISC_INFO,
-        .description = COMPOUND_STRING(
-            "It pretends to be tea, trying to fool\n"
-            "people into drinking it so it can\n"
-            "drain their life-force. Its ruse is\n"
-            "generally unsuccessful."),
-    )),
-    SPECIES(SPECIES_SINISTCHA_MASTERPIECE, (
         .baseHP        = 71,
         .baseAttack    = 60,
         .baseDefense   = 106,
@@ -57570,13 +57494,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 13,
         PALETTES(Sinistcha),
         ICON(Sinistcha, 1),
-        LEARNSETS(Sinistcha)
+        LEARNSETS(Sinistcha),
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Sinistcha,,
         .description = COMPOUND_STRING(
+            "It pretends to be tea, trying to fool\n"
+            "people into drinking it so it can\n"
+            "drain their life-force. Its ruse is\n"
+            "generally unsuccessful."),
+    ),
+
+    FORM(SPECIES_SINISTCHA_MASTERPIECE, (
+        .description = COMPOUND_STRING(
             ""),
-    )),
+    ))),
 #endif //P_FAMILY_POLTCHAGEIST
 
 #if P_FAMILY_OKIDOGI
