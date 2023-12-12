@@ -350,6 +350,7 @@ $(C_BUILDDIR)/m4a.o: CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtu
 $(C_BUILDDIR)/agb_flash.o: CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init -fno-toplevel-reorder
 $(C_BUILDDIR)/test_runner_stub.o: CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init -fno-toplevel-reorder
 $(TEST_OBJS): CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init -fno-toplevel-reorder
+$(TEST_OBJS_REL): CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init -fno-toplevel-reorder
 endif
 
 ifeq ($(DINFO),1)
