@@ -78,6 +78,7 @@ enum DebugMenu
     DEBUG_MENU_ITEM_FILL,
     DEBUG_MENU_ITEM_SOUND,
     DEBUG_MENU_ITEM_ACCESS_PC,
+    DEBUG_MENU_ITEM_MOVE_REMINDER,
     DEBUG_MENU_ITEM_CANCEL,
 };
 
@@ -311,6 +312,7 @@ static void DebugAction_OpenGiveMenu(u8 taskId);
 static void DebugAction_OpenFillMenu(u8 taskId);
 static void DebugAction_OpenSoundMenu(u8 taskId);
 static void DebugAction_AccessPC(u8 taskId);
+static void DebugAction_MoveReminder(u8 taskId);
 
 static void DebugTask_HandleMenuInput_Main(u8 taskId);
 static void DebugTask_HandleMenuInput_Utilities(u8 taskId);
@@ -425,6 +427,8 @@ extern const u8 Debug_CheckROMSpace[];
 extern const u8 Debug_BoxFilledMessage[];
 extern const u8 Debug_ShowExpansionVersion[];
 
+extern const u8 FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon[];
+
 #include "data/map_group_count.h"
 
 // Text
@@ -445,6 +449,7 @@ static const u8 sDebugText_Give[] =             _("Give X…{CLEAR_TO 110}{RIGHT
 static const u8 sDebugText_Fill[] =             _("Fill PC/Pockets…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Sound[] =            _("Sound…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_AccessPC[] =         _("Access PC…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_MoveReminder[] =     _("Move Reminder{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Cancel[] =           _("Cancel");
 // Script menu
 static const u8 sDebugText_Util_Script_1[] =               _("Script 1");
@@ -615,15 +620,16 @@ static const s32 sPowersOfTen[] =
 // List Menu Items
 static const struct ListMenuItem sDebugMenu_Items_Main[] =
 {
-    [DEBUG_MENU_ITEM_UTILITIES] = {sDebugText_Utilities, DEBUG_MENU_ITEM_UTILITIES},
-    [DEBUG_MENU_ITEM_SCRIPTS]   = {sDebugText_Scripts,   DEBUG_MENU_ITEM_SCRIPTS},
-    [DEBUG_MENU_ITEM_FLAGVAR]   = {sDebugText_FlagsVars, DEBUG_MENU_ITEM_FLAGVAR},
-    //[DEBUG_MENU_ITEM_BATTLE]    = {sDebugText_Battle,    DEBUG_MENU_ITEM_BATTLE},
-    [DEBUG_MENU_ITEM_GIVE]      = {sDebugText_Give,      DEBUG_MENU_ITEM_GIVE},
-    [DEBUG_MENU_ITEM_FILL]      = {sDebugText_Fill,      DEBUG_MENU_ITEM_FILL},
-    [DEBUG_MENU_ITEM_SOUND]     = {sDebugText_Sound,     DEBUG_MENU_ITEM_SOUND},
-    [DEBUG_MENU_ITEM_ACCESS_PC] = {sDebugText_AccessPC,  DEBUG_MENU_ITEM_ACCESS_PC},
-    [DEBUG_MENU_ITEM_CANCEL]    = {sDebugText_Cancel,    DEBUG_MENU_ITEM_CANCEL}
+    [DEBUG_MENU_ITEM_UTILITIES]     = {sDebugText_Utilities,    DEBUG_MENU_ITEM_UTILITIES},
+    [DEBUG_MENU_ITEM_SCRIPTS]       = {sDebugText_Scripts,      DEBUG_MENU_ITEM_SCRIPTS},
+    [DEBUG_MENU_ITEM_FLAGVAR]       = {sDebugText_FlagsVars,    DEBUG_MENU_ITEM_FLAGVAR},
+    //[DEBUG_MENU_ITEM_BATTLE]        = {sDebugText_Battle,       DEBUG_MENU_ITEM_BATTLE},
+    [DEBUG_MENU_ITEM_GIVE]          = {sDebugText_Give,         DEBUG_MENU_ITEM_GIVE},
+    [DEBUG_MENU_ITEM_FILL]          = {sDebugText_Fill,         DEBUG_MENU_ITEM_FILL},
+    [DEBUG_MENU_ITEM_SOUND]         = {sDebugText_Sound,        DEBUG_MENU_ITEM_SOUND},
+    [DEBUG_MENU_ITEM_ACCESS_PC]     = {sDebugText_AccessPC,     DEBUG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_MENU_ITEM_MOVE_REMINDER] = {sDebugText_MoveReminder, DEBUG_MENU_ITEM_MOVE_REMINDER},
+    [DEBUG_MENU_ITEM_CANCEL]        = {sDebugText_Cancel,       DEBUG_MENU_ITEM_CANCEL}
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
@@ -760,15 +766,16 @@ static const struct ListMenuItem sDebugMenu_Items_Sound[] =
 // Menu Actions
 static void (*const sDebugMenu_Actions_Main[])(u8) =
 {
-    [DEBUG_MENU_ITEM_UTILITIES] = DebugAction_OpenUtilitiesMenu,
-    [DEBUG_MENU_ITEM_SCRIPTS]   = DebugAction_OpenScriptsMenu,
-    [DEBUG_MENU_ITEM_FLAGVAR]   = DebugAction_OpenFlagsVarsMenu,
+    [DEBUG_MENU_ITEM_UTILITIES]     = DebugAction_OpenUtilitiesMenu,
+    [DEBUG_MENU_ITEM_SCRIPTS]       = DebugAction_OpenScriptsMenu,
+    [DEBUG_MENU_ITEM_FLAGVAR]       = DebugAction_OpenFlagsVarsMenu,
     //[DEBUG_MENU_ITEM_BATTLE]    = DebugAction_OpenBattleMenu,
-    [DEBUG_MENU_ITEM_GIVE]      = DebugAction_OpenGiveMenu,
-    [DEBUG_MENU_ITEM_FILL]      = DebugAction_OpenFillMenu,
-    [DEBUG_MENU_ITEM_SOUND]     = DebugAction_OpenSoundMenu,
-    [DEBUG_MENU_ITEM_ACCESS_PC] = DebugAction_AccessPC,
-    [DEBUG_MENU_ITEM_CANCEL]    = DebugAction_Cancel
+    [DEBUG_MENU_ITEM_GIVE]          = DebugAction_OpenGiveMenu,
+    [DEBUG_MENU_ITEM_FILL]          = DebugAction_OpenFillMenu,
+    [DEBUG_MENU_ITEM_SOUND]         = DebugAction_OpenSoundMenu,
+    [DEBUG_MENU_ITEM_ACCESS_PC]     = DebugAction_AccessPC,
+    [DEBUG_MENU_ITEM_MOVE_REMINDER] = DebugAction_MoveReminder,
+    [DEBUG_MENU_ITEM_CANCEL]        = DebugAction_Cancel
 };
 static void (*const sDebugMenu_Actions_Utilities[])(u8) =
 {
@@ -4593,6 +4600,11 @@ SOUND_LIST_SE
 static void DebugAction_AccessPC(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
+}
+
+static void DebugAction_MoveReminder(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon);
 }
 
 #endif //DEBUG_OVERWORLD_MENU == TRUE
