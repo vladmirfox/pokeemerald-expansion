@@ -101,4 +101,10 @@ void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void ItemUseCB_UsePokevial(u8 taskId, TaskFunc task); // pokevial Branch
 void InitPartyMenuForPokevialFromField(u8 taskId); // pokevial Branch
 
+#ifndef BATTLE_ENGINE
+bool8 CanLearnTutorMove(u16, u8);
+#else
+u16 GetTMHMMoves(u16 position);
+#endif
+
 #endif // GUARD_PARTY_MENU_H
