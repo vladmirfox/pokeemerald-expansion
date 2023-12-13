@@ -33,28 +33,24 @@ static const u8 sPayDayDescription[] = _(
     "Money is recovered after.");
 
 static const u8 sFirePunchDescription[] = _(
-    "A fiery punch that may burn\n"
-    "the foe.");
+    "A fiery punch with a 10%\n"
+    "chance to burn.");
 
 static const u8 sIcePunchDescription[] = _(
-    "An icy punch that may\n"
-#if B_USE_FROSTBITE == TRUE
-    "leave the foe with frostbite.");
-#else
-    "freeze the foe.");
-#endif
+    "An icy punch with 10% chance\n"
+    "to inflict frostbite.");
 
 static const u8 sThunderPunchDescription[] = _(
-    "An electrified punch that\n"
-    "may paralyze the foe.");
+    "An electrified punch.\n"
+    "10% chance to paralyze.");
 
 static const u8 sScratchDescription[] = _(
     "Scratches the foe with\n"
     "sharp claws.");
 
 static const u8 sViseGripDescription[] = _(
-    "Traps the foe with large and\n"
-    "powerful pincers.");
+    "Grips the foe with powerful\n"
+    "pincers. Prevents escape.");
 
 static const u8 sGuillotineDescription[] = _(
     "A powerful pincer attack\n"
