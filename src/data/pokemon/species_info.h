@@ -424,11 +424,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         PALETTES(Venusaur),
         ICON(Venusaur, 4),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_VENUSAUR_MEGA, (
-        VENUSAUR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_VENUSAUR_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 123,
@@ -458,8 +456,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(VenusaurMega),
         ICON(VenusaurMega, 4),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GIGANTAMAX_FORMS
     SPECIES(SPECIES_VENUSAUR_GIGANTAMAX, (
@@ -641,11 +638,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(Charizard),
         ICON(Charizard, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_CHARIZARD_MEGA_X, (
-        CHARIZARD_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_CHARIZARD_MEGA_X, (
         .baseHP        = 78,
         .baseAttack    = 130,
         .baseDefense   = 111,
@@ -679,8 +674,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isMegaEvolution = TRUE,
     )),
 
-    SPECIES(SPECIES_CHARIZARD_MEGA_Y, (
-        CHARIZARD_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_CHARIZARD_MEGA_Y, (
         .baseHP        = 78,
         .baseAttack    = 104,
         .baseDefense   = 78,
@@ -713,8 +707,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(CharizardMegaY),
         ICON(CharizardMegaY, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GIGANTAMAX_FORMS
     SPECIES(SPECIES_CHARIZARD_GIGANTAMAX, (
@@ -896,11 +889,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(Blastoise),
         ICON(Blastoise, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_BLASTOISE_MEGA, (
-        BLASTOISE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_BLASTOISE_MEGA, (
         .baseHP        = 79,
         .baseAttack    = 103,
         .baseDefense   = 120,
@@ -931,8 +922,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BlastoiseMega),
         ICON(BlastoiseMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GIGANTAMAX_FORMS
     SPECIES(SPECIES_BLASTOISE_GIGANTAMAX, (
@@ -1292,11 +1282,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Beedrill),
         ICON(Beedrill, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_BEEDRILL_MEGA, (
-        BEEDRILL_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_BEEDRILL_MEGA, (
         .baseHP        = 65,
         .baseAttack    = BEEDRILL_ATTACK + 60,
         .baseDefense   = 40,
@@ -1328,8 +1316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BeedrillMega),
         ICON(BeedrillMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_WEEDLE
 
 #if P_FAMILY_PIDGEY
@@ -1478,11 +1465,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(Pidgeot),
         ICON(Pidgeot, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_PIDGEOT_MEGA, (
-        PIDGEOT_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_PIDGEOT_MEGA, (
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -1513,8 +1498,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PidgeotMega),
         ICON(PidgeotMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif
+    ))),
 #endif //P_FAMILY_PIDGEY
 
 #if P_FAMILY_RATTATA
@@ -5024,11 +5008,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(Alakazam),
         ICON(Alakazam, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_ALAKAZAM_MEGA, (
-        ALAKAZAM_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_ALAKAZAM_MEGA, (
         .baseHP        = 55,
         .baseAttack    = 50,
         .baseDefense   = 65,
@@ -5059,8 +5041,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AlakazamMega),
         ICON(AlakazamMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_ABRA
 
 #if P_FAMILY_MACHOP
@@ -5963,8 +5944,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Slowbro, 0),
         LEARNSETS(Slowbro),
         .formChangeTable = sSlowbroFormChangeTable,
-    )),
+    ),
 
+    MEGA_EVOLUTION(SPECIES_SLOWBRO_MEGA, (
+        .baseHP        = 95,
+        .baseAttack    = 75,
+        .baseDefense   = 180,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 80,
+        .types = { TYPE_WATER, TYPE_PSYCHIC },
+        .expYield = 207,
+        .evYield_Defense = 2,
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
+        .height = 20,
+        .weight = 1200,
+        .description = COMPOUND_STRING(
+            "When bathed in the energy of Mega\n"
+            "Evolution, Shellder converts into\n"
+            "impregnable armor. There is virtually no\n"
+            "change in Slowpoke."),
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 296,
+        .trainerOffset = 2,
+        FRONT_PIC(SlowbroMega, 56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SlowbroMega,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(SlowbroMega, 64, 48),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        PALETTES(SlowbroMega),
+        ICON(SlowbroMega, 0),
+        LEARNSETS(Slowbro),
+        .formChangeTable = sSlowbroFormChangeTable,
+        .isMegaEvolution = TRUE,
+    ))),
 #if P_GEN_2_CROSS_EVOS
     SPECIES(SPECIES_SLOWKING, (
         .catchRate = 70,
@@ -6015,44 +6031,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 #endif //P_GEN_2_CROSS_EVOS
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SLOWBRO_MEGA, (
-        SLOWBRO_MISC_INFO,
-        .baseHP        = 95,
-        .baseAttack    = 75,
-        .baseDefense   = 180,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 130,
-        .baseSpDefense = 80,
-        .types = { TYPE_WATER, TYPE_PSYCHIC },
-        .expYield = 207,
-        .evYield_Defense = 2,
-        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR },
-        .height = 20,
-        .weight = 1200,
-        .description = COMPOUND_STRING(
-            "When bathed in the energy of Mega\n"
-            "Evolution, Shellder converts into\n"
-            "impregnable armor. There is virtually no\n"
-            "change in Slowpoke."),
-        .pokemonScale = 256,
-        .pokemonOffset = 6,
-        .trainerScale = 296,
-        .trainerOffset = 2,
-        FRONT_PIC(SlowbroMega, 56, 64),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_SlowbroMega,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(SlowbroMega, 64, 48),
-        .backPicYOffset = 9,
-        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        PALETTES(SlowbroMega),
-        ICON(SlowbroMega, 0),
-        LEARNSETS(Slowbro),
-        .formChangeTable = sSlowbroFormChangeTable,
-        .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
 
 #if P_GALARIAN_FORMS
     SPECIES(SPECIES_SLOWPOKE_GALARIAN, (
@@ -7050,11 +7028,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Gengar),
         ICON(Gengar, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GENGAR_MEGA, (
-        GENGAR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GENGAR_MEGA, (
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 80,
@@ -7084,8 +7060,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(GengarMega),
         ICON(GengarMega, 2),
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GIGANTAMAX_FORMS
     SPECIES(SPECIES_GENGAR_GIGANTAMAX, (
@@ -7221,11 +7196,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Steelix),
         ICON(Steelix, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_STEELIX_MEGA, (
-        STEELIX_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_STEELIX_MEGA, (
         .baseHP        = 75,
         .baseAttack    = 125,
         .baseDefense   = 230,
@@ -7256,8 +7229,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SteelixMega),
         ICON(SteelixMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ONIX
 
@@ -8770,11 +8742,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         PALETTES(Kangaskhan),
         ICON(Kangaskhan, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_KANGASKHAN_MEGA, (
-        KANGASKHAN_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_KANGASKHAN_MEGA, (
         .baseHP        = 105,
         .baseAttack    = 125,
         .baseDefense   = 100,
@@ -8800,8 +8770,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(KangaskhanMega),
         ICON(KangaskhanMega, 2),
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_KANGASKHAN
 
 #if P_FAMILY_HORSEA
@@ -9451,11 +9420,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(Scizor),
         ICON(Scizor, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SCIZOR_MEGA, (
-        SCIZOR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SCIZOR_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 150,
         .baseDefense   = 140,
@@ -9486,8 +9453,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(ScizorMega),
         ICON(ScizorMega, 0),
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_GEN_2_CROSS_EVOS
 
 #if P_GEN_8_CROSS_EVOS
@@ -9988,11 +9954,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(Pinsir),
         ICON(Pinsir, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_PINSIR_MEGA, (
-        PINSIR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_PINSIR_MEGA, (
         .baseHP        = 65,
         .baseAttack    = 155,
         .baseDefense   = 120,
@@ -10025,8 +9989,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PinsirMega),
         ICON(PinsirMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_PINSIR
 
 #if P_FAMILY_TAUROS
@@ -10256,11 +10219,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Gyarados),
         ICON(Gyarados, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GYARADOS_MEGA, (
-        GYARADOS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GYARADOS_MEGA, (
         .baseHP        = 95,
         .baseAttack    = 155,
         .baseDefense   = 109,
@@ -10288,8 +10249,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GyaradosMega),
         ICON(GyaradosMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MAGIKARP
 
 #if P_FAMILY_LAPRAS
@@ -11267,11 +11227,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(Aerodactyl),
         ICON(Aerodactyl, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_AERODACTYL_MEGA, (
-        AERODACTYL_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_AERODACTYL_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 135,
         .baseDefense   = 85,
@@ -11302,8 +11260,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AerodactylMega),
         ICON(AerodactylMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_AERODACTYL
 
 #if P_FAMILY_SNORLAX
@@ -11889,11 +11846,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(Mewtwo),
         ICON(Mewtwo, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_MEWTWO_MEGA_X, (
-        SPECIES_MEWTWO_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_MEWTWO_MEGA_X, (
         .baseHP        = 106,
         .baseAttack    = 190,
         .baseDefense   = 100,
@@ -11927,8 +11882,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(MewtwoMegaX, 2),
     )),
 
-    SPECIES(SPECIES_MEWTWO_MEGA_Y, (
-        SPECIES_MEWTWO_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_MEWTWO_MEGA_Y, (
         .baseHP        = 106,
         .baseAttack    = 150,
         .baseDefense   = 70,
@@ -11961,8 +11915,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(MewtwoMegaY),
         ICON(MewtwoMegaY, 2),
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MEWTWO
 
 #if P_FAMILY_MEW
@@ -13372,11 +13325,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTES(Ampharos),
         ICON(Ampharos, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_AMPHAROS_MEGA, (
-        AMPHAROS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_AMPHAROS_MEGA, (
         .baseHP        = 90,
         .baseAttack    = 95,
         .baseDefense   = AMPHAROS_DEFENSE + 20,
@@ -13402,8 +13353,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AmpharosMega),
         ICON(AmpharosMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MAREEP
 
 #if P_FAMILY_MARILL
@@ -15566,11 +15516,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(Heracross),
         ICON(Heracross, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_HERACROSS_MEGA, (
-        HERACROSS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_HERACROSS_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 185,
         .baseDefense   = 115,
@@ -15601,8 +15549,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(HeracrossMega),
         ICON(HeracrossMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_HERACROSS
 
 #if P_FAMILY_SNEASEL
@@ -16739,11 +16686,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Houndoom),
         ICON(Houndoom, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_HOUNDOOM_MEGA, (
-        HOUNDOOM_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_HOUNDOOM_MEGA, (
         .baseHP        = 75,
         .baseAttack    = 90,
         .baseDefense   = 90,
@@ -16773,8 +16718,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(HoundoomMega),
         ICON(HoundoomMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_HOUNDOUR
 
 #if P_FAMILY_PHANPY
@@ -17376,11 +17320,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(Tyranitar),
         ICON(Tyranitar, 4),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_TYRANITAR_MEGA, (
-        TYRANITAR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_TYRANITAR_MEGA, (
         .baseHP        = 100,
         .baseAttack    = 164,
         .baseDefense   = 150,
@@ -17411,8 +17353,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(TyranitarMega),
         ICON(TyranitarMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_LARVITAR
 
 #if P_FAMILY_LUGIA
@@ -17712,11 +17653,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Sceptile),
         ICON(Sceptile, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SCEPTILE_MEGA, (
-        SCEPTILE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SCEPTILE_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 75,
@@ -17748,8 +17687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SceptileMega),
         ICON(SceptileMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_TREECKO
 
 #if P_FAMILY_TORCHIC
@@ -17900,11 +17838,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(Blaziken),
         ICON(Blaziken, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_BLAZIKEN_MEGA, (
-        BLAZIKEN_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_BLAZIKEN_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 160,
         .baseDefense   = 80,
@@ -17929,8 +17865,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BlazikenMega),
         ICON(BlazikenMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_TORCHIC
 
 #if P_FAMILY_MUDKIP
@@ -18075,11 +18010,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(Swampert),
         ICON(Swampert, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SWAMPERT_MEGA, (
-        SWAMPERT_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SWAMPERT_MEGA, (
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 110,
@@ -18110,8 +18043,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SwampertMega),
         ICON(SwampertMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MUDKIP
 
 #if P_FAMILY_POOCHYENA
@@ -19294,11 +19226,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Gardevoir),
         ICON(Gardevoir, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GARDEVOIR_MEGA, (
-        GARDEVOIR_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GARDEVOIR_MEGA, (
         .baseHP        = 68,
         .baseAttack    = 85,
         .baseDefense   = 65,
@@ -19323,8 +19253,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GardevoirMega),
         ICON(GardevoirMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GEN_4_CROSS_EVOS
 
@@ -19378,11 +19307,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Gallade),
         ICON(Gallade, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GALLADE_MEGA, (
-        GALLADE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GALLADE_MEGA, (
         .baseHP        = 68,
         .baseAttack    = 165,
         .baseDefense   = 95,
@@ -19408,8 +19335,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GalladeMega),
         ICON(GalladeMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_RALTS
 
@@ -20389,11 +20315,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Sableye),
         ICON(Sableye, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SABLEYE_MEGA, (
-        SABLEYE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SABLEYE_MEGA, (
         .baseHP        = 50,
         .baseAttack    = 85,
         .baseDefense   = 125,
@@ -20422,8 +20346,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SableyeMega),
         ICON(SableyeMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_SABLEYE
 
 #if P_FAMILY_MAWILE
@@ -20482,11 +20405,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Mawile),
         ICON(Mawile, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_MAWILE_MEGA, (
-        MAWILE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_MAWILE_MEGA, (
         .baseHP        = 50,
         .baseAttack    = 105,
         .baseDefense   = 125,
@@ -20517,8 +20438,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MawileMega),
         ICON(MawileMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MAWILE
 
 #if P_FAMILY_ARON
@@ -20666,11 +20586,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(Aggron),
         ICON(Aggron, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_AGGRON_MEGA, (
-        AGGRON_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_AGGRON_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 140,
         .baseDefense   = 230,
@@ -20702,8 +20620,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AggronMega),
         ICON(AggronMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_ARON
 
 #if P_FAMILY_MEDITITE
@@ -20805,11 +20722,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Medicham),
         ICON(Medicham, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_MEDICHAM_MEGA, (
-        MEDICHAM_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_MEDICHAM_MEGA, (
         .baseHP        = 60,
         .baseAttack    = 100,
         .baseDefense   = 85,
@@ -20834,8 +20749,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MedichamMega),
         ICON(MedichamMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_MEDITITE
 
 #if P_FAMILY_ELECTRIKE
@@ -20933,11 +20847,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Manectric),
         ICON(Manectric, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_MANECTRIC_MEGA, (
-        MANECTRIC_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_MANECTRIC_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 75,
         .baseDefense   = 80,
@@ -20967,8 +20879,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ManectricMega),
         ICON(ManectricMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_ELECTRIKE
 
 #if P_FAMILY_PLUSLE
@@ -21531,11 +21442,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(Sharpedo),
         ICON(Sharpedo, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SHARPEDO_MEGA, (
-        SHARPEDO_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SHARPEDO_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 140,
         .baseDefense   = 70,
@@ -21567,8 +21476,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SharpedoMega),
         ICON(SharpedoMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_CARVANHA
 
 #if P_FAMILY_WAILMER
@@ -21767,11 +21675,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(Camerupt),
         ICON(Camerupt, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_CAMERUPT_MEGA, (
-        CAMERUPT_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_CAMERUPT_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -21802,8 +21708,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(CameruptMega),
         ICON(CameruptMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_NUMEL
 
 #if P_FAMILY_TORKOAL
@@ -22352,11 +22257,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         PALETTES(Altaria),
         ICON(Altaria, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_ALTARIA_MEGA, (
-        ALTARIA_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_ALTARIA_MEGA, (
         .baseHP        = 75,
         .baseAttack    = 110,
         .baseDefense   = 110,
@@ -22389,8 +22292,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AltariaMega),
         ICON(AltariaMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_SWABLU
 
 #if P_FAMILY_ZANGOOSE
@@ -23441,11 +23343,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Banette),
         ICON(Banette, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_BANETTE_MEGA, (
-        BANETTE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_BANETTE_MEGA, (
         .baseHP        = 64,
         .baseAttack    = 165,
         .baseDefense   = 75,
@@ -23476,8 +23376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BanetteMega),
         ICON(BanetteMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_SHUPPET
 
 #if P_FAMILY_DUSKULL
@@ -23837,11 +23736,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Absol),
         ICON(Absol, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_ABSOL_MEGA, (
-        ABSOL_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_ABSOL_MEGA, (
         .baseHP        = 65,
         .baseAttack    = 150,
         .baseDefense   = 60,
@@ -23867,8 +23764,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AbsolMega),
         ICON(AbsolMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_ABSOL
 
 #if P_FAMILY_SNORUNT
@@ -23970,11 +23866,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(Glalie),
         ICON(Glalie, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GLALIE_MEGA, (
-        GLALIE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GLALIE_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 120,
         .baseDefense   = 80,
@@ -24005,8 +23899,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GlalieMega),
         ICON(GlalieMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 
 #if P_GEN_4_CROSS_EVOS
     SPECIES(SPECIES_FROSLASS, (
@@ -24597,11 +24490,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         PALETTES(Salamence),
         ICON(Salamence, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_SALAMENCE_MEGA, (
-        SALAMENCE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_SALAMENCE_MEGA, (
         .baseHP        = 95,
         .baseAttack    = 145,
         .baseDefense   = 130,
@@ -24632,8 +24523,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SalamenceMega),
         ICON(SalamenceMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_BAGON
 
 #if P_FAMILY_BELDUM
@@ -24782,11 +24672,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(Metagross),
         ICON(Metagross, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_METAGROSS_MEGA, (
-        METAGROSS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_METAGROSS_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 145,
         .baseDefense   = 150,
@@ -24817,8 +24705,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MetagrossMega),
         ICON(MetagrossMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_BELDUM
 
 #if P_FAMILY_REGIROCK
@@ -25019,11 +24906,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Latias),
         ICON(Latias, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_LATIAS_MEGA, (
-        LATIAS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_LATIAS_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -25056,8 +24941,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LatiasMega),
         ICON(LatiasMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_LATIAS
 
 #if P_FAMILY_LATIOS
@@ -25109,11 +24993,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Latios),
         ICON(Latios, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_LATIOS_MEGA, (
-        LATIOS_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_LATIOS_MEGA, (
         .baseHP        = 80,
         .baseAttack    = 130,
         .baseDefense   = 100,
@@ -25146,8 +25028,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LatiosMega),
         ICON(LatiosMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_LATIOS
 
 #if P_FAMILY_KYOGRE
@@ -25374,11 +25255,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(Rayquaza),
         ICON(Rayquaza, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_RAYQUAZA_MEGA, (
-        RAYQUAZA_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_RAYQUAZA_MEGA, (
         .baseHP        = 105,
         .baseAttack    = 180,
         .baseDefense   = 100,
@@ -25408,8 +25287,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(RayquazaMega),
         ICON(RayquazaMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_RAYQUAZA
 
 #if P_FAMILY_JIRACHI
@@ -27629,11 +27507,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(Lopunny),
         ICON(Lopunny, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_LOPUNNY_MEGA, (
-        LOPUNNY_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_LOPUNNY_MEGA, (
         .baseHP        = 65,
         .baseAttack    = 136,
         .baseDefense   = 94,
@@ -27665,8 +27541,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LopunnyMega),
         ICON(LopunnyMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_BUNEARY
 
 #if P_FAMILY_GLAMEOW
@@ -28204,11 +28079,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(Garchomp),
         ICON(Garchomp, 0),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_GARCHOMP_MEGA, (
-        GARCHOMP_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_GARCHOMP_MEGA, (
         .baseHP        = 108,
         .baseAttack    = 170,
         .baseDefense   = 115,
@@ -28233,8 +28106,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GarchompMega),
         ICON(GarchompMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_GIBLE
 
 #if P_FAMILY_RIOLU
@@ -28333,11 +28205,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         PALETTES(Lucario),
         ICON(Lucario, 2),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_LUCARIO_MEGA, (
-        LUCARIO_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_LUCARIO_MEGA, (
         .baseHP        = 70,
         .baseAttack    = 145,
         .baseDefense   = 88,
@@ -28368,8 +28238,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LucarioMega),
         ICON(LucarioMega, 2),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_RIOLU
 
 #if P_FAMILY_HIPPOPOTAS
@@ -28922,11 +28791,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(Abomasnow),
         ICON(Abomasnow, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_ABOMASNOW_MEGA, (
-        ABOMASNOW_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_ABOMASNOW_MEGA, (
         .baseHP        = 90,
         .baseAttack    = 132,
         .baseDefense   = 105,
@@ -28957,8 +28824,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AbomasnowMega),
         ICON(AbomasnowMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_SNOVER
 
 #if P_FAMILY_ROTOM
@@ -31839,11 +31705,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW,
         PALETTES(Audino),
         ICON(Audino, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_AUDINO_MEGA, (
-        AUDINO_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_AUDINO_MEGA, (
         .baseHP        = 103,
         .baseAttack    = 60,
         .baseDefense   = 126,
@@ -31876,8 +31740,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AudinoMega),
         ICON(AudinoMega, 1),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_AUDINO
 
 #if P_FAMILY_TIMBURR
@@ -42543,11 +42406,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
         PALETTES(Diancie),
         ICON(Diancie, 1),
-    )),
+    ),
 
-#if P_MEGA_EVOLUTIONS
-    SPECIES(SPECIES_DIANCIE_MEGA, (
-        DIANCE_MISC_INFO,
+    MEGA_EVOLUTION(SPECIES_DIANCIE_MEGA, (
         .baseHP        = 50,
         .baseAttack    = 160,
         .baseDefense   = 110,
@@ -42575,8 +42436,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DiancieMega),
         ICON(DiancieMega, 0),
         .isMegaEvolution = TRUE,
-    )),
-#endif //P_MEGA_EVOLUTIONS
+    ))),
 #endif //P_FAMILY_DIANCIE
 
 #if P_FAMILY_HOOPA
