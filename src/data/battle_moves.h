@@ -68,7 +68,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_COMET_PUNCH] =
     {
         .effect = EFFECT_ATTACK_UP_HIT,
-        .power = 15,
+        .power = 10,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,

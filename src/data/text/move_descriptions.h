@@ -22,7 +22,7 @@ static const u8 sDoubleSlapDescription[] = _(
 
 static const u8 sCometPunchDescription[] = _(
     "Punches the foe 4 times.\n"
-    "Each hit may boost Attack.");
+    "10% each hit to boost Attack.");
 
 static const u8 sMegaPunchDescription[] = _(
     "A strong punch thrown with\n"
