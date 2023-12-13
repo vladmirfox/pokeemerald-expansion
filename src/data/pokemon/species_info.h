@@ -6090,7 +6090,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Slowking),
     ),
 
-    SPECIES(SPECIES_SLOWKING_GALARIAN, (
+    GALARIAN_FORM(SPECIES_SLOWKING_GALARIAN, (
         .baseHP        = 95,
         .baseAttack    = 65,
         .baseDefense   = 80,
@@ -14384,260 +14384,257 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MISDREAVUS
 
 #if P_FAMILY_UNOWN
-#define UNOWN_MISC_INFO(letter)                                         \
-        .baseHP        = 48,                                            \
-        .baseAttack    = 72,                                            \
-        .baseDefense   = 48,                                            \
-        .baseSpeed     = 48,                                            \
-        .baseSpAttack  = 72,                                            \
-        .baseSpDefense = 48,                                            \
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },                        \
-        .catchRate = 225,                                               \
-        .expYield = 118,                                                \
-        .evYield_Attack = 1,                                            \
-        .evYield_SpAttack = 1,                                          \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 40,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                               \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },\
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },                \
-        .bodyColor = BODY_COLOR_BLACK,                                  \
-        .speciesName = _("Unown"),                                      \
-        .cryId = CRY_UNOWN,                                             \
-        .natDexNum = NATIONAL_DEX_UNOWN,                                \
-        .categoryName = _("Symbol"),                                    \
-        .height = 5,                                                    \
-        .weight = 50,                                                   \
-        .description = gUnownPokedexText,                               \
-        .pokemonScale = 411,                                            \
-        .pokemonOffset = 2,                                             \
-        .trainerScale = 256,                                            \
-        .trainerOffset = 0,                                             \
-        .frontPicYOffset = 16,                                          \
-        .frontAnimFrames = sAnims_Unown,                                \
-        .frontAnimId = ANIM_ZIGZAG_FAST,                                \
-        .enemyMonElevation = 8,                                         \
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                    \
-        PALETTES(Unown),                                                \
-        ICON(Unown ##letter, 0),                                        \
-        .footprint = gMonFootprint_Unown,                               \
-        LEARNSETS(Unown),                                               \
-        .formSpeciesIdTable = sUnownFormSpeciesIdTable
-
     SPECIES(SPECIES_UNOWN, (
-        UNOWN_MISC_INFO(A),
+        .baseHP        = 48,
+        .baseAttack    = 72,
+        .baseDefense   = 48,
+        .baseSpeed     = 48,
+        .baseSpAttack  = 72,
+        .baseSpDefense = 48,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .catchRate = 225,
+        .expYield = 118,
+        .evYield_Attack = 1,
+        .evYield_SpAttack = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Unown"),
+        .cryId = CRY_UNOWN,
+        .natDexNum = NATIONAL_DEX_UNOWN,
+        .categoryName = _("Symbol"),
+        .height = 5,
+        .weight = 50,
+        .description = gUnownPokedexText,
+        .pokemonScale = 411,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPicYOffset = 16,
+        .frontAnimFrames = sAnims_Unown,
+        .frontAnimId = ANIM_ZIGZAG_FAST,
+        .enemyMonElevation = 8,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTES(Unown),
+        .footprint = gMonFootprint_Unown,
+        LEARNSETS(Unown),
+        .formSpeciesIdTable = sUnownFormSpeciesIdTable,
         FRONT_PIC(UnownA, 24, 40),
         BACK_PIC(UnownA, 24, 48),
         .backPicYOffset = 8,
-    )),
+        ICON(UnownA, 0),
+    ),
 
-    SPECIES(SPECIES_UNOWN_B, (
-        UNOWN_MISC_INFO(B),
+    FORM(SPECIES_UNOWN_B, (
         .noFlip = TRUE,
         FRONT_PIC(UnownB, 24, 32),
         BACK_PIC(UnownB, 40, 48),
         .backPicYOffset = 9,
+        ICON(UnownB, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_C, (
-        UNOWN_MISC_INFO(C),
+    FORM(SPECIES_UNOWN_C, (
         .noFlip = TRUE,
         FRONT_PIC(UnownC, 32, 32),
         BACK_PIC(UnownC, 48, 56),
         .backPicYOffset = 6,
+        ICON(UnownC, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_D, (
-        UNOWN_MISC_INFO(D),
+    FORM(SPECIES_UNOWN_D, (
         .noFlip = TRUE,
         FRONT_PIC(UnownD, 32, 32),
         BACK_PIC(UnownD, 40, 48),
         .backPicYOffset = 8,
+        ICON(UnownD, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_E, (
-        UNOWN_MISC_INFO(E),
+    FORM(SPECIES_UNOWN_E, (
         .noFlip = TRUE,
         FRONT_PIC(UnownE, 32, 32),
         BACK_PIC(UnownE, 40, 48),
         .backPicYOffset = 10,
+        ICON(UnownE, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_F, (
-        UNOWN_MISC_INFO(F),
+    FORM(SPECIES_UNOWN_F, (
         .noFlip = TRUE,
         FRONT_PIC(UnownF, 32, 32),
         BACK_PIC(UnownF, 48, 48),
         .backPicYOffset = 10,
+        ICON(UnownF, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_G, (
-        UNOWN_MISC_INFO(G),
+    FORM(SPECIES_UNOWN_G, (
         .noFlip = TRUE,
         FRONT_PIC(UnownG, 24, 40),
         BACK_PIC(UnownG, 40, 56),
         .backPicYOffset = 5,
+        ICON(UnownG, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_H, (
-        UNOWN_MISC_INFO(H),
+    FORM(SPECIES_UNOWN_H, (
         .noFlip = TRUE,
         FRONT_PIC(UnownH, 32, 32),
         BACK_PIC(UnownH, 48, 48),
         .backPicYOffset = 8,
+        ICON(UnownH, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_I, (
-        UNOWN_MISC_INFO(I),
+    FORM(SPECIES_UNOWN_I, (
         FRONT_PIC(UnownI, 24, 32),
         BACK_PIC(UnownI, 24, 56),
         .backPicYOffset = 7,
+        ICON(UnownI, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_J, (
-        UNOWN_MISC_INFO(J),
+    FORM(SPECIES_UNOWN_J, (
         .noFlip = TRUE,
         FRONT_PIC(UnownJ, 24, 32),
         BACK_PIC(UnownJ, 32, 48),
         .backPicYOffset = 9,
+        ICON(UnownJ, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_K, (
-        UNOWN_MISC_INFO(K),
+    FORM(SPECIES_UNOWN_K, (
         .noFlip = TRUE,
         FRONT_PIC(UnownK, 32, 32),
         BACK_PIC(UnownK, 40, 56),
         .backPicYOffset = 7,
+        ICON(UnownK, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_L, (
-        UNOWN_MISC_INFO(L),
+    FORM(SPECIES_UNOWN_L, (
         .noFlip = TRUE,
         FRONT_PIC(UnownL, 24, 32),
         BACK_PIC(UnownL, 32, 48),
         .backPicYOffset = 10,
+        ICON(UnownL, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_M, (
-        UNOWN_MISC_INFO(M),
+    FORM(SPECIES_UNOWN_M, (
         FRONT_PIC(UnownM, 32, 32),
         BACK_PIC(UnownM, 48, 40),
         .backPicYOffset = 13,
+        ICON(UnownM, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_N, (
-        UNOWN_MISC_INFO(N),
+    FORM(SPECIES_UNOWN_N, (
         .noFlip = TRUE,
         FRONT_PIC(UnownN, 32, 24),
         BACK_PIC(UnownN, 48, 40),
         .backPicYOffset = 13,
+        ICON(UnownN, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_O, (
-        UNOWN_MISC_INFO(O),
+    FORM(SPECIES_UNOWN_O, (
         FRONT_PIC(UnownO, 32, 32),
         BACK_PIC(UnownO, 48, 48),
         .backPicYOffset = 8,
+        ICON(UnownO, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_P, (
-        UNOWN_MISC_INFO(P),
+    FORM(SPECIES_UNOWN_P, (
         .noFlip = TRUE,
         FRONT_PIC(UnownP, 24, 32),
         BACK_PIC(UnownP, 32, 48),
         .backPicYOffset = 10,
+        ICON(UnownP, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_Q, (
-        UNOWN_MISC_INFO(Q),
+    FORM(SPECIES_UNOWN_Q, (
         .noFlip = TRUE,
         FRONT_PIC(UnownQ, 32, 24),
         BACK_PIC(UnownQ, 40, 40),
         .backPicYOffset = 15,
+        ICON(UnownQ, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_R, (
-        UNOWN_MISC_INFO(R),
+    FORM(SPECIES_UNOWN_R, (
         .noFlip = TRUE,
         FRONT_PIC(UnownR, 24, 32),
         BACK_PIC(UnownR, 32, 40),
         .backPicYOffset = 12,
+        ICON(UnownR, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_S, (
-        UNOWN_MISC_INFO(S),
+    FORM(SPECIES_UNOWN_S, (
         .noFlip = TRUE,
         FRONT_PIC(UnownS, 32, 40),
         BACK_PIC(UnownS, 40, 56),
         .backPicYOffset = 4,
+        ICON(UnownS, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_T, (
-        UNOWN_MISC_INFO(T),
+    FORM(SPECIES_UNOWN_T, (
         FRONT_PIC(UnownT, 24, 32),
         BACK_PIC(UnownT, 32, 40),
         .backPicYOffset = 13,
+        ICON(UnownT, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_U, (
-        UNOWN_MISC_INFO(U),
+    FORM(SPECIES_UNOWN_U, (
         FRONT_PIC(UnownU, 32, 32),
         BACK_PIC(UnownU, 48, 40),
         .backPicYOffset = 13,
+        ICON(UnownU, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_V, (
-        UNOWN_MISC_INFO(V),
+    FORM(SPECIES_UNOWN_V, (
         .noFlip = TRUE,
         FRONT_PIC(UnownV, 32, 32),
         BACK_PIC(UnownV, 40, 48),
         .backPicYOffset = 11,
+        ICON(UnownV, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_W, (
-        UNOWN_MISC_INFO(W),
+    FORM(SPECIES_UNOWN_W, (
         FRONT_PIC(UnownW, 32, 32),
         BACK_PIC(UnownW, 40, 40),
         .backPicYOffset = 13,
+        ICON(UnownW, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_X, (
-        UNOWN_MISC_INFO(X),
+    FORM(SPECIES_UNOWN_X, (
         FRONT_PIC(UnownX, 24, 24),
         BACK_PIC(UnownX, 40, 40),
         .backPicYOffset = 15,
+        ICON(UnownX, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_Y, (
-        UNOWN_MISC_INFO(Y),
+    FORM(SPECIES_UNOWN_Y, (
         FRONT_PIC(UnownY, 24, 32),
         BACK_PIC(UnownY, 32, 48),
         .backPicYOffset = 10,
+        ICON(UnownY, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_Z, (
-        UNOWN_MISC_INFO(Z),
+    FORM(SPECIES_UNOWN_Z, (
         .noFlip = TRUE,
         FRONT_PIC(UnownZ, 24, 32),
         BACK_PIC(UnownZ, 32, 48),
         .backPicYOffset = 10,
+        ICON(UnownZ, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_EMARK, (
-        UNOWN_MISC_INFO(ExclamationMark),
+    FORM(SPECIES_UNOWN_EMARK, (
         FRONT_PIC(UnownExclamationMark, 24, 40),
         BACK_PIC(UnownExclamationMark, 24, 56),
         .backPicYOffset = 6,
+        ICON(UnownE, 0),
     )),
 
-    SPECIES(SPECIES_UNOWN_QMARK, (
-        UNOWN_MISC_INFO(QuestionMark),
+    FORM(SPECIES_UNOWN_QMARK, (
         .noFlip = TRUE,
         FRONT_PIC(UnownQuestionMark, 24, 40),
         BACK_PIC(UnownQuestionMark, 32, 56),
         .backPicYOffset = 6,
-    )),
+        ICON(UnownQ, 0),
+    ))),
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
@@ -14988,47 +14985,41 @@ const struct SpeciesInfo gSpeciesInfo[] =
     )),
 
 #if P_GEN_9_CROSS_EVOS
-#define DUDUNSPARCE_MISC_INFO(segments)                                             \
-        .baseHP        = 125,                                                       \
-        .baseAttack    = 100,                                                       \
-        .baseDefense   = 80,                                                        \
-        .baseSpeed     = 55,                                                        \
-        .baseSpAttack  = 85,                                                        \
-        .baseSpDefense = 75,                                                        \
-        .types = { TYPE_NORMAL, TYPE_NORMAL },                                      \
-        .catchRate = 45,                                                            \
-        .expYield = 182,                                                            \
-        .evYield_HP = 2,                                                            \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },                          \
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                             \
-        .speciesName = _("Dudunsprce"),                                             \
-        .cryId = CRY_DUDUNSPARCE,                                                   \
-        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,                                      \
-        .categoryName = _("Land Snake"),                                            \
-        .pokemonScale = 356,                                                        \
-        .pokemonOffset = 17,                                                        \
-        .trainerScale = 256,                                                        \
-        .trainerOffset = 0,                                                         \
-        FRONT_PIC(Dudunsparce ##segments##Segment, 64, 64),                         \
-        .frontPicYOffset = 10,                                                      \
-        .frontAnimFrames = sAnims_Dudunsparce,                                      \
-        BACK_PIC(Dudunsparce ##segments##Segment, 64, 64),                          \
-        .backPicYOffset = 11,                                                       \
-        PALETTES(Dudunsparce),                                                      \
-        ICON(Dudunsparce, 0),                                                       \
-        LEARNSETS(Dudunsparce),                                                     \
-        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //.footprint = gMonFootprint_Dudunsparce,
-
     SPECIES(SPECIES_DUDUNSPARCE_TWO_SEGMENT, (
-        DUDUNSPARCE_MISC_INFO(Two),
+        .baseHP        = 125,
+        .baseAttack    = 100,
+        .baseDefense   = 80,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 45,
+        .expYield = 182,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Dudunsprce"),
+        .cryId = CRY_DUDUNSPARCE,
+        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+        .categoryName = _("Land Snake"),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(DudunsparceTwoSegment, 64, 64),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Dudunsparce,
+        BACK_PIC(DudunsparceTwoSegment, 64, 64),
+        .backPicYOffset = 11,
+        PALETTES(Dudunsparce),
+        ICON(Dudunsparce, 0),
+        LEARNSETS(Dudunsparce),
+        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
         .height = 36,
         .weight = 392,
         .description = COMPOUND_STRING(
@@ -15036,15 +15027,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "make its nest by boring holes into\n"
             "bedrock deep underground. The nest\n"
             "can reach lengths of over six miles."),
-    )),
+    ),
 
-    SPECIES(SPECIES_DUDUNSPARCE_THREE_SEGMENT, (
-        DUDUNSPARCE_MISC_INFO(Three),
+    FORM(SPECIES_DUDUNSPARCE_THREE_SEGMENT, (
+        FRONT_PIC(DudunsparceThreeSegment, 64, 64),
+        BACK_PIC(DudunsparceThreeSegment, 64, 64),
         .height = 45,
         .weight = 474,
         .description = COMPOUND_STRING(
             ""),
-    )),
+    ))),
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_DUNSPARCE
 
@@ -28829,21 +28821,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTES(Rotom),
         ICON(Rotom, 0),
-    )),
+    ),
 
-#define ROTOM_APPLIANCE_INFO(form)                                  \
-        .baseHP        = 50,                                        \
-        .baseAttack    = 65,                                        \
-        .baseDefense   = 107,                                       \
-        .baseSpeed     = 86,                                        \
-        .baseSpAttack  = 105,                                       \
-        .baseSpDefense = 107,                                       \
-        .expYield = 182
-
-    SPECIES(SPECIES_ROTOM_HEAT, (
-        ROTOM_MISC_INFO,
+    FORM(SPECIES_ROTOM_HEAT, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 107,
+        .baseSpeed     = 86,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 107,
         .types = { TYPE_ELECTRIC, TYPE_FIRE },
-        ROTOM_APPLIANCE_INFO(Heat),
+        .expYield = 182,
         .description = COMPOUND_STRING(
             "If the convection microwave oven is not\n"
             "working properly, then the Rotom inhabiting\n"
@@ -28861,11 +28849,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(RotomHeat, 0),
     )),
 
-    SPECIES(SPECIES_ROTOM_WASH, (
-        ROTOM_MISC_INFO,
+    FORM(SPECIES_ROTOM_WASH, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 107,
+        .baseSpeed     = 86,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 107,
         .types = { TYPE_ELECTRIC, TYPE_WATER },
         .noFlip = TRUE,
-        ROTOM_APPLIANCE_INFO(Wash),
+        .expYield = 182,
         .description = COMPOUND_STRING(
             "It enjoys coming up with water-based\n"
             "pranks. The model of washing machine that\n"
@@ -28883,10 +28876,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(RotomWash, 0),
     )),
 
-    SPECIES(SPECIES_ROTOM_FROST, (
-        ROTOM_MISC_INFO,
+    FORM(SPECIES_ROTOM_FROST, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 107,
+        .baseSpeed     = 86,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 107,
         .types = { TYPE_ELECTRIC, TYPE_ICE },
-        ROTOM_APPLIANCE_INFO(Frost),
+        .expYield = 182,
         .description = COMPOUND_STRING(
             "In this form, Rotom likes to play freezing\n"
             "cold pranks. You may find it's turned the\n"
@@ -28904,10 +28902,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(RotomFrost, 5),
     )),
 
-    SPECIES(SPECIES_ROTOM_FAN, (
-        ROTOM_MISC_INFO,
+    FORM(SPECIES_ROTOM_FAN, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 107,
+        .baseSpeed     = 86,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 107,
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
-        ROTOM_APPLIANCE_INFO(Fan),
+        .expYield = 182,
         .description = COMPOUND_STRING(
             "The first appliance developed that Rotom\n"
             "coud inspirit was the electric fan. It uses\n"
@@ -28926,10 +28929,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(RotomFan, 0),
     )),
 
-    SPECIES(SPECIES_ROTOM_MOW, (
-        ROTOM_MISC_INFO,
+    FORM(SPECIES_ROTOM_MOW, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 107,
+        .baseSpeed     = 86,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 107,
         .types = { TYPE_ELECTRIC, TYPE_GRASS },
-        ROTOM_APPLIANCE_INFO(Mow),
+        .expYield = 182,
         .description = COMPOUND_STRING(
             "The lawn mower is an appliance that led to\n"
             "the development of the Rotom Dex. It will\n"
@@ -28945,7 +28953,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_SLIDE,
         PALETTES(RotomMow),
         ICON(RotomMow, 0),
-    )),
+    ))),
 #endif //P_FAMILY_ROTOM
 
 #if P_FAMILY_UXIE
@@ -29733,70 +29741,135 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_SHAYMIN
 
 #if P_FAMILY_ARCEUS
-#define ARCEUS_SPECIES_INFO(type, typeName)                                             \
-    {                                                                                   \
-        .baseHP        = 120,                                                           \
-        .baseAttack    = 120,                                                           \
-        .baseDefense   = 120,                                                           \
-        .baseSpeed     = 120,                                                           \
-        .baseSpAttack  = 120,                                                           \
-        .baseSpDefense = 120,                                                           \
-        .types = { type, type },                                                        \
-        .catchRate = 3,                                                                 \
-        .expYield = 324,                                                                \
-        .evYield_HP = 3,                                                                \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },                               \
-        .bodyColor = BODY_COLOR_WHITE,                                                  \
-        .speciesName = _("Arceus"),                                                     \
-        .cryId = CRY_ARCEUS,                                                            \
-        .natDexNum = NATIONAL_DEX_ARCEUS,                                               \
-        .categoryName = _("Alpha"),                                                     \
-        .height = 32,                                                                   \
-        .weight = 3200,                                                                 \
-        .description = gArceusPokedexText,                                              \
-        .pokemonScale = 256,                                                            \
-        .pokemonOffset = 0,                                                             \
-        .trainerScale = 495,                                                            \
-        .trainerOffset = 10,                                                            \
-        FRONT_PIC(Arceus, 64, 64),                                                      \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Arceus,                                               \
-        .frontAnimId = ANIM_GROW_VIBRATE,                                               \
-        BACK_PIC(Arceus, 64, 64),                                                       \
-        .backPicYOffset = 3,                                                            \
-        .backAnimId = BACK_ANIM_GROW_STUTTER,                                           \
-        PALETTES(Arceus ##typeName),                                                    \
-        ICON(Arceus, 1),                                                                \
-        .footprint = gMonFootprint_Arceus,                                              \
-        LEARNSETS(Arceus),                                                              \
-        .formSpeciesIdTable = sArceusFormSpeciesIdTable,                                \
-        .formChangeTable = sArceusFormChangeTable,                                      \
-        .isMythical = TRUE,                                                             \
-    }
+    SPECIES(SPECIES_ARCEUS_NORMAL, (
+        .baseHP        = 120,
+        .baseAttack    = 120,
+        .baseDefense   = 120,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 120,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 3,
+        .expYield = 324,
+        .evYield_HP = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Arceus"),
+        .cryId = CRY_ARCEUS,
+        .natDexNum = NATIONAL_DEX_ARCEUS,
+        .categoryName = _("Alpha"),
+        .height = 32,
+        .weight = 3200,
+        .description = gArceusPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 495,
+        .trainerOffset = 10,
+        FRONT_PIC(Arceus, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Arceus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(Arceus, 64, 64),
+        .backPicYOffset = 3,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        PALETTES(ArceusNormal),
+        ICON(Arceus, 1),
+        .footprint = gMonFootprint_Arceus,
+        LEARNSETS(Arceus),
+        .formSpeciesIdTable = sArceusFormSpeciesIdTable,
+        .formChangeTable = sArceusFormChangeTable,
+        .isMythical = TRUE,
+    ),
 
-    [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL, Normal),
-    [SPECIES_ARCEUS_FIGHTING] = ARCEUS_SPECIES_INFO(TYPE_FIGHTING, Fighting),
-    [SPECIES_ARCEUS_FLYING]   = ARCEUS_SPECIES_INFO(TYPE_FLYING, Flying),
-    [SPECIES_ARCEUS_POISON]   = ARCEUS_SPECIES_INFO(TYPE_POISON, Poison),
-    [SPECIES_ARCEUS_GROUND]   = ARCEUS_SPECIES_INFO(TYPE_GROUND, Ground),
-    [SPECIES_ARCEUS_ROCK]     = ARCEUS_SPECIES_INFO(TYPE_ROCK, Rock),
-    [SPECIES_ARCEUS_BUG]      = ARCEUS_SPECIES_INFO(TYPE_BUG, Bug),
-    [SPECIES_ARCEUS_GHOST]    = ARCEUS_SPECIES_INFO(TYPE_GHOST, Ghost),
-    [SPECIES_ARCEUS_STEEL]    = ARCEUS_SPECIES_INFO(TYPE_STEEL, Steel),
-    [SPECIES_ARCEUS_FIRE]     = ARCEUS_SPECIES_INFO(TYPE_FIRE, Fire),
-    [SPECIES_ARCEUS_WATER]    = ARCEUS_SPECIES_INFO(TYPE_WATER, Water),
-    [SPECIES_ARCEUS_GRASS]    = ARCEUS_SPECIES_INFO(TYPE_GRASS, Grass),
-    [SPECIES_ARCEUS_ELECTRIC] = ARCEUS_SPECIES_INFO(TYPE_ELECTRIC, Electric),
-    [SPECIES_ARCEUS_PSYCHIC]  = ARCEUS_SPECIES_INFO(TYPE_PSYCHIC, Psychic),
-    [SPECIES_ARCEUS_ICE]      = ARCEUS_SPECIES_INFO(TYPE_ICE, Ice),
-    [SPECIES_ARCEUS_DRAGON]   = ARCEUS_SPECIES_INFO(TYPE_DRAGON, Dragon),
-    [SPECIES_ARCEUS_DARK]     = ARCEUS_SPECIES_INFO(TYPE_DARK, Dark),
-    [SPECIES_ARCEUS_FAIRY]    = ARCEUS_SPECIES_INFO(TYPE_FAIRY, Fairy),
+    FORM(SPECIES_ARCEUS_FIGHTING, (
+        .types = { TYPE_FIGHTING, TYPE_FIGHTING },
+        PALETTES(ArceusFighting),
+    )),
+
+    FORM(SPECIES_ARCEUS_FLYING, (
+        .types = { TYPE_FLYING, TYPE_FLYING },
+        PALETTES(ArceusFlying),
+    )),
+
+    FORM(SPECIES_ARCEUS_POISON, (
+        .types = { TYPE_POISON, TYPE_POISON },
+        PALETTES(ArceusPoison),
+    )),
+
+    FORM(SPECIES_ARCEUS_GROUND, (
+        .types = { TYPE_GROUND, TYPE_GROUND },
+        PALETTES(ArceusGround),
+    )),
+
+    FORM(SPECIES_ARCEUS_ROCK, (
+        .types = { TYPE_ROCK, TYPE_ROCK },
+        PALETTES(ArceusRock),
+    )),
+
+    FORM(SPECIES_ARCEUS_BUG, (
+        .types = { TYPE_BUG, TYPE_BUG },
+        PALETTES(ArceusBug),
+    )),
+
+    FORM(SPECIES_ARCEUS_GHOST, (
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        PALETTES(ArceusGhost),
+    )),
+
+    FORM(SPECIES_ARCEUS_STEEL, (
+        .types = { TYPE_STEEL, TYPE_STEEL },
+        PALETTES(ArceusSteel),
+    )),
+
+    FORM(SPECIES_ARCEUS_FIRE, (
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        PALETTES(ArceusFire),
+    )),
+
+    FORM(SPECIES_ARCEUS_WATER, (
+        .types = { TYPE_WATER, TYPE_WATER },
+        PALETTES(ArceusWater),
+    )),
+
+    FORM(SPECIES_ARCEUS_GRASS, (
+        .types = { TYPE_GRASS, TYPE_GRASS },
+        PALETTES(ArceusGrass),
+    )),
+
+    FORM(SPECIES_ARCEUS_ELECTRIC, (
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+        PALETTES(ArceusElectric),
+    )),
+
+    FORM(SPECIES_ARCEUS_PSYCHIC, (
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        PALETTES(ArceusPsychic),
+    )),
+
+    FORM(SPECIES_ARCEUS_ICE, (
+        .types = { TYPE_ICE, TYPE_ICE },
+        PALETTES(ArceusIce),
+    )),
+
+    FORM(SPECIES_ARCEUS_DRAGON, (
+        .types = { TYPE_DRAGON, TYPE_DRAGON },
+        PALETTES(ArceusDragon),
+    )),
+
+    FORM(SPECIES_ARCEUS_DARK, (
+        .types = { TYPE_DARK, TYPE_DARK },
+        PALETTES(ArceusDark),
+    )),
+
+    FORM(SPECIES_ARCEUS_FAIRY, (
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        PALETTES(ArceusFairy),
+    ))),
 #endif //P_FAMILY_ARCEUS
 
 #if P_FAMILY_VICTINI
@@ -37640,10 +37713,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(TornadusIncarnate),
         ICON(TornadusIncarnate, 1),
-    )),
+    ),
 
-    SPECIES(SPECIES_TORNADUS_THERIAN, (
-        TORNADUS_MISC_INFO,
+    FORM(SPECIES_TORNADUS_THERIAN, (
         .baseHP        = 79,
         .baseAttack    = 100,
         .baseDefense   = 80,
@@ -37668,7 +37740,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(TornadusTherian),
         ICON(TornadusTherian, 1),
-    )),
+    ))),
 #endif //P_FAMILY_TORNADUS
 
 #if P_FAMILY_THUNDURUS
@@ -37720,10 +37792,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(ThundurusIncarnate),
         ICON(ThundurusIncarnate, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_THUNDURUS_THERIAN, (
-        THUNDURUS_MISC_INFO,
+    FORM(SPECIES_THUNDURUS_THERIAN, (
         .baseHP        = 79,
         .baseAttack    = 105,
         .baseDefense   = 70,
@@ -37750,7 +37821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTES(ThundurusTherian),
         ICON(ThundurusTherian, 0),
-    )),
+    ))),
 #endif //P_FAMILY_THUNDURUS
 
 #if P_FAMILY_RESHIRAM
@@ -37900,10 +37971,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(LandorusIncarnate),
         ICON(LandorusIncarnate, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_LANDORUS_THERIAN, (
-        LANDORUS_MISC_INFO,
+    FORM(SPECIES_LANDORUS_THERIAN, (
         .baseHP        = 89,
         .baseAttack    = 145,
         .baseDefense   = 90,
@@ -37929,7 +37999,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(LandorusTherian),
         ICON(LandorusTherian, 0),
-    )),
+    ))),
 #endif //P_FAMILY_LANDORUS
 
 #if P_FAMILY_KYUREM
@@ -38199,59 +38269,67 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MELOETTA
 
 #if P_FAMILY_GENESECT
-#define GENESECT_SPECIES_INFO(form)                                                     \
-    {                                                                                   \
-        .baseHP        = 71,                                                            \
-        .baseAttack    = 120,                                                           \
-        .baseDefense   = 95,                                                            \
-        .baseSpeed     = 99,                                                            \
-        .baseSpAttack  = 120,                                                           \
-        .baseSpDefense = 95,                                                            \
-        .types = { TYPE_BUG, TYPE_STEEL },                                              \
-        .catchRate = 3,                                                                 \
-        .expYield = 270,                                                                \
-        .evYield_Attack = 1,                                                            \
-        .evYield_Speed = 1,                                                             \
-        .evYield_SpAttack = 1,                                                          \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_DOWNLOAD, ABILITY_NONE },                                \
-        .bodyColor = BODY_COLOR_PURPLE,                                                 \
-        .speciesName = _("Genesect"),                                                   \
-        .cryId = CRY_GENESECT,                                                          \
-        .natDexNum = NATIONAL_DEX_GENESECT,                                             \
-        .categoryName = _("Paleozoic"),                                                 \
-        .height = 15,                                                                   \
-        .weight = 825,                                                                  \
-        .description = gGenesectPokedexText,                                            \
-        .pokemonScale = 268,                                                            \
-        .pokemonOffset = 2,                                                             \
-        .trainerScale = 271,                                                            \
-        .trainerOffset = 0,                                                             \
-        FRONT_PIC(Genesect, 56, 64),                                                    \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Genesect,                                             \
-        .frontAnimId = ANIM_H_VIBRATE,                                                  \
-        BACK_PIC(Genesect, 64, 48),                                                     \
-        .backPicYOffset = 8,                                                            \
-        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                                \
-        PALETTES(form),                                                                 \
-        ICON(Genesect, 2),                                                              \
-        .footprint = gMonFootprint_Genesect,                                            \
-        LEARNSETS(Genesect),                                                            \
-        .formSpeciesIdTable = sGenesectFormSpeciesIdTable,                              \
-        .formChangeTable = sGenesectFormChangeTable,                                    \
-        .isMythical = TRUE,                                                             \
-    }
+    SPECIES(SPECIES_GENESECT, (
+        .baseHP        = 71,
+        .baseAttack    = 120,
+        .baseDefense   = 95,
+        .baseSpeed     = 99,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 95,
+        .types = { TYPE_BUG, TYPE_STEEL },
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Attack = 1,
+        .evYield_Speed = 1,
+        .evYield_SpAttack = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_DOWNLOAD, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Genesect"),
+        .cryId = CRY_GENESECT,
+        .natDexNum = NATIONAL_DEX_GENESECT,
+        .categoryName = _("Paleozoic"),
+        .height = 15,
+        .weight = 825,
+        .description = gGenesectPokedexText,
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        FRONT_PIC(Genesect, 56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Genesect,
+        .frontAnimId = ANIM_H_VIBRATE,
+        BACK_PIC(Genesect, 64, 48),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
+        PALETTES(Genesect),
+        ICON(Genesect, 2),
+        .footprint = gMonFootprint_Genesect,
+        LEARNSETS(Genesect),
+        .formSpeciesIdTable = sGenesectFormSpeciesIdTable,
+        .formChangeTable = sGenesectFormChangeTable,
+        .isMythical = TRUE,
+    ),
+    FORM(SPECIES_GENESECT_DOUSE_DRIVE, (
+        PALETTES(GenesectDouseDrive),
+    )),
 
-    [SPECIES_GENESECT]             = GENESECT_SPECIES_INFO(Genesect),
-    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_SPECIES_INFO(GenesectDouseDrive),
-    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_SPECIES_INFO(GenesectShockDrive),
-    [SPECIES_GENESECT_BURN_DRIVE]  = GENESECT_SPECIES_INFO(GenesectBurnDrive),
-    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_SPECIES_INFO(GenesectChillDrive),
+    FORM(SPECIES_GENESECT_SHOCK_DRIVE, (
+        PALETTES(GenesectShockDrive),
+    )),
+
+    FORM(SPECIES_GENESECT_BURN_DRIVE, (
+        PALETTES(GenesectBurnDrive),
+    )),
+
+    FORM(SPECIES_GENESECT_CHILL_DRIVE, (
+        PALETTES(GenesectChillDrive),
+    ))),
 #endif //P_FAMILY_GENESECT
 
 #if P_FAMILY_CHESPIN
@@ -45126,72 +45204,151 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SILVALLY_NORMAL}),
     )),
 
-#define SILVALLY_SPECIES_INFO(type, palette)                                            \
-    {                                                                                   \
-        .baseHP        = 95,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = 95,                                                            \
-        .baseSpeed     = 95,                                                            \
-        .baseSpAttack  = 95,                                                            \
-        .baseSpDefense = 95,                                                            \
-        .types = { type, type },                                                        \
-        .catchRate = 3,                                                                 \
-        .expYield = 257,                                                                \
-        .evYield_HP = 3,                                                                \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_RKS_SYSTEM, ABILITY_NONE },                              \
-        .bodyColor = BODY_COLOR_GRAY,                                                   \
-        .isLegendary = TRUE,                                                            \
-        .speciesName = _("Silvally"),                                                   \
-        .cryId = CRY_SILVALLY,                                                          \
-        .natDexNum = NATIONAL_DEX_SILVALLY,                                             \
-        .categoryName = _("Synthetic"),                                                 \
-        .height = 23,                                                                   \
-        .weight = 1005,                                                                 \
-        .description = (type == TYPE_NORMAL                                             \
-            ? gSilvallyNormalPokedexText                                                \
-            : gSilvallyMemoryPokedexText),                                              \
-        .pokemonScale = 256,                                                            \
-        .pokemonOffset = 0,                                                             \
-        .trainerScale = 342,                                                            \
-        .trainerOffset = 7,                                                             \
-        FRONT_PIC(Silvally, 64, 64),                                                    \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Silvally,                                             \
-        .frontAnimId = ANIM_V_SHAKE,                                                    \
-        BACK_PIC(Silvally, 56, 64),                                                     \
-        .backPicYOffset = 0,                                                            \
-        PALETTES(palette),                                                              \
-        ICON(Silvally, 0),                                                              \
-        .footprint = gMonFootprint_Silvally,                                            \
-        LEARNSETS(Silvally),                                                            \
-        .formSpeciesIdTable = sSilvallyFormSpeciesIdTable,                              \
-        .formChangeTable = sSilvallyFormChangeTable,                                    \
-   }
-        //.backAnimId = BACK_ANIM_NONE,
+    SPECIES(SPECIES_SILVALLY_NORMAL, (
+        .baseHP        = 95,
+        .baseAttack    = 95,
+        .baseDefense   = 95,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 95,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .catchRate = 3,
+        .expYield = 257,
+        .evYield_HP = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_RKS_SYSTEM, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .isLegendary = TRUE,
+        .speciesName = _("Silvally"),
+        .cryId = CRY_SILVALLY,
+        .natDexNum = NATIONAL_DEX_SILVALLY,
+        .categoryName = _("Synthetic"),
+        .height = 23,
+        .weight = 1005,
+        .description = gSilvallyNormalPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 342,
+        .trainerOffset = 7,
+        FRONT_PIC(Silvally, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Silvally,
+        .frontAnimId = ANIM_V_SHAKE,
+        BACK_PIC(Silvally, 56, 64),
+        .backPicYOffset = 0,
+        PALETTES(SilvallyNormal),
+        ICON(Silvally, 0),
+        .footprint = gMonFootprint_Silvally,
+        LEARNSETS(Silvally),
+        .formSpeciesIdTable = sSilvallyFormSpeciesIdTable,
+        .formChangeTable = sSilvallyFormChangeTable,
+    ),
 
-    [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL, SilvallyNormal),
-    [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING, SilvallyFighting),
-    [SPECIES_SILVALLY_FLYING]   = SILVALLY_SPECIES_INFO(TYPE_FLYING, SilvallyFlying),
-    [SPECIES_SILVALLY_POISON]   = SILVALLY_SPECIES_INFO(TYPE_POISON, SilvallyPoison),
-    [SPECIES_SILVALLY_GROUND]   = SILVALLY_SPECIES_INFO(TYPE_GROUND, SilvallyGround),
-    [SPECIES_SILVALLY_ROCK]     = SILVALLY_SPECIES_INFO(TYPE_ROCK, SilvallyRock),
-    [SPECIES_SILVALLY_BUG]      = SILVALLY_SPECIES_INFO(TYPE_BUG, SilvallyBug),
-    [SPECIES_SILVALLY_GHOST]    = SILVALLY_SPECIES_INFO(TYPE_GHOST, SilvallyGhost),
-    [SPECIES_SILVALLY_STEEL]    = SILVALLY_SPECIES_INFO(TYPE_STEEL, SilvallySteel),
-    [SPECIES_SILVALLY_FIRE]     = SILVALLY_SPECIES_INFO(TYPE_FIRE, SilvallyFire),
-    [SPECIES_SILVALLY_WATER]    = SILVALLY_SPECIES_INFO(TYPE_WATER, SilvallyWater),
-    [SPECIES_SILVALLY_GRASS]    = SILVALLY_SPECIES_INFO(TYPE_GRASS, SilvallyGrass),
-    [SPECIES_SILVALLY_ELECTRIC] = SILVALLY_SPECIES_INFO(TYPE_ELECTRIC, SilvallyElectric),
-    [SPECIES_SILVALLY_PSYCHIC]  = SILVALLY_SPECIES_INFO(TYPE_PSYCHIC, SilvallyPsychic),
-    [SPECIES_SILVALLY_ICE]      = SILVALLY_SPECIES_INFO(TYPE_ICE, SilvallyIce),
-    [SPECIES_SILVALLY_DRAGON]   = SILVALLY_SPECIES_INFO(TYPE_DRAGON, SilvallyDragon),
-    [SPECIES_SILVALLY_DARK]     = SILVALLY_SPECIES_INFO(TYPE_DARK, SilvallyDark),
-    [SPECIES_SILVALLY_FAIRY]    = SILVALLY_SPECIES_INFO(TYPE_FAIRY, SilvallyFairy),
+    FORM(SPECIES_SILVALLY_FIGHTING, (
+        .types = { TYPE_FIGHTING, TYPE_FIGHTING },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyFighting),
+    )),
+
+    FORM(SPECIES_SILVALLY_FLYING, (
+        .types = { TYPE_FLYING, TYPE_FLYING },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyFlying),
+    )),
+
+    FORM(SPECIES_SILVALLY_POISON, (
+        .types = { TYPE_POISON, TYPE_POISON },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyPoison),
+    )),
+
+    FORM(SPECIES_SILVALLY_GROUND, (
+        .types = { TYPE_GROUND, TYPE_GROUND },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyGround),
+    )),
+
+    FORM(SPECIES_SILVALLY_ROCK, (
+        .types = { TYPE_ROCK, TYPE_ROCK },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyRock),
+    )),
+
+    FORM(SPECIES_SILVALLY_BUG, (
+        .types = { TYPE_BUG, TYPE_BUG },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyBug),
+    )),
+
+    FORM(SPECIES_SILVALLY_GHOST, (
+        .types = { TYPE_GHOST, TYPE_GHOST },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyGhost),
+    )),
+
+    FORM(SPECIES_SILVALLY_STEEL, (
+        .types = { TYPE_STEEL, TYPE_STEEL },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallySteel),
+    )),
+
+    FORM(SPECIES_SILVALLY_FIRE, (
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyFire),
+    )),
+
+    FORM(SPECIES_SILVALLY_WATER, (
+        .types = { TYPE_WATER, TYPE_WATER },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyWater),
+    )),
+
+    FORM(SPECIES_SILVALLY_GRASS, (
+        .types = { TYPE_GRASS, TYPE_GRASS },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyGrass),
+    )),
+
+    FORM(SPECIES_SILVALLY_ELECTRIC, (
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyElectric),
+    )),
+
+    FORM(SPECIES_SILVALLY_PSYCHIC, (
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyPsychic),
+    )),
+
+    FORM(SPECIES_SILVALLY_ICE, (
+        .types = { TYPE_ICE, TYPE_ICE },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyIce),
+    )),
+
+    FORM(SPECIES_SILVALLY_DRAGON, (
+        .types = { TYPE_DRAGON, TYPE_DRAGON },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyDragon),
+    )),
+
+    FORM(SPECIES_SILVALLY_DARK, (
+        .types = { TYPE_DARK, TYPE_DARK },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyDark),
+    )),
+
+    FORM(SPECIES_SILVALLY_FAIRY, (
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .description = gSilvallyMemoryPokedexText,
+        PALETTES(SilvallyFairy),
+    ))),
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
@@ -52133,10 +52290,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(EnamorusIncarnate),
         ICON(EnamorusIncarnate, 1),
         //.footprint = gMonFootprint_EnamorusIncarnate,
-    )),
+    ),
 
-    SPECIES(SPECIES_ENAMORUS_THERIAN, (
-        ENAMORUS_MISC_INFO,
+    FORM(SPECIES_ENAMORUS_THERIAN, (
         .baseHP        = 74,
         .baseAttack    = 115,
         .baseDefense   = 110,
@@ -52157,7 +52313,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(EnamorusTherian),
         ICON(EnamorusTherian, 1),
         //.footprint = gMonFootprint_Enamorus,
-    )),
+    ))),
 #endif //P_FAMILY_ENAMORUS
 
 #if P_FAMILY_SPRIGATITO
