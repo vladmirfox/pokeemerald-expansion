@@ -53,9 +53,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_DOUBLE_SLAP] =
     {
         .effect = EFFECT_MULTI_HIT,
-        .power = 15,
+        .power = 20,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -67,27 +67,29 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_COMET_PUNCH] =
     {
-        .effect = EFFECT_MULTI_HIT,
-        .power = 18,
+        .effect = EFFECT_ATTACK_UP_HIT,
+        .power = 20,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .punchingMove = TRUE,
+        .strikeCount = 4,
+        .sheerForceBoost = TRUE,
     },
 
     [MOVE_MEGA_PUNCH] =
     {
         .effect = EFFECT_HIT,
-        .power = 80,
+        .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 85,
-        .pp = 20,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -99,13 +101,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_PAY_DAY] =
     {
-        .effect = EFFECT_PAY_DAY,
-        .power = 40,
+        .effect = EFFECT_PAY_DAY_NEW,
+        .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 5,
         .secondaryEffectChance = 100,
-        .target = MOVE_TARGET_SELECTED,
+        .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -183,17 +185,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_VISE_GRIP] =
     {
-        .effect = EFFECT_HIT,
-        .power = 55,
-        .type = TYPE_NORMAL,
+        .effect = EFFECT_HIT_PREVENT_ESCAPE,
+        .power = 70,
+        .type = TYPE_BUG,
         .accuracy = 100,
-        .pp = 30,
-        .secondaryEffectChance = 0,
+        .pp = 10,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .sheerForceBoost = TRUE,
     },
 
     [MOVE_GUILLOTINE] =
@@ -213,9 +216,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_RAZOR_WIND] =
     {
-        .effect = EFFECT_TWO_TURNS_ATTACK,
+        .effect = EFFECT_HIT,
         .power = 80,
-        .type = TYPE_NORMAL,
+        .type = TYPE_FLYING,
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
@@ -224,8 +227,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .highCritRatio = TRUE,
-        .sleepTalkBanned = TRUE,
-        .instructBanned = TRUE,
+        .damagesAirborneDoubleDamage = TRUE,
+        .windMove = TRUE,
     },
 
     [MOVE_SWORDS_DANCE] =
@@ -251,16 +254,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_CUT] =
     {
         .effect = EFFECT_HIT,
-        .power = 50,
-        .type = TYPE_NORMAL,
-        .accuracy = 95,
-        .pp = 30,
+        .power = 60,
+        .type = TYPE_STEEL,
+        .accuracy = 100,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -327,7 +331,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #endif
         .effect = EFFECT_SEMI_INVULNERABLE,
         .type = TYPE_FLYING,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -343,12 +347,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_BIND] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
-            .accuracy = 85,
+            .accuracy = 90,
         #else
             .accuracy = 75,
         #endif
         .effect = EFFECT_TRAP,
-        .power = 15,
+        .power = 25,
         .type = TYPE_NORMAL,
         .pp = 20,
         .secondaryEffectChance = 100,
@@ -13530,12 +13534,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_CHILLING_WATER] =
     {
-        .effect = EFFECT_ATTACK_DOWN_HIT,
-        .power = 50,
+        .effect = EFFECT_FROSTBITE_HIT,
+        .power = 80,
         .type = TYPE_WATER,
         .accuracy = 100,
-        .pp = 20,
-        .secondaryEffectChance = 100,
+        .pp = 15,
+        .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_SPECIAL,

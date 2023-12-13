@@ -21,15 +21,15 @@ static const u8 sDoubleSlapDescription[] = _(
     "2 to 5 times.");
 
 static const u8 sCometPunchDescription[] = _(
-    "Repeatedly punches the foe\n"
-    "2 to 5 times.");
+    "Punches the foe 3 times.\n"
+    "Each hit may boost Attack.");
 
 static const u8 sMegaPunchDescription[] = _(
     "A strong punch thrown with\n"
     "incredible power.");
 
 static const u8 sPayDayDescription[] = _(
-    "Throws coins at the foe.\n"
+    "Lowers the user's Attack.\n"
     "Money is recovered after.");
 
 static const u8 sFirePunchDescription[] = _(
@@ -53,7 +53,7 @@ static const u8 sScratchDescription[] = _(
     "sharp claws.");
 
 static const u8 sViseGripDescription[] = _(
-    "Grips the foe with large and\n"
+    "Traps the foe with large and\n"
     "powerful pincers.");
 
 static const u8 sGuillotineDescription[] = _(
@@ -61,16 +61,16 @@ static const u8 sGuillotineDescription[] = _(
     "that may cause fainting.");
 
 static const u8 sRazorWindDescription[] = _(
-    "A 2-turn move that strikes\n"
-    "the foe on the 2nd turn.");
+    "Hits foes with a brutal gale.\n"
+    "High critical-hit ratio.");
 
 static const u8 sSwordsDanceDescription[] = _(
     "A fighting dance that\n"
     "sharply raises Attack.");
 
 static const u8 sCutDescription[] = _(
-    "Cuts the foe with sharp\n"
-    "scythes, claws, etc.");
+    "Cuts the foe like a steel\n"
+    "blade. High crit ratio.");
 
 static const u8 sGustDescription[] = _(
     "Strikes the foe with a gust\n"

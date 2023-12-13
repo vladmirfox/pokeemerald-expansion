@@ -437,6 +437,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
+	.4byte BattleScript_EffectPayDayNew				  @ EFFECT_PAY_DAY_NEW
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
@@ -508,6 +509,20 @@ BattleScript_MakeItRainContinuous:
 BattleScript_MakeItRainDoubles:
 	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_NoMoveEffect
 	goto BattleScript_MakeItRainContinuous
+
+BattleScript_EffectPayDayNew:
+	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_PayDayNewDoubles
+BattleScript_PayDayNewContinuous:
+	setmoveeffect MOVE_EFFECT_PAYDAY
+	call BattleScript_EffectHit_Ret
+	seteffectwithchance
+	tryfaintmon BS_TARGET
+	setmoveeffect MOVE_EFFECT_ATK_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	seteffectprimary
+	goto BattleScript_MoveEnd
+BattleScript_PayDayNewDoubles:
+	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_NoMoveEffect
+	goto BattleScript_PayDayNewContinuous
 
 BattleScript_EffectSpinOut::
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
