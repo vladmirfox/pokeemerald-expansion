@@ -23080,9 +23080,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         PALETTES(CastformNormal),
         ICON(CastformNormal, 0),
-    )),
+    ),
 
-    SPECIES(SPECIES_CASTFORM_SUNNY, (
+    FORM(SPECIES_CASTFORM_SUNNY, (
         .types = { TYPE_FIRE, TYPE_FIRE },
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
@@ -23102,7 +23102,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CastformSunny, 0),
     )),
 
-    SPECIES(SPECIES_CASTFORM_RAINY, (
+    FORM(SPECIES_CASTFORM_RAINY, (
         .types = { TYPE_WATER, TYPE_WATER },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
@@ -23122,7 +23122,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CastformRainy, 0),
     )),
 
-    SPECIES(SPECIES_CASTFORM_SNOWY, (
+    FORM(SPECIES_CASTFORM_SNOWY, (
         .types = { TYPE_ICE, TYPE_ICE },
         .bodyColor = BODY_COLOR_WHITE,
         .description = COMPOUND_STRING(
@@ -23140,7 +23140,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(CastformSnowy),
         ICON(CastformSnowy, 0),
-    )),
+    ))),
 #endif //P_FAMILY_CASTFORM
 
 #if P_FAMILY_KECLEON
@@ -25332,10 +25332,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DeoxysNormal),
         ICON(DeoxysNormal, 0),
         LEARNSETS(DeoxysNormal),
-    )),
+    ),
 
-    SPECIES(SPECIES_DEOXYS_ATTACK, (
-        DEOXYS_MISC_INFO,
+    FORM(SPECIES_DEOXYS_ATTACK, (
         .baseHP        = 50,
         .baseAttack    = 180,
         .baseDefense   = 20,
@@ -25356,8 +25355,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(DeoxysAttack),
     )),
 
-    SPECIES(SPECIES_DEOXYS_DEFENSE, (
-        DEOXYS_MISC_INFO,
+    FORM(SPECIES_DEOXYS_DEFENSE, (
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 160,
@@ -25378,8 +25376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(DeoxysDefense),
     )),
 
-    SPECIES(SPECIES_DEOXYS_SPEED, (
-        DEOXYS_MISC_INFO,
+    FORM(SPECIES_DEOXYS_SPEED, (
         .baseHP        = 50,
         .baseAttack    = 95,
         .baseDefense   = 90,
@@ -25398,7 +25395,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DeoxysSpeed),
         ICON(DeoxysSpeed, 0),
         LEARNSETS(DeoxysSpeed),
-    )),
+    ))),
 #endif //P_FAMILY_DEOXYS
 
 #if P_FAMILY_TURTWIG
@@ -26581,10 +26578,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(BurmyPlantCloak, 1),
         .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_PLANT_CLOAK},
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
-    )),
+    ),
 
-    SPECIES(SPECIES_BURMY_SANDY_CLOAK, (
-        BURMY_MISC_INFO,
+    FORM(SPECIES_BURMY_SANDY_CLOAK, (
         .bodyColor = BODY_COLOR_BROWN,
         .description = COMPOUND_STRING(
             "It weaves a cloak together with sand, mud,\n"
@@ -26601,8 +26597,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
     )),
 
-    SPECIES(SPECIES_BURMY_TRASH_CLOAK, (
-        BURMY_MISC_INFO,
+    FORM(SPECIES_BURMY_TRASH_CLOAK, (
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
             "When confronted by a lack of other\n"
@@ -26617,7 +26612,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(BurmyTrashCloak, 0),
         .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_TRASH_CLOAK},
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
-    )),
+    ))),
 
 
     SPECIES(SPECIES_WORMADAM_PLANT_CLOAK, (
@@ -26667,10 +26662,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(WormadamPlantCloak),
         ICON(WormadamPlantCloak, 1),
         LEARNSETS(WormadamPlantCloak),
-    )),
+    ),
 
-    SPECIES(SPECIES_WORMADAM_SANDY_CLOAK, (
-        WORMADAM_MISC_INFO,
+    FORM(SPECIES_WORMADAM_SANDY_CLOAK, (
         .baseHP        = 60,
         .baseAttack    = 79,
         .baseDefense   = 105,
@@ -26692,8 +26686,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(WormadamSandyCloak),
     )),
 
-    SPECIES(SPECIES_WORMADAM_TRASH_CLOAK, (
-        WORMADAM_MISC_INFO,
+    FORM(SPECIES_WORMADAM_TRASH_CLOAK, (
         .baseHP        = 60,
         .baseAttack    = 69,
         .baseDefense   = 95,
@@ -26714,7 +26707,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(WormadamTrashCloak),
         ICON(WormadamTrashCloak, 0),
         LEARNSETS(WormadamTrashCloak),
-    )),
+    ))),
 
     SPECIES(SPECIES_MOTHIM, (
         .baseHP        = 70,
@@ -32743,10 +32736,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BasculinRedStriped),
         ICON(BasculinRedStriped, 1),
         LEARNSETS(Basculin),
-    )),
+    ),
 
-    SPECIES(SPECIES_BASCULIN_BLUE_STRIPED, (
-        BASCULIN_MISC_INFO,
+    FORM(SPECIES_BASCULIN_BLUE_STRIPED, (
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Hostile"),
@@ -32767,9 +32759,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Basculin),
     )),
 
-#if P_HISUIAN_FORMS
-    SPECIES(SPECIES_BASCULIN_WHITE_STRIPED, (
-        BASCULIN_MISC_INFO,
+    HISUIAN_FORM(SPECIES_BASCULIN_WHITE_STRIPED, (
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = { ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Mellow"),
@@ -32790,8 +32780,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(BasculinWhiteStriped),
         .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BASCULEGION_MALE},
                                 {EVO_NONE, 0, SPECIES_BASCULEGION_FEMALE}),
-    )),
+    ))),
 
+#if P_HISUIAN_FORMS
     SPECIES(SPECIES_BASCULEGION_MALE, (
         .types = { TYPE_WATER, TYPE_GHOST },
         .catchRate = 45,
@@ -41700,10 +41691,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 13,
         .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOURGEIST_AVERAGE},
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_AVERAGE}),
-    )),
+    ),
 
-    SPECIES(SPECIES_PUMPKABOO_SMALL, (
-        PUMPKABOO_MISC_INFO,
+    FORM(SPECIES_PUMPKABOO_SMALL, (
         .baseHP        = 44,
         .baseAttack    = 66,
         .baseDefense   = 70,
@@ -41727,8 +41717,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_SMALL}),
     )),
 
-    SPECIES(SPECIES_PUMPKABOO_LARGE, (
-        PUMPKABOO_MISC_INFO,
+    FORM(SPECIES_PUMPKABOO_LARGE, (
         .baseHP        = 54,
         .baseAttack    = 66,
         .baseDefense   = 70,
@@ -41752,8 +41741,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_LARGE}),
     )),
 
-    SPECIES(SPECIES_PUMPKABOO_SUPER, (
-        PUMPKABOO_MISC_INFO,
+    FORM(SPECIES_PUMPKABOO_SUPER, (
         .baseHP        = 59,
         .baseAttack    = 66,
         .baseDefense   = 70,
@@ -41777,8 +41765,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 12,
         .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOURGEIST_SUPER},
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_SUPER}),
-    )),
-
+    ))),
 
     SPECIES(SPECIES_GOURGEIST_AVERAGE, (
         .types = { TYPE_GHOST, TYPE_GRASS },
