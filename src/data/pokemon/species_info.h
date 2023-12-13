@@ -161,6 +161,13 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _("");
 
 #define FORM(tag, overrides) (tag, overrides, )
 
+// Fusions
+#if P_FUSION_FORMS
+#define FUSION FORM
+#else
+#define FUSION(tag, overrides)
+#endif
+
 // Mega evolutions
 #if P_MEGA_EVOLUTIONS
 #define MEGA_EVOLUTION(tag, overrides) (tag, overrides, .isMegaEvolution = TRUE)
@@ -37975,11 +37982,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Kyurem),
         ICON(Kyurem, 0),
         LEARNSETS(Kyurem),
-    )),
+    ),
 
-#if P_FUSION_FORMS
-    SPECIES(SPECIES_KYUREM_WHITE, (
-        KYUREM_MISC_INFO,
+    FUSION(SPECIES_KYUREM_WHITE, (
         .baseHP        = 125,
         .baseAttack    = 120,
         .baseDefense   = 90,
@@ -38011,8 +38016,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cannotBeTraded = TRUE,
     )),
 
-    SPECIES(SPECIES_KYUREM_BLACK, (
-        KYUREM_MISC_INFO,
+    FUSION(SPECIES_KYUREM_BLACK, (
         .baseHP        = 125,
         .baseAttack    = 170,
         .baseDefense   = 100,
@@ -38042,8 +38046,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sKyuremBlackLevelUpLearnset,
         .teachableLearnset = sKyuremTeachableLearnset,
         .cannotBeTraded = TRUE,
-    )),
-#endif //P_FUSION_FORMS
+    ))),
 #endif //P_FAMILY_KYUREM
 
 #if P_FAMILY_KELDEO
@@ -46587,6 +46590,69 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Necrozma, 0),
     ),
 
+    FUSION(SPECIES_NECROZMA_DUSK_MANE, (
+        .baseHP        = 97,
+        .baseAttack    = 157,
+        .baseDefense   = 127,
+        .baseSpeed     = 77,
+        .baseSpAttack  = 113,
+        .baseSpDefense = 109,
+        .types = { TYPE_PSYCHIC, TYPE_STEEL },
+        .catchRate = 255,
+        .expYield = 306,
+        .evYield_Attack = 3,
+        .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .cryId = CRY_NECROZMA_DUSK_MANE,
+        .height = 38,
+        .weight = 4600,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(NecrozmaDuskMane, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Necrozma,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(NecrozmaDuskMane, 64, 64),
+        .backPicYOffset = 1,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(NecrozmaDuskMane),
+        ICON(NecrozmaDuskMane, 0),
+        .cannotBeTraded = TRUE,
+        .formChangeTable = sNecrozmaDuskManeFormChangeTable,
+    )),
+
+    FUSION(SPECIES_NECROZMA_DAWN_WINGS, (
+        .baseHP        = 97,
+        .baseAttack    = 113,
+        .baseDefense   = 109,
+        .baseSpeed     = 77,
+        .baseSpAttack  = 157,
+        .baseSpDefense = 127,
+        .types = { TYPE_PSYCHIC, TYPE_GHOST },
+        .catchRate = 255,
+        .expYield = 306,
+        .evYield_SpAttack = 3,
+        .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .cryId = CRY_NECROZMA_DAWN_WINGS,
+        .height = 42,
+        .weight = 3500,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(NecrozmaDawnWings, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Necrozma,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 6,
+        BACK_PIC(NecrozmaDawnWings, 64, 64),
+        .backPicYOffset = 2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(NecrozmaDawnWings),
+        ICON(NecrozmaDawnWings, 0),
+        .cannotBeTraded = TRUE,
+        .formChangeTable = sNecrozmaDawnWingsFormChangeTable,
+    )),
+
     ULTRA_BURST(SPECIES_NECROZMA_ULTRA, (
         .baseHP        = 97,
         .baseAttack    = 167,
@@ -46620,74 +46686,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cannotBeTraded = TRUE,
         .isUltraBurst = TRUE,
     ))),
-
-#if P_FUSION_FORMS
-    SPECIES(SPECIES_NECROZMA_DUSK_MANE, (
-        NECROZMA_MISC_INFO,
-        .baseHP        = 97,
-        .baseAttack    = 157,
-        .baseDefense   = 127,
-        .baseSpeed     = 77,
-        .baseSpAttack  = 113,
-        .baseSpDefense = 109,
-        .types = { TYPE_PSYCHIC, TYPE_STEEL },
-        .catchRate = 255,
-        .expYield = 306,
-        .evYield_Attack = 3,
-        .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_YELLOW,
-        .cryId = CRY_NECROZMA_DUSK_MANE,
-        .height = 38,
-        .weight = 4600,
-        .description = COMPOUND_STRING(
-            ""),
-        FRONT_PIC(NecrozmaDuskMane, 64, 64),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Necrozma,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(NecrozmaDuskMane, 64, 64),
-        .backPicYOffset = 1,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(NecrozmaDuskMane),
-        ICON(NecrozmaDuskMane, 0),
-        .cannotBeTraded = TRUE,
-        .formChangeTable = sNecrozmaDuskManeFormChangeTable,
-    )),
-
-    SPECIES(SPECIES_NECROZMA_DAWN_WINGS, (
-        NECROZMA_MISC_INFO,
-        .baseHP        = 97,
-        .baseAttack    = 113,
-        .baseDefense   = 109,
-        .baseSpeed     = 77,
-        .baseSpAttack  = 157,
-        .baseSpDefense = 127,
-        .types = { TYPE_PSYCHIC, TYPE_GHOST },
-        .catchRate = 255,
-        .expYield = 306,
-        .evYield_SpAttack = 3,
-        .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
-        .bodyColor = BODY_COLOR_BLUE,
-        .cryId = CRY_NECROZMA_DAWN_WINGS,
-        .height = 42,
-        .weight = 3500,
-        .description = COMPOUND_STRING(
-            ""),
-        FRONT_PIC(NecrozmaDawnWings, 64, 64),
-        .frontPicYOffset = 0,
-        .frontAnimFrames = sAnims_Necrozma,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 6,
-        BACK_PIC(NecrozmaDawnWings, 64, 64),
-        .backPicYOffset = 2,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(NecrozmaDawnWings),
-        ICON(NecrozmaDawnWings, 0),
-        .cannotBeTraded = TRUE,
-        .formChangeTable = sNecrozmaDawnWingsFormChangeTable,
-    )),
-
-#endif //P_FUSION_FORMS
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
@@ -52002,11 +52000,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Calyrex),
         ICON(Calyrex, 0),
         LEARNSETS(Calyrex),
-    )),
+    ),
 
-#if P_FUSION_FORMS
-    SPECIES(SPECIES_CALYREX_ICE_RIDER, (
-        CALYREX_MISC_INFO,
+    FUSION(SPECIES_CALYREX_ICE_RIDER, (
         .baseHP        = 100,
         .baseAttack    = 165,
         .baseDefense   = 150,
@@ -52047,8 +52043,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cannotBeTraded = TRUE,
     )),
 
-    SPECIES(SPECIES_CALYREX_SHADOW_RIDER, (
-        CALYREX_MISC_INFO,
+    FUSION(SPECIES_CALYREX_SHADOW_RIDER, (
         .baseHP        = 100,
         .baseAttack    = 85,
         .baseDefense   = 80,
@@ -52087,8 +52082,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CalyrexShadowRider, 0),
         LEARNSETS(CalyrexShadowRider),
         .cannotBeTraded = TRUE,
-    )),
-#endif //P_FUSION_FORMS
+    ))),
 #endif //P_FAMILY_CALYREX
 
 #if P_FAMILY_ENAMORUS
