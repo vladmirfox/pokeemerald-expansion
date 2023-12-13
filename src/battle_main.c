@@ -203,7 +203,6 @@ EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gPauseCounterBattle = 0;
 EWRAM_DATA u16 gPaydayMoney = 0;
-EWRAM_DATA u16 gRandomTurnNumber = 0;
 EWRAM_DATA u8 gBattleCommunication[BATTLE_COMMUNICATION_ENTRIES_COUNT] = {0};
 EWRAM_DATA u8 gBattleOutcome = 0;
 EWRAM_DATA struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT] = {0};
@@ -3096,8 +3095,6 @@ static void BattleStartClearSetData(void)
     gBattleStruct->givenExpMons = 0;
     gBattleStruct->palaceFlags = 0;
 
-    gRandomTurnNumber = Random();
-
     gBattleResults.shinyWildMon = IsMonShiny(&gEnemyParty[0]);
 
     gBattleStruct->arenaLostPlayerMons = 0;
@@ -3854,8 +3851,6 @@ static void TryDoEventsBeforeFirstTurn(void)
     gBattleStruct->turnCountersTracker = 0;
     gMoveResultFlags = 0;
 
-    gRandomTurnNumber = Random();
-
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
@@ -3950,7 +3945,6 @@ void BattleTurnPassed(void)
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
     gBattleMainFunc = HandleTurnActionSelectionState;
-    gRandomTurnNumber = Random();
 
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
         BattleScriptExecute(BattleScript_PalacePrintFlavorText);
@@ -4752,7 +4746,7 @@ u32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
         gProtectStructs[battler1].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
-     && ((holdEffectBattler1 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler1)) / 100)
+     && ((holdEffectBattler1 == HOLD_EFFECT_QUICK_CLAW && RandomPercentage(RNG_QUICK_CLAW,10))
      || (holdEffectBattler1 == HOLD_EFFECT_CUSTAP_BERRY && HasEnoughHpToEatBerry(battler1, 4, gBattleMons[battler1].item))))
         gProtectStructs[battler1].usedCustapBerry = TRUE;
 
@@ -4762,7 +4756,7 @@ u32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
-     && ((holdEffectBattler2 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler2)) / 100)
+     && ((holdEffectBattler2 == HOLD_EFFECT_QUICK_CLAW && RandomPercentage(RNG_QUICK_CLAW,10))
      || (holdEffectBattler2 == HOLD_EFFECT_CUSTAP_BERRY && HasEnoughHpToEatBerry(battler2, 4, gBattleMons[battler2].item))))
         gProtectStructs[battler2].usedCustapBerry = TRUE;
 
@@ -4968,6 +4962,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gProtectStructs[i].banefulBunkered = FALSE;
             gProtectStructs[i].quash = FALSE;
             gProtectStructs[i].usedCustapBerry = FALSE;
+            gProtectStructs[i].quickDraw = FALSE;
         }
         else
         {
@@ -5108,7 +5103,7 @@ static void TryChangeTurnOrder(void)
             if (gActionsByTurnOrder[i] == B_ACTION_USE_MOVE
                 && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE)
             {
-                if (GetWhichBattlerFaster(battler1, battler2, FALSE))
+                if (GetWhichBattlerFaster(battler1, battler2, TRUE))
                     SwapTurnOrder(i, j);
             }
         }
@@ -5150,7 +5145,6 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                 else if (gProtectStructs[battler].quickDraw)
                 {
                     gBattlerAbility = battler;
-                    gProtectStructs[battler].quickDraw = FALSE;
                     gLastUsedAbility = gBattleMons[battler].ability;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     RecordAbilityBattle(battler, gLastUsedAbility);
