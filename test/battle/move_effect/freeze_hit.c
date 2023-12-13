@@ -67,8 +67,12 @@ SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
     }
 }
 
-// test against Gen1
-SINGLE_BATTLE_TEST("Freezing Glare should freeze Psychic-types")
+#if B_STATUS_TYPE_IMMUNITY > GEN_1
+#define B_STATUS_TYPE_IMMUNITY_TEST "Freezing Glare shouldn't freeze Psychic-types"
+#else
+#define B_STATUS_TYPE_IMMUNITY_TEST "Freezing Glare should freeze Psychic-types"
+#endif
+SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_ARTICUNO_GALARIAN].types[0] == TYPE_PSYCHIC);
@@ -79,7 +83,15 @@ SINGLE_BATTLE_TEST("Freezing Glare should freeze Psychic-types")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FREEZING_GLARE, player);
         HP_BAR(opponent);
-        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
-        STATUS_ICON(opponent, freeze: TRUE);
+        #if B_STATUS_TYPE_IMMUNITY > GEN_1
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
+            STATUS_ICON(opponent, freeze: TRUE);
+        #else
+            NONE_OF {
+                ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
+                STATUS_ICON(opponent, freeze: TRUE);
+            }
+        #endif
     }
 }
+#undef B_STATUS_TYPE_IMMUNITY_TEST

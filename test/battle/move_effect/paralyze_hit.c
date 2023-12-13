@@ -40,8 +40,12 @@ SINGLE_BATTLE_TEST("Thunder Shock cannot paralyze an Electric-type")
     }
 }
 
-// test against Gen1
-SINGLE_BATTLE_TEST("Body Slam should paralyze Normal-types")
+#if B_STATUS_TYPE_IMMUNITY > GEN_1
+#define B_STATUS_TYPE_IMMUNITY_TEST "Body Slam should paralyze Normal-types"
+#else
+#define B_STATUS_TYPE_IMMUNITY_TEST "Body Slam shouldn't paralyze Normal-types"
+#endif
+SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_TAUROS].types[0] == TYPE_NORMAL);
@@ -52,7 +56,15 @@ SINGLE_BATTLE_TEST("Body Slam should paralyze Normal-types")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BODY_SLAM, player);
         HP_BAR(opponent);
-        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponent);
-        STATUS_ICON(opponent, paralysis: TRUE);
+        #if B_STATUS_TYPE_IMMUNITY > GEN_1
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponent);
+            STATUS_ICON(opponent, paralysis: TRUE);
+        #else
+            NONE_OF {
+                ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponent);
+                STATUS_ICON(opponent, paralysis: TRUE);
+            }
+        #endif
     }
 }
+#undef B_STATUS_TYPE_IMMUNITY_TEST
