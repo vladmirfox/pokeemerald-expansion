@@ -1566,7 +1566,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Rattata, 2),
         LEARNSETS(Rattata),
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_RATICATE}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_RATTATA_ALOLAN, (
+        .types = { TYPE_DARK, TYPE_NORMAL },
+        .itemRare = ITEM_PECHA_BERRY,
+        .abilities = { ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT },
+        .bodyColor = BODY_COLOR_BLACK,
+        .height = 3,
+        .weight = 38,
+        .description = COMPOUND_STRING(
+            "With its incisors, it gnaws through doors\n"
+            "and infiltrates people's homes.\n"
+            "Then, with a twitch of its whiskers,\n"
+            "it steals whatever food it finds."),
+        .pokemonScale = 481,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(RattataAlolan, 40, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_RattataAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(RattataAlolan, 64, 56),
+        .backPicYOffset = 7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(RattataAlolan),
+        ICON(RattataAlolan, 2),
+        LEARNSETS(RattataAlolan),
+        .isAlolanForm = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_RATICATE, (
         .genderRatio = PERCENT_FEMALE(50),
@@ -1615,42 +1645,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Raticate),
         ICON(Raticate, 2),
         LEARNSETS(Raticate),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_RATTATA_ALOLAN, (
-        RATTATA_MISC_INFO,
-        .types = { TYPE_DARK, TYPE_NORMAL },
-        .itemRare = ITEM_PECHA_BERRY,
-        .abilities = { ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT },
-        .bodyColor = BODY_COLOR_BLACK,
-        .height = 3,
-        .weight = 38,
-        .description = COMPOUND_STRING(
-            "With its incisors, it gnaws through doors\n"
-            "and infiltrates people's homes.\n"
-            "Then, with a twitch of its whiskers,\n"
-            "it steals whatever food it finds."),
-        .pokemonScale = 481,
-        .pokemonOffset = 21,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(RattataAlolan, 40, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_RattataAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(RattataAlolan, 64, 56),
-        .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(RattataAlolan),
-        ICON(RattataAlolan, 2),
-        LEARNSETS(RattataAlolan),
-        .isAlolanForm = TRUE,
-        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_RATICATE_ALOLAN, (
-        RATICATE_MISC_INFO,
+    ALOLAN_FORM(SPECIES_RATICATE_ALOLAN, (
         .baseHP        = 75,
         .baseAttack    = 71,
         .baseDefense   = 70,
@@ -1682,8 +1679,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(RaticateAlolan, 2),
         LEARNSETS(RaticateAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_RATTATA
 
 #if P_FAMILY_SPEAROW
@@ -2316,11 +2312,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Raichu),
         ICON(Raichu, 0),
         LEARNSETS(Raichu),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_RAICHU_ALOLAN, (
-        RAICHU_MISC_INFO,
+    ALOLAN_FORM(SPECIES_RAICHU_ALOLAN, (
         .baseHP        = 60,
         .baseAttack    = 85,
         .baseDefense   = 50,
@@ -2353,8 +2347,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(RaichuAlolan),
         ICON(RaichuAlolan, 2),
         LEARNSETS(RaichuAlolan),
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_PIKACHU
 
 #if P_FAMILY_SANDSHREW
@@ -2405,7 +2398,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sandshrew, 2),
         LEARNSETS(Sandshrew),
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_SANDSHREW_ALOLAN, (
+        .baseHP        = 50,
+        .baseAttack    = 75,
+        .baseDefense   = 90,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 10,
+        .baseSpDefense = 35,
+        .types = { TYPE_ICE, TYPE_STEEL },
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SLUSH_RUSH },
+        .bodyColor = BODY_COLOR_BLUE,
+        .height = 7,
+        .weight = 400,
+        .description = COMPOUND_STRING(
+            "Life on mountains covered with deep snow\n"
+            "has granted this Pokémon a body of ice\n"
+            "that's as hard as steel.\n"
+            "Predators go after its soft belly."),
+        .pokemonScale = 365,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(SandshrewAlolan, 40, 40),
+        .frontPicYOffset = 13,
+        .frontAnimFrames = sAnims_SandshrewAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(SandshrewAlolan, 56, 40),
+        .backPicYOffset = 13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(SandshrewAlolan),
+        ICON(SandshrewAlolan, 0),
+        LEARNSETS(SandshrewAlolan),
+        .isAlolanForm = TRUE,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_SANDSLASH, (
         .catchRate = 90,
@@ -2453,47 +2481,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sandslash),
         ICON(Sandslash, 2),
         LEARNSETS(Sandslash),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_SANDSHREW_ALOLAN, (
-        SANDSHREW_MISC_INFO,
-        .baseHP        = 50,
-        .baseAttack    = 75,
-        .baseDefense   = 90,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 10,
-        .baseSpDefense = 35,
-        .types = { TYPE_ICE, TYPE_STEEL },
-        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SLUSH_RUSH },
-        .bodyColor = BODY_COLOR_BLUE,
-        .height = 7,
-        .weight = 400,
-        .description = COMPOUND_STRING(
-            "Life on mountains covered with deep snow\n"
-            "has granted this Pokémon a body of ice\n"
-            "that's as hard as steel.\n"
-            "Predators go after its soft belly."),
-        .pokemonScale = 365,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(SandshrewAlolan, 40, 40),
-        .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_SandshrewAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(SandshrewAlolan, 56, 40),
-        .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(SandshrewAlolan),
-        ICON(SandshrewAlolan, 0),
-        LEARNSETS(SandshrewAlolan),
-        .isAlolanForm = TRUE,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_SANDSLASH_ALOLAN, (
-        SANDSLASH_MISC_INFO,
+    ALOLAN_FORM(SPECIES_SANDSLASH_ALOLAN, (
         .baseHP        = 75,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -2525,8 +2515,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SandslashAlolan, 0),
         LEARNSETS(SandslashAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_SANDSHREW
 
 #if P_FAMILY_NIDORAN
@@ -3017,7 +3006,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vulpix, 5),
         LEARNSETS(Vulpix),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_NINETALES}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_VULPIX_ALOLAN, (
+        .types = { TYPE_ICE, TYPE_ICE },
+        .itemRare = ITEM_SNOWBALL,
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING },
+        .bodyColor = BODY_COLOR_BLUE,
+        .description = COMPOUND_STRING(
+            "They live together in a skulk, helping\n"
+            "one another. In hot weather, this Pokémon\n"
+            "makes ice shards with its six tails and\n"
+            "sprays them around to cool itself off."),
+        FRONT_PIC(VulpixAlolan, 48, 48),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_VulpixAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(VulpixAlolan, 64, 56),
+        .backPicYOffset = 5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(VulpixAlolan),
+        ICON(VulpixAlolan, 2),
+        LEARNSETS(VulpixAlolan),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLAN}),
+        .isAlolanForm = TRUE,
+    ))),
 
     SPECIES(SPECIES_NINETALES, (
         .catchRate = 75,
@@ -3066,36 +3079,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Ninetales),
         ICON(Ninetales, 3),
         LEARNSETS(Ninetales),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_VULPIX_ALOLAN, (
-        VULPIX_MISC_INFO,
-        .types = { TYPE_ICE, TYPE_ICE },
-        .itemRare = ITEM_SNOWBALL,
-        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING },
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = COMPOUND_STRING(
-            "They live together in a skulk, helping\n"
-            "one another. In hot weather, this Pokémon\n"
-            "makes ice shards with its six tails and\n"
-            "sprays them around to cool itself off."),
-        FRONT_PIC(VulpixAlolan, 48, 48),
-        .frontPicYOffset = 10,
-        .frontAnimFrames = sAnims_VulpixAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(VulpixAlolan, 64, 56),
-        .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(VulpixAlolan),
-        ICON(VulpixAlolan, 2),
-        LEARNSETS(VulpixAlolan),
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLAN}),
-        .isAlolanForm = TRUE,
-    )),
-
-    SPECIES(SPECIES_NINETALES_ALOLAN, (
-        NINETALES_MISC_INFO,
+    ALOLAN_FORM(SPECIES_NINETALES_ALOLAN, (
         .baseHP        = 73,
         .baseAttack    = 67,
         .baseDefense   = 75,
@@ -3122,8 +3108,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(NinetalesAlolan, 2),
         LEARNSETS(NinetalesAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_VULPIX
 
 #if P_FAMILY_JIGGLYPUFF
@@ -3884,7 +3869,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Diglett, 2),
         LEARNSETS(Diglett),
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_DIGLETT_ALOLAN, (
+        .baseHP        = 10,
+        .baseAttack    = 55,
+        .baseDefense   = 30,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 45,
+        .types = { TYPE_GROUND, TYPE_STEEL },
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE },
+        .weight = 10,
+        .description = COMPOUND_STRING(
+            "The metal-rich geology of its habitat\n"
+            "caused it to develop steel whiskers on its\n"
+            "head that change shape depending on its\n"
+            "mood and when communicating with others."),
+        FRONT_PIC(DiglettAlolan, 32, 40),
+        .frontPicYOffset = 19,
+        .frontAnimFrames = sAnims_DiglettAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(DiglettAlolan, 40, 48),
+        .backPicYOffset = 14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(DiglettAlolan),
+        ICON(DiglettAlolan, 2),
+        LEARNSETS(DiglettAlolan),
+        .isAlolanForm = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_DUGTRIO, (
         .catchRate = 50,
@@ -3931,41 +3945,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Dugtrio),
         ICON(Dugtrio, 2),
         LEARNSETS(Dugtrio),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_DIGLETT_ALOLAN, (
-        DIGLETT_MISC_INFO,
-        .baseHP        = 10,
-        .baseAttack    = 55,
-        .baseDefense   = 30,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 35,
-        .baseSpDefense = 45,
-        .types = { TYPE_GROUND, TYPE_STEEL },
-        .abilities = { ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE },
-        .weight = 10,
-        .description = COMPOUND_STRING(
-            "The metal-rich geology of its habitat\n"
-            "caused it to develop steel whiskers on its\n"
-            "head that change shape depending on its\n"
-            "mood and when communicating with others."),
-        FRONT_PIC(DiglettAlolan, 32, 40),
-        .frontPicYOffset = 19,
-        .frontAnimFrames = sAnims_DiglettAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(DiglettAlolan, 40, 48),
-        .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(DiglettAlolan),
-        ICON(DiglettAlolan, 2),
-        LEARNSETS(DiglettAlolan),
-        .isAlolanForm = TRUE,
-        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_DUGTRIO_ALOLAN, (
-        DUGTRIO_MISC_INFO,
+    ALOLAN_FORM(SPECIES_DUGTRIO_ALOLAN, (
         .baseHP        = 35,
         .baseAttack    = DUGTRIO_ATTACK,
         .baseDefense   = 60,
@@ -3992,8 +3974,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(DugtrioAlolan, 2),
         LEARNSETS(DugtrioAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_DIGLETT
 
 #if P_FAMILY_MEOWTH
@@ -4046,7 +4027,103 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Meowth),
         .formChangeTable = sMeowthFormChangeTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERSIAN}),
+    ),
+
+    ALOLAN_FORM(SPECIES_MEOWTH_ALOLAN, (
+        .baseHP        = 40,
+        .baseAttack    = 35,
+        .baseDefense   = 35,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 40,
+        .evYield_Speed = 1,
+        .types = { TYPE_DARK, TYPE_DARK },
+        .itemRare = ITEM_QUICK_CLAW,
+        .abilities = { ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_RATTLED },
+        .bodyColor = BODY_COLOR_GRAY,
+        .height = 4,
+        .weight = 42,
+        .description = COMPOUND_STRING(
+            "It's accustomed to luxury because it used\n"
+            "to live with Alolan royalty. Highly smart\n"
+            "and proud, it's famously difficult to\n"
+            "handle, but that also makes it popular."),
+        .pokemonScale = 480,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(MeowthAlolan, 48, 48),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = sAnims_MeowthAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MeowthAlolan, 64, 56),
+        .backPicYOffset = 7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(MeowthAlolan),
+        ICON(MeowthAlolan, 2),
+        LEARNSETS(MeowthAlolan),
+        .isAlolanForm = TRUE,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PERSIAN_ALOLAN}),
     )),
+
+    GALARIAN_FORM(SPECIES_MEOWTH_GALARIAN, (
+        .baseHP        = 50,
+        .baseAttack    = 65,
+        .baseDefense   = 55,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 40,
+        .evYield_Attack = 1,
+        .types = { TYPE_STEEL, TYPE_STEEL },
+        .abilities = { ABILITY_PICKUP, ABILITY_TOUGH_CLAWS, ABILITY_UNNERVE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .height = 4,
+        .weight = 75,
+        .description = COMPOUND_STRING(
+            "Living with a savage, seafaring people has\n"
+            "hardened its body so much that parts of it\n"
+            "turned to iron. Darker coins are harder\n"
+            "and garner more respect among Meowth."),
+        .pokemonScale = 480,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(MeowthGalarian, 48, 48),
+        .frontPicYOffset = 9,
+        .frontAnimFrames = sAnims_MeowthGalarian,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MeowthGalarian, 64, 56),
+        .backPicYOffset = 8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(MeowthGalarian),
+        ICON(MeowthGalarian, 0),
+        LEARNSETS(MeowthGalarian),
+        .isGalarianForm = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERRSERKER}),
+    )),
+
+    GIGANTAMAX_FORM(SPECIES_MEOWTH_GIGANTAMAX, (
+        .height = 330,
+        .weight = 0,
+        .description = COMPOUND_STRING(
+            ""),
+        .pokemonScale = 480,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(MeowthGigantamax, 64, 64),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_MeowthGigantamax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MeowthGigantamax, 64, 64),
+        .backPicYOffset = 5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(MeowthGigantamax),
+        ICON(MeowthGigantamax, 1),
+        LEARNSETS(Meowth),
+        .isGigantamax = TRUE,
+        .formChangeTable = sMeowthFormChangeTable,
+    ))),
 
     SPECIES(SPECIES_PERSIAN, (
         .catchRate = 90,
@@ -4095,49 +4172,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Persian),
         ICON(Persian, 1),
         LEARNSETS(Persian),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_MEOWTH_ALOLAN, (
-        MEOWTH_MISC_INFO,
-        .baseHP        = 40,
-        .baseAttack    = 35,
-        .baseDefense   = 35,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 50,
-        .baseSpDefense = 40,
-        .evYield_Speed = 1,
-        .types = { TYPE_DARK, TYPE_DARK },
-        .itemRare = ITEM_QUICK_CLAW,
-        .abilities = { ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_RATTLED },
-        .bodyColor = BODY_COLOR_GRAY,
-        .height = 4,
-        .weight = 42,
-        .description = COMPOUND_STRING(
-            "It's accustomed to luxury because it used\n"
-            "to live with Alolan royalty. Highly smart\n"
-            "and proud, it's famously difficult to\n"
-            "handle, but that also makes it popular."),
-        .pokemonScale = 480,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(MeowthAlolan, 48, 48),
-        .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_MeowthAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(MeowthAlolan, 64, 56),
-        .backPicYOffset = 7,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(MeowthAlolan),
-        ICON(MeowthAlolan, 2),
-        LEARNSETS(MeowthAlolan),
-        .isAlolanForm = TRUE,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PERSIAN_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_PERSIAN_ALOLAN, (
-        PERSIAN_MISC_INFO,
+    ALOLAN_FORM(SPECIES_PERSIAN_ALOLAN, (
         .baseHP        = 65,
         .baseAttack    = 60,
         .baseDefense   = 60,
@@ -4169,46 +4206,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PersianAlolan, 2),
         LEARNSETS(PersianAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 
 #if P_GALARIAN_FORMS
-    SPECIES(SPECIES_MEOWTH_GALARIAN, (
-        MEOWTH_MISC_INFO,
-        .baseHP        = 50,
-        .baseAttack    = 65,
-        .baseDefense   = 55,
-        .baseSpeed     = 40,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 40,
-        .evYield_Attack = 1,
-        .types = { TYPE_STEEL, TYPE_STEEL },
-        .abilities = { ABILITY_PICKUP, ABILITY_TOUGH_CLAWS, ABILITY_UNNERVE },
-        .bodyColor = BODY_COLOR_BROWN,
-        .height = 4,
-        .weight = 75,
-        .description = COMPOUND_STRING(
-            "Living with a savage, seafaring people has\n"
-            "hardened its body so much that parts of it\n"
-            "turned to iron. Darker coins are harder\n"
-            "and garner more respect among Meowth."),
-        .pokemonScale = 480,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(MeowthGalarian, 48, 48),
-        .frontPicYOffset = 9,
-        .frontAnimFrames = sAnims_MeowthGalarian,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(MeowthGalarian, 64, 56),
-        .backPicYOffset = 8,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(MeowthGalarian),
-        ICON(MeowthGalarian, 0),
-        LEARNSETS(MeowthGalarian),
-        .isGalarianForm = TRUE,
-        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERRSERKER}),
-    )),
 
     SPECIES(SPECIES_PERRSERKER, (
         .baseHP        = 70,
@@ -4255,43 +4255,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Perrserker),
     )),
 #endif //P_GALARIAN_FORMS
-
-#if P_GIGANTAMAX_FORMS
-    SPECIES(SPECIES_MEOWTH_GIGANTAMAX, (
-        MEOWTH_MISC_INFO,
-        .baseHP        = 40,
-        .baseAttack    = 45,
-        .baseDefense   = 35,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 40,
-        .evYield_Speed = 1,
-        .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .itemRare = ITEM_QUICK_CLAW,
-        .abilities = { ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE },
-        .bodyColor = BODY_COLOR_YELLOW,
-        .height = 330,
-        .weight = 0,
-        .description = COMPOUND_STRING(
-            ""),
-        .pokemonScale = 480,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(MeowthGigantamax, 64, 64),
-        .frontPicYOffset = 3,
-        .frontAnimFrames = sAnims_MeowthGigantamax,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(MeowthGigantamax, 64, 64),
-        .backPicYOffset = 5,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(MeowthGigantamax),
-        ICON(MeowthGigantamax, 1),
-        LEARNSETS(Meowth),
-        .isGigantamax = TRUE,
-        .formChangeTable = sMeowthFormChangeTable,
-    )),
-#endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MEOWTH
 
 #if P_FAMILY_PSYDUCK
@@ -5566,7 +5529,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Geodude, 1),
         LEARNSETS(Geodude),
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_GEODUDE_ALOLAN, (
+        .types = { TYPE_ROCK, TYPE_ELECTRIC },
+        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
+        .isAlolanForm = TRUE,
+        .itemRare = ITEM_CELL_BATTERY,
+        .weight = 203,
+        .description = COMPOUND_STRING(
+            "Its body is a magnetic stone. Iron sand\n"
+            "attach to parts of its body with stronger\n"
+            "magnetism. If you carelessly step on one,\n"
+            "it will headbutt and shock you in anger."),
+        FRONT_PIC(GeodudeAlolan, 48, 32),
+        .frontPicYOffset = 17,
+        .frontAnimFrames = sAnims_GeodudeAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 16,
+        BACK_PIC(GeodudeAlolan, 64, 56),
+        .backPicYOffset = 13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(GeodudeAlolan),
+        ICON(GeodudeAlolan, 2),
+        LEARNSETS(GeodudeAlolan),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_GRAVELER, (
         .types = { TYPE_ROCK, TYPE_GROUND },
@@ -5616,7 +5604,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Graveler),
         .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM},
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_GRAVELER_ALOLAN, (
+        .types = { TYPE_ROCK, TYPE_ELECTRIC },
+        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
+        .isAlolanForm = TRUE,
+        .itemRare = ITEM_CELL_BATTERY,
+        .weight = 1100,
+        .description = COMPOUND_STRING(
+            "When two Graveler smash each other over\n"
+            "dravite, their favorite food, they cause\n"
+            "flashes of light and booming noises.\n"
+            "People call them “fireworks of the earth.”"),
+        FRONT_PIC(GravelerAlolan, 64, 56),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = sAnims_GravelerAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(GravelerAlolan, 64, 48),
+        .backPicYOffset = 10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(GravelerAlolan),
+        ICON(GravelerAlolan, 2),
+        LEARNSETS(GravelerAlolan),
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM_ALOLAN},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_GOLEM, (
         .types = { TYPE_ROCK, TYPE_GROUND },
@@ -5664,63 +5677,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Golem),
         ICON(Golem, 2),
         LEARNSETS(Golem),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_GEODUDE_ALOLAN, (
-        GEODUDE_MISC_INFO,
-        .types = { TYPE_ROCK, TYPE_ELECTRIC },
-        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE,
-        .itemRare = ITEM_CELL_BATTERY,
-        .weight = 203,
-        .description = COMPOUND_STRING(
-            "Its body is a magnetic stone. Iron sand\n"
-            "attach to parts of its body with stronger\n"
-            "magnetism. If you carelessly step on one,\n"
-            "it will headbutt and shock you in anger."),
-        FRONT_PIC(GeodudeAlolan, 48, 32),
-        .frontPicYOffset = 17,
-        .frontAnimFrames = sAnims_GeodudeAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 16,
-        BACK_PIC(GeodudeAlolan, 64, 56),
-        .backPicYOffset = 13,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(GeodudeAlolan),
-        ICON(GeodudeAlolan, 2),
-        LEARNSETS(GeodudeAlolan),
-        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_GRAVELER_ALOLAN, (
-        GRAVELER_MISC_INFO,
-        .types = { TYPE_ROCK, TYPE_ELECTRIC },
-        .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE,
-        .itemRare = ITEM_CELL_BATTERY,
-        .weight = 1100,
-        .description = COMPOUND_STRING(
-            "When two Graveler smash each other over\n"
-            "dravite, their favorite food, they cause\n"
-            "flashes of light and booming noises.\n"
-            "People call them “fireworks of the earth.”"),
-        FRONT_PIC(GravelerAlolan, 64, 56),
-        .frontPicYOffset = 8,
-        .frontAnimFrames = sAnims_GravelerAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(GravelerAlolan, 64, 48),
-        .backPicYOffset = 10,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(GravelerAlolan),
-        ICON(GravelerAlolan, 2),
-        LEARNSETS(GravelerAlolan),
-        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM_ALOLAN},
-                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_GOLEM_ALOLAN, (
-        GOLEM_MISC_INFO,
+    ALOLAN_FORM(SPECIES_GOLEM_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .isAlolanForm = TRUE,
@@ -5746,8 +5705,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GolemAlolan),
         ICON(GolemAlolan, 2),
         LEARNSETS(GolemAlolan),
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_GEODUDE
 
 #if P_FAMILY_PONYTA
@@ -6730,7 +6688,36 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Grimer, 2),
         LEARNSETS(Grimer),
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK}),
-    )),
+    ),
+
+    ALOLAN_FORM(SPECIES_GRIMER_ALOLAN, (
+        .types = { TYPE_POISON, TYPE_DARK },
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
+        .bodyColor = BODY_COLOR_GREEN,
+        .isAlolanForm = TRUE,
+        .height = 7,
+        .weight = 420,
+        .description = COMPOUND_STRING(
+            "There are a hundred or so of them living\n"
+            "in Alola's waste-disposal site. They're all\n"
+            "hard workers who eat a lot of trash. Grimer\n"
+            "seems to relish any and all kinds of trash."),
+        .pokemonScale = 258,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(GrimerAlolan, 56, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_GrimerAlolan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(GrimerAlolan, 64, 40),
+        .backPicYOffset = 14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(GrimerAlolan),
+        ICON(GrimerAlolan, 1),
+        LEARNSETS(GrimerAlolan),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK_ALOLAN}),
+    ))),
 
     SPECIES(SPECIES_MUK, (
         .types = { TYPE_POISON, TYPE_POISON },
@@ -6780,41 +6767,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Muk),
         ICON(Muk, 2),
         LEARNSETS(Muk),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_GRIMER_ALOLAN, (
-        GRIMER_MISC_INFO,
-        .types = { TYPE_POISON, TYPE_DARK },
-        .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
-        .bodyColor = BODY_COLOR_GREEN,
-        .isAlolanForm = TRUE,
-        .height = 7,
-        .weight = 420,
-        .description = COMPOUND_STRING(
-            "There are a hundred or so of them living\n"
-            "in Alola's waste-disposal site. They're all\n"
-            "hard workers who eat a lot of trash. Grimer\n"
-            "seems to relish any and all kinds of trash."),
-        .pokemonScale = 258,
-        .pokemonOffset = 10,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FRONT_PIC(GrimerAlolan, 56, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_GrimerAlolan,
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(GrimerAlolan, 64, 40),
-        .backPicYOffset = 14,
-        //.backAnimId = BACK_ANIM_NONE,
-        PALETTES(GrimerAlolan),
-        ICON(GrimerAlolan, 1),
-        LEARNSETS(GrimerAlolan),
-        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK_ALOLAN}),
-    )),
-
-    SPECIES(SPECIES_MUK_ALOLAN, (
-        MUK_MISC_INFO,
+    ALOLAN_FORM(SPECIES_MUK_ALOLAN, (
         .types = { TYPE_POISON, TYPE_DARK },
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
         .bodyColor = BODY_COLOR_GREEN,
@@ -6841,8 +6796,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MukAlolan),
         ICON(MukAlolan, 0),
         LEARNSETS(MukAlolan),
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_GRIMER
 
 #if P_FAMILY_SHELLDER
@@ -7774,11 +7728,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Exeggutor),
         ICON(Exeggutor, 1),
         LEARNSETS(Exeggutor),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_EXEGGUTOR_ALOLAN, (
-        EXEGGUTOR_MISC_INFO,
+    ALOLAN_FORM(SPECIES_EXEGGUTOR_ALOLAN, (
         .baseHP        = 95,
         .baseAttack    = 105,
         .baseDefense   = 85,
@@ -7809,8 +7761,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(ExeggutorAlolan, 1),
         LEARNSETS(ExeggutorAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_EXEGGCUTE
 
 #if P_FAMILY_CUBONE
@@ -7911,11 +7862,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Marowak),
         ICON(Marowak, 2),
         LEARNSETS(Marowak),
-    )),
+    ),
 
-#if P_ALOLAN_FORMS
-    SPECIES(SPECIES_MAROWAK_ALOLAN, (
-        MAROWAK_MISC_INFO,
+    ALOLAN_FORM(SPECIES_MAROWAK_ALOLAN, (
         .types = { TYPE_FIRE, TYPE_GHOST },
         .abilities = { ABILITY_CURSED_BODY, ABILITY_LIGHTNING_ROD, ABILITY_ROCK_HEAD },
         .bodyColor = BODY_COLOR_PURPLE,
@@ -7936,8 +7885,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(MarowakAlolan, 1),
         LEARNSETS(MarowakAlolan),
         .isAlolanForm = TRUE,
-    )),
-#endif //P_ALOLAN_FORMS
+    ))),
 #endif //P_FAMILY_CUBONE
 
 #if P_FAMILY_HITMONS
