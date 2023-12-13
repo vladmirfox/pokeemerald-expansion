@@ -1,6 +1,13 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gBattleMoves[MOVE_TECHNO_BLAST].effect == EFFECT_CHANGE_TYPE_ON_ITEM);
+    ASSUME(gBattleMoves[MOVE_TECHNO_BLAST].argument == HOLD_EFFECT_DRIVE);
+}
+
+
 SINGLE_BATTLE_TEST("Techno Blast changes the move type depending on the mask the user holds")
 {
     u16 species;
