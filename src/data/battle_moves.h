@@ -14464,25 +14464,186 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_ELECTRO_SHOT] =
     {
         .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
-        //.power = ,
+        .power = 130,
         .type = TYPE_ELECTRIC,
-        //.accuracy = ,
-        //.pp = ,
-        //.secondaryEffectChance = 0,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
         //.target = ,
         //.priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
     },
 
+    [MOVE_TERA_STARSTORM] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_TERA_STARSTORM
+        .power = 120,
+        .type = TYPE_NORMAL,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_FICKLE_BEAM] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_FICKLE_BEAM
+        .power = 80,
+        .type = TYPE_DRAGON,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_BURNING_BULWARK] =
+    {
+        .effect = EFFECT_PROTECT, // NEEDS ACTUAL PROTECT SIDE EFFECT
+        .power = 0,
+        .type = TYPE_FIRE,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 4,
+        .split = SPLIT_STATUS,
+        .zMoveEffect = Z_EFFECT_DEF_UP_1,
+        .protectionMove = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .metronomeBanned = TRUE,
+        .copycatBanned = TRUE,
+        .assistBanned = TRUE,
+    },
+
+    [MOVE_THUNDERCLAP] =
+    {
+        .effect = EFFECT_SUCKER_PUNCH,
+        .power = 70,
+        .type = TYPE_ELECTRIC,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 1,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_MIGHTY_CLEAVE] =
+    {
+        .effect = EFFECT_FEINT,
+        .power = 95,
+        .type = TYPE_ROCK,
+        .accuracy = 100,
+        .pp = 5,
+        .secondaryEffectChance = 100,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_TACHYON_CUTTER] =
+    {
+        .effect = EFFECT_HIT,
+        .power = 50,
+        .type = TYPE_STEEL,
+        .accuracy = 0,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+        .strikeCount = 2,
+    },
+
+    [MOVE_HARD_PRESS] =
+    {
+        .effect = EFFECT_WRING_OUT,
+        .power = 1,
+        .type = TYPE_STEEL,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_DRAGON_CHEER] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_DRAGON_CHEER
+        .power = 0,
+        .type = TYPE_DRAGON,
+        .accuracy = 0,
+        .pp = 15,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_STATUS,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_ALLURING_VOICE] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_ALLURING_VOICE
+        .power = 80,
+        .type = TYPE_FAIRY,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_SPECIAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_TEMPER_FLARE] =
+    {
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_TEMPER_FLARE
+        .power = 75,
+        .type = TYPE_FIRE,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
+    [MOVE_SUPERCELL_SLAM] =
+    {
+        .effect = EFFECT_RECOIL_IF_MISS,
+        .power = 100,
+        .type = TYPE_ELECTRIC,
+        .accuracy = 95,
+        .pp = 15,
+        .secondaryEffectChance = 0,
+        //.target = ,
+        //.priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
+    },
+
     [MOVE_PSYCHIC_NOISE] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
-        //.power = ,
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_PSYCHIC_NOISE
+        .power = 75,
         .type = TYPE_PSYCHIC,
-        //.accuracy = ,
-        //.pp = ,
-        //.secondaryEffectChance = 0,
+        .accuracy = 100,
+        .pp = 10,
+        .secondaryEffectChance = 0,
         //.target = ,
         //.priority = 0,
         .split = SPLIT_SPECIAL,
@@ -14491,45 +14652,30 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_UPPER_HAND] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
-        //.power = ,
+        .effect = EFFECT_PLACEHOLDER, //EFFECT_UPPER_HAND
+        .power = 65,
         .type = TYPE_FIGHTING,
-        //.accuracy = ,
-        //.pp = ,
-        //.secondaryEffectChance = 0,
+        .accuracy = 100,
+        .pp = 15,
+        .secondaryEffectChance = 0,
         //.target = ,
         //.priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
     },
 
-    [MOVE_THUNDERCLAP] =
+    [MOVE_MALIGNANT_CHAIN] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
-        //.power = ,
-        .type = TYPE_ELECTRIC,
-        //.accuracy = ,
-        //.pp = ,
+        .effect = EFFECT_POISON_FANG,
+        .power = 100,
+        .type = TYPE_POISON,
+        .accuracy = 100,
+        .pp = 5,
         //.secondaryEffectChance = 0,
         //.target = ,
         //.priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-    },
-
-    [MOVE_TACHYON_CUTTER] =
-    {
-        .effect = EFFECT_HIT,
-        //.power = ,
-        .type = TYPE_STEEL,
-        .accuracy = 0,
-        //.pp = ,
-        .secondaryEffectChance = 0,
-        //.target = ,
-        //.priority = 0,
-        .split = SPLIT_SPECIAL,
-        .zMoveEffect = Z_EFFECT_NONE,
-        .strikeCount = 2,
     },
 
     // Z-Moves
