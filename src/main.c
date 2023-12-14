@@ -429,7 +429,9 @@ static void WaitForVBlank(void)
             ;
     }
     else
+    {
         VBlankIntrWait();
+    }
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)
