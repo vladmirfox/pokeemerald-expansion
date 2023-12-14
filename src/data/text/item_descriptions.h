@@ -3092,14 +3092,14 @@ static const u8 sTM12Desc[] = _(
     "attack moves.");
 
 static const u8 sTM13Desc[] = _(
-    "Fires an icy cold\n"
-    "beam that may\n"
-    "freeze the foe.");
+    "Fires an icy beam\n"
+    "that may leave the\n"
+    "foe frostbitten.");
 
 static const u8 sTM14Desc[] = _(
-    "A brutal snow-and-\n"
-    "wind attack that\n"
-    "may freeze the foe.");
+    "A brutal snowstorm\n"
+    "that may leave the\n"
+    "foe frostbitten.");
 
 static const u8 sTM15Desc[] = _(
     "Powerful, but needs\n"
