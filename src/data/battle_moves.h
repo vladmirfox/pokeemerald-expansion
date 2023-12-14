@@ -53,7 +53,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_DOUBLE_SLAP] =
     {
         .effect = EFFECT_MULTI_HIT,
-        .power = 20,
+        .power = 18,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
