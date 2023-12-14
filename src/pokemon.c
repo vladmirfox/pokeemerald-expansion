@@ -5011,6 +5011,12 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                     | (substruct3->worldRibbon << 26);
             }
             break;
+        case MON_DATA_BOX_HP:
+            retVal = substruct0->box_hp;
+            break;
+        case MON_DATA_BOX_AILMENT:
+            retVal = substruct0->box_ailment;
+            break;
         default:
             break;
         }
@@ -5074,6 +5080,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             break;
         case MON_DATA_SANITY_IS_EGG:
             retVal = boxMon->isEgg;
+            break;
+        case MON_DATA_IN_PC:
+            retVal = boxMon->inPC;
             break;
         case MON_DATA_OT_NAME:
         {
@@ -5376,6 +5385,12 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             substruct3->spDefenseIV = (ivs >> 25) & MAX_IV_MASK;
             break;
         }
+        case MON_DATA_BOX_HP:
+            SET8(substruct0->box_hp);
+            break;
+        case MON_DATA_BOX_AILMENT:
+            SET8(substruct0->box_ailment);
+            break;
         default:
             break;
         }
@@ -5408,6 +5423,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_SANITY_IS_EGG:
             SET8(boxMon->isEgg);
+            break;
+        case MON_DATA_IN_PC:
+            SET8(boxMon->inPC);
             break;
         case MON_DATA_OT_NAME:
         {

@@ -18,6 +18,7 @@ enum {
     MON_DATA_SANITY_IS_BAD_EGG,
     MON_DATA_SANITY_HAS_SPECIES,
     MON_DATA_SANITY_IS_EGG,
+    MON_DATA_IN_PC,
     MON_DATA_OT_NAME,
     MON_DATA_MARKINGS,
     MON_DATA_CHECKSUM,
@@ -100,6 +101,8 @@ enum {
     MON_DATA_SPEED2,
     MON_DATA_SPATK2,
     MON_DATA_SPDEF2,
+    MON_DATA_BOX_HP,
+    MON_DATA_BOX_AILMENT,
 };
 
 struct PokemonSubstruct0
@@ -110,7 +113,8 @@ struct PokemonSubstruct0
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 filler:11;
+    /*0x14*/ u8 box_ailment:3; //Set to zero unless pokemon is in the box
+    /*0x17*/ u8 box_hp; //Set to zero unless pokemon is in the box, then it's set to the HP is maxHP is <256 o/w currHP/maxHP * 255
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -211,7 +215,8 @@ struct BoxPokemon
     u8 hasSpecies:1;
     u8 isEgg:1;
     u8 blockBoxRS:1; // Unused, but Pokémon Box Ruby & Sapphire will refuse to deposit a Pokémon with this flag set
-    u8 unused:4;
+    u8 unused:3;
+    u8 inPC:1;  //Used to retain save compatibility for Pokemon that existed in the PC before adding the "Make Pokemon Not Heal When Going into PC" hack
     u8 otName[PLAYER_NAME_LENGTH];
     u8 markings;
     u16 checksum;
