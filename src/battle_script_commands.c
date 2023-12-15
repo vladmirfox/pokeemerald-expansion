@@ -4115,7 +4115,7 @@ static void Cmd_getexp(void)
             #endif
 
             if (B_TRAINER_EXP_MULTIPLIER <= GEN_7 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-                calculatedExp = (calculatedExp * 125) / 100; //changed to 125 from 150
+                calculatedExp = (calculatedExp * 120) / 100; //changed to 120 from 150
 
             #if B_SPLIT_EXP < GEN_6
                 if (viaExpShare) // at least one mon is getting exp via exp share
