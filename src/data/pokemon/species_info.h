@@ -45411,58 +45411,77 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
-#define MINIOR_MISC_INFO(color)                                 \
-        .types = { TYPE_ROCK, TYPE_FLYING },                    \
-        .catchRate = 30,                                        \
-        .expYield = 154,                                        \
-        .evYield_Defense = 1,                                   \
-        .evYield_SpDefense = 1,                                 \
-        .itemRare = ITEM_STAR_PIECE,                            \
-        .genderRatio = MON_GENDERLESS,                          \
-        .eggCycles = 25,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },  \
-        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE },    \
-        .bodyColor = color,                                     \
-        .noFlip = TRUE,                                         \
-        .speciesName = _("Minior"),                             \
-        .cryId = CRY_MINIOR,                                    \
-        .natDexNum = NATIONAL_DEX_MINIOR,                       \
-        .categoryName = _("Meteor"),                            \
-        .height = 3,                                            \
-        .pokemonScale = 530,                                    \
-        .pokemonOffset = 13,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        .footprint = gMonFootprint_Minior,                      \
-        LEARNSETS(Minior),                                      \
-        .formSpeciesIdTable = sMiniorFormSpeciesIdTable
+    SPECIES(SPECIES_MINIOR_METEOR_RED, (
+        .types = { TYPE_ROCK, TYPE_FLYING },
+        .catchRate = 30,
+        .expYield = 154,
+        .evYield_Defense = 1,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_STAR_PIECE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL },
+        .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .noFlip = TRUE,
+        .speciesName = _("Minior"),
+        .cryId = CRY_MINIOR,
+        .natDexNum = NATIONAL_DEX_MINIOR,
+        .categoryName = _("Meteor"),
+        .height = 3,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .footprint = gMonFootprint_Minior,
+        LEARNSETS(Minior),
+        .formSpeciesIdTable = sMiniorFormSpeciesIdTable,
+        .formChangeTable = sMiniorRedFormChangeTable,
+        .baseHP        = 60,
+        .baseAttack    = 60,
+        .baseDefense   = 100,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 100,
+        .weight = 400,
+        FRONT_PIC(MiniorMeteor, 48, 40),
+        .frontPicYOffset = 14,
+        .frontAnimFrames = sAnims_MiniorMeteor,
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,
+        .enemyMonElevation = 17,
+        BACK_PIC(MiniorMeteor, 56, 40),
+        .backPicYOffset = 14,
+        PALETTES(MiniorMeteor),
+        ICON(MiniorMeteor, 0),
+    ),
 
-#define MINIOR_METEOR_SPECIES_INFO(Form)                        \
-    {                                                           \
-        .baseHP        = 60,                                    \
-        .baseAttack    = 60,                                    \
-        .baseDefense   = 100,                                   \
-        .baseSpeed     = 60,                                    \
-        .baseSpAttack  = 60,                                    \
-        .baseSpDefense = 100,                                   \
-        .weight = 400,                                          \
-        FRONT_PIC(MiniorMeteor, 48, 40),                        \
-        .frontPicYOffset = 14,                                  \
-        .frontAnimFrames = sAnims_MiniorMeteor,                 \
-        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
-        .enemyMonElevation = 17,                                \
-        BACK_PIC(MiniorMeteor, 56, 40),                         \
-        .backPicYOffset = 14,                                   \
-        PALETTES(MiniorMeteor),                                 \
-        ICON(MiniorMeteor, 0),                                  \
-        .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN),                     \
-    }
-    //.backAnimId = BACK_ANIM_NONE,
+    FORM(SPECIES_MINIOR_METEOR_ORANGE, (
+        .formChangeTable = sMiniorOrangeFormChangeTable,
+    )),
 
-#define MINIOR_CORE_SPECIES_INFO(Form, color, iconPal)          \
+    FORM(SPECIES_MINIOR_METEOR_YELLOW, (
+        .formChangeTable = sMiniorYellowFormChangeTable,
+    )),
+
+    FORM(SPECIES_MINIOR_METEOR_GREEN, (
+        .formChangeTable = sMiniorGreenFormChangeTable,
+    )),
+
+    FORM(SPECIES_MINIOR_METEOR_BLUE, (
+        .formChangeTable = sMiniorBlueFormChangeTable,
+    )),
+
+    FORM(SPECIES_MINIOR_METEOR_INDIGO, (
+        .formChangeTable = sMiniorIndigoFormChangeTable,
+    )),
+
+    FORM(SPECIES_MINIOR_METEOR_VIOLET, (
+        .formChangeTable = sMiniorVioletFormChangeTable,
+    )),
+
+#define MINIOR_CORE_FORM_INFO(Form, color, iconPal)             \
     {                                                           \
         .baseHP        = 60,                                    \
         .baseAttack    = 100,                                   \
@@ -45470,6 +45489,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 120,                                   \
         .baseSpAttack  = 100,                                   \
         .baseSpDefense = 60,                                    \
+        .bodyColor = color,                                     \
         .weight = 3,                                            \
         .description = gMiniorCorePokedexText,                  \
         FRONT_PIC(MiniorCore, 48, 40),                          \
@@ -45482,25 +45502,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .palette = gMonPalette_MiniorCore##Form,                \
         .shinyPalette = gMonShinyPalette_MiniorCore,            \
         ICON(MiniorCore##Form, iconPal),                        \
-        .formChangeTable = sMinior ##Form##FormChangeTable,     \
-        MINIOR_MISC_INFO(color),                                \
+        .formChangeTable = sMinior ##Form##FormChangeTable
     }
     //.backAnimId = BACK_ANIM_NONE,
 
-    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO(Red),
-    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO(Orange),
-    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO(Yellow),
-    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_SPECIES_INFO(Green),
-    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO(Blue),
-    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(Indigo),
-    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(Violet),
-    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red,    BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED,    0),
-    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW, 0),
-    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green,  BODY_COLOR_GREEN,  1),
-    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue,   BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE,   0),
-    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE, 2),
+    FORM(SPECIES_MINIOR_CORE_RED, (
+        MINIOR_CORE_FORM_INFO(Red, BODY_COLOR_RED, 0)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_ORANGE, (
+        MINIOR_CORE_FORM_INFO(Orange, BODY_COLOR_RED, 0)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_YELLOW, (
+        MINIOR_CORE_FORM_INFO(Yellow, BODY_COLOR_YELLOW, 0)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_GREEN, (
+        MINIOR_CORE_FORM_INFO(Green, BODY_COLOR_GREEN, 1)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_BLUE, (
+        MINIOR_CORE_FORM_INFO(Blue, BODY_COLOR_BLUE, 0)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_INDIGO, (
+        MINIOR_CORE_FORM_INFO(Indigo, BODY_COLOR_BLUE, 0)
+    )),
+
+    FORM(SPECIES_MINIOR_CORE_VIOLET, (
+        MINIOR_CORE_FORM_INFO(Violet, BODY_COLOR_PURPLE, 2)
+    ))),
 #endif //P_FAMILY_MINIOR
 
 #if P_FAMILY_KOMALA
@@ -57757,7 +57789,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 12,
         .weight = 398,
         .description = gOgerponTealMaskPokedexText,
-        .pokemonScale = 356,TealMask
+        .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
