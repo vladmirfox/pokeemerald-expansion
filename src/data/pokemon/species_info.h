@@ -3513,7 +3513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SUN_STONE, SPECIES_BELLOSSOM}),
     )),
 
-    SPECIES(SPECIES_VILEPLUME, (
+
+    FORM(SPECIES_VILEPLUME, (
         .baseHP        = 75,
         .baseAttack    = 80,
         .baseDefense   = 85,
@@ -5318,7 +5319,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_VICTREEBEL}),
     )),
 
-    SPECIES(SPECIES_VICTREEBEL, (
+
+    FORM(SPECIES_VICTREEBEL, (
         .baseHP        = 80,
         .baseAttack    = 105,
         .baseDefense   = 65,
@@ -19540,7 +19542,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_VIGOROTH}),
     )),
 
-    SPECIES(SPECIES_VIGOROTH, (
+
+    FORM(SPECIES_VIGOROTH, (
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -21908,7 +21911,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VIBRAVA}),
     )),
 
-    SPECIES(SPECIES_VIBRAVA, (
+
+    FORM(SPECIES_VIBRAVA, (
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 50,
@@ -29866,7 +29870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ARCEUS
 
 #if P_FAMILY_VICTINI
-    SPECIES(SPECIES_VICTINI, (
+
+    FORM(SPECIES_VICTINI, (
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -37607,7 +37612,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TERRAKION
 
 #if P_FAMILY_VIRIZION
-    SPECIES(SPECIES_VIRIZION, (
+
+    FORM(SPECIES_VIRIZION, (
         .baseHP        = 91,
         .baseAttack    = 90,
         .baseDefense   = 72,
@@ -39118,210 +39124,233 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ICY_SNOW}),
     )),
 
-#define VIVILLON_MISC_INFO(form, color, iconPal)                                            \
-        .baseHP        = 80,                                                                \
-        .baseAttack    = 52,                                                                \
-        .baseDefense   = 50,                                                                \
-        .baseSpeed     = 89,                                                                \
-        .baseSpAttack  = 90,                                                                \
-        .baseSpDefense = 50,                                                                \
-        .types = { TYPE_BUG, TYPE_FLYING },                                                 \
-        .catchRate = 45,                                                                    \
-        .expYield = 185,                                                                    \
-        .evYield_HP = 1,                                                                    \
-        .evYield_Speed = 1,                                                                 \
-        .evYield_SpAttack = 1,                                                              \
-        .genderRatio = PERCENT_FEMALE(50),                                                  \
-        .eggCycles = 15,                                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                                                   \
-        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },                                      \
-        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },  \
-        .bodyColor = color,                                                                 \
-        .speciesName = _("Vivillon"),                                                       \
-        .cryId = CRY_VIVILLON,                                                              \
-        .natDexNum = NATIONAL_DEX_VIVILLON,                                                 \
-        .categoryName = _("Scale"),                                                         \
-        .height = 12,                                                                       \
-        .weight = 170,                                                                      \
-        .pokemonScale = 282,                                                                \
-        .pokemonOffset = 4,                                                                 \
-        .trainerScale = 256,                                                                \
-        .trainerOffset = 0,                                                                 \
-        FRONT_PIC(Vivillon ##form, 64, 64),                                                 \
-        .frontPicYOffset = 0,                                                               \
-        .frontAnimFrames = sAnims_Vivillon,                                                 \
-        .frontAnimId = ANIM_ZIGZAG_SLOW,                                                    \
-        .enemyMonElevation = 9,                                                             \
-        BACK_PIC(Vivillon ##form, 64, 64),                                                  \
-        .backPicYOffset = 0,                                                                \
-        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                                    \
-        PALETTES(Vivillon ##form),                                                           \
-        ICON(Vivillon ##form, iconPal),                                                     \
-        .footprint = gMonFootprint_Vivillon,                                                \
-        LEARNSETS(Vivillon),                                                                \
-        .formSpeciesIdTable = sVivillonFormSpeciesIdTable
-
     SPECIES(SPECIES_VIVILLON_ICY_SNOW, (
-        VIVILLON_MISC_INFO(IcySnow, BODY_COLOR_WHITE, 0),
+        .baseHP        = 80,
+        .baseAttack    = 52,
+        .baseDefense   = 50,
+        .baseSpeed     = 89,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 50,
+        .types = { TYPE_BUG, TYPE_FLYING },
+        .catchRate = 45,
+        .expYield = 185,
+        .evYield_HP = 1,
+        .evYield_Speed = 1,
+        .evYield_SpAttack = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Vivillon"),
+        .cryId = CRY_VIVILLON,
+        .natDexNum = NATIONAL_DEX_VIVILLON,
+        .categoryName = _("Scale"),
+        .height = 12,
+        .weight = 170,
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from frigid lands.\n"
             "It scatters toxic color scales in battle."),
-    )),
-    SPECIES(SPECIES_VIVILLON_POLAR, (
-        VIVILLON_MISC_INFO(Polar, BODY_COLOR_BLUE, 0),
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(VivillonIcySnow, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Vivillon,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .enemyMonElevation = 9,
+        BACK_PIC(VivillonIcySnow, 64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
+        PALETTES(VivillonIcySnow),
+        ICON(VivillonIcySnow, 0),
+        .footprint = gMonFootprint_Vivillon,
+        LEARNSETS(Vivillon),
+        .formSpeciesIdTable = sVivillonFormSpeciesIdTable
+    ),
+
+#define VIVILLON_FORM_INFO(form, color, iconPal)    \
+        .bodyColor = color,                         \
+        FRONT_PIC(Vivillon ##form, 64, 64),         \
+        BACK_PIC(Vivillon ##form, 64, 64),          \
+        PALETTES(Vivillon ##form),                  \
+        ICON(Vivillon ##form, iconPal)
+
+    FORM(SPECIES_VIVILLON_POLAR, (
+        VIVILLON_FORM_INFO(Polar, BODY_COLOR_BLUE, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from snowy lands.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_TUNDRA, (
-        VIVILLON_MISC_INFO(Tundra, BODY_COLOR_BLUE, 0),
+
+    FORM(SPECIES_VIVILLON_TUNDRA, (
+        VIVILLON_FORM_INFO(Tundra, BODY_COLOR_BLUE, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from lands of severe cold.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_CONTINENTAL, (
-        VIVILLON_MISC_INFO(Continental, BODY_COLOR_YELLOW, 2),
+
+    FORM(SPECIES_VIVILLON_CONTINENTAL, (
+        VIVILLON_FORM_INFO(Continental, BODY_COLOR_YELLOW, 2),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from lands of vast space.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_GARDEN, (
-        VIVILLON_MISC_INFO(Garden, BODY_COLOR_GREEN, 1),
+
+    FORM(SPECIES_VIVILLON_GARDEN, (
+        VIVILLON_FORM_INFO(Garden, BODY_COLOR_GREEN, 1),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from verdant lands.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_ELEGANT, (
-        VIVILLON_MISC_INFO(Elegant, BODY_COLOR_PURPLE, 0),
+
+    FORM(SPECIES_VIVILLON_ELEGANT, (
+        VIVILLON_FORM_INFO(Elegant, BODY_COLOR_PURPLE, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands with distinct seasons.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_MEADOW, (
-        VIVILLON_MISC_INFO(Meadow, BODY_COLOR_PINK, 0),
+
+    FORM(SPECIES_VIVILLON_MEADOW, (
+        VIVILLON_FORM_INFO(Meadow, BODY_COLOR_PINK, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands where flowers bloom.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_MODERN, (
-        VIVILLON_MISC_INFO(Modern, BODY_COLOR_RED, 2),
+
+    FORM(SPECIES_VIVILLON_MODERN, (
+        VIVILLON_FORM_INFO(Modern, BODY_COLOR_RED, 2),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from sun-drenched lands.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_MARINE, (
-        VIVILLON_MISC_INFO(Marine, BODY_COLOR_BLUE, 0),
+
+    FORM(SPECIES_VIVILLON_MARINE, (
+        VIVILLON_FORM_INFO(Marine, BODY_COLOR_BLUE, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands with ocean breezes.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_ARCHIPELAGO, (
-        VIVILLON_MISC_INFO(Archipelago, BODY_COLOR_BROWN, 0),
+
+    FORM(SPECIES_VIVILLON_ARCHIPELAGO, (
+        VIVILLON_FORM_INFO(Archipelago, BODY_COLOR_BROWN, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from places with many islands.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_HIGH_PLAINS, (
-        VIVILLON_MISC_INFO(HighPlains, BODY_COLOR_BROWN, 0),
+
+    FORM(SPECIES_VIVILLON_HIGH_PLAINS, (
+        VIVILLON_FORM_INFO(HighPlains, BODY_COLOR_BROWN, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from lands with little rain.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_SANDSTORM, (
-        VIVILLON_MISC_INFO(Sandstorm, BODY_COLOR_BROWN, 1),
+
+    FORM(SPECIES_VIVILLON_SANDSTORM, (
+        VIVILLON_FORM_INFO(Sandstorm, BODY_COLOR_BROWN, 1),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from parched lands.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_RIVER, (
-        VIVILLON_MISC_INFO(River, BODY_COLOR_BROWN, 2),
+
+    FORM(SPECIES_VIVILLON_RIVER, (
+        VIVILLON_FORM_INFO(River, BODY_COLOR_BROWN, 2),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands where large rivers flow.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_MONSOON, (
-        VIVILLON_MISC_INFO(Monsoon, BODY_COLOR_GRAY, 0),
+
+    FORM(SPECIES_VIVILLON_MONSOON, (
+        VIVILLON_FORM_INFO(Monsoon, BODY_COLOR_GRAY, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands with intense rainfall.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_SAVANNA, (
-        VIVILLON_MISC_INFO(Savanna, BODY_COLOR_GREEN, 0),
+
+    FORM(SPECIES_VIVILLON_SAVANNA, (
+        VIVILLON_FORM_INFO(Savanna, BODY_COLOR_GREEN, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands with a tropical climate.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_SUN, (
-        VIVILLON_MISC_INFO(Sun, BODY_COLOR_RED, 0),
+
+    FORM(SPECIES_VIVILLON_SUN, (
+        VIVILLON_FORM_INFO(Sun, BODY_COLOR_RED, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from lands bathed in light.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_OCEAN, (
-        VIVILLON_MISC_INFO(Ocean, BODY_COLOR_RED, 0),
+
+    FORM(SPECIES_VIVILLON_OCEAN, (
+        VIVILLON_FORM_INFO(Ocean, BODY_COLOR_RED, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands of perpetual summer.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_JUNGLE, (
-        VIVILLON_MISC_INFO(Jungle, BODY_COLOR_GREEN, 0),
+
+    FORM(SPECIES_VIVILLON_JUNGLE, (
+        VIVILLON_FORM_INFO(Jungle, BODY_COLOR_GREEN, 0),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in. This\n"
             "form is from lands of tropical rainforests.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_FANCY, (
-        VIVILLON_MISC_INFO(Fancy, BODY_COLOR_PINK, 1),
+
+    FORM(SPECIES_VIVILLON_FANCY, (
+        VIVILLON_FORM_INFO(Fancy, BODY_COLOR_PINK, 1),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from a mysterious land.\n"
             "It scatters toxic color scales in battle."),
     )),
-    SPECIES(SPECIES_VIVILLON_POKE_BALL, (
-        VIVILLON_MISC_INFO(PokeBall, BODY_COLOR_RED, 2),
+
+    FORM(SPECIES_VIVILLON_POKE_BALL, (
+        VIVILLON_FORM_INFO(PokeBall, BODY_COLOR_RED, 2),
         .description = COMPOUND_STRING(
             "Its pattern depends on the climate and\n"
             "topography of the land it was born in.\n"
             "This form is from a special land.\n"
             "It scatters toxic color scales in battle."),
-    )),
+    ))),
 #endif //P_FAMILY_SCATTERBUG
 
 #if P_FAMILY_LITLEO
@@ -43360,7 +43389,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_VIKAVOLT}),
     )),
 
-    SPECIES(SPECIES_VIKAVOLT, (
+
+    FORM(SPECIES_VIKAVOLT, (
         .baseHP        = 77,
         .baseAttack    = 70,
         .baseDefense   = 90,
@@ -50363,251 +50393,251 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Strawberry, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Strawberry, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Strawberry, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Strawberry, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Strawberry, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Strawberry, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Strawberry, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Strawberry, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Berry, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Berry, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Berry, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Berry, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Berry, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Berry, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Berry, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Berry, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Berry, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Love, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Love, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Love, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Love, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Love, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Love, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Love, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Love, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Love, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Star, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Star, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Star, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Star, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Star, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Star, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Star, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Star, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Star, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Clover, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Clover, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Clover, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Clover, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Clover, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Clover, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Clover, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Clover, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Clover, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Flower, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Flower, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Flower, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Flower, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Flower, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Flower, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Flower, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Flower, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Flower, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, VanillaCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_RUBY_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, RubyCream, BODY_COLOR_PINK)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, MatchaCream, BODY_COLOR_GREEN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_MINT_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, MintCream, BODY_COLOR_BLUE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_LEMON_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, LemonCream, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_SALTED_CREAM, (
         ALCREMIE_FORM_INFO(Ribbon, SaltedCream, BODY_COLOR_WHITE)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL, (
         ALCREMIE_FORM_INFO(Ribbon, RubySwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL, (
         ALCREMIE_FORM_INFO(Ribbon, CaramelSwirl, BODY_COLOR_BROWN)
-    ))
+    )),
 
     FORM(SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL, (
         ALCREMIE_FORM_INFO(Ribbon, RainbowSwirl, BODY_COLOR_YELLOW)
-    ))
+    )),
 
     GIGANTAMAX_FORM(SPECIES_ALCREMIE_GIGANTAMAX, (
         .bodyColor = BODY_COLOR_PINK,
