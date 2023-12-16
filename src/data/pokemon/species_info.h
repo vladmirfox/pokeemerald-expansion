@@ -7,6 +7,10 @@ const u8 gSilvallyMemoryPokedexText[] = _("");
 
 const u8 gMiniorCorePokedexText[] = _("");
 
+const u8 gAlcremieVanillaCreamPokedexText[] = _(
+    "When it trusts a Trainer, it will treat\n"
+    "them to berries it's decorated with cream.");
+
 const u8 gAlcremieRubyCreamPokedexText[] = _("");
 
 const u8 gAlcremieMatchaCreamPokedexText[] = _("");
@@ -24,6 +28,12 @@ const u8 gAlcremieCaramelSwirlPokedexText[] = _("");
 const u8 gAlcremieRainbowSwirlPokedexText[] = _("");
 
 const u8 gToxtricityGigantamaxPokedexText[] = _("");
+
+const u8 gOgerponTealMaskPokedexText[] = _(
+    "This Pokémon's type changes based on\n"
+    "which mask it's wearing. It confounds\n"
+    "its enemies with nimble movements\n"
+    "and kicks.");
 
 const u8 gOgerponWellspringMaskPokedexText[] = _("");
 
@@ -314,7 +324,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_VENUSAUR}),
     )),
 
-
     SPECIES(SPECIES_VENUSAUR, (
         .types = { TYPE_GRASS, TYPE_POISON },
         .catchRate = 45,
@@ -395,7 +404,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         PALETTES(VenusaurMega),
         ICON(VenusaurMega, 4),
-        .isMegaEvolution = TRUE,
     )),
 
     GIGANTAMAX_FORM(SPECIES_VENUSAUR_GIGANTAMAX, (
@@ -428,9 +436,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(VenusaurGigantamax),
         ICON(VenusaurGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_BULBASAUR
 
 #if P_FAMILY_CHARMANDER
@@ -529,7 +535,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
     )),
 
-
     SPECIES(SPECIES_CHARIZARD, (
         .catchRate = 45,
         .evYield_SpAttack = 3,
@@ -609,7 +614,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(CharizardMegaX),
         ICON(CharizardMegaX, 0),
-        .isMegaEvolution = TRUE,
     )),
 
     MEGA_EVOLUTION(SPECIES_CHARIZARD_MEGA_Y, (
@@ -644,7 +648,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(CharizardMegaY),
         ICON(CharizardMegaY, 0),
-        .isMegaEvolution = TRUE,
     )),
 
     GIGANTAMAX_FORM(SPECIES_CHARIZARD_GIGANTAMAX, (
@@ -676,7 +679,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CharizardGigantamax),
         ICON(CharizardGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
 #endif //P_FAMILY_CHARMANDER
 
@@ -776,7 +778,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLASTOISE}),
     )),
 
-
     SPECIES(SPECIES_BLASTOISE, (
         .types = { TYPE_WATER, TYPE_WATER },
         .catchRate = 45,
@@ -853,7 +854,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(BlastoiseGigantamax),
         ICON(BlastoiseGigantamax, 0),
-        .isGigantamax = TRUE,
     )),
 
     MEGA_EVOLUTION(SPECIES_BLASTOISE_MEGA, (
@@ -886,9 +886,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(BlastoiseMega),
         ICON(BlastoiseMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
-
 #endif //P_FAMILY_SQUIRTLE
 
 #if P_FAMILY_CATERPIE
@@ -986,7 +984,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
     )),
 
-
     SPECIES(SPECIES_BUTTERFREE, (
         .baseHP        = 60,
         .baseAttack    = 45,
@@ -1059,9 +1056,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ButterfreeGigantamax),
         ICON(ButterfreeGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_CATERPIE
 
 #if P_FAMILY_WEEDLE
@@ -1246,7 +1241,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(BeedrillMega),
         ICON(BeedrillMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_WEEDLE
 
@@ -1428,7 +1422,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(PidgeotMega),
         ICON(PidgeotMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_PIDGEY
 
@@ -1509,7 +1502,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(RattataAlolan),
         ICON(RattataAlolan, 2),
         LEARNSETS(RattataAlolan),
-        .isAlolanForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
     ))),
 
@@ -1593,7 +1585,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(RaticateAlolan),
         ICON(RaticateAlolan, 2),
         LEARNSETS(RaticateAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_RATTATA
 
@@ -2178,7 +2169,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PikachuGigantamax),
         ICON(PikachuGigantamax, 2),
         .formChangeTable = sPikachuFormChangeTable,
-        .isGigantamax = TRUE,
     ))),
 #define RAICHU_SPEED (P_UPDATED_STATS >= GEN_6 ? 110 : 100)
 
@@ -2240,7 +2230,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_PSYCHIC },
         .abilities = { ABILITY_SURGE_SURFER, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BROWN,
-        .isAlolanForm = TRUE,
         .height = 7,
         .weight = 210,
         .description = COMPOUND_STRING(
@@ -2347,7 +2336,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SandshrewAlolan),
         ICON(SandshrewAlolan, 0),
         LEARNSETS(SandshrewAlolan),
-        .isAlolanForm = TRUE,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH_ALOLAN}),
     ))),
 
@@ -2430,7 +2418,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SandslashAlolan),
         ICON(SandslashAlolan, 0),
         LEARNSETS(SandslashAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_SANDSHREW
 
@@ -2945,7 +2932,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(VulpixAlolan, 2),
         LEARNSETS(VulpixAlolan),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLAN}),
-        .isAlolanForm = TRUE,
     ))),
 
     SPECIES(SPECIES_NINETALES, (
@@ -3023,7 +3009,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(NinetalesAlolan),
         ICON(NinetalesAlolan, 2),
         LEARNSETS(NinetalesAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_VULPIX
 
@@ -3812,7 +3797,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DiglettAlolan),
         ICON(DiglettAlolan, 2),
         LEARNSETS(DiglettAlolan),
-        .isAlolanForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN}),
     ))),
 
@@ -3889,7 +3873,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DugtrioAlolan),
         ICON(DugtrioAlolan, 2),
         LEARNSETS(DugtrioAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_DIGLETT
 
@@ -3978,7 +3961,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MeowthAlolan),
         ICON(MeowthAlolan, 2),
         LEARNSETS(MeowthAlolan),
-        .isAlolanForm = TRUE,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PERSIAN_ALOLAN}),
     )),
 
@@ -4014,7 +3996,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MeowthGalarian),
         ICON(MeowthGalarian, 0),
         LEARNSETS(MeowthGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERRSERKER}),
     )),
 
@@ -4037,7 +4018,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MeowthGigantamax),
         ICON(MeowthGigantamax, 1),
         LEARNSETS(Meowth),
-        .isGigantamax = TRUE,
         .formChangeTable = sMeowthFormChangeTable,
     ))),
 
@@ -4121,7 +4101,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(PersianAlolan),
         ICON(PersianAlolan, 2),
         LEARNSETS(PersianAlolan),
-        .isAlolanForm = TRUE,
     ))),
 
 #if P_GALARIAN_FORMS
@@ -4493,7 +4472,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GrowlitheHisuian),
         ICON(GrowlitheHisuian, 0),
         LEARNSETS(GrowlitheHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE_HISUIAN}),
     ))),
 
@@ -4575,7 +4553,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ArcanineHisuian),
         ICON(ArcanineHisuian, 0),
         LEARNSETS(ArcanineHisuian),
-        .isHisuianForm = TRUE,
     ))),
 #endif //P_FAMILY_GROWLITHE
 
@@ -4967,7 +4944,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_GROW_STUTTER,
         PALETTES(AlakazamMega),
         ICON(AlakazamMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_ABRA
 
@@ -5070,7 +5046,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_MACHAMP}),
     )),
 
-
     SPECIES(SPECIES_MACHAMP, (
         .baseHP        = 90,
         .baseAttack    = 130,
@@ -5138,7 +5113,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(MachampGigantamax),
         ICON(MachampGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
 #endif //P_FAMILY_MACHOP
 
@@ -5439,7 +5413,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     ALOLAN_FORM(SPECIES_GEODUDE_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 203,
         .description = COMPOUND_STRING(
@@ -5514,7 +5487,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     ALOLAN_FORM(SPECIES_GRAVELER_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE,
         .itemRare = ITEM_CELL_BATTERY,
         .weight = 1100,
         .description = COMPOUND_STRING(
@@ -5587,7 +5559,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     ALOLAN_FORM(SPECIES_GOLEM_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
-        .isAlolanForm = TRUE,
         .itemCommon = ITEM_CELL_BATTERY,
         .height = 17,
         .weight = 3160,
@@ -5666,7 +5637,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     GALARIAN_FORM(SPECIES_PONYTA_GALARIAN, (
         .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
         .bodyColor = BODY_COLOR_WHITE,
-        .isGalarianForm = TRUE,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .categoryName = _("Unique Horn"),
         .height = 8,
@@ -5743,7 +5713,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     GALARIAN_FORM(SPECIES_RAPIDASH_GALARIAN, (
         .abilities = { ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION },
         .bodyColor = BODY_COLOR_WHITE,
-        .isGalarianForm = TRUE,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .categoryName = _("Unique Horn"),
         .weight = 800,
@@ -5836,7 +5805,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SlowpokeGalarian),
         ICON(SlowpokeGalarian, 1),
         LEARNSETS(SlowpokeGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_GALARICA_CUFF, SPECIES_SLOWBRO_GALARIAN},
                                 {EVO_ITEM, ITEM_GALARICA_WREATH, SPECIES_SLOWKING_GALARIAN}),
     ))),
@@ -5923,7 +5891,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(SlowbroMega, 0),
         LEARNSETS(Slowbro),
         .formChangeTable = sSlowbroFormChangeTable,
-        .isMegaEvolution = TRUE,
     )),
 
     GALARIAN_FORM(SPECIES_SLOWBRO_GALARIAN, (
@@ -5958,7 +5925,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SlowbroGalarian),
         ICON(SlowbroGalarian, 0),
         LEARNSETS(SlowbroGalarian),
-        .isGalarianForm = TRUE,
     ))),
 
 #if P_GEN_2_CROSS_EVOS
@@ -6041,7 +6007,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SlowkingGalarian),
         ICON(SlowkingGalarian, 2),
         LEARNSETS(SlowkingGalarian),
-        .isGalarianForm = TRUE,
     ))),
 #endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_SLOWPOKE
@@ -6280,7 +6245,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FarfetchdGalarian),
         ICON(FarfetchdGalarian, 1),
         LEARNSETS(FarfetchdGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_CRITICAL_HITS, 3, SPECIES_SIRFETCHD}),
     ))),
 
@@ -6584,7 +6548,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_POISON, TYPE_DARK },
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
         .bodyColor = BODY_COLOR_GREEN,
-        .isAlolanForm = TRUE,
         .height = 7,
         .weight = 420,
         .description = COMPOUND_STRING(
@@ -6663,7 +6626,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_POISON, TYPE_DARK },
         .abilities = { ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY },
         .bodyColor = BODY_COLOR_GREEN,
-        .isAlolanForm = TRUE,
         .noFlip = TRUE,
         .height = 10,
         .weight = 520,
@@ -6951,7 +6913,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 95,
         .expYield = 270,
         .abilities = { ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG },
-        .isMegaEvolution = TRUE,
         .height = 14,
         .weight = 405,
         .description = COMPOUND_STRING(
@@ -6983,7 +6944,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 225,
         .abilities = GENGAR_ABILITIES,
-        .isGigantamax = TRUE,
         .height = 200,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -7137,7 +7097,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(SteelixMega),
         ICON(SteelixMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ONIX
@@ -7289,7 +7248,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_KINGLER}),
     )),
 
-
     SPECIES(SPECIES_KINGLER, (
         .baseHP        = 55,
         .baseAttack    = 130,
@@ -7358,9 +7316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(KinglerGigantamax),
         ICON(KinglerGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_KRABBY
 
 #if P_FAMILY_VOLTORB
@@ -7431,7 +7387,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(VoltorbHisuian),
         ICON(VoltorbHisuian, 0),
         LEARNSETS(VoltorbHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, ITEM_LEAF_STONE, SPECIES_ELECTRODE_HISUIAN}),
     ))),
 
@@ -7501,7 +7456,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ElectrodeHisuian),
         ICON(ElectrodeHisuian, 1),
         LEARNSETS(ElectrodeHisuian),
-        .isHisuianForm = TRUE,
     ))),
 #endif //P_FAMILY_VOLTORB
 
@@ -7635,7 +7589,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ExeggutorAlolan),
         ICON(ExeggutorAlolan, 1),
         LEARNSETS(ExeggutorAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_EXEGGCUTE
 
@@ -7689,7 +7642,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_MAROWAK},
                                 {EVO_NONE, 0, SPECIES_MAROWAK_ALOLAN}),
     )),
-
 
     SPECIES(SPECIES_MAROWAK, (
         .baseHP        = 60,
@@ -7759,7 +7711,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MarowakAlolan),
         ICON(MarowakAlolan, 1),
         LEARNSETS(MarowakAlolan),
-        .isAlolanForm = TRUE,
     ))),
 #endif //P_FAMILY_CUBONE
 
@@ -8110,7 +8061,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_WEEZING_GALARIAN}),
     )),
 
-
     SPECIES(SPECIES_WEEZING, (
         .baseHP        = 65,
         .baseAttack    = 90,
@@ -8170,7 +8120,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_MISTY_SEED,
         .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_MISTY_SURGE },
         .bodyColor = BODY_COLOR_GRAY,
-        .isGalarianForm = TRUE,
         .height = 30,
         .weight = 160,
         .description = COMPOUND_STRING(
@@ -8194,7 +8143,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(WeezingGalarian, 1),
         LEARNSETS(WeezingGalarian),
     ))),
-
 #endif //P_FAMILY_KOFFING
 
 #if P_FAMILY_RHYHORN
@@ -8654,7 +8602,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .expYield = 207,
         .abilities = { ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND },
-        .isMegaEvolution = TRUE,
         .cryId = CRY_KANGASKHAN_MEGA,
         .weight = 1000,
         .description = COMPOUND_STRING(
@@ -9166,7 +9113,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MrMimeGalarian),
         ICON(MrMimeGalarian, 0),
         LEARNSETS(MrMimeGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_MR_RIME}),
     ))),
 
@@ -9331,7 +9277,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .expYield = 210,
         .abilities = { ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN },
-        .isMegaEvolution = TRUE,
         .cryId = CRY_SCIZOR_MEGA,
         .height = 20,
         .weight = 1250,
@@ -9888,7 +9833,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(PinsirMega),
         ICON(PinsirMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_PINSIR
 
@@ -9963,7 +9907,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(TaurosPaldeanCombatBreed),
         ICON(TaurosPaldeanCombatBreed, 0),
         LEARNSETS(TaurosPaldeanCombatBreed),
-        .isPaldeanForm = TRUE,
     )),
 
     PALDEAN_FORM(SPECIES_TAUROS_PALDEAN_BLAZE_BREED, (
@@ -9987,7 +9930,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(TaurosPaldeanBlazeBreed),
         ICON(TaurosPaldeanBlazeBreed, 0),
         LEARNSETS(TaurosPaldeanBlazeBreed),
-        .isPaldeanForm = TRUE,
     )),
 
     PALDEAN_FORM(SPECIES_TAUROS_PALDEAN_AQUA_BREED, (
@@ -10011,7 +9953,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(TaurosPaldeanAquaBreed),
         ICON(TaurosPaldeanAquaBreed, 0),
         LEARNSETS(TaurosPaldeanAquaBreed),
-        .isPaldeanForm = TRUE,
     ))),
 #endif //P_FAMILY_TAUROS
 
@@ -10064,7 +10005,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Magikarp),
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     )),
-
 
     SPECIES(SPECIES_GYARADOS, (
         .catchRate = 45,
@@ -10143,7 +10083,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(GyaradosMega),
         ICON(GyaradosMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_MAGIKARP
 
@@ -10216,7 +10155,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(LaprasGigantamax),
         ICON(LaprasGigantamax, 2),
-        .isGigantamax = TRUE,
     ))),
 #endif //P_FAMILY_LAPRAS
 
@@ -10349,9 +10287,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(EeveeGigantamax),
         ICON(EeveeGigantamax, 2),
-        .isGigantamax = TRUE,
     ))),
-
 
     SPECIES(SPECIES_VAPOREON, (
         .baseHP        = 130,
@@ -11149,7 +11085,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(AerodactylMega),
         ICON(AerodactylMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_AERODACTYL
 
@@ -11274,9 +11209,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SnorlaxGigantamax),
         ICON(SnorlaxGigantamax, 3),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_SNORLAX
 
 #if P_FAMILY_ARTICUNO
@@ -11358,9 +11291,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ArticunoGalarian),
         ICON(ArticunoGalarian, 2),
         LEARNSETS(ArticunoGalarian),
-        .isGalarianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_ARTICUNO
 
 #if P_FAMILY_ZAPDOS
@@ -11446,9 +11377,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZapdosGalarian),
         ICON(ZapdosGalarian, 0),
         LEARNSETS(ZapdosGalarian),
-        .isGalarianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_ZAPDOS
 
 #if P_FAMILY_MOLTRES
@@ -11530,9 +11459,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MoltresGalarian),
         ICON(MoltresGalarian, 0),
         LEARNSETS(MoltresGalarian),
-        .isGalarianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_MOLTRES
 
 #if P_FAMILY_DRATINI
@@ -11740,7 +11667,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_PSYCHIC, TYPE_FIGHTING },
         .expYield = 351,
         .abilities = { ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST },
-        .isMegaEvolution = TRUE,
         .cryId = CRY_MEWTWO_MEGA_X,
         .height = 23,
         .weight = 1270,
@@ -11774,7 +11700,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .expYield = 351,
         .abilities = { ABILITY_INSOMNIA, ABILITY_INSOMNIA, ABILITY_INSOMNIA },
-        .isMegaEvolution = TRUE,
         .cryId = CRY_MEWTWO_MEGA_Y,
         .height = 15,
         .weight = 330,
@@ -12095,7 +12020,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_TYPHLOSION, (
         .catchRate = 45,
         .expYield = 240,
@@ -12175,9 +12099,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(TyphlosionHisuian),
         ICON(TyphlosionHisuian, 1),
         LEARNSETS(TyphlosionHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_CYNDAQUIL
 
 #if P_FAMILY_TOTODILE
@@ -13232,7 +13154,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTES(AmpharosMega),
         ICON(AmpharosMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_MAREEP
 
@@ -13984,7 +13905,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_POISON, TYPE_GROUND },
         .abilities = { ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
         .bodyColor = BODY_COLOR_BROWN,
-        .isPaldeanForm = TRUE,
         .categoryName = _("Poison Fish"),
         .weight = 110,
         .description = COMPOUND_STRING(
@@ -15238,7 +15158,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(QwilfishHisuian),
         ICON(QwilfishHisuian, 0),
         LEARNSETS(QwilfishHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_BARB_BARRAGE, SPECIES_OVERQWIL}),
     ))),
 
@@ -15424,7 +15343,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(HeracrossMega),
         ICON(HeracrossMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_HERACROSS
 
@@ -15504,7 +15422,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SneaselHisuian),
         ICON(SneaselHisuian, 2),
         LEARNSETS(SneaselHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_ITEM_HOLD_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER},
                                 {EVO_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER}),
     ))),
@@ -15562,7 +15479,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_GEN_4_CROSS_EVOS
 
 #if P_HISUIAN_FORMS
-
     SPECIES(SPECIES_SNEASLER, (
         .baseHP        = 80,
         .baseAttack    = 130,
@@ -16116,7 +16032,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(CorsolaGalarian),
         ICON(CorsolaGalarian, 0),
         LEARNSETS(CorsolaGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CURSOLA}),
     ))),
 
@@ -16512,7 +16427,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HOUNDOOM}),
     )),
 
-
     SPECIES(SPECIES_HOUNDOOM, (
         .types = { TYPE_DARK, TYPE_FIRE },
         .catchRate = 45,
@@ -16592,7 +16506,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(HoundoomMega),
         ICON(HoundoomMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_HOUNDOUR
 
@@ -17147,7 +17060,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_TYRANITAR}),
     )),
 
-
     SPECIES(SPECIES_TYRANITAR, (
         .types = { TYPE_ROCK, TYPE_DARK },
         .catchRate = 45,
@@ -17227,7 +17139,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(TyranitarMega),
         ICON(TyranitarMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_LARVITAR
 
@@ -17481,7 +17392,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SCEPTILE}),
     )),
 
-
     SPECIES(SPECIES_SCEPTILE, (
         .catchRate = 45,
         .evYield_Speed = 3,
@@ -17561,7 +17471,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(SceptileMega),
         ICON(SceptileMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_TREECKO
 
@@ -17664,7 +17573,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLAZIKEN}),
     )),
 
-
     SPECIES(SPECIES_BLAZIKEN, (
         .types = { TYPE_FIRE, TYPE_FIGHTING },
         .catchRate = 45,
@@ -17739,7 +17647,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(BlazikenMega),
         ICON(BlazikenMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_TORCHIC
 
@@ -17838,7 +17745,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SWAMPERT}),
     )),
 
-
     SPECIES(SPECIES_SWAMPERT, (
         .types = { TYPE_WATER, TYPE_GROUND },
         .catchRate = 45,
@@ -17917,7 +17823,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(SwampertMega),
         ICON(SwampertMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_MUDKIP
 
@@ -18085,7 +17990,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZigzagoonGalarian),
         ICON(ZigzagoonGalarian, 0),
         LEARNSETS(ZigzagoonGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE_GALARIAN}),
     ))),
 
@@ -18155,7 +18059,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LinooneGalarian),
         ICON(LinooneGalarian, 0),
         LEARNSETS(LinooneGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 35, SPECIES_OBSTAGOON}),
     ))),
 
@@ -19052,7 +18955,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM_MALE, ITEM_DAWN_STONE, SPECIES_GALLADE}),
     )),
 
-
     SPECIES(SPECIES_GARDEVOIR, (
         .catchRate = 45,
         .evYield_SpAttack = 3,
@@ -19125,7 +19027,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         PALETTES(GardevoirMega),
         ICON(GardevoirMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 
 #if P_GEN_4_CROSS_EVOS
@@ -19207,7 +19108,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(GalladeMega),
         ICON(GalladeMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_RALTS
@@ -20218,7 +20118,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(SableyeMega),
         ICON(SableyeMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_SABLEYE
 
@@ -20310,7 +20209,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(MawileMega),
         ICON(MawileMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_MAWILE
 
@@ -20411,7 +20309,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_AGGRON}),
     )),
 
-
     SPECIES(SPECIES_AGGRON, (
         .catchRate = 45,
         .evYield_Defense = 3,
@@ -20492,7 +20389,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(AggronMega),
         ICON(AggronMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_ARON
 
@@ -20545,7 +20441,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Meditite),
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_MEDICHAM}),
     )),
-
 
     SPECIES(SPECIES_MEDICHAM, (
         .types = { TYPE_FIGHTING, TYPE_PSYCHIC },
@@ -20621,7 +20516,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(MedichamMega),
         ICON(MedichamMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_MEDITITE
 
@@ -20672,7 +20566,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Electrike),
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_MANECTRIC}),
     )),
-
 
     SPECIES(SPECIES_MANECTRIC, (
         .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
@@ -20751,7 +20644,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTES(ManectricMega),
         ICON(ManectricMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_ELECTRIKE
 
@@ -21267,7 +21159,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SHARPEDO}),
     )),
 
-
     SPECIES(SPECIES_SHARPEDO, (
         .types = { TYPE_WATER, TYPE_DARK },
         .catchRate = 60,
@@ -21348,7 +21239,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(SharpedoMega),
         ICON(SharpedoMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_CARVANHA
 
@@ -21498,7 +21388,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_CAMERUPT}),
     )),
 
-
     SPECIES(SPECIES_CAMERUPT, (
         .types = { TYPE_FIRE, TYPE_GROUND },
         .catchRate = 150,
@@ -21580,7 +21469,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(CameruptMega),
         ICON(CameruptMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_NUMEL
 
@@ -22083,7 +21971,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ALTARIA}),
     )),
 
-
     SPECIES(SPECIES_ALTARIA, (
         .catchRate = 45,
         .evYield_SpDefense = 2,
@@ -22164,7 +22051,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         PALETTES(AltariaMega),
         ICON(AltariaMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_SWABLU
 
@@ -23165,7 +23051,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_BANETTE}),
     )),
 
-
     SPECIES(SPECIES_BANETTE, (
         .types = { TYPE_GHOST, TYPE_GHOST },
         .catchRate = 45,
@@ -23245,7 +23130,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(BanetteMega),
         ICON(BanetteMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_SHUPPET
 
@@ -23633,7 +23517,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         PALETTES(AbsolMega),
         ICON(AbsolMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_ABSOL
 
@@ -23687,7 +23570,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GLALIE},
                                 {EVO_ITEM_FEMALE, ITEM_DAWN_STONE, SPECIES_FROSLASS}),
     )),
-
 
     SPECIES(SPECIES_GLALIE, (
         .types = { TYPE_ICE, TYPE_ICE },
@@ -23768,7 +23650,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(GlalieMega),
         ICON(GlalieMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 
 #if P_GEN_4_CROSS_EVOS
@@ -24311,7 +24192,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_SALAMENCE}),
     )),
 
-
     SPECIES(SPECIES_SALAMENCE, (
         .types = { TYPE_DRAGON, TYPE_FLYING },
         .catchRate = 45,
@@ -24392,7 +24272,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         PALETTES(SalamenceMega),
         ICON(SalamenceMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_BAGON
 
@@ -24494,7 +24373,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_METAGROSS}),
     )),
 
-
     SPECIES(SPECIES_METAGROSS, (
         .types = { TYPE_STEEL, TYPE_PSYCHIC },
         .catchRate = 3,
@@ -24574,7 +24452,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTES(MetagrossMega),
         ICON(MetagrossMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_BELDUM
 
@@ -24810,7 +24687,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(LatiasMega),
         ICON(LatiasMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_LATIAS
 
@@ -24897,7 +24773,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(LatiosMega),
         ICON(LatiosMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_LATIOS
 
@@ -24981,7 +24856,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(KyogrePrimal),
         ICON(KyogrePrimal, 0),
-        .isPrimalReversion = TRUE,
     ))),
 #endif //P_FAMILY_KYOGRE
 
@@ -25065,9 +24939,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(GroudonPrimal),
         ICON(GroudonPrimal, 0),
-        .isPrimalReversion = TRUE,
     ))),
-
 #endif //P_FAMILY_GROUDON
 
 #if P_FAMILY_RAYQUAZA
@@ -25152,7 +25024,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         PALETTES(RayquazaMega),
         ICON(RayquazaMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_RAYQUAZA
 
@@ -26539,7 +26410,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
     ))),
 
-
     SPECIES(SPECIES_WORMADAM_PLANT_CLOAK, (
         .catchRate = 45,
         .expYield = 148,
@@ -26980,7 +26850,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_CHERRIM_OVERCAST}),
     )),
 
-
     SPECIES(SPECIES_CHERRIM_OVERCAST, (
         .baseHP        = 70,
         .baseAttack    = 60,
@@ -27112,7 +26981,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(ShellosEastSea, 0),
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST_SEA}),
     ))),
-
 
     SPECIES(SPECIES_GASTRODON_WEST_SEA, (
         .baseHP        = 111,
@@ -27320,7 +27188,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
     )),
 
-
     SPECIES(SPECIES_LOPUNNY, (
         .catchRate = 60,
         .evYield_Speed = 2,
@@ -27400,7 +27267,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         PALETTES(LopunnyMega),
         ICON(LopunnyMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_BUNEARY
 
@@ -27891,7 +27757,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_GARCHOMP}),
     )),
 
-
     SPECIES(SPECIES_GARCHOMP, (
         .types = { TYPE_DRAGON, TYPE_GROUND },
         .catchRate = 45,
@@ -27965,7 +27830,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTES(GarchompMega),
         ICON(GarchompMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_GIBLE
 
@@ -28016,7 +27880,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Riolu),
         .evolutions = EVOLUTION({EVO_FRIENDSHIP_DAY, 0, SPECIES_LUCARIO}),
     )),
-
 
     SPECIES(SPECIES_LUCARIO, (
         .types = { TYPE_FIGHTING, TYPE_STEEL },
@@ -28097,7 +27960,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         PALETTES(LucarioMega),
         ICON(LucarioMega, 2),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_RIOLU
 
@@ -28601,7 +28463,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW}),
     )),
 
-
     SPECIES(SPECIES_ABOMASNOW, (
         .types = { TYPE_GRASS, TYPE_ICE },
         .catchRate = 60,
@@ -28683,7 +28544,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PALETTES(AbomasnowMega),
         ICON(AbomasnowMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_SNOVER
 
@@ -30217,7 +30077,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_SAMUROTT_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_SAMUROTT, (
         .catchRate = 45,
         .expYield = 238,
@@ -30288,9 +30147,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SamurottHisuian),
         ICON(SamurottHisuian, 0),
         LEARNSETS(SamurottHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_OSHAWOTT
 
 #if P_FAMILY_PATRAT
@@ -31678,7 +31535,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AudinoMega),
         ICON(AudinoMega, 1),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_AUDINO
 
@@ -32522,7 +32378,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_LILLIGANT_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_LILLIGANT, (
         .catchRate = 75,
         .expYield = 168,
@@ -32605,9 +32460,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LilligantHisuian),
         ICON(LilligantHisuian, 1),
         LEARNSETS(LilligantHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_PETILIL
 
 #if P_FAMILY_BASCULIN
@@ -32986,7 +32839,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DarumakaGalarian),
         ICON(DarumakaGalarian, 0),
         LEARNSETS(DarumakaGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
     ))),
 
@@ -33074,7 +32926,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         LEARNSETS(DarmanitanGalarian),
         .formChangeTable = sDarmanitanGalarianFormChangeTable,
-        .isGalarianForm = TRUE,
         .types = { TYPE_ICE, TYPE_ICE },
         .categoryName = _("Zen Charm"),
         .description = COMPOUND_STRING(
@@ -33101,7 +32952,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         LEARNSETS(DarmanitanGalarian),
         .formChangeTable = sDarmanitanGalarianFormChangeTable,
-        .isGalarianForm = TRUE,
         .expYield = 189,
         .evYield_SpAttack = 2,
         .categoryName = _("Blazing"),
@@ -33492,7 +33342,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(YamaskGalarian),
         ICON(YamaskGalarian, 2),
         LEARNSETS(YamaskGalarian),
-        .isGalarianForm = TRUE,
         .evolutions = EVOLUTION({EVO_SCRIPT_TRIGGER_DMG, 49, SPECIES_RUNERIGUS}),
     ))),
 
@@ -33833,7 +33682,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GARBODOR}),
     )),
 
-
     SPECIES(SPECIES_GARBODOR, (
         .baseHP        = 80,
         .baseAttack    = 95,
@@ -33903,9 +33751,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GarbodorGigantamax),
         ICON(GarbodorGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_TRUBBISH
 
 #if P_FAMILY_ZORUA
@@ -33978,7 +33824,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZoruaHisuian),
         ICON(ZoruaHisuian, 0),
         LEARNSETS(ZoruaHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ZOROARK_HISUIAN}),
     ))),
 
@@ -34051,7 +33896,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZoroarkHisuian),
         ICON(ZoroarkHisuian, 0),
         LEARNSETS(ZoroarkHisuian),
-        .isHisuianForm = TRUE,
     ))),
 #endif //P_FAMILY_ZORUA
 
@@ -36423,9 +36267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(StunfiskGalarian),
         ICON(StunfiskGalarian, 1),
         LEARNSETS(StunfiskGalarian),
-        .isGalarianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_STUNFISK
 
 #if P_FAMILY_MIENFOO
@@ -36912,7 +36754,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_BRAVIARY_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_BRAVIARY, (
         .catchRate = 60,
         .expYield = 179,
@@ -36992,9 +36833,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(BraviaryHisuian),
         ICON(BraviaryHisuian, 2),
         LEARNSETS(BraviaryHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_RUFFLET
 
 #if P_FAMILY_VULLABY
@@ -39489,7 +39328,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "When the flowers of a well-tended flower\n"
             "bed bloom, it appears and celebrates\n"
             "with an elegant dance. It draws out the\n"
-            "power of flowers to battle.")
+            "power of flowers to battle."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -39552,7 +39391,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 4,
         BACK_PIC(FloetteEternalFlower, 64, 64),
         .backPicYOffset = 2,
-        PALETTES(FloetteEternal),
+        PALETTES(FloetteEternalFlower),
         ICON(FloetteEternal, 0),
         LEARNSETS(FloetteEternalFlower),
         .evolutions = 0,
@@ -40005,7 +39844,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL_MALE, 25, SPECIES_MEOWSTIC_MALE},
                                 {EVO_LEVEL_FEMALE, 25, SPECIES_MEOWSTIC_FEMALE}),
     )),
-
 
     SPECIES(SPECIES_MEOWSTIC_MALE, (
         .baseHP        = 74,
@@ -41307,7 +41145,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_SLIGGOO_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_SLIGGOO, (
         .catchRate = 45,
         .expYield = 158,
@@ -41386,11 +41223,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SliggooHisuian),
         ICON(SliggooHisuian, 2),
         LEARNSETS(SliggooHisuian),
-        .isHisuianForm = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA_HISUIAN},
                                 {EVO_LEVEL_FOG, 50, SPECIES_GOODRA_HISUIAN}),
     ))),
-
 
     SPECIES(SPECIES_GOODRA, (
         .catchRate = 45,
@@ -41467,7 +41302,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GoodraHisuian),
         ICON(GoodraHisuian, 2),
         LEARNSETS(GoodraHisuian),
-        .isHisuianForm = TRUE,
     ))),
 #endif //P_FAMILY_GOOMY
 
@@ -41913,7 +41747,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_AVALUGG_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_AVALUGG, (
         .catchRate = 55,
         .expYield = 180,
@@ -41988,9 +41821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(AvaluggHisuian),
         ICON(AvaluggHisuian, 5),
         LEARNSETS(AvaluggHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_BERGMITE
 
 #if P_FAMILY_NOIBAT
@@ -42253,7 +42084,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .footprint = gMonFootprint_Zygarde,
         LEARNSETS(Zygarde),
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
-        .isLegendary = TRUE
+        .isLegendary = TRUE,
     ),
 
     FORM(SPECIES_ZYGARDE_50_POWER_CONSTRUCT, (
@@ -42430,7 +42261,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DiancieMega),
         ICON(DiancieMega, 0),
-        .isMegaEvolution = TRUE,
     ))),
 #endif //P_FAMILY_DIANCIE
 
@@ -42664,7 +42494,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_NONE, 0, SPECIES_DECIDUEYE_HISUIAN}),
     )),
 
-
     SPECIES(SPECIES_DECIDUEYE, (
         .catchRate = 45,
         .expYield = 239,
@@ -42734,9 +42563,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DecidueyeHisuian),
         ICON(DecidueyeHisuian, 0),
         LEARNSETS(DecidueyeHisuian),
-        .isHisuianForm = TRUE,
     ))),
-
 #endif //P_FAMILY_ROWLET
 
 #if P_FAMILY_LITTEN
@@ -43761,7 +43588,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         .evolutions = EVOLUTION({EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
     ))),
-
 
     SPECIES(SPECIES_LYCANROC_MIDDAY, (
         .types = { TYPE_ROCK, TYPE_ROCK },
@@ -46870,7 +46696,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(NecrozmaUltra),
         ICON(NecrozmaUltra, 2),
         .cannotBeTraded = TRUE,
-        .isUltraBurst = TRUE,
     ))),
 #endif //P_FAMILY_NECROZMA
 
@@ -47274,7 +47099,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Meltan),
     )),
 
-
     SPECIES(SPECIES_MELMETAL, (
         .baseHP        = 135,
         .baseAttack    = 143,
@@ -47324,7 +47148,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     ),
 
     GIGANTAMAX_FORM(SPECIES_MELMETAL_GIGANTAMAX, (
-        .isGigantamax = TRUE,
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -47339,7 +47162,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MelmetalGigantamax),
         ICON(MelmetalGigantamax, 0),
     ))),
-
 #endif //P_FAMILY_MELTAN
 
 #if P_FAMILY_GROOKEY
@@ -47436,7 +47258,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_RILLABOOM}),
     )),
 
-
     SPECIES(SPECIES_RILLABOOM, (
         .baseHP        = 100,
         .baseAttack    = 125,
@@ -47502,9 +47323,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RillaboomGigantamax),
         ICON(RillaboomGigantamax, 1),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_GROOKEY
 
 #if P_FAMILY_SCORBUNNY
@@ -47601,7 +47420,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_CINDERACE}),
     )),
 
-
     SPECIES(SPECIES_CINDERACE, (
         .baseHP        = 80,
         .baseAttack    = 116,
@@ -47668,9 +47486,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CinderaceGigantamax),
         ICON(CinderaceGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_SCORBUNNY
 
 #if P_FAMILY_SOBBLE
@@ -47768,7 +47584,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_INTELEON}),
     )),
 
-
     SPECIES(SPECIES_INTELEON, (
         .baseHP        = 70,
         .baseAttack    = 85,
@@ -47835,9 +47650,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(InteleonGigantamax),
         ICON(InteleonGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_SOBBLE
 
 #if P_FAMILY_SKWOVET
@@ -48032,7 +47845,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CORVIKNIGHT}),
     )),
 
-
     SPECIES(SPECIES_CORVIKNIGHT, (
         .baseHP        = 98,
         .baseAttack    = 87,
@@ -48099,9 +47911,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CorviknightGigantamax),
         ICON(CorviknightGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_ROOKIDEE
 
 #if P_FAMILY_BLIPBUG
@@ -48199,7 +48009,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ORBEETLE}),
     )),
 
-
     SPECIES(SPECIES_ORBEETLE, (
         .baseHP        = 60,
         .baseAttack    = 45,
@@ -48268,9 +48077,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(OrbeetleGigantamax),
         ICON(OrbeetleGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_BLIPBUG
 
 #if P_FAMILY_NICKIT
@@ -48605,7 +48412,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_DREDNAW}),
     )),
 
-
     SPECIES(SPECIES_DREDNAW, (
         .baseHP        = 90,
         .baseAttack    = 115,
@@ -48671,9 +48477,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DrednawGigantamax),
         ICON(DrednawGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_CHEWTLE
 
 #if P_FAMILY_YAMPER
@@ -48865,7 +48669,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COALOSSAL}),
     )),
 
-
     SPECIES(SPECIES_COALOSSAL, (
         .baseHP        = 110,
         .baseAttack    = 80,
@@ -48932,9 +48735,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CoalossalGigantamax),
         ICON(CoalossalGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_ROLYCOLY
 
 #if P_FAMILY_APPLIN
@@ -48986,7 +48787,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SWEET_APPLE, SPECIES_APPLETUN},
                                 {EVO_ITEM, ITEM_SYRUPY_APPLE, SPECIES_DIPPLIN}),
     )),
-
 
     SPECIES(SPECIES_FLAPPLE, (
         .baseHP        = 70,
@@ -49054,10 +48854,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(FlappleGigantamax),
         ICON(FlappleGigantamax, 1),
-        .isGigantamax = TRUE,
     ))),
-
-
 
     SPECIES(SPECIES_APPLETUN, (
         .baseHP        = 110,
@@ -49124,7 +48921,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AppletunGigantamax),
         ICON(AppletunGigantamax, 1),
-        .isGigantamax = TRUE,
     ))),
 
 
@@ -49223,7 +49019,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SANDACONDA}),
     )),
 
-
     SPECIES(SPECIES_SANDACONDA, (
         .baseHP        = 72,
         .baseAttack    = 107,
@@ -49290,9 +49085,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(SandacondaGigantamax),
         ICON(SandacondaGigantamax, 1),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_SILICOBRA
 
 #if P_FAMILY_CRAMORANT
@@ -49609,7 +49402,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(ToxtricityGigantamax, 0),
         .footprint = gMonFootprint_Toxtricity,
         LEARNSETS(ToxtricityAmped),
-        .isGigantamax = TRUE,
     )),
 
     GIGANTAMAX_FORM(SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX, (
@@ -49633,7 +49425,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(ToxtricityGigantamax, 0),
         .footprint = gMonFootprint_Toxtricity,
         LEARNSETS(ToxtricityLowKey),
-        .isGigantamax = TRUE,
     ))),
 #endif //P_FAMILY_TOXEL
 
@@ -49683,7 +49474,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Sizzlipede),
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_CENTISKORCH}),
     )),
-
 
     SPECIES(SPECIES_CENTISKORCH, (
         .baseHP        = 100,
@@ -49751,9 +49541,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CentiskorchGigantamax),
         ICON(CentiskorchGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_SIZZLIPEDE
 
 #if P_FAMILY_CLOBBOPUS
@@ -49906,7 +49694,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
     ))),
 
-
     SPECIES(SPECIES_POLTEAGEIST_PHONY, (
         .baseHP        = 60,
         .baseAttack    = 65,
@@ -50055,7 +49842,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_HATTERENE}),
     )),
 
-
     SPECIES(SPECIES_HATTERENE, (
         .baseHP        = 57,
         .baseAttack    = 90,
@@ -50121,9 +49907,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(HattereneGigantamax),
         ICON(HattereneGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_HATENNA
 
 #if P_FAMILY_IMPIDIMP
@@ -50221,7 +50005,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GRIMMSNARL}),
     )),
 
-
     SPECIES(SPECIES_GRIMMSNARL, (
         .baseHP        = 95,
         .baseAttack    = 120,
@@ -50287,9 +50070,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(GrimmsnarlGigantamax),
         ICON(GrimmsnarlGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_IMPIDIMP
 
 #if P_FAMILY_MILCERY
@@ -50372,9 +50153,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Cream"),
         .height = 3,
         .weight = 5,
-        .description = COMPOUND_STRING(
-            "When it trusts a Trainer, it will treat\n"
-            "them to berries it's decorated with cream."),
+        .description = gAlcremieVanillaCreamPokedexText,
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -51164,7 +50943,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COPPERAJAH}),
     )),
 
-
     SPECIES(SPECIES_COPPERAJAH, (
         .baseHP        = 122,
         .baseAttack    = 130,
@@ -51231,9 +51009,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CopperajahGigantamax),
         ICON(CopperajahGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_CUFANT
 
 #if P_FAMILY_DRACOZOLT
@@ -51493,9 +51269,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(DuraludonGigantamax),
         ICON(DuraludonGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
-
 #endif //P_FAMILY_DURALUDON
 
 #if P_FAMILY_DREEPY
@@ -52013,7 +51787,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuSingleStrikeStyleGigantamax),
         ICON(UrshifuSingleStrikeStyleGigantamax, 0),
-        .isGigantamax = TRUE,
     )),
 
     GIGANTAMAX_FORM(SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, (
@@ -52034,7 +51807,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(UrshifuRapidStrikeStyleGigantamax),
         ICON(UrshifuRapidStrikeStyleGigantamax, 0),
-        .isGigantamax = TRUE,
     ))),
 #endif //P_FAMILY_KUBFU
 
@@ -52982,7 +52754,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE_FEMALE}),
     )),
 
-
     SPECIES(SPECIES_OINKOLOGNE_MALE, (
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .catchRate = 100,
@@ -53436,7 +53207,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_FAMILY_OF_THREE, 25, SPECIES_MAUSHOLD_FAMILY_OF_THREE}),
     )),
 
-
     SPECIES(SPECIES_MAUSHOLD_FAMILY_OF_THREE, (
         .baseHP        = 74,
         .baseAttack    = 75,
@@ -53765,7 +53535,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(Squawkabilly, 64, 64),
         .backPicYOffset = 4,
         LEARNSETS(Squawkabilly),
-        $1,
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Squawkabilly,,
@@ -55327,7 +55097,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PALAFIN_ZERO}),
     )),
 
-
     SPECIES(SPECIES_PALAFIN_ZERO, (
         .types = { TYPE_WATER, TYPE_WATER },
         .catchRate = 45,
@@ -55348,7 +55117,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Palafin,
         LEARNSETS(Palafin),
         .formSpeciesIdTable = sPalafinFormSpeciesIdTable,
-        $1,
+        .formChangeTable = sPalafinZeroFormChangeTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.footprint = gMonFootprint_Palafin,,
         .baseHP        = 100,
@@ -56055,7 +55824,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tatsugiri,
         .backPicYOffset = 17,
         LEARNSETS(Tatsugiri),
-        $1,
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Tatsugiri,,
@@ -56845,7 +56614,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gimmighoul,
         LEARNSETS(Gimmighoul),
         .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO})
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO}),
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Gimmighoul,,
@@ -57474,7 +57243,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 5,
         PALETTES(Poltchageist),
         ICON(Poltchageist, 4),
-        LEARNSETS(Poltchageist)
+        LEARNSETS(Poltchageist),
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Poltchageist,,
@@ -57717,11 +57486,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mask"),
         .height = 12,
         .weight = 398,
-        .description = COMPOUND_STRING(
-            "This Pokémon's type changes based on\n"
-            "which mask it's wearing. It confounds\n"
-            "its enemies with nimble movements\n"
-            "and kicks."),
+        .description = gOgerponTealMaskPokedexText,
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
