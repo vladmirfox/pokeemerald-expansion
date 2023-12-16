@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen5[] =
 {
 #endif
 
@@ -492,7 +492,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHARPNESS },
         .weight = 582,
         .description = COMPOUND_STRING(
-            ""),
+            "Hard of heart and deft of blade,\n"
+            "this rare form of Samurott is a\n"
+            "product of the Pokémon's evolution in the\n"
+            "region of Hisui."),
         FRONT_PIC(SamurottHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_SamurottHisuian,
@@ -2971,7 +2974,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 75,
         .genderRatio = MON_FEMALE,
         .description = COMPOUND_STRING(
-            ""),
+            "The souls of its comrades cloak its\n"
+            "body and propel it effortlessly\n"
+            "through even raging rapids."),
         FRONT_PIC(BasculegionFemale, 64, 64),
         BACK_PIC(BasculegionFemale, 64, 64),
         PALETTES(BasculegionFemale),
@@ -3259,7 +3264,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = { TYPE_FIRE, TYPE_PSYCHIC },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
-            ""),
+            "When wounded, it stops moving. It\n"
+            "goes as still as stone to meditate,\n"
+            "sharpening its mind and spirit."),
         FRONT_PIC(DarmanitanZenMode, 40, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_DarmanitanZenMode,
@@ -3319,7 +3326,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 55,
         .types = { TYPE_ICE, TYPE_FIRE },
         .description = COMPOUND_STRING(
-            ""),
+            "Darmanitan takes this form when\n"
+            "enraged. It won't stop spewing flames\n"
+            "until its rage has settled, even if\n"
+            "its body starts to melt."),
         FRONT_PIC(DarmanitanGalarianZenMode, 48, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_DarmanitanGalarianZenMode,
@@ -3749,7 +3759,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     )),
 
 #if P_GALARIAN_FORMS
-
     SPECIES(SPECIES_RUNERIGUS, (
         .baseHP        = 58,
         .baseAttack    = 95,
@@ -4093,7 +4102,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 210,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "It sprays toxic gas from its mouth\n"
+            "and fingers. If the gas engulfs you,\n"
+            "the toxins will seep in all the way\n"
+            "down to your bones."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -4169,7 +4181,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = { TYPE_NORMAL, TYPE_GHOST },
         .categoryName = _("Spiteful Fox"),
         .description = COMPOUND_STRING(
-            ""),
+            "Derives power from resentment,\n"
+            "which rises as energy atop its head and\n"
+            "takes on the forms of foes. In this\n"
+            "way, Zorua vents lingering malice."),
         FRONT_PIC(ZoruaHisuian, 48, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_ZoruaHisuian,
@@ -4241,7 +4256,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Baneful Fox"),
         .weight = 730,
         .description = COMPOUND_STRING(
-            ""),
+            "Heedless of its own safety,\n"
+            "Zoroark attacks its nemeses with a bitter\n"
+            "energy so intense, it lacerates\n"
+            "Zoroark's own body."),
         FRONT_PIC(ZoroarkHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ZoroarkHisuian,
@@ -5004,7 +5022,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_SAWSBUCK_SUMMER, (
         .description = COMPOUND_STRING(
-            ""),
+            "The thicker and larger the\n"
+            "branches and leaves on its antlers, the\n"
+            "more majestic the Sawsbuck is thought\n"
+            "to be."),
         FRONT_PIC(SawsbuckSummer, 64, 64),
         BACK_PIC(SawsbuckSummer, 64, 64),
         PALETTES(SawsbuckSummer),
@@ -5013,7 +5034,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_SAWSBUCK_AUTUMN, (
         .description = COMPOUND_STRING(
-            ""),
+            "Sawsbuck in their Autumn Form are\n"
+            "known for having very short\n"
+            "tempers. The males fight each other\n"
+            "incessantly."),
         FRONT_PIC(SawsbuckAutumn, 64, 64),
         BACK_PIC(SawsbuckAutumn, 64, 64),
         PALETTES(SawsbuckAutumn),
@@ -5022,7 +5046,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_SAWSBUCK_WINTER, (
         .description = COMPOUND_STRING(
-            ""),
+            "Though there are many enthusiasts\n"
+            "for Sawsbuck as a species, this\n"
+            "seasonal form in particular is not\n"
+            "very popular."),
         FRONT_PIC(SawsbuckWinter, 56, 64),
         BACK_PIC(SawsbuckWinter, 48, 64),
         PALETTES(SawsbuckWinter),
@@ -6612,7 +6639,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_GREEN,
         .weight = 205,
         .description = COMPOUND_STRING(
-            ""),
+            "Its conspicuous lips lure prey in\n"
+            "as it lies in wait in the mud. When\n"
+            "prey gets close, Stunfisk clamps its\n"
+            "jagged steel fins down on them."),
         FRONT_PIC(StunfiskGalarian, 48, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_StunfiskGalarian,
@@ -7173,7 +7203,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 17,
         .weight = 434,
         .description = COMPOUND_STRING(
-            ""),
+            "Screaming a bloodcurdling battle\n"
+            "cry, this huge and ferocious bird\n"
+            "Pokémon goes out on the hunt."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -7833,7 +7865,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_TORNADUS_THERIAN,
         .height = 14,
         .description = COMPOUND_STRING(
-            ""),
+            "An example of what is known as a\n"
+            "“form change”. Tornadus has been\n"
+            "sighted crossing the ocean while in this\n"
+            "form."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -7913,7 +7948,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_THUNDURUS_THERIAN,
         .height = 30,
         .description = COMPOUND_STRING(
-            ""),
+            "It pulverizes foes into\n"
+            "nothingness with showers of devastatingly\n"
+            "powerful lightning bolts launched from\n"
+            "the string of orbs on its tail."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -8092,7 +8130,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_LANDORUS_THERIAN,
         .height = 13,
         .description = COMPOUND_STRING(
-            ""),
+            "Landorus soars through the sky in\n"
+            "this form, bestowing plentiful\n"
+            "harvests upon the land and earning the\n"
+            "people's reverence."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -8174,7 +8215,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_KYUREM_WHITE,
         .height = 36,
         .description = COMPOUND_STRING(
-            ""),
+            "The sameness of Reshiram's and\n"
+            "Kyurem's genes allowed Kyurem to\n"
+            "absorb Reshiram. Kyurem can now use the\n"
+            "power of both fire and ice."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,
@@ -8206,7 +8250,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_KYUREM_BLACK,
         .height = 33,
         .description = COMPOUND_STRING(
-            ""),
+            "The sameness of Zekrom's and\n"
+            "Kyurem's genes allowed Kyurem to absorb\n"
+            "Zekrom. Kyurem can now use the\n"
+            "power of both electricity and ice."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 356,
@@ -8279,7 +8326,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     FORM(SPECIES_KELDEO_RESOLUTE, (
         .noFlip = TRUE,
         .description = COMPOUND_STRING(
-            ""),
+            "The power that lay hidden in its\n"
+            "body now covers its horn, turning it\n"
+            "into a sword that can slice through\n"
+            "anything."),
         FRONT_PIC(KeldeoResolute, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_KeldeoResolute,

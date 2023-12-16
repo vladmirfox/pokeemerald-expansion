@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen2[] =
 {
 #endif
 
@@ -3105,7 +3105,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 45,
         .weight = 474,
         .description = COMPOUND_STRING(
-            ""),
+            "A recent study uncovered that the\n"
+            "number of segments a\n"
+            "Dudunsparce's body has is determined by the\n"
+            "Pokémon's genes."),
     ))),
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_DUNSPARCE
@@ -3914,7 +3917,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 27,
         .weight = 3330,
         .description = COMPOUND_STRING(
-            ""),
+            "It crossed the sea and drifted\n"
+            "ashore in a new land. Surviving in this\n"
+            "place led it to take on a unique\n"
+            "appearance and gain special powers."),
         .pokemonScale = 256,
         .pokemonOffset = 3,
         .trainerScale = 369,

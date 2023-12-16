@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen8[] =
 {
 #endif
 
@@ -152,7 +152,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 365,
         .trainerOffset = 7,
         .description = COMPOUND_STRING(
-            ""),
+            "Rillaboom has become one with its\n"
+            "forest of drums and continues to lay\n"
+            "down beats that shake all of Galar."),
         FRONT_PIC(RillaboomGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_RillaboomGigantamax,
@@ -311,7 +313,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 270,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Infused with Cinderace's fighting\n"
+            "spirit, the gigantic Pyro Ball never\n"
+            "misses its targets and completely\n"
+            "roasts opponents."),
         .pokemonScale = 265,
         .pokemonOffset = 2,
         .trainerScale = 262,
@@ -475,7 +480,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 400,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Gigantamax Inteleon's Water Gun\n"
+            "move fires at Mach 7. As the Pokémon\n"
+            "takes aim, it uses the crest on its\n"
+            "head to gauge wind and temperature."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 326,
@@ -736,7 +744,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 140,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Imbued with Gigantamax energy, its\n"
+            "wings can whip up winds more\n"
+            "forceful than any a hurricane could\n"
+            "muster. The gusts blow everything away."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 348,
@@ -902,7 +913,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 140,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Its brain has grown to a\n"
+            "gargantuan size, as has the rest of its body.\n"
+            "This Pokémon's intellect and\n"
+            "psychic abilities are overpowering."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1302,7 +1316,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 240,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "In the Galar region, there's a tale\n"
+            "about this Pokémon chewing up a\n"
+            "mountain and using the rubble to stop a\n"
+            "flood."),
         .pokemonScale = 305,
         .pokemonOffset = 7,
         .trainerScale = 257,
@@ -1560,7 +1577,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 420,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Its body is a colossal stove. With\n"
+            "Gigantamax energy stoking the fire,\n"
+            "this Pokémon's flame burns hotter\n"
+            "than 3,600 degrees Fahrenheit."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -1679,7 +1699,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 240,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Under the influence of Gigantamax\n"
+            "energy, it produces much more sweet\n"
+            "nectar, and its shape has changed\n"
+            "to resemble a giant apple."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -1746,7 +1769,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 240,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Due to Gigantamax energy, this\n"
+            "Pokémon's nectar has thickened. The\n"
+            "increased viscosity lets the nectar\n"
+            "absorb more damage than before."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -1977,7 +2003,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_CRAMORANT_GULPING, (
         .description = COMPOUND_STRING(
-            ""),
+            "Cramorant's gluttony led it to try\n"
+            "to swallow an Arrokuda whole, which\n"
+            "in turn led to Cramorant getting an\n"
+            "Arrokuda stuck in its throat."),
         FRONT_PIC(CramorantGulping, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cramorant,
@@ -1991,7 +2020,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_CRAMORANT_GORGING, (
         .description = COMPOUND_STRING(
-            ""),
+            "This Cramorant has accidentally\n"
+            "gotten a Pikachu lodged in its gullet.\n"
+            "Cramorant is choking a little, but it\n"
+            "isn't really bothered."),
         FRONT_PIC(CramorantGorging, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Cramorant,
@@ -2202,7 +2234,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 16,
         .weight = 400,
         .description = COMPOUND_STRING(
-            ""),
+            "Capable of generating 15,000 volts\n"
+            "of electricity, this Pokémon looks\n"
+            "down on all that would challenge it."),
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -2366,7 +2400,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 750,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "The heat that comes off a\n"
+            "Gigantamax Centiskorch may destabilize air\n"
+            "currents. Sometimes it can even\n"
+            "cause storms."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -2528,7 +2565,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_SINISTEA_ANTIQUE, (
         .description = COMPOUND_STRING(
-            ""),
+            "The swirl pattern in this Pokémon's\n"
+            "body is its weakness. If it gets\n"
+            "stirred, the swirl loses its shape, and\n"
+            "Sinistea gets dizzy."),
         .enemyMonElevation = 10,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
     ))),
@@ -2582,7 +2622,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_POLTEAGEIST_ANTIQUE, (
         .description = COMPOUND_STRING(
-            ""),
+            "Trainers Polteageist trusts will be\n"
+            "allowed to experience its\n"
+            "distinctive flavor and aroma firsthand by\n"
+            "sampling just a tiny bit of its tea."),
         .enemyMonElevation = 11,
     ))),
 #endif //P_FAMILY_SINISTEA
@@ -2732,7 +2775,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 260,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon can read the\n"
+            "emotions of creatures over 30 miles away.\n"
+            "The minute it senses hostility, it\n"
+            "goes on the attack."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 365,
@@ -2895,7 +2941,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 320,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Gigantamax energy has caused more\n"
+            "hair to sprout all over its body.\n"
+            "With the added strength, it can jump\n"
+            "over the world's tallest building."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -3270,7 +3319,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     GIGANTAMAX_FORM(SPECIES_ALCREMIE_GIGANTAMAX, (
         .bodyColor = BODY_COLOR_PINK,
         .description = COMPOUND_STRING(
-            ""),
+            "It launches swarms of missiles,\n"
+            "each made of cream and loaded with\n"
+            "100,000 kilocalories. Get hit by one of\n"
+            "these, and your head will swim."),
         FRONT_PIC(AlcremieGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_AlcremieGigantamax,
@@ -3280,7 +3332,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(AlcremieGigantamax),
         ICON(AlcremieGigantamax, 1),
-        LEARNSETS(Alcremie),
     ))),
 #endif //P_FAMILY_MILCERY
 
@@ -3581,7 +3632,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 50,
         .cryId = CRY_EISCUE_NOICE_FACE,
         .description = COMPOUND_STRING(
-            ""),
+            "The hair on its head connects to\n"
+            "the surface of its brain. When this\n"
+            "Pokémon has something on its mind,\n"
+            "its hair chills the air around it."),
         FRONT_PIC(EiscueNoiceFace, 40, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Eiscue,
@@ -3654,7 +3708,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE },
         .cryId = CRY_INDEEDEE_FEMALE,
         .description = COMPOUND_STRING(
-            ""),
+            "They diligently serve people and\n"
+            "Pokémon so they can gather feelings\n"
+            "of gratitude. The females are\n"
+            "particularly good at babysitting."),
         FRONT_PIC(IndeedeeFemale, 40, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Indeedee,
@@ -3720,7 +3777,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     FORM(SPECIES_MORPEKO_HANGRY, (
         .cryId = CRY_MORPEKO_HANGRY,
         .description = COMPOUND_STRING(
-            ""),
+            "Intense hunger drives it to\n"
+            "extremes of violence, and the electricity\n"
+            "in its cheek sacs has converted into\n"
+            "a Dark-type energy."),
         FRONT_PIC(MorpekoHangry, 32, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Morpeko,
@@ -3834,7 +3894,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 230,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "After this Pokémon has\n"
+            "Gigantamaxed, its massive nose can utterly\n"
+            "demolish large structures with a single\n"
+            "smashing blow."),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4094,7 +4157,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 430,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "The hardness of its cells is\n"
+            "exceptional, even among Steel types. It\n"
+            "also has a body structure that's\n"
+            "resistant to earthquakes."),
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
@@ -4316,7 +4382,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_ZACIAN_CROWNED_SWORD,
         .weight = 3550,
         .description = COMPOUND_STRING(
-            ""),
+            "Able to cut down anything with a\n"
+            "single strike, it became known as the\n"
+            "Fairy King's Sword, and it inspired\n"
+            "awe in friend and foe alike."),
         FRONT_PIC(ZacianCrownedSword, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Zacian,
@@ -4391,7 +4460,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_ZAMAZENTA_CROWNED_SHIELD,
         .weight = 7850,
         .description = COMPOUND_STRING(
-            ""),
+            "Its ability to deflect any attack\n"
+            "led to it being known as the Fighting\n"
+            "Master's Shield. It was feared and\n"
+            "respected by all."),
         FRONT_PIC(ZamazentaCrownedShield, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Zamazenta,
@@ -4470,7 +4542,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 4852,
         .trainerOffset = 20,
         .description = COMPOUND_STRING(
-            ""),
+            "As a result of Rose's meddling,\n"
+            "Eternatus absorbed all the energy in\n"
+            "the Galar region. It's now in a state\n"
+            "of power overload."),
         FRONT_PIC(EternatusEternamax, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Eternatus,
@@ -4595,7 +4670,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 326,
         .trainerOffset = 4,
         .description = COMPOUND_STRING(
-            ""),
+            "This form of Urshifu is a strong\n"
+            "believer in defeating foes by raining\n"
+            "many blows down on them. Its\n"
+            "strikes are nonstop, flowing like a river."),
         FRONT_PIC(UrshifuRapidStrikeStyle, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Urshifu,
@@ -4616,7 +4694,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 326,
         .trainerOffset = 4,
         .description = COMPOUND_STRING(
-            ""),
+            "People call it the embodiment of\n"
+            "rage. It's said that this Pokémon's\n"
+            "terrifying expression and shout will\n"
+            "rid the world of malevolence."),
         FRONT_PIC(UrshifuSingleStrikeStyleGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrshifuSingleStrikeStyleGigantamax,
@@ -4636,7 +4717,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 326,
         .trainerOffset = 4,
         .description = COMPOUND_STRING(
-            ""),
+            "As it waits for the right moment to\n"
+            "unleash its Gigantamax power, this\n"
+            "Pokémon maintains a perfect one-\n"
+            "legged stance. It won't even twitch."),
         FRONT_PIC(UrshifuRapidStrikeStyleGigantamax, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrshifuRapidStrikeStyleGigantamax,
@@ -4701,7 +4785,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_ZARUDE_DADA, (
         .description = COMPOUND_STRING(
-            ""),
+            "This Zarude's special strength\n"
+            "stems from its love and care for an\n"
+            "orphaned human child that the Pokémon\n"
+            "has raised."),
         FRONT_PIC(ZarudeDada, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Zarude,
@@ -4984,7 +5071,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 24,
         .weight = 8091,
         .description = COMPOUND_STRING(
-            ""),
+            "According to lore, this Pokémon\n"
+            "showed no mercy to those who got in\n"
+            "its way, yet it would heal its\n"
+            "opponents' wounds after battle."),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -5025,7 +5115,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 24,
         .weight = 536,
         .description = COMPOUND_STRING(
-            ""),
+            "It's said that Calyrex and a\n"
+            "Pokémon that had bonded with it ran all\n"
+            "across the Galar region to bring green\n"
+            "to the wastelands."),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -5104,7 +5197,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE },
         .cryId = CRY_ENAMORUS_THERIAN,
         .description = COMPOUND_STRING(
-            ""),
+            "From the clouds, it descends upon\n"
+            "those who treat any form of life\n"
+            "with disrespect and metes out\n"
+            "wrathful, ruthless punishment."),
         FRONT_PIC(EnamorusTherian, 64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_EnamorusTherian,

@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen7[] =
 {
 #endif
 
@@ -158,7 +158,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SCRAPPY },
         .weight = 370,
         .description = COMPOUND_STRING(
-            ""),
+            "The air stored inside the rachises\n"
+            "of Decidueye's feathers insulates\n"
+            "the Pokémon against Hisui's extreme\n"
+            "cold."),
         FRONT_PIC(DecidueyeHisuian, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_DecidueyeHisuian,
@@ -979,10 +982,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_ORICORIO_BAILE,
         .description = COMPOUND_STRING(
-            "Oricorio can change its body by sipping\n"
-            "different coloured nectar. It's enemies'\n"
-            "hearts melt at the sight of its varying,\n"
-            "beautiful dances."),
+            "It wins the hearts of its enemies\n"
+            "with its passionate dancing and then\n"
+            "uses the opening it creates to\n"
+            "burn them up with blazing flames."),
         FRONT_PIC(OricorioBaile, 56, 64),
         .frontPicYOffset = 2,
         .frontAnimId = ANIM_CONCAVE_ARC_SMALL,
@@ -997,7 +1000,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .cryId = CRY_ORICORIO_POM_POM,
         .description = COMPOUND_STRING(
-            ""),
+            "This form of Oricorio has sipped\n"
+            "yellow nectar. It uses nimble steps to\n"
+            "approach opponents, then knocks\n"
+            "them out with electric punches."),
         FRONT_PIC(OricorioPomPom, 56, 56),
         .frontPicYOffset = 5,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -1012,7 +1018,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_PINK,
         .cryId = CRY_ORICORIO_PAU,
         .description = COMPOUND_STRING(
-            ""),
+            "This form of Oricorio has sipped\n"
+            "pink nectar. It elevates its mind with\n"
+            "the gentle steps of its dance, then\n"
+            "unleashes its psychic energy."),
         FRONT_PIC(OricorioPau, 56, 64),
         .frontPicYOffset = 3,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -1027,7 +1036,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .cryId = CRY_ORICORIO_SENSU,
         .description = COMPOUND_STRING(
-            ""),
+            "It charms its opponents with its\n"
+            "refined dancing. When they let their\n"
+            "guard down, it places a curse on\n"
+            "them that will bring on their demise."),
         FRONT_PIC(OricorioSensu, 64, 56),
         .frontPicYOffset = 4,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -1227,10 +1239,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_LYCANROC_MIDDAY,
         .height = 8,
         .description = COMPOUND_STRING(
-            "Well equipped with claws and fangs, it\n"
-            "also uses the sharp rocks in its mane\n"
-            "as weapons. It will attack with no regard\n"
-            "for its own safety."),
+            "It has a calm and collected\n"
+            "demeanor. It swiftly closes in on its prey,\n"
+            "then slices them with the rocks in\n"
+            "its mane."),
         FRONT_PIC(LycanrocMidday, 57, 53),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_LycanrocMidday,
@@ -1254,7 +1266,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_LYCANROC_MIDNIGHT,
         .height = 11,
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon uses its rocky mane\n"
+            "to slash any who approach. It will\n"
+            "even disobey its Trainer if it dislikes\n"
+            "the orders it was given."),
         FRONT_PIC(LycanrocMidnight, 56, 61),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LycanrocMidnight,
@@ -1278,7 +1293,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_LYCANROC_DUSK,
         .height = 8,
         .description = COMPOUND_STRING(
-            ""),
+            "These Pokémon have both calm and\n"
+            "ferocious qualities. It's said that\n"
+            "this form of Lycanroc is the most\n"
+            "troublesome to raise."),
         FRONT_PIC(LycanrocDusk, 57, 58),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_LycanrocDusk,
@@ -1325,10 +1343,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 2,
         .weight = 3,
         .description = COMPOUND_STRING(
-            "When it's in trouble, its eyes moisten and\n"
-            "begin to shine. The shining light attracts\n"
-            "its comrades, and they stand together\n"
-            "against their enemies."),
+            "Individually, they're incredibly\n"
+            "weak. It's by gathering up into\n"
+            "schools that they're able to confront\n"
+            "opponents."),
         FRONT_PIC(WishiwashiSolo, 40, 24),
         .frontPicYOffset = 20,
         .frontAnimFrames = sAnims_WishiwashiSolo,
@@ -1352,7 +1370,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 82,
         .weight = 786,
         .description = COMPOUND_STRING(
-            ""),
+            "When facing tough opponents, they\n"
+            "get into formation. But if they get\n"
+            "wounded in battle, they'll scatter\n"
+            "and become solitary again."),
         FRONT_PIC(WishiwashiSchool, 64, 64),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_WishiwashiSchool,
@@ -3104,7 +3125,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_MIMIKYU_BUSTED, (
         .description = COMPOUND_STRING(
-            ""),
+            "After going to all the effort of\n"
+            "disguising itself, its neck was\n"
+            "broken. Whatever is inside is probably\n"
+            "unharmed, but it's still feeling sad."),
         FRONT_PIC(MimikyuBusted, 48, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_MimikyuBusted,
@@ -4225,7 +4249,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 38,
         .weight = 4600,
         .description = COMPOUND_STRING(
-            ""),
+            "This is its form while it is\n"
+            "devouring the light of Solgaleo. It pounces\n"
+            "on foes and then slashes them with\n"
+            "the claws on its four limbs and back."),
         FRONT_PIC(NecrozmaDuskMane, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
@@ -4256,7 +4283,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 42,
         .weight = 3500,
         .description = COMPOUND_STRING(
-            ""),
+            "This is its form while it's\n"
+            "devouring the light of Lunala. It grasps\n"
+            "foes in its giant claws and rips them\n"
+            "apart with brute force."),
         FRONT_PIC(NecrozmaDawnWings, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
@@ -4290,7 +4320,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 75,
         .weight = 2300,
         .description = COMPOUND_STRING(
-            ""),
+            "The light pouring out from all over\n"
+            "its body affects living things and\n"
+            "nature, impacting them in various\n"
+            "ways."),
         FRONT_PIC(NecrozmaUltra, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Necrozma,
@@ -4356,7 +4389,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     FORM(SPECIES_MAGEARNA_ORIGINAL_COLOR, (
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
-            ""),
+            "This is its form from almost 500\n"
+            "years ago. Its body is nothing more\n"
+            "than a container-its artificial heart\n"
+            "is the actual life-form."),
         FRONT_PIC(MagearnaOriginalColor, 56, 64),
         BACK_PIC(MagearnaOriginalColor, 64, 56),
         PALETTES(MagearnaOriginalColor),
@@ -4757,7 +4793,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "In a distant land, there are\n"
+            "legends about a cyclopean giant. In fact,\n"
+            "the giant was a Melmetal that was\n"
+            "flooded with Gigantamax energy."),
         FRONT_PIC(MelmetalGigantamax, 64, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_MelmetalGigantamax,

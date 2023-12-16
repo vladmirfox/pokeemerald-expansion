@@ -12400,6 +12400,10 @@ static void Cmd_metronome(void)
     u32 moveCount = MOVES_COUNT_GEN4;
 #elif B_METRONOME_MOVES >= GEN_3
     u32 moveCount = MOVES_COUNT_GEN3;
+#elif B_METRONOME_MOVES >= GEN_2
+    u32 moveCount = MOVES_COUNT_GEN2;
+#else
+    u32 moveCount = MOVES_COUNT_GEN1;
 #endif
 
     gCurrentMove = RandomUniformExcept(RNG_METRONOME, 1, moveCount - 1, InvalidMetronomeMove);
@@ -14114,6 +14118,11 @@ static void Cmd_tryimprison(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+    else if (B_IMPRISON >= GEN_5)
+    {
+        gStatuses3[gBattlerAttacker] |= STATUS3_IMPRISONED_OTHERS;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
     else
     {
         u8 battler, sideAttacker;
@@ -14959,7 +14968,7 @@ static void Cmd_handleballthrow(void)
         if (gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL] < 255)
             gBattleResults.catchAttempts[gLastUsedItem - FIRST_BALL]++;
 
-        if (odds > 254) // mon caught
+        if (odds >= 255) // mon caught
         {
             BtlController_EmitBallThrowAnim(gBattlerAttacker, BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gBattlerAttacker);
@@ -15004,8 +15013,16 @@ static void Cmd_handleballthrow(void)
             }
             else
             {
-                odds = Sqrt(Sqrt(16711680 / odds));
-                odds = 1048560 / odds;
+                if (P_CATCH_CURVE >= GEN_6)
+                {
+                    odds = (255 * 255 * 255) / (odds * odds * odds);
+                    odds = 65536 / Sqrt(Sqrt(Sqrt(Sqrt(odds))));
+                }
+                else
+                {
+                    odds = Sqrt(Sqrt(16711680 / odds));
+                    odds = 1048560 / odds;
+                }
                 for (shakes = 0; shakes < maxShakes && Random() < odds; shakes++);
             }
 
@@ -16478,4 +16495,17 @@ void BS_TryDefog(void)
         else
             gBattlescriptCurrInstr = cmd->failInstr;
     }
+}
+
+void BS_TryTriggerStatusForm(void)
+{
+    NATIVE_ARGS();
+    if (TryBattleFormChange(gBattlerTarget, FORM_CHANGE_STATUS))
+    {
+        gBattleScripting.battler = gBattlerTarget;
+        BattleScriptPush(cmd->nextInstr);
+        gBattlescriptCurrInstr = BattleScript_TargetFormChangeWithStringNoPopup;
+        return;
+    }
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

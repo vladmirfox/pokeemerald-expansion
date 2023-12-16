@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen6[] =
 {
 #endif
 
@@ -1155,10 +1155,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 1,
         .weight = 1,
         .description = COMPOUND_STRING(
-            "When it finds a flower it likes, it dwells\n"
-            "on that flower its whole life long.\n"
-            "It floats on the wind's embrace with\n"
-            "an untroubled heart."),
+            "This Flabébé rides a red flower.\n"
+            "Immediately after birth, this Pokémon\n"
+            "begins flying around in search of a\n"
+            "flower it likes."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -1184,7 +1184,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FlabebeYellowFlower, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_YELLOW_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "It unleashes a variety of moves by\n"
+            "drawing forth the power hidden\n"
+            "within flowers. This Pokémon is\n"
+            "particularly fond of yellow flowers."),
     )),
 
     FORM(SPECIES_FLABEBE_ORANGE_FLOWER, (
@@ -1192,7 +1195,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FlabebeOrangeFlower, 0),
         .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ORANGE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "It receives strength from flowers\n"
+            "and gives them some of its energy in\n"
+            "return. This Pokémon likes orange\n"
+            "flowers best of all."),
     )),
 
     FORM(SPECIES_FLABEBE_BLUE_FLOWER, (
@@ -1200,7 +1206,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FlabebeBlueFlower, 0),
         .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_BLUE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon likes blue flowers\n"
+            "best of all. It floats upward using the\n"
+            "power emanating from its flower\n"
+            "and bobs along lightly through the air."),
     )),
 
     FORM(SPECIES_FLABEBE_WHITE_FLOWER, (
@@ -1208,7 +1217,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FlabebeWhiteFlower, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_WHITE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "When evening falls, it searches out\n"
+            "a place blooming with flowers of\n"
+            "the same white color as itself, and\n"
+            "then it goes to sleep."),
     ))),
 
     SPECIES(SPECIES_FLOETTE_RED_FLOWER, (
@@ -1243,10 +1255,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 2,
         .weight = 9,
         .description = COMPOUND_STRING(
-            "When the flowers of a well-tended flower\n"
-            "bed bloom, it appears and celebrates\n"
-            "with an elegant dance. It draws out the\n"
-            "power of flowers to battle."),
+            "This Pokémon uses red wavelengths\n"
+            "of light to pour its own energy\n"
+            "into flowers and draw forth their\n"
+            "latent potential."),
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -1265,7 +1277,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FloetteYellowFlower, 1),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_YELLOW_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon can draw forth the\n"
+            "power hidden within yellow flowers.\n"
+            "This power then becomes the moves\n"
+            "Floette uses to protect itself."),
     )),
 
     FORM(SPECIES_FLOETTE_ORANGE_FLOWER, (
@@ -1273,7 +1288,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FloetteOrangeFlower, 0),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ORANGE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon can draw forth the\n"
+            "most power when in sync with orange\n"
+            "flowers, compared to flowers of other\n"
+            "colors."),
     )),
 
     FORM(SPECIES_FLOETTE_BLUE_FLOWER, (
@@ -1281,7 +1299,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FloetteBlueFlower, 0),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_BLUE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "Whenever this Pokémon finds\n"
+            "flowering plants that are withering, it\n"
+            "will bring them back to its territory\n"
+            "and care for them."),
     )),
 
     FORM(SPECIES_FLOETTE_WHITE_FLOWER, (
@@ -1289,7 +1310,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(FloetteWhiteFlower, 1),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_WHITE_FLOWER}),
         .description = COMPOUND_STRING(
-            ""),
+            "If it finds someone messing up a\n"
+            "flower bed, it will attack them\n"
+            "without mercy. This Floette takes\n"
+            "particularly good care of white flowers."),
     )),
 
     FORM(SPECIES_FLOETTE_ETERNAL_FLOWER, (
@@ -1302,7 +1326,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 243,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
         .description = COMPOUND_STRING(
-            ""),
+            "The flower it's holding can no\n"
+            "longer be found blooming anywhere. It's\n"
+            "also thought to contain terrifying\n"
+            "power."),
         .cryId = CRY_FLOETTE_ETERNAL_FLOWER,
         FRONT_PIC(FloetteEternalFlower, 64, 64),
         .frontPicYOffset = 3,
@@ -1340,10 +1367,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 11,
         .weight = 100,
         .description = COMPOUND_STRING(
-            "It claims exquisite flower gardens as its\n"
-            "territory. In times long past, governors of\n"
-            "castles would invite Florges to create\n"
-            "gardens to embellish the castle domains."),
+            "This Pokémon creates an\n"
+            "impressive flower garden in its territory. It\n"
+            "draws forth the power of the red\n"
+            "flowers around its neck."),
         .pokemonScale = 320,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -1366,28 +1393,39 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         PALETTES(FlorgesYellowFlower),
         ICON(FlorgesYellowFlower, 1),
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon battles by drawing\n"
+            "forth the power of yellow flowers. It\n"
+            "ruthlessly punishes anyone who\n"
+            "tramples on flowering plants."),
     )),
 
     FORM(SPECIES_FLORGES_ORANGE_FLOWER, (
         PALETTES(FlorgesOrangeFlower),
         ICON(FlorgesOrangeFlower, 0),
         .description = COMPOUND_STRING(
-            ""),
+            "In times long past, castle\n"
+            "governors would lovingly raise Florges to\n"
+            "care for their castles' exquisite\n"
+            "gardens."),
     )),
 
     FORM(SPECIES_FLORGES_BLUE_FLOWER, (
         PALETTES(FlorgesBlueFlower),
         ICON(FlorgesBlueFlower, 0),
         .description = COMPOUND_STRING(
-            ""),
+            "Blue pigments were tremendously\n"
+            "expensive in the past, so paintings\n"
+            "of blue Florges are highly valuable."),
     )),
 
     FORM(SPECIES_FLORGES_WHITE_FLOWER, (
         PALETTES(FlorgesWhiteFlower),
         ICON(FlorgesWhiteFlower, 0),
         .description = COMPOUND_STRING(
-            ""),
+            "A flower garden made by a white-\n"
+            "flowered Florges will be beautifully\n"
+            "decorated with flowering plants of\n"
+            "many different colors."),
     ))),
 #endif //P_FAMILY_FLABEBE
 
@@ -1798,10 +1836,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_PRANKSTER },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
-            "The eyeball patterns on the interior of\n"
-            "its ears emit psychic energy. It keeps the\n"
-            "patterns tightly covered because that\n"
-            "power is too immense."),
+            "The defensive instinct of the\n"
+            "males is strong. It's when they're\n"
+            "protecting themselves or their partners\n"
+            "that they unleash their full power."),
         FRONT_PIC(MeowsticMale, 48, 64),
         .frontPicYOffset = 3,
         BACK_PIC(MeowsticMale, 64, 64),
@@ -1815,7 +1853,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_COMPETITIVE },
         .bodyColor = BODY_COLOR_WHITE,
         .description = COMPOUND_STRING(
-            ""),
+            "Females are a bit more selfish and\n"
+            "aggressive than males. If they\n"
+            "don't get what they want, they will\n"
+            "torment you with their psychic abilities."),
         FRONT_PIC(MeowsticFemale, 56, 64),
         .frontPicYOffset = 2,
         BACK_PIC(MeowsticFemale, 48, 64),
@@ -1959,10 +2000,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evYield_Defense = 2,
         .evYield_SpDefense = 1,
         .description = COMPOUND_STRING(
-            "Generations of kings were attended to\n"
-            "by these Pokémon, which used their\n"
-            "spectral power to manipulate and control\n"
-            "people and Pokémon."),
+            "In this defensive stance,\n"
+            "Aegislash uses its steel body and a force\n"
+            "field of spectral power to reduce the\n"
+            "damage of any attack."),
         FRONT_PIC(AegislashShield, 56, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AegislashShield,
@@ -1985,7 +2026,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evYield_Attack = 2,
         .evYield_SpAttack = 1,
         .description = COMPOUND_STRING(
-            ""),
+            "Once upon a time, a king with an\n"
+            "Aegislash reigned over the land. His\n"
+            "Pokémon eventually drained him of\n"
+            "life, and his kingdom fell with him."),
         FRONT_PIC(AegislashBlade, 64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_AegislashBlade,
@@ -3205,7 +3249,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 17,
         .weight = 3341,
         .description = COMPOUND_STRING(
-            ""),
+            "It loathes solitude and is\n"
+            "extremely clingy-it will fume and run riot if\n"
+            "those dearest to it ever leave its\n"
+            "side."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -3404,10 +3451,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 4,
         .weight = 50,
         .description = COMPOUND_STRING(
-            "It is said to carry wandering spirits to\n"
-            "the place where they belong so they can\n"
-            "move on. As the sun sets, it becomes\n"
-            "restless and active."),
+            "The light that streams out from\n"
+            "the holes in the pumpkin can\n"
+            "hypnotize and control the people and\n"
+            "Pokémon that see it."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -3431,7 +3478,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 3,
         .weight = 35,
         .description = COMPOUND_STRING(
-            ""),
+            "When taking spirits to the\n"
+            "afterlife, small Pumpkaboo prefer the\n"
+            "spirits of children to those of adults."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -3455,7 +3504,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 5,
         .weight = 75,
         .description = COMPOUND_STRING(
-            ""),
+            "When taking spirits to the\n"
+            "afterlife, large Pumpkaboo prefer the\n"
+            "spirits of adults to those of children."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -3481,7 +3532,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 8,
         .weight = 150,
         .description = COMPOUND_STRING(
-            ""),
+            "Supersized Pumpkaboo are very\n"
+            "partial to the spirits of people who\n"
+            "were of similarly superior proportions."),
         .pokemonScale = 491,
         .pokemonOffset = 12,
         .trainerScale = 256,
@@ -3527,10 +3580,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 9,
         .weight = 125,
         .description = COMPOUND_STRING(
-            "Singing in eerie voices, they wander town\n"
-            "streets on the night of the new moon.\n"
-            "Anyone who hears their song will become\n"
-            "inflicted with a curse."),
+            "Eerie cries emanate from its body\n"
+            "in the dead of night. The sounds are\n"
+            "said to be the wails of spirits who\n"
+            "are suffering in the afterlife."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -3552,7 +3605,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 7,
         .weight = 95,
         .description = COMPOUND_STRING(
-            ""),
+            "A small-sized Pumpkaboo evolves\n"
+            "into a small-sized Gourgeist. Its\n"
+            "bodily proportions also get passed on\n"
+            "to its descendants."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -3574,7 +3630,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 11,
         .weight = 140,
         .description = COMPOUND_STRING(
-            ""),
+            "A large-sized Pumpkaboo evolves\n"
+            "into a large-sized Gourgeist. Its\n"
+            "bodily proportions also get passed on\n"
+            "to its descendants."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -3598,7 +3657,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 17,
         .weight = 390,
         .description = COMPOUND_STRING(
-            ""),
+            "A supersized Pumpkaboo evolves\n"
+            "into a supersized Gourgeist. Its\n"
+            "bodily proportions also get passed on to\n"
+            "its descendants."),
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -3724,7 +3786,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 14,
         .weight = 2624,
         .description = COMPOUND_STRING(
-            ""),
+            "The armor of ice covering its lower\n"
+            "jaw puts steel to shame and can\n"
+            "shatter rocks with ease."),
         .pokemonScale = 261,
         .pokemonOffset = 1,
         .trainerScale = 334,
@@ -4083,7 +4147,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 45,
         .weight = 6100,
         .description = COMPOUND_STRING(
-            ""),
+            "This is Zygarde's perfected form.\n"
+            "From the orifice on its chest, it\n"
+            "radiates high-powered energy that\n"
+            "eliminates everything."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,

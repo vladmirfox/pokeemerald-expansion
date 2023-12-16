@@ -440,7 +440,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 280,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "The flame inside its body burns\n"
+            "hotter than 3,600 degrees Fahrenheit.\n"
+            "When Charizard roars, that\n"
+            "temperature climbs even higher."),
         .pokemonScale = 256,
         .pokemonOffset = 1,
         .trainerScale = 302,
@@ -816,7 +819,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 170,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Once it has opponents trapped in a\n"
+            "tornado that could blow away a 10-\n"
+            "ton truck, it finishes them off with\n"
+            "its poisonous scales."),
         .pokemonScale = 312,
         .pokemonOffset = 2,
         .trainerScale = 256,
@@ -1933,7 +1939,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "When it smashes its opponents with\n"
+            "its bolt-shaped tail, it delivers a\n"
+            "surge of electricity equivalent to a\n"
+            "lightning strike."),
         FRONT_PIC(PikachuGigantamax, 64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_PikachuGigantamax,
@@ -1965,7 +1974,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 60,
         .baseAttack    = 90,
         .baseDefense   = 55,
-        .baseSpeed     = RAICHU_SPEED,
+        .baseSpeed     = P_UPDATED_STATS >= GEN_6 ? 110 : 100,
         .baseSpAttack  = 90,
         .baseSpDefense = 80,
         .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
@@ -1999,7 +2008,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 60,
         .baseAttack    = 85,
         .baseDefense   = 50,
-        .baseSpeed     = RAICHU_SPEED,
+        .baseSpeed     = 110,
         .baseSpAttack  = 95,
         .baseSpDefense = 85,
         .types = { TYPE_ELECTRIC, TYPE_PSYCHIC },
@@ -3778,7 +3787,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 330,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "The pattern that has appeared on\n"
+            "its giant coin is thought to be the\n"
+            "key to unlocking the secrets of the\n"
+            "Dynamax phenomenon."),
         .pokemonScale = 480,
         .pokemonOffset = 19,
         .trainerScale = 256,
@@ -4874,7 +4886,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "One of these Pokémon once used\n"
+            "its immeasurable strength to lift a\n"
+            "large ship that was in trouble. It\n"
+            "then carried the ship to port."),
         .pokemonScale = 280,
         .pokemonOffset = 1,
         .trainerScale = 269,
@@ -6722,7 +6737,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 200,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Rumor has it that its gigantic\n"
+            "mouth leads not into its body, filled\n"
+            "with cursed energy, but instead\n"
+            "directly to the afterlife."),
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 302,
@@ -7077,7 +7095,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 190,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "The flow of Gigantamax energy has\n"
+            "spurred this Pokémon's left pincer\n"
+            "to grow to an enormous size. That\n"
+            "claw can pulverize anything."),
         .pokemonScale = 256,
         .pokemonOffset = 2,
         .trainerScale = 256,
@@ -9916,7 +9937,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 240,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Over 5,000 people can ride on its\n"
+            "shell at once. And it's a very\n"
+            "comfortable ride, without the slightest\n"
+            "shaking or swaying."),
         .pokemonScale = 257,
         .pokemonOffset = 10,
         .trainerScale = 423,
@@ -10048,7 +10072,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 180,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Having gotten even friendlier and\n"
+            "more innocent, Eevee tries to play\n"
+            "with anyone around, only to end up\n"
+            "crushing them with its immense body."),
         .pokemonScale = 476,
         .pokemonOffset = 18,
         .trainerScale = 256,
@@ -10970,7 +10997,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 350,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "Gigantamax energy has affected\n"
+            "stray seeds and even pebbles that\n"
+            "got stuck to Snorlax, making them grow\n"
+            "to a huge size."),
         .pokemonScale = 256,
         .pokemonOffset = 4,
         .trainerScale = 423,

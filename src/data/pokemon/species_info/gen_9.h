@@ -1,5 +1,5 @@
 #ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen1[] =
+const struct SpeciesInfo gSpeciesInfoGen9[] =
 {
 #endif
 
@@ -535,7 +535,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT },
         .cryId = CRY_OINKOLOGNE_FEMALE,
         .description = COMPOUND_STRING(
-            ""),
+            "This is a meticulous Pokémon that\n"
+            "likes to keep things tidy. It\n"
+            "shrouds itself in a floral aroma that\n"
+            "soothes the Pokémon around it."),
         FRONT_PIC(OinkologneFemale, 64, 64),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Oinkologne,
@@ -969,7 +972,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .cryId = CRY_MAUSHOLD_FAMILY_OF_THREE,
         .weight = 23,
         .description = COMPOUND_STRING(
-            ""),
+            "The little one just appeared one\n"
+            "day. They all live together like a\n"
+            "family, but the relationship between\n"
+            "the three is still unclear."),
         FRONT_PIC(MausholdFamilyOfThree, 64, 64),
         BACK_PIC(MausholdFamilyOfThree, 64, 64),
         ICON(MausholdFamilyOfThree, 0),
@@ -1278,7 +1284,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
-            ""),
+            "The largest of their flocks can\n"
+            "contain more than 50 individuals. They\n"
+            "fly around towns and forests,\n"
+            "searching for food and making a racket."),
         PALETTES(SquawkabillyBluePlumage),
         ICON(SquawkabillyBluePlumage, 2),
     )),
@@ -1287,7 +1296,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_YELLOW,
         .description = COMPOUND_STRING(
-            ""),
+            "These Squawkabilly are hotheaded,\n"
+            "and their fighting style is vicious.\n"
+            "They'll leap within reach of their\n"
+            "foes to engage in close combat."),
         PALETTES(SquawkabillyYellowPlumage),
         ICON(SquawkabillyYellowPlumage, 1),
     )),
@@ -1296,7 +1308,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_WHITE,
         .description = COMPOUND_STRING(
-            ""),
+            "Though these Squawkabilly are the\n"
+            "fewest in number, they have no\n"
+            "trouble living in towns since they blend\n"
+            "in with the white buildings."),
         PALETTES(SquawkabillyWhitePlumage),
         ICON(SquawkabillyWhitePlumage, 1),
     ))),
@@ -2882,7 +2897,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 18,
         .weight = 974,
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon's ancient genes have\n"
+            "awakened. It is now so\n"
+            "extraordinarily strong that it can easily lift a\n"
+            "cruise ship with one fin."),
         FRONT_PIC(PalafinHero, 64, 64),
         .frontPicYOffset = 0,
         BACK_PIC(PalafinHero, 64, 64),
@@ -3569,7 +3587,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_TATSUGIRI_DROOPY,
         .description = COMPOUND_STRING(
-            ""),
+            "This Pokémon tricks its opponents\n"
+            "by playing dead. It is small and\n"
+            "weak, but it uses its smarts to survive."),
         FRONT_PIC(TatsugiriDroopy, 64, 64),
         BACK_PIC(TatsugiriDroopy, 64, 64),
         PALETTES(TatsugiriDroopy),
@@ -3579,7 +3599,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     FORM(SPECIES_TATSUGIRI_STRETCHY, (
         .bodyColor = BODY_COLOR_YELLOW,
         .description = COMPOUND_STRING(
-            ""),
+            "It's one of the most intelligent\n"
+            "dragon Pokémon. It camouflages itself\n"
+            "by inflating its throat sac."),
         FRONT_PIC(TatsugiriStretchy, 64, 64),
         BACK_PIC(TatsugiriStretchy, 64, 64),
         PALETTES(TatsugiriStretchy),
@@ -4383,7 +4405,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 1,
         .weight = 1,
         .description = COMPOUND_STRING(
-            ""),
+            "It wanders around, carrying an old\n"
+            "coin on its back. It survives by\n"
+            "draining the life-force from humans who\n"
+            "try to pick up its coin."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -4981,7 +5006,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_POLTCHAGEIST_ARTISAN, (
         .description = COMPOUND_STRING(
-            ""),
+            "It has taken up residence in a very\n"
+            "expensive tea caddy. It takes an\n"
+            "expert to distinguish the expensive\n"
+            "tea caddies from the cheap ones."),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
     ))),
 
@@ -5034,7 +5062,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     FORM(SPECIES_SINISTCHA_MASTERPIECE, (
         .description = COMPOUND_STRING(
-            ""),
+            "The more stirring it does with the\n"
+            "tea whisk on its head, the more\n"
+            "energy it builds up. It does this to\n"
+            "prepare for battle."),
     ))),
 #endif //P_FAMILY_POLTCHAGEIST
 
