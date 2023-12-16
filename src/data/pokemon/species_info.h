@@ -50353,563 +50353,261 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formChangeTable = sAlcremieFormChangeTable,
     ),
 
+#define ALCREMIE_FORM_INFO(sweet, cream, color)             \
+        .bodyColor = color,                                 \
+        .description = gAlcremie ##cream##PokedexText,      \
+        FRONT_PIC(Alcremie ##sweet, 40, 56),                \
+        BACK_PIC(Alcremie ##sweet, 48, 56),                 \
+        .palette = gMonPalette_Alcremie ##sweet##cream,     \
+        .shinyPalette = gMonShinyPalette_Alcremie ##sweet
+
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberrySaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        BACK_PIC(AlcremieStrawberry, 48, 56),
-        .palette = gMonPalette_AlcremieStrawberryRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-    )),
+        ALCREMIE_FORM_INFO(Strawberry, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerrySaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieBerry, 40, 56),
-        BACK_PIC(AlcremieBerry, 48, 56),
-        .palette = gMonPalette_AlcremieBerryRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieBerry,
-    )),
+        ALCREMIE_FORM_INFO(Berry, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveSaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieLove, 40, 56),
-        BACK_PIC(AlcremieLove, 48, 56),
-        .palette = gMonPalette_AlcremieLoveRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieLove,
-    )),
+        ALCREMIE_FORM_INFO(Love, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarSaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieStar, 40, 56),
-        BACK_PIC(AlcremieStar, 48, 56),
-        .palette = gMonPalette_AlcremieStarRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieStar,
-    )),
+        ALCREMIE_FORM_INFO(Star, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverSaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieClover, 40, 56),
-        BACK_PIC(AlcremieClover, 48, 56),
-        .palette = gMonPalette_AlcremieCloverRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieClover,
-    )),
+        ALCREMIE_FORM_INFO(Clover, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerSaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieFlower, 40, 56),
-        BACK_PIC(AlcremieFlower, 48, 56),
-        .palette = gMonPalette_AlcremieFlowerRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieFlower,
-    )),
+        ALCREMIE_FORM_INFO(Flower, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieVanillaCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, VanillaCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_RUBY_CREAM, (
-        .bodyColor = BODY_COLOR_PINK,
-        .description = gAlcremieRubyCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonRubyCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, RubyCream, BODY_COLOR_PINK)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM, (
-        .bodyColor = BODY_COLOR_GREEN,
-        .description = gAlcremieMatchaCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonMatchaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, MatchaCream, BODY_COLOR_GREEN)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_MINT_CREAM, (
-        .bodyColor = BODY_COLOR_BLUE,
-        .description = gAlcremieMintCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonMintCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, MintCream, BODY_COLOR_BLUE)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_LEMON_CREAM, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieLemonCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonLemonCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, LemonCream, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_SALTED_CREAM, (
-        .bodyColor = BODY_COLOR_WHITE,
-        .description = gAlcremieSaltedCreamPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonSaltedCream,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, SaltedCream, BODY_COLOR_WHITE)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRubySwirlPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonRubySwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, RubySwirl, BODY_COLOR_YELLOW)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL, (
-        .bodyColor = BODY_COLOR_BROWN,
-        .description = gAlcremieCaramelSwirlPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonCaramelSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, CaramelSwirl, BODY_COLOR_BROWN)
+    ))
 
     FORM(SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL, (
-        .bodyColor = BODY_COLOR_YELLOW,
-        .description = gAlcremieRainbowSwirlPokedexText,
-        FRONT_PIC(AlcremieRibbon, 40, 56),
-        BACK_PIC(AlcremieRibbon, 48, 56),
-        .palette = gMonPalette_AlcremieRibbonRainbowSwirl,
-        .shinyPalette = gMonShinyPalette_AlcremieRibbon,
-    )),
+        ALCREMIE_FORM_INFO(Ribbon, RainbowSwirl, BODY_COLOR_YELLOW)
+    ))
 
     GIGANTAMAX_FORM(SPECIES_ALCREMIE_GIGANTAMAX, (
         .bodyColor = BODY_COLOR_PINK,
