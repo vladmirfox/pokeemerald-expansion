@@ -39452,154 +39452,169 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LITLEO
 
 #if P_FAMILY_FLABEBE
-#define FLABEBE_MISC_INFO(Form, FORM, iconPal)                                  \
-        .baseHP        = 44,                                                    \
-        .baseAttack    = 38,                                                    \
-        .baseDefense   = 39,                                                    \
-        .baseSpeed     = 42,                                                    \
-        .baseSpAttack  = 61,                                                    \
-        .baseSpDefense = 79,                                                    \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 225,                                                       \
-        .expYield = 61,                                                         \
-        .evYield_SpDefense = 1,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                      \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Flabébé"),                                            \
-        .cryId = CRY_FLABEBE,                                                   \
-        .natDexNum = NATIONAL_DEX_FLABEBE,                                      \
-        .categoryName = _("Single Bloom"),                                      \
-        .height = 1,                                                            \
-        .weight = 1,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Flabebe, 48, 56),                                             \
-        .frontPicYOffset = 6,                                                   \
-        .frontAnimFrames = sAnims_Flabebe,                                      \
-        .frontAnimId = ANIM_H_SLIDE_SLOW,                                       \
-        .enemyMonElevation = 6,                                                 \
-        BACK_PIC(Flabebe, 64, 40),                                              \
-        .backPicYOffset = 12,                                                   \
-        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                              \
-        PALETTES(Flabebe##Form##Flower),                                         \
-        ICON(Flabebe##Form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Flabebe,                                     \
-        LEARNSETS(Flabebe),                                                     \
-        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,                       \
-        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ ##FORM##_FLOWER})
-
     SPECIES(SPECIES_FLABEBE_RED_FLOWER, (
-        FLABEBE_MISC_INFO(Red, RED, 1),
+        .baseHP        = 44,
+        .baseAttack    = 38,
+        .baseDefense   = 39,
+        .baseSpeed     = 42,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 79,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 225,
+        .expYield = 61,
+        .evYield_SpDefense = 1,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Flabébé"),
+        .cryId = CRY_FLABEBE,
+        .natDexNum = NATIONAL_DEX_FLABEBE,
+        .categoryName = _("Single Bloom"),
+        .height = 1,
+        .weight = 1,
         .description = COMPOUND_STRING(
             "When it finds a flower it likes, it dwells\n"
             "on that flower its whole life long.\n"
             "It floats on the wind's embrace with\n"
             "an untroubled heart."),
-    )),
-    SPECIES(SPECIES_FLABEBE_YELLOW_FLOWER, (
-        FLABEBE_MISC_INFO(Yellow, YELLOW, 1),
-        .description = COMPOUND_STRING(
-            ""),
-    )),
-    SPECIES(SPECIES_FLABEBE_ORANGE_FLOWER, (
-        FLABEBE_MISC_INFO(Orange, ORANGE, 0),
-        .description = COMPOUND_STRING(
-            ""),
-    )),
-    SPECIES(SPECIES_FLABEBE_BLUE_FLOWER, (
-        FLABEBE_MISC_INFO(Blue, BLUE, 0),
-        .description = COMPOUND_STRING(
-            ""),
-    )),
-    SPECIES(SPECIES_FLABEBE_WHITE_FLOWER, (
-        FLABEBE_MISC_INFO(White, WHITE, 1),
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Flabebe, 48, 56),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = sAnims_Flabebe,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .enemyMonElevation = 6,
+        BACK_PIC(Flabebe, 64, 40),
+        .backPicYOffset = 12,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        PALETTES(FlabebeRedFlower),
+        ICON(FlabebeRedFlower, 1),
+        .footprint = gMonFootprint_Flabebe,
+        LEARNSETS(Flabebe),
+        .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_RED_FLOWER}),
+    ),
+
+    FORM(SPECIES_FLABEBE_YELLOW_FLOWER, (
+        PALETTES(FlabebeYellowFlower),
+        ICON(FlabebeYellowFlower, 1),
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_YELLOW_FLOWER}),
         .description = COMPOUND_STRING(
             ""),
     )),
 
-#define FLOETTE_MISC_INFO(form, FORM, iconPal)                                  \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 120,                                                       \
-        .evYield_SpDefense = 2,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Floette"),                                            \
-        .natDexNum = NATIONAL_DEX_FLOETTE,                                      \
-        .categoryName = _("Single Bloom"),                                      \
-        .height = 2,                                                            \
-        .weight = 9,                                                            \
-        .pokemonScale = 682,                                                    \
-        .pokemonOffset = 24,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        .frontAnimFrames = sAnims_Floette,                                      \
-        .frontAnimId = ANIM_V_SLIDE_WOBBLE,                                     \
-        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                              \
-        PALETTES(Floette ##form##Flower),                                        \
-        ICON(Floette##form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Floette,                                     \
-        .formSpeciesIdTable = sFloetteFormSpeciesIdTable
+    FORM(SPECIES_FLABEBE_ORANGE_FLOWER, (
+        PALETTES(FlabebeOrangeFlower),
+        ICON(FlabebeOrangeFlower, 0),
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_ORANGE_FLOWER}),
+        .description = COMPOUND_STRING(
+            ""),
+    )),
 
-#define FLOETTE_NORMAL_INFO(form, FORM, iconPal)                                                \
-        .baseHP        = 54,                                                                    \
-        .baseAttack    = 45,                                                                    \
-        .baseDefense   = 47,                                                                    \
-        .baseSpeed     = 52,                                                                    \
-        .baseSpAttack  = 75,                                                                    \
-        .baseSpDefense = 98,                                                                    \
-        .expYield = 130,                                                                        \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                                      \
-        .cryId = CRY_FLOETTE,                                                                   \
-        FRONT_PIC(Floette, 48, 64),                                                             \
-        .frontPicYOffset = 3,                                                                   \
-        .enemyMonElevation = 4,                                                                 \
-        BACK_PIC(Floette, 64, 64),                                                              \
-        .backPicYOffset = 2,                                                                    \
-        LEARNSETS(Floette),                                                                     \
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ ##FORM##_FLOWER}),\
-        FLOETTE_MISC_INFO(form, FORM, iconPal)
+    FORM(SPECIES_FLABEBE_BLUE_FLOWER, (
+        PALETTES(FlabebeBlueFlower),
+        ICON(FlabebeBlueFlower, 0),
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_BLUE_FLOWER}),
+        .description = COMPOUND_STRING(
+            ""),
+    )),
+
+    FORM(SPECIES_FLABEBE_WHITE_FLOWER, (
+        PALETTES(FlabebeWhiteFlower),
+        ICON(FlabebeWhiteFlower, 1),
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_WHITE_FLOWER}),
+        .description = COMPOUND_STRING(
+            ""),
+    ))),
 
     SPECIES(SPECIES_FLOETTE_RED_FLOWER, (
-        FLOETTE_NORMAL_INFO(Red, RED, 1),
+        .baseHP        = 54,
+        .baseAttack    = 45,
+        .baseDefense   = 47,
+        .baseSpeed     = 52,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 98,
+        .expYield = 130,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .cryId = CRY_FLOETTE,
+        FRONT_PIC(Floette, 48, 64),
+        .frontPicYOffset = 3,
+        .enemyMonElevation = 4,
+        BACK_PIC(Floette, 64, 64),
+        .backPicYOffset = 2,
+        LEARNSETS(Floette),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_RED_FLOWER}),\
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 120,
+        .evYield_SpDefense = 2,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Floette"),
+        .natDexNum = NATIONAL_DEX_FLOETTE,
+        .categoryName = _("Single Bloom"),
+        .height = 2,
+        .weight = 9,
         .description = COMPOUND_STRING(
             "When the flowers of a well-tended flower\n"
             "bed bloom, it appears and celebrates\n"
             "with an elegant dance. It draws out the\n"
             "power of flowers to battle.")
-    )),
-    SPECIES(SPECIES_FLOETTE_YELLOW_FLOWER, (
-        FLOETTE_NORMAL_INFO(Yellow, YELLOW, 1),
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontAnimFrames = sAnims_Floette,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        PALETTES(FloetteRedFlower),
+        ICON(FloetteRedFlower, 1),
+        .footprint = gMonFootprint_Floette,
+        .formSpeciesIdTable = sFloetteFormSpeciesIdTable
+    ),
+
+    FORM(SPECIES_FLOETTE_YELLOW_FLOWER, (
+        PALETTES(FloetteYellowFlower),
+        ICON(FloetteYellowFlower, 1),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_YELLOW_FLOWER}),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLOETTE_ORANGE_FLOWER, (
-        FLOETTE_NORMAL_INFO(Orange, ORANGE, 0),
+
+    FORM(SPECIES_FLOETTE_ORANGE_FLOWER, (
+        PALETTES(FloetteOrangeFlower),
+        ICON(FloetteOrangeFlower, 0),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_ORANGE_FLOWER}),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLOETTE_BLUE_FLOWER, (
-        FLOETTE_NORMAL_INFO(Blue, BLUE, 0),
+
+    FORM(SPECIES_FLOETTE_BLUE_FLOWER, (
+        PALETTES(FloetteBlueFlower),
+        ICON(FloetteBlueFlower, 0),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_BLUE_FLOWER}),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLOETTE_WHITE_FLOWER, (
-        FLOETTE_NORMAL_INFO(White, WHITE, 1),
+
+    FORM(SPECIES_FLOETTE_WHITE_FLOWER, (
+        PALETTES(FloetteWhiteFlower),
+        ICON(FloetteWhiteFlower, 1),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_WHITE_FLOWER}),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLOETTE_ETERNAL_FLOWER, (
-        FLOETTE_MISC_INFO(Eternal, ETERNAL, 0),
+
+    FORM(SPECIES_FLOETTE_ETERNAL_FLOWER, (
         .baseHP        = 74,
         .baseAttack    = 65,
         .baseDefense   = 67,
@@ -39616,78 +39631,86 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .enemyMonElevation = 4,
         BACK_PIC(FloetteEternalFlower, 64, 64),
         .backPicYOffset = 2,
+        PALETTES(FloetteEternal),
+        ICON(FloetteEternal, 0),
         LEARNSETS(FloetteEternalFlower),
-    )),
-
-#define FLORGES_MISC_INFO(Form, iconPal)                                        \
-        .baseHP        = 78,                                                    \
-        .baseAttack    = 65,                                                    \
-        .baseDefense   = 68,                                                    \
-        .baseSpeed     = 75,                                                    \
-        .baseSpAttack  = 112,                                                   \
-        .baseSpDefense = 154,                                                   \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                    \
-        .catchRate = 45,                                                        \
-        .expYield = 248,                                                        \
-        .evYield_SpDefense = 3,                                                 \
-        .genderRatio = MON_FEMALE,                                              \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },                      \
-        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                          \
-        .speciesName = _("Florges"),                                            \
-        .cryId = CRY_FLORGES,                                                   \
-        .natDexNum = NATIONAL_DEX_FLORGES,                                      \
-        .categoryName = _("Garden"),                                            \
-        .height = 11,                                                           \
-        .weight = 100,                                                          \
-        .pokemonScale = 320,                                                    \
-        .pokemonOffset = 7,                                                     \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FRONT_PIC(Florges, 64, 64),                                             \
-        .frontPicYOffset = 0,                                                   \
-        .frontAnimFrames = sAnims_Florges,                                      \
-        .frontAnimId = ANIM_V_SLIDE_SLOW,                                       \
-        BACK_PIC(Florges, 64, 48),                                              \
-        .backPicYOffset = 9,                                                    \
-        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                            \
-        PALETTES(Florges##Form##Flower),                                         \
-        ICON(Florges##Form##Flower, iconPal),                                   \
-        .footprint = gMonFootprint_Florges,                                     \
-        LEARNSETS(Florges),                                                     \
-        .formSpeciesIdTable = sFlorgesFormSpeciesIdTable
+        .evolutions = 0,
+    ))),
 
     SPECIES(SPECIES_FLORGES_RED_FLOWER, (
-        FLORGES_MISC_INFO(Red, 0),
+        .baseHP        = 78,
+        .baseAttack    = 65,
+        .baseDefense   = 68,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 112,
+        .baseSpDefense = 154,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 248,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_FAIRY, EGG_GROUP_FAIRY },
+        .abilities = { ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Florges"),
+        .cryId = CRY_FLORGES,
+        .natDexNum = NATIONAL_DEX_FLORGES,
+        .categoryName = _("Garden"),
+        .height = 11,
+        .weight = 100,
         .description = COMPOUND_STRING(
             "It claims exquisite flower gardens as its\n"
             "territory. In times long past, governors of\n"
             "castles would invite Florges to create\n"
             "gardens to embellish the castle domains."),
-    )),
-    SPECIES(SPECIES_FLORGES_YELLOW_FLOWER, (
-        FLORGES_MISC_INFO(Yellow, 1),
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Florges, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Florges,
+        .frontAnimId = ANIM_V_SLIDE_SLOW,
+        BACK_PIC(Florges, 64, 48),
+        .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTES(FlorgesRedFlower),
+        ICON(FlorgesRedFlower, 0),
+        .footprint = gMonFootprint_Florges,
+        LEARNSETS(Florges),
+        .formSpeciesIdTable = sFlorgesFormSpeciesIdTable
+    ),
+
+    FORM(SPECIES_FLORGES_YELLOW_FLOWER, (
+        PALETTES(FlorgesYellowFlower),
+        ICON(FlorgesYellowFlower, 1),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLORGES_ORANGE_FLOWER, (
-        FLORGES_MISC_INFO(Orange, 0),
+
+    FORM(SPECIES_FLORGES_ORANGE_FLOWER, (
+        PALETTES(FlorgesOrangeFlower),
+        ICON(FlorgesOrangeFlower, 0),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLORGES_BLUE_FLOWER, (
-        FLORGES_MISC_INFO(Blue, 0),
+
+    FORM(SPECIES_FLORGES_BLUE_FLOWER, (
+        PALETTES(FlorgesBlueFlower),
+        ICON(FlorgesBlueFlower, 0),
         .description = COMPOUND_STRING(
             ""),
     )),
-    SPECIES(SPECIES_FLORGES_WHITE_FLOWER, (
-        FLORGES_MISC_INFO(White, 0),
+
+    FORM(SPECIES_FLORGES_WHITE_FLOWER, (
+        PALETTES(FlorgesWhiteFlower),
+        ICON(FlorgesWhiteFlower, 0),
         .description = COMPOUND_STRING(
             ""),
-    )),
+    ))),
 #endif //P_FAMILY_FLABEBE
 
 #if P_FAMILY_SKIDDO
@@ -46863,62 +46886,62 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
-#define MAGEARNA_MISC_INFO(Form)                                                        \
-        .baseHP        = 80,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = 115,                                                           \
-        .baseSpeed     = 65,                                                            \
-        .baseSpAttack  = 130,                                                           \
-        .baseSpDefense = 115,                                                           \
-        .types = { TYPE_STEEL, TYPE_FAIRY },                                            \
-        .catchRate = 3,                                                                 \
-        .expYield = 270,                                                                \
-        .evYield_SpAttack = 3,                                                          \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_SOUL_HEART, ABILITY_NONE },                              \
-        .speciesName = _("Magearna"),                                                   \
-        .cryId = CRY_MAGEARNA,                                                          \
-        .natDexNum = NATIONAL_DEX_MAGEARNA,                                             \
-        .categoryName = _("Artificial"),                                                \
-        .height = 10,                                                                   \
-        .weight = 805,                                                                  \
-        .pokemonScale = 305,                                                            \
-        .pokemonOffset = 7,                                                             \
-        .trainerScale = 257,                                                            \
-        .trainerOffset = 0,                                                             \
-        FRONT_PIC(Form, 56, 64),                                                        \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Magearna,                                             \
-        .frontAnimId = ANIM_H_SLIDE_SLOW,                                               \
-        BACK_PIC(Form, 64, 56),                                                         \
-        .backPicYOffset = 4,                                                            \
-        PALETTES(Form),                                                                 \
-        ICON(Form, 0),                                                                  \
-        .footprint = gMonFootprint_Magearna,                                            \
-        LEARNSETS(Magearna),                                                            \
-        .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,                              \
-        .isMythical = TRUE
-    //.backAnimId = BACK_ANIM_NONE,
-
     SPECIES(SPECIES_MAGEARNA, (
-        MAGEARNA_MISC_INFO(Magearna),
+        .baseHP        = 80,
+        .baseAttack    = 95,
+        .baseDefense   = 115,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 115,
+        .types = { TYPE_STEEL, TYPE_FAIRY },
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_SOUL_HEART, ABILITY_NONE },
         .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Magearna"),
+        .cryId = CRY_MAGEARNA,
+        .natDexNum = NATIONAL_DEX_MAGEARNA,
+        .categoryName = _("Artificial"),
+        .height = 10,
+        .weight = 805,
         .description = COMPOUND_STRING(
             "This artificial Pokémon, constructed more\n"
             "than 500 years ago, can understand human\n"
             "speech but cannot itself speak. Its true\n"
             "self is its Soul-Heart, an artificial soul."),
-    )),
-    SPECIES(SPECIES_MAGEARNA_ORIGINAL_COLOR, (
-        MAGEARNA_MISC_INFO(MagearnaOriginalColor),
+        .pokemonScale = 305,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        FRONT_PIC(Magearna, 56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Magearna,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        BACK_PIC(Magearna, 64, 56),
+        .backPicYOffset = 4,
+        PALETTES(Magearna),
+        ICON(Magearna, 0),
+        .footprint = gMonFootprint_Magearna,
+        LEARNSETS(Magearna),
+        .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,
+        .isMythical = TRUE
+    ),
+
+    FORM(SPECIES_MAGEARNA_ORIGINAL_COLOR, (
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
             ""),
-    )),
+        FRONT_PIC(MagearnaOriginalColor, 56, 64),
+        BACK_PIC(MagearnaOriginalColor, 64, 56),
+        PALETTES(MagearnaOriginalColor),
+        ICON(MagearnaOriginalColor, 0),
+    ))),
 #endif //P_FAMILY_MAGEARNA
 
 #if P_FAMILY_MARSHADOW
