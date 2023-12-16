@@ -1,93 +1,11 @@
 #include "constants/abilities.h"
 
 // Shared Pokédex entries
-const u8 gPichuPokedexText[] = _(
-    "It is still inept at retaining electricity.\n"
-    "When it is startled, it discharges power\n"
-    "accidentally. It gets better at holding\n"
-    "power as it grows older.");
-
-const u8 gPikachuPokedexText[] = _(
-    "It stores electricity in the electric sacs\n"
-    "on its cheeks. When it releases pent-up\n"
-    "energy in a burst, the electric power is\n"
-    "equal to a lightning bolt.");
-
-const u8 gUnownPokedexText[] = _(
-    "This Pokémon is shaped like ancient text\n"
-    "characters. Although research is ongoing,\n"
-    "it is a mystery as to which came first,\n"
-    "the ancient writings or the various Unown.");
-
-const u8 gDeoxysNormalPokedexText[] = _(
-    "Deoxys emerged from a virus that came\n"
-    "from space. It is highly intelligent and\n"
-    "can shoot lasers from the crystalline\n"
-    "organ on its chest.");
-
-const u8 gArceusPokedexText[] = _(
-    "It is told in mythology that this Pokémon\n"
-    "emerged from an egg and shaped all there\n"
-    "is in this world, before the universe\n"
-    "even existed.");
-
-const u8 gGenesectPokedexText[] = _(
-    "Over 300 million years ago, it was\n"
-    "feared as the strongest of hunters.\n"
-    "Team Plasma altered it and attached\n"
-    "a cannon to its back.");
-
-const u8 gGreninjaPokedexText[] = _(
-    "It appears and vanishes with a ninja's\n"
-    "grace. It toys with its enemies using swift\n"
-    "movements, while slicing them with throwing\n"
-    "stars made of compressed water.");
-
-const u8 gFurfrouPokedexText[] = _(
-    "Trimming its fluffy fur not only makes\n"
-    "it more elegant but also increases the\n"
-    "swiftness of its movements. These\n"
-    "Pokémon were the guardians of kings.");
-
-const u8 gXerneasPokedexText[] = _(
-    "Legends say that when the horns on\n"
-    "its head shine in seven colors, it is\n"
-    "sharing everlasting life. It slept for a\n"
-    "thousand years in the form of a tree");
-
-const u8 gZygarde50PokedexText[] = _(
-    "It's said to be monitoring the ecosystem\n"
-    "from deep in the caves where it lives.\n"
-    "There are rumors that even greater power\n"
-    "lies hidden within its cells.");
-
 const u8 gZygarde10PokedexText[] = _("");
-
-const u8 gRockruffPokedexText[] = _(
-    "This Pokémon has lived with people since\n"
-    "times long ago. It can sense when its\n"
-    "Trainer is in the dumps and will stick\n"
-    "close by its Trainer's side.");
-
-const u8 gSilvallyNormalPokedexText[] = _(
-    "Its trust in its partner awakens it.\n"
-    "This Pokémon is capable of changing its\n"
-    "type by equipping special memories, a\n"
-    "trait that is well displayed in battle.");
 
 const u8 gSilvallyMemoryPokedexText[] = _("");
 
-const u8 gMiniorMeteorPokedexText[] = _(
-    "Originally making its home in the ozone\n"
-    "layer, it hurtles to the ground when the\n"
-    "shell encasing its body grows too heavy.\n"
-    "It was born from mutated nanoparticles.");
-
 const u8 gMiniorCorePokedexText[] = _("");
-
-const u8 gAlcremieVanillaCreamPokedexText[] = _(
-    "When it trusts a Trainer, it will treat\n"
-    "them to berries it's decorated with cream.");
 
 const u8 gAlcremieRubyCreamPokedexText[] = _("");
 
@@ -106,12 +24,6 @@ const u8 gAlcremieCaramelSwirlPokedexText[] = _("");
 const u8 gAlcremieRainbowSwirlPokedexText[] = _("");
 
 const u8 gToxtricityGigantamaxPokedexText[] = _("");
-
-const u8 gOgerponTealMaskPokedexText[] = _(
-    "This Pokémon's type changes based on\n"
-    "which mask it's wearing. It confounds\n"
-    "its enemies with nimble movements\n"
-    "and kicks.");
 
 const u8 gOgerponWellspringMaskPokedexText[] = _("");
 
@@ -1906,7 +1818,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Tiny Mouse"),
         .height = 3,
         .weight = 20,
-        .description = gPichuPokedexText,
+        .description = COMPOUND_STRING(
+            "It is still inept at retaining electricity.\n"
+            "When it is startled, it discharges power\n"
+            "accidentally. It gets better at holding\n"
+            "power as it grows older."),
         .pokemonScale = 508,
         .pokemonOffset = 20,
         .trainerScale = 256,
@@ -1972,7 +1888,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .genderRatio = PERCENT_FEMALE(50),
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },
-        .description = gPikachuPokedexText,
+        .description = COMPOUND_STRING(
+            "It stores electricity in the electric sacs\n"
+            "on its cheeks. When it releases pent-up\n"
+            "energy in a burst, the electric power is\n"
+            "equal to a lightning bolt."),
         FRONT_PIC(Pikachu, 48, 48),
         FRONT_PIC_FEMALE(Pikachu, 48, 48),
         .frontPicYOffset = 9,
@@ -1997,7 +1917,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_COSPLAY, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         FRONT_PIC(PikachuCosplay, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuCosplay,
@@ -2012,7 +1931,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_ROCK_STAR, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         FRONT_PIC(PikachuRockStar, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuRockStar,
@@ -2027,7 +1945,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_BELLE, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         .noFlip = TRUE,
         FRONT_PIC(PikachuBelle, 48, 48),
         .frontPicYOffset = 9,
@@ -2043,7 +1960,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_POP_STAR, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         .noFlip = TRUE,
         FRONT_PIC(PikachuPopStar, 48, 48),
         .frontPicYOffset = 9,
@@ -2059,7 +1975,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_PH_D, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         FRONT_PIC(PikachuPhD, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuPhD,
@@ -2074,7 +1989,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     FORM(SPECIES_PIKACHU_LIBRE, (
         .genderRatio = MON_FEMALE,
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
-        .description = gPikachuPokedexText,
         FRONT_PIC(PikachuLibre, 48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_PikachuLibre,
@@ -14415,7 +14329,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Symbol"),
         .height = 5,
         .weight = 50,
-        .description = gUnownPokedexText,
+        .description = COMPOUND_STRING(
+            "This Pokémon is shaped like ancient text\n"
+            "characters. Although research is ongoing,\n"
+            "it is a mystery as to which came first,\n"
+            "the ancient writings or the various Unown."),
         .pokemonScale = 411,
         .pokemonOffset = 2,
         .trainerScale = 256,
@@ -25309,7 +25227,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("DNA"),
         .height = 17,
         .weight = 608,
-        .description = gDeoxysNormalPokedexText,
+        .description = COMPOUND_STRING(
+            "Deoxys emerged from a virus that came\n"
+            "from space. It is highly intelligent and\n"
+            "can shoot lasers from the crystalline\n"
+            "organ on its chest."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -29754,7 +29676,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Alpha"),
         .height = 32,
         .weight = 3200,
-        .description = gArceusPokedexText,
+        .description = COMPOUND_STRING(
+            "It is told in mythology that this Pokémon\n"
+            "emerged from an egg and shaped all there\n"
+            "is in this world, before the universe\n"
+            "even existed."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 495,
@@ -38279,7 +38205,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Paleozoic"),
         .height = 15,
         .weight = 825,
-        .description = gGenesectPokedexText,
+        .description = COMPOUND_STRING(
+            "Over 300 million years ago, it was\n"
+            "feared as the strongest of hunters.\n"
+            "Team Plasma altered it and attached\n"
+            "a cannon to its back."),
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -38724,7 +38654,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 103,
         .baseSpDefense = 71,
         .expYield = 239,
-        .description = gGreninjaPokedexText,
+        .description = COMPOUND_STRING(
+            "It appears and vanishes with a ninja's\n"
+            "grace. It toys with its enemies using swift\n"
+            "movements, while slicing them with throwing\n"
+            "stars made of compressed water."),
         FRONT_PIC(Greninja, 64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Greninja,
@@ -39536,7 +39470,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(Floette, 64, 64),
         .backPicYOffset = 2,
         LEARNSETS(Floette),
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_RED_FLOWER}),\
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_RED_FLOWER}),
         .types = { TYPE_FAIRY, TYPE_FAIRY },
         .catchRate = 120,
         .evYield_SpDefense = 2,
@@ -39917,7 +39851,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Poodle"),
         .height = 12,
         .weight = 280,
-        .description = gFurfrouPokedexText,
+        .description = COMPOUND_STRING(
+            "Trimming its fluffy fur not only makes\n"
+            "it more elegant but also increases the\n"
+            "swiftness of its movements. These\n"
+            "Pokémon were the guardians of kings."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -42184,7 +42122,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Life"),
         .height = 30,
         .weight = 2150,
-        .description = gXerneasPokedexText,
+        .description = COMPOUND_STRING(
+            "Legends say that when the horns on\n"
+            "its head shine in seven colors, it is\n"
+            "sharing everlasting life. It slept for a\n"
+            "thousand years in the form of a tree"),
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -42276,7 +42218,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_ZYGARDE_50,
         .height = 50,
         .weight = 3050,
-        .description = gZygarde50PokedexText,
+        .description = COMPOUND_STRING(
+            "It's said to be monitoring the ecosystem\n"
+            "from deep in the caves where it lives.\n"
+            "There are rumors that even greater power\n"
+            "lies hidden within its cells."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 721,
@@ -43782,7 +43728,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Puppy"),
         .height = 5,
         .weight = 92,
-        .description = gRockruffPokedexText,
+        .description = COMPOUND_STRING(
+            "This Pokémon has lived with people since\n"
+            "times long ago. It can sense when its\n"
+            "Trainer is in the dumps and will stick\n"
+            "close by its Trainer's side."),
         .pokemonScale = 432,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -45270,7 +45220,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Synthetic"),
         .height = 23,
         .weight = 1005,
-        .description = gSilvallyNormalPokedexText,
+        .description = COMPOUND_STRING(
+            "Its trust in its partner awakens it.\n"
+            "This Pokémon is capable of changing its\n"
+            "type by equipping special memories, a\n"
+            "trait that is well displayed in battle."),
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 342,
@@ -45428,6 +45382,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 60,
         .baseSpDefense = 100,
         .weight = 400,
+        .description = COMPOUND_STRING(
+            "Originally making its home in the ozone\n"
+            "layer, it hurtles to the ground when the\n"
+            "shell encasing its body grows too heavy.\n"
+            "It was born from mutated nanoparticles."),
         FRONT_PIC(MiniorMeteor, 48, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_MiniorMeteor,
@@ -49929,7 +49888,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sinistea, 2),
         .footprint = gMonFootprint_Sinistea,
         LEARNSETS(Sinistea),
-        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable
+        .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,,
         .description = COMPOUND_STRING(
@@ -49985,7 +49944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Polteageist, 2),
         .footprint = gMonFootprint_Polteageist,
         LEARNSETS(Polteageist),
-        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable
+        .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,,
         .description = COMPOUND_STRING(
@@ -50413,7 +50372,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Cream"),
         .height = 3,
         .weight = 5,
-        .description = gAlcremieVanillaCreamPokedexText,
+        .description = COMPOUND_STRING(
+            "When it trusts a Trainer, it will treat\n"
+            "them to berries it's decorated with cream."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -51983,7 +51944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_URSHIFU,
         .categoryName = _("Wushu"),
         .footprint = gMonFootprint_Urshifu,
-        .formSpeciesIdTable = sUrshifuFormSpeciesIdTable
+        .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
         .types = { TYPE_FIGHTING, TYPE_DARK },
         .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
         LEARNSETS(UrshifuSingleStrikeStyle),
@@ -53507,7 +53468,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset = 15,
         PALETTES(Maushold),
         LEARNSETS(Maushold),
-        .formSpeciesIdTable = sMausholdFormSpeciesIdTable
+        .formSpeciesIdTable = sMausholdFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Maushold,,
@@ -53804,7 +53765,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(Squawkabilly, 64, 64),
         .backPicYOffset = 4,
         LEARNSETS(Squawkabilly),
-        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable
+        $1,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Squawkabilly,,
@@ -55387,7 +55348,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Palafin,
         LEARNSETS(Palafin),
         .formSpeciesIdTable = sPalafinFormSpeciesIdTable,
-        .formChangeTable = sPalafinZeroFormChangeTable
+        $1,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.footprint = gMonFootprint_Palafin,,
         .baseHP        = 100,
@@ -56094,7 +56055,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tatsugiri,
         .backPicYOffset = 17,
         LEARNSETS(Tatsugiri),
-        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable
+        $1,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.footprint = gMonFootprint_Tatsugiri,,
@@ -57756,7 +57717,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mask"),
         .height = 12,
         .weight = 398,
-        .description = gOgerponTealMaskPokedexText,
+        .description = COMPOUND_STRING(
+            "This Pokémon's type changes based on\n"
+            "which mask it's wearing. It confounds\n"
+            "its enemies with nimble movements\n"
+            "and kicks."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
