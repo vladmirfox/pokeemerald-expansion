@@ -39392,7 +39392,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(FloetteEternalFlower, 64, 64),
         .backPicYOffset = 2,
         PALETTES(FloetteEternalFlower),
-        ICON(FloetteEternal, 0),
+        ICON(FloetteEternalFlower, 0),
         LEARNSETS(FloetteEternalFlower),
         .evolutions = 0,
     ))),
@@ -42091,7 +42091,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = { ABILITY_POWER_CONSTRUCT, ABILITY_NONE },
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         .formChangeTable = sZygarde50PowerConstructFormChangeTable,
-    ))
+    )),
 
     FORM(SPECIES_ZYGARDE_10_AURA_BREAK, (
         .baseHP        = 54,
@@ -46744,7 +46744,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .footprint = gMonFootprint_Magearna,
         LEARNSETS(Magearna),
         .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,
-        .isMythical = TRUE
+        .isMythical = TRUE,
     ),
 
     FORM(SPECIES_MAGEARNA_ORIGINAL_COLOR, (
