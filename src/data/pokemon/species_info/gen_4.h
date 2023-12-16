@@ -312,11 +312,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-        #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
-        #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
-        #endif
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, P_UPDATED_ABILITIES >= GEN_9 ? ABILITY_COMPETITIVE : ABILITY_DEFIANT },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Piplup"),
         .cryId = CRY_PIPLUP,
@@ -363,11 +359,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-        #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
-        #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
-        #endif
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, P_UPDATED_ABILITIES >= GEN_9 ? ABILITY_COMPETITIVE : ABILITY_DEFIANT },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Prinplup"),
         .cryId = CRY_PRINPLUP,
@@ -414,11 +406,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-        #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
-        #else
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
-        #endif
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, P_UPDATED_ABILITIES >= GEN_9 ? ABILITY_COMPETITIVE : ABILITY_DEFIANT },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Empoleon"),
         .cryId = CRY_EMPOLEON,

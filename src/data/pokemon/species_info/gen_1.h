@@ -618,7 +618,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
-            ""),
+            "It's not very good at precision\n"
+            "shooting. When attacking, it just fires\n"
+            "its 31 cannons over and over and\n"
+            "over."),
         .pokemonScale = 256,
         .pokemonOffset = -1,
         .trainerScale = 293,
@@ -937,9 +940,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
     )),
 
-#define BEEDRILL_ATTACK (P_UPDATED_STATS >= GEN_6 ? 90 : 80)
-
-
     SPECIES(SPECIES_BEEDRILL, (
         .types = { TYPE_BUG, TYPE_POISON },
         .catchRate = 45,
@@ -960,11 +960,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
         .formChangeTable = sBeedrillFormChangeTable,
         .baseHP        = 65,
+        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 90 : 80,
         .baseDefense   = 40,
         .baseSpeed     = 75,
         .baseSpAttack  = 45,
         .baseSpDefense = 80,
-        .baseAttack    = BEEDRILL_ATTACK,
         .expYield = 178,
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER },
         .cryId = CRY_BEEDRILL,
@@ -993,7 +993,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     MEGA_EVOLUTION(SPECIES_BEEDRILL_MEGA, (
         .baseHP        = 65,
-        .baseAttack    = BEEDRILL_ATTACK + 60,
+        .baseAttack    = 150,
         .baseDefense   = 40,
         .baseSpeed     = 145,
         .baseSpAttack  = 15,
@@ -1121,9 +1121,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_PIDGEOT}),
     )),
 
-#define PIDGEOT_SPEED (P_UPDATED_STATS >= GEN_6 ? 101 : 91)
-
-
     SPECIES(SPECIES_PIDGEOT, (
         .types = { TYPE_NORMAL, TYPE_FLYING },
         .catchRate = 45,
@@ -1144,9 +1141,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 75,
+        .baseSpeed     = P_UPDATED_STATS >= GEN_6 ? 101 : 91,
         .baseSpAttack  = 70,
         .baseSpDefense = 70,
-        .baseSpeed     = PIDGEOT_SPEED,
         .expYield = 216,
         .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS },
         .cryId = CRY_PIDGEOT,
@@ -1177,7 +1174,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 80,
-        .baseSpeed     = PIDGEOT_SPEED + 20,
+        .baseSpeed     = 121,
         .baseSpAttack  = 135,
         .baseSpDefense = 80,
         .expYield = 261,
@@ -1954,7 +1951,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(PikachuGigantamax, 2),
         .formChangeTable = sPikachuFormChangeTable,
     ))),
-#define RAICHU_SPEED (P_UPDATED_STATS >= GEN_6 ? 110 : 100)
 
     SPECIES(SPECIES_RAICHU, (
         .catchRate = 75,
@@ -2797,12 +2793,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_VULPIX
 
 #if P_FAMILY_JIGGLYPUFF
-#if P_UPDATED_TYPES >= GEN_6
-    #define JIGGLYPUFF_FAMILY_TYPES { TYPE_NORMAL, TYPE_FAIRY}
-#else
-    #define JIGGLYPUFF_FAMILY_TYPES { TYPE_NORMAL, TYPE_NORMAL}
-#endif
-
 #if P_GEN_2_CROSS_EVOS
     SPECIES(SPECIES_IGGLYBUFF, (
         .baseHP        = 90,
@@ -2811,7 +2801,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 15,
         .baseSpAttack  = 40,
         .baseSpDefense = 20,
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_NORMAL },
         .catchRate = 170,
         .expYield = 42,
         .evYield_HP = 1,
@@ -2860,7 +2850,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 45,
         .baseSpDefense = 25,
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_NORMAL },
         .catchRate = 170,
         .expYield = 95,
         .evYield_HP = 2,
@@ -2909,7 +2899,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 45,
         .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 85 : 75,
         .baseSpDefense = 50,
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_NORMAL },
         .catchRate = 50,
         .expYield = 196,
         .evYield_HP = 3,
@@ -3503,9 +3493,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_VENONAT
 
 #if P_FAMILY_DIGLETT
-
-#define DUGTRIO_ATTACK (P_UPDATED_STATS >= GEN_7 ? 100 : 80)
-
     SPECIES(SPECIES_DIGLETT, (
         .catchRate = 255,
         .expYield = 53,
@@ -3605,7 +3592,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD },
         .bodyColor = BODY_COLOR_BROWN,
         .baseHP        = 35,
-        .baseAttack    = DUGTRIO_ATTACK,
+        .baseAttack    = P_UPDATED_STATS >= GEN_7 ? 100 : 80,
         .baseDefense   = 50,
         .baseSpeed     = 120,
         .baseSpAttack  = 50,
@@ -3633,7 +3620,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     ALOLAN_FORM(SPECIES_DUGTRIO_ALOLAN, (
         .baseHP        = 35,
-        .baseAttack    = DUGTRIO_ATTACK,
+        .baseAttack    = P_UPDATED_STATS >= GEN_7 ? 100 : 80,
         .baseDefense   = 60,
         .baseSpeed     = 110,
         .baseSpAttack  = 50,
@@ -4647,9 +4634,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_ALAKAZAM}),
     )),
 
-#define ALAKAZAM_SP_DEF (P_UPDATED_STATS >= GEN_6 ? 95 : 85)
-
-
     SPECIES(SPECIES_ALAKAZAM, (
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .catchRate = 50,
@@ -4673,7 +4657,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseDefense   = 45,
         .baseSpeed     = 120,
         .baseSpAttack  = 135,
-        .baseSpDefense = ALAKAZAM_SP_DEF,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 95 : 85,
         .expYield = 225,
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD },
         .cryId = CRY_ALAKAZAM,
@@ -4707,7 +4691,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseDefense   = 65,
         .baseSpeed     = 150,
         .baseSpAttack  = 175,
-        .baseSpDefense = ALAKAZAM_SP_DEF + 10,
+        .baseSpDefense = 105,
         .expYield = 270,
         .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
         .cryId = CRY_ALAKAZAM_MEGA,
@@ -5147,9 +5131,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_TENTACOOL
 
 #if P_FAMILY_GEODUDE
-
-#define GOLEM_ATTACK (P_UPDATED_STATS >= GEN_6 ? 120 : 110)
-
     SPECIES(SPECIES_GEODUDE, (
         .types = { TYPE_ROCK, TYPE_GROUND },
         .itemRare = ITEM_EVERSTONE,
@@ -5303,7 +5284,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .itemRare = ITEM_EVERSTONE,
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
         .baseHP        = 80,
-        .baseAttack    = GOLEM_ATTACK,
+        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 120 : 110,
         .baseDefense   = 130,
         .baseSpeed     = 45,
         .baseSpAttack  = 55,
@@ -5953,9 +5934,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_MAGNEMITE
 
 #if P_FAMILY_FARFETCHD
-#define FARFETCHD_ATTACK (P_UPDATED_STATS >= GEN_7 ? 90 : 65)
-
-
     SPECIES(SPECIES_FARFETCHD, (
         .catchRate = 45,
         .expYield = 132,
@@ -5973,11 +5951,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .footprint = gMonFootprint_Farfetchd,
         .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
         .baseHP        = 52,
+        .baseAttack    = P_UPDATED_STATS >= GEN_7 ? 90 : 65,
         .baseDefense   = 55,
         .baseSpeed     = 60,
         .baseSpAttack  = 58,
         .baseSpDefense = 62,
-        .baseAttack    = FARFETCHD_ATTACK,
         .types = { TYPE_NORMAL, TYPE_FLYING },
         .itemRare = ITEM_LEEK,
         .abilities = { ABILITY_KEEN_EYE, ABILITY_INNER_FOCUS, ABILITY_DEFIANT },
@@ -6006,7 +5984,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     GALARIAN_FORM(SPECIES_FARFETCHD_GALARIAN, (
         .baseHP        = 52,
-        .baseAttack    = FARFETCHD_ATTACK + 5,
+        .baseAttack    = 95,
         .baseDefense   = 55,
         .baseSpeed     = 55,
         .baseSpAttack  = 58,
@@ -6640,13 +6618,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GENGAR}),
     )),
 
-#if P_UPDATED_ABILITIES >= GEN_7
-#define GENGAR_ABILITIES {ABILITY_CURSED_BODY, ABILITY_NONE}
-#else
-#define GENGAR_ABILITIES {ABILITY_LEVITATE, ABILITY_NONE}
-#endif
-
-
     SPECIES(SPECIES_GENGAR, (
         .types = { TYPE_GHOST, TYPE_POISON },
         .catchRate = 45,
@@ -6671,7 +6642,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 130,
         .baseSpDefense = 75,
         .expYield = 225,
-        .abilities = GENGAR_ABILITIES,
+        .abilities = { P_UPDATED_ABILITIES >= GEN_7 ? ABILITY_CURSED_BODY : ABILITY_LEVITATE, ABILITY_NONE },
         .height = 15,
         .weight = 405,
         .description = COMPOUND_STRING(
@@ -6733,7 +6704,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 130,
         .baseSpDefense = 75,
         .expYield = 225,
-        .abilities = GENGAR_ABILITIES,
+        .abilities = { P_UPDATED_ABILITIES >= GEN_7 ? ABILITY_CURSED_BODY : ABILITY_LEVITATE, ABILITY_NONE },
         .height = 200,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -7305,9 +7276,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
                                 {EVO_NONE, 0, SPECIES_EXEGGUTOR_ALOLAN}),
     )),
 
-
-#define EXEGGUTOR_SP_DEF (P_UPDATED_STATS >= GEN_7 ? 75 : 65)
-
     SPECIES(SPECIES_EXEGGUTOR, (
         .catchRate = 45,
         .expYield = 186,
@@ -7329,7 +7297,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseDefense   = 85,
         .baseSpeed     = 55,
         .baseSpAttack  = 125,
-        .baseSpDefense = EXEGGUTOR_SP_DEF,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 75 : 65,
         .types = { TYPE_GRASS, TYPE_PSYCHIC },
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
         .height = 20,
@@ -7361,7 +7329,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseDefense   = 85,
         .baseSpeed     = 45,
         .baseSpAttack  = 125,
-        .baseSpDefense = EXEGGUTOR_SP_DEF,
+        .baseSpDefense = 75,
         .types = { TYPE_GRASS, TYPE_DRAGON },
         .abilities = { ABILITY_FRISK, ABILITY_NONE, ABILITY_HARVEST },
         .height = 109,
@@ -8778,11 +8746,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 70,
         .baseSpDefense = 90,
-        #if P_UPDATED_TYPES >= GEN_6
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
-        #else
-            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
-        #endif
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC},
         .catchRate = 145,
         .expYield = 62,
         .evYield_SpDefense = 1,
@@ -8844,11 +8808,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 120,
-        #if P_UPDATED_TYPES >= GEN_6
-            .types = { TYPE_PSYCHIC, TYPE_FAIRY },
-        #else
-            .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
-        #endif
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC},
         .evYield_SpDefense = 2,
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN },
         .bodyColor = BODY_COLOR_PINK,
@@ -11128,11 +11088,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 261,
         .evYield_SpAttack = 3,
         .eggCycles = 80,
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_STATIC },
-        #else
-            .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
-        #endif
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC},
         .categoryName = _("Electric"),
         .weight = 526,
         .description = COMPOUND_STRING(

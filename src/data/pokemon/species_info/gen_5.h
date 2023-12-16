@@ -2444,11 +2444,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
-        #else
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
-        #endif
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_SPEED_BOOST : ABILITY_QUICK_FEET },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Venipede"),
         .cryId = CRY_VENIPEDE,
@@ -2496,11 +2492,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
-        #else
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
-        #endif
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_SPEED_BOOST : ABILITY_QUICK_FEET },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Whirlipede"),
         .cryId = CRY_WHIRLIPEDE,
@@ -2548,11 +2540,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_SPEED_BOOST },
-        #else
-            .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, ABILITY_QUICK_FEET },
-        #endif
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWARM, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_SPEED_BOOST : ABILITY_QUICK_FEET },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Scolipede"),
         .cryId = CRY_SCOLIPEDE,
@@ -2584,12 +2572,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_VENIPEDE
 
 #if P_FAMILY_COTTONEE
-#if P_UPDATED_TYPES >= GEN_6
-    #define COTTONEE_FAMILY_TYPES { TYPE_GRASS, TYPE_FAIRY }
-#else
-    #define COTTONEE_FAMILY_TYPES { TYPE_GRASS, TYPE_GRASS }
-#endif
-
     SPECIES(SPECIES_COTTONEE, (
         .baseHP        = 40,
         .baseAttack    = 27,
@@ -2597,7 +2579,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseSpeed     = 66,
         .baseSpAttack  = 37,
         .baseSpDefense = 50,
-        .types = COTTONEE_FAMILY_TYPES,
+        .types = { TYPE_GRASS, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_GRASS },
         .catchRate = 190,
         .expYield = 56,
         .evYield_Speed = 1,
@@ -2645,7 +2627,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseSpeed     = 116,
         .baseSpAttack  = 77,
         .baseSpDefense = 75,
-        .types = COTTONEE_FAMILY_TYPES,
+        .types = { TYPE_GRASS, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_GRASS },
         .catchRate = 75,
         .expYield = 168,
         .evYield_Speed = 2,
@@ -6050,11 +6032,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_INFILTRATOR },
-        #else
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_SHADOW_TAG },
-        #endif
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_INFILTRATOR : ABILITY_SHADOW_TAG},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
         .speciesName = _("Litwick"),
@@ -6102,11 +6080,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_INFILTRATOR },
-        #else
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_SHADOW_TAG },
-        #endif
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_INFILTRATOR : ABILITY_SHADOW_TAG},
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Lampent"),
         .cryId = CRY_LAMPENT,
@@ -6154,11 +6128,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_INFILTRATOR },
-        #else
-            .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, ABILITY_SHADOW_TAG },
-        #endif
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY, P_UPDATED_ABILITIES >= GEN_6 ? ABILITY_INFILTRATOR : ABILITY_SHADOW_TAG},
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Chandelure"),
         .cryId = CRY_CHANDELURE,
@@ -6429,17 +6399,12 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
 #if P_FAMILY_CRYOGONAL
     SPECIES(SPECIES_CRYOGONAL, (
+        .baseHP        = P_UPDATED_STATS >= GEN_7 ? 80 : 70,
         .baseAttack    = 50,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 50 : 30,
         .baseSpeed     = 105,
         .baseSpAttack  = 95,
         .baseSpDefense = 135,
-        #if P_UPDATED_STATS >= GEN_7
-            .baseHP        = 80,
-            .baseDefense   = 50,
-        #else
-            .baseHP        = 70,
-            .baseDefense   = 30,
-        #endif
         .types = { TYPE_ICE, TYPE_ICE },
         .catchRate = 25,
         .expYield = 180,

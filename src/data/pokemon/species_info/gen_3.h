@@ -1326,11 +1326,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-        #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_WIND_RIDER, ABILITY_PICKPOCKET },
-        #else
-            .abilities = { ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET },
-        #endif
+        .abilities = { ABILITY_CHLOROPHYLL, P_UPDATED_ABILITIES >= GEN_9 ? ABILITY_WIND_RIDER : ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Shiftry"),
         .cryId = CRY_SHIFTRY,
@@ -1558,14 +1554,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_FAMILY_WINGULL
 
 #if P_FAMILY_RALTS
-#define RALTS_FAMILY_TYPE2 (P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC)
-
-#if P_UPDATED_EGG_GROUPS >= GEN_8
-    #define RALTS_FAMILY_EGG_GROUPS { EGG_GROUP_HUMAN_LIKE, EGG_GROUP_AMORPHOUS }
-#else
-    #define RALTS_FAMILY_EGG_GROUPS { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS }
-#endif
-
     SPECIES(SPECIES_RALTS, (
         .baseHP        = 28,
         .baseAttack    = 25,
@@ -1573,7 +1561,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 45,
         .baseSpDefense = 35,
-        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC },
         .catchRate = 235,
         .expYield = 40,
         .evYield_SpAttack = 1,
@@ -1581,7 +1569,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
+        .eggGroups = { P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_HUMAN_LIKE : EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Ralts"),
@@ -1620,7 +1608,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 65,
         .baseSpDefense = 55,
-        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC },
         .catchRate = 120,
         .expYield = 97,
         .evYield_SpAttack = 2,
@@ -1628,7 +1616,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
+        .eggGroups = { P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_HUMAN_LIKE : EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Kirlia"),
@@ -1668,8 +1656,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
-        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
+        .eggGroups = { P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_HUMAN_LIKE : EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
+        .types = { TYPE_PSYCHIC, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_PSYCHIC },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Gardevoir"),
         .natDexNum = NATIONAL_DEX_GARDEVOIR,
@@ -1717,6 +1705,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpAttack  = 165,
         .baseSpDefense = 135,
         .expYield = 278,
+        .types = { TYPE_PSYCHIC, TYPE_FAIRY },
         .abilities = { ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE },
         .cryId = CRY_GARDEVOIR_MEGA,
         .description = COMPOUND_STRING(
@@ -1736,7 +1725,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     ))),
 
 #if P_GEN_4_CROSS_EVOS
-
     SPECIES(SPECIES_GALLADE, (
         .types = { TYPE_PSYCHIC, TYPE_FIGHTING },
         .catchRate = 45,
@@ -1745,7 +1733,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
-        .eggGroups = RALTS_FAMILY_EGG_GROUPS,
+        .eggGroups = { P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_HUMAN_LIKE : EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Gallade"),
         .natDexNum = NATIONAL_DEX_GALLADE,
@@ -1766,11 +1754,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpAttack  = 65,
         .baseSpDefense = 115,
         .expYield = 233,
-        #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_STEADFAST, ABILITY_SHARPNESS, ABILITY_JUSTIFIED },
-        #else
-            .abilities = { ABILITY_STEADFAST, ABILITY_NONE, ABILITY_JUSTIFIED },
-        #endif
+        .abilities = { ABILITY_STEADFAST, P_UPDATED_ABILITIES >= GEN_9 ? ABILITY_NONE : ABILITY_SHARPNESS, ABILITY_JUSTIFIED },
         .cryId = CRY_GALLADE,
         .weight = 520,
         .description = COMPOUND_STRING(
@@ -1871,14 +1855,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseHP        = 70,
         .baseAttack    = 60,
         .baseDefense   = 62,
+        .baseSpeed     = P_UPDATED_STATS >= GEN_7 ? 80 : 60,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_7 ? 100 : 80,
         .baseSpDefense = 82,
-        #if P_UPDATED_STATS >= GEN_7
-            .baseSpeed     = 80,
-            .baseSpAttack  = 100,
-        #else
-            .baseSpeed     = 60,
-            .baseSpAttack  = 80,
-        #endif
         .types = { TYPE_BUG, TYPE_FLYING },
         .catchRate = 75,
         .expYield = 159,
@@ -2834,7 +2813,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     #define MAWILE_TYPES { TYPE_STEEL, TYPE_STEEL }
 #endif
 
-
     SPECIES(SPECIES_MAWILE, (
         .types = MAWILE_TYPES,
         .catchRate = 45,
@@ -3455,15 +3433,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     SPECIES(SPECIES_VOLBEAT, (
         .baseHP        = 65,
         .baseAttack    = 73,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 75 : 55,
         .baseSpeed     = 85,
         .baseSpAttack  = 47,
-        #if P_UPDATED_STATS >= GEN_7
-            .baseDefense   = 75,
-            .baseSpDefense = 85,
-        #else
-            .baseDefense   = 55,
-            .baseSpDefense = 75,
-        #endif
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 85 : 75,
         .types = { TYPE_BUG, TYPE_BUG },
         .catchRate = 150,
         .expYield = 151,
@@ -3507,15 +3480,10 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     SPECIES(SPECIES_ILLUMISE, (
         .baseHP        = 65,
         .baseAttack    = 47,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 75 : 55,
         .baseSpeed     = 85,
         .baseSpAttack  = 73,
-        #if P_UPDATED_STATS >= GEN_7
-            .baseDefense   = 75,
-            .baseSpDefense = 85,
-        #else
-            .baseDefense   = 55,
-            .baseSpDefense = 75,
-        #endif
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 85 : 75,
         .types = { TYPE_BUG, TYPE_BUG },
         .catchRate = 150,
         .expYield = 151,
@@ -4441,11 +4409,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
-        #if P_UPDATED_EGG_GROUPS >= GEN_8
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_DRAGON },
-        #else
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        #endif
+        .eggGroups = { EGG_GROUP_BUG, P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_DRAGON : EGG_GROUP_BUG},
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Vibrava"),
@@ -4493,11 +4457,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
-        #if P_UPDATED_EGG_GROUPS >= GEN_8
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_DRAGON },
-        #else
-            .eggGroups = { EGG_GROUP_BUG, EGG_GROUP_BUG },
-        #endif
+        .eggGroups = { EGG_GROUP_BUG, P_UPDATED_EGG_GROUPS >= GEN_8 ? EGG_GROUP_DRAGON : EGG_GROUP_BUG},
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Flygon"),
@@ -6092,18 +6052,12 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_GEN_4_CROSS_EVOS
 
     SPECIES(SPECIES_CHIMECHO, (
+        .baseHP        = P_UPDATED_STATS >= GEN_7 ? 75 : 65,
         .baseAttack    = 50,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 80 : 70,
         .baseSpeed     = 65,
         .baseSpAttack  = 95,
-        #if P_UPDATED_STATS >= GEN_7
-            .baseHP        = 75,
-            .baseDefense   = 80,
-            .baseSpDefense = 90,
-        #else
-            .baseHP        = 65,
-            .baseDefense   = 70,
-            .baseSpDefense = 80,
-        #endif
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 90 : 80,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .catchRate = 45,
         .expYield = 159,

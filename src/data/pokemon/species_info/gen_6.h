@@ -1963,9 +1963,6 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
     )),
 
-
-#define AEGISLASH_MAIN_STAT (P_UPDATED_STATS >= GEN_8 ? 140 : 150)
-
     SPECIES(SPECIES_AEGISLASH_SHIELD, (
         .types = { TYPE_STEEL, TYPE_GHOST },
         .catchRate = 45,
@@ -1993,10 +1990,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formChangeTable = sAegislashFormChangeTable,
         .baseHP        = 60,
         .baseAttack    = 50,
-        .baseDefense   = AEGISLASH_MAIN_STAT,
+        .baseDefense   = P_UPDATED_STATS >= GEN_8 ? 140 : 150,
         .baseSpeed     = 60,
         .baseSpAttack  = 50,
-        .baseSpDefense = AEGISLASH_MAIN_STAT,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_8 ? 140 : 150,
         .evYield_Defense = 2,
         .evYield_SpDefense = 1,
         .description = COMPOUND_STRING(
@@ -2018,10 +2015,10 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
 
     FORM(SPECIES_AEGISLASH_BLADE, (
         .baseHP        = 60,
-        .baseAttack    = AEGISLASH_MAIN_STAT,
+        .baseAttack    = P_UPDATED_STATS >= GEN_8 ? 140 : 150,
         .baseDefense   = 50,
         .baseSpeed     = 60,
-        .baseSpAttack  = AEGISLASH_MAIN_STAT,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_8 ? 140 : 150,
         .baseSpDefense = 50,
         .evYield_Attack = 2,
         .evYield_SpAttack = 1,

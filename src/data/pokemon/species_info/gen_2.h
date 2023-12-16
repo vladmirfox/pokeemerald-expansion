@@ -1061,11 +1061,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 120,
         .baseSpDefense = 115,
-        #if P_UPDATED_TYPES >= GEN_6
-            .types = { TOGEPI_FAMILY_TYPE, TYPE_FLYING },
-        #else
-            .types = { TYPE_NORMAL, TYPE_FLYING },
-        #endif
+        .types = { P_UPDATED_TYPES >= GEN_6 ? TOGEPI_FAMILY_TYPE : TYPE_NORMAL, TYPE_FLYING },
         .catchRate = 30,
         .expYield = 245,
         .evYield_SpAttack = 2,
@@ -1303,9 +1299,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_AMPHAROS}),
     )),
 
-
-#define AMPHAROS_DEFENSE (P_UPDATED_STATS >= GEN_6 ? 85 : 75)
-
     SPECIES(SPECIES_AMPHAROS, (
         .catchRate = 45,
         .evYield_SpAttack = 3,
@@ -1330,7 +1323,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .formChangeTable = sAmpharosFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 75,
-        .baseDefense   = AMPHAROS_DEFENSE,
+        .baseDefense   = P_UPDATED_STATS >= GEN_6 ? 85 : 75,
         .baseSpeed     = 55,
         .baseSpAttack  = 115,
         .baseSpDefense = 90,
@@ -1358,7 +1351,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     MEGA_EVOLUTION(SPECIES_AMPHAROS_MEGA, (
         .baseHP        = 90,
         .baseAttack    = 95,
-        .baseDefense   = AMPHAROS_DEFENSE + 20,
+        .baseDefense   = 105,
         .baseSpeed     = 45,
         .baseSpAttack  = 165,
         .baseSpDefense = 110,
@@ -1440,11 +1433,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 20,
         .baseSpDefense = 50,
-    #if P_UPDATED_TYPES >= GEN_6
-        .types = { TYPE_WATER, TYPE_FAIRY },
-    #else
-        .types = { TYPE_WATER, TYPE_WATER },
-    #endif
+        .types = { TYPE_WATER, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_WATER },
         .catchRate = 190,
         .expYield = 88,
         .evYield_HP = 2,
@@ -1491,11 +1480,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpeed     = 50,
         .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 60 : 50,
         .baseSpDefense = 80,
-    #if P_UPDATED_TYPES >= GEN_6
-        .types = { TYPE_WATER, TYPE_FAIRY },
-    #else
-        .types = { TYPE_WATER, TYPE_WATER },
-    #endif
+        .types = { TYPE_WATER, P_UPDATED_TYPES >= GEN_6 ? TYPE_FAIRY : TYPE_WATER },
         .catchRate = 75,
         .expYield = 189,
         .evYield_HP = 3,
@@ -4185,10 +4170,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #endif //P_FAMILY_SWINUB
 
 #if P_FAMILY_CORSOLA
-#define CORSOLA_HP       (P_UPDATED_STATS >= GEN_7 ? 65 : 55)
-#define CORSOLA_DEFENSES (P_UPDATED_STATS >= GEN_7 ? 95 : 85)
-
-
     SPECIES(SPECIES_CORSOLA, (
         .catchRate = 60,
         .expYield = 144,
@@ -4209,12 +4190,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .trainerOffset = 0,
         .footprint = gMonFootprint_Corsola,
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
-        .baseHP        = CORSOLA_HP,
+        .baseHP        = P_UPDATED_STATS >= GEN_7 ? 65 : 55,
         .baseAttack    = 55,
-        .baseDefense   = CORSOLA_DEFENSES,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 95 : 85,
         .baseSpeed     = 35,
         .baseSpAttack  = 65,
-        .baseSpDefense = CORSOLA_DEFENSES,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_7 ? 95 : 85,
         .types = { TYPE_WATER, TYPE_ROCK },
         .evYield_Defense = 1,
         .itemRare = ITEM_LUMINOUS_MOSS,
@@ -4239,12 +4220,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     ),
 
     GALARIAN_FORM(SPECIES_CORSOLA_GALARIAN, (
-        .baseHP        = CORSOLA_HP - 5,
+        .baseHP        = 60,
         .baseAttack    = 55,
-        .baseDefense   = CORSOLA_DEFENSES + 5,
+        .baseDefense   = 100,
         .baseSpeed     = 30,
         .baseSpAttack  = 65,
-        .baseSpDefense = CORSOLA_DEFENSES + 5,
+        .baseSpDefense = 100,
         .types = { TYPE_GHOST, TYPE_GHOST },
         .abilities = { ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY },
         .bodyColor = BODY_COLOR_WHITE,
