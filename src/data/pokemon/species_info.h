@@ -42175,54 +42175,57 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_NOIBAT
 
 #if P_FAMILY_XERNEAS
-#define XERNEAS_MISC_INFO(Form)                                                         \
-    {                                                                                   \
-        .baseHP        = 126,                                                           \
-        .baseAttack    = 131,                                                           \
-        .baseDefense   = 95,                                                            \
-        .baseSpeed     = 99,                                                            \
-        .baseSpAttack  = 131,                                                           \
-        .baseSpDefense = 98,                                                            \
-        .types = { TYPE_FAIRY, TYPE_FAIRY },                                            \
-        .catchRate = 45,                                                                \
-        .expYield = 306,                                                                \
-        .evYield_HP = 3,                                                                \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ABILITY_FAIRY_AURA, ABILITY_NONE },                              \
-        .bodyColor = BODY_COLOR_BLUE,                                                   \
-        .speciesName = _("Xerneas"),                                                    \
-        .cryId = CRY_XERNEAS,                                                           \
-        .natDexNum = NATIONAL_DEX_XERNEAS,                                              \
-        .categoryName = _("Life"),                                                      \
-        .height = 30,                                                                   \
-        .weight = 2150,                                                                 \
-        .description = gXerneasPokedexText,                                             \
-        .pokemonScale = 275,                                                            \
-        .pokemonOffset = 7,                                                             \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        FRONT_PIC(Xerneas##Form, 64, 64),                                               \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Xerneas,                                              \
-        .frontAnimId = ANIM_GROW_VIBRATE,                                               \
-        BACK_PIC(Xerneas##Form, 64, 64),                                                \
-        .backPicYOffset = 0,                                                            \
-        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,                                        \
-        PALETTES(Xerneas##Form),                                                        \
-        ICON(Xerneas##Form, 0),                                                         \
-        .footprint = gMonFootprint_Xerneas,                                             \
-        LEARNSETS(Xerneas),                                                             \
-        .formSpeciesIdTable = sXerneasFormSpeciesIdTable,                               \
-        .formChangeTable = sXerneasFormChangeTable,                                     \
-        .isLegendary = TRUE,                                                            \
-    }
+    SPECIES(SPECIES_XERNEAS_ACTIVE, (
+        .baseHP        = 126,
+        .baseAttack    = 131,
+        .baseDefense   = 95,
+        .baseSpeed     = 99,
+        .baseSpAttack  = 131,
+        .baseSpDefense = 98,
+        .types = { TYPE_FAIRY, TYPE_FAIRY },
+        .catchRate = 45,
+        .expYield = 306,
+        .evYield_HP = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_FAIRY_AURA, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Xerneas"),
+        .cryId = CRY_XERNEAS,
+        .natDexNum = NATIONAL_DEX_XERNEAS,
+        .categoryName = _("Life"),
+        .height = 30,
+        .weight = 2150,
+        .description = gXerneasPokedexText,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(XerneasActive, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Xerneas,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(XerneasActive, 64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
+        PALETTES(XerneasActive),
+        ICON(XerneasActive, 0),
+        .footprint = gMonFootprint_Xerneas,
+        LEARNSETS(Xerneas),
+        .formSpeciesIdTable = sXerneasFormSpeciesIdTable,
+        .formChangeTable = sXerneasFormChangeTable,
+        .isLegendary = TRUE,
+    ),
 
-    [SPECIES_XERNEAS_NEUTRAL] = XERNEAS_MISC_INFO(Neutral),
-    [SPECIES_XERNEAS_ACTIVE]  = XERNEAS_MISC_INFO(Active),
+    FORM(SPECIES_XERNEAS_NEUTRAL, (
+        FRONT_PIC(XerneasNeutral, 64, 64),
+        BACK_PIC(XerneasNeutral, 64, 64),
+        PALETTES(XerneasNeutral),
+        ICON(XerneasNeutral, 0),
+    ))),
 #endif //P_FAMILY_XERNEAS
 
 #if P_FAMILY_YVELTAL
@@ -42276,101 +42279,117 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_YVELTAL
 
 #if P_FAMILY_ZYGARDE
-#define ZYGARDE_MISC_INFO(ability)                                                      \
-        .types = { TYPE_DRAGON, TYPE_GROUND },                                          \
-        .catchRate = 3,                                                                 \
-        .evYield_HP = 3,                                                                \
-        .genderRatio = MON_GENDERLESS,                                                  \
-        .eggCycles = 120,                                                               \
-        .friendship = 0,                                                                \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ability, ABILITY_NONE },                                         \
-        .noFlip = TRUE,                                                                 \
-        .speciesName = _("Zygarde"),                                                    \
-        .natDexNum = NATIONAL_DEX_ZYGARDE,                                              \
-        .categoryName = _("Order"),                                                     \
-        .footprint = gMonFootprint_Zygarde,                                             \
-        LEARNSETS(Zygarde),                                                             \
-        .formSpeciesIdTable = sZygardeFormSpeciesIdTable,                               \
+    SPECIES(SPECIES_ZYGARDE_50_AURA_BREAK, (
+        .baseHP        = 108,
+        .baseAttack    = 100,
+        .baseDefense   = 121,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 81,
+        .baseSpDefense = 95,
+        .expYield = 270,
+        .bodyColor = BODY_COLOR_GREEN,
+        .cryId = CRY_ZYGARDE_50,
+        .height = 50,
+        .weight = 3050,
+        .description = gZygarde50PokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        FRONT_PIC(Zygarde50, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Zygarde50,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        BACK_PIC(Zygarde50, 64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        PALETTES(Zygarde50),
+        ICON(Zygarde50, 1),
+        .formChangeTable = sZygarde50AuraBreakFormChangeTable,
+        .types = { TYPE_DRAGON, TYPE_GROUND },
+        .catchRate = 3,
+        .evYield_HP = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_AURA_BREAK, ABILITY_NONE },
+        .noFlip = TRUE,
+        .speciesName = _("Zygarde"),
+        .natDexNum = NATIONAL_DEX_ZYGARDE,
+        .categoryName = _("Order"),
+        .footprint = gMonFootprint_Zygarde,
+        LEARNSETS(Zygarde),
+        .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
         .isLegendary = TRUE
+    ),
 
-#define ZYGARDE_50_SPECIES_INFO(ability)                        \
-    {                                                           \
-        .baseHP        = 108,                                   \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 121,                                   \
-        .baseSpeed     = 95,                                    \
-        .baseSpAttack  = 81,                                    \
-        .baseSpDefense = 95,                                    \
-        .expYield = 270,                                        \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .cryId = CRY_ZYGARDE_50,                                \
-        .height = 50,                                           \
-        .weight = 3050,                                         \
-        .description = gZygarde50PokedexText,                   \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 721,                                    \
-        .trainerOffset = 19,                                    \
-        FRONT_PIC(Zygarde50, 64, 64),                           \
-        .frontPicYOffset = 0,                                   \
-        .frontAnimFrames = sAnims_Zygarde50,                    \
-        .frontAnimId = ANIM_TIP_MOVE_FORWARD,                   \
-        BACK_PIC(Zygarde50, 64, 64),                            \
-        .backPicYOffset = 4,                                    \
-        .backAnimId = (ability == ABILITY_POWER_CONSTRUCT       \
-            ? BACK_ANIM_SHAKE_GLOW_GREEN                        \
-            : BACK_ANIM_V_STRETCH),                             \
-        PALETTES(Zygarde50),                                    \
-        ICON(Zygarde50, 1),                                     \
-        .formChangeTable = (ability == ABILITY_POWER_CONSTRUCT  \
-            ? sZygarde50PowerConstructFormChangeTable           \
-            : sZygarde50AuraBreakFormChangeTable),              \
-        ZYGARDE_MISC_INFO(ability),                             \
-    }
+    FORM(SPECIES_ZYGARDE_50_POWER_CONSTRUCT, (
+        .abilities = { ABILITY_POWER_CONSTRUCT, ABILITY_NONE },
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
+        .formChangeTable = sZygarde50PowerConstructFormChangeTable,
+    ))
 
-#define ZYGARDE_10_SPECIES_INFO(ability)                        \
-    {                                                           \
-        .baseHP        = 54,                                    \
-        .baseAttack    = 100,                                   \
-        .baseDefense   = 71,                                    \
-        .baseSpeed     = 115,                                   \
-        .baseSpAttack  = 61,                                    \
-        .baseSpDefense = 85,                                    \
-        .expYield = 219,                                        \
-        .bodyColor = BODY_COLOR_BLACK,                          \
-        .cryId = CRY_ZYGARDE_10,                                \
-        .height = 12,                                           \
-        .weight = 335,                                          \
-        .description = gZygarde10PokedexText,                   \
-        .pokemonScale = 256,                                    \
-        .pokemonOffset = 0,                                     \
-        .trainerScale = 721,                                    \
-        .trainerOffset = 19,                                    \
-        FRONT_PIC(Zygarde10, 56, 64),                           \
-        .frontPicYOffset = 2,                                   \
-        .frontAnimFrames = sAnims_Zygarde10,                    \
-        BACK_PIC(Zygarde10, 64, 56),                            \
-        .backPicYOffset = 8,                                    \
-        .backAnimId = (ability == ABILITY_POWER_CONSTRUCT       \
-            ? BACK_ANIM_SHAKE_GLOW_GREEN                        \
-            : BACK_ANIM_JOLT_RIGHT),                            \
-        PALETTES(Zygarde10),                                    \
-        ICON(Zygarde10, 1),                                     \
-        .formChangeTable = (ability == ABILITY_POWER_CONSTRUCT  \
-            ? sZygarde10PowerConstructFormChangeTable           \
-            : sZygarde10AuraBreakFormChangeTable),              \
-        ZYGARDE_MISC_INFO(ability),                             \
-    }
-    //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+    FORM(SPECIES_ZYGARDE_10_AURA_BREAK, (
+        .baseHP        = 54,
+        .baseAttack    = 100,
+        .baseDefense   = 71,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 85,
+        .expYield = 219,
+        .abilities = { ABILITY_AURA_BREAK, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .cryId = CRY_ZYGARDE_10,
+        .height = 12,
+        .weight = 335,
+        .description = gZygarde10PokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        FRONT_PIC(Zygarde10, 56, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Zygarde10,
+        BACK_PIC(Zygarde10, 64, 56),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        PALETTES(Zygarde10),
+        ICON(Zygarde10, 1),
+        .formChangeTable = sZygarde10AuraBreakFormChangeTable,
+    )),
 
-    [SPECIES_ZYGARDE_50_AURA_BREAK]      = ZYGARDE_50_SPECIES_INFO(ABILITY_AURA_BREAK),
-    [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = ZYGARDE_50_SPECIES_INFO(ABILITY_POWER_CONSTRUCT),
-    [SPECIES_ZYGARDE_10_AURA_BREAK]      = ZYGARDE_10_SPECIES_INFO(ABILITY_AURA_BREAK),
-    [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = ZYGARDE_10_SPECIES_INFO(ABILITY_POWER_CONSTRUCT),
-    SPECIES(SPECIES_ZYGARDE_COMPLETE, (
-        ZYGARDE_MISC_INFO(ABILITY_POWER_CONSTRUCT),
+    FORM(SPECIES_ZYGARDE_10_POWER_CONSTRUCT, (
+        .baseHP        = 54,
+        .baseAttack    = 100,
+        .baseDefense   = 71,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 61,
+        .baseSpDefense = 85,
+        .expYield = 219,
+        .abilities = { ABILITY_POWER_CONSTRUCT, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .cryId = CRY_ZYGARDE_10,
+        .height = 12,
+        .weight = 335,
+        .description = gZygarde10PokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 721,
+        .trainerOffset = 19,
+        FRONT_PIC(Zygarde10, 56, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Zygarde10,
+        BACK_PIC(Zygarde10, 64, 56),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
+        PALETTES(Zygarde10),
+        ICON(Zygarde10, 1),
+        .formChangeTable = sZygarde10PowerConstructFormChangeTable,
+    )),
+
+    FORM(SPECIES_ZYGARDE_COMPLETE, (
         .baseHP        = 216,
         .baseAttack    = 100,
         .baseDefense   = 121,
@@ -42378,6 +42397,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 91,
         .baseSpDefense = 95,
         .expYield = 319,
+        .abilities = { ABILITY_POWER_CONSTRUCT, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLACK,
         .cryId = CRY_ZYGARDE_COMPLETE,
         .height = 45,
@@ -42398,7 +42418,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZygardeComplete),
         ICON(ZygardeComplete, 1),
         .formChangeTable = sZygardeCompleteFormChangeTable,
-    )),
+    ))),
 #endif //P_FAMILY_ZYGARDE
 
 #if P_FAMILY_DIANCIE
