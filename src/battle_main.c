@@ -3359,9 +3359,6 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->zmove.active = FALSE;
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
-    // Adds to the fainted mon counter (with a max of 100)
-    if (gBattleStruct->faintedMonCount[battlerSide] < 100)
-        gBattleStruct->faintedMonCount[battlerSide]++;
     return result;
 }
 

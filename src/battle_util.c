@@ -4788,7 +4788,11 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleStruct->faintedMonCount[GetBattlerSide(battler)]);
+                if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.playerFaintCounter);
+                else
+                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.opponentFaintCounter);
+
                 BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
                 effect++;
             }
@@ -8856,7 +8860,10 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         basePower = (basePower > 350) ? 350 : basePower;
         break;
     case EFFECT_LAST_RESPECTS:
-        basePower += (basePower * gBattleStruct->faintedMonCount[GetBattlerSide(battlerAtk)]);
+        if (GetBattlerSide(battlerAtk) == B_SIDE_PLAYER)
+            basePower += (basePower * min(100, gBattleResults.playerFaintCounter));
+        else
+            basePower += (basePower * min(100, gBattleResults.opponentFaintCounter));
         break;
     }
 
