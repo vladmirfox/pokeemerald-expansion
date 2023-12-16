@@ -8,8 +8,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted mon in the user's side - Player", s16 damage)
 {
-    u32 j = 0;
-    bool32 faintCount = 0;
+    u32 j = 0, faintCount = 0;
     PARAMETRIZE { faintCount = 0; }
     PARAMETRIZE { faintCount = 1; }
     PARAMETRIZE { faintCount = 2; }
@@ -39,8 +38,7 @@ SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted m
 
 SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted mon in the user's side - Opponent", s16 damage)
 {
-    u32 j = 0;
-    bool32 faintCount = 0;
+    u32 j = 0, faintCount = 0;
     PARAMETRIZE { faintCount = 0; }
     PARAMETRIZE { faintCount = 1; }
     PARAMETRIZE { faintCount = 2; }
