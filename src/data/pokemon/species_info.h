@@ -224,6 +224,13 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _("");
 #define PALDEAN_FORM(tag, overrides)
 #endif
 
+// Tera forms (?)
+#if P_TERA_FORMS
+#define TERA_FORM FORM
+#else
+#define TERA_FORM(tag, overrides)
+#endif
+
 #define EVOLUTION(...) (const struct Evolution[]) { __VA_ARGS__, { EVOLUTIONS_END }, }
 
 #define FRONT_PIC(sprite, width, height)                    \
@@ -3513,8 +3520,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_SUN_STONE, SPECIES_BELLOSSOM}),
     )),
 
-
-    FORM(SPECIES_VILEPLUME, (
+    SPECIES(SPECIES_VILEPLUME, (
         .baseHP        = 75,
         .baseAttack    = 80,
         .baseDefense   = 85,
@@ -5319,8 +5325,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_VICTREEBEL}),
     )),
 
-
-    FORM(SPECIES_VICTREEBEL, (
+    SPECIES(SPECIES_VICTREEBEL, (
         .baseHP        = 80,
         .baseAttack    = 105,
         .baseDefense   = 65,
@@ -19542,8 +19547,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_VIGOROTH}),
     )),
 
-
-    FORM(SPECIES_VIGOROTH, (
+    SPECIES(SPECIES_VIGOROTH, (
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -21911,8 +21915,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VIBRAVA}),
     )),
 
-
-    FORM(SPECIES_VIBRAVA, (
+    SPECIES(SPECIES_VIBRAVA, (
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 50,
@@ -29870,8 +29873,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_ARCEUS
 
 #if P_FAMILY_VICTINI
-
-    FORM(SPECIES_VICTINI, (
+    SPECIES(SPECIES_VICTINI, (
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -32834,10 +32836,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(BasculegionMale, 64, 64),
         PALETTES(BasculegionMale),
         ICON(BasculegionMale, 1),
-    )),
+    ),
 
-    SPECIES(SPECIES_BASCULEGION_FEMALE, (
-        BASCULEGION_MISC_INFO,
+    FORM(SPECIES_BASCULEGION_FEMALE, (
         .baseHP        = 120,
         .baseAttack    = 92,
         .baseDefense   = 65,
@@ -32851,7 +32852,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(BasculegionFemale, 64, 64),
         PALETTES(BasculegionFemale),
         ICON(BasculegionFemale, 0),
-    )),
+    ))),
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_BASCULIN
 
@@ -37612,8 +37613,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TERRAKION
 
 #if P_FAMILY_VIRIZION
-
-    FORM(SPECIES_VIRIZION, (
+    SPECIES(SPECIES_VIRIZION, (
         .baseHP        = 91,
         .baseAttack    = 90,
         .baseDefense   = 72,
@@ -43432,8 +43432,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_VIKAVOLT}),
     )),
 
-
-    FORM(SPECIES_VIKAVOLT, (
+    SPECIES(SPECIES_VIKAVOLT, (
         .baseHP        = 77,
         .baseAttack    = 70,
         .baseDefense   = 90,
@@ -49547,7 +49546,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_LEVEL_NATURE_LOW_KEY, 30, SPECIES_TOXTRICITY_LOW_KEY}),
     )),
 
-
     SPECIES(SPECIES_TOXTRICITY_AMPED, (
         .baseHP        = 75,
         .baseAttack    = 98,
@@ -49667,7 +49665,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(ToxtricityLowKey),
         .isGigantamax = TRUE,
     ))),
-#endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_TOXEL
 
 #if P_FAMILY_SIZZLIPEDE
@@ -57526,13 +57523,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "perfecting his craft lingered in some\n"
             "matcha and became a Pokémon."),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_UNREMARKABLE_TEACUP, SPECIES_SINISTCHA_UNREMARKABLE}),
-    )),
-    SPECIES(SPECIES_POLTCHAGEIST_ARTISAN, (
-        POLTCHAGEIST_MISC_INFO,
+    ),
+
+    FORM(SPECIES_POLTCHAGEIST_ARTISAN, (
         .description = COMPOUND_STRING(
             ""),
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
-    )),
+    ))),
 
     SPECIES(SPECIES_SINISTCHA_UNREMARKABLE, (
         .baseHP        = 71,
@@ -57735,65 +57732,90 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_FEZANDIPITI
 
 #if P_FAMILY_OGERPON
-#define OGERPON_SPECIES_INFO(Form, type, ability, color, tera)                          \
-    {                                                                                   \
-        .baseHP        = 80,                                                            \
-        .baseAttack    = 120,                                                           \
-        .baseDefense   = 84,                                                            \
-        .baseSpeed     = 110,                                                           \
-        .baseSpAttack  = 60,                                                            \
-        .baseSpDefense = 96,                                                            \
-        .types = { TYPE_GRASS, type },                                                  \
-        .catchRate = 5,                                                                 \
-        .expYield = 275,                                                                \
-        .evYield_Attack = 3,                                                            \
-        .genderRatio = MON_FEMALE,                                                      \
-        .eggCycles = 10,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
-        .abilities = { ability, ABILITY_NONE },                                         \
-        .bodyColor = color,                                                             \
-        .speciesName = _("Ogerpon"),                                                    \
-        .cryId = CRY_OGERPON,                                                           \
-        .natDexNum = NATIONAL_DEX_OGERPON,                                              \
-        .categoryName = _("Mask"),                                                      \
-        .height = 12,                                                                   \
-        .weight = 398,                                                                  \
-        .description = gOgerpon##Form##PokedexText,                                     \
-        .pokemonScale = 356,                                                            \
-        .pokemonOffset = 17,                                                            \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        FRONT_PIC(Ogerpon##Form, 64, 64),                                               \
-        .frontPicYOffset = 0,                                                           \
-        .frontAnimFrames = sAnims_Ogerpon,                                              \
-        BACK_PIC(Ogerpon##Form, 64, 64),                                                \
-        .backPicYOffset = 16,                                                           \
-        .palette = gMonPalette_Ogerpon##Form,                                           \
-        ICON(OgerponTealMask, 1),                                                       \
-        LEARNSETS(Ogerpon),                                                             \
-        .formSpeciesIdTable = sOgerponFormSpeciesIdTable,                               \
-        .formChangeTable = sOgerponFormChangeTable,                                     \
-        .isLegendary = TRUE,                                                            \
-    }
+    SPECIES(SPECIES_OGERPON_TEAL_MASK, (
+        .baseHP        = 80,
+        .baseAttack    = 120,
+        .baseDefense   = 84,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 96,
+        .types = { TYPE_GRASS, TYPE_GRASS },
+        .catchRate = 5,
+        .expYield = 275,
+        .evYield_Attack = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_DEFIANT, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Ogerpon"),
+        .cryId = CRY_OGERPON,
+        .natDexNum = NATIONAL_DEX_OGERPON,
+        .categoryName = _("Mask"),
+        .height = 12,
+        .weight = 398,
+        .description = gOgerponTealMaskPokedexText,
+        .pokemonScale = 356,TealMask
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(OgerponTealMask, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Ogerpon,
+        BACK_PIC(OgerponTealMask, 64, 64),
+        .backPicYOffset = 16,
+        .palette = gMonPalette_OgerponTealMask,
+        ICON(OgerponTealMask, 1),
+        LEARNSETS(Ogerpon),
+        .formSpeciesIdTable = sOgerponFormSpeciesIdTable,
+        .formChangeTable = sOgerponFormChangeTable,
+        .isLegendary = TRUE,
+    ),
+
+#define OGREPON_FORM_INFO(Form, type, ability, color, tera) \
+        .types = { TYPE_GRASS, type },                      \
+        .abilities = { ability, ABILITY_NONE },             \
+        .bodyColor = color,                                 \
+        .description = gOgerpon##Form##PokedexText,         \
+        FRONT_PIC(Ogerpon##Form, 64, 64),                   \
+        BACK_PIC(Ogerpon##Form, 64, 64),                    \
+        .palette = gMonPalette_Ogerpon##Form
+
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //.shinyPalette = gMonShinyPalette_OgerponTealMask,
         //ICON(Ogerpon##Form##, 1),
         //.footprint = gMonFootprint_Ogerpon,
 
-    [SPECIES_OGERPON_TEAL_MASK]             = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_DEFIANT,                   BODY_COLOR_GREEN, FALSE),
-    [SPECIES_OGERPON_WELLSPRING_MASK]       = OGERPON_SPECIES_INFO(WellspringMask,  TYPE_WATER, ABILITY_WATER_ABSORB,              BODY_COLOR_BLUE, FALSE),
-    [SPECIES_OGERPON_HEARTHFLAME_MASK]      = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_MOLD_BREAKER,              BODY_COLOR_RED, FALSE),
-    [SPECIES_OGERPON_CORNERSTONE_MASK]      = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_STURDY,                    BODY_COLOR_GRAY, FALSE),
-#if P_TERA_FORMS
-    [SPECIES_OGERPON_TEAL_MASK_TERA]        = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL,        BODY_COLOR_GREEN, TRUE),
-    [SPECIES_OGERPON_WELLSPRING_MASK_TERA]  = OGERPON_SPECIES_INFO(WellspringMask,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING,  BODY_COLOR_BLUE, TRUE),
-    [SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME, BODY_COLOR_RED, TRUE),
-    [SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE, BODY_COLOR_GRAY, TRUE),
-#endif //P_TERA_FORMS
+    FORM(SPECIES_OGERPON_WELLSPRING_MASK, (
+        OGREPON_FORM_INFO(WellspringMask, TYPE_WATER, ABILITY_WATER_ABSORB, BODY_COLOR_BLUE, FALSE)
+    )),
 
+    FORM(SPECIES_OGERPON_HEARTHFLAME_MASK, (
+        OGREPON_FORM_INFO(HearthflameMask, TYPE_FIRE, ABILITY_MOLD_BREAKER, BODY_COLOR_RED, FALSE)
+    )),
+
+    FORM(SPECIES_OGERPON_CORNERSTONE_MASK, (
+        OGREPON_FORM_INFO(CornerstoneMask, TYPE_ROCK, ABILITY_STURDY, BODY_COLOR_GRAY, FALSE)
+    )),
+
+    TERA_FORM(SPECIES_OGERPON_TEAL_MASK_TERA, (
+        OGREPON_FORM_INFO(TealMask, TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL, BODY_COLOR_GREEN, TRUE)
+    )),
+
+    TERA_FORM(SPECIES_OGERPON_WELLSPRING_MASK_TERA, (
+        OGREPON_FORM_INFO(WellspringMask, TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING, BODY_COLOR_BLUE, TRUE)
+    )),
+
+    TERA_FORM(SPECIES_OGERPON_HEARTHFLAME_MASK_TERA, (
+        OGREPON_FORM_INFO(HearthflameMask, TYPE_FIRE, ABILITY_EMBODY_ASPECT_HEARTHFLAME, BODY_COLOR_RED, TRUE)
+    )),
+
+    TERA_FORM(SPECIES_OGERPON_CORNERSTONE_MASK_TERA, (
+        OGREPON_FORM_INFO(CornerstoneMask, TYPE_ROCK, ABILITY_EMBODY_ASPECT_CORNERSTONE, BODY_COLOR_GRAY, TRUE)
+    ))),
 #endif //P_FAMILY_OGERPON"
 
     SPECIES(SPECIES_EGG, (
