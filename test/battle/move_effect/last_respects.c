@@ -8,6 +8,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted mon in the user's side", s16 damage)
 {
+    u32 j = 0;
     bool32 faintCount = 0;
     PARAMETRIZE { faintCount = 0; }
     PARAMETRIZE { faintCount = 1; }
@@ -17,7 +18,7 @@ SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted m
         PLAYER(SPECIES_GEODUDE);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEPPA_BERRY); Moves(MOVE_RECYCLE, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
     } WHEN {
-        for (i = 0; i < faintCount; i++)
+        for (j = 0; j < faintCount; j++)
         {
             TURN { MOVE(opponent, MOVE_RECYCLE); SWITCH(player, 1); }
             TURN { MOVE(opponent, MOVE_RECYCLE); MOVE(player, MOVE_MEMENTO); SEND_OUT(player, 0); }
@@ -29,7 +30,7 @@ SINGLE_BATTLE_TEST("Last Respects power is multiplied by the amount of fainted m
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LAST_RESPECTS, player);
-        HP_BAR(opponent, captureDamage: &results[i].damage);
+        HP_BAR(opponent, captureDamage: &results[j].damage);
     } THEN {
         if (faintCount > 0)
             EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.0 + faintCount), results[faintCount].damage);
