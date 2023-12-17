@@ -6157,6 +6157,21 @@ static void Cmd_switchindataupdate(void)
     for (i = 0; i < sizeof(struct BattlePokemon); i++)
         monData[i] = gBattleResources->bufferB[battler][4 + i];
 
+    // Edge case: the sent out pokemon has 0 HP. This should never happen.
+    if (gBattleMons[battler].hp == 0)
+    {
+        // If it's a test, mark it as invalid.
+        if (gTestRunnerEnabled)
+        {
+            TestRunner_Battle_InvalidNoHPMon(battler, gBattlerPartyIndexes[battler]);
+        }
+        // TODO: Handle in-game scenario.
+        else
+        {
+
+        }
+    }
+
     gBattleMons[battler].type1 = gSpeciesInfo[gBattleMons[battler].species].types[0];
     gBattleMons[battler].type2 = gSpeciesInfo[gBattleMons[battler].species].types[1];
     gBattleMons[battler].type3 = TYPE_MYSTERY;
