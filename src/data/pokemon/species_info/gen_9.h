@@ -3597,6 +3597,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     )),
 
     FORM(SPECIES_TATSUGIRI_STRETCHY, (
+        .cryId = CRY_TATSUGIRI_STRETCHY,
         .description = COMPOUND_STRING(
             "It's one of the most intelligent\n"
             "dragon Pokémon. It camouflages itself\n"

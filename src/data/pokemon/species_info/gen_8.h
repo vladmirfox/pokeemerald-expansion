@@ -4708,6 +4708,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     )),
 
     GIGANTAMAX_FORM(SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, (
+        .types = { TYPE_FIGHTING, TYPE_WATER },
+        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
         .height = 260,
         .weight = 0,
         .pokemonScale = 256,
@@ -4722,6 +4724,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .frontAnimFrames = sAnims_UrshifuRapidStrikeStyleGigantamax,
         .frontPicYOffset = 0,
         .backPicYOffset = 4,
+        LEARNSETS(UrshifuRapidStrikeStyle),
         FRONT_PIC(UrshifuRapidStrikeStyleGigantamax, 64, 64),
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(UrshifuRapidStrikeStyleGigantamax, 64, 64),

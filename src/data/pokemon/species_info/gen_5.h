@@ -3673,9 +3673,13 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseSpAttack  = 30,
         .baseSpDefense = 65,
         .types = { TYPE_GROUND, TYPE_GHOST },
+        .itemRare = 0,
         .abilities = { ABILITY_WANDERING_SPIRIT, ABILITY_NONE },
         .description = COMPOUND_STRING(
-            ""),
+            "A clay slab with cursed engravings\n"
+            "took possession of a Yamask. The\n"
+            "slab is said to be absorbing the\n"
+            "Yamask's dark power."),
         .frontAnimFrames = sAnims_YamaskGalarian,
         .frontPicYOffset = 13,
         .backPicYOffset = 13,
@@ -6596,6 +6600,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .baseSpAttack  = 66,
         .baseSpDefense = 84,
         .types = { TYPE_GROUND, TYPE_STEEL },
+        .itemRare = 0,
         .friendship = STANDARD_FRIENDSHIP,
         .abilities = { ABILITY_MIMICRY, ABILITY_NONE },
         .weight = 205,

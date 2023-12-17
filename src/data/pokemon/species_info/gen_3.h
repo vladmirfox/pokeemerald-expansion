@@ -679,6 +679,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 
     GALARIAN_FORM(SPECIES_ZIGZAGOON_GALARIAN, (
         .types = { TYPE_DARK, TYPE_NORMAL },
+        .itemCommon = 0,
+        .itemRare = 0,
         .description = COMPOUND_STRING(
             "Its restlessness has it constantly moving\n"
             "in zigzags. It will purposely run into other\n"
@@ -749,6 +751,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 
     GALARIAN_FORM(SPECIES_LINOONE_GALARIAN, (
         .types = { TYPE_DARK, TYPE_NORMAL },
+        .itemCommon = 0,
+        .itemRare = 0,
         .description = COMPOUND_STRING(
             "This very aggressive Pokémon will\n"
             "recklessly challenge opponents stronger\n"

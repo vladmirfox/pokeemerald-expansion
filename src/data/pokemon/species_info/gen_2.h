@@ -2671,7 +2671,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backPicYOffset = 6,
         FRONT_PIC(UnownExclamationMark, 24, 40),
         BACK_PIC(UnownExclamationMark, 24, 56),
-        ICON(UnownE, 0),
+        ICON(UnownExclamationMark, 0),
     )),
 
     FORM(SPECIES_UNOWN_QMARK, (
@@ -2679,7 +2679,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .backPicYOffset = 6,
         FRONT_PIC(UnownQuestionMark, 24, 40),
         BACK_PIC(UnownQuestionMark, 32, 56),
-        ICON(UnownQ, 0),
+        ICON(UnownQuestionMark, 0),
     ))),
 #endif //P_FAMILY_UNOWN
 

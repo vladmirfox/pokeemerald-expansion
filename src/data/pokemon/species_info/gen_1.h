@@ -3735,6 +3735,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 40,
         .types = { TYPE_STEEL, TYPE_STEEL },
         .evYields = { .atk = 1 },
+        .itemRare = 0,
         .abilities = { ABILITY_PICKUP, ABILITY_TOUGH_CLAWS, ABILITY_UNNERVE },
         .height = 4,
         .weight = 75,
@@ -5321,6 +5322,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     ALOLAN_FORM(SPECIES_GOLEM_ALOLAN, (
         .types = { TYPE_ROCK, TYPE_ELECTRIC },
         .itemCommon = ITEM_CELL_BATTERY,
+        .itemRare = 0,
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE },
         .height = 17,
         .weight = 3160,
@@ -5551,6 +5553,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     GALARIAN_FORM(SPECIES_SLOWPOKE_GALARIAN, (
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .abilities = { ABILITY_GLUTTONY, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR },
+        .itemRare = 0,
         .cryId = CRY_SLOWPOKE_GALARIAN,
         .description = COMPOUND_STRING(
             "Although it is normally zoned out, its\n"
@@ -5747,6 +5750,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 110,
         .types = { TYPE_POISON, TYPE_PSYCHIC },
         .evYields = { .spd = 2 },
+        .itemRare = 0,
         .abilities = { ABILITY_CURIOUS_MEDICINE, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR },
         .categoryName = _("Hexpert"),
         .height = 18,
@@ -5982,6 +5986,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 62,
         .types = { TYPE_FIGHTING, TYPE_FIGHTING },
         .itemCommon = ITEM_LEEK,
+        .itemRare = 0,
         .abilities = { ABILITY_STEADFAST, ABILITY_NONE, ABILITY_SCRAPPY },
         .height = 8,
         .weight = 420,
@@ -11024,6 +11029,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evYields = { .spa = 3 },
         .eggCycles = 120,
         .abilities = { ABILITY_COMPETITIVE, ABILITY_NONE, ABILITY_NONE },
+        .categoryName = _("Cruel"),
         .weight = 509,
         .description = COMPOUND_STRING(
             "It fires beams that immobilize opponents\n"
