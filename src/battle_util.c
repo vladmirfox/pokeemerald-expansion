@@ -9447,7 +9447,6 @@ static bool32 CanEvolve(u32 species)
              && SanitizeSpeciesId(evolutions[i].targetSpecies) != SPECIES_NONE)
                 return TRUE;
         }
-        
     }
     return FALSE;
 }
