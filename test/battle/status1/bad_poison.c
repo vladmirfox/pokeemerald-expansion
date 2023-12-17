@@ -39,27 +39,3 @@ SINGLE_BATTLE_TEST("Bad poison cumulative damage resets on switch")
             HP_BAR(player, damage: maxHP / 16 * (j + 1));
     }
 }
-
-DOUBLE_BATTLE_TEST("Not allowed")
-{
-    //bool32 faintCount = 0;
-    //PARAMETRIZE { faintCount = 5; }
-    //PARAMETRIZE { faintCount = 6; }
-    GIVEN {
-        PLAYER(SPECIES_PAWNIARD);
-        PLAYER(SPECIES_PAWNIARD);
-        PLAYER(SPECIES_PAWNIARD);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerLeft, 2); }
-        TURN { MOVE(playerLeft, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerLeft, 2); USE_ITEM(playerRight, ITEM_REVIVE, 0); }
-        TURN { MOVE(playerLeft, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerLeft, 2); USE_ITEM(playerRight, ITEM_REVIVE, 0); }
-        //TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
-    } SCENE {
-        //ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
-        //HP_BAR(opponentLeft, captureDamage: &results[i].damage);
-    //} FINALLY {
-    //    EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.1), results[1].damage);
-    }
-}
