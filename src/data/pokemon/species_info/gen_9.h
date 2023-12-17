@@ -2681,7 +2681,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             "and will hide itself in the sand."),
         .bodyColor = BODY_COLOR_WHITE,
         .frontAnimFrames = sAnims_Wiglett,
-        .frontPicYOffset = 19,
+        .frontPicYOffset = 10,
         .backPicYOffset = 14,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO}),
         FRONT_PIC(Wiglett, 64, 64),
