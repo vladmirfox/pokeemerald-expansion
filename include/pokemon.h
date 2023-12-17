@@ -313,12 +313,18 @@ struct Evolution
 struct __attribute__((packed, aligned(2))) EVYields
 {
     u16 hp:2;
-    u16 atk:2;
-    u16 def:2;
-    u16 spe:2;
-    u16 spa:2;
-    u16 spd:2;
+    u16 attack:2;
+    u16 defense:2;
+    u16 speed:2;
+    u16 spAttack:2;
+    u16 spDefense:2;
     u16 padding2:4;
+};
+
+union FormSpecies
+{
+    u32 baseSpecies;
+    const u16 *formSpeciesIdTable;
 };
 
 struct SpeciesInfo /*0x8C*/
@@ -404,7 +410,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
  /* 0x84 */ const u16 *teachableLearnset;
  /* 0x88 */ const struct Evolution *evolutions;
- /* 0x84 */ const u16 *formSpeciesIdTable;
+ /* 0x84 */ union FormSpecies formSpecies;
  /* 0x84 */ const struct FormChange *formChangeTable;
 };
 

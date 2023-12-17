@@ -4989,11 +4989,11 @@ static void SaveMonDataInStruct(void)
     u8 evs[NUM_STATS] =
     {
         [STAT_HP]    = gSpeciesInfo[species].evYields.hp,
-        [STAT_ATK]   = gSpeciesInfo[species].evYields.atk,
-        [STAT_DEF]   = gSpeciesInfo[species].evYields.def,
-        [STAT_SPEED] = gSpeciesInfo[species].evYields.spe,
-        [STAT_SPATK] = gSpeciesInfo[species].evYields.spa,
-        [STAT_SPDEF] = gSpeciesInfo[species].evYields.spd
+        [STAT_ATK]   = gSpeciesInfo[species].evYields.attack,
+        [STAT_DEF]   = gSpeciesInfo[species].evYields.defense,
+        [STAT_SPEED] = gSpeciesInfo[species].evYields.speed,
+        [STAT_SPATK] = gSpeciesInfo[species].evYields.spAttack,
+        [STAT_SPDEF] = gSpeciesInfo[species].evYields.spDefense
     };
     u8 differentEVs = 0;
     u8 i;

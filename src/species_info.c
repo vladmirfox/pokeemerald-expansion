@@ -1,0 +1,20 @@
+#include "global.h"
+#include "data.h"
+#include "graphics.h"
+#include "pokemon_animation.h"
+#include "constants/abilities.h"
+#include "constants/battle.h"
+#include "constants/cries.h"
+#include "constants/form_change_types.h"
+#include "constants/items.h"
+#include "constants/moves.h"
+
+#include "data/graphics/pokemon.h"
+#include "data/pokemon_graphics/front_pic_anims.h"
+
+#include "data/pokemon/level_up_learnsets.h"
+#include "data/pokemon/teachable_learnsets.h"
+#include "data/pokemon/form_change_tables.h"
+#include "data/pokemon/form_change_table_pointers.h"
+
+#include "data/pokemon/species_info.h"

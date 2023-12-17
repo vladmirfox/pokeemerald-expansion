@@ -99,107 +99,112 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _(
     "protecting it from all manner of\n"
     "attacks.");
 
-// Macros for ease of use.
+#define SPECIES(tag, members, ...) \
+    [tag] = { \
+        __VA_OPT__( \
+            .formSpecies = { .formSpeciesIdTable = (static const u16[]) { \
+                tag, \
+                RECURSIVELY(R_FOR_EACH(SPECIES_FORM_TAG, __VA_ARGS__)) \
+                FORM_SPECIES_END, \
+            }}, \
+        ) \
+        UNPACK members \
+    } \
+    RECURSIVELY(R_FOR_EACH_WITH(SPECIES_FORM, (tag, members), __VA_ARGS__))
 
-#define PARENS ()
+#define SPECIES_FORM_TAG(...) __VA_OPT__(FIRST __VA_ARGS__,)
 
-#define EXPAND(...) EXPAND4(EXPAND4(EXPAND4(EXPAND4(__VA_ARGS__))))
-#define EXPAND4(...) EXPAND3(EXPAND3(EXPAND3(EXPAND3(__VA_ARGS__))))
-#define EXPAND3(...) EXPAND2(EXPAND2(EXPAND2(EXPAND2(__VA_ARGS__))))
-#define EXPAND2(...) EXPAND1(EXPAND1(EXPAND1(EXPAND1(__VA_ARGS__))))
-#define EXPAND1(...) __VA_ARGS__
+// Prevents these members from being inherited by forms.
+#define NO_INHERIT \
+    .frontPicFemale = 0, \
+    .frontPicSizeFemale = 0, \
+    .formChangeTable = 0, \
+    .iconPalIndex = 0, \
+    .iconPalIndexFemale = 0, \
+    .frontAnimId = 0, \
+    .backPicFemale = 0, \
+    .backPicSizeFemale = 0, \
+    .frontAnimId = 0, \
+    .frontAnimDelay = 0, \
+    .frontPicYOffset = 0, \
+    .evolutions = 0, \
+    .backPicSize = 0, \
+    .enemyMonElevation = 0, \
+    .backAnimId = 0,
 
-#define FOR_EACH_IF_ABLE(a, macro, ...) __VA_OPT__(,) __VA_OPT__(macro(a, __VA_ARGS__))
+/* Parses a triple of '(tag, overrides, extra)' which are constructed
+ * by FUSION/MEGA_EVOLUTION/PRIMAL_REVERSION/... */
+#define SPECIES_FORM(baseTag, baseMembers, ...) __VA_OPT__(SPECIES_FORM_(baseTag, baseMembers, FIRST __VA_ARGS__, SECOND __VA_ARGS__, THIRD __VA_ARGS__))
+#define SPECIES_FORM_(baseTag, baseMembers, formTag, formMembers, extraMembers) \
+    , [formTag] = { \
+        .formSpecies = { .baseSpecies = baseTag }, \
+        UNPACK baseMembers \
+        NO_INHERIT \
+        UNPACK formMembers \
+        UNPACK extraMembers \
+    } \
 
-#define FOR_EACH_1(a, macro, ...) \
-  __VA_OPT__(EXPAND(FOR_EACH_1_HELPER(a, macro, __VA_ARGS__)))
-
-#define FOR_EACH_1_HELPER(a, macro, a1, ...) \
-    FOR_EACH_IF_ABLE(a, macro, a1) \
-    __VA_OPT__(FOR_EACH_1_AGAIN PARENS (a, macro, __VA_ARGS__))
-
-#define FOR_EACH_1_AGAIN() FOR_EACH_1_HELPER
-
-//
-
-#define UNPACK(...) __VA_ARGS__
-#define FIRST(a, _, b) a
-#define SECOND(_, b, c) b c
-
-#define SPECIES(tag, base, ...) \
-  [tag] = { \
-    UNPACK base \
-  } \
-  FOR_EACH_1(base, SPECIES_FORM, __VA_ARGS__)
-
-#define SPECIES_FORM(base, tagOverrides, ...) \
-  [FIRST tagOverrides] = { \
-    UNPACK base \
-    UNPACK SECOND tagOverrides \
-    __VA_ARGS__ \
-  }
-
-#define FORM(tag, overrides) (tag, overrides, )
+#define FORM(tag, overrides) (tag, overrides, ())
 
 // Fusions
 #if P_FUSION_FORMS
-#define FUSION FORM
+#define FUSION(tag, overrides) (tag, overrides, ())
 #else
 #define FUSION(tag, overrides)
 #endif
 
 // Mega evolutions
 #if P_MEGA_EVOLUTIONS
-#define MEGA_EVOLUTION(tag, overrides) (tag, overrides, .isMegaEvolution = TRUE)
+#define MEGA_EVOLUTION(tag, overrides) (tag, overrides, (.isMegaEvolution = TRUE))
 #else
 #define MEGA_EVOLUTION(tag, overrides)
 #endif
 
 // Primal reversions
 #if P_PRIMAL_REVERSIONS
-#define PRIMAL_REVERSION(tag, overrides) (tag, overrides, .isPrimalReversion = TRUE)
+#define PRIMAL_REVERSION(tag, overrides) (tag, overrides, (.isPrimalReversion = TRUE))
 #else
 #define PRIMAL_REVERSION(tag, overrides)
 #endif
 
 // Gmax forms
 #if P_GIGANTAMAX_FORMS
-#define GIGANTAMAX_FORM(tag, overrides) (tag, overrides, .isGigantamax = TRUE)
+#define GIGANTAMAX_FORM(tag, overrides) (tag, overrides, (.isGigantamax = TRUE))
 #else
 #define GIGANTAMAX_FORM(tag, overrides)
 #endif
 
 // Alolan forms
 #if P_ALOLAN_FORMS
-#define ALOLAN_FORM(tag, overrides) (tag, overrides, .isAlolanForm = TRUE)
+#define ALOLAN_FORM(tag, overrides) (tag, overrides, (.isAlolanForm = TRUE))
 #else
 #define ALOLAN_FORM(tag, overrides)
 #endif
 
 // Ultra bursts
 #if P_ULTRA_BURST_FORMS && P_FUSION_FORMS
-#define ULTRA_BURST(tag, overrides) (tag, overrides, .isUltraBurst = TRUE)
+#define ULTRA_BURST(tag, overrides) (tag, overrides, (.isUltraBurst = TRUE))
 #else
 #define ULTRA_BURST(tag, overrides)
 #endif
 
 // Galarian forms
 #if P_GALARIAN_FORMS
-#define GALARIAN_FORM(tag, overrides) (tag, overrides, .isGalarianForm = TRUE)
+#define GALARIAN_FORM(tag, overrides) (tag, overrides, (.isGalarianForm = TRUE))
 #else
 #define GALARIAN_FORM(tag, overrides)
 #endif
 
 // Hisuian forms
 #if P_HISUIAN_FORMS
-#define HISUIAN_FORM(tag, overrides) (tag, overrides, .isHisuianForm = TRUE)
+#define HISUIAN_FORM(tag, overrides) (tag, overrides, (.isHisuianForm = TRUE))
 #else
 #define HISUIAN_FORM(tag, overrides)
 #endif
 
 // Paldean forms
 #if P_PALDEAN_FORMS
-#define PALDEAN_FORM(tag, overrides) (tag, overrides, .isPaldeanForm = TRUE)
+#define PALDEAN_FORM(tag, overrides) (tag, overrides, (.isPaldeanForm = TRUE))
 #else
 #define PALDEAN_FORM(tag, overrides)
 #endif
@@ -320,9 +325,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_MYSTERY, TYPE_MYSTERY },
         .catchRate = 255,
         .expYield = 67,
-        .evYield_HP = 1,
-        .evYield_Defense = 1,
-        .evYield_SpDefense = 1,
+        .evYields = { .hp = 1, .defense = 1, .spDefense = 1 },
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
@@ -363,7 +366,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(None),
         .evolutions = EVOLUTION({EVO_LEVEL, 100, SPECIES_NONE},
                                 {EVO_ITEM, ITEM_MOOMOO_MILK, SPECIES_NONE}),
-        //.formSpeciesIdTable = sNoneFormSpeciesIdTable,
         //.formChangeTable = sNoneFormChangeTable,
         .allPerfectIVs = TRUE,
     )),

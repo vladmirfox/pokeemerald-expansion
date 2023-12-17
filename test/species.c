@@ -8,14 +8,14 @@ TEST("Form species ID tables are shared between all forms")
     u32 species = SPECIES_NONE;
     for (i = 0; i < NUM_SPECIES; i++)
     {
-        if (gSpeciesInfo[i].formSpeciesIdTable) PARAMETRIZE { species = i; }
+        if (gSpeciesInfo[i].formSpecies.formSpeciesIdTable) PARAMETRIZE { species = i; }
     }
 
-    const u16 *formSpeciesIdTable = gSpeciesInfo[species].formSpeciesIdTable;
+    const u16 *formSpeciesIdTable = GetSpeciesFormTable(species);
     for (i = 0; formSpeciesIdTable[i] != FORM_SPECIES_END; i++)
     {
         u32 formSpeciesId = formSpeciesIdTable[i];
-        EXPECT_EQ(gSpeciesInfo[formSpeciesId].formSpeciesIdTable, formSpeciesIdTable);
+        EXPECT_EQ(GetSpeciesFormTable(formSpeciesId), formSpeciesIdTable);
     }
 }
 
@@ -29,7 +29,7 @@ TEST("Form change tables contain only forms in the form species ID table")
     }
 
     const struct FormChange *formChangeTable = gSpeciesInfo[species].formChangeTable;
-    const u16 *formSpeciesIdTable = gSpeciesInfo[species].formSpeciesIdTable;
+    const u16 *formSpeciesIdTable = GetSpeciesFormTable(species);
     EXPECT(formSpeciesIdTable);
 
     for (i = 0; formChangeTable[i].method != FORM_CHANGE_TERMINATOR; i++)

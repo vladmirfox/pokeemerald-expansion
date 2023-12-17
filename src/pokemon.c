@@ -389,18 +389,8 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
-#include "data/graphics/pokemon.h"
-#include "data/pokemon_graphics/front_pic_anims.h"
-
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
-#include "data/pokemon/level_up_learnsets.h"
-#include "data/pokemon/teachable_learnsets.h"
-#include "data/pokemon/form_species_tables.h"
-#include "data/pokemon/form_change_tables.h"
-#include "data/pokemon/form_change_table_pointers.h"
-
-#include "data/pokemon/species_info.h"
 
 #define PP_UP_SHIFTS(val)           val,        (val) << 2,        (val) << 4,        (val) << 6
 #define PP_UP_SHIFTS_INV(val) (u8)~(val), (u8)~((val) << 2), (u8)~((val) << 4), (u8)~((val) << 6)
@@ -2993,20 +2983,27 @@ const struct Evolution *GetSpeciesEvolutions(u16 species)
     return evolutions;
 }
 
+static const u16 sNullFormTable[] = { FORM_SPECIES_END };
+
 const u16 *GetSpeciesFormTable(u16 species)
 {
-    const u16 *formTable = gSpeciesInfo[SanitizeSpeciesId(species)].formSpeciesIdTable;
-    if (formTable == NULL)
-        return gSpeciesInfo[SPECIES_NONE].formSpeciesIdTable;
-    return formTable;
+    // NOTE: Species IDs can't be valid pointers on the GBA, so we use
+    // the value to distinguish them.
+    const union FormSpecies *formSpecies = &gSpeciesInfo[SanitizeSpeciesId(species)].formSpecies;
+    if (formSpecies->formSpeciesIdTable == NULL)
+        return sNullFormTable;
+    else if (formSpecies->baseSpecies < NUM_SPECIES)
+        return GetSpeciesFormTable(formSpecies->baseSpecies);
+    else
+        return formSpecies->formSpeciesIdTable;
 }
 
 const struct FormChange *GetSpeciesFormChanges(u16 species)
 {
-    const struct FormChange *evolutions = gSpeciesInfo[SanitizeSpeciesId(species)].formChangeTable;
-    if (evolutions == NULL)
+    const struct FormChange *formChanges = gSpeciesInfo[SanitizeSpeciesId(species)].formChangeTable;
+    if (formChanges == NULL)
         return gSpeciesInfo[SPECIES_NONE].formChangeTable;
-    return evolutions;
+    return formChanges;
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -4548,33 +4545,33 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
             break;
         case STAT_ATK:
             if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_ATK)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.atk + bonus) * multiplier;
+                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.attack + bonus) * multiplier;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.atk * multiplier;
+                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.attack * multiplier;
             break;
         case STAT_DEF:
             if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_DEF)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.def + bonus) * multiplier;
+                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.defense + bonus) * multiplier;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.def * multiplier;
+                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.defense * multiplier;
             break;
         case STAT_SPEED:
             if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPEED)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.spe + bonus) * multiplier;
+                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.speed + bonus) * multiplier;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.spe * multiplier;
+                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.speed * multiplier;
             break;
         case STAT_SPATK:
             if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPATK)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.spa + bonus) * multiplier;
+                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.spAttack + bonus) * multiplier;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.spa * multiplier;
+                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.spAttack * multiplier;
             break;
         case STAT_SPDEF:
             if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPDEF)
-                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.spd + bonus) * multiplier;
+                evIncrease = (gSpeciesInfo[defeatedSpecies].evYields.spDefense + bonus) * multiplier;
             else
-                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.spd * multiplier;
+                evIncrease = gSpeciesInfo[defeatedSpecies].evYields.spDefense * multiplier;
             break;
         }
 
