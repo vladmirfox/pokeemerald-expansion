@@ -46,3 +46,21 @@ SINGLE_BATTLE_TEST("Innards Out does not trigger after Gastro Acid has been used
         }
     }
 }
+
+// According to Showdown Innards Out triggers, but does nothing.
+SINGLE_BATTLE_TEST("Innards Out does not damage Magic Guard Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); }
+        ASSUME(gBattleMoves[MOVE_PSYCHIC].power != 0);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_PSYCHIC); SEND_OUT(player, 1); }
+    } SCENE {
+        MESSAGE("Foe Clefable used Psychic!");
+        HP_BAR(player);
+        ABILITY_POPUP(player, ABILITY_INNARDS_OUT);
+        NOT HP_BAR(opponent);
+    }
+}
