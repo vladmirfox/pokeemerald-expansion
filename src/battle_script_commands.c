@@ -6165,10 +6165,24 @@ static void Cmd_switchindataupdate(void)
         {
             TestRunner_Battle_InvalidNoHPMon(battler, gBattlerPartyIndexes[battler]);
         }
-        // TODO: Handle in-game scenario.
+        // Handle in-game scenario.
         else
         {
-
+            struct Pokemon *party = GetBattlerParty(battler);
+            // Find the first possible replacement for the not valid pokemon.
+            for (i = 0; i < PARTY_SIZE; i++)
+            {
+                if (IsValidForBattle(&party[i]))
+                    break;
+            }
+            // There is valid replacement.
+            if (i != PARTY_SIZE)
+            {
+                gBattlerPartyIndexes[battler] = gBattleStruct->monToSwitchIntoId[battler] = i;
+                BtlController_EmitGetMonData(battler, BUFFER_A, REQUEST_ALL_BATTLE, gBitTable[gBattlerPartyIndexes[battler]]);
+                MarkBattlerForControllerExec(battler);
+                return;
+            }
         }
     }
 
