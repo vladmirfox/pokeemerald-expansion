@@ -310,6 +310,17 @@ struct Evolution
     u16 targetSpecies;
 };
 
+struct __attribute__((packed, aligned(2))) EVYields
+{
+    u16 hp:2;
+    u16 atk:2;
+    u16 def:2;
+    u16 spe:2;
+    u16 spa:2;
+    u16 spd:2;
+    u16 padding2:4;
+};
+
 struct SpeciesInfo /*0x8C*/
 {
  /* 0x00 */ u8 baseHP;
@@ -322,13 +333,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x08 */ u8 catchRate;
  /* 0x09 */ u8 padding1;
  /* 0x0A */ u16 expYield; // expYield was changed from u8 to u16 for the new Exp System.
- /* 0x0C */ u16 evYield_HP:2;
-            u16 evYield_Attack:2;
-            u16 evYield_Defense:2;
-            u16 evYield_Speed:2;
- /* 0x0D */ u16 evYield_SpAttack:2;
-            u16 evYield_SpDefense:2;
-            u16 padding2:4;
+ /* 0x0C */ struct EVYields evYields;
  /* 0x0E */ u16 itemCommon;
  /* 0x10 */ u16 itemRare;
  /* 0x12 */ u8 genderRatio;

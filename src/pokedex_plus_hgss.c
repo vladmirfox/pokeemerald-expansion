@@ -4988,12 +4988,12 @@ static void SaveMonDataInStruct(void)
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
     u8 evs[NUM_STATS] =
     {
-        [STAT_HP]    = gSpeciesInfo[species].evYield_HP,
-        [STAT_ATK]   = gSpeciesInfo[species].evYield_Speed,
-        [STAT_DEF]   = gSpeciesInfo[species].evYield_Attack,
-        [STAT_SPEED] = gSpeciesInfo[species].evYield_SpAttack,
-        [STAT_SPATK] = gSpeciesInfo[species].evYield_Defense,
-        [STAT_SPDEF] = gSpeciesInfo[species].evYield_SpDefense
+        [STAT_HP]    = gSpeciesInfo[species].evYields.hp,
+        [STAT_ATK]   = gSpeciesInfo[species].evYields.atk,
+        [STAT_DEF]   = gSpeciesInfo[species].evYields.def,
+        [STAT_SPEED] = gSpeciesInfo[species].evYields.spe,
+        [STAT_SPATK] = gSpeciesInfo[species].evYields.spa,
+        [STAT_SPDEF] = gSpeciesInfo[species].evYields.spd
     };
     u8 differentEVs = 0;
     u8 i;
