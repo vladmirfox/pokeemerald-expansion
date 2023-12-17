@@ -6,7 +6,6 @@ SINGLE_BATTLE_TEST("Magician does not get self-damage recoil after stealing Life
     GIVEN {
         ASSUME(gItems[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
         ASSUME(gBattleMoves[MOVE_TACKLE].power != 0);
-        ASSUME(P_GEN_6_POKEMON == TRUE);
         PLAYER(SPECIES_DELPHOX) { Ability(ABILITY_MAGICIAN); Item(ITEM_NONE); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIFE_ORB); }
     } WHEN {
