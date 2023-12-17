@@ -2076,6 +2076,7 @@ bool32 IsTrappingMoveEffect(u32 effect)
     case EFFECT_TRAP:
     case EFFECT_HIT_PREVENT_ESCAPE:
     case EFFECT_FAIRY_LOCK:
+    case EFFECT_SPIDER_WEB:
     //case EFFECT_NO_RETREAT:   // TODO
         return TRUE;
     default:

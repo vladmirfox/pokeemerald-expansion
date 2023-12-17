@@ -438,6 +438,9 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
 	.4byte BattleScript_EffectPayDayNew				  @ EFFECT_PAY_DAY_NEW
+	.4byte BattleScript_EffectPoisonHit          	  @ EFFECT_POISON_STEEL_HIT
+	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
+	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
@@ -4152,6 +4155,10 @@ BattleScript_EffectEvasionDown2:
 	setstatchanger STAT_EVASION, 2, TRUE
 	goto BattleScript_EffectStatDown
 
+BattleScript_EffectEvasionDown6:
+	setstatchanger STAT_EVASION, 6, TRUE
+	goto BattleScript_EffectStatDown
+
 BattleScript_EffectReflect::
 	attackcanceler
 	attackstring
@@ -4693,7 +4700,7 @@ BattleScript_EffectTripleKick::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
-	addbyte sTRIPLE_KICK_POWER, 10 @ triple kick gets +10 power
+	addbyte sTRIPLE_KICK_POWER, 20 @ triple kick gets +20 power
 	goto BattleScript_HitFromAtkString
 
 BS_TripleAxel:
@@ -4724,6 +4731,26 @@ BattleScript_EffectMeanLook::
 	seteffectprimary
 	printstring STRINGID_TARGETCANTESCAPENOW
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectSpiderWeb::
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	jumpifstatus2 BS_TARGET, STATUS2_ESCAPE_PREVENTION, BattleScript_ButItFailed
+	jumpifsubstituteblocks BattleScript_ButItFailed
+.if B_GHOSTS_ESCAPE >= GEN_6
+	jumpiftype BS_TARGET, TYPE_GHOST, BattleScript_ButItFailed
+.endif
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_PREVENT_ESCAPE
+	seteffectprimary
+	printstring STRINGID_TARGETCANTESCAPENOW
+	waitmessage B_WAIT_TIME_LONG
+	setmoveeffect MOVE_EFFECT_SPD_MINUS_2
+	seteffectsecondary
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectNightmare::

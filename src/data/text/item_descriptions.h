@@ -3453,9 +3453,9 @@ static const u8 sHM04Desc[] = _(
     "the foe.");
 
 static const u8 sHM05Desc[] = _(
-    "Looses a powerful\n"
-    "blast of light that\n"
-    "reduces accuracy.");
+    "A strong blast of\n"
+    "light. 50% chance\n"
+    "to lower Attack.");
 
 static const u8 sHM06Desc[] = _(
     "A rock-crushingly\n"

@@ -415,7 +415,10 @@
 #define EFFECT_GIGATON_HAMMER               409
 #define EFFECT_SALT_CURE                    410
 #define EFFECT_PAY_DAY_NEW                  411
+#define EFFECT_POISON_STEEL_HIT             412
+#define EFFECT_EVASION_DOWN_6               413
+#define EFFECT_SPIDER_WEB                   414
 
-#define NUM_BATTLE_MOVE_EFFECTS             412
+#define NUM_BATTLE_MOVE_EFFECTS             415
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

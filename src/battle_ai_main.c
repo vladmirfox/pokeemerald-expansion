@@ -1478,6 +1478,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (IsWakeupTurn(battlerAtk) || !AI_IsBattlerAsleepOrComatose(battlerAtk))
                 score -= 10;    // if mon will wake up, is not asleep, or is not comatose
             break;
+        case EFFECT_SPIDER_WEB:
         case EFFECT_MEAN_LOOK:
             if (IsBattlerTrapped(battlerDef, TRUE) || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove))
                 score -= 10;
@@ -3617,6 +3618,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (HasMoveEffect(battlerDef, EFFECT_RAPID_SPIN))
             break;
         //fallthrough
+    case EFFECT_SPIDER_WEB:
     case EFFECT_MEAN_LOOK:
         if (IsBattlerTrapped(battlerDef, TRUE))
             break; // in this case its a bad attacking move
