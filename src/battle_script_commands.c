@@ -8278,8 +8278,7 @@ static bool32 IsRototillerAffected(u32 battler)
     return TRUE;
 }
 
-
-static bool32 IsAbilityRodAffected(void)
+static bool32 IsElectricAbilityAffected(u32 ability)
 {
     u32 moveType;
 
@@ -8290,41 +8289,7 @@ static bool32 IsAbilityRodAffected(void)
     else
         moveType = gBattleMoves[gCurrentMove].type;
 
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_LIGHTNING_ROD)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-static bool32 IsAbilityMotorAffected(void)
-{
-    u32 moveType;
-
-    if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gBattleMoves[gCurrentMove].type;
-    else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_IGNORE_PHYSICALITY))
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    else
-        moveType = gBattleMoves[gCurrentMove].type;
-
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_MOTOR_DRIVE)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-static bool32 IsAbilityAbsorbAffected(void)
-{
-    u32 moveType;
-
-    if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gBattleMoves[gCurrentMove].type;
-    else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_IGNORE_PHYSICALITY))
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    else
-        moveType = gBattleMoves[gCurrentMove].type;
-
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_VOLT_ABSORB)
+    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ability && gBattleMoves[gCurrentMove].effect != EFFECT_ION_DELUGE)
         return TRUE;
     else
         return FALSE;
@@ -16069,7 +16034,7 @@ void BS_JumpIfEmergencyExited(void)
 void BS_JumpIfRod(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityRodAffected())
+    if (IsElectricAbilityAffected(ABILITY_LIGHTNING_ROD))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16078,7 +16043,7 @@ void BS_JumpIfRod(void)
 void BS_JumpIfAbsorb(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityAbsorbAffected())
+    if (IsElectricAbilityAffected(ABILITY_VOLT_ABSORB))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16087,7 +16052,7 @@ void BS_JumpIfAbsorb(void)
 void BS_JumpIfMotor(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsAbilityMotorAffected())
+    if (IsElectricAbilityAffected(ABILITY_MOTOR_DRIVE))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
