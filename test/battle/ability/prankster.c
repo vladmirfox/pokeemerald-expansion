@@ -4,6 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gSpeciesInfo[SPECIES_UMBREON].types[0] == TYPE_DARK);
+    ASSUME(gBattleMoves[MOVE_CONFUSE_RAY].split == SPLIT_STATUS);
 }
 
 SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon")
@@ -62,9 +63,9 @@ SINGLE_BATTLE_TEST("Prankster-affected moves called via Assist don't affect Dark
     }
 }
 
-DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct affect Dark-type Pokémon")
+// Tested on Showdown, even though Bulbapedia says otherwise.
+DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct do not affect Dark-type Pokémon")
 {
-    KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_VOLBEAT) { Speed(20); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(10);}
@@ -77,38 +78,43 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct affect Dark-typ
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
         MESSAGE("It doesn't affect Foe Umbreon…");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
+        MESSAGE("Wobbuffet used Instruct!");
+        MESSAGE("Volbeat used Confuse Ray!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        MESSAGE("It doesn't affect Foe Umbreon…");
     }
 }
 
 SINGLE_BATTLE_TEST("Prankster increases the priority of moves by 1")
 {
-    KNOWN_FAILING; // Prio isn't increased
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
         OPPONENT(SPECIES_VOLBEAT) { Speed(5); Ability(ABILITY_PRANKSTER); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_CONFUSE_RAY); MOVE(player, MOVE_CELEBRATE); }
+        TURN { MOVE(opponent, MOVE_CONFUSE_RAY); MOVE(player, MOVE_CELEBRATE, WITH_RNG(RNG_CONFUSION, FALSE)); } // RNG_CONFUSION so that Wobb doesn't hit itself.
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
     }
 }
 
-DOUBLE_BATTLE_TEST("Prankster-affected moves called via After you affect Dark-type Pokémon")
+DOUBLE_BATTLE_TEST("Moves called via Prankster-affected After you affect Dark-type Pokémon")
 {
-    KNOWN_FAILING; // Dark types are still not affected.
     GIVEN {
         PLAYER(SPECIES_VOLBEAT) { Speed(1); Ability(ABILITY_PRANKSTER); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(20);}
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1);}
         OPPONENT(SPECIES_UMBREON) { Speed(10); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(10); }
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_AFTER_YOU, target: playerLeft);
-               MOVE(playerLeft, MOVE_CONFUSE_RAY, target: opponentLeft);
+        TURN { MOVE(playerLeft, MOVE_AFTER_YOU, target: playerRight);
+               MOVE(playerRight, MOVE_CONFUSE_RAY, target: opponentLeft);
         }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        MESSAGE("Volbeat used After You!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AFTER_YOU, playerLeft);
+        MESSAGE("Wobbuffet used Confuse Ray!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerRight);
+        MESSAGE("Foe Umbreon became confused!");
     }
 }
 
@@ -143,7 +149,6 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves that target all Pokémon are succes
 
 SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-types using Magic Coat")
 {
-    KNOWN_FAILING;
     GIVEN {
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
@@ -151,8 +156,37 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-t
         TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+        MESSAGE("Foe Volbeat used Confuse Ray!");
+        MESSAGE("Foe Volbeat's Confuse Ray was bounced back by MAGIC COAT!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
         MESSAGE("Foe Volbeat became confused!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat can affect Dark-type Pokémon, unless the Pokémon that bounced the move also has Prankster")
+{
+    u16 sableyeAbility;
+
+    PARAMETRIZE { sableyeAbility = ABILITY_PRANKSTER; }
+    PARAMETRIZE { sableyeAbility = ABILITY_KEEN_EYE; }
+
+    GIVEN {
+        PLAYER(SPECIES_SABLEYE) { Ability(sableyeAbility); }
+        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, MOVE_CONFUSE_RAY); }
+    } SCENE {
+        MESSAGE("Sableye used Magic Coat!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
+        MESSAGE("Foe Murkrow used Confuse Ray!");
+        MESSAGE("Foe Murkrow's Confuse Ray was bounced back by MAGIC COAT!");
+        if (sableyeAbility == ABILITY_PRANKSTER) {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
+            MESSAGE("It doesn't affect Foe Murkrow…");
+        } else {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
+            MESSAGE("Foe Murkrow became confused!");
+        }
     }
 }
 
@@ -183,21 +217,6 @@ SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Boun
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Coat from a Pokémon with Prankster can't affect Dark-type Pokémon")
-{
-    GIVEN {
-        PLAYER(SPECIES_UMBREON);
-        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_MAGIC_COAT); MOVE(player, MOVE_CONFUSE_RAY); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, opponent);
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
-        MESSAGE("It doesn't affect Umbreon…");
-    }
-}
-
-TO_DO_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat can affect Dark-type Pokémon, unless the Pokémon that bounced the move also has Prankster");
 TO_DO_BATTLE_TEST("Prankster-affected moves called via Nature Power don't affect Dark-type Pokémon");
 TO_DO_BATTLE_TEST("Prankster increases the priority of status Z-Moves by 1");
 TO_DO_BATTLE_TEST("Prankster increases the priority of Extreme Evoboost by 1");
