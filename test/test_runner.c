@@ -106,6 +106,8 @@ static u32 AssignCostToRunner(void)
 
 void CB2_TestRunner(void)
 {
+top:
+
     switch (gTestRunnerState.state)
     {
     case STATE_INIT:
@@ -361,6 +363,9 @@ void CB2_TestRunner(void)
         MgbaExit_(gTestRunnerState.exitCode);
         break;
     }
+
+    if (gMain.callback2 == CB2_TestRunner)
+        goto top;
 }
 
 void Test_ExpectedResult(enum TestResult result)
