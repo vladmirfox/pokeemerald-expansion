@@ -4474,6 +4474,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
                 BattleScriptPushCursorAndCallback(BattleScript_FriskActivates); // Try activate
                 effect++;
             }
@@ -5058,15 +5059,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                   && !(moveTarget & MOVE_TARGET_ALL_BATTLERS))
             {
                 gBattlescriptCurrInstr = BattleScript_GoodAsGoldActivates;
-                effect = 1;
-            }
-            else if (gLastUsedAbility == ABILITY_ICE_FACE && IS_MOVE_PHYSICAL(move) && gBattleMons[gBattlerTarget].species == SPECIES_EISCUE_ICE_FACE)
-            {
-                gBattleMons[gBattlerTarget].species = SPECIES_EISCUE_NOICE_FACE;
-                if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
-                    gHitMarker |= HITMARKER_NO_PPDEDUCT;
-                gBattleScripting.battler = gBattlerTarget; // For STRINGID_PKMNTRANSFORMED
-                gBattlescriptCurrInstr = BattleScript_IceFaceNullsDamage;
                 effect = 1;
             }
             break;
