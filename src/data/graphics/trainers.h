@@ -296,7 +296,7 @@ static const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
 
-#define TRAINER_SPRITE(trainerPic, file, anim)                                            \
+#define TRAINER_SPRITE(trainerPic, file)                                                  \
     [TRAINER_PIC_##trainerPic] =                                                          \
     {                                                                                     \
         .y_offset = 8,                                                                    \
