@@ -8289,7 +8289,7 @@ static bool32 IsElectricAbilityAffected(u32 ability)
     else
         moveType = gBattleMoves[gCurrentMove].type;
 
-    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ability && gBattleMoves[gCurrentMove].target != MOVE_TARGET_ALL_BATTLERS)
+    if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ability)
         return TRUE;
     else
         return FALSE;
