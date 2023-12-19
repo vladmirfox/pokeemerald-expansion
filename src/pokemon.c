@@ -723,6 +723,37 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     CalculateMonStats(mon);
 }
 
+#if P_FLAG_FORCE_SHINY != 0 && FAST_FORCE_SHINY == 1
+
+#if ((SHINY_ODDS - 1) & SHINY_ODDS) != 0
+#error GenerateShinyPersonality requires SHINY_ODDS be a power of two.
+#endif
+
+#if SHINY_ODDS != 8
+#error SHINY_ODDS is not 8. SHINY_BITS must be updated.
+#endif
+
+// SHINY_BITS is log2(SHINY_ODDS)
+#define SHINY_BITS 3
+#define SHINY_MASK (SHINY_ODDS - 1)
+
+static u32 GenerateShinyPersonality(const u32 otPart)
+{
+    const u32 random_bits = Random32();
+    const u16 random_part = random_bits >> 16;
+    const u16 check_value = HIHALF(otPart) ^ LOHALF(otPart) ^ random_part;
+    const u16 chosen_part = (~(check_value >> SHINY_BITS) << SHINY_BITS) | (random_bits & SHINY_MASK);
+    if ((random_bits >> 15) & 1)
+        return ((u32)random_part << 16) | chosen_part;
+    else
+        return ((u32)chosen_part << 16) | random_part;
+}
+
+#undef SHINY_BITS
+#undef SHINY_MASK
+
+#endif
+
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
@@ -775,8 +806,12 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     #endif
         if (FlagGet(P_FLAG_FORCE_SHINY))
         {
-            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS)
+            #if FAST_FORCE_SHINY != 0
+                personality = GenerateShinyPersonality(value);
+            #else
+            while (GET_SHINY_VALUE(value, personality) > SHINY_ODDS)
                 personality = Random32();
+            #endif
         }
 #endif
 #if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
@@ -858,7 +893,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
             SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
         }
-        else if (P_LEGENDARY_PERFECT_IVS >= GEN_6 
+        else if (P_LEGENDARY_PERFECT_IVS >= GEN_6
          && (gSpeciesInfo[species].isLegendary
           || gSpeciesInfo[species].isMythical
           || gSpeciesInfo[species].isUltraBeast))
@@ -1824,11 +1859,11 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     gMultiuseSpriteTemplate.paletteTag = speciesTag;
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
-    else 
+    else
     {
         if (speciesTag > SPECIES_SHINY_TAG)
             speciesTag = speciesTag - SPECIES_SHINY_TAG;
-        
+
         speciesTag = SanitizeSpeciesId(speciesTag);
         if (gSpeciesInfo[speciesTag].frontAnimFrames != NULL)
             gMultiuseSpriteTemplate.anims = gSpeciesInfo[speciesTag].frontAnimFrames;
