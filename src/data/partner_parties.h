@@ -32,6 +32,7 @@ static const struct TrainerMon sParty_MayPartner[] = {
         .nature = TRAINER_PARTY_NATURE(NATURE_TIMID),
         .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
         .moves = {MOVE_ENERGY_BALL},
+        .isShiny = TRUE,
     },
     {
         .species = SPECIES_TORCHIC,

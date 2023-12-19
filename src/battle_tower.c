@@ -2947,7 +2947,8 @@ void TryHideBattleTowerReporter(void)
 
 static void FillPartnerParty(u16 trainerId)
 {
-    s32 i, j;
+    s32 i, j, k;
+    u32 firstIdPart = 0, secondIdPart = 0, thridIdPart = 0;
     u32 ivs, level, personality;
     u32 friendship;
     u16 monId;
@@ -2964,17 +2965,30 @@ static void FillPartnerParty(u16 trainerId)
         for (i = 0; i < 3 && i < gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].partySize; i++)
         {
             const struct TrainerMon *partyData = gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].party;
-            u32 otIdType = OT_ID_RANDOM_NO_SHINY;
+            const u8 *partnerName = gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName;
 
-            if (trainerId == TRAINER_PARTNER(PARTNER_STEVEN))
+            for (k = 0; partnerName[k] != EOS && k < 3; k++)
             {
-                otID = STEVEN_OTID;
-                otIdType = OT_ID_PRESET;
+                if (k == 0)
+                {
+                    firstIdPart = partnerName[k];
+                    secondIdPart = partnerName[k];
+                    thridIdPart = partnerName[k];
+                }
+                else if (k == 1)
+                {
+                    secondIdPart = partnerName[k];
+                    thridIdPart = partnerName[k];
+                }
+                else if (k == 2)
+                {
+                    thridIdPart = partnerName[k];
+                }
             }
+            if (trainerId == TRAINER_PARTNER(PARTNER_STEVEN))
+                otID = STEVEN_OTID;
             else
-                otID = Random32();
-
-            do
+                otID = ((firstIdPart % 72) * 1000) + ((secondIdPart % 23) * 10) + (thridIdPart % 37) % 65536;
             {
                 personality = Random32();
             } while (IsShinyOtIdPersonality(otID, personality));
@@ -2986,12 +3000,9 @@ static void FillPartnerParty(u16 trainerId)
             if (partyData[i].nature != 0)
                 ModifyPersonalityForNature(&personality, partyData[i].nature - 1);
             if (partyData[i].isShiny)
-            {
-                otIdType = OT_ID_PRESET;
-                otID = HIHALF(personality) ^ LOHALF(personality);
-            }
+                otID ^= GET_SHINY_VALUE(otID, personality) << 16;
 
-            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 0, TRUE, personality, otIdType, otID);
+            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 0, TRUE, personality, OT_ID_PRESET, otID);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
             CustomTrainerPartyAssignMoves(&gPlayerParty[i + 3], &partyData[i]);
 
