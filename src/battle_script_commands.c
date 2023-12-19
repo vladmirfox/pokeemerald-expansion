@@ -16519,6 +16519,7 @@ void BS_AllySwitchSwapBattler(void)
 
     gBattleScripting.battler = gBattlerAttacker;
     gBattlerAttacker ^= BIT_FLANK;
+    gProtectStructs[gBattlerAttacker].usedAllySwitch = TRUE;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

@@ -142,14 +142,13 @@ DOUBLE_BATTLE_TEST("Ally Switch has no effect on parnter's chosen move")
     }
 }
 
-// Test fails, because the target is restored before the move's script execution starts in HandleAction_UseMove and it targets the ally properly.
 DOUBLE_BATTLE_TEST("Ally Switch - move fails if the target was ally which changed position")
 {
-    u16 move;
+    u32 move = MOVE_NONE;
 
-    KNOWN_FAILING;
-    PARAMETRIZE { move = MOVE_AROMATIC_MIST; }
     PARAMETRIZE { move = MOVE_COACHING; }
+    PARAMETRIZE { move = MOVE_AROMATIC_MIST; }
+    PARAMETRIZE { move = MOVE_HOLD_HANDS; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -165,5 +164,31 @@ DOUBLE_BATTLE_TEST("Ally Switch - move fails if the target was ally which change
 
         NOT ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         MESSAGE("But it failed!");
+    }
+}
+
+// Verified on Showdown, even though Bulbapedia says otherwise.
+DOUBLE_BATTLE_TEST("Acupressure works after ally used Ally Switch")
+{
+    struct BattlePokemon *battlerTarget = NULL;
+
+    PARAMETRIZE { battlerTarget = playerLeft; }
+    PARAMETRIZE { battlerTarget = playerRight; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_KADABRA);
+        OPPONENT(SPECIES_ABRA);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_ALLY_SWITCH); MOVE(playerRight, MOVE_ACUPRESSURE, target:battlerTarget); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Ally Switch!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ALLY_SWITCH, playerLeft);
+        MESSAGE("Wobbuffet and Wynaut switched places!");
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ACUPRESSURE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, battlerTarget);
+        NOT MESSAGE("But it failed!");
     }
 }
