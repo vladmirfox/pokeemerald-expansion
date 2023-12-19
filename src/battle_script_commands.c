@@ -16510,6 +16510,7 @@ void BS_TryTriggerStatusForm(void)
         gBattlescriptCurrInstr = BattleScript_TargetFormChangeWithStringNoPopup;
         return;
     }
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_AllySwitchSwapBattler(void)
