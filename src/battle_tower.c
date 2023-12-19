@@ -2948,7 +2948,7 @@ void TryHideBattleTowerReporter(void)
 static void FillPartnerParty(u16 trainerId)
 {
     s32 i, j, k;
-    u32 firstIdPart = 0, secondIdPart = 0, thridIdPart = 0;
+    u32 firstIdPart = 0, secondIdPart = 0, thirdIdPart = 0;
     u32 ivs, level, personality;
     u32 friendship;
     u16 monId;
@@ -2973,16 +2973,16 @@ static void FillPartnerParty(u16 trainerId)
                 {
                     firstIdPart = partnerName[k];
                     secondIdPart = partnerName[k];
-                    thridIdPart = partnerName[k];
+                    thirdIdPart = partnerName[k];
                 }
                 else if (k == 1)
                 {
                     secondIdPart = partnerName[k];
-                    thridIdPart = partnerName[k];
+                    thirdIdPart = partnerName[k];
                 }
                 else if (k == 2)
                 {
-                    thridIdPart = partnerName[k];
+                    thirdIdPart = partnerName[k];
                 }
             }
             if (trainerId == TRAINER_PARTNER(PARTNER_STEVEN))

@@ -1,5 +1,5 @@
 const struct Trainer gBattlePartners[] = {
-    [TRAINER_NONE] =
+    [PARTNER_NONE] =
     {
         .party = NULL,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
