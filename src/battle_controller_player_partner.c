@@ -316,7 +316,7 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
         yPos = (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 80;
     }
 
-    // Use back pic only if the partner is custom.
+    // Use back pic only if the partner Steven or is custom.
     if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
         isFrontPic = FALSE;
     else
