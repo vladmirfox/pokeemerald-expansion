@@ -809,7 +809,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             #if FAST_FORCE_SHINY != 0
                 personality = GenerateShinyPersonality(value);
             #else
-            while (GET_SHINY_VALUE(value, personality) > SHINY_ODDS)
+            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS)
                 personality = Random32();
             #endif
         }
