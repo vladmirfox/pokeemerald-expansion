@@ -192,3 +192,18 @@ DOUBLE_BATTLE_TEST("Acupressure works after ally used Ally Switch")
         NOT MESSAGE("But it failed!");
     }
 }
+
+DOUBLE_BATTLE_TEST("Ally Switch increases the Protect-like moves counter")
+{
+    GIVEN {
+        ASSUME(B_ALLY_SWITCH_FAIL_CHANCE >= GEN_9);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_ALLY_SWITCH); }
+    } THEN {
+        EXPECT(gDisableStructs[B_POSITION_PLAYER_RIGHT].protectUses == 1);
+    }
+}

@@ -10631,17 +10631,22 @@ static void Cmd_various(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static void TryResetProtectUseCounter(u32 battler)
+{
+    u32 lastMove = gLastResultingMoves[battler];
+    if (lastMove == MOVE_UNAVAILABLE
+        || (!gBattleMoves[lastMove].protectionMove && (B_ALLY_SWITCH_FAIL_CHANCE >= GEN_9 && gBattleMoves[lastMove].effect != EFFECT_ALLY_SWITCH)))
+        gDisableStructs[battler].protectUses = 0;
+}
+
 static void Cmd_setprotectlike(void)
 {
     CMD_ARGS();
 
     bool32 fail = TRUE;
     bool32 notLastTurn = TRUE;
-    u32 lastMove = gLastResultingMoves[gBattlerAttacker];
 
-    if (lastMove == MOVE_UNAVAILABLE || !(gBattleMoves[lastMove].protectionMove))
-        gDisableStructs[gBattlerAttacker].protectUses = 0;
-
+    TryResetProtectUseCounter(gBattlerAttacker);
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
         notLastTurn = FALSE;
 
@@ -16529,19 +16534,16 @@ void BS_AllySwitchFailChance(void)
 
     if (B_ALLY_SWITCH_FAIL_CHANCE >= GEN_9)
     {
-        u32 lastMove = gLastResultingMoves[gBattlerAttacker];
-
-        if (lastMove == MOVE_UNAVAILABLE || gBattleMoves[lastMove].effect != EFFECT_ALLY_SWITCH)
-            gDisableStructs[gBattlerAttacker].allySwitchUses = 0;
-        if (sProtectSuccessRates[gDisableStructs[gBattlerAttacker].allySwitchUses] < Random())
+        TryResetProtectUseCounter(gBattlerAttacker);
+        if (sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] < Random())
         {
-            gDisableStructs[gBattlerAttacker].allySwitchUses = 0;
+            gDisableStructs[gBattlerAttacker].protectUses = 0;
             gBattlescriptCurrInstr = cmd->failInstr;
             return;
         }
         else
         {
-            gDisableStructs[gBattlerAttacker].allySwitchUses++;
+            gDisableStructs[gBattlerAttacker].protectUses++;
         }
     }
     gBattlescriptCurrInstr = cmd->nextInstr;

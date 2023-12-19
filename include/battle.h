@@ -67,8 +67,7 @@ struct DisableStruct
     u16 disabledMove;
     u16 encoredMove;
     u8 protectUses:4;
-    u8 allySwitchUses:4;
-    u8 stockpileCounter;
+    u8 stockpileCounter:4;
     s8 stockpileDef;
     s8 stockpileSpDef;
     s8 stockpileBeforeDef;
