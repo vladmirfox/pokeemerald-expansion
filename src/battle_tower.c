@@ -2988,7 +2988,7 @@ static void FillPartnerParty(u16 trainerId)
             if (trainerId == TRAINER_PARTNER(PARTNER_STEVEN))
                 otID = STEVEN_OTID;
             else
-                otID = ((firstIdPart % 72) * 1000) + ((secondIdPart % 23) * 10) + (thridIdPart % 37) % 65536;
+                otID = ((firstIdPart % 72) * 1000) + ((secondIdPart % 23) * 10) + (thirdIdPart % 37) % 65536;
             {
                 personality = Random32();
             } while (IsShinyOtIdPersonality(otID, personality));
