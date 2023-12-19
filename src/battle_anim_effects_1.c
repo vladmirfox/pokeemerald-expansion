@@ -6580,8 +6580,8 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     SWAP(gStatuses3[battlerAtk], gStatuses3[battlerPartner], temp);
     SWAP(gStatuses4[battlerAtk], gStatuses4[battlerPartner], temp);
     SWAP(gBattleStruct->chosenMovePositions[battlerAtk], gBattleStruct->chosenMovePositions[battlerPartner], temp);
-    SWAP(gBattleStruct->moveTarget[battlerAtk], gBattleStruct->moveTarget[battlerPartner], temp);
     SWAP(gChosenMoveByBattler[battlerAtk], gChosenMoveByBattler[battlerPartner], temp);
+    SWAP(gBattleStruct->moveTarget[battlerAtk], gBattleStruct->moveTarget[battlerPartner], temp);
     SWAP(gMoveSelectionCursor[battlerAtk], gMoveSelectionCursor[battlerPartner], temp);
     // Swap turn order, so that all the battlers take action
     SWAP(gChosenActionByBattler[battlerAtk], gChosenActionByBattler[battlerPartner], temp);

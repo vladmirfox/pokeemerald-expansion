@@ -141,3 +141,29 @@ DOUBLE_BATTLE_TEST("Ally Switch has no effect on parnter's chosen move")
         HP_BAR(chosenTarget);
     }
 }
+
+// Test fails, because the target is restored before the move's script execution starts in HandleAction_UseMove and it targets the ally properly.
+DOUBLE_BATTLE_TEST("Ally Switch - move fails if the target was ally which changed position")
+{
+    u16 move;
+
+    KNOWN_FAILING;
+    PARAMETRIZE { move = MOVE_AROMATIC_MIST; }
+    PARAMETRIZE { move = MOVE_COACHING; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_KADABRA);
+        OPPONENT(SPECIES_ABRA);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_ALLY_SWITCH); MOVE(playerRight, move, target:playerLeft); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Ally Switch!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ALLY_SWITCH, playerLeft);
+        MESSAGE("Wobbuffet and Wynaut switched places!");
+
+        NOT ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
+        MESSAGE("But it failed!");
+    }
+}
