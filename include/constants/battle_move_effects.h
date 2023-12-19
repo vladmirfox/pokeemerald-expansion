@@ -409,9 +409,9 @@
 #define EFFECT_POPULATION_BOMB              403
 #define EFFECT_MORTAL_SPIN                  404
 #define EFFECT_SALT_CURE                    405
-#define EFFECT_MATCHA_GOTCHA                406
-#define EFFECT_SYRUP_BOMB                   407
-#define EFFECT_IVY_CUDGEL                   408
+#define EFFECT_CHILLY_RECEPTION             406
+#define EFFECT_MATCHA_GOTCHA                407
+#define EFFECT_SYRUP_BOMB                   408
 #define EFFECT_MAX_MOVE                     409
 #define EFFECT_GLAIVE_RUSH                  410
 #define EFFECT_RAGING_BULL                  411
