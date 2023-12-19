@@ -66,7 +66,8 @@ struct DisableStruct
     u32 transformedMonOtId;
     u16 disabledMove;
     u16 encoredMove;
-    u8 protectUses;
+    u8 protectUses:4;
+    u8 allySwitchUses:4;
     u8 stockpileCounter;
     s8 stockpileDef;
     s8 stockpileSpDef;

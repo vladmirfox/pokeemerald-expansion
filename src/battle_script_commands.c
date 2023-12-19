@@ -2167,6 +2167,7 @@ static void Cmd_attackanimation(void)
     if ((gHitMarker & (HITMARKER_NO_ANIMATIONS | HITMARKER_DISABLE_ANIMATION))
         && gCurrentMove != MOVE_TRANSFORM
         && gCurrentMove != MOVE_SUBSTITUTE
+        && gCurrentMove != MOVE_ALLY_SWITCH
         // In a wild double battle gotta use the teleport animation if two wild pokemon are alive.
         && !(gCurrentMove == MOVE_TELEPORT && WILD_DOUBLE_BATTLE && GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT && IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker))))
     {
@@ -16508,6 +16509,38 @@ void BS_TryTriggerStatusForm(void)
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = BattleScript_TargetFormChangeWithStringNoPopup;
         return;
+    }
+}
+
+void BS_AllySwitchSwapBattler(void)
+{
+    NATIVE_ARGS();
+
+    gBattleScripting.battler = gBattlerAttacker;
+    gBattlerAttacker ^= BIT_FLANK;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_AllySwitchFailChance(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (B_ALLY_SWITCH_FAIL_CHANCE >= GEN_9)
+    {
+        u32 lastMove = gLastResultingMoves[gBattlerAttacker];
+
+        if (lastMove == MOVE_UNAVAILABLE || gBattleMoves[lastMove].effect != EFFECT_ALLY_SWITCH)
+            gDisableStructs[gBattlerAttacker].allySwitchUses = 0;
+        if (sProtectSuccessRates[gDisableStructs[gBattlerAttacker].allySwitchUses] < Random())
+        {
+            gDisableStructs[gBattlerAttacker].allySwitchUses = 0;
+            gBattlescriptCurrInstr = cmd->failInstr;
+            return;
+        }
+        else
+        {
+            gDisableStructs[gBattlerAttacker].allySwitchUses++;
+        }
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
