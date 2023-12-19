@@ -615,6 +615,5 @@ extern const u8 VSSeeker_Text_BatteryNotChargedNeedXSteps[];
 extern const u8 VSSeeker_Text_NoTrainersWithinRange[];
 extern const u8 VSSeeker_Text_TrainersNotReady[];
 extern const u8 EventScript_VsSeekerChargingDone[];
-extern const u8 MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle[];
 
 #endif // GUARD_EVENT_SCRIPTS_H

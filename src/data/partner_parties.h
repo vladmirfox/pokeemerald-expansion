@@ -24,28 +24,3 @@ static const struct TrainerMon sParty_StevenPartner[] = {
         .moves = {MOVE_THUNDER, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW},
     }
 };
-
-static const struct TrainerMon sParty_MayPartner[] = {
-    {
-        .species = SPECIES_TREECKO,
-        .lvl = 20,
-        .nature = TRAINER_PARTY_NATURE(NATURE_TIMID),
-        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .moves = {MOVE_ENERGY_BALL},
-        .isShiny = TRUE,
-    },
-    {
-        .species = SPECIES_TORCHIC,
-        .lvl = 20,
-        .nature = TRAINER_PARTY_NATURE(NATURE_MODEST),
-        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .moves = {MOVE_FLAMETHROWER},
-    },
-    {
-        .species = SPECIES_MUDKIP,
-        .lvl = 20,
-        .nature = TRAINER_PARTY_NATURE(NATURE_ADAMANT),
-        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-        .moves = {MOVE_WATERFALL},
-    }
-};

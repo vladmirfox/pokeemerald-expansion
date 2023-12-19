@@ -96,24 +96,10 @@ Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
 Debug_EventScript_Script_1::
-	goto MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle
 	end
 
 Debug_EventScript_Script_2::
-    multi_fixed_2_vs_2 TRAINER_JOSH, RustboroCity_Gym_Text_JoshDefeat, TRAINER_TOMMY, RustboroCity_Gym_Text_TommyDefeat, PARTNER_MAY, TRAINER_BACK_PIC_MAY
-	switch VAR_RESULT
-	case 1, Debug_EventScript_Script_2_WonBattle
-	fadescreen FADE_TO_BLACK
-	special SetCB2WhiteOut
-	waitstate
-
-Debug_EventScript_Script_2_WonBattle:
-	msgbox Debug_EventScript_Text_2_WonBattle, MSGBOX_DEFAULT
-	closemessage
 	end
-
-Debug_EventScript_Text_2_WonBattle:
-	.string "You and your partner won!$"
 
 Debug_EventScript_Script_3::
 	end
