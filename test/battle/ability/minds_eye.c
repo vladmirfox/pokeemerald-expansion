@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowe
 
 AI_SINGLE_BATTLE_TEST("xxxAI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
-    u32 abilityAI, moveAI, j;
+    u32 abilityAI = ABILITY_NONE, moveAI = MOVE_NONE, j = 0;
 
     for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
     {

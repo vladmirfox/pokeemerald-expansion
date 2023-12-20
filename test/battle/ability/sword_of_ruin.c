@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
+    ASSUME(gBattleMoves[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Sword of Ruin reduces Defense", s16 damage)
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Sword of Ruin reduces Defense", s16 damage)
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.25), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.33), results[1].damage);
     }
 }
 
