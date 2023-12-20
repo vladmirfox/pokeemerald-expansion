@@ -242,6 +242,7 @@ void NuzlockeDeletePartyMon(u8 position)
     }
     PurgeMonOrBoxMon(TOTAL_BOXES_COUNT, position);
 }
+
 void NuzlockeDeleteFaintedPartyPokemon(void) // @Kurausukun
 {
     u8 i;
@@ -251,22 +252,23 @@ void NuzlockeDeleteFaintedPartyPokemon(void) // @Kurausukun
     for (i = 0; i < PARTY_SIZE; i++)
     {
         pokemon = &gPlayerParty[i];
-        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES, NULL) && !GetMonData(pokemon, MON_DATA_IS_EGG, NULL))
+        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
         {
             if (GetMonAilment(pokemon) == AILMENT_FNT)
             {
-                monItem = GetMonData(pokemon, MON_DATA_HELD_ITEM, NULL);
+                monItem = GetMonData(pokemon, MON_DATA_HELD_ITEM);
 
                 if (monItem != ITEM_NONE)
                 {
                     AddBagItem(monItem, 1);
-                    SetMonData(pokemon, MON_DATA_HELD_ITEM, ITEM_NONE);
+                    monItem = ITEM_NONE;
+                    SetMonData(pokemon, MON_DATA_HELD_ITEM, &monItem);
                 }
                 NuzlockeDeletePartyMon(i);
+                CompactPartySlots();
             }
         }
     }
-    CompactPartySlots();
 }
 
 // Difficulty
@@ -473,7 +475,7 @@ void TestRandomizerValues(u8 type)
 
     gSaveBlock1Ptr->tx_Random_WildPokemon           = TRUE;
     gSaveBlock1Ptr->tx_Random_Similar               = FALSE;
-    gSaveBlock1Ptr->tx_Random_MapBased              = FALSE;
+    gSaveBlock1Ptr->tx_Random_MapBased              = TRUE;
     gSaveBlock1Ptr->tx_Random_IncludeLegendaries    = FALSE;
 
 

@@ -5500,6 +5500,21 @@ static void HandleEndTurn_FinishBattle(void)
             TryPutBreakingNewsOnAir();
         }
 
+        RecordedBattle_SetPlaybackFinished();
+        if (gTestRunnerEnabled)
+            TestRunner_Battle_AfterLastTurn();
+        BeginFastPaletteFade(3);
+        FadeOutMapMusic(5);
+        if (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || B_RESTORE_HELD_BATTLE_ITEMS == TRUE)
+            TryRestoreHeldItems();
+
+        // Undo Dynamax HP multiplier before recalculating stats.
+        for (i = 0; i < gBattlersCount; ++i)
+        {
+            if (IsDynamaxed(i))
+                UndoDynamax(i);
+        }
+
         //tx_difficulty_challenges
         if (IsNuzlockeActive())
         {
@@ -5532,21 +5547,6 @@ static void HandleEndTurn_FinishBattle(void)
             NuzlockeIsCaptureBlocked = FALSE;
             NuzlockeIsSpeciesClauseActive = FALSE;
             OneTypeChallengeCaptureBlocked = FALSE;
-        }
-
-        RecordedBattle_SetPlaybackFinished();
-        if (gTestRunnerEnabled)
-            TestRunner_Battle_AfterLastTurn();
-        BeginFastPaletteFade(3);
-        FadeOutMapMusic(5);
-        if (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || B_RESTORE_HELD_BATTLE_ITEMS == TRUE)
-            TryRestoreHeldItems();
-
-        // Undo Dynamax HP multiplier before recalculating stats.
-        for (i = 0; i < gBattlersCount; ++i)
-        {
-            if (IsDynamaxed(i))
-                UndoDynamax(i);
         }
 
         for (i = 0; i < PARTY_SIZE; i++)
