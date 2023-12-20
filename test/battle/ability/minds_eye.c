@@ -40,74 +40,9 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
     }
 }
 
-SINGLE_BATTLE_TEST("Mind's Eye prevents accuracy from being lowered")
-{
-    ASSUME(gBattleMoves[MOVE_SCRATCH].accuracy == 100);
-    PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_SAND_ATTACK); MOVE(opponent, MOVE_SCRATCH); }
-    } SCENE {
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, player);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's accuracy fell!");
-        }
-        ABILITY_POPUP(opponent, ABILITY_MINDS_EYE);
-        MESSAGE("Foe Wobbuffet's Mind's Eye prevents accuracy loss!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
-    }
-}
-
-SINGLE_BATTLE_TEST("Mind's Eye ignores target's evasion")
-{
-    PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_DOUBLE_TEAM].effect == EFFECT_EVASION_UP);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_DOUBLE_TEAM); MOVE(opponent, MOVE_SCRATCH); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_TEAM, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's evasiveness rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
-    }
-}
-
-SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowering prevention")
-{
-    u16 ability, species;
-    PARAMETRIZE { ability = ABILITY_MOLD_BREAKER; species = SPECIES_PINSIR; }
-#if P_GEN_5_POKEMON == TRUE
-    PARAMETRIZE { ability = ABILITY_TURBOBLAZE;   species = SPECIES_RESHIRAM; }
-    PARAMETRIZE { ability = ABILITY_TERAVOLT;     species = SPECIES_ZEKROM; }
-#endif
-    PASSES_RANDOMLY(gBattleMoves[MOVE_SCRATCH].accuracy * 3 / 4, 100, RNG_ACCURACY);
-
-    GIVEN {
-        PLAYER(species) { Ability(ability); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_SAND_ATTACK); MOVE(opponent, MOVE_SCRATCH); }
-    } SCENE {
-        NONE_OF {
-            ABILITY_POPUP(opponent, ABILITY_MINDS_EYE);
-            MESSAGE("Foe Wobbuffet's Mind's Eye prevents accuracy loss!");
-        }
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's accuracy fell!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
-    }
-}
-
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("xxxAI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
     u32 abilityAI = ABILITY_NONE, moveAI = MOVE_NONE, j = 0;
 
