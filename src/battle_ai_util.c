@@ -1142,7 +1142,7 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
                                       AI_DATA->abilities[battlerAI], AI_DATA->abilities[battler2],
                                       AI_DATA->holdEffects[battlerAI], AI_DATA->holdEffects[battler2],
                                       AI_DATA->speedStats[battlerAI], AI_DATA->speedStats[battler2],
-                                      prioAI, prioBattler2) == 0)
+                                      prioAI, prioBattler2) == 1)
             return AI_IS_FASTER;
         else
             return AI_IS_SLOWER;
