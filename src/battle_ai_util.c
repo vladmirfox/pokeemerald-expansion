@@ -380,6 +380,7 @@ static const u16 sIgnoredPowerfulMoveEffects[] =
     EFFECT_OVERHEAT,
     EFFECT_MIND_BLOWN,
     EFFECT_MAKE_IT_RAIN,
+    EFFECT_PAY_DAY_NEW,
     IGNORED_MOVES_END
 };
 

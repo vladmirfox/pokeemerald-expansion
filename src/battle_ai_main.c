@@ -4397,6 +4397,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     case EFFECT_SUPERPOWER:
     case EFFECT_OVERHEAT:
     case EFFECT_MAKE_IT_RAIN:
+    case EFFECT_PAY_DAY_NEW:
         if (aiData->abilities[battlerAtk] == ABILITY_CONTRARY)
             score += 3;
         break;

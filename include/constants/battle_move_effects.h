@@ -418,7 +418,8 @@
 #define EFFECT_POISON_STEEL_HIT             412
 #define EFFECT_EVASION_DOWN_6               413
 #define EFFECT_SPIDER_WEB                   414
+#define EFFECT_MILK_DRINK                   415
 
-#define NUM_BATTLE_MOVE_EFFECTS             415
+#define NUM_BATTLE_MOVE_EFFECTS             416
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

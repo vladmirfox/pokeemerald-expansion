@@ -441,6 +441,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectPoisonHit          	  @ EFFECT_POISON_STEEL_HIT
 	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
 	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
+	.4byte BattleScript_EffectMilkDrink         	  @ EFFECT_MILK_DRINK
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
@@ -5419,6 +5420,28 @@ BattleScript_EffectDefenseCurl::
 	waitanimation
 BattleScript_DefenseCurlDoStatUpAnim::
 	goto BattleScript_StatUpDoAnim
+
+BattleScript_EffectMilkDrink::
+	attackcanceler
+	attackstring
+	ppreduce
+	cureifburnedparalysedorpoisoned BattleScript_MilkDrinkNoStatus
+	attackanimation
+	waitanimation
+	updatestatusicon BS_ATTACKER
+	printstring STRINGID_PKMNSTATUSNORMAL
+	waitmessage B_WAIT_TIME_LONG
+	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_TARGET
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_PKMNREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_MilkDrinkNoStatus::
+	tryhealhalfhealth BattleScript_AlreadyAtFullHp, BS_TARGET
+	goto BattleScript_PresentHealTarget	
 
 BattleScript_EffectSoftboiled::
 	attackcanceler
