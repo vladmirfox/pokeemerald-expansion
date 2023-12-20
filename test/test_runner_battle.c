@@ -1332,6 +1332,10 @@ static void TearDownBattle(void)
     FreeBattleSpritesData();
     FreeBattleResources();
     FreeAllWindowBuffers();
+    if (DATA.setFlag != 0) {
+        FlagClear(DATA.setFlag);
+        DATA.setFlag = 0;
+    }
 }
 
 static void CB2_BattleTest_NextParameter(void)

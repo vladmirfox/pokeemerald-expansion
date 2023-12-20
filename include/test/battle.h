@@ -494,6 +494,7 @@
 #include "constants/moves.h"
 #include "constants/species.h"
 #include "test/test.h"
+#include "event_data.h"
 
 // NOTE: If the stack is too small the test runner will probably crash
 // or loop.
@@ -681,6 +682,7 @@ struct BattleTestData
     struct ExpectedAiScore expectedAiScores[MAX_BATTLERS_COUNT][MAX_TURNS][MAX_AI_SCORE_COMPARISION_PER_TURN]; // Max 4 comparisions per turn
     struct AILogLine aiLogLines[MAX_BATTLERS_COUNT][MAX_MON_MOVES][MAX_AI_LOG_LINES];
     u8 aiLogPrintedForMove[MAX_BATTLERS_COUNT]; // Marks ai score log as printed for move, so the same log isn't displayed multiple times.
+    u16 setFlag;
 };
 
 struct BattleTestRunnerState
@@ -838,6 +840,8 @@ struct moveWithPP {
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
 #define Status1(status1) Status1_(__LINE__, status1)
 #define OTName(otName) do {static const u8 otName_[] = _(otName); OTName_(__LINE__, otName_);} while (0)
+
+#define FLAG_SET(flagId) do { FlagSet(flagId); gBattleTestRunnerState->data.setFlag = flagId; } while (0)
 
 void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
