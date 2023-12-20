@@ -27,6 +27,8 @@ struct Sfc32State {
 
 typedef struct Sfc32State rng_value_t;
 
+#define RNG_VALUE_EMPTY {}
+
 // Calling this function directly is discouraged.
 // Use LocalRandom() instead.
 static inline u32 _SFC32_Next(struct Sfc32State *state)
@@ -59,6 +61,8 @@ static inline u16 Random2(void)
 void AdvanceRandom(void);
 #else
 typedef u32 rng_value_t;
+
+#define RNG_VALUE_EMPTY 0
 
 //Returns a 16-bit pseudorandom number
 u16 Random(void);
