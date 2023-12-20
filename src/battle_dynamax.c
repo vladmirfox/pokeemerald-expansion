@@ -149,7 +149,8 @@ bool32 CanDynamax(u16 battlerId)
 // Returns whether a battler is transformed into a Gigantamax form.
 bool32 IsGigantamaxed(u16 battlerId)
 {
-    if ((gSpeciesInfo[gBattleMons[battlerId].species].gigantamax))
+    struct Pokemon *mon = &GetSideParty(GetBattlerSide(battlerId))[gBattlerPartyIndexes[battlerId]];
+    if ((gSpeciesInfo[gBattleMons[battlerId].species].isGigantamax) && GetMonData(mon, MON_DATA_GIGANTAMAX_FACTOR))
         return TRUE;
     return FALSE;
 }
@@ -288,13 +289,13 @@ static u16 GetTypeBasedMaxMove(u16 battlerId, u16 type)
     u16 species = gBattleMons[battlerId].species;
     u16 targetSpecies = SPECIES_NONE;
 
-    if (!gSpeciesInfo[species].gigantamax)
+    if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
     if (targetSpecies != SPECIES_NONE)
         species = targetSpecies;
 
-    if (gSpeciesInfo[species].gigantamax)
+    if (gSpeciesInfo[species].isGigantamax)
     {
         for (i = 0; i < ARRAY_COUNT(sGMaxMoveTable); i++)
         {

@@ -489,6 +489,7 @@ void SaveBattlerData(u32 battlerId)
 static bool32 ShouldFailForIllusion(u32 illusionSpecies, u32 battlerId)
 {
     u32 i, j;
+    const struct LevelUpMove *learnset;
 
     if (BATTLE_HISTORY->abilities[battlerId] == ABILITY_ILLUSION)
         return FALSE;
@@ -500,13 +501,14 @@ static bool32 ShouldFailForIllusion(u32 illusionSpecies, u32 battlerId)
         if (move == MOVE_NONE)
             continue;
 
-        for (j = 0; gLevelUpLearnsets[illusionSpecies][j].move != MOVE_UNAVAILABLE; j++)
+        learnset = GetSpeciesLevelUpLearnset(illusionSpecies);
+        for (j = 0; learnset[j].move != MOVE_UNAVAILABLE; j++)
         {
-            if (gLevelUpLearnsets[illusionSpecies][j].move == move)
+            if (learnset[j].move == move)
                 break;
         }
         // The used move is in the learnsets of the fake species.
-        if (gLevelUpLearnsets[illusionSpecies][j].move != MOVE_UNAVAILABLE)
+        if (learnset[j].move != MOVE_UNAVAILABLE)
             continue;
 
         // The used move can be learned from Tm/Hm or Move Tutors.
@@ -773,7 +775,9 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                 dmg = 20 * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
                 break;
             case EFFECT_MULTI_HIT:
-                dmg *= (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK ? 5 : 3);
+                dmg *= (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK
+                    && !(move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
+                    ? 5 : 3);
                 break;
             case EFFECT_ENDEAVOR:
                 // If target has less HP than user, Endeavor does no damage
@@ -805,8 +809,6 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             // Handle other multi-strike moves
             if (gBattleMoves[move].strikeCount > 1 && gBattleMoves[move].effect != EFFECT_TRIPLE_KICK)
                 dmg *= gBattleMoves[move].strikeCount;
-            else if (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
-                dmg *= 3;
 
             if (dmg == 0)
                 dmg = 1;
@@ -967,11 +969,8 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_MIND_BLOWN:
     case EFFECT_STEEL_BEAM:
         return TRUE;
-    case EFFECT_RECOIL_25:
     case EFFECT_RECOIL_IF_MISS:
-    case EFFECT_RECOIL_50:
-    case EFFECT_RECOIL_33:
-    case EFFECT_RECOIL_33_STATUS:
+    case EFFECT_RECOIL:
         if (AI_IsDamagedByRecoil(battlerAtk))
             return TRUE;
         break;
@@ -1038,90 +1037,6 @@ u32 GetNoOfHitsToKOBattlerDmg(u32 dmg, u32 battlerDef)
 u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
 {
     return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex], battlerDef);
-}
-
-void SetMovesDamageResults(u32 battlerAtk, u16 *moves)
-{
-    s32 i, j, battlerDef, bestId, currId, hp, result;
-    s32 moveDmgs[MAX_MON_MOVES];
-    bool32 isNotConsidered[MAX_MON_MOVES];
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        u32 move = moves[i];
-        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0)
-            isNotConsidered[i] = TRUE;
-        else
-            isNotConsidered[i] = FALSE;
-    }
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        for (battlerDef = 0; battlerDef < MAX_BATTLERS_COUNT; battlerDef++)
-        {
-            if (battlerDef == battlerAtk)
-                continue;
-
-            if (isNotConsidered[i])
-            {
-                result = MOVE_POWER_OTHER; // Move has a power of 0/1
-            }
-            else
-            {
-                // Check all other moves and calculate their power
-                for (j = 0; j < MAX_MON_MOVES; j++)
-                {
-                    if (!isNotConsidered[j])
-                        moveDmgs[j] = AI_DATA->simulatedDmg[battlerAtk][battlerDef][j];
-                    else
-                        moveDmgs[j] = 0;
-                }
-
-                hp = gBattleMons[battlerDef].hp + (20 * gBattleMons[battlerDef].hp / 100); // 20 % add to make sure the battler is always fainted
-                // If a move can faint battler, it doesn't matter how much damage it does
-                for (j = 0; j < MAX_MON_MOVES; j++)
-                {
-                    if (moveDmgs[j] > hp)
-                        moveDmgs[j] = hp;
-                }
-
-                // Find move which deals most damage, in case of a tie prioritize one with better effect.
-                for (bestId = 0, j = 1; j < MAX_MON_MOVES; j++)
-                {
-                    if (moveDmgs[j] > moveDmgs[bestId])
-                        bestId = j;
-                    if (moveDmgs[j] == moveDmgs[bestId])
-                    {
-                        switch (AI_WhichMoveBetter(gBattleMons[battlerAtk].moves[bestId], gBattleMons[battlerAtk].moves[j], battlerAtk, battlerDef, GetNoOfHitsToKO(moveDmgs[j], hp)))
-                        {
-                        case 2:
-                            if (Random() & 1)
-                                break;
-                        case 1:
-                            bestId = j;
-                            break;
-                        }
-                    }
-                }
-
-                currId = i;
-                if (currId == bestId)
-                    result = MOVE_POWER_BEST;
-                else if ((moveDmgs[currId] >= hp || moveDmgs[bestId] < hp) // If current move can faint as well, or if neither can
-                         && GetNoOfHitsToKO(moveDmgs[currId], hp) - GetNoOfHitsToKO(moveDmgs[bestId], hp) <= 2 // Consider a move weak if it needs to be used at least 2 times more to faint the target, compared to the best move.
-                         && AI_WhichMoveBetter(gBattleMons[battlerAtk].moves[bestId], gBattleMons[battlerAtk].moves[currId], battlerAtk, battlerDef, GetNoOfHitsToKO(moveDmgs[currId], hp)) != 0)
-                    result = MOVE_POWER_GOOD;
-                else
-                    result = MOVE_POWER_WEAK;
-            }
-            AI_DATA->moveDmgResult[battlerAtk][battlerDef][i] = result;
-        }
-    }
-}
-
-u32 GetMoveDamageResult(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
-{
-    return AI_DATA->moveDmgResult[battlerAtk][battlerDef][moveIndex];
 }
 
 u32 GetCurrDamageHpPercent(u32 battlerAtk, u32 battlerDef)
@@ -1500,30 +1415,6 @@ bool32 IsConfusionMoveEffect(u32 moveEffect)
     case EFFECT_SWAGGER:
     case EFFECT_FLATTER:
     case EFFECT_TEETER_DANCE:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
-bool32 IsStatLoweringMoveEffect(u32 moveEffect)
-{
-    switch (moveEffect)
-    {
-    case EFFECT_ATTACK_DOWN:
-    case EFFECT_DEFENSE_DOWN:
-    case EFFECT_SPEED_DOWN:
-    case EFFECT_SPECIAL_ATTACK_DOWN:
-    case EFFECT_SPECIAL_DEFENSE_DOWN:
-    case EFFECT_ACCURACY_DOWN:
-    case EFFECT_EVASION_DOWN:
-    case EFFECT_ATTACK_DOWN_2:
-    case EFFECT_DEFENSE_DOWN_2:
-    case EFFECT_SPEED_DOWN_2:
-    case EFFECT_SPECIAL_ATTACK_DOWN_2:
-    case EFFECT_SPECIAL_DEFENSE_DOWN_2:
-    case EFFECT_ACCURACY_DOWN_2:
-    case EFFECT_EVASION_DOWN_2:
         return TRUE;
     default:
         return FALSE;
@@ -2139,6 +2030,8 @@ bool32 IsHealingMoveEffect(u32 effect)
     case EFFECT_HEAL_PULSE:
     case EFFECT_REST:
     case EFFECT_JUNGLE_HEALING:
+    case EFFECT_ABSORB:
+    case EFFECT_DREAM_EATER:
         return TRUE;
     default:
         return FALSE;
@@ -2338,7 +2231,17 @@ bool32 HasSoundMove(u32 battler)
 
 bool32 HasHighCritRatioMove(u32 battler)
 {
-    CHECK_MOVE_FLAG(highCritRatio);
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].critBoost > 0
+            && gBattleMoves[moves[i]].critBoost < ALWAYS_CRIT) // don't count always crit moves
+            return TRUE;
+    }
+
+    return FALSE;
 }
 
 bool32 HasMagicCoatAffectedMove(u32 battler)
@@ -3450,32 +3353,16 @@ void FreeRestoreBattleMons(struct BattlePokemon *savedBattleMons)
 }
 
 // party logic
-s32 AI_CalcPartyMonBestMoveDamage(u32 battlerAtk, u32 battlerDef, struct Pokemon *attackerMon, struct Pokemon *targetMon)
+s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, bool8 isPartyMonAttacker)
 {
-    s32 i, move, bestDmg, dmg = 0;
+    s32 dmg;
     u8 effectiveness;
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
-
-    if (attackerMon != NULL)
-        PokemonToBattleMon(attackerMon, &gBattleMons[battlerAtk]);
-    if (targetMon != NULL)
-        PokemonToBattleMon(targetMon, &gBattleMons[battlerDef]);
-
-    for (bestDmg = 0, i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (BattlerHasAi(battlerAtk))
-            move = GetMonData(attackerMon, MON_DATA_MOVE1 + i);
-        else
-            move = AI_PARTY->mons[GetBattlerSide(battlerAtk)][gBattlerPartyIndexes[battlerAtk]].moves[i];
-
-        if (move != MOVE_NONE && gBattleMoves[move].power != 0)
-        {
-            dmg = AI_CalcDamageSaveBattlers(move, battlerAtk, battlerDef, &effectiveness, FALSE);
-            if (dmg > bestDmg)
-                bestDmg = dmg;
-        }
-    }
-
+    if(isPartyMonAttacker)
+        gBattleMons[battlerAtk] = switchinCandidate;
+    else
+        gBattleMons[battlerDef] = switchinCandidate;
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA));
     FreeRestoreBattleMons(savedBattleMons);
     return dmg;
 }
@@ -3905,4 +3792,12 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
 bool32 AI_IsBattlerAsleepOrComatose(u32 battlerId)
 {
     return (gBattleMons[battlerId].status1 & STATUS1_SLEEP) || AI_DATA->abilities[battlerId] == ABILITY_COMATOSE;
+}
+
+u32 AI_CalcSecondaryEffectChance(u32 battler, u32 secondaryEffectChance)
+{
+    if (AI_DATA->abilities[battler] == ABILITY_SERENE_GRACE)
+        secondaryEffectChance *= 2;
+
+    return secondaryEffectChance;
 }

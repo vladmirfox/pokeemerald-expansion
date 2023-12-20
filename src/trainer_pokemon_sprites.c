@@ -61,21 +61,14 @@ static bool16 DecompressPic(u16 species, u32 personality, bool8 isFrontPic, u8 *
 {
     if (!isTrainer)
     {
-        if (isFrontPic)
-        {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
-        }
-        else
-        {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
-        }
+        LoadSpecialPokePic(dest, species, personality, isFrontPic);
     }
     else
     {
         if (isFrontPic)
-            DecompressPicFromTable(&gTrainerFrontPicTable[species], dest, species);
+            DecompressPicFromTable(&gTrainerFrontPicTable[species], dest);
         else
-            DecompressPicFromTable(&gTrainerBackPicTable[species], dest, species);
+            DecompressPicFromTable(&gTrainerBackPicTable[species], dest);
     }
     return FALSE;
 }
@@ -92,7 +85,7 @@ static void LoadPicPaletteByTagOrSlot(u16 species, bool8 isShiny, u32 personalit
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
-            LoadCompressedSpritePalette(GetMonSpritePalStructFromOtIdPersonality(species, isShiny, personality));
+            LoadCompressedSpritePaletteWithTag(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), species);
         }
     }
     else
@@ -188,6 +181,7 @@ u16 CreateMonPicSprite_Affine(u16 species, bool8 isShiny, u32 personality, u8 fl
     u8 i;
     u8 spriteId;
     u8 type;
+    species = SanitizeSpeciesId(species);
 
     for (i = 0; i < PICS_COUNT; i++)
     {
@@ -227,7 +221,7 @@ u16 CreateMonPicSprite_Affine(u16 species, bool8 isShiny, u32 personality, u8 fl
         images[j].size = MON_PIC_SIZE;
     }
     sCreatingSpriteTemplate.tileTag = TAG_NONE;
-    sCreatingSpriteTemplate.anims = gMonFrontAnimsPtrTable[species];
+    sCreatingSpriteTemplate.anims = gSpeciesInfo[species].frontAnimFrames;
     sCreatingSpriteTemplate.images = images;
     if (type == MON_PIC_AFFINE_FRONT)
     {
