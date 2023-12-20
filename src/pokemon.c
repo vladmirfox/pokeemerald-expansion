@@ -742,7 +742,7 @@ static u32 GenerateShinyPersonality(const u32 otPart)
     const u32 random_bits = Random32();
     const u16 random_part = random_bits >> 16;
     const u16 check_value = HIHALF(otPart) ^ LOHALF(otPart) ^ random_part;
-    const u16 chosen_part = (~(check_value >> SHINY_BITS) << SHINY_BITS) | (random_bits & SHINY_MASK);
+    const u16 chosen_part = ((check_value >> SHINY_BITS) << SHINY_BITS) | (random_bits & SHINY_MASK);
     if ((random_bits >> 15) & 1)
         return ((u32)random_part << 16) | chosen_part;
     else
