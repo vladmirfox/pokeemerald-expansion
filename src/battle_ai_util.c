@@ -2042,6 +2042,7 @@ bool32 IsHealingMoveEffect(u32 effect)
     case EFFECT_SYNTHESIS:
     case EFFECT_MOONLIGHT:
     case EFFECT_SOFTBOILED:
+    case EFFECT_MILK_DRINK:
     case EFFECT_ROOST:
     case EFFECT_SWALLOW:
     case EFFECT_WISH:

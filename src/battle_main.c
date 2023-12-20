@@ -4778,6 +4778,7 @@ s8 GetMovePriority(u32 battler, u16 move)
         case EFFECT_SWALLOW:
         case EFFECT_WISH:
         case EFFECT_SOFTBOILED:
+        case EFFECT_MILK_DRINK:
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
         case EFFECT_JUNGLE_HEALING:

@@ -1809,6 +1809,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             //fallthrough
         case EFFECT_RESTORE_HP:
         case EFFECT_SOFTBOILED:
+        case EFFECT_MILK_DRINK:
         case EFFECT_ROOST:
             if (AtMaxHp(battlerAtk))
                 score -= 10;
@@ -3560,6 +3561,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         break;
     case EFFECT_RESTORE_HP:
     case EFFECT_SOFTBOILED:
+    case EFFECT_MILK_DRINK:
     case EFFECT_ROOST:
     case EFFECT_MORNING_SUN:
     case EFFECT_SYNTHESIS:
@@ -4473,6 +4475,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             score++;
         break;
     case EFFECT_REFRESH:
+    case EFFECT_MILK_DRINK:
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY)
             score += 2;
         break;
@@ -5207,6 +5210,7 @@ static s32 AI_HPAware(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case EFFECT_MOONLIGHT:
             case EFFECT_SHORE_UP:
             case EFFECT_SOFTBOILED:
+            case EFFECT_MILK_DRINK:
             case EFFECT_ROOST:
             case EFFECT_MEMENTO:
             case EFFECT_GRUDGE:
