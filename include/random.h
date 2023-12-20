@@ -1,8 +1,64 @@
 #ifndef GUARD_RANDOM_H
 #define GUARD_RANDOM_H
 
-extern u32 gRngValue;
-extern u32 gRng2Value;
+// The number 1103515245 comes from the example implementation of rand and srand
+// in the ISO C standard.
+#define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
+#define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
+
+// If 1, use a high-quality PRNG.
+// This may break existing projects.
+#define HQ_RANDOM    1
+
+/* Notes about new functions:
+* If using HQ_RANDOM, you MUST call AdvanceRandom() in VBlank handlers.
+* If you do not, you risk corruption of the RNG state.
+* LocalRandom(*val) adapts to either choice of RNG implementation.
+* Other new functions should be self-explanatory.
+*/
+
+#if HQ_RANDOM == 1
+struct Sfc32State {
+    u32 a;
+    u32 b;
+    u32 c;
+    u32 ctr;
+};
+
+typedef struct Sfc32State rng_value_t;
+
+// Calling this function directly is discouraged.
+// Use LocalRandom() instead.
+static inline u32 _SFC32_Next(struct Sfc32State *state)
+{
+    const u32 result = state->a + state->b + state->ctr++;
+    state->a = state->b ^ (state->b >> 9);
+    state->b = state->c * 9;
+    state->c = result + ((state->c << 21) | (state->c >> 11));
+    return result;
+}
+
+static inline u16 LocalRandom(rng_value_t *val)
+{
+    return _SFC32_Next(val) >> 16;
+}
+
+u32 Random32(void);
+u32 Random2_32(void);
+
+static inline u16 Random(void)
+{
+    return Random32() >> 16;
+}
+
+static inline u16 Random2(void)
+{
+    return Random2_32() >> 16;
+}
+
+void AdvanceRandom(void);
+#else
+typedef u32 rng_value_t;
 
 //Returns a 16-bit pseudorandom number
 u16 Random(void);
@@ -10,11 +66,23 @@ u16 Random2(void);
 
 //Returns a 32-bit pseudorandom number
 #define Random32() (Random() | (Random() << 16))
+#define Random2_32() (Random2() | (Random2() << 16))
 
-// The number 1103515245 comes from the example implementation of rand and srand
-// in the ISO C standard.
-#define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
-#define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
+static inline u16 LocalRandom(rng_value_t *val)
+{
+    *val = ISO_RANDOMIZE1(*val);
+    return *val >> 16;
+}
+
+static inline void AdvanceRandom(void)
+{
+    Random();
+}
+
+#endif
+
+extern rng_value_t gRngValue;
+extern rng_value_t gRng2Value;
 
 //Sets the initial seed value of the pseudorandom number generator
 void SeedRng(u16 seed);
