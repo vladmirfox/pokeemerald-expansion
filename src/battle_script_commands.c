@@ -50,6 +50,7 @@
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
+#include "constants/battle_partner.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/item_effects.h"
@@ -1858,13 +1859,9 @@ static void Cmd_ppreduce(void)
     if (!(gHitMarker & (HITMARKER_NO_PPDEDUCT | HITMARKER_NO_ATTACKSTRING)) && gBattleMons[gBattlerAttacker].pp[gCurrMovePos])
     {
         gProtectStructs[gBattlerAttacker].notFirstStrike = TRUE;
+
         // For item Metronome, echoed voice
-        if (gCurrentMove == gLastResultingMoves[gBattlerAttacker]
-            && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-            && !WasUnableToUseMove(gBattlerAttacker)
-            && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT) // Don't increment counter on first hit
-                gBattleStruct->sameMoveTurns[gBattlerAttacker]++;
-        else
+        if (gCurrentMove != gLastResultingMoves[gBattlerAttacker] || WasUnableToUseMove(gBattlerAttacker))
             gBattleStruct->sameMoveTurns[gBattlerAttacker] = 0;
 
         if (gBattleMons[gBattlerAttacker].pp[gCurrMovePos] > ppToDeduct)
@@ -4363,7 +4360,7 @@ static bool32 NoAliveMonsForPlayerAndPartner(void)
     u32 i;
     u32 HP_count = 0;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && (gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER))
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
     {
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -4383,25 +4380,12 @@ bool32 NoAliveMonsForPlayer(void)
     u32 i;
     u32 HP_count = 0;
 
-    // Get total HP for the player's party to determine if the player has lost
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && (gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER))
+    for (i = 0; i < PARTY_SIZE; i++)
     {
-        // In multi battle with Steven, skip his Pokémon
-        for (i = 0; i < MULTI_PARTY_SIZE; i++)
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG)
+            && (!(gBattleTypeFlags & BATTLE_TYPE_ARENA) || !(gBattleStruct->arenaLostPlayerMons & gBitTable[i])))
         {
-            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
-                HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
-        }
-    }
-    else
-    {
-        for (i = 0; i < PARTY_SIZE; i++)
-        {
-            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG)
-             && (!(gBattleTypeFlags & BATTLE_TYPE_ARENA) || !(gBattleStruct->arenaLostPlayerMons & gBitTable[i])))
-            {
-                HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
-            }
+            HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
         }
     }
 
@@ -5568,7 +5552,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_NUM_HITS:
             if (gBattlerAttacker != gBattlerTarget
-                && gBattleMoves[gCurrentMove].split != SPLIT_STATUS
+                && gBattleMoves[gCurrentMove].category != BATTLE_CATEGORY_STATUS
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && TARGET_TURN_DAMAGED)
             {
@@ -6062,6 +6046,13 @@ static void Cmd_moveend(void)
                     effect = TRUE;
                 }
             }
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_SAME_MOVE_TURNS:
+            if (gCurrentMove != gLastResultingMoves[gBattlerAttacker] || gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                gBattleStruct->sameMoveTurns[gBattlerAttacker] = 0;
+            else if (gCurrentMove == gLastResultingMoves[gBattlerAttacker] && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT)
+                gBattleStruct->sameMoveTurns[gBattlerAttacker]++;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
@@ -8128,7 +8119,7 @@ static bool32 HasAttackerFaintedTarget(void)
 
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].category == BATTLE_CATEGORY_STATUS)
             || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
 }
 
@@ -10202,7 +10193,7 @@ static void Cmd_various(void)
     case VARIOUS_PHOTON_GEYSER_CHECK:
     {
         VARIOUS_ARGS();
-        gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(battler) == SPLIT_SPECIAL);
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battler) == BATTLE_CATEGORY_SPECIAL);
         break;
     }
     case VARIOUS_SHELL_SIDE_ARM_CHECK: // 0% chance GameFreak actually checks this way according to DaWobblefet, but this is the only functional explanation at the moment
@@ -15587,7 +15578,7 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
         && !gBattleMoves[move].parentalBondBanned
-        && gBattleMoves[move].split != SPLIT_STATUS
+        && gBattleMoves[move].category != BATTLE_CATEGORY_STATUS
         && gBattleMoves[move].strikeCount < 2)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)

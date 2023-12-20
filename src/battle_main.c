@@ -56,6 +56,7 @@
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
+#include "constants/battle_partner.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -512,7 +513,7 @@ static void CB2_InitBattleInternal(void)
 
     gBattle_WIN0H = DISPLAY_WIDTH;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_STEVEN_PARTNER && gPartnerTrainerId < TRAINER_CUSTOM_PARTNER)
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
     {
         gBattle_WIN0V = DISPLAY_HEIGHT - 1;
         gBattle_WIN1H = DISPLAY_WIDTH;
@@ -2961,6 +2962,10 @@ static void BattleStartClearSetData(void)
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gWishFutureKnock, 0, sizeof(gWishFutureKnock));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
+    memset(&gBattleScripting, 0, sizeof(gBattleScripting));
+
+    gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
+    gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
@@ -2997,7 +3002,6 @@ static void BattleStartClearSetData(void)
     gBattlerAttacker = 0;
     gBattlerTarget = 0;
     gEffectBattler = 0;
-    gBattleScripting.battler = 0;
     gBattlerAbility = 0;
     gBattleWeather = 0;
     gHitMarker = 0;
@@ -3012,12 +3016,7 @@ static void BattleStartClearSetData(void)
         gHitMarker |= HITMARKER_NO_ANIMATIONS;
     }
 
-    gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
-	gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
-	gBattleScripting.monCaught = FALSE;
-
     gMultiHitCounter = 0;
-    gBattleScripting.savedDmg = 0;
     gBattleOutcome = 0;
     gBattleControllerExecFlags = 0;
     gPaydayMoney = 0;
@@ -3030,8 +3029,6 @@ static void BattleStartClearSetData(void)
     gPauseCounterBattle = 0;
     gBattleMoveDamage = 0;
     gIntroSlideFlags = 0;
-    gBattleScripting.animTurn = 0;
-    gBattleScripting.animTargetsHit = 0;
     gLeveledUpInBattle = 0;
     gAbsentBattlerFlags = 0;
     gBattleStruct->runTries = 0;
@@ -4673,7 +4670,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     priority = gBattleMoves[move].priority;
 
     // Max Guard check
-    if (gBattleStruct->dynamax.usingMaxMove[battler] && gBattleMoves[move].split == SPLIT_STATUS)
+    if (gBattleStruct->dynamax.usingMaxMove[battler] && gBattleMoves[move].category == BATTLE_CATEGORY_STATUS)
         return gBattleMoves[MOVE_MAX_GUARD].priority;
 
     if (ability == ABILITY_GALE_WINGS
