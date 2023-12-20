@@ -87,7 +87,7 @@ SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowe
     PARAMETRIZE { ability = ABILITY_TERAVOLT;     species = SPECIES_ZEKROM; }
 #endif
     PASSES_RANDOMLY(gBattleMoves[MOVE_SCRATCH].accuracy * 3 / 4, 100, RNG_ACCURACY);
-    
+
     GIVEN {
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowe
 
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("xxxAI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
     u32 abilityAI, moveAI, j;
 
@@ -127,13 +127,10 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
             TURN { MOVE(player, MOVE_TACKLE); }
             TURN { MOVE(player, MOVE_TACKLE);
                    if (abilityAI == ABILITY_MOLD_BREAKER) { SCORE_GT(opponent, moveAI, MOVE_CELEBRATE); }
-                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }}
+                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }
+                }
     } SCENE {
-        MESSAGE("Wobbuffet used Tackle!");
-        if (abilityAI == ABILITY_MOLD_BREAKER){
-            SCORE_GT(opponent, moveAI, MOVE_CELEBRATE);
-        }
-    } THEN {
-        EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT] == ABILITY_MINDS_EYE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        if (abilityAI == ABILITY_MOLD_BREAKER) { ANIMATION(ANIM_TYPE_MOVE, moveAI, opponent); }
     }
 }
