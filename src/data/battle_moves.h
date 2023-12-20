@@ -3669,11 +3669,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_STEEL_WING] =
     {
         .effect = EFFECT_DEFENSE_UP_HIT,
-        .power = 70,
+        .power = 90,
         .type = TYPE_STEEL,
-        .accuracy = 90,
-        .pp = 25,
-        .secondaryEffectChance = 10,
+        .accuracy = 100,
+        .pp = 15,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,

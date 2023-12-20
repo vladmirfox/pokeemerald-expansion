@@ -3590,7 +3590,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
-        case CANCELLER_IN_LOVE: // infatuation
+        case CANCELLER_IN_LOVE: // infatuation 
             if (!gBattleStruct->isAtkCancelerForCalledMove && gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
             {
                 gBattleScripting.battler = CountTrailingZeroBits((gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION) >> 0x10);
@@ -3600,10 +3600,12 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 }
                 else
                 {
-                    BattleScriptPush(BattleScript_MoveUsedIsInLoveCantAttack);
+                    // REMOVED INFATUATION CHANCE TO NOT MOVE - CHANGED TO -50% DAMAGE
+                    /* BattleScriptPush(BattleScript_MoveUsedIsInLoveCantAttack);
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     gProtectStructs[gBattlerAttacker].loveImmobility = TRUE;
-                    CancelMultiTurnMoves(gBattlerAttacker);
+                    CancelMultiTurnMoves(gBattlerAttacker); */
+                    BattleScriptPushCursor();
                 }
                 gBattlescriptCurrInstr = BattleScript_MoveUsedIsInLove;
                 effect = 1;
@@ -9495,7 +9497,7 @@ static uq4_12_t GetWeatherDamageModifier(u32 battlerAtk, u32 move, u32 moveType,
     return UQ_4_12(1.0);
 }
 
-static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 abilityAtk)
+static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 abilityAtk) // also for infatuation
 {
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN
         && IS_MOVE_PHYSICAL(move)
@@ -9506,6 +9508,9 @@ static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 
         && IS_MOVE_SPECIAL(move)
         && !FACADE_PREVENTS_BURN_MALUS(move)
         && abilityAtk != ABILITY_GUTS)
+        return UQ_4_12(0.5);
+    if (gBattleMons[battlerAtk].status2 & STATUS2_INFATUATION
+        && abilityAtk != ABILITY_OBLIVIOUS)
         return UQ_4_12(0.5);
     return UQ_4_12(1.0);
 }

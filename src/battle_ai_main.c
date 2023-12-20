@@ -1346,7 +1346,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_COUNTER:
         case EFFECT_MIRROR_COAT:
-            if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
+            if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]) || gBattleMons[battlerDef].status2 &  STATUS2_CONFUSION)
                 score--;
             if (predictedMove == MOVE_NONE || GetBattleMoveSplit(predictedMove) == SPLIT_STATUS
               || DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), predictedMove))
@@ -4475,7 +4475,6 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             score++;
         break;
     case EFFECT_REFRESH:
-    case EFFECT_MILK_DRINK:
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY)
             score += 2;
         break;
@@ -4906,7 +4905,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         break;
     case EFFECT_REVENGE:
         if (!(gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
-          &&  !(gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
+          &&  !(gBattleMons[battlerDef].status2 & STATUS2_CONFUSION))
             score += 2;
         break;
     case EFFECT_ENDEAVOR:

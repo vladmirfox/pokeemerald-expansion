@@ -842,23 +842,23 @@ static const u8 sMilkDrinkDescription[] = _(
 
 static const u8 sSparkDescription[] = _(
     "An electrified tackle that\n"
-    "may paralyze the foe.");
+    "paralyzes 30% of the time.");
 
 static const u8 sFuryCutterDescription[] = _(
-    "An attack that intensifies\n"
-    "on each successive hit.");
+    "An attack that doubles in\n"
+    "power on each successive hit.");
 
 static const u8 sSteelWingDescription[] = _(
-    "Strikes the foe with hard\n"
-    "wings spread wide.");
+    "A hard wing strike. Has a\n"
+    "20% chance to boost Defense.");
 
 static const u8 sMeanLookDescription[] = _(
     "Fixes the foe with a mean\n"
     "look that prevents escape.");
 
 static const u8 sAttractDescription[] = _(
-    "Makes the opposite gender\n"
-    "less likely to attack.");
+    "Makes the opposite gender's\n"
+    "attacks 50% weaker.");
 
 static const u8 sSleepTalkDescription[] = _(
     "Uses an available move\n"

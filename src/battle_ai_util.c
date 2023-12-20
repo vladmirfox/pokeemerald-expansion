@@ -1698,14 +1698,14 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
     }
 
     if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_FROSTBITE)
-     || gBattleMons[battlerAtk].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
+     || gBattleMons[battlerAtk].status2 & (STATUS2_CURSED)
      || gStatuses3[battlerAtk] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
     {
         (*score)--;
     }
 
     if (gBattleMons[battlerDef].status1 & STATUS1_TOXIC_POISON
-      || gBattleMons[battlerDef].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
+      || gBattleMons[battlerDef].status2 & (STATUS2_CURSED)
       || gStatuses3[battlerDef] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
         (*score) += 2;
 }
@@ -2974,7 +2974,6 @@ u32 ShouldTryToFlinch(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbi
     }
     else if ((atkAbility == ABILITY_SERENE_GRACE
       || gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS
-      || gBattleMons[battlerDef].status2 & STATUS2_INFATUATION
       || gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
       || ((AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) && CanTargetFaintAi(battlerDef, battlerAtk)))
     {
@@ -3763,7 +3762,6 @@ void IncreaseConfusionScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
       && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CURE_STATUS)
     {
         if (gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS
-          || gBattleMons[battlerDef].status2 & STATUS2_INFATUATION
           || (AI_DATA->abilities[battlerAtk] == ABILITY_SERENE_GRACE && HasMoveEffect(battlerAtk, EFFECT_FLINCH_HIT)))
             *score += 3;
         else
