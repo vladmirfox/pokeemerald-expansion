@@ -198,10 +198,10 @@ TEST("RandomUniform mul-based faster than mod-based (compile-time)")
 {
     #if HQ_RANDOM == TRUE
         const u32 expectedMulSum = 6;
-        const u32 expectedModSum = 249;
+        const u32 expectedModSum = 4;
     #else
         const u32 expectedMulSum = 3;
-        const u32 expectedModSum = 249;
+        const u32 expectedModSum = 4;
     #endif
     struct Benchmark mulBenchmark, modBenchmark;
     u32 mulSum = 0, modSum = 0;
@@ -239,7 +239,7 @@ TEST("RandomUniform mul-based faster than mod-based (run-time)")
         const u32 expectedModSum = 249;
     #else
         const u32 expectedMulSum = 232;
-        const u32 expectedModSum = 249;
+        const u32 expectedModSum = 205;
     #endif
     u32 i;
     struct Benchmark mulBenchmark, modBenchmark;
