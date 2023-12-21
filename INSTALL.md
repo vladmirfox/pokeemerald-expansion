@@ -408,6 +408,8 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     >   Where *\<folder where pokeemerald is to be stored>* is the path of the folder [where you chose to store pokeemerald](#Choosing-where-to-store-pokeemerald-WSL1). Then run the `git clone` command again.
     </details>
 
+<details>
+    <summary><i>Depreciated; installing agbcc is optional since 1.7.0</i>.</summary>
 2. Install agbcc into pokeemerald. The commands to run depend on certain conditions. **You should only follow one of the listed instructions**:
 - If agbcc has **not been built before** in the folder where you chose to store pokeemerald, run the following commands to build and install it into pokeemerald:
 
@@ -445,6 +447,7 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     ```bash
     cd ..
     ```
+</details>
 
 Now you're ready to [build **pokeemerald**](#build-pokeemerald)
 ## Build pokeemerald
