@@ -496,12 +496,12 @@
 #include "constants/battle_ai.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
+#include "constants/flags.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/species.h"
 #include "test/test.h"
-#include "event_data.h"
 
 // NOTE: If the stack is too small the test runner will probably crash
 // or loop.
@@ -850,7 +850,7 @@ struct moveWithPP {
 #define Status1(status1) Status1_(__LINE__, status1)
 #define OTName(otName) do {static const u8 otName_[] = _(otName); OTName_(__LINE__, otName_);} while (0)
 
-void SetFlagForTest(u32 sourceLine,u16 flagId);
+void SetFlagForTest(u32 sourceLine, u16 flagId);
 void ClearFlagAfterTest(void);
 void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
