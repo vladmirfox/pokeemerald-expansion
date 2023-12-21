@@ -268,11 +268,12 @@ static void BattleTest_Run(void *data)
     s32 i;
     u32 requiredPlayerPartySize;
     u32 requiredOpponentPartySize;
+    const rng_value_t defaultSeed = RNG_SEED_DEFAULT;
     const struct BattleTest *test = data;
 
     memset(&DATA, 0, sizeof(DATA));
 
-    DATA.recordedBattle.rngSeed = RNG_SEED_DEFAULT;
+    DATA.recordedBattle.rngSeed = defaultSeed;
     DATA.recordedBattle.textSpeed = OPTIONS_TEXT_SPEED_FAST;
     // Set battle flags and opponent ids.
     switch (test->type)
@@ -1362,8 +1363,9 @@ static void CB2_BattleTest_NextParameter(void)
 static inline rng_value_t MakeRngValue(const u16 seed)
 {
     #if HQ_RANDOM == TRUE
-        rng_value_t result = {.a = 0, .b = 0, .c = seed, .ctr = 1};
-        for (int i = 0; i < 16; i++)
+        int i;
+        rng_value_t result = {0, 0, seed, 1};
+        for (i = 0; i < 16; i++)
         {
             _SFC32_Next(&result);
         }
@@ -1467,10 +1469,11 @@ void Randomly(u32 sourceLine, u32 passes, u32 trials, struct RandomlyContext ctx
     }
     else
     {
+        const rng_value_t defaultSeed = RNG_SEED_DEFAULT;
         INVALID_IF(RngSeedNotDefault(&DATA.recordedBattle.rngSeed), "RNG seed already set");
         STATE->trials = 50;
         STATE->trialRatio = Q_4_12(1) / STATE->trials;
-        DATA.recordedBattle.rngSeed = RNG_SEED_DEFAULT;
+        DATA.recordedBattle.rngSeed = defaultSeed;
     }
 }
 
