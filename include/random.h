@@ -6,10 +6,6 @@
 #define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
 #define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
 
-// If 1, use a high-quality PRNG.
-// This may break existing projects.
-#define HQ_RANDOM    1
-
 /* Notes about new functions:
 * If using HQ_RANDOM, you MUST call AdvanceRandom() in VBlank handlers.
 * If you do not, you risk corruption of the RNG state.
@@ -17,7 +13,7 @@
 * Other new functions should be self-explanatory.
 */
 
-#if HQ_RANDOM == 1
+#if HQ_RANDOM == TRUE
 struct Sfc32State {
     u32 a;
     u32 b;

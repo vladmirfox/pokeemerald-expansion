@@ -1712,7 +1712,7 @@ static void CB2_HandleStartMultiBattle(void)
     case 8:
         if (IsLinkTaskFinished())
         {
-            #if HQ_RANDOM == 1
+            #if HQ_RANDOM == TRUE
             struct BattleVideo *ptr = &gBattleStruct->multiBuffer.battleVideo;
             ptr->battleTypeFlags = gBattleTypeFlags;
             ptr->rngSeed = gRecordedBattleRngSeed;

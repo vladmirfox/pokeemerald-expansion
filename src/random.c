@@ -8,9 +8,9 @@
 rng_value_t gRngValue;
 rng_value_t gRng2Value;
 
-#if HQ_RANDOM == 1
-EWRAM_DATA static volatile u8 sUnknown = 11;
-#define RNG_LOCK sUnknown
+#if HQ_RANDOM == TRUE
+EWRAM_DATA static volatile u8 sUnknown = 1;
+#define RNG_LOOP_LOCK sUnknown
 
 
 static void SFC32_Seed(struct Sfc32State *state, u16 seed)
@@ -28,10 +28,8 @@ static void SFC32_Seed(struct Sfc32State *state, u16 seed)
 u32 NAKED Random32(void)
 {
     asm(".thumb\n\
-    push {r4, r5, r6, r7}\n\
-    ldr r7, =sUnknown\n\
+    push {r4, r5, r6}\n\
     mov r6, #11\n\
-    strb r6, [r7]\n\
     ldr r5, =gRngValue\n\
     ldmia r5!, {r1, r2, r3, r4}\n\
     @ e (result) = a + b + d++\n\
@@ -49,9 +47,7 @@ u32 NAKED Random32(void)
     add r3, r3, r0\n\
     sub r5, r5, #16\n\
     stmia r5!, {r1, r2, r3, r4}\n\
-    mov r1, #0\n\
-    strb r1, [r7]\n\
-    pop {r4, r5, r6, r7}\n\
+    pop {r4, r5, r6}\n\
     bx lr\n\
     .ltorg"
     );
@@ -65,7 +61,7 @@ u32 Random2_32(void)
 void SeedRng(u16 seed)
 {
     SFC32_Seed(&gRngValue, seed);
-    RNG_LOCK = 0;
+    RNG_LOOP_LOCK = 0;
 }
 
 void SeedRng2(u16 seed)
@@ -75,15 +71,15 @@ void SeedRng2(u16 seed)
 
 void AdvanceRandom(void)
 {
-    if (RNG_LOCK == 0)
-        _SFC32_Next(&gRngValue);
+    if (RNG_LOOP_LOCK == 0)
+        Random32();
 }
 
 #define LOOP_RANDOM_START \
     struct Sfc32State *const state = &gRngValue; \
-    RNG_LOCK = 11
+    RNG_LOOP_LOCK = 1
 
-#define LOOP_RANDOM_END RNG_LOCK = 0
+#define LOOP_RANDOM_END RNG_LOOP_LOCK = 0
 
 #define LOOP_RANDOM ((u16)(_SFC32_Next(state) >> 16))
 
