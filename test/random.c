@@ -196,6 +196,13 @@ TEST("RandomElement generates a uniform distribution")
 
 TEST("RandomUniform mul-based faster than mod-based (compile-time)")
 {
+    #if HQ_RANDOM == TRUE
+        const u32 expectedMulSum = 6;
+        const u32 expectedModSum = 249;
+    #else
+        const u32 expectedMulSum = 3;
+        const u32 expectedModSum = 249;
+    #endif
     struct Benchmark mulBenchmark, modBenchmark;
     u32 mulSum = 0, modSum = 0;
 
@@ -221,8 +228,8 @@ TEST("RandomUniform mul-based faster than mod-based (compile-time)")
     // These numbers are different because multiplication and modulus
     // have subtly different biases (so subtle that it's irrelevant for
     // our purposes).
-    EXPECT_EQ(mulSum, 3);
-    EXPECT_EQ(modSum, 4);
+    EXPECT_EQ(mulSum, expectedMulSum);
+    EXPECT_EQ(modSum, expectedModSum);
 }
 
 TEST("RandomUniform mul-based faster than mod-based (run-time)")
@@ -253,6 +260,6 @@ TEST("RandomUniform mul-based faster than mod-based (run-time)")
     EXPECT_FASTER(mulBenchmark, modBenchmark);
 
     // Reference mulSum/modSum to prevent optimization.
-    EXPECT_EQ(mulSum, 232);
-    EXPECT_EQ(modSum, 249);
+    EXPECT_EQ(mulSum, expectedMulSum);
+    EXPECT_EQ(modSum, expectedModSum);
 }
