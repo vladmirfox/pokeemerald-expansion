@@ -263,3 +263,27 @@ TEST("RandomUniform mul-based faster than mod-based (run-time)")
     EXPECT_EQ(mulSum, expectedMulSum);
     EXPECT_EQ(modSum, expectedModSum);
 }
+
+#if HQ_RANDOM == TRUE
+TEST("Thumb and C SFC32 implementations produce the same results")
+{
+    u32 thumbSum;
+    u32 cSum;
+    int i;
+    rng_value_t localState;
+
+    thumbSum = 0;
+    cSum = 0;
+
+    SeedRng(0);
+    localState = gRngValue;
+
+    for(i = 0; i < 32; i++)
+    {
+        thumbSum += Random();
+        cSum += _SFC32_Next(&localState);
+    }
+
+    EXPECT_EQ(thumbSum, cSum);
+}
+#endif
