@@ -775,7 +775,7 @@ struct
     {
         .species = SPECIES_METANG,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 42,
+        .level = 44,
         .nature = NATURE_BRAVE,
         .evs = {0, 252, 252, 0, 6, 0},
         .moves = {MOVE_LIGHT_SCREEN, MOVE_PSYCHIC, MOVE_REFLECT, MOVE_METAL_CLAW}
@@ -783,7 +783,7 @@ struct
     {
         .species = SPECIES_SKARMORY,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 43,
+        .level = 45,
         .nature = NATURE_IMPISH,
         .evs = {252, 0, 0, 0, 6, 252},
         .moves = {MOVE_TOXIC, MOVE_AERIAL_ACE, MOVE_PROTECT, MOVE_STEEL_WING}
@@ -791,7 +791,7 @@ struct
     {
         .species = SPECIES_AGGRON,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 44,
+        .level = 47,
         .nature = NATURE_ADAMANT,
         .evs = {0, 252, 0, 0, 252, 6},
         .moves = {MOVE_THUNDER, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW}
