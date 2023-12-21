@@ -9,19 +9,33 @@ rng_value_t gRngValue;
 rng_value_t gRng2Value;
 
 #if HQ_RANDOM == TRUE
-EWRAM_DATA static volatile u8 sUnknown = 1;
-#define RNG_LOOP_LOCK sUnknown
+EWRAM_DATA static volatile bool8 sRngLoopUnlocked;
 
+// Do not change STREAM1 without changing Random32().
+#define STREAM1 1
+#define STREAM2 29
 
-static void SFC32_Seed(struct Sfc32State *state, u16 seed)
+// A variant of SFC32 that lets you change the stream.
+// stream cannot be even, but any other (8-bit) value should be OK.
+static inline u32 _SFC32_Next_Stream(struct Sfc32State *state, const u8 stream)
+{
+    const u32 result = state->a + state->b + state->ctr;
+    state->ctr += stream;
+    state->a = state->b ^ (state->b >> 9);
+    state->b = state->c * 9;
+    state->c = result + ((state->c << 21) | (state->c >> 11));
+    return result;
+}
+
+static void SFC32_Seed(struct Sfc32State *state, u16 seed, u8 stream)
 {
     u32 i;
     state->a = state->b = 0;
     state->c = seed;
-    state->ctr = 1;
+    state->ctr = stream;
     for(i = 0; i < 16; i++)
     {
-        _SFC32_Next(state);
+        _SFC32_Next_Stream(state, stream);
     }
 }
 
@@ -35,6 +49,7 @@ u32 NAKED Random32(void)
     @ e (result) = a + b + d++\n\
     add r1, r1, r2\n\
     add r0, r1, r4\n\
+    @the argument is the same as STREAM1\n\
     add r4, r4, #1\n\
     @ a = b ^ (b >> 9)\n\
     lsr r1, r2, #9\n\
@@ -55,36 +70,35 @@ u32 NAKED Random32(void)
 
 u32 Random2_32(void)
 {
-    return _SFC32_Next(&gRng2Value);
+    return _SFC32_Next_Stream(&gRng2Value, STREAM2);
 }
 
 void SeedRng(u16 seed)
 {
-    SFC32_Seed(&gRngValue, seed);
-    RNG_LOOP_LOCK = 0;
+    SFC32_Seed(&gRngValue, seed, STREAM1);
+    sRngLoopUnlocked = TRUE;
 }
 
 void SeedRng2(u16 seed)
 {
-    SFC32_Seed(&gRng2Value, seed);
+    SFC32_Seed(&gRng2Value, seed, STREAM2);
 }
 
 void AdvanceRandom(void)
 {
-    if (RNG_LOOP_LOCK == 0)
+    if (sRngLoopUnlocked == TRUE)
         Random32();
 }
 
 #define LOOP_RANDOM_START \
     struct Sfc32State *const state = &gRngValue; \
-    RNG_LOOP_LOCK = 1
+    sRngLoopUnlocked = FALSE;
 
-#define LOOP_RANDOM_END RNG_LOOP_LOCK = 0
+#define LOOP_RANDOM_END sRngLoopUnlocked = TRUE;
 
 #define LOOP_RANDOM ((u16)(_SFC32_Next(state) >> 16))
 
 #else
-EWRAM_DATA static u8 sUnknown = 0;
 EWRAM_DATA static u32 sRandCount = 0;
 
 u16 Random(void)
@@ -97,7 +111,6 @@ u16 Random(void)
 void SeedRng(u16 seed)
 {
     gRngValue = seed;
-    sUnknown = 0;
 }
 
 void SeedRng2(u16 seed)

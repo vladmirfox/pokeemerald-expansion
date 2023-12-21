@@ -7,9 +7,14 @@
 #define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
 
 /* Notes about new functions:
-* If using HQ_RANDOM, you MUST call AdvanceRandom() in VBlank handlers.
-* If you do not, you risk corruption of the RNG state.
-* LocalRandom(*val) adapts to either choice of RNG implementation.
+*
+* If using HQ_RANDOM, you cannot call Random() in interrupt handlers safely.
+* AdvanceRandom() is provided to handle burning numbers in the VBlank handler
+* if you choose to do that, and can be used regardless of HQ_RANDOM setting.
+*
+* LocalRandom(*val) allows you to have local random states that are the same
+* type as the global states regardless of HQ_RANDOM setting.
+*
 * Other new functions should be self-explanatory.
 */
 
