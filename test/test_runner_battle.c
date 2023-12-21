@@ -33,7 +33,7 @@
 #define DATA gBattleTestRunnerState->data
 
 #if HQ_RANDOM == TRUE
-#define RNG_SEED_DEFAULT (struct Sfc32State){.a = 0, .b = 0, .c = 0, .ctr = 0}
+#define RNG_SEED_DEFAULT {0, 0, 0, 0}
 static inline bool32 RngSeedNotDefault(const rng_value_t *seed)
 {
     return (seed->a | seed->b | seed->c | seed->ctr) != 0;
