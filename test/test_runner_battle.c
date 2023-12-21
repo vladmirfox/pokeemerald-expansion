@@ -12,6 +12,7 @@
 #include "test/battle.h"
 #include "window.h"
 #include "constants/trainers.h"
+#include "event_data.h"
 
 #if defined(__INTELLISENSE__)
 #undef TestRunner_Battle_RecordAbilityPopUp
@@ -1332,6 +1333,7 @@ static void TearDownBattle(void)
     FreeBattleSpritesData();
     FreeBattleResources();
     FreeAllWindowBuffers();
+    ClearFlagAfterTest();
 }
 
 static void CB2_BattleTest_NextParameter(void)
@@ -1339,6 +1341,7 @@ static void CB2_BattleTest_NextParameter(void)
     if (++STATE->runParameter >= STATE->parameters)
     {
         SetMainCallback2(CB2_TestRunner);
+        ClearFlagAfterTest();
     }
     else
     {
@@ -1477,6 +1480,21 @@ const struct TestRunner gBattleTestRunner =
     .checkProgress = BattleTest_CheckProgress,
     .handleExitWithResult = BattleTest_HandleExitWithResult,
 };
+
+void SetFlagForTest(u32 sourceLine,u16 flagId)
+{
+    INVALID_IF(DATA.flagId != 0, "FLAG can only be set once per test");
+    DATA.flagId = flagId;
+    FlagSet(flagId);
+}
+
+void ClearFlagAfterTest(void)
+{
+    if (DATA.flagId != 0) {
+        FlagClear(DATA.flagId);
+        DATA.flagId = 0;
+    }
+}
 
 void OpenPokemon(u32 sourceLine, u32 side, u32 species)
 {
