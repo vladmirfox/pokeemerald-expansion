@@ -280,7 +280,7 @@ TEST("Thumb and C SFC32 implementations produce the same results")
 
     for(i = 0; i < 32; i++)
     {
-        thumbSum += Random();
+        thumbSum += Random32();
         cSum += _SFC32_Next(&localState);
     }
 
