@@ -89,6 +89,7 @@ Some tips before proceeding:
 
     >   If the above command does not work, try the above command but replacing `apt` with `apt-get`.
     </details>
+    This will install GCC v10 on Ubuntu 22.04. pokeemerald-expansion works with GCC v10, but the team uses GCC v13 internally. If you want to upgrade from v10 to v13, also follow the devkitpro install instructions.
 
 ### Choosing where to store pokeemerald (WSL1)
 WSL has its own file system that's not natively accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to store pokeemerald within Windows.
