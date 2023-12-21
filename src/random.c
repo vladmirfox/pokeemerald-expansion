@@ -39,13 +39,11 @@ static void SFC32_Seed(struct Sfc32State *state, u16 seed, u8 stream)
     }
 }
 
-// As the most frequently called RNG function, this is written in assembly
-// for speed. It is functionally equivalent to _SFC32_Next(&gRngValue)
 u32 NAKED Random32(void)
 {
     asm(".thumb\n\
     push {r4, r5, r6}\n\
-    mov r6, #21\n\
+    mov r6, #11\n\
     ldr r5, =gRngValue\n\
     ldmia r5!, {r1, r2, r3, r4}\n\
     @ e (result) = a + b + d++\n\
@@ -59,7 +57,7 @@ u32 NAKED Random32(void)
     @ b = c + (c << 3) [c * 9]\n\
     lsl r2, r3, #3\n\
     add r2, r2, r3\n\
-    @ c = ror(c, 21) + e\n\
+    @ c = rol(c, 21) + e\n\
     ror r3, r3, r6\n\
     add r3, r3, r0\n\
     sub r5, r5, #16\n\
