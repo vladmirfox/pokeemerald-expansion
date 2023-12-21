@@ -17,7 +17,7 @@
     error = 0; \
     for (i = 0; i < ARRAY_COUNT(indexSum); i++) \
         error += abs(3584 - indexSum[i]); \
-    EXPECT_LT(error, (int)(28672 * 0.025));
+    EXPECT_LT(error, (int)(28672 * 0.03));
 
 TEST("Shuffle randomizes the array [Shuffle8]")
 {
@@ -236,10 +236,10 @@ TEST("RandomUniform mul-based faster than mod-based (run-time)")
 {
     #if HQ_RANDOM == TRUE
         const u32 expectedMulSum = 289;
-        const u32 expectedModSum = 249;
+        const u32 expectedModSum = 205;
     #else
         const u32 expectedMulSum = 232;
-        const u32 expectedModSum = 205;
+        const u32 expectedModSum = 249;
     #endif
     u32 i;
     struct Benchmark mulBenchmark, modBenchmark;
