@@ -492,6 +492,7 @@ static const struct PokemonJumpMons sPokeJumpMons[] =
     { .species = SPECIES_MARILL,                            .jumpType = JUMP_TYPE_SLOW, },
     { .species = SPECIES_SUNKERN,                           .jumpType = JUMP_TYPE_SLOW, },
     { .species = SPECIES_WOOPER,                            .jumpType = JUMP_TYPE_SLOW, },
+    { .species = SPECIES_WOOPER_PALDEAN,                    .jumpType = JUMP_TYPE_SLOW, },
     { .species = SPECIES_PINECO,                            .jumpType = JUMP_TYPE_SLOW, },
     { .species = SPECIES_SNUBBULL,                          .jumpType = JUMP_TYPE_NORMAL, },
     { .species = SPECIES_SHUCKLE,                           .jumpType = JUMP_TYPE_SLOW, },
@@ -3951,7 +3952,7 @@ static void CreateJumpMonSprites(void)
     {
         struct PokemonJump_MonInfo *monInfo = GetMonInfoByMultiplayerId(i);
 
-        y = gMonFrontPicCoords[monInfo->species].y_offset;
+        y = gSpeciesInfo[monInfo->species].frontPicYOffset;
         CreateJumpMonSprite(sPokemonJumpGfx, monInfo, *xCoords, y + 112, i);
         CreateStarSprite(sPokemonJumpGfx, *xCoords, 112, i);
         xCoords++;
