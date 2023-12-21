@@ -1,10 +1,14 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gItems[ITEM_POKE_TOY].battleUsage == EFFECT_ITEM_ESCAPE);
+}
+
 WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle")
 {
     GIVEN {
-        ASSUME(gItems[ITEM_POKE_TOY].battleUsage == EFFECT_ITEM_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -17,7 +21,6 @@ WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle")
 WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if a move forbid them to")
 {
     GIVEN {
-        ASSUME(gItems[ITEM_POKE_TOY].battleUsage == EFFECT_ITEM_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -36,7 +39,6 @@ WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if a m
 WILD_BATTLE_TEST("Poke Toy lets the player escape from a wild battle even if an ability forbid them to")
 {
     GIVEN {
-        ASSUME(gItems[ITEM_POKE_TOY].battleUsage == EFFECT_ITEM_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_DIGLETT) { Ability(ABILITY_ARENA_TRAP); }
     } WHEN {
