@@ -6424,6 +6424,10 @@ u8 GetTypeBySpecies(u16 species, u8 typeNum)
 static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOffset) //INTERNAL use only!
 {
     u8 slot;
+    #ifndef NDEBUG
+    u8 slotNew;
+    #endif
+
     u16 mapOffset = 0; //12289, 49157
     if (mapBased)
         mapOffset = NuzlockeGetCurrentRegionMapSectionId();
@@ -6454,7 +6458,6 @@ static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOff
         }
 
         #ifndef NDEBUG
-        u8 slotNew;
         slotNew = gSpeciesMapping[speciesResult];
         MgbaPrintf(MGBA_LOG_DEBUG, "%S: species=%d=%S; mapBased=%d; speciesResult=%d=%S; %S-->>%S", gRandomizationTypes[type], species, gSpeciesInfo[species].speciesName, mapBased, speciesResult, gSpeciesInfo[species].speciesName, gEvoStages[slot], gEvoStages[slotNew]);
         #endif
