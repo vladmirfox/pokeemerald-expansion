@@ -97,10 +97,9 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-T
     u16 ability;
     u32 species;
 
-    KNOWN_FAILING; // Third parametrized mon turns into Skitty
     PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; species = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_HONE_CLAWS].effect == EFFECT_ATTACK_ACCURACY_UP);
@@ -139,9 +138,8 @@ SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent receivi
     u32 species;
     PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
     PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; species = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
 
-    KNOWN_FAILING; // Third parametrized mon turns into Skitty
     GIVEN {
         ASSUME(gBattleMoves[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WOBBUFFET);
