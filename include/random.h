@@ -6,16 +6,21 @@
 #define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
 #define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
 
-/* Notes about new functions:
+/* Some functions have been added to support HQ_RANDOM.
 *
 * If using HQ_RANDOM, you cannot call Random() in interrupt handlers safely.
 * AdvanceRandom() is provided to handle burning numbers in the VBlank handler
 * if you choose to do that, and can be used regardless of HQ_RANDOM setting.
+* If you need to use random numbers in the VBlank handler, a local state
+* should be used instead.
 *
 * LocalRandom(*val) allows you to have local random states that are the same
-* type as the global states regardless of HQ_RANDOM setting.
+* type as the global states regardless of HQ_RANDOM setting, which is useful
+* if you want to be able to set them from or assign them to gRngValue.
 *
-* Other new functions should be self-explanatory.
+* Random2_32() was added to HQ_RANDOM because the output of the generator is
+* always 32 bits and Random()/Random2() are just wrappers in that mode. It is
+* also available in non-HQ mode for consistency.
 */
 
 #if HQ_RANDOM == TRUE

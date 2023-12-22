@@ -9,14 +9,15 @@ rng_value_t gRngValue;
 rng_value_t gRng2Value;
 
 #if HQ_RANDOM == TRUE
+
 EWRAM_DATA static volatile bool8 sRngLoopUnlocked;
 
-// Do not change STREAM1 without changing Random32().
+// Streams allow generators seeded the same to have separate outputs.
 #define STREAM1 1
 #define STREAM2 29
 
 // A variant of SFC32 that lets you change the stream.
-// stream cannot be even, but any other (8-bit) value should be OK.
+// stream can be any odd number.
 static inline u32 _SFC32_Next_Stream(struct Sfc32State *state, const u8 stream)
 {
     const u32 result = state->a + state->b + state->ctr;
@@ -39,6 +40,8 @@ static void SFC32_Seed(struct Sfc32State *state, u16 seed, u8 stream)
     }
 }
 
+/*This ASM implementation uses some shortcuts and is generally faster on the GBA.
+* It's not necessarily faster if inlined, or on other platforms. */
 u32 NAKED Random32(void)
 {
     asm(".thumb\n\
@@ -49,8 +52,7 @@ u32 NAKED Random32(void)
     @ e (result) = a + b + d++\n\
     add r1, r1, r2\n\
     add r0, r1, r4\n\
-    @the argument is the same as STREAM1\n\
-    add r4, r4, #1\n\
+    add r4, r4, #" STR(STREAM1) "\n\
     @ a = b ^ (b >> 9)\n\
     lsr r1, r2, #9\n\
     eor r1, r1, r2\n\
@@ -75,7 +77,11 @@ u32 Random2_32(void)
 
 void SeedRng(u16 seed)
 {
-    SFC32_Seed(&gRngValue, seed, STREAM1);
+    struct Sfc32State state;
+    SFC32_Seed(&state, seed, STREAM1);
+
+    sRngLoopUnlocked = FALSE;
+    gRngValue = state;
     sRngLoopUnlocked = TRUE;
 }
 

@@ -2,7 +2,7 @@
 #define GUARD_RECORDED_BATTLE_H
 
 #include "constants/battle.h"
-#include "random.h" // for rng_value_t
+#include "random.h"
 
 #define BATTLER_RECORD_SIZE 664
 
