@@ -3963,12 +3963,12 @@ static u8 Task_GetInfoCardInput(u8 taskId)
 
 #undef tUsingAlternateSlot
 
-static bool32 IsDomeHealingMoveEffect(u32 effect)
+static bool32 IsDomeHealingMove(u32 move)
 {
-    if (IsHealingMoveEffect(effect))
+    if (IsHealingMove(move))
         return TRUE;
     // Check extra effects not considered plain healing by AI
-    switch(effect)
+    switch (gBattleMoves[move].effect)
     {
         case EFFECT_INGRAIN:
         case EFFECT_REFRESH:
@@ -4108,9 +4108,10 @@ static bool32 IsDomeRareMove(u32 move)
     u16 species = 0;
     for(i = 0; i < NUM_SPECIES; i++)
     {
-        for(j = 0; gLevelUpLearnsets[i][j].move != LEVEL_UP_MOVE_END; j++)
+        const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(i);
+        for(j = 0; learnset[j].move != LEVEL_UP_MOVE_END; j++)
         {
-            if (gLevelUpLearnsets[i][j].move == move)
+            if (learnset[j].move == move)
             {
                 species++;
                 break;
@@ -4377,7 +4378,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     move = gSaveBlock2Ptr->frontier.domePlayerPartyData[i].moves[j];
                 else
                     move = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].moves[j];
-                
+
                 switch (k)
                 {
                 case MOVE_POINTS_COMBO:
@@ -4393,7 +4394,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = IsDomeRareMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_HEAL:
-                    allocatedArray[k] = IsDomeHealingMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsDomeHealingMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_RISKY:
                     allocatedArray[k] = IsDomeRiskyMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
