@@ -362,11 +362,6 @@
 	.byte 0x3f
 	.endm
 
-	.macro jumpifaffectedbyprotect failInstr:req
-	.byte 0x40
-	.4byte \failInstr
-	.endm
-
 	.macro call instr:req
 	.byte 0x41
 	.4byte \instr
@@ -1317,6 +1312,15 @@
 	.byte \battler
 	.4byte \jumpInstr
 	.endm
+	
+	.macro allyswitchswapbattlers
+	callnative BS_AllySwitchSwapBattler
+	.endm
+	
+	.macro allyswitchfailchance jumpInstr:req
+	callnative BS_AllySwitchFailChance
+	.4byte \jumpInstr
+	.endm
 
 	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req
 	callnative BS_JumpIfHoldEffect
@@ -1555,6 +1559,10 @@
 	callnative BS_TryDefog
 	.byte \clear
 	.4byte \failInstr
+	.endm
+
+	.macro trytriggerstatusform
+	callnative BS_TryTriggerStatusForm
 	.endm
 
 @ various command changed to more readable macros

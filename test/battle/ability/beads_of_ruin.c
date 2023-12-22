@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_WATER_GUN].split == SPLIT_SPECIAL);
+    ASSUME(gBattleMoves[MOVE_WATER_GUN].category == BATTLE_CATEGORY_SPECIAL);
     ASSUME(gBattleMoves[MOVE_ROLE_PLAY].effect == EFFECT_ROLE_PLAY);
 }
 
