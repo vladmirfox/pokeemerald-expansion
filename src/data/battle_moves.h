@@ -14635,7 +14635,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TEMPER_FLARE] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_TEMPER_FLARE
+        .effect = EFFECT_STOMPING_TANTRUM,
         .power = 75,
         .type = TYPE_FIRE,
         .accuracy = 100,
