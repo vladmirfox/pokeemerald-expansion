@@ -73,7 +73,7 @@ u8 ScriptGiveMonWithRandom(u16 species, u8 level, u16 item, u32 unused1, u32 unu
     if (gSaveBlock1Ptr->tx_Random_WildPokemon || gSaveBlock1Ptr->tx_Random_Evolutions) //tx_randomizer_and_challenges
             species = GetSpeciesRandomSeeded(species, TX_RANDOM_T_WILD_POKEMON, 0);
 
-    if (OW_SYNCHRONIZE_NATURE >= GEN_6 && (gSpeciesInfo[species].eggGroups[0] == EGG_GROUP_UNDISCOVERED || OW_SYNCHRONIZE_NATURE == GEN_7))
+    if (OW_SYNCHRONIZE_NATURE >= GEN_6 && (gSpeciesInfo[species].eggGroups[0] == EGG_GROUP_NO_EGGS_DISCOVERED || OW_SYNCHRONIZE_NATURE == GEN_7))
         CreateMonWithNature(&mon, species, level, USE_RANDOM_IVS, PickWildMonNature());
     else
         CreateMon(&mon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);

@@ -6408,7 +6408,7 @@ u8 GetTypeBySpecies(u16 species, u8 typeNum)
 
     #ifndef NDEBUG
     if (gSaveBlock1Ptr->tx_Random_Type)
-        MgbaPrintf(MGBA_LOG_DEBUG, "TX RANDOM TYPE%d: species=%d=%S; type=%d=%S", typeNum, species, gSpeciesNames[species], type, gTypeNames[type]);
+        MgbaPrintf(MGBA_LOG_DEBUG, "TX RANDOM TYPE%d: species=%d=%S; type=%d=%S", typeNum, species, gSpeciesInfo[species].speciesName, type, gTypeNames[type]);
     #endif
 
     return type;
@@ -6449,7 +6449,7 @@ static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOff
         #ifndef NDEBUG
         u8 slotNew;
         slotNew = gSpeciesMapping[speciesResult];
-        MgbaPrintf(MGBA_LOG_DEBUG, "%S: species=%d=%S; mapBased=%d; speciesResult=%d=%S; %S-->>%S", gRandomizationTypes[type], species, gSpeciesNames[species], mapBased, speciesResult, gSpeciesNames[speciesResult], gEvoStages[slot], gEvoStages[slotNew]);
+        MgbaPrintf(MGBA_LOG_DEBUG, "%S: species=%d=%S; mapBased=%d; speciesResult=%d=%S; %S-->>%S", gRandomizationTypes[type], species, gSpeciesInfo[species].speciesName, mapBased, speciesResult, gSpeciesInfo[species].speciesName, gEvoStages[slot], gEvoStages[slotNew]);
         #endif
 
         return speciesResult;
