@@ -13131,39 +13131,22 @@ static void Cmd_presentdamagecalculation(void)
     {
         if (rand < 102)
         {
-            gBattleStruct->presentBasePower = 40;
+            gBattleStruct->presentBasePower = 70;
         }
         else if (rand < 178)
         {
-            gBattleStruct->presentBasePower = 80;
+            gBattleStruct->presentBasePower = 100;
         }
         else if (rand < 204)
         {
-            gBattleStruct->presentBasePower = 120;
+            gBattleStruct->presentBasePower = 160;
         }
         else
         {
-            gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 4;
-            if (gBattleMoveDamage == 0)
-                gBattleMoveDamage = 1;
-            gBattleMoveDamage *= -1;
-            gBattleStruct->presentBasePower = 0;
+            gBattleStruct->presentBasePower = 130;
         }
     }
-
-    if (gBattleStruct->presentBasePower)
-    {
-        gBattlescriptCurrInstr = BattleScript_HitFromCritCalc;
-    }
-    else if (gBattleMons[gBattlerTarget].maxHP == gBattleMons[gBattlerTarget].hp)
-    {
-        gBattlescriptCurrInstr = BattleScript_AlreadyAtFullHp;
-    }
-    else
-    {
-        gMoveResultFlags &= ~MOVE_RESULT_DOESNT_AFFECT_FOE;
-        gBattlescriptCurrInstr = BattleScript_PresentHealTarget;
-    }
+    gBattlescriptCurrInstr = BattleScript_HitFromCritCalc;
 }
 
 static void Cmd_setsafeguard(void)

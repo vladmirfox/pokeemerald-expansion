@@ -142,7 +142,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFuryCutter              @ EFFECT_FURY_CUTTER
 	.4byte BattleScript_EffectAttract                 @ EFFECT_ATTRACT
 	.4byte BattleScript_EffectHit                     @ EFFECT_RETURN
-	.4byte BattleScript_EffectPresent                 @ EFFECT_PRESENT
+	.4byte BattleScript_EffectHitEnemyHealAllyPresent @ EFFECT_PRESENT
 	.4byte BattleScript_EffectHit                     @ EFFECT_FRUSTRATION
 	.4byte BattleScript_EffectSafeguard               @ EFFECT_SAFEGUARD
 	.4byte BattleScript_EffectMagnitude               @ EFFECT_MAGNITUDE
@@ -2167,6 +2167,10 @@ BattleScript_MoveEffectSmackDown::
 BattleScript_EffectHitEnemyHealAlly:
 	jumpiftargetally BattleScript_EffectHealPulse
 	goto BattleScript_EffectHit
+
+BattleScript_EffectHitEnemyHealAllyPresent:
+	jumpiftargetally BattleScript_EffectHealPulse
+	goto BattleScript_EffectPresent
 
 BattleScript_EffectDefog:
 	setstatchanger STAT_EVASION, 1, TRUE

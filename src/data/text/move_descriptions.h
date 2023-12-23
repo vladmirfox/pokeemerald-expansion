@@ -170,7 +170,7 @@ static const u8 sPoisonStingDescription[] = _(
 
 static const u8 sTwineedleDescription[] = _(
     "A double-jab with stingers.\n"
-    "30% to poison even Steel-type.");
+    "30% to poison even Steel.");
 
 static const u8 sPinMissileDescription[] = _(
     "Sharp pins are fired to\n"
@@ -266,7 +266,7 @@ static const u8 sPeckDescription[] = _(
 
 static const u8 sDrillPeckDescription[] = _(
     "A corkscrewing attack with\n"
-    "the beak. High chance to crit.");
+    "the beak. High crit chance.");
 
 static const u8 sSubmissionDescription[] = _(
     "A reckless body slam that\n"
@@ -354,7 +354,7 @@ static const u8 sThunderWaveDescription[] = _(
 
 static const u8 sThunderDescription[] = _(
     "A lightning attack. 30% to\n"
-    "paralyze. Always hits in rain.");
+    "paralyze. Sure-hit in rain.");
 
 static const u8 sRockThrowDescription[] = _(
     "Throws small rocks to\n"
@@ -506,7 +506,7 @@ static const u8 sSludgeDescription[] = _(
 
 static const u8 sBoneClubDescription[] = _(
     "Clubs the foe with a bone.\n"
-    "10% chance to cause flinching.");
+    "10% chance to flinch.");
 
 static const u8 sFireBlastDescription[] = _(
     "Incinerates everything it\n"
@@ -526,7 +526,7 @@ static const u8 sSwiftDescription[] = _(
 
 static const u8 sSkullBashDescription[] = _(
     "Tucks in the head to raise\n"
-    "Defense. Attacks on next turn.");
+    "Defense. Attacks next turn.");
 
 static const u8 sSpikeCannonDescription[] = _(
     "Launches sharp spikes that\n"
@@ -622,7 +622,7 @@ static const u8 sExplosionDescription[] = _(
 
 static const u8 sFurySwipesDescription[] = _(
     "Rakes the foe 2 to 5 times.\n"
-    "Has a high critical-hit ratio.");
+    "High critical-hit ratio.");
 
 static const u8 sBonemerangDescription[] = _(
     "A two-hit boomerang attack.\n"
@@ -634,11 +634,11 @@ static const u8 sRestDescription[] = _(
 
 static const u8 sRockSlideDescription[] = _(
     "Hurls large boulders at foes.\n"
-    "30% chance to cause flinching.");
+    "30% chance to flinch.");
 
 static const u8 sHyperFangDescription[] = _(
     "Attacks with sharp fangs.\n"
-    "10% chance to cause flinching.");
+    "10% chance to flinch.");
 
 static const u8 sSharpenDescription[] = _(
     "Reduces the polygon count\n"
@@ -697,11 +697,11 @@ static const u8 sFlameWheelDescription[] = _(
     "burns 10% of the time.");
 
 static const u8 sSnoreDescription[] = _(
-    "Can only be used while asleep.\n"
+    "Only useable while asleep.\n"
     "30% to cause flinching.");
 
 static const u8 sCurseDescription[] = _(
-    "Raises Atk, Def. Lowers Speed.\n"
+    "Raise Atk, Def. Lower Speed.\n"
     "Ghosts cut HP to curse foe.");
 
 static const u8 sFlailDescription[] = _(
@@ -797,8 +797,8 @@ static const u8 sDetectDescription[] = _(
     "if used in succession.");
 
 static const u8 sBoneRushDescription[] = _(
-    "A 2-hit bone strike that hits\n"
-    "with increased priority.");
+    "A 2-hit bone strike that\n"
+    "has increased priority.");
 
 static const u8 sLockOnDescription[] = _(
     "Locks on to the foe to\n"
@@ -873,8 +873,8 @@ static const u8 sReturnDescription[] = _(
     "in power with friendship.");
 
 static const u8 sPresentDescription[] = _(
-    "A gift in the form of a\n"
-    "bomb. May restore HP.");
+    "Deals variable damage.\n"
+    "Heals 50% of allies' max HP.");
 
 static const u8 sFrustrationDescription[] = _(
     "An attack that is stronger\n"

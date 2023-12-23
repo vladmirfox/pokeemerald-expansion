@@ -3911,8 +3911,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .effect = EFFECT_PRESENT,
         .power = 1,
-        .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .type = TYPE_ICE,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
