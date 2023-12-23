@@ -40,14 +40,15 @@ SINGLE_BATTLE_TEST("Ember cannot burn a Fire-type Pokémon")
 }
 
 #if B_STATUS_TYPE_IMMUNITY > GEN_1
-#define B_STATUS_TYPE_IMMUNITY_TEST "Scald should burn a Water-type Pokémon"
+SINGLE_BATTLE_TEST("Scald should burn a Water-type Pokémon")
 #else
-#define B_STATUS_TYPE_IMMUNITY_TEST "Scald shouldn't burn a Water-type Pokémon"
+SINGLE_BATTLE_TEST("Scald shouldn't burn a Water-type Pokémon")
 #endif
-SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
+        ASSUME(gBattleMoves[MOVE_SCALD].effect == EFFECT_BURN_HIT);
+        ASSUME(gBattleMoves[MOVE_SCALD].type == TYPE_WATER);
         PLAYER(SPECIES_SQUIRTLE);
         OPPONENT(SPECIES_SQUIRTLE);
     } WHEN {
@@ -66,4 +67,3 @@ SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
         #endif
     }
 }
-#undef B_STATUS_TYPE_IMMUNITY_TEST

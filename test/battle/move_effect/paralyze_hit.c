@@ -41,14 +41,15 @@ SINGLE_BATTLE_TEST("Thunder Shock cannot paralyze an Electric-type")
 }
 
 #if B_STATUS_TYPE_IMMUNITY > GEN_1
-#define B_STATUS_TYPE_IMMUNITY_TEST "Body Slam should paralyze Normal-types"
+SINGLE_BATTLE_TEST("Body Slam should paralyze Normal-types")
 #else
-#define B_STATUS_TYPE_IMMUNITY_TEST "Body Slam shouldn't paralyze Normal-types"
+SINGLE_BATTLE_TEST("Body Slam shouldn't paralyze Normal-types")
 #endif
-SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_TAUROS].types[0] == TYPE_NORMAL);
+        ASSUME(gBattleMoves[MOVE_BODY_SLAM].effect == EFFECT_PARALYZE_HIT);
+        ASSUME(gBattleMoves[MOVE_BODY_SLAM].type == TYPE_NORMAL);
         PLAYER(SPECIES_TAUROS);
         OPPONENT(SPECIES_TAUROS);
     } WHEN {
@@ -67,4 +68,3 @@ SINGLE_BATTLE_TEST(B_STATUS_TYPE_IMMUNITY_TEST)
         #endif
     }
 }
-#undef B_STATUS_TYPE_IMMUNITY_TEST
