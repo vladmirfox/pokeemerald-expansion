@@ -54,6 +54,7 @@ void CB2_ShowPartyMenuForItemUseTMCase(void);
 void ItemUseCB_Medicine(u8 taskId, TaskFunc task);
 void ItemUseCB_AbilityCapsule(u8 taskId, TaskFunc task);
 void ItemUseCB_AbilityPatch(u8 taskId, TaskFunc task);
+void ItemUseCB_ResetEVs(u8 taskId, TaskFunc task);
 void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task);
 void ItemUseCB_PPRecovery(u8 taskId, TaskFunc task);
 void ItemUseCB_PPUp(u8 taskId, TaskFunc task);
@@ -66,6 +67,9 @@ void ItemUseCB_SacredAsh(u8 taskId, TaskFunc task);
 void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task);
 void ItemUseCB_FormChange(u8 taskId, TaskFunc task);
 void ItemUseCB_FormChange_ConsumedOnUse(u8 taskId, TaskFunc task);
+void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task);
+void ItemUseCB_ZygardeCube(u8 taskId, TaskFunc task);
+void ItemUseCB_Fusion(u8 taskId, TaskFunc task);
 const u8* GetItemEffect(u16 item);
 u8 GetItemEffectType(u16 item);
 void CB2_PartyMenuFromStartMenu(void);
@@ -100,11 +104,5 @@ void MoveDeleterChooseMoveToForget(void);
 void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void ItemUseCB_UsePokevial(u8 taskId, TaskFunc task); // pokevial Branch
 void InitPartyMenuForPokevialFromField(u8 taskId); // pokevial Branch
-
-#ifndef BATTLE_ENGINE
-bool8 CanLearnTutorMove(u16, u8);
-#else
-u16 GetTMHMMoves(u16 position);
-#endif
 
 #endif // GUARD_PARTY_MENU_H

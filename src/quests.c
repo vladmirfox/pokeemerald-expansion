@@ -79,7 +79,7 @@ EWRAM_DATA static u8 sSubmenuWindowIds[3] = {0};
 EWRAM_DATA static u8 gUnknown_2039878[12] = {0};        // from pokefirered src/item_menu_icons.c
 
 // This File's Functions
-static void DebugQuestMenu(void);
+//static void DebugQuestMenu(void); <- unused
 static void QuestMenu_RunSetup(void);
 static bool8 QuestMenu_DoGfxSetup(void);
 static void QuestMenu_FadeAndBail(void);
@@ -99,7 +99,7 @@ static void Task_QuestMenuTurnOff2(u8 taskId);
 static void QuestMenu_InitItems(void);
 static void QuestMenu_SetScrollPosition(void);
 static void Task_QuestMenuMain(u8 taskId);
-static void QuestMenu_InsertItemIntoNewSlot(u8 taskId, u32 pos);
+//static void QuestMenu_InsertItemIntoNewSlot(u8 taskId, u32 pos); <- unused
 static void Task_QuestMenuSubmenuInit(u8 taskId);
 static void Task_QuestMenuSubmenuRun(u8 taskId);
 static void Task_QuestMenuDetails(u8 taskId);
@@ -109,7 +109,7 @@ static void Task_QuestMenuEndQuest(u8 taskId);
 static void QuestMenu_DisplaySubMenuMessage(u8 taskId);
 static void Task_QuestMenuRefreshAfterAcknowledgement(u8 taskId);
 static void Task_QuestMenuCleanUp(u8 taskId);
-static void QuestMenu_WithdrawMultipleInitWindow(u16 slotId);
+//static void QuestMenu_WithdrawMultipleInitWindow(u16 slotId); <- unused
 static void Task_QuestMenuCancel(u8 taskId);
 static void QuestMenu_InitWindows(void);
 static void QuestMenu_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 * str, u8 x, u8 y, u8 letterSpacing, u8 lineSpacing, u8 speed, u8 colorIdx);
@@ -887,7 +887,8 @@ static void QuestMenu_PlaceTopMenuScrollIndicatorArrows(void)
     sStateDataPtr->scrollIndicatorArrowPairId = AddScrollIndicatorArrowPairParameterized(2, 128, 8, 104, sStateDataPtr->nItems - sStateDataPtr->maxShowed + 1, 110, 110, &sListMenuState.scroll);
 }
 
-static void QuestMenu_PlaceWithdrawQuantityScrollIndicatorArrows(void)
+// unused for now
+static UNUSED void QuestMenu_PlaceWithdrawQuantityScrollIndicatorArrows(void)
 {
     sStateDataPtr->withdrawQuantitySubmenuCursorPos = 1;
     sStateDataPtr->scrollIndicatorArrowPairId = AddScrollIndicatorArrowPairParameterized(2, 212, 120, 152, 2, 110, 110, &sStateDataPtr->withdrawQuantitySubmenuCursorPos);
@@ -1081,8 +1082,8 @@ static bool8 IsPCScreenEffectRunning_TurnOn(void)
 static void Task_QuestMenuMain(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
-    u16 scroll;
-    u16 row;
+    //u16 scroll; <- unused
+    //u16 row; <- unused
     s32 input;
 
     if (!gPaletteFade.active && !IsPCScreenEffectRunning_TurnOn())
@@ -1141,7 +1142,7 @@ static void QuestMenu_ReturnFromSubmenu(u8 taskId)
 }
 
 // pokefirered item_menu_icon
-static void sub_8098660(u8 flag)
+static UNUSED void sub_8098660(u8 flag)
 {
     u8 i;
     u8 * ptr = &gUnknown_2039878[1];
@@ -1153,7 +1154,7 @@ static void sub_8098660(u8 flag)
 }
 
 // pokefirered item_menu_icon
-static void sub_80986A8(s16 x, u16 y)
+static UNUSED void sub_80986A8(s16 x, u16 y)
 {
     u8 i;
     u8 * ptr = &gUnknown_2039878[1];
@@ -1286,7 +1287,7 @@ static void Task_QuestMenuBeginQuest(u8 taskId)
 
 static void QuestMenu_DisplaySubMenuMessage(u8 taskId)
 {
-    s16 * data = gTasks[taskId].data;
+    //s16 * data = gTasks[taskId].data; <- unused
     u8 windowId;
     
     windowId = QuestMenu_GetOrCreateSubwindow(2);

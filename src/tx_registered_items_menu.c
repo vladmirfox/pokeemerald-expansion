@@ -149,15 +149,15 @@ void TxRegItemsMenu_OpenMenu(void)
 
 static void TxRegItemsMenu_InitMenuFunctions(u8 taskId)
 {
-    s16 *data = gTasks[taskId].data;
+    //s16 *data = gTasks[taskId].data; <- unused
 
-    u8 count = TxRegItemsMenu_CountUsedRegisteredItemSlots();
+    //u8 count = TxRegItemsMenu_CountUsedRegisteredItemSlots(); <- unused
     TxRegItemsMenu_ClearAndInitData(taskId);
 }
 
 static void TxRegItemsMenu_ClearAndInitData(u8 taskId)
 {
-    u16 *data = gTasks[taskId].data;
+    //s16 *data = gTasks[taskId].data; <- unused
     u8 offset = 0;
     u8 cursorStart = gSaveBlock1Ptr->registeredItemLastSelected;
     u8 count = TxRegItemsMenu_CountUsedRegisteredItemSlots();
@@ -200,8 +200,8 @@ static void TxRegItemsMenu_ClearAndInitData(u8 taskId)
 static void TxRegItemsMenu_InitDataAndCreateListMenu(u8 taskId)
 {
     s16 *data;
-    u32 i, x;
-    const u8* text;
+    //u32 i, x; <- unused
+    //const u8* text; <- unused
 
     data = gTasks[taskId].data;
     TxRegItemsMenu_CalculateUsedSlots(); //calculate used slots
@@ -251,10 +251,10 @@ static void TxRegItemsMenu_ProcessInput(u8 taskId)
 
 static void TxRegItemsMenu_DoItemAction(u8 taskId)
 {
-    s16 *data;
+    //s16 *data; <- unused
     u16 pos;
 
-    data = gTasks[taskId].data;
+    //data = gTasks[taskId].data; <- unused
     pos = (TxRegItemsMenuItemPageInfo.cursorPos + TxRegItemsMenuItemPageInfo.itemsAbove);
     TxRegItemsMenu_RemoveScrollIndicator();
 
@@ -578,7 +578,7 @@ static void TxRegItemsMenu_ChangeLastSelectedItemIndex(u8 index)
 }
 
 
-static void TxRegItemsMenu_RemoveRegisteredItemIndex(u8 index)
+static UNUSED void TxRegItemsMenu_RemoveRegisteredItemIndex(u8 index)
 {
     TxRegItemsMenu_ChangeLastSelectedItemIndex(index);
     gSaveBlock1Ptr->registeredItems[index].itemId = ITEM_NONE;
@@ -589,7 +589,7 @@ static void TxRegItemsMenu_RemoveRegisteredItemIndex(u8 index)
 void TxRegItemsMenu_RemoveRegisteredItem(u16 itemId)
 {
     u8 i;
-    for (i = i ; i < REGISTERED_ITEMS_MAX; i++)
+    for (i = 0 ; i < REGISTERED_ITEMS_MAX; i++)
         {
             if (gSaveBlock1Ptr->registeredItems[i].itemId == itemId)
             {
@@ -677,7 +677,7 @@ static s32 TxRegItemsMenu_FindFreeRegisteredItemSlot(void)
 
 bool8 TxRegItemsMenu_AddRegisteredItem(u16 itemId)
 {
-    u8 i;
+    //u8 i; <- unused
     s8 freeSlot;
     struct RegisteredItemSlot *newItems;
 
@@ -707,8 +707,8 @@ bool8 TxRegItemsMenu_AddRegisteredItem(u16 itemId)
 void TxRegItemsMenu_RegisteredItemsMenuNewGame(void)
 {
     u8 i;
-    struct RegisteredItemSlot *newItems;
-    for (i = i ; i < REGISTERED_ITEMS_MAX; i++)
+    //struct RegisteredItemSlot *newItems; <- unused
+    for (i = 0 ; i < REGISTERED_ITEMS_MAX; i++)
     {
         gSaveBlock1Ptr->registeredItems[i].itemId = ITEM_NONE;
     }
