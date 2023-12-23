@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Spicy Extract lowers target's Defense by 2 stages", s16 dama
     PARAMETRIZE { lowerDefense = FALSE; }
     PARAMETRIZE { lowerDefense = TRUE; }
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
+        ASSUME(gBattleMoves[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
