@@ -239,9 +239,20 @@ void EnableVCountIntrAtLine150(void)
 #ifdef BUGFIX
 static void SeedRngWithRtc(void)
 {
-    u32 seed = RtcGetMinuteCount();
-    seed = (seed >> 16) ^ (seed & 0xFFFF);
-    SeedRng(seed);
+    #if HQ_RANDOM == FALSE
+        u32 seed = RtcGetMinuteCount();
+        seed = (seed >> 16) ^ (seed & 0xFFFF);
+        SeedRng(seed);
+    #else
+        u32 seconds;
+        struct SiiRtcInfo rtc;
+        RtcGetInfo(&rtc);
+        seconds =
+            ((HOURS_PER_DAY * MINUTES_PER_HOUR) * RtcGetDayCount(&rtc)
+            + MINUTES_PER_HOUR * ConvertBcdToBinary(rtc.hour) + ConvertBcdToBinary(rtc.minute))
+            * SECONDS_PER_MINUTE + ConvertBcdToBinary(rtc.second);
+        SeedRng(seconds);
+    #endif
 }
 #endif
 
