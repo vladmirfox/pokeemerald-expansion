@@ -96,81 +96,113 @@ static const u8 sGoNearCounterToEscapeFactor[] = {4, 4, 4, 4};
 
 static const u16 sSkillSwapBannedAbilities[] =
 {
-    ABILITY_WONDER_GUARD,
-    ABILITY_MULTITYPE,
-    ABILITY_ILLUSION,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
     ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_HUNGER_SWITCH,
+    ABILITY_ICE_FACE,
+    ABILITY_ILLUSION,
+    ABILITY_MULTITYPE,
+    ABILITY_NEUTRALIZING_GAS,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_WONDER_GUARD,
+    ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sRolePlayBannedAbilities[] =
+static const u16 sRolePlayDoodleBannedAbilities[] =
 {
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_BATTLE_BOND,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
+    ABILITY_FLOWER_GIFT,
+    ABILITY_FORECAST,
+    ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_HUNGER_SWITCH,
+    ABILITY_ICE_FACE,
+    ABILITY_ILLUSION,
+    ABILITY_IMPOSTER,
+    ABILITY_MULTITYPE,
+    ABILITY_NEUTRALIZING_GAS,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_POWER_OF_ALCHEMY,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RECEIVER,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
     ABILITY_TRACE,
     ABILITY_WONDER_GUARD,
-    ABILITY_FORECAST,
-    ABILITY_FLOWER_GIFT,
-    ABILITY_MULTITYPE,
-    ABILITY_ILLUSION,
     ABILITY_ZEN_MODE,
-    ABILITY_IMPOSTER,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_POWER_OF_ALCHEMY,
-    ABILITY_RECEIVER,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_GULP_MISSILE,
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sRolePlayBannedAttackerAbilities[] =
+static const u16 sRolePlayDoodleBannedAttackerAbilities[] =
 {
-    ABILITY_MULTITYPE,
-    ABILITY_ZEN_MODE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_ICE_FACE,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
     ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_ICE_FACE,
+    ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
 static const u16 sWorrySeedBannedAbilities[] =
 {
-    ABILITY_MULTITYPE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_BATTLE_BOND,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_TRUANT,
-    ABILITY_ICE_FACE,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
     ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_ICE_FACE,
+    ABILITY_INSOMNIA,
+    ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRUANT,
+    ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
@@ -180,51 +212,103 @@ static const u16 sGastroAcidBannedAbilities[] =
     ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_BATTLE_BOND,
     ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
     ABILITY_DISGUISE,
     ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
     ABILITY_ICE_FACE,
     ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
     ABILITY_POWER_CONSTRUCT,
     ABILITY_RKS_SYSTEM,
     ABILITY_SCHOOLING,
     ABILITY_SHIELDS_DOWN,
     ABILITY_STANCE_CHANGE,
+    ABILITY_ZEN_MODE,
+    ABILITY_ZERO_TO_HERO,
+};
+
+static const u16 sEntrainmentBannedAbilities[] =
+{
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_BATTLE_BOND,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
+    ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_ICE_FACE,
+    ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRUANT,
     ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
 static const u16 sEntrainmentBannedAttackerAbilities[] =
 {
-    ABILITY_TRACE,
-    ABILITY_FORECAST,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_BATTLE_BOND,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
     ABILITY_FLOWER_GIFT,
-    ABILITY_ZEN_MODE,
+    ABILITY_FORECAST,
+    ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_HUNGER_SWITCH,
+    ABILITY_ICE_FACE,
     ABILITY_ILLUSION,
     ABILITY_IMPOSTER,
-    ABILITY_POWER_OF_ALCHEMY,
-    ABILITY_RECEIVER,
-    ABILITY_DISGUISE,
-    ABILITY_POWER_CONSTRUCT,
+    ABILITY_MULTITYPE,
     ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_GULP_MISSILE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_POWER_OF_ALCHEMY,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RECEIVER,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRACE,
+    ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
+static const u16 sSimpleBeamBannedAbilities[] =
 {
-    ABILITY_TRUANT,
-    ABILITY_MULTITYPE,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_SCHOOLING,
-    ABILITY_COMATOSE,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_DISGUISE,
-    ABILITY_RKS_SYSTEM,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
     ABILITY_BATTLE_BOND,
-    ABILITY_ICE_FACE,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
     ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_ICE_FACE,
+    ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_SIMPLE,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRUANT,
+    ABILITY_ZEN_MODE,
     ABILITY_ZERO_TO_HERO,
 };
 
@@ -519,6 +603,11 @@ void HandleAction_UseMove(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_INCAPABLE_OF_POWER;
             gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
         }
+    }
+    // Edge case: moves targeting the ally fail after a successful Ally Switch.
+    else if (moveTarget == MOVE_TARGET_ALLY && gProtectStructs[BATTLE_PARTNER(gBattlerAttacker)].usedAllySwitch)
+    {
+        gBattlescriptCurrInstr = BattleScript_FailedFromAtkCanceler;
     }
     else
     {
@@ -883,12 +972,12 @@ void HandleAction_ActionFinished(void)
                 // have been executed before. The only recalculation needed is for moves/switch. Mega evolution is handled in src/battle_main.c/TryChangeOrder
                 if((gActionsByTurnOrder[i] == B_ACTION_USE_MOVE && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE))
                 {
-                    if (GetWhichBattlerFaster(battler1, battler2, FALSE))
+                    if (GetWhichBattlerFaster(battler1, battler2, FALSE) == -1)
                         SwapTurnOrder(i, j);
                 }
                 else if ((gActionsByTurnOrder[i] == B_ACTION_SWITCH && gActionsByTurnOrder[j] == B_ACTION_SWITCH))
                 {
-                    if (GetWhichBattlerFaster(battler1, battler2, TRUE)) // If the actions chosen are switching, we recalc order but ignoring the moves
+                    if (GetWhichBattlerFaster(battler1, battler2, TRUE) == -1) // If the actions chosen are switching, we recalc order but ignoring the moves
                         SwapTurnOrder(i, j);
                 }
             }
@@ -971,6 +1060,8 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_GOOD_AS_GOLD] = 1,
     [ABILITY_PURIFYING_SALT] = 1,
     [ABILITY_WELL_BAKED_BODY] = 1,
+    [ABILITY_MINDS_EYE] = 1,
+    [ABILITY_ILLUMINATE] = 1,
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -1980,7 +2071,7 @@ u8 DoFieldEndTurnEffects(void)
                 {
                     if (!gProtectStructs[i].quash
                             && !gProtectStructs[j].quash
-                            && GetWhichBattlerFaster(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE))
+                            && GetWhichBattlerFaster(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE) == -1)
                         SwapTurnOrder(i, j);
                 }
             }
@@ -6186,28 +6277,33 @@ bool32 TryPrimalReversion(u32 battler)
     return FALSE;
 }
 
-bool32 IsNeutralizingGasBannedAbility(u32 ability)
+static const u16 sNeutralizingGasBannedAbilities[] =
 {
-    switch (ability)
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_COMATOSE,
+    ABILITY_DISGUISE,
+    ABILITY_GULP_MISSILE,
+    ABILITY_ICE_FACE,
+    ABILITY_MULTITYPE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_ZEN_MODE,
+    ABILITY_ZERO_TO_HERO,
+};
+
+bool32 IsNeutralizingGasBannedAbility(u16 ability)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sNeutralizingGasBannedAbilities); i++)
     {
-    case ABILITY_MULTITYPE:
-    case ABILITY_ZEN_MODE:
-    case ABILITY_STANCE_CHANGE:
-    case ABILITY_POWER_CONSTRUCT:
-    case ABILITY_SCHOOLING:
-    case ABILITY_RKS_SYSTEM:
-    case ABILITY_SHIELDS_DOWN:
-    case ABILITY_COMATOSE:
-    case ABILITY_DISGUISE:
-    case ABILITY_GULP_MISSILE:
-    case ABILITY_ICE_FACE:
-    case ABILITY_AS_ONE_ICE_RIDER:
-    case ABILITY_AS_ONE_SHADOW_RIDER:
-    case ABILITY_ZERO_TO_HERO:
-        return TRUE;
-    default:
-        return FALSE;
+        if (ability == sNeutralizingGasBannedAbilities[i])
+            return TRUE;
     }
+    return FALSE;
 }
 
 bool32 IsNeutralizingGasOnField(void)
@@ -9979,6 +10075,7 @@ s32 CalculateMoveDamageVars(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveTy
 static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 moveType, u32 battlerDef, u32 defType, u32 battlerAtk, bool32 recordAbilities)
 {
     uq4_12_t mod = GetTypeModifier(moveType, defType);
+    u32 abilityAtk = GetBattlerAbility(battlerAtk);
 
     if (mod == UQ_4_12(0.0) && GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_RING_TARGET)
     {
@@ -9990,11 +10087,13 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     {
         mod = UQ_4_12(1.0);
     }
-    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY && mod == UQ_4_12(0.0))
+    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST
+        && (abilityAtk == ABILITY_SCRAPPY || abilityAtk == ABILITY_MINDS_EYE)
+        && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
-            RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
+            RecordAbilityBattle(battlerAtk, abilityAtk);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
@@ -10802,34 +10901,34 @@ bool32 CanFling(u32 battler)
 }
 
 // Ability checks
-bool32 IsRolePlayBannedAbilityAtk(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAttackerAbilities); i++)
-    {
-        if (ability == sRolePlayBannedAttackerAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsRolePlayBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAbilities); i++)
-    {
-        if (ability == sRolePlayBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool32 IsSkillSwapBannedAbility(u16 ability)
 {
     u32 i;
     for (i = 0; i < ARRAY_COUNT(sSkillSwapBannedAbilities); i++)
     {
         if (ability == sSkillSwapBannedAbilities[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 IsRolePlayDoodleBannedAbility(u16 ability)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sRolePlayDoodleBannedAbilities); i++)
+    {
+        if (ability == sRolePlayDoodleBannedAbilities[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 IsRolePlayDoodleBannedAbilityAttacker(u16 ability)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sRolePlayDoodleBannedAttackerAbilities); i++)
+    {
+        if (ability == sRolePlayDoodleBannedAttackerAbilities[i])
             return TRUE;
     }
     return FALSE;
@@ -10857,6 +10956,17 @@ bool32 IsGastroAcidBannedAbility(u16 ability)
     return FALSE;
 }
 
+bool32 IsEntrainmentBannedAbility(u16 ability)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sEntrainmentBannedAbilities); i++)
+    {
+        if (ability == sEntrainmentBannedAbilities[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
 bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
 {
     u32 i;
@@ -10868,12 +10978,12 @@ bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
     return FALSE;
 }
 
-bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability)
+bool32 IsSimpleBeamBannedAbility(u16 ability)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sEntrainmentTargetSimpleBeamBannedAbilities); i++)
+    for (i = 0; i < ARRAY_COUNT(sSimpleBeamBannedAbilities); i++)
     {
-        if (ability == sEntrainmentTargetSimpleBeamBannedAbilities[i])
+        if (ability == sSimpleBeamBannedAbilities[i])
             return TRUE;
     }
     return FALSE;

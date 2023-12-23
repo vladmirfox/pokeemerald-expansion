@@ -15,6 +15,7 @@
 #include "pokeball.h"
 #include "battle_debug.h"
 #include "battle_dynamax.h"
+#include "random.h" // for rng_value_t
 
 // Used to exclude moves learned temporarily by Transform or Mimic
 #define MOVE_IS_PERMANENT(battler, moveSlot)                        \
@@ -67,8 +68,8 @@ struct DisableStruct
     bool8 transformedMonShininess;
     u16 disabledMove;
     u16 encoredMove;
-    u8 protectUses;
-    u8 stockpileCounter;
+    u8 protectUses:4;
+    u8 stockpileCounter:4;
     s8 stockpileDef;
     s8 stockpileSpDef;
     s8 stockpileBeforeDef;
@@ -163,6 +164,7 @@ struct ProtectStruct
     u16 silkTrapped:1;
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
+    u16 usedAllySwitch:1;
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
@@ -579,6 +581,13 @@ struct LostItem
     u16 stolen:1;
 };
 
+#if HQ_RANDOM == TRUE
+struct BattleVideo {
+    u32 battleTypeFlags;
+    rng_value_t rngSeed;
+};
+#endif
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -650,7 +659,12 @@ struct BattleStruct
     u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT]; // a 2-D array [target][attacker]
     union {
         struct LinkBattlerHeader linkBattlerHeader;
+
+        #if HQ_RANDOM == FALSE
         u32 battleVideo[2];
+        #else
+        struct BattleVideo battleVideo;
+        #endif
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
