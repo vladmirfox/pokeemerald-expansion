@@ -78,7 +78,6 @@ u16 Random(void);
 u16 Random2(void);
 
 //Sets the initial seed value of the pseudorandom number generator
-//Sets the initial seed value of the pseudorandom number generator
 void SeedRng(u16 seed);
 void SeedRng2(u16 seed);
 
