@@ -68,9 +68,9 @@ SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
 }
 
 #if B_STATUS_TYPE_IMMUNITY > GEN_1
-SINGLE_BATTLE_TEST("Freezing Glare shouldn't freeze Psychic-types")
-#else
 SINGLE_BATTLE_TEST("Freezing Glare should freeze Psychic-types")
+#else
+SINGLE_BATTLE_TEST("Freezing Glare shouldn't freeze Psychic-types")
 #endif
 {
     GIVEN {
