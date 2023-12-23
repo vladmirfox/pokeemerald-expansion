@@ -436,11 +436,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_POPULATION_BOMB
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
-	.4byte BattleScript_EffectPayDayNew				  			@ EFFECT_PAY_DAY_NEW
-	.4byte BattleScript_EffectPoisonHit          	  	@ EFFECT_POISON_STEEL_HIT
-	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
-	.4byte BattleScript_EffectSpiderWeb         	  	@ EFFECT_SPIDER_WEB
-	.4byte BattleScript_EffectMilkDrink         	  	@ EFFECT_MILK_DRINK
 	.4byte BattleScript_EffectChillyReception         @ EFFECT_CHILLY_RECEPTION
 	.4byte BattleScript_EffectMatchaGotcha            @ EFFECT_MATCHA_GOTCHA
 	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
@@ -448,6 +443,11 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGlaiveRush              @ EFFECT_GLAIVE_RUSH
 	.4byte BattleScript_EffectBrickBreak              @ EFFECT_RAGING_BULL
 	.4byte BattleScript_EffectHit                     @ EFFECT_RAGE_FIST
+	.4byte BattleScript_EffectPayDayNew				  @ EFFECT_PAY_DAY_NEW
+	.4byte BattleScript_EffectPoisonHit          	  @ EFFECT_POISON_STEEL_HIT
+	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
+	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
+	.4byte BattleScript_EffectMilkDrink         	  @ EFFECT_MILK_DRINK
 
 BattleScript_EffectGlaiveRush::
 	call BattleScript_EffectHit_Ret
