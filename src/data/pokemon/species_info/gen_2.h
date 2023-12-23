@@ -247,8 +247,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         ICON(Quilava, 3),
         .footprint = gMonFootprint_Quilava,
         LEARNSETS(Quilava),
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
-                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 36, SPECIES_TYPHLOSION},
+                                {EVO_LEVEL_NIGHT, 36, SPECIES_TYPHLOSION_HISUIAN}),
     },
 
 #define TYPHLOSION_MISC_INFO                                            \
