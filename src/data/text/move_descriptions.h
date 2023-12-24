@@ -890,7 +890,7 @@ static const u8 sPainSplitDescription[] = _(
 
 static const u8 sSacredFireDescription[] = _(
     "A mystical fire attack that\n"
-    "may inflict a burn.");
+    "burns 50% of the time.");
 
 static const u8 sMagnitudeDescription[] = _(
     "A quake with random intensity.\n"
@@ -905,8 +905,8 @@ static const u8 sMegahornDescription[] = _(
     "using out-thrust horns.");
 
 static const u8 sDragonBreathDescription[] = _(
-    "Strikes the foe with an\n"
-    "incredible blast of breath.");
+    "A strong breath attack.\n"
+    "30% chance to paralyze.");
 
 static const u8 sBatonPassDescription[] = _(
     "Switches out the user while\n"
@@ -914,27 +914,27 @@ static const u8 sBatonPassDescription[] = _(
 
 static const u8 sEncoreDescription[] = _(
     "Makes the foe repeat its\n"
-    "last move over 2 to 6 turns.");
+    "last move for 3 turns.");
 
 static const u8 sPursuitDescription[] = _(
-    "Inflicts bad damage if used\n"
-    "on a foe switching out.");
+    "Inflicts double damage if\n"
+    "used on a foe switching out.");
 
 static const u8 sRapidSpinDescription[] = _(
-    "Spins the body at high\n"
-    "speed to strike the foe.");
+    "A spin attack that raises\n"
+    "speed and removes hazards.");
 
 static const u8 sSweetScentDescription[] = _(
-    "Allures the foe to reduce\n"
-    "evasiveness.");
+    "Allures the foe to sharply\n"
+    "reduce evasiveness.");
 
 static const u8 sIronTailDescription[] = _(
     "Attacks with a rock-hard\n"
-    "tail. May lower Defense.");
+    "tail. 30% to lower Defense.");
 
 static const u8 sMetalClawDescription[] = _(
-    "A claw attack that may\n"
-    "raise the user's Attack.");
+    "A sharp claw attack.\n"
+    "10% chance to boost Attack.");
 
 static const u8 sVitalThrowDescription[] = _(
     "Makes the user's move last,\n"
@@ -953,7 +953,7 @@ static const u8 sMoonlightDescription[] = _(
     "varies with the weather.");
 
 static const u8 sHiddenPowerDescription[] = _(
-    "The effectiveness varies\n"
+    "This move's type varies\n"
     "with the user.");
 
 static const u8 sCrossChopDescription[] = _(
@@ -961,8 +961,8 @@ static const u8 sCrossChopDescription[] = _(
     "High critical-hit ratio.");
 
 static const u8 sTwisterDescription[] = _(
-    "Whips up a vicious twister\n"
-    "to tear at the foe.");
+    "Whips up a vicious twister.\n"
+    "20% flinch chance.");
 
 static const u8 sRainDanceDescription[] = _(
     "Boosts the power of Water-\n"
@@ -975,7 +975,7 @@ static const u8 sSunnyDayDescription[] = _(
 static const u8 sCrunchDescription[] = _(
     "Crunches with sharp fangs.\n"
 #if B_UPDATED_MOVE_DATA >= GEN_4
-    "May lower Defense.");
+    "20% chance to lower Defense.");
 #else
     "May lower Sp. Def.");
 #endif
@@ -993,12 +993,12 @@ static const u8 sExtremeSpeedDescription[] = _(
     "powerful attack.");
 
 static const u8 sAncientPowerDescription[] = _(
-    "An attack that may raise\n"
-    "all stats.");
+    "An attack that has a 10%\n"
+    "chance to boost all stats.");
 
 static const u8 sShadowBallDescription[] = _(
-    "Hurls a black blob that may\n"
-    "lower the foe's Sp. Def.");
+    "Attacks with a shadowy blob.\n"
+    "20% chance to lower Sp. Def.");
 
 static const u8 sFutureSightDescription[] = _(
     "Heightens inner power to\n"
