@@ -1146,7 +1146,7 @@ bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
     u16 battleUsage = ItemId_GetBattleUsage(itemId);
     bool8 cannotUse = FALSE;
     const u8* failStr = NULL;
-    u8 i;
+    u32 i;
     u16 hp = GetMonData(mon, MON_DATA_HP);
 
     // Embargo Check
@@ -1155,33 +1155,27 @@ bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
     {
         return TRUE;
     }
-    // X-Items
-    else if (battleUsage == EFFECT_ITEM_INCREASE_STAT
-        && gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] == MAX_STAT_STAGE)
+
+    // battleUsage checks
+    switch (battleUsage)
     {
-        cannotUse = TRUE;
-    }
-    // Dire Hit
-    else if (battleUsage == EFFECT_ITEM_SET_FOCUS_ENERGY
-        && (gBattleMons[gBattlerInMenuId].status2 & STATUS2_FOCUS_ENERGY))
-    {
-        cannotUse = TRUE;
-    }
-    // Guard Spec
-    else if (battleUsage == EFFECT_ITEM_SET_MIST
-        && gSideStatuses[GetBattlerSide(gBattlerInMenuId)] & SIDE_STATUS_MIST)
-    {
-        cannotUse = TRUE;
-    }
-    // Escape Items
-    else if (battleUsage == EFFECT_ITEM_ESCAPE
-        && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-    {
-        cannotUse = TRUE;
-    }
-    // Poke Balls
-    else if (battleUsage == EFFECT_ITEM_THROW_BALL)
-    {
+    case EFFECT_ITEM_INCREASE_STAT:
+        if (gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] == MAX_STAT_STAGE)
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_SET_FOCUS_ENERGY:
+        if (gBattleMons[gBattlerInMenuId].status2 & STATUS2_FOCUS_ENERGY)
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_SET_MIST:
+        if (gSideStatuses[GetBattlerSide(gBattlerInMenuId)] & SIDE_STATUS_MIST)
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_ESCAPE:
+        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_THROW_BALL:
         switch (GetBallThrowableState())
         {
         case BALL_THROW_UNABLE_TWO_MONS:
@@ -1201,12 +1195,9 @@ bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
             cannotUse = TRUE;
             break;
         }
-    }
-    // Max Mushrooms
-    else if (battleUsage == EFFECT_ITEM_INCREASE_ALL_STATS)
-    {
-        u32 i;
-        for (i = 1; i < NUM_STATS; i++)
+        break;
+    case EFFECT_ITEM_INCREASE_ALL_STATS:
+        for (i = STAT_ATK; i < NUM_STATS; i++)
         {
             if (CompareStat(gBattlerInMenuId, i, MAX_STAT_STAGE, CMP_EQUAL))
             {
@@ -1214,35 +1205,27 @@ bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
                 break;
             }
         }
-    }
-    // Items that restore HP (Potions, Sitrus Berry, etc.)
-    else if (battleUsage == EFFECT_ITEM_RESTORE_HP && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP)))
-    {
-        cannotUse = TRUE;
-    }
-    // Items that cure status (Burn Heal, Awakening, etc.)
-    else if (battleUsage == EFFECT_ITEM_CURE_STATUS
-        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
-        || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
-    {
-        cannotUse = TRUE;
-    }
-    // Items that restore HP and cure status (Full Restore)
-    else if (battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS
-        && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP))
-        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
-        || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
-    {
-        cannotUse = TRUE;
-    }
-    // Items that revive a party member
-    else if (battleUsage == EFFECT_ITEM_REVIVE && hp != 0)
-    {
-        cannotUse = TRUE;
-    }
-    // Items that restore PP (Elixir, Ether, Leppa Berry)
-    else if (battleUsage == EFFECT_ITEM_RESTORE_PP)
-    {
+        break;
+    case EFFECT_ITEM_RESTORE_HP:
+        if (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP))
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_CURE_STATUS:
+        if (!((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+            || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_HEAL_AND_CURE_STATUS:
+        if ((hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP))
+            && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+            || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_REVIVE:
+        if (hp != 0)
+            cannotUse = TRUE;
+        break;
+    case EFFECT_ITEM_RESTORE_PP:
         if (GetItemEffect(itemId)[6] == ITEM4_HEAL_PP)
         {
             for (i = 0; i < MAX_MON_MOVES; i++)
@@ -1257,6 +1240,7 @@ bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
         {
             cannotUse = TRUE;
         }
+        break;
     }
 
     if (failStr != NULL)
