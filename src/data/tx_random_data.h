@@ -4748,7 +4748,7 @@ static const u16 sRandomStarterSpeciesEvo2[] =
     #if P_GEN_5_POKEMON == TRUE
     SPECIES_SNIVY             , // EVO_TYPE_2,
     SPECIES_TEPIG             , // EVO_TYPE_2,
-    SPECIES_EMBOAR            , // EVO_TYPE_2,
+    SPECIES_OSHAWOTT          , // EVO_TYPE_2,
     SPECIES_LILLIPUP          , // EVO_TYPE_2,
     SPECIES_PIDOVE            , // EVO_TYPE_2,
     SPECIES_ROGGENROLA        , // EVO_TYPE_2,
