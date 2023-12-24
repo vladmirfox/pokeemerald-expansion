@@ -1,6 +1,12 @@
 #ifndef GUARD_RANDOM_H
 #define GUARD_RANDOM_H
 
+//tx_randomizer_and_challenges
+u16 RandomSeeded(u16 value, u8 seeded);
+u16 RandomSeededModulo(u32 value, u16 modulo);
+void ShuffleListU8(u8 *list, u8 count, u8 seed);
+void ShuffleListU16(u16 *list, u16 count, u32 seed);
+
 // The number 1103515245 comes from the example implementation of rand and srand
 // in the ISO C standard.
 #define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
