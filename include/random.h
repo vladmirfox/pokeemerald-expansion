@@ -74,12 +74,6 @@ typedef u32 rng_value_t;
 u16 Random(void);
 u16 Random2(void);
 
-//tx_randomizer_and_challenges
-u16 RandomSeeded(u16 value, u8 seeded);
-u16 RandomSeededModulo(u32 value, u16 modulo);
-void ShuffleListU8(u8 *list, u8 count, u8 seed);
-void ShuffleListU16(u16 *list, u16 count, u32 seed);
-
 //Returns a 32-bit pseudorandom number
 #define Random32() (Random() | (Random() << 16))
 #define Random2_32() (Random2() | (Random2() << 16))
@@ -227,5 +221,11 @@ u32 RandomUniformDefault(enum RandomTag, u32 lo, u32 hi);
 u32 RandomUniformExceptDefault(enum RandomTag, u32 lo, u32 hi, bool32 (*reject)(u32));
 u32 RandomWeightedArrayDefault(enum RandomTag, u32 sum, u32 n, const u8 *weights);
 const void *RandomElementArrayDefault(enum RandomTag, const void *array, size_t size, size_t count);
+
+//tx_randomizer_and_challenges
+u16 RandomSeeded(u16 value, u8 seeded);
+u16 RandomSeededModulo(u32 value, u16 modulo);
+void ShuffleListU8(u8 *list, u8 count, u8 seed);
+void ShuffleListU16(u16 *list, u16 count, u32 seed);
 
 #endif // GUARD_RANDOM_H
