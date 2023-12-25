@@ -4922,6 +4922,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_HOSPITALITY:
+            u32 partner = BATTLE_PARTNER(battler);
+            u32 partnerMaxHP = GetNonDynamaxMaxHP(partner);
+
+            if (!gSpecialStatuses[battler].switchInAbilityDone && IsDoubleBattle() && gBattleMons[partner].hp < partnerMaxHP)
+            {
+                gBattlerTarget = partner;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleMoveDamage = (partnerMaxHP / 4) * -1;
+                BattleScriptPushCursorAndCallback(BattleScript_HospitalityActivates);
+                effect++;
+            }
+            break;
         }
         break;
     case ABILITYEFFECT_ENDTURN: // 1
