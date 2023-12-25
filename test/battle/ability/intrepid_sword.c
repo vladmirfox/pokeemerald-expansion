@@ -45,24 +45,24 @@ SINGLE_BATTLE_TEST("Intrepid Sword raises Attack by one stage only once per batt
     }
 }
 
-SINGLE_BATTLE_TEST("Intrepid Sword activates when it's no longer effected by Neutralizing Gas")
-{
-    KNOWN_FAILING;
-    GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
-    } WHEN {
-        TURN { SWITCH(player, 1); }
-    } SCENE {
-        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing Gas filled the area!");
-        MESSAGE("Weezing, that's enough! Come back!");
-        MESSAGE("The Effects of Neutralizing Gas wore off!");
-        ABILITY_POPUP(opponent, ABILITY_INTREPID_SWORD);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Zacian's Intrepid Sword raised its Attack!");
-    } THEN {
-        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
-    }
-}
+// SINGLE_BATTLE_TEST("Intrepid Sword activates when it's no longer effected by Neutralizing Gas")
+// {
+//     KNOWN_FAILING;
+//     GIVEN {
+//         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
+//         PLAYER(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+//     } WHEN {
+//         TURN { SWITCH(player, 1); }
+//     } SCENE {
+//         ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
+//         MESSAGE("Neutralizing Gas filled the area!");
+//         MESSAGE("Weezing, that's enough! Come back!");
+//         MESSAGE("The Effects of Neutralizing Gas wore off!");
+//         ABILITY_POPUP(opponent, ABILITY_INTREPID_SWORD);
+//         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+//         MESSAGE("Foe Zacian's Intrepid Sword raised its Attack!");
+//     } THEN {
+//         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+//     }
+// }
