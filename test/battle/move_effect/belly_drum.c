@@ -55,8 +55,8 @@ SINGLE_BATTLE_TEST("Belly Drum fails if user's current HP is half or less than h
         MESSAGE("But it failed!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             HP_BAR(player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         }
     }
 }
@@ -85,8 +85,8 @@ SINGLE_BATTLE_TEST("Belly Drum fails if the user's Attack is already at +6")
         MESSAGE("But it failed!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             HP_BAR(player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         }
     }
 }
