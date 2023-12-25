@@ -64,6 +64,7 @@ SINGLE_BATTLE_TEST("Belly Drum fails if user's current HP is half or less than h
 SINGLE_BATTLE_TEST("Belly Drum fails if the user's Attack is already at +6")
 {
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_SWORDS_DANCE].effect == EFFECT_ATTACK_UP_2);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
