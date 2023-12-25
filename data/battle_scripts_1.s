@@ -453,8 +453,6 @@ BattleScript_FilletAwayTryAttack:
 	halvehp BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	healthbarupdate BS_ATTACKER
-	datahpupdate BS_ATTACKER
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_SPATK | BIT_ATK | BIT_SPEED, STAT_CHANGE_BY_TWO
 	setstatchanger STAT_ATK, 2, FALSE
@@ -470,10 +468,13 @@ BattleScript_FilletAwayTrySpAtk:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_FilletAwayTrySpeed:
 	setstatchanger STAT_SPEED, 2, FALSE
-	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_MoveEnd
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_MoveEnd
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_FilletAwayEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_FilletAwayEnd
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_FilletAwayEnd:
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectDoodle:
