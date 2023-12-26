@@ -2297,8 +2297,8 @@ static const u8 sConfideDescription[] = _(
     "foe, lowering Sp. Atk.");
 
 static const u8 sDiamondStormDescription[] = _(
-    "Whips up a storm of\n"
-    "diamonds. May up Defense.");
+    "Physical if Attack > Sp. Atk\n"
+    "50% to sharply raise Def.");
 
 static const u8 sSteamEruptionDescription[] = _(
     "Immerses the foe in heated\n"
