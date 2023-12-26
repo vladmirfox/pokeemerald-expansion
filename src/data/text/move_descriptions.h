@@ -841,8 +841,8 @@ static const u8 sMilkDrinkDescription[] = _(
     "and heals status conditions.");
 
 static const u8 sSparkDescription[] = _(
-    "An electrified tackle that\n"
-    "paralyzes 30% of the time.");
+    "30% paralysis chance.\n"
+    "Awakens the user.");
 
 static const u8 sFuryCutterDescription[] = _(
     "An attack that doubles in\n"
@@ -1386,7 +1386,7 @@ static const u8 sCovetDescription[] = _(
 
 static const u8 sVoltTackleDescription[] = _(
     "User takes 33% recoil.\n"
-    "10% chance to paralyze.");
+    "10% para. Awakens user.");
 
 static const u8 sMagicalLeafDescription[] = _(
     "Attacks with a strange leaf\n"
@@ -2074,7 +2074,7 @@ static const u8 sElectrowebDescription[] = _(
 
 static const u8 sWildChargeDescription[] = _(
     "User takes 10% recoil.\n"
-    "10% chance to paralyze.");
+    "10% para. Awakens user.");
 
 static const u8 sDrillRunDescription[] = _(
     "Spins its body like a drill.\n"

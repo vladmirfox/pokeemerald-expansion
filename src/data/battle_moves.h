@@ -3778,6 +3778,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .sheerForceBoost = TRUE,
+        .wakesUser = TRUE,
     },
 
     [MOVE_FURY_CUTTER] =
@@ -6169,6 +6170,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .sheerForceBoost = TRUE,
+        .wakesUser = TRUE,
     },
 
     [MOVE_MAGICAL_LEAF] =
