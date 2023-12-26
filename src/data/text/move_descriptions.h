@@ -1573,8 +1573,8 @@ static const u8 sToxicSpikesDescription[] = _(
     "foe switching in.");
 
 static const u8 sHeartSwapDescription[] = _(
-    "Swaps any stat changes\n"
-    "with the foe.");
+    "A cute 1st-turn, 1st-strike\n"
+    "attack that always flinches.");
 
 static const u8 sAquaRingDescription[] = _(
     "Forms a veil of water\n"
@@ -2085,20 +2085,20 @@ static const u8 sDualChopDescription[] = _(
     "that strike twice.");
 
 static const u8 sHeartStampDescription[] = _(
-    "A sudden blow after a cute\n"
-    "act. May cause flinching.");
+    "A cute surprise attack.\n"
+    "Increased priority, ");
 
 static const u8 sRazorShellDescription[] = _(
     "Tears at the foe with sharp\n"
     "shells. May lower Defense.");
 
 static const u8 sLeafTornadoDescription[] = _(
-    "Circles the foe with leaves\n"
-    "to damage and cut accuracy.");
+    "A whirlwind of leaves.\n"
+    "30% to lower Accuracy.");
 
 static const u8 sSteamrollerDescription[] = _(
     "Crushes the foe with its\n"
-    "body. May cause flinching.");
+    "body. 30% flinch chance.");
 
 static const u8 sCottonGuardDescription[] = _(
     "Wraps its body in cotton.\n"
@@ -2110,11 +2110,11 @@ static const u8 sNightDazeDescription[] = _(
 
 static const u8 sHurricaneDescription[] = _(
     "Traps the foe in a fierce\n"
-    "wind. May cause confusion.");
+    "wind. 30% confusion chance.");
 
 static const u8 sHeadChargeDescription[] = _(
     "A charge using guard hair.\n"
-    "It hurts the user a little.");
+    "The user takes 1/4 recoil.");
 
 static const u8 sGearGrindDescription[] = _(
     "Throws two steel gears\n"
@@ -2126,7 +2126,7 @@ static const u8 sTechnoBlastDescription[] = _(
 
 static const u8 sRelicSongDescription[] = _(
     "Attacks with an ancient\n"
-    "song. May induce sleep.");
+    "song. 10% sleep chance.");
 
 static const u8 sSecretSwordDescription[] = _(
     "Cuts with a long horn that\n"
@@ -2138,23 +2138,23 @@ static const u8 sGlaciateDescription[] = _(
 
 static const u8 sBoltStrikeDescription[] = _(
     "Strikes with a great amount\n"
-    "of lightning. May paralyze.");
+    "of lightning. 30% to para");
 
 static const u8 sBlueFlareDescription[] = _(
     "Engulfs the foe in a blue\n"
-    "flame. May inflict a burn.");
+    "flame. 30% burn chance.");
 
 static const u8 sFieryDanceDescription[] = _(
     "Dances cloaked in flames.\n"
-    "May raise Sp. Atk.");
+    "50% chance to raise Sp. Atk.");
 
 static const u8 sFreezeShockDescription[] = _(
-    "A powerful 2-turn move that\n"
-    "may paralyze the foe.");
+    "A powerful 2-turn move.\n"
+    "30% paralysis chance.");
 
 static const u8 sIceBurnDescription[] = _(
-    "A powerful 2-turn move that\n"
-    "may inflict a burn.");
+    "A powerful 2-turn move.\n"
+    "30% burn chance.");
 
 static const u8 sSnarlDescription[] = _(
     "Yells and rants at the foe\n"
@@ -2162,7 +2162,7 @@ static const u8 sSnarlDescription[] = _(
 
 static const u8 sIcicleCrashDescription[] = _(
     "Drops large icicles on the\n"
-    "foe. May cause flinching.");
+    "foe. 10% flinch chance.");
 
 static const u8 sVCreateDescription[] = _(
     "Very powerful, but lowers\n"
@@ -2197,8 +2197,8 @@ static const u8 sStickyWebDescription[] = _(
     "slows foes switching in.");
 
 static const u8 sFellStingerDescription[] = _(
-    "If it knocks out a foe\n"
-    "the Attack stat is raised.");
+    "Attack is drastically raised\n"
+    "if this move KOs a foe.");
 
 static const u8 sTrickOrTreatDescription[] = _(
     "Goes trick-or-treating\n"
@@ -2226,7 +2226,7 @@ static const u8 sPetalBlizzardDescription[] = _(
 
 static const u8 sFreezeDryDescription[] = _(
     "Super effective on Water-\n"
-    "types. May cause freezing.");
+    "types. 20% frostbite chance.");
 
 static const u8 sDisarmingVoiceDescription[] = _(
     "Lets out a charming cry\n"
@@ -2266,7 +2266,7 @@ static const u8 sElectrifyDescription[] = _(
 
 static const u8 sPlayRoughDescription[] = _(
     "Plays rough with the foe.\n"
-    "May lower Attack.");
+    "10% chance to lower Attack.");
 
 static const u8 sFairyWindDescription[] = _(
     "Stirs up a fairy wind to\n"
@@ -2274,7 +2274,7 @@ static const u8 sFairyWindDescription[] = _(
 
 static const u8 sMoonblastDescription[] = _(
     "Attacks with the power of\n"
-    "the moon. May lower Sp. Atk.");
+    "the moon. 10% to cut Sp.Atk.");
 
 static const u8 sBoomburstDescription[] = _(
     "Attacks everything with a\n"
@@ -2285,8 +2285,8 @@ static const u8 sFairyLockDescription[] = _(
     "preventing escape next turn.");
 
 static const u8 sKingsShieldDescription[] = _(
-    "Evades damage, and sharply\n"
-    "reduces Attack if struck.");
+    "Evades damage and switches\n"
+    "into Shield Form.");
 
 static const u8 sPlayNiceDescription[] = _(
     "Befriend the foe, lowering\n"

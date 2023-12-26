@@ -428,7 +428,8 @@
 #define EFFECT_RECHARGE_EXCEPT_FAINT        422
 #define EFFECT_CRUSH_GRIP                   423
 #define EFFECT_RECOIL_10_STATUS             424
+#define EFFECT_DIAMOND_STORM                425
 
-#define NUM_BATTLE_MOVE_EFFECTS             425
+#define NUM_BATTLE_MOVE_EFFECTS             426
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
