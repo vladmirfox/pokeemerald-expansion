@@ -426,7 +426,9 @@
 #define EFFECT_SPIDER_WEB                   420
 #define EFFECT_MILK_DRINK                   421
 #define EFFECT_RECHARGE_EXCEPT_FAINT        422
+#define EFFECT_CRUSH_GRIP                   423
+#define EFFECT_RECOIL_10_STATUS             424
 
-#define NUM_BATTLE_MOVE_EFFECTS             423
+#define NUM_BATTLE_MOVE_EFFECTS             425
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

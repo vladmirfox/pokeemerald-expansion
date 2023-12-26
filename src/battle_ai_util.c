@@ -969,6 +969,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_MIND_BLOWN:
     case EFFECT_STEEL_BEAM:
         return TRUE;
+    case EFFECT_RECOIL_10_STATUS:    
     case EFFECT_RECOIL_25:
     case EFFECT_RECOIL_IF_MISS:
     case EFFECT_RECOIL_50:
@@ -985,6 +986,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2:
         if (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !IsMoldBreakerTypeAbility(abilityAtk))
             return TRUE;
+        break;
     case EFFECT_RECHARGE_EXCEPT_FAINT:
         if (noOfHitsToKo != 1)
             return TRUE;
@@ -2074,6 +2076,11 @@ bool32 HasThawingMove(u32 battler)
     CHECK_MOVE_FLAG(thawsUser);
 }
 
+bool32 HasWakingMove(u32 battler)
+{
+    CHECK_MOVE_FLAG(wakesUser);
+}
+
 bool32 IsUngroundingEffect(u32 effect)
 {
     switch (effect)
@@ -2718,7 +2725,7 @@ bool32 IsBattlerIncapacitated(u32 battler, u32 ability)
     if ((gBattleMons[battler].status1 & STATUS1_FREEZE) && !HasThawingMove(battler))
         return TRUE;    // if battler has thawing move we assume they will definitely use it, and thus being frozen should be neglected
 
-    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+    if ((gBattleMons[battler].status1 & STATUS1_SLEEP) && !HasWakingMove(battler))
         return TRUE;
 
     if (gBattleMons[battler].status2 & STATUS2_RECHARGE || (ability == ABILITY_TRUANT && gDisableStructs[battler].truantCounter != 0))

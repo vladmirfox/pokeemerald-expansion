@@ -5398,6 +5398,12 @@ static void Cmd_moveend(void)
             {
                 switch (gBattleMoves[gCurrentMove].effect)
                 {
+                case EFFECT_RECOIL_10_STATUS: // Wild Charge - can paralyze
+                    gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 10);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_MoveEffectRecoilWithStatus;
+                    effect = TRUE;
+                    break;                
                 case EFFECT_RECOIL_25: // Take Down, 25% recoil
                     gBattleMoveDamage = max(1, gBattleScripting.savedDmg / 4);
                     BattleScriptPushCursor();

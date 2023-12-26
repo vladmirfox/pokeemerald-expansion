@@ -449,6 +449,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
 	.4byte BattleScript_EffectMilkDrink         	  @ EFFECT_MILK_DRINK
 	.4byte BattleScript_EffectRecharge	  			  @ EFFECT_RECHARGE_EXCEPT_FAINT
+	.4byte BattleScript_EffectHit                     @ EFFECT_CRUSH_GRIP
+	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_10_STATUS
 
 BattleScript_EffectGlaiveRush::
 	call BattleScript_EffectHit_Ret
@@ -8225,6 +8227,12 @@ BattleScript_MoveUsedIsFrozen::
 	waitmessage B_WAIT_TIME_LONG
 	statusanimation BS_ATTACKER
 	goto BattleScript_MoveEnd
+
+BattleScript_MoveUsedWokeUpByMove::
+	printfromtable gWokeUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ATTACKER
+	return
 
 BattleScript_MoveUsedUnfroze::
 	printfromtable gGotDefrostedStringIds

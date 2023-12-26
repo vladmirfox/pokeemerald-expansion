@@ -3440,7 +3440,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_ASLEEP: // check being asleep
-            if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
+            if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP && !(gBattleMoves[gCurrentMove].wakesUser))
             {
                 if (UproarWakeUpCheck(gBattlerAttacker))
                 {
@@ -3713,6 +3713,17 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattlescriptCurrInstr = BattleScript_MoveUsedUnfrostbite;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FROSTBITE_HEALED_BY_MOVE;
                 }
+                effect = 2;
+            }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_WAKE: // move awakening (like Wild Charge)
+            if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP && gBattleMoves[gCurrentMove].wakesUser)
+            {
+                gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_SLEEP;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MoveUsedWokeUpByMove;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WOKE_UP_MOVE;
                 effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
@@ -8705,6 +8716,9 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         break;
     case EFFECT_WRING_OUT:
         basePower = 120 * gBattleMons[battlerDef].hp / gBattleMons[battlerDef].maxHP;
+        break;
+    case EFFECT_CRUSH_GRIP:
+        basePower = 30 + (120 * gBattleMons[battlerDef].hp / gBattleMons[battlerDef].maxHP);
         break;
     case EFFECT_HEX:
     case EFFECT_INFERNAL_PARADE:

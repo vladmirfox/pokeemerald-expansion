@@ -1281,8 +1281,8 @@ static const u8 sRockTombDescription[] = _(
     "with rocks and cuts Speed.");
 
 static const u8 sSilverWindDescription[] = _(
-    "A powdery attack that may\n"
-    "raise abilities.");
+    "A powdery wind that raises\n"
+    "all stats 10% of the time.");
 
 static const u8 sMetalSoundDescription[] = _(
     "Emits a horrible screech\n"
@@ -1745,16 +1745,16 @@ static const u8 sPowerWhipDescription[] = _(
     "with vines or tentacles.");
 
 static const u8 sCrossPoisonDescription[] = _(
-    "A slash that may poison a\n"
-    "foe and do critical damage.");
+    "10% chance to poison.\n"
+    "High critical-hit ratio.");
 
 static const u8 sGunkShotDescription[] = _(
     "Shoots filthy garbage at\n"
-    "the foe. May also poison.");
+    "the foe. 30% to poison.");
 
 static const u8 sIronHeadDescription[] = _(
     "Slams the foe with a hard\n"
-    "head. May cause flinching.");
+    "head. 30% flinch chance.");
 
 static const u8 sMagnetBombDescription[] = _(
     "Launches a magnet that\n"
@@ -1786,11 +1786,11 @@ static const u8 sJudgmentDescription[] = _(
 
 static const u8 sChargeBeamDescription[] = _(
     "Fires a beam of electricity.\n"
-    "May raise Sp. Atk.");
+    "Will raise Sp. Atk.");
 
 static const u8 sWoodHammerDescription[] = _(
     "Slams the body into a foe.\n"
-    "The user gets hurt too.");
+    "User takes 33% recoil.");
 
 static const u8 sAquaJetDescription[] = _(
     "Strikes first by dashing\n"
@@ -1805,20 +1805,16 @@ static const u8 sDefendOrderDescription[] = _(
     "with a living shield.");
 
 static const u8 sHealOrderDescription[] = _(
-    "The user's underlings show\n"
-    "up to heal half its max HP.");
+    "The user's underlings heal\n"
+    "50% max HP and cure status.");
 
 static const u8 sHeadSmashDescription[] = _(
-    "A life-risking headbutt that\n"
-    "seriously hurts the user.");
+    "A life-risking headbutt.\n"
+    "Users takes 50% recoil.");
 
 static const u8 sDoubleHitDescription[] = _(
     "Slams the foe with a tail\n"
     "etc. Strikes twice.");
-
-static const u8 sRoarOfTimeDescription[] = _(
-    "Powerful, but leaves the\n"
-    "user immobile the next turn.");
 
 static const u8 sSpacialRendDescription[] = _(
     "Tears the foe, and space.\n"
@@ -1837,8 +1833,8 @@ static const u8 sSeedFlareDescription[] = _(
     "sharply reduces Sp. Def.");
 
 static const u8 sOminousWindDescription[] = _(
-    "A repulsive attack that may\n"
-    "raise all stats.");
+    "An eerie wind that raises\n"
+    "all stats 10% of the time.");
 
 static const u8 sShadowForceDescription[] = _(
     "Vanishes on the first turn\n"
@@ -1906,7 +1902,7 @@ static const u8 sFlameBurstDescription[] = _(
 
 static const u8 sSludgeWaveDescription[] = _(
     "Swamps the foe with a wave\n"
-    "of sludge. May also poison.");
+    "of sludge. 10% to poison.");
 
 static const u8 sQuiverDanceDescription[] = _(
     "Dances to raise Sp. Atk\n"
@@ -1990,7 +1986,7 @@ static const u8 sAllySwitchDescription[] = _(
 
 static const u8 sScaldDescription[] = _(
     "Shoots boiling water at the\n"
-    "foe. May inflict a burn.");
+    "foe. 30% chance to burn.");
 
 static const u8 sShellSmashDescription[] = _(
     "Raises offensive stats, but\n"
@@ -2013,8 +2009,8 @@ static const u8 sShiftGearDescription[] = _(
     "Attack and Speed.");
 
 static const u8 sCircleThrowDescription[] = _(
-    "Knocks the foe away to end\n"
-    "the battle.");
+    "Forces the foe to switch\n"
+    "out with a powerful throw.");
 
 static const u8 sIncinerateDescription[] = _(
     "Burns up Berries and Gems\n"
@@ -2077,8 +2073,8 @@ static const u8 sElectrowebDescription[] = _(
     "electric net. Lowers Speed.");
 
 static const u8 sWildChargeDescription[] = _(
-    "An electrical tackle that\n"
-    "also hurts the user.");
+    "User takes 10% recoil.\n"
+    "10% chance to paralyze.");
 
 static const u8 sDrillRunDescription[] = _(
     "Spins its body like a drill.\n"
@@ -3735,7 +3731,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_HEAL_ORDER - 1] = sHealOrderDescription,
     [MOVE_HEAD_SMASH - 1] = sHeadSmashDescription,
     [MOVE_DOUBLE_HIT - 1] = sDoubleHitDescription,
-    [MOVE_ROAR_OF_TIME - 1] = sRoarOfTimeDescription,
+    [MOVE_ROAR_OF_TIME - 1] = sRockWreckerDescription,
     [MOVE_SPACIAL_REND - 1] = sSpacialRendDescription,
     [MOVE_LUNAR_DANCE - 1] = sHealingWishDescription,
     [MOVE_CRUSH_GRIP - 1] = sWringOutDescription,

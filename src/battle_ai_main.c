@@ -1856,6 +1856,15 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (aiData->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_DATA->moveAccuracy[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] < 75)
                 ADJUST_SCORE(-6);
             break;
+        case EFFECT_RECOIL_10_STATUS:
+            if (AI_IsDamagedByRecoil(battlerAtk))
+            {
+                u32 recoilDmg = max(1, aiData->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 10);
+                if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
+                    ADJUST_SCORE(-10);
+                break;
+            }
+            break;        
         case EFFECT_RECOIL_25:
             if (AI_IsDamagedByRecoil(battlerAtk))
             {
@@ -3259,6 +3268,10 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 
     // check thawing moves
     if ((gBattleMons[battlerAtk].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE)) && gBattleMoves[move].thawsUser)
+        ADJUST_SCORE(10);
+
+    // check waking moves
+    if ((gBattleMons[battlerAtk].status1 & STATUS1_SLEEP) && gBattleMoves[move].wakesUser)
         ADJUST_SCORE(10);
 
     // check burn / frostbite
