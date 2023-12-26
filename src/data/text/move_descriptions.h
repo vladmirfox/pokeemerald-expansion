@@ -2073,8 +2073,8 @@ static const u8 sElectrowebDescription[] = _(
     "electric net. Lowers Speed.");
 
 static const u8 sWildChargeDescription[] = _(
-    "User takes 10% recoil.\n"
-    "10% para. Awakens user.");
+    "User takes 10% recoil. 10%\n"
+    "para chance. Awakens user.");
 
 static const u8 sDrillRunDescription[] = _(
     "Spins its body like a drill.\n"
@@ -2297,7 +2297,7 @@ static const u8 sConfideDescription[] = _(
     "foe, lowering Sp. Atk.");
 
 static const u8 sDiamondStormDescription[] = _(
-    "Physical if Attack > Sp. Atk\n"
+    "Physical if Attack > Sp. Atk.\n"
     "50% to sharply raise Def.");
 
 static const u8 sSteamEruptionDescription[] = _(
