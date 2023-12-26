@@ -1718,6 +1718,10 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_FELL_STINGER
 	.endm
 
+	.macro tryactivatenorecharge battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_NO_RECHARGE
+	.endm
+
 	.macro playmoveanimation battler:req, move:req
 	various \battler, VARIOUS_PLAY_MOVE_ANIMATION
 	.2byte \move

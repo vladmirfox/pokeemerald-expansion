@@ -9260,6 +9260,18 @@ static void Cmd_various(void)
         }
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_NO_RECHARGE:
+    {
+        VARIOUS_ARGS();
+        if (gBattleMoves[gCurrentMove].effect == EFFECT_RECHARGE_EXCEPT_FAINT
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty()
+            && gBattleMons[gEffectBattler].status2 == STATUS2_RECHARGE)
+        {
+            gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_RECHARGE;
+        }
+        break;
+    }
     case VARIOUS_PLAY_MOVE_ANIMATION:
     {
         VARIOUS_ARGS(u16 move);
@@ -9553,7 +9565,8 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         u16 move = gLastPrintedMoves[gBattlerTarget];
         if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].effect == EFFECT_RECHARGE
-         || gBattleMoves[move].instructBanned || gBattleMoves[move].twoTurnMove || IsDynamaxed(gBattlerTarget))
+         || gBattleMoves[move].instructBanned || gBattleMoves[move].twoTurnMove || IsDynamaxed(gBattlerTarget)
+         || gBattleMoves[move].effect == EFFECT_RECHARGE_EXCEPT_FAINT)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }

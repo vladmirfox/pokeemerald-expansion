@@ -2504,7 +2504,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                   || IsZMove(instructedMove)
                   || (gLockedMoves[battlerDef] != 0 && gLockedMoves[battlerDef] != 0xFFFF)
                   || gBattleMons[battlerDef].status2 & STATUS2_MULTIPLETURNS
-                  || PartnerMoveIsSameAsAttacker(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove))
+                  || PartnerMoveIsSameAsAttacker(BATTLE_PARTNER(battlerAtk), battlerDef, move, aiData->partnerMove)
+                  || gBattleMoves[instructedMove].effect == EFFECT_RECHARGE_EXCEPT_FAINT)
                 {
                     ADJUST_SCORE(-10);
                 }

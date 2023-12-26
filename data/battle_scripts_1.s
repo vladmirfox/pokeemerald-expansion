@@ -188,7 +188,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMemento                 @ EFFECT_MEMENTO
 	.4byte BattleScript_EffectHit                     @ EFFECT_FACADE
 	.4byte BattleScript_EffectFocusPunch              @ EFFECT_FOCUS_PUNCH
-	.4byte BattleScript_EffectSmellingsalt            @ EFFECT_SMELLING_SALTS
+	.4byte BattleScript_EffectHit           		  @ EFFECT_SMELLING_SALTS
 	.4byte BattleScript_EffectFollowMe                @ EFFECT_FOLLOW_ME
 	.4byte BattleScript_EffectNaturePower             @ EFFECT_NATURE_POWER
 	.4byte BattleScript_EffectCharge                  @ EFFECT_CHARGE
@@ -448,6 +448,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
 	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
 	.4byte BattleScript_EffectMilkDrink         	  @ EFFECT_MILK_DRINK
+	.4byte BattleScript_EffectRecharge	  			  @ EFFECT_RECHARGE_EXCEPT_FAINT
 
 BattleScript_EffectGlaiveRush::
 	call BattleScript_EffectHit_Ret
@@ -5890,7 +5891,6 @@ BattleScript_EffectFocusPunch::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectSmellingsalt:
 BattleScript_EffectWakeUpSlap:
 BattleScript_EffectSparklingAria:
 	jumpifsubstituteblocks BattleScript_EffectHit
@@ -5928,7 +5928,7 @@ BattleScript_EffectCharge::
 	attackanimation
 	waitanimation
 .if B_CHARGE_SPDEF_RAISE >= GEN_5
-	setstatchanger STAT_SPDEF, 1, FALSE
+	setstatchanger STAT_SPEED, 1, FALSE
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_EffectChargeString
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectChargeString
 	setgraphicalstatchangevalues
@@ -6487,6 +6487,7 @@ BattleScript_FaintTarget::
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER    @ and as one shadow rider
 	tryactivatebattlebond BS_ATTACKER
+	tryactivatenorecharge BS_ATTACKER
 	trytrainerslidefirstdownmsg BS_TARGET
 	return
 

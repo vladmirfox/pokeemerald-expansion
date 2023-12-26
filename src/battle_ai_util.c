@@ -985,6 +985,9 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     case EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2:
         if (noOfHitsToKo != 1 && abilityDef == ABILITY_CONTRARY && !IsMoldBreakerTypeAbility(abilityAtk))
             return TRUE;
+    case EFFECT_RECHARGE_EXCEPT_FAINT:
+        if (noOfHitsToKo != 1)
+            return TRUE;
         break;
     }
     return FALSE;
