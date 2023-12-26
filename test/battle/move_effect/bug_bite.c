@@ -10,13 +10,13 @@ ASSUMPTIONS
 // Pretty much copy/paste of the Berry Fling Test.
 SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its effect")
 {
-    u16 item;
-    u32 status1 = STATUS1_NONE, effect, statId;
+    u16 item = ITEM_NONE;
+    u32 status1 = STATUS1_NONE, effect = HOLD_EFFECT_NONE, statId = 0;
 
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     PARAMETRIZE { item = ITEM_SITRUS_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
-    // PARAMETRIZE { item = ITEM_ENIGMA_BERRY; effect = HOLD_EFFECT_RESTORE_HP; } To do once Enigma Berry's effect is done
+    PARAMETRIZE { item = ITEM_ENIGMA_BERRY; effect = HOLD_EFFECT_ENIGMA_BERRY; }
     PARAMETRIZE { item = ITEM_LEPPA_BERRY; effect = HOLD_EFFECT_RESTORE_PP; }
     PARAMETRIZE { item = ITEM_CHESTO_BERRY; effect = HOLD_EFFECT_CURE_SLP; status1 = STATUS1_SLEEP; }
     PARAMETRIZE { item = ITEM_CHERI_BERRY; effect = HOLD_EFFECT_CURE_PAR; status1 = STATUS1_PARALYSIS; }
@@ -50,13 +50,13 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
         MESSAGE("Wobbuffet used Bug Bite!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BITE, player);
         HP_BAR(opponent);
-        if (effect == HOLD_EFFECT_RESTORE_HP) {
+        if (effect == HOLD_EFFECT_RESTORE_HP || effect == HOLD_EFFECT_ENIGMA_BERRY) {
             if (item == ITEM_ORAN_BERRY) {
                 MESSAGE("Wobbuffet's Oran Berry restored health!");
             } else if (item == ITEM_SITRUS_BERRY) {
                 MESSAGE("Wobbuffet's Sitrus Berry restored health!");
             } else {
-                // MESSAGE("Wobbuffet's Enigma Berry restored health!");
+                MESSAGE("Wobbuffet's Enigma Berry restored health!");
             }
             HP_BAR(player);
         }
@@ -114,18 +114,15 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
     }
 }
 
-// To verify in the actual games.
-// Bulbapedia - The effect of a Jaboca Berry will activate before the Berry can be stolen.
-// Showdown - Jaboca Berry is stolen and eaten and nothing happens. This is how it currently works on expansion.
-TO_DO_BATTLE_TEST("Bug Bite interaction with Jaboca Berry.");
-
 SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
 {
     GIVEN {
+        ASSUME(gItems[ITEM_TANGA_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItems[ITEM_TANGA_BERRY].holdEffectParam == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) {Item(ITEM_TANGA_BERRY); }
     } WHEN {
-            TURN { MOVE(player, MOVE_BUG_BITE); }
+        TURN { MOVE(player, MOVE_BUG_BITE); }
     } SCENE {
         MESSAGE("Wobbuffet used Bug Bite!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
