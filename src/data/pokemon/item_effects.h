@@ -141,6 +141,41 @@ const u8 gItemEffect_RevivalHerb[10] = {
     [9] = -20, // Friendship change, high
 };
 
+const u8 gItemEffect_Remedy[10] = {
+    [4] = ITEM4_HEAL_HP,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+    [6] = 20, // Amount of HP to recover
+    [7] = -5, // Friendship change, low
+    [8] = -5, // Friendship change, mid
+    [9] = -10, // Friendship change, high
+};
+
+const u8 gItemEffect_FineRemedy[10] = {
+    [4] = ITEM4_HEAL_HP,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+#if I_HEALTH_RECOVERY >= GEN_7
+    [6] = 60, // Amount of HP to recover
+#else
+    [6] = 50, // Amount of HP to recover
+#endif
+    [7] = -10, // Friendship change, low
+    [8] = -10, // Friendship change, mid
+    [9] = -15, // Friendship change, high
+};
+
+const u8 gItemEffect_SuperbRemedy[10] = {
+    [4] = ITEM4_HEAL_HP,
+    [5] = ITEM5_FRIENDSHIP_ALL,
+#if I_HEALTH_RECOVERY >= GEN_7
+    [6] = 120, // Amount of HP to recover
+#else
+    [6] = 200, // Amount of HP to recover
+#endif
+    [7] = -15, // Friendship change, low
+    [8] = -15, // Friendship change, mid
+    [9] = -20, // Friendship change, high
+};
+
 const u8 gItemEffect_Ether[7] = {
     [4] = ITEM4_HEAL_PP_ONE | ITEM4_HEAL_PP,
     [6] = 10,
@@ -522,6 +557,9 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_SACRED_ASH]         = gItemEffect_SacredAsh,
     [ITEM_SWEET_HEART]        = gItemEffect_Potion,
     [ITEM_MAX_HONEY]          = gItemEffect_MaxRevive,
+    [ITEM_REMEDY]             = gItemEffect_Remedy,
+    [ITEM_FINE_REMEDY]        = gItemEffect_FineRemedy,
+    [ITEM_SUPERB_REMEDY]      = gItemEffect_SuperbRemedy,
 
     // Regional Specialties
     [ITEM_PEWTER_CRUNCHIES]   = gItemEffect_FullHeal,
@@ -532,6 +570,7 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_LUMIOSE_GALETTE]    = gItemEffect_FullHeal,
     [ITEM_SHALOUR_SABLE]      = gItemEffect_FullHeal,
     [ITEM_BIG_MALASADA]       = gItemEffect_FullHeal,
+    [ITEM_JUBILIFE_MUFFIN]    = gItemEffect_FullHeal,
 
     // Vitamins
     [ITEM_HP_UP]              = gItemEffect_HPUp,
