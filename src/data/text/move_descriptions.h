@@ -2085,12 +2085,12 @@ static const u8 sDualChopDescription[] = _(
     "that strike twice.");
 
 static const u8 sHeartStampDescription[] = _(
-    "A cute surprise attack.\n"
-    "Increased priority, ");
+    "A cute 1st-turn, 1st-strike\n"
+    "move that causes flinching.");
 
 static const u8 sRazorShellDescription[] = _(
     "Tears at the foe with sharp\n"
-    "shells. May lower Defense.");
+    "shells. 50% to cut Defense.");
 
 static const u8 sLeafTornadoDescription[] = _(
     "A whirlwind of leaves.\n"
@@ -2106,7 +2106,7 @@ static const u8 sCottonGuardDescription[] = _(
 
 static const u8 sNightDazeDescription[] = _(
     "Looses a pitch-black shock\n"
-    "wave. May lower accuracy.");
+    "wave. 40% to lower Speed.");
 
 static const u8 sHurricaneDescription[] = _(
     "Traps the foe in a fierce\n"
@@ -2138,7 +2138,7 @@ static const u8 sGlaciateDescription[] = _(
 
 static const u8 sBoltStrikeDescription[] = _(
     "Strikes with a great amount\n"
-    "of lightning. 30% to para");
+    "of lightning. 30% to para.");
 
 static const u8 sBlueFlareDescription[] = _(
     "Engulfs the foe in a blue\n"
@@ -2269,8 +2269,8 @@ static const u8 sPlayRoughDescription[] = _(
     "10% chance to lower Attack.");
 
 static const u8 sFairyWindDescription[] = _(
-    "Stirs up a fairy wind to\n"
-    "strike the foe.");
+    "A fae-like wind that strikes\n"
+    "with increased priority.");
 
 static const u8 sMoonblastDescription[] = _(
     "Attacks with the power of\n"
@@ -2302,11 +2302,11 @@ static const u8 sDiamondStormDescription[] = _(
 
 static const u8 sSteamEruptionDescription[] = _(
     "Immerses the foe in heated\n"
-    "steam. May inflict a burn.");
+    "steam. 30% chance to burn.");
 
 static const u8 sHyperspaceHoleDescription[] = _(
-    "Uses a warp hole to attack.\n"
-    "Can't be evaded.");
+    "A warping attack that always\n"
+    "hits. Increased priority.");
 
 static const u8 sWaterShurikenDescription[] = _(
     "Throws 2 to 5 stars that\n"
