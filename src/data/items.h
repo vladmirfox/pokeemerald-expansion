@@ -852,7 +852,7 @@ const struct Item gItems[] =
     [ITEM_ETHER] =
     {
         .name = _("Ether"),
-        .price = (I_PRICE >= GEN_2) ? 1200 : 0,
+        .price = (I_PRICE >= GEN_2) ? 1200 : 1,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING("Restores the PP\n"
                                        "of a selected move\n"
@@ -867,7 +867,7 @@ const struct Item gItems[] =
     [ITEM_MAX_ETHER] =
     {
         .name = _("Max Ether"),
-        .price = (I_PRICE >= GEN_2) ? 2000 : 0,
+        .price = (I_PRICE >= GEN_2) ? 2000 : 1,
         .holdEffectParam = 255,
         .description = COMPOUND_STRING("Fully restores the\n"
                                        "PP of a selected\n"
@@ -882,7 +882,7 @@ const struct Item gItems[] =
     [ITEM_ELIXIR] =
     {
         .name = _("Elixir"),
-        .price = (I_PRICE >= GEN_2) ? 3000 : 0,
+        .price = (I_PRICE >= GEN_2) ? 3000 : 1,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING("Restores the PP\n"
                                        "of all moves by 10."),
@@ -896,7 +896,7 @@ const struct Item gItems[] =
     [ITEM_MAX_ELIXIR] =
     {
         .name = _("Max Elixir"),
-        .price = (I_PRICE >= GEN_2) ? 4500 : 0,
+        .price = (I_PRICE >= GEN_2) ? 4500 : 1,
         .holdEffectParam = 255,
         .description = COMPOUND_STRING("Fully restores the\n"
                                        "PP of a Pokémon's\n"
@@ -1146,7 +1146,7 @@ const struct Item gItems[] =
     [ITEM_PP_UP] =
     {
         .name = _("PP Up"),
-        .price = (I_PRICE == GEN_1) ? 0 : ((I_PRICE >= GEN_7) ? 10000 : 9800),
+        .price = (I_PRICE == GEN_1) ? 1 : ((I_PRICE >= GEN_7) ? 10000 : 9800),
         .description = COMPOUND_STRING("Raises the maximum\n"
                                        "PP of a selected\n"
                                        "move."),
