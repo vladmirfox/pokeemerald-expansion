@@ -23,7 +23,6 @@ static bool8 CheckPyramidBagHasSpace(u16 itemId, u16 count);
 
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 
-#include "data/text/item_descriptions.h"
 #include "data/items.h"
 
 static u16 GetBagItemQuantity(u16 *quantity)
@@ -884,12 +883,12 @@ u16 ItemId_GetPrice(u16 itemId)
     return gItems[SanitizeItemId(itemId)].price;
 }
 
-u8 ItemId_GetHoldEffect(u16 itemId)
+u32 ItemId_GetHoldEffect(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].holdEffect;
 }
 
-u8 ItemId_GetHoldEffectParam(u16 itemId)
+u32 ItemId_GetHoldEffectParam(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].holdEffectParam;
 }
@@ -902,12 +901,6 @@ const u8 *ItemId_GetDescription(u16 itemId)
 u8 ItemId_GetImportance(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].importance;
-}
-
-// Unused
-u8 ItemId_GetRegistrability(u16 itemId)
-{
-    return gItems[SanitizeItemId(itemId)].registrability;
 }
 
 u8 ItemId_GetPocket(u16 itemId)
@@ -962,7 +955,7 @@ u8 ItemId_GetSecondaryId(u16 itemId)
     return gItems[SanitizeItemId(itemId)].secondaryId;
 }
 
-u8 ItemId_GetFlingPower(u16 itemId)
+u32 ItemId_GetFlingPower(u32 itemId)
 {
     return gItems[SanitizeItemId(itemId)].flingPower;
 }

@@ -14,8 +14,6 @@
 #define TRAINER_SECRET_BASE                 1024
 #define TRAINER_LINK_OPPONENT               2048
 #define TRAINER_UNION_ROOM                  3072
-#define TRAINER_STEVEN_PARTNER              3075
-#define TRAINER_CUSTOM_PARTNER              3076
 
 #define TRAINER_PIC_HIKER                  0
 #define TRAINER_PIC_AQUA_GRUNT_M           1
@@ -370,13 +368,6 @@
 #define TRAINER_ENCOUNTER_MUSIC_RICH        13 // Rich Boys and Gentlemen
 
 #define F_TRAINER_FEMALE (1 << 7)
-
-// All trainer parties specify the IV, level, and species for each Pokémon in the
-// party. Some trainer parties also specify held items and custom moves for each
-// Pokémon.
-#define F_TRAINER_PARTY_CUSTOM_MOVESET        (1 << 0)
-#define F_TRAINER_PARTY_HELD_ITEM             (1 << 1)
-#define F_TRAINER_PARTY_EVERYTHING_CUSTOMIZED (1 << 3)
 
 // Trainer party defines
 #define TRAINER_MON_MALE    1
