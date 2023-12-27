@@ -204,7 +204,7 @@ void BattleAI_SetupFlags(void)
     
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
     {
-        AI_THINKING_STRUCT->aiFlags[B_POSITION_PLAYER_RIGHT] = GetAiFlags(gPartnerTrainerId - TRAINER_CUSTOM_PARTNER);
+        AI_THINKING_STRUCT->aiFlags[B_POSITION_PLAYER_RIGHT] = GetAiFlags(gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE));
     }
     else
     {
