@@ -205,9 +205,7 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
         MESSAGE("Foe Spinda used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
 
-        //MESSAGE("Foe Spinda used Belly Drum!");
         if (ability == ABILITY_CONTRARY) {
-            // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("Foe Spinda cut its own HP and maximized ATTACK!"); //Message stays the same
         }
@@ -216,7 +214,6 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
             MESSAGE("Foe Spinda cut its own HP and maximized ATTACK!");
         }
 
-        // MESSAGE("Foe Spinda used Tackle!");
         HP_BAR(player, captureDamage: &results[i].damageAfter);
     }
     FINALLY {
