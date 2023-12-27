@@ -3780,7 +3780,6 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
         if (iv_val != 32 && iv_val != 0xFF)
             SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
     }
-    CalculateMonStats(&mon);
 
     //EVs
     for (i = 0; i < NUM_STATS; i++)
@@ -3789,7 +3788,6 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
         if (ev_val)
             SetMonData(&mon, MON_DATA_HP_EV + i, &ev_val);
     }
-    CalculateMonStats(&mon);
 
     //Moves
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -3809,6 +3807,9 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     }
 
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    //Update mon stats before giving it to the player
+    CalculateMonStats(&mon);
 
     // give player the mon
     SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
