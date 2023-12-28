@@ -14048,6 +14048,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .soundMove = TRUE,
+        .sheerForceBoost = TRUE,
         .ignoresSubstitute = TRUE,
     },
 
