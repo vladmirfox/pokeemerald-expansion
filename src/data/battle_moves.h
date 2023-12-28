@@ -13912,7 +13912,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-        .sheerForceBoost = TRUE,
+        //.sheerForceBoost = TRUE, (uncomment when effect is implemented, otherwise it breaks the Sheer Force Test)
     },
 
     [MOVE_TERA_STARSTORM] =
