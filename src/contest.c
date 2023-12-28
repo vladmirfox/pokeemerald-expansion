@@ -98,7 +98,7 @@ static void PrintContestantMonName(u8);
 static void PrintContestantMonNameWithColor(u8, u8);
 static u8 CreateJudgeSprite(void);
 static u8 CreateJudgeSpeechBubbleSprite(void);
-static u8 CreateContestantSprite(u16, u32, u32, u32);
+static u8 CreateContestantSprite(u16, bool8, u32, u32);
 static void PrintContestMoveDescription(u16);
 static u16 SanitizeSpecies(u16);
 static void ContestClearGeneralTextWindow(void);
@@ -358,7 +358,7 @@ EWRAM_DATA bool8 gCurContestWinnerIsForArtist = 0;
 EWRAM_DATA u8 gCurContestWinnerSaveIdx = 0;
 
 // IWRAM common vars.
-u32 gContestRngValue;
+rng_value_t gContestRngValue;
 
 extern const u8 gText_LinkStandby4[];
 extern const u8 gText_BDot[];
@@ -1409,8 +1409,8 @@ static void Task_RaiseCurtainAtStart(u8 taskId)
         break;
     case 3:
     {
-        u16 bg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
-        u16 bg2Cnt = GetGpuReg(REG_OFFSET_BG2CNT);
+        u32 bg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
+        u32 bg2Cnt = GetGpuReg(REG_OFFSET_BG2CNT);
         ((struct BgCnt *)&bg0Cnt)->priority = 0;
         ((struct BgCnt *)&bg2Cnt)->priority = 0;
         SetGpuReg(REG_OFFSET_BG0CNT, bg0Cnt);
@@ -1709,7 +1709,7 @@ static void Task_AppealSetup(u8 taskId)
     if (++gTasks[taskId].data[0] > 19)
     {
         eContest.turnNumber = 0;
-        eContest.unusedRng = gRngValue;
+        eContest.unusedRng = 0;
         if ((gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK) && IsPlayerLinkLeader())
         {
             s32 i;
@@ -1781,7 +1781,7 @@ static void Task_DoAppeals(u8 taskId)
         SetMoveAnimAttackerData(eContest.currentContestant);
         spriteId = CreateContestantSprite(
             gContestMons[eContest.currentContestant].species,
-            gContestMons[eContest.currentContestant].otId,
+            gContestMons[eContest.currentContestant].isShiny,
             gContestMons[eContest.currentContestant].personality,
             eContest.currentContestant);
         gSprites[spriteId].x2 = 120;
@@ -2630,8 +2630,8 @@ static void Task_UpdateContestantBoxOrder(u8 taskId)
 
 static void Task_TryStartNextRoundOfAppeals(u8 taskId)
 {
-    vu16 sp0 = GetGpuReg(REG_OFFSET_BG0CNT);
-    vu16 sp2 = GetGpuReg(REG_OFFSET_BG2CNT);
+    vu32 sp0 = GetGpuReg(REG_OFFSET_BG0CNT);
+    vu32 sp2 = GetGpuReg(REG_OFFSET_BG2CNT);
     ((vBgCnt *)&sp0)->priority = 0;
     ((vBgCnt *)&sp2)->priority = 0;
     SetGpuReg(REG_OFFSET_BG0CNT, sp0);
@@ -2811,6 +2811,7 @@ void CreateContestMonFromParty(u8 partyIndex)
     gContestMons[gContestPlayerMonIndex].moves[3] = GetMonData(&gPlayerParty[partyIndex], MON_DATA_MOVE4);
     gContestMons[gContestPlayerMonIndex].personality = GetMonData(&gPlayerParty[partyIndex], MON_DATA_PERSONALITY);
     gContestMons[gContestPlayerMonIndex].otId = GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_ID);
+    gContestMons[gContestPlayerMonIndex].isShiny = GetMonData(&gPlayerParty[partyIndex], MON_DATA_IS_SHINY);
 
     heldItem = GetMonData(&gPlayerParty[partyIndex], MON_DATA_HELD_ITEM);
     cool   = gContestMons[gContestPlayerMonIndex].cool;
@@ -3114,14 +3115,14 @@ static u8 CreateJudgeSpeechBubbleSprite(void)
     return spriteId;
 }
 
-static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 index)
+static u8 CreateContestantSprite(u16 species, bool8 isShiny, u32 personality, u32 index)
 {
     u8 spriteId;
     species = SanitizeSpecies(species);
 
     HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[B_POSITION_PLAYER_LEFT], species, personality);
 
-    LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
+    LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, personality), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
     SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_PLAYER_LEFT);
 
     spriteId = CreateSprite(&gMultiuseSpriteTemplate, 0x70, GetBattlerSpriteFinal_Y(2, species, FALSE), 30);
@@ -3245,8 +3246,7 @@ static void DrawMoveEffectSymbol(u16 move, u8 contestant)
     }
 }
 
-// Unused
-static void DrawMoveEffectSymbols(void)
+static void UNUSED DrawMoveEffectSymbols(void)
 {
     s32 i;
 
@@ -4215,8 +4215,7 @@ static void SpriteCB_EndBlinkContestantBox(struct Sprite *sprite)
     ResetBlendForContestantBoxBlink();
 }
 
-// Unused.
-static void ContestDebugTogglePointTotal(void)
+static void UNUSED ContestDebugTogglePointTotal(void)
 {
     if(eContestDebugMode == CONTEST_DEBUG_MODE_PRINT_POINT_TOTAL)
         eContestDebugMode = CONTEST_DEBUG_MODE_OFF;
@@ -4870,15 +4869,13 @@ static void Task_ShowAndUpdateApplauseMeter(u8 taskId)
     }
 }
 
-// Unused.
-static void HideApplauseMeterNoAnim(void)
+static void UNUSED HideApplauseMeterNoAnim(void)
 {
     gSprites[eContest.applauseMeterSpriteId].x2 = 0;
     gSprites[eContest.applauseMeterSpriteId].invisible = FALSE;
 }
 
-// Unused.
-static void ShowApplauseMeterNoAnim(void)
+static void UNUSED ShowApplauseMeterNoAnim(void)
 {
     gSprites[eContest.applauseMeterSpriteId].invisible = TRUE;
 }
@@ -5059,7 +5056,7 @@ bool8 IsContestantAllowedToCombo(u8 contestant)
 static void SetBgForCurtainDrop(void)
 {
     s32 i;
-    u16 bg0Cnt, bg1Cnt, bg2Cnt;
+    u32 bg0Cnt, bg1Cnt, bg2Cnt;
 
     bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
     ((vBgCnt *)&bg1Cnt)->priority = 0;
@@ -5097,7 +5094,7 @@ static void SetBgForCurtainDrop(void)
 static void UpdateContestantBoxOrder(void)
 {
     s32 i;
-    u16 bg1Cnt;
+    u32 bg1Cnt;
 
     RequestDma3Fill(0,(void *)(BG_CHAR_ADDR(2)), 0x2000, 1);
     CpuFill32(0, gContestResources->contestBgTilemaps[1], 0x1000);
@@ -5300,7 +5297,6 @@ static u16 SanitizeSpecies(u16 species)
 
 static void SetMoveSpecificAnimData(u8 contestant)
 {
-    s32 i;
     u16 move = SanitizeMove(eContestantStatus[contestant].currMove);
     u16 species = SanitizeSpecies(gContestMons[contestant].species);
     u8 targetContestant;
@@ -5359,6 +5355,7 @@ static void SetMoveAnimAttackerData(u8 contestant)
     gContestResources->moveAnim->species = SanitizeSpecies(gContestMons[contestant].species);
     gContestResources->moveAnim->personality = gContestMons[contestant].personality;
     gContestResources->moveAnim->otId = gContestMons[contestant].otId;
+    gContestResources->moveAnim->isShiny = gContestMons[contestant].isShiny;
 }
 
 static void CreateInvisibleBattleTargetSprite(void)
@@ -5570,6 +5567,7 @@ bool8 SaveContestWinner(u8 rank)
     {
         // Set the most recent winner so the artist can show the player their painting
         gCurContestWinner.personality = gContestMons[i].personality;
+        gCurContestWinner.isShiny = gContestMons[i].isShiny;
         gCurContestWinner.trainerId = gContestMons[i].otId;
         gCurContestWinner.species = gContestMons[i].species;
         StringCopy(gCurContestWinner.monName, gContestMons[i].nickname);
@@ -6114,4 +6112,3 @@ void StripPlayerAndMonNamesForLinkContest(struct ContestPokemon *mon, s32 langua
         name[PLAYER_NAME_LENGTH] = EOS;
     }
 }
-

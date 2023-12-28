@@ -64,7 +64,6 @@ SINGLE_BATTLE_TEST("Fling fails for pokemon with Klutz ability")
     PARAMETRIZE {ability = ABILITY_RUN_AWAY; }
 
     GIVEN {
-        ASSUME(P_GEN_4_POKEMON == TRUE);
         ASSUME(B_KLUTZ_FLING_INTERACTION >= GEN_5);
         PLAYER(SPECIES_BUNEARY) { Item(ITEM_RAZOR_CLAW); Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -255,12 +254,15 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
 
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     PARAMETRIZE { item = ITEM_SITRUS_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
+    PARAMETRIZE { item = ITEM_ENIGMA_BERRY; effect = HOLD_EFFECT_ENIGMA_BERRY; }
+    PARAMETRIZE { item = ITEM_LEPPA_BERRY; effect = HOLD_EFFECT_RESTORE_PP; }
     PARAMETRIZE { item = ITEM_CHESTO_BERRY; effect = HOLD_EFFECT_CURE_SLP; status1 = STATUS1_SLEEP; }
     PARAMETRIZE { item = ITEM_CHERI_BERRY; effect = HOLD_EFFECT_CURE_PAR; status1 = STATUS1_PARALYSIS; }
     PARAMETRIZE { item = ITEM_PECHA_BERRY; effect = HOLD_EFFECT_CURE_PSN; status1 = STATUS1_POISON; }
     PARAMETRIZE { item = ITEM_PECHA_BERRY; effect = HOLD_EFFECT_CURE_PSN; status1 = STATUS1_TOXIC_POISON; }
     PARAMETRIZE { item = ITEM_RAWST_BERRY; effect = HOLD_EFFECT_CURE_BRN; status1 = STATUS1_BURN; }
     PARAMETRIZE { item = ITEM_ASPEAR_BERRY; effect = HOLD_EFFECT_CURE_FRZ; status1 = STATUS1_FREEZE; }
+    PARAMETRIZE { item = ITEM_ASPEAR_BERRY; effect = HOLD_EFFECT_CURE_FRZ; status1 = STATUS1_FROSTBITE; }
     PARAMETRIZE { item = ITEM_APICOT_BERRY; effect = HOLD_EFFECT_SP_DEFENSE_UP; statId = STAT_SPDEF; }
     PARAMETRIZE { item = ITEM_MARANGA_BERRY; effect = HOLD_EFFECT_MARANGA_BERRY; statId = STAT_SPDEF; }
     PARAMETRIZE { item = ITEM_GANLON_BERRY; effect = HOLD_EFFECT_DEFENSE_UP; statId = STAT_DEF; }
@@ -270,8 +272,8 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
     PARAMETRIZE { item = ITEM_SALAC_BERRY; effect = HOLD_EFFECT_SPEED_UP; statId = STAT_SPEED; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(item); Attack(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({MOVE_CELEBRATE, 35}); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
@@ -281,10 +283,15 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             if (item == ITEM_ORAN_BERRY) {
                 MESSAGE("Foe Wobbuffet's Oran Berry restored health!");
-            } else {
+            } else if (item == ITEM_SITRUS_BERRY) {
                 MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+            } else {
+                MESSAGE("Wobbuffet's Enigma Berry restored health!");
             }
             HP_BAR(opponent);
+        }
+        else if (effect == HOLD_EFFECT_RESTORE_PP) {
+            MESSAGE("Foe Wobbuffet's Leppa Berry restored Celebrate's PP!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
@@ -293,6 +300,8 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
                 MESSAGE("Foe Wobbuffet's Chesto Berry woke it from its sleep!");
             } else if (status1 == STATUS1_FREEZE) {
                 MESSAGE("Foe Wobbuffet's Aspear Berry defrosted it!");
+            } else if (status1 == STATUS1_FROSTBITE) {
+                MESSAGE("Foe Wobbuffet's Aspear Berry healed its frostbite!");
             } else if (status1 == STATUS1_PARALYSIS) {
                 MESSAGE("Foe Wobbuffet's Cheri Berry cured paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
@@ -325,7 +334,9 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
     } THEN {
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             EXPECT_EQ(opponent->hp, opponent->maxHP);
-        } else if (status1 != STATUS1_NONE) {
+        } else if (effect == HOLD_EFFECT_RESTORE_PP) {
+            EXPECT_EQ(opponent->pp[0], 39); // Not 40, because Celebrate was used.
+        }  else if (status1 != STATUS1_NONE) {
             EXPECT_EQ(opponent->status1, STATUS1_NONE);
         }
         else if (statId != 0) {
@@ -334,3 +345,24 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
     }
 }
 
+SINGLE_BATTLE_TEST("Fling deals damage based on items fling power")
+{
+    s16 damage[2];
+
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_CRUNCH].power == 80);
+        ASSUME(gItems[ITEM_VENUSAURITE].flingPower == 80);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_VENUSAURITE); }
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CRUNCH); }
+        TURN { MOVE(player, MOVE_FLING); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CRUNCH, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
