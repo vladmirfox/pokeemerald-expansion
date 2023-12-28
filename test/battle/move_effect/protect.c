@@ -190,7 +190,7 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
     }
 }
 
-SINGLE_BATTLE_TEST("Burning Bulwark poisons pokemon for moves making contact")
+SINGLE_BATTLE_TEST("Burning Bulwark burns pokemon for moves making contact")
 {
     u16 usedMove = MOVE_NONE;
 

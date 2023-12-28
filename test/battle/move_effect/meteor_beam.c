@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_ELECTRO_SHOT].effect == EFFECT_METEOR_BEAM);
 }
 
-SINGLE_BATTLE_TEST("xxElectro Shot needs a charging Turn")
+SINGLE_BATTLE_TEST("Electro Shot needs a charging Turn")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
