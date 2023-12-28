@@ -13,12 +13,14 @@ void ItemUseOutOfBattle_WailmerPail(u8);
 void ItemUseOutOfBattle_Medicine(u8);
 void ItemUseOutOfBattle_AbilityCapsule(u8);
 void ItemUseOutOfBattle_AbilityPatch(u8);
+void ItemUseOutOfBattle_Mint(u8);
 void ItemUseOutOfBattle_ResetEVs(u8);
 void ItemUseOutOfBattle_ReduceEV(u8);
 void ItemUseOutOfBattle_SacredAsh(u8);
 void ItemUseOutOfBattle_PPRecovery(u8);
 void ItemUseOutOfBattle_PPUp(u8);
 void ItemUseOutOfBattle_RareCandy(u8);
+void ItemUseOutOfBattle_DynamaxCandy(u8);
 void ItemUseOutOfBattle_TMHM(u8);
 void ItemUseOutOfBattle_Repel(u8);
 void ItemUseOutOfBattle_Lure(u8);
@@ -53,5 +55,6 @@ enum {
 };
 
 bool32 CanThrowBall(void);
+bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon);
 
 #endif // GUARD_ITEM_USE_H

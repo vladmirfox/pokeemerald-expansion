@@ -179,6 +179,9 @@
 #define MOVE_SLASH 163
 #define MOVE_SUBSTITUTE 164
 #define MOVE_STRUGGLE 165
+
+#define MOVES_COUNT_GEN1 166
+
 #define MOVE_SKETCH 166
 #define MOVE_TRIPLE_KICK 167
 #define MOVE_THIEF 168
@@ -270,6 +273,9 @@
 #define MOVE_ROCK_SMASH 249
 #define MOVE_WHIRLPOOL 250
 #define MOVE_BEAT_UP 251
+
+#define MOVES_COUNT_GEN2 252
+
 #define MOVE_FAKE_OUT 252
 #define MOVE_UPROAR 253
 #define MOVE_STOCKPILE 254
@@ -1009,6 +1015,8 @@
 #define LAST_MAX_MOVE         MOVE_G_MAX_RAPID_FLOW
 
 #define MOVES_COUNT_DYNAMAX       (LAST_MAX_MOVE + 1)
+
+#define MOVES_COUNT_ALL         MOVES_COUNT_DYNAMAX
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
