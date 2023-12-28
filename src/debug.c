@@ -3455,8 +3455,20 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
     }
 }
 
+static u32 GetDebugPokemonTotalEV(void)
+{
+    return (sDebugMonData->mon_ev_hp
+          + sDebugMonData->mon_ev_atk
+          + sDebugMonData->mon_ev_def
+          + sDebugMonData->mon_ev_speed
+          + sDebugMonData->mon_ev_satk
+          + sDebugMonData->mon_ev_sdef);
+}
+
 static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
 {
+    u16 totalEV = GetDebugPokemonTotalEV();
+
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
@@ -3577,14 +3589,35 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
             gTasks[taskId].tDigit = 0;
             gTasks[taskId].tIterator = 0;
 
-            StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
-            StringCopy(gStringVar1, gMoveNames[gTasks[taskId].tInput]);
-            StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
-            ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
-            StringExpandPlaceholders(gStringVar4, sDebugText_PokemonMove_0);
-            AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
+            if (totalEV > MAX_TOTAL_EVS)
+            {
+                sDebugMonData->mon_ev_hp = 0;
+                sDebugMonData->mon_ev_atk = 0;
+                sDebugMonData->mon_ev_def = 0;
+                sDebugMonData->mon_ev_speed = 0;
+                sDebugMonData->mon_ev_satk = 0;
+                sDebugMonData->mon_ev_sdef = 0;
 
-            gTasks[taskId].func = DebugAction_Give_Pokemon_Move;
+                PlaySE(SE_FAILURE);
+                StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+                ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
+                StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
+                StringExpandPlaceholders(gStringVar4, sDebugText_EV_HP);
+                AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
+
+                gTasks[taskId].func = DebugAction_Give_Pokemon_SelectEVs;
+            }
+            else
+            {
+                StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
+                StringCopy(gStringVar1, gMoveNames[gTasks[taskId].tInput]);
+                StringCopyPadded(gStringVar1, gStringVar1, CHAR_SPACE, 15);
+                ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
+                StringExpandPlaceholders(gStringVar4, sDebugText_PokemonMove_0);
+                AddTextPrinterParameterized(gTasks[taskId].tSubWindowId, DEBUG_MENU_FONT, gStringVar4, 1, 1, 0, NULL);
+
+                gTasks[taskId].func = DebugAction_Give_Pokemon_Move;
+            }
         }
     }
     else if (JOY_NEW(B_BUTTON))
