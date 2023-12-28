@@ -13903,7 +13903,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRO_SHOT] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_ELECTRO_SHOT
+        .effect = EFFECT_METEOR_BEAM,
         .power = 130,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
