@@ -5417,6 +5417,12 @@ Cry_Arctovish::
 	.align 2
 Cry_Duraludon::
 	.incbin "sound/direct_sound_samples/cries/duraludon.bin"
+
+.if P_GEN_9_CROSS_EVOS == TRUE
+	.align 2
+Cry_Archaludon::
+	.incbin "sound/direct_sound_samples/cries/archaludon.bin"
+.endif @ P_GEN_9_CROSS_EVOS
 .endif @ P_FAMILY_DURALUDON
 
 .if P_FAMILY_DREEPY == TRUE
