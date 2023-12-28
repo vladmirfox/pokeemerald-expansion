@@ -16929,6 +16929,9 @@ ChillyReceptionSnowballs:
 	delay 3
 	return
 
+Move_BURNING_BULWARK::
+	goto Move_PROTECT
+
 Move_TERA_BLAST::
 Move_AXE_KICK::
 Move_LAST_RESPECTS::
@@ -16980,7 +16983,6 @@ Move_IVY_CUDGEL::
 Move_ELECTRO_SHOT::
 Move_TERA_STARSTORM::
 Move_FICKLE_BEAM::
-Move_BURNING_BULWARK::
 Move_THUNDERCLAP::
 Move_MIGHTY_CLEAVE::
 Move_TACHYON_CUTTER::
@@ -19368,7 +19370,7 @@ Move_TELEPORT:
 	call UnsetPsychicBg
 	waitforvisualfinish
 	end
-	
+
 DoubleTeamAnimRet:
 	setalpha 12, 8
 	monbg ANIM_ATK_PARTNER

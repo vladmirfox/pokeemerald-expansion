@@ -13947,7 +13947,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BURNING_BULWARK] =
     {
-        .effect = EFFECT_PROTECT, // NEEDS ACTUAL PROTECT SIDE EFFECT
+        .effect = EFFECT_PROTECT,
         .power = 0,
         .type = TYPE_FIRE,
         .accuracy = 0,
