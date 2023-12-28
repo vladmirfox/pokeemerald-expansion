@@ -440,6 +440,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBrickBreak              @ EFFECT_RAGING_BULL
 	.4byte BattleScript_EffectHit                     @ EFFECT_RAGE_FIST
 	.4byte BattleScript_EffectDoodle                  @ EFFECT_DOODLE
+	.4byte BattleScript_EffectHit                     @ EFFECT_FICKLE_BEAM
 
 BattleScript_EffectDoodle:
 	attackcanceler

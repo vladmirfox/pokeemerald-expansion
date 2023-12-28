@@ -13934,7 +13934,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FICKLE_BEAM] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_FICKLE_BEAM
+        .effect = EFFECT_FICKLE_BEAM,
         .power = 80,
         .type = TYPE_DRAGON,
         .accuracy = 100,
