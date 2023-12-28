@@ -14038,12 +14038,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ALLURING_VOICE] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_ALLURING_VOICE
+        .effect = EFFECT_CONFUSE_HIT,
         .power = 80,
         .type = TYPE_FAIRY,
         .accuracy = 100,
         .pp = 10,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
