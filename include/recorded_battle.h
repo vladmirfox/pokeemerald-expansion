@@ -5,6 +5,7 @@
 #include "random.h"
 
 #define BATTLER_RECORD_SIZE 664
+#define RECORDED_BATTLE_VERSION 1
 
 struct RecordedBattleSave
 {
@@ -34,6 +35,7 @@ struct RecordedBattleSave
     u8 recordMixFriendLanguage;
     u8 apprenticeLanguage;
     u8 battleRecord[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
+    u16 version;
     u32 checksum;
 };
 

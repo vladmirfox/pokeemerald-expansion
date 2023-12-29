@@ -262,13 +262,28 @@ bool32 CanCopyRecordedBattleSaveData(void)
     return ret;
 }
 
+static inline RecordedBattleHash(const u8* data, const u32 size)
+{
+    u32 hash;
+    u32 i;
+    hash = 5381;
+    for(i = 0; i < size; i++)
+        hash = ((hash << 5) + hash) ^ data[i];
+    return hash;
+}
+
 static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
 {
+    u32 hash;
+    u32 i;
+    u8 *const saveArray = (u8 *)save;
     if (save->battleFlags == 0)
         return FALSE;
     if (save->battleFlags & BATTLE_TYPE_RECORDED_INVALID)
         return FALSE;
-    if (CalcByteArraySum((void *)(save), sizeof(*save) - 4) != save->checksum)
+    if (save->version != RECORDED_BATTLE_VERSION)
+        return FALSE;
+    if (RecordedBattleHash((void *)(save), sizeof(*save) - 4) != save->checksum)
         return FALSE;
 
     return TRUE;
@@ -276,10 +291,12 @@ static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
 
 static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct RecordedBattleSave *saveSector)
 {
+    u32 hash;
     memset(saveSector, 0, SECTOR_SIZE);
     memcpy(saveSector, battleSave, sizeof(*battleSave));
 
-    saveSector->checksum = CalcByteArraySum((void *)(saveSector), sizeof(*saveSector) - 4);
+    saveSector->version = RECORDED_BATTLE_VERSION;
+    saveSector->checksum = RecordedBattleHash((void *)(saveSector), sizeof(*saveSector) - 4);
 
     if (TryWriteSpecialSaveSector(SECTOR_ID_RECORDED_BATTLE, (void *)(saveSector)) != SAVE_STATUS_OK)
         return FALSE;
