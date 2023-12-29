@@ -14,6 +14,7 @@ struct RHHRomHeader
     /*0x07*/ u8 expansionVersionMinor;
     /*0x08*/ u8 expansionVersionPatch;
     /*0x09*/ u8 expansionVersionFlags;
+    const struct Ability * abilities;
 };
 
 static const struct RHHRomHeader sRHHRomHeader =
@@ -23,4 +24,5 @@ static const struct RHHRomHeader sRHHRomHeader =
     .expansionVersionMinor = EXPANSION_VERSION_MINOR,
     .expansionVersionPatch = EXPANSION_VERSION_PATCH,
     .expansionVersionFlags = (EXPANSION_TAGGED_RELEASE << 0),
+    .abilities = gAbilities,
 };
