@@ -47,6 +47,6 @@ SINGLE_BATTLE_TEST("Ivy Cudgel does not change the move type if used on Pokémon
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_IVY_CUDGEL, player);
         HP_BAR(opponent);
-        MESSAGE("It's super effective!"); //Should be super effective everytime if type isnt being changed
+        MESSAGE("It's super effective!"); // Should be super effective everytime if type isnt being changed
     }
 }
