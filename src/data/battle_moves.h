@@ -13897,7 +13897,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-        .argument = HOLD_EFFECT_MASK,
         .metronomeBanned = TRUE,
     },
 
