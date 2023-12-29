@@ -16,8 +16,8 @@ struct RHHRomHeader
     /*0x07*/ u8 expansionVersionMinor;
     /*0x08*/ u8 expansionVersionPatch;
     /*0x09*/ u8 expansionVersionFlags;
-    /*0x0A*/ int movesCount;
-    /*0x0B*/ int numSpecies;
+    /*0x0C*/ u32 movesCount;
+    /*0x10*/ u32 numSpecies;
 };
 
 static const struct RHHRomHeader sRHHRomHeader =
