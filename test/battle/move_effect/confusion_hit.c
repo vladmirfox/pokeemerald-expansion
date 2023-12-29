@@ -29,3 +29,22 @@ SINGLE_BATTLE_TEST("Alluring Voice confuses the target if the target raised a st
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Force boosted")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_ALLURING_VOICE].effect == EFFECT_CONFUSE_HIT);
+        PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SWORDS_DANCE); MOVE(player, MOVE_ALLURING_VOICE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ALLURING_VOICE, player);
+        HP_BAR(opponent);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
+            MESSAGE("Foe Wobbuffet became confused!");
+        }
+    }
+}
