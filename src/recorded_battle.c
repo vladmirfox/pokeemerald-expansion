@@ -262,7 +262,7 @@ bool32 CanCopyRecordedBattleSaveData(void)
     return ret;
 }
 
-static inline RecordedBattleHash(const u8* data, const u32 size)
+static inline u32 RecordedBattleHash(const u8* data, const u32 size)
 {
     u32 hash;
     u32 i;
