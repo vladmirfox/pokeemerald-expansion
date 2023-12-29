@@ -274,9 +274,6 @@ static inline u32 RecordedBattleHash(const u8* data, const u32 size)
 
 static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
 {
-    u32 hash;
-    u32 i;
-    u8 *const saveArray = (u8 *)save;
     if (save->battleFlags == 0)
         return FALSE;
     if (save->battleFlags & BATTLE_TYPE_RECORDED_INVALID)
