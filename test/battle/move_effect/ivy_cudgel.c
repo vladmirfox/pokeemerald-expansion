@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Ivy Cudgel changes the move type depending on the form of Og
     }
 }
 
-SINGLE_BATTLE_TEST("Ivy Cudgel does not change the move type if used on Pokémon other than Ogerpon")
+SINGLE_BATTLE_TEST("Ivy Cudgel does not change the move type if used by Pokémon other than Ogerpon")
 {
     u16 item;
 
