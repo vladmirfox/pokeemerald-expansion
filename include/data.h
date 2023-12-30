@@ -90,6 +90,7 @@ struct Trainer
 struct TrainerClass
 {
     u8 name[13];
+    u8 money;
 };
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
