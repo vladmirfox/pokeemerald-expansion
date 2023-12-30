@@ -696,14 +696,16 @@
 #define STRINGID_SWAMPENVELOPEDSIDE                   694
 #define STRINGID_THESWAMPDISAPPEARED                  695
 #define STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE        696
+#define STRINGID_HOSPITALITYRESTORATION               697
+#define STRINGID_ELECTROSHOCKCHARGING                 698
 
 //tx_randomizer_and_challenges
-#define STRINGID_ONETYPECAPTUREBLOCKED                697
-#define STRINGID_NUZLOCKECAPTUREBLOCKED               698
-#define STRINGID_SPECIESCLAUSECAPTUREBLOCKED          699
-#define STRINGID_SAMESPECIESCAPTUREBLOCKED            700
+#define STRINGID_ONETYPECAPTUREBLOCKED                699
+#define STRINGID_NUZLOCKECAPTUREBLOCKED               700
+#define STRINGID_SPECIESCLAUSECAPTUREBLOCKED          701
+#define STRINGID_SAMESPECIESCAPTUREBLOCKED            702
 
-#define BATTLESTRINGS_COUNT                           701
+#define BATTLESTRINGS_COUNT                           703
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -761,6 +763,7 @@
 #define B_MSG_TURN1_FREEZE_SHOCK   10
 #define B_MSG_TURN1_SKY_DROP       11
 #define B_MSG_TURN1_METEOR_BEAM    12
+#define B_MSG_TURN1_ELECTRO_SHOCK  13
 
 // gMoveWeatherChangeStringIds
 #define B_MSG_STARTED_RAIN      0
