@@ -39130,3 +39130,9 @@ static const u16 sGougingFireTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_GOUGING_FIRE
+
+#if P_FAMILY_RAGING_BOLT
+static const u16 sRagingBoltTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
+#endif //P_FAMILY_RAGING_BOLT

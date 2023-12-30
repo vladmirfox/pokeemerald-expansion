@@ -10931,6 +10931,15 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     // const u8 gMonFootprint_GougingFire[] = INCBIN_U8("graphics/pokemon/gouging_fire/footprint.1bpp");
 #endif //P_FAMILY_GOUGING_FIRE
 
+#if P_FAMILY_RAGING_BOLT
+    // const u32 gMonFrontPic_RagingBolt[] = INCBIN_U32("graphics/pokemon/raging_bolt/front.4bpp.lz");
+    // const u32 gMonPalette_RagingBolt[] = INCBIN_U32("graphics/pokemon/raging_bolt/normal.gbapal.lz");
+    // const u32 gMonBackPic_RagingBolt[] = INCBIN_U32("graphics/pokemon/raging_bolt/back.4bpp.lz");
+    // const u32 gMonShinyPalette_RagingBolt[] = INCBIN_U32("graphics/pokemon/raging_bolt/shiny.gbapal.lz");
+    // const u8 gMonIcon_RagingBolt[] = INCBIN_U8("graphics/pokemon/raging_bolt/icon.4bpp");
+    // const u8 gMonFootprint_RagingBolt[] = INCBIN_U8("graphics/pokemon/raging_bolt/footprint.1bpp");
+#endif //P_FAMILY_RAGING_BOLT
+
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
     const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");

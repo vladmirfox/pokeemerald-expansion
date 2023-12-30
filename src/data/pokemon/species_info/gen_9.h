@@ -5478,6 +5478,56 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
 #endif //P_FAMILY_GOUGING_FIRE
 
+#if P_FAMILY_RAGING_BOLT
+    [SPECIES_RAGING_BOLT] =
+    {
+        .baseHP        = 125,
+        .baseAttack    = 73,
+        .baseDefense   = 91,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 137,
+        .baseSpDefense = 89,
+        .types = { TYPE_ELECTRIC, TYPE_DRAGON },
+        .catchRate = 10,
+        .expYield = 261, //Currently unknown
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_PROTOSYNTHESIS, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .isParadoxForm = TRUE,
+        .speciesName = _("RagingBolt"),
+        //.cryId = CRY_RAGING_BOLT,
+        .natDexNum = NATIONAL_DEX_RAGING_BOLT,
+        .categoryName = _("Paradox"),
+        .height = 52,
+        .weight = 4800,
+        .description = COMPOUND_STRING(
+            "It bears resemblance to a Pokémon\n"
+            "that became a hot topic for a short\n"
+            "while after a paranomal magazine\n"
+            "touted it as Raikou's ancestor."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 345,
+        .trainerOffset = 7,
+        //FRONT_PIC(RagingBolt, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_RagingBolt,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(RagingBolt, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(RagingBolt),
+        //ICON(RagingBolt, 0),
+        //.footprint = gMonFootprint_RagingBolt,
+        LEARNSETS(RagingBolt),
+    },
+#endif //P_FAMILY_RAGING_BOLT
+
 #ifdef __INTELLISENSE__
 };
 #endif
