@@ -33821,6 +33821,10 @@ static const u16 sAppletunTeachableLearnset[] = {
 static const u16 sDipplinTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
+
+static const u16 sHydrappleTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
 #endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_APPLIN
 
@@ -34657,56 +34661,6 @@ static const u16 sDuraludonTeachableLearnset[] = {
 
 #if P_GEN_9_CROSS_EVOS
 static const u16 sArchaludonTeachableLearnset[] = {
-    MOVE_TAKE_DOWN,
-    MOVE_SCARY_FACE,
-    MOVE_PROTECT,
-    MOVE_FACADE,
-    MOVE_SNARL,
-    MOVE_METAL_CLAW,
-    MOVE_ROCK_TOMB,
-    MOVE_DRAGON_TAIL,
-    MOVE_ENDURE,
-    MOVE_BRICK_BREAK,
-    MOVE_FOUL_PLAY,
-    MOVE_BODY_SLAM,
-    MOVE_SLEEP_TALK,
-    MOVE_REFLECT,
-    MOVE_LIGHT_SCREEN,
-    MOVE_DRAGON_CLAW,
-    MOVE_THUNDER_WAVE,
-    MOVE_REST,
-    MOVE_ROCK_SLIDE,
-    MOVE_SWORDS_DANCE,
-    MOVE_BODY_PRESS,
-    MOVE_FLASH_CANNON,
-    MOVE_DARK_PULSE,
-    MOVE_IRON_HEAD,
-    MOVE_SUBSTITUTE,
-    MOVE_IRON_DEFENSE,
-    MOVE_AURA_SPHERE,
-    MOVE_DRAGON_PULSE,
-    MOVE_STEALTH_ROCK,
-    MOVE_HEAVY_SLAM,
-    MOVE_THUNDERBOLT,
-    MOVE_EARTHQUAKE,
-    MOVE_STONE_EDGE,
-    MOVE_GIGA_IMPACT,
-    MOVE_OUTRAGE,
-    MOVE_HYPER_BEAM,
-    MOVE_THUNDER,
-    MOVE_SOLAR_BEAM,
-    MOVE_DRACO_METEOR,
-    MOVE_STEEL_BEAM,
-    MOVE_TERA_BLAST,
-    MOVE_ROAR,
-    MOVE_SMACK_DOWN,
-    MOVE_GYRO_BALL,
-    MOVE_DOUBLE_EDGE,
-    MOVE_METEOR_BEAM,
-    MOVE_BREAKING_SWIPE,
-    MOVE_METAL_SOUND,
-    MOVE_HARD_PRESS,
-    MOVE_DRAGON_CHEER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_GEN_9_CROSS_EVOS
@@ -39170,3 +39124,9 @@ static const u16 sOgerponTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_OGERPON
+
+#if P_FAMILY_GOUGING_FIRE
+static const u16 sGougingFireTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
+#endif //P_FAMILY_GOUGING_FIRE

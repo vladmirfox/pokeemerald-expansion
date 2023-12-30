@@ -5428,6 +5428,56 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
 #endif //P_FAMILY_OGERPON
 
+#if P_FAMILY_GOUGING_FIRE
+    [SPECIES_GOUGING_FIRE] =
+    {
+        .baseHP        = 105,
+        .baseAttack    = 115,
+        .baseDefense   = 121,
+        .baseSpeed     = 91,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 93,
+        .types = { TYPE_FIRE, TYPE_DRAGON },
+        .catchRate = 10,
+        .expYield = 261, //Currently unknown
+        .evYield_Defense = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_PROTOSYNTHESIS, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .isParadoxForm = TRUE,
+        .speciesName = _("GouginFire"),
+        //.cryId = CRY_GOUGING_FIRE,
+        .natDexNum = NATIONAL_DEX_GOUGING_FIRE,
+        .categoryName = _("Paradox"),
+        .height = 35,
+        .weight = 5900,
+        .description = COMPOUND_STRING(
+            "There are scant few reports of\n"
+            "this creature being sighted.\n"
+            "One short video shows it rampaging,\n"
+            "and spouting pillars of flame."),
+        .pokemonScale = 259,
+        .pokemonOffset = 0,
+        .trainerScale = 345,
+        .trainerOffset = 7,
+        //FRONT_PIC(GougingFire, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_GougingFire,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(GougingFire, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(GougingFire),
+        //ICON(GougingFire, 0),
+        //.footprint = gMonFootprint_GougingFire,
+        LEARNSETS(GougingFire),
+    },
+#endif //P_FAMILY_GOUGING_FIRE
+
 #ifdef __INTELLISENSE__
 };
 #endif
