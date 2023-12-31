@@ -5528,6 +5528,105 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
 #endif //P_FAMILY_RAGING_BOLT
 
+#if P_FAMILY_IRON_BOULDER
+    [SPECIES_IRON_BOULDER] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 120,
+        .baseDefense   = 80,
+        .baseSpeed     = 124,
+        .baseSpAttack  = 68,
+        .baseSpDefense = 108,
+        .types = { TYPE_ROCK, TYPE_PSYCHIC },
+        .catchRate = 10,
+        .expYield = 261, //Currently unknown
+        .evYield_Speed = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .isParadoxForm = TRUE,
+        .speciesName = _("IronBouldr"),
+        //.cryId = CRY_IRON_BOULDER,
+        .natDexNum = NATIONAL_DEX_IRON_BOULDER,
+        .categoryName = _("Paradox"),
+        .height = 15,
+        .weight = 1625,
+        .description = COMPOUND_STRING(
+            "It was named after a mysterious\n"
+            "object recorded in an old book.\n"
+            "Its body seems to be metallic."),
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 336,
+        .trainerOffset = 4,
+        //FRONT_PIC(IronBoulder, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_IronBoulder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(IronBoulder, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(IronBoulder),
+        //ICON(IronBoulder, 0),
+        //.footprint = gMonFootprint_IronBoulder,
+        LEARNSETS(IronBoulder),
+    },
+#endif //P_FAMILY_IRON_BOULDER
+
+#if P_FAMILY_IRON_CROWN
+    [SPECIES_IRON_CROWN] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 72,
+        .baseDefense   = 100,
+        .baseSpeed     = 98,
+        .baseSpAttack  = 122,
+        .baseSpDefense = 108,
+        .types = { TYPE_STEEL, TYPE_PSYCHIC },
+        .catchRate = 10,
+        .expYield = 261, //Currently unknown
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_QUARK_DRIVE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .isParadoxForm = TRUE,
+        .speciesName = _("Iron Crown"),
+        //.cryId = CRY_IRON_CROWN,
+        .natDexNum = NATIONAL_DEX_IRON_CROWN,
+        .categoryName = _("Paradox"),
+        .height = 16,
+        .weight = 1560,
+        .description = COMPOUND_STRING(
+            "It resembles a mysterious object\n"
+            "introduced in a paranormal magazine\n"
+            "as a cutting-edge weapon\n"
+            "shaped like Cobalion."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 365,
+        .trainerOffset = 7,
+        //FRONT_PIC(IronCrown, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_IronCrown,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(IronCrown, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(IronCrown),
+        //ICON(IronCrown, 0),
+        //.footprint = gMonFootprint_IronCrown,
+        LEARNSETS(IronCrown),
+    },
+#endif //P_FAMILY_IRON_CROWN
+
 #ifdef __INTELLISENSE__
 };
 #endif
