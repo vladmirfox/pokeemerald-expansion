@@ -5633,7 +5633,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .catchRate = 255,                                                               \
         .expYield = 275,                                                                \
         .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 50,                                                                \
+        .eggCycles = 20,                                                                \
         .friendship = STANDARD_FRIENDSHIP,                                              \
         .growthRate = GROWTH_SLOW,                                                      \
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
@@ -5747,6 +5747,57 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //ICON(TerapagosStellar, 0),
     },
 #endif //P_FAMILY_TERAPAGOS
+
+#if P_FAMILY_PECHARUNT
+    [SPECIES_PECHARUNT] =
+    {
+        .baseHP        = 88,
+        .baseAttack    = 88,
+        .baseDefense   = 160,
+        .baseSpeed     = 88,
+        .baseSpAttack  = 88,
+        .baseSpDefense = 88,
+        .types = { TYPE_POISON, TYPE_GHOST },
+        .catchRate = 3,
+        .expYield = 261, //Currently unknown
+        .evYield_Defense = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 50,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .abilities = { ABILITY_POISON_PUPPETEER, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .isMythical = TRUE,
+        .speciesName = _("Pecharunt"),
+        //.cryId = CRY_PECHARUNT,
+        .natDexNum = NATIONAL_DEX_PECHARUNT,
+        .categoryName = _("Subjugation"),
+        .height = 3,
+        .weight = 3,
+        .description = COMPOUND_STRING(
+            "It feeds others toxic mochi that\n"
+            "draw out desires and capabilities.\n"
+            "Those who eat the mochi fall under\n"
+            "Pecharunt's control, chained to its will."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 365,
+        .trainerOffset = 7,
+        //FRONT_PIC(Pecharunt, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Pecharunt,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(Pecharunt, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(Pecharunt),
+        //ICON(Pecharunt, 0),
+        //.footprint = gMonFootprint_Pecharunt,
+        LEARNSETS(Pecharunt),
+    },
+#endif //P_FAMILY_PECHARUNT
+
 #ifdef __INTELLISENSE__
 };
 #endif

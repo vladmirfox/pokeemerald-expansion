@@ -39154,3 +39154,9 @@ static const u16 sTerapagosTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TERAPAGOS
+
+#if P_FAMILY_PECHARUNT
+static const u16 sPecharuntTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
+#endif //P_FAMILY_PECHARUNT
