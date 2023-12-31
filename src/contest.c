@@ -768,6 +768,17 @@ static const u8 *const sInvalidContestMoveNames[] =
     [CONTEST_CATEGORIES_COUNT] = COMPOUND_STRING("???"),
 };
 
+// Takes the .attentionLevel of a contestant as an index.
+static const u8 *const sRoundResultTexts[] =
+{
+    COMPOUND_STRING("{STR_VAR_1} failed to\nstand out at all…{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} didn't stand\nout very much…{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} caught a\nlittle attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} attracted a\nlot of attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} commanded\ntotal attention.{PAUSE_UNTIL_PRESS}"),
+    COMPOUND_STRING("{STR_VAR_1} hasn't made\nits appeal.{PAUSE_UNTIL_PRESS}"),
+};
+
 static const struct BgTemplate sContestBgTemplates[] =
 {
     {
