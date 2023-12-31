@@ -5627,6 +5627,126 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
 #endif //P_FAMILY_IRON_CROWN
 
+#if P_FAMILY_TERAPAGOS
+#define TERAPAGOS_MISC_INFO                                                             \
+        .types = { TYPE_NORMAL, TYPE_NORMAL },                                          \
+        .catchRate = 255,                                                               \
+        .expYield = 275,                                                                \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 50,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },    \
+        .bodyColor = BODY_COLOR_BLUE,                                                   \
+        .speciesName = _("Terapagos"),                                                  \
+        .natDexNum = NATIONAL_DEX_TERAPAGOS,                                            \
+        .categoryName = _("Tera"),                                                      \
+        LEARNSETS(Terapagos),                                                           \
+        .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,                             \
+        .formChangeTable = sTerapagosFormChangeTable,                                   \
+        .isLegendary = TRUE
+        //.cryId = CRY_TERAPAGOS,
+        //.footprint = gMonFootprint_Terapagos,
+
+    [SPECIES_TERAPAGOS_NORMAL] =
+    {
+        TERAPAGOS_MISC_INFO,
+        .baseHP        = 90,
+        .baseAttack    = 65,
+        .baseDefense   = 85,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 85,
+        .evYield_Defense = 1,
+        .abilities = { ABILITY_TERA_SHIFT, ABILITY_NONE },
+        .height = 2,
+        .weight = 65,
+        .description = COMPOUND_STRING(
+            "Terapagos protects itself using its\n"
+            "power to transform energy into hard\n"
+            "crystals. This Pokémon is the source\n"
+            "of the Terastal phenomenon."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 365,
+        .trainerOffset = 7,
+        //FRONT_PIC(TerapagosNormal, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_TerapagosNormal,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(TerapagosNormal, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(TerapagosNormal),
+        //ICON(TerapagosNormal, 0),
+    },
+
+    [SPECIES_TERAPAGOS_TERASTAL] =
+    {
+        TERAPAGOS_MISC_INFO,
+        .baseHP        = 95,
+        .baseAttack    = 95,
+        .baseDefense   = 110,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 110,
+        .evYield_Defense = 2,
+        .abilities = { ABILITY_TERA_SHELL, ABILITY_NONE },
+        .height = 3,
+        .weight = 160,
+        .description = COMPOUND_STRING(
+            "The shell is made of crystallized\n"
+            "Terastal energy. When struck by a move,\n"
+            "this shell absorbs the move's energy\n"
+            "and transfers it to Terapagos."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 365,
+        .trainerOffset = 7,
+        //FRONT_PIC(TerapagosTerastal, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_TerapagosTerastal,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(TerapagosTerastal, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(TerapagosTerastal),
+        //ICON(TerapagosTerastal, 0),
+    },
+
+    [SPECIES_TERAPAGOS_STELLAR] =
+    {
+        TERAPAGOS_MISC_INFO,
+        .baseHP        = 160,
+        .baseAttack    = 105,
+        .baseDefense   = 110,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 110,
+        .evYield_HP = 3,
+        .abilities = { ABILITY_TERAFORM_ZERO, ABILITY_NONE },
+        .height = 17,
+        .weight = 770,
+        .description = COMPOUND_STRING(
+            "An old expedition journal describes the\n"
+            "sight of this Pokémon buried in the,\n"
+            "depths of the earth as resembling a\n"
+            "planet floating in space."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 365,
+        .trainerOffset = 7,
+        //FRONT_PIC(TerapagosStellar, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_TerapagosStellar,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //BACK_PIC(TerapagosStellar, 64, 64),
+        .backPicYOffset = 0,
+        //.backAnimId = BACK_ANIM_NONE,
+        //PALETTES(TerapagosStellar),
+        //ICON(TerapagosStellar, 0),
+    },
+#endif //P_FAMILY_TERAPAGOS
 #ifdef __INTELLISENSE__
 };
 #endif

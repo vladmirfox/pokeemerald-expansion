@@ -39148,3 +39148,9 @@ static const u16 sIronCrownTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_IRON_CROWN
+
+#if P_FAMILY_TERAPAGOS
+static const u16 sTerapagosTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
+#endif //P_FAMILY_TERAPAGOS
