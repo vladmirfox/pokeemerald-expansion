@@ -740,6 +740,34 @@ const u8 *const gContestEffectDescriptionPointers[] =
     [CONTEST_EFFECT_DONT_EXCITE_AUDIENCE]                  = COMPOUND_STRING("Temporarily stops the\ncrowd from growing excited."),
 };
 
+const u8 *const gContestMoveTypeTextPointers[] =
+{
+    [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("COOL"),
+    [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("BEAUTY"),
+    [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("CUTE"),
+    [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("SMART"),
+    [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("TOUGH"),
+};
+
+static const u8 *const sContestConditions[] =
+{
+    [CONTEST_CATEGORY_COOL]   = COMPOUND_STRING("coolness"),
+    [CONTEST_CATEGORY_BEAUTY] = COMPOUND_STRING("beauty"),
+    [CONTEST_CATEGORY_CUTE]   = COMPOUND_STRING("cuteness"),
+    [CONTEST_CATEGORY_SMART]  = COMPOUND_STRING("smartness"),
+    [CONTEST_CATEGORY_TOUGH]  = COMPOUND_STRING("toughness"),
+};
+
+static const u8 *const sInvalidContestMoveNames[] =
+{
+    [CONTEST_CATEGORY_COOL]    = COMPOUND_STRING("COOL Move"),
+    [CONTEST_CATEGORY_BEAUTY]  = COMPOUND_STRING("BEAUTY Move"),
+    [CONTEST_CATEGORY_CUTE]    = COMPOUND_STRING("CUTE Move"),
+    [CONTEST_CATEGORY_SMART]   = COMPOUND_STRING("SMART Move"),
+    [CONTEST_CATEGORY_TOUGH]   = COMPOUND_STRING("TOUGH Move"),
+    [CONTEST_CATEGORIES_COUNT] = COMPOUND_STRING("???"),
+};
+
 static const struct BgTemplate sContestBgTemplates[] =
 {
     {

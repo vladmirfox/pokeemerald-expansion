@@ -1,20 +1,3 @@
-@ Contest type names
-
-gContestMoveTypeCoolText::
-	.string "COOL$"
-
-gContestMoveTypeBeautyText::
-	.string "BEAUTY$"
-
-gContestMoveTypeCuteText::
-	.string "CUTE$"
-
-gContestMoveTypeSmartText::
-	.string "SMART$"
-
-gContestMoveTypeToughText::
-	.string "TOUGH$"
-
 gText_AppealNumWhichMoveWillBePlayed::
 	.string "Appeal no. {STR_VAR_1}!\n"
 	.string "Which move will be played?$"
@@ -34,54 +17,6 @@ gText_MonWasWatchingOthers::
 gText_AllOutOfAppealTime::
 	.string "We're all out of\n"
 	.string "Appeal Time!{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}{PAUSE 0x0F}$"
-
-@ Unused appeal result texts
-
-gText_ButAppealWasJammed::
-	.string "But the appeal was\n"
-	.string "jammed.$"
-
-gText_FollowedAnotherMonsLead::
-	.string "It followed another\n"
-	.string "POKéMON's lead.$"
-
-gText_ButItMessedUp::
-	.string "But it messed up.$"
-
-gText_WentBetterThanUsual::
-	.string "It went better than\n"
-	.string "usual.$"
-
-gText_JudgeLookedAwayForSomeReason::
-	.string "The JUDGE looked away\n"
-	.string "for some reason.$"
-
-gText_WorkedHardToBuildOnPastMistakes::
-	.string "It worked hard to build on\n"
-	.string "past mistakes.$"
-
-gText_CantMakeAnyMoreMoves::
-	.string "It can't make any more\n"
-	.string "moves.$"
-
-gText_WorkedFrighteninglyWell::
-	.string "It worked frighteningly\n"
-	.string "well.$"
-
-gText_WorkedHardAsStandoutMon::
-	.string "It worked as hard as the\n"
-	.string "standout POKéMON.$"
-
-gText_JudgedLookedOnExpectantly::
-	.string "The JUDGE looked on\n"
-	.string "expectantly.$"
-
-gText_WorkedRatherWell::
-	.string "It worked rather well.$"
-
-gText_WorkedLittleBetterThanUsual::
-	.string "It worked a little better\n"
-	.string "than usual.$"
 
 @ Round result texts
 
@@ -108,11 +43,6 @@ gText_MonCommandedTotalAttention::
 gText_MonHasntMadeItsAppeal::
 	.string "{STR_VAR_1} hasn't made\n"
 	.string "its appeal.{PAUSE_UNTIL_PRESS}$"
-
-@ Unused
-gText_AnticipationSwelledForMonsAppealNext2::
-	.string "Anticipation swelled for\n"
-	.string "{STR_VAR_1}'s appeal next.$"
 
 gText_EmptyContestString::
 	.string "$"
@@ -499,40 +429,3 @@ gText_Contest_Hesitancy::
 
 gText_Contest_Fear::
 	.string "fear$"
-
-gText_Contest_Coolness::
-	.string "coolness$"
-
-gText_Contest_Beauty::
-	.string "beauty$"
-
-gText_Contest_Cuteness::
-	.string "cuteness$"
-
-gText_Contest_Smartness::
-	.string "smartness$"
-
-gText_Contest_Toughness::
-	.string "toughness$"
-
-@ Unused
-gText_Tension::
-	.string "TENSION$"
-
-gText_CoolMove::
-	.string "COOL Move$"
-
-gText_BeautyMove::
-	.string "BEAUTY Move$"
-
-gText_CuteMove::
-	.string "CUTE Move$"
-
-gText_SmartMove::
-	.string "SMART Move$"
-
-gText_ToughMove::
-	.string "TOUGH Move$"
-
-gText_3QuestionMarks::
-	.string "???$"
