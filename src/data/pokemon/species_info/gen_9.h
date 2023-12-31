@@ -5026,7 +5026,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 35,
         .weight = 2800,
         .description = COMPOUND_STRING(
-            "Ecology under research."),
+            "This ferocious creature is shrouded in\n"
+            "mystery. It's named after an aquatic\n"
+            "monster mentioned in an old journal."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -5073,7 +5075,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .height = 15,
         .weight = 1250,
         .description = COMPOUND_STRING(
-            "Ecology under analysis."),
+            "According to the few eyewitness accounts\n"
+            "that exist, it used its shining blades\n"
+            "to julienne large trees and boulders."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
