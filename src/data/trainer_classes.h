@@ -1,467 +1,80 @@
 #define DEFAULT_MONEY 5
 #define DEFAULT_BALL ITEM_POKE_BALL
 
+#define TRAINER_CLASS(trainerClass, trainerName, trainerMoney, trainerBall) \
+    [TRAINER_CLASS_##trainerClass] =                                        \
+    {                                                                       \
+        .name = trainerName,                                                \
+        .money = trainerMoney,                                              \
+        .ball = trainerBall,                                                \
+    }
+
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
 {
-    [TRAINER_CLASS_PKMN_TRAINER_1] =
-    {
-        .name = _("{PKMN} TRAINER"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PKMN_TRAINER_2] =
-    {
-        .name = _("{PKMN} TRAINER"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_HIKER] =
-    {
-        .name = _("HIKER"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_TEAM_AQUA] =
-    {
-        .name = _("TEAM AQUA"),
-        .money = 5,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PKMN_BREEDER] =
-    {
-        .name = _("{PKMN} BREEDER"),
-        .money = 10,
-        .ball = (B_TRAINER_CLASS_POKE_BALLS >= GEN_7) ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL,
-    },
-
-    [TRAINER_CLASS_COOLTRAINER] =
-    {
-        .name = _("COOLTRAINER"),
-        .money = 12,
-        .ball = ITEM_ULTRA_BALL,
-    },
-
-    [TRAINER_CLASS_BIRD_KEEPER] =
-    {
-        .name = _("BIRD KEEPER"),
-        .money = 8,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_COLLECTOR] =
-    {
-        .name = _("COLLECTOR"),
-        .money = 15,
-        .ball = ITEM_PREMIER_BALL,
-    },
-
-    [TRAINER_CLASS_SWIMMER_M] =
-    {
-        .name = _("SWIMMER♂"),
-        .money = 2,
-        .ball = ITEM_DIVE_BALL,
-    },
-
-    [TRAINER_CLASS_TEAM_MAGMA] =
-    {
-        .name = _("TEAM MAGMA"),
-        .money = 5,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_EXPERT] =
-    {
-        .name = _("EXPERT"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_AQUA_ADMIN] =
-    {
-        .name = _("AQUA ADMIN"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_BLACK_BELT] =
-    {
-        .name = _("BLACK BELT"),
-        .money = 8,
-        .ball = ITEM_ULTRA_BALL,
-    },
-
-    [TRAINER_CLASS_AQUA_LEADER] =
-    {
-        .name = _("AQUA LEADER"),
-        .money = 20,
-        .ball = ITEM_MASTER_BALL,
-    },
-
-    [TRAINER_CLASS_HEX_MANIAC] =
-    {
-        .name = _("HEX MANIAC"),
-        .money = 6,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_AROMA_LADY] =
-    {
-        .name = _("AROMA LADY"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_RUIN_MANIAC] =
-    {
-        .name = _("RUIN MANIAC"),
-        .money = 15,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_INTERVIEWER] =
-    {
-        .name = _("INTERVIEWER"),
-        .money = 12,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_TUBER_F] =
-    {
-        .name = _("TUBER"),
-        .money = 1,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_TUBER_M] =
-    {
-        .name = _("TUBER"),
-        .money = 1,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_LADY] =
-    {
-        .name = _("LADY"),
-        .money = 50,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_BEAUTY] =
-    {
-        .name = _("BEAUTY"),
-        .money = 20,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_RICH_BOY] =
-    {
-        .name = _("RICH BOY"),
-        .money = 50,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_POKEMANIAC] =
-    {
-        .name = _("POKéMANIAC"),
-        .money = 15,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_GUITARIST] =
-    {
-        .name = _("GUITARIST"),
-        .money = 8,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_KINDLER] =
-    {
-        .name = _("KINDLER"),
-        .money = 8,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_CAMPER] =
-    {
-        .name = _("CAMPER"),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PICNICKER] =
-    {
-        .name = _("PICNICKER"),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_BUG_MANIAC] =
-    {
-        .name = _("BUG MANIAC"),
-        .money = 15,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PSYCHIC] =
-    {
-        .name = _("PSYCHIC"),
-        .money = 6,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_GENTLEMAN] =
-    {
-        .name = _("GENTLEMAN"),
-        .money = 20,
-        .ball = ITEM_LUXURY_BALL,
-    },
-
-    [TRAINER_CLASS_ELITE_FOUR] =
-    {
-        .name = _("ELITE FOUR"),
-        .money = 25,
-        .ball = ITEM_ULTRA_BALL,
-    },
-
-    [TRAINER_CLASS_LEADER] =
-    {
-        .name = _("LEADER"),
-        .money = 25,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SCHOOL_KID] =
-    {
-        .name = _("SCHOOL KID"),
-        .money = 5,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SR_AND_JR] =
-    {
-        .name = _("SR. AND JR."),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_WINSTRATE] =
-    {
-        .name = _("WINSTRATE"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_POKEFAN] =
-    {
-        .name = _("POKéFAN"),
-        .money = 20,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_YOUNGSTER] =
-    {
-        .name = _("YOUNGSTER"),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_CHAMPION] =
-    {
-        .name = _("CHAMPION"),
-        .money = 50,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_FISHERMAN] =
-    {
-        .name = _("FISHERMAN"),
-        .money = 10,
-        .ball = (B_TRAINER_CLASS_POKE_BALLS >= GEN_8) ? ITEM_DIVE_BALL : ITEM_LURE_BALL,
-    },
-
-    [TRAINER_CLASS_TRIATHLETE] =
-    {
-        .name = _("TRIATHLETE"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_DRAGON_TAMER] =
-    {
-        .name = _("DRAGON TAMER"),
-        .money = 12,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_NINJA_BOY] =
-    {
-        .name = _("NINJA BOY"),
-        .money = 3,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_BATTLE_GIRL] =
-    {
-        .name = _("BATTLE GIRL"),
-        .money = 6,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PARASOL_LADY] =
-    {
-        .name = _("PARASOL LADY"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SWIMMER_F] =
-    {
-        .name = _("SWIMMER♀"),
-        .money = 2,
-        .ball = ITEM_DIVE_BALL,
-    },
-
-    [TRAINER_CLASS_TWINS] =
-    {
-        .name = _("TWINS"),
-        .money = 3,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SAILOR] =
-    {
-        .name = _("SAILOR"),
-        .money = 8,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_COOLTRAINER_2] =
-    {
-        .name = _("COOLTRAINER"),
-        .money = DEFAULT_MONEY,
-        .ball = ITEM_ULTRA_BALL,
-    },
-
-    [TRAINER_CLASS_MAGMA_ADMIN] =
-    {
-        .name = _("MAGMA ADMIN"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_RIVAL] =
-    {
-        .name = _("{PKMN} TRAINER"),
-        .money = 15,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_BUG_CATCHER] =
-    {
-        .name = _("BUG CATCHER"),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PKMN_RANGER] =
-    {
-        .name = _("{PKMN} RANGER"),
-        .money = 12,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_MAGMA_LEADER] =
-    {
-        .name = _("MAGMA LEADER"),
-        .money = 20,
-        .ball = ITEM_MASTER_BALL,
-    },
-
-    [TRAINER_CLASS_LASS] =
-    {
-        .name = _("LASS"),
-        .money = 4,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_YOUNG_COUPLE] =
-    {
-        .name = _("YOUNG COUPLE"),
-        .money = 8,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_OLD_COUPLE] =
-    {
-        .name = _("OLD COUPLE"),
-        .money = 10,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SIS_AND_BRO] =
-    {
-        .name = _("SIS AND BRO"),
-        .money = 3,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_SALON_MAIDEN] =
-    {
-        .name = _("SALON MAIDEN"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_DOME_ACE] =
-    {
-        .name = _("DOME ACE"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PALACE_MAVEN] =
-    {
-        .name = _("PALACE MAVEN"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_ARENA_TYCOON] =
-    {
-        .name = _("ARENA TYCOON"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_FACTORY_HEAD] =
-    {
-        .name = _("FACTORY HEAD"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PIKE_QUEEN] =
-    {
-        .name = _("PIKE QUEEN"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_PYRAMID_KING] =
-    {
-        .name = _("PYRAMID KING"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
-
-    [TRAINER_CLASS_RS_PROTAG] =
-    {
-        .name = _("{PKMN} TRAINER"),
-        .money = DEFAULT_MONEY,
-        .ball = DEFAULT_BALL,
-    },
+    TRAINER_CLASS(PKMN_TRAINER_1, _("{PKMN} TRAINER"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(PKMN_TRAINER_2, _("{PKMN} TRAINER"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(HIKER, _("HIKER"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(TEAM_AQUA, _("TEAM AQUA"), 5, DEFAULT_BALL),
+    TRAINER_CLASS(PKMN_BREEDER, _("{PKMN} BREEDER"), 10, (B_TRAINER_CLASS_POKE_BALLS >= GEN_8) ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL),
+    TRAINER_CLASS(COOLTRAINER, _("COOLTRAINER"), 12, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(BIRD_KEEPER, _("BIRD KEEPER"), 8, DEFAULT_BALL),
+    TRAINER_CLASS(COLLECTOR, _("COLLECTOR"), 15, ITEM_PREMIER_BALL),
+    TRAINER_CLASS(SWIMMER_M, _("SWIMMER♂"), 2, ITEM_DIVE_BALL),
+    TRAINER_CLASS(TEAM_MAGMA, _("TEAM MAGMA"), 5, DEFAULT_BALL),
+    TRAINER_CLASS(EXPERT, _("EXPERT"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(AQUA_ADMIN, _("AQUA ADMIN"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(BLACK_BELT, _("BLACK BELT"), 8, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(AQUA_LEADER, _("AQUA LEADER"), 20, ITEM_MASTER_BALL),
+    TRAINER_CLASS(HEX_MANIAC, _("HEX MANIAC"), 6, DEFAULT_BALL),
+    TRAINER_CLASS(AROMA_LADY, _("AROMA LADY"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(RUIN_MANIAC, _("RUIN MANIAC"), 15, DEFAULT_BALL),
+    TRAINER_CLASS(INTERVIEWER, _("INTERVIEWER"), 12, DEFAULT_BALL),
+    TRAINER_CLASS(TUBER_F, _("TUBER"), 1, DEFAULT_BALL),
+    TRAINER_CLASS(TUBER_M, _("TUBER"), 1, DEFAULT_BALL),
+    TRAINER_CLASS(LADY, _("LADY"), 50, DEFAULT_BALL),
+    TRAINER_CLASS(BEAUTY, _("BEAUTY"), 20, DEFAULT_BALL),
+    TRAINER_CLASS(RICH_BOY, _("RICH BOY"), 50, DEFAULT_BALL),
+    TRAINER_CLASS(POKEMANIAC, _("POKéMANIAC"), 15, DEFAULT_BALL),
+    TRAINER_CLASS(GUITARIST, _("GUITARIST"), 8, DEFAULT_BALL),
+    TRAINER_CLASS(KINDLER, _("KINDLER"), 8, DEFAULT_BALL),
+    TRAINER_CLASS(CAMPER, _("CAMPER"), 4, DEFAULT_BALL),
+    TRAINER_CLASS(PICNICKER, _("PICNICKER"), 4, DEFAULT_BALL),
+    TRAINER_CLASS(BUG_MANIAC, _("BUG MANIAC"), 15, DEFAULT_BALL),
+    TRAINER_CLASS(PSYCHIC, _("PSYCHIC"), 6, DEFAULT_BALL),
+    TRAINER_CLASS(GENTLEMAN, _("GENTLEMAN"), 20, ITEM_LUXURY_BALL),
+    TRAINER_CLASS(ELITE_FOUR, _("ELITE FOUR"), 25, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(LEADER, _("LEADER"), 25, DEFAULT_BALL),
+    TRAINER_CLASS(SCHOOL_KID, _("SCHOOL KID"), 5, DEFAULT_BALL),
+    TRAINER_CLASS(SR_AND_JR, _("SR. AND JR."), 4, DEFAULT_BALL),
+    TRAINER_CLASS(WINSTRATE, _("WINSTRATE"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(POKEFAN, _("POKéFAN"), 20, DEFAULT_BALL),
+    TRAINER_CLASS(YOUNGSTER, _("YOUNGSTER"), 4, DEFAULT_BALL),
+    TRAINER_CLASS(CHAMPION, _("CHAMPION"), 50, DEFAULT_BALL),
+    TRAINER_CLASS(FISHERMAN, _("FISHERMAN"), 10, (B_TRAINER_CLASS_POKE_BALLS >= GEN_8) ? ITEM_DIVE_BALL : ITEM_LURE_BALL),
+    TRAINER_CLASS(TRIATHLETE, _("TRIATHLETE"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(DRAGON_TAMER, _("DRAGON TAMER"), 12, DEFAULT_BALL),
+    TRAINER_CLASS(NINJA_BOY, _("NINJA BOY"), 3, DEFAULT_BALL),
+    TRAINER_CLASS(BATTLE_GIRL, _("BATTLE GIRL"), 6, DEFAULT_BALL),
+    TRAINER_CLASS(PARASOL_LADY, _("PARASOL LADY"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(SWIMMER_F, _("SWIMMER♀"), 2, ITEM_DIVE_BALL),
+    TRAINER_CLASS(TWINS, _("TWINS"), 3, DEFAULT_BALL),
+    TRAINER_CLASS(SAILOR, _("SAILOR"), 8, DEFAULT_BALL),
+    TRAINER_CLASS(COOLTRAINER_2, _("COOLTRAINER"), DEFAULT_MONEY, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(MAGMA_ADMIN, _("MAGMA ADMIN"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(RIVAL, _("{PKMN} TRAINER"), 15, DEFAULT_BALL),
+    TRAINER_CLASS(BUG_CATCHER, _("BUG CATCHER"), 4, DEFAULT_BALL),
+    TRAINER_CLASS(PKMN_RANGER, _("{PKMN} RANGER"), 12, DEFAULT_BALL),
+    TRAINER_CLASS(MAGMA_LEADER, _("MAGMA LEADER"), 20, ITEM_MASTER_BALL),
+    TRAINER_CLASS(LASS, _("LASS"), 4, DEFAULT_BALL),
+    TRAINER_CLASS(YOUNG_COUPLE, _("YOUNG COUPLE"), 8, DEFAULT_BALL),
+    TRAINER_CLASS(OLD_COUPLE, _("OLD COUPLE"), 10, DEFAULT_BALL),
+    TRAINER_CLASS(SIS_AND_BRO, _("SIS AND BRO"), 3, DEFAULT_BALL),
+    TRAINER_CLASS(SALON_MAIDEN, _("SALON MAIDEN"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(DOME_ACE, _("DOME ACE"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(PALACE_MAVEN, _("PALACE MAVEN"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(ARENA_TYCOON, _("ARENA TYCOON"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(FACTORY_HEAD, _("FACTORY HEAD"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(PIKE_QUEEN, _("PIKE QUEEN"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(PYRAMID_KING, _("PYRAMID KING"), DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(RS_PROTAG, _("{PKMN} TRAINER"), DEFAULT_MONEY, DEFAULT_BALL),
 };
