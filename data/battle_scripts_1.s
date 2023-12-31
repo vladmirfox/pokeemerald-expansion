@@ -443,12 +443,12 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGlaiveRush              @ EFFECT_GLAIVE_RUSH
 	.4byte BattleScript_EffectBrickBreak              @ EFFECT_RAGING_BULL
 	.4byte BattleScript_EffectHit                     @ EFFECT_RAGE_FIST
-	.4byte BattleScript_EffectPayDayNew				  @ EFFECT_PAY_DAY_NEW
-	.4byte BattleScript_EffectPoisonHit          	  @ EFFECT_POISON_STEEL_HIT
+	.4byte BattleScript_EffectPayDayNew				  			@ EFFECT_PAY_DAY_NEW
+	.4byte BattleScript_EffectPoisonHit          	  	@ EFFECT_POISON_STEEL_HIT
 	.4byte BattleScript_EffectEvasionDown6            @ EFFECT_EVASION_DOWN_6
-	.4byte BattleScript_EffectSpiderWeb         	  @ EFFECT_SPIDER_WEB
-	.4byte BattleScript_EffectMilkDrink         	  @ EFFECT_MILK_DRINK
-	.4byte BattleScript_EffectRecharge	  			  @ EFFECT_RECHARGE_EXCEPT_FAINT
+	.4byte BattleScript_EffectSpiderWeb         	  	@ EFFECT_SPIDER_WEB
+	.4byte BattleScript_EffectMilkDrink         	  	@ EFFECT_MILK_DRINK
+	.4byte BattleScript_EffectRecharge	  			  		@ EFFECT_RECHARGE_EXCEPT_FAINT
 	.4byte BattleScript_EffectHit                     @ EFFECT_CRUSH_GRIP
 	.4byte BattleScript_EffectHit                     @ EFFECT_RECOIL_10_STATUS
 	.4byte BattleScript_EffectDiamondStorm            @ EFFECT_DIAMOND_STORM
