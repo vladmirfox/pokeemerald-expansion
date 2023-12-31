@@ -1,21 +1,6 @@
 
 #include "global.h"
 
-// sUnusedComboMoveNameTexts
-extern const u8 gText_RainDance[];
-extern const u8 gText_Rage[];
-extern const u8 gText_FocusEnergy[];
-extern const u8 gText_Hypnosis[];
-extern const u8 gText_Softboiled[];
-extern const u8 gText_HornAttack[];
-extern const u8 gText_SwordsDance[];
-extern const u8 gText_Conversion[];
-extern const u8 gText_SunnyDay[];
-extern const u8 gText_Rest2[];
-extern const u8 gText_Vicegrip[];
-extern const u8 gText_DefenseCurl[];
-extern const u8 gText_LockOn[];
-
 // gContestMoveTypeTextPointers
 extern const u8 gContestMoveTypeCoolText[];
 extern const u8 gContestMoveTypeBeautyText[];
@@ -166,27 +151,6 @@ extern const u8 gText_Contest_Hesitancy[];
 extern const u8 gText_Contest_Fear[];
 extern const u8 gText_AppealNumWhichMoveWillBePlayed[];
 extern const u8 gText_AppealNumButItCantParticipate[];
-
-// Unreferenced array of pointers to move names.
-// All of the moves except Conversion are combo starters, so this may have
-// been an early list of combo starters.
-static const u8 *const sUnusedComboMoveNameTexts[] =
-{
-    gText_RainDance,
-    gText_RainDance,
-    gText_Rage,
-    gText_FocusEnergy,
-    gText_Hypnosis,
-    gText_Softboiled,
-    gText_HornAttack,
-    gText_SwordsDance,
-    gText_Conversion,
-    gText_SunnyDay,
-    gText_Rest2,
-    gText_Vicegrip,
-    gText_DefenseCurl,
-    gText_LockOn
-};
 
 const u8 *const gContestMoveTypeTextPointers[] =
 {
