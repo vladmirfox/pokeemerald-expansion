@@ -223,7 +223,6 @@ bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 bool32 IsGen6ExpShareEnabled(void);
 
 // Ability checks
-bool32 IsSkillSwapBannedAbility(u16 ability);
 bool32 IsRolePlayDoodleBannedAbility(u16 ability);
 bool32 IsRolePlayDoodleBannedAbilityAttacker(u16 ability);
 

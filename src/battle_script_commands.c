@@ -14129,8 +14129,8 @@ static void Cmd_tryswapabilities(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (IsSkillSwapBannedAbility(gBattleMons[gBattlerAttacker].ability)
-      || IsSkillSwapBannedAbility(gBattleMons[gBattlerTarget].ability))
+    if (gAbilities[gBattleMons[gBattlerAttacker].ability].cantBeTransferred
+      || gAbilities[gBattleMons[gBattlerTarget].ability].cantBeTransferred)
     {
         RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
         gBattlescriptCurrInstr = cmd->failInstr;

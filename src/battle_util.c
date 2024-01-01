@@ -94,34 +94,6 @@ static const u8 sPkblToEscapeFactor[][3] = {
 static const u8 sGoNearCounterToCatchFactor[] = {4, 3, 2, 1};
 static const u8 sGoNearCounterToEscapeFactor[] = {4, 4, 4, 4};
 
-static const u16 sSkillSwapBannedAbilities[] =
-{
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_BATTLE_BOND,
-    ABILITY_COMATOSE,
-    ABILITY_COMMANDER,
-    ABILITY_DISGUISE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_HADRON_ENGINE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_ICE_FACE,
-    ABILITY_ILLUSION,
-    ABILITY_MULTITYPE,
-    ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ORICHALCUM_PULSE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_PROTOSYNTHESIS,
-    ABILITY_QUARK_DRIVE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_WONDER_GUARD,
-    ABILITY_ZEN_MODE,
-    ABILITY_ZERO_TO_HERO,
-};
-
 static const u16 sRolePlayDoodleBannedAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
@@ -10714,17 +10686,6 @@ bool32 CanFling(u32 battler)
 }
 
 // Ability checks
-bool32 IsSkillSwapBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sSkillSwapBannedAbilities); i++)
-    {
-        if (ability == sSkillSwapBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool32 IsRolePlayDoodleBannedAbility(u16 ability)
 {
     u32 i;
