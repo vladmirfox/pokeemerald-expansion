@@ -180,64 +180,6 @@ static const u16 sRolePlayDoodleBannedAttackerAbilities[] =
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sEntrainmentBannedAbilities[] =
-{
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_BATTLE_BOND,
-    ABILITY_COMATOSE,
-    ABILITY_COMMANDER,
-    ABILITY_DISGUISE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_HADRON_ENGINE,
-    ABILITY_ICE_FACE,
-    ABILITY_MULTITYPE,
-    ABILITY_ORICHALCUM_PULSE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_PROTOSYNTHESIS,
-    ABILITY_QUARK_DRIVE,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_TRUANT,
-    ABILITY_ZEN_MODE,
-    ABILITY_ZERO_TO_HERO,
-};
-
-static const u16 sEntrainmentBannedAttackerAbilities[] =
-{
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_BATTLE_BOND,
-    ABILITY_COMATOSE,
-    ABILITY_COMMANDER,
-    ABILITY_DISGUISE,
-    ABILITY_FLOWER_GIFT,
-    ABILITY_FORECAST,
-    ABILITY_GULP_MISSILE,
-    ABILITY_HADRON_ENGINE,
-    ABILITY_HUNGER_SWITCH,
-    ABILITY_ICE_FACE,
-    ABILITY_ILLUSION,
-    ABILITY_IMPOSTER,
-    ABILITY_MULTITYPE,
-    ABILITY_NEUTRALIZING_GAS,
-    ABILITY_ORICHALCUM_PULSE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_POWER_OF_ALCHEMY,
-    ABILITY_PROTOSYNTHESIS,
-    ABILITY_QUARK_DRIVE,
-    ABILITY_RECEIVER,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_TRACE,
-    ABILITY_ZEN_MODE,
-    ABILITY_ZERO_TO_HERO,
-};
-
 static u8 CalcBeatUpPower(void)
 {
     u8 basePower;
@@ -10800,28 +10742,6 @@ bool32 IsRolePlayDoodleBannedAbilityAttacker(u16 ability)
     for (i = 0; i < ARRAY_COUNT(sRolePlayDoodleBannedAttackerAbilities); i++)
     {
         if (ability == sRolePlayDoodleBannedAttackerAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsEntrainmentBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sEntrainmentBannedAbilities); i++)
-    {
-        if (ability == sEntrainmentBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sEntrainmentBannedAttackerAbilities); i++)
-    {
-        if (ability == sEntrainmentBannedAttackerAbilities[i])
             return TRUE;
     }
     return FALSE;

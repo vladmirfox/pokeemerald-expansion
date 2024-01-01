@@ -226,8 +226,6 @@ bool32 IsGen6ExpShareEnabled(void);
 bool32 IsSkillSwapBannedAbility(u16 ability);
 bool32 IsRolePlayDoodleBannedAbility(u16 ability);
 bool32 IsRolePlayDoodleBannedAbilityAttacker(u16 ability);
-bool32 IsEntrainmentBannedAbility(u16 ability);
-bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
 
 bool32 CanSleep(u32 battler);
 bool32 CanBePoisoned(u32 battlerAttacker, u32 battlerTarget);
