@@ -2183,8 +2183,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_SKILL_SWAP:
             if (aiData->abilities[battlerAtk] == ABILITY_NONE || aiData->abilities[battlerDef] == ABILITY_NONE
-              || gAbilities[aiData->abilities[battlerAtk]].cantBeTransferred
-              || gAbilities[aiData->abilities[battlerDef]].cantBeTransferred
+              || gAbilities[aiData->abilities[battlerAtk]].cantBeSwapped
+              || gAbilities[aiData->abilities[battlerDef]].cantBeSwapped
               || aiData->holdEffects[battlerDef] == HOLD_EFFECT_ABILITY_SHIELD)
                 ADJUST_SCORE(-10);
             break;
