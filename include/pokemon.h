@@ -514,6 +514,11 @@ struct Ability
     u8 name[ABILITY_NAME_LENGTH + 1];
     const u8 *description;
     s8 aiRating;
+    u8 cantBeTransferred:1;
+    u8 cantBeTraced:1;
+    u8 cantBeSuppressed:1;
+    u8 canBeIgnored:1;
+    u8 failsOnImposter:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
