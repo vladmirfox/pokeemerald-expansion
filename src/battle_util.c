@@ -5133,34 +5133,22 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker)
-             && gBattleStruct->overwrittenAbilities[gBattlerAttacker] != GetBattlerAbility(gBattlerTarget))
+             && gBattleStruct->overwrittenAbilities[gBattlerAttacker] != GetBattlerAbility(gBattlerTarget)
+             && gBattleMons[gBattlerTarget].ability != ABILITY_MUMMY
+             && gBattleMons[gBattlerTarget].ability != ABILITY_LINGERING_AROMA
+             && !gAbilities[gBattleMons[gBattlerTarget].ability].cantBeSuppressed)
             {
-                switch (gBattleMons[gBattlerAttacker].ability)
+                if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
                 {
-                case ABILITY_MUMMY:
-                case ABILITY_BATTLE_BOND:
-                case ABILITY_COMATOSE:
-                case ABILITY_DISGUISE:
-                case ABILITY_MULTITYPE:
-                case ABILITY_POWER_CONSTRUCT:
-                case ABILITY_RKS_SYSTEM:
-                case ABILITY_SCHOOLING:
-                case ABILITY_SHIELDS_DOWN:
-                case ABILITY_STANCE_CHANGE:
-                    break;
-                default:
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
-                    {
-                        RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
-                        break;
-                    }
-
-                    gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_MummyActivates;
-                    effect++;
+                    RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                     break;
                 }
+
+                gLastUsedAbility = gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MummyActivates;
+                effect++;
+                break;
             }
             break;
         case ABILITY_WANDERING_SPIRIT:
@@ -5168,40 +5156,22 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker)
-             && !IsDynamaxed(gBattlerTarget))
+             && !IsDynamaxed(gBattlerTarget)
+             && !gAbilities[gBattleMons[gBattlerAttacker].ability].cantBeTransferred)
             {
-                switch (gBattleMons[gBattlerAttacker].ability)
+                if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
                 {
-                case ABILITY_DISGUISE:
-                case ABILITY_FLOWER_GIFT:
-                case ABILITY_GULP_MISSILE:
-                case ABILITY_HUNGER_SWITCH:
-                case ABILITY_ICE_FACE:
-                case ABILITY_ILLUSION:
-                case ABILITY_IMPOSTER:
-                case ABILITY_RECEIVER:
-                case ABILITY_RKS_SYSTEM:
-                case ABILITY_SCHOOLING:
-                case ABILITY_STANCE_CHANGE:
-                case ABILITY_WONDER_GUARD:
-                case ABILITY_ZEN_MODE:
-                case ABILITY_ZERO_TO_HERO:
-                    break;
-                default:
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
-                    {
-                        RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
-                        break;
-                    }
-
-                    gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
-                    gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
-                    gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gLastUsedAbility;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_WanderingSpiritActivates;
-                    effect++;
+                    RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                     break;
                 }
+
+                gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
+                gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
+                gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gLastUsedAbility;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_WanderingSpiritActivates;
+                effect++;
+                break;
             }
             break;
         case ABILITY_ANGER_POINT:
@@ -5998,35 +5968,6 @@ bool32 TryPrimalReversion(u32 battler)
     return FALSE;
 }
 
-static const u16 sNeutralizingGasBannedAbilities[] =
-{
-    ABILITY_AS_ONE_ICE_RIDER,
-    ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_COMATOSE,
-    ABILITY_DISGUISE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_ICE_FACE,
-    ABILITY_MULTITYPE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_ZEN_MODE,
-    ABILITY_ZERO_TO_HERO,
-};
-
-bool32 IsNeutralizingGasBannedAbility(u16 ability)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sNeutralizingGasBannedAbilities); i++)
-    {
-        if (ability == sNeutralizingGasBannedAbilities[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool32 IsNeutralizingGasOnField(void)
 {
     u32 i;
@@ -6060,10 +6001,13 @@ bool32 IsMoldBreakerTypeAbility(u32 ability)
 
 u32 GetBattlerAbility(u32 battler)
 {
+    if (gAbilities[gBattleMons[battler].ability].cantBeSuppressed)
+        return gBattleMons[battler].ability;
+
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
         return ABILITY_NONE;
 
-    if (IsNeutralizingGasOnField() && !IsNeutralizingGasBannedAbility(gBattleMons[battler].ability))
+    if (IsNeutralizingGasOnField() && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS)
         return ABILITY_NONE;
 
     if (IsMyceliumMightOnField())
