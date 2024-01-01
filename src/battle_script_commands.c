@@ -9329,7 +9329,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_SIMPLE_BEAM:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IsSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability)
+        if (gAbilities[gBattleMons[gBattlerTarget].ability].cantBeOverwritten
             || gBattleMons[gBattlerTarget].ability == ABILITY_SIMPLE)
         {
             RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
@@ -14029,7 +14029,7 @@ static void Cmd_setgastroacid(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (IsGastroAcidBannedAbility(gBattleMons[gBattlerTarget].ability))
+    if (gAbilities[gBattleMons[gBattlerTarget].ability].cantBeSuppressed)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -15489,7 +15489,8 @@ static void Cmd_tryworryseed(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (IsWorrySeedBannedAbility(gBattleMons[gBattlerTarget].ability))
+    if (gAbilities[gBattleMons[gBattlerTarget].ability].cantBeOverwritten
+      || gBattleMons[gBattlerTarget].ability == ABILITY_INSOMNIA)
     {
         RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);

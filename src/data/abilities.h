@@ -5,6 +5,8 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("-------"),
         .description = COMPOUND_STRING("No special ability."),
         .aiRating = 0,
+        .cantBeTransferred = TRUE,
+        .cantBeTraced = TRUE,
     },
 
     [ABILITY_STENCH] =
@@ -198,6 +200,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Wonder Guard"),
         .description = COMPOUND_STRING("“Supereffective” hits."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .canBeIgnored = TRUE,
     },
@@ -285,7 +288,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Trace"),
         .description = COMPOUND_STRING("Copies special ability."),
         .aiRating = 6,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
     },
 
@@ -420,6 +423,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Truant"),
         .description = COMPOUND_STRING("Moves only every two turns."),
         .aiRating = -2,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_HUSTLE] =
@@ -455,7 +459,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Forecast"),
         .description = COMPOUND_STRING("Changes with the weather."),
         .aiRating = 6,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
     },
 
@@ -907,9 +911,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Multitype"),
         .description = COMPOUND_STRING("Changes type to its Plate."),
         .aiRating = 8,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_FLOWER_GIFT] =
@@ -917,7 +923,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Flower Gift"),
         .description = COMPOUND_STRING("Allies power up in sunshine."),
         .aiRating = 4,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
         .canBeIgnored = TRUE,
     },
@@ -1118,6 +1124,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Illusion"),
         .description = COMPOUND_STRING("Appears as a partner."),
         .aiRating = 8,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
     },
@@ -1127,7 +1134,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Imposter"),
         .description = COMPOUND_STRING("Transforms into the foe."),
         .aiRating = 9,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
     },
 
@@ -1208,6 +1215,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Zen Mode"),
         .description = COMPOUND_STRING("Transforms at half HP."),
         .aiRating = -1,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = B_UPDATED_ABILITY_DATA >= GEN_7,
@@ -1322,9 +1330,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Transforms as it battles."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_GALE_WINGS] =
@@ -1497,9 +1507,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Shields Down"),
         .description = COMPOUND_STRING("Shell breaks at half HP."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_STAKEOUT] =
@@ -1577,9 +1589,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Schooling"),
         .description = COMPOUND_STRING("Forms a school when strong."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_DISGUISE] =
@@ -1587,9 +1601,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Disguise"),
         .description = COMPOUND_STRING("Decoy protects it once."),
         .aiRating = 8,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
         .failsOnImposter = TRUE,
     },
 
@@ -1598,9 +1614,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Battle Bond"),
         .description = COMPOUND_STRING("Changes form after a KO."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_POWER_CONSTRUCT] =
@@ -1612,9 +1630,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Cells aid it when weakened."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_CORROSION] =
@@ -1629,9 +1649,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Comatose"),
         .description = COMPOUND_STRING("Always drowsing."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_QUEENLY_MAJESTY] =
@@ -1706,7 +1728,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Receiver"),
         .description = COMPOUND_STRING("Copies ally's ability."),
         .aiRating = 0,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
     },
 
@@ -1719,7 +1741,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Copies ally's ability."),
         .aiRating = 0,
-        .cantBeTransferred = TRUE,
+        .cantBeCopied = TRUE,
         .cantBeTraced = TRUE,
     },
 
@@ -1735,9 +1757,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("RKS System"),
         .description = COMPOUND_STRING("Memories change its type."),
         .aiRating = 8,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_ELECTRIC_SURGE] =
@@ -1879,6 +1903,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("If hit, spits prey from sea."),
         .aiRating = 3,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
         .failsOnImposter = TRUE,
     },
 
@@ -1931,9 +1956,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Ice Face"),
         .description = COMPOUND_STRING("Hail or Snow renew free hit."),
         .aiRating = 4,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
         .canBeIgnored = TRUE,
         .failsOnImposter = TRUE,
     },
@@ -2012,6 +2039,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("All Abilities are nullified."),
         .aiRating = 5,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2034,6 +2062,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Changes form each turn."),
         .aiRating = 2,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2101,9 +2130,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("As One"),
         .description = COMPOUND_STRING("Unnerve and Chilling Neigh."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_AS_ONE_SHADOW_RIDER] =
@@ -2111,9 +2142,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("As One"),
         .description = COMPOUND_STRING("Unnerve and Grim Neigh."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_LINGERING_AROMA] =
@@ -2216,9 +2249,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Zero to Hero"),
         .description = COMPOUND_STRING("Changes form on switch out."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
         .failsOnImposter = TRUE,
     },
 
@@ -2227,6 +2262,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Commander"),
         .description = COMPOUND_STRING("Commands from Dondozo."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
     },
@@ -2251,6 +2287,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Sun boosts best stat."),
         .aiRating = 7,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2261,6 +2298,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Quark Drive"),
         .description = COMPOUND_STRING("Elec. field ups best stat."),
         .aiRating = 7,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2441,6 +2479,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Raises Speed."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2455,6 +2494,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Raises Attack."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2469,6 +2509,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Raises Sp. Def."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2483,6 +2524,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Raises Defense."),
         .aiRating = 6,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .failsOnImposter = TRUE,
@@ -2511,9 +2553,11 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Tera Shift"),
         .description = COMPOUND_STRING("Terasteralizes upon entry."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
         .failsOnImposter = TRUE,
     },
 
@@ -2522,6 +2566,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
         .name = _("Tera Shell"),
         .description = COMPOUND_STRING("Resistant to types at full HP."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
         .canBeIgnored = TRUE,
@@ -2536,6 +2581,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Removes weather and terrain."),
         .aiRating = 10,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
     },
@@ -2549,6 +2595,7 @@ const struct Ability gAbilities[ABILITIES_COUNT] =
     #endif
         .description = COMPOUND_STRING("Confuses poisoned foes."),
         .aiRating = 8,
+        .cantBeCopied = TRUE,
         .cantBeTransferred = TRUE,
         .cantBeTraced = TRUE,
     },
