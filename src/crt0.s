@@ -139,28 +139,24 @@ InitializeWorkingMemory:
 	ldr r2, =__iwram_end
 	cmp r1, r2
 	beq skip_iwram_copy
-	bl CopyMemory_DMA
+	bl CopyMemory_CpuSet
 skip_iwram_copy:
 	ldr r0, =__ewram_lma
 	ldr r1, =__ewram_start
 	ldr r2, =__ewram_end
 	cmp r1, r2
 	beq skip_ewram_copy
-	bl CopyMemory_DMA
+	bl CopyMemory_CpuSet
 skip_ewram_copy:
 	pop {r0-r3,lr}
 	bx lr
 
-@ Uses a DMA transfer to load from r0 into r1 until r2
-CopyMemory_DMA:
-	subs r2, r2, r1
-	lsr r2, r2, #2
-	mov r4, #0x80000000
-	orr r4, r4, #(1 << 26)
-	orr r2, r2, r4
-	ldr r3, =REG_DMA3
-	stmia r3, {r0, r1, r2}
-	bx lr
+@ Uses a CpuSet BIOS call to load from r0 into r1 until r2
+CopyMemory_CpuSet:
+	subs r2, r2, r1 @ get length in bytes
+	orrs r2, r2, (1 << 26) @ or transfer flag with transfer length
+	swi (0x0B << 16) @ call CpuSet
+	bx lr @ return
 
 .thumb
 @ Called from C code to reinitialize working memory after a link connection failure

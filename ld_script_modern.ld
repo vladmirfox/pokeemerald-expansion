@@ -13,7 +13,6 @@ MEMORY
 
 SECTIONS {
 
-
     .ewram ORIGIN(EWRAM) : AT (__ewram_lma)
     ALIGN(4)
     {

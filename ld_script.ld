@@ -59,9 +59,8 @@ SECTIONS {
     } > IWRAM
 
     /* BEGIN ROM DATA */
-    . = 0x8000000;
 
-    .text :
+    .text ORIGIN(ROM) :
     ALIGN(4)
     {
         src/rom_header.o(.text);
