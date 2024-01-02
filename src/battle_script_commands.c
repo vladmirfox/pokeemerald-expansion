@@ -3141,10 +3141,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                         gBattlescriptCurrInstr++;
                     }
                 }
-                else {
-                    if (GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber
+                else if (GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber
                         && !IsDynamaxed(gEffectBattler))
-                        gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect]; 
+                {
+                    gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect]; 
                     gBattlescriptCurrInstr++;
                 }
                 break;
