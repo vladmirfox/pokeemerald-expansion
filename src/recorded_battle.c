@@ -288,7 +288,6 @@ static bool32 IsRecordedBattleSaveValid(struct RecordedBattleSave *save)
 
 static bool32 RecordedBattleToSave(struct RecordedBattleSave *battleSave, struct RecordedBattleSave *saveSector)
 {
-    u32 hash;
     memset(saveSector, 0, SECTOR_SIZE);
     memcpy(saveSector, battleSave, sizeof(*battleSave));
 
