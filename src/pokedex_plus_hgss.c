@@ -6487,7 +6487,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     //Calculate previous evolution
     for (i = 0; i < NUM_SPECIES; i++)
     {
-        const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+        const struct Evolution *evolutions = GetSpeciesEvolutions(i);
         if (evolutions == NULL)
             continue;
 
@@ -6525,7 +6525,7 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
     {
         for (i = 0; i < NUM_SPECIES; i++)
         {
-            const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+            const struct Evolution *evolutions = GetSpeciesEvolutions(i);
             if (evolutions == NULL)
                 continue;
 
