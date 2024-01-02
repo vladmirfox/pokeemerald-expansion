@@ -155,15 +155,11 @@ skip_ewram_copy:
 CopyMemory_DMA:
 	subs r2, r2, r1
 	lsr r2, r2, #2
-	ldr r3, =0x040000D4
-	str r0, [r3]
-	ldr r3, =0x040000D8
-	str r1, [r3]
-	ldr r3, =0x040000DC
 	mov r4, #0x80000000
 	orr r4, r4, #(1 << 26)
 	orr r2, r2, r4
-	str r2, [r3]
+	ldr r3, =REG_DMA3
+	stmia r3, {r0, r1, r2}
 	bx lr
 
 .thumb
