@@ -800,8 +800,15 @@ static void Task_ShowAiPoints(u8 taskId)
                 data->spriteIds.aiIconSpriteIds[i] = 0xFF;
             }
         }
+
+        struct Pokemon *mon;
+        if (GetBattlerSide(data->aiBattlerId) == B_SIDE_PLAYER)
+            mon = &gPlayerParty[gBattlerPartyIndexes[data->aiBattlerId]];
+        else
+            mon = &gEnemyParty[gBattlerPartyIndexes[data->aiBattlerId]];
+
         data->aiMonSpriteId = CreateMonPicSprite(gBattleMons[data->aiBattlerId].species,
-                                                 gBattleMons[data->aiBattlerId].isShiny,
+                                                 GetMonData(mon, MON_DATA_IS_SHINY),
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
                                                  39, 130, 15, TAG_NONE);
@@ -957,8 +964,15 @@ static void Task_ShowAiKnowledge(u8 taskId)
                 data->spriteIds.aiIconSpriteIds[i] = 0xFF;
             }
         }
+
+        struct Pokemon *mon;
+        if (GetBattlerSide(data->aiBattlerId) == B_SIDE_PLAYER)
+            mon = &gPlayerParty[gBattlerPartyIndexes[data->aiBattlerId]];
+        else
+            mon = &gEnemyParty[gBattlerPartyIndexes[data->aiBattlerId]];
+
         data->aiMonSpriteId = CreateMonPicSprite(gBattleMons[data->aiBattlerId].species,
-                                                 gBattleMons[data->aiBattlerId].isShiny,
+                                                 GetMonData(mon, MON_DATA_IS_SHINY),
                                                  gBattleMons[data->aiBattlerId].personality,
                                                  TRUE,
                                                  39, 130, 15, TAG_NONE);
