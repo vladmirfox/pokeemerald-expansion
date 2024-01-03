@@ -58,6 +58,7 @@
 #include "tv.h"
 #include "scanline_effect.h"
 #include "wild_encounter.h"
+#include "vs_seeker.h"
 #include "frontier_util.h"
 #include "constants/abilities.h"
 #include "constants/layouts.h"
@@ -413,6 +414,8 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(B_SMART_WILD_AI_FLAG);
     FlagClear(B_FLAG_NO_BAG_USE);
     FlagClear(B_FLAG_NO_CATCHING);
+    FlagClear(B_FLAG_DYNAMAX_BATTLE);
+    FlagClear(B_FLAG_SKY_BATTLE);
 }
 #endif
 
@@ -818,6 +821,10 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
     TryUpdateRandomTrainerRematches(mapGroup, mapNum);
+
+if (I_VS_SEEKER_CHARGING != 0)
+    MapResetTrainerRematches(mapGroup, mapNum);
+
     DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
@@ -868,6 +875,10 @@ static void LoadMapFromWarp(bool32 a1)
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
     TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+
+if (I_VS_SEEKER_CHARGING != 0)
+     MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+
     if (a1 != TRUE)
         DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
@@ -1316,7 +1327,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
             }
         }
         // Ambient cries after the first one take between 1200-2399 frames (~20-40 seconds)
-        // If the player has a pokemon with the ability Swarm in their party, the time is halved to 600-1199 frames (~10-20 seconds)
+        // If the player has a Pokémon with the ability Swarm in their party, the time is halved to 600-1199 frames (~10-20 seconds)
         *delayCounter = ((Random() % 1200) + 1200) / divBy;
         *state = AMB_CRY_WAIT;
         break;
@@ -1328,7 +1339,7 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
         }
         break;
     case AMB_CRY_IDLE:
-        // No land/water pokemon on this map
+        // No land/water Pokémon on this map
         break;
     }
 }
@@ -1339,7 +1350,7 @@ static void ChooseAmbientCrySpecies(void)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE130))
      && !IsMirageIslandPresent())
     {
-        // Only play water pokemon cries on this route
+        // Only play water Pokémon cries on this route
         // when Mirage Island is not present
         sIsAmbientCryWaterMon = TRUE;
         sAmbientCrySpecies = GetLocalWaterMon();

@@ -31,6 +31,8 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
+#include "constants/battle_partner.h"
+#include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -224,16 +226,16 @@ static u16 GetPrevBall(u16 ballId)
     return gBagPockets[BALLS_POCKET].itemSlots[i].itemId;
 }
 
-static u16 GetNextBall(u16 ballId)
+static u32 GetNextBall(u32 ballId)
 {
-    u16 ballNext = 0;
+    u32 ballNext = ITEM_NONE;
     s32 i;
     CompactItemsInBagPocket(&gBagPockets[BALLS_POCKET]);
-    for (i = 0; i < gBagPockets[BALLS_POCKET].capacity; i++)
+    for (i = 1; i < gBagPockets[BALLS_POCKET].capacity; i++)
     {
-        if (ballId == gBagPockets[BALLS_POCKET].itemSlots[i].itemId)
+        if (ballId == gBagPockets[BALLS_POCKET].itemSlots[i-1].itemId)
         {
-            ballNext = gBagPockets[BALLS_POCKET].itemSlots[i+1].itemId;
+            ballNext = gBagPockets[BALLS_POCKET].itemSlots[i].itemId;
             break;
         }
     }
@@ -702,7 +704,7 @@ static void HandleInputChooseMove(u32 battler)
 
             QueueZMove(battler, chosenMove);
             gBattleStruct->zmove.viewing = FALSE;
-            if (gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].split != SPLIT_STATUS)
+            if (gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].category != BATTLE_CATEGORY_STATUS)
                 moveTarget = MOVE_TARGET_SELECTED;  //damaging z moves always have selected target
         }
 
@@ -1277,12 +1279,12 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
     bool32 bgmRestored = FALSE;
     bool32 battlerAnimsDone = FALSE;
 
-    // Start shiny animation if applicable for 1st pokemon
+    // Start shiny animation if applicable for 1st Pokémon
     if (!gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim
      && !gBattleSpritesDataPtr->healthBoxesData[battler].ballAnimActive)
         TryShinyAnimation(battler, &gPlayerParty[gBattlerPartyIndexes[battler]]);
 
-    // Start shiny animation if applicable for 2nd pokemon
+    // Start shiny animation if applicable for 2nd Pokémon
     if (!gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].triedShinyMonAnim
      && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].ballAnimActive)
         TryShinyAnimation(BATTLE_PARTNER(battler), &gPlayerParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]]);
@@ -1727,6 +1729,9 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
     u8 *txtPtr;
+    u8 type;
+    u32 speciesId;
+    struct Pokemon *mon;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
@@ -1734,7 +1739,22 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-    StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
+    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
+    {
+        mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+        speciesId = GetMonData(mon, MON_DATA_SPECIES);
+
+        if (speciesId == SPECIES_OGERPON_WELLSPRING_MASK || speciesId == SPECIES_OGERPON_WELLSPRING_MASK_TERA
+            || speciesId == SPECIES_OGERPON_HEARTHFLAME_MASK || speciesId == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
+            || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK || speciesId == SPECIES_OGERPON_CORNERSTONE_MASK_TERA)
+            type = gBattleMons[battler].type2;
+        else
+            type = gBattleMoves[MOVE_IVY_CUDGEL].type;
+    }
+    else
+        type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
+
+    StringCopy(txtPtr, gTypeNames[type]);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
 
@@ -1858,25 +1878,25 @@ static void PlayerHandleDrawTrainerPic(u32 battler)
         else // First mon, on the left.
             xPos = 32;
 
-        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_STEVEN_PARTNER && gPartnerTrainerId < TRAINER_CUSTOM_PARTNER)
+        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
         {
             xPos = 90;
-            yPos = (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 80;
+            yPos = (8 - gTrainerSprites[trainerPicId].y_offset) * 4 + 80;
         }
         else
         {
-            yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
+            yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
         }
 
     }
     else
     {
         xPos = 80;
-        yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
+        yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
 
     // Use front pic table for any tag battles unless your partner is Steven or a custom partner.
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId != TRAINER_STEVEN_PARTNER && gPartnerTrainerId < TRAINER_CUSTOM_PARTNER)
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId < TRAINER_PARTNER(PARTNER_NONE))
     {
         trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
         isFrontPic = TRUE;
@@ -2215,7 +2235,7 @@ static void PlayerHandleOneReturnValue_Duplicate(u32 battler)
 
 static void PlayerHandleIntroTrainerBallThrow(u32 battler)
 {
-    const u32 *trainerPal = gTrainerBackPicPaletteTable[gSaveBlock2Ptr->playerGender].data;
+    const u32 *trainerPal = gTrainerBacksprites[gSaveBlock2Ptr->playerGender].palette.data;
     BtlController_HandleIntroTrainerBallThrow(battler, 0xD6F8, trainerPal, 31, Intro_TryShinyAnimShowHealthbox);
 }
 
