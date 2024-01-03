@@ -9775,6 +9775,19 @@ static void Cmd_various(void)
         }
         return;
     }
+    case VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        for (i = 0; i < gBattleMoves[gCurrentMove].numAdditionalEffects; i++)
+        {
+            if (gBattleMoves[gCurrentMove].additionalEffects[i].onChargeTurnOnly)
+            {
+                gBattlescriptCurrInstr = cmd->jumpInstr;
+                return;
+            }
+        }
+        break;
+    }
     case VARIOUS_JUMP_IF_NOT_GROUNDED:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
@@ -10286,10 +10299,10 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
-    case VARIOUS_JUMP_IF_WEATHER_AFFECTED:
+    case VARIOUS_JUMP_IF_WEATHER_MOVE_ARG:
         {
-            VARIOUS_ARGS(u32 flags, const u8 *jumpInstr);
-            u32 flags = cmd->flags;
+            VARIOUS_ARGS(const u8 *jumpInstr);
+            u32 flags = gBattleMoves[gCurrentMove].argument;;
             if (IsBattlerWeatherAffected(battler, flags))
                 gBattlescriptCurrInstr = cmd->jumpInstr;
             else

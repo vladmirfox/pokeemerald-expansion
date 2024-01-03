@@ -26,8 +26,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
             TURN { MOVE(opponent, MOVE_AGILITY); MOVE(player, move); }
         else
             TURN { MOVE(player, move); }
-        if (gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
-          || gBattleMoves[move].effect == EFFECT_METEOR_BEAM) {
+        if (gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE) {
                 TURN { SKIP_TURN(player); }
                 TURN { ; }
         }

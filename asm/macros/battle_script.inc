@@ -1868,6 +1868,11 @@
 	various \battler, VARIOUS_POWER_TRICK
 	.endm
 
+	.macro jumpifmovehaschargeturneffects jumpInstr:req
+	various BS_ATTACKER, VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS
+	.4byte \jumpInstr
+	.endm
+
 	.macro jumpifnotgrounded battler:req, jumpInstr:req
 	various \battler, VARIOUS_JUMP_IF_NOT_GROUNDED
 	.4byte \jumpInstr
@@ -2106,9 +2111,8 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifweatheraffected battler:req, flags:req, jumpInstr:req
-	various \battler, VARIOUS_JUMP_IF_WEATHER_AFFECTED
-	.4byte \flags
+	.macro jumpifweathermovearg battler:req, jumpInstr:req
+	various \battler, VARIOUS_JUMP_IF_WEATHER_MOVE_ARG
 	.4byte \jumpInstr
 	.endm
 

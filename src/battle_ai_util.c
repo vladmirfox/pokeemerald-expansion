@@ -1980,17 +1980,15 @@ bool32 HasSnatchAffectedMove(u32 battler)
     CHECK_MOVE_FLAG(snatchAffected);
 }
 
-bool32 IsChargingMove(u32 battlerAtk, u32 effect)
+bool32 IsChargingMove(u32 battlerAtk, u32 move)
 {
-    switch (effect)
+    switch (gBattleMoves[move].effect)
     {
     case EFFECT_SOLAR_BEAM:
-        if (AI_GetWeather(AI_DATA) & B_WEATHER_SUN)
-            return FALSE;
     case EFFECT_SKULL_BASH:
-    case EFFECT_METEOR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
-        return !(AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB);
+        return !(AI_GetWeather(AI_DATA) & gBattleMoves[move].argument
+          || AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB);
     default:
         return FALSE;
     }

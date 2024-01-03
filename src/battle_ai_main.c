@@ -803,7 +803,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
             RETURN_SCORE_MINUS(20);    // if target off screen and we go first, don't use move
 
-        if (IsChargingMove(battlerAtk, moveEffect) && CanTargetFaintAi(battlerDef, battlerAtk))
+        if (IsChargingMove(battlerAtk, move) && CanTargetFaintAi(battlerDef, battlerAtk))
             RETURN_SCORE_MINUS(10);
 
         // check if negates type
@@ -3121,7 +3121,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 leastHits = noOfHits[i];
             }
             viableMoveScores[i] = AI_SCORE_DEFAULT;
-            isChargingMoveEffect[i] = IsChargingMove(battlerAtk, gBattleMoves[moves[i]].effect);
+            isChargingMoveEffect[i] = IsChargingMove(battlerAtk, moves[i]);
         }
         else
         {

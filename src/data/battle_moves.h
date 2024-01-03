@@ -1182,6 +1182,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
+        .argument = B_WEATHER_SUN,
     },
 
     [MOVE_RAZOR_LEAF] =
@@ -1211,6 +1212,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .argument = B_WEATHER_SUN,
     },
 
     [MOVE_POISON_POWDER] =
@@ -10124,6 +10126,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .slicingMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .argument = B_WEATHER_SUN,
     },
 
     [MOVE_LEAFAGE] =
@@ -11644,7 +11647,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METEOR_BEAM] =
     {
-        .effect = EFFECT_METEOR_BEAM,
+        .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 120,
         .type = TYPE_ROCK,
         .accuracy = 90,
@@ -13378,7 +13381,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRO_SHOT] =
     {
-        .effect = EFFECT_METEOR_BEAM,
+        .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 130,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
@@ -13387,6 +13390,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
+        .argument = B_WEATHER_RAIN,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1,
             .self = TRUE,

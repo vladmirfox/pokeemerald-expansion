@@ -580,32 +580,6 @@ BattleScript_BeakBlastBurn::
 	call BattleScript_MoveEffectBurn
 	return
 
-BattleScript_EffectMeteorBeam::
-	@ DecideTurn
-	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
-	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
-	call BattleScript_FirstChargingTurnMeteorBeam
-	jumpifmove MOVE_METEOR_BEAM, BattleScript_TryMeteorBeam
-	jumpifweatheraffected BS_ATTACKER, B_WEATHER_RAIN, BattleScript_TwoTurnMovesSecondTurn @ Check for move Electro Shot
-BattleScript_TryMeteorBeam:
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
-
-BattleScript_FirstChargingTurnMeteorBeam::
-	attackcanceler
-	flushtextbox
-	ppreduce
-	attackanimation
-	waitanimation
-	orword gHitMarker, HITMARKER_CHARGING
-	seteffectprimary MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
-	settwoturnmovestring
-	printfromtable gFirstTurnOfTwoStringIds
-	waitmessage B_WAIT_TIME_LONG
-	setadditionaleffects @ only onChargeTurnOnly effects will work here
-	return
-
 BattleScript_EffectSkyDrop::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
 	attackcanceler
@@ -1944,7 +1918,7 @@ BattleScript_GrowthDoMoveAnim::
 	waitanimation
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_ATK | BIT_SPATK, 0
-	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthAtk2
+	jumpifweathermovearg BS_ATTACKER, BattleScript_GrowthAtk2
 	setstatchanger STAT_ATK, 1, FALSE
 	goto BattleScript_GrowthAtk
 BattleScript_GrowthAtk2:
@@ -1955,7 +1929,7 @@ BattleScript_GrowthAtk:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_GrowthTrySpAtk::
-	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthSpAtk2
+	jumpifweathermovearg BS_ATTACKER, BattleScript_GrowthSpAtk2
 	setstatchanger STAT_SPATK, 1, FALSE
 	goto BattleScript_GrowthSpAtk
 BattleScript_GrowthSpAtk2:
@@ -3481,14 +3455,14 @@ BattleScriptFirstChargingTurn::
 	ppreduce
 	attackstring
 BattleScriptFirstChargingTurnAfterAttackString:
-	pause B_WAIT_TIME_LONG
-	settwoturnmovestring
-	printfromtable gFirstTurnOfTwoStringIds
-	waitmessage B_WAIT_TIME_LONG
 	attackanimation
 	waitanimation
 	orword gHitMarker, HITMARKER_CHARGING
 	seteffectprimary MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
+	settwoturnmovestring
+	printfromtable gFirstTurnOfTwoStringIds
+	waitmessage B_WAIT_TIME_LONG
+	setadditionaleffects @ only onChargeTurnOnly effects will work here
 	return
 
 BattleScript_EffectSuperFang::
@@ -3765,12 +3739,20 @@ BattleScript_PowerHerbActivation:
 	return
 
 BattleScript_EffectTwoTurnsAttack::
+	jumpifmovehaschargeturneffects BattleScript_EffectTwoTurnsAttackTry
+	jumpifweathermovearg BS_ATTACKER, BattleScript_EffectTwoTurnsAttackFireImmediately
+BattleScript_EffectTwoTurnsAttackTry::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
 	call BattleScriptFirstChargingTurn
+	jumpifweathermovearg BS_ATTACKER, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 	goto BattleScript_TwoTurnMovesSecondTurn
+
+BattleScript_EffectTwoTurnsAttackFireImmediately::
+	setbyte sB_ANIM_TURN, 1
+	goto BattleScript_EffectHit
 
 BattleScript_EffectGeomancy::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_GeomancySecondTurn
@@ -4141,17 +4123,6 @@ BattleScript_PartyHealEnd::
 	updatestatusicon BS_ATTACKER_WITH_PARTNER
 	waitstate
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectTripleKick::
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
-	addbyte sTRIPLE_KICK_POWER, 10 @ triple kick gets +10 power
-	goto BattleScript_HitFromAtkString
-
-BS_TripleAxel:
-	addbyte sTRIPLE_KICK_POWER, 20 @ triple axel gets +20 power
-	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectMeanLook::
 	attackcanceler
@@ -4649,7 +4620,7 @@ BattleScript_EffectGust::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectSolarBeam::
-	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_SolarBeamOnFirstTurn
+	jumpifweathermovearg BS_ATTACKER, BattleScript_SolarBeamOnFirstTurn
 BattleScript_SolarBeamDecideTurn::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn

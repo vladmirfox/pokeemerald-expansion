@@ -2024,12 +2024,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_METEOR_BEAM] =
-    {
-        .battleScript = BattleScript_EffectMeteorBeam,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_RISING_VOLTAGE] =
     {
         .battleScript = BattleScript_EffectHit,
