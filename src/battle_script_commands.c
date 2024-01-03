@@ -497,7 +497,7 @@ static void Cmd_setdrainedhp(void);
 static void Cmd_statbuffchange(void);
 static void Cmd_normalisebuffs(void);
 static void Cmd_setbide(void);
-static void Cmd_unused0x8C(void);
+static void Cmd_settwoturnmovestring(void);
 static void Cmd_setmultihitcounter(void);
 static void Cmd_initmultihitstring(void);
 static void Cmd_forcerandomswitch(void);
@@ -756,7 +756,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_statbuffchange,                          //0x89
     Cmd_normalisebuffs,                          //0x8A
     Cmd_setbide,                                 //0x8B
-    Cmd_unused0x8C,                              //0x8C
+    Cmd_settwoturnmovestring,                    //0x8C
     Cmd_setmultihitcounter,                      //0x8D
     Cmd_initmultihitstring,                      //0x8E
     Cmd_forcerandomswitch,                       //0x8F
@@ -11678,8 +11678,58 @@ static void Cmd_setbide(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused0x8C(void)
+static void Cmd_settwoturnmovestring(void)
 {
+    CMD_ARGS();
+
+    switch (gCurrentMove)
+    {
+        case MOVE_RAZOR_WIND:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_RAZOR_WIND;
+            break;
+        case MOVE_SOLAR_BEAM:
+        case MOVE_SOLAR_BLADE:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SOLAR_BEAM;
+            break;
+        case MOVE_SKULL_BASH:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKULL_BASH;
+            break;
+        case MOVE_SKY_ATTACK:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKY_ATTACK;
+            break;
+        case MOVE_FLY:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_FLY;
+            break;
+        case MOVE_DIG:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_DIG;
+            break;
+        case MOVE_DIVE:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_DIVE;
+            break;
+        case MOVE_BOUNCE:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_BOUNCE;
+            break;
+        case MOVE_PHANTOM_FORCE:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_PHANTOM_FORCE;
+            break;
+        case MOVE_GEOMANCY:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_GEOMANCY;
+            break;
+        case MOVE_FREEZE_SHOCK:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_FREEZE_SHOCK;
+            break;
+        case MOVE_SKY_DROP:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKY_DROP;
+            break;
+        case MOVE_METEOR_BEAM:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_METEOR_BEAM;
+            break;
+        case MOVE_ELECTRO_SHOT:
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_ELECTRO_SHOT;
+            break;
+    }
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_setmultihitcounter(void)

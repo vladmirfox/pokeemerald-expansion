@@ -775,7 +775,7 @@
 	.byte 0x8b
 	.endm
 
-	.macro unused0x8C
+	.macro settwoturnmovestring
 	.byte 0x8c
 	.endm
 
