@@ -2894,7 +2894,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
         }
         if (JOY_NEW(DPAD_RIGHT))
         {
-            if (gTasks[taskId].tDigit < 2)
+            if (gTasks[taskId].tDigit < MAX_ITEM_DIGITS)
                 gTasks[taskId].tDigit += 1;
         }
 
