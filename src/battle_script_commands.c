@@ -10718,6 +10718,15 @@ static void Cmd_various(void)
         }
         return;
     }
+    case VARIOUS_TRY_SKIP_CHARGE_TURN_ATTACK_STRING:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        if (gBattleMoves[gCurrentMove].skipsAttackStringOnChargeTurn)
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;

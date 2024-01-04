@@ -1212,6 +1212,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .skipsAttackStringOnChargeTurn = TRUE,
         .argument = B_WEATHER_SUN,
     },
 
@@ -10126,6 +10127,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .slicingMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .skipsAttackStringOnChargeTurn = TRUE,
         .argument = B_WEATHER_SUN,
     },
 

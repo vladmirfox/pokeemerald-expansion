@@ -3451,8 +3451,9 @@ BattleScript_TwoTurnMovesSecondTurn::
 
 BattleScriptFirstChargingTurn::
 	attackcanceler
-	flushtextbox
 	ppreduce
+	tryskipchargeturnattackstring BattleScriptFirstChargingTurnAfterAttackString
+	flushtextbox
 	attackstring
 BattleScriptFirstChargingTurnAfterAttackString:
 	attackanimation

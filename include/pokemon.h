@@ -509,6 +509,7 @@ struct BattleMove
     u32 parentalBondBanned:1;
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
+    u32 skipsAttackStringOnChargeTurn:1;
 
     u32 argument; // also coming soon
 

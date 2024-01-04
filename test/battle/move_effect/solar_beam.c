@@ -9,16 +9,40 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Solar Beam and Solar Blade can be used instantly in Sunlight")
 {
-    u32 move;
-    PARAMETRIZE { move = MOVE_SOLAR_BEAM; }
-    PARAMETRIZE { move = MOVE_SOLAR_BLADE; }
+    u32 move1, move2;
+    PARAMETRIZE { move1 = MOVE_SPLASH; move2 = MOVE_SOLAR_BEAM; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_SOLAR_BEAM; }
+    PARAMETRIZE { move1 = MOVE_SPLASH; move2 = MOVE_SOLAR_BLADE; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_SOLAR_BLADE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SUNNY_DAY); MOVE(player, move); }
+        TURN { MOVE(opponent, move1); MOVE(player, move2); }
+        TURN { SKIP_TURN(player); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet took in sunlight!");
+        if (move1 == MOVE_SUNNY_DAY)
+        {
+            NOT MESSAGE("Wobbuffet took in sunlight!");
+        }
+        else {
+            if (move2 == MOVE_SOLAR_BEAM)
+            {
+                NOT MESSAGE("Wobbuffet used Solar Beam!");
+                ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                MESSAGE("Wobbuffet took in sunlight!");
+                MESSAGE("Wobbuffet used Solar Beam!");
+            }
+            else
+            {
+                NOT MESSAGE("Wobbuffet used Solar Blade!");
+                ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                MESSAGE("Wobbuffet took in sunlight!");
+                MESSAGE("Wobbuffet used Solar Blade!");
+            }
+            ANIMATION(ANIM_TYPE_MOVE, move2, player);
+            HP_BAR(opponent);
+        }
     }
 }
 
