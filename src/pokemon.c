@@ -6424,3 +6424,92 @@ u16 GetSpeciesPreEvolution(u16 species)
 
     return SPECIES_NONE;
 }
+
+u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny)
+{
+    u16 nationalDexNum;
+    int sentToPc;
+    struct Pokemon mon;
+    u32 i;
+
+    // check whether to use a specific nature or a random one
+    if (nature >= NUM_NATURES)
+        nature = Random() % NUM_NATURES;
+
+    // create a Pokémon with basic data
+    CreateMonWithNature(&mon, species, level, 32, nature);
+
+    if (isShiny)
+        SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        // EV
+        if (evs[i] <= MAX_PER_STAT_EVS)
+            SetMonData(&mon, MON_DATA_HP_EV + i, &evs[i]);
+
+        // IV
+        if (ivs[i] <= MAX_PER_STAT_IVS)
+            SetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);
+    }
+    CalculateMonStats(&mon);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] > MOVES_COUNT)
+            continue;
+        SetMonMoveSlot(&mon, moves[i], i);
+    }
+
+    // ability
+    if (abilityNum >= (NUM_ABILITY_SLOTS + 1) || GetAbilityBySpecies(species, abilityNum) == 0)
+    {
+        do {
+            abilityNum = Random() % 3;  // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+    }
+    SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
+
+    // ball
+    if (ball <= POKEBALL_COUNT)
+        SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+
+    // held item
+    SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
+
+    // assign OT name and gender
+    SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
+    SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
+
+    // find empty party slot to decide whether the Pokémon goes to the Player's party or the storage system.
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+            break;
+    }
+    if (i >= PARTY_SIZE)
+    {
+        sentToPc = CopyMonToPC(&mon);
+    }
+    else
+    {
+        sentToPc = MON_GIVEN_TO_PARTY;
+        CopyMon(&gPlayerParty[i], &mon, sizeof(mon));
+        gPlayerPartyCount = i + 1;
+    }
+
+    // set pokédex flags
+    nationalDexNum = SpeciesToNationalPokedexNum(species); 
+    switch(sentToPc)
+    {
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        break;
+    case MON_CANT_GIVE:
+        break;
+    }
+
+    return sentToPc;
+}
