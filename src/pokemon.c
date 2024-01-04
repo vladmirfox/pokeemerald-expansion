@@ -6425,7 +6425,7 @@ u16 GetSpeciesPreEvolution(u16 species)
     return SPECIES_NONE;
 }
 
-u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny)
+u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 gender, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny)
 {
     u16 nationalDexNum;
     int sentToPc;
@@ -6437,7 +6437,10 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
         nature = Random() % NUM_NATURES;
 
     // create a Pokémon with basic data
-    CreateMonWithNature(&mon, species, level, 32, nature);
+    if (gender == MON_MALE || gender == MON_FEMALE)
+        CreateMonWithGenderNatureLetter(&mon, species, level, 32, gender, nature, 0);
+    else
+        CreateMonWithNature(&mon, species, level, 32, nature);
 
     if (isShiny)
         SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
