@@ -251,7 +251,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUST] =
     {
-        .effect = EFFECT_GUST,
+        .effect = EFFECT_HIT,
         .power = 40,
         .type = TYPE_FLYING,
         .accuracy = 100,

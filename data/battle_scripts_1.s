@@ -4616,24 +4616,6 @@ BattleScript_EffectFutureSight::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectGust::
-	goto BattleScript_EffectHit
-
-BattleScript_EffectSolarBeam::
-	jumpifweathermovearg BS_ATTACKER, BattleScript_SolarBeamOnFirstTurn
-BattleScript_SolarBeamDecideTurn::
-	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
-	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
-	call BattleScriptFirstChargingTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
-BattleScript_SolarBeamOnFirstTurn::
-	orword gHitMarker, HITMARKER_CHARGING
-	seteffectprimary MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
-	ppreduce
-	goto BattleScript_TwoTurnMovesSecondTurn
-
 BattleScript_EffectTeleport::
 .if B_TELEPORT_BEHAVIOR >= GEN_7
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass

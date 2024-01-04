@@ -761,18 +761,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_GUST] =
-    {
-        .battleScript = BattleScript_EffectGust,
-        .battleTvScore = 1,
-    },
-
-    [EFFECT_SOLAR_BEAM] =
-    {
-        .battleScript = BattleScript_EffectSolarBeam,
-        .battleTvScore = 1,
-    },
-
     [EFFECT_THUNDER] =
     {
         .battleScript = BattleScript_EffectHit,

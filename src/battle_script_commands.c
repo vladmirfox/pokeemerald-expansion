@@ -9786,7 +9786,8 @@ static void Cmd_various(void)
                 return;
             }
         }
-        break;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
     }
     case VARIOUS_JUMP_IF_NOT_GROUNDED:
     {
