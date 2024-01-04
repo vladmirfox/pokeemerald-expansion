@@ -209,6 +209,7 @@ enum GivePCBagDebugMenu
     DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM,
     DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES,
     DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS,
+    DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG,
 };
 
 enum SoundDebugMenu
@@ -360,6 +361,7 @@ static void DebugAction_PCBag_PocketPokeBalls(u8 taskId);
 static void DebugAction_PCBag_PocketTMHM(u8 taskId);
 static void DebugAction_PCBag_PocketBerries(u8 taskId);
 static void DebugAction_PCBag_PocketKeyItems(u8 taskId);
+static void DebugAction_PCBag_ClearBag(u8 taskId);
 
 static void DebugAction_Party_AccessPC(u8 taskId);
 static void DebugAction_Party_MoveReminder(u8 taskId);
@@ -502,6 +504,7 @@ static const u8 sDebugText_PCBag_PocketPokeBalls[] =         _("Fill Pocket Pok√
 static const u8 sDebugText_PCBag_PocketTMHM[] =              _("Fill Pocket TMHM");
 static const u8 sDebugText_PCBag_PocketBerries[] =           _("Fill Pocket Berries");
 static const u8 sDebugText_PCBag_PocketKeyItems[] =          _("Fill Pocket Key Items");
+static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 // Party/Boxes Menu
 static const u8 sDebugText_Party_AccessPC[] =                _("Access PC");
 static const u8 sDebugText_Party_MoveReminder[] =            _("Move Reminder");
@@ -682,6 +685,7 @@ static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
     [DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM]      = {sDebugText_PCBag_PocketTMHM,      DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM},
     [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = {sDebugText_PCBag_PocketBerries,   DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES},
     [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = {sDebugText_PCBag_PocketKeyItems,  DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS},
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = {sDebugText_PCBag_ClearBag,        DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Party[] =
@@ -833,6 +837,7 @@ static void (*const sDebugMenu_Actions_PCBag[])(u8) =
     [DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM]      = DebugAction_PCBag_PocketTMHM,
     [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = DebugAction_PCBag_PocketBerries,
     [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = DebugAction_PCBag_PocketKeyItems,
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = DebugAction_PCBag_ClearBag,
 };
 
 static void (*const sDebugMenu_Actions_Party[])(u8) =
@@ -4053,6 +4058,12 @@ static void DebugAction_PCBag_PocketKeyItems(u8 taskId)
         if (ItemId_GetPocket(itemId) == POCKET_KEY_ITEMS && CheckBagHasSpace(itemId, 1))
             AddBagItem(itemId, 1);
     }
+}
+
+static void DebugAction_PCBag_ClearBag(u8 taskId)
+{
+    PlaySE(MUS_LEVEL_UP);
+    ClearBag();
 }
 
 // *******************************
