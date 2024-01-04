@@ -95,6 +95,36 @@ Debug_BoxFilledMessage::
 Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
+Debug_EventScript_CheckEV::
+	lockall
+	getpartysize
+	goto_if_eq VAR_RESULT, 0, Debug_HatchAnEgg_NoPokemon
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_EventScript_CheckEV_End
+	callnative Script_GetChosenMonOffensiveEV
+	msgbox Debug_EventScript_Text_StringBuffers, MSGBOX_DEFAULT
+	callnative Script_GetChosenMonDefensiveEV
+	msgbox Debug_EventScript_Text_StringBuffers, MSGBOX_DEFAULT
+Debug_EventScript_CheckEV_End::
+	releaseall
+	end
+
+Debug_EventScript_CheckIV::
+	lockall
+	getpartysize
+	goto_if_eq VAR_RESULT, 0, Debug_HatchAnEgg_NoPokemon
+	special ChoosePartyMon
+	waitstate
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_EventScript_CheckIV_End
+	callnative Script_GetChosenMonOffensiveIV
+	msgbox Debug_EventScript_Text_StringBuffers, MSGBOX_DEFAULT
+	callnative Script_GetChosenMonDefensiveIV
+	msgbox Debug_EventScript_Text_StringBuffers, MSGBOX_DEFAULT
+Debug_EventScript_CheckIV_End::
+	releaseall
+	end
+
 Debug_EventScript_Script_1::
 	end
 
@@ -230,3 +260,5 @@ Debug_FlagsAndVarNotSetBattleConfigMessage_Text:
 	.string "usable flag and a usable var in:\l"
 	.string "'include/config/battle.h'!$"
 
+Debug_EventScript_Text_StringBuffers:
+	.string "{STR_VAR_1}, {STR_VAR_2}, {STR_VAR_3}$"
