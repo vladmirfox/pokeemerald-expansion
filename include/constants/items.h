@@ -1026,9 +1026,7 @@
 #define MAX_BERRY_CAPACITY            999
 #define MAX_PYRAMID_BAG_ITEM_CAPACITY 99   // Values higher than 255 require free SaveBlock2 space.
 
-#define BAG_ITEM_CAPACITY_DIGITS 3
-#define BERRY_CAPACITY_DIGITS 3
-#define MAX_ITEM_DIGITS BERRY_CAPACITY_DIGITS
+#define MAX_ITEM_DIGITS 3
 
 // Secondary IDs for rods
 #define OLD_ROD   0
