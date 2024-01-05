@@ -2394,7 +2394,7 @@ static const u8 sLandsWrathDescription[] = _(
 
 static const u8 sLightOfRuinDescription[] = _(
     "Fires a great beam of light\n"
-    "that also hurts the user.");
+    "that deals 50% recoil.");
 
 static const u8 sOriginPulseDescription[] = _(
     "Beams of glowing blue light\n"
@@ -2465,8 +2465,8 @@ static const u8 sSpotlightDescription[] = _(
     "spotlighted Pokémon.");
 
 static const u8 sToxicThreadDescription[] = _(
-    "Attacks with a thread that\n"
-    "poisons and drops Speed.");
+    "A thread that badly poisons\n"
+    "and harshly drops Speed.");
 
 static const u8 sLaserFocusDescription[] = _(
     "Guarantees the next move\n"

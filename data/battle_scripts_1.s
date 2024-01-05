@@ -1205,29 +1205,9 @@ BattleScript_EffectShellSideArm:
 	goto BattleScript_EffectHit
 
 BattleScript_EffectDiamondStorm:
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
-	critcalc
-	damagecalc
-	adjustdamage
-	photongeysercheck BS_ATTACKER
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	critmessage
-	waitmessage B_WAIT_TIME_LONG
-	resultmessage
-	waitmessage B_WAIT_TIME_LONG
+	setphotongeysercategory
 	setmoveeffect MOVE_EFFECT_DEF_PLUS_2 | MOVE_EFFECT_AFFECTS_USER
-	seteffectwithchance
-	tryfaintmon BS_TARGET
-	goto BattleScript_MoveEnd
+	goto BattleScript_EffectHit
 
 BattleScript_EffectPhotonGeyser:
 	setphotongeysercategory
@@ -2354,7 +2334,7 @@ BattleScript_ToxicThreadPrintString::
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_ToxicThreadTryPsn::
-	setmoveeffect MOVE_EFFECT_POISON
+	setmoveeffect MOVE_EFFECT_TOXIC
 	seteffectprimary
 	goto BattleScript_MoveEnd
 
