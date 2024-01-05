@@ -2478,7 +2478,7 @@ static const u8 sGearUpDescription[] = _(
 
 static const u8 sThroatChopDescription[] = _(
     "Chops the throat to disable\n"
-    "sound moves for a while.");
+    "sound moves for 2 turns.");
 
 static const u8 sPollenPuffDescription[] = _(
     "Explodes on foes, but\n"
@@ -2517,8 +2517,8 @@ static const u8 sSmartStrikeDescription[] = _(
     "horn that never misses.");
 
 static const u8 sPurifyDescription[] = _(
-    "Cures the foe's status\n"
-    "to restore HP.");
+    "Recovers up to 50% max HP\n"
+    "and heals status conditions.");
 
 static const u8 sRevelationDanceDescription[] = _(
     "Dances with mystical power.\n"
@@ -2541,8 +2541,8 @@ static const u8 sBeakBlastDescription[] = _(
     "Burns foe on contact.");
 
 static const u8 sClangingScalesDescription[] = _(
-    "Makes a big noise with\n"
-    "its scales. Drops Defense.");
+    "A clanging sound attack.\n"
+    "Drops the user's Defense.");
 
 static const u8 sDragonHammerDescription[] = _(
     "Swings its whole body\n"
@@ -2569,12 +2569,12 @@ static const u8 sPsychicFangsDescription[] = _(
     "Destroys any barriers.");
 
 static const u8 sStompingTantrumDescription[] = _(
-    "Stomps around angrily.\n"
-    "Stronger after a failure.");
+    "A tantrum that doubles power\n"
+    "if used after a failed move.");
 
 static const u8 sShadowBoneDescription[] = _(
     "Strikes with a haunted\n"
-    "bone. Might drop Defense.");
+    "bone. 20% to drop Defense.");
 
 static const u8 sAccelerockDescription[] = _(
     "Hits with a high-speed\n"
@@ -2582,11 +2582,11 @@ static const u8 sAccelerockDescription[] = _(
 
 static const u8 sLiquidationDescription[] = _(
     "Slams the foe with water.\n"
-    "Can lower Defense.");
+    "20% chance to lower Defense.");
 
 static const u8 sPrismaticLaserDescription[] = _(
-    "A high power laser that\n"
-    "forces recharge next turn.");
+    "A laser that requires\n"
+    "recharging unless it KOs.");
 
 static const u8 sSpectralThiefDescription[] = _(
     "Steals the target's stat\n"
@@ -2606,7 +2606,7 @@ static const u8 sTearfulLookDescription[] = _(
 
 static const u8 sZingZapDescription[] = _(
     "An electrified impact that\n"
-    "can cause flinching.");
+    "flinches 30% of the time.");
 
 static const u8 sNaturesMadnessDescription[] = _(
     "Halves the foe's HP with\n"
@@ -2634,11 +2634,11 @@ static const u8 sZippyZapDescription[] = _(
 
 static const u8 sSplishySplashDescription[] = _(
     "A huge electrified wave that\n"
-    "may paralyze the foe.");
+    "paralyzes 30% of the time.");
 
 static const u8 sFloatyFallDescription[] = _(
     "Floats in air and dives at\n"
-    "angle. May cause flinching.");
+    "angle. 30% flinch chance.");
 
 static const u8 sPikaPapowDescription[] = _(
     "Pikachu's love increases its\n"
@@ -2662,14 +2662,14 @@ static const u8 sSizzlySlideDescription[] = _(
 
 static const u8 sGlitzyGlowDescription[] = _(
     "Telekinetic force that sets\n"
-    "wall, lowering Sp. Atk damage.");
+    "Light Screen.");
 
 static const u8 sBaddyBadDescription[] = _(
     "Acting badly, attacks. Sets\n"
-    "wall, lowering Attack damage.");
+    "Reflect.");
 
 static const u8 sSappySeedDescription[] = _(
-    "Giant stalk scatters seeds\n"
+    "A giant stalk scatters seeds\n"
     "that drain HP every turn.");
 
 static const u8 sFreezyFrostDescription[] = _(
@@ -2685,8 +2685,8 @@ static const u8 sVeeveeVolleyDescription[] = _(
     "power. It never misses.");
 
 static const u8 sDoubleIronBashDescription[] = _(
-    "The user spins and hits with\n"
-    "its arms. May cause flinch.");
+    "Hits twice. Each hit has 30%\n"
+    "chance to cause flinching.");
 
 // GEN 8
 static const u8 sDynamaxCannonDescription[] = _(
