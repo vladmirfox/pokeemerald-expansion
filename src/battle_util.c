@@ -8216,6 +8216,7 @@ u8 IsMonDisobedient(void)
             } while (gBitTable[gCurrMovePos] & calc);
 
             gCalledMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
+            gBattleStruct->atkCancellerTracker = 0;
             gBattlescriptCurrInstr = BattleScript_IgnoresAndUsesRandomMove;
             gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
             gHitMarker |= HITMARKER_DISOBEDIENT_MOVE;
