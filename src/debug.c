@@ -100,17 +100,22 @@ enum UtilDebugMenu
 
 enum GivePCBagDebugMenu
 {
-    DEBUG_PCBAG_MENU_ITEM_PC_BOXES_FAST,
-    DEBUG_PCBAG_MENU_ITEM_PC_BOXES_SLOW,
-    DEBUG_PCBAG_MENU_ITEM_PC_ITEMS,
-    DEBUG_PCBAG_MENU_ITEM_POCKET_ITEMS,
-    DEBUG_PCBAG_MENU_ITEM_POCKET_BALLS,
-    DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM,
-    DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES,
-    DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS,
+    DEBUG_PCBAG_MENU_ITEM_FILL,
     DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG,
     DEBUG_PCBAG_MENU_ITEM_ACCESS_PC,
     DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES,
+};
+
+enum GivePCBagFillDebugMenu
+{
+    DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_FAST,
+    DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_SLOW,
+    DEBUG_PCBAG_MENU_ITEM_FILL_PC_ITEMS,
+    DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_ITEMS,
+    DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BALLS,
+    DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_TMHM,
+    DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BERRIES,
+    DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_KEY_ITEMS,
 };
 
 enum PartyDebugMenu
@@ -328,6 +333,7 @@ static void DebugAction_OpenSoundMenu(u8 taskId);
 static void DebugTask_HandleMenuInput_Main(u8 taskId);
 static void DebugTask_HandleMenuInput_Utilities(u8 taskId);
 static void DebugTask_HandleMenuInput_PCBag(u8 taskId);
+static void DebugTask_HandleMenuInput_PCBag_Fill(u8 taskId);
 static void DebugTask_HandleMenuInput_Party(u8 taskId);
 static void DebugTask_HandleMenuInput_Scripts(u8 taskId);
 static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId);
@@ -353,14 +359,15 @@ static void DebugAction_Util_Player_Id(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 static void DebugAction_Util_ExpansionVersion(u8 taskId);
 
-static void DebugAction_PCBag_PCBoxes_Fast(u8 taskId);
-static void DebugAction_PCBag_PCBoxes_Slow(u8 taskId);
-static void DebugAction_PCBag_PCItemStorage(u8 taskId);
-static void DebugAction_PCBag_PocketItems(u8 taskId);
-static void DebugAction_PCBag_PocketPokeBalls(u8 taskId);
-static void DebugAction_PCBag_PocketTMHM(u8 taskId);
-static void DebugAction_PCBag_PocketBerries(u8 taskId);
-static void DebugAction_PCBag_PocketKeyItems(u8 taskId);
+static void DebugAction_OpenPCBagFillMenu(u8 taskId);
+static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId);
+static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId);
+static void DebugAction_PCBag_Fill_PCItemStorage(u8 taskId);
+static void DebugAction_PCBag_Fill_PocketItems(u8 taskId);
+static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId);
+static void DebugAction_PCBag_Fill_PocketTMHM(u8 taskId);
+static void DebugAction_PCBag_Fill_PocketBerries(u8 taskId);
+static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId);
 static void DebugAction_PCBag_ClearBag(u8 taskId);
 static void DebugAction_PCBag_AccessPC(u8 taskId);
 static void DebugAction_PCBag_ClearBoxes(u8 taskId);
@@ -496,14 +503,15 @@ static const u8 sDebugText_Util_Player_Id[] =                _("New Trainer ID")
 static const u8 sDebugText_Util_CheatStart[] =               _("Cheat start");
 static const u8 sDebugText_Util_ExpansionVersion[] =         _("Expansion Version");
 // PC/Bag Menu
-static const u8 sDebugText_PCBag_Pc_Fast[] =                 _("Fill PC Boxes Fast");
-static const u8 sDebugText_PCBag_Pc_Slow[] =                 _("Fill PC Boxes Slow (LAG!)");
-static const u8 sDebugText_PCBag_Pc_Items[] =                _("Fill PC Items");
-static const u8 sDebugText_PCBag_PocketItems[] =             _("Fill Pocket Items");
-static const u8 sDebugText_PCBag_PocketPokeBalls[] =         _("Fill Pocket Poké Balls");
-static const u8 sDebugText_PCBag_PocketTMHM[] =              _("Fill Pocket TMHM");
-static const u8 sDebugText_PCBag_PocketBerries[] =           _("Fill Pocket Berries");
-static const u8 sDebugText_PCBag_PocketKeyItems[] =          _("Fill Pocket Key Items");
+static const u8 sDebugText_PCBag_Fill[] =                    _("Fill…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_PCBag_Fill_Pc_Fast[] =            _("Fill PC Boxes Fast");
+static const u8 sDebugText_PCBag_Fill_Pc_Slow[] =            _("Fill PC Boxes Slow (LAG!)");
+static const u8 sDebugText_PCBag_Fill_Pc_Items[] =           _("Fill PC Items");
+static const u8 sDebugText_PCBag_Fill_PocketItems[] =        _("Fill Pocket Items");
+static const u8 sDebugText_PCBag_Fill_PocketPokeBalls[] =    _("Fill Pocket Poké Balls");
+static const u8 sDebugText_PCBag_Fill_PocketTMHM[] =         _("Fill Pocket TMHM");
+static const u8 sDebugText_PCBag_Fill_PocketBerries[] =      _("Fill Pocket Berries");
+static const u8 sDebugText_PCBag_Fill_PocketKeyItems[] =     _("Fill Pocket Key Items");
 static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 static const u8 sDebugText_PCBag_AccessPC[] =                _("Access PC");
 static const u8 sDebugText_PCBag_ClearBoxes[] =              _("Clear Storage Boxes");
@@ -677,17 +685,22 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
 
 static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
 {
-    [DEBUG_PCBAG_MENU_ITEM_PC_BOXES_FAST]    = {sDebugText_PCBag_Pc_Fast,         DEBUG_PCBAG_MENU_ITEM_PC_BOXES_FAST},
-    [DEBUG_PCBAG_MENU_ITEM_PC_BOXES_SLOW]    = {sDebugText_PCBag_Pc_Slow,         DEBUG_PCBAG_MENU_ITEM_PC_BOXES_SLOW},
-    [DEBUG_PCBAG_MENU_ITEM_PC_ITEMS]         = {sDebugText_PCBag_Pc_Items ,       DEBUG_PCBAG_MENU_ITEM_PC_ITEMS},
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_ITEMS]     = {sDebugText_PCBag_PocketItems,     DEBUG_PCBAG_MENU_ITEM_POCKET_ITEMS},
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_BALLS]     = {sDebugText_PCBag_PocketPokeBalls, DEBUG_PCBAG_MENU_ITEM_POCKET_BALLS},
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM]      = {sDebugText_PCBag_PocketTMHM,      DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM},
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = {sDebugText_PCBag_PocketBerries,   DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES},
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = {sDebugText_PCBag_PocketKeyItems,  DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS},
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = {sDebugText_PCBag_ClearBag,        DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
-    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]        = {sDebugText_PCBag_AccessPC,        DEBUG_PCBAG_MENU_ITEM_ACCESS_PC},
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]      = {sDebugText_PCBag_ClearBoxes,      DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES},
+    [DEBUG_PCBAG_MENU_ITEM_FILL]                  = {sDebugText_PCBag_Fill,                 DEBUG_PCBAG_MENU_ITEM_FILL},
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = {sDebugText_PCBag_ClearBag,             DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
+    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]             = {sDebugText_PCBag_AccessPC,             DEBUG_PCBAG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]           = {sDebugText_PCBag_ClearBoxes,           DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES},
+};
+
+static const struct ListMenuItem sDebugMenu_Items_PCBag_Fill[] =
+{
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_FAST]    = {sDebugText_PCBag_Fill_Pc_Fast,         DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_FAST},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_SLOW]    = {sDebugText_PCBag_Fill_Pc_Slow,         DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_SLOW},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_ITEMS]         = {sDebugText_PCBag_Fill_Pc_Items ,       DEBUG_PCBAG_MENU_ITEM_FILL_PC_ITEMS},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_ITEMS]     = {sDebugText_PCBag_Fill_PocketItems,     DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_ITEMS},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BALLS]     = {sDebugText_PCBag_Fill_PocketPokeBalls, DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BALLS},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_TMHM]      = {sDebugText_PCBag_Fill_PocketTMHM,      DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_TMHM},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BERRIES]   = {sDebugText_PCBag_Fill_PocketBerries,   DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BERRIES},
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_KEY_ITEMS] = {sDebugText_PCBag_Fill_PocketKeyItems,  DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_KEY_ITEMS},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Party[] =
@@ -829,17 +842,22 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
 
 static void (*const sDebugMenu_Actions_PCBag[])(u8) =
 {
-    [DEBUG_PCBAG_MENU_ITEM_PC_BOXES_FAST]    = DebugAction_PCBag_PCBoxes_Fast,
-    [DEBUG_PCBAG_MENU_ITEM_PC_BOXES_SLOW]    = DebugAction_PCBag_PCBoxes_Slow,
-    [DEBUG_PCBAG_MENU_ITEM_PC_ITEMS]         = DebugAction_PCBag_PCItemStorage,
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_ITEMS]     = DebugAction_PCBag_PocketItems,
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_BALLS]     = DebugAction_PCBag_PocketPokeBalls,
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_TMHM]      = DebugAction_PCBag_PocketTMHM,
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = DebugAction_PCBag_PocketBerries,
-    [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = DebugAction_PCBag_PocketKeyItems,
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = DebugAction_PCBag_ClearBag,
-    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]        = DebugAction_PCBag_AccessPC,
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]      = DebugAction_PCBag_ClearBoxes,
+    [DEBUG_PCBAG_MENU_ITEM_FILL]                  = DebugAction_OpenPCBagFillMenu,
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = DebugAction_PCBag_ClearBag,
+    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]             = DebugAction_PCBag_AccessPC,
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]           = DebugAction_PCBag_ClearBoxes,
+};
+
+static void (*const sDebugMenu_Actions_PCBag_Fill[])(u8) =
+{
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_FAST]    = DebugAction_PCBag_Fill_PCBoxes_Fast,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_BOXES_SLOW]    = DebugAction_PCBag_Fill_PCBoxes_Slow,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_PC_ITEMS]         = DebugAction_PCBag_Fill_PCItemStorage,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_ITEMS]     = DebugAction_PCBag_Fill_PocketItems,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BALLS]     = DebugAction_PCBag_Fill_PocketPokeBalls,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_TMHM]      = DebugAction_PCBag_Fill_PocketTMHM,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_BERRIES]   = DebugAction_PCBag_Fill_PocketBerries,
+    [DEBUG_PCBAG_MENU_ITEM_FILL_POCKET_KEY_ITEMS] = DebugAction_PCBag_Fill_PocketKeyItems,
 };
 
 static void (*const sDebugMenu_Actions_Party[])(u8) =
@@ -978,6 +996,13 @@ static const struct ListMenuTemplate sDebugMenu_ListTemplate_PCBag =
     .items = sDebugMenu_Items_PCBag,
     .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
     .totalItems = ARRAY_COUNT(sDebugMenu_Items_PCBag),
+};
+
+static const struct ListMenuTemplate sDebugMenu_ListTemplate_PCBag_Fill =
+{
+    .items = sDebugMenu_Items_PCBag_Fill,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .totalItems = ARRAY_COUNT(sDebugMenu_Items_PCBag_Fill),
 };
 
 static const struct ListMenuTemplate sDebugMenu_ListTemplate_Party =
@@ -1417,6 +1442,25 @@ static void DebugTask_HandleMenuInput_PCBag(u8 taskId)
     {
         PlaySE(SE_SELECT);
         if ((func = sDebugMenu_Actions_PCBag[input]) != NULL)
+            func(taskId);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        Debug_DestroyMenu(taskId);
+        Debug_ReShowMainMenu();
+    }
+}
+
+static void DebugTask_HandleMenuInput_PCBag_Fill(u8 taskId)
+{
+    void (*func)(u8);
+    u32 input = ListMenu_ProcessInput(gTasks[taskId].tMenuTaskId);
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        if ((func = sDebugMenu_Actions_PCBag_Fill[input]) != NULL)
             func(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
@@ -3930,7 +3974,14 @@ static void DebugAction_Give_DayCareEgg(u8 taskId)
 
 // *******************************
 // Actions PCBag
-static void DebugAction_PCBag_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
+
+static void DebugAction_OpenPCBagFillMenu(u8 taskId)
+{
+    Debug_DestroyMenu(taskId);
+    Debug_ShowMenu(DebugTask_HandleMenuInput_PCBag_Fill, sDebugMenu_ListTemplate_PCBag_Fill);
+}
+
+static void DebugAction_PCBag_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
     u32 personality;
@@ -3963,7 +4014,7 @@ static void DebugAction_PCBag_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     ScriptContext_Enable();
 }
 
-static void DebugAction_PCBag_PCBoxes_Slow(u8 taskId)
+static void DebugAction_PCBag_Fill_PCBoxes_Slow(u8 taskId)
 {
     int boxId, boxPosition;
     struct BoxPokemon boxMon;
@@ -3994,7 +4045,7 @@ static void DebugAction_PCBag_PCBoxes_Slow(u8 taskId)
     Debug_DestroyMenu_Full_Script(taskId, Debug_BoxFilledMessage);
 }
 
-static void DebugAction_PCBag_PCItemStorage(u8 taskId)
+static void DebugAction_PCBag_Fill_PCItemStorage(u8 taskId)
 {
     u16 itemId;
 
@@ -4005,7 +4056,7 @@ static void DebugAction_PCBag_PCItemStorage(u8 taskId)
     }
 }
 
-static void DebugAction_PCBag_PocketItems(u8 taskId)
+static void DebugAction_PCBag_Fill_PocketItems(u8 taskId)
 {
     u16 itemId;
 
@@ -4016,7 +4067,7 @@ static void DebugAction_PCBag_PocketItems(u8 taskId)
     }
 }
 
-static void DebugAction_PCBag_PocketPokeBalls(u8 taskId)
+static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId)
 {
     u16 itemId;
 
@@ -4027,7 +4078,7 @@ static void DebugAction_PCBag_PocketPokeBalls(u8 taskId)
     }
 }
 
-static void DebugAction_PCBag_PocketTMHM(u8 taskId)
+static void DebugAction_PCBag_Fill_PocketTMHM(u8 taskId)
 {
     u16 itemId;
 
@@ -4038,7 +4089,7 @@ static void DebugAction_PCBag_PocketTMHM(u8 taskId)
     }
 }
 
-static void DebugAction_PCBag_PocketBerries(u8 taskId)
+static void DebugAction_PCBag_Fill_PocketBerries(u8 taskId)
 {
     u16 itemId;
 
@@ -4049,7 +4100,7 @@ static void DebugAction_PCBag_PocketBerries(u8 taskId)
     }
 }
 
-static void DebugAction_PCBag_PocketKeyItems(u8 taskId)
+static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
 {
     u16 itemId;
 
