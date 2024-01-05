@@ -28,16 +28,34 @@ SINGLE_BATTLE_TEST("Solar Beam and Solar Blade can be used instantly in Sunlight
         else {
             if (move2 == MOVE_SOLAR_BEAM)
             {
-                NOT MESSAGE("Wobbuffet used Solar Beam!");
-                ANIMATION(ANIM_TYPE_MOVE, move2, player);
-                MESSAGE("Wobbuffet took in sunlight!");
+                if (B_UPDATED_MOVE_DATA >= GEN_5)
+                {
+                    MESSAGE("Wobbuffet used Solar Beam!");
+                    MESSAGE("Wobbuffet took in sunlight!");
+                    ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                }
+                else
+                {
+                    NOT MESSAGE("Wobbuffet used Solar Beam!");
+                    ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                    MESSAGE("Wobbuffet took in sunlight!");
+                }
                 MESSAGE("Wobbuffet used Solar Beam!");
             }
             else
             {
-                NOT MESSAGE("Wobbuffet used Solar Blade!");
-                ANIMATION(ANIM_TYPE_MOVE, move2, player);
-                MESSAGE("Wobbuffet took in sunlight!");
+                if (B_UPDATED_MOVE_DATA >= GEN_5)
+                {
+                    MESSAGE("Wobbuffet used Solar Blade!");
+                    MESSAGE("Wobbuffet took in sunlight!");
+                    ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                }
+                else
+                {
+                    NOT MESSAGE("Wobbuffet used Solar Blade!");
+                    ANIMATION(ANIM_TYPE_MOVE, move2, player);
+                    MESSAGE("Wobbuffet took in sunlight!");
+                }
                 MESSAGE("Wobbuffet used Solar Blade!");
             }
             ANIMATION(ANIM_TYPE_MOVE, move2, player);

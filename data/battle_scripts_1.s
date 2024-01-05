@@ -597,7 +597,7 @@ BattleScript_EffectSkyDrop::
 BattleScript_SkyDropWork:
 	setskydrop
 	setsemiinvulnerablebit
-	call BattleScriptFirstChargingTurnAfterAttackString
+	call BattleScript_FirstChargingTurnAfterAttackString
 	goto BattleScript_MoveEnd
 BattleScript_SkyDropTurn2:
 	attackcanceler
@@ -3449,20 +3449,18 @@ BattleScript_TwoTurnMovesSecondTurn::
 	orword gHitMarker, HITMARKER_NO_PPDEDUCT
 	goto BattleScript_HitFromAccCheck
 
-BattleScriptFirstChargingTurn::
+BattleScript_FirstChargingTurn::
 	attackcanceler
 	ppreduce
-	tryskipchargeturnattackstring BattleScriptFirstChargingTurnAfterAttackString
+.if B_UPDATED_MOVE_DATA >= GEN_5 @ before Gen 5, charge moves did not print an attack string on the charge turn
 	flushtextbox
 	attackstring
-BattleScriptFirstChargingTurnAfterAttackString:
-	attackanimation
-	waitanimation
+	waitmessage B_WAIT_TIME_LONG
+.endif
+BattleScript_FirstChargingTurnAfterAttackString:
 	orword gHitMarker, HITMARKER_CHARGING
 	seteffectprimary MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
-	settwoturnmovestring
-	printfromtable gFirstTurnOfTwoStringIds
-	waitmessage B_WAIT_TIME_LONG
+	twoturnmovestringandchargeanimation
 	setadditionaleffects @ only onChargeTurnOnly effects will work here
 	return
 
@@ -3745,10 +3743,14 @@ BattleScript_EffectTwoTurnsAttack::
 BattleScript_EffectTwoTurnsAttackTry::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
-	call BattleScriptFirstChargingTurn
+	call BattleScript_FirstChargingTurn
 	jumpifweathermovearg BS_ATTACKER, BattleScript_TwoTurnMovesSecondTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
+.if B_UPDATED_MOVE_DATA < GEN_5 @ before Gen 5, charge mvoes did not print an attack string on the charge turn
+	attackstring
+	waitmessage B_WAIT_TIME_LONG
+.endif
 	goto BattleScript_TwoTurnMovesSecondTurn
 
 BattleScript_EffectTwoTurnsAttackFireImmediately::
@@ -3758,7 +3760,7 @@ BattleScript_EffectTwoTurnsAttackFireImmediately::
 BattleScript_EffectGeomancy::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_GeomancySecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_GeomancySecondTurn
-	call BattleScriptFirstChargingTurn
+	call BattleScript_FirstChargingTurn
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation
 BattleScript_GeomancySecondTurn:
@@ -4593,7 +4595,7 @@ BattleScript_EffectMirrorCoat::
 BattleScript_EffectSkullBash::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
-	call BattleScriptFirstChargingTurn
+	call BattleScript_FirstChargingTurn
 	setstatchanger STAT_DEF, 1, FALSE
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_SkullBashEnd
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_SkullBashEnd
@@ -4684,7 +4686,7 @@ BattleScript_BeatUpEnd::
 BattleScript_EffectSemiInvulnerable::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SecondTurnSemiInvulnerable
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_SecondTurnSemiInvulnerable
-	call BattleScriptFirstChargingTurn
+	call BattleScript_FirstChargingTurn
 	setsemiinvulnerablebit
 	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
 	call BattleScript_PowerHerbActivation

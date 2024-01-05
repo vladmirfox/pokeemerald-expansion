@@ -11006,6 +11006,17 @@ bool32 MoveHasMoveEffectSelfArg(u32 move, u32 moveEffect, u32 argument)
     return (gBattleMoves[move].argument == argument) && MoveHasMoveEffectSelf(move, moveEffect);
 }
 
+bool32 MoveHasChargeTurnMoveEffect(u32 move)
+{
+    u8 i = 0;
+    for (i = 0; i < gBattleMoves[move].numAdditionalEffects; i++)
+    {
+        if (gBattleMoves[move].additionalEffects[i].onChargeTurnOnly)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES);

@@ -497,7 +497,7 @@ static void Cmd_setdrainedhp(void);
 static void Cmd_statbuffchange(void);
 static void Cmd_normalisebuffs(void);
 static void Cmd_setbide(void);
-static void Cmd_settwoturnmovestring(void);
+static void Cmd_twoturnmovestringandchargeanimation(void);
 static void Cmd_setmultihitcounter(void);
 static void Cmd_initmultihitstring(void);
 static void Cmd_forcerandomswitch(void);
@@ -756,7 +756,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_statbuffchange,                          //0x89
     Cmd_normalisebuffs,                          //0x8A
     Cmd_setbide,                                 //0x8B
-    Cmd_settwoturnmovestring,                    //0x8C
+    Cmd_twoturnmovestringandchargeanimation,     //0x8C
     Cmd_setmultihitcounter,                      //0x8D
     Cmd_initmultihitstring,                      //0x8E
     Cmd_forcerandomswitch,                       //0x8F
@@ -9778,15 +9778,10 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        for (i = 0; i < gBattleMoves[gCurrentMove].numAdditionalEffects; i++)
-        {
-            if (gBattleMoves[gCurrentMove].additionalEffects[i].onChargeTurnOnly)
-            {
-                gBattlescriptCurrInstr = cmd->jumpInstr;
-                return;
-            }
-        }
-        gBattlescriptCurrInstr = cmd->nextInstr;
+        if (MoveHasChargeTurnMoveEffect(gCurrentMove))
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     case VARIOUS_JUMP_IF_NOT_GROUNDED:
@@ -10716,15 +10711,6 @@ static void Cmd_various(void)
             BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
         }
-        return;
-    }
-    case VARIOUS_TRY_SKIP_CHARGE_TURN_ATTACK_STRING:
-    {
-        VARIOUS_ARGS(const u8 *jumpInstr);
-        if (gBattleMoves[gCurrentMove].skipsAttackStringOnChargeTurn)
-            gBattlescriptCurrInstr = cmd->jumpInstr;
-        else
-            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     } // End of switch (cmd->id)
@@ -11701,9 +11687,9 @@ static void Cmd_setbide(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_settwoturnmovestring(void)
+static void Cmd_twoturnmovestringandchargeanimation(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(const u8 *animationThenStringPtr);
 
     switch (gCurrentMove)
     {
@@ -11752,7 +11738,10 @@ static void Cmd_settwoturnmovestring(void)
             break;
     }
 
-    gBattlescriptCurrInstr = cmd->nextInstr;
+    if (B_UPDATED_MOVE_DATA < GEN_5 || MoveHasChargeTurnMoveEffect(gCurrentMove))
+        gBattlescriptCurrInstr = cmd->animationThenStringPtr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_setmultihitcounter(void)

@@ -775,8 +775,21 @@
 	.byte 0x8b
 	.endm
 
-	.macro settwoturnmovestring
+	.macro twoturnmovestringandchargeanimation
 	.byte 0x8c
+	.4byte 1f @animation then attack string
+	@default - attack string then animation
+	printfromtable gFirstTurnOfTwoStringIds
+	waitmessage B_WAIT_TIME_LONG
+	attackanimation
+	waitanimation
+	goto 2f
+	1:
+	attackanimation
+	waitanimation
+	printfromtable gFirstTurnOfTwoStringIds
+	waitmessage B_WAIT_TIME_LONG
+	2:
 	.endm
 
 	.macro setmultihitcounter value:req
@@ -2426,11 +2439,6 @@
 
 	.macro tryrevivalblessing, jumpInstr:req
 	various 0, VARIOUS_TRY_REVIVAL_BLESSING
-	.4byte \jumpInstr
-	.endm
-
-	.macro tryskipchargeturnattackstring, jumpInstr:req
-	various 0, VARIOUS_TRY_SKIP_CHARGE_TURN_ATTACK_STRING
 	.4byte \jumpInstr
 	.endm
 

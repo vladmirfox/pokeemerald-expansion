@@ -1987,8 +1987,8 @@ bool32 IsChargingMove(u32 battlerAtk, u32 move)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_SKULL_BASH:
     case EFFECT_TWO_TURNS_ATTACK:
-        return !(AI_GetWeather(AI_DATA) & gBattleMoves[move].argument
-          || AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB);
+        return !(AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB
+          || (AI_GetWeather(AI_DATA) & gBattleMoves[move].argument));
     default:
         return FALSE;
     }

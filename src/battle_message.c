@@ -151,6 +151,7 @@ static const u8 sText_PkmnWhippedWhirlwind[] = _("{B_ATK_NAME_WITH_PREFIX} whipp
 static const u8 sText_PkmnTookSunlight[] = _("{B_ATK_NAME_WITH_PREFIX} took\nin sunlight!");
 static const u8 sText_PkmnLoweredHead[] = _("{B_ATK_NAME_WITH_PREFIX} lowered\nits head!");
 static const u8 sText_PkmnIsGlowing[] = _("{B_ATK_NAME_WITH_PREFIX} is glowing!");
+static const u8 sText_PkmnIsCloakedInAHarshLight[] = _("{B_ATK_NAME_WITH_PREFIX} became\ncloaked in a harsh light!");
 static const u8 sText_PkmnFlewHigh[] = _("{B_ATK_NAME_WITH_PREFIX} flew\nup high!");
 static const u8 sText_PkmnDugHole[] = _("{B_ATK_NAME_WITH_PREFIX} dug a hole!");
 static const u8 sText_PkmnHidUnderwater[] = _("{B_ATK_NAME_WITH_PREFIX} hid\nunderwater!");
@@ -1531,6 +1532,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TARGETCOVEREDINSTICKYCANDYSYRUP - BATTLESTRINGS_TABLE_START] = sText_TargetCoveredInStickyCandySyrup,
     [STRINGID_ITEMWASUSEDUP - BATTLESTRINGS_TABLE_START] = sText_ItemWasUsedUp,
     [STRINGID_ATTACKERLOSTITSTYPE - BATTLESTRINGS_TABLE_START] = sText_AttackerLostItsType,
+    [STRINGID_CLOAKEDINAHARSHLIGHT - BATTLESTRINGS_TABLE_START] = sText_PkmnIsCloakedInAHarshLight,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1762,7 +1764,7 @@ const u16 gFirstTurnOfTwoStringIds[] =
     [B_MSG_TURN1_RAZOR_WIND]    = STRINGID_PKMNWHIPPEDWHIRLWIND,
     [B_MSG_TURN1_SOLAR_BEAM]    = STRINGID_PKMNTOOKSUNLIGHT,
     [B_MSG_TURN1_SKULL_BASH]    = STRINGID_PKMNLOWEREDHEAD,
-    [B_MSG_TURN1_SKY_ATTACK]    = STRINGID_PKMNISGLOWING,
+    [B_MSG_TURN1_SKY_ATTACK]    = B_UPDATED_MOVE_DATA >= GEN_4 ? STRINGID_CLOAKEDINAHARSHLIGHT : STRINGID_PKMNISGLOWING,
     [B_MSG_TURN1_FLY]           = STRINGID_PKMNFLEWHIGH,
     [B_MSG_TURN1_DIG]           = STRINGID_PKMNDUGHOLE,
     [B_MSG_TURN1_DIVE]          = STRINGID_PKMNHIDUNDERWATER,
@@ -1772,7 +1774,7 @@ const u16 gFirstTurnOfTwoStringIds[] =
     [B_MSG_TURN1_FREEZE_SHOCK]  = STRINGID_CLOAKEDINAFREEZINGLIGHT,
     [B_MSG_TURN1_SKY_DROP]      = STRINGID_PKMNTOOKTARGETHIGH,
     [B_MSG_TURN1_METEOR_BEAM]   = STRINGID_METEORBEAMCHARGING,
-    [B_MSG_TURN1_ELECTRO_SHOT] = STRINGID_ELECTROSHOTCHARGING,
+    [B_MSG_TURN1_ELECTRO_SHOT]  = STRINGID_ELECTROSHOTCHARGING,
 };
 
 // Index copied from move's index in sTrappingMoves
