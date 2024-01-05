@@ -1467,7 +1467,7 @@ static void DebugTask_HandleMenuInput_PCBag_Fill(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Debug_DestroyMenu(taskId);
-        Debug_ReShowMainMenu();
+        Debug_ShowMenu(DebugTask_HandleMenuInput_PCBag, sDebugMenu_ListTemplate_PCBag);
     }
 }
 
