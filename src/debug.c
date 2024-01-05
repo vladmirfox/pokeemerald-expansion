@@ -100,12 +100,10 @@ enum UtilDebugMenu
 
 enum PartyDebugMenu
 {
-    DEBUG_PARTY_MENU_ITEM_ACCESS_PC,
     DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER,
     DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG,
     DEBUG_PARTY_MENU_ITEM_HEAL_PARTY,
     DEBUG_PARTY_MENU_ITEM_POISON_MONS,
-    DEBUG_PARTY_MENU_ITEM_CLEAR_BOXES,
 };
 
 enum ScriptDebugMenu
@@ -210,6 +208,8 @@ enum GivePCBagDebugMenu
     DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES,
     DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS,
     DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG,
+    DEBUG_PCBAG_MENU_ITEM_ACCESS_PC,
+    DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES,
 };
 
 enum SoundDebugMenu
@@ -362,13 +362,13 @@ static void DebugAction_PCBag_PocketTMHM(u8 taskId);
 static void DebugAction_PCBag_PocketBerries(u8 taskId);
 static void DebugAction_PCBag_PocketKeyItems(u8 taskId);
 static void DebugAction_PCBag_ClearBag(u8 taskId);
+static void DebugAction_PCBag_AccessPC(u8 taskId);
+static void DebugAction_PCBag_ClearBoxes(u8 taskId);
 
-static void DebugAction_Party_AccessPC(u8 taskId);
 static void DebugAction_Party_MoveReminder(u8 taskId);
 static void DebugAction_Party_HatchAnEgg(u8 taskId);
 static void DebugAction_Party_HealParty(u8 taskId);
 static void DebugAction_Party_PoisonMons(u8 taskId);
-static void DebugAction_Party_ClearBoxes(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
 static void DebugAction_FlagsVars_FlagsSelect(u8 taskId);
@@ -505,13 +505,13 @@ static const u8 sDebugText_PCBag_PocketTMHM[] =              _("Fill Pocket TMHM
 static const u8 sDebugText_PCBag_PocketBerries[] =           _("Fill Pocket Berries");
 static const u8 sDebugText_PCBag_PocketKeyItems[] =          _("Fill Pocket Key Items");
 static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
+static const u8 sDebugText_PCBag_AccessPC[] =                _("Access PC");
+static const u8 sDebugText_PCBag_ClearBoxes[] =              _("Clear Storage Boxes");
 // Party/Boxes Menu
-static const u8 sDebugText_Party_AccessPC[] =                _("Access PC");
 static const u8 sDebugText_Party_MoveReminder[] =            _("Move Reminder");
 static const u8 sDebugText_Party_HatchAnEgg[] =              _("Hatch an Egg");
 static const u8 sDebugText_Party_HealParty[] =               _("Heal party");
 static const u8 sDebugText_Party_PoisonParty[] =             _("Poison party");
-static const u8 sDebugText_Party_ClearBoxes[] =              _("Clear Storage Boxes");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flags[] =               _("Set Flag XYZ…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_FlagsVars_Flag[] =                _("Flag: {STR_VAR_1}{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}\n{STR_VAR_3}");
@@ -686,16 +686,16 @@ static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
     [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = {sDebugText_PCBag_PocketBerries,   DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES},
     [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = {sDebugText_PCBag_PocketKeyItems,  DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS},
     [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = {sDebugText_PCBag_ClearBag,        DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
+    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]        = {sDebugText_PCBag_AccessPC,        DEBUG_PCBAG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]      = {sDebugText_PCBag_ClearBoxes,      DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Party[] =
 {
-    [DEBUG_PARTY_MENU_ITEM_ACCESS_PC]      = {sDebugText_Party_AccessPC,       DEBUG_PARTY_MENU_ITEM_ACCESS_PC},
     [DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER]  = {sDebugText_Party_MoveReminder,   DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER},
     [DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG]   = {sDebugText_Party_HatchAnEgg,     DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG},
     [DEBUG_PARTY_MENU_ITEM_HEAL_PARTY]     = {sDebugText_Party_HealParty,      DEBUG_PARTY_MENU_ITEM_HEAL_PARTY},
     [DEBUG_PARTY_MENU_ITEM_POISON_MONS]    = {sDebugText_Party_PoisonParty,    DEBUG_PARTY_MENU_ITEM_POISON_MONS},
-    [DEBUG_PARTY_MENU_ITEM_CLEAR_BOXES]    = {sDebugText_Party_ClearBoxes,     DEBUG_PARTY_MENU_ITEM_CLEAR_BOXES},
 };
 
 static const struct ListMenuItem sDebugMenu_Items_Scripts[] =
@@ -838,16 +838,16 @@ static void (*const sDebugMenu_Actions_PCBag[])(u8) =
     [DEBUG_PCBAG_MENU_ITEM_POCKET_BERRIES]   = DebugAction_PCBag_PocketBerries,
     [DEBUG_PCBAG_MENU_ITEM_POCKET_KEY_ITEMS] = DebugAction_PCBag_PocketKeyItems,
     [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]        = DebugAction_PCBag_ClearBag,
+    [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]        = DebugAction_PCBag_AccessPC,
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]      = DebugAction_PCBag_ClearBoxes,
 };
 
 static void (*const sDebugMenu_Actions_Party[])(u8) =
 {
-    [DEBUG_PARTY_MENU_ITEM_ACCESS_PC]     = DebugAction_Party_AccessPC,
     [DEBUG_PARTY_MENU_ITEM_MOVE_REMINDER] = DebugAction_Party_MoveReminder,
     [DEBUG_PARTY_MENU_ITEM_HATCH_AN_EGG]  = DebugAction_Party_HatchAnEgg,
     [DEBUG_PARTY_MENU_ITEM_HEAL_PARTY]    = DebugAction_Party_HealParty,
     [DEBUG_PARTY_MENU_ITEM_POISON_MONS]   = DebugAction_Party_PoisonMons,
-    [DEBUG_PARTY_MENU_ITEM_CLEAR_BOXES]   = DebugAction_Party_ClearBoxes,
 };
 
 static void (*const sDebugMenu_Actions_Scripts[])(u8) =
@@ -4066,6 +4066,18 @@ static void DebugAction_PCBag_ClearBag(u8 taskId)
     ClearBag();
 }
 
+static void DebugAction_PCBag_AccessPC(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
+}
+
+static void DebugAction_PCBag_ClearBoxes(u8 taskId)
+{
+    ResetPokemonStorageSystem();
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
 // *******************************
 // Actions Sound
 static const u8 *const sBGMNames[];
@@ -4805,11 +4817,6 @@ SOUND_LIST_SE
 // *******************************
 // Actions Party/Boxes
 
-static void DebugAction_Party_AccessPC(u8 taskId)
-{
-    Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
-}
-
 static void DebugAction_Party_MoveReminder(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, FallarborTown_MoveRelearnersHouse_EventScript_ChooseMon);
@@ -4844,13 +4851,6 @@ static void DebugAction_Party_PoisonMons(u8 taskId)
     PlaySE(SE_FIELD_POISON);
     ScriptContext_Enable();
     Debug_DestroyMenu_Full(taskId);
-}
-
-static void DebugAction_Party_ClearBoxes(u8 taskId)
-{
-    ResetPokemonStorageSystem();
-    Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
 }
 
 #endif //DEBUG_OVERWORLD_MENU == TRUE
