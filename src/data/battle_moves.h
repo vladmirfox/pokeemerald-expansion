@@ -1212,7 +1212,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-        .skipsAttackStringOnChargeTurn = B_UPDATED_MOVE_DATA < GEN_5,
         .argument = B_WEATHER_SUN,
     },
 
@@ -2082,7 +2081,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-        .skipsAttackStringOnChargeTurn = B_UPDATED_MOVE_DATA < GEN_5,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_DEF_PLUS_1,
             .self = TRUE,
@@ -2292,21 +2290,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-        .criticalHitStage = B_UPDATED_MOVE_DATA >= GEN_3 ? 1 : 0,
+        .criticalHitStage = B_UPDATED_MOVE_DATA >= GEN_3,
         .twoTurnMove = TRUE,
         .sheerForceBoost = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-<<<<<<< HEAD
-    #if B_UPDATED_MOVE_DATA >= GEN_3
-=======
-        .skipsAttackStringOnChargeTurn = B_UPDATED_MOVE_DATA < GEN_5,
->>>>>>> d8e23213ec (Redid two turn move + animations logic)
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-    #endif
     },
 
     [MOVE_TRANSFORM] =
