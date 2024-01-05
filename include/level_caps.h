@@ -31,7 +31,7 @@
 #endif
 #endif
 
-u8 GetCurrentLevelCap();
-u16 GetSoftLevelCapExpValue(u8 level, u32 expValue);
+u8 GetCurrentLevelCap(void);
+u16 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 
 #endif /* GUARD_LEVEL_CAP_H */
