@@ -986,8 +986,10 @@
 #define ITEM_SWIFT_MOCHI 811
 #define ITEM_FRESH_START_MOCHI 812
 #define ITEM_GLIMMERING_CHARM 813
+#define ITEM_METAL_ALLOY 814
+#define ITEM_STELLAR_TERA_SHARD 815
 
-#define ITEMS_COUNT 814
+#define ITEMS_COUNT 816
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
@@ -1015,6 +1017,7 @@
 #define ITEM_TO_BERRY(itemId)(((itemId) - FIRST_BERRY_INDEX) + 1)
 #define ITEM_TO_MAIL(itemId)((itemId) - FIRST_MAIL_INDEX)
 #define MAIL_NONE 0xFF
+#define ITEM_TO_MULCH(itemId)(((itemId) - ITEM_GROWTH_MULCH) + 1)
 
 #define NUM_TECHNICAL_MACHINES 100
 #define NUM_HIDDEN_MACHINES 8
