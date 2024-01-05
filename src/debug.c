@@ -101,8 +101,8 @@ enum UtilDebugMenu
 enum GivePCBagDebugMenu
 {
     DEBUG_PCBAG_MENU_ITEM_FILL,
-    DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG,
     DEBUG_PCBAG_MENU_ITEM_ACCESS_PC,
+    DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG,
     DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES,
 };
 
@@ -368,8 +368,8 @@ static void DebugAction_PCBag_Fill_PocketPokeBalls(u8 taskId);
 static void DebugAction_PCBag_Fill_PocketTMHM(u8 taskId);
 static void DebugAction_PCBag_Fill_PocketBerries(u8 taskId);
 static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId);
-static void DebugAction_PCBag_ClearBag(u8 taskId);
 static void DebugAction_PCBag_AccessPC(u8 taskId);
+static void DebugAction_PCBag_ClearBag(u8 taskId);
 static void DebugAction_PCBag_ClearBoxes(u8 taskId);
 
 static void DebugAction_Party_MoveReminder(u8 taskId);
@@ -512,8 +512,8 @@ static const u8 sDebugText_PCBag_Fill_PocketPokeBalls[] =    _("Fill Pocket Pok√
 static const u8 sDebugText_PCBag_Fill_PocketTMHM[] =         _("Fill Pocket TMHM");
 static const u8 sDebugText_PCBag_Fill_PocketBerries[] =      _("Fill Pocket Berries");
 static const u8 sDebugText_PCBag_Fill_PocketKeyItems[] =     _("Fill Pocket Key Items");
-static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 static const u8 sDebugText_PCBag_AccessPC[] =                _("Access PC");
+static const u8 sDebugText_PCBag_ClearBag[] =                _("Clear Bag");
 static const u8 sDebugText_PCBag_ClearBoxes[] =              _("Clear Storage Boxes");
 // Party/Boxes Menu
 static const u8 sDebugText_Party_MoveReminder[] =            _("Move Reminder");
@@ -686,8 +686,8 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
 static const struct ListMenuItem sDebugMenu_Items_PCBag[] =
 {
     [DEBUG_PCBAG_MENU_ITEM_FILL]                  = {sDebugText_PCBag_Fill,                 DEBUG_PCBAG_MENU_ITEM_FILL},
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = {sDebugText_PCBag_ClearBag,             DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
     [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]             = {sDebugText_PCBag_AccessPC,             DEBUG_PCBAG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = {sDebugText_PCBag_ClearBag,             DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG},
     [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]           = {sDebugText_PCBag_ClearBoxes,           DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES},
 };
 
@@ -843,8 +843,8 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
 static void (*const sDebugMenu_Actions_PCBag[])(u8) =
 {
     [DEBUG_PCBAG_MENU_ITEM_FILL]                  = DebugAction_OpenPCBagFillMenu,
-    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = DebugAction_PCBag_ClearBag,
     [DEBUG_PCBAG_MENU_ITEM_ACCESS_PC]             = DebugAction_PCBag_AccessPC,
+    [DEBUG_PCBAG_MENU_ITEM_CLEAR_BAG]             = DebugAction_PCBag_ClearBag,
     [DEBUG_PCBAG_MENU_ITEM_CLEAR_BOXES]           = DebugAction_PCBag_ClearBoxes,
 };
 
@@ -4111,15 +4111,15 @@ static void DebugAction_PCBag_Fill_PocketKeyItems(u8 taskId)
     }
 }
 
+static void DebugAction_PCBag_AccessPC(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
+}
+
 static void DebugAction_PCBag_ClearBag(u8 taskId)
 {
     PlaySE(MUS_LEVEL_UP);
     ClearBag();
-}
-
-static void DebugAction_PCBag_AccessPC(u8 taskId)
-{
-    Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
 }
 
 static void DebugAction_PCBag_ClearBoxes(u8 taskId)
