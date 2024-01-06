@@ -742,12 +742,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_SKULL_BASH] =
-    {
-        .battleScript = BattleScript_EffectSkullBash,
-        .battleTvScore = 3,
-    },
-
     [EFFECT_EARTHQUAKE] =
     {
         .battleScript = BattleScript_EffectHit,
