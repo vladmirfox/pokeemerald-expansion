@@ -1083,12 +1083,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_SKY_UPPERCUT] =
-    {
-        .battleScript = BattleScript_EffectSkyUppercut,
-        .battleTvScore = 1,
-    },
-
     [EFFECT_BULK_UP] =
     {
         .battleScript = BattleScript_EffectBulkUp,

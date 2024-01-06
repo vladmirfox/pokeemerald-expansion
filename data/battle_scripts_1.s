@@ -5427,9 +5427,6 @@ BattleScript_CosmicPowerTrySpDef::
 BattleScript_CosmicPowerEnd::
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectSkyUppercut::
-	goto BattleScript_EffectHit
-
 BattleScript_EffectBulkUp::
 	attackcanceler
 	attackstring

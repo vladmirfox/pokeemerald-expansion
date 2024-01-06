@@ -5277,7 +5277,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKY_UPPERCUT] =
     {
-        .effect = EFFECT_SKY_UPPERCUT,
+        .effect = EFFECT_HIT,
         .power = 85,
         .type = TYPE_FIGHTING,
         .accuracy = 90,
