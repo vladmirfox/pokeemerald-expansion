@@ -21,7 +21,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR }, // CHANGE HA TO SELF-SUFFICIENT
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Turtwig"),
         .cryId = CRY_TURTWIG,
@@ -70,7 +70,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR }, // CHANGE HA TO SELF-SUFFICIENT
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Grotle"),
         .cryId = CRY_GROTLE,
@@ -119,7 +119,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS },
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR }, // CHANGE HA TO SELF-SUFFICIENT
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
         .speciesName = _("Torterra"),
@@ -169,7 +169,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST },
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_FIST, ABILITY_IRON_FIST }, // CHANCE HA TO VERSATILE
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .speciesName = _("Chimchar"),
@@ -219,7 +219,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST },
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_FIST, ABILITY_IRON_FIST }, // CHANCE HA TO VERSATILE
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .speciesName = _("Monferno"),
@@ -270,7 +270,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST },
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_FIST, ABILITY_IRON_FIST }, // CHANCE HA TO VERSATILE
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Infernape"),
         .cryId = CRY_INFERNAPE,
@@ -320,7 +320,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_DAMP, ABILITY_COMPETITIVE },
         #else
             .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
         #endif
@@ -372,7 +372,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_DAMP, ABILITY_COMPETITIVE },
         #else
             .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
         #endif
@@ -424,7 +424,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
         #if P_UPDATED_ABILITIES >= GEN_9
-            .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+            .abilities = { ABILITY_TORRENT, ABILITY_DAMP, ABILITY_COMPETITIVE },
         #else
             .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT },
         #endif
@@ -3490,7 +3490,6 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,                          \
         .growthRate = GROWTH_MEDIUM_FAST,                           \
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS },  \
-        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
         .bodyColor = BODY_COLOR_RED,                                \
         .speciesName = _("Rotom"),                                  \
         .cryId = CRY_ROTOM,                                         \
@@ -3510,6 +3509,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
         .baseHP        = 50,
         .baseAttack    = 50,
         .baseDefense   = 77,
@@ -3547,6 +3547,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM_HEAT] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
         .types = { TYPE_ELECTRIC, TYPE_FIRE },
         ROTOM_APPLIANCE_INFO(Heat),
         .description = COMPOUND_STRING(
@@ -3569,6 +3570,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM_WASH] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
         .types = { TYPE_ELECTRIC, TYPE_WATER },
         .noFlip = TRUE,
         ROTOM_APPLIANCE_INFO(Wash),
@@ -3592,6 +3594,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM_FROST] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
         .types = { TYPE_ELECTRIC, TYPE_ICE },
         ROTOM_APPLIANCE_INFO(Frost),
         .description = COMPOUND_STRING(
@@ -3614,6 +3617,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM_FAN] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_MOTOR_DRIVE, ABILITY_NONE },
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
         ROTOM_APPLIANCE_INFO(Fan),
         .description = COMPOUND_STRING(
@@ -3637,6 +3641,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ROTOM_MOW] =
     {
         ROTOM_MISC_INFO,
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
         .types = { TYPE_ELECTRIC, TYPE_GRASS },
         ROTOM_APPLIANCE_INFO(Mow),
         .description = COMPOUND_STRING(
