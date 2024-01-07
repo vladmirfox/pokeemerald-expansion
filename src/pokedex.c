@@ -4384,7 +4384,7 @@ bool16 HasAllHoennMons(void)
     for (i = 0; i < HOENN_DEX_COUNT; i++)
     {
         j = HoennToNationalOrder(i + 1);
-        if (!(gSpeciesInfo[j].isMythical && !gSpeciesInfo[j].mythicalOverride) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[j].isMythical && !gSpeciesInfo[j].dexForceRequired) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }
     return TRUE;
@@ -4409,7 +4409,7 @@ bool16 HasAllMons(void)
 
     for (i = 1; i < NATIONAL_DEX_COUNT + 1; i++)
     {
-        if (!(gSpeciesInfo[i].isMythical && !gSpeciesInfo[i].mythicalOverride) && !GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[i].isMythical && !gSpeciesInfo[i].dexForceRequired) && !GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 
