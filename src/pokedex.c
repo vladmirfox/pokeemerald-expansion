@@ -4379,12 +4379,12 @@ u16 GetKantoPokedexCount(u8 caseID)
 
 bool16 HasAllHoennMons(void)
 {
-    u16 i;
+    u16 i, j;
 
-    // -2 excludes Jirachi and Deoxys
-    for (i = 0; i < HOENN_DEX_COUNT - 2; i++)
+    for (i = 0; i < HOENN_DEX_COUNT; i++)
     {
-        if (!GetSetPokedexFlag(HoennToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+        j = HoennToNationalOrder(i + 1);
+        if (!(gSpeciesInfo[j].isMythical && !gSpeciesInfo[j].mythicalOverride) && !GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
             return FALSE;
     }
     return TRUE;
@@ -4409,7 +4409,7 @@ bool16 HasAllMons(void)
 
     for (i = 1; i < NATIONAL_DEX_COUNT + 1; i++)
     {
-        if (!(gSpeciesInfo[i].isMythical) && !GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[i].isMythical && !gSpeciesInfo[i].mythicalOverride) && !GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 

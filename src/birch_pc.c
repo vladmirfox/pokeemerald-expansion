@@ -20,13 +20,6 @@ bool16 ScriptGetPokedexInfo(void)
     return IsNationalPokedexEnabled();
 }
 
-// Species in this array are ignored in the progress towards a full regional dex
-static const u16 sRegionalNotCountedList[] = {
-    SPECIES_JIRACHI,
-    SPECIES_DEOXYS,
-    SPECIES_NONE
-};
-
 #define BIRCH_DEX_STRINGS 21
 
 static const u8 *const sBirchDexRatingTexts[BIRCH_DEX_STRINGS] =
@@ -57,13 +50,18 @@ static const u8 *const sBirchDexRatingTexts[BIRCH_DEX_STRINGS] =
 // This shows your Hoenn Pokedex rating and not your National Dex.
 const u8 *GetPokedexRatingText(u16 count)
 {
-    u32 i;
+    u32 i, j;
     u16 maxDex = HOENN_DEX_COUNT - 1;
-    for(i = 0; sRegionalNotCountedList[i] != SPECIES_NONE; i++)
+    // doesNotCountForRegionalPokedex
+    for(i = 0; i < HOENN_DEX_COUNT; i++)
     {
-        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(sRegionalNotCountedList[i]), FLAG_GET_CAUGHT))
-            count--;
-        maxDex--;
+        j = HoennToNationalOrder(i + 1);
+        if (gSpeciesInfo[NationalPokedexNumToSpecies(j)].isMythical && !gSpeciesInfo[NationalPokedexNumToSpecies(j)].mythicalOverride)
+        {
+            if (GetSetPokedexFlag(j, FLAG_GET_CAUGHT))
+                count--;
+            maxDex--;
+        }
     }
     return sBirchDexRatingTexts[(count * (BIRCH_DEX_STRINGS - 1)) / maxDex];
 }
