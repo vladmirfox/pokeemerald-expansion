@@ -21,7 +21,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GRASSY_SURGE },
+        .abilities = { ABILITY_OVERGROW, ABILITY_GLUTTONY, ABILITY_GRASSY_SURGE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Grookey"),
         .cryId = CRY_GROOKEY,
@@ -69,7 +69,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GRASSY_SURGE },
+        .abilities = { ABILITY_OVERGROW, ABILITY_GLUTTONY, ABILITY_GRASSY_SURGE },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Thwackey"),
         .cryId = CRY_THWACKEY,
@@ -99,31 +99,31 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_RILLABOOM}),
     },
 
-#define RILLABOOM_MISC_INFO                                                     \
-        .baseHP        = 100,                                                   \
-        .baseAttack    = 125,                                                   \
-        .baseDefense   = 90,                                                    \
-        .baseSpeed     = 85,                                                    \
-        .baseSpAttack  = 60,                                                    \
-        .baseSpDefense = 70,                                                    \
-        .types = { TYPE_GRASS, TYPE_GRASS },                                    \
-        .catchRate = 45,                                                        \
-        .expYield = 265,                                                        \
-        .evYield_Attack = 3,                                                    \
-        .genderRatio = PERCENT_FEMALE(12.5),                                    \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                       \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },                      \
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_GRASSY_SURGE },  \
-        .bodyColor = BODY_COLOR_GREEN,                                          \
-        .speciesName = _("Rillaboom"),                                          \
-        .cryId = CRY_RILLABOOM,                                                 \
-        .natDexNum = NATIONAL_DEX_RILLABOOM,                                    \
-        .categoryName = _("Drummer"),                                           \
-        .footprint = gMonFootprint_Rillaboom,                                   \
-        LEARNSETS(Rillaboom),                                                   \
-        .formSpeciesIdTable = sRillaboomFormSpeciesIdTable,                     \
+#define RILLABOOM_MISC_INFO                                                         \
+        .baseHP        = 100,                                                       \
+        .baseAttack    = 125,                                                       \
+        .baseDefense   = 90,                                                        \
+        .baseSpeed     = 85,                                                        \
+        .baseSpAttack  = 60,                                                        \
+        .baseSpDefense = 70,                                                        \
+        .types = { TYPE_GRASS, TYPE_GRASS },                                        \
+        .catchRate = 45,                                                            \
+        .expYield = 265,                                                            \
+        .evYield_Attack = 3,                                                        \
+        .genderRatio = PERCENT_FEMALE(12.5),                                        \
+        .eggCycles = 20,                                                            \
+        .friendship = STANDARD_FRIENDSHIP,                                          \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                           \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_GRASS },                          \
+        .abilities = { ABILITY_OVERGROW, ABILITY_SOUNDPROOF, ABILITY_GRASSY_SURGE },\
+        .bodyColor = BODY_COLOR_GREEN,                                              \
+        .speciesName = _("Rillaboom"),                                              \
+        .cryId = CRY_RILLABOOM,                                                     \
+        .natDexNum = NATIONAL_DEX_RILLABOOM,                                        \
+        .categoryName = _("Drummer"),                                               \
+        .footprint = gMonFootprint_Rillaboom,                                       \
+        LEARNSETS(Rillaboom),                                                       \
+        .formSpeciesIdTable = sRillaboomFormSpeciesIdTable,                         \
         .formChangeTable = sRillaboomFormChangeTable
 
     [SPECIES_RILLABOOM] =
@@ -196,7 +196,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO },
+        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO }, // CHANGE A2 TO IRON SOLE
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Scorbunny"),
         .cryId = CRY_SCORBUNNY,
@@ -244,7 +244,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO },
+        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO }, // CHANGE A2 TO IRON SOLE
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Raboot"),
         .cryId = CRY_RABOOT,
@@ -301,7 +301,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,             \
         .formChangeTable = sCinderaceFormChangeTable
 
-    [SPECIES_CINDERACE] =
+    [SPECIES_CINDERACE] = // CHANGE A2 TO IRON SOLE
     {
         CINDERACE_MISC_INFO,
         .height = 14,
@@ -374,7 +374,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SNIPER },
+        .abilities = { ABILITY_TORRENT, ABILITY_SNIPER, ABILITY_RUN_AWAY },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Sobble"),
         .cryId = CRY_SOBBLE,
@@ -422,7 +422,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SNIPER },
+        .abilities = { ABILITY_TORRENT, ABILITY_SNIPER, ABILITY_RUN_AWAY },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Drizzile"),
         .cryId = CRY_DRIZZILE,
@@ -468,7 +468,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,                              \
         .growthRate = GROWTH_MEDIUM_SLOW,                               \
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD },            \
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SNIPER }, \
+        .abilities = { ABILITY_TORRENT, ABILITY_SNIPER, ABILITY_SNIPER }, \
         .bodyColor = BODY_COLOR_BLUE,                                   \
         .speciesName = _("Inteleon"),                                   \
         .cryId = CRY_INTELEON,                                          \
@@ -479,7 +479,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sInteleonFormSpeciesIdTable,              \
         .formChangeTable = sInteleonFormChangeTable
 
-    [SPECIES_INTELEON] =
+    [SPECIES_INTELEON] = // CHANGE HA TO ELITE PRECISION
     {
         INTELEON_MISC_INFO,
         .height = 19,
