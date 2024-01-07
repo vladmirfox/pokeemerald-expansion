@@ -218,7 +218,7 @@ static void ConfirmSell(u8);
 static void CancelSell(u8);
 static void Task_FadeAndCloseBagMenuIfMulch(u8 taskId);
 
-//bag sort
+#if I_BAG_SORT == TRUE
 static void Task_LoadBagSortOptions(u8 taskId);
 static void ItemMenu_SortByName(u8 taskId);
 static void ItemMenu_SortByType(u8 taskId);
@@ -231,6 +231,7 @@ static void Merge(struct ItemSlot* array, u32 low, u32 mid, u32 high, s8 (*compa
 static s8 CompareItemsAlphabetically(struct ItemSlot* itemSlot1, struct ItemSlot* itemSlot2);
 static s8 CompareItemsByMost(struct ItemSlot* itemSlot1, struct ItemSlot* itemSlot2);
 static s8 CompareItemsByType(struct ItemSlot* itemSlot1, struct ItemSlot* itemSlot2);
+#endif // I_BAG_SORT == TRUE
 
 static const struct BgTemplate sBgTemplates_ItemMenu[] =
 {
@@ -305,9 +306,11 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_SHOW]              = {gMenuText_Show,     {ItemMenu_Show}},
     [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,    {ItemMenu_GiveFavorLady}},
     [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,  {ItemMenu_ConfirmQuizLady}},
+#if I_BAG_SORT == TRUE
     [ACTION_BY_NAME]           = {sMenuText_ByName,   {ItemMenu_SortByName}},
     [ACTION_BY_TYPE]           = {sMenuText_ByType,   {ItemMenu_SortByType}},
     [ACTION_BY_AMOUNT]         = {sMenuText_ByAmount, {ItemMenu_SortByAmount}},
+#endif // I_BAG_SORT == TRUE
     [ACTION_DUMMY]             = {gText_EmptyString2, {NULL}}
 };
 
@@ -1293,6 +1296,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                 }
                 return;
             }
+        #if I_BAG_SORT == TRUE
             else if (JOY_NEW(START_BUTTON))
             {
                 if ((gBagMenu->numItemStacks[gBagPosition.pocket] - 1) <= 1) //can't sort with 0 or 1 item in bag
@@ -1317,6 +1321,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                 gTasks[taskId].func = Task_LoadBagSortOptions;
                 return;
             }
+        #endif // I_BAG_SORT == TRUE
             break;
         }
 
@@ -2689,6 +2694,7 @@ static void PrintTMHMMoveData(u16 itemId)
 }
 
 // bag sorting
+#if I_BAG_SORT == TRUE
 enum BagSortOptions
 {
     SORT_ALPHABETICALLY,
@@ -3285,8 +3291,6 @@ static void SortBagItems(u8 taskId)
 
 static void Task_SortFinish(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
-
     if (gMain.newKeys & (A_BUTTON | B_BUTTON))
     {
         RemoveItemMessageWindow(4);
@@ -3298,7 +3302,6 @@ static void SortItemsInBag(u8 pocket, u8 type)
 {
     struct ItemSlot* itemMem;
     u16 itemAmount;
-    s8 (*func)(struct ItemSlot*, struct ItemSlot*);
 
     switch (pocket)
     {
@@ -3441,3 +3444,5 @@ static s8 CompareItemsByType(struct ItemSlot* itemSlot1, struct ItemSlot* itemSl
 
     return CompareItemsAlphabetically(itemSlot1, itemSlot2); //Items are of same type so sort alphabetically
 }
+
+#endif // I_BAG_SORT == TRUE

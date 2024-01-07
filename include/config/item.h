@@ -17,6 +17,8 @@
 #define I_PRICE                         GEN_LATEST  // Some items have varied in value across generations.
 #define I_BERRY_PRICE                   GEN_7       // Since Berries have become unplantable (Gen8+), their price has gone up.
 
+#define I_BAG_SORT              TRUE        // Enables sorting the bag by pressing the Start button
+
 // TM config
 #define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
