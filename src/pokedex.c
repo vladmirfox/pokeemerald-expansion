@@ -4379,7 +4379,7 @@ u16 GetKantoPokedexCount(u8 caseID)
 
 bool16 HasAllHoennMons(void)
 {
-    u16 i, j;
+    u32 i, j;
 
     for (i = 0; i < HOENN_DEX_COUNT; i++)
     {
