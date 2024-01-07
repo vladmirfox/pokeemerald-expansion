@@ -394,7 +394,7 @@ struct SpeciesInfo /*0x8C*/
             u32 isPaldeanForm:1;
             u32 cannotBeTraded:1;
             u32 allPerfectIVs:1;
-            u32 dexForceRequired:1; // This mythical species will be taken into account for Pokédex ratings because it is available through normal gameplay
+            u32 dexForceRequired:1; // This species will be taken into account for Pokédex ratings even if they have the "isMythical" flag set.
             u32 padding4:17;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
