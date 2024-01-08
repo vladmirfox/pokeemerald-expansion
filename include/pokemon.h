@@ -468,6 +468,7 @@ struct BattleMove
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
     u32 wakesUser:1;
+    u32 lightMove:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16

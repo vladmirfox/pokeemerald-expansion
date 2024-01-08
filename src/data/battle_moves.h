@@ -1108,6 +1108,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_HYPER_BEAM] =
@@ -1352,6 +1353,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_POISON_POWDER] =
@@ -2646,6 +2648,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_SPATK_UP_1,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_PSYWAVE] =
@@ -5306,6 +5309,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_MIST_BALL] =
@@ -6332,6 +6336,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_PSYCHO_BOOST] =
@@ -7267,6 +7272,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .lightMove = TRUE,
     },
 
     [MOVE_DRAIN_PUNCH] =
@@ -7616,6 +7622,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_FLASH_CANNON] =
@@ -7631,6 +7638,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_ROCK_CLIMB] =
@@ -7953,6 +7961,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .argument = HOLD_EFFECT_PLATE,
         .zMoveEffect = Z_EFFECT_NONE,
+        .lightMove = TRUE,
     },
 
     [MOVE_BUG_BITE] =
@@ -9577,6 +9586,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .argument = HOLD_EFFECT_DRIVE,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_RELIC_SONG] =
@@ -11574,6 +11584,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .lightMove = TRUE,
     },
 
     [MOVE_SPECTRAL_THIEF] =
@@ -11738,6 +11749,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresTargetAbility = TRUE,
         .metronomeBanned = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_ZIPPY_ZAP] =
@@ -13614,6 +13626,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_ORDER_UP] =
@@ -14505,6 +14518,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .lightMove = TRUE,
     },
 
     [MOVE_BURNING_BULWARK] =
@@ -15142,6 +15156,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = 0,
+        .lightMove = TRUE,
     },
     [MOVE_SOUL_STEALING_7_STAR_STRIKE] =
     {
