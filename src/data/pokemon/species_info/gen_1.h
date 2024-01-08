@@ -10215,12 +10215,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_PALDEAN_FORMS
-#define PALDEAN_TAUROS_BASE_STATS                           \
-        .baseHP        = 75,                                \
-        .baseAttack    = 110,                               \
-        .baseDefense   = 105,                               \
-        .baseSpeed     = 100,                               \
-        .baseSpAttack  = 30,                                \
+#define PALDEAN_TAUROS_BASE_STATS
+        .baseHP        = 75,
+        .baseAttack    = 110,
+        .baseDefense   = 105,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 30,
         .baseSpDefense = 70
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
