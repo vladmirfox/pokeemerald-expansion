@@ -10221,7 +10221,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseDefense   = 105,                               \
         .baseSpeed     = 100,                               \
         .baseSpAttack  = 30,                                \
-        .baseSpDefense = 70,                                \
+        .baseSpDefense = 70                                 \
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
         TAUROS_MISC_INFO,
