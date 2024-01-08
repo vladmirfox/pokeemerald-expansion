@@ -1,4 +1,4 @@
-static const u8 sNoneDescription[] = _("No special ability.");
+static const u8 sNoneDescription[] = _("No special ability."); // 26 characters max per line
 static const u8 sStenchDescription[] = _("May cause a foe to flinch.");
 static const u8 sDrizzleDescription[] = _("Summons rain in battle.");
 static const u8 sSpeedBoostDescription[] = _("Gradually boosts Speed.");
@@ -72,7 +72,7 @@ static const u8 sDroughtDescription[] = _("Summons sunlight in battle.");
 static const u8 sArenaTrapDescription[] = _("Prevents fleeing.");
 static const u8 sVitalSpiritDescription[] = _("Prevents sleep.");
 static const u8 sWhiteSmokeDescription[] = _("Prevents ability reduction.");
-static const u8 sPurePowerDescription[] = _("Raises Attack.");
+static const u8 sPurePowerDescription[] = _("Doubles Attack stat.");
 static const u8 sShellArmorDescription[] = _("Blocks critical hits.");
 static const u8 sAirLockDescription[] = _("Negates weather effects.");
 static const u8 sTangledFeetDescription[] = _("Ups evasion if confused.");
