@@ -1213,10 +1213,8 @@ BattleScript_EffectPhotonGeyser:
 	setphotongeysercategory
 	goto BattleScript_EffectHit
 
-BattleScript_EffectAuraWheel: @ Aura Wheel can only be used by Morpeko
-	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO_FULL_BELLY, BattleScript_EffectSpeedUpHit
-	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO_HANGRY, BattleScript_EffectSpeedUpHit
-	goto BattleScript_PokemonCantUseTheMove
+BattleScript_EffectAuraWheel: @ Aura Wheel can now be used by any mon
+	goto BattleScript_EffectSpeedUpHit
 
 BattleScript_EffectClangorousSoul:
 	attackcanceler
