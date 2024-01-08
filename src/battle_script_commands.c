@@ -14905,7 +14905,14 @@ static void Cmd_handleballthrow(void)
                 break;
             case ITEM_LURE_BALL:
                 if (gIsFishingEncounter)
-                    ballMultiplier = (B_LURE_BALL_MODIFIER >= GEN_7 ? ((B_LURE_BALL_MODIFIER) >= GEN_8 ? 400: 500) : 300);
+                {
+                    if (B_LURE_BALL_MODIFIER >= GEN_8)
+                        ballMultiplier = 400;
+                    else if (B_LURE_BALL_MODIFIER >= GEN_7)
+                        ballMultiplier = 500;
+                    else
+                        ballMultiplier = 300;
+                }
                 break;
             case ITEM_MOON_BALL:
             {
