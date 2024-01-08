@@ -6290,6 +6290,33 @@ BattleScript_EffectWaterSport::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_ActivateSportAbilities:
+	savetarget
+	setbyte gBattlerTarget, 0
+BattleScript_ActivateSportAbilities_Loop:
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_ActivateSportAbilities_Increment:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_ActivateSportAbilities_Loop
+	restoretarget
+	return
+
+BattleScript_EffectMudSportAbility::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ELECTRICITYWEAKENED
+	waitmessage B_WAIT_TIME_SHORT
+	call BattleScript_ActivateSportAbilities
+	end3
+
+BattleScript_EffectWaterSportAbility::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_FIREWEAKENED
+	waitmessage B_WAIT_TIME_SHORT
+	call BattleScript_ActivateSportAbilities
+	end3
+
 BattleScript_EffectPoisonFang::
 	setmoveeffect MOVE_EFFECT_TOXIC
 	goto BattleScript_EffectHit

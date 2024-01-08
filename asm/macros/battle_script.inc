@@ -2194,7 +2194,7 @@
 	various \battler, VARIOUS_TRY_WIND_RIDER_POWER
 	.4byte \failInstr
 	.endm
-
+	
 	.macro activateweatherchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_WEATHER_CHANGE_ABILITIES
 	.endm

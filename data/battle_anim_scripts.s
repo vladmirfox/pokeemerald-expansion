@@ -1028,6 +1028,8 @@ gBattleAnims_General::
 	.4byte General_Rainbow                  @ B_ANIM_RAINBOW
 	.4byte General_SeaOfFire                @ B_ANIM_SEA_OF_FIRE
 	.4byte General_Swamp                    @ B_ANIM_SWAMP
+	.4byte General_MudSport									@ B_ANIM_MUD_SPORT
+	.4byte General_WaterSport								@ B_ANIM_WATER_SPORT
 
 	.align 2
 gBattleAnims_Special::
@@ -27689,6 +27691,12 @@ SeaOfFireTwisterTres:
 
 General_Swamp:: @ To do
 	goto Move_HAZE
+
+General_MudSport::
+	goto Move_MUD_SPORT
+
+General_WaterSport::
+	goto Move_WATER_SPORT
 
 SnatchMoveTrySwapFromSubstitute:
 	createvisualtask AnimTask_IsAttackerBehindSubstitute, 2

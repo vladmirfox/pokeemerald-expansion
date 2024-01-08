@@ -4125,6 +4125,42 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
     return FALSE;
 }
 
+// Water and Mud Sport
+// effect: 0 = Mud Sport, 1 = Water Sport
+static bool32 TrySetSport(u32 battler, u32 effect)
+{
+    if (effect == 0) // Mud Sport
+    {
+        if (!(gFieldStatuses & STATUS_FIELD_MUDSPORT))
+        {
+            gFieldStatuses |= STATUS_FIELD_MUDSPORT;
+            gFieldTimers.mudSportTimer = 5;
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else if (effect == 1) // Water Sport
+    {
+        if (!(gFieldStatuses & STATUS_FIELD_WATERSPORT))
+        {
+            gFieldStatuses |= STATUS_FIELD_WATERSPORT;
+            gFieldTimers.waterSportTimer = 5;
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    else // should never reach here
+    {
+        return FALSE;
+    }
+}
+
 static void ForewarnChooseMove(u32 battler)
 {
     struct Forewarn {
@@ -4677,6 +4713,13 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
+                effect++;
+            }
+            break;
+        case ABILITY_DAMP:
+            if (TrySetSport(battler, 1))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_EffectWaterSportAbility);
                 effect++;
             }
             break;

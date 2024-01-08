@@ -1,10 +1,10 @@
 static const u8 sNoneDescription[] = _("No special ability."); // 26 characters max per line
-static const u8 sStenchDescription[] = _("May cause a foe to flinch.");
-static const u8 sDrizzleDescription[] = _("Summons rain in battle.");
-static const u8 sSpeedBoostDescription[] = _("Gradually boosts Speed.");
+static const u8 sStenchDescription[] = _("10% chance to cause the\nfoe to flinch.");
+static const u8 sDrizzleDescription[] = _("Summons rain in battle\nthat lasts 5 turns.");
+static const u8 sSpeedBoostDescription[] = _("Raises Speed at the end\nof each turn.");
 static const u8 sBattleArmorDescription[] = _("Blocks critical hits.");
-static const u8 sSturdyDescription[] = _("Negates 1-hit KO attacks.");
-static const u8 sDampDescription[] = _("Prevents self-destruction.");
+static const u8 sSturdyDescription[] = _("Negates 1-hit KO attacks.\nCannot be KOd at full HP.");
+static const u8 sDampDescription[] = _("Prevents self-destruction.\nSwitch in sets Water Sport.");
 static const u8 sLimberDescription[] = _("Prevents paralysis.");
 static const u8 sSandVeilDescription[] = _("Ups evasion in a sandstorm.");
 static const u8 sStaticDescription[] = _("Paralyzes on contact.");
