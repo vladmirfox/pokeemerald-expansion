@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user switches out")
     }
 }
 
-SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user dies")
+SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
