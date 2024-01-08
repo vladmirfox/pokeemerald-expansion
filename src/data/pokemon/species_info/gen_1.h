@@ -10179,25 +10179,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerOffset = 0,                                 \
         .footprint = gMonFootprint_Tauros,                  \
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable     \
-#define TAUROS_BASE STATS                                   \
+
+    [SPECIES_TAUROS] =
+    {
+        TAUROS_MISC_INFO,
         .baseHP        = 75,                                \
         .baseAttack    = 100,                               \
         .baseDefense   = 95,                                \
         .baseSpeed     = 110,                               \
         .baseSpAttack  = 40,                                \
-        .baseSpDefense = 70,                                \
-#define PALDEAN_TAUROS_BASE_STATS                           \
-        .baseHP        = 75,                                \
-        .baseAttack    = 110,                               \
-        .baseDefense   = 105,                               \
-        .baseSpeed     = 100,                               \
-        .baseSpAttack  = 30,                                \
-        .baseSpDefense = 70,                                \
-
-    [SPECIES_TAUROS] =
-    {
-        TAUROS_MISC_INFO,
-        TAUROS_BASE_STATS,
+        .baseSpDefense = 70,    
         .baseSpDefense = 70,       
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .evYield_Attack = 1,
@@ -10224,6 +10215,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     },
 
 #if P_PALDEAN_FORMS
+#define PALDEAN_TAUROS_BASE_STATS                           \
+        .baseHP        = 75,                                \
+        .baseAttack    = 110,                               \
+        .baseDefense   = 105,                               \
+        .baseSpeed     = 100,                               \
+        .baseSpAttack  = 30,                                \
+        .baseSpDefense = 70,                                \
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
         TAUROS_MISC_INFO,
