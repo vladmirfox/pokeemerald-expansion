@@ -128,8 +128,8 @@ static const u8 sText_TenDashes[] = _("----------");
 ALIGNED(4) static const u8 sExpandedPlaceholder_PokedexDescription[] = _("");
 static const u16 sSizeScreenSilhouette_Pal[] = INCBIN_U16("graphics/pokedex/size_silhouette.gbapal");
 
-static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES");
-static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves");
+static const u8 sText_Stats_Buttons[] = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES   {START_BUTTON}TOGGLE ABILITY 1/2");
+static const u8 sText_Stats_Buttons_Decapped[] = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves   {START_BUTTON}Toggle Ability 1/2");
 static const u8 sText_Stats_HP[] = _("HP");
 static const u8 sText_Stats_Attack[] = _("ATK");
 static const u8 sText_Stats_Defense[] = _("DEF");
@@ -199,7 +199,7 @@ static const u8 sText_Dex_OWN[] = _("OWN");
 static const u8 sText_EVO_Buttons[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}CHECK");
 static const u8 sText_EVO_Buttons_Decapped[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Check");
 static const u8 sText_EVO_Buttons_PE[] = _("{DPAD_UPDOWN}EVOs  {A_BUTTON}CHECK  {START_BUTTON}FORMs");
-static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Check  {START_BUTTON}Froms");
+static const u8 sText_EVO_Buttons_Decapped_PE[] = _("{DPAD_UPDOWN}Evos  {A_BUTTON}Check  {START_BUTTON}Forms");
 static const u8 sText_EVO_Name[] = _("{STR_VAR_3}:");
 static const u8 sText_EVO_PreEvo[] = _("{STR_VAR_1} evolves from {STR_VAR_2}");
 static const u8 sText_EVO_PreEvo_PE_Mega[] = _("{STR_VAR_1} Mega Evolves with {STR_VAR_2}");
@@ -589,7 +589,7 @@ static void PrintStatsScreen_Moves_Description(u8 taskId);
 static void PrintStatsScreen_Moves_BottomText(u8 taskId);
 static void PrintStatsScreen_Moves_Bottom(u8 taskId);
 static void PrintStatsScreen_Left(u8 taskId);
-static void PrintStatsScreen_Abilities(u8 taskId);
+static void PrintStatsScreen_Abilities(u8 taskId, bool8 curAbility);
 static void PrintInfoScreenTextWhite(const u8* str, u8 left, u8 top);
 static void PrintInfoScreenTextSmall(const u8* str, u8 left, u8 top);
 static void PrintInfoScreenTextSmallWhite(const u8* str, u8 left, u8 top);
@@ -1462,7 +1462,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .bg = 2,
         .tilemapLeft = 0,
         .tilemapTop = 18,
-        .width = 12,
+        .width = 28,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 1 + 60 + 40 + 48 + 96,
@@ -1475,7 +1475,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 4,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24,
+        .baseBlock = 1 + 60 + 40 + 48 + 96 + 56,
     },
     [WIN_STATS_MOVES_DESCRIPTION] =
     {
@@ -1485,7 +1485,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 4,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72,
+        .baseBlock = 1 + 60 + 40 + 48 + 96 + 56 + 72,
     },
     [WIN_STATS_MOVES_BOTTOM] =
     {
@@ -1495,7 +1495,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 2,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72 + 72,
+        .baseBlock = 1 + 60 + 40 + 48 + 96 + 56 + 72 + 72,
     },
     [WIN_STATS_ABILITIES] =
     {
@@ -1505,7 +1505,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 18,
         .height = 8,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72 + 72 + 36,
+        .baseBlock = 1 + 60 + 40 + 48 + 96 + 56 + 72 + 72 + 36,
     },
     [WIN_STATS_LEFT_UNUSED] =
     {
@@ -1515,7 +1515,7 @@ static const struct WindowTemplate sStatsScreen_WindowTemplates[] =
         .width = 12,
         .height = 4,
         .paletteNum = 0,
-        .baseBlock = 1 + 60 + 40 + 48 + 96 + 24 + 72 + 72 + 36 + 144,
+        .baseBlock = 1 + 60 + 40 + 48 + 96 + 56 + 72 + 72 + 36 + 144,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -2075,6 +2075,9 @@ static const struct WindowTemplate sSearchMenu_WindowTemplate[] =
     },
     DUMMY_WIN_TEMPLATE
 };
+
+// FALSE = viewing ability 1, TRUE = viewing ability 2
+static bool8 curAbility = FALSE;
 
 
 //************************************
@@ -5106,7 +5109,7 @@ static void Task_LoadStatsScreen(u8 taskId)
         gTasks[taskId].data[5] = 0;
         PrintStatsScreen_NameGender(taskId, sPokedexListItem->dexNum, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE);
         PrintStatsScreen_Left(taskId);
-        PrintStatsScreen_Abilities(taskId);
+        PrintStatsScreen_Abilities(taskId, curAbility);
         PrintStatsScreen_Moves_Top(taskId);
         PrintStatsScreen_Moves_Description(taskId);
         PrintStatsScreen_Moves_BottomText(taskId);
@@ -5197,7 +5200,13 @@ static void Task_HandleStatsScreenInput(u8 taskId)
         PrintStatsScreen_Moves_Bottom(taskId);
 
         FillWindowPixelBuffer(WIN_STATS_ABILITIES, PIXEL_FILL(0));
-        PrintStatsScreen_Abilities(taskId);
+        PrintStatsScreen_Abilities(taskId, curAbility);
+    }
+    if (JOY_NEW(START_BUTTON) && gTasks[taskId].data[5] == 0)
+    {
+        curAbility = !curAbility;
+        FillWindowPixelBuffer(WIN_STATS_ABILITIES, PIXEL_FILL(0));
+        PrintStatsScreen_Abilities(taskId, curAbility);
     }
     if (JOY_NEW(B_BUTTON))
     {
@@ -6030,7 +6039,7 @@ static void PrintStatsScreen_Left(u8 taskId)
     }
 }
 
-static void PrintStatsScreen_Abilities(u8 taskId)
+static void PrintStatsScreen_Abilities(u8 taskId, bool8 curAbility)
 {
     u8 abilities_x = 5;
     u8 abilities_y = 3;
@@ -6043,14 +6052,17 @@ static void PrintStatsScreen_Abilities(u8 taskId)
     if (gTasks[taskId].data[5] == 0)
     {
         ability0 = sPokedexView->sPokemonStats.ability0;
-        PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability0], abilities_x, abilities_y);
-        PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
-
-        ability1 = sPokedexView->sPokemonStats.ability1;
-        if (ability1 != ABILITY_NONE && ability1 != ability0)
-        {
-            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability1], abilities_x, abilities_y + 30);
-            PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability1], abilities_x, abilities_y + 44);
+        if (!curAbility) {
+            PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability0], abilities_x, abilities_y);
+            PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability0], abilities_x, abilities_y + 14);
+        }
+        else {
+            ability1 = sPokedexView->sPokemonStats.ability1;
+            if (ability1 != ABILITY_NONE && ability1 != ability0)
+            {
+                PrintStatsScreenTextSmallWhite(WIN_STATS_ABILITIES, gAbilityNames[ability1], abilities_x, abilities_y);
+                PrintStatsScreenTextSmall(WIN_STATS_ABILITIES, gAbilityDescriptionPointers[ability1], abilities_x, abilities_y + 14);
+            }
         }
     }
     else //Hidden abilities

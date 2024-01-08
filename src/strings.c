@@ -2027,8 +2027,8 @@ const u8 gText_PokevialHasDoses[] =_("Use the Pokévial?");
 const u8 gText_YourPkmnWereRestored[] =_("Your Pokémon were restored to full health.{PAUSE_UNTIL_PRESS}");
 
 //HGSS_Ui PokedexPlus
-const u8 gText_Stats_Buttons[]  = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES");
-const u8 gText_Stats_Buttons_Decapped[]  = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves");
+const u8 gText_Stats_Buttons[]  = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES   {START_BUTTON}TOGGLE ABILITY 1/2");
+const u8 gText_Stats_Buttons_Decapped[]  = _("{A_BUTTON}Toggle   {DPAD_UPDOWN}Moves   {START_BUTTON}Toggle Ability 1/2");
 const u8 gText_Stats_HP[]       = _("HP");
 const u8 gText_Stats_Attack[]   = _("ATK");
 const u8 gText_Stats_Defense[]  = _("DEF");
