@@ -5,9 +5,9 @@
 #include "pokemon.h"
 
 
-u8 GetCurrentLevelCap(void)
+u32 GetCurrentLevelCap(void)
 {
-    static const u16 sLevelCapFlagMap[][2] =
+    static const u32 sLevelCapFlagMap[][2] =
     {
         {FLAG_BADGE01_GET, 15},
         {FLAG_BADGE02_GET, 19},
@@ -38,13 +38,13 @@ u8 GetCurrentLevelCap(void)
     return MAX_LEVEL;
 }
 
-u16 GetSoftLevelCapExpValue(u32 level, u32 expValue)
+u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
 {
-    static const u8 sExpScalingDown[5] = { 4, 8, 16, 32, 64 };
-    static const u8 sExpScalingUp[5]   = { 16, 8, 4, 2, 1 };
+    static const u32 sExpScalingDown[5] = { 4, 8, 16, 32, 64 };
+    static const u32 sExpScalingUp[5]   = { 16, 8, 4, 2, 1 };
 
-    u8 levelDifference;
-    u8 currentLevelCap = GetCurrentLevelCap();
+    u32 levelDifference;
+    u32 currentLevelCap = GetCurrentLevelCap();
 
     if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
         return expValue;
