@@ -455,6 +455,7 @@ struct BattleMove
     u8 secondaryEffectChance;
 
     u16 target;
+    u16 argument;
     s8 priority;
     union {
         u8 effect;
@@ -507,8 +508,6 @@ struct BattleMove
     u32 parentalBondBanned:1;
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
-
-    u16 argument;
 };
 
 struct Ability
