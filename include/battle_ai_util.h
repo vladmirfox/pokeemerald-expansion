@@ -134,6 +134,8 @@ bool32 HasHighCritRatioMove(u32 battler);
 bool32 HasMagicCoatAffectedMove(u32 battler);
 bool32 HasSnatchAffectedMove(u32 battler);
 bool32 HasMoveThatIgnoresAccuracyOnRain(u32 battler);
+bool32 HasMoveThatIgnoresAccuracyOnHail(u32 battler);
+bool32 HasMoveThatIgnoresAccuracyOnSnow(u32 battler);
 bool32 HasMoveThatLosesAccuracyInSun(u32 battler);
 
 // status checks

@@ -1016,6 +1016,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
         .windMove = TRUE,
+        .hailAlwaysHit = B_BLIZZARD_HAIL >= GEN_4,
+        .snowAlwaysHit = TRUE,
     },
 
     [MOVE_PSYBEAM] =

@@ -58,6 +58,8 @@ SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_BLIZZARD].hailAlwaysHit == TRUE);
+        ASSUME(gBattleMoves[MOVE_BLIZZARD].snowAlwaysHit == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

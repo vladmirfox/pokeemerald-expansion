@@ -1231,8 +1231,9 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
         return FALSE;
 
     // increased accuracy but don't always hit
-    if ((((weather & B_WEATHER_RAIN) && gBattleMoves[move].rainAlwaysHit)
-            || (((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && move == MOVE_BLIZZARD)))
+    if (((weather & B_WEATHER_RAIN) && gBattleMoves[move].rainAlwaysHit)
+        || ((weather & B_WEATHER_HAIL) && gBattleMoves[move].hailAlwaysHit)
+        || ((weather & B_WEATHER_SNOW) && gBattleMoves[move].snowAlwaysHit)
         || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
         || (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && gBattleMoves[move].minimizeDoubleDamage)
         || (gBattleMoves[move].accuracy == 0))
@@ -1312,7 +1313,7 @@ bool32 ShouldSetHail(u32 battler, u32 ability, u32 holdEffect)
       || ability == ABILITY_OVERCOAT
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
-      || HasMove(battler, MOVE_BLIZZARD)
+      || HasMoveThatIgnoresAccuracyOnHail(battler)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
@@ -1379,7 +1380,7 @@ bool32 ShouldSetSnow(u32 battler, u32 ability, u32 holdEffect)
       || ability == ABILITY_FORECAST
       || ability == ABILITY_SLUSH_RUSH
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
-      || HasMove(battler, MOVE_BLIZZARD)
+      || HasMoveThatIgnoresAccuracyOnSnow(battler)
       || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
       || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
     {
@@ -1996,6 +1997,16 @@ bool32 HasSnatchAffectedMove(u32 battler)
 bool32 HasMoveThatIgnoresAccuracyOnRain(u32 battler)
 {
     CHECK_MOVE_FLAG(rainAlwaysHit);
+}
+
+bool32 HasMoveThatIgnoresAccuracyOnHail(u32 battler)
+{
+    CHECK_MOVE_FLAG(hailAlwaysHit);
+}
+
+bool32 HasMoveThatIgnoresAccuracyOnSnow(u32 battler)
+{
+    CHECK_MOVE_FLAG(snowAlwaysHit);
 }
 
 bool32 HasMoveThatLosesAccuracyInSun(u32 battler)
