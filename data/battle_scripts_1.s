@@ -168,7 +168,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFutureSight             @ EFFECT_FUTURE_SIGHT
 	.4byte BattleScript_EffectGust                    @ EFFECT_GUST
 	.4byte BattleScript_EffectSolarBeam               @ EFFECT_SOLAR_BEAM
-	.4byte BattleScript_EffectThunder                 @ EFFECT_THUNDER
 	.4byte BattleScript_EffectTeleport                @ EFFECT_TELEPORT
 	.4byte BattleScript_EffectBeatUp                  @ EFFECT_BEAT_UP
 	.4byte BattleScript_EffectSemiInvulnerable        @ EFFECT_SEMI_INVULNERABLE

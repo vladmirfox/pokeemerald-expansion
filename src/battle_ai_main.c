@@ -4063,7 +4063,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
                 ADJUST_SCORE(1);
             if (HasMoveWithType(battlerDef, TYPE_WATER) || HasMoveWithType(BATTLE_PARTNER(battlerDef), TYPE_WATER))
                 ADJUST_SCORE(1);
-            if (HasMoveEffect(battlerDef, EFFECT_THUNDER) || HasMoveEffect(BATTLE_PARTNER(battlerDef), EFFECT_THUNDER))
+            if (HasMoveThatLosesAccuracyInSun(battlerDef) || HasMoveThatLosesAccuracyInSun(BATTLE_PARTNER(battlerDef)))
                 ADJUST_SCORE(1);
         }
         break;

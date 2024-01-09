@@ -1998,6 +1998,11 @@ bool32 HasMoveThatIgnoresAccuracyOnRain(u32 battler)
     CHECK_MOVE_FLAG(rainAlwaysHit);
 }
 
+bool32 HasMoveThatLosesAccuracyInSun(u32 battler)
+{
+    CHECK_MOVE_FLAG(sunAccuracy50);
+}
+
 bool32 IsEncoreEncouragedEffect(u32 moveEffect)
 {
     u32 i;

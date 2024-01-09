@@ -3,7 +3,6 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_THUNDER].effect == EFFECT_THUNDER);
     ASSUME(gBattleMoves[MOVE_THUNDER].accuracy == 70);
 }
 
@@ -11,6 +10,7 @@ SINGLE_BATTLE_TEST("Thunder's accuracy is lowered to 50% in Sunlight")
 {
     PASSES_RANDOMLY(50, 100, RNG_ACCURACY);
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_THUNDER].sunAccuracy50 == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -24,6 +24,7 @@ SINGLE_BATTLE_TEST("Thunder bypasses accuracy checks in Rain")
 {
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_THUNDER].rainAlwaysHit == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

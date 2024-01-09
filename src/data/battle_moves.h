@@ -1474,7 +1474,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 120,
         #endif
-        .effect = EFFECT_THUNDER,
+        .effect = EFFECT_PARALYZE_HIT,
         .type = TYPE_ELECTRIC,
         .accuracy = 70,
         .pp = 10,

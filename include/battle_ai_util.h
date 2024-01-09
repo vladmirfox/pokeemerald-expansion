@@ -134,6 +134,7 @@ bool32 HasHighCritRatioMove(u32 battler);
 bool32 HasMagicCoatAffectedMove(u32 battler);
 bool32 HasSnatchAffectedMove(u32 battler);
 bool32 HasMoveThatIgnoresAccuracyOnRain(u32 battler);
+bool32 HasMoveThatLosesAccuracyInSun(u32 battler);
 
 // status checks
 bool32 AI_CanBeBurned(u32 battler, u32 ability);
