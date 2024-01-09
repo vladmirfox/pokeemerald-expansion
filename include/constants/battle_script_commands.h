@@ -242,6 +242,7 @@
 #define VARIOUS_HIT_SWITCH_TARGET_FAILED             150
 #define VARIOUS_TRY_REVIVAL_BLESSING                 151
 #define VARIOUS_TRY_ACTIVATE_NO_RECHARGE             152
+#define VARIOUS_TRY_ABILITY_REMOVE_HAZARDS           153
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

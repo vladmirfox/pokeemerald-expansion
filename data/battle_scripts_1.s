@@ -7573,6 +7573,9 @@ BattleScript_RapidSpinAway::
 	rapidspinfree
 	return
 
+BattleScript_TryAbilityRemoveHazards::
+	tryabilityremovehazards BS_ATTACKER
+	end3
 BattleScript_WrapFree::
 	printstring STRINGID_PKMNGOTFREE
 	waitmessage B_WAIT_TIME_LONG
@@ -7584,25 +7587,45 @@ BattleScript_LeechSeedFree::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_SpikesFreeWithPopup::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+
 BattleScript_SpikesFree::
 	printstring STRINGID_PKMNBLEWAWAYSPIKES
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_ToxicSpikesFreeWithPopup::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
 
 BattleScript_ToxicSpikesFree::
 	printstring STRINGID_PKMNBLEWAWAYTOXICSPIKES
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_StickyWebFreeWithPopup::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+
 BattleScript_StickyWebFree::
 	printstring STRINGID_PKMNBLEWAWAYSTICKYWEB
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_StealthRockFreeWithPopup::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+
 BattleScript_StealthRockFree::
 	printstring STRINGID_PKMNBLEWAWAYSTEALTHROCK
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_SteelsurgeFreeWithPopup::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
 
 BattleScript_SteelsurgeFree::
 	printstring STRINGID_PKMNBLEWAWAYSHARPSTEEL

@@ -868,8 +868,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_HYPER_CUTTER:
-                if ((moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2)
-                  && move != MOVE_PLAY_NICE && move != MOVE_NOBLE_ROAR && move != MOVE_TEARFUL_LOOK && move != MOVE_VENOM_DRENCH)
+                if (moveEffect == EFFECT_ATTACK_DOWN 
+                    || moveEffect == EFFECT_ATTACK_DOWN_2
+                    || moveEffect == EFFECT_SPECIAL_ATTACK_DOWN
+                    || moveEffect == EFFECT_SPECIAL_ATTACK_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_ILLUMINATE:
@@ -881,7 +883,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_BIG_PECKS:
-                if (moveEffect == EFFECT_DEFENSE_DOWN || moveEffect == EFFECT_DEFENSE_DOWN_2)
+                if (moveEffect == EFFECT_DEFENSE_DOWN 
+                    || moveEffect == EFFECT_DEFENSE_DOWN_2
+                    || moveEffect == EFFECT_SPECIAL_DEFENSE_DOWN
+                    || moveEffect == EFFECT_SPECIAL_DEFENSE_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_DEFIANT:
@@ -1277,6 +1282,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_DEFENSE_DOWN_2:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_DEF))
                 ADJUST_SCORE(-10);
+            else if (aiData->abilities[battlerDef] == ABILITY_BIG_PECKS)
+                ADJUST_SCORE(-10);
             break;
         case EFFECT_SPEED_DOWN:
         case EFFECT_SPEED_DOWN_2:
@@ -1289,10 +1296,14 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_SPECIAL_ATTACK_DOWN_2:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_SPATK)) //|| !HasMoveWithSplit(battlerDef, SPLIT_SPECIAL))
                 ADJUST_SCORE(-10);
+            else if (aiData->abilities[battlerDef] == ABILITY_HYPER_CUTTER)
+                ADJUST_SCORE(-10);
             break;
         case EFFECT_SPECIAL_DEFENSE_DOWN:
         case EFFECT_SPECIAL_DEFENSE_DOWN_2:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_SPDEF))
+                ADJUST_SCORE(-10);
+            else if (aiData->abilities[battlerDef] == ABILITY_BIG_PECKS)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_ACCURACY_DOWN:

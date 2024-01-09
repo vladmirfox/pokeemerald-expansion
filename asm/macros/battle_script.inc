@@ -1953,6 +1953,10 @@
 	various \battler, VARIOUS_TRY_FRISK
 	.endm
 
+	.macro tryabilityremovehazards battler:req
+	various \battler, VARIOUS_TRY_ABILITY_REMOVE_HAZARDS
+	.endm
+
 	.macro jumpifshieldsdown battler:req, jumpInstr:req
 	various \battler, VARIOUS_JUMP_IF_SHIELDS_DOWN_PROTECTED
 	.4byte \jumpInstr

@@ -128,7 +128,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_IRON_BARBS] = 6,
     [ABILITY_IRON_FIST] = 6,
     [ABILITY_JUSTIFIED] = 4,
-    [ABILITY_KEEN_EYE] = 1,
+    [ABILITY_KEEN_EYE] = 6,
     [ABILITY_KLUTZ] = -1,
     [ABILITY_LEAF_GUARD] = 2,
     [ABILITY_LEVITATE] = 7,
@@ -192,7 +192,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_RKS_SYSTEM] = 8,
     [ABILITY_ROCK_HEAD] = 5,
     [ABILITY_ROUGH_SKIN] = 6,
-    [ABILITY_RUN_AWAY] = 0,
+    [ABILITY_RUN_AWAY] = 4,
     [ABILITY_SAND_FORCE] = 4,
     [ABILITY_SAND_RUSH] = 6,
     [ABILITY_SAND_STREAM] = 9,
@@ -602,7 +602,7 @@ bool32 IsBattlerTrapped(u32 battler, bool32 checkSwitch)
         return FALSE;
     if (checkSwitch && holdEffect == HOLD_EFFECT_SHED_SHELL)
         return FALSE;
-    else if (!checkSwitch && GetBattlerAbility(battler) == ABILITY_RUN_AWAY)
+    else if (checkSwitch && GetBattlerAbility(battler) == ABILITY_RUN_AWAY)
         return FALSE;
     else if (!checkSwitch && holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
         return FALSE;
@@ -923,7 +923,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
             return TRUE;
         break;
     case EFFECT_DEFENSE_DOWN_HIT:
-        if (ShouldLowerStat(battlerDef, abilityDef, STAT_DEF) && noOfHitsToKo != 1)
+        if (ShouldLowerStat(battlerDef, abilityDef, STAT_DEF) && abilityDef != ABILITY_BIG_PECKS && noOfHitsToKo != 1)
             return TRUE;
         break;
     case EFFECT_BULLDOZE:
@@ -932,12 +932,12 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
             return TRUE;
         break;
     case EFFECT_SPECIAL_ATTACK_DOWN_HIT:
-        if (ShouldLowerStat(battlerDef, abilityDef, STAT_SPATK) && noOfHitsToKo != 1)
+        if (ShouldLowerStat(battlerDef, abilityDef, STAT_SPATK) && abilityDef != ABILITY_HYPER_CUTTER && noOfHitsToKo != 1)
             return TRUE;
         break;
     case EFFECT_SPECIAL_DEFENSE_DOWN_HIT:
     case EFFECT_SPECIAL_DEFENSE_DOWN_HIT_2:
-        if (ShouldLowerStat(battlerDef, abilityDef, STAT_SPDEF) && noOfHitsToKo != 1)
+        if (ShouldLowerStat(battlerDef, abilityDef, STAT_SPDEF) && abilityDef != ABILITY_BIG_PECKS && noOfHitsToKo != 1)
             return TRUE;
         break;
     case EFFECT_ACCURACY_DOWN_HIT:
@@ -969,11 +969,15 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     {
     case EFFECT_RECHARGE:
     case EFFECT_SUPERPOWER:
-    case EFFECT_OVERHEAT:
     case EFFECT_MAKE_IT_RAIN:
     case EFFECT_MIND_BLOWN:
     case EFFECT_STEEL_BEAM:
         return TRUE;
+    case EFFECT_OVERHEAT:
+    case EFFECT_CLOSE_COMBAT:
+        if (noOfHitsToKo != 1 && abilityAtk == ABILITY_BIG_PECKS && !IsMoldBreakerTypeAbility(abilityDef))
+            return TRUE;
+        break;
     case EFFECT_RECOIL_10_STATUS:    
     case EFFECT_RECOIL_25:
     case EFFECT_RECOIL_IF_MISS:
@@ -1837,6 +1841,7 @@ bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility)
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
       && defAbility != ABILITY_WHITE_SMOKE
+      && defAbility != ABILITY_HYPER_CUTTER
       && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
@@ -1853,6 +1858,7 @@ bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility)
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
       && defAbility != ABILITY_WHITE_SMOKE
+      && defAbility != ABILITY_BIG_PECKS
       && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;

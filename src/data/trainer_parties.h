@@ -4209,6 +4209,7 @@ static const struct TrainerMon sParty_Allen[] = {
     {
     .lvl = 4,
     .species = SPECIES_ZIGZAGOON,
+    .moves = {MOVE_SPIKES, MOVE_TOXIC_SPIKES, MOVE_STICKY_WEB, MOVE_STEALTH_ROCK}
     },
     {
     .lvl = 3,

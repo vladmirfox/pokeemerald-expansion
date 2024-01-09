@@ -743,6 +743,7 @@ struct BattleStruct
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 intrepidSwordBoost[NUM_BATTLE_SIDES];
     u8 dauntlessShieldBoost[NUM_BATTLE_SIDES];
+    bool8 abilityRemovedHazards; // if multiple entry hazards were removed, only show popup once
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,

@@ -1695,6 +1695,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     case ABILITY_COMPOUND_EYES:
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
         break;
+    case ABILITY_KEEN_EYE:
+        calc = (calc * 120) / 100; // 1.2 keen eye boost
+        break;
     case ABILITY_VICTORY_STAR:
         calc = (calc * 110) / 100; // 1.1 victory star boost
         break;
@@ -5111,7 +5114,9 @@ static void Cmd_playstatchangeanimation(void)
         {
             if (stats & 1)
             {
-                if (flags & STAT_CHANGE_CANT_PREVENT)
+                if (flags & STAT_CHANGE_CANT_PREVENT
+                        && !(ability == ABILITY_HYPER_CUTTER && (currStat == STAT_ATK || currStat == STAT_SPATK))
+                        && !(ability == ABILITY_BIG_PECKS && (currStat == STAT_DEF || currStat == STAT_SPDEF)))
                 {
                     if (gBattleMons[battler].statStages[currStat] > MIN_STAT_STAGE)
                     {
@@ -5126,8 +5131,8 @@ static void Cmd_playstatchangeanimation(void)
                         && ability != ABILITY_WHITE_SMOKE
                         && !(ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
                         && !(B_ILLUMINATE_EFFECT >= GEN_9 && ability == ABILITY_ILLUMINATE && currStat == STAT_ACC)
-                        && !(ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK)
-                        && !(ability == ABILITY_BIG_PECKS && currStat == STAT_DEF))
+                        && !(ability == ABILITY_HYPER_CUTTER && (currStat == STAT_ATK || currStat == STAT_SPATK))
+                        && !(ability == ABILITY_BIG_PECKS && (currStat == STAT_DEF || currStat == STAT_SPDEF)))
                 {
                     if (gBattleMons[battler].statStages[currStat] > MIN_STAT_STAGE)
                     {
@@ -8674,6 +8679,102 @@ static void Cmd_various(void)
         gBattleStruct->friskedAbility = FALSE;
         break;
     }
+    case VARIOUS_TRY_ABILITY_REMOVE_HAZARDS:
+    {
+        VARIOUS_ARGS();
+
+        u8 atkSide = GetBattlerSide(gBattlerAttacker);
+
+        while (gSideStatuses[atkSide] & SIDE_STATUS_SPIKES
+            || gSideStatuses[atkSide] & SIDE_STATUS_TOXIC_SPIKES
+            || gSideStatuses[atkSide] & SIDE_STATUS_STICKY_WEB
+            || gSideStatuses[atkSide] & SIDE_STATUS_STEALTH_ROCK
+            || gSideStatuses[atkSide] & SIDE_STATUS_STEELSURGE)
+        {
+            if (gSideStatuses[atkSide] & SIDE_STATUS_SPIKES)
+            {
+                gSideStatuses[atkSide] &= ~SIDE_STATUS_SPIKES;
+                gSideTimers[atkSide].spikesAmount = 0;
+                BattleScriptPushCursor();
+                if (gBattleStruct->abilityRemovedHazards)
+                {
+                    gBattlescriptCurrInstr = BattleScript_SpikesFree;
+                }
+                else
+                {
+                    gBattleStruct->abilityRemovedHazards = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_SpikesFreeWithPopup;
+                }
+                return;
+            }
+            else if (gSideStatuses[atkSide] & SIDE_STATUS_TOXIC_SPIKES)
+            {
+                gSideStatuses[atkSide] &= ~SIDE_STATUS_TOXIC_SPIKES;
+                gSideTimers[atkSide].toxicSpikesAmount = 0;
+                BattleScriptPushCursor();
+                if (gBattleStruct->abilityRemovedHazards)
+                {
+                    gBattlescriptCurrInstr = BattleScript_ToxicSpikesFree;
+                }
+                else
+                {
+                    gBattleStruct->abilityRemovedHazards = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_ToxicSpikesFreeWithPopup;
+                }
+                return;
+            }
+            else if (gSideStatuses[atkSide] & SIDE_STATUS_STICKY_WEB)
+            {
+                gSideStatuses[atkSide] &= ~SIDE_STATUS_STICKY_WEB;
+                gSideTimers[atkSide].stickyWebAmount = 0;
+                BattleScriptPushCursor();
+                if (gBattleStruct->abilityRemovedHazards)
+                {
+                    gBattlescriptCurrInstr = BattleScript_StickyWebFree;
+                }
+                else
+                {
+                    gBattleStruct->abilityRemovedHazards = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_StickyWebFreeWithPopup;
+                }
+                return;
+            }
+            else if (gSideStatuses[atkSide] & SIDE_STATUS_STEALTH_ROCK)
+            {
+                gSideStatuses[atkSide] &= ~SIDE_STATUS_STEALTH_ROCK;
+                gSideTimers[atkSide].stealthRockAmount = 0;
+                BattleScriptPushCursor();
+                if (gBattleStruct->abilityRemovedHazards)
+                {
+                    gBattlescriptCurrInstr = BattleScript_StealthRockFree;
+                }
+                else
+                {
+                    gBattleStruct->abilityRemovedHazards = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_StealthRockFreeWithPopup;
+                }
+                return;
+            }
+            else if (gSideStatuses[atkSide] & SIDE_STATUS_STEELSURGE)
+            {
+                gSideStatuses[atkSide] &= ~SIDE_STATUS_STEELSURGE;
+                gSideTimers[atkSide].steelsurgeAmount = 0;
+                BattleScriptPushCursor();
+                if (gBattleStruct->abilityRemovedHazards)
+                {
+                    gBattlescriptCurrInstr = BattleScript_SteelsurgeFree;
+                }
+                else
+                {
+                    gBattleStruct->abilityRemovedHazards = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_SteelsurgeFreeWithPopup;
+                }
+                return;
+            }
+        }
+        gBattleStruct->abilityRemovedHazards = FALSE;
+        break;
+    }
     case VARIOUS_POISON_TYPE_IMMUNITY:
     {
         VARIOUS_ARGS(u8 target, const u8 *failInstr);
@@ -11417,11 +11518,14 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if (!certain
+        else if ((!certain
                 && ((battlerAbility == ABILITY_KEEN_EYE && statId == STAT_ACC)
                 || (B_ILLUMINATE_EFFECT >= GEN_9 && battlerAbility == ABILITY_ILLUMINATE && statId == STAT_ACC)
-                || (battlerAbility == ABILITY_HYPER_CUTTER && statId == STAT_ATK)
-                || (battlerAbility == ABILITY_BIG_PECKS && statId == STAT_DEF)))
+                || (battlerAbility == ABILITY_HYPER_CUTTER && (statId == STAT_ATK || statId == STAT_SPATK))
+                || (battlerAbility == ABILITY_BIG_PECKS && (statId == STAT_DEF || statId == STAT_SPDEF))))
+                || (certain
+                && ((battlerAbility == ABILITY_HYPER_CUTTER && (statId == STAT_ATK || statId == STAT_SPATK))
+                || (battlerAbility == ABILITY_BIG_PECKS && (statId == STAT_DEF || statId == STAT_SPDEF)))))
         {
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {
