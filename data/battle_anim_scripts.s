@@ -1917,32 +1917,6 @@ General_AquaRingHeal:
 	loadspritegfx ANIM_TAG_GUARD_RING
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_GUARD_RING, 0, 14, 14, RGB_BLUE
 	monbg ANIM_ATK_PARTNER
-	setalpha 12, 8
-	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 23, 1
-	delay 5
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, 10, 10, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, -15, 0, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, 20, 10, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, 0, -10, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, -10, 15, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, 25, 20, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, -20, 20, 25, 0
-	delay 4
-	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
-	createsprite gSmallBubblePairSpriteTemplate, 2, 4, 12, 0, 25, 0
 	setalpha 8, 8
 	playsewithpan SE_M_MILK_DRINK, SOUND_PAN_ATTACKER
 	createsprite gGuardRingSpriteTemplate, 2, 0

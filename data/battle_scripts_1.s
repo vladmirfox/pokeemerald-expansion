@@ -6317,6 +6317,27 @@ BattleScript_EffectWaterSportAbility::
 	call BattleScript_ActivateSportAbilities
 	end3
 
+BattleScript_ActivateAquaRingAbilities:
+	savetarget
+	setbyte gBattlerTarget, 0
+BattleScript_ActivateAquaRingAbilities_Loop:
+	copybyte sBATTLER, gBattlerTarget
+BattleScript_ActivateAquaRingAbilities_Increment:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_ActivateAquaRingAbilities_Loop
+	restoretarget
+	return
+
+BattleScript_EffectAquaRingAbility::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_AQUA_RING_HEAL
+	printstring STRINGID_PKMNSURROUNDEDWITHVEILOFWATER
+	waitmessage B_WAIT_TIME_SHORT
+	call BattleScript_ActivateAquaRingAbilities
+	end3
+
 BattleScript_EffectPoisonFang::
 	setmoveeffect MOVE_EFFECT_TOXIC
 	goto BattleScript_EffectHit

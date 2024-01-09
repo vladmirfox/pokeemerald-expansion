@@ -494,6 +494,7 @@ extern const u8 BattleScript_TheSeaOfFireDisappeared[];
 extern const u8 BattleScript_TheSwampDisappeared[];
 extern const u8 BattleScript_EffectMudSportAbility[];
 extern const u8 BattleScript_EffectWaterSportAbility[];
+extern const u8 BattleScript_EffectAquaRingAbility[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];

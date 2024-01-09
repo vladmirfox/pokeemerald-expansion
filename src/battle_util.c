@@ -4723,6 +4723,14 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_WATER_VEIL:
+            if (!(gStatuses3[battler] & STATUS3_AQUA_RING))
+            {
+                gStatuses3[battler] |= STATUS3_AQUA_RING;
+                BattleScriptPushCursorAndCallback(BattleScript_EffectAquaRingAbility);
+                effect++;
+            }
+            break;
         case ABILITY_INTIMIDATE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
