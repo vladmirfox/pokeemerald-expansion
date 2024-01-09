@@ -21,7 +21,7 @@ static u32 GetItemBallIdFromTemplate(u32 itemBallId)
 {
     u32 itemId = gMapHeader.events->objectEvents[itemBallId].trainerRange_berryTreeId;
 
-    return (itemId > ITEMS_COUNT) ? ITEMS_COUNT : itemId;
+    return (itemId >= ITEMS_COUNT) ? (ITEM_NONE + 1) : itemId;
 }
 
 void GetItemBallIdAndAmountFromTemplate(void)
