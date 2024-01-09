@@ -1232,7 +1232,7 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
         return FALSE;
 
     // increased accuracy but don't always hit
-    if ((((weather & B_WEATHER_RAIN) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
+    if ((((weather & B_WEATHER_RAIN) && gBattleMoves[move].rainAlwaysHit)
             || (((weather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && move == MOVE_BLIZZARD)))
         || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
         || (B_MINIMIZE_DMG_ACC >= GEN_6 && (gStatuses3[battlerDef] & STATUS3_MINIMIZED) && gBattleMoves[move].minimizeDoubleDamage)
@@ -1334,8 +1334,7 @@ bool32 ShouldSetRain(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
       || atkAbility == ABILITY_HYDRATION
       || atkAbility == ABILITY_RAIN_DISH
       || atkAbility == ABILITY_DRY_SKIN
-      || HasMoveEffect(battlerAtk, EFFECT_THUNDER)
-      || HasMoveEffect(battlerAtk, EFFECT_HURRICANE)
+      || HasMoveThatIgnoresAccuracyOnRain(battlerAtk)
       || HasMoveEffect(battlerAtk, EFFECT_WEATHER_BALL)
       || HasMoveWithType(battlerAtk, TYPE_WATER)))
     {
@@ -1993,6 +1992,11 @@ bool32 HasMagicCoatAffectedMove(u32 battler)
 bool32 HasSnatchAffectedMove(u32 battler)
 {
     CHECK_MOVE_FLAG(snatchAffected);
+}
+
+bool32 HasMoveThatIgnoresAccuracyOnRain(u32 battler)
+{
+    CHECK_MOVE_FLAG(rainAlwaysHit);
 }
 
 bool32 IsEncoreEncouragedEffect(u32 moveEffect)

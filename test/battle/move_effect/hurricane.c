@@ -5,6 +5,7 @@ ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_HURRICANE].effect == EFFECT_HURRICANE);
     ASSUME(gBattleMoves[MOVE_HURRICANE].accuracy == 70);
+    ASSUME(gBattleMoves[MOVE_HURRICANE].rainAlwaysHit == TRUE);
 }
 
 SINGLE_BATTLE_TEST("Hurricane's accuracy is lowered to 50% in Sunlight")

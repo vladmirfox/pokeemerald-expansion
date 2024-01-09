@@ -1484,6 +1484,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
         .damagesAirborne = TRUE,
+        .rainAlwaysHit = TRUE,
     },
 
     [MOVE_ROCK_THROW] =
@@ -9167,6 +9168,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sheerForceBoost = TRUE,
         .windMove = TRUE,
         .damagesAirborne = TRUE,
+        .rainAlwaysHit = TRUE,
     },
 
     [MOVE_HEAD_CHARGE] =
@@ -12951,6 +12953,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
         .windMove = TRUE,
+        .rainAlwaysHit = TRUE,
     },
 
     [MOVE_WILDBOLT_STORM] =
@@ -12971,6 +12974,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
         .windMove = TRUE,
+        .rainAlwaysHit = TRUE,
     },
 
     [MOVE_SANDSEAR_STORM] =
@@ -12991,6 +12995,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .sheerForceBoost = TRUE,
         .windMove = TRUE,
+        .rainAlwaysHit = TRUE,
     },
 
     [MOVE_LUNAR_BLESSING] =
