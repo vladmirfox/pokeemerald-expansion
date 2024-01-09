@@ -96,12 +96,6 @@ Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
 Debug_EventScript_Script_1::
-    giveitem ITEM_MAX_POTION,1
-    giveitem ITEM_MASTER_BALL,2
-    giveitem ITEM_TM_PSYCHIC,3
-    giveitem ITEM_SALAC_BERRY,4
-    giveitem ITEM_MACH_BIKE,5
-    closemessage
 	end
 
 Debug_EventScript_Script_2::
