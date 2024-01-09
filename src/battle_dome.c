@@ -4088,9 +4088,12 @@ static bool32 IsDomeRareMove(u32 move)
     return TRUE;
 }
 
-static bool32 IsDomeComboMoveEffect(u32 effect)
+static bool32 IsDomeComboMove(u32 move)
 {
-    switch(effect)
+    if (gBattleMoves[move].rainAlwaysHit)
+        return TRUE;
+
+    switch(gBattleMoves[move].effect)
     {
     // Weather moves
     case EFFECT_SUNNY_DAY:
@@ -4109,7 +4112,6 @@ static bool32 IsDomeComboMoveEffect(u32 effect)
     case EFFECT_MOONLIGHT:
     case EFFECT_SHORE_UP:
     case EFFECT_THUNDER:
-    case EFFECT_HURRICANE:
     //case EFFECT_BLIZZARD: (needs a unique effect in gBattleMoves!)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_GROWTH:
@@ -4348,7 +4350,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 switch (k)
                 {
                 case MOVE_POINTS_COMBO:
-                    allocatedArray[k] = IsDomeComboMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
+                    allocatedArray[k] = IsDomeComboMove(move) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_RAISE:
                     allocatedArray[k] = IsStatRaisingEffect(gBattleMoves[move].effect) ? 1 : 0;

@@ -293,7 +293,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectPsychicTerrain          @ EFFECT_PSYCHIC_TERRAIN
 	.4byte BattleScript_EffectAttackAccUp             @ EFFECT_ATTACK_ACCURACY_UP
 	.4byte BattleScript_EffectAttackSpAttackUp        @ EFFECT_ATTACK_SPATK_UP
-	.4byte BattleScript_EffectHurricane               @ EFFECT_HURRICANE
 	.4byte BattleScript_EffectHit                     @ EFFECT_TWO_TYPED_MOVE
 	.4byte BattleScript_EffectMeFirst                 @ EFFECT_ME_FIRST
 	.4byte BattleScript_EffectSpeedUpHit              @ EFFECT_SPEED_UP_HIT
@@ -5477,10 +5476,6 @@ BattleScript_SolarBeamOnFirstTurn::
 
 BattleScript_EffectThunder:
 	setmoveeffect MOVE_EFFECT_PARALYSIS
-	goto BattleScript_EffectHit
-
-BattleScript_EffectHurricane:
-	setmoveeffect MOVE_EFFECT_CONFUSION
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTeleport:
