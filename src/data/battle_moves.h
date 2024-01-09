@@ -1485,6 +1485,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sheerForceBoost = TRUE,
         .damagesAirborne = TRUE,
         .rainAlwaysHit = TRUE,
+        .sunAccuracy50 = TRUE,
     },
 
     [MOVE_ROCK_THROW] =
@@ -9169,6 +9170,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .windMove = TRUE,
         .damagesAirborne = TRUE,
         .rainAlwaysHit = TRUE,
+        .sunAccuracy50 = TRUE,
     },
 
     [MOVE_HEAD_CHARGE] =

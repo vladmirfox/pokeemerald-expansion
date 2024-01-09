@@ -509,6 +509,7 @@ struct BattleMove
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
     u32 rainAlwaysHit:1;
+    u32 sunAccuracy50:1;
 };
 
 struct Ability

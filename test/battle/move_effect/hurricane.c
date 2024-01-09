@@ -5,13 +5,13 @@ ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_HURRICANE].effect == EFFECT_HURRICANE);
     ASSUME(gBattleMoves[MOVE_HURRICANE].accuracy == 70);
-    ASSUME(gBattleMoves[MOVE_HURRICANE].rainAlwaysHit == TRUE);
 }
 
 SINGLE_BATTLE_TEST("Hurricane's accuracy is lowered to 50% in Sunlight")
 {
     PASSES_RANDOMLY(50, 100, RNG_ACCURACY);
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_HURRICANE].sunAccuracy50 == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -25,6 +25,7 @@ SINGLE_BATTLE_TEST("Hurricane bypasses accuracy checks in Rain")
 {
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_HURRICANE].rainAlwaysHit == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
