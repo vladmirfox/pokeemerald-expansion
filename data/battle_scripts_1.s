@@ -7590,6 +7590,7 @@ BattleScript_LeechSeedFree::
 BattleScript_SpikesFreeWithPopup::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	waitstate
 
 BattleScript_SpikesFree::
 	printstring STRINGID_PKMNBLEWAWAYSPIKES
@@ -7599,6 +7600,7 @@ BattleScript_SpikesFree::
 BattleScript_ToxicSpikesFreeWithPopup::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	waitstate
 
 BattleScript_ToxicSpikesFree::
 	printstring STRINGID_PKMNBLEWAWAYTOXICSPIKES
@@ -7608,6 +7610,7 @@ BattleScript_ToxicSpikesFree::
 BattleScript_StickyWebFreeWithPopup::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	waitstate
 
 BattleScript_StickyWebFree::
 	printstring STRINGID_PKMNBLEWAWAYSTICKYWEB
@@ -7617,6 +7620,7 @@ BattleScript_StickyWebFree::
 BattleScript_StealthRockFreeWithPopup::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	waitstate
 
 BattleScript_StealthRockFree::
 	printstring STRINGID_PKMNBLEWAWAYSTEALTHROCK
@@ -7626,6 +7630,7 @@ BattleScript_StealthRockFree::
 BattleScript_SteelsurgeFreeWithPopup::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
+	waitstate
 
 BattleScript_SteelsurgeFree::
 	printstring STRINGID_PKMNBLEWAWAYSHARPSTEEL
