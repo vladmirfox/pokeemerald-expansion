@@ -3136,7 +3136,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                         gBattlerAbility = gEffectBattler;
                         RecordAbilityBattle(gEffectBattler, ABILITY_INNER_FOCUS);
                         gBattlescriptCurrInstr = BattleScript_FlinchPrevention;
-                    } else
+                    }
+                    else
                     {
                         gBattlescriptCurrInstr++;
                     }
