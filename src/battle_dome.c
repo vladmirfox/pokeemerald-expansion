@@ -4090,7 +4090,10 @@ static bool32 IsDomeRareMove(u32 move)
 
 static bool32 IsDomeComboMove(u32 move)
 {
-    if (gBattleMoves[move].rainAlwaysHit)
+    // Moves dependent on weather
+    if (gBattleMoves[move].rainAlwaysHit
+     || gBattleMoves[move].hailAlwaysHit
+     || gBattleMoves[move].snowAlwaysHit)
         return TRUE;
 
     switch(gBattleMoves[move].effect)
@@ -4111,7 +4114,6 @@ static bool32 IsDomeComboMove(u32 move)
     case EFFECT_MORNING_SUN:
     case EFFECT_MOONLIGHT:
     case EFFECT_SHORE_UP:
-    //case EFFECT_BLIZZARD: (needs a unique effect in gBattleMoves!)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_GROWTH:
     case EFFECT_AURORA_VEIL:
