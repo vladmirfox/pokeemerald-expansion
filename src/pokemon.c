@@ -354,13 +354,42 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
 
 const struct SpindaSpot gSpindaSpotGraphics[] =
 {
-    {.x = 16, .y =  7, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_0.1bpp")},
-    {.x = 40, .y =  8, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_1.1bpp")},
-    {.x = 22, .y = 25, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_2.1bpp")},
-    {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_3.1bpp")}
+    {.x = 16, .y =  7, .image = INCBIN_U16("graphics/pokemon/gen_3/spinda/spots/spot_0.1bpp")},
+    {.x = 40, .y =  8, .image = INCBIN_U16("graphics/pokemon/gen_3/spinda/spots/spot_1.1bpp")},
+    {.x = 22, .y = 25, .image = INCBIN_U16("graphics/pokemon/gen_3/spinda/spots/spot_2.1bpp")},
+    {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/gen_3/spinda/spots/spot_3.1bpp")}
 };
 
 #include "data/pokemon/item_effects.h"
+
+const u8 *const gNatureNamePointers[NUM_NATURES] =
+{
+    [NATURE_HARDY] = COMPOUND_STRING("Hardy"),
+    [NATURE_LONELY] = COMPOUND_STRING("Lonely"),
+    [NATURE_BRAVE] = COMPOUND_STRING("Brave"),
+    [NATURE_ADAMANT] = COMPOUND_STRING("Adamant"),
+    [NATURE_NAUGHTY] = COMPOUND_STRING("Naughty"),
+    [NATURE_BOLD] = COMPOUND_STRING("Bold"),
+    [NATURE_DOCILE] = COMPOUND_STRING("Docile"),
+    [NATURE_RELAXED] = COMPOUND_STRING("Relaxed"),
+    [NATURE_IMPISH] = COMPOUND_STRING("Impish"),
+    [NATURE_LAX] = COMPOUND_STRING("Lax"),
+    [NATURE_TIMID] = COMPOUND_STRING("Timid"),
+    [NATURE_HASTY] = COMPOUND_STRING("Hasty"),
+    [NATURE_SERIOUS] = COMPOUND_STRING("Serious"),
+    [NATURE_JOLLY] = COMPOUND_STRING("Jolly"),
+    [NATURE_NAIVE] = COMPOUND_STRING("Naive"),
+    [NATURE_MODEST] = COMPOUND_STRING("Modest"),
+    [NATURE_MILD] = COMPOUND_STRING("Mild"),
+    [NATURE_QUIET] = COMPOUND_STRING("Quiet"),
+    [NATURE_BASHFUL] = COMPOUND_STRING("Bashful"),
+    [NATURE_RASH] = COMPOUND_STRING("Rash"),
+    [NATURE_CALM] = COMPOUND_STRING("Calm"),
+    [NATURE_GENTLE] = COMPOUND_STRING("Gentle"),
+    [NATURE_SASSY] = COMPOUND_STRING("Sassy"),
+    [NATURE_CAREFUL] = COMPOUND_STRING("Careful"),
+    [NATURE_QUIRKY] = COMPOUND_STRING("Quirky"),
+};
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 {                      // Attack  Defense  Speed  Sp.Atk  Sp. Def
@@ -5762,11 +5791,11 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
 const u8 *GetTrainerClassNameFromId(u16 trainerId)
 {
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gTrainerClassNames[gBattlePartners[trainerId].trainerClass];
+        return gTrainerClasses[gBattlePartners[trainerId].trainerClass].name;
     else if (trainerId < TRAINERS_COUNT)
-        return gTrainerClassNames[gTrainers[trainerId].trainerClass];
+        return gTrainerClasses[gTrainers[trainerId].trainerClass].name;
 
-    return gTrainerClassNames[gTrainers[TRAINER_NONE].trainerClass];
+    return gTrainerClasses[gTrainers[TRAINER_NONE].trainerClass].name;
 }
 
 const u8 *GetTrainerNameFromId(u16 trainerId)
