@@ -5473,10 +5473,6 @@ BattleScript_SolarBeamOnFirstTurn::
 	ppreduce
 	goto BattleScript_TwoTurnMovesSecondTurn
 
-BattleScript_EffectThunder:
-	setmoveeffect MOVE_EFFECT_PARALYSIS
-	goto BattleScript_EffectHit
-
 BattleScript_EffectTeleport:
 .if B_TELEPORT_BEHAVIOR >= GEN_7
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
