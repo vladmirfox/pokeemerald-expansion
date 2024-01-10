@@ -559,10 +559,7 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
 
 const u8 *GetZMoveName(u16 move)
 {
-    if (IsZMove(move))
-        return GetBattleMoveName(move);
-    else
-        return GetBattleMoveName(MOVE_NONE);   // Failsafe
+    return GetBattleMoveName(move);
 }
 
 #define Z_EFFECT_BS_LENGTH  5
