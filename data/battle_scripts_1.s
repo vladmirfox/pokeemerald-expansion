@@ -9671,6 +9671,14 @@ BattleScript_TruantLoafingAround::
 	call BattleScript_AbilityPopUp
 	goto BattleScript_MoveUsedLoafingAroundMsg
 
+BattleScript_MoveUsedLoafingAroundLazyMoveMsg::
+	printfromtable gInobedientStringIds
+	waitmessage B_WAIT_TIME_LONG
+	return
+BattleScript_TruantLoafingAroundLazyMove::
+	call BattleScript_AbilityPopUp
+	goto BattleScript_MoveUsedLoafingAroundLazyMoveMsg
+
 BattleScript_IgnoresAndFallsAsleep::
 	printstring STRINGID_PKMNBEGANTONAP
 	waitmessage B_WAIT_TIME_LONG

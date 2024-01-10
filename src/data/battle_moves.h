@@ -2798,6 +2798,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .healBlockBanned = TRUE,
+        .lazyMove = TRUE,
     },
 
     [MOVE_ROCK_SLIDE] =
@@ -5066,6 +5067,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
         .magicCoatAffected = TRUE,
+        .lazyMove = TRUE,
     },
 
     [MOVE_KNOCK_OFF] =
@@ -5449,6 +5451,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
+        .lazyMove = TRUE,
     },
 
     [MOVE_HYPER_VOICE] =

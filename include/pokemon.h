@@ -469,6 +469,7 @@ struct BattleMove
     u32 sketchBanned:1;
     u32 wakesUser:1;
     u32 lightMove:1;
+    u32 lazyMove:1; // Moves that can be used during Truant loafing turn (Slack Off, Yawn, Rest)
 };
 
 #define SPINDA_SPOT_WIDTH 16

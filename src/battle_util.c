@@ -3504,7 +3504,9 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_TRUANT: // truant
-            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRUANT && gDisableStructs[gBattlerAttacker].truantCounter)
+            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRUANT 
+                && gDisableStructs[gBattlerAttacker].truantCounter
+                && !(gBattleMoves[gCurrentMove].lazyMove))
             {
                 CancelMultiTurnMoves(gBattlerAttacker);
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -3513,6 +3515,16 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gBattlescriptCurrInstr = BattleScript_TruantLoafingAround;
                 gMoveResultFlags |= MOVE_RESULT_MISSED;
                 effect = 1;
+            }
+            else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRUANT 
+                && gDisableStructs[gBattlerAttacker].truantCounter
+                && gBattleMoves[gCurrentMove].lazyMove)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LOAFING;
+                gBattlerAbility = gBattlerAttacker;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TruantLoafingAroundLazyMove;
+                effect = 2;
             }
             gBattleStruct->atkCancellerTracker++;
             break;
