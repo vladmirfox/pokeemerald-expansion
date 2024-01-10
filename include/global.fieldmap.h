@@ -73,9 +73,9 @@ struct ObjectEventTemplate
     /*0x06*/ s16 y;
     /*0x08*/ u8 elevation;
     /*0x09*/ u8 movementType;
-    /*0x0A*/ u16 movementRangeX:8; // Increased to 8 bits in expansion to allow GetItemBallIdFromTemplate to get more than 15 of an item
+    /*0x0A*/ u16 movementRangeX:4;
              u16 movementRangeY:4;
-             //u16 padding2:4;
+             //u16 padding2:8;
     /*0x0C*/ u16 trainerType;
     /*0x0E*/ u16 trainerRange_berryTreeId;
     /*0x10*/ const u8 *script;
