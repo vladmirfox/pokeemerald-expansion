@@ -15783,6 +15783,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef, bool8 byIntimidate)
     case ABILITY_SCRAPPY:
     case ABILITY_OWN_TEMPO:
     case ABILITY_OBLIVIOUS:
+    case ABILITY_STEADFAST:
         if (byIntimidate && (B_UPDATED_INTIMIDATE >= GEN_8))
             return TRUE;
         break;
