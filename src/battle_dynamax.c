@@ -491,9 +491,9 @@ bool32 IsMaxMove(u16 move)
 const u8 *GetMaxMoveName(u16 move)
 {
     if (IsMaxMove(move))
-        return gMaxMoveNames[move - FIRST_MAX_MOVE];
+        return GetBattleMoveName(move);
     else
-        return gMaxMoveNames[0];   // Failsafe
+        return GetBattleMoveName(MOVE_NONE);   // Failsafe
 }
 
 // Assigns the multistring to use for the "Damage Non- Types" G-Max effect.

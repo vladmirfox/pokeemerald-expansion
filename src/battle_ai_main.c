@@ -3164,7 +3164,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
             isChargingMoveEffect[i] = FALSE;
         }
         /*
-            MgbaPrintf_("%S: required hits: %d Dmg: %d", gMoveNames[moves[i]], noOfHits[i], AI_DATA->simulatedDmg[battlerAtk][battlerDef][i]);
+            MgbaPrintf_("%S: required hits: %d Dmg: %d", GetBattleMoveName(moves[i]), noOfHits[i], AI_DATA->simulatedDmg[battlerAtk][battlerDef][i]);
         */
     }
 

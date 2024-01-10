@@ -486,7 +486,7 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
             BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_3);
             gDisplayedStringBattle[0] = CHAR_Z;
             gDisplayedStringBattle[1] = CHAR_HYPHEN;
-            StringCopy(gDisplayedStringBattle + 2, gMoveNames[move]);
+            StringCopy(gDisplayedStringBattle + 2, GetBattleMoveName(move));
         }
         else if (zmove == MOVE_EXTREME_EVOBOOST)
         {
@@ -560,9 +560,9 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
 const u8 *GetZMoveName(u16 move)
 {
     if (IsZMove(move))
-        return gZMoveNames[move - FIRST_Z_MOVE];
+        return GetBattleMoveName(move);
     else
-        return gZMoveNames[0];   // Failsafe
+        return GetBattleMoveName(MOVE_NONE);   // Failsafe
 }
 
 #define Z_EFFECT_BS_LENGTH  5

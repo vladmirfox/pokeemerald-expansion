@@ -108,7 +108,6 @@ static const struct GFRomHeader sGFRomHeader = {
     //.monIconPaletteIds = gMonIconPaletteIndices,
     .monIconPalettes = gMonIconPaletteTable,
     //.monSpeciesNames = gSpeciesNames, // Handled in gSpeciesInfo
-    .moveNames = gMoveNames,
     .decorations = gDecorations,
     .flagsOffset = offsetof(struct SaveBlock1, flags),
     .varsOffset = offsetof(struct SaveBlock1, vars),

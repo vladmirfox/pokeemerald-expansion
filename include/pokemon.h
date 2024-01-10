@@ -443,6 +443,8 @@ struct SpeciesInfo /*0x8C*/
 
 struct BattleMove
 {
+    u8 name[MOVE_NAME_LENGTH + 1];
+    const u8 *description;
     u16 effect;
     u8 power;
     u8 type:5;
@@ -774,5 +776,6 @@ u16 GetCryIdBySpecies(u16 species);
 u16 GetSpeciesPreEvolution(u16 species);
 void HealPokemon(struct Pokemon *mon);
 void HealBoxPokemon(struct BoxPokemon *boxMon);
+const u8 *GetBattleMoveName(u16 moveId);
 
 #endif // GUARD_POKEMON_H

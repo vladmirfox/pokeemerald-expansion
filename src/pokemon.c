@@ -6425,3 +6425,9 @@ u16 GetSpeciesPreEvolution(u16 species)
 
     return SPECIES_NONE;
 }
+
+const u8 *GetBattleMoveName(u16 moveId)
+{
+    // TODO: Check for MOVE_NAME_LENGTH here.
+    return gBattleMoves[moveId].name;
+}
