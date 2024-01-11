@@ -3831,6 +3831,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,                       \
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY },      \
         .abilities = { ABILITY_HUNGER_SWITCH, ABILITY_NONE },   \
+        .bodyColor = BODY_COLOR_YELLOW,                         \
         .speciesName = _("Morpeko"),                            \
         .natDexNum = NATIONAL_DEX_MORPEKO,                      \
         .categoryName = _("Two-Sided"),                         \
@@ -3848,7 +3849,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_MORPEKO_FULL_BELLY] =
     {
         MORPEKO_MISC_INFO,
-        .bodyColor = BODY_COLOR_YELLOW,
         .cryId = CRY_MORPEKO_FULL_BELLY,
         .description = COMPOUND_STRING(
             "As it eats the seeds stored up in its\n"
@@ -3869,7 +3869,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_MORPEKO_HANGRY] =
     {
         MORPEKO_MISC_INFO,
-        .bodyColor = BODY_COLOR_PURPLE,
         .cryId = CRY_MORPEKO_HANGRY,
         .description = COMPOUND_STRING(
             "Intense hunger drives it to\n"
