@@ -23,6 +23,9 @@
 #define THIRD(a, b, c, ...) c
 #define FOURTH(a, b, c, d, ...) d
 
+/* Simply returns __VA_ARGS__ */
+#define GET_ARGS(a, ...) __VA_ARGS__
+
 /* 'UNPACK (x, y, z)' expands to 'x, y, z'.
  * Useful for passing arguments which may contain commas into a macro. */
 #define UNPACK(...) __VA_ARGS__
@@ -59,5 +62,11 @@
 #define R_FOR_EACH_WITH(macro, args, ...) __VA_OPT__(R_FOR_EACH_WITH_(macro, args, __VA_ARGS__))
 #define R_FOR_EACH_WITH_(macro, args, a, ...) INVOKE_WITH(macro, args, a) __VA_OPT__(R_FOR_EACH_WITH_P PARENS (macro, args, __VA_ARGS__))
 #define R_FOR_EACH_WITH_P() R_FOR_EACH_WITH_
+
+/* Picks the first VA_ARG if it exists, otherwise returns a default value */
+#define DEFAULT(_default, ...) FIRST(__VA_OPT__(__VA_ARGS__, ) _default)
+
+/* Picks the second VA_ARG if it exists, otherwise returns a default value */
+#define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, GET_ARGS(__VA_ARGS__)))
 
 #endif
