@@ -10220,7 +10220,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = { TYPE_FIGHTING, TYPE_FIGHTING },
         .evYield_Attack = 2,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW },
-        .bodyColor = BODY_COLOR_BROWN,
+        .bodyColor = BODY_COLOR_BLACK,
         .weight = 1150,
         .description = COMPOUND_STRING(
             "This Pokémon has a muscular body\n"
@@ -10246,7 +10246,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = { TYPE_FIGHTING, TYPE_FIRE },
         .evYield_Attack = 2,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW },
-        .bodyColor = BODY_COLOR_BROWN,
+        .bodyColor = BODY_COLOR_BLACK,
         .weight = 850,
         .description = COMPOUND_STRING(
             "When heated by fire energy, its horns can\n"
@@ -10272,7 +10272,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .types = { TYPE_FIGHTING, TYPE_WATER },
         .evYield_Attack = 2,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW },
-        .bodyColor = BODY_COLOR_BROWN,
+        .bodyColor = BODY_COLOR_BLACK,
         .weight = 1100,
         .description = COMPOUND_STRING(
             "This Pokémon blasts water from holes on\n"
