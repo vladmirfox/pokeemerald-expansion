@@ -17298,7 +17298,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_G_MAX_VOLT_CRASH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("G-Max Volt Crash")
+            .name = _("G-Max Volt Crash"),
         #else
             .name = _("G-Volt Crash"),
         #endif
@@ -17338,7 +17338,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_G_MAX_CHI_STRIKE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("G-Max Chi Strike")
+            .name = _("G-Max Chi Strike"),
         #else
             .name = _("G-Chi Strike"),
         #endif
