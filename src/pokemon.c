@@ -6428,7 +6428,8 @@ u16 GetSpeciesPreEvolution(u16 species)
 
 const u8 *GetBattleMoveName(u16 moveId)
 {
-    // TODO: Check for MOVE_NAME_LENGTH here.
-    // TODO: Check for if (IsZMove(moveId)) and return .zMoveName.
+    if (IsZMove(moveId))
+        return gBattleMoves[moveId].zMoveName;
+
     return gBattleMoves[moveId].name;
 }
