@@ -52,8 +52,8 @@ BattleScript_ItemRestoreHP::
     jumpifbyte CMP_EQUAL, gBattleCommunication, TRUE, BattleScript_ItemRestoreHP_SendOutRevivedBattler
     bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-    healthbarupdate BS_ATTACKER
-    datahpupdate BS_ATTACKER
+    healthbarupdate BS_SCRIPTING
+    datahpupdate BS_SCRIPTING
     printstring STRINGID_ITEMRESTOREDSPECIESHEALTH
     waitmessage B_WAIT_TIME_LONG
     end
@@ -67,7 +67,7 @@ BattleScript_ItemRestoreHP_SendOutRevivedBattler:
 BattleScript_ItemCureStatus::
     call BattleScript_UseItemMessage
     itemcurestatus
-    updatestatusicon BS_ATTACKER
+    updatestatusicon BS_SCRIPTING
     printstring STRINGID_ITEMCUREDSPECIESSTATUS
     waitmessage B_WAIT_TIME_LONG
     end
@@ -80,9 +80,9 @@ BattleScript_ItemHealAndCureStatus::
     waitmessage B_WAIT_TIME_LONG
     bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-    healthbarupdate BS_ATTACKER
-    datahpupdate BS_ATTACKER
-    updatestatusicon BS_ATTACKER
+    healthbarupdate BS_SCRIPTING
+    datahpupdate BS_SCRIPTING
+    updatestatusicon BS_SCRIPTING
     printstring STRINGID_ITEMRESTOREDSPECIESHEALTH
     waitmessage B_WAIT_TIME_LONG
     end
