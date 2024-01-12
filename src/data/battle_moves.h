@@ -13017,7 +13017,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .power = 95,
             .pp = 5,
         #endif
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RAIN_ALWAYS_HIT,
         .type = TYPE_FLYING,
         .accuracy = 80,
         .target = MOVE_TARGET_BOTH,
@@ -13040,7 +13040,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .power = 95,
             .pp = 5,
         #endif
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RAIN_ALWAYS_HIT,
         .type = TYPE_ELECTRIC,
         .accuracy = 80,
         .target = MOVE_TARGET_BOTH,
@@ -13063,7 +13063,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .power = 95,
             .pp = 5,
         #endif
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_RAIN_ALWAYS_HIT,
         .type = TYPE_GROUND,
         .accuracy = 80,
         .target = MOVE_TARGET_BOTH,
