@@ -10,6 +10,9 @@ MirageTower_4F_EventScript_RootFossil::
 	msgbox MirageTower_4F_Text_TakeRootFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MirageTower_4F_EventScript_LeaveRootFossil
 	giveitem ITEM_ROOT_FOSSIL
+.if I_KEY_FOSSILS
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+.endif
 	closemessage
 	setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
 	setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
@@ -30,6 +33,9 @@ MirageTower_4F_EventScript_ClawFossil::
 	msgbox MirageTower_4F_Text_TakeClawFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MirageTower_4F_EventScript_LeaveClawFossil
 	giveitem ITEM_CLAW_FOSSIL
+.if I_KEY_FOSSILS
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+.endif
 	closemessage
 	setflag FLAG_HIDE_MIRAGE_TOWER_CLAW_FOSSIL
 	setflag FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL
