@@ -1114,7 +1114,7 @@ void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct DisableStruc
         tvPtr->side[atkSide].wishMonId = gBattlerPartyIndexes[gBattlerAttacker] + 1;
         tvPtr->side[atkSide].wishMoveSlot = moveSlot;
     }
-    if (move == MOVE_SELF_DESTRUCT || move == MOVE_EXPLOSION)
+    if (gBattleMoves[move].effect == EFFECT_EXPLOSION)
     {
         tvPtr->side[atkSide ^ BIT_SIDE].explosionMonId = gBattlerPartyIndexes[gBattlerAttacker] + 1;
         tvPtr->side[atkSide ^ BIT_SIDE].explosionMoveSlot = moveSlot;

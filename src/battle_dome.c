@@ -5153,8 +5153,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
                 movePower = 40;
             else if (movePower == 1)
                 movePower = 60;
-            else if (moveIds[i * MAX_MON_MOVES + j] == MOVE_SELF_DESTRUCT
-                  || moveIds[i * MAX_MON_MOVES + j] == MOVE_EXPLOSION)
+            else if (gBattleMoves[moveIds[i * MAX_MON_MOVES + j]].effect == EFFECT_EXPLOSION)
                 movePower /= 2;
 
             for (k = 0; k < FRONTIER_PARTY_SIZE; k++)
