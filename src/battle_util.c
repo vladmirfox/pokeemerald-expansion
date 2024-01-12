@@ -2674,8 +2674,7 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[battler].status2 &= ~STATUS2_MULTIPLETURNS;
                     if (!(gBattleMons[battler].status2 & STATUS2_CONFUSION))
                     {
-                        gBattleScripting.moveEffect = MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER;
-                        SetMoveEffect(TRUE, FALSE);
+                        SetMoveEffect(MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER, TRUE, FALSE);
                         if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                             BattleScriptExecute(BattleScript_ThrashConfuses);
                         effect++;
@@ -5688,9 +5687,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && TARGET_TURN_DAMAGED
              && !MoveHasMoveEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
             {
-                gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                 BattleScriptPushCursor();
-                SetMoveEffect(FALSE, FALSE);
+                SetMoveEffect(MOVE_EFFECT_FLINCH, FALSE, FALSE);
                 BattleScriptPop();
                 effect++;
             }
@@ -7602,9 +7600,8 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam)
                     && ability != ABILITY_STENCH)
                 {
-                    gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                     BattleScriptPushCursor();
-                    SetMoveEffect(FALSE, FALSE);
+                    SetMoveEffect(MOVE_EFFECT_FLINCH, FALSE, FALSE);
                     BattleScriptPop();
                 }
             }
