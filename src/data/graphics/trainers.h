@@ -299,7 +299,6 @@ static const union AnimCmd *const sAnims_Trainer[] ={
 #define TRAINER_SPRITE(trainerPic, file, x, y, rotation)                                  \
     [TRAINER_PIC_##trainerPic] =                                                          \
     {                                                                                     \
-        .y_offset = 8,                                                                    \
         .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
         .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic},                    \
         .animation = sAnims_Trainer,                                                      \

@@ -2544,7 +2544,7 @@ void BtlController_HandleTrainerSlide(u32 battler, u32 trainerPicId)
         SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(battler));
         gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                   176,
-                                                  (8 - gTrainerSprites[trainerPicId].y_offset) * 4 + 40,
+                                                  40,
                                                   30);
         gSprites[gBattlerSpriteIds[battler]].oam.affineParam = trainerPicId;
         gSprites[gBattlerSpriteIds[battler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerSprites[trainerPicId].palette.tag);
