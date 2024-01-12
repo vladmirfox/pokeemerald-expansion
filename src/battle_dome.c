@@ -4108,7 +4108,6 @@ static bool32 IsDomeComboMoveEffect(u32 effect)
     case EFFECT_MOONLIGHT:
     case EFFECT_SHORE_UP:
     case EFFECT_THUNDER:
-    case EFFECT_HURRICANE:
     //case EFFECT_BLIZZARD: (needs a unique effect in gBattleMoves!)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_GROWTH:

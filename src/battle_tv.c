@@ -320,7 +320,6 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_PSYCHIC_TERRAIN]            = 0, // TODO: Assign points
     [EFFECT_ATTACK_ACCURACY_UP]         = 0, // TODO: Assign points
     [EFFECT_ATTACK_SPATK_UP]            = 0, // TODO: Assign points
-    [EFFECT_HURRICANE]                  = 0, // TODO: Assign points
     [EFFECT_TWO_TYPED_MOVE]             = 0, // TODO: Assign points
     [EFFECT_ME_FIRST]                   = 0, // TODO: Assign points
     [EFFECT_QUIVER_DANCE]               = 0, // TODO: Assign points

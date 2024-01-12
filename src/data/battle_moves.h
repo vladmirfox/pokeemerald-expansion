@@ -9144,7 +9144,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 120,
         #endif
-        .effect = EFFECT_HURRICANE,
+        .effect = EFFECT_THUNDER,
         .type = TYPE_FLYING,
         .accuracy = 70,
         .pp = 10,

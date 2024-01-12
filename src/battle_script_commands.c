@@ -1585,7 +1585,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     if (WEATHER_HAS_EFFECT)
     {
         if (IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_RAIN) &&
-            (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE ||
+            (gBattleMoves[move].effect == EFFECT_THUNDER ||
             move == MOVE_BLEAKWIND_STORM || move == MOVE_WILDBOLT_STORM || move == MOVE_SANDSEAR_STORM))
         {
             // thunder/hurricane/genie moves ignore acc checks in rain unless target is holding utility umbrella
@@ -1649,8 +1649,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 
     moveAcc = gBattleMoves[move].accuracy;
     // Check Thunder and Hurricane on sunny weather.
-    if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
-      && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
+    if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && gBattleMoves[move].effect == EFFECT_THUNDER)
         moveAcc = 50;
     // Check Wonder Skin.
     if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
