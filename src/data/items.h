@@ -956,7 +956,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_RESTORE_HP,
-        .effect = gItemEffect_BerryJuice,
+        .effect = gItemEffect_Potion,
         .flingPower = 30,
     },
 
@@ -1738,7 +1738,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_BlueFlute,
+        .effect = gItemEffect_Awakening,
         .flingPower = 30,
     },
 
@@ -7583,7 +7583,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_CheriBerry,
+        .effect = gItemEffect_ParalyzeHeal,
         .flingPower = 10,
     },
 
@@ -7599,7 +7599,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_ChestoBerry,
+        .effect = gItemEffect_Awakening,
         .flingPower = 10,
     },
 
@@ -7615,7 +7615,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_PechaBerry,
+        .effect = gItemEffect_Antidote,
         .flingPower = 10,
     },
 
@@ -7631,7 +7631,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_RawstBerry,
+        .effect = gItemEffect_BurnHeal,
         .flingPower = 10,
     },
 
@@ -7647,7 +7647,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Medicine,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_AspearBerry,
+        .effect = gItemEffect_IceHeal,
         .flingPower = 10,
     },
 
