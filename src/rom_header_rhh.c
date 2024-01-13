@@ -24,6 +24,7 @@ struct RHHRomHeader
     /*0x18*/ const struct Ability *abilities;
     /*0x1C*/ u32 itemsCount;
     /*0x20*/ u8 itemNameLength;
+    /*0x21*/ u8 padding[3];
 };
 
 __attribute__((section(".text.consts")))
