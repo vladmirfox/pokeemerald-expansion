@@ -864,11 +864,11 @@ static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOT_COLOR_COUNT] =
 {
-	[MUGSHOT_COLOR_PURPLE] = sMugshotPal_Purple,
-	[MUGSHOT_COLOR_GREEN]  = sMugshotPal_Green,
-	[MUGSHOT_COLOR_PINK]   = sMugshotPal_Pink,
-	[MUGSHOT_COLOR_BLUE]   = sMugshotPal_Blue,
-	[MUGSHOT_COLOR_YELLOW] = sMugshotPal_Yellow
+    [MUGSHOT_COLOR_PURPLE] = sMugshotPal_Purple,
+    [MUGSHOT_COLOR_GREEN]  = sMugshotPal_Green,
+    [MUGSHOT_COLOR_PINK]   = sMugshotPal_Pink,
+    [MUGSHOT_COLOR_BLUE]   = sMugshotPal_Blue,
+    [MUGSHOT_COLOR_YELLOW] = sMugshotPal_Yellow
 };
 
 static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
@@ -2257,7 +2257,7 @@ static bool8 Mugshot_SetGfx(struct Task *task)
 {
     s16 i, j;
     u16 *tilemap, *tileset;
-	const u16 *mugshotsMap = sMugshotsTilemap;
+    const u16 *mugshotsMap = sMugshotsTilemap;
     u8 mugshotColor = gTrainers[gTrainerBattleOpponent_A].mugshotColor;
 
 
@@ -2518,15 +2518,15 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 {
     struct Sprite *opponentSprite, *playerSprite;
 
-	    u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-		s16 opponentRotationScales = 0;
+        u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        s16 opponentRotationScales = 0;
 
-	    gReservedSpritePaletteCount = 10;
+        gReservedSpritePaletteCount = 10;
     task->tOpponentSpriteId = CreateTrainerSprite(trainerPicId,
-			gTrainerSprites[trainerPicId].mugshotCoords.x - 32,
+            gTrainerSprites[trainerPicId].mugshotCoords.x - 32,
                                                   gTrainerSprites[trainerPicId].mugshotCoords.y + 42,
                                                   0, gDecompressionBuffer);
-	gReservedSpritePaletteCount = 12;
+    gReservedSpritePaletteCount = 12;
 
     task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender),
                                                 DISPLAY_WIDTH + 32,
@@ -2556,7 +2556,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 
     opponentRotationScales = gTrainerSprites[trainerPicId].mugshotRotation;
 
-	SetOamMatrixRotationScaling(opponentSprite->oam.matrixNum, opponentRotationScales, opponentRotationScales, 0);
+    SetOamMatrixRotationScaling(opponentSprite->oam.matrixNum, opponentRotationScales, opponentRotationScales, 0);
 
     SetOamMatrixRotationScaling(playerSprite->oam.matrixNum, -512, 512, 0);
 }
