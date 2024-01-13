@@ -535,7 +535,6 @@ static const TransitionStateFunc sMugshot_Funcs[] =
 };
 
 #include "data/battle_transitions/mugshot_rotation_scales.h"
-#include "data/battle_transitions/mugshot_coords.h"
 
 static const TransitionSpriteCallback sMugshotTrainerPicFuncs[] =
 {
@@ -2526,8 +2525,8 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 
 	    gReservedSpritePaletteCount = 10;
     task->tOpponentSpriteId = CreateTrainerSprite(trainerPicId,
-			sMugshotsOpponentCoords[trainerPicId].x - 32,
-                                                  sMugshotsOpponentCoords[trainerPicId].y + 42,
+			gTrainerSprites[trainerPicId].mugshotCoords.x - 32,
+                                                  gTrainerSprites[trainerPicId].mugshotCoords.y + 42,
                                                   0, gDecompressionBuffer);
 	gReservedSpritePaletteCount = 12;
 

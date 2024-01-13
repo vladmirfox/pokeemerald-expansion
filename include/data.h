@@ -35,6 +35,7 @@ struct TrainerSprite
     struct CompressedSpriteSheet frontPic;
     struct CompressedSpritePalette palette;
     const union AnimCmd *const *const animation;
+    const struct Coords16 mugshotCoords;
 };
 
 struct TrainerBacksprite
