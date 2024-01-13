@@ -21,6 +21,7 @@ struct RHHRomHeader
     /*0x10*/ u32 numSpecies;
     /*0x14*/ u32 abilitiesCount;
     /*0x18*/ const struct Ability *abilities;
+    /*0x1C*/ u32 itemsCount;
 };
 
 __attribute__((section(".text.consts")))
@@ -35,4 +36,5 @@ static const struct RHHRomHeader sRHHRomHeader =
     .numSpecies = NUM_SPECIES,
     .abilitiesCount = ABILITIES_COUNT,
     .abilities = gAbilities,
+    .itemsCount = ITEMS_COUNT,
 };
