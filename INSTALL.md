@@ -565,6 +565,11 @@ Note that this is not necessary for a non-modern (agbcc) build since those are b
     ```bash
     cd ..
     ```
+    
+4. To compile with agbcc:
+
+    ```make agbcc```
+
 </details>
 
 # Useful additional tools
