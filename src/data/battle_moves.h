@@ -3903,7 +3903,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
         #endif
-            .chance = 10,
+            .chance = 20,
         }),
     },
 
@@ -11750,6 +11750,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .effect = EFFECT_HIT,
         .power = 70,
         .type = TYPE_FIRE,
+        .accuracy = 100,
         .pp = 5,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
