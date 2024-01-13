@@ -292,16 +292,11 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/back_pics/red.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/back_pics/leaf.gbapal.lz");
 
-static const union AnimCmd *const sAnims_Trainer[] ={
-    sAnim_GeneralFrame0,
-};
-
 #define TRAINER_SPRITE(trainerPic, file, x, y, rotation)                                  \
     [TRAINER_PIC_##trainerPic] =                                                          \
     {                                                                                     \
         .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
         .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic},                    \
-        .animation = sAnims_Trainer,                                                      \
         .mugshotCoords = {x, y},                                                          \
         .mugshotRotation = rotation,                                                      \
     }
