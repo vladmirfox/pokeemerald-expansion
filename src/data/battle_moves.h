@@ -2278,20 +2278,22 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 140,
         .type = TYPE_FLYING,
-        .criticalHitStage = 1,
         .accuracy = 90,
         .pp = 5,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
+        .criticalHitStage = B_UPDATED_MOVE_DATA >= GEN_3 ? 1 : 0,
         .twoTurnMove = TRUE,
         .sheerForceBoost = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+    #if B_UPDATED_MOVE_DATA >= GEN_3
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
+    #endif
     },
 
     [MOVE_TRANSFORM] =
