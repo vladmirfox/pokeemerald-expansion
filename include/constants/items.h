@@ -1026,7 +1026,8 @@
 #define MAX_PC_ITEM_CAPACITY          999
 #define MAX_PYRAMID_BAG_ITEM_CAPACITY  99 // Values higher than 255 require free SaveBlock2 space.
 
-#define MAX_ITEM_DIGITS ((MAX_BAG_ITEM_CAPACITY > 99) ? 3 : 2)
+#define MAX_ITEM_DIGITS         ((MAX_BAG_ITEM_CAPACITY > 99) ? 3 : 2)
+#define MAX_PYRAMID_ITEM_DIGITS ((MAX_PYRAMID_BAG_ITEM_CAPACITY > 99) ? 3 : 2)
 
 // Secondary IDs for rods
 #define OLD_ROD   0
