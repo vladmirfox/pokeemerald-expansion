@@ -534,8 +534,6 @@ static const TransitionStateFunc sMugshot_Funcs[] =
     Mugshot_End
 };
 
-#include "data/battle_transitions/mugshot_rotation_scales.h"
-
 static const TransitionSpriteCallback sMugshotTrainerPicFuncs[] =
 {
     MugshotTrainerPic_Pause,
@@ -2556,10 +2554,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     CalcCenterToCornerVec(opponentSprite, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
     CalcCenterToCornerVec(playerSprite, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
 
-    if (trainerPicId >= ARRAY_COUNT(sMugshotsOpponentRotationScales))
-		opponentRotationScales = 0x200;
-    else
-		opponentRotationScales = sMugshotsOpponentRotationScales[trainerPicId];
+    opponentRotationScales = gTrainerSprites[trainerPicId].mugshotRotation;
 
 	SetOamMatrixRotationScaling(opponentSprite->oam.matrixNum, opponentRotationScales, opponentRotationScales, 0);
 
