@@ -23,6 +23,7 @@ struct RHHRomHeader
     /*0x14*/ u32 abilitiesCount;
     /*0x18*/ const struct Ability *abilities;
     /*0x1C*/ u32 itemsCount;
+    /*0x20*/ u8 itemNameLength;
 };
 
 __attribute__((section(".text.consts")))
@@ -38,4 +39,5 @@ static const struct RHHRomHeader sRHHRomHeader =
     .abilitiesCount = ABILITIES_COUNT,
     .abilities = gAbilities,
     .itemsCount = ITEMS_COUNT,
+    .itemNameLength = ITEM_NAME_LENGTH,
 };
