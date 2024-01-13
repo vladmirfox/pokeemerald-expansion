@@ -15866,10 +15866,14 @@ void BS_ItemRestoreHP(void)
     if (hp + healAmount > maxHP)
         healAmount = maxHP - hp;
 
+    gBattleScripting.battler = battler;
+    PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_SPECIES));
+
     // Heal is applied as move damage if battler is active.
     if (battler != MAX_BATTLERS_COUNT && hp != 0)
     {
         gBattleMoveDamage = -healAmount;
+        gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
     {
@@ -15880,13 +15884,10 @@ void BS_ItemRestoreHP(void)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && battler != MAX_BATTLERS_COUNT)
         {
             gAbsentBattlerFlags &= ~gBitTable[battler];
-            gBattleScripting.battler = battler;
             gBattleCommunication[MULTIUSE_STATE] = TRUE;
         }
+        gBattlescriptCurrInstr = BattleScript_ItemRestoreHP_Party;
     }
-    gBattleScripting.battler = battler;
-    PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_SPECIES));
-    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_ItemCureStatus(void)
