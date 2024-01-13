@@ -4853,9 +4853,9 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
 
     if (score <= 1) // Score not high enough. Damaging moves should be preferred
         return 0;
-    else if (score == 2 || score == 3) // Score is good enough to be chosen over a damaging move but other effects might be better
+    else if (score <= 3) // Score is good enough to be chosen over a damaging move but other effects might be better
         return 2;
-    else if (score == 4 || score == 5) // Good Score. Usually the preferred effect
+    else if (score <= 5) // Good Score. Usually the preferred effect
         return 3;
     else // Best effect possible. Should always be chosen over other effects
         return 4;
