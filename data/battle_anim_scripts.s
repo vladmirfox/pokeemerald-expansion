@@ -17109,6 +17109,10 @@ Move_ICE_SPINNER::
 	delay 8
 	createvisualtask AnimTask_RapinSpinMonElevation, 2, 0, 2, 1
 	loopsewithpan SE_M_ICY_WIND, SOUND_PAN_ATTACKER, 8, 4
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 47, 1
+	call IceCrystalSpinEffect
+	call IceCrystalSpinEffect
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
 	call UnsetPsychicBg
