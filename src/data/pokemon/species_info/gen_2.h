@@ -1449,7 +1449,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpAttack  = 165,
         .baseSpDefense = 110,
         .types = { TYPE_ELECTRIC, TYPE_DRAGON },
-        .expYield = 275,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 305 : 275,
         .abilities = { ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER },
         .cryId = CRY_AMPHAROS_MEGA,
         .description = COMPOUND_STRING(
@@ -5670,7 +5670,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpeed     = 71,
         .baseSpAttack  = 95,
         .baseSpDefense = 120,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_SAND_STREAM, ABILITY_SAND_STREAM, ABILITY_SAND_STREAM },
         .cryId = CRY_TYRANITAR_MEGA,
         .height = 25,

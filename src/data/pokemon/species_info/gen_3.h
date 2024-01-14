@@ -169,7 +169,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpAttack  = 145,
         .baseSpDefense = 85,
         .types = { TYPE_GRASS, TYPE_DRAGON },
-        .expYield = 284,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 315 : 284,
         .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD },
         .cryId = CRY_SCEPTILE_MEGA,
         .height = 19,
@@ -368,7 +368,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 130,
         .baseSpDefense = 80,
-        .expYield = 284,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 315 : 284,
         .abilities = { ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST },
         .cryId = CRY_BLAZIKEN_MEGA,
         .description = COMPOUND_STRING(
@@ -555,7 +555,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 70,
         .baseSpAttack  = 95,
         .baseSpDefense = 110,
-        .expYield = 286,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 318 : 286,
         .abilities = { ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM },
         .cryId = CRY_SWAMPERT_MEGA,
         .height = 19,
@@ -1882,7 +1882,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 165,
         .baseSpDefense = 135,
-        .expYield = 278,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 309 : 278,
         .abilities = { ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE },
         .cryId = CRY_GARDEVOIR_MEGA,
         .description = COMPOUND_STRING(
@@ -1976,7 +1976,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 65,
         .baseSpDefense = 115,
-        .expYield = 278,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 309 : 278,
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS },
         .cryId = CRY_GALLADE_MEGA,
         .weight = 564,
@@ -3331,7 +3331,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpAttack  = 60,
         .baseSpDefense = 80,
         .types = { TYPE_STEEL, TYPE_STEEL },
-        .expYield = 284,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 315 : 284,
         .abilities = { ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER },
         .cryId = CRY_AGGRON_MEGA,
         .height = 22,
@@ -7453,7 +7453,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 120,
         .baseSpAttack  = 120,
         .baseSpDefense = 90,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE },
         .cryId = CRY_SALAMENCE_MEGA,
         .height = 18,
@@ -7650,7 +7650,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 105,
         .baseSpDefense = 110,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
         .cryId = CRY_METAGROSS_MEGA,
         .height = 25,
@@ -7919,7 +7919,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 140,
         .baseSpDefense = 150,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
         .bodyColor = BODY_COLOR_PURPLE,
         .cryId = CRY_LATIAS_MEGA,
@@ -8020,7 +8020,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 160,
         .baseSpDefense = 120,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE },
         .bodyColor = BODY_COLOR_PURPLE,
         .cryId = CRY_LATIOS_MEGA,
@@ -8051,18 +8051,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_FAMILY_LATIOS
 
 #if P_FAMILY_KYOGRE
-#if P_UPDATED_EXP_YIELDS >= GEN_8
-    #define KYOGRE_EXP_YIELD 335
-#elif P_UPDATED_EXP_YIELDS >= GEN_5
-    #define KYOGRE_EXP_YIELD 302
-#else
-    #define KYOGRE_EXP_YIELD 218
-#endif
-
 #define KYOGRE_MISC_INFO                                                            \
         .types = { TYPE_WATER, TYPE_WATER },                                        \
         .catchRate = 3,                                                             \
-        .expYield = KYOGRE_EXP_YIELD,                                               \
         .evYield_SpAttack = 3,                                                      \
         .genderRatio = MON_GENDERLESS,                                              \
         .eggCycles = 120,                                                           \
@@ -8088,6 +8079,13 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 140,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 335,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 302,
+    #else
+        .expYield = 218,
+    #endif
         .abilities = { ABILITY_DRIZZLE, ABILITY_NONE },
         .cryId = CRY_KYOGRE,
         .height = 45,
@@ -8122,6 +8120,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 180,
         .baseSpDefense = 160,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 385 : 347,
         .abilities = { ABILITY_PRIMORDIAL_SEA, ABILITY_PRIMORDIAL_SEA },
         .cryId = CRY_KYOGRE_PRIMAL,
         .height = 98,
@@ -8150,32 +8149,23 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_FAMILY_KYOGRE
 
 #if P_FAMILY_GROUDON
-#if P_UPDATED_EXP_YIELDS >= GEN_8
-    #define GROUDON_EXP_YIELD 335
-#elif P_UPDATED_EXP_YIELDS >= GEN_5
-    #define GROUDON_EXP_YIELD 302
-#else
-    #define GROUDON_EXP_YIELD 218
-#endif
-
-#define GROUDON_MISC_INFO                                               \
-        .catchRate = 3,                                                 \
-        .expYield = GROUDON_EXP_YIELD,                                  \
-        .evYield_Attack = 3,                                            \
-        .genderRatio = MON_GENDERLESS,                                  \
-        .eggCycles = 120,                                               \
-        .friendship = 0,                                                \
-        .growthRate = GROWTH_SLOW,                                      \
+#define GROUDON_MISC_INFO                                                           \
+        .catchRate = 3,                                                             \
+        .evYield_Attack = 3,                                                        \
+        .genderRatio = MON_GENDERLESS,                                              \
+        .eggCycles = 120,                                                           \
+        .friendship = 0,                                                            \
+        .growthRate = GROWTH_SLOW,                                                  \
         .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },\
-        .bodyColor = BODY_COLOR_RED,                                    \
-        .isLegendary = TRUE,                                            \
-        .speciesName = _("Groudon"),                                    \
-        .cryId = CRY_GROUDON,                                           \
-        .natDexNum = NATIONAL_DEX_GROUDON,                              \
-        .categoryName = _("Continent"),                                 \
-        FOOTPRINT(Groudon)                                              \
-        LEARNSETS(Groudon),                                             \
-        .formSpeciesIdTable = sGroudonFormSpeciesIdTable,               \
+        .bodyColor = BODY_COLOR_RED,                                                \
+        .isLegendary = TRUE,                                                        \
+        .speciesName = _("Groudon"),                                                \
+        .cryId = CRY_GROUDON,                                                       \
+        .natDexNum = NATIONAL_DEX_GROUDON,                                          \
+        .categoryName = _("Continent"),                                             \
+        FOOTPRINT(Groudon)                                                          \
+        LEARNSETS(Groudon),                                                         \
+        .formSpeciesIdTable = sGroudonFormSpeciesIdTable,                           \
         .formChangeTable = sGroudonFormChangeTable
 
     [SPECIES_GROUDON] =
@@ -8187,6 +8177,13 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 90,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 335,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 302,
+    #else
+        .expYield = 218,
+    #endif
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = { ABILITY_DROUGHT, ABILITY_NONE },
         .height = 35,
@@ -8221,6 +8218,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 90,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 385 : 347,
         .types = { TYPE_GROUND, TYPE_FIRE },
         .abilities = { ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND },
         .height = 50,
@@ -8250,18 +8248,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_FAMILY_GROUDON
 
 #if P_FAMILY_RAYQUAZA
-#if P_UPDATED_EXP_YIELDS >= GEN_8
-    #define RAYQUAZA_EXP_YIELD 340
-#elif P_UPDATED_EXP_YIELDS >= GEN_5
-    #define RAYQUAZA_EXP_YIELD 306
-#else
-    #define RAYQUAZA_EXP_YIELD 220
-#endif
-
 #define RAYQUAZA_MISC_INFO                                                          \
         .types = { TYPE_DRAGON, TYPE_FLYING },                                      \
         .catchRate = 45,                                                            \
-        .expYield = RAYQUAZA_EXP_YIELD,                                             \
         .evYield_Attack = 2,                                                        \
         .evYield_SpAttack = 1,                                                      \
         .genderRatio = MON_GENDERLESS,                                              \
@@ -8289,6 +8278,13 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 95,
         .baseSpAttack  = 150,
         .baseSpDefense = 90,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 340,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 306,
+    #else
+        .expYield = 220,
+    #endif
         .abilities = { ABILITY_AIR_LOCK, ABILITY_NONE },
         .height = 70,
         .weight = 2065,
@@ -8324,6 +8320,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .baseSpeed     = 115,
         .baseSpAttack  = 180,
         .baseSpDefense = 100,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 390 : 351,
         .abilities = { ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM },
         .height = 108,
         .weight = 3920,

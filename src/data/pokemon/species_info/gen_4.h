@@ -2753,7 +2753,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 92,
         .baseSpAttack  = 120,
         .baseSpDefense = 95,
-        .expYield = 315,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 350 : 315,
         .abilities = { ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE },
         .cryId = CRY_GARCHOMP_MEGA,
         .description = COMPOUND_STRING(
@@ -3573,6 +3573,14 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         ICON(Rotom, 0),
     },
 
+#if P_UPDATED_EXP_YIELDS >= GEN_7
+    #define ROTOM_APPLIANCE_EXP_YIELD 182
+#elif P_UPDATED_EXP_YIELDS >= GEN_5
+    #define ROTOM_APPLIANCE_EXP_YIELD 154
+#else
+    #define ROTOM_APPLIANCE_EXP_YIELD 132
+#endif
+
 #define ROTOM_APPLIANCE_INFO(form)                                  \
         .baseHP        = 50,                                        \
         .baseAttack    = 65,                                        \
@@ -3580,7 +3588,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 86,                                        \
         .baseSpAttack  = 105,                                       \
         .baseSpDefense = 107,                                       \
-        .expYield = 182
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD
 
     [SPECIES_ROTOM_HEAT] =
     {
