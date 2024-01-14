@@ -96,6 +96,9 @@ Std_FindItem::
 	lock
 	faceplayer
 	waitse
+#if RZ_ENABLED == TRUE
+	callnative FindItemRandomize_NativeCall
+#endif
 	copyvar VAR_0x8004, ITEMID
 	copyvar VAR_0x8005, AMOUNT
 	checkitemspace ITEMID, AMOUNT

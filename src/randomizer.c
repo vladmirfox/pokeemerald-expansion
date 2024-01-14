@@ -1,12 +1,32 @@
 #include "randomizer.h"
-#include "new_game.h"
-#include "pokemon.h"
 
-struct Sfc32State GetRandomizerSeed(enum RandomizerReason reason, u32 data1, u16 data2)
+#if RZ_ENABLE == TRUE
+#include "new_game.h"
+#include "item.h"
+#include "event_data.h"
+#include "field_control_avatar.h"
+#include "pokemon.h"
+#include "script.h"
+
+bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature)
+{
+    return TRUE;
+}
+
+u32 GetRandomizerSeed(void)
+{
+    #if RZ_TRAINER_ID_IS_SEED == TRUE
+        return GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
+    #else
+        #error Separate randomizer seeds not yet implemented.
+    #endif
+}
+
+struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u16 data2)
 {
     struct Sfc32State state;
     u32 i;
-    state.a = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
+    state.a = GetRandomizerSeed();
     state.b = ((u32)reason << 16) | data2;
     state.c = data1;
     state.ctr = RANDOMIZER_STREAM;
@@ -19,135 +39,127 @@ struct Sfc32State GetRandomizerSeed(enum RandomizerReason reason, u32 data1, u16
     return state;
 }
 
+u16 RandomizerNextRange(struct Sfc32State* state, u16 range)
+{
+    u16 lower;
+    u32 scaled;
+
+    if (range < 2)
+        return 0;
+
+    scaled = (u32)RandomizerNext(state) * (u32)range;
+    lower = (u16)scaled;
+
+    if (lower < range)
+    {
+        u16 adjusted_range;
+        adjusted_range = (u16)((UINT16_MAX + 1u) % range);
+        while (lower < adjusted_range)
+        {
+            scaled = (u32)RandomizerNext(state) * (u32)range;
+            lower = (u16)scaled;
+        }
+    }
+
+    return scaled >> 16;
+}
+
 u16 RandomizerRand(enum RandomizerReason reason, u32 data1, u16 data2)
 {
     struct Sfc32State state;
-    state = GetRandomizerSeed(reason, data1, data2);
-    return RandomizerNext(&state) >> 16;
+    state = RandomizerRandSeed(reason, data1, data2);
+    return RandomizerNext(&state);
 }
 
-// Types for tables
-
-#define RBST_STAT_CALC(value, total) ((u8)max((((value)/(total)+1)/2),1))
-struct RandomizerBaseStats GenerateRandomBaseStats(u16 species, u16 statsTotal) {
-    u32 randomTotal, i, startPoint;
-    u32 statRandoms[6];
-    struct RandomizerBaseStats result;
-    u16 adjustedBst;
-    const bool8 isShedinja = species == SPECIES_SHEDINJA;
+u16 RandomizerRandRange(enum RandomizerReason reason, u32 data1, u16 data2, u16 range)
+{
     struct Sfc32State state;
-
-    state = GetRandomizerSeed(RZR_BASE_STATS, species, 0);
-
-    if (isShedinja)
-    {
-        adjustedBst = statsTotal - 51;
-        startPoint = 1;
-    }
-    else
-    {
-        adjustedBst = statsTotal - 70;
-        startPoint = 0;
-    }
-
-    // This makes rounding easier later.
-    adjustedBst *= 2;
-
-    randomTotal = 0;
-    for(i = startPoint; i < 6; i++)
-    {
-        u32 statRandom;
-        statRandom = RandomizerNext(&state);
-        randomTotal += statRandom;
-        statRandoms[i] = statRandom * adjustedBst;
-    }
-
-    if(isShedinja)
-        result.baseHP = 1;
-    else
-        result.baseHP = RBST_STAT_CALC(statRandoms[0], randomTotal) + 20;
-    result.baseAttack = RBST_STAT_CALC(statRandoms[1], randomTotal) + 10;
-    result.baseDefense = RBST_STAT_CALC(statRandoms[2], randomTotal) + 10;
-    result.baseSpeed = RBST_STAT_CALC(statRandoms[3], randomTotal) + 10;
-    result.baseSpAttack = RBST_STAT_CALC(statRandoms[4], randomTotal) + 10;
-    result.baseSpDefense = RBST_STAT_CALC(statRandoms[5], randomTotal) + 10;
-
+    state = RandomizerRandSeed(reason, data1, data2);
+    return RandomizerNextRange(&state, range);
 }
-#undef RBST_STAT_CALC
 
-struct SpeciesGroup {
-    u16 species;
-    u16 group;
-};
-
-enum SpeciesRandMode gSpeciesRandMode;
-
-#define RANDOMIZER_SPECIES  (FORMS_START-1)
-
-struct SpeciesTable {
-    u16 speciesIndex[RANDOMIZER_SPECIES];
-    struct SpeciesGroup speciesGroup[RANDOMIZER_SPECIES];
-};
-
-static void GetGroupStartEndPoints(struct SpeciesTable *table, u16 minGroup, u16 maxGroup, u32 *start, u32 *end)
+static inline bool8 IsItemTMHM(u16 itemId)
 {
-    u32 index, leftBound, minRightBound, maxRightBound;
-    leftBound = 0;
-    minRightBound = RANDOMIZER_SPECIES;
-    maxRightBound = RANDOMIZER_SPECIES;
-    // Do leftmost binary search to find the lower limit.
-    while (leftBound < minRightBound) {
-        u16 idxGroup;
-        index = (leftBound + minRightBound) / 2;
-        idxGroup = table->speciesGroup[index].group;
-        if (table->speciesGroup[index].group < minGroup)
-            leftBound = index + 1;
-        else
-        {
-            if (idxGroup > maxGroup)
-                maxRightBound = index;
-            minRightBound = index;
-        }
-    }
-    *start = leftBound;
-
-    // Do rightmost binary search to find the upper limit.
-    while (leftBound < maxRightBound)
-    {
-        index = (leftBound + maxRightBound / 2);
-        if (table->speciesGroup[index].group > maxGroup)
-            maxRightBound = index;
-        else
-            leftBound = index + 1;
-    }
-    *end = maxRightBound - 1;
+    return ItemId_GetPocket(itemId) == POCKET_TM_HM;
 }
 
-static void GetMinMaxGroup(u16 group, u16 *min, u16 *max)
+static inline bool8 IsItemHM(u16 itemId)
 {
-    if (gSpeciesRandMode == MODE_SIMILAR_BST)
-    {
-        // 12.5% window on either side
-        const u32 scaled = group * 8;
-        *min = (scaled - group) / 8;
-        *max = (scaled + group) / 8;
+    return itemId >= ITEM_HM01 && IsItemTMHM(itemId);
+}
 
-    }
-    else
+static inline bool8 IsKeyItem(u16 itemId)
+{
+    return ItemId_GetPocket(itemId) == POCKET_KEY_ITEMS;
+}
+
+static inline bool8 ShouldRandomizeItem(u16 itemId)
+{
+    return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_NONE);
+}
+
+u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
+{
+    struct Sfc32State state;
+    u16 result;
+    u32 mapSeed;
+
+    // Don't randomize HMs or key items, that can make the game unwinnable.
+    if (!ShouldRandomizeItem(itemId))
+        return itemId;
+
+    mapSeed = ((u32)mapGroup) << 16;
+    mapSeed |= ((u32)mapNum) << 8;
+    mapSeed |= localId;
+
+    state = RandomizerRandSeed(RZR_FIELD_ITEM, mapSeed, itemId);
+
+    // Randomize TMs to TMs. Because HMs shouldn't be randomized, we can assume
+    // this is a TM.
+    if (IsItemTMHM(itemId))
+        return RandomizerNextRange(&state, RZ_MAX_TM - ITEM_TM01 + 1) + ITEM_TM01;
+
+    // Randomize everything else to everything else.
+    do {
+        result = RandomizerNextRange(&state, ITEMS_COUNT) + 1;
+    } while(!ShouldRandomizeItem(result) || IsItemTMHM(result));
+
+    return result;
+
+}
+
+void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
+{
+    if (RandomizerFeatureEnabled(RZ_FIELD_ITEMS))
     {
-        *min = group;
-        *max = group;
+        u8 objEvent = gSelectedObjectEvent;
+        gSpecialVar_0x8000 = RandomizeFoundItem(
+            gSpecialVar_0x8000,
+            gObjectEvents[objEvent].mapGroup,
+            gObjectEvents[objEvent].mapNum,
+            gObjectEvents[objEvent].localId);
     }
 }
 
- u16 GetRandomSpecies(struct SpeciesTable *table, enum RandomizerReason reason, u32 seed, u16 species)
- {
-    u32 start, end;
-    u16 minGroup, maxGroup, speciesIndex;
-    const u16 speciesGroup = table->speciesGroup[table->speciesIndex[species]].group;
+u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed, u16 species)
+{
+    return 1 + RandomizerRandRange(reason, seed, species, FORMS_START-1);
+}
 
-    GetMinMaxGroup(speciesGroup, &minGroup, &maxGroup);
-    GetGroupStartEndPoints(table, minGroup, maxGroup, &start, &end);
-    speciesIndex = RandomizerRandRange(reason, seed, species, (end - start)+1) + start;
-    return table->speciesGroup[speciesIndex].species;
- }
+u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, u8 wildArea, u8 slot)
+{
+    if (RandomizerFeatureEnabled(RZ_WILD_MON))
+    {
+        u32 seed;
+        seed = ((u32)mapGroup) << 24;
+        seed |= ((u32)mapNum) << 16;
+        seed |= ((u32)wildArea) << 8;
+        seed |= slot;
+
+        return RandomizeMon(RZR_WILD_ENCOUNTER, MON_RANDOM, seed, species);
+    }
+
+    return species;
+}
+
+#endif // RZ_ENABLE

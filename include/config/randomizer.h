@@ -1,16 +1,19 @@
 #ifndef GUARD_CONFIG_RANDOMIZER_H
 #define GUARD_CONFIG_RANDOMIZER_H
+#include "item.h"
 
 // Global control. If FALSE, no randomizer functionality will be enabled.
 #define RZ_ENABLE                   TRUE
 
 #if RZ_ENABLE == TRUE
 
-// RZ_SPECIES_RAM_MODE does not require the randomizer table generator, but
-// consumes more memory at runtime (about 6*NUM_SPECIES bytes of EWRAM) and
-// requires you to be able to write C to define new species randomization
-// modes.
-#define RZ_SPECIES_RAM_MODE                 FALSE
+// If TRUE, the trainer ID (including secret ID) will be the randomizer seed.
+#define RZ_TRAINER_ID_IS_SEED       TRUE
+
+// If TRUE, the only option for species randomization is completely random.
+#define RZ_SPECIES_RANDOM_ONLY      TRUE
+
+#define RZ_MAX_TM   ITEM_TM50
 
 #endif // RZ_ENABLE
 
