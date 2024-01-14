@@ -115,7 +115,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 263,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 236,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 208,
     #endif
         .evYield_Defense = 1,
@@ -261,7 +261,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     #define TYPHLOSION_EXP_YIELD 267
 #elif P_UPDATED_EXP_YIELDS >= GEN_5
     #define TYPHLOSION_EXP_YIELD 240
-#elif P_UPDATED_EXP_YIELDS >= GEN_3
+#else
     #define TYPHLOSION_EXP_YIELD 209
 #endif
 
@@ -469,7 +469,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 265,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 239,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 210,
     #endif
         .evYield_Attack = 2,
@@ -671,7 +671,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 158,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 155,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 162,
     #endif
         .evYield_HP = 2,
@@ -876,7 +876,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 140,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 137,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 134,
     #endif
         .evYield_Attack = 2,
@@ -1410,7 +1410,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 230,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 225,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 194,
     #endif
         .abilities = { ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS },
@@ -1481,7 +1481,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .types = { TYPE_NORMAL, TYPE_NORMAL },
     #endif
         .catchRate = 150,
-        .expYield = 38,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 38 : 33,
         .evYield_HP = 1,
         .genderRatio = PERCENT_FEMALE(75),
         .eggCycles = 10,
@@ -1592,7 +1592,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 189,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 185,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 153,
     #endif
         .evYield_HP = 3,
@@ -1848,7 +1848,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 207,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 203,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 176,
     #endif
         .evYield_Speed = 3,
@@ -2875,7 +2875,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .baseSpDefense = 48,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC },
         .catchRate = 125,
-        .expYield = 52,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 52 : 44,
         .evYield_HP = 1,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -3181,7 +3181,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 145,
     #elif P_UPDATED_EXP_YIELDS >= GEN_4
         .expYield = 125,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 75,
     #endif
         .evYield_HP = 1,
@@ -3504,7 +3504,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     #define QWILFISH_EXP_YIELD 88
 #elif P_UPDATED_EXP_YIELDS >= GEN_5
     #define QWILFISH_EXP_YIELD 86
-#elif P_UPDATED_EXP_YIELDS >= GEN_3
+#else
     #define QWILFISH_EXP_YIELD 100
 #endif
 
@@ -4225,7 +4225,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 151,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 144,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 154,
     #endif
         .evYield_Defense = 2,
@@ -4422,7 +4422,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     #define CORSOLA_EXP_YIELD 144
 #elif P_UPDATED_EXP_YIELDS >= GEN_5
     #define CORSOLA_EXP_YIELD 133
-#elif P_UPDATED_EXP_YIELDS >= GEN_3
+#else
     #define CORSOLA_EXP_YIELD 113
 #endif
 #define CORSOLA_HP       (P_UPDATED_STATS >= GEN_7 ? 65 : 55)
@@ -4778,7 +4778,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 170,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 163,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 168,
     #endif
         .evYield_SpDefense = 2,
@@ -5324,7 +5324,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 261,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 216,
     #endif
         .evYield_Speed = 2,
@@ -5385,7 +5385,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 261,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 217,
     #endif
         .evYield_HP = 1,
@@ -5446,7 +5446,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 261,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 215,
     #endif
         .evYield_Defense = 1,
@@ -5620,7 +5620,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 300,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 270,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 218,
     #endif
         .abilities = { ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_UNNERVE },
@@ -5701,7 +5701,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 340,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 306,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 220,
     #endif
         .evYield_SpDefense = 3,
@@ -5759,7 +5759,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 340,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 306,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 220,
     #endif
         .evYield_SpDefense = 3,
@@ -5818,7 +5818,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .expYield = 300,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 270,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 64,
     #endif
         .evYield_HP = 3,

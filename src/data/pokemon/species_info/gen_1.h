@@ -3352,7 +3352,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 268,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 241,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 204,
     #endif
         .evYield_Speed = 3,
@@ -3571,7 +3571,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 221,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 216,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 184,
     #endif
         .evYield_SpDefense = 3,
@@ -4911,7 +4911,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 250,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 225,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 185,
     #endif
         .evYield_SpDefense = 3,
@@ -9252,7 +9252,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 270,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
         .expYield = 243,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_3
+    #else
         .expYield = 207,
     #endif
         .evYield_Attack = 1,
