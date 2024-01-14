@@ -2431,7 +2431,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .types = { TYPE_GHOST, TYPE_GHOST },
         .catchRate = 45,
         .expYield = 87,
-        .evYield_SpAttack = (P_UPDATED_EVS >= GEN_4) ? 1 : 0,
+        .evYield_SpAttack = (P_UPDATED_EVS >= GEN_4) ? 0 : 1,
         .evYield_SpDefense = 1,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 25,
