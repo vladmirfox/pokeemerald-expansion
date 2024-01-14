@@ -1049,6 +1049,7 @@ const struct Item gItems[] =
     [ITEM_OLD_GATEAU] =
     {
         .name = _("Old Gateau"),
+		.pluralName = _("Old Gateaux"),
         .price = (I_PRICE >= GEN_7) ? 350 : 200,
         .description = sFullHealDesc,
         .pocket = POCKET_ITEMS,
@@ -2061,6 +2062,7 @@ const struct Item gItems[] =
     [ITEM_GUARD_SPEC] =
     {
         .name = _("Guard Spec."),
+		.pluralName = _("Guard Specs."),
         .price = (I_PRICE >= GEN_7) ? 1500 : 700,
         .description = COMPOUND_STRING("Prevents stat\n"
                                        "reduction when\n"
@@ -5885,6 +5887,7 @@ const struct Item gItems[] =
     [ITEM_DEEP_SEA_TOOTH] =
     {
         .name = _("DeepSeaTooth"),
+		.pluralName = _("DeepSeaTeeth"),
         .price = (I_PRICE >= GEN_7) ? 2000 : 200,
         .holdEffect = HOLD_EFFECT_DEEP_SEA_TOOTH,
         .description = COMPOUND_STRING("A hold item that\n"
