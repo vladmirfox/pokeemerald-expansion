@@ -47,6 +47,7 @@
 #include "constants/trainers.h"
 #include "constants/weather.h"
 #include "constants/pokemon.h"
+#include "data/battle_move_effects.h"
 
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
@@ -63,6 +64,7 @@ static u32 GetBattlerItemHoldEffectParam(u32 battler, u32 item);
 static uq4_12_t GetSupremeOverlordModifier(u32 battler);
 static bool32 CanBeInfinitelyConfused(u32 battler);
 
+extern const struct BattleMoveEffect gBattleMoveEffects[];
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForRunningByItem[];
 extern const u8 *const gBattlescriptsForUsingItem[];
@@ -393,7 +395,7 @@ void HandleAction_UseMove(void)
     }
     else
     {
-        gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
+        gBattlescriptCurrInstr = gBattleMoveEffects[gBattleMoves[gCurrentMove].effect].ptr;
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)

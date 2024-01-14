@@ -1,6 +1,4 @@
-#include "battle_scripts.h"
-
-const struct MoveBattleEffect gMoveBattleEffects[NUM_BATTLE_MOVE_EFFECTS] =
+const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 {
     [EFFECT_HIT]                        = { BattleScript_EffectHit },
     [EFFECT_SLEEP]                      = { BattleScript_EffectSleep },
@@ -350,4 +348,5 @@ const struct MoveBattleEffect gMoveBattleEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_FICKLE_BEAM]                = { BattleScript_EffectHit },
     [EFFECT_BLIZZARD]                   = { BattleScript_EffectHit },
     [EFFECT_RAIN_ALWAYS_HIT]            = { BattleScript_EffectHit },
+    [EFFECT_SHED_TAIL]                  = { BattleScript_EffectShedTail },
 };
