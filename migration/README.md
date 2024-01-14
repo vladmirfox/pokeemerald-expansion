@@ -19,12 +19,12 @@ python3 migration/*.py ; #run the migration script
 
 ### Item Balls
 
-* Filepath [`migration/item_ball_refactor.py`](migration/item_ball_refactor.py)
+* Filepath [`migration/item_ball_refactor.py`](item_ball_refactor.py)
 * Introduced in [Item Ball refactor / Pluralize item names for giveitem and finditem #3942](https://github.com/rh-hideout/pokeemerald-expansion/pull/3942)
 
 Modifies all item ball scripts defined using to original Game Freak method to the new refactored method.
 
-#### [data/scripts/item_ball_scripts.inc](data/scripts/item_ball_refactor.inc)
+#### [data/scripts/item_ball_scripts.inc](../data/scripts/item_ball_scripts.inc)
 ```diff
 - Route102_EventScript_ItemPotion::
 -	finditem ITEM_POTION
@@ -34,7 +34,7 @@ Modifies all item ball scripts defined using to original Game Freak method to th
 	end
 ```
 
-#### [data/maps/Route102/map.json](data/maps/Route102/map.json)
+#### [data/maps/Route102/map.json](../data/maps/Route102/map.json)
 ```diff
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
