@@ -174,7 +174,7 @@ const struct SpriteTemplate gIceCrystalSpiralInwardSmall =
     .callback = AnimIcePunchSwirlingParticle,
 };
 
-const struct SpriteTemplate gIceSpinSpriteTemplate =
+const struct SpriteTemplate gIceCrystalSpinSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
