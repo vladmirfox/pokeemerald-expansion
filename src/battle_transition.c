@@ -2518,12 +2518,12 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 {
     struct Sprite *opponentSprite, *playerSprite;
 
-        u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
-        s16 opponentRotationScales = 0;
+    u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+    s16 opponentRotationScales = 0;
 
-        gReservedSpritePaletteCount = 10;
+    gReservedSpritePaletteCount = 10;
     task->tOpponentSpriteId = CreateTrainerSprite(trainerPicId,
-            gTrainerSprites[trainerPicId].mugshotCoords.x - 32,
+                                                  gTrainerSprites[trainerPicId].mugshotCoords.x - 32,
                                                   gTrainerSprites[trainerPicId].mugshotCoords.y + 42,
                                                   0, gDecompressionBuffer);
     gReservedSpritePaletteCount = 12;
