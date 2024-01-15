@@ -106,7 +106,7 @@
 #define PLAYER_NAME_LENGTH 7
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
-#define Z_MOVE_NAME_LENGTH 27 // Supersedes MOVE_NAME_LENGTH
+#define MOVE_NAME_LENGTH 27 // Updated to hold the longest Z-Move name.
 #define NUM_QUESTIONNAIRE_WORDS 4
 #define QUIZ_QUESTION_LEN 9
 #define WONDER_CARD_TEXT_LENGTH 40
