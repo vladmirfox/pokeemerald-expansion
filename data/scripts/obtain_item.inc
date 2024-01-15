@@ -148,6 +148,9 @@ EventScript_NoRoomToPickUpItem::
 EventScript_HiddenItemScript::
 	lockall
 	waitse
+#if RZ_RANDOM == TRUE
+	callnative FindHiddenItemRandomize_NativeCall
+#endif
 	additem VAR_0x8005
 	copyvar VAR_0x8007, VAR_RESULT
 	bufferitemnameplural STR_VAR_2, VAR_0x8005, 1

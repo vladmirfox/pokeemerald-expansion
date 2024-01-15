@@ -128,17 +128,27 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 
 }
 
-void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
+static inline void RandomizeFoundItemScript(u16 *scriptVar)
 {
     if (RandomizerFeatureEnabled(RZ_FIELD_ITEMS))
     {
         u8 objEvent = gSelectedObjectEvent;
-        gSpecialVar_0x8000 = RandomizeFoundItem(
-            gSpecialVar_0x8000,
+        *scriptVar = RandomizeFoundItem(
+            *scriptVar,
             gObjectEvents[objEvent].mapGroup,
             gObjectEvents[objEvent].mapNum,
             gObjectEvents[objEvent].localId);
     }
+}
+
+void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
+{
+    RandomizeFoundItemScript(&gSpecialVar_0x8000);
+}
+
+void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
+{
+    RandomizeFoundItemScript(&gSpecialVar_0x8005);
 }
 
 u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed, u16 species)
@@ -146,14 +156,14 @@ u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed
     return 1 + RandomizerRandRange(reason, seed, species, FORMS_START-1);
 }
 
-u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, u8 wildArea, u8 slot)
+u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot)
 {
     if (RandomizerFeatureEnabled(RZ_WILD_MON))
     {
         u32 seed;
         seed = ((u32)mapGroup) << 24;
         seed |= ((u32)mapNum) << 16;
-        seed |= ((u32)wildArea) << 8;
+        seed |= ((u32)area) << 8;
         seed |= slot;
 
         return RandomizeMon(RZR_WILD_ENCOUNTER, MON_RANDOM, seed, species);

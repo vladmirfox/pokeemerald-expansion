@@ -7,6 +7,7 @@
 #include "global.h"
 #include "random.h"
 #include "script.h"
+#include "wild_encounter.h"
 //#include "constants/moves.h"
 
 #define RANDOMIZER_STREAM 17
@@ -59,9 +60,11 @@ static inline u8 RandomizeMonType(u16 species, u8 typeNum)
 
 u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId);
 void FindItemRandomize_NativeCall(struct ScriptContext *ctx);
+void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx);
 
 u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed, u16 species);
-u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, u8 wildArea, u8 slot);
+u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot);
+
 
 #endif // RZ_ENABLE
 
