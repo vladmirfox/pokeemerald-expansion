@@ -6675,7 +6675,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_U_TURN] =
     {
-        .name = _("U-Turn"),
+        .name = _("U-turn"),
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_ESCAPE,
         .power = 70,
