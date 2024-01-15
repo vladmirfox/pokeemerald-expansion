@@ -11,15 +11,15 @@ These scripts exist to help developers make the transition between refactored sy
 All migration scripts require [`python3`](https://www.python.org/downloads/) to be installed. Migration scripts are executed by running the following commands from the root directory of a developer's project.
 
 ```bash
-chmod +x migration/*.py ; #give permision to make the script executable
-python3 migration/*.py ; #run the migration script
+chmod +x migration_scripts/*.py ; #give permision to make the script executable
+python3 migration_scripts/*.py ; #run the migration script
 ```
 
 `*` will need to be replaced with the name of the appropriate script.
 
 ### Item Balls
 
-* Filepath [`migration/item_ball_refactor.py`](item_ball_refactor.py)
+* Filepath [`migration_scripts/item_ball_refactor.py`](item_ball_refactor.py)
 * Introduced in [Item Ball refactor / Pluralize item names for giveitem and finditem #3942](https://github.com/rh-hideout/pokeemerald-expansion/pull/3942)
 
 Modifies all item ball scripts defined using to original Game Freak method to the new refactored method.
