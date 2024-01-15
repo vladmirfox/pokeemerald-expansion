@@ -4199,7 +4199,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .baseSpeed     = 115,                                   \
         .baseSpAttack  = 61,                                    \
         .baseSpDefense = 85,                                    \
-        .expYield = 219,                                        \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 243 : 219,\
         .bodyColor = BODY_COLOR_BLACK,                          \
         .cryId = CRY_ZYGARDE_10,                                \
         .height = 12,                                           \
@@ -4239,7 +4239,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .baseSpeed     = 85,
         .baseSpAttack  = 91,
         .baseSpDefense = 95,
-        .expYield = 319,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 354 : 319,
         .bodyColor = BODY_COLOR_BLACK,
         .cryId = CRY_ZYGARDE_COMPLETE,
         .height = 45,
