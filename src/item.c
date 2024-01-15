@@ -90,17 +90,17 @@ const u8 sText_s[] =_("s");
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-	u8 *end = StringCopy(dst, ItemId_GetName(itemId)) - 1;
+    u8 *end = StringCopy(dst, ItemId_GetName(itemId)) - 1;
 
-	if (quantity < 2)
-		return;
+     if (quantity < 2)
+        return;
 
-	if (DoesItemHavePluralName(itemId))
-		StringCopy(dst, ItemId_GetPluralName(itemId));
-	else if (ItemId_GetPocket(itemId) == POCKET_BERRIES)
-		GetBerryCountString(dst, gBerries[itemId - FIRST_BERRY_INDEX].name, quantity);
-	else
-		StringAppend(end, sText_s);
+    if (DoesItemHavePluralName(itemId))
+        StringCopy(dst, ItemId_GetPluralName(itemId));
+    else if (ItemId_GetPocket(itemId) == POCKET_BERRIES)
+        GetBerryCountString(dst, gBerries[itemId - FIRST_BERRY_INDEX].name, quantity);
+    else
+        StringAppend(end, sText_s);
 }
 
 void GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
