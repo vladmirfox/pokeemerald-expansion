@@ -3,7 +3,6 @@
 #include "battle.h"
 #include "data.h"
 #include "graphics.h"
-#include "battle_transition.h"
 #include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/moves.h"
