@@ -92,7 +92,7 @@ void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
     u8 *end = StringCopy(dst, ItemId_GetName(itemId)) - 1;
 
-     if (quantity < 2)
+    if (quantity < 2)
         return;
 
     if (DoesItemHavePluralName(itemId))
