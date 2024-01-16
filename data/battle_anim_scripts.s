@@ -17017,14 +17017,6 @@ Move_AQUA_CUTTER::
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES
 	loadspritegfx ANIM_TAG_ICE_CRYSTALS
 	loadspritegfx ANIM_TAG_WATER_IMPACT
-	createsprite gFalseSwipeSliceSpriteTemplate, ANIM_TARGET, 2
-	playsewithpan SE_M_VITAL_THROW, SOUND_PAN_TARGET
-	delay 16
-	createsprite gFalseSwipePositionedSliceSpriteTemplate, ANIM_TARGET, 2, 0
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_TARGET
-	delay 2
-	createsprite gFalseSwipePositionedSliceSpriteTemplate, ANIM_TARGET, 2, 16
-	delay 2
 	createsprite gFalseSwipePositionedSliceSpriteTemplate, ANIM_TARGET, 2, 32
 	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_TARGET
 	delay 2
@@ -17099,8 +17091,6 @@ Move_ICE_SPINNER::
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 47, 1
 	call IceCrystalSpinEffect
 	call IceCrystalSpinEffect
-	fadetobg BG_ICE
-	waitbgfadeout
 	waitforvisualfinish
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 2, 0, 0, ANIM_TARGET, 2
 	createvisualtask AnimTask_ShakeTargetBasedOnMovePowerOrDmg, 2, FALSE, 1, 10, 1, 0
@@ -17115,7 +17105,6 @@ Move_ICE_SPINNER::
 	call IceCrystalSpinEffect
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
-	call UnsetPsychicBg
 	end
 
 IceCrystalSpinEffect:

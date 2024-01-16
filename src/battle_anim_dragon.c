@@ -203,7 +203,7 @@ const struct SpriteTemplate gDracoMeteorTailSpriteTemplate =
 {
     .tileTag = ANIM_TAG_WATER_GUN,
     .paletteTag = ANIM_TAG_WATER_GUN,
-    .oam = &gOamData_AffineNormal_ObjNormal_16x16,
+    .oam = &gOamData_AffineDouble_ObjBlend_16x16,
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = sSpriteAffineAnimTable_HydroCannonBall,
