@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(MoveHasMoveEffect(MOVE_PAY_DAY, MOVE_EFFECT_PAYDAY));
 }
 
-SINGLE_BATTLE_TEST("Single Battle: Pay Day Scatters coins around after it hits")
+SINGLE_BATTLE_TEST("Pay Day Scatters coins around after it hits - singles")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
