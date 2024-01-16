@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Overheat drops Sp. Atk by 2 stages - singles")
     }
 }
 
-DOUBLE_BATTLE_TEST("Double Battle: Overheat drops Sp. Atk by 2 stages")
+DOUBLE_BATTLE_TEST("Overheat drops Sp. Atk by 2 stages - doubles")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
