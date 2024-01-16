@@ -97,8 +97,6 @@ void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 
     if (DoesItemHavePluralName(itemId))
         StringCopy(dst, ItemId_GetPluralName(itemId));
-    else if (ItemId_GetPocket(itemId) == POCKET_BERRIES)
-        GetBerryCountString(dst, gBerries[itemId - FIRST_BERRY_INDEX].name, quantity);
     else
         StringAppend(end, sText_s);
 }
