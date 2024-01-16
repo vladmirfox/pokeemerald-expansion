@@ -10315,7 +10315,7 @@ const struct Item gItems[] =
     [ITEM_REINS_OF_UNITY] =
     {
         .name = _("ReinsOfUnity"),
-        .pluralName = _("ReinsOfUnities"),
+        .pluralName = _("ReinsOfUnity"),
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING("Reins that unite\n"
