@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Pay Day Scatters coins around after it hits - singles")
     }
 }
 
-DOUBLE_BATTLE_TEST("Double Battle: Pay Day Scatters coins around after it hits")
+DOUBLE_BATTLE_TEST("Pay Day Scatters coins around after it hits - doubles")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
