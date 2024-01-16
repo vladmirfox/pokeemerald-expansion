@@ -761,7 +761,7 @@
 #define B_MSG_TURN1_FREEZE_SHOCK   10
 #define B_MSG_TURN1_SKY_DROP       11
 #define B_MSG_TURN1_METEOR_BEAM    12
-#define B_MSG_TURN1_ELECTRO_SHOT  13
+#define B_MSG_TURN1_ELECTRO_SHOT   13
 
 // gMoveWeatherChangeStringIds
 #define B_MSG_STARTED_RAIN      0

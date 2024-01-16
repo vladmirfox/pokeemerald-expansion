@@ -1047,12 +1047,18 @@
 	.4byte \failInstr
 	.endm
 
-	.macro setsemiinvulnerablebit
+	.macro setsemiinvulnerablebit clear=FALSE
 	.byte 0xc5
+	.byte \clear
 	.endm
 
 	.macro clearsemiinvulnerablebit
+	setsemiinvulnerablebit TRUE
+	.endm
+
+	.macro jumpifsemiinvulnerablemove jumpInstr:req
 	.byte 0xc6
+	.4byte \jumpInstr
 	.endm
 
 	.macro setminimize

@@ -377,7 +377,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_TWO_TURNS_ATTACK] =
     {
         .battleScript = BattleScript_EffectTwoTurnsAttack,
-        .battleTvScore = 0, // TODO: Assign points
+        .battleTvScore = 3,
     },
 
     [EFFECT_SUBSTITUTE] =
@@ -521,7 +521,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_TRIPLE_KICK] =
     {
-        .battleScript = BattleScript_EffectTripleKick,
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 1,
     },
 
@@ -757,7 +757,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_SOLAR_BEAM] =
     {
-        .battleScript = BattleScript_EffectSolarBeam,
+        .battleScript = BattleScript_EffectTwoTurnsAttack,
         .battleTvScore = 1,
     },
 
@@ -781,7 +781,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_SEMI_INVULNERABLE] =
     {
-        .battleScript = BattleScript_EffectSemiInvulnerable,
+        .battleScript = BattleScript_EffectTwoTurnsAttack,
         .battleTvScore = 3,
     },
 

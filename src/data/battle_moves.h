@@ -312,6 +312,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument = STATUS3_ON_AIR,
     },
 
     [MOVE_BIND] =
@@ -1452,6 +1453,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .assistBanned = TRUE,
         .skyBattleBanned = TRUE,
+        .argument = STATUS3_UNDERGROUND,
     },
 
     [MOVE_TOXIC] =
@@ -2295,10 +2297,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sheerForceBoost = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+    #if B_UPDATED_MOVE_DATA >= GEN_3
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
+    #endif
     },
 
     [MOVE_TRANSFORM] =
@@ -4705,6 +4709,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .assistBanned = TRUE,
         .skyBattleBanned = TRUE,
+        .argument = STATUS3_UNDERWATER,
     },
 
     [MOVE_ARM_THRUST] =
@@ -5485,6 +5490,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument = STATUS3_ON_AIR,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
@@ -7506,6 +7512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument = STATUS3_PHANTOM_FORCE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),
@@ -8127,6 +8134,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument = STATUS3_ON_AIR,
     },
 
     [MOVE_SHIFT_GEAR] =
@@ -9071,6 +9079,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
+        .argument = STATUS3_PHANTOM_FORCE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),

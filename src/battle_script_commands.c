@@ -555,7 +555,7 @@ static void Cmd_selectfirstvalidtarget(void);
 static void Cmd_trysetfutureattack(void);
 static void Cmd_trydobeatup(void);
 static void Cmd_setsemiinvulnerablebit(void);
-static void Cmd_clearsemiinvulnerablebit(void);
+static void Cmd_jumpifsemiinvulnerablemove(void);
 static void Cmd_setminimize(void);
 static void Cmd_sethail(void);
 static void Cmd_trymemento(void);
@@ -814,7 +814,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_trysetfutureattack,                      //0xC3
     Cmd_trydobeatup,                             //0xC4
     Cmd_setsemiinvulnerablebit,                  //0xC5
-    Cmd_clearsemiinvulnerablebit,                //0xC6
+    Cmd_jumpifsemiinvulnerablemove,              //0xC6
     Cmd_setminimize,                             //0xC7
     Cmd_sethail,                                 //0xC8
     Cmd_trymemento,                              //0xC9
@@ -844,7 +844,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_unused2,                                 //0xE1
     Cmd_switchoutabilities,                      //0xE2
     Cmd_jumpifhasnohp,                           //0xE3
-    Cmd_jumpifnotcurrentmoveargtype,                              //0xE4
+    Cmd_jumpifnotcurrentmoveargtype,             //0xE4
     Cmd_pickup,                                  //0xE5
     Cmd_unused3,                                 //0xE6
     Cmd_unused4,                                 //0xE7
@@ -9775,15 +9775,6 @@ static void Cmd_various(void)
         }
         return;
     }
-    case VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS:
-    {
-        VARIOUS_ARGS(const u8 *jumpInstr);
-        if (MoveHasChargeTurnMoveEffect(gCurrentMove))
-            gBattlescriptCurrInstr = cmd->jumpInstr;
-        else
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        return;
-    }
     case VARIOUS_JUMP_IF_NOT_GROUNDED:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
@@ -10711,6 +10702,15 @@ static void Cmd_various(void)
             BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
         }
+        return;
+    }
+    case VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        if (MoveHasChargeTurnMoveEffect(gCurrentMove))
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     } // End of switch (cmd->id)
@@ -13690,36 +13690,26 @@ static void Cmd_trydobeatup(void)
 
 static void Cmd_setsemiinvulnerablebit(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(bool8 clear);
 
-    switch (gCurrentMove)
-    {
-    case MOVE_FLY:
-    case MOVE_BOUNCE:
-    case MOVE_SKY_DROP:
-        gStatuses3[gBattlerAttacker] |= STATUS3_ON_AIR;
-        break;
-    case MOVE_DIG:
-        gStatuses3[gBattlerAttacker] |= STATUS3_UNDERGROUND;
-        break;
-    case MOVE_DIVE:
-        gStatuses3[gBattlerAttacker] |= STATUS3_UNDERWATER;
-        break;
-    case MOVE_PHANTOM_FORCE:
-    case MOVE_SHADOW_FORCE:
-        gStatuses3[gBattlerAttacker] |= STATUS3_PHANTOM_FORCE;
-        break;
-    }
+    if (cmd->clear)
+        gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
+    else if (gBattleMoves[gCurrentMove].effect == EFFECT_SEMI_INVULNERABLE
+      || gBattleMoves[gCurrentMove].effect == EFFECT_SKY_DROP)
+        gStatuses3[gBattlerAttacker] |= gBattleMoves[gCurrentMove].argument;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_clearsemiinvulnerablebit(void)
+static void Cmd_jumpifsemiinvulnerablemove(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(const u8 *jumpInstr);
 
-    gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
-    gBattlescriptCurrInstr = cmd->nextInstr;
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_SEMI_INVULNERABLE
+      || gBattleMoves[gCurrentMove].effect == EFFECT_SKY_DROP)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_setminimize(void)
