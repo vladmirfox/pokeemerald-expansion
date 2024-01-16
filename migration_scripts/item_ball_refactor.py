@@ -1,6 +1,11 @@
 import glob
 import re
 import json
+import os
+
+if not os.path.exists("Makefile"):
+    print("Please run this script from your root folder.")
+    quit()
 
 # scan incs
 incs_to_check =    glob.glob('./data/scripts/*.inc') # all .incs in the script folder
