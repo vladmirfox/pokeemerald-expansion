@@ -101,7 +101,7 @@
 
 // string lengths
 #define ITEM_NAME_LENGTH 14
-#define ITEM_NAME_PLURAL_LENGTH ITEM_NAME_LENGTH + 2 // the longest plural name (ElectrcMemories) is ITEM_NAME_LENGTH + 1
+#define ITEM_NAME_PLURAL_LENGTH ITEM_NAME_LENGTH + 1 // the longest plural name (ElectrcMemories) is ITEM_NAME_LENGTH + 1
 #define POKEMON_NAME_LENGTH 10
 #define POKEMON_NAME_BUFFER_SIZE max(20, POKEMON_NAME_LENGTH + 1) // Frequently used buffer size. Larger than necessary
 #define PLAYER_NAME_LENGTH 7
