@@ -370,6 +370,17 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_FICKLE_BEAM
 	.4byte BattleScript_EffectHit                     @ EFFECT_BLIZZARD
 	.4byte BattleScript_EffectHit                     @ EFFECT_RAIN_ALWAYS_HIT
+	.4byte BattleScript_EffectPsychicNoise            @ EFFECT_PSYCHIC_NOISE
+
+BattleScript_EffectPsychicNoise::
+	call BattleScript_EffectHit_Ret
+	tryfaintmon BS_TARGET
+	jumpifability BS_TARGET_SIDE, ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects
+	sethealblock BattleScript_ButItFailed
+	printstring STRINGID_PKMNPREVENTEDFROMHEALING
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
 
 BattleScript_EffectFilletAway:
 	attackcanceler

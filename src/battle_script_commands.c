@@ -6260,7 +6260,10 @@ static void Cmd_sethealblock(void)
     else
     {
         gStatuses3[gBattlerTarget] |= STATUS3_HEAL_BLOCK;
-        gDisableStructs[gBattlerTarget].healBlockTimer = 5;
+        if (gBattleMoves[gCurrentMove].effect == EFFECT_PSYCHIC_NOISE)
+            gDisableStructs[gBattlerTarget].healBlockTimer = 2;
+        else
+            gDisableStructs[gBattlerTarget].healBlockTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
