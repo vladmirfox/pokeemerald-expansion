@@ -33,6 +33,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
+#include "randomizer.h"
 
 // In this file only the values normally associated with Battle Pike and Factory are swapped.
 // Note that this is *not* a bug, because they are properly swapped consistently in this file.
@@ -1761,18 +1762,35 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
 
         if (gWildMonHeaders[i].mapGroup != MAP_GROUP(UNDEFINED))
         {
+            u16 curSpecies;
+            #if RZ_ENABLE == TRUE
+                u8 mapGroup, mapNum;
+                mapGroup = gWildMonHeaders[i].mapGroup;
+                mapNum = gWildMonHeaders[i].mapNum;
+            #endif
+
             numSpecies = 0;
             if (gWildMonHeaders[i].landMonsInfo)
             {
                 slot = GetLandEncounterSlot();
-                species[numSpecies] = gWildMonHeaders[i].landMonsInfo->wildPokemon[slot].species;
+                curSpecies = gWildMonHeaders[i].landMonsInfo->wildPokemon[slot].species;
+                #if RZ_ENABLE == TRUE
+                    curSpecies = RandomizeWildEncounter(curSpecies, mapNum, mapGroup,
+                    WILD_AREA_LAND, slot);
+                #endif
+                species[numSpecies] = curSpecies;
                 numSpecies++;
             }
 
             if (gWildMonHeaders[i].waterMonsInfo)
             {
                 slot = GetWaterEncounterSlot();
-                species[numSpecies] = gWildMonHeaders[i].waterMonsInfo->wildPokemon[slot].species;
+                curSpecies = gWildMonHeaders[i].waterMonsInfo->wildPokemon[slot].species;
+                #if RZ_ENABLE == TRUE
+                    curSpecies = RandomizeWildEncounter(curSpecies, mapNum, mapGroup,
+                    WILD_AREA_WATER, slot);
+                #endif
+                species[numSpecies] = curSpecies;
                 numSpecies++;
             }
 

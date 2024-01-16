@@ -430,6 +430,8 @@ static bool8 MonListHasSpecies(const struct WildPokemonHeader *header, u16 speci
             u16 curSpecies;
             curSpecies = info->wildPokemon[i].species;
             #if RZ_ENABLE == TRUE
+                if (!IsRandomizationPossible(curSpecies, species))
+                    continue;
                 curSpecies = RandomizeWildEncounter(
                     curSpecies, header->mapNum, header->mapGroup, area, i);
             #endif

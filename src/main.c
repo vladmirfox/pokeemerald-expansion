@@ -25,6 +25,7 @@
 #include "trainer_hill.h"
 #include "test_runner.h"
 #include "constants/rgb.h"
+#include "randomizer.h"
 
 static void VBlankIntr(void);
 static void HBlankIntr(void);
@@ -120,6 +121,9 @@ void AgbMain()
 
     gLinkTransferringData = FALSE;
     sUnusedVar = 0xFC0;
+#if RZ_ENABLE == TRUE
+    RandomizerCountLegendarySpecies();
+#endif
 
 #ifndef NDEBUG
 #if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)

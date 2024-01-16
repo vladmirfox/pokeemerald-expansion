@@ -8,9 +8,17 @@
 #include "pokemon.h"
 #include "script.h"
 
-bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature)
+bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature)
 {
-    return TRUE;
+    switch(feature)
+    {
+        case RZ_WILD_MON:
+            return FlagGet(RZ_FLAG_WILD_MON);
+        case RZ_FIELD_ITEMS:
+            return FlagGet(RZ_FLAG_FIELD_ITEMS);
+        default:
+            return FALSE;
+    }
 }
 
 u32 GetRandomizerSeed(void)
@@ -18,8 +26,31 @@ u32 GetRandomizerSeed(void)
     #if RZ_TRAINER_ID_IS_SEED == TRUE
         return GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
     #else
-        #error Separate randomizer seeds not yet implemented.
+        u32 result;
+        result = (u32)VarGet(RZ_VAR_SEED_H) | VarGet(RZ_VAR_SEED_L);
     #endif
+}
+
+bool8 SetRandomizerSeed(u32 newSeed)
+{
+    #if RZ_TRAINER_ID_IS_SEED == TRUE
+        // It isn't possible to set the randomizer seed in this case.
+        return FALSE;
+    #else
+        VarSet(RZ_VAR_SEED_L, (u16)newSeed);
+        VarSet(RZ_VAR_SEED_H, (u16)(newSeed >> 16));
+        return TRUE;
+    #endif
+}
+
+u16 GetRandomizerOption(enum RandomizerOption option)
+{
+    switch(option) {
+        case RZO_SPECIES_MODE:
+            return VarGet(RZ_VAR_SPECIES_MODE);
+        default:
+            return 0;
+    }
 }
 
 struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u16 data2)
@@ -39,6 +70,9 @@ struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u1
     return state;
 }
 
+
+// This uses a debiased multiplication technique sometimes known as
+// Lemire's method. It usually does not need to do a division.
 u16 RandomizerNextRange(struct Sfc32State* state, u16 range)
 {
     u16 lower;
@@ -64,6 +98,7 @@ u16 RandomizerNextRange(struct Sfc32State* state, u16 range)
     return scaled >> 16;
 }
 
+// Functions for producing single seeded random numbers.
 u16 RandomizerRand(enum RandomizerReason reason, u32 data1, u16 data2)
 {
     struct Sfc32State state;
@@ -78,6 +113,7 @@ u16 RandomizerRandRange(enum RandomizerReason reason, u32 data1, u16 data2, u16 
     return RandomizerNextRange(&state, range);
 }
 
+// Utility functions for the field item randomizer.
 static inline bool8 IsItemTMHM(u16 itemId)
 {
     return ItemId_GetPocket(itemId) == POCKET_TM_HM;
@@ -121,6 +157,7 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 
     // Randomize everything else to everything else.
     do {
+        // 1 is added so that ITEM_NONE is never returned.
         result = RandomizerNextRange(&state, ITEMS_COUNT) + 1;
     } while(!ShouldRandomizeItem(result) || IsItemTMHM(result));
 
@@ -128,6 +165,7 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 
 }
 
+// Takes a SpecialVar as an argument to simplify handling separate scripts.
 static inline void RandomizeFoundItemScript(u16 *scriptVar)
 {
     if (RandomizerFeatureEnabled(RZ_FIELD_ITEMS))
@@ -141,6 +179,7 @@ static inline void RandomizeFoundItemScript(u16 *scriptVar)
     }
 }
 
+// These functions are invoked by the scripts that handle found items.
 void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
     RandomizeFoundItemScript(&gSpecialVar_0x8000);
@@ -151,9 +190,67 @@ void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
     RandomizeFoundItemScript(&gSpecialVar_0x8005);
 }
 
-u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed, u16 species)
+static inline bool32 IsRandomizerLegendary(u16 species)
 {
-    return 1 + RandomizerRandRange(reason, seed, species, FORMS_START-1);
+    return gSpeciesInfo[species].isLegendary || gSpeciesInfo[species].isMythical;
+}
+
+EWRAM_DATA static u16 sRandomizerLegendaryCount = 0;
+void RandomizerCountLegendarySpecies(void)
+{
+    u32 i;
+    u16 count;
+    count = 0;
+    for (i = 1; i < RANDOMIZER_MAX_MON; i++)
+    {
+        if(IsRandomizerLegendary(i))
+            count++;
+    }
+    sRandomizerLegendaryCount = count;
+}
+
+
+u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species)
+{
+    switch(mode) {
+        case MON_RANDOM_LEGEND_AWARE:
+            if (IsRandomizerLegendary(species) && sRandomizerLegendaryCount > 0)
+            {
+                u16 i;
+                u16 legendCount;
+                u16 target = RandomizerRandRange(reason, seed, species,
+                    sRandomizerLegendaryCount);
+                legendCount = 0;
+                for (i = 1; i < RANDOMIZER_MAX_MON; i++)
+                {
+                    if(IsRandomizerLegendary(i))
+                    {
+                        // RandRange returns 0 to the number of legendaries
+                        // minus 1, so check before incrementing.
+                        if(target == legendCount)
+                            return i;
+                        legendCount++;
+                    }
+                }
+                // Failsafe. This shouldn't happen, though...
+                return SPECIES_MEW;
+            }
+            else
+            {
+                u16 candidate;
+                do
+                {
+                    candidate =
+                    RandomizerRandRange(reason, seed, species, RANDOMIZER_MAX_MON) + 1;
+                } while(IsRandomizerLegendary(candidate));
+                return candidate;
+            }
+        case MON_RANDOM:
+        default:
+            // 1 is added so that SPECIES_NONE is never returned.
+            return RandomizerRandRange(reason, seed, species, RANDOMIZER_MAX_MON) + 1;
+    }
+
 }
 
 u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot)
@@ -166,10 +263,28 @@ u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea ar
         seed |= ((u32)area) << 8;
         seed |= slot;
 
-        return RandomizeMon(RZR_WILD_ENCOUNTER, MON_RANDOM, seed, species);
+        return RandomizeMon(RZR_WILD_ENCOUNTER, GetRandomizerOption(RZO_SPECIES_MODE), seed, species);
     }
 
     return species;
+}
+
+// This is used in the Pokédex area map code.
+bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies)
+{
+    const enum RandomizerSpeciesMode mode = GetRandomizerOption(RZO_SPECIES_MODE);
+    switch(mode)
+    {
+        case MON_RANDOM_LEGEND_AWARE:
+            // Non-legendaries and legendaries can't mix.
+            if(IsRandomizerLegendary(tableSpecies) != IsRandomizerLegendary(matchSpecies))
+                return FALSE;
+            return TRUE;
+        case MON_RANDOM:
+        default:
+            // Anything can happen!
+            return TRUE;
+    }
 }
 
 #endif // RZ_ENABLE

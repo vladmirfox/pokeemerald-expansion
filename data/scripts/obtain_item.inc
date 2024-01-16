@@ -148,7 +148,7 @@ EventScript_NoRoomToPickUpItem::
 EventScript_HiddenItemScript::
 	lockall
 	waitse
-#if RZ_RANDOM == TRUE
+#if RZ_ENABLED == TRUE
 	callnative FindHiddenItemRandomize_NativeCall
 #endif
 	additem VAR_0x8005

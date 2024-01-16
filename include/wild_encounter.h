@@ -26,7 +26,8 @@ struct WildPokemonHeader
     const struct WildPokemonInfo *fishingMonsInfo;
 };
 
-enum WildArea {
+enum WildArea
+{
     WILD_AREA_LAND,
     WILD_AREA_WATER,
     WILD_AREA_ROCKS,

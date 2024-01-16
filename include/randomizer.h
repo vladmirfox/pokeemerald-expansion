@@ -4,6 +4,8 @@
 #include "config/randomizer.h"
 #if RZ_ENABLE == TRUE
 
+#define RANDOMIZER_MAX_MON  (FORMS_START)
+
 #include "global.h"
 #include "random.h"
 #include "script.h"
@@ -12,7 +14,8 @@
 
 #define RANDOMIZER_STREAM 17
 
-enum RandomizerFeature {
+enum RandomizerFeature
+{
     RZ_WILD_MON,
     RZ_TRAINER_MON,
     RZ_FIELD_ITEMS,
@@ -21,7 +24,10 @@ enum RandomizerFeature {
     RZ_LEARNSET
 };
 
-enum RandomizerReason {
+
+// There is a hard limit of 256 randomizer reasons.
+enum RandomizerReason
+{
     RZR_WILD_ENCOUNTER,
     RZR_FIXED_ENCOUNTER,
     RZR_TRAINER_PARTY,
@@ -31,16 +37,21 @@ enum RandomizerReason {
     RZR_FIELD_ITEM
 };
 
-enum MonRandomMode {
-    MON_RANDOM
+enum RandomizerOption {
+    RZO_SPECIES_MODE,
 };
 
-#if RZ_SPECIES_RANDOM_ONLY == FALSE
-#error Only full randomization of species is currently supported.
+enum RandomizerSpeciesMode {
+    MON_RANDOM,
+    MON_RANDOM_LEGEND_AWARE
+};
+
+#if RZ_SPECIES_BASIC_SUPPORT == FALSE
+#error "Randomization tables aren't yet implemented."
 #endif
 
 u32 GetRandomizerSeed(void);
-bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature);
+bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature);
 
 struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u16 data2);
 
@@ -62,9 +73,11 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId);
 void FindItemRandomize_NativeCall(struct ScriptContext *ctx);
 void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx);
 
-u16 RandomizeMon(enum RandomizerReason reason, enum MonRandomMode mode, u32 seed, u16 species);
-u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot);
+void RandomizerCountLegendarySpecies(void);
+u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species);
 
+u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot);
+bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
 
 #endif // RZ_ENABLE
 
