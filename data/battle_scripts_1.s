@@ -370,7 +370,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_FICKLE_BEAM
 	.4byte BattleScript_EffectHit                     @ EFFECT_BLIZZARD
 	.4byte BattleScript_EffectHit                     @ EFFECT_RAIN_ALWAYS_HIT
-	.4byte BattleScript_EffectHit                     @ EFFECT_PSYCHIC_NOISE
 
 BattleScript_EffectPsychicNoise::
 	printstring STRINGID_PKMNPREVENTEDFROMHEALING
