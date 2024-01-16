@@ -92,19 +92,30 @@
 	.4byte \ptr
 	.endm
 
-	.macro seteffectwithchance
+	.macro setadditionaleffects
+	1:
 	.byte 0x15
+	jumpifhalfword CMP_EQUAL, sMOVE_EFFECT, MOVE_EFFECT_CONTINUE, 1b
 	.endm
 
-	.macro seteffectprimary
+	.macro seteffectprimary moveEffect=0
+	.if \moveEffect != 0
+		setmoveeffect \moveEffect
+	.endif
 	.byte 0x16
 	.endm
 
-	.macro seteffectsecondary
+	.macro seteffectsecondary moveEffect=0
+	.if \moveEffect != 0
+		setmoveeffect \moveEffect
+	.endif
 	.byte 0x17
 	.endm
 
-	.macro clearstatusfromeffect battler:req
+	.macro clearstatusfromeffect battler:req, moveEffect=0
+	.if \moveEffect != 0
+		setmoveeffect \moveEffect
+	.endif
 	.byte 0x18
 	.byte \battler
 	.endm
@@ -764,7 +775,7 @@
 	.byte 0x8b
 	.endm
 
-	.macro confuseifrepeatingattackends
+	.macro unused0x8C
 	.byte 0x8c
 	.endm
 
@@ -980,7 +991,7 @@
 	.byte 0xbb
 	.endm
 
-	.macro maxattackhalvehp failInstr:req
+	.macro halvehp failInstr:req
 	.byte 0xbc
 	.4byte \failInstr
 	.endm
@@ -1175,8 +1186,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro getsecretpowereffect
+	.macro jumpifnotcurrentmoveargtype battler:req, failInstr:req
 	.byte 0xe4
+	.byte \battler
+	.4byte \failInstr
 	.endm
 
 	.macro pickup
@@ -1566,6 +1579,10 @@
 	callnative BS_TryTriggerStatusForm
 	.endm
 
+	.macro setphotongeysercategory
+	callnative BS_SetPhotonGeyserCategory
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
@@ -1806,8 +1823,8 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro argumentstatuseffect
-	various BS_ATTACKER, VARIOUS_ARGUMENT_STATUS_EFFECT
+	.macro setargtobattledamage
+	various BS_ATTACKER, VARIOUS_SET_ARG_TO_BATTLE_DAMAGE
 	.endm
 
 	.macro tryhitswitchtarget failInstr:req
@@ -1849,10 +1866,6 @@
 
 	.macro powertrick battler:req
 	various \battler, VARIOUS_POWER_TRICK
-	.endm
-
-	.macro argumenttomoveeffect
-	various BS_ATTACKER, VARIOUS_ARGUMENT_TO_MOVE_EFFECT
 	.endm
 
 	.macro jumpifnotgrounded battler:req, jumpInstr:req
@@ -2132,10 +2145,6 @@
 	.macro cutonethirdhpraisestats failInstr:req
 	various BS_ATTACKER, VARIOUS_CUT_1_3_HP_RAISE_STATS
 	.4byte \failInstr
-	.endm
-
-	.macro photongeysercheck battler:req
-	various \battler, VARIOUS_PHOTON_GEYSER_CHECK
 	.endm
 
 	.macro shellsidearmcheck

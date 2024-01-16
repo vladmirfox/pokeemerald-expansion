@@ -12,6 +12,7 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_QUICK_GUARD].effect == EFFECT_PROTECT);
     ASSUME(gBattleMoves[MOVE_CRAFTY_SHIELD].effect == EFFECT_PROTECT);
     ASSUME(gBattleMoves[MOVE_BANEFUL_BUNKER].effect == EFFECT_PROTECT);
+    ASSUME(gBattleMoves[MOVE_BURNING_BULWARK].effect == EFFECT_PROTECT);
     ASSUME(gBattleMoves[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
     ASSUME(gBattleMoves[MOVE_TACKLE].makesContact);
     ASSUME(gBattleMoves[MOVE_LEER].category == BATTLE_CATEGORY_STATUS);
@@ -19,7 +20,7 @@ ASSUMPTIONS
     ASSUME(!(gBattleMoves[MOVE_WATER_GUN].makesContact));
 }
 
-SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield and Baneful Bunker protect from all moves")
+SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield, Baneful Bunker and Burning Bulwark protect from all moves")
 {
     u32 j;
     static const u16 protectMoves[] = {
@@ -27,6 +28,7 @@ SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield and Baneful Bunker protect fro
         MOVE_DETECT,
         MOVE_SPIKY_SHIELD,
         MOVE_BANEFUL_BUNKER,
+        MOVE_BURNING_BULWARK,
     };
     u16 protectMove = MOVE_NONE;
     u16 usedMove = MOVE_NONE;
@@ -188,6 +190,38 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
     }
 }
 
+SINGLE_BATTLE_TEST("Burning Bulwark burns pokemon for moves making contact")
+{
+    u16 usedMove = MOVE_NONE;
+
+    PARAMETRIZE {usedMove = MOVE_TACKLE; }
+    PARAMETRIZE {usedMove = MOVE_LEER; }
+    PARAMETRIZE {usedMove = MOVE_WATER_GUN; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_BURNING_BULWARK); MOVE(player, usedMove); }
+        TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BURNING_BULWARK, opponent);
+        MESSAGE("Foe Wobbuffet protected itself!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, usedMove, player);
+        MESSAGE("Foe Wobbuffet protected itself!");
+        if (usedMove == MOVE_TACKLE) {
+            NOT HP_BAR(opponent);
+            STATUS_ICON(player, STATUS1_BURN);
+        } else {
+            NONE_OF {
+                HP_BAR(opponent);
+                STATUS_ICON(player, STATUS1_BURN);
+            }
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
 {
     u32 j, k;
@@ -206,10 +240,10 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
 
 
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_VOLT_TACKLE].effect == EFFECT_RECOIL);
-        ASSUME(gBattleMoves[MOVE_HEAD_SMASH].effect == EFFECT_RECOIL);
-        ASSUME(gBattleMoves[MOVE_TAKE_DOWN].effect == EFFECT_RECOIL);
-        ASSUME(gBattleMoves[MOVE_DOUBLE_EDGE].effect == EFFECT_RECOIL);
+        ASSUME(gBattleMoves[MOVE_VOLT_TACKLE].recoil > 0);
+        ASSUME(gBattleMoves[MOVE_HEAD_SMASH].recoil > 0);
+        ASSUME(gBattleMoves[MOVE_TAKE_DOWN].recoil > 0);
+        ASSUME(gBattleMoves[MOVE_DOUBLE_EDGE].recoil > 0);
         PLAYER(SPECIES_RAPIDASH);
         OPPONENT(SPECIES_BEAUTIFLY);
     } WHEN {

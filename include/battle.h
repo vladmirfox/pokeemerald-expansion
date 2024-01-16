@@ -65,7 +65,7 @@ struct ResourceFlags
 struct DisableStruct
 {
     u32 transformedMonPersonality;
-    u32 transformedMonOtId;
+    bool8 transformedMonShininess;
     u16 disabledMove;
     u16 encoredMove;
     u8 protectUses:4;
@@ -162,6 +162,7 @@ struct ProtectStruct
     u16 shellTrap:1;
     u16 maxGuarded:1;
     u16 silkTrapped:1;
+    u16 burningBulwarked:1;
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
@@ -336,7 +337,7 @@ struct AI_ThinkingStruct
     u16 moveConsidered;
     s32 score[MAX_MON_MOVES];
     u32 funcResult;
-    u32 aiFlags;
+    u32 aiFlags[MAX_BATTLERS_COUNT];
     u8 aiAction;
     u8 aiLogicId;
     struct AI_SavedBattleMon saved[MAX_BATTLERS_COUNT];
@@ -599,6 +600,7 @@ struct BattleStruct
     u32 expValue;
     u8 expGettersOrder[PARTY_SIZE]; // First battlers which were sent out, then via exp-share
     u8 expGetterMonId;
+    u8 additionalEffectsCounter:2;
     u8 expOrderId:3;
     u8 expGetterBattlerId:2;
     u8 teamGotExpMsgPrinted:1; // The 'Rest of your team got msg' has been printed.
@@ -680,7 +682,7 @@ struct BattleStruct
     u16 arenaStartHp[2];
     u8 arenaLostPlayerMons; // Bits for party member, lost as in referee's decision, not by fainting.
     u8 arenaLostOpponentMons;
-    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed pokemon.
+    u8 alreadyStatusedMoveAttempt; // As bits for battlers; For example when using Thunder Wave on an already paralyzed Pokémon.
     u8 debugBattler;
     u8 magnitudeBasePower;
     u8 presentBasePower;
@@ -756,6 +758,7 @@ struct BattleStruct
     u8 transformZeroToHero[NUM_BATTLE_SIDES];
     u8 intrepidSwordBoost[NUM_BATTLE_SIDES];
     u8 dauntlessShieldBoost[NUM_BATTLE_SIDES];
+    u8 stickySyrupdBy[MAX_BATTLERS_COUNT];
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -779,9 +782,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == BATTLE_CATEGORY_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].category == BATTLE_CATEGORY_STATUS)
 
-#define IS_EFFECT_RECOIL(effect)(effect == EFFECT_RECOIL || effect == EFFECT_RECOIL_IF_MISS)
-
-#define IS_MOVE_RECOIL(move)(IS_EFFECT_RECOIL(gBattleMoves[move].effect))
+#define IS_MOVE_RECOIL(move)(gBattleMoves[move].recoil > 0 || gBattleMoves[move].effect == EFFECT_RECOIL_IF_MISS)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0) || (gBattleStruct->enduredDamage & gBitTable[gBattlerTarget]))
@@ -813,6 +814,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
                                         || gProtectStructs[battlerId].spikyShielded                                    \
                                         || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \
+                                        || gProtectStructs[battlerId].burningBulwarked                                 \
                                         || gProtectStructs[battlerId].obstructed                                       \
                                         || gProtectStructs[battlerId].silkTrapped)
 
@@ -953,7 +955,7 @@ struct BattleSpriteData
 
 struct MonSpritesGfx
 {
-    void *firstDecompressed; // ptr to the decompressed sprite of the first pokemon
+    void *firstDecompressed; // ptr to the decompressed sprite of the first Pokémon
     union {
         void *ptr[MAX_BATTLERS_COUNT];
         u8 *byte[MAX_BATTLERS_COUNT];
@@ -1066,7 +1068,7 @@ extern u8 gBattlerStatusSummaryTaskId[MAX_BATTLERS_COUNT];
 extern u8 gBattlerInMenuId;
 extern bool8 gDoingBattleAnim;
 extern u32 gTransformedPersonalities[MAX_BATTLERS_COUNT];
-extern u32 gTransformedOtIds[MAX_BATTLERS_COUNT];
+extern bool8 gTransformedShininess[MAX_BATTLERS_COUNT];
 extern u8 gPlayerDpadHoldFrames;
 extern struct BattleSpriteData *gBattleSpritesDataPtr;
 extern struct MonSpritesGfx *gMonSpritesGfxPtr;
