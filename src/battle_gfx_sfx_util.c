@@ -635,7 +635,7 @@ void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battler)
     // dynamax tint
     if (IsDynamaxed(battler))
     {
-        // Calyrex its forms have a blue dynamax aura instead of red.
+        // Calyrex and its forms have a blue dynamax aura instead of red.
         if (GET_BASE_SPECIES_ID(species) == SPECIES_CALYREX)
             BlendPalette(paletteOffset, 16, 4, RGB(12, 0, 31));
         else
