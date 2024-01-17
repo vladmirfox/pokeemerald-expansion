@@ -237,7 +237,9 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
     if (gTestRunnerEnabled)
     {
         TestRunner_Battle_RecordAnimation(animType, animId);
-        if (gTestRunnerHeadless)
+        // Play Transform and Ally Switch even in Headless as these move animations also change mon data.
+        if (gTestRunnerHeadless
+            && !(animType == ANIM_TYPE_MOVE && (animId == MOVE_TRANSFORM || animId == MOVE_ALLY_SWITCH)))
         {
             gAnimScriptCallback = Nop;
             gAnimScriptActive = FALSE;
@@ -248,6 +250,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
     switch (animType)
     {
     case ANIM_TYPE_GENERAL:
+    default:
         animsTable = gBattleAnims_General;
         break;
     case ANIM_TYPE_MOVE:
@@ -277,6 +280,9 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
         case B_ANIM_PRIMAL_REVERSION:
         case B_ANIM_ULTRA_BURST:
         case B_ANIM_GULP_MISSILE:
+        case B_ANIM_RAINBOW:
+        case B_ANIM_SEA_OF_FIRE:
+        case B_ANIM_SWAMP:
             sAnimHideHpBoxes = TRUE;
             break;
         default:
@@ -442,7 +448,7 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
     {
     case MOVE_TARGET_FOES_AND_ALLY:
         if (IS_ALIVE_AND_PRESENT(BATTLE_PARTNER(BATTLE_OPPOSITE(battler)))) {
-            targets[idx++] = BATTLE_PARTNER(BATTLE_OPPOSITE(battler)); 
+            targets[idx++] = BATTLE_PARTNER(BATTLE_OPPOSITE(battler));
             numTargets++;
         }
         // fallthrough
@@ -455,7 +461,7 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
         if (IS_ALIVE_AND_PRESENT(battler)) {
             targets[idx++] = battler;
             numTargets++;
-        }       
+        }
         break;
     default:
         targets[0] = gBattleAnimArgs[battlerArgIndex]; // original
@@ -548,7 +554,7 @@ static void CreateSpriteOnTargets(const struct SpriteTemplate *template, u8 argV
     ntargets = GetBattleAnimMoveTargets(battlerArgIndex, targets);
     if (ntargets == 0)
         return;
-    
+
     for (i = 0; i < ntargets; i++) {
 
         if (overwriteAnimTgt)
@@ -675,7 +681,7 @@ static void Cmd_createvisualtaskontargets(void)
     numArgs = GetBattleAnimMoveTargets(battlerArgIndex, targets);
     if (numArgs == 0)
         return;
-    
+
     for (i = 0; i < numArgs; i++)
     {
         gBattleAnimArgs[battlerArgIndex] = targets[i];
@@ -1468,10 +1474,8 @@ static void LoadDefaultBg(void)
 {
     if (IsContest())
         LoadContestBgAfterMoveAnim();
-#if B_TERRAIN_BG_CHANGE == TRUE
-    else if (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+    else if (B_TERRAIN_BG_CHANGE == TRUE && gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
         DrawTerrainTypeBattleBackground();
-#endif
     else
         DrawMainBattleBackground();
 }

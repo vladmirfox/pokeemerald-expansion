@@ -107,28 +107,27 @@ static bool8 IsAddingPokeNewsDisallowed(u8);
 static void ClearPokeNewsBySlot(u8);
 static void TranslateRubyShows(TVShow *);
 static void TranslateJapaneseEmeraldShows(TVShow *);
-static void SetMixedTVShows(TVShow *, TVShow *, TVShow *, TVShow *);
+static void SetMixedTVShows(TVShow[TV_SHOWS_COUNT], TVShow[TV_SHOWS_COUNT], TVShow[TV_SHOWS_COUNT], TVShow[TV_SHOWS_COUNT]);
 static void DeleteExcessMixedShows(void);
 static void DeactivateShowsWithUnseenSpecies(void);
 static void DeactivateGameCompleteShowsIfNotUnlocked(void);
 static s8 FindInactiveShowInArray(TVShow *);
-static bool8 TryMixTVShow(TVShow *[], TVShow *[], u8);
+static bool8 TryMixTVShow(TVShow *[TV_SHOWS_COUNT], TVShow *[TV_SHOWS_COUNT], u8);
 static bool8 TryMixNormalTVShow(TVShow *, TVShow *, u8);
 static bool8 TryMixRecordMixTVShow(TVShow *, TVShow *, u8);
 static bool8 TryMixOutbreakTVShow(TVShow *, TVShow *, u8);
 static void DeactivateShow(u8 showIdx);
 static void DeactivateShowIfNotSeenSpecies(u16, u8);
-static void SetMixedPokeNews(PokeNews *, PokeNews *, PokeNews *, PokeNews *);
+static void SetMixedPokeNews(PokeNews[POKE_NEWS_COUNT], PokeNews[POKE_NEWS_COUNT], PokeNews[POKE_NEWS_COUNT], PokeNews[POKE_NEWS_COUNT]);
 static void ClearInvalidPokeNews(void);
 static void ClearPokeNewsIfGameNotComplete(void);
 static s8 GetPokeNewsSlotIfActive(PokeNews *, u8);
-static void InitTryMixPokeNewsShow(PokeNews *[], PokeNews *[]);
+static void InitTryMixPokeNewsShow(PokeNews *[POKE_NEWS_COUNT], PokeNews *[POKE_NEWS_COUNT]);
 static bool8 TryMixPokeNewsShow(PokeNews *, PokeNews *, s8);
 static void TVShowDone(void);
 static void InterviewAfter_FanClubLetter(void);
 static void InterviewAfter_RecentHappenings(void);
 static void InterviewAfter_PkmnFanClubOpinions(void);
-static void InterviewAfter_Dummy(void);
 static void InterviewAfter_BravoTrainerPokemonProfile(void);
 static void InterviewAfter_BravoTrainerBattleTowerProfile(void);
 static void InterviewAfter_ContestLiveUpdates(void);
@@ -1078,7 +1077,6 @@ void InterviewAfter(void)
         InterviewAfter_PkmnFanClubOpinions();
         break;
     case TVSHOW_DUMMY:
-        InterviewAfter_Dummy();
         break;
     case TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE:
         InterviewAfter_BravoTrainerPokemonProfile();
@@ -1620,11 +1618,6 @@ static void InterviewAfter_PkmnFanClubOpinions(void)
         show->fanclubOpinions.pokemonNameLanguage = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_LANGUAGE);
 }
 
-static void InterviewAfter_Dummy(void)
-{
-    TVShow *show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
-}
-
 static void TryStartRandomMassOutbreak(void)
 {
     u8 i;
@@ -1963,7 +1956,6 @@ void AlertTVThatPlayerPlayedRoulette(u16 nCoinsSpent)
 static void SecretBaseVisit_CalculateDecorationData(TVShow *show)
 {
     u8 i, j;
-    u16 k;
     u8 n;
     u8 decoration;
 
@@ -2009,12 +2001,7 @@ static void SecretBaseVisit_CalculateDecorationData(TVShow *show)
         break;
     default:
         // More than 1 decoration, randomize the full list
-        for (k = 0; k < n * n; k++)
-        {
-            decoration = Random() % n;
-            j = Random() % n;
-            SWAP(sTV_DecorationsBuffer[decoration], sTV_DecorationsBuffer[j], i);
-        }
+        Shuffle(sTV_DecorationsBuffer, n, sizeof(sTV_DecorationsBuffer[0]));
 
         // Pick the first decorations in the randomized list to talk about on the show
         for (i = 0; i < show->secretBaseVisit.numDecorations; i++)
@@ -3939,8 +3926,7 @@ else \
     (langptr) = langfix; \
 }
 
-// Unused
-static void TranslateShowNames(TVShow *show, u32 language)
+static void UNUSED TranslateShowNames(TVShow *show, u32 language)
 {
     int i;
     TVShow **shows;
@@ -6220,7 +6206,7 @@ static void DoTVShowSpotTheCuties(void)
         TVShowConvertInternationalString(gStringVar1, show->cuties.playerName, show->cuties.language);
         TVShowConvertInternationalString(gStringVar2, show->cuties.nickname, show->cuties.pokemonNameLanguage);
 
-        // Comments following the intro depend on how many ribbons the pokemon has
+        // Comments following the intro depend on how many ribbons the Pokémon has
         if (show->cuties.nRibbons < 10)
             sTVShowState = SPOTCUTIES_STATE_RIBBONS_LOW;
         else if (show->cuties.nRibbons < 20)

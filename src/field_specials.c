@@ -1,4 +1,5 @@
 #include "global.h"
+#include "debug.h"
 #include "malloc.h"
 #include "battle.h"
 #include "battle_tower.h"
@@ -20,6 +21,7 @@
 #include "international_string_util.h"
 #include "item_icon.h"
 #include "link.h"
+#include "load_save.h"
 #include "list_menu.h"
 #include "main.h"
 #include "mystery_gift.h"
@@ -85,7 +87,7 @@ static EWRAM_DATA u8 sTutorMoveAndElevatorWindowId = 0;
 static EWRAM_DATA u16 sLilycoveDeptStore_NeverRead = 0;
 static EWRAM_DATA u16 sLilycoveDeptStore_DefaultFloorChoice = 0;
 static EWRAM_DATA struct ListMenuItem *sScrollableMultichoice_ListMenuItem = NULL;
-static EWRAM_DATA u16 sScrollableMultichoice_ScrollOffset = 0;
+
 static EWRAM_DATA u16 sFrontierExchangeCorner_NeverRead = 0;
 static EWRAM_DATA u8 sScrollableMultichoice_ItemSpriteId = 0;
 static EWRAM_DATA u8 sBattlePointsWindowId = 0;
@@ -94,6 +96,7 @@ static EWRAM_DATA u8 sPCBoxToSendMon = 0;
 static EWRAM_DATA u32 sBattleTowerMultiBattleTypeFlags = 0;
 
 struct ListMenuTemplate gScrollableMultichoice_ListMenuTemplate;
+EWRAM_DATA u16 gScrollableMultichoice_ScrollOffset = 0;
 
 void TryLoseFansFromPlayTime(void);
 void SetPlayerGotFirstFans(void);
@@ -964,8 +967,8 @@ void FieldShowRegionMap(void)
 
 static bool8 IsPlayerInFrontOfPC(void)
 {
-    u16 x, y;
-    u16 tileInFront;
+    s16 x, y;
+    u32 tileInFront;
 
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     tileInFront = MapGridGetMetatileIdAt(x, y);
@@ -2201,6 +2204,8 @@ void ShowFrontierManiacMessage(void)
         else
             winStreak = gSaveBlock2Ptr->frontier.pyramidWinStreaks[FRONTIER_LVL_OPEN];
         break;
+    default:
+        return;
     }
 
     for (i = 0; i < FRONTIER_MANIAC_MESSAGE_COUNT - 1 && sFrontierManiacStreakThresholds[facility][i] < winStreak; i++);
@@ -2557,7 +2562,7 @@ static void Task_ShowScrollableMultichoice(u8 taskId)
     struct Task *task = &gTasks[taskId];
 
     LockPlayerFieldControls();
-    sScrollableMultichoice_ScrollOffset = 0;
+    gScrollableMultichoice_ScrollOffset = 0;
     sScrollableMultichoice_ItemSpriteId = MAX_SPRITES;
     FillFrontierExchangeCornerWindowAndItemIcon(task->tScrollMultiId, 0);
     ShowBattleFrontierTutorWindow(task->tScrollMultiId, 0);
@@ -2631,7 +2636,7 @@ static void ScrollableMultichoice_MoveCursor(s32 itemIndex, bool8 onInit, struct
         u16 selection;
         struct Task *task = &gTasks[taskId];
         ListMenuGetScrollAndRow(task->tListTaskId, &selection, NULL);
-        sScrollableMultichoice_ScrollOffset = selection;
+        gScrollableMultichoice_ScrollOffset = selection;
         ListMenuGetCurrentItemArrayId(task->tListTaskId, &selection);
         HideFrontierExchangeCornerItemIcon(task->tScrollMultiId, sFrontierExchangeCorner_NeverRead);
         FillFrontierExchangeCornerWindowAndItemIcon(task->tScrollMultiId, selection);
@@ -2752,7 +2757,7 @@ static void ScrollableMultichoice_UpdateScrollArrows(u8 taskId)
         template.secondY = task->tHeight * 8 + 10;
         template.fullyUpThreshold = 0;
         template.fullyDownThreshold = task->tNumItems - task->tMaxItemsOnScreen;
-        task->tScrollArrowId = AddScrollIndicatorArrowPair(&template, &sScrollableMultichoice_ScrollOffset);
+        task->tScrollArrowId = AddScrollIndicatorArrowPair(&template, &gScrollableMultichoice_ScrollOffset);
     }
 }
 
@@ -4204,4 +4209,48 @@ void SetPlayerGotFirstFans(void)
 u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
+}
+
+void TrySkyBattle(void)
+{
+    int i;
+
+    if (B_VAR_SKY_BATTLE == 0 || B_FLAG_SKY_BATTLE == 0)
+    {
+        LockPlayerFieldControls();
+        ScriptContext_SetupScript(Debug_FlagsAndVarNotSetBattleConfigMessage);
+        return;
+    }
+    for (i = 0; i < CalculatePlayerPartyCount(); i++)
+    {
+        struct Pokemon* pokemon = &gPlayerParty[i];
+        if (CanMonParticipateInSkyBattle(pokemon) && GetMonData(pokemon, MON_DATA_HP, NULL) > 0)
+        {
+            PreparePartyForSkyBattle();
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}
+
+void PreparePartyForSkyBattle(void)
+{
+    int i, participatingPokemonSlot = 0;
+    u8 partyCount = CalculatePlayerPartyCount();
+
+    FlagSet(B_FLAG_SKY_BATTLE);
+    SavePlayerParty();
+
+    for (i = 0; i < partyCount; i++)
+    {
+        struct Pokemon* pokemon = &gPlayerParty[i];
+
+        if (CanMonParticipateInSkyBattle(pokemon))
+            participatingPokemonSlot += 1 << i;
+        else
+            ZeroMonData(pokemon);
+    }
+    VarSet(B_VAR_SKY_BATTLE,participatingPokemonSlot);
+    CompactPartySlots();
 }

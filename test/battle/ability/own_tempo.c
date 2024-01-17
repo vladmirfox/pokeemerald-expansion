@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Own Tempo prevents intimidate")
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         ABILITY_POPUP(opponent, ABILITY_OWN_TEMPO);
-        MESSAGE("Foe Slowpoke's Attack was not lowered!");
+        MESSAGE("Foe Slowpoke's Own Tempo prevents stat loss!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Own Tempo prevents confusion from moves by the opponent")
 SINGLE_BATTLE_TEST("Own Tempo prevents confusion from moves by the user")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_PETAL_DANCE].effect == EFFECT_RAMPAGE);
+        ASSUME(MoveHasMoveEffectSelf(MOVE_PETAL_DANCE, MOVE_EFFECT_THRASH));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); };
     } WHEN {

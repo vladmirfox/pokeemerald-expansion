@@ -21,8 +21,8 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents Intimidate")
     } SCENE {
         HP_BAR(player, captureDamage: &turnOneHit);
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
-        NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
-        MESSAGE("Foe Wobbuffet's Attack was not lowered!");
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);
@@ -55,31 +55,8 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents stat reducing effects")
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
-        NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent); }
-        switch (move)
-        {
-        case MOVE_GROWL:
-            MESSAGE("Foe Wobbuffet's Attack was not lowered!");
-            break;
-        case MOVE_LEER:
-            MESSAGE("Foe Wobbuffet's Defense was not lowered!");
-            break;
-        case MOVE_CONFIDE:
-            MESSAGE("Foe Wobbuffet's Sp. Atk was not lowered!");
-            break;
-        case MOVE_FAKE_TEARS:
-            MESSAGE("Foe Wobbuffet's Sp. Def was not lowered!");
-            break;
-        case MOVE_SCARY_FACE:
-            MESSAGE("Foe Wobbuffet's Speed was not lowered!");
-            break;
-        case MOVE_SWEET_SCENT:
-            MESSAGE("Foe Wobbuffet's evasiveness was not lowered!");
-            break;
-        case MOVE_SAND_ATTACK:
-            MESSAGE("Foe Wobbuffet's accuracy was not lowered!");
-            break;
-        }
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
     }
 }
 
@@ -95,17 +72,20 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents secondary effects that reduce stats")
     PARAMETRIZE { move = MOVE_MUD_SLAP; }
 
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_AURORA_BEAM].effect == EFFECT_ATTACK_DOWN_HIT);
-        ASSUME(gBattleMoves[MOVE_ROCK_SMASH].effect == EFFECT_DEFENSE_DOWN_HIT);
-        ASSUME(gBattleMoves[MOVE_SNARL].effect == EFFECT_SPECIAL_ATTACK_DOWN_HIT);
-        ASSUME(gBattleMoves[MOVE_PSYCHIC].effect == EFFECT_SPECIAL_DEFENSE_DOWN_HIT);
-        ASSUME(gBattleMoves[MOVE_BUBBLE_BEAM].effect == EFFECT_SPEED_DOWN_HIT);
-        ASSUME(gBattleMoves[MOVE_MUD_SLAP].effect == EFFECT_ACCURACY_DOWN_HIT);
+        ASSUME(MoveHasMoveEffect(MOVE_AURORA_BEAM, MOVE_EFFECT_ATK_MINUS_1) == TRUE);
+        ASSUME(MoveHasMoveEffect(MOVE_ROCK_SMASH, MOVE_EFFECT_DEF_MINUS_1) == TRUE);
+        ASSUME(MoveHasMoveEffect(MOVE_BUBBLE_BEAM, MOVE_EFFECT_SPD_MINUS_1) == TRUE);
+        ASSUME(MoveHasMoveEffect(MOVE_SNARL, MOVE_EFFECT_SP_ATK_MINUS_1) == TRUE);
+        ASSUME(MoveHasMoveEffect(MOVE_PSYCHIC, MOVE_EFFECT_SP_DEF_MINUS_1) == TRUE);
+        ASSUME(MoveHasMoveEffect(MOVE_MUD_SLAP, MOVE_EFFECT_ACC_MINUS_1) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_CLEAR_AMULET); };
     } WHEN {
-        TURN { MOVE(player, MOVE_ROCK_SMASH); }
+        TURN { MOVE(player, move); }
     } SCENE {
-        NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent); }
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Foe Wobbuffet's Clear Amulet prevents its stats from being lowered!");
+        }
     }
 }
