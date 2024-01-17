@@ -28,7 +28,7 @@ with open("./include/constants/tms_hms.h", 'r') as file:
 # get compatibility from jsons
 compatibility_dict = {}
 
-for pth in glob.glob('./tools/teachablelearnsethelper/porymoves_files/*.json'):
+for pth in glob.glob('./tools/learnset_helpers/porymoves_files/*.json'):
     f = open(pth, 'r')
     data = json.load(f)
     for mon in data.keys():
