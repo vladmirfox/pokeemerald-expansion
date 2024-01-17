@@ -19,12 +19,9 @@
 
 /* Expands to the first/second/third/fourth argument. */
 #define FIRST(a, ...) a
-#define SECOND(a, b, ...) b
-#define THIRD(a, b, c, ...) c
-#define FOURTH(a, b, c, d, ...) d
-
-/* Simply returns __VA_ARGS__ */
-#define GET_ARGS(a, ...) __VA_ARGS__
+#define SECOND(a, ...) __VA_OPT__(FIRST(__VA_ARGS__))
+#define THIRD(a, ...) __VA_OPT__(SECOND(__VA_ARGS__))
+#define FOURTH(a, ...) __VA_OPT__(THIRD(__VA_ARGS__))
 
 /* 'UNPACK (x, y, z)' expands to 'x, y, z'.
  * Useful for passing arguments which may contain commas into a macro. */
@@ -65,8 +62,6 @@
 
 /* Picks the first VA_ARG if it exists, otherwise returns a default value */
 #define DEFAULT(_default, ...) FIRST(__VA_OPT__(__VA_ARGS__, ) _default)
-
-/* Picks the second VA_ARG if it exists, otherwise returns a default value */
-#define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, GET_ARGS(__VA_ARGS__)))
+#define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, SECOND(__VA_ARGS__)))
 
 #endif
