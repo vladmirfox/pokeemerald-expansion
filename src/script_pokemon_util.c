@@ -310,9 +310,7 @@ void HasGigantamaxFactor(struct ScriptContext *ctx)
 
 void ToggleGigantamaxFactor(struct ScriptContext *ctx)
 {
-    u32 i;
     u32 partyIndex = VarGet(ScriptReadHalfword(ctx));
-    u32 species;
 
     gSpecialVar_Result = FALSE;
 
@@ -320,8 +318,7 @@ void ToggleGigantamaxFactor(struct ScriptContext *ctx)
     {
         bool32 gigantamaxFactor;
 
-        species = SanitizeSpeciesId(GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES));
-        if (gSpeciesInfo[species].isMythical)
+        if (gSpeciesInfo[SanitizeSpeciesId(GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES))].isMythical)
             return;
 
         gigantamaxFactor = GetMonData(&gPlayerParty[partyIndex], MON_DATA_GIGANTAMAX_FACTOR);
