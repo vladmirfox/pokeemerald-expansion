@@ -495,7 +495,8 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
         #if P_NATURE_INHERITANCE == GEN_3
             && (GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE || IS_DITTO(GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES)))
         #endif
-        ) {
+        )
+        {
             slot = i;
             numWithEverstone++;
         }
