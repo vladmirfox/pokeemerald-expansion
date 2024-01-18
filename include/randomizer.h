@@ -27,7 +27,6 @@ enum RandomizerFeature
 };
 
 
-// There is a hard limit of 256 randomizer reasons.
 enum RandomizerReason
 {
     RZR_WILD_ENCOUNTER,
@@ -37,6 +36,7 @@ enum RandomizerReason
     RZR_SPECIES_TYPE,
     RZR_LEARNSET,
     RZR_FIELD_ITEM,
+    RZR_STARTER,
 };
 
 enum RandomizerOption {
@@ -82,8 +82,8 @@ u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea ar
 bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
 
 u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species);
-
 u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
+u16 RandomizeStarter(u16 species, u16 starterSlot);
 
 #endif // RZ_ENABLE
 

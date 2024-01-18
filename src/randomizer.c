@@ -21,6 +21,8 @@ bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature)
             return FlagGet(RZ_FLAG_TRAINER_MON);
         case RZ_FIXED_MON:
             return FlagGet(RZ_FLAG_FIXED_MON);
+        case RZ_STARTERS:
+            return FlagGet(RZ_FLAG_STARTERS);
         default:
             return FALSE;
     }
@@ -323,6 +325,14 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
     }
 
     return species;
+}
+
+u16 RandomizeStarter(u16 species, u16 starterSlot)
+{
+    if (RandomizerFeatureEnabled(RZ_STARTERS))
+    {
+        return RandomizeMon(RZR_STARTER, GetRandomizerOption(RZO_SPECIES_MODE), starterSlot, species);
+    }
 }
 
 #endif // RZ_ENABLE
