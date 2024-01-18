@@ -2144,13 +2144,10 @@ static bool32 AI_OpponentCanFaintAiWithMod(u32 battler, u32 healAmount)
     // Check special cases to NOT heal
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (GetBattlerSide(i) == B_SIDE_PLAYER)
+        if (GetBattlerSide(i) == B_SIDE_PLAYER && CanTargetFaintAiWithMod(i, battler, healAmount, 0))
         {
-            if (CanTargetFaintAiWithMod(i, battler, healAmount, 0))
-            {
-                // Target is expected to faint us
-                return TRUE;
-            }
+            // Target is expected to faint us
+            return TRUE;
         }
     }
     return FALSE;
