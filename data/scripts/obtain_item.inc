@@ -96,7 +96,7 @@ Std_FindItem::
 	lock
 	faceplayer
 	waitse
-#if RZ_ENABLED == TRUE
+#if RZ_ENABLE == TRUE
 	callnative FindItemRandomize_NativeCall
 #endif
 	copyvar VAR_0x8004, ITEMID
@@ -148,7 +148,7 @@ EventScript_NoRoomToPickUpItem::
 EventScript_HiddenItemScript::
 	lockall
 	waitse
-#if RZ_ENABLED == TRUE
+#if RZ_ENABLE == TRUE
 	callnative FindHiddenItemRandomize_NativeCall
 #endif
 	additem VAR_0x8005

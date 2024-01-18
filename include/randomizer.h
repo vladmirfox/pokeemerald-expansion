@@ -21,7 +21,9 @@ enum RandomizerFeature
     RZ_FIELD_ITEMS,
     RZ_BASE_STATS,
     RZ_MON_TYPES,
-    RZ_LEARNSET
+    RZ_LEARNSET,
+    RZ_FIXED_MON,
+    RZ_STARTERS,
 };
 
 
@@ -34,7 +36,7 @@ enum RandomizerReason
     RZR_BASE_STATS,
     RZR_SPECIES_TYPE,
     RZR_LEARNSET,
-    RZR_FIELD_ITEM
+    RZR_FIELD_ITEM,
 };
 
 enum RandomizerOption {
@@ -43,7 +45,7 @@ enum RandomizerOption {
 
 enum RandomizerSpeciesMode {
     MON_RANDOM,
-    MON_RANDOM_LEGEND_AWARE
+    MON_RANDOM_LEGEND_AWARE,
 };
 
 #if RZ_SPECIES_BASIC_SUPPORT == FALSE
@@ -78,6 +80,10 @@ u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, 
 
 u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot);
 bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
+
+u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species);
+
+u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
 
 #endif // RZ_ENABLE
 

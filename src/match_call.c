@@ -1807,15 +1807,21 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
 
 static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
 {
-    u16 trainerId;
+    u16 trainerId, species;
     const struct TrainerMon *party;
-    u8 monId;
+    u8 monId, partySize;
     const u8 *speciesName;
 
     trainerId = GetLastBeatenRematchTrainerId(sMatchCallTrainers[matchCallId].trainerId);
     party = gTrainers[trainerId].party;
-    monId = Random() % gTrainers[trainerId].partySize;
-    speciesName = GetSpeciesName(party[monId].species);
+    partySize = gTrainers[trainerId].partySize;
+    monId = Random() % partySize;
+    species = party[monId].species;
+    #if RZ_ENABLE == TRUE
+        species = RandomizeTrainerMon(trainerId, monId, partySize, species);
+    #endif
+
+    speciesName = GetSpeciesName(species);
 
     StringCopy(destStr, speciesName);
 }

@@ -7,6 +7,7 @@
 #include "field_control_avatar.h"
 #include "pokemon.h"
 #include "script.h"
+#include "data.h"
 
 bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature)
 {
@@ -16,6 +17,10 @@ bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature)
             return FlagGet(RZ_FLAG_WILD_MON);
         case RZ_FIELD_ITEMS:
             return FlagGet(RZ_FLAG_FIELD_ITEMS);
+        case RZ_TRAINER_MON:
+            return FlagGet(RZ_FLAG_TRAINER_MON);
+        case RZ_FIXED_MON:
+            return FlagGet(RZ_FLAG_FIXED_MON);
         default:
             return FALSE;
     }
@@ -27,7 +32,8 @@ u32 GetRandomizerSeed(void)
         return GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
     #else
         u32 result;
-        result = (u32)VarGet(RZ_VAR_SEED_H) | VarGet(RZ_VAR_SEED_L);
+        result = ((u32)VarGet(RZ_VAR_SEED_H) << 16) | VarGet(RZ_VAR_SEED_L);
+        return result;
     #endif
 }
 
@@ -62,7 +68,7 @@ struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u1
     state.c = data1;
     state.ctr = RANDOMIZER_STREAM;
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < 10; i++)
     {
         _SFC32_Next_Stream(&state, RANDOMIZER_STREAM);
     }
@@ -133,6 +139,8 @@ static inline bool8 ShouldRandomizeItem(u16 itemId)
 {
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_NONE);
 }
+
+//#include "data/randomizer/randomizer_misc_item_list.h"
 
 u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 {
@@ -285,6 +293,36 @@ bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies)
             // Anything can happen!
             return TRUE;
     }
+}
+
+u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species)
+{
+    if (RandomizerFeatureEnabled(RZ_TRAINER_MON))
+    {
+        u32 seed;
+        seed = (u32)trainerId << 16;
+        seed |= (u32)totalMons << 8;
+        seed |= slot;
+
+        return RandomizeMon(RZR_TRAINER_PARTY, GetRandomizerOption(RZO_SPECIES_MODE), seed, species);
+    }
+
+    return species;
+}
+
+u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
+{
+    if (RandomizerFeatureEnabled(RZ_FIXED_MON))
+    {
+        u32 seed;
+        seed = (u32)mapNum << 16;
+        seed |= (u32)mapGroup << 8;
+        seed |= localId;
+
+        return RandomizeMon(RZR_FIXED_ENCOUNTER, GetRandomizerOption(RZO_SPECIES_MODE), seed, species);
+    }
+
+    return species;
 }
 
 #endif // RZ_ENABLE
