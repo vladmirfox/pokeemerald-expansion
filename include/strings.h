@@ -629,6 +629,8 @@ extern const u8 gText_SpaceTimes[];
 extern const u8 gText_BigGuy[];
 extern const u8 gText_BigGirl[];
 extern const u8 gText_Son[];
+extern const u8 gText_Bro[];
+extern const u8 gText_Sis[];
 extern const u8 gText_Daughter[];
 
 // Multichoice strings

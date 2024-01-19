@@ -1,3 +1,4 @@
+raw `
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
@@ -291,7 +292,6 @@ LittlerootTown_EventScript_GoodLuck::
 	release
 	end
 
-@ Triggered when trying to go into the forest before receiving a POKéMON
 LittlerootTown_EventScript_NeedPokemonTriggerLeft::
 	lockall
 	applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
@@ -920,3 +920,4 @@ LittlerootTown_Text_RivalBeachLookAtMeRambling:
 
 LittlerootTown_Text_HiImMom:
 	.string "Hey {PLAYER}, I'm mom!$"
+`

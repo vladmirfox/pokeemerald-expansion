@@ -729,7 +729,7 @@ Common_EventScript_OutOfCenterPartyHeal::
 
 EventScript_RegionMap::
 	lockall
-	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT
+	@ msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	special FieldShowRegionMap
 	waitstate
@@ -954,6 +954,9 @@ gText_Sudowoodo_Attacked::
 
 gText_LegendaryFlewAway::
 	.string "The {STR_VAR_1} flew away!$"
+	
+gText_NotImplemented::
+	.string "Not implemented$"
 
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/questionnaire.inc"

@@ -161,6 +161,7 @@ gSpecials::
 	def_special GetPlayerTrainerIdOnesDigit
 	def_special GetPlayerBigGuyGirlString
 	def_special GetRivalSonDaughterString
+	def_special GetPlayerBroSisString
 	def_special SetHiddenItemFlag
 	def_special CableCarWarp
 	def_special CableCar
