@@ -5813,6 +5813,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .lightMove = TRUE,
     },
 
     [MOVE_SHADOW_PUNCH] =
