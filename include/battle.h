@@ -1092,6 +1092,7 @@ extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;
 extern u16 gPartnerSpriteId;
 extern struct QueuedStatBoost gQueuedStatBoosts[MAX_BATTLERS_COUNT];
+extern const struct BattleMoveEffect gBattleMoveEffects[];
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);

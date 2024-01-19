@@ -1,3 +1,5 @@
+#include "battle.h"
+
 const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 {
     [EFFECT_HIT]                        = { BattleScript_EffectHit, 1 },

@@ -1985,7 +1985,8 @@ bool32 IsChargingMove(u32 battlerAtk, u32 effect)
     switch (effect)
     {
     case EFFECT_SOLAR_BEAM:
-        return !(AI_GetWeather(AI_DATA) & B_WEATHER_SUN);
+        if (AI_GetWeather(AI_DATA) & B_WEATHER_SUN)
+            return FALSE;
     case EFFECT_SKULL_BASH:
     case EFFECT_METEOR_BEAM:
     case EFFECT_TWO_TURNS_ATTACK:
