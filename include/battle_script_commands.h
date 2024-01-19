@@ -60,5 +60,6 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler);
 extern void (* const gBattleScriptingCommandsTable[])(void);
 extern const u8 gBattlePalaceNatureToMoveGroupLikelihood[NUM_NATURES][4];
 extern const struct StatFractions gAccuracyStageRatios[];
+extern const struct BattleMoveEffect gBattleMoveEffects[];
 
 #endif // GUARD_BATTLE_SCRIPT_COMMANDS_H
