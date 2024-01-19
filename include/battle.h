@@ -48,6 +48,17 @@
 // Special indicator value for shellBellDmg in SpecialStatus
 #define IGNORE_SHELL_BELL 0xFFFF
 
+// For defining EFFECT_HIT etc. with battle TV scores and flags etc.
+struct __attribute__((packed, aligned(2))) BattleMoveEffect
+{
+    const u8 *ptr;
+    u8 battleTvScore;
+
+    // Free byte, might as well be flags?
+    u8 encourageEncore:1;
+    u8 padding:7;
+};
+
 struct ResourceFlags
 {
     u32 flags[MAX_BATTLERS_COUNT];

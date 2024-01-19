@@ -534,16 +534,6 @@ extern const u8 BattleScript_DynamaxEnds[];
 extern const u8 BattleScript_MoveBlockedByDynamax[];
 
 // Battle move scripts
-struct __attribute__((packed, aligned(2))) BattleMoveEffect
-{
-    const u8 *ptr;
-    u8 battleTvScore;
-
-    // Free byte, might as well be flags?
-    u8 encourageEncore:1;
-    u8 padding:7;
-};
-
 extern const u8 BattleScript_EffectSleep[];
 extern const u8 BattleScript_EffectAbsorb[];
 extern const u8 BattleScript_EffectExplosion[];

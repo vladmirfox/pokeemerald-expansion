@@ -3729,7 +3729,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (gDisableStructs[battlerDef].encoreTimer == 0
             && (B_MENTAL_HERB < GEN_5 || aiData->holdEffects[battlerDef] != HOLD_EFFECT_MENTAL_HERB))
         {
-            if (IsEncoreEncouragedEffect(gBattleMoves[gLastMoves[battlerDef]].effect))
+            if (gBattleMoveEffects[gBattleMoves[gLastMoves[battlerDef]].effect].encourageEncore)
                 ADJUST_SCORE(3);
         }
         break;
