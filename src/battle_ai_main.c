@@ -4538,7 +4538,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // Attacker goes first
            {
                 if (gBattleMoves[predictedMove].type == TYPE_GROUND)
-                    ADJUST_SCORE(3); // Cause the enemy's move to fall
+                    ADJUST_SCORE(3); // Cause the enemy's move to fail
                 break;
             }
             else // Opponent Goes First
