@@ -508,7 +508,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         .teachableLearnset = sOinkologneTeachableLearnset,  \
-        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable \
+        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable
 
     [SPECIES_OINKOLOGNE_MALE] =
     {
