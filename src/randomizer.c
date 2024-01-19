@@ -219,8 +219,7 @@ void RandomizerCountLegendarySpecies(void)
     sRandomizerLegendaryCount = count;
 }
 
-
-u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species)
+static u16 RandomizeMonFromSeed(struct Sfc32State *state, enum RandomizerSpeciesMode mode, u16 species)
 {
     switch(mode) {
         case MON_RANDOM_LEGEND_AWARE:
@@ -228,8 +227,7 @@ u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, 
             {
                 u16 i;
                 u16 legendCount;
-                u16 target = RandomizerRandRange(reason, seed, species,
-                    sRandomizerLegendaryCount);
+                u16 target = RandomizerNextRange(state, sRandomizerLegendaryCount);
                 legendCount = 0;
                 for (i = 1; i < RANDOMIZER_MAX_MON; i++)
                 {
@@ -251,16 +249,23 @@ u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, 
                 do
                 {
                     candidate =
-                    RandomizerRandRange(reason, seed, species, RANDOMIZER_MAX_MON) + 1;
+                    RandomizerNextRange(state, RANDOMIZER_MAX_MON) + 1;
                 } while(IsRandomizerLegendary(candidate));
                 return candidate;
             }
         case MON_RANDOM:
         default:
             // 1 is added so that SPECIES_NONE is never returned.
-            return RandomizerRandRange(reason, seed, species, RANDOMIZER_MAX_MON) + 1;
+            return RandomizerNextRange(state, RANDOMIZER_MAX_MON) + 1;
     }
 
+}
+
+u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species)
+{
+    struct Sfc32State state;
+    state = RandomizerRandSeed(reason, seed, species);
+    return RandomizeMonFromSeed(&state, mode, species);
 }
 
 u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot)
@@ -333,6 +338,8 @@ u16 RandomizeStarter(u16 species, u16 starterSlot)
     {
         return RandomizeMon(RZR_STARTER, GetRandomizerOption(RZO_SPECIES_MODE), starterSlot, species);
     }
+
+    return species;
 }
 
 #endif // RZ_ENABLE
