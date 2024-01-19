@@ -141,10 +141,31 @@ for mon in list_of_mons:
 
 # add/update header
 header = "//\n// DO NOT MODIFY THIS FILE!\n//\n\n"
+longest_move_name = 0
+for move in tm_moves + tutor_moves:
+    if len(move) > longest_move_name:
+        longest_move_name = len(move)
+longest_move_name += 2 # + 2 for a hyphen and a space
+
+def header_print(str):
+    global header
+    header += "// " + str + " " * (longest_move_name - len(str)) + " //\n"
+
+header += "// " + longest_move_name * "*" + " //\n"
+header_print("Found TM/HM moves:")
+for move in tm_moves:
+    header_print("- " + move)
+header += "// " + longest_move_name * "*" + " //\n"
+header_print("Found tutor moves:")
+tutor_moves.sort() # alphabetically sort tutor moves for easier referencing
+for move in tutor_moves: 
+    header_print("- " + move)
+header += "// " + longest_move_name * "*" + " //\n\n"
+
 if not "// DO NOT MODIFY THIS FILE!" in out:
     out = header + out
 else:
-    out = re.sub("\/\/\n\/\/ DO NOT MODIFY THIS FILE!(.|\n)*?\*\/", header, out)
+    out = re.sub("\/\/\n\/\/ DO NOT MODIFY THIS FILE!(.|\n)*\* \/\/\n\n", header, out)
 
 with open("./src/data/pokemon/teachable_learnsets.h", 'w') as file:
     file.write(out)
