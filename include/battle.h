@@ -51,13 +51,13 @@
 // For defining EFFECT_HIT etc. with battle TV scores and flags etc.
 struct __attribute__((packed, aligned(2))) BattleMoveEffect
 {
-    const u8 *ptr;
-    u8 battleTvScore;
-
-    // Free byte, might as well be flags?
-    u8 encourageEncore:1;
-    u8 padding:7;
+    const u8 *battleScript;
+    u16 battleTvScore:3;
+    u16 encourageEncore:1;
+    u16 flags:12; // coming soon...
 };
+
+#define GET_MOVE_BATTLESCRIPT(move) gBattleMoveEffects[gBattleMoves[move].effect].battleScript
 
 struct ResourceFlags
 {
