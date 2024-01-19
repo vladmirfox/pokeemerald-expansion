@@ -142,7 +142,7 @@ static inline bool8 ShouldRandomizeItem(u16 itemId)
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_NONE);
 }
 
-//#include "data/randomizer/randomizer_misc_item_list.h"
+#include "data/randomizer/item_whitelist.h"
 
 u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 {
@@ -167,8 +167,7 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 
     // Randomize everything else to everything else.
     do {
-        // 1 is added so that ITEM_NONE is never returned.
-        result = RandomizerNextRange(&state, ITEMS_COUNT) + 1;
+        result = sRandomizerItemWhitelist[RandomizerNextRange(&state, ITEM_WHITELIST_SIZE)];
     } while(!ShouldRandomizeItem(result) || IsItemTMHM(result));
 
     return result;
@@ -261,6 +260,51 @@ static u16 RandomizeMonFromSeed(struct Sfc32State *state, enum RandomizerSpecies
 
 }
 
+void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed1, u16 seed2, u8 count, const u16 *originalSpecies, u16 *resultSpecies)
+{
+    u32 i, curMon;
+    u32 seenMonBitVector[(RANDOMIZER_MAX_MON-1)/32+1] = {};
+    u32 lastMon = 0;
+    struct Sfc32State state = RandomizerRandSeed(reason, seed1, seed2);
+
+    for (i = 0; i < count; i++)
+    {
+        u16 curOriginal = originalSpecies[i];
+        bool32 foundNextMon = FALSE;
+
+        while (!foundNextMon)
+        {
+            u16 wordIndex, adjustedCurMon;
+            u32 bitVectorWord;
+            u8 bitIndex;
+            curMon = RandomizeMonFromSeed(&state, mode, curOriginal);
+
+            if (lastMon == curMon)
+                continue;
+
+            // Compute the bit address of this mon.
+            adjustedCurMon = curMon - 1;
+            wordIndex = adjustedCurMon / 32;
+            bitIndex = adjustedCurMon & 31;
+            bitVectorWord = seenMonBitVector[wordIndex];
+
+            if (bitVectorWord != 0)
+            {
+                // If the bit for this mon is set, it has already been generated.
+                if (bitVectorWord & (1 << bitIndex))
+                    continue;
+            }
+
+            bitVectorWord |= 1 << bitIndex;
+            seenMonBitVector[wordIndex] = bitVectorWord;
+            foundNextMon = TRUE;
+        }
+        resultSpecies[i] = curMon;
+        lastMon = curMon;
+    }
+
+}
+
 u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species)
 {
     struct Sfc32State state;
@@ -332,14 +376,35 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
     return species;
 }
 
-u16 RandomizeStarter(u16 species, u16 starterSlot)
+
+EWRAM_DATA static u32 sLastStarterRandomizerSeed = 0;
+EWRAM_DATA static u16 sRandomizedStarters[3] = {0};
+
+u16 RandomizeStarter(u16 starterSlot, const u16* originalStarters)
 {
     if (RandomizerFeatureEnabled(RZ_STARTERS))
     {
-        return RandomizeMon(RZR_STARTER, GetRandomizerOption(RZO_SPECIES_MODE), starterSlot, species);
+        if (sLastStarterRandomizerSeed != GetRandomizerSeed() || sRandomizedStarters[0] == SPECIES_NONE)
+        {
+            // The randomized starter table is stale or uninitialized. Fix that!
+
+            // Hash the starter list so that which starters there are influences the seed.
+            u32 starterHash = 5381;
+            u32 i;
+            for (i = 0; i < 3; i++)
+            {
+                u16 originalStarter = originalStarters[i];
+                starterHash = ((starterHash << 5) + starterHash) ^ (u8)originalStarter;
+                starterHash = ((starterHash << 5) + starterHash) ^ (u8)(originalStarter >> 8);
+            }
+
+            GetUniqueMonList(RZR_STARTER, GetRandomizerOption(RZO_SPECIES_MODE),
+                starterHash, 0, 3, originalStarters, sRandomizedStarters);
+        }
+        return sRandomizedStarters[starterSlot];
     }
 
-    return species;
+    return originalStarters[starterSlot];
 }
 
 #endif // RZ_ENABLE

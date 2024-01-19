@@ -1774,10 +1774,12 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
             {
                 slot = GetLandEncounterSlot();
                 curSpecies = gWildMonHeaders[i].landMonsInfo->wildPokemon[slot].species;
+
                 #if RZ_ENABLE == TRUE
                     curSpecies = RandomizeWildEncounter(curSpecies, mapNum, mapGroup,
                     WILD_AREA_LAND, slot);
                 #endif
+
                 species[numSpecies] = curSpecies;
                 numSpecies++;
             }
@@ -1786,10 +1788,12 @@ static void PopulateSpeciesFromTrainerLocation(int matchCallId, u8 *destStr)
             {
                 slot = GetWaterEncounterSlot();
                 curSpecies = gWildMonHeaders[i].waterMonsInfo->wildPokemon[slot].species;
+
                 #if RZ_ENABLE == TRUE
                     curSpecies = RandomizeWildEncounter(curSpecies, mapNum, mapGroup,
                     WILD_AREA_WATER, slot);
                 #endif
+
                 species[numSpecies] = curSpecies;
                 numSpecies++;
             }
@@ -1817,6 +1821,7 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
     partySize = gTrainers[trainerId].partySize;
     monId = Random() % partySize;
     species = party[monId].species;
+
     #if RZ_ENABLE == TRUE
         species = RandomizeTrainerMon(trainerId, monId, partySize, species);
     #endif

@@ -1993,6 +1993,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
         #if RZ_ENABLE == TRUE
             species2 = RandomizeFixedEncounterMon(species2, mapNum, mapGroup, localId);
         #endif
+
         CreateScriptedDoubleWildMon(species, level, item, species2, level2, item2);
         sIsScriptedWildDouble = TRUE;
     }
