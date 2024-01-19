@@ -48246,7 +48246,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM": {
+  "WORMADAM_PLANT_CLOAK": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -57649,7 +57649,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "SHAYMIN": {
+  "SHAYMIN_LAND": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -79388,7 +79388,7 @@
     ],
     "TutorMoves": []
   },
-  "MEOWSTIC": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -84295,7 +84295,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "HOOPA": {
+  "HOOPA_CONFINED": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -87076,7 +87076,7 @@
     ],
     "TutorMoves": []
   },
-  "LYCANROC": {
+  "LYCANROC_MIDDAY": {
     "LevelMoves": [
       {
         "Level": 0,

@@ -54679,7 +54679,7 @@
       "MOVE_EXPANDING_FORCE"
     ]
   },
-  "MEOWSTIC": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -61394,7 +61394,7 @@
     ],
     "TutorMoves": []
   },
-  "LYCANROC": {
+  "LYCANROC_MIDDAY": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -71993,7 +71993,7 @@
     ],
     "TutorMoves": []
   },
-  "TOXTRICITY": {
+  "TOXTRICITY_AMPED": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -75050,7 +75050,7 @@
     ],
     "TutorMoves": []
   },
-  "INDEEDEE": {
+  "INDEEDEE_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -76790,7 +76790,7 @@
       "MOVE_COACHING"
     ]
   },
-  "URSHIFU": {
+  "URSHIFU_SINGLE_STRIKE_STYLE": {
     "LevelMoves": [
       {
         "Level": 0,

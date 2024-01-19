@@ -53477,7 +53477,7 @@
       "MOVE_SNORE"
     ]
   },
-  "WORMADAM": {
+  "WORMADAM_PLANT_CLOAK": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -64002,7 +64002,7 @@
       "MOVE_WONDER_ROOM"
     ]
   },
-  "SHAYMIN": {
+  "SHAYMIN_LAND": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -88319,7 +88319,7 @@
       "MOVE_ZEN_HEADBUTT"
     ]
   },
-  "MEOWSTIC": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -93749,7 +93749,7 @@
       "MOVE_WONDER_ROOM"
     ]
   },
-  "HOOPA": {
+  "HOOPA_CONFINED": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -96877,7 +96877,7 @@
       "MOVE_ZEN_HEADBUTT"
     ]
   },
-  "LYCANROC": {
+  "LYCANROC_MIDDAY": {
     "LevelMoves": [
       {
         "Level": 0,

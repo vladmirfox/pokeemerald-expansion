@@ -19515,7 +19515,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "WORMADAM": {
+  "WORMADAM_PLANT_CLOAK": {
     "LevelMoves": [],
     "PreEvoMoves": [],
     "TMMoves": [],
@@ -25079,7 +25079,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "SHAYMIN": {
+  "SHAYMIN_LAND": {
     "LevelMoves": [],
     "PreEvoMoves": [],
     "TMMoves": [],
@@ -33181,7 +33181,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "MEOWSTIC": {
+  "MEOWSTIC_MALE": {
     "LevelMoves": [],
     "PreEvoMoves": [],
     "TMMoves": [],
@@ -35231,7 +35231,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "HOOPA": {
+  "HOOPA_CONFINED": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -36578,7 +36578,7 @@
     ],
     "TutorMoves": []
   },
-  "LYCANROC": {
+  "LYCANROC_MIDDAY": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -41537,7 +41537,7 @@
     ],
     "TutorMoves": []
   },
-  "TOXTRICITY": {
+  "TOXTRICITY_AMPED": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -43212,7 +43212,7 @@
     ],
     "TutorMoves": []
   },
-  "INDEEDEE": {
+  "INDEEDEE_MALE": {
     "LevelMoves": [
       {
         "Level": 1,
@@ -44278,7 +44278,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "URSHIFU": {
+  "URSHIFU_SINGLE_STRIKE_STYLE": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -57855,7 +57855,7 @@
     ],
     "TutorMoves": []
   },
-  "PALAFIN_ZERO": {
+  "PALAFIN": {
     "LevelMoves": [
       {
         "Level": 0,
@@ -61826,7 +61826,7 @@
     ],
     "TutorMoves": []
   },
-  "GIMMIGHOUL_CHEST": {
+  "GIMMIGHOUL": {
     "LevelMoves": [
       {
         "Level": 1,
