@@ -50,6 +50,42 @@ for pth in glob.glob('./tools/learnset_helpers/porymoves_files/*.json'):
             if not move in compatibility_dict[mon]:
                 compatibility_dict[mon].append(move)
 
+# if the file was not previously generated, check if there is custom data there that needs to be preserved
+with open("./src/data/pokemon/teachable_learnsets.h", 'r') as file:
+    raw = file.read()
+    if not "// DO NOT MODIFY THIS FILE! It is auto-generated" in raw:
+        custom_teachable_compatibilities = {}
+        for entry in re.findall("static const u16 s(.*)TeachableLearnset\[\] = {\n((.|\n)*?)\n};", raw):
+            monname = parse_mon_name(entry[0])
+            if monname == "NONE":
+                continue
+            compatibility = entry[1].split("\n")
+            if not monname in custom_teachable_compatibilities:
+                custom_teachable_compatibilities[monname] = []
+            if not monname in compatibility_dict:
+                # this mon is unknown, so all data needs to be preserved
+                for move in compatibility:
+                    move = move.replace(",", "").strip()
+                    if move == "" or move == "MOVE_UNAVAILABLE":
+                        continue
+                    custom_teachable_compatibilities[monname].append(move)
+            else:
+                # this mon is known, so check if the moves in the old teachable_learnsets.h are not in the jsons
+                for move in compatibility:
+                    move = move.replace(",", "").strip()
+                    if move == "" or move == "MOVE_UNAVAILABLE":
+                        continue
+                    if not move in compatibility_dict[monname]:
+                        custom_teachable_compatibilities[monname].append(move)
+
+print(custom_teachable_compatibilities)
+# debug thingy
+for x in custom_teachable_compatibilities:
+    if len(custom_teachable_compatibilities[x]) > 0:
+        print(x)
+        print(custom_teachable_compatibilities[x])
+quit()
+
 # actually prepare the file
 with open("./src/data/pokemon/teachable_learnsets.h", 'r') as file:
     out = file.read()
