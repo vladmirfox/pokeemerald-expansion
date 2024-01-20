@@ -8128,7 +8128,9 @@ bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
             return TRUE;
     }
     else if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL))
-            return FALSE;
+    {
+        return FALSE;
+    }
 
     return TRUE;
 }
