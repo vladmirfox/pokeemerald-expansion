@@ -8121,8 +8121,16 @@ static bool32 HasAttackerFaintedTarget(void)
 
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
-            || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
+    if (GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION)
+    {
+        if ((IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL) && (gBattleMoves[gCurrentMove].split == SPLIT_STATUS))
+        || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON))
+            return TRUE;
+    }
+    else if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL))
+            return FALSE;
+
+    return TRUE;
 }
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
