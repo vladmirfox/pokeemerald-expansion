@@ -12,6 +12,10 @@ tutor_moves = []
 # scan incs
 incs_to_check =  glob.glob('./data/scripts/*.inc') # all .incs in the script folder
 incs_to_check += glob.glob('./data/maps/*/scripts.inc') # all map scripts
+
+if len(incs_to_check) == 0: # disabled if no jsons present
+    quit()
+
 for file in incs_to_check:
     with open(file, 'r') as f2:
         raw = f2.read()
