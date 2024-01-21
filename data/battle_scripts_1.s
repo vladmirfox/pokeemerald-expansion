@@ -406,7 +406,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_RISING_VOLTAGE
 	.4byte BattleScript_EffectHit                     @ EFFECT_BEAK_BLAST
 	.4byte BattleScript_EffectCourtChange             @ EFFECT_COURT_CHANGE
-	.4byte BattleScript_EffectMaxHp50Recoil               @ EFFECT_MAX_HP_50_RECOIL
+	.4byte BattleScript_EffectMaxHp50Recoil           @ EFFECT_MAX_HP_50_RECOIL
 	.4byte BattleScript_EffectExtremeEvoboost         @ EFFECT_EXTREME_EVOBOOST
 	.4byte BattleScript_EffectHitSetRemoveTerrain     @ EFFECT_HIT_SET_REMOVE_TERRAIN
 	.4byte BattleScript_EffectDarkVoid                @ EFFECT_DARK_VOID
