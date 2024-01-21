@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Attack(1314); }; // will deal exactly 132 damage, putting GOLISOPOD just under half hp
+        PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
