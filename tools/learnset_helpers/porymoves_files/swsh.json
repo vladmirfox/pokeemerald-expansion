@@ -43066,7 +43066,123 @@
       "MOVE_GRASSY_GLIDE"
     ]
   },
-  "BASCULIN": {
+  "BASCULIN_RED_STRIPED": {
+    "LevelMoves": [
+      {
+        "Level": 1,
+        "Move": "MOVE_WATER_GUN"
+      },
+      {
+        "Level": 1,
+        "Move": "MOVE_TAIL_WHIP"
+      },
+      {
+        "Level": 4,
+        "Move": "MOVE_TACKLE"
+      },
+      {
+        "Level": 8,
+        "Move": "MOVE_FLAIL"
+      },
+      {
+        "Level": 12,
+        "Move": "MOVE_AQUA_JET"
+      },
+      {
+        "Level": 16,
+        "Move": "MOVE_BITE"
+      },
+      {
+        "Level": 20,
+        "Move": "MOVE_SCARY_FACE"
+      },
+      {
+        "Level": 24,
+        "Move": "MOVE_HEADBUTT"
+      },
+      {
+        "Level": 28,
+        "Move": "MOVE_SOAK"
+      },
+      {
+        "Level": 32,
+        "Move": "MOVE_CRUNCH"
+      },
+      {
+        "Level": 36,
+        "Move": "MOVE_TAKE_DOWN"
+      },
+      {
+        "Level": 40,
+        "Move": "MOVE_FINAL_GAMBIT"
+      },
+      {
+        "Level": 44,
+        "Move": "MOVE_AQUA_TAIL"
+      },
+      {
+        "Level": 48,
+        "Move": "MOVE_THRASH"
+      },
+      {
+        "Level": 52,
+        "Move": "MOVE_DOUBLE_EDGE"
+      },
+      {
+        "Level": 56,
+        "Move": "MOVE_HEAD_SMASH"
+      }
+    ],
+    "PreEvoMoves": [],
+    "TMMoves": [
+      "MOVE_REST",
+      "MOVE_SNORE",
+      "MOVE_PROTECT",
+      "MOVE_SCARY_FACE",
+      "MOVE_ICY_WIND",
+      "MOVE_ATTRACT",
+      "MOVE_RAIN_DANCE",
+      "MOVE_HAIL",
+      "MOVE_WHIRLPOOL",
+      "MOVE_FACADE",
+      "MOVE_SWIFT",
+      "MOVE_REVENGE",
+      "MOVE_DIVE",
+      "MOVE_BOUNCE",
+      "MOVE_MUD_SHOT",
+      "MOVE_BRINE",
+      "MOVE_ASSURANCE",
+      "MOVE_ICE_FANG",
+      "MOVE_ROUND",
+      "MOVE_HYDRO_PUMP",
+      "MOVE_SURF",
+      "MOVE_ICE_BEAM",
+      "MOVE_AGILITY",
+      "MOVE_WATERFALL",
+      "MOVE_SUBSTITUTE",
+      "MOVE_REVERSAL",
+      "MOVE_ENDURE",
+      "MOVE_SLEEP_TALK",
+      "MOVE_CRUNCH",
+      "MOVE_UPROAR",
+      "MOVE_TAUNT",
+      "MOVE_SUPERPOWER",
+      "MOVE_MUDDY_WATER",
+      "MOVE_ZEN_HEADBUTT",
+      "MOVE_SCALD",
+      "MOVE_PSYCHIC_FANGS",
+      "MOVE_LIQUIDATION"
+    ],
+    "EggMoves": [
+      "MOVE_BUBBLE_BEAM",
+      "MOVE_ENDEAVOR"
+    ],
+    "TutorMoves": [
+      "MOVE_FLIP_TURN",
+      "MOVE_SCALE_SHOT"
+    ]
+  },
+  "BASCULIN_BLUE_STRIPED": {
     "LevelMoves": [
       {
         "Level": 1,
