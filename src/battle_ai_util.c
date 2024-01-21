@@ -1625,9 +1625,7 @@ bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index, u32 nu
 u16 *GetMovesArray(u32 battler)
 {
     if (IsAiBattlerAware(battler) || IsAiBattlerAware(BATTLE_PARTNER(battler)))
-    {
         return gBattleMons[battler].moves;
-    }
     else
         return gBattleResources->battleHistory->usedMoves[battler];
 }
