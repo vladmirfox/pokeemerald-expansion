@@ -9,6 +9,7 @@
 #define P_UPDATED_FRIENDSHIP        GEN_LATEST  // Since Gen 8, the base friendship of certain Pokémon was changed.
 #define P_UPDATED_EVS               GEN_LATEST  // Some Pokémon have received EV updates after their introduction.
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Since Gen 5, some Pokémon have received base Experience changes.
+#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Define which gens learnset you'd like, if your learnsets gen is lower than the gen a certain pokemon was introduced, it will revert to the learnset a pokemon had when it was first introduced
 
 // Evolution settings
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Since Gen 8, Pokémon that evolve by friendship evolve at or above 160 friendship instead of 220.
