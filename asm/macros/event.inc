@@ -2090,7 +2090,7 @@
 
 	@ Gives the player a Pokémon of the specified species and level, and allows to customize extra parameters.
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
-	.macro givecustommon species:req, level:req, item=ITEM_NONE, ball=ITEM_POKE_BALL, nature=NUM_NATURES, abilityNum=0, gender, hpEv=0, atkEv=0, defEv=0, speedEv=0, spAtkEv=0, spDefEv=0, hpIv=USE_RANDOM_IVS, atkIv=USE_RANDOM_IVS, defIv=USE_RANDOM_IVS, speedIv=USE_RANDOM_IVS, spAtkIv=USE_RANDOM_IVS, spDefIv=USE_RANDOM_IVS, move1=MOVE_NONE, move2=MOVE_NONE, move3=MOVE_NONE, move4=MOVE_NONE, isShiny=FALSE, ggmaxfactor=FALSE
+	.macro givecustommon species:req, level:req, item=ITEM_NONE, ball=ITEM_POKE_BALL, nature=NUM_NATURES, abilityNum=0, gender, hpEv=0, atkEv=0, defEv=0, speedEv=0, spAtkEv=0, spDefEv=0, hpIv=USE_RANDOM_IVS, atkIv=USE_RANDOM_IVS, defIv=USE_RANDOM_IVS, speedIv=USE_RANDOM_IVS, spAtkIv=USE_RANDOM_IVS, spDefIv=USE_RANDOM_IVS, move1=MOVE_NONE, move2=MOVE_NONE, move3=MOVE_NONE, move4=MOVE_NONE, isShiny=FALSE, ggMaxFactor=FALSE
 	callnative ScriptGiveCustomMon
 	.2byte \species
 	.byte \level
@@ -2116,5 +2116,5 @@
 	.2byte \move3
 	.2byte \move4
 	.byte \isShiny
-	.byte \ggmaxfactor
+	.byte \ggMaxFactor
 	.endm
