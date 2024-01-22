@@ -341,36 +341,37 @@ void ToggleGigantamaxFactor(struct ScriptContext *ctx)
 
 void ScriptGiveCustomMon(struct ScriptContext *ctx)
 {
-    u16 species   = VarGet(ScriptReadHalfword(ctx));
-    u8 level      = VarGet(ScriptReadByte(ctx));
-    u16 item      = VarGet(ScriptReadHalfword(ctx));
-    u8 ball       = VarGet(ScriptReadByte(ctx));
-    u8 nature     = VarGet(ScriptReadByte(ctx));
-    u8 abilityNum = VarGet(ScriptReadByte(ctx));
-    u8 gender     = VarGet(ScriptReadByte(ctx));
-    u8 hpEv       = VarGet(ScriptReadByte(ctx));
-    u8 atkEv      = VarGet(ScriptReadByte(ctx));
-    u8 defEv      = VarGet(ScriptReadByte(ctx));
-    u8 speedEv    = VarGet(ScriptReadByte(ctx));
-    u8 spAtkEv    = VarGet(ScriptReadByte(ctx));
-    u8 spDefEv    = VarGet(ScriptReadByte(ctx));
-    u8 hpIv       = VarGet(ScriptReadByte(ctx));
-    u8 atkIv      = VarGet(ScriptReadByte(ctx));
-    u8 defIv      = VarGet(ScriptReadByte(ctx));
-    u8 speedIv    = VarGet(ScriptReadByte(ctx));
-    u8 spAtkIv    = VarGet(ScriptReadByte(ctx));
-    u8 spDefIv    = VarGet(ScriptReadByte(ctx));
-    u16 move1     = VarGet(ScriptReadHalfword(ctx));
-    u16 move2     = VarGet(ScriptReadHalfword(ctx));
-    u16 move3     = VarGet(ScriptReadHalfword(ctx));
-    u16 move4     = VarGet(ScriptReadHalfword(ctx));
-    bool8 isShiny = VarGet(ScriptReadByte(ctx));
+    u16 species       = VarGet(ScriptReadHalfword(ctx));
+    u8 level          = VarGet(ScriptReadByte(ctx));
+    u16 item          = VarGet(ScriptReadHalfword(ctx));
+    u8 ball           = VarGet(ScriptReadByte(ctx));
+    u8 nature         = VarGet(ScriptReadByte(ctx));
+    u8 abilityNum     = VarGet(ScriptReadByte(ctx));
+    u8 gender         = VarGet(ScriptReadByte(ctx));
+    u8 hpEv           = VarGet(ScriptReadByte(ctx));
+    u8 atkEv          = VarGet(ScriptReadByte(ctx));
+    u8 defEv          = VarGet(ScriptReadByte(ctx));
+    u8 speedEv        = VarGet(ScriptReadByte(ctx));
+    u8 spAtkEv        = VarGet(ScriptReadByte(ctx));
+    u8 spDefEv        = VarGet(ScriptReadByte(ctx));
+    u8 hpIv           = VarGet(ScriptReadByte(ctx));
+    u8 atkIv          = VarGet(ScriptReadByte(ctx));
+    u8 defIv          = VarGet(ScriptReadByte(ctx));
+    u8 speedIv        = VarGet(ScriptReadByte(ctx));
+    u8 spAtkIv        = VarGet(ScriptReadByte(ctx));
+    u8 spDefIv        = VarGet(ScriptReadByte(ctx));
+    u16 move1         = VarGet(ScriptReadHalfword(ctx));
+    u16 move2         = VarGet(ScriptReadHalfword(ctx));
+    u16 move3         = VarGet(ScriptReadHalfword(ctx));
+    u16 move4         = VarGet(ScriptReadHalfword(ctx));
+    bool8 isShiny     = VarGet(ScriptReadByte(ctx));
+    bool8 ggMaxFactor = VarGet(ScriptReadByte(ctx));
 
     u8 evs[NUM_STATS] = {hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv};
     u8 ivs[NUM_STATS] = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[4] = {move1, move2, move3, move4};
 
-    gSpecialVar_Result = CreateCustomMon(species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny);
+    gSpecialVar_Result = CreateCustomMon(species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny, ggMaxFactor);
 }
 
 void Script_GetChosenMonOffensiveEV(void)
