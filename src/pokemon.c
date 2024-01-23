@@ -6448,8 +6448,7 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
         CreateMonWithNature(&mon, species, level, 32, nature);
 
     // shininess
-    if (isShiny)
-        SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
 
     // gigantamax factor
     SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &ggMaxFactor);
@@ -6475,22 +6474,22 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
     // moves
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] == 0 || moves[i] == 0xFF || moves[i] > MOVES_COUNT)
+        if (moves[i] == MOVE_NONE || moves[i] >= MOVES_COUNT)
             continue;
         SetMonMoveSlot(&mon, moves[i], i);
     }
 
     // ability
-    if (abilityNum >= (NUM_ABILITY_SLOTS + 1) || GetAbilityBySpecies(species, abilityNum) == 0)
+    if (abilityNum >= NUM_ABILITY_SLOTS || GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE)
     {
         do {
-            abilityNum = Random() % 3;  // includes hidden abilities
-        } while (GetAbilityBySpecies(species, abilityNum) == 0);
+            abilityNum = Random() % NUM_ABILITY_SLOTS; // includes hidden abilities
+        } while (GetAbilityBySpecies(species, abilityNum) == ABILITY_NONE);
     }
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
 
     // ball
-    if (ball <= POKEBALL_COUNT)
+    if (ball < POKEBALL_COUNT)
         SetMonData(&mon, MON_DATA_POKEBALL, &ball);
 
     // held item
