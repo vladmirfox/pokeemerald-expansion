@@ -5120,17 +5120,34 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     }
     else
     {
-        u8 i;
+        u32 i, j;
         const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
         for (i = 0; i < ARRAY_COUNT(sUniversalMoves); i++)
         {
-            if (sUniversalMoves[i] == move && !gSpeciesInfo[species].tmIlliterate)
+            if (sUniversalMoves[i] == move)
             {
-                if (move == MOVE_TERA_BLAST && GetFormSpeciesId(species, 0) == SPECIES_TERAPAGOS)
+                if (!gSpeciesInfo[species].tmIlliterate)
+                {
+                    if (move == MOVE_TERA_BLAST && GetFormSpeciesId(species, 0) == SPECIES_TERAPAGOS)
+                        return FALSE;
+                    if (GetFormSpeciesId(species, 0) == SPECIES_PYUKUMUKU && (move == MOVE_HIDDEN_POWER || move == MOVE_RETURN || move == MOVE_FRUSTRATION))
+                        return FALSE;
+                    return TRUE;
+                }
+                else
+                {
+                    const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
+
+                    if (!P_TM_LITERACY)
+                        return FALSE;
+
+                    for (j = 0; j < MAX_LEVEL_UP_MOVES && learnset[j].move != LEVEL_UP_MOVE_END; j++)
+                    {
+                        if (learnset[j].move == move)
+                            return TRUE;
+                    }
                     return FALSE;
-                if (GetFormSpeciesId(species, 0) == SPECIES_PYUKUMUKU && (move == MOVE_HIDDEN_POWER || move == MOVE_RETURN || move == MOVE_FRUSTRATION))
-                    return FALSE;
-                return TRUE;
+                }
             }
         }
         for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
