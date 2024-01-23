@@ -355,12 +355,13 @@ void ScriptGiveCustomMon(struct ScriptContext *ctx)
     u16 move4         = VarGet(ScriptReadHalfword(ctx));
     bool8 isShiny     = VarGet(ScriptReadByte(ctx));
     bool8 ggMaxFactor = VarGet(ScriptReadByte(ctx));
+    u8 teraType       = VarGet(ScriptReadByte(ctx));
 
     u8 evs[NUM_STATS] = {hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv};
     u8 ivs[NUM_STATS] = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[4] = {move1, move2, move3, move4};
 
-    gSpecialVar_Result = CreateCustomMon(species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny, ggMaxFactor);
+    gSpecialVar_Result = CreateCustomMon(species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny, ggMaxFactor, teraType);
 }
 
 void Script_GetChosenMonOffensiveEV(void)

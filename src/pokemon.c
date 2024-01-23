@@ -6430,7 +6430,7 @@ u16 GetSpeciesPreEvolution(u16 species)
     return SPECIES_NONE;
 }
 
-u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 gender, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny, bool8 ggMaxFactor)
+u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abilityNum, u8 gender, u8 *evs, u8 *ivs, u16 *moves, bool8 isShiny, bool8 ggMaxFactor, u8 teraType)
 {
     u16 nationalDexNum;
     int sentToPc;
@@ -6447,15 +6447,19 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
     else
         CreateMonWithNature(&mon, species, level, 32, nature);
 
+    // shininess
     if (isShiny)
         SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
 
-    if (ggMaxFactor)
-    {
-        i = TRUE;
-        SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &i);
-    }
+    // gigantamax factor
+    SetMonData(&mon, MON_DATA_GIGANTAMAX_FACTOR, &ggMaxFactor);
 
+    // tera type
+    if (teraType >= NUMBER_OF_MON_TYPES)
+        teraType = gSpeciesInfo[species].types[0];
+    SetMonData(&mon, MON_DATA_TERA_TYPE, &teraType);
+
+    // EV and IV
     for (i = 0; i < NUM_STATS; i++)
     {
         // EV
@@ -6468,6 +6472,7 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
     }
     CalculateMonStats(&mon);
 
+    // moves
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] == 0 || moves[i] == 0xFF || moves[i] > MOVES_COUNT)
