@@ -428,9 +428,6 @@ static u16 RandomizeMonTableLookup(struct Sfc32State* state, enum RandomizerSpec
     u16 minIndex, maxIndex;
     const struct SpeciesTable *table;
 
-    // SPECIES_NONE is not included in these tables.
-    species = species - 1;
-
     table = GetSpeciesTable(mode);
     originalGroup = GetSpeciesGroup(table, species);
     GetGroupRange(originalGroup, mode, &minGroup, &maxGroup);
