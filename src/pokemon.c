@@ -5138,7 +5138,7 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
                 {
                     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
 
-                    if (!P_TM_LITERACY)
+                    if (P_TM_LITERACY < GEN_6)
                         return FALSE;
 
                     for (j = 0; j < MAX_LEVEL_UP_MOVES && learnset[j].move != LEVEL_UP_MOVE_END; j++)
