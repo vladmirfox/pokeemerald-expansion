@@ -6436,15 +6436,16 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
     int sentToPc;
     struct Pokemon mon;
     u32 i;
+    u8 genderRatio = gSpeciesInfo[species].genderRatio;
 
     // check whether to use a specific nature or a random one
     if (nature >= NUM_NATURES)
         nature = Random() % NUM_NATURES;
 
     // create a Pokémon with basic data
-    if ((gender == MON_MALE && gSpeciesInfo[species].genderRatio != MON_FEMALE)
-     || (gender == MON_FEMALE && gSpeciesInfo[species].genderRatio != MON_MALE)
-     || (gender == MON_GENDERLESS && gSpeciesInfo[species].genderRatio == MON_GENDERLESS))
+    if ((gender == MON_MALE && genderRatio != MON_FEMALE && genderRatio != MON_GENDERLESS)
+     || (gender == MON_FEMALE && genderRatio != MON_MALE && genderRatio != MON_GENDERLESS)
+     || (gender == MON_GENDERLESS && genderRatio == MON_GENDERLESS))
         CreateMonWithGenderNatureLetter(&mon, species, level, 32, gender, nature, 0);
     else
         CreateMonWithNature(&mon, species, level, 32, nature);
