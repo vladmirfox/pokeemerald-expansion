@@ -856,6 +856,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         FOOTPRINT(Blipbug)
         LEARNSETS(Blipbug),
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_DOTTLER}),
+        .tmIlliterate = TRUE,
     },
 
     [SPECIES_DOTTLER] =
@@ -1732,6 +1733,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_TART_APPLE, SPECIES_FLAPPLE},
                                 {EVO_ITEM, ITEM_SWEET_APPLE, SPECIES_APPLETUN},
                                 {EVO_ITEM, ITEM_SYRUPY_APPLE, SPECIES_DIPPLIN}),
+        .tmIlliterate = TRUE,
     },
 
 #define FLAPPLE_MISC_INFO                                                   \

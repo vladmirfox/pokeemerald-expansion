@@ -5124,9 +5124,11 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
         const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
         for (i = 0; i < ARRAY_COUNT(sUniversalMoves); i++)
         {
-            if (sUniversalMoves[i] == move)
+            if (sUniversalMoves[i] == move && !gSpeciesInfo[species].tmIlliterate)
             {
                 if (move == MOVE_TERA_BLAST && GetFormSpeciesId(species, 0) == SPECIES_TERAPAGOS)
+                    return FALSE;
+                if (GetFormSpeciesId(species, 0) == SPECIES_PYUKUMUKU && (move == MOVE_HIDDEN_POWER || move == MOVE_RETURN || move == MOVE_FRUSTRATION))
                     return FALSE;
                 return TRUE;
             }

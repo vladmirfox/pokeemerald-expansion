@@ -786,6 +786,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Caterpie)
         LEARNSETS(Caterpie),
         .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
+        .tmIlliterate = TRUE,
     },
 
     [SPECIES_METAPOD] =
@@ -834,6 +835,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Metapod)
         LEARNSETS(Metapod),
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
+        .tmIlliterate = TRUE,
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -981,6 +983,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Weedle)
         LEARNSETS(Weedle),
         .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_KAKUNA}),
+        .tmIlliterate = TRUE,
     },
 
     [SPECIES_KAKUNA] =
@@ -1030,6 +1033,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Kakuna)
         LEARNSETS(Kakuna),
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
+        .tmIlliterate = TRUE,
     },
 
 #define BEEDRILL_ATTACK (P_UPDATED_STATS >= GEN_6 ? 90 : 80)
@@ -10604,6 +10608,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Magikarp)
         LEARNSETS(Magikarp),
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
+        .tmIlliterate = TRUE,
     },
 
 #define GYARADOS_MISC_INFO                                  \
@@ -10827,6 +10832,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Ditto, 2),
         FOOTPRINT(Ditto)
         LEARNSETS(Ditto),
+        .tmIlliterate = TRUE,
     },
 #endif //P_FAMILY_DITTO
 
