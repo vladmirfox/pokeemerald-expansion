@@ -6489,8 +6489,9 @@ u32 CreateCustomMon(u16 species, u8 level, u16 item, u8 ball, u8 nature, u8 abil
     SetMonData(&mon, MON_DATA_ABILITY_NUM, &abilityNum);
 
     // ball
-    if (ball < POKEBALL_COUNT)
-        SetMonData(&mon, MON_DATA_POKEBALL, &ball);
+    if (ball >= POKEBALL_COUNT)
+        ball = ITEM_POKE_BALL;
+    SetMonData(&mon, MON_DATA_POKEBALL, &ball);
 
     // held item
     SetMonData(&mon, MON_DATA_HELD_ITEM, &item);
