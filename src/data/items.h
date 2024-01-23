@@ -11864,6 +11864,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_AUX_GUARD] =
@@ -11882,6 +11883,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_AUX_POWER] =
@@ -11900,6 +11902,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_AUX_POWERGUARD] =
@@ -11919,6 +11922,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_CHOICE_DUMPLING] =
@@ -11929,6 +11933,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_SWAP_SNACK] =
@@ -11939,6 +11944,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_TWICE_SPICED_RADISH] =
@@ -11949,6 +11955,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        //.effect = currently missing
     },
 
     [ITEM_POKESHI_DOLL] =

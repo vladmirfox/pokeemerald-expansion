@@ -125,11 +125,7 @@ const u8 gItemEffect_Remedy[10] = {
 const u8 gItemEffect_FineRemedy[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-#if I_HEALTH_RECOVERY >= GEN_7
-    [6] = 60, // Amount of HP to recover
-#else
-    [6] = 50, // Amount of HP to recover
-#endif
+    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 60 : 50, // Amount of HP to recover
     [7] = -10, // Friendship change, low
     [8] = -10, // Friendship change, mid
     [9] = -15, // Friendship change, high
@@ -138,11 +134,7 @@ const u8 gItemEffect_FineRemedy[10] = {
 const u8 gItemEffect_SuperbRemedy[10] = {
     [4] = ITEM4_HEAL_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-#if I_HEALTH_RECOVERY >= GEN_7
-    [6] = 120, // Amount of HP to recover
-#else
-    [6] = 200, // Amount of HP to recover
-#endif
+    [6] = I_HEALTH_RECOVERY >= GEN_7 ? 120 : 200, // Amount of HP to recover
     [7] = -15, // Friendship change, low
     [8] = -15, // Friendship change, mid
     [9] = -20, // Friendship change, high
