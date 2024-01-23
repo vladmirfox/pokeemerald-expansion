@@ -2918,8 +2918,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         ICON(Wynaut, 0),
         FOOTPRINT(Wynaut)
         LEARNSETS(Wynaut),
-        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_WOBBUFFET}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_WOBBUFFET}),
     },
 #endif //P_GEN_3_CROSS_EVOS
 

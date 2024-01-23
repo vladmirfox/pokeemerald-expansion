@@ -783,8 +783,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         ICON(Kricketot, 2),
         FOOTPRINT(Kricketot)
         LEARNSETS(Kricketot),
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_KRICKETUNE}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_KRICKETUNE}),
     },
 
     [SPECIES_KRICKETUNE] =
@@ -1486,8 +1486,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         ICON(Combee, 0),
         FOOTPRINT(Combee)
         LEARNSETS(Combee),
-        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 21, SPECIES_VESPIQUEN}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 21, SPECIES_VESPIQUEN}),
     },
 
     [SPECIES_VESPIQUEN] =

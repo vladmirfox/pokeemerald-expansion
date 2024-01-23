@@ -785,8 +785,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Caterpie, 1),
         FOOTPRINT(Caterpie)
         LEARNSETS(Caterpie),
-        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
     },
 
     [SPECIES_METAPOD] =
@@ -834,8 +834,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Metapod, 1),
         FOOTPRINT(Metapod)
         LEARNSETS(Metapod),
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -982,8 +982,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Weedle, 2),
         FOOTPRINT(Weedle)
         LEARNSETS(Weedle),
-        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_KAKUNA}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_KAKUNA}),
     },
 
     [SPECIES_KAKUNA] =
@@ -1032,8 +1032,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Kakuna, 2),
         FOOTPRINT(Kakuna)
         LEARNSETS(Kakuna),
-        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
     },
 
 #define BEEDRILL_ATTACK (P_UPDATED_STATS >= GEN_6 ? 90 : 80)
@@ -10607,8 +10607,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         ICON(Magikarp, 0),
         FOOTPRINT(Magikarp)
         LEARNSETS(Magikarp),
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     },
 
 #define GYARADOS_MISC_INFO                                  \

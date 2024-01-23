@@ -5067,7 +5067,8 @@ bool8 TryIncrementMonLevel(struct Pokemon *mon)
     }
 }
 
-static const u16 sUniversalMoves[] = {
+static const u16 sUniversalMoves[] =
+{
     MOVE_BIDE,
     MOVE_FRUSTRATION,
     MOVE_HIDDEN_POWER,

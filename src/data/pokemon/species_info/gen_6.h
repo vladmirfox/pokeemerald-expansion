@@ -774,8 +774,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         ICON(Scatterbug, 1),
         FOOTPRINT(Scatterbug)
         LEARNSETS(Scatterbug),
-        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA}),
     },
 
     [SPECIES_SPEWPA] =
@@ -823,8 +823,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         ICON(Spewpa, 1),
         FOOTPRINT(Spewpa)
         LEARNSETS(Spewpa),
-        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ICY_SNOW}),
         .tmIlliterate = TRUE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ICY_SNOW}),
     },
 
 #define VIVILLON_MISC_INFO(form, color, iconPal)                                            \
