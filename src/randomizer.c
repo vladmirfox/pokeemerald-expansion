@@ -244,10 +244,12 @@ static inline u16 GetSpeciesGroup(const struct SpeciesTable* table, u16 species)
         return GROUP_INVALID;
     species -= 1;
     groupEntry = table->speciesGroups[table->speciesIndex[species]];
+
     #ifndef NDEBUG
         MgbaPrintf(MGBA_LOG_INFO, "GetSpeciesGroup: input %lu species %lu group %lu",
             (unsigned long)species+1, (unsigned long)groupEntry.species, (unsigned long)groupEntry.group);
     #endif
+
     return groupEntry.group;
 
 }
