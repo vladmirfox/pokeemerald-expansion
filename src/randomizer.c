@@ -294,7 +294,8 @@ static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGr
     }
     *start = leftBound;
 
-    leftBound = 0;
+    // It isn't necessary to reset leftBound because the end point will be
+    // at least leftBound.
     rightBound = RZ_SPECIES_COUNT;
 
     // Do rightmost binary search to find the upper limit.
