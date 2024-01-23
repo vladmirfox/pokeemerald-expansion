@@ -239,15 +239,27 @@ struct SpeciesTable
 
 static inline u16 GetSpeciesGroup(const struct SpeciesTable* table, u16 species)
 {
+    struct SpeciesGroupEntry groupEntry;
     if (species == SPECIES_NONE)
         return GROUP_INVALID;
     species -= 1;
-    return table->speciesGroups[table->speciesIndex[species]].group;
+    groupEntry = table->speciesGroups[table->speciesIndex[species]];
+    #ifndef NDEBUG
+        MgbaPrintf(MGBA_LOG_INFO, "GetSpeciesGroup: input %lu species %lu group %lu",
+            (unsigned long)species+1, (unsigned long)groupEntry.species, (unsigned long)groupEntry.group);
+    #endif
+    return groupEntry.group;
 
 }
 
 static void GetGroupRange(u16 group, enum RandomizerSpeciesMode mode, u16 *resultMin, u16 *resultMax)
 {
+    if (group == GROUP_INVALID)
+    {
+        *resultMax = *resultMin = group;
+        return;
+    }
+
     if (mode == MON_RANDOM_BST)
     {
         // Choose a 10.24% range around the base BST.
@@ -262,6 +274,7 @@ static void GetGroupRange(u16 group, enum RandomizerSpeciesMode mode, u16 *resul
         *resultMax = *resultMin = group;
 }
 
+// Returns the range in the group table that covers the given group range.
 static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGroup, u16 maxGroup, u16 *start, u16 *end)
 {
     u16 index, leftBound, rightBound;
@@ -305,28 +318,39 @@ struct RamSpeciesTable
 
 EWRAM_DATA static struct RamSpeciesTable sRamSpeciesTable = {0};
 
-static u16 CalcSpeciesGroupBST(u16 species)
+static void FillSpeciesGroupsBST(struct SpeciesGroupEntry* entries)
 {
-    const struct SpeciesInfo *curSpeciesInfo;
-    u16 bst;
-    curSpeciesInfo = &gSpeciesInfo[species];
+    u16 i;
+    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    {
+        struct SpeciesGroupEntry entry;
+        const struct SpeciesInfo *curSpeciesInfo;
+        u16 bst;
+        curSpeciesInfo = &gSpeciesInfo[i];
 
-    bst = curSpeciesInfo->baseAttack;
-    bst += curSpeciesInfo->baseDefense;
-    bst += curSpeciesInfo->baseSpAttack;
-    bst += curSpeciesInfo->baseSpDefense;
-    bst += curSpeciesInfo->baseHP;
-    bst += curSpeciesInfo->baseSpeed;
+        bst = curSpeciesInfo->baseAttack;
+        bst += curSpeciesInfo->baseDefense;
+        bst += curSpeciesInfo->baseSpAttack;
+        bst += curSpeciesInfo->baseSpDefense;
+        bst += curSpeciesInfo->baseHP;
+        bst += curSpeciesInfo->baseSpeed;
 
-    return bst;
+        entry.species = i;
+        entry.group = bst;
+        entries[i-1] = entry;
+    }
 }
 
-static u16 CalcSpeciesGroupLegendary(u16 species)
+static void FillSpeciesGroupsLegendary(struct SpeciesGroupEntry* entries)
 {
-    if (IsRandomizerLegendary(species))
-        return 1;
-
-    return 0;
+    u16 i;
+    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    {
+        struct SpeciesGroupEntry entry;
+        entry.species = i;
+        entry.group = IsRandomizerLegendary(i);
+        entries[i-1] = entry;
+    }
 }
 
 static inline u16 LeftChildIndex(u16 index)
@@ -337,34 +361,24 @@ static inline u16 LeftChildIndex(u16 index)
 static void BuildRandomizerSpeciesTable(enum RandomizerSpeciesMode mode)
 {
     u16 i, start, end;
-    u16 (*dataFunction)(u16);
     struct SpeciesGroupEntry temp;
     struct SpeciesGroupEntry *groupTable;
 
     sRamSpeciesTable.tableInitialized = TRUE;
     sRamSpeciesTable.mode = mode;
+    groupTable = sRamSpeciesTable.speciesTable.speciesGroups;
 
     switch(mode)
     {
         case MON_RANDOM_LEGEND_AWARE:
-            dataFunction = &CalcSpeciesGroupLegendary;
+            FillSpeciesGroupsLegendary(groupTable);
             break;
         case MON_RANDOM_BST:
-            dataFunction = &CalcSpeciesGroupBST;
+            FillSpeciesGroupsBST(groupTable);
             break;
         case MON_RANDOM:
         default:
             return;
-    }
-
-    groupTable = sRamSpeciesTable.speciesTable.speciesGroups;
-
-    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
-    {
-        const u16 tableIndex = i-1;
-        temp.species = i;
-        temp.group = dataFunction(i);
-        groupTable[tableIndex] = temp;
     }
 
     // Heap sort the table.
@@ -403,6 +417,8 @@ static void BuildRandomizerSpeciesTable(enum RandomizerSpeciesMode mode)
         }
     }
 
+
+    // Build the species index. This is needed for getting a group from a species.
     for (i = 0; i < RZ_SPECIES_COUNT; i++)
     {
         u16 targetIndex = groupTable[i].species - 1;
@@ -430,6 +446,10 @@ static u16 RandomizeMonTableLookup(struct Sfc32State* state, enum RandomizerSpec
 
     table = GetSpeciesTable(mode);
     originalGroup = GetSpeciesGroup(table, species);
+
+    if (originalGroup == GROUP_INVALID)
+        return species;
+
     GetGroupRange(originalGroup, mode, &minGroup, &maxGroup);
     GetIndicesFromGroupRange(table, minGroup, maxGroup, &minIndex, &maxIndex);
     resultIndex = RandomizerNextRange(state, maxIndex - minIndex + 1) + minIndex;
