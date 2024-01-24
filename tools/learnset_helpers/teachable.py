@@ -30,6 +30,17 @@ with open("./include/constants/tms_hms.h", 'r') as file:
         if not 'MOVE_' + x in tm_moves:
             tm_moves.append('MOVE_' + x)
 
+# look up universal moves to exclude them
+universal_moves = []
+with open("./src/pokemon.c", "r") as file:
+    for x in re.findall("static const u16 sUniversalMoves\[\] =(.|\n)*?{((.|\n)*?)};", file.read())[0]:
+        x = x.replace("\n", "")
+        for y in x.split(","):
+            y = y.strip()
+            if y == "":
+                continue
+            universal_moves.append(y)
+
 # get compatibility from jsons
 def construct_compatibility_dict(force_custom_check):
     dict_out = {}
@@ -120,12 +131,16 @@ for mon in list_of_mons:
         print("Unable to find %s in json" % mon)
         continue
     for move in tm_moves:
+        if move in universal_moves:
+            continue
         if move in tm_learnset:
             continue
         if move in compatibility_dict[mon_parsed]:
             tm_learnset.append(move)
             continue
     for move in tutor_moves:
+        if move in universal_moves:
+            continue
         if move in tutor_learnset:
             continue
         if move in compatibility_dict[mon_parsed]:
@@ -150,6 +165,8 @@ for move in tm_moves + tutor_moves:
     if len(move) > longest_move_name:
         longest_move_name = len(move)
 longest_move_name += 2 # + 2 for a hyphen and a space
+if longest_move_name < len("Found near-universal moves:"):
+    longest_move_name = len("Found near-universal moves:")
 
 def header_print(str):
     global header
@@ -163,6 +180,11 @@ header += "// " + longest_move_name * "*" + " //\n"
 header_print("Found tutor moves:")
 tutor_moves.sort() # alphabetically sort tutor moves for easier referencing
 for move in tutor_moves: 
+    header_print("- " + move)
+header += "// " + longest_move_name * "*" + " //\n"
+header_print("Found near-universal moves:")
+universal_moves.sort() # alphabetically sort near-universal moves for easier referencing
+for move in universal_moves:
     header_print("- " + move)
 header += "// " + longest_move_name * "*" + " //\n\n"
 
