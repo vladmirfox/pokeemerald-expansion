@@ -444,7 +444,10 @@ struct SpeciesInfo /*0x8C*/
 
 struct BattleMove
 {
-    u8 name[MOVE_NAME_LENGTH + 1];
+    union {
+        u8 moveName[MOVE_NAME_LENGTH + 1];
+        u8 zMoveName[Z_MOVE_NAME_LENGTH + 1];
+    } name;
     const u8 *description;
     u16 effect;
     u8 power;

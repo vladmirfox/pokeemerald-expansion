@@ -14,7 +14,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 {
     [MOVE_NONE] =
     {
-        .name = _("-"),
+        .name = { .moveName = _("-") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 0,
@@ -31,7 +31,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POUND] =
     {
-        .name = _("Pound"),
+        .name = { .moveName = _("Pound") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -47,7 +47,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_KARATE_CHOP] =
     {
-        .name = _("Karate Chop"),
+        .name = { .moveName = _("Karate Chop") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -63,7 +63,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_SLAP] =
     {
-        .name = _("Double Slap"),
+        .name = { .moveName = _("Double Slap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 15,
@@ -78,7 +78,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COMET_PUNCH] =
     {
-        .name = _("Comet Punch"),
+        .name = { .moveName = _("Comet Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 18,
@@ -94,7 +94,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEGA_PUNCH] =
     {
-        .name = _("Mega Punch"),
+        .name = { .moveName = _("Mega Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -110,7 +110,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PAY_DAY] =
     {
-        .name = _("Pay Day"),
+        .name = { .moveName = _("Pay Day") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -127,7 +127,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_PUNCH] =
     {
-        .name = _("Fire Punch"),
+        .name = { .moveName = _("Fire Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -148,7 +148,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_PUNCH] =
     {
-        .name = _("Ice Punch"),
+        .name = { .moveName = _("Ice Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -169,7 +169,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER_PUNCH] =
     {
-        .name = _("ThunderPunch"),
+        .name = { .moveName = _("ThunderPunch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -190,7 +190,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SCRATCH] =
     {
-        .name = _("Scratch"),
+        .name = { .moveName = _("Scratch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -205,7 +205,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VISE_GRIP] =
     {
-        .name = _("Vise Grip"),
+        .name = { .moveName = _("Vise Grip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -220,7 +220,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUILLOTINE] =
     {
-        .name = _("Guillotine"),
+        .name = { .moveName = _("Guillotine") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_OHKO,
         .power = 1,
@@ -235,7 +235,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAZOR_WIND] =
     {
-        .name = _("Razor Wind"),
+        .name = { .moveName = _("Razor Wind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 80,
@@ -254,7 +254,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWORDS_DANCE] =
     {
-        .name = _("Swords Dance"),
+        .name = { .moveName = _("Swords Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_UP_2,
         .power = 0,
@@ -271,7 +271,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CUT] =
     {
-        .name = _("Cut"),
+        .name = { .moveName = _("Cut") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -287,7 +287,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUST] =
     {
-        .name = _("Gust"),
+        .name = { .moveName = _("Gust") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GUST,
         .power = 40,
@@ -304,7 +304,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WING_ATTACK] =
     {
-        .name = _("Wing Attack"),
+        .name = { .moveName = _("Wing Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -319,7 +319,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WHIRLWIND] =
     {
-        .name = _("Whirlwind"),
+        .name = { .moveName = _("Whirlwind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROAR,
         .power = 0,
@@ -340,7 +340,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLY] =
     {
-        .name = _("Fly"),
+        .name = { .moveName = _("Fly") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 90 : 70,
@@ -360,7 +360,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BIND] =
     {
-        .name = _("Bind"),
+        .name = { .moveName = _("Bind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 15,
@@ -379,7 +379,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLAM] =
     {
-        .name = _("Slam"),
+        .name = { .moveName = _("Slam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -395,7 +395,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VINE_WHIP] =
     {
-        .name = _("Vine Whip"),
+        .name = { .moveName = _("Vine Whip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .pp = 25,
@@ -416,7 +416,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STOMP] =
     {
-        .name = _("Stomp"),
+        .name = { .moveName = _("Stomp") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -438,7 +438,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_KICK] =
     {
-        .name = _("Double Kick"),
+        .name = { .moveName = _("Double Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 30,
@@ -454,7 +454,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEGA_KICK] =
     {
-        .name = _("Mega Kick"),
+        .name = { .moveName = _("Mega Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -469,7 +469,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_JUMP_KICK] =
     {
-        .name = _("Jump Kick"),
+        .name = { .moveName = _("Jump Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .power = 100,
@@ -491,7 +491,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROLLING_KICK] =
     {
-        .name = _("Rolling Kick"),
+        .name = { .moveName = _("Rolling Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -512,7 +512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SAND_ATTACK] =
     {
-        .name = _("Sand Attack"),
+        .name = { .moveName = _("Sand Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACCURACY_DOWN,
         .power = 0,
@@ -528,7 +528,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEADBUTT] =
     {
-        .name = _("Headbutt"),
+        .name = { .moveName = _("Headbutt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -548,7 +548,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HORN_ATTACK] =
     {
-        .name = _("Horn Attack"),
+        .name = { .moveName = _("Horn Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -563,7 +563,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FURY_ATTACK] =
     {
-        .name = _("Fury Attack"),
+        .name = { .moveName = _("Fury Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 15,
@@ -578,7 +578,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HORN_DRILL] =
     {
-        .name = _("Horn Drill"),
+        .name = { .moveName = _("Horn Drill") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_OHKO,
         .power = 1,
@@ -593,7 +593,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TACKLE] =
     {
-        .name = _("Tackle"),
+        .name = { .moveName = _("Tackle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_7
             .power = 40,
@@ -614,7 +614,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BODY_SLAM] =
     {
-        .name = _("Body Slam"),
+        .name = { .moveName = _("Body Slam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -636,7 +636,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WRAP] =
     {
-        .name = _("Wrap"),
+        .name = { .moveName = _("Wrap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 15,
@@ -654,7 +654,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAKE_DOWN] =
     {
-        .name = _("Take Down"),
+        .name = { .moveName = _("Take Down") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -670,7 +670,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THRASH] =
     {
-        .name = _("Thrash"),
+        .name = { .moveName = _("Thrash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 120 : 90,
@@ -690,7 +690,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_EDGE] =
     {
-        .name = _("Double-Edge"),
+        .name = { .moveName = _("Double-Edge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -706,7 +706,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAIL_WHIP] =
     {
-        .name = _("Tail Whip"),
+        .name = { .moveName = _("Tail Whip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_DOWN,
         .power = 0,
@@ -722,7 +722,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_STING] =
     {
-        .name = _("Poison Sting"),
+        .name = { .moveName = _("Poison Sting") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 15,
@@ -741,7 +741,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TWINEEDLE] =
     {
-        .name = _("Twineedle"),
+        .name = { .moveName = _("Twineedle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 25,
@@ -762,7 +762,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PIN_MISSILE] =
     {
-        .name = _("Pin Missile"),
+        .name = { .moveName = _("Pin Missile") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 25 : 14,
@@ -776,7 +776,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEER] =
     {
-        .name = _("Leer"),
+        .name = { .moveName = _("Leer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_DOWN,
         .power = 0,
@@ -792,7 +792,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BITE] =
     {
-        .name = _("Bite"),
+        .name = { .moveName = _("Bite") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -813,7 +813,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GROWL] =
     {
-        .name = _("Growl"),
+        .name = { .moveName = _("Growl") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_DOWN,
         .power = 0,
@@ -831,7 +831,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROAR] =
     {
-        .name = _("Roar"),
+        .name = { .moveName = _("Roar") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROAR,
         .power = 0,
@@ -852,7 +852,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SING] =
     {
-        .name = _("Sing"),
+        .name = { .moveName = _("Sing") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -870,7 +870,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUPERSONIC] =
     {
-        .name = _("Supersonic"),
+        .name = { .moveName = _("Supersonic") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CONFUSE,
         .power = 0,
@@ -888,7 +888,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SONIC_BOOM] =
     {
-        .name = _("Sonic Boom"),
+        .name = { .moveName = _("Sonic Boom") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FIXED_DAMAGE_ARG,
         .power = 1,
@@ -903,7 +903,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DISABLE] =
     {
-        .name = _("Disable"),
+        .name = { .moveName = _("Disable") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .accuracy = 100,
@@ -926,7 +926,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACID] =
     {
-        .name = _("Acid"),
+        .name = { .moveName = _("Acid") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -945,7 +945,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EMBER] =
     {
-        .name = _("Ember"),
+        .name = { .moveName = _("Ember") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -964,7 +964,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLAMETHROWER] =
     {
-        .name = _("Flamethrower"),
+        .name = { .moveName = _("Flamethrower") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95,
@@ -983,7 +983,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIST] =
     {
-        .name = _("Mist"),
+        .name = { .moveName = _("Mist") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIST,
         .power = 0,
@@ -1001,7 +1001,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATER_GUN] =
     {
-        .name = _("Water Gun"),
+        .name = { .moveName = _("Water Gun") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -1015,7 +1015,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYDRO_PUMP] =
     {
-        .name = _("Hydro Pump"),
+        .name = { .moveName = _("Hydro Pump") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
@@ -1029,7 +1029,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SURF] =
     {
-        .name = _("Surf"),
+        .name = { .moveName = _("Surf") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95,
@@ -1045,7 +1045,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_BEAM] =
     {
-        .name = _("Ice Beam"),
+        .name = { .moveName = _("Ice Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95,
@@ -1066,7 +1066,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLIZZARD] =
     {
-        .name = _("Blizzard"),
+        .name = { .moveName = _("Blizzard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = B_BLIZZARD_HAIL >= GEN_4 ? EFFECT_BLIZZARD : EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
@@ -1086,7 +1086,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYBEAM] =
     {
-        .name = _("Psybeam"),
+        .name = { .moveName = _("Psybeam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -1105,7 +1105,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BUBBLE_BEAM] =
     {
-        .name = _("Bubble Beam"),
+        .name = { .moveName = _("Bubble Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -1124,7 +1124,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AURORA_BEAM] =
     {
-        .name = _("Aurora Beam"),
+        .name = { .moveName = _("Aurora Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -1143,7 +1143,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYPER_BEAM] =
     {
-        .name = _("Hyper Beam"),
+        .name = { .moveName = _("Hyper Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -1162,7 +1162,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PECK] =
     {
-        .name = _("Peck"),
+        .name = { .moveName = _("Peck") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 35,
@@ -1177,7 +1177,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRILL_PECK] =
     {
-        .name = _("Drill Peck"),
+        .name = { .moveName = _("Drill Peck") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -1192,7 +1192,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUBMISSION] =
     {
-        .name = _("Submission"),
+        .name = { .moveName = _("Submission") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -1208,7 +1208,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LOW_KICK] =
     {
-        .name = _("Low Kick"),
+        .name = { .moveName = _("Low Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LOW_KICK,
         .power = 1,
@@ -1223,7 +1223,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COUNTER] =
     {
-        .name = _("Counter"),
+        .name = { .moveName = _("Counter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COUNTER,
         .power = 1,
@@ -1243,7 +1243,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SEISMIC_TOSS] =
     {
-        .name = _("Seismic Toss"),
+        .name = { .moveName = _("Seismic Toss") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LEVEL_DAMAGE,
         .power = 1,
@@ -1259,7 +1259,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STRENGTH] =
     {
-        .name = _("Strength"),
+        .name = { .moveName = _("Strength") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -1274,7 +1274,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ABSORB] =
     {
-        .name = _("Absorb"),
+        .name = { .moveName = _("Absorb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = 20,
@@ -1290,7 +1290,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEGA_DRAIN] =
     {
-        .name = _("Mega Drain"),
+        .name = { .moveName = _("Mega Drain") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = 40,
@@ -1306,7 +1306,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEECH_SEED] =
     {
-        .name = _("Leech Seed"),
+        .name = { .moveName = _("Leech Seed") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LEECH_SEED,
         .power = 0,
@@ -1322,7 +1322,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GROWTH] =
     {
-        .name = _("Growth"),
+        .name = { .moveName = _("Growth") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = B_GROWTH_STAT_RAISE >= GEN_5 ? EFFECT_GROWTH : EFFECT_SPECIAL_ATTACK_UP,
         .power = 0,
@@ -1340,7 +1340,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAZOR_LEAF] =
     {
-        .name = _("Razor Leaf"),
+        .name = { .moveName = _("Razor Leaf") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -1356,7 +1356,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SOLAR_BEAM] =
     {
-        .name = _("Solar Beam"),
+        .name = { .moveName = _("Solar Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOLAR_BEAM,
         .power = 120,
@@ -1373,7 +1373,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_POWDER] =
     {
-        .name = _("PoisonPowder"),
+        .name = { .moveName = _("PoisonPowder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POISON,
         .power = 0,
@@ -1390,7 +1390,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STUN_SPORE] =
     {
-        .name = _("Stun Spore"),
+        .name = { .moveName = _("Stun Spore") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PARALYZE,
         .power = 0,
@@ -1407,7 +1407,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLEEP_POWDER] =
     {
-        .name = _("Sleep Powder"),
+        .name = { .moveName = _("Sleep Powder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -1424,7 +1424,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PETAL_DANCE] =
     {
-        .name = _("Petal Dance"),
+        .name = { .moveName = _("Petal Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .power = 120,
@@ -1451,7 +1451,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STRING_SHOT] =
     {
-        .name = _("String Shot"),
+        .name = { .moveName = _("String Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_SPEED_DOWN_2 : EFFECT_SPEED_DOWN,
         .power = 0,
@@ -1467,7 +1467,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_RAGE] =
     {
-        .name = _("Dragon Rage"),
+        .name = { .moveName = _("Dragon Rage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FIXED_DAMAGE_ARG,
         .power = 1,
@@ -1483,7 +1483,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_SPIN] =
     {
-        .name = _("Fire Spin"),
+        .name = { .moveName = _("Fire Spin") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 35 : 15,
@@ -1501,7 +1501,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER_SHOCK] =
     {
-        .name = _("ThunderShock"),
+        .name = { .moveName = _("ThunderShock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -1520,7 +1520,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDERBOLT] =
     {
-        .name = _("Thunderbolt"),
+        .name = { .moveName = _("Thunderbolt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95,
@@ -1539,7 +1539,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER_WAVE] =
     {
-        .name = _("Thunder Wave"),
+        .name = { .moveName = _("Thunder Wave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PARALYZE,
         .power = 0,
@@ -1555,7 +1555,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER] =
     {
-        .name = _("Thunder"),
+        .name = { .moveName = _("Thunder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_THUNDER,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
@@ -1575,7 +1575,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_THROW] =
     {
-        .name = _("Rock Throw"),
+        .name = { .moveName = _("Rock Throw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -1589,7 +1589,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EARTHQUAKE] =
     {
-        .name = _("Earthquake"),
+        .name = { .moveName = _("Earthquake") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EARTHQUAKE,
         .power = 100,
@@ -1606,7 +1606,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FISSURE] =
     {
-        .name = _("Fissure"),
+        .name = { .moveName = _("Fissure") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_OHKO,
         .power = 1,
@@ -1622,7 +1622,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DIG] =
     {
-        .name = _("Dig"),
+        .name = { .moveName = _("Dig") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 80 : 60,
@@ -1642,7 +1642,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TOXIC] =
     {
-        .name = _("Toxic"),
+        .name = { .moveName = _("Toxic") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TOXIC,
         .power = 0,
@@ -1658,7 +1658,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONFUSION] =
     {
-        .name = _("Confusion"),
+        .name = { .moveName = _("Confusion") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -1677,7 +1677,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHIC] =
     {
-        .name = _("Psychic"),
+        .name = { .moveName = _("Psychic") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -1696,7 +1696,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYPNOSIS] =
     {
-        .name = _("Hypnosis"),
+        .name = { .moveName = _("Hypnosis") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -1712,7 +1712,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEDITATE] =
     {
-        .name = _("Meditate"),
+        .name = { .moveName = _("Meditate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_UP,
         .power = 0,
@@ -1730,7 +1730,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AGILITY] =
     {
-        .name = _("Agility"),
+        .name = { .moveName = _("Agility") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPEED_UP_2,
         .power = 0,
@@ -1748,7 +1748,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_QUICK_ATTACK] =
     {
-        .name = _("Quick Attack"),
+        .name = { .moveName = _("Quick Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -1763,7 +1763,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGE] =
     {
-        .name = _("Rage"),
+        .name = { .moveName = _("Rage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAGE,
         .power = 20,
@@ -1778,7 +1778,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TELEPORT] =
     {
-        .name = _("Teleport"),
+        .name = { .moveName = _("Teleport") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TELEPORT,
         .power = 0,
@@ -1795,7 +1795,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NIGHT_SHADE] =
     {
-        .name = _("Night Shade"),
+        .name = { .moveName = _("Night Shade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LEVEL_DAMAGE,
         .power = 1,
@@ -1809,7 +1809,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIMIC] =
     {
-        .name = _("Mimic"),
+        .name = { .moveName = _("Mimic") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIMIC,
         .power = 0,
@@ -1832,7 +1832,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SCREECH] =
     {
-        .name = _("Screech"),
+        .name = { .moveName = _("Screech") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_DOWN_2,
         .power = 0,
@@ -1850,7 +1850,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_TEAM] =
     {
-        .name = _("Double Team"),
+        .name = { .moveName = _("Double Team") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EVASION_UP,
         .power = 0,
@@ -1868,7 +1868,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RECOVER] =
     {
-        .name = _("Recover"),
+        .name = { .moveName = _("Recover") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_9
             .pp = 5,
@@ -1893,7 +1893,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HARDEN] =
     {
-        .name = _("Harden"),
+        .name = { .moveName = _("Harden") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP,
         .power = 0,
@@ -1911,7 +1911,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MINIMIZE] =
     {
-        .name = _("Minimize"),
+        .name = { .moveName = _("Minimize") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MINIMIZE,
         .power = 0,
@@ -1929,7 +1929,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SMOKESCREEN] =
     {
-        .name = _("Smokescreen"),
+        .name = { .moveName = _("Smokescreen") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACCURACY_DOWN,
         .power = 0,
@@ -1945,7 +1945,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONFUSE_RAY] =
     {
-        .name = _("Confuse Ray"),
+        .name = { .moveName = _("Confuse Ray") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CONFUSE,
         .power = 0,
@@ -1961,7 +1961,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WITHDRAW] =
     {
-        .name = _("Withdraw"),
+        .name = { .moveName = _("Withdraw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP,
         .power = 0,
@@ -1979,7 +1979,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DEFENSE_CURL] =
     {
-        .name = _("Defense Curl"),
+        .name = { .moveName = _("Defense Curl") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_CURL,
         .power = 0,
@@ -1997,7 +1997,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BARRIER] =
     {
-        .name = _("Barrier"),
+        .name = { .moveName = _("Barrier") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP_2,
         .power = 0,
@@ -2015,7 +2015,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LIGHT_SCREEN] =
     {
-        .name = _("Light Screen"),
+        .name = { .moveName = _("Light Screen") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LIGHT_SCREEN,
         .power = 0,
@@ -2033,7 +2033,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HAZE] =
     {
-        .name = _("Haze"),
+        .name = { .moveName = _("Haze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HAZE,
         .power = 0,
@@ -2051,7 +2051,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REFLECT] =
     {
-        .name = _("Reflect"),
+        .name = { .moveName = _("Reflect") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REFLECT,
         .power = 0,
@@ -2069,7 +2069,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FOCUS_ENERGY] =
     {
-        .name = _("Focus Energy"),
+        .name = { .moveName = _("Focus Energy") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOCUS_ENERGY,
         .power = 0,
@@ -2087,7 +2087,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BIDE] =
     {
-        .name = _("Bide"),
+        .name = { .moveName = _("Bide") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BIDE,
         .power = 1,
@@ -2105,7 +2105,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METRONOME] =
     {
-        .name = _("Metronome"),
+        .name = { .moveName = _("Metronome") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_METRONOME,
         .power = 0,
@@ -2128,7 +2128,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIRROR_MOVE] =
     {
-        .name = _("Mirror Move"),
+        .name = { .moveName = _("Mirror Move") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIRROR_MOVE,
         .power = 0,
@@ -2150,7 +2150,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SELF_DESTRUCT] =
     {
-        .name = _("SelfDestruct"),
+        .name = { .moveName = _("SelfDestruct") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EXPLOSION,
         .power = 200,
@@ -2165,7 +2165,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EGG_BOMB] =
     {
-        .name = _("Egg Bomb"),
+        .name = { .moveName = _("Egg Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -2180,7 +2180,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LICK] =
     {
-        .name = _("Lick"),
+        .name = { .moveName = _("Lick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 30 : 20,
@@ -2200,7 +2200,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SMOG] =
     {
-        .name = _("Smog"),
+        .name = { .moveName = _("Smog") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 30 : 20,
@@ -2219,7 +2219,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLUDGE] =
     {
-        .name = _("Sludge"),
+        .name = { .moveName = _("Sludge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -2238,7 +2238,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BONE_CLUB] =
     {
-        .name = _("Bone Club"),
+        .name = { .moveName = _("Bone Club") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -2257,7 +2257,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_BLAST] =
     {
-        .name = _("Fire Blast"),
+        .name = { .moveName = _("Fire Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
@@ -2276,7 +2276,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATERFALL] =
     {
-        .name = _("Waterfall"),
+        .name = { .moveName = _("Waterfall") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -2298,7 +2298,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CLAMP] =
     {
-        .name = _("Clamp"),
+        .name = { .moveName = _("Clamp") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 35,
@@ -2317,7 +2317,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWIFT] =
     {
-        .name = _("Swift"),
+        .name = { .moveName = _("Swift") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -2331,7 +2331,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKULL_BASH] =
     {
-        .name = _("Skull Bash"),
+        .name = { .moveName = _("Skull Bash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SKULL_BASH,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 130 : 100,
@@ -2349,7 +2349,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIKE_CANNON] =
     {
-        .name = _("Spike Cannon"),
+        .name = { .moveName = _("Spike Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 20,
@@ -2363,7 +2363,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONSTRICT] =
     {
-        .name = _("Constrict"),
+        .name = { .moveName = _("Constrict") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 10,
@@ -2383,7 +2383,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AMNESIA] =
     {
-        .name = _("Amnesia"),
+        .name = { .moveName = _("Amnesia") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_DEFENSE_UP_2,
         .power = 0,
@@ -2401,7 +2401,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_KINESIS] =
     {
-        .name = _("Kinesis"),
+        .name = { .moveName = _("Kinesis") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACCURACY_DOWN,
         .power = 0,
@@ -2417,7 +2417,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SOFT_BOILED] =
     {
-        .name = _("Soft-Boiled"),
+        .name = { .moveName = _("Soft-Boiled") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOFTBOILED,
         .power = 0,
@@ -2436,7 +2436,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HIGH_JUMP_KICK] =
     {
-        .name = _("HighJumpKick"),
+        .name = { .moveName = _("HighJumpKick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .power = 130,
@@ -2458,7 +2458,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GLARE] =
     {
-        .name = _("Glare"),
+        .name = { .moveName = _("Glare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .accuracy = 100,
@@ -2480,7 +2480,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DREAM_EATER] =
     {
-        .name = _("Dream Eater"),
+        .name = { .moveName = _("Dream Eater") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DREAM_EATER,
         .power = 100,
@@ -2495,7 +2495,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_GAS] =
     {
-        .name = _("Poison Gas"),
+        .name = { .moveName = _("Poison Gas") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .accuracy = 90,
@@ -2517,7 +2517,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BARRAGE] =
     {
-        .name = _("Barrage"),
+        .name = { .moveName = _("Barrage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 15,
@@ -2532,7 +2532,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEECH_LIFE] =
     {
-        .name = _("Leech Life"),
+        .name = { .moveName = _("Leech Life") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 80 : 20,
@@ -2549,7 +2549,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LOVELY_KISS] =
     {
-        .name = _("Lovely Kiss"),
+        .name = { .moveName = _("Lovely Kiss") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -2565,7 +2565,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKY_ATTACK] =
     {
-        .name = _("Sky Attack"),
+        .name = { .moveName = _("Sky Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 140,
@@ -2590,7 +2590,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRANSFORM] =
     {
-        .name = _("Transform"),
+        .name = { .moveName = _("Transform") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRANSFORM,
         .power = 0,
@@ -2613,7 +2613,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BUBBLE] =
     {
-        .name = _("Bubble"),
+        .name = { .moveName = _("Bubble") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 40 : 20,
@@ -2632,7 +2632,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DIZZY_PUNCH] =
     {
-        .name = _("Dizzy Punch"),
+        .name = { .moveName = _("Dizzy Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -2653,7 +2653,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPORE] =
     {
-        .name = _("Spore"),
+        .name = { .moveName = _("Spore") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -2670,7 +2670,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLASH] =
     {
-        .name = _("Flash"),
+        .name = { .moveName = _("Flash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACCURACY_DOWN,
         .power = 0,
@@ -2686,7 +2686,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYWAVE] =
     {
-        .name = _("Psywave"),
+        .name = { .moveName = _("Psywave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYWAVE,
         .power = 1,
@@ -2700,7 +2700,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPLASH] =
     {
-        .name = _("Splash"),
+        .name = { .moveName = _("Splash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DO_NOTHING,
         .power = 0,
@@ -2718,7 +2718,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACID_ARMOR] =
     {
-        .name = _("Acid Armor"),
+        .name = { .moveName = _("Acid Armor") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP_2,
         .power = 0,
@@ -2736,7 +2736,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CRABHAMMER] =
     {
-        .name = _("Crabhammer"),
+        .name = { .moveName = _("Crabhammer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 90,
@@ -2752,7 +2752,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EXPLOSION] =
     {
-        .name = _("Explosion"),
+        .name = { .moveName = _("Explosion") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EXPLOSION,
         .power = 250,
@@ -2767,7 +2767,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FURY_SWIPES] =
     {
-        .name = _("Fury Swipes"),
+        .name = { .moveName = _("Fury Swipes") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 18,
@@ -2782,7 +2782,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BONEMERANG] =
     {
-        .name = _("Bonemerang"),
+        .name = { .moveName = _("Bonemerang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -2797,7 +2797,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REST] =
     {
-        .name = _("Rest"),
+        .name = { .moveName = _("Rest") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REST,
         .power = 0,
@@ -2816,7 +2816,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_SLIDE] =
     {
-        .name = _("Rock Slide"),
+        .name = { .moveName = _("Rock Slide") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -2835,7 +2835,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYPER_FANG] =
     {
-        .name = _("Hyper Fang"),
+        .name = { .moveName = _("Hyper Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -2856,7 +2856,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHARPEN] =
     {
-        .name = _("Sharpen"),
+        .name = { .moveName = _("Sharpen") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_UP,
         .power = 0,
@@ -2874,7 +2874,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONVERSION] =
     {
-        .name = _("Conversin"),
+        .name = { .moveName = _("Conversin") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CONVERSION,
         .power = 0,
@@ -2892,7 +2892,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRI_ATTACK] =
     {
-        .name = _("Tri Attack"),
+        .name = { .moveName = _("Tri Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -2911,7 +2911,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUPER_FANG] =
     {
-        .name = _("Super Fang"),
+        .name = { .moveName = _("Super Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUPER_FANG,
         .power = 1,
@@ -2927,7 +2927,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLASH] =
     {
-        .name = _("Slash"),
+        .name = { .moveName = _("Slash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -2944,7 +2944,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUBSTITUTE] =
     {
-        .name = _("Substitute"),
+        .name = { .moveName = _("Substitute") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUBSTITUTE,
         .power = 0,
@@ -2963,7 +2963,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STRUGGLE] =
     {
-        .name = _("Struggle"),
+        .name = { .moveName = _("Struggle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_4
             .effect = EFFECT_RECOIL_HP_25,
@@ -2998,7 +2998,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKETCH] =
     {
-        .name = _("Sketch"),
+        .name = { .moveName = _("Sketch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SKETCH,
         .power = 0,
@@ -3024,7 +3024,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRIPLE_KICK] =
     {
-        .name = _("Triple Kick"),
+        .name = { .moveName = _("Triple Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRIPLE_KICK,
         .power = 10,
@@ -3040,7 +3040,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THIEF] =
     {
-        .name = _("Thief"),
+        .name = { .moveName = _("Thief") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 40,
@@ -3063,7 +3063,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIDER_WEB] =
     {
-        .name = _("Spider Web"),
+        .name = { .moveName = _("Spider Web") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MEAN_LOOK,
         .power = 0,
@@ -3080,7 +3080,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIND_READER] =
     {
-        .name = _("Mind Reader"),
+        .name = { .moveName = _("Mind Reader") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LOCK_ON,
         .power = 0,
@@ -3095,7 +3095,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NIGHTMARE] =
     {
-        .name = _("Nightmare"),
+        .name = { .moveName = _("Nightmare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NIGHTMARE,
         .power = 0,
@@ -3111,7 +3111,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLAME_WHEEL] =
     {
-        .name = _("Flame Wheel"),
+        .name = { .moveName = _("Flame Wheel") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -3132,7 +3132,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNORE] =
     {
-        .name = _("Snore"),
+        .name = { .moveName = _("Snore") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SNORE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 50 : 40,
@@ -3154,7 +3154,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CURSE] =
     {
-        .name = _("Curse"),
+        .name = { .moveName = _("Curse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CURSE,
         .power = 0,
@@ -3172,7 +3172,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLAIL] =
     {
-        .name = _("Flail"),
+        .name = { .moveName = _("Flail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FLAIL,
         .power = 1,
@@ -3187,7 +3187,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONVERSION_2] =
     {
-        .name = _("Conversion 2"),
+        .name = { .moveName = _("Conversion 2") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CONVERSION_2,
         .power = 0,
@@ -3205,7 +3205,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AEROBLAST] =
     {
-        .name = _("Aeroblast"),
+        .name = { .moveName = _("Aeroblast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -3221,7 +3221,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COTTON_SPORE] =
     {
-        .name = _("Cotton Spore"),
+        .name = { .moveName = _("Cotton Spore") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPEED_DOWN_2,
         .power = 0,
@@ -3238,7 +3238,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REVERSAL] =
     {
-        .name = _("Reversal"),
+        .name = { .moveName = _("Reversal") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FLAIL,
         .power = 1,
@@ -3253,7 +3253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPITE] =
     {
-        .name = _("Spite"),
+        .name = { .moveName = _("Spite") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPITE,
         .power = 0,
@@ -3270,7 +3270,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWDER_SNOW] =
     {
-        .name = _("Powder Snow"),
+        .name = { .moveName = _("Powder Snow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -3289,7 +3289,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PROTECT] =
     {
-        .name = _("Protect"),
+        .name = { .moveName = _("Protect") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -3308,7 +3308,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MACH_PUNCH] =
     {
-        .name = _("Mach Punch"),
+        .name = { .moveName = _("Mach Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -3324,7 +3324,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SCARY_FACE] =
     {
-        .name = _("Scary Face"),
+        .name = { .moveName = _("Scary Face") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPEED_DOWN_2,
         .power = 0,
@@ -3340,7 +3340,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FEINT_ATTACK] =
     {
-        .name = _("Feint Attack"),
+        .name = { .moveName = _("Feint Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -3355,7 +3355,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWEET_KISS] =
     {
-        .name = _("Sweet Kiss"),
+        .name = { .moveName = _("Sweet Kiss") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CONFUSE,
         .power = 0,
@@ -3371,7 +3371,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BELLY_DRUM] =
     {
-        .name = _("Belly Drum"),
+        .name = { .moveName = _("Belly Drum") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BELLY_DRUM,
         .power = 0,
@@ -3389,7 +3389,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLUDGE_BOMB] =
     {
-        .name = _("Sludge Bomb"),
+        .name = { .moveName = _("Sludge Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -3409,7 +3409,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MUD_SLAP] =
     {
-        .name = _("Mud-Slap"),
+        .name = { .moveName = _("Mud-Slap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 20,
@@ -3428,7 +3428,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OCTAZOOKA] =
     {
-        .name = _("Octazooka"),
+        .name = { .moveName = _("Octazooka") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -3448,7 +3448,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIKES] =
     {
-        .name = _("Spikes"),
+        .name = { .moveName = _("Spikes") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPIKES,
         .power = 0,
@@ -3468,7 +3468,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ZAP_CANNON] =
     {
-        .name = _("Zap Cannon"),
+        .name = { .moveName = _("Zap Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 120 : 100,
@@ -3488,7 +3488,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FORESIGHT] =
     {
-        .name = _("Foresight"),
+        .name = { .moveName = _("Foresight") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FORESIGHT,
         .power = 0,
@@ -3505,7 +3505,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DESTINY_BOND] =
     {
-        .name = _("Destiny Bond"),
+        .name = { .moveName = _("Destiny Bond") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DESTINY_BOND,
         .power = 0,
@@ -3526,7 +3526,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PERISH_SONG] =
     {
-        .name = _("Perish Song"),
+        .name = { .moveName = _("Perish Song") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PERISH_SONG,
         .power = 0,
@@ -3545,7 +3545,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICY_WIND] =
     {
-        .name = _("Icy Wind"),
+        .name = { .moveName = _("Icy Wind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -3565,7 +3565,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DETECT] =
     {
-        .name = _("Detect"),
+        .name = { .moveName = _("Detect") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -3586,7 +3586,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BONE_RUSH] =
     {
-        .name = _("Bone Rush"),
+        .name = { .moveName = _("Bone Rush") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
@@ -3600,7 +3600,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LOCK_ON] =
     {
-        .name = _("Lock-On"),
+        .name = { .moveName = _("Lock-On") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LOCK_ON,
         .power = 0,
@@ -3615,7 +3615,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OUTRAGE] =
     {
-        .name = _("Outrage"),
+        .name = { .moveName = _("Outrage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 120 : 90,
@@ -3635,7 +3635,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SANDSTORM] =
     {
-        .name = _("Sandstorm"),
+        .name = { .moveName = _("Sandstorm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SANDSTORM,
         .power = 0,
@@ -3653,7 +3653,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GIGA_DRAIN] =
     {
-        .name = _("Giga Drain"),
+        .name = { .moveName = _("Giga Drain") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 75 : 60,
@@ -3669,7 +3669,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ENDURE] =
     {
-        .name = _("Endure"),
+        .name = { .moveName = _("Endure") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ENDURE,
         .power = 0,
@@ -3690,7 +3690,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHARM] =
     {
-        .name = _("Charm"),
+        .name = { .moveName = _("Charm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_DOWN_2,
         .power = 0,
@@ -3706,7 +3706,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROLLOUT] =
     {
-        .name = _("Rollout"),
+        .name = { .moveName = _("Rollout") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROLLOUT,
         .power = 30,
@@ -3723,7 +3723,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FALSE_SWIPE] =
     {
-        .name = _("False Swipe"),
+        .name = { .moveName = _("False Swipe") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FALSE_SWIPE,
         .power = 40,
@@ -3738,7 +3738,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWAGGER] =
     {
-        .name = _("Swagger"),
+        .name = { .moveName = _("Swagger") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SWAGGER,
         .power = 0,
@@ -3754,7 +3754,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MILK_DRINK] =
     {
-        .name = _("Milk Drink"),
+        .name = { .moveName = _("Milk Drink") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOFTBOILED,
         .power = 0,
@@ -3773,7 +3773,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPARK] =
     {
-        .name = _("Spark"),
+        .name = { .moveName = _("Spark") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -3793,7 +3793,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FURY_CUTTER] =
     {
-        .name = _("Fury Cutter"),
+        .name = { .moveName = _("Fury Cutter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .power = 40,
@@ -3815,7 +3815,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STEEL_WING] =
     {
-        .name = _("Steel Wing"),
+        .name = { .moveName = _("Steel Wing") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -3836,7 +3836,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEAN_LOOK] =
     {
-        .name = _("Mean Look"),
+        .name = { .moveName = _("Mean Look") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MEAN_LOOK,
         .power = 0,
@@ -3853,7 +3853,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ATTRACT] =
     {
-        .name = _("Attract"),
+        .name = { .moveName = _("Attract") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTRACT,
         .power = 0,
@@ -3870,7 +3870,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLEEP_TALK] =
     {
-        .name = _("Sleep Talk"),
+        .name = { .moveName = _("Sleep Talk") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP_TALK,
         .power = 0,
@@ -3894,7 +3894,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAL_BELL] =
     {
-        .name = _("Heal Bell"),
+        .name = { .moveName = _("Heal Bell") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAL_BELL,
         .power = 0,
@@ -3914,7 +3914,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RETURN] =
     {
-        .name = _("Return"),
+        .name = { .moveName = _("Return") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RETURN,
         .power = 1,
@@ -3929,7 +3929,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PRESENT] =
     {
-        .name = _("Present"),
+        .name = { .moveName = _("Present") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PRESENT,
         .power = 1,
@@ -3944,7 +3944,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FRUSTRATION] =
     {
-        .name = _("Frustration"),
+        .name = { .moveName = _("Frustration") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FRUSTRATION,
         .power = 1,
@@ -3959,7 +3959,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SAFEGUARD] =
     {
-        .name = _("Safeguard"),
+        .name = { .moveName = _("Safeguard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SAFEGUARD,
         .power = 0,
@@ -3977,7 +3977,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PAIN_SPLIT] =
     {
-        .name = _("Pain Split"),
+        .name = { .moveName = _("Pain Split") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PAIN_SPLIT,
         .power = 0,
@@ -3992,7 +3992,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SACRED_FIRE] =
     {
-        .name = _("Sacred Fire"),
+        .name = { .moveName = _("Sacred Fire") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -4012,7 +4012,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGNITUDE] =
     {
-        .name = _("Magnitude"),
+        .name = { .moveName = _("Magnitude") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAGNITUDE,
         .power = 1,
@@ -4028,7 +4028,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DYNAMIC_PUNCH] =
     {
-        .name = _("DynamicPunch"),
+        .name = { .moveName = _("DynamicPunch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -4049,7 +4049,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEGAHORN] =
     {
-        .name = _("Megahorn"),
+        .name = { .moveName = _("Megahorn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -4064,7 +4064,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_BREATH] =
     {
-        .name = _("DragonBreath"),
+        .name = { .moveName = _("DragonBreath") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -4084,7 +4084,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BATON_PASS] =
     {
-        .name = _("Baton Pass"),
+        .name = { .moveName = _("Baton Pass") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BATON_PASS,
         .power = 0,
@@ -4101,7 +4101,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ENCORE] =
     {
-        .name = _("Encore"),
+        .name = { .moveName = _("Encore") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ENCORE,
         .power = 0,
@@ -4119,7 +4119,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PURSUIT] =
     {
-        .name = _("Pursuit"),
+        .name = { .moveName = _("Pursuit") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PURSUIT,
         .power = 40,
@@ -4135,7 +4135,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAPID_SPIN] =
     {
-        .name = _("Rapid Spin"),
+        .name = { .moveName = _("Rapid Spin") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 50 : 20,
@@ -4162,7 +4162,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWEET_SCENT] =
     {
-        .name = _("Sweet Scent"),
+        .name = { .moveName = _("Sweet Scent") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_EVASION_DOWN_2 : EFFECT_EVASION_DOWN,
         .power = 0,
@@ -4178,7 +4178,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IRON_TAIL] =
     {
-        .name = _("Iron Tail"),
+        .name = { .moveName = _("Iron Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -4198,7 +4198,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METAL_CLAW] =
     {
-        .name = _("Metal Claw"),
+        .name = { .moveName = _("Metal Claw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -4219,7 +4219,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VITAL_THROW] =
     {
-        .name = _("Vital Throw"),
+        .name = { .moveName = _("Vital Throw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -4234,7 +4234,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MORNING_SUN] =
     {
-        .name = _("Morning Sun"),
+        .name = { .moveName = _("Morning Sun") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MORNING_SUN,
         .power = 0,
@@ -4253,7 +4253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SYNTHESIS] =
     {
-        .name = _("Synthesis"),
+        .name = { .moveName = _("Synthesis") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SYNTHESIS,
         .power = 0,
@@ -4272,7 +4272,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MOONLIGHT] =
     {
-        .name = _("Moonlight"),
+        .name = { .moveName = _("Moonlight") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MOONLIGHT,
         .power = 0,
@@ -4291,7 +4291,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HIDDEN_POWER] =
     {
-        .name = _("Hidden Power"),
+        .name = { .moveName = _("Hidden Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .power = B_HIDDEN_POWER_DMG >= GEN_6 ? 60 : 1,
         .effect = EFFECT_HIDDEN_POWER,
@@ -4305,7 +4305,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CROSS_CHOP] =
     {
-        .name = _("Cross Chop"),
+        .name = { .moveName = _("Cross Chop") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -4321,7 +4321,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TWISTER] =
     {
-        .name = _("Twister"),
+        .name = { .moveName = _("Twister") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -4342,7 +4342,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAIN_DANCE] =
     {
-        .name = _("Rain Dance"),
+        .name = { .moveName = _("Rain Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAIN_DANCE,
         .power = 0,
@@ -4359,7 +4359,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUNNY_DAY] =
     {
-        .name = _("Sunny Day"),
+        .name = { .moveName = _("Sunny Day") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUNNY_DAY,
         .power = 0,
@@ -4376,7 +4376,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CRUNCH] =
     {
-        .name = _("Crunch"),
+        .name = { .moveName = _("Crunch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -4401,7 +4401,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIRROR_COAT] =
     {
-        .name = _("Mirror Coat"),
+        .name = { .moveName = _("Mirror Coat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIRROR_COAT,
         .power = 1,
@@ -4419,7 +4419,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCH_UP] =
     {
-        .name = _("Psych Up"),
+        .name = { .moveName = _("Psych Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYCH_UP,
         .power = 0,
@@ -4438,7 +4438,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EXTREME_SPEED] =
     {
-        .name = _("ExtremeSpeed"),
+        .name = { .moveName = _("ExtremeSpeed") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -4453,7 +4453,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ANCIENT_POWER] =
     {
-        .name = _("AncientPower"),
+        .name = { .moveName = _("AncientPower") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -4474,7 +4474,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_BALL] =
     {
-        .name = _("Shadow Ball"),
+        .name = { .moveName = _("Shadow Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -4494,7 +4494,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FUTURE_SIGHT] =
     {
-        .name = _("Future Sight"),
+        .name = { .moveName = _("Future Sight") },
         .description = COMPOUND_STRING("Dummy2 description."),
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .power = 120,
@@ -4516,7 +4516,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_SMASH] =
     {
-        .name = _("Rock Smash"),
+        .name = { .moveName = _("Rock Smash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 40 : 20,
@@ -4536,7 +4536,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WHIRLPOOL] =
     {
-        .name = _("Whirlpool"),
+        .name = { .moveName = _("Whirlpool") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 35 : 15,
@@ -4554,7 +4554,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BEAT_UP] =
     {
-        .name = _("Beat Up"),
+        .name = { .moveName = _("Beat Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BEAT_UP,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 1 : 10,
@@ -4568,7 +4568,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FAKE_OUT] =
     {
-        .name = _("Fake Out"),
+        .name = { .moveName = _("Fake Out") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .priority = B_UPDATED_MOVE_DATA >= GEN_5 ? 3 : 1,
         .makesContact = B_UPDATED_MOVE_DATA >= GEN_4,
@@ -4588,7 +4588,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_UPROAR] =
     {
-        .name = _("Uproar"),
+        .name = { .moveName = _("Uproar") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_UPROAR,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 90 : 50,
@@ -4610,7 +4610,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STOCKPILE] =
     {
-        .name = _("Stockpile"),
+        .name = { .moveName = _("Stockpile") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STOCKPILE,
         .power = 0,
@@ -4628,7 +4628,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIT_UP] =
     {
-        .name = _("Spit Up"),
+        .name = { .moveName = _("Spit Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPIT_UP,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 1 : 100,
@@ -4643,7 +4643,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWALLOW] =
     {
-        .name = _("Swallow"),
+        .name = { .moveName = _("Swallow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SWALLOW,
         .power = 0,
@@ -4662,7 +4662,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAT_WAVE] =
     {
-        .name = _("Heat Wave"),
+        .name = { .moveName = _("Heat Wave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 95 : 100,
@@ -4682,7 +4682,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HAIL] =
     {
-        .name = _("Hail"),
+        .name = { .moveName = _("Hail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HAIL,
         .power = 0,
@@ -4699,7 +4699,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TORMENT] =
     {
-        .name = _("Torment"),
+        .name = { .moveName = _("Torment") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TORMENT,
         .power = 0,
@@ -4715,7 +4715,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLATTER] =
     {
-        .name = _("Flatter"),
+        .name = { .moveName = _("Flatter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FLATTER,
         .power = 0,
@@ -4731,7 +4731,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WILL_O_WISP] =
     {
-        .name = _("Will-o-Wisp"),
+        .name = { .moveName = _("Will-o-Wisp") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WILL_O_WISP,
         .power = 0,
@@ -4747,7 +4747,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MEMENTO] =
     {
-        .name = _("Memento"),
+        .name = { .moveName = _("Memento") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MEMENTO,
         .power = 0,
@@ -4762,7 +4762,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FACADE] =
     {
-        .name = _("Facade"),
+        .name = { .moveName = _("Facade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FACADE,
         .power = 70,
@@ -4777,7 +4777,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FOCUS_PUNCH] =
     {
-        .name = _("Focus Punch"),
+        .name = { .moveName = _("Focus Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOCUS_PUNCH,
         .power = 150,
@@ -4800,7 +4800,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SMELLING_SALTS] =
     {
-        .name = _("SmellngSalts"),
+        .name = { .moveName = _("SmellngSalts") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 70 : 60,
@@ -4819,7 +4819,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FOLLOW_ME] =
     {
-        .name = _("Follow Me"),
+        .name = { .moveName = _("Follow Me") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOLLOW_ME,
         .power = 0,
@@ -4839,7 +4839,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NATURE_POWER] =
     {
-        .name = _("Nature Power"),
+        .name = { .moveName = _("Nature Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NATURE_POWER,
         .power = 1,
@@ -4860,7 +4860,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHARGE] =
     {
-        .name = _("Charge"),
+        .name = { .moveName = _("Charge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CHARGE,
         .power = 0,
@@ -4878,7 +4878,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAUNT] =
     {
-        .name = _("Taunt"),
+        .name = { .moveName = _("Taunt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TAUNT,
         .power = 0,
@@ -4895,7 +4895,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HELPING_HAND] =
     {
-        .name = _("Helping Hand"),
+        .name = { .moveName = _("Helping Hand") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HELPING_HAND,
         .power = 0,
@@ -4916,7 +4916,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRICK] =
     {
-        .name = _("Trick"),
+        .name = { .moveName = _("Trick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRICK,
         .power = 0,
@@ -4934,7 +4934,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROLE_PLAY] =
     {
-        .name = _("Role Play"),
+        .name = { .moveName = _("Role Play") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROLE_PLAY,
         .power = 0,
@@ -4952,7 +4952,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WISH] =
     {
-        .name = _("Wish"),
+        .name = { .moveName = _("Wish") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WISH,
         .power = 0,
@@ -4971,7 +4971,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ASSIST] =
     {
-        .name = _("Assist"),
+        .name = { .moveName = _("Assist") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ASSIST,
         .power = 0,
@@ -4994,7 +4994,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_INGRAIN] =
     {
-        .name = _("Ingrain"),
+        .name = { .moveName = _("Ingrain") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_INGRAIN,
         .power = 0,
@@ -5013,7 +5013,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUPERPOWER] =
     {
-        .name = _("Superpower"),
+        .name = { .moveName = _("Superpower") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -5032,7 +5032,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGIC_COAT] =
     {
-        .name = _("Magic Coat"),
+        .name = { .moveName = _("Magic Coat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAGIC_COAT,
         .power = 0,
@@ -5049,7 +5049,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RECYCLE] =
     {
-        .name = _("Recycle"),
+        .name = { .moveName = _("Recycle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RECYCLE,
         .power = 0,
@@ -5067,7 +5067,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REVENGE] =
     {
-        .name = _("Revenge"),
+        .name = { .moveName = _("Revenge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REVENGE,
         .power = 60,
@@ -5082,7 +5082,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRICK_BREAK] =
     {
-        .name = _("Brick Break"),
+        .name = { .moveName = _("Brick Break") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BRICK_BREAK,
         .power = 75,
@@ -5097,7 +5097,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_YAWN] =
     {
-        .name = _("Yawn"),
+        .name = { .moveName = _("Yawn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_YAWN,
         .power = 0,
@@ -5113,7 +5113,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_KNOCK_OFF] =
     {
-        .name = _("Knock Off"),
+        .name = { .moveName = _("Knock Off") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_KNOCK_OFF,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 65 : 20,
@@ -5131,7 +5131,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ENDEAVOR] =
     {
-        .name = _("Endeavor"),
+        .name = { .moveName = _("Endeavor") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ENDEAVOR,
         .power = 1,
@@ -5147,7 +5147,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ERUPTION] =
     {
-        .name = _("Eruption"),
+        .name = { .moveName = _("Eruption") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ERUPTION,
         .power = 150,
@@ -5161,7 +5161,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKILL_SWAP] =
     {
-        .name = _("Skill Swap"),
+        .name = { .moveName = _("Skill Swap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SKILL_SWAP,
         .power = 0,
@@ -5177,7 +5177,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IMPRISON] =
     {
-        .name = _("Imprison"),
+        .name = { .moveName = _("Imprison") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_IMPRISON,
         .power = 0,
@@ -5197,7 +5197,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REFRESH] =
     {
-        .name = _("Refresh"),
+        .name = { .moveName = _("Refresh") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REFRESH,
         .power = 0,
@@ -5215,7 +5215,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRUDGE] =
     {
-        .name = _("Grudge"),
+        .name = { .moveName = _("Grudge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GRUDGE,
         .power = 0,
@@ -5233,7 +5233,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNATCH] =
     {
-        .name = _("Snatch"),
+        .name = { .moveName = _("Snatch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SNATCH,
         .power = 0,
@@ -5253,7 +5253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SECRET_POWER] =
     {
-        .name = _("Secret Power"),
+        .name = { .moveName = _("Secret Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -5272,7 +5272,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DIVE] =
     {
-        .name = _("Dive"),
+        .name = { .moveName = _("Dive") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 80 : 60,
@@ -5292,7 +5292,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ARM_THRUST] =
     {
-        .name = _("Arm Thrust"),
+        .name = { .moveName = _("Arm Thrust") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 15,
@@ -5307,7 +5307,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CAMOUFLAGE] =
     {
-        .name = _("Camouflage"),
+        .name = { .moveName = _("Camouflage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CAMOUFLAGE,
         .power = 0,
@@ -5325,7 +5325,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAIL_GLOW] =
     {
-        .name = _("Tail Glow"),
+        .name = { .moveName = _("Tail Glow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = B_UPDATED_MOVE_DATA >= GEN_5 ? EFFECT_SPECIAL_ATTACK_UP_3 : EFFECT_SPECIAL_ATTACK_UP_2,
         .power = 0,
@@ -5343,7 +5343,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LUSTER_PURGE] =
     {
-        .name = _("Luster Purge"),
+        .name = { .moveName = _("Luster Purge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = (B_UPDATED_MOVE_DATA >= GEN_9) ? 95 : 70,
@@ -5362,7 +5362,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIST_BALL] =
     {
-        .name = _("Mist Ball"),
+        .name = { .moveName = _("Mist Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = (B_UPDATED_MOVE_DATA >= GEN_9) ? 95 : 70,
@@ -5382,7 +5382,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FEATHER_DANCE] =
     {
-        .name = _("FeatherDance"),
+        .name = { .moveName = _("FeatherDance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_DOWN_2,
         .power = 0,
@@ -5399,7 +5399,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TEETER_DANCE] =
     {
-        .name = _("Teeter Dance"),
+        .name = { .moveName = _("Teeter Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TEETER_DANCE,
         .power = 0,
@@ -5416,7 +5416,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLAZE_KICK] =
     {
-        .name = _("Blaze Kick"),
+        .name = { .moveName = _("Blaze Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -5437,7 +5437,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MUD_SPORT] =
     {
-        .name = _("Mud Sport"),
+        .name = { .moveName = _("Mud Sport") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MUD_SPORT,
         .power = 0,
@@ -5455,7 +5455,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_BALL] =
     {
-        .name = _("Ice Ball"),
+        .name = { .moveName = _("Ice Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROLLOUT,
         .power = 30,
@@ -5473,7 +5473,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NEEDLE_ARM] =
     {
-        .name = _("Needle Arm"),
+        .name = { .moveName = _("Needle Arm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -5494,7 +5494,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLACK_OFF] =
     {
-        .name = _("Slack Off"),
+        .name = { .moveName = _("Slack Off") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RESTORE_HP,
         .power = 0,
@@ -5513,7 +5513,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYPER_VOICE] =
     {
-        .name = _("Hyper Voice"),
+        .name = { .moveName = _("Hyper Voice") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -5529,7 +5529,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_FANG] =
     {
-        .name = _("Poison Fang"),
+        .name = { .moveName = _("Poison Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -5550,7 +5550,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CRUSH_CLAW] =
     {
-        .name = _("Crush Claw"),
+        .name = { .moveName = _("Crush Claw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -5570,7 +5570,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLAST_BURN] =
     {
-        .name = _("Blast Burn"),
+        .name = { .moveName = _("Blast Burn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -5588,7 +5588,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYDRO_CANNON] =
     {
-        .name = _("Hydro Cannon"),
+        .name = { .moveName = _("Hydro Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -5606,7 +5606,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METEOR_MASH] =
     {
-        .name = _("Meteor Mash"),
+        .name = { .moveName = _("Meteor Mash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 100,
@@ -5628,7 +5628,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ASTONISH] =
     {
-        .name = _("Astonish"),
+        .name = { .moveName = _("Astonish") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 30,
@@ -5649,7 +5649,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WEATHER_BALL] =
     {
-        .name = _("Weather Ball"),
+        .name = { .moveName = _("Weather Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WEATHER_BALL,
         .power = 50,
@@ -5664,7 +5664,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AROMATHERAPY] =
     {
-        .name = _("Aromatherapy"),
+        .name = { .moveName = _("Aromatherapy") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAL_BELL,
         .power = 0,
@@ -5682,7 +5682,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FAKE_TEARS] =
     {
-        .name = _("Fake Tears"),
+        .name = { .moveName = _("Fake Tears") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_DEFENSE_DOWN_2,
         .power = 0,
@@ -5698,7 +5698,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AIR_CUTTER] =
     {
-        .name = _("Air Cutter"),
+        .name = { .moveName = _("Air Cutter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 55,
@@ -5715,7 +5715,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OVERHEAT] =
     {
-        .name = _("Overheat"),
+        .name = { .moveName = _("Overheat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 130 : 140,
@@ -5734,7 +5734,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ODOR_SLEUTH] =
     {
-        .name = _("Odor Sleuth"),
+        .name = { .moveName = _("Odor Sleuth") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FORESIGHT,
         .power = 0,
@@ -5751,7 +5751,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_TOMB] =
     {
-        .name = _("Rock Tomb"),
+        .name = { .moveName = _("Rock Tomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 50,
@@ -5770,7 +5770,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SILVER_WIND] =
     {
-        .name = _("Silver Wind"),
+        .name = { .moveName = _("Silver Wind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -5791,7 +5791,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METAL_SOUND] =
     {
-        .name = _("Metal Sound"),
+        .name = { .moveName = _("Metal Sound") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_DEFENSE_DOWN_2,
         .power = 0,
@@ -5809,7 +5809,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRASS_WHISTLE] =
     {
-        .name = _("GrassWhistle"),
+        .name = { .moveName = _("GrassWhistle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SLEEP,
         .power = 0,
@@ -5827,7 +5827,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TICKLE] =
     {
-        .name = _("Tickle"),
+        .name = { .moveName = _("Tickle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TICKLE,
         .power = 0,
@@ -5843,7 +5843,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COSMIC_POWER] =
     {
-        .name = _("Cosmic Power"),
+        .name = { .moveName = _("Cosmic Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COSMIC_POWER,
         .power = 0,
@@ -5861,7 +5861,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATER_SPOUT] =
     {
-        .name = _("Water Spout"),
+        .name = { .moveName = _("Water Spout") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ERUPTION,
         .power = 150,
@@ -5875,7 +5875,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SIGNAL_BEAM] =
     {
-        .name = _("Signal Beam"),
+        .name = { .moveName = _("Signal Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -5894,7 +5894,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_PUNCH] =
     {
-        .name = _("hadow Punch"),
+        .name = { .moveName = _("hadow Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -5910,7 +5910,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EXTRASENSORY] =
     {
-        .name = _("Extrasensory"),
+        .name = { .moveName = _("Extrasensory") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -5930,7 +5930,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKY_UPPERCUT] =
     {
-        .name = _("Sky Uppercut"),
+        .name = { .moveName = _("Sky Uppercut") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SKY_UPPERCUT,
         .power = 85,
@@ -5947,7 +5947,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SAND_TOMB] =
     {
-        .name = _("Sand Tomb"),
+        .name = { .moveName = _("Sand Tomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 35 : 15,
@@ -5964,7 +5964,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHEER_COLD] =
     {
-        .name = _("Sheer Cold"),
+        .name = { .moveName = _("Sheer Cold") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_OHKO,
         .power = 1,
@@ -5978,7 +5978,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MUDDY_WATER] =
     {
-        .name = _("Muddy Water"),
+        .name = { .moveName = _("Muddy Water") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 95,
@@ -5998,7 +5998,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BULLET_SEED] =
     {
-        .name = _("Bullet Seed"),
+        .name = { .moveName = _("Bullet Seed") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 25 : 10,
@@ -6013,7 +6013,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AERIAL_ACE] =
     {
-        .name = _("Aerial Ace"),
+        .name = { .moveName = _("Aerial Ace") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -6029,7 +6029,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICICLE_SPEAR] =
     {
-        .name = _("Icicle Spear"),
+        .name = { .moveName = _("Icicle Spear") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 25 : 10,
@@ -6043,7 +6043,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IRON_DEFENSE] =
     {
-        .name = _("Iron Defense"),
+        .name = { .moveName = _("Iron Defense") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP_2,
         .power = 0,
@@ -6061,7 +6061,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLOCK] =
     {
-        .name = _("Block"),
+        .name = { .moveName = _("Block") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MEAN_LOOK,
         .power = 0,
@@ -6078,7 +6078,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HOWL] =
     {
-        .name = _("Howl"),
+        .name = { .moveName = _("Howl") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .power = 0,
         .effect = B_UPDATED_MOVE_DATA >= GEN_8 ? EFFECT_ATTACK_UP_USER_ALLY : EFFECT_ATTACK_UP,
@@ -6097,7 +6097,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_CLAW] =
     {
-        .name = _("Dragon Claw"),
+        .name = { .moveName = _("Dragon Claw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -6112,7 +6112,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FRENZY_PLANT] =
     {
-        .name = _("Frenzy Plant"),
+        .name = { .moveName = _("Frenzy Plant") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -6131,7 +6131,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BULK_UP] =
     {
-        .name = _("Bulk Up"),
+        .name = { .moveName = _("Bulk Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BULK_UP,
         .power = 0,
@@ -6149,7 +6149,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BOUNCE] =
     {
-        .name = _("Bounce"),
+        .name = { .moveName = _("Bounce") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = 85,
@@ -6174,7 +6174,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MUD_SHOT] =
     {
-        .name = _("Mud Shot"),
+        .name = { .moveName = _("Mud Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -6193,7 +6193,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_TAIL] =
     {
-        .name = _("Poison Tail"),
+        .name = { .moveName = _("Poison Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -6214,7 +6214,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COVET] =
     {
-        .name = _("Covet"),
+        .name = { .moveName = _("Covet") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 60 : 40,
@@ -6236,7 +6236,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VOLT_TACKLE] =
     {
-        .name = _("Volt Tackle"),
+        .name = { .moveName = _("Volt Tackle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -6259,7 +6259,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGICAL_LEAF] =
     {
-        .name = _("Magical Leaf"),
+        .name = { .moveName = _("Magical Leaf") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -6273,7 +6273,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATER_SPORT] =
     {
-        .name = _("Water Sport"),
+        .name = { .moveName = _("Water Sport") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WATER_SPORT,
         .power = 0,
@@ -6291,7 +6291,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CALM_MIND] =
     {
-        .name = _("Calm Mind"),
+        .name = { .moveName = _("Calm Mind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CALM_MIND,
         .power = 0,
@@ -6309,7 +6309,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEAF_BLADE] =
     {
-        .name = _("Leaf Blade"),
+        .name = { .moveName = _("Leaf Blade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_4 ? 90 : 70,
@@ -6326,7 +6326,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_DANCE] =
     {
-        .name = _("Dragon Dance"),
+        .name = { .moveName = _("Dragon Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DRAGON_DANCE,
         .power = 0,
@@ -6345,7 +6345,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_BLAST] =
     {
-        .name = _("Rock Blast"),
+        .name = { .moveName = _("Rock Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
@@ -6360,7 +6360,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHOCK_WAVE] =
     {
-        .name = _("Shock Wave"),
+        .name = { .moveName = _("Shock Wave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -6374,7 +6374,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATER_PULSE] =
     {
-        .name = _("Water Pulse"),
+        .name = { .moveName = _("Water Pulse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -6394,7 +6394,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOOM_DESIRE] =
     {
-        .name = _("Doom Desire"),
+        .name = { .moveName = _("Doom Desire") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FUTURE_SIGHT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 140 : 120,
@@ -6410,7 +6410,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHO_BOOST] =
     {
-        .name = _("Psycho Boost"),
+        .name = { .moveName = _("Psycho Boost") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 140,
@@ -6428,7 +6428,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROOST] =
     {
-        .name = _("Roost"),
+        .name = { .moveName = _("Roost") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROOST,
         .power = 0,
@@ -6447,7 +6447,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRAVITY] =
     {
-        .name = _("Gravity"),
+        .name = { .moveName = _("Gravity") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GRAVITY,
         .power = 0,
@@ -6465,7 +6465,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIRACLE_EYE] =
     {
-        .name = _("Miracle Eye"),
+        .name = { .moveName = _("Miracle Eye") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIRACLE_EYE,
         .power = 0,
@@ -6482,7 +6482,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WAKE_UP_SLAP] =
     {
-        .name = _("Wake-Up Slap"),
+        .name = { .moveName = _("Wake-Up Slap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 70 : 60,
@@ -6501,7 +6501,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HAMMER_ARM] =
     {
-        .name = _("Hammer Arm"),
+        .name = { .moveName = _("Hammer Arm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -6521,7 +6521,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GYRO_BALL] =
     {
-        .name = _("Gyro Ball"),
+        .name = { .moveName = _("Gyro Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GYRO_BALL,
         .power = 1,
@@ -6537,7 +6537,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEALING_WISH] =
     {
-        .name = _("Healing Wish"),
+        .name = { .moveName = _("Healing Wish") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEALING_WISH,
         .power = 0,
@@ -6555,7 +6555,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRINE] =
     {
-        .name = _("Brine"),
+        .name = { .moveName = _("Brine") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BRINE,
         .power = 65,
@@ -6569,7 +6569,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NATURAL_GIFT] =
     {
-        .name = _("Natural Gift"),
+        .name = { .moveName = _("Natural Gift") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NATURAL_GIFT,
         .power = 1,
@@ -6583,7 +6583,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FEINT] =
     {
-        .name = _("Feint"),
+        .name = { .moveName = _("Feint") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 30 : 50,
@@ -6605,7 +6605,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PLUCK] =
     {
-        .name = _("Pluck"),
+        .name = { .moveName = _("Pluck") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -6623,7 +6623,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAILWIND] =
     {
-        .name = _("Tailwind"),
+        .name = { .moveName = _("Tailwind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TAILWIND,
         .power = 0,
@@ -6642,7 +6642,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACUPRESSURE] =
     {
-        .name = _("Acupressure"),
+        .name = { .moveName = _("Acupressure") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACUPRESSURE,
         .power = 0,
@@ -6660,7 +6660,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METAL_BURST] =
     {
-        .name = _("Metal Burst"),
+        .name = { .moveName = _("Metal Burst") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_METAL_BURST,
         .power = 1,
@@ -6675,7 +6675,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_U_TURN] =
     {
-        .name = _("U-turn"),
+        .name = { .moveName = _("U-turn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_ESCAPE,
         .power = 70,
@@ -6690,7 +6690,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CLOSE_COMBAT] =
     {
-        .name = _("Close Combat"),
+        .name = { .moveName = _("Close Combat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -6709,7 +6709,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PAYBACK] =
     {
-        .name = _("Payback"),
+        .name = { .moveName = _("Payback") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PAYBACK,
         .power = 50,
@@ -6724,7 +6724,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ASSURANCE] =
     {
-        .name = _("Asurance"),
+        .name = { .moveName = _("Asurance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ASSURANCE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 50,
@@ -6739,7 +6739,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EMBARGO] =
     {
-        .name = _("Embargo"),
+        .name = { .moveName = _("Embargo") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EMBARGO,
         .power = 0,
@@ -6755,7 +6755,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLING] =
     {
-        .name = _("Fling"),
+        .name = { .moveName = _("Fling") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FLING,
         .power = 1,
@@ -6770,7 +6770,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHO_SHIFT] =
     {
-        .name = _("Psycho Shift"),
+        .name = { .moveName = _("Psycho Shift") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYCHO_SHIFT,
         .power = 0,
@@ -6785,7 +6785,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRUMP_CARD] =
     {
-        .name = _("Trump Card"),
+        .name = { .moveName = _("Trump Card") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRUMP_CARD,
         .power = 1,
@@ -6800,7 +6800,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAL_BLOCK] =
     {
-        .name = _("Heal Block"),
+        .name = { .moveName = _("Heal Block") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAL_BLOCK,
         .power = 0,
@@ -6816,7 +6816,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WRING_OUT] =
     {
-        .name = _("Wring Out"),
+        .name = { .moveName = _("Wring Out") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WRING_OUT,
         .power = 1,
@@ -6831,7 +6831,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_TRICK] =
     {
-        .name = _("Power Trick"),
+        .name = { .moveName = _("Power Trick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POWER_TRICK,
         .power = 0,
@@ -6849,7 +6849,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GASTRO_ACID] =
     {
-        .name = _("Gastro Acid"),
+        .name = { .moveName = _("Gastro Acid") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GASTRO_ACID,
         .power = 0,
@@ -6865,7 +6865,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LUCKY_CHANT] =
     {
-        .name = _("Lucky Chant"),
+        .name = { .moveName = _("Lucky Chant") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LUCKY_CHANT,
         .power = 0,
@@ -6883,7 +6883,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ME_FIRST] =
     {
-        .name = _("Me First"),
+        .name = { .moveName = _("Me First") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ME_FIRST,
         .power = 0,
@@ -6908,7 +6908,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COPYCAT] =
     {
-        .name = _("Copycat"),
+        .name = { .moveName = _("Copycat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COPYCAT,
         .power = 0,
@@ -6932,7 +6932,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_SWAP] =
     {
-        .name = _("Power Swap"),
+        .name = { .moveName = _("Power Swap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POWER_SWAP,
         .power = 0,
@@ -6948,7 +6948,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUARD_SWAP] =
     {
-        .name = _("Guard Swap"),
+        .name = { .moveName = _("Guard Swap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GUARD_SWAP,
         .power = 0,
@@ -6964,7 +6964,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PUNISHMENT] =
     {
-        .name = _("Punishment"),
+        .name = { .moveName = _("Punishment") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PUNISHMENT,
         .power = 60,
@@ -6979,7 +6979,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LAST_RESORT] =
     {
-        .name = _("Last Resort"),
+        .name = { .moveName = _("Last Resort") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LAST_RESORT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 140 : 130,
@@ -6994,7 +6994,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WORRY_SEED] =
     {
-        .name = _("Worry Seed"),
+        .name = { .moveName = _("Worry Seed") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WORRY_SEED,
         .power = 0,
@@ -7010,7 +7010,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SUCKER_PUNCH] =
     {
-        .name = _("Sucker Punch"),
+        .name = { .moveName = _("Sucker Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUCKER_PUNCH,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 70 : 80,
@@ -7025,7 +7025,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TOXIC_SPIKES] =
     {
-        .name = _("Toxic Spikes"),
+        .name = { .moveName = _("Toxic Spikes") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TOXIC_SPIKES,
         .power = 0,
@@ -7045,7 +7045,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEART_SWAP] =
     {
-        .name = _("Heart Swap"),
+        .name = { .moveName = _("Heart Swap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEART_SWAP,
         .power = 0,
@@ -7061,7 +7061,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_RING] =
     {
-        .name = _("Aqua Ring"),
+        .name = { .moveName = _("Aqua Ring") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AQUA_RING,
         .power = 0,
@@ -7079,7 +7079,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGNET_RISE] =
     {
-        .name = _("Magnet Rise"),
+        .name = { .moveName = _("Magnet Rise") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAGNET_RISE,
         .power = 0,
@@ -7098,7 +7098,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLARE_BLITZ] =
     {
-        .name = _("Flare Blitz"),
+        .name = { .moveName = _("Flare Blitz") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -7121,7 +7121,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FORCE_PALM] =
     {
-        .name = _("Force Palm"),
+        .name = { .moveName = _("Force Palm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -7141,7 +7141,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AURA_SPHERE] =
     {
-        .name = _("Aura Sphere"),
+        .name = { .moveName = _("Aura Sphere") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 90,
@@ -7157,7 +7157,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_POLISH] =
     {
-        .name = _("Rock Polish"),
+        .name = { .moveName = _("Rock Polish") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPEED_UP_2,
         .power = 0,
@@ -7175,7 +7175,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POISON_JAB] =
     {
-        .name = _("Poison Jab"),
+        .name = { .moveName = _("Poison Jab") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7195,7 +7195,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DARK_PULSE] =
     {
-        .name = _("Dark Pulse"),
+        .name = { .moveName = _("Dark Pulse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7215,7 +7215,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NIGHT_SLASH] =
     {
-        .name = _("Night Slash"),
+        .name = { .moveName = _("Night Slash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -7232,7 +7232,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_TAIL] =
     {
-        .name = _("Aqua Tail"),
+        .name = { .moveName = _("Aqua Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -7247,7 +7247,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SEED_BOMB] =
     {
-        .name = _("Seed Bomb"),
+        .name = { .moveName = _("Seed Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7262,7 +7262,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AIR_SLASH] =
     {
-        .name = _("Air Slash"),
+        .name = { .moveName = _("Air Slash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -7282,7 +7282,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_X_SCISSOR] =
     {
-        .name = _("X-Scissor"),
+        .name = { .moveName = _("X-Scissor") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7298,7 +7298,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BUG_BUZZ] =
     {
-        .name = _("Bug Buzz"),
+        .name = { .moveName = _("Bug Buzz") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -7319,7 +7319,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_PULSE] =
     {
-        .name = _("Dragon Pulse"),
+        .name = { .moveName = _("Dragon Pulse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 85 : 90,
@@ -7334,7 +7334,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_RUSH] =
     {
-        .name = _("Dragon Rush"),
+        .name = { .moveName = _("Dragon Rush") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -7355,7 +7355,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_GEM] =
     {
-        .name = _("Power Gem"),
+        .name = { .moveName = _("Power Gem") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 70,
@@ -7369,7 +7369,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAIN_PUNCH] =
     {
-        .name = _("Drain Punch"),
+        .name = { .moveName = _("Drain Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 75 : 60,
@@ -7386,7 +7386,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VACUUM_WAVE] =
     {
-        .name = _("Vacuum Wave"),
+        .name = { .moveName = _("Vacuum Wave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -7400,7 +7400,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FOCUS_BLAST] =
     {
-        .name = _("Focus Blast"),
+        .name = { .moveName = _("Focus Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -7420,7 +7420,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ENERGY_BALL] =
     {
-        .name = _("Energy Ball"),
+        .name = { .moveName = _("Energy Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 80,
@@ -7440,7 +7440,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRAVE_BIRD] =
     {
-        .name = _("Brave Bird"),
+        .name = { .moveName = _("Brave Bird") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -7456,7 +7456,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EARTH_POWER] =
     {
-        .name = _("Earth Power"),
+        .name = { .moveName = _("Earth Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -7476,7 +7476,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SWITCHEROO] =
     {
-        .name = _("Switcheroo"),
+        .name = { .moveName = _("Switcheroo") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRICK,
         .power = 0,
@@ -7494,7 +7494,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GIGA_IMPACT] =
     {
-        .name = _("Giga Impact"),
+        .name = { .moveName = _("Giga Impact") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -7513,7 +7513,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NASTY_PLOT] =
     {
-        .name = _("Nasty Plot"),
+        .name = { .moveName = _("Nasty Plot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_ATTACK_UP_2,
         .power = 0,
@@ -7531,7 +7531,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BULLET_PUNCH] =
     {
-        .name = _("Bullet Punch"),
+        .name = { .moveName = _("Bullet Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -7547,7 +7547,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AVALANCHE] =
     {
-        .name = _("Avalanche"),
+        .name = { .moveName = _("Avalanche") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REVENGE,
         .power = 60,
@@ -7562,7 +7562,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_SHARD] =
     {
-        .name = _("Ice Shard"),
+        .name = { .moveName = _("Ice Shard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -7576,7 +7576,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_CLAW] =
     {
-        .name = _("Shadow Claw"),
+        .name = { .moveName = _("Shadow Claw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -7592,7 +7592,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER_FANG] =
     {
-        .name = _("Thunder Fang"),
+        .name = { .moveName = _("Thunder Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -7618,7 +7618,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_FANG] =
     {
-        .name = _("Ice Fang"),
+        .name = { .moveName = _("Ice Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -7643,7 +7643,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_FANG] =
     {
-        .name = _("Fire Fang"),
+        .name = { .moveName = _("Fire Fang") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -7669,7 +7669,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_SNEAK] =
     {
-        .name = _("Shadow Sneak"),
+        .name = { .moveName = _("Shadow Sneak") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -7684,7 +7684,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MUD_BOMB] =
     {
-        .name = _("Mud Bomb"),
+        .name = { .moveName = _("Mud Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -7704,7 +7704,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYCHO_CUT] =
     {
-        .name = _("Psycho Cut"),
+        .name = { .moveName = _("Psycho Cut") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -7720,7 +7720,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ZEN_HEADBUTT] =
     {
-        .name = _("Zen Headbutt"),
+        .name = { .moveName = _("Zen Headbutt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7740,7 +7740,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIRROR_SHOT] =
     {
-        .name = _("Mirro Shot"),
+        .name = { .moveName = _("Mirro Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -7759,7 +7759,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLASH_CANNON] =
     {
-        .name = _("Flash Cannon"),
+        .name = { .moveName = _("Flash Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7778,7 +7778,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_CLIMB] =
     {
-        .name = _("Rock Climb"),
+        .name = { .moveName = _("Rock Climb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -7798,7 +7798,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DEFOG] =
     {
-        .name = _("Defog"),
+        .name = { .moveName = _("Defog") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFOG,
         .power = 0,
@@ -7815,7 +7815,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRICK_ROOM] =
     {
-        .name = _("Trick Room"),
+        .name = { .moveName = _("Trick Room") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRICK_ROOM,
         .power = 0,
@@ -7831,7 +7831,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRACO_METEOR] =
     {
-        .name = _("Draco Meteor"),
+        .name = { .moveName = _("Draco Meteor") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 130 : 140,
@@ -7849,7 +7849,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DISCHARGE] =
     {
-        .name = _("Discharge"),
+        .name = { .moveName = _("Discharge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7868,7 +7868,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LAVA_PLUME] =
     {
-        .name = _("Lava Plume"),
+        .name = { .moveName = _("Lava Plume") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -7887,7 +7887,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEAF_STORM] =
     {
-        .name = _("Leaf Storm"),
+        .name = { .moveName = _("Leaf Storm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 130 : 140,
@@ -7905,7 +7905,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_WHIP] =
     {
-        .name = _("Power Whip"),
+        .name = { .moveName = _("Power Whip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -7920,7 +7920,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROCK_WRECKER] =
     {
-        .name = _("Rock Wrecker"),
+        .name = { .moveName = _("Rock Wrecker") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -7939,7 +7939,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CROSS_POISON] =
     {
-        .name = _("Cross Poison"),
+        .name = { .moveName = _("Cross Poison") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -7961,7 +7961,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUNK_SHOT] =
     {
-        .name = _("Gunk Shot"),
+        .name = { .moveName = _("Gunk Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -7980,7 +7980,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IRON_HEAD] =
     {
-        .name = _("Iron Head"),
+        .name = { .moveName = _("Iron Head") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -8000,7 +8000,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGNET_BOMB] =
     {
-        .name = _("Magnet Bomb"),
+        .name = { .moveName = _("Magnet Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -8015,7 +8015,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STONE_EDGE] =
     {
-        .name = _("Stone Edge"),
+        .name = { .moveName = _("Stone Edge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -8030,7 +8030,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CAPTIVATE] =
     {
-        .name = _("Captivate"),
+        .name = { .moveName = _("Captivate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CAPTIVATE,
         .power = 0,
@@ -8046,7 +8046,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STEALTH_ROCK] =
     {
-        .name = _("Stealth Rock"),
+        .name = { .moveName = _("Stealth Rock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STEALTH_ROCK,
         .power = 0,
@@ -8065,7 +8065,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRASS_KNOT] =
     {
-        .name = _("Grass Knot"),
+        .name = { .moveName = _("Grass Knot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LOW_KICK,
         .power = 1,
@@ -8081,7 +8081,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHATTER] =
     {
-        .name = _("Chatter"),
+        .name = { .moveName = _("Chatter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 65 : 60,
@@ -8115,7 +8115,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_JUDGMENT] =
     {
-        .name = _("Judgment"),
+        .name = { .moveName = _("Judgment") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CHANGE_TYPE_ON_ITEM,
         .power = 100,
@@ -8130,7 +8130,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BUG_BITE] =
     {
-        .name = _("Bug Bite"),
+        .name = { .moveName = _("Bug Bite") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -8148,7 +8148,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHARGE_BEAM] =
     {
-        .name = _("Charge Beam"),
+        .name = { .moveName = _("Charge Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -8168,7 +8168,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WOOD_HAMMER] =
     {
-        .name = _("Wood Hammer"),
+        .name = { .moveName = _("Wood Hammer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -8184,7 +8184,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_JET] =
     {
-        .name = _("Aqua Jet"),
+        .name = { .moveName = _("Aqua Jet") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -8199,7 +8199,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ATTACK_ORDER] =
     {
-        .name = _("Attack Order"),
+        .name = { .moveName = _("Attack Order") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -8214,7 +8214,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DEFEND_ORDER] =
     {
-        .name = _("Defend Order"),
+        .name = { .moveName = _("Defend Order") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COSMIC_POWER,
         .power = 0,
@@ -8232,7 +8232,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAL_ORDER] =
     {
-        .name = _("Heal Order"),
+        .name = { .moveName = _("Heal Order") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RESTORE_HP,
         .power = 0,
@@ -8251,7 +8251,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAD_SMASH] =
     {
-        .name = _("Head Smash"),
+        .name = { .moveName = _("Head Smash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -8267,7 +8267,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_HIT] =
     {
-        .name = _("Double Hit"),
+        .name = { .moveName = _("Double Hit") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 35,
@@ -8283,7 +8283,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROAR_OF_TIME] =
     {
-        .name = _("Roar of Time"),
+        .name = { .moveName = _("Roar of Time") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 150,
@@ -8301,7 +8301,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPACIAL_REND] =
     {
-        .name = _("Spacial Rend"),
+        .name = { .moveName = _("Spacial Rend") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -8316,7 +8316,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LUNAR_DANCE] =
     {
-        .name = _("Lunar Dance"),
+        .name = { .moveName = _("Lunar Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEALING_WISH,
         .power = 0,
@@ -8335,7 +8335,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CRUSH_GRIP] =
     {
-        .name = _("Crush Grip"),
+        .name = { .moveName = _("Crush Grip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WRING_OUT,
         .power = 1,
@@ -8350,7 +8350,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGMA_STORM] =
     {
-        .name = _("Magma Storm"),
+        .name = { .moveName = _("Magma Storm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 120,
@@ -8367,7 +8367,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DARK_VOID] =
     {
-        .name = _("Dark Void"),
+        .name = { .moveName = _("Dark Void") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DARK_VOID,
         .power = 0,
@@ -8384,7 +8384,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SEED_FLARE] =
     {
-        .name = _("Seed Flare"),
+        .name = { .moveName = _("Seed Flare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -8403,7 +8403,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OMINOUS_WIND] =
     {
-        .name = _("Ominous Wind"),
+        .name = { .moveName = _("Ominous Wind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -8424,7 +8424,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_FORCE] =
     {
-        .name = _("Shadow Force"),
+        .name = { .moveName = _("Shadow Force") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = 120,
@@ -8448,7 +8448,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HONE_CLAWS] =
     {
-        .name = _("Hone Claws"),
+        .name = { .moveName = _("Hone Claws") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_ACCURACY_UP,
         .power = 0,
@@ -8466,7 +8466,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WIDE_GUARD] =
     {
-        .name = _("Wide Guard"),
+        .name = { .moveName = _("Wide Guard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -8487,7 +8487,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GUARD_SPLIT] =
     {
-        .name = _("Guard Split"),
+        .name = { .moveName = _("Guard Split") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GUARD_SPLIT,
         .power = 0,
@@ -8503,7 +8503,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_SPLIT] =
     {
-        .name = _("Power Split"),
+        .name = { .moveName = _("Power Split") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POWER_SPLIT,
         .power = 0,
@@ -8519,7 +8519,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WONDER_ROOM] =
     {
-        .name = _("Wonder Room"),
+        .name = { .moveName = _("Wonder Room") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WONDER_ROOM,
         .power = 0,
@@ -8535,7 +8535,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYSHOCK] =
     {
-        .name = _("Psyshock"),
+        .name = { .moveName = _("Psyshock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYSHOCK,
         .power = 80,
@@ -8549,7 +8549,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VENOSHOCK] =
     {
-        .name = _("Venoshock"),
+        .name = { .moveName = _("Venoshock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
         .power = 65,
@@ -8564,7 +8564,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AUTOTOMIZE] =
     {
-        .name = _("Autotomize"),
+        .name = { .moveName = _("Autotomize") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AUTOTOMIZE,
         .power = 0,
@@ -8582,7 +8582,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGE_POWDER] =
     {
-        .name = _("Rage Powder"),
+        .name = { .moveName = _("Rage Powder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOLLOW_ME,
         .power = 0,
@@ -8603,7 +8603,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TELEKINESIS] =
     {
-        .name = _("Telekinesis"),
+        .name = { .moveName = _("Telekinesis") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TELEKINESIS,
         .power = 0,
@@ -8620,7 +8620,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGIC_ROOM] =
     {
-        .name = _("Magic Room"),
+        .name = { .moveName = _("Magic Room") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAGIC_ROOM,
         .power = 0,
@@ -8636,7 +8636,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SMACK_DOWN] =
     {
-        .name = _("Smack Down"),
+        .name = { .moveName = _("Smack Down") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -8655,7 +8655,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STORM_THROW] =
     {
-        .name = _("Storm Throw"),
+        .name = { .moveName = _("Storm Throw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 40,
@@ -8671,7 +8671,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLAME_BURST] =
     {
-        .name = _("Flame Burst"),
+        .name = { .moveName = _("Flame Burst") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -8689,7 +8689,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SLUDGE_WAVE] =
     {
-        .name = _("Sludge Wave"),
+        .name = { .moveName = _("Sludge Wave") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 95,
@@ -8708,7 +8708,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_QUIVER_DANCE] =
     {
-        .name = _("Quiver Dance"),
+        .name = { .moveName = _("Quiver Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_QUIVER_DANCE,
         .power = 0,
@@ -8727,7 +8727,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAVY_SLAM] =
     {
-        .name = _("Heavy Slam"),
+        .name = { .moveName = _("Heavy Slam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAT_CRASH,
         .power = 1,
@@ -8744,7 +8744,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SYNCHRONOISE] =
     {
-        .name = _("Synchronoise"),
+        .name = { .moveName = _("Synchronoise") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SYNCHRONOISE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 120 : 70,
@@ -8758,7 +8758,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRO_BALL] =
     {
-        .name = _("Electro Ball"),
+        .name = { .moveName = _("Electro Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ELECTRO_BALL,
         .power = 1,
@@ -8773,7 +8773,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SOAK] =
     {
-        .name = _("Soak"),
+        .name = { .moveName = _("Soak") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOAK,
         .power = 0,
@@ -8789,7 +8789,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLAME_CHARGE] =
     {
-        .name = _("Flame Charge"),
+        .name = { .moveName = _("Flame Charge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -8810,7 +8810,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COIL] =
     {
-        .name = _("Coil"),
+        .name = { .moveName = _("Coil") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COIL,
         .power = 0,
@@ -8828,7 +8828,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LOW_SWEEP] =
     {
-        .name = _("Low Sweep"),
+        .name = { .moveName = _("Low Sweep") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 65 : 60,
@@ -8848,7 +8848,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACID_SPRAY] =
     {
-        .name = _("Acid Spray"),
+        .name = { .moveName = _("Acid Spray") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -8868,7 +8868,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FOUL_PLAY] =
     {
-        .name = _("Foul Play"),
+        .name = { .moveName = _("Foul Play") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOUL_PLAY,
         .power = 95,
@@ -8883,7 +8883,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SIMPLE_BEAM] =
     {
-        .name = _("Simple Beam"),
+        .name = { .moveName = _("Simple Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SIMPLE_BEAM,
         .power = 0,
@@ -8899,7 +8899,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ENTRAINMENT] =
     {
-        .name = _("Entrainment"),
+        .name = { .moveName = _("Entrainment") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ENTRAINMENT,
         .power = 0,
@@ -8915,7 +8915,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AFTER_YOU] =
     {
-        .name = _("After You"),
+        .name = { .moveName = _("After You") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AFTER_YOU,
         .power = 0,
@@ -8934,7 +8934,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROUND] =
     {
-        .name = _("Round"),
+        .name = { .moveName = _("Round") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROUND,
         .power = 60,
@@ -8953,7 +8953,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ECHOED_VOICE] =
     {
-        .name = _("Echoed Voice"),
+        .name = { .moveName = _("Echoed Voice") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ECHOED_VOICE,
         .power = 40,
@@ -8969,7 +8969,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHIP_AWAY] =
     {
-        .name = _("Chip Away"),
+        .name = { .moveName = _("Chip Away") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -8985,7 +8985,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CLEAR_SMOG] =
     {
-        .name = _("Clear Smog"),
+        .name = { .moveName = _("Clear Smog") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -9002,7 +9002,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STORED_POWER] =
     {
-        .name = _("Stored Power"),
+        .name = { .moveName = _("Stored Power") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STORED_POWER,
         .power = 20,
@@ -9016,7 +9016,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_QUICK_GUARD] =
     {
-        .name = _("Quick Guard"),
+        .name = { .moveName = _("Quick Guard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -9037,7 +9037,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ALLY_SWITCH] =
     {
-        .name = _("Ally Switch"),
+        .name = { .moveName = _("Ally Switch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ALLY_SWITCH,
         .power = 0,
@@ -9054,7 +9054,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SCALD] =
     {
-        .name = _("Scald"),
+        .name = { .moveName = _("Scald") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -9074,7 +9074,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHELL_SMASH] =
     {
-        .name = _("Shell Smash"),
+        .name = { .moveName = _("Shell Smash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SHELL_SMASH,
         .power = 0,
@@ -9092,7 +9092,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAL_PULSE] =
     {
-        .name = _("Heal Pulse"),
+        .name = { .moveName = _("Heal Pulse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAL_PULSE,
         .power = 0,
@@ -9111,7 +9111,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEX] =
     {
-        .name = _("Hex"),
+        .name = { .moveName = _("Hex") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 65 : 50,
@@ -9126,7 +9126,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SKY_DROP] =
     {
-        .name = _("Sky Drop"),
+        .name = { .moveName = _("Sky Drop") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SKY_DROP,
         .power = 60,
@@ -9146,7 +9146,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHIFT_GEAR] =
     {
-        .name = _("Shift Gear"),
+        .name = { .moveName = _("Shift Gear") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SHIFT_GEAR,
         .power = 0,
@@ -9164,7 +9164,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CIRCLE_THROW] =
     {
-        .name = _("Circle Throw"),
+        .name = { .moveName = _("Circle Throw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SWITCH_TARGET,
         .power = 60,
@@ -9181,7 +9181,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_INCINERATE] =
     {
-        .name = _("Incinerate"),
+        .name = { .moveName = _("Incinerate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 30,
@@ -9198,7 +9198,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_QUASH] =
     {
-        .name = _("Quash"),
+        .name = { .moveName = _("Quash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_QUASH,
         .power = 0,
@@ -9214,7 +9214,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACROBATICS] =
     {
-        .name = _("Acrobatics"),
+        .name = { .moveName = _("Acrobatics") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ACROBATICS,
         .power = 55,
@@ -9229,7 +9229,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_REFLECT_TYPE] =
     {
-        .name = _("Reflect Type"),
+        .name = { .moveName = _("Reflect Type") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REFLECT_TYPE,
         .power = 0,
@@ -9246,7 +9246,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RETALIATE] =
     {
-        .name = _("Retaliate"),
+        .name = { .moveName = _("Retaliate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RETALIATE,
         .power = 70,
@@ -9261,7 +9261,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FINAL_GAMBIT] =
     {
-        .name = _("Final Gambit"),
+        .name = { .moveName = _("Final Gambit") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FINAL_GAMBIT,
         .power = 1,
@@ -9277,7 +9277,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BESTOW] =
     {
-        .name = _("Bestow"),
+        .name = { .moveName = _("Bestow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BESTOW,
         .power = 0,
@@ -9297,7 +9297,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_INFERNO] =
     {
-        .name = _("Inferno"),
+        .name = { .moveName = _("Inferno") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -9316,7 +9316,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WATER_PLEDGE] =
     {
-        .name = _("Water Pledge"),
+        .name = { .moveName = _("Water Pledge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
@@ -9331,7 +9331,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_PLEDGE] =
     {
-        .name = _("Fire Pledge"),
+        .name = { .moveName = _("Fire Pledge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
@@ -9346,7 +9346,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRASS_PLEDGE] =
     {
-        .name = _("Grass Pledge"),
+        .name = { .moveName = _("Grass Pledge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
@@ -9361,7 +9361,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VOLT_SWITCH] =
     {
-        .name = _("Volt Switch"),
+        .name = { .moveName = _("Volt Switch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_ESCAPE,
         .power = 70,
@@ -9375,7 +9375,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STRUGGLE_BUG] =
     {
-        .name = _("Strugle Bug"),
+        .name = { .moveName = _("Strugle Bug") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 50 : 30,
@@ -9394,7 +9394,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BULLDOZE] =
     {
-        .name = _("Bulldoze"),
+        .name = { .moveName = _("Bulldoze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BULLDOZE,
         .power = 60,
@@ -9414,7 +9414,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FROST_BREATH] =
     {
-        .name = _("Frost Breath"),
+        .name = { .moveName = _("Frost Breath") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 60 : 40,
@@ -9429,7 +9429,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_TAIL] =
     {
-        .name = _("Dragon Tail"),
+        .name = { .moveName = _("Dragon Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SWITCH_TARGET,
         .power = 60,
@@ -9446,7 +9446,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WORK_UP] =
     {
-        .name = _("Work Up"),
+        .name = { .moveName = _("Work Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_SPATK_UP,
         .power = 0,
@@ -9464,7 +9464,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTROWEB] =
     {
-        .name = _("Electroweb"),
+        .name = { .moveName = _("Electroweb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -9483,7 +9483,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WILD_CHARGE] =
     {
-        .name = _("Wild Chagre"),
+        .name = { .moveName = _("Wild Chagre") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -9499,7 +9499,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRILL_RUN] =
     {
-        .name = _("Drill Run"),
+        .name = { .moveName = _("Drill Run") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -9515,7 +9515,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DUAL_CHOP] =
     {
-        .name = _("Dual Chop"),
+        .name = { .moveName = _("Dual Chop") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -9531,7 +9531,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEART_STAMP] =
     {
-        .name = _("Heart Stamp"),
+        .name = { .moveName = _("Heart Stamp") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -9551,7 +9551,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HORN_LEECH] =
     {
-        .name = _("Horn Leech"),
+        .name = { .moveName = _("Horn Leech") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = 75,
@@ -9567,7 +9567,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SACRED_SWORD] =
     {
-        .name = _("Sacred Sword"),
+        .name = { .moveName = _("Sacred Sword") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -9584,7 +9584,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAZOR_SHELL] =
     {
-        .name = _("Razor Shell"),
+        .name = { .moveName = _("Razor Shell") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -9605,7 +9605,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAT_CRASH] =
     {
-        .name = _("Heat Crash"),
+        .name = { .moveName = _("Heat Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAT_CRASH,
         .power = 1,
@@ -9621,7 +9621,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEAF_TORNADO] =
     {
-        .name = _("Leaf Tornado"),
+        .name = { .moveName = _("Leaf Tornado") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -9641,7 +9641,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STEAMROLLER] =
     {
-        .name = _("Steamroller"),
+        .name = { .moveName = _("Steamroller") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -9662,7 +9662,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COTTON_GUARD] =
     {
-        .name = _("Cotton Guard"),
+        .name = { .moveName = _("Cotton Guard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP_3,
         .power = 0,
@@ -9680,7 +9680,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NIGHT_DAZE] =
     {
-        .name = _("Night Daze"),
+        .name = { .moveName = _("Night Daze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -9699,7 +9699,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYSTRIKE] =
     {
-        .name = _("Psystrike"),
+        .name = { .moveName = _("Psystrike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYSHOCK,
         .power = 100,
@@ -9713,7 +9713,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAIL_SLAP] =
     {
-        .name = _("Tail Slap"),
+        .name = { .moveName = _("Tail Slap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
@@ -9728,7 +9728,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HURRICANE] =
     {
-        .name = _("Hurricane"),
+        .name = { .moveName = _("Hurricane") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_THUNDER,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 110 : 120,
@@ -9749,7 +9749,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAD_CHARGE] =
     {
-        .name = _("Head Charge"),
+        .name = { .moveName = _("Head Charge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -9765,7 +9765,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GEAR_GRIND] =
     {
-        .name = _("Gear Grind"),
+        .name = { .moveName = _("Gear Grind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -9781,7 +9781,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SEARING_SHOT] =
     {
-        .name = _("Searing Shot"),
+        .name = { .moveName = _("Searing Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -9801,7 +9801,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TECHNO_BLAST] =
     {
-        .name = _("Techno Blast"),
+        .name = { .moveName = _("Techno Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CHANGE_TYPE_ON_ITEM,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 120 : 85,
@@ -9817,7 +9817,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RELIC_SONG] =
     {
-        .name = _("Relic Song"),
+        .name = { .moveName = _("Relic Song") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RELIC_SONG,
         .power = 75,
@@ -9840,7 +9840,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SECRET_SWORD] =
     {
-        .name = _("Secret Sword"),
+        .name = { .moveName = _("Secret Sword") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYSHOCK,
         .power = 85,
@@ -9856,7 +9856,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GLACIATE] =
     {
-        .name = _("Glaciate"),
+        .name = { .moveName = _("Glaciate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -9875,7 +9875,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BOLT_STRIKE] =
     {
-        .name = _("Bolt Strike"),
+        .name = { .moveName = _("Bolt Strike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 130,
@@ -9895,7 +9895,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLUE_FLARE] =
     {
-        .name = _("Blue Flare"),
+        .name = { .moveName = _("Blue Flare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 130,
@@ -9914,7 +9914,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIERY_DANCE] =
     {
-        .name = _("Fiery Dance"),
+        .name = { .moveName = _("Fiery Dance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -9935,7 +9935,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FREEZE_SHOCK] =
     {
-        .name = _("Freeze Shock"),
+        .name = { .moveName = _("Freeze Shock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 140,
@@ -9958,7 +9958,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_BURN] =
     {
-        .name = _("Ice Burn"),
+        .name = { .moveName = _("Ice Burn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 140,
@@ -9981,7 +9981,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNARL] =
     {
-        .name = _("Snarl"),
+        .name = { .moveName = _("Snarl") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 55,
@@ -10003,7 +10003,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICICLE_CRASH] =
     {
-        .name = _("Icicle Crash"),
+        .name = { .moveName = _("Icicle Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -10022,7 +10022,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_V_CREATE] =
     {
-        .name = _("V-create"),
+        .name = { .moveName = _("V-create") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 180,
@@ -10042,7 +10042,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FUSION_FLARE] =
     {
-        .name = _("Fusion Flare"),
+        .name = { .moveName = _("Fusion Flare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FUSION_COMBO,
         .power = 100,
@@ -10057,7 +10057,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FUSION_BOLT] =
     {
-        .name = _("Fusion Bolt"),
+        .name = { .moveName = _("Fusion Bolt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FUSION_COMBO,
         .power = 100,
@@ -10071,7 +10071,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLYING_PRESS] =
     {
-        .name = _("Flying Press"),
+        .name = { .moveName = _("Flying Press") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TWO_TYPED_MOVE,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 100 : 80,
@@ -10090,7 +10090,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAT_BLOCK] =
     {
-        .name = _("Mat Block"),
+        .name = { .moveName = _("Mat Block") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAT_BLOCK,
         .power = 0,
@@ -10113,7 +10113,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BELCH] =
     {
-        .name = _("Belch"),
+        .name = { .moveName = _("Belch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BELCH,
         .power = 120,
@@ -10135,7 +10135,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ROTOTILLER] =
     {
-        .name = _("Rototiller"),
+        .name = { .moveName = _("Rototiller") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ROTOTILLER,
         .power = 0,
@@ -10153,7 +10153,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STICKY_WEB] =
     {
-        .name = _("Sticky Web"),
+        .name = { .moveName = _("Sticky Web") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STICKY_WEB,
         .power = 0,
@@ -10172,7 +10172,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FELL_STINGER] =
     {
-        .name = _("Fell Stinger"),
+        .name = { .moveName = _("Fell Stinger") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FELL_STINGER,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 50 : 30,
@@ -10188,9 +10188,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PHANTOM_FORCE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Phantom Force"),
+            .name = { .moveName = _("Phantom Force") },
         #else
-            .name = _("PhantomForce"),
+            .name = { .moveName = _("PhantomForce") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SEMI_INVULNERABLE,
@@ -10216,9 +10216,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_TRICK_OR_TREAT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Trick-or-Treat"),
+            .name = { .moveName = _("Trick-or-Treat") },
         #else
-            .name = _("TrickOrTreat"),
+            .name = { .moveName = _("TrickOrTreat") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_THIRD_TYPE,
@@ -10236,7 +10236,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NOBLE_ROAR] =
     {
-        .name = _("Noble Roar"),
+        .name = { .moveName = _("Noble Roar") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NOBLE_ROAR,
         .power = 0,
@@ -10254,7 +10254,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ION_DELUGE] =
     {
-        .name = _("Ion Deluge"),
+        .name = { .moveName = _("Ion Deluge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ION_DELUGE,
         .power = 0,
@@ -10272,9 +10272,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PARABOLIC_CHARGE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Parabolic Charge"),
+            .name = { .moveName = _("Parabolic Charge") },
         #else
-            .name = _("ParaboldChrg"),
+            .name = { .moveName = _("ParaboldChrg") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
@@ -10291,9 +10291,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FORESTS_CURSE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Forest's Curse"),
+            .name = { .moveName = _("Forest's Curse") },
         #else
-            .name = _("Forest'sCurs"),
+            .name = { .moveName = _("Forest'sCurs") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_THIRD_TYPE,
@@ -10312,9 +10312,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PETAL_BLIZZARD] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Petal Blizzard"),
+            .name = { .moveName = _("Petal Blizzard") },
         #else
-            .name = _("PetalBlizzrd"),
+            .name = { .moveName = _("PetalBlizzrd") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10330,7 +10330,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FREEZE_DRY] =
     {
-        .name = _("Freeze-Dry"),
+        .name = { .moveName = _("Freeze-Dry") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FREEZE_DRY,
         .power = 70,
@@ -10350,9 +10350,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DISARMING_VOICE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Disarming Voice"),
+            .name = { .moveName = _("Disarming Voice") },
         #else
-            .name = _("DisrmngVoice"),
+            .name = { .moveName = _("DisrmngVoice") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10369,7 +10369,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PARTING_SHOT] =
     {
-        .name = _("Parting Shot"),
+        .name = { .moveName = _("Parting Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PARTING_SHOT,
         .power = 0,
@@ -10387,7 +10387,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TOPSY_TURVY] =
     {
-        .name = _("Topsy-Turvy"),
+        .name = { .moveName = _("Topsy-Turvy") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TOPSY_TURVY,
         .power = 0,
@@ -10404,9 +10404,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DRAINING_KISS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Draining Kiss"),
+            .name = { .moveName = _("Draining Kiss") },
         #else
-            .name = _("DrainingKiss"),
+            .name = { .moveName = _("DrainingKiss") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
@@ -10425,9 +10425,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CRAFTY_SHIELD] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Crafty Shield"),
+            .name = { .moveName = _("Crafty Shield") },
         #else
-            .name = _("CraftyShield"),
+            .name = { .moveName = _("CraftyShield") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
@@ -10448,9 +10448,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FLOWER_SHIELD] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Flower Shield"),
+            .name = { .moveName = _("Flower Shield") },
         #else
-            .name = _("FlowerShield"),
+            .name = { .moveName = _("FlowerShield") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FLOWER_SHIELD,
@@ -10469,9 +10469,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_GRASSY_TERRAIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Grassy Terrain"),
+            .name = { .moveName = _("Grassy Terrain") },
         #else
-            .name = _("GrssyTerrain"),
+            .name = { .moveName = _("GrssyTerrain") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GRASSY_TERRAIN,
@@ -10491,9 +10491,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MISTY_TERRAIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Misty Terrain"),
+            .name = { .moveName = _("Misty Terrain") },
         #else
-            .name = _("MistyTerrain"),
+            .name = { .moveName = _("MistyTerrain") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MISTY_TERRAIN,
@@ -10512,7 +10512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRIFY] =
     {
-        .name = _("Electrify"),
+        .name = { .moveName = _("Electrify") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ELECTRIFY,
         .power = 0,
@@ -10527,7 +10527,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PLAY_ROUGH] =
     {
-        .name = _("Play Rough"),
+        .name = { .moveName = _("Play Rough") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -10547,7 +10547,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FAIRY_WIND] =
     {
-        .name = _("Fairy Wind"),
+        .name = { .moveName = _("Fairy Wind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -10562,7 +10562,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MOONBLAST] =
     {
-        .name = _("Moonblast"),
+        .name = { .moveName = _("Moonblast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 95,
@@ -10581,7 +10581,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BOOMBURST] =
     {
-        .name = _("Boomburst"),
+        .name = { .moveName = _("Boomburst") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 140,
@@ -10597,7 +10597,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FAIRY_LOCK] =
     {
-        .name = _("Fairy Lock"),
+        .name = { .moveName = _("Fairy Lock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FAIRY_LOCK,
         .power = 0,
@@ -10615,9 +10615,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_KINGS_SHIELD] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("King's Shield"),
+            .name = { .moveName = _("King's Shield") },
         #else
-            .name = _("King'sShield"),
+            .name = { .moveName = _("King'sShield") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
@@ -10640,7 +10640,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PLAY_NICE] =
     {
-        .name = _("Play Nice"),
+        .name = { .moveName = _("Play Nice") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_DOWN,
         .power = 0,
@@ -10658,7 +10658,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CONFIDE] =
     {
-        .name = _("Confide"),
+        .name = { .moveName = _("Confide") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_ATTACK_DOWN,
         .power = 0,
@@ -10678,9 +10678,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DIAMOND_STORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Diamond Storm"),
+            .name = { .moveName = _("Diamond Storm") },
         #else
-            .name = _("DiamondStorm"),
+            .name = { .moveName = _("DiamondStorm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .power = 100,
@@ -10701,9 +10701,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_STEAM_ERUPTION] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Steam Eruption"),
+            .name = { .moveName = _("Steam Eruption") },
         #else
-            .name = _("SteamErption"),
+            .name = { .moveName = _("SteamErption") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10726,9 +10726,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_HYPERSPACE_HOLE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Hyperspace Hole"),
+            .name = { .moveName = _("Hyperspace Hole") },
         #else
-            .name = _("HyprspceHole"),
+            .name = { .moveName = _("HyprspceHole") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10750,9 +10750,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_WATER_SHURIKEN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Water Shuriken"),
+            .name = { .moveName = _("Water Shuriken") },
         #else
-            .name = _("WatrShuriken"),
+            .name = { .moveName = _("WatrShuriken") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
@@ -10768,9 +10768,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MYSTICAL_FIRE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Mystical Fire"),
+            .name = { .moveName = _("Mystical Fire") },
         #else
-            .name = _("MysticalFire"),
+            .name = { .moveName = _("MysticalFire") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10790,7 +10790,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIKY_SHIELD] =
     {
-        .name = _("Spiky Shield"),
+        .name = { .moveName = _("Spiky Shield") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -10812,9 +10812,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_AROMATIC_MIST] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Aromatic Mist"),
+            .name = { .moveName = _("Aromatic Mist") },
         #else
-            .name = _("AromaticMist"),
+            .name = { .moveName = _("AromaticMist") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AROMATIC_MIST,
@@ -10834,9 +10834,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_EERIE_IMPULSE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Eerie Impulse"),
+            .name = { .moveName = _("Eerie Impulse") },
         #else
-            .name = _("EerieImpulse"),
+            .name = { .moveName = _("EerieImpulse") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPECIAL_ATTACK_DOWN_2,
@@ -10853,7 +10853,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_VENOM_DRENCH] =
     {
-        .name = _("Venom Drench"),
+        .name = { .moveName = _("Venom Drench") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_VENOM_DRENCH,
         .power = 0,
@@ -10869,7 +10869,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWDER] =
     {
-        .name = _("Powder"),
+        .name = { .moveName = _("Powder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POWDER,
         .power = 0,
@@ -10886,7 +10886,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GEOMANCY] =
     {
-        .name = _("Geomancy"),
+        .name = { .moveName = _("Geomancy") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GEOMANCY,
         .power = 0,
@@ -10906,9 +10906,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MAGNETIC_FLUX] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Magnetic Flux"),
+            .name = { .moveName = _("Magnetic Flux") },
         #else
-            .name = _("MagneticFlux"),
+            .name = { .moveName = _("MagneticFlux") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAGNETIC_FLUX,
@@ -10928,7 +10928,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HAPPY_HOUR] =
     {
-        .name = _("Happy Hour"),
+        .name = { .moveName = _("Happy Hour") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DO_NOTHING,
         .power = 0,
@@ -10946,9 +10946,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_ELECTRIC_TERRAIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Electric Terrain"),
+            .name = { .moveName = _("Electric Terrain") },
         #else
-            .name = _("ElctrcTrrain"),
+            .name = { .moveName = _("ElctrcTrrain") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ELECTRIC_TERRAIN,
@@ -10968,9 +10968,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DAZZLING_GLEAM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dazzling Gleam"),
+            .name = { .moveName = _("Dazzling Gleam") },
         #else
-            .name = _("DazzlngGleam"),
+            .name = { .moveName = _("DazzlngGleam") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -10985,7 +10985,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CELEBRATE] =
     {
-        .name = _("Celebrate"),
+        .name = { .moveName = _("Celebrate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DO_NOTHING,
         .power = 0,
@@ -11008,7 +11008,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HOLD_HANDS] =
     {
-        .name = _("Hold Hands"),
+        .name = { .moveName = _("Hold Hands") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DO_NOTHING,
         .power = 0,
@@ -11032,9 +11032,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BABY_DOLL_EYES] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Baby-Doll Eyes"),
+            .name = { .moveName = _("Baby-Doll Eyes") },
         #else
-            .name = _("BabyDollEyes"),
+            .name = { .moveName = _("BabyDollEyes") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ATTACK_DOWN,
@@ -11051,7 +11051,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NUZZLE] =
     {
-        .name = _("Nuzzle"),
+        .name = { .moveName = _("Nuzzle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 20,
@@ -11071,7 +11071,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HOLD_BACK] =
     {
-        .name = _("Hold Back"),
+        .name = { .moveName = _("Hold Back") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FALSE_SWIPE,
         .power = 40,
@@ -11086,7 +11086,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_INFESTATION] =
     {
-        .name = _("Infestation"),
+        .name = { .moveName = _("Infestation") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 20,
@@ -11105,9 +11105,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_POWER_UP_PUNCH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Power-Up Punch"),
+            .name = { .moveName = _("Power-Up Punch") },
         #else
-            .name = _("PowerUpPunch"),
+            .name = { .moveName = _("PowerUpPunch") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11131,9 +11131,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_OBLIVION_WING] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Oblivion Wing"),
+            .name = { .moveName = _("Oblivion Wing") },
         #else
-            .name = _("OblivionWing"),
+            .name = { .moveName = _("OblivionWing") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
@@ -11151,9 +11151,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_THOUSAND_ARROWS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Thousand Arrows"),
+            .name = { .moveName = _("Thousand Arrows") },
         #else
-            .name = _("ThousndArrws"),
+            .name = { .moveName = _("ThousndArrws") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11176,9 +11176,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_THOUSAND_WAVES] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Thousand Waves"),
+            .name = { .moveName = _("Thousand Waves") },
         #else
-            .name = _("ThousndWaves"),
+            .name = { .moveName = _("ThousndWaves") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11198,7 +11198,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LANDS_WRATH] =
     {
-        .name = _("Land's Wrath"),
+        .name = { .moveName = _("Land's Wrath") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -11214,9 +11214,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_LIGHT_OF_RUIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Light of Ruin"),
+            .name = { .moveName = _("Light of Ruin") },
         #else
-            .name = _("LightOfRuin"),
+            .name = { .moveName = _("LightOfRuin") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11233,7 +11233,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ORIGIN_PULSE] =
     {
-        .name = _("Origin Pulse"),
+        .name = { .moveName = _("Origin Pulse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 110,
@@ -11250,9 +11250,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PRECIPICE_BLADES] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Precipice Blades"),
+            .name = { .moveName = _("Precipice Blades") },
         #else
-            .name = _("PrcipceBldes"),
+            .name = { .moveName = _("PrcipceBldes") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11269,9 +11269,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DRAGON_ASCENT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dragon Ascent"),
+            .name = { .moveName = _("Dragon Ascent") },
         #else
-            .name = _("DragonAscent"),
+            .name = { .moveName = _("DragonAscent") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11293,9 +11293,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_HYPERSPACE_FURY] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Hyperspace Fury"),
+            .name = { .moveName = _("Hyperspace Fury") },
         #else
-            .name = _("HyprspceFury"),
+            .name = { .moveName = _("HyprspceFury") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HYPERSPACE_FURY,
@@ -11320,7 +11320,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHORE_UP] =
     {
-        .name = _("Shore Up"),
+        .name = { .moveName = _("Shore Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SHORE_UP,
         .power = 0,
@@ -11340,9 +11340,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FIRST_IMPRESSION] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("First Impression"),
+            .name = { .moveName = _("First Impression") },
         #else
-            .name = _("FrstImpressn"),
+            .name = { .moveName = _("FrstImpressn") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FAKE_OUT,
@@ -11359,9 +11359,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BANEFUL_BUNKER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Baneful Bunker"),
+            .name = { .moveName = _("Baneful Bunker") },
         #else
-            .name = _("BanefulBunkr"),
+            .name = { .moveName = _("BanefulBunkr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
@@ -11384,9 +11384,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPIRIT_SHACKLE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Spirit Shackle"),
+            .name = { .moveName = _("Spirit Shackle") },
         #else
-            .name = _("SpiritShackl"),
+            .name = { .moveName = _("SpiritShackl") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11407,9 +11407,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DARKEST_LARIAT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Darkest Lariat"),
+            .name = { .moveName = _("Darkest Lariat") },
         #else
-            .name = _("DarkstLariat"),
+            .name = { .moveName = _("DarkstLariat") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11427,9 +11427,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPARKLING_ARIA] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Sparkling Aria"),
+            .name = { .moveName = _("Sparkling Aria") },
         #else
-            .name = _("SparklngAria"),
+            .name = { .moveName = _("SparklngAria") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11452,7 +11452,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_HAMMER] =
     {
-        .name = _("Ice Hammer"),
+        .name = { .moveName = _("Ice Hammer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -11473,9 +11473,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FLORAL_HEALING] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Floral Healing"),
+            .name = { .moveName = _("Floral Healing") },
         #else
-            .name = _("FloralHealng"),
+            .name = { .moveName = _("FloralHealng") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HEAL_PULSE,
@@ -11496,9 +11496,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_HIGH_HORSEPOWER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("High Horsepower"),
+            .name = { .moveName = _("High Horsepower") },
         #else
-            .name = _("HighHorseprw"),
+            .name = { .moveName = _("HighHorseprw") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11514,7 +11514,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STRENGTH_SAP] =
     {
-        .name = _("Strength Sap"),
+        .name = { .moveName = _("Strength Sap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STRENGTH_SAP,
         .power = 0,
@@ -11531,7 +11531,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SOLAR_BLADE] =
     {
-        .name = _("Solar Blade"),
+        .name = { .moveName = _("Solar Blade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOLAR_BEAM,
         .power = 125,
@@ -11550,7 +11550,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LEAFAGE] =
     {
-        .name = _("Leafage"),
+        .name = { .moveName = _("Leafage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -11564,7 +11564,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPOTLIGHT] =
     {
-        .name = _("Spotlight"),
+        .name = { .moveName = _("Spotlight") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FOLLOW_ME,
         .power = 0,
@@ -11584,7 +11584,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TOXIC_THREAD] =
     {
-        .name = _("Toxic Thread"),
+        .name = { .moveName = _("Toxic Thread") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TOXIC_THREAD,
         .power = 0,
@@ -11600,7 +11600,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LASER_FOCUS] =
     {
-        .name = _("Laser Focus"),
+        .name = { .moveName = _("Laser Focus") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LASER_FOCUS,
         .power = 0,
@@ -11618,7 +11618,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GEAR_UP] =
     {
-        .name = _("Gear Up"),
+        .name = { .moveName = _("Gear Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GEAR_UP,
         .power = 0,
@@ -11637,7 +11637,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THROAT_CHOP] =
     {
-        .name = _("Throat Chop"),
+        .name = { .moveName = _("Throat Chop") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -11657,7 +11657,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POLLEN_PUFF] =
     {
-        .name = _("Pollen Puff"),
+        .name = { .moveName = _("Pollen Puff") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_ENEMY_HEAL_ALLY,
         .power = 90,
@@ -11672,7 +11672,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ANCHOR_SHOT] =
     {
-        .name = _("Anchor Shot"),
+        .name = { .moveName = _("Anchor Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -11693,9 +11693,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PSYCHIC_TERRAIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Psychic Terrain"),
+            .name = { .moveName = _("Psychic Terrain") },
         #else
-            .name = _("PsychcTrrain"),
+            .name = { .moveName = _("PsychcTrrain") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYCHIC_TERRAIN,
@@ -11713,7 +11713,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LUNGE] =
     {
-        .name = _("Lunge"),
+        .name = { .moveName = _("Lunge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -11733,7 +11733,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRE_LASH] =
     {
-        .name = _("Fire Lash"),
+        .name = { .moveName = _("Fire Lash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -11753,7 +11753,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_TRIP] =
     {
-        .name = _("Power Trip"),
+        .name = { .moveName = _("Power Trip") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STORED_POWER,
         .power = 20,
@@ -11768,7 +11768,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BURN_UP] =
     {
-        .name = _("Burn Up"),
+        .name = { .moveName = _("Burn Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FAIL_IF_NOT_ARG_TYPE,
         .power = 130,
@@ -11788,7 +11788,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPEED_SWAP] =
     {
-        .name = _("Speed Swap"),
+        .name = { .moveName = _("Speed Swap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPEED_SWAP,
         .power = 0,
@@ -11804,7 +11804,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SMART_STRIKE] =
     {
-        .name = _("Smart Strike"),
+        .name = { .moveName = _("Smart Strike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -11819,7 +11819,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PURIFY] =
     {
-        .name = _("Purify"),
+        .name = { .moveName = _("Purify") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PURIFY,
         .power = 0,
@@ -11838,9 +11838,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_REVELATION_DANCE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Revelation Dance"),
+            .name = { .moveName = _("Revelation Dance") },
         #else
-            .name = _("RvlationDnce"),
+            .name = { .moveName = _("RvlationDnce") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REVELATION_DANCE,
@@ -11857,9 +11857,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CORE_ENFORCER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Core Enforcer"),
+            .name = { .moveName = _("Core Enforcer") },
         #else
-            .name = _("CoreEnforcer"),
+            .name = { .moveName = _("CoreEnforcer") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11878,7 +11878,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TROP_KICK] =
     {
-        .name = _("Trop kick"),
+        .name = { .moveName = _("Trop kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -11898,7 +11898,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_INSTRUCT] =
     {
-        .name = _("Instruct"),
+        .name = { .moveName = _("Instruct") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_INSTRUCT,
         .power = 0,
@@ -11917,7 +11917,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BEAK_BLAST] =
     {
-        .name = _("Beak Blast"),
+        .name = { .moveName = _("Beak Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BEAK_BLAST,
         .power = 100,
@@ -11940,9 +11940,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CLANGING_SCALES] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Clanging Scales"),
+            .name = { .moveName = _("Clanging Scales") },
         #else
-            .name = _("ClngngScales"),
+            .name = { .moveName = _("ClngngScales") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11964,9 +11964,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DRAGON_HAMMER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dragon Hammer"),
+            .name = { .moveName = _("Dragon Hammer") },
         #else
-            .name = _("DragonHammer"),
+            .name = { .moveName = _("DragonHammer") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -11982,7 +11982,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRUTAL_SWING] =
     {
-        .name = _("Brutal Swing"),
+        .name = { .moveName = _("Brutal Swing") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -11997,7 +11997,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AURORA_VEIL] =
     {
-        .name = _("Aurora Veil"),
+        .name = { .moveName = _("Aurora Veil") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AURORA_VEIL,
         .power = 0,
@@ -12015,7 +12015,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHELL_TRAP] =
     {
-        .name = _("Shell Trap"),
+        .name = { .moveName = _("Shell Trap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SHELL_TRAP,
         .power = 150,
@@ -12036,7 +12036,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLEUR_CANNON] =
     {
-        .name = _("Fleur Cannon"),
+        .name = { .moveName = _("Fleur Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 130,
@@ -12056,9 +12056,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PSYCHIC_FANGS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Psychic Fangs"),
+            .name = { .moveName = _("Psychic Fangs") },
         #else
-            .name = _("PsychicFangs"),
+            .name = { .moveName = _("PsychicFangs") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BRICK_BREAK,
@@ -12076,9 +12076,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_STOMPING_TANTRUM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Stomping Tantrum"),
+            .name = { .moveName = _("Stomping Tantrum") },
         #else
-            .name = _("StmpngTantrm"),
+            .name = { .moveName = _("StmpngTantrm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STOMPING_TANTRUM,
@@ -12095,7 +12095,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHADOW_BONE] =
     {
-        .name = _("Shadow Bone"),
+        .name = { .moveName = _("Shadow Bone") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -12114,7 +12114,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ACCELEROCK] =
     {
-        .name = _("Accelerock"),
+        .name = { .moveName = _("Accelerock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -12129,7 +12129,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LIQUIDATION] =
     {
-        .name = _("Liquidation"),
+        .name = { .moveName = _("Liquidation") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 85,
@@ -12150,9 +12150,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PRISMATIC_LASER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Prismatic Laser"),
+            .name = { .moveName = _("Prismatic Laser") },
         #else
-            .name = _("PrsmaticLasr"),
+            .name = { .moveName = _("PrsmaticLasr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12172,9 +12172,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPECTRAL_THIEF] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Spectral Thief"),
+            .name = { .moveName = _("Spectral Thief") },
         #else
-            .name = _("SpectrlThief"),
+            .name = { .moveName = _("SpectrlThief") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12196,9 +12196,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SUNSTEEL_STRIKE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Sunsteel Strike"),
+            .name = { .moveName = _("Sunsteel Strike") },
         #else
-            .name = _("SnsteelStrke"),
+            .name = { .moveName = _("SnsteelStrke") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12217,9 +12217,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MOONGEIST_BEAM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Moongeist Beam"),
+            .name = { .moveName = _("Moongeist Beam") },
         #else
-            .name = _("MoongestBeam"),
+            .name = { .moveName = _("MoongestBeam") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12236,7 +12236,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TEARFUL_LOOK] =
     {
-        .name = _("Tearful Look"),
+        .name = { .moveName = _("Tearful Look") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NOBLE_ROAR,
         .power = 0,
@@ -12253,7 +12253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ZING_ZAP] =
     {
-        .name = _("Zing Zap"),
+        .name = { .moveName = _("Zing Zap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -12273,9 +12273,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_NATURES_MADNESS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Nature's Madness"),
+            .name = { .moveName = _("Nature's Madness") },
         #else
-            .name = _("Natur'sMadns"),
+            .name = { .moveName = _("Natur'sMadns") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUPER_FANG,
@@ -12291,7 +12291,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MULTI_ATTACK] =
     {
-        .name = _("Multi-Attack"),
+        .name = { .moveName = _("Multi-Attack") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CHANGE_TYPE_ON_ITEM,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 120 : 90,
@@ -12307,7 +12307,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MIND_BLOWN] =
     {
-        .name = _("Mind Blown"),
+        .name = { .moveName = _("Mind Blown") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MIND_BLOWN,
         .power = 150,
@@ -12322,7 +12322,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PLASMA_FISTS] =
     {
-        .name = _("Plasma Fists"),
+        .name = { .moveName = _("Plasma Fists") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLASMA_FISTS,
         .power = 100,
@@ -12340,9 +12340,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PHOTON_GEYSER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Photon Geyser"),
+            .name = { .moveName = _("Photon Geyser") },
         #else
-            .name = _("PhotonGeyser"),
+            .name = { .moveName = _("PhotonGeyser") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PHOTON_GEYSER,
@@ -12359,7 +12359,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ZIPPY_ZAP] =
     {
-        .name = _("Zippy Zap"),
+        .name = { .moveName = _("Zippy Zap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 80 : 50,
@@ -12385,9 +12385,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPLISHY_SPLASH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Splishy Splash"),
+            .name = { .moveName = _("Splishy Splash") },
         #else
-            .name = _("SplishySplsh"),
+            .name = { .moveName = _("SplishySplsh") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12409,7 +12409,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLOATY_FALL] =
     {
-        .name = _("Floaty Fall"),
+        .name = { .moveName = _("Floaty Fall") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -12432,7 +12432,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PIKA_PAPOW] =
     {
-        .name = _("Pika Papow"),
+        .name = { .moveName = _("Pika Papow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RETURN,
         .power = 1,
@@ -12449,9 +12449,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BOUNCY_BUBBLE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Bouncy Bubble"),
+            .name = { .moveName = _("Bouncy Bubble") },
         #else
-            .name = _("BouncyBubble"),
+            .name = { .moveName = _("BouncyBubble") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
@@ -12470,7 +12470,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BUZZY_BUZZ] =
     {
-        .name = _("Buzzy Buzz"),
+        .name = { .moveName = _("Buzzy Buzz") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 60 : 90,
@@ -12490,7 +12490,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SIZZLY_SLIDE] =
     {
-        .name = _("Sizzly Slide"),
+        .name = { .moveName = _("Sizzly Slide") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 60 : 90,
@@ -12512,7 +12512,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GLITZY_GLOW] =
     {
-        .name = _("Glitzy Glow"),
+        .name = { .moveName = _("Glitzy Glow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GLITZY_GLOW,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 80 : 90,
@@ -12528,7 +12528,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BADDY_BAD] =
     {
-        .name = _("Baddy Bad"),
+        .name = { .moveName = _("Baddy Bad") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BADDY_BAD,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 80 : 90,
@@ -12544,7 +12544,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SAPPY_SEED] =
     {
-        .name = _("Sappy Seed"),
+        .name = { .moveName = _("Sappy Seed") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SAPPY_SEED,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 100 : 90,
@@ -12561,7 +12561,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FREEZY_FROST] =
     {
-        .name = _("Freezy Frost"),
+        .name = { .moveName = _("Freezy Frost") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FREEZY_FROST,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 100 : 90,
@@ -12578,9 +12578,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPARKLY_SWIRL] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Sparkly Swirl"),
+            .name = { .moveName = _("Sparkly Swirl") },
         #else
-            .name = _("SparklySwirl"),
+            .name = { .moveName = _("SparklySwirl") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SPARKLY_SWIRL,
@@ -12598,9 +12598,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_VEEVEE_VOLLEY] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Veevee Volley"),
+            .name = { .moveName = _("Veevee Volley") },
         #else
-            .name = _("VeeveeVolley"),
+            .name = { .moveName = _("VeeveeVolley") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RETURN,
@@ -12619,9 +12619,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DOUBLE_IRON_BASH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Double Iron Bash"),
+            .name = { .moveName = _("Double Iron Bash") },
         #else
-            .name = _("DublIronBash"),
+            .name = { .moveName = _("DublIronBash") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -12647,9 +12647,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DYNAMAX_CANNON] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dynamax Cannon"),
+            .name = { .moveName = _("Dynamax Cannon") },
         #else
-            .name = _("DynamxCannon"),
+            .name = { .moveName = _("DynamxCannon") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
@@ -12673,7 +12673,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNIPE_SHOT] =
     {
-        .name = _("Snipe Shot"),
+        .name = { .moveName = _("Snipe Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SNIPE_SHOT,
         .power = 80,
@@ -12688,7 +12688,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_JAW_LOCK] =
     {
-        .name = _("Jaw Lock"),
+        .name = { .moveName = _("Jaw Lock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -12707,7 +12707,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STUFF_CHEEKS] =
     {
-        .name = _("Stuff Cheeks"),
+        .name = { .moveName = _("Stuff Cheeks") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STUFF_CHEEKS,
         .power = 0,
@@ -12724,7 +12724,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_NO_RETREAT] =
     {
-        .name = _("No Retreat"),
+        .name = { .moveName = _("No Retreat") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_NO_RETREAT,
         .power = 0,
@@ -12741,7 +12741,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAR_SHOT] =
     {
-        .name = _("Tar Shot"),
+        .name = { .moveName = _("Tar Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TAR_SHOT,
         .power = 0,
@@ -12756,7 +12756,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAGIC_POWDER] =
     {
-        .name = _("Magic Powder"),
+        .name = { .moveName = _("Magic Powder") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SOAK,
         .power = 0,
@@ -12773,7 +12773,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_DARTS] =
     {
-        .name = _("Dragon Darts"),
+        .name = { .moveName = _("Dragon Darts") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT, //TODO
         .power = 50,
@@ -12789,7 +12789,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TEATIME] =
     {
-        .name = _("Teatime"),
+        .name = { .moveName = _("Teatime") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TEATIME,
         .power = 0,
@@ -12806,7 +12806,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OCTOLOCK] =
     {
-        .name = _("Octolock"),
+        .name = { .moveName = _("Octolock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_OCTOLOCK,
         .power = 0,
@@ -12820,7 +12820,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BOLT_BEAK] =
     {
-        .name = _("Bolt Beak"),
+        .name = { .moveName = _("Bolt Beak") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BOLT_BEAK,
         .power = 85,
@@ -12836,9 +12836,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FISHIOUS_REND] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Fishious Rend"),
+            .name = { .moveName = _("Fishious Rend") },
         #else
-            .name = _("FishiousRend"),
+            .name = { .moveName = _("FishiousRend") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BOLT_BEAK,
@@ -12855,7 +12855,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COURT_CHANGE] =
     {
-        .name = _("Court Change"),
+        .name = { .moveName = _("Court Change") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COURT_CHANGE,
         .power = 0,
@@ -12871,9 +12871,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CLANGOROUS_SOUL] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Clangorous Soul"),
+            .name = { .moveName = _("Clangorous Soul") },
         #else
-            .name = _("ClngrousSoul"),
+            .name = { .moveName = _("ClngrousSoul") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CLANGOROUS_SOUL,
@@ -12894,7 +12894,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BODY_PRESS] =
     {
-        .name = _("Body Press"),
+        .name = { .moveName = _("Body Press") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_BODY_PRESS,
         .power = 80,
@@ -12911,7 +12911,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DECORATE] =
     {
-        .name = _("Decorate"),
+        .name = { .moveName = _("Decorate") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DECORATE,
         .power = 0,
@@ -12928,7 +12928,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRUM_BEATING] =
     {
-        .name = _("Drum Beating"),
+        .name = { .moveName = _("Drum Beating") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -12948,7 +12948,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNAP_TRAP] =
     {
-        .name = _("Snap Trap"),
+        .name = { .moveName = _("Snap Trap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 35,
@@ -12968,7 +12968,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PYRO_BALL] =
     {
-        .name = _("Pyro Ball"),
+        .name = { .moveName = _("Pyro Ball") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -12991,9 +12991,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BEHEMOTH_BLADE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Behemoth Blade"),
+            .name = { .moveName = _("Behemoth Blade") },
         #else
-            .name = _("BehemthBlade"),
+            .name = { .moveName = _("BehemthBlade") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
@@ -13015,9 +13015,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BEHEMOTH_BASH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Behemoth Bash"),
+            .name = { .moveName = _("Behemoth Bash") },
         #else
-            .name = _("BehemothBash"),
+            .name = { .moveName = _("BehemothBash") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
@@ -13037,7 +13037,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AURA_WHEEL] =
     {
-        .name = _("Aura Wheel"),
+        .name = { .moveName = _("Aura Wheel") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_AURA_WHEEL,
         .power = 110,
@@ -13059,9 +13059,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BREAKING_SWIPE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Breaking Swipe"),
+            .name = { .moveName = _("Breaking Swipe") },
         #else
-            .name = _("BreakngSwipe"),
+            .name = { .moveName = _("BreakngSwipe") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13083,7 +13083,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRANCH_POKE] =
     {
-        .name = _("Branch Poke"),
+        .name = { .moveName = _("Branch Poke") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -13099,7 +13099,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OVERDRIVE] =
     {
-        .name = _("Overdrive"),
+        .name = { .moveName = _("Overdrive") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -13116,7 +13116,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_APPLE_ACID] =
     {
-        .name = _("Apple Acid"),
+        .name = { .moveName = _("Apple Acid") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -13136,7 +13136,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRAV_APPLE] =
     {
-        .name = _("Grav Apple"),
+        .name = { .moveName = _("Grav Apple") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GRAV_APPLE,
         .power = 80,
@@ -13156,7 +13156,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIRIT_BREAK] =
     {
-        .name = _("Spirit Break"),
+        .name = { .moveName = _("Spirit Break") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 75,
@@ -13178,9 +13178,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_STRANGE_STEAM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Strange Steam"),
+            .name = { .moveName = _("Strange Steam") },
         #else
-            .name = _("StrangeSteam"),
+            .name = { .moveName = _("StrangeSteam") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13201,7 +13201,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LIFE_DEW] =
     {
-        .name = _("Life Dew"),
+        .name = { .moveName = _("Life Dew") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_JUNGLE_HEALING,
         .power = 0,
@@ -13221,7 +13221,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_OBSTRUCT] =
     {
-        .name = _("Obstruct"),
+        .name = { .moveName = _("Obstruct") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -13241,9 +13241,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FALSE_SURRENDER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("False Surrender"),
+            .name = { .moveName = _("False Surrender") },
         #else
-            .name = _("FalsSurrendr"),
+            .name = { .moveName = _("FalsSurrendr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13261,9 +13261,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_METEOR_ASSAULT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Meteor Assault"),
+            .name = { .moveName = _("Meteor Assault") },
         #else
-            .name = _("MeteorAssalt"),
+            .name = { .moveName = _("MeteorAssalt") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13284,7 +13284,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ETERNABEAM] =
     {
-        .name = _("Eternabeam"),
+        .name = { .moveName = _("Eternabeam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 160,
@@ -13303,7 +13303,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STEEL_BEAM] =
     {
-        .name = _("Steel Beam"),
+        .name = { .moveName = _("Steel Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STEEL_BEAM,
         .power = 140,
@@ -13319,9 +13319,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_EXPANDING_FORCE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Expanding Force"),
+            .name = { .moveName = _("Expanding Force") },
         #else
-            .name = _("ExpandngForc"),
+            .name = { .moveName = _("ExpandngForc") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EXPANDING_FORCE,
@@ -13336,7 +13336,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STEEL_ROLLER] =
     {
-        .name = _("Steel Roller"),
+        .name = { .moveName = _("Steel Roller") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 130,
@@ -13353,7 +13353,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SCALE_SHOT] =
     {
-        .name = _("Scale Shot"),
+        .name = { .moveName = _("Scale Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
@@ -13368,7 +13368,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_METEOR_BEAM] =
     {
-        .name = _("Meteor Beam"),
+        .name = { .moveName = _("Meteor Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_METEOR_BEAM,
         .power = 120,
@@ -13390,9 +13390,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SHELL_SIDE_ARM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Shell Side Arm"),
+            .name = { .moveName = _("Shell Side Arm") },
         #else
-            .name = _("ShellSideArm"),
+            .name = { .moveName = _("ShellSideArm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SHELL_SIDE_ARM,
@@ -13413,9 +13413,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MISTY_EXPLOSION] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Misty Explosion"),
+            .name = { .moveName = _("Misty Explosion") },
         #else
-            .name = _("MstyExplsion"),
+            .name = { .moveName = _("MstyExplsion") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EXPLOSION,
@@ -13430,7 +13430,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GRASSY_GLIDE] =
     {
-        .name = _("Grassy Glide"),
+        .name = { .moveName = _("Grassy Glide") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GRASSY_GLIDE,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 55 : 70,
@@ -13447,9 +13447,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_RISING_VOLTAGE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Rising Voltage"),
+            .name = { .moveName = _("Rising Voltage") },
         #else
-            .name = _("RisngVoltage"),
+            .name = { .moveName = _("RisngVoltage") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RISING_VOLTAGE,
@@ -13465,9 +13465,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_TERRAIN_PULSE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Terrain Pulse"),
+            .name = { .moveName = _("Terrain Pulse") },
         #else
-            .name = _("TerrainPulse"),
+            .name = { .moveName = _("TerrainPulse") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TERRAIN_PULSE,
@@ -13484,9 +13484,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SKITTER_SMACK] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Skitter Smack"),
+            .name = { .moveName = _("Skitter Smack") },
         #else
-            .name = _("SkitterSmack"),
+            .name = { .moveName = _("SkitterSmack") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13508,9 +13508,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BURNING_JEALOUSY] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Burning Jealousy"),
+            .name = { .moveName = _("Burning Jealousy") },
         #else
-            .name = _("BrningJelosy"),
+            .name = { .moveName = _("BrningJelosy") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13531,7 +13531,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LASH_OUT] =
     {
-        .name = _("Lash Out"),
+        .name = { .moveName = _("Lash Out") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_LASH_OUT,
         .power = 75,
@@ -13546,7 +13546,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POLTERGEIST] =
     {
-        .name = _("Poltergeist"),
+        .name = { .moveName = _("Poltergeist") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POLTERGEIST,
         .power = 110,
@@ -13561,9 +13561,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CORROSIVE_GAS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Corrosive Gas"),
+            .name = { .moveName = _("Corrosive Gas") },
         #else
-            .name = _("CorrosiveGas"),
+            .name = { .moveName = _("CorrosiveGas") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CORROSIVE_GAS,
@@ -13579,7 +13579,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COACHING] =
     {
-        .name = _("Coaching"),
+        .name = { .moveName = _("Coaching") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COACHING,
         .power = 0,
@@ -13596,7 +13596,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLIP_TURN] =
     {
-        .name = _("Flip Turn"),
+        .name = { .moveName = _("Flip Turn") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_ESCAPE,
         .power = 60,
@@ -13611,7 +13611,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRIPLE_AXEL] =
     {
-        .name = _("Triple Axel"),
+        .name = { .moveName = _("Triple Axel") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TRIPLE_KICK,
         .power = 20,
@@ -13628,9 +13628,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DUAL_WINGBEAT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dual Wingbeat"),
+            .name = { .moveName = _("Dual Wingbeat") },
         #else
-            .name = _("DualWingbeat"),
+            .name = { .moveName = _("DualWingbeat") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13648,9 +13648,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SCORCHING_SANDS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Scorching Sands"),
+            .name = { .moveName = _("Scorching Sands") },
         #else
-            .name = _("ScorchngSnds"),
+            .name = { .moveName = _("ScorchngSnds") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13672,9 +13672,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_JUNGLE_HEALING] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Jungle Healing"),
+            .name = { .moveName = _("Jungle Healing") },
         #else
-            .name = _("JungleHealng"),
+            .name = { .moveName = _("JungleHealng") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_JUNGLE_HEALING,
@@ -13694,7 +13694,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WICKED_BLOW] =
     {
-        .name = _("Wicked Blow"),
+        .name = { .moveName = _("Wicked Blow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 75 : 80,
@@ -13713,9 +13713,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SURGING_STRIKES] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Surging Strikes"),
+            .name = { .moveName = _("Surging Strikes") },
         #else
-            .name = _("SrgngStrkes"),
+            .name = { .moveName = _("SrgngStrkes") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13735,7 +13735,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDER_CAGE] =
     {
-        .name = _("Thunder Cage"),
+        .name = { .moveName = _("Thunder Cage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -13754,9 +13754,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_DRAGON_ENERGY] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Dragon Energy"),
+            .name = { .moveName = _("Dragon Energy") },
         #else
-            .name = _("DragonEnergy"),
+            .name = { .moveName = _("DragonEnergy") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ERUPTION,
@@ -13773,9 +13773,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_FREEZING_GLARE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Freezing Glare"),
+            .name = { .moveName = _("Freezing Glare") },
         #else
-            .name = _("FreezngGlare"),
+            .name = { .moveName = _("FreezngGlare") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .power = 90,
@@ -13796,7 +13796,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIERY_WRATH] =
     {
-        .name = _("Fiery Wrath"),
+        .name = { .moveName = _("Fiery Wrath") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 90,
@@ -13816,9 +13816,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_THUNDEROUS_KICK] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Thunderous Kick"),
+            .name = { .moveName = _("Thunderous Kick") },
         #else
-            .name = _("ThnderusKick"),
+            .name = { .moveName = _("ThnderusKick") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13841,9 +13841,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_GLACIAL_LANCE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Glacial Lance"),
+            .name = { .moveName = _("Glacial Lance") },
         #else
-            .name = _("GlacialLance"),
+            .name = { .moveName = _("GlacialLance") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13860,9 +13860,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_ASTRAL_BARRAGE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Astral Barrage"),
+            .name = { .moveName = _("Astral Barrage") },
         #else
-            .name = _("AstrlBarrage"),
+            .name = { .moveName = _("AstrlBarrage") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13878,7 +13878,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_EERIE_SPELL] =
     {
-        .name = _("Eerie Spell"),
+        .name = { .moveName = _("Eerie Spell") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EERIE_SPELL,
         .power = 80,
@@ -13895,7 +13895,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DIRE_CLAW] =
     {
-        .name = _("Dire Claw"),
+        .name = { .moveName = _("Dire Claw") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 80 : 60,
@@ -13916,9 +13916,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PSYSHIELD_BASH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Psyshield Bash"),
+            .name = { .moveName = _("Psyshield Bash") },
         #else
-            .name = _("PsyshieldBsh"),
+            .name = { .moveName = _("PsyshieldBsh") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -13940,7 +13940,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POWER_SHIFT] =
     {
-        .name = _("Power Shift"),
+        .name = { .moveName = _("Power Shift") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POWER_TRICK,
         .power = 0,
@@ -13958,7 +13958,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_STONE_AXE] =
     {
-        .name = _("Stone Axe"),
+        .name = { .moveName = _("Stone Axe") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 65,
@@ -13980,9 +13980,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPRINGTIDE_STORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Springtide Storm"),
+            .name = { .moveName = _("Springtide Storm") },
         #else
-            .name = _("SprngtdeStrm"),
+            .name = { .moveName = _("SprngtdeStrm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14005,9 +14005,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MYSTICAL_POWER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Mystical Power"),
+            .name = { .moveName = _("Mystical Power") },
         #else
-            .name = _("MystcalPower"),
+            .name = { .moveName = _("MystcalPower") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14028,7 +14028,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGING_FURY] =
     {
-        .name = _("Raging Fury"),
+        .name = { .moveName = _("Raging Fury") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 120 : 90,
@@ -14047,7 +14047,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WAVE_CRASH] =
     {
-        .name = _("Wave Crash"),
+        .name = { .moveName = _("Wave Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 120 : 75,
@@ -14064,7 +14064,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_CHLOROBLAST] =
     {
-        .name = _("Chloroblast"),
+        .name = { .moveName = _("Chloroblast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STEEL_BEAM,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 150 : 120,
@@ -14079,9 +14079,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MOUNTAIN_GALE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Mountain Gale"),
+            .name = { .moveName = _("Mountain Gale") },
         #else
-            .name = _("MountainGale"),
+            .name = { .moveName = _("MountainGale") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14102,9 +14102,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_VICTORY_DANCE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Victory Dance"),
+            .name = { .moveName = _("Victory Dance") },
         #else
-            .name = _("VictoryDance"),
+            .name = { .moveName = _("VictoryDance") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_VICTORY_DANCE,
@@ -14124,9 +14124,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_HEADLONG_RUSH] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Headlong Rush"),
+            .name = { .moveName = _("Headlong Rush") },
         #else
-            .name = _("HeadlongRush"),
+            .name = { .moveName = _("HeadlongRush") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14147,7 +14147,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BARB_BARRAGE] =
     {
-        .name = _("Barb Barrage"),
+        .name = { .moveName = _("Barb Barrage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
         .power = 60,
@@ -14167,7 +14167,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ESPER_WING] =
     {
-        .name = _("Esper Wing"),
+        .name = { .moveName = _("Esper Wing") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 80 : 75,
@@ -14189,9 +14189,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BITTER_MALICE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Bitter Malice"),
+            .name = { .moveName = _("Bitter Malice") },
         #else
-            .name = _("BitterMalice"),
+            .name = { .moveName = _("BitterMalice") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14211,7 +14211,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHELTER] =
     {
-        .name = _("Shelter"),
+        .name = { .moveName = _("Shelter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DEFENSE_UP_2,
         .power = 0,
@@ -14229,9 +14229,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_TRIPLE_ARROWS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Triple Arrows"),
+            .name = { .moveName = _("Triple Arrows") },
         #else
-            .name = _("TripleArrows"),
+            .name = { .moveName = _("TripleArrows") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14257,9 +14257,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_INFERNAL_PARADE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Infernal Parade"),
+            .name = { .moveName = _("Infernal Parade") },
         #else
-            .name = _("InfrnlParade"),
+            .name = { .moveName = _("InfrnlParade") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOUBLE_POWER_ON_ARG_STATUS,
@@ -14281,9 +14281,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CEASELESS_EDGE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Ceasless Edge"),
+            .name = { .moveName = _("Ceasless Edge") },
         #else
-            .name = _("CeaslessEdge"),
+            .name = { .moveName = _("CeaslessEdge") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14306,9 +14306,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BLEAKWIND_STORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Bleakwind Storm"),
+            .name = { .moveName = _("Bleakwind Storm") },
         #else
-            .name = _("BlekwndStorm"),
+            .name = { .moveName = _("BlekwndStorm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAIN_ALWAYS_HIT,
@@ -14330,9 +14330,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_WILDBOLT_STORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Wildbolt Storm"),
+            .name = { .moveName = _("Wildbolt Storm") },
         #else
-            .name = _("WildbltStorm"),
+            .name = { .moveName = _("WildbltStorm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAIN_ALWAYS_HIT,
@@ -14354,9 +14354,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SANDSEAR_STORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Sandsear Storm"),
+            .name = { .moveName = _("Sandsear Storm") },
         #else
-            .name = _("SndsearStorm"),
+            .name = { .moveName = _("SndsearStorm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAIN_ALWAYS_HIT,
@@ -14378,9 +14378,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_LUNAR_BLESSING] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Lunar Blessing"),
+            .name = { .moveName = _("Lunar Blessing") },
         #else
-            .name = _("LunarBlessng"),
+            .name = { .moveName = _("LunarBlessng") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_JUNGLE_HEALING,
@@ -14399,7 +14399,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAKE_HEART] =
     {
-        .name = _("Take Heart"),
+        .name = { .moveName = _("Take Heart") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_TAKE_HEART,
         .power = 0,
@@ -14416,7 +14416,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TERA_BLAST] =
     {
-        .name = _("Tera Blast"),
+        .name = { .moveName = _("Tera Blast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_TERA_BLAST,
         .power = 80,
@@ -14432,7 +14432,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SILK_TRAP] =
     {
-        .name = _("Silk Trap"),
+        .name = { .moveName = _("Silk Trap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -14450,7 +14450,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AXE_KICK] =
     {
-        .name = _("Axe Kick"),
+        .name = { .moveName = _("Axe Kick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RECOIL_IF_MISS,
         .power = 120,
@@ -14471,9 +14471,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_LAST_RESPECTS] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Last Respects"),
+            .name = { .moveName = _("Last Respects") },
         #else
-            .name = _("LastRespects"),
+            .name = { .moveName = _("LastRespects") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_LAST_RESPECTS
@@ -14489,7 +14489,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LUMINA_CRASH] =
     {
-        .name = _("Lumina Crash"),
+        .name = { .moveName = _("Lumina Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -14508,7 +14508,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ORDER_UP] =
     {
-        .name = _("Order Up"),
+        .name = { .moveName = _("Order Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_ORDER_UP
         .power = 80,
@@ -14525,7 +14525,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_JET_PUNCH] =
     {
-        .name = _("Jet Punch"),
+        .name = { .moveName = _("Jet Punch") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -14544,9 +14544,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SPICY_EXTRACT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Spicy Extract"),
+            .name = { .moveName = _("Spicy Extract") },
         #else
-            .name = _("SpicyExtract"),
+            .name = { .moveName = _("SpicyExtract") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_SPICY_EXTRACT
@@ -14563,7 +14563,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SPIN_OUT] =
     {
-        .name = _("Spin Out"),
+        .name = { .moveName = _("Spin Out") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -14584,9 +14584,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_POPULATION_BOMB] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Population Bomb"),
+            .name = { .moveName = _("Population Bomb") },
         #else
-            .name = _("PoplatinBomb"),
+            .name = { .moveName = _("PoplatinBomb") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_POPULATION_BOMB,
@@ -14605,7 +14605,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ICE_SPINNER] =
     {
-        .name = _("Ice Spinner"),
+        .name = { .moveName = _("Ice Spinner") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 80,
@@ -14622,7 +14622,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_GLAIVE_RUSH] =
     {
-        .name = _("Glaive Rush"),
+        .name = { .moveName = _("Glaive Rush") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_GLAIVE_RUSH,
         .power = 120,
@@ -14639,9 +14639,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_REVIVAL_BLESSING] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Revival Blessing"),
+            .name = { .moveName = _("Revival Blessing") },
         #else
-            .name = _("RevivlBlesng"),
+            .name = { .moveName = _("RevivlBlesng") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_REVIVAL_BLESSING,
@@ -14661,7 +14661,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SALT_CURE] =
     {
-        .name = _("Salt Cure"),
+        .name = { .moveName = _("Salt Cure") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SALT_CURE,
         .power = 40,
@@ -14677,7 +14677,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRIPLE_DIVE] =
     {
-        .name = _("Triple Dive"),
+        .name = { .moveName = _("Triple Dive") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 30,
@@ -14693,7 +14693,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MORTAL_SPIN] =
     {
-        .name = _("Mortal Spin"),
+        .name = { .moveName = _("Mortal Spin") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 30,
@@ -14717,7 +14717,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOODLE] =
     {
-        .name = _("Doodle"),
+        .name = { .moveName = _("Doodle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_DOODLE,
         .power = 0,
@@ -14734,7 +14734,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FILLET_AWAY] =
     {
-        .name = _("Fillet Away"),
+        .name = { .moveName = _("Fillet Away") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FILLET_AWAY,
         .power = 0,
@@ -14754,9 +14754,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_KOWTOW_CLEAVE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Kowtow Cleave"),
+            .name = { .moveName = _("Kowtow Cleave") },
         #else
-            .name = _("KowtowCleave"),
+            .name = { .moveName = _("KowtowCleave") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -14773,7 +14773,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLOWER_TRICK] =
     {
-        .name = _("Flower Trick"),
+        .name = { .moveName = _("Flower Trick") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -14788,7 +14788,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TORCH_SONG] =
     {
-        .name = _("Torch Song"),
+        .name = { .moveName = _("Torch Song") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -14810,7 +14810,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_STEP] =
     {
-        .name = _("Aqua Step"),
+        .name = { .moveName = _("Aqua Step") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 80,
@@ -14832,7 +14832,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGING_BULL] =
     {
-        .name = _("Raging Bull"),
+        .name = { .moveName = _("Raging Bull") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAGING_BULL,
         .power = 90,
@@ -14848,7 +14848,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAKE_IT_RAIN] =
     {
-        .name = _("Make It Rain"),
+        .name = { .moveName = _("Make It Rain") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -14870,7 +14870,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RUINATION] =
     {
-        .name = _("Ruination"),
+        .name = { .moveName = _("Ruination") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUPER_FANG,
         .power = 1,
@@ -14886,9 +14886,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_COLLISION_COURSE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Colision Course"),
+            .name = { .moveName = _("Colision Course") },
         #else
-            .name = _("ColisinCours"),
+            .name = { .moveName = _("ColisinCours") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COLLISION_COURSE,
@@ -14906,9 +14906,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_ELECTRO_DRIFT] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Electro Drift"),
+            .name = { .moveName = _("Electro Drift") },
         #else
-            .name = _("ElectroDrift"),
+            .name = { .moveName = _("ElectroDrift") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_COLLISION_COURSE,
@@ -14925,7 +14925,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SHED_TAIL] =
     {
-        .name = _("Shed Tail"),
+        .name = { .moveName = _("Shed Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_SHED_TAIL
         .power = 0,
@@ -14944,9 +14944,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CHILLY_RECEPTION] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Chilly Reception"),
+            .name = { .moveName = _("Chilly Reception") },
         #else
-            .name = _("ChilReceptin"),
+            .name = { .moveName = _("ChilReceptin") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_CHILLY_RECEPTION,
@@ -14965,7 +14965,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TIDY_UP] =
     {
-        .name = _("Tidy Up"),
+        .name = { .moveName = _("Tidy Up") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, // EFFECT_TIDY_UP
         .power = 0,
@@ -14982,7 +14982,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SNOWSCAPE] =
     {
-        .name = _("Snowscape"),
+        .name = { .moveName = _("Snowscape") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SNOWSCAPE,
         .power = 0,
@@ -15000,7 +15000,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_POUNCE] =
     {
-        .name = _("Pounce"),
+        .name = { .moveName = _("Pounce") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -15021,7 +15021,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TRAILBLAZE] =
     {
-        .name = _("Trailblaze"),
+        .name = { .moveName = _("Trailblaze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 50,
@@ -15043,9 +15043,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_CHILLING_WATER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Chilling Water"),
+            .name = { .moveName = _("Chilling Water") },
         #else
-            .name = _("ChillingWatr"),
+            .name = { .moveName = _("ChillingWatr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15065,7 +15065,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYPER_DRILL] =
     {
-        .name = _("Hyper Drill"),
+        .name = { .moveName = _("Hyper Drill") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 100,
@@ -15082,7 +15082,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TWIN_BEAM] =
     {
-        .name = _("Twin Beam"),
+        .name = { .moveName = _("Twin Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 40,
@@ -15098,7 +15098,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGE_FIST] =
     {
-        .name = _("Rage Fist"),
+        .name = { .moveName = _("Rage Fist") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RAGE_FIST,
         .power = 50,
@@ -15115,7 +15115,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ARMOR_CANNON] =
     {
-        .name = _("Armor Cannon"),
+        .name = { .moveName = _("Armor Cannon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 120,
@@ -15134,7 +15134,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BITTER_BLADE] =
     {
-        .name = _("Bitter Blade"),
+        .name = { .moveName = _("Bitter Blade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
         .power = 90,
@@ -15151,7 +15151,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_SHOCK] =
     {
-        .name = _("Double Shock"),
+        .name = { .moveName = _("Double Shock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FAIL_IF_NOT_ARG_TYPE,
         .power = 120,
@@ -15173,9 +15173,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_GIGATON_HAMMER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Gigaton Hammer"),
+            .name = { .moveName = _("Gigaton Hammer") },
         #else
-            .name = _("GigatonHammr"),
+            .name = { .moveName = _("GigatonHammr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15191,7 +15191,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_COMEUPPANCE] =
     {
-        .name = _("Comeuppance"),
+        .name = { .moveName = _("Comeuppance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_METAL_BURST,
         .power = 1,
@@ -15208,7 +15208,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_AQUA_CUTTER] =
     {
-        .name = _("Aqua Cutter"),
+        .name = { .moveName = _("Aqua Cutter") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 70,
@@ -15225,9 +15225,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BLAZING_TORQUE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Blazing Torque"),
+            .name = { .moveName = _("Blazing Torque") },
         #else
-            .name = _("BlazngTorque"),
+            .name = { .moveName = _("BlazngTorque") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15258,9 +15258,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_WICKED_TORQUE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Wicked Torque"),
+            .name = { .moveName = _("Wicked Torque") },
         #else
-            .name = _("WickedTorque"),
+            .name = { .moveName = _("WickedTorque") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15291,9 +15291,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_NOXIOUS_TORQUE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Noxius Torque"),
+            .name = { .moveName = _("Noxius Torque") },
         #else
-            .name = _("NoxiusTorque"),
+            .name = { .moveName = _("NoxiusTorque") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15324,9 +15324,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_COMBAT_TORQUE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Combat Torque"),
+            .name = { .moveName = _("Combat Torque") },
         #else
-            .name = _("CombatTorque"),
+            .name = { .moveName = _("CombatTorque") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15357,9 +15357,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MAGICAL_TORQUE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Magical Torque"),
+            .name = { .moveName = _("Magical Torque") },
         #else
-            .name = _("MagiclTorque"),
+            .name = { .moveName = _("MagiclTorque") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15389,7 +15389,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_PSYBLADE] =
     {
-        .name = _("Psyblade"),
+        .name = { .moveName = _("Psyblade") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PSYBLADE,
         .power = 80,
@@ -15405,7 +15405,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HYDRO_STEAM] =
     {
-        .name = _("Hydro Steam"),
+        .name = { .moveName = _("Hydro Steam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HYDRO_STEAM,
         .power = 80,
@@ -15420,7 +15420,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BLOOD_MOON] =
     {
-        .name = _("Blood Moon"),
+        .name = { .moveName = _("Blood Moon") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 140,
@@ -15436,9 +15436,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MATCHA_GOTCHA] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Matcha Gotcha"),
+            .name = { .moveName = _("Matcha Gotcha") },
         #else
-            .name = _("MatchaGotcha"),
+            .name = { .moveName = _("MatchaGotcha") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_ABSORB,
@@ -15460,7 +15460,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SYRUP_BOMB] =
     {
-        .name = _("Syrup Bomb"),
+        .name = { .moveName = _("Syrup Bomb") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 60,
@@ -15480,7 +15480,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_IVY_CUDGEL] =
     {
-        .name = _("Ivy Cudgel"),
+        .name = { .moveName = _("Ivy Cudgel") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_IVY_CUDGEL,
         .power = 100,
@@ -15496,7 +15496,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ELECTRO_SHOT] =
     {
-        .name = _("Electro Shot"),
+        .name = { .moveName = _("Electro Shot") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_METEOR_BEAM,
         .power = 130,
@@ -15517,9 +15517,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_TERA_STARSTORM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Tera Starstorm"),
+            .name = { .moveName = _("Tera Starstorm") },
         #else
-            .name = _("TeraStarstrm"),
+            .name = { .moveName = _("TeraStarstrm") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, //EFFECT_TERA_STARSTORM
@@ -15538,7 +15538,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FICKLE_BEAM] =
     {
-        .name = _("Fickle Beam"),
+        .name = { .moveName = _("Fickle Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_FICKLE_BEAM,
         .power = 80,
@@ -15553,9 +15553,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_BURNING_BULWARK] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Burning Bulwark"),
+            .name = { .moveName = _("Burning Bulwark") },
         #else
-            .name = _("BurnngBulwrk"),
+            .name = { .moveName = _("BurnngBulwrk") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
@@ -15577,7 +15577,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_THUNDERCLAP] =
     {
-        .name = _("Thunderclap"),
+        .name = { .moveName = _("Thunderclap") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUCKER_PUNCH,
         .power = 70,
@@ -15592,9 +15592,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MIGHTY_CLEAVE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Mighty Cleave"),
+            .name = { .moveName = _("Mighty Cleave") },
         #else
-            .name = _("MightyCleave"),
+            .name = { .moveName = _("MightyCleave") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15613,9 +15613,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_TACHYON_CUTTER] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Tachyon Cutter"),
+            .name = { .moveName = _("Tachyon Cutter") },
         #else
-            .name = _("TachyonCuttr"),
+            .name = { .moveName = _("TachyonCuttr") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15632,7 +15632,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HARD_PRESS] =
     {
-        .name = _("Hard Press"),
+        .name = { .moveName = _("Hard Press") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_WRING_OUT,
         .power = 1,
@@ -15647,7 +15647,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DRAGON_CHEER] =
     {
-        .name = _("Dragon Cheer"),
+        .name = { .moveName = _("Dragon Cheer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, //EFFECT_DRAGON_CHEER
         .power = 0,
@@ -15663,9 +15663,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_ALLURING_VOICE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Alluring Voice"),
+            .name = { .moveName = _("Alluring Voice") },
         #else
-            .name = _("AllurngVoice"),
+            .name = { .moveName = _("AllurngVoice") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15688,7 +15688,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TEMPER_FLARE] =
     {
-        .name = _("Temper Flare"),
+        .name = { .moveName = _("Temper Flare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_STOMPING_TANTRUM,
         .power = 75,
@@ -15704,9 +15704,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_SUPERCELL_SLAM] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Supercell Slam"),
+            .name = { .moveName = _("Supercell Slam") },
         #else
-            .name = _("SuprcellSlam"),
+            .name = { .moveName = _("SuprcellSlam") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_RECOIL_IF_MISS,
@@ -15723,9 +15723,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_PSYCHIC_NOISE] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Psychic Noise"),
+            .name = { .moveName = _("Psychic Noise") },
         #else
-            .name = _("PsychicNoise"),
+            .name = { .moveName = _("PsychicNoise") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, //EFFECT_PSYCHIC_NOISE
@@ -15742,7 +15742,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_UPPER_HAND] =
     {
-        .name = _("Upper Hand"),
+        .name = { .moveName = _("Upper Hand") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PLACEHOLDER, //EFFECT_UPPER_HAND
         .power = 65,
@@ -15758,9 +15758,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_MALIGNANT_CHAIN] =
     {
         #if B_EXPANDED_MOVE_NAMES == TRUE
-            .name = _("Malignant Chain"),
+            .name = { .moveName = _("Malignant Chain") },
         #else
-            .name = _("MalignntChan"),
+            .name = { .moveName = _("MalignntChan") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
@@ -15780,7 +15780,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {
-        .name = _("Breakneck Blitz"),
+        .name = { .zMoveName = _("Breakneck Blitz") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15793,7 +15793,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_ALL_OUT_PUMMELING] =
     {
-        .name = _("All Out Pummeling"),
+        .name = { .zMoveName = _("All Out Pummeling") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15806,7 +15806,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SUPERSONIC_SKYSTRIKE] =
     {
-        .name = _("Supersonic Skystrike"),
+        .name = { .zMoveName = _("Supersonic Skystrike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15819,7 +15819,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_ACID_DOWNPOUR] =
     {
-        .name = _("Acid Downpour"),
+        .name = { .zMoveName = _("Acid Downpour") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15832,7 +15832,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_TECTONIC_RAGE] =
     {
-        .name = _("Tectonic Rage"),
+        .name = { .zMoveName = _("Tectonic Rage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15846,7 +15846,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_CONTINENTAL_CRUSH] =
     {
-        .name = _("Continental Crush"),
+        .name = { .zMoveName = _("Continental Crush") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15859,7 +15859,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SAVAGE_SPIN_OUT] =
     {
-        .name = _("Savage Spin Out"),
+        .name = { .zMoveName = _("Savage Spin Out") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15872,7 +15872,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_NEVER_ENDING_NIGHTMARE] =
     {
-        .name = _("Never Ending Nightmare"),
+        .name = { .zMoveName = _("Never Ending Nightmare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15885,7 +15885,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_CORKSCREW_CRASH] =
     {
-        .name = _("Corkscrew Crash"),
+        .name = { .zMoveName = _("Corkscrew Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15898,7 +15898,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_INFERNO_OVERDRIVE] =
     {
-        .name = _("Inferno Overdrive"),
+        .name = { .zMoveName = _("Inferno Overdrive") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15911,7 +15911,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_HYDRO_VORTEX] =
     {
-        .name = _("Hydro Vortex"),
+        .name = { .zMoveName = _("Hydro Vortex") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15924,7 +15924,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_BLOOM_DOOM] =
     {
-        .name = _("Bloom Doom"),
+        .name = { .zMoveName = _("Bloom Doom") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15937,7 +15937,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_GIGAVOLT_HAVOC] =
     {
-        .name = _("Gigavolt Havoc"),
+        .name = { .zMoveName = _("Gigavolt Havoc") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15950,7 +15950,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SHATTERED_PSYCHE] =
     {
-        .name = _("Shattered Psyche"),
+        .name = { .zMoveName = _("Shattered Psyche") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15963,7 +15963,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SUBZERO_SLAMMER] =
     {
-        .name = _("Subzero Slammer"),
+        .name = { .zMoveName = _("Subzero Slammer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15976,7 +15976,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_DEVASTATING_DRAKE] =
     {
-        .name = _("Devastating Drake"),
+        .name = { .zMoveName = _("Devastating Drake") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -15989,7 +15989,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_BLACK_HOLE_ECLIPSE] =
     {
-        .name = _("Black Hole Eclipse"),
+        .name = { .zMoveName = _("Black Hole Eclipse") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -16002,7 +16002,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_TWINKLE_TACKLE] =
     {
-        .name = _("Twinkle Tackle"),
+        .name = { .zMoveName = _("Twinkle Tackle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 1,
@@ -16015,7 +16015,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_CATASTROPIKA] =
     {
-        .name = _("Catastropika"),
+        .name = { .zMoveName = _("Catastropika") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 210,
@@ -16028,7 +16028,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_10000000_VOLT_THUNDERBOLT] =
     {
-        .name = _("10000000 Volt Thunderbolt"),
+        .name = { .zMoveName = _("10000000 Volt Thunderbolt") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 195,
@@ -16042,7 +16042,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_STOKED_SPARKSURFER] =
     {
-        .name = _("Stoked Sparksurfer"),
+        .name = { .zMoveName = _("Stoked Sparksurfer") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 175,
@@ -16059,7 +16059,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_EXTREME_EVOBOOST] =
     {
-        .name = _("Extreme Evoboost"),
+        .name = { .zMoveName = _("Extreme Evoboost") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_EXTREME_EVOBOOST,
         .power = 0,
@@ -16072,7 +16072,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_PULVERIZING_PANCAKE] =
     {
-        .name = _("Pulverizing Pancake"),
+        .name = { .zMoveName = _("Pulverizing Pancake") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 210,
@@ -16085,7 +16085,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_GENESIS_SUPERNOVA] =
     {
-        .name = _("Genesis Supernova"),
+        .name = { .zMoveName = _("Genesis Supernova") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 185,
@@ -16099,7 +16099,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SINISTER_ARROW_RAID] =
     {
-        .name = _("Sinister Arrow Raid"),
+        .name = { .zMoveName = _("Sinister Arrow Raid") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 180,
@@ -16112,7 +16112,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_MALICIOUS_MOONSAULT] =
     {
-        .name = _("Malicious Moonsault"),
+        .name = { .zMoveName = _("Malicious Moonsault") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 180,
@@ -16125,7 +16125,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_OCEANIC_OPERETTA] =
     {
-        .name = _("Oceaning Operetta"),
+        .name = { .zMoveName = _("Oceaning Operetta") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 195,
@@ -16138,7 +16138,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SPLINTERED_STORMSHARDS] =
     {
-        .name = _("Splintered Stormshards"),
+        .name = { .zMoveName = _("Splintered Stormshards") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT_SET_REMOVE_TERRAIN,
         .power = 190,
@@ -16152,7 +16152,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_LETS_SNUGGLE_FOREVER] =
     {
-        .name = _("Let's Snuggle Forever"),
+        .name = { .zMoveName = _("Let's Snuggle Forever") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 190,
@@ -16165,7 +16165,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_CLANGOROUS_SOULBLAZE] =
     {
-        .name = _("Clangorous Soulblaze"),
+        .name = { .zMoveName = _("Clangorous Soulblaze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 185,
@@ -16185,7 +16185,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_GUARDIAN_OF_ALOLA] =
     {
-        .name = _("Guardian Of Alola"),
+        .name = { .zMoveName = _("Guardian Of Alola") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_SUPER_FANG,
         .power = 1,
@@ -16198,7 +16198,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SEARING_SUNRAZE_SMASH] =
     {
-        .name = _("Searing Sunraze Smash"),
+        .name = { .zMoveName = _("Searing Sunraze Smash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 200,
@@ -16211,7 +16211,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_MENACING_MOONRAZE_MAELSTROM] =
     {
-        .name = _("Menacing Moonraze Maelstrom"),
+        .name = { .zMoveName = _("Menacing Moonraze Maelstrom") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 200,
@@ -16224,7 +16224,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_LIGHT_THAT_BURNS_THE_SKY] =
     {
-        .name = _("Light That Burns The Sky"),
+        .name = { .zMoveName = _("Light That Burns The Sky") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 200,
@@ -16237,7 +16237,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     },
     [MOVE_SOUL_STEALING_7_STAR_STRIKE] =
     {
-        .name = _("Soul Stealing 7 Star Strike"),
+        .name = { .zMoveName = _("Soul Stealing 7 Star Strike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_HIT,
         .power = 195,
@@ -16251,7 +16251,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_GUARD] =
     {
-        .name = _("Max Guard"),
+        .name = { .zMoveName = _("Max Guard") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -16266,7 +16266,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_FLARE] =
     {
-        .name = _("Max Flare"),
+        .name = { .zMoveName = _("Max Flare") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16281,7 +16281,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_FLUTTERBY] =
     {
-        .name = _("Max Flutterby"),
+        .name = { .zMoveName = _("Max Flutterby") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16296,7 +16296,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_LIGHTNING] =
     {
-        .name = _("Max Lightning"),
+        .name = { .zMoveName = _("Max Lightning") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16311,7 +16311,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_STRIKE] =
     {
-        .name = _("Max Strike"),
+        .name = { .zMoveName = _("Max Strike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16326,7 +16326,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_KNUCKLE] =
     {
-        .name = _("Max Knuckle"),
+        .name = { .zMoveName = _("Max Knuckle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16341,7 +16341,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_PHANTASM] =
     {
-        .name = _("Max Phantasm"),
+        .name = { .zMoveName = _("Max Phantasm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16356,7 +16356,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_HAILSTORM] =
     {
-        .name = _("Max Hailstorm"),
+        .name = { .zMoveName = _("Max Hailstorm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16371,7 +16371,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_OOZE] =
     {
-        .name = _("Max Ooze"),
+        .name = { .zMoveName = _("Max Ooze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16386,7 +16386,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_GEYSER] =
     {
-        .name = _("Max Geyser"),
+        .name = { .zMoveName = _("Max Geyser") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16401,7 +16401,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_AIRSTREAM] =
     {
-        .name = _("Max Airstream"),
+        .name = { .zMoveName = _("Max Airstream") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16416,7 +16416,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_STARFALL] =
     {
-        .name = _("Max Starfall"),
+        .name = { .zMoveName = _("Max Starfall") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16431,7 +16431,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_WYRMWIND] =
     {
-        .name = _("Max Wyrmwind"),
+        .name = { .zMoveName = _("Max Wyrmwind") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16446,7 +16446,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_MINDSTORM] =
     {
-        .name = _("Max Mindstorm"),
+        .name = { .zMoveName = _("Max Mindstorm") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16461,7 +16461,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_ROCKFALL] =
     {
-        .name = _("Max Rockfall"),
+        .name = { .zMoveName = _("Max Rockfall") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16476,7 +16476,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_QUAKE] =
     {
-        .name = _("Max Quake"),
+        .name = { .zMoveName = _("Max Quake") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16492,7 +16492,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_DARKNESS] =
     {
-        .name = _("Max Darkness"),
+        .name = { .zMoveName = _("Max Darkness") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 1,
@@ -16507,7 +16507,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_OVERGROWTH] =
     {
-        .name = _("Max Overgrowth"),
+        .name = { .zMoveName = _("Max Overgrowth") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16522,7 +16522,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_MAX_STEELSPIKE] =
     {
-        .name = _("Max Steelspike"),
+        .name = { .zMoveName = _("Max Steelspike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16537,7 +16537,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_VINE_LASH] =
     {
-        .name = _("G-Max Vine Lash"),
+        .name = { .zMoveName = _("G-Max Vine Lash") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16552,7 +16552,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_WILDFIRE] =
     {
-        .name = _("G-Max Wildfire"),
+        .name = { .zMoveName = _("G-Max Wildfire") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16567,7 +16567,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_CANNONADE] =
     {
-        .name = _("G-Max Canonade"),
+        .name = { .zMoveName = _("G-Max Canonade") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16582,7 +16582,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_BEFUDDLE] =
     {
-        .name = _("G-Max Befuddle"),
+        .name = { .zMoveName = _("G-Max Befuddle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16597,7 +16597,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_VOLT_CRASH] =
     {
-        .name = _("G-Max Volt Crash"),
+        .name = { .zMoveName = _("G-Max Volt Crash") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16612,7 +16612,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_GOLD_RUSH] =
     {
-        .name = _("G-Max Gold Rush"),
+        .name = { .zMoveName = _("G-Max Gold Rush") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16627,7 +16627,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_CHI_STRIKE] =
     {
-        .name = _("G-Max Chi Strike"),
+        .name = { .zMoveName = _("G-Max Chi Strike") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16642,7 +16642,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_TERROR] =
     {
-        .name = _("G-Max Terror"),
+        .name = { .zMoveName = _("G-Max Terror") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16657,7 +16657,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_FOAM_BURST] =
     {
-        .name = _("G-Max Foam Burst"),
+        .name = { .zMoveName = _("G-Max Foam Burst") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16672,7 +16672,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_RESONANCE] =
     {
-        .name = _("G-Max Resonance"),
+        .name = { .zMoveName = _("G-Max Resonance") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16687,7 +16687,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_CUDDLE] =
     {
-        .name = _("G-Max Cuddle"),
+        .name = { .zMoveName = _("G-Max Cuddle") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16702,7 +16702,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_REPLENISH] =
     {
-        .name = _("G-Max Replenish"),
+        .name = { .zMoveName = _("G-Max Replenish") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16717,7 +16717,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_MALODOR] =
     {
-        .name = _("G-Max Malodor"),
+        .name = { .zMoveName = _("G-Max Malodor") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16732,7 +16732,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_MELTDOWN] =
     {
-        .name = _("G-Max Meltdown"),
+        .name = { .zMoveName = _("G-Max Meltdown") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16747,7 +16747,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_DRUM_SOLO] =
     {
-        .name = _("G-Max Drum Solo"),
+        .name = { .zMoveName = _("G-Max Drum Solo") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16763,7 +16763,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_FIREBALL] =
     {
-        .name = _("G-Max Fireball"),
+        .name = { .zMoveName = _("G-Max Fireball") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16779,7 +16779,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_HYDROSNIPE] =
     {
-        .name = _("G-Max Hydrosnipe"),
+        .name = { .zMoveName = _("G-Max Hydrosnipe") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16795,7 +16795,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_WIND_RAGE] =
     {
-        .name = _("G-Max Wind Rage"),
+        .name = { .zMoveName = _("G-Max Wind Rage") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16810,7 +16810,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_GRAVITAS] =
     {
-        .name = _("G-Max Gravitas"),
+        .name = { .zMoveName = _("G-Max Gravitas") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16825,7 +16825,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_STONESURGE] =
     {
-        .name = _("G-Max Stonesurge"),
+        .name = { .zMoveName = _("G-Max Stonesurge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16840,7 +16840,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_VOLCALITH] =
     {
-        .name = _("G-Max Volcalith"),
+        .name = { .zMoveName = _("G-Max Volcalith") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16855,7 +16855,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_TARTNESS] =
     {
-        .name = _("G-Max Tartness"),
+        .name = { .zMoveName = _("G-Max Tartness") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16870,7 +16870,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_SWEETNESS] =
     {
-        .name = _("G-Max Sweetness"),
+        .name = { .zMoveName = _("G-Max Sweetness") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16885,7 +16885,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_SANDBLAST] =
     {
-        .name = _("G-Max Sandblast"),
+        .name = { .zMoveName = _("G-Max Sandblast") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16900,7 +16900,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_STUN_SHOCK] =
     {
-        .name = _("G-Max Stun Shock"),
+        .name = { .zMoveName = _("G-Max Stun Shock") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16915,7 +16915,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_CENTIFERNO] =
     {
-        .name = _("G-Max Centiferno"),
+        .name = { .zMoveName = _("G-Max Centiferno") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16930,7 +16930,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_SMITE] =
     {
-        .name = _("G-Max Smite"),
+        .name = { .zMoveName = _("G-Max Smite") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16946,7 +16946,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_SNOOZE] =
     {
-        .name = _("G-Max Snooze"),
+        .name = { .zMoveName = _("G-Max Snooze") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16961,7 +16961,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_FINALE] =
     {
-        .name = _("G-Max Finale"),
+        .name = { .zMoveName = _("G-Max Finale") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16976,7 +16976,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_STEELSURGE] =
     {
-        .name = _("G-Max Steelsurge"),
+        .name = { .zMoveName = _("G-Max Steelsurge") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -16991,7 +16991,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_DEPLETION] =
     {
-        .name = _("G-Max Depletion"),
+        .name = { .zMoveName = _("G-Max Depletion") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -17006,7 +17006,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_ONE_BLOW] =
     {
-        .name = _("G-Max One Blow"),
+        .name = { .zMoveName = _("G-Max One Blow") },
         .description = COMPOUND_STRING("Dummy2 description."),
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
@@ -17021,7 +17021,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_G_MAX_RAPID_FLOW] =
     {
-        .name = _("G-Max Rapid Flow"),
+        .name = { .zMoveName = _("G-Max Rapid Flow") },
         .description = COMPOUND_STRING("Dummy2 description."),    //ANIM TODO
         .effect = EFFECT_MAX_MOVE,
         .power = 10,
