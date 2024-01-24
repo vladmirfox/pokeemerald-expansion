@@ -1980,7 +1980,7 @@ bool32 HasSnatchAffectedMove(u32 battler)
     CHECK_MOVE_FLAG(snatchAffected);
 }
 
-bool32 IsChargingMove(u32 battlerAtk, u32 move)
+bool32 IsTwoTurnNotSemiInvulnerableMove(u32 battlerAtk, u32 move)
 {
     switch (gBattleMoves[move].effect)
     {

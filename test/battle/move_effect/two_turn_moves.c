@@ -18,13 +18,12 @@ SINGLE_BATTLE_TEST("Razor Wind needs a charging turn")
         TURN { SKIP_TURN(player); }
     } SCENE {
         // Charging turn
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NOT MESSAGE("Wobbuffet whipped up a whirlwind!");
             MESSAGE("Wobbuffet used Razor Wind!");
-        }
-        else
+        } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_RAZOR_WIND, player);
+        }
         if (B_UPDATED_MOVE_DATA < GEN_5)
             MESSAGE("Wobbuffet whipped up a whirlwind!");
         else
@@ -44,12 +43,10 @@ SINGLE_BATTLE_TEST("Razor Wind doesn't need to charge with Power Herb")
     } WHEN {
         TURN { MOVE(player, MOVE_RAZOR_WIND); }
     } SCENE {
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NOT MESSAGE("Wobbuffet whipped up a whirlwind!");
             MESSAGE("Wobbuffet used Razor Wind!");
-        }
-        else
+        } else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_RAZOR_WIND, player);
         if (B_UPDATED_MOVE_DATA < GEN_5)
             MESSAGE("Wobbuffet whipped up a whirlwind!");
@@ -75,12 +72,10 @@ SINGLE_BATTLE_TEST("Skull Bash needs a charging turn")
         TURN { SKIP_TURN(player); }
     } SCENE {
         // Charging turn
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NOT MESSAGE("Wobbuffet lowered its head!");
             MESSAGE("Wobbuffet used Skull Bash!");
-        }
-        else
+        } else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SKULL_BASH, player);
         if (B_UPDATED_MOVE_DATA < GEN_5)
             MESSAGE("Wobbuffet lowered its head!");
@@ -103,12 +98,10 @@ SINGLE_BATTLE_TEST("Skull Bash doesn't need to charge with Power Herb")
     } WHEN {
         TURN { MOVE(player, MOVE_SKULL_BASH); }
     } SCENE {
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NOT MESSAGE("Wobbuffet lowered its head!");
             MESSAGE("Wobbuffet used Skull Bash!");
-        }
-        else
+        } else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SKULL_BASH, player);
         if (B_UPDATED_MOVE_DATA < GEN_5)
             MESSAGE("Wobbuffet lowered its head!");
@@ -135,15 +128,13 @@ SINGLE_BATTLE_TEST("Sky Attack needs a charging turn")
         TURN { SKIP_TURN(player); }
     } SCENE {
         // Charging turn
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NONE_OF {
                 MESSAGE("Wobbuffet became cloaked in a harsh light!");
                 MESSAGE("Wobbuffet is glowing!");
             }
             MESSAGE("Wobbuffet used Sky Attack!");
-        }
-        else
+        } else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SKY_ATTACK, player);
         if (B_UPDATED_MOVE_DATA < GEN_4)
             MESSAGE("Wobbuffet is glowing!");
@@ -166,15 +157,13 @@ SINGLE_BATTLE_TEST("Sky Attack doesn't need to charge with Power Herb")
     } WHEN {
         TURN { MOVE(player, MOVE_SKY_ATTACK); }
     } SCENE {
-        if (B_UPDATED_MOVE_DATA >= GEN_5)
-        {
+        if (B_UPDATED_MOVE_DATA >= GEN_5) {
             NONE_OF {
                 MESSAGE("Wobbuffet became cloaked in a harsh light!");
                 MESSAGE("Wobbuffet is glowing!");
             }
             MESSAGE("Wobbuffet used Sky Attack!");
-        }
-        else
+        } else
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SKY_ATTACK, player);
         if (B_UPDATED_MOVE_DATA < GEN_4)
             MESSAGE("Wobbuffet is glowing!");
