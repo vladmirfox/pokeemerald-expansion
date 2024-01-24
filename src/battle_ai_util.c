@@ -851,15 +851,19 @@ bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
 u32 NoOfHitsForTargetToFaintAI(u32 battlerDef, u32 battlerAtk)
 {
     u32 i;
-    u32 currNumberOfHits = 0;
+    u32 currNumberOfHits;
     u32 leastNumberOfHits = UNKNOWN_NO_OF_HITS;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (currNumberOfHits < leastNumberOfHits)
-             leastNumberOfHits = currNumberOfHits;
-        else if (leastNumberOfHits == UNKNOWN_NO_OF_HITS)
-            leastNumberOfHits = currNumberOfHits;
+        currNumberOfHits = GetNoOfHitsToKOBattler(battlerDef, battlerAtk, i);
+        if (currNumberOfHits != 0)
+        {
+            if (currNumberOfHits < leastNumberOfHits)
+                leastNumberOfHits = currNumberOfHits;
+            else if (leastNumberOfHits == UNKNOWN_NO_OF_HITS)
+                leastNumberOfHits = currNumberOfHits;
+        }
     }
     return leastNumberOfHits;
 }
@@ -3286,9 +3290,9 @@ bool32 IsRecycleEncouragedItem(u32 item)
 
 void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
 {
-    u32 aiIsFaster;
-    u32 shouldSetUp;
-    u32 noOfHitsToFaint = UNKNOWN_NO_OF_HITS;
+    u32 noOfHitsToFaint = NoOfHitsForTargetToFaintAI(battlerDef, battlerAtk);
+    u32 aiIsFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
+    u32 shouldSetUp = ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == UNKNOWN_NO_OF_HITS);
 
     if (AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY)
         return;
@@ -3309,10 +3313,6 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
     if (AI_DATA->abilities[battlerDef] == ABILITY_OPPORTUNIST)
         return;
 
-    noOfHitsToFaint = NoOfHitsForTargetToFaintAI(battlerDef, battlerAtk);
-    aiIsFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
-    shouldSetUp = ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == UNKNOWN_NO_OF_HITS);
-    DebugPrintf("shouldSetUp %d", shouldSetUp);
     switch (statId)
     {
     case STAT_CHANGE_ATK:

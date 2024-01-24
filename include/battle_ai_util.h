@@ -1,7 +1,7 @@
 #ifndef GUARD_BATTLE_AI_UTIL_H
 #define GUARD_BATTLE_AI_UTIL_H
 
-#define UNKNOWN_NO_OF_HITS 0
+#define UNKNOWN_NO_OF_HITS UINT32_MAX
 
 // for AI_WhoStrikesFirst
 #define AI_IS_FASTER   1
