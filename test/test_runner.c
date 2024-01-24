@@ -308,14 +308,9 @@ top:
                 break;
             case TEST_RESULT_PASS:
                 if (gTestRunnerState.result != gTestRunnerState.expectedResult)
-                {
-                    MgbaPuts_("\e[31mPlease remove KNOWN_FAILING if this test intentionally PASSes\e[0m");
                     result = "KNOWN_FAILING_PASS";
-                }
                 else
-                {
                     result = "PASS";
-                }
                 break;
             case TEST_RESULT_ASSUMPTION_FAIL:
                 result = "ASSUMPTION_FAIL";
@@ -510,7 +505,7 @@ static void MgbaExit_(u8 exitCode)
     asm("swi 0x3" :: "r" (_exitCode));
 }
 
-static s32 MgbaPuts_(const char *s)
+static s32 UNUSED MgbaPuts_(const char *s)
 {
     return MgbaPrintf_("%s", s);
 }
