@@ -54,6 +54,7 @@ struct Runner
     char *output_buffer;
     int passes;
     int knownFails;
+    int knownFailsPassing;
     int todos;
     int assumptionFails;
     int fails;
@@ -106,6 +107,9 @@ static void handle_read(int i, struct Runner *runner)
                     goto add_to_results;
                 case 'K':
                     runner->knownFails++;
+                    goto add_to_results;
+                case 'U':
+                    runner->knownFailsPassing++;
                     goto add_to_results;
                 case 'T':
                     runner->todos++;
@@ -519,6 +523,7 @@ int main(int argc, char *argv[])
     int exit_code = 0;
     int passes = 0;
     int knownFails = 0;
+    int knownFailsPassing = 0;
     int todos = 0;
     int assumptionFails = 0;
     int fails = 0;
@@ -540,6 +545,7 @@ int main(int argc, char *argv[])
             exit_code = WEXITSTATUS(wstatus);
         passes += runners[i].passes;
         knownFails += runners[i].knownFails;
+        knownFailsPassing += runners[i].knownFailsPassing;
         todos += runners[i].todos;
         assumptionFails += runners[i].assumptionFails;
         for (int j = 0; j < runners[i].fails; j++)
@@ -572,15 +578,19 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "  - \e[31m%s\e[0m.\n", failedTestNames[i]);
             }
         }
-        fprintf(stdout, "- Tests \e[32mPASSED\e[0m:        %d\n", passes);
+        if (knownFailsPassing > 0)
+        {
+            fprintf(stdout, "- \e[31mKNOWN_FAILING_PASSED\e[0m: %d\n", knownFailsPassing);
+        }
+        fprintf(stdout, "- Tests \e[32mPASSED\e[0m:         %d\n", passes);
         if (knownFails > 0)
-            fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m: %d\n", knownFails);
+            fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m:  %d\n", knownFails);
         if (todos > 0)
-            fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:         %d\n", todos);
+            fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:          %d\n", todos);
         if (assumptionFails > 0)
-            fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:  %d\n", assumptionFails);
+            fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:   %d\n", assumptionFails);
 
-        fprintf(stdout, "- Tests \e[34mTOTAL\e[0m:         %d\n", results);
+        fprintf(stdout, "- Tests \e[34mTOTAL\e[0m:          %d\n", results);
     }
     fprintf(stdout, "\n");
 

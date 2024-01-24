@@ -293,12 +293,6 @@ top:
                 color = "";
             }
 
-            if (gTestRunnerState.result == TEST_RESULT_PASS
-             && gTestRunnerState.result != gTestRunnerState.expectedResult)
-            {
-                MgbaPuts_("\e[31mPlease remove KNOWN_FAILING if this test intentionally PASSes\e[0m");
-            }
-
             switch (gTestRunnerState.result)
             {
             case TEST_RESULT_FAIL:
@@ -313,7 +307,15 @@ top:
                 }
                 break;
             case TEST_RESULT_PASS:
-                result = "PASS";
+                if (gTestRunnerState.result != gTestRunnerState.expectedResult)
+                {
+                    MgbaPuts_("\e[31mPlease remove KNOWN_FAILING if this test intentionally PASSes\e[0m");
+                    result = "KNOWN_FAILING_PASS";
+                }
+                else
+                {
+                    result = "PASS";
+                }
                 break;
             case TEST_RESULT_ASSUMPTION_FAIL:
                 result = "ASSUMPTION_FAIL";
@@ -341,7 +343,12 @@ top:
             }
 
             if (gTestRunnerState.result == TEST_RESULT_PASS)
-                MgbaPrintf_(":P%s%s\e[0m", color, result);
+            {
+                if (gTestRunnerState.result != gTestRunnerState.expectedResult)
+                    MgbaPrintf_(":U%s%s\e[0m", color, result);
+                else
+                    MgbaPrintf_(":P%s%s\e[0m", color, result);
+            }
             else if (gTestRunnerState.result == TEST_RESULT_ASSUMPTION_FAIL)
                 MgbaPrintf_(":A%s%s\e[0m", color, result);
             else if (gTestRunnerState.result == TEST_RESULT_TODO)
