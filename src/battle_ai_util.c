@@ -852,15 +852,16 @@ u32 NoOfHitsForTargetToFaintAI(u32 battlerDef, u32 battlerAtk)
 {
     u32 i;
     u32 currNumberOfHits = 0;
-    u32 maxNumberOfHits = 0;
+    u32 leastNumberOfHits = UNKNOWN_NO_OF_HITS;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        currNumberOfHits = GetNoOfHitsToKOBattler(battlerDef, battlerAtk, i);
-        if (currNumberOfHits > maxNumberOfHits)
-             maxNumberOfHits = currNumberOfHits;
+        if (currNumberOfHits < leastNumberOfHits)
+             leastNumberOfHits = currNumberOfHits;
+        else if (leastNumberOfHits == UNKNOWN_NO_OF_HITS)
+            leastNumberOfHits = currNumberOfHits;
     }
-    return maxNumberOfHits;
+    return leastNumberOfHits;
 }
 
 u32 GetBestDmgMoveFromTarget(u32 battlerDef, u32 battlerAtk)
@@ -3285,8 +3286,9 @@ bool32 IsRecycleEncouragedItem(u32 item)
 
 void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
 {
-    u32 noOfHitsToFaint = NoOfHitsForTargetToFaintAI(battlerDef, battlerAtk);
-    u32 aiIsFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
+    u32 aiIsFaster;
+    u32 shouldSetUp;
+    u32 noOfHitsToFaint = UNKNOWN_NO_OF_HITS;
 
     if (AI_DATA->abilities[battlerAtk] == ABILITY_CONTRARY)
         return;
@@ -3296,45 +3298,72 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
         return;
 
     // Don't increase stat if AI has less then 70% HP and number of hits isn't known
-    if (AI_DATA->hpPercents[battlerAtk] < 70 && noOfHitsToFaint == 0)
+    if (AI_DATA->hpPercents[battlerAtk] < 70 && noOfHitsToFaint == UNKNOWN_NO_OF_HITS)
         return;
 
+    // Don't set up if AI is dead to residual damage from weather
+    if (BattlerWillFaintFromWeather(battlerAtk, AI_DATA->abilities[battlerAtk]))
+        return;
+
+    // Don't increase stats if opposing battler has Opportunist
+    if (AI_DATA->abilities[battlerDef] == ABILITY_OPPORTUNIST)
+        return;
+
+    noOfHitsToFaint = NoOfHitsForTargetToFaintAI(battlerDef, battlerAtk);
+    aiIsFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
+    shouldSetUp = ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == UNKNOWN_NO_OF_HITS);
+    DebugPrintf("shouldSetUp %d", shouldSetUp);
     switch (statId)
     {
-    case STAT_ATK:
-        if ((HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL))
-        && ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == 0))
+    case STAT_CHANGE_ATK:
+        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL) && shouldSetUp)
+            ADJUST_SCORE_PTR(2);
+        break;
+    case STAT_CHANGE_DEF:
+        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL))
+            ADJUST_SCORE_PTR(2);
+        break;
+    case STAT_CHANGE_SPEED:
+        if ((noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == 0)
+            ADJUST_SCORE_PTR(3);
+        break;
+    case STAT_CHANGE_SPATK:
+        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL) && shouldSetUp)
+            ADJUST_SCORE_PTR(2);
+        break;
+    case STAT_CHANGE_SPDEF:
+        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL))
+            ADJUST_SCORE_PTR(2);
+        break;
+    case STAT_CHANGE_ATK_2:
+        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL) && shouldSetUp)
             ADJUST_SCORE_PTR(4);
         break;
-    case STAT_DEF:
+    case STAT_CHANGE_DEF_2:
         if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL))
             ADJUST_SCORE_PTR(4);
         break;
-    case STAT_SPEED:
+    case STAT_CHANGE_SPEED_2:
         if ((noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == 0)
             ADJUST_SCORE_PTR(4);
         break;
-    case STAT_SPATK:
-        if ((HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL))
-        && ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == 0))
+    case STAT_CHANGE_SPATK_2:
+        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL) && shouldSetUp)
             ADJUST_SCORE_PTR(4);
         break;
-    case STAT_SPDEF:
+    case STAT_CHANGE_SPDEF_2:
         if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL))
             ADJUST_SCORE_PTR(4);
         break;
-    case STAT_ACC:
+    case STAT_CHANGE_ACC:
         if (gBattleMons[battlerAtk].statStages[STAT_ACC] <= 3) // Increase only if necessary
-            ADJUST_SCORE_PTR(4);
+            ADJUST_SCORE_PTR(3);
         break;
-    case STAT_EVASION:
-        if (!BattlerWillFaintFromWeather(battlerAtk, AI_DATA->abilities[battlerAtk]))
-        {
-            if (GetBattlerSecondaryDamage(battlerAtk) && ((noOfHitsToFaint > 3) || noOfHitsToFaint == 0))
-                ADJUST_SCORE_PTR(4);
-            else
-                ADJUST_SCORE_PTR(1);
-        }
+    case STAT_CHANGE_EVASION:
+        if (GetBattlerSecondaryDamage(battlerAtk) && ((noOfHitsToFaint > 3) || noOfHitsToFaint == 0))
+            ADJUST_SCORE_PTR(3);
+        else
+            ADJUST_SCORE_PTR(1);
         break;
     }
 }
