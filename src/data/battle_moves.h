@@ -12775,7 +12775,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .name = { .moveName = _("Dragon Darts") },
         .description = COMPOUND_STRING("Dummy2 description."),
-        .effect = EFFECT_MULTI_HIT, //TODO
+        .effect = EFFECT_HIT, // TODO: EFFECT_DRAGON_DARTS
         .power = 50,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -13305,7 +13305,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .name = { .moveName = _("Steel Beam") },
         .description = COMPOUND_STRING("Dummy2 description."),
-        .effect = EFFECT_STEEL_BEAM,
+        .effect = EFFECT_MAX_HP_50_RECOIL,
         .power = 140,
         .type = TYPE_STEEL,
         .accuracy = 95,
@@ -14066,7 +14066,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .name = { .moveName = _("Chloroblast") },
         .description = COMPOUND_STRING("Dummy2 description."),
-        .effect = EFFECT_STEEL_BEAM,
+        .effect = EFFECT_MAX_HP_50_RECOIL,
         .power = B_UPDATED_MOVE_DATA >= GEN_9 ? 150 : 120,
         .type = TYPE_GRASS,
         .accuracy = 95,
@@ -14927,7 +14927,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .name = { .moveName = _("Shed Tail") },
         .description = COMPOUND_STRING("Dummy2 description."),
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_SHED_TAIL
+        .effect = EFFECT_SHED_TAIL,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -15728,7 +15728,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .name = { .moveName = _("PsychicNoise") },
         #endif
         .description = COMPOUND_STRING("Dummy2 description."),
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_PSYCHIC_NOISE
+        .effect = EFFECT_HIT,
         .power = 75,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
@@ -15738,6 +15738,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .soundMove = TRUE,
         .ignoresSubstitute = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_PSYCHIC_NOISE,
+            .chance = 100,
+        }),
     },
 
     [MOVE_UPPER_HAND] =
