@@ -125,7 +125,7 @@ for mon in list_of_mons:
     mon_parsed = parse_mon_name(mon)
     tm_learnset = []
     tutor_learnset = []
-    if mon_parsed == "NONE":
+    if mon_parsed == "NONE" or mon_parsed == "MEW":
         continue
     if not mon_parsed in compatibility_dict:
         print("Unable to find %s in json" % mon)
