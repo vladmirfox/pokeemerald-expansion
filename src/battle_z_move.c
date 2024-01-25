@@ -493,12 +493,12 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
             // Damaging move -> status z move
             StringCopy(gDisplayedStringBattle, sText_StatsPlus2);
             BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_3);
-            StringCopy(gDisplayedStringBattle, GetZMoveName(zmove));
+            StringCopy(gDisplayedStringBattle, GetBattleMoveName(zmove));
         }
         else
         {
             ZMoveSelectionDisplayPower(move, zmove);
-            StringCopy(gDisplayedStringBattle, GetZMoveName(zmove));
+            StringCopy(gDisplayedStringBattle, GetBattleMoveName(zmove));
         }
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_1);
 
@@ -555,11 +555,6 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
 
     StringCopy(txtPtr, gTypeNames[zMoveType]);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
-}
-
-const u8 *GetZMoveName(u16 move)
-{
-    return GetBattleMoveName(move);
 }
 
 #define Z_EFFECT_BS_LENGTH  5
