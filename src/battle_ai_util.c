@@ -3325,7 +3325,7 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
         break;
     case STAT_CHANGE_SPEED:
         if ((noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == 0)
-            ADJUST_SCORE_PTR(3);
+            ADJUST_SCORE_PTR(2);
         break;
     case STAT_CHANGE_SPATK:
         if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL) && shouldSetUp)
@@ -3357,13 +3357,13 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
         break;
     case STAT_CHANGE_ACC:
         if (gBattleMons[battlerAtk].statStages[STAT_ACC] <= 3) // Increase only if necessary
-            ADJUST_SCORE_PTR(3);
+            ADJUST_SCORE_PTR(2);
         break;
     case STAT_CHANGE_EVASION:
         if (GetBattlerSecondaryDamage(battlerAtk) && ((noOfHitsToFaint > 3) || noOfHitsToFaint == 0))
-            ADJUST_SCORE_PTR(3);
+            ADJUST_SCORE_PTR(4);
         else
-            ADJUST_SCORE_PTR(1);
+            ADJUST_SCORE_PTR(2);
         break;
     }
 }
