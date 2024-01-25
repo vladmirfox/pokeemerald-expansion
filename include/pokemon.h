@@ -447,7 +447,7 @@ struct BattleMove
 {
     union {
         u8 moveName[MOVE_NAME_LENGTH + 1];
-        const u8 *bigMoveName;
+        const u8 *longMoveName;
     } name;
     const u8 *description;
     u16 effect;
