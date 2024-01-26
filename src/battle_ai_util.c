@@ -3175,7 +3175,7 @@ bool32 SideHasMoveCategory(u32 battlerId, u32 category)
 
 bool32 IsAbilityOfRating(u32 ability, s8 rating)
 {
-    if (gAbilities[ability].aiRating >= rating)
+    if (gAbilitiesInfo[ability].aiRating >= rating)
         return TRUE;
     return FALSE;
 }
