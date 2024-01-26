@@ -397,11 +397,6 @@ static const u16 sPreevolutionBabyMons[] =
     SPECIES_MANTYKE,
 };
 
-struct EvoTableMarker {
-    u16 species;
-    const struct Evolution* evos;
-};
-
 static void MarkEvolutions(struct SpeciesGroupEntry *entries, u16 species, u16 stage)
 {
     const struct Evolution *evos;
@@ -415,7 +410,7 @@ static void MarkEvolutions(struct SpeciesGroupEntry *entries, u16 species, u16 s
         for (i = 0; evos[i].method != 0xFFFF; i++)
         {
             if(entries[species-1].group <= stage)
-                MarkEvolutions(entries, evos->targetSpecies, stage+1);
+                MarkEvolutions(entries, evos[i].targetSpecies, stage+1);
         }
     }
     entries[species-1].species = species;
