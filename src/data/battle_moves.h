@@ -138,7 +138,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_POUND,
@@ -160,7 +159,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -181,7 +179,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -203,7 +200,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -225,7 +221,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -248,7 +243,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_PAYDAY,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -275,7 +269,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_FIRE_PUNCH,
@@ -306,7 +299,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_ICE_PUNCH,
@@ -337,7 +329,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_THUNDER_PUNCH,
@@ -358,7 +349,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SCRATCH,
@@ -379,7 +369,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_VICE_GRIP,
@@ -400,7 +389,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -425,7 +413,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .windMove = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -448,7 +435,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .danceMove = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_SWORDS_DANCE,
@@ -470,7 +456,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -493,7 +478,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_4) || (B_UPDATED_MOVE_FLAGS < GEN_3),
         .damagesAirborneDoubleDamage = TRUE,
         .windMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -514,7 +498,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -541,7 +524,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -567,7 +549,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -592,7 +573,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -614,7 +594,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -641,7 +620,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -669,7 +647,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -691,7 +668,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -712,7 +688,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -740,7 +715,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .gravityBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -767,7 +741,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -789,7 +762,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_EVSN_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_SAND_ATTACK,
@@ -815,7 +787,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -836,7 +807,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_HORN_ATTACK,
@@ -857,7 +827,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -878,7 +847,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -905,7 +873,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -933,7 +900,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -957,7 +923,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -979,7 +944,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1005,7 +969,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_THRASH,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1027,7 +990,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1049,7 +1011,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -1074,7 +1035,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1101,7 +1061,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1121,7 +1080,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1143,7 +1101,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_LEER,
@@ -1170,7 +1127,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1194,7 +1150,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -1221,7 +1176,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .soundMove = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1245,7 +1199,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_SING,
@@ -1269,7 +1222,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1290,7 +1242,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = 20,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1319,7 +1270,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .ignoresSubstitute = TRUE,
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1348,7 +1298,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = B_UPDATED_MOVE_DATA >= GEN_4 ? MOVE_EFFECT_SP_DEF_MINUS_1 : MOVE_EFFECT_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1373,7 +1322,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1398,7 +1346,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1422,7 +1369,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1442,7 +1388,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -1462,7 +1407,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1484,7 +1428,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .damagesUnderwater = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_SURF,
@@ -1515,7 +1458,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1545,7 +1487,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1570,7 +1511,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1595,7 +1535,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1620,7 +1559,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -1644,7 +1582,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1665,7 +1602,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_PECK,
@@ -1686,7 +1622,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1708,7 +1643,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1729,7 +1663,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1755,7 +1688,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_2,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1777,7 +1709,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1798,7 +1729,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -1820,7 +1750,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1841,7 +1770,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1863,7 +1791,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_LEECH_SEED,
@@ -1887,7 +1814,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_GROWTH,
@@ -1909,7 +1835,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1932,7 +1857,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -1959,7 +1883,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -1982,7 +1905,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2005,7 +1927,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2038,7 +1959,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_THRASH,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -2060,7 +1980,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_STRING_SHOT,
@@ -2082,7 +2001,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_4) || (B_UPDATED_MOVE_FLAGS < GEN_3),
         .argument = 40,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DRAGON_RAGE,
@@ -2106,7 +2024,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -2135,7 +2052,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2160,7 +2076,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2182,7 +2097,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2208,7 +2122,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2228,7 +2141,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_ROCK_THROW,
@@ -2251,7 +2163,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
         .damagesUnderground = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_EARTHQUAKE,
@@ -2273,7 +2184,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .damagesUnderground = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -2299,7 +2209,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .assistBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2321,7 +2230,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_TOXIC,
@@ -2346,7 +2254,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_CONFUSION,
@@ -2371,7 +2278,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_PSYCHIC,
@@ -2393,7 +2299,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_HYPNOSIS,
@@ -2417,7 +2322,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -2441,7 +2345,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2462,7 +2365,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2483,7 +2385,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_RAGE,
@@ -2506,7 +2407,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RECOVER_HP },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2526,7 +2426,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2555,7 +2454,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -2579,7 +2477,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2603,7 +2500,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DOUBLE_TEAM,
@@ -2634,7 +2530,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2658,7 +2553,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_HARDEN,
@@ -2682,7 +2576,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -2704,7 +2597,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_EVSN_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2726,7 +2618,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2750,7 +2641,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -2774,7 +2664,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_DEFENSE_CURL,
@@ -2798,7 +2687,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -2822,7 +2710,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -2846,7 +2733,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -2870,7 +2756,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -2894,7 +2779,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_FOCUS_ENERGY,
@@ -2918,7 +2802,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -2947,7 +2830,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -2975,7 +2857,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3000,7 +2881,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3021,7 +2901,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3047,7 +2926,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3072,7 +2950,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 40,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SMOG,
@@ -3097,7 +2974,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SLUDGE,
@@ -3122,7 +2998,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_BONE_CLUB,
@@ -3147,7 +3022,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3175,7 +3049,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
                 .chance = 20,
             }),
         #endif
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3200,7 +3073,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3220,7 +3092,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3244,7 +3115,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3264,7 +3134,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3290,7 +3159,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3314,7 +3182,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -3336,7 +3203,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_EVSN_UP_1 },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_KINESIS,
@@ -3361,7 +3227,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_SOFT_BOILED,
@@ -3393,7 +3258,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .gravityBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3421,7 +3285,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3442,7 +3305,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3470,7 +3332,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3491,7 +3352,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3514,7 +3374,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3536,7 +3395,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3567,7 +3425,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .chance = 30,
         }),
     #endif
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3596,7 +3453,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3621,7 +3477,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -3648,7 +3503,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3671,7 +3525,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3693,7 +3546,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_EVSN_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3713,7 +3565,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -3737,7 +3588,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .gravityBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -3761,7 +3611,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3783,7 +3632,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3804,7 +3652,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3825,7 +3672,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3846,7 +3692,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_BONEMERANG,
@@ -3871,7 +3716,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_REST,
@@ -3896,7 +3740,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -3923,7 +3766,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -3947,7 +3789,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -3971,7 +3812,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -3996,7 +3836,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_TRI_ATTACK,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4018,7 +3857,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -4041,7 +3879,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4066,7 +3903,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4134,7 +3970,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
         .sketchBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4156,7 +3991,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 3,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4185,7 +4019,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_STEAL_ITEM,
         }),
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -4208,7 +4041,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4229,7 +4061,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_MIND_READER,
@@ -4251,7 +4082,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .ignoresProtect = B_UPDATED_MOVE_FLAGS <= GEN_3,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4278,7 +4108,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4306,7 +4135,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -4330,7 +4158,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_CURSE,
@@ -4351,7 +4178,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -4375,7 +4201,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4397,7 +4222,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .windMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4420,7 +4244,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4441,7 +4264,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4464,7 +4286,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RECOVER_HP },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -4489,7 +4310,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_POWDER_SNOW,
@@ -4514,7 +4334,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -4536,7 +4355,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4558,7 +4376,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SCARY_FACE,
@@ -4578,7 +4395,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = B_UPDATED_MOVE_DATA >= GEN_4,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4600,7 +4416,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -4624,7 +4439,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_BELLY_DRUM,
@@ -4650,7 +4464,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SLUDGE_BOMB,
@@ -4675,7 +4488,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_MUD_SLAP,
@@ -4701,7 +4513,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -4727,7 +4538,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .forcePressure = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4753,7 +4563,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4776,7 +4585,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_BOOST_CRITS },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4803,7 +4611,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -4828,7 +4635,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .mirrorMoveBanned = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4854,7 +4660,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -4881,7 +4686,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4901,7 +4705,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_BONE_RUSH,
@@ -4922,7 +4725,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_LOCK_ON,
@@ -4948,7 +4750,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_THRASH,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -4972,7 +4773,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .windMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SANDSTORM,
@@ -4994,7 +4794,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -5021,7 +4820,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_ENDURE,
@@ -5043,7 +4841,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_CHARM,
@@ -5066,7 +4863,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .instructBanned = TRUE,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -5086,7 +4882,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5108,7 +4903,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5133,7 +4927,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5159,7 +4952,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5187,7 +4979,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5214,7 +5005,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5237,7 +5027,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_MEAN_LOOK,
@@ -5260,7 +5049,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5290,7 +5078,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mimicBanned = TRUE,
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5316,7 +5103,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
         .soundMove = B_UPDATED_MOVE_FLAGS != GEN_5,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_HEAL_BELL,
@@ -5337,7 +5123,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_EXCITE_AUDIENCE_IN_ANY_CONTEST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5358,7 +5143,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5379,7 +5163,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_EXCITE_AUDIENCE_IN_ANY_CONTEST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5403,7 +5186,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -5424,7 +5206,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -5450,7 +5231,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -5472,7 +5252,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .damagesUnderground = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -5503,7 +5282,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5524,7 +5302,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5554,7 +5331,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DRAGON_BREATH,
@@ -5577,7 +5353,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5601,7 +5376,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .encoreBanned = TRUE,
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -5623,7 +5397,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_3 || B_UPDATED_MOVE_FLAGS == GEN_4),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -5656,7 +5429,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             }
         #endif
         ),
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5678,7 +5450,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ACC_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_SWEET_SCENT,
@@ -5704,7 +5475,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5731,7 +5501,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5752,7 +5521,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = -1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5777,7 +5545,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -5802,7 +5569,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -5827,7 +5593,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -5847,7 +5612,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -5869,7 +5633,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5896,7 +5659,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -5919,7 +5681,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_RAIN_DANCE,
@@ -5942,7 +5703,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_SUNNY_DAY,
@@ -5977,7 +5737,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         #endif
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6001,7 +5760,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .meFirstBanned = TRUE,
         .metronomeBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6026,7 +5784,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = B_UPDATED_MOVE_FLAGS < GEN_5,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6051,7 +5808,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = B_UPDATED_MOVE_DATA >= GEN_5 ? 2 : 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -6082,7 +5838,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6108,7 +5863,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6136,7 +5890,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6162,7 +5915,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_WITH_GOOD_CONDITION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6186,7 +5938,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6206,7 +5957,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6232,7 +5982,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_FAKE_OUT,
@@ -6265,7 +6014,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_UPROAR,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6289,7 +6037,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_STOCKPILE,
@@ -6310,7 +6057,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6335,7 +6081,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6361,7 +6106,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6384,7 +6128,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_HAIL,
@@ -6406,7 +6149,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6428,7 +6170,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6450,7 +6191,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6471,7 +6211,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_RESTORE_REPLACEMENT_HP },
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6492,7 +6231,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6521,7 +6259,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6550,7 +6287,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_REMOVE_STATUS,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6576,7 +6312,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6603,7 +6338,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
         .mimicBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6627,7 +6361,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_CHARGE,
@@ -6650,7 +6383,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .ignoresSubstitute = TRUE,
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_TAUNT,
@@ -6677,7 +6409,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6701,7 +6432,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6725,7 +6455,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6750,7 +6479,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6779,7 +6507,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
         .mimicBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -6804,7 +6531,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6829,7 +6555,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_DEF_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -6852,7 +6577,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_2 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -6876,7 +6600,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6896,7 +6619,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = -4,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_REVENGE,
@@ -6917,7 +6639,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -6939,7 +6660,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_YAWN,
@@ -6963,7 +6683,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_KNOCK_OFF,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -6985,7 +6704,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -7005,7 +6723,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7027,7 +6744,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7053,7 +6769,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
         .forcePressure = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7077,7 +6792,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -7101,7 +6815,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -7127,7 +6840,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7152,7 +6864,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SECRET_POWER,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_WITH_GOOD_CONDITION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7178,7 +6889,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .assistBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_DIVE,
@@ -7199,7 +6909,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -7223,7 +6932,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7247,7 +6955,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7272,7 +6979,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7298,7 +7004,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7325,7 +7030,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
         .danceMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7348,7 +7052,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .danceMove = TRUE,
         .mirrorMoveBanned = B_UPDATED_MOVE_FLAGS < GEN_4,
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -7375,7 +7078,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7399,7 +7101,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_MUD_SPORT,
@@ -7423,7 +7124,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ballisticMove = TRUE,
         .instructBanned = TRUE,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7450,7 +7150,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7475,7 +7174,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -7497,7 +7195,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .soundMove = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7524,7 +7221,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_TOXIC,
             .chance = B_UPDATED_MOVE_DATA >= GEN_6 ? 50 : 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7550,7 +7246,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7574,7 +7269,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7598,7 +7292,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7626,7 +7319,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7653,7 +7345,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7674,7 +7365,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7698,7 +7388,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7720,7 +7409,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7743,7 +7431,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .windMove = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7768,7 +7455,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_TWO_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7791,7 +7477,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .ignoresSubstitute = TRUE,
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7816,7 +7501,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7843,7 +7527,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7867,7 +7550,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_METAL_SOUND,
@@ -7895,7 +7577,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -7917,7 +7598,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -7941,7 +7621,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -7961,7 +7640,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -7986,7 +7664,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8008,7 +7685,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8034,7 +7710,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8057,7 +7732,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .damagesAirborne = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8080,7 +7754,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8100,7 +7773,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8126,7 +7798,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -8147,7 +7818,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8169,7 +7839,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8189,7 +7858,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8213,7 +7881,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -8236,7 +7903,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8261,7 +7927,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .soundMove = B_UPDATED_MOVE_FLAGS >= GEN_8,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8282,7 +7947,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8307,7 +7971,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8331,7 +7994,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8362,7 +8024,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8387,7 +8048,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -8414,7 +8074,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8442,7 +8101,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_STEAL_ITEM,
         }),
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8471,7 +8129,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
                 .chance = 10,
             }),
         #endif
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8491,7 +8148,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8515,7 +8171,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_WATER_SPORT,
@@ -8539,7 +8194,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_CALM_MIND,
@@ -8562,7 +8216,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8587,7 +8240,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DRAGON_DANCE,
@@ -8608,7 +8260,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = B_UPDATED_MOVE_FLAGS >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -8628,7 +8279,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8654,7 +8304,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8676,7 +8325,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8700,7 +8348,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_TWO_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8725,7 +8372,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8749,7 +8395,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8772,7 +8417,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .ignoresSubstitute = TRUE,
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8797,7 +8441,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_REMOVE_STATUS,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8823,7 +8466,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8845,7 +8487,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8868,7 +8509,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8888,7 +8528,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -8908,7 +8547,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -8936,7 +8574,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -8959,7 +8596,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_BUG_BITE,
         }),
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -8984,7 +8620,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .windMove = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9008,7 +8643,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = B_UPDATED_MOVE_FLAGS < GEN_5,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9029,7 +8663,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .meFirstBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9049,7 +8682,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9073,7 +8705,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_SPDEF_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9094,7 +8725,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_PAYBACK,
@@ -9115,7 +8745,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9137,7 +8766,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9158,7 +8786,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -9179,7 +8806,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_2 },
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9200,7 +8826,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9222,7 +8847,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_2 },
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9242,7 +8866,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9266,7 +8889,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9288,7 +8910,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9312,7 +8933,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_LUCKY_CHANT,
@@ -9343,7 +8963,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
         .mimicBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9373,7 +8992,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = TRUE,
         .mimicBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9395,7 +9013,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9417,7 +9034,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9438,7 +9054,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9459,7 +9074,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9481,7 +9095,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_WORRY_SEED,
@@ -9501,7 +9114,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9527,7 +9139,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .forcePressure = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9549,7 +9160,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_BOOST_CRITS },
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9573,7 +9183,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9598,7 +9207,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .gravityBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9627,7 +9235,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9653,7 +9260,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9675,7 +9281,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .pulseMove = TRUE,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9699,7 +9304,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -9725,7 +9329,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9751,7 +9354,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9774,7 +9376,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9795,7 +9396,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9816,7 +9416,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9842,7 +9441,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -9864,7 +9462,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9891,7 +9488,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -9912,7 +9508,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .pulseMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -9939,7 +9534,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DRAGON_RUSH,
@@ -9959,7 +9553,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -9981,7 +9574,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10001,7 +9593,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 1,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10027,7 +9618,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10053,7 +9643,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10075,7 +9664,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_BRAVE_BIRD,
@@ -10101,7 +9689,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10125,7 +9712,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10149,7 +9735,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10173,7 +9758,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -10195,7 +9779,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10215,7 +9798,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = -4,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10235,7 +9817,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10257,7 +9838,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -10289,7 +9869,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_THUNDER_FANG,
@@ -10320,7 +9899,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_ICE_FANG,
@@ -10352,7 +9930,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_FIRE_FANG,
@@ -10373,7 +9950,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10399,7 +9975,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10421,7 +9996,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10447,7 +10021,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10472,7 +10045,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -10497,7 +10069,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10523,7 +10094,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_WITH_GOOD_CONDITION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10546,7 +10116,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_ACC_UP_1 },
         //.ignoresSubstitute = TRUE,
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10568,7 +10137,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ACC_UP_1 },
         .ignoresProtect = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -10592,7 +10160,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_TWO_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10617,7 +10184,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10641,7 +10207,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -10665,7 +10230,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_TWO_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -10686,7 +10250,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10710,7 +10273,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -10738,7 +10300,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10763,7 +10324,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10789,7 +10349,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -10810,7 +10369,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10831,7 +10389,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -10853,7 +10410,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_2 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -10878,7 +10434,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .forcePressure = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -10900,7 +10455,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .makesContact = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10940,7 +10494,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .chance = 31,
         #endif
         }),
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10961,7 +10514,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = HOLD_EFFECT_PLATE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -10984,7 +10536,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_BUG_BITE,
         }),
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11010,7 +10561,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 70,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11032,7 +10582,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11053,7 +10602,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11074,7 +10622,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_ATTACK_ORDER,
@@ -11098,7 +10645,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_DEFEND_ORDER,
@@ -11123,7 +10669,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_HEAL_ORDER,
@@ -11145,7 +10690,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11167,7 +10711,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11191,7 +10734,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -11212,7 +10754,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11236,7 +10777,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .danceMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11256,7 +10796,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11279,7 +10818,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11302,7 +10840,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
         .sketchBanned = (B_SKETCH_BANS >= GEN_9),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11327,7 +10864,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_2,
             .chance = 40,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -11354,7 +10890,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11383,7 +10918,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11407,7 +10941,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -11434,7 +10967,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .protectionMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11456,7 +10988,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11478,7 +11009,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11500,7 +11030,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .ignoresProtect = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11519,7 +11048,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11540,7 +11068,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = STATUS1_PSN_ANY,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11564,7 +11091,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11591,7 +11117,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11614,7 +11139,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
         .gravityBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11636,7 +11160,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .ignoresProtect = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11661,7 +11184,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_SMACK_DOWN,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11682,7 +11204,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .alwaysCriticalHit = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11706,7 +11227,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLAME_BURST,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11731,7 +11251,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11756,7 +11275,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11778,7 +11296,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_7,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11798,7 +11315,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11819,7 +11335,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -11841,7 +11356,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11868,7 +11382,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -11892,7 +11405,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11918,7 +11430,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -11944,7 +11455,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_2,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -11965,7 +11475,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -11987,7 +11496,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12009,7 +11517,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12034,7 +11541,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12059,7 +11565,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_ROUND,
         }),
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12081,7 +11586,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12102,7 +11606,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ignoresTargetDefenseEvasionStages = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12125,7 +11628,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_CLEAR_SMOG,
         }),
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12145,7 +11647,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -12172,7 +11673,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .protectionMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12195,7 +11695,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPD_UP_2 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12221,7 +11720,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SCALD,
@@ -12245,7 +11743,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12270,7 +11767,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .pulseMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12291,7 +11787,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = STATUS1_ANY,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12317,7 +11812,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12341,7 +11835,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12363,7 +11856,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12386,7 +11878,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_INCINERATE,
         }),
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12408,7 +11899,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -12429,7 +11919,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -12452,7 +11941,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12473,7 +11961,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12495,7 +11982,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .mirrorMoveBanned = TRUE,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12521,7 +12007,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12546,7 +12031,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12567,7 +12051,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12588,7 +12071,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12609,7 +12091,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12628,7 +12109,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -12653,7 +12133,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12679,7 +12158,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12699,7 +12177,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .alwaysCriticalHit = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12721,7 +12198,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = COMBO_STARTER_DRAGON_TAIL,
@@ -12745,7 +12221,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12770,7 +12245,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12792,7 +12266,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -12814,7 +12287,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12836,7 +12308,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12862,7 +12333,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12883,7 +12353,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -12905,7 +12374,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .ignoresTargetDefenseEvasionStages = TRUE,
         .slicingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -12932,7 +12400,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -12953,7 +12420,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -12979,7 +12445,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13006,7 +12471,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13030,7 +12494,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13055,7 +12518,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ACC_MINUS_1,
             .chance = 40,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13074,7 +12536,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13095,7 +12556,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -13122,7 +12582,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13144,7 +12603,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13166,7 +12624,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13191,7 +12648,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13213,7 +12669,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = HOLD_EFFECT_DRIVE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_EXCITE_AUDIENCE_IN_ANY_CONTEST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13242,7 +12697,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SLEEP,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13264,7 +12718,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .slicingMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13289,7 +12742,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13315,7 +12767,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13340,7 +12791,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13367,7 +12817,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13396,7 +12845,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13425,7 +12873,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13453,7 +12900,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13478,7 +12924,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13504,7 +12949,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_V_CREATE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13525,7 +12969,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .thawsUser = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13545,7 +12988,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13570,7 +13012,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .minimizeDoubleDamage = TRUE,
         .gravityBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13599,7 +13040,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13627,7 +13067,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13651,7 +13090,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13676,7 +13114,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .magicCoatAffected = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13697,7 +13134,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13730,7 +13166,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13757,7 +13192,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = TYPE_GHOST,
         .zMove = { .effect = Z_EFFECT_ALL_STATS_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13781,7 +13215,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .magicCoatAffected = TRUE,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -13804,7 +13237,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13829,7 +13261,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13856,7 +13287,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = TYPE_GRASS,
         .zMove = { .effect = Z_EFFECT_ALL_STATS_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -13881,7 +13311,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .windMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13906,7 +13335,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -13932,7 +13360,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -13956,7 +13383,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -13978,7 +13404,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ATK_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14004,7 +13429,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = 75, // restores 75% HP instead of 50% HP
         .makesContact = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14033,7 +13457,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE_ONCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14060,7 +13483,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14088,7 +13510,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_GRASSY_TERRAIN,
@@ -14116,7 +13537,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = COMBO_STARTER_MISTY_TERRAIN,
@@ -14137,7 +13557,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -14163,7 +13582,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -14184,7 +13602,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .windMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14209,7 +13626,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14231,7 +13647,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -14254,7 +13669,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14286,7 +13700,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -14310,7 +13723,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14335,7 +13747,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .magicCoatAffected = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14364,7 +13775,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = B_UPDATED_MOVE_DATA >= GEN_7 ? MOVE_EFFECT_DEF_PLUS_2:  MOVE_EFFECT_DEF_PLUS_1,
             .chance = 50,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -14395,7 +13805,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -14424,7 +13833,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FEINT,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_HYPERSPACE_HOLE,
@@ -14448,7 +13856,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 1,
         .category = B_UPDATED_MOVE_DATA >= GEN_7 ? BATTLE_CATEGORY_SPECIAL : BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -14477,7 +13884,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -14504,7 +13910,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14532,7 +13937,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14558,7 +13962,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -14580,7 +13983,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14603,7 +14005,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPDEF_UP_2 },
         .powderMove = TRUE,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14628,7 +14029,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14657,7 +14057,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -14680,7 +14079,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_ALL_STATS_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -14708,7 +14106,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = COMBO_STARTER_ELECTRIC_TERRAIN,
@@ -14732,7 +14129,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14761,7 +14157,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14790,7 +14185,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14816,7 +14210,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14842,7 +14235,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PARALYSIS,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14862,7 +14254,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -14886,7 +14277,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -14918,7 +14308,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -14943,7 +14332,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .argument = 75, // restores 75% HP instead of 50% HP
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -14974,7 +14362,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_SMACK_DOWN,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_THOUSAND_ARROWS,
@@ -15003,7 +14390,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_PREVENT_ESCAPE,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_THOUSAND_WAVES,
@@ -15024,7 +14410,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15067,7 +14452,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .pulseMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15092,7 +14476,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15121,7 +14504,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_SPDEF_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15154,7 +14536,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_HYPERSPACE_FURY,
@@ -15179,7 +14560,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15204,7 +14584,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 2,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15235,7 +14614,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15264,7 +14642,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PREVENT_ESCAPE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15290,7 +14667,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .ignoresTargetDefenseEvasionStages = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15322,7 +14698,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_REMOVE_STATUS,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15348,7 +14723,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15377,7 +14751,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15402,7 +14775,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15425,7 +14797,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .magicCoatAffected = TRUE,
         .healingMove = B_HEAL_BLOCKING >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15450,7 +14821,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .slicingMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15470,7 +14840,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15496,7 +14865,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15518,7 +14886,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15542,7 +14909,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15567,7 +14933,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15593,7 +14958,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_THROAT_CHOP,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15614,7 +14978,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .ballisticMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15640,7 +15003,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_PREVENT_ESCAPE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15667,7 +15029,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_SPATK_UP_1 },
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_AUDIENCE_EXCITED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_PSYCHIC_TERRAIN,
@@ -15693,7 +15054,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -15719,7 +15079,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15740,7 +15099,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15766,7 +15124,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_REMOVE_ARG_TYPE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15788,7 +15145,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_SPD_UP_1 },
         .ignoresSubstitute = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15809,7 +15165,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15833,7 +15188,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15858,7 +15212,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .danceMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -15886,7 +15239,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_CORE_ENFORCER,
         }),
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15912,7 +15264,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -15937,7 +15288,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
         .instructBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -15965,7 +15315,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -15995,7 +15344,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16020,7 +15368,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -16041,7 +15388,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16065,7 +15411,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16092,7 +15437,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
         .assistBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16117,7 +15461,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_TWO_DOWN,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -16143,7 +15486,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .bitingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -16169,7 +15511,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16194,7 +15535,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = COMBO_STARTER_SHADOW_BONE,
@@ -16215,7 +15555,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 1,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16241,7 +15580,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_SHIFT_JUDGE_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16269,7 +15607,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -16299,7 +15636,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_SPECTRAL_THIEF,
         }),
-
         .contestEffect = CONTEST_EFFECT_APPEAL_AS_GOOD_AS_PREV_ONES,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -16326,7 +15662,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .ignoresTargetAbility = TRUE,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -16352,7 +15687,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresTargetAbility = TRUE,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -16375,7 +15709,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .zMove = { .effect = Z_EFFECT_DEF_UP_1 },
         .ignoresProtect = TRUE,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -16400,7 +15733,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -16425,7 +15757,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_MONS_WITH_GOOD_APPEALS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -16447,7 +15778,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .argument = HOLD_EFFECT_MEMORY,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_SCRAMBLE_NEXT_TURN_ORDER,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16468,7 +15798,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16491,7 +15820,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -16517,7 +15845,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_SPECIAL,
         .ignoresTargetAbility = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -16827,7 +16154,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16860,7 +16186,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .encoreBanned = TRUE,
         .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -16881,7 +16206,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16906,7 +16230,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_TRAP_BOTH,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16929,7 +16252,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -16952,7 +16274,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .snatchAffected = TRUE,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -16973,7 +16294,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -16996,7 +16316,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = TYPE_PSYCHIC,
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17018,7 +16337,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .strikeCount = 2,
         .parentalBondBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17041,7 +16359,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17061,7 +16378,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17082,7 +16398,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17108,7 +16423,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .bitingMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17129,7 +16443,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .ignoresProtect = TRUE,
-
         .contestEffect = CONTEST_EFFECT_MAKE_FOLLOWING_MONS_NERVOUS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17159,7 +16472,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .soundMove = TRUE,
         .danceMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17182,7 +16494,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17205,7 +16516,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17231,7 +16541,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SPD_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17257,7 +16566,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17285,7 +16593,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17315,7 +16622,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
         .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17344,7 +16650,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
         .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17371,7 +16676,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17402,7 +16706,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17424,7 +16727,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17447,7 +16749,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .soundMove = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17473,7 +16774,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_DEF_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17499,7 +16799,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17526,7 +16825,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17556,7 +16854,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_CONFUSION,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17582,7 +16879,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17607,7 +16903,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
         .instructBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17633,7 +16928,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17663,7 +16957,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17688,7 +16981,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_RECHARGE,
             .self = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17709,7 +17001,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17733,7 +17024,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17756,7 +17046,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .makesContact = TRUE,
         .argument = ARG_TRY_REMOVE_TERRAIN_FAIL, // Remove a field terrain if there is one and hit, otherwise fail.
         .skyBattleBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -17777,7 +17066,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .argument = MOVE_EFFECT_SCALE_SHOT,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17804,7 +17092,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .self = TRUE,
             .onChargeTurnOnly = TRUE,
         }),
-
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -17833,7 +17120,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_POISON,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17857,7 +17143,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_GREAT_APPEAL_BUT_NO_MORE_MOVES,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17879,7 +17164,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .skyBattleBanned = B_EXTRAPOLATED_MOVE_FLAGS,
-
         .contestEffect = CONTEST_EFFECT_NEXT_APPEAL_EARLIER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -17903,7 +17187,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -17928,7 +17211,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .pulseMove = TRUE,
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17958,7 +17240,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -17988,7 +17269,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .onlyIfTargetRaisedStats = TRUE,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MON_WITH_JUDGES_ATTENTION,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -18009,7 +17289,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MON,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18029,7 +17308,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -18054,7 +17332,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_STATUS,
         .magicCoatAffected = TRUE,
-
         .contestEffect = CONTEST_EFFECT_WORSEN_CONDITION_OF_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18077,7 +17354,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .ignoresProtect = TRUE,
         .ignoresSubstitute = TRUE,
         .mirrorMoveBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18098,7 +17374,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
-
         .contestEffect = CONTEST_EFFECT_AVOID_STARTLE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18120,7 +17395,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 3,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_SAME_TYPE,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -18146,7 +17420,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .strikeCount = 2,
-
         .contestEffect = CONTEST_EFFECT_REPETITION_NOT_BORING,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18176,7 +17449,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_BURN,
             .chance = 30,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -18205,7 +17477,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .mirrorMoveBanned = TRUE,
         .healingMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_QUALITY_DEPENDS_ON_TIMING,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -18229,7 +17500,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .alwaysCriticalHit = TRUE,
         .punchingMove = TRUE,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_JAMS_OTHERS_BUT_MISS_ONE_TURN,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18258,7 +17528,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .punchingMove = TRUE,
         .strikeCount = 3,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -18282,7 +17551,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_WRAP,
         }),
-
         .contestEffect = CONTEST_EFFECT_DONT_EXCITE_AUDIENCE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18307,7 +17575,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
@@ -18341,7 +17608,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
             .chance = 10,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .contestComboStarterId = 0,
@@ -18366,7 +17632,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_FLINCH,
             .chance = 20,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -18397,7 +17662,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             .moveEffect = MOVE_EFFECT_DEF_MINUS_1,
             .chance = 100,
         }),
-
         .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .contestComboStarterId = 0,
@@ -18422,7 +17686,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_LAST,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .contestComboStarterId = 0,
@@ -18447,7 +17710,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = BATTLE_CATEGORY_SPECIAL,
         .metronomeBanned = TRUE,
-
         .contestEffect = CONTEST_EFFECT_BETTER_IF_FIRST,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
@@ -18470,7 +17732,6 @@ const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .sheerForceBoost = TRUE,
         .soundMove = TRUE,
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
-
         .contestEffect = CONTEST_EFFECT_BETTER_WHEN_LATER,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = 0,
