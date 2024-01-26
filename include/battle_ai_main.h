@@ -29,6 +29,25 @@
 #define STAT_CHANGE_ACC        10
 #define STAT_CHANGE_EVASION    11
 
+#define BEST_DAMAGE_MOVE 1
+
+// Score increases
+#define WEAK_EFFECT 1
+#define DECENT_EFFECT 2
+#define GOOD_EFFECT 4
+#define BEST_EFFECT 6
+
+// AI_CalcMoveScore final score
+#define NOT_GOOD_ENOUGH 0
+#define GOOD_MOVE_EFFECTS 2
+#define PREFERRED_MOVE_EFFECTS 3
+#define BEST_MOVE_EFFECTS 4
+
+// AI_TryToFaint
+#define FAST_KILL 5
+#define SLOW_KILL 4
+#define LAST_CHANCE 2
+
 #include "test_runner.h"
 
 // Logs for debugging AI tests.
