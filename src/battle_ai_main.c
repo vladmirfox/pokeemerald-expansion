@@ -4117,7 +4117,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(2);
         break;
     case EFFECT_SKILL_SWAP:
-        if (gAbilitiesInfo[aiData->abilities[battlerDef]].aiRating > gAbilities[aiData->abilities[battlerAtk]].aiRating)
+        if (gAbilitiesInfo[aiData->abilities[battlerDef]].aiRating > gAbilitiesInfo[aiData->abilities[battlerAtk]].aiRating)
             ADJUST_SCORE(2);
         break;
     case EFFECT_WORRY_SEED:
