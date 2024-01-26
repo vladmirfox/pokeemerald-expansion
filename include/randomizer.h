@@ -48,6 +48,7 @@ enum RandomizerSpeciesMode {
     MON_RANDOM_LEGEND_AWARE,
     #if RZ_SPECIES_BASIC_SUPPORT == FALSE
         MON_RANDOM_BST,
+        MON_EVOLUTION,
         // Other modes here.
         MAX_MON_MODE
     #endif
@@ -86,6 +87,10 @@ bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
 u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species);
 u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
 u16 RandomizeStarter(u16 starterSlot, const u16* originalStarters);
+
+#if RZ_SPECIES_BASIC_SUPPORT == FALSE && RZ_SPECIES_TABLES_IN_RAM == TRUE
+void PreloadRandomizationTables(void);
+#endif
 
 #endif // RZ_ENABLE
 

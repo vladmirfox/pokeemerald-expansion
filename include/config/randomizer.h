@@ -14,10 +14,23 @@
 #define RZ_SPECIES_BASIC_SUPPORT    FALSE
 
 #if RZ_SPECIES_BASIC_SUPPORT == FALSE
+
+// If TRUE, dynamically generated randomization tables stored in EWRAM are used.
+// This consumes 6 bytes for each species present.
 #define RZ_SPECIES_TABLES_IN_RAM    TRUE
+
+#if RZ_SPECIES_TABLES_IN_RAM == TRUE
+
+// If the longest evolutionary chain (excluding babies) is longer than this,
+// the dynamic evolutionary stage randomization table will be generated
+// incorrectly.
+#define RZ_MAX_EVO_STAGES   5
+
 #endif
 
-#define RZ_MAX_TM   ITEM_TM50
+#endif
+
+#define RZ_MAX_TM           ITEM_TM50
 
 // Vars and features
 

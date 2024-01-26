@@ -1,6 +1,7 @@
 #include "randomizer.h"
 
 #if RZ_ENABLE == TRUE
+#include "main.h"
 #include "new_game.h"
 #include "item.h"
 #include "event_data.h"
@@ -49,6 +50,19 @@ bool8 SetRandomizerSeed(u32 newSeed)
         VarSet(RZ_VAR_SEED_H, (u16)(newSeed >> 16));
         return TRUE;
     #endif
+}
+
+u32 GenerateSeedForRandomizer(void)
+{
+    u32 data;
+    u32 vblankCounter = gMain.vblankCounter1;
+    #if HQ_RANDOM == TRUE
+        data = Random32();
+    #else
+        data = gRngValue;
+        Random();
+    #endif
+    return data ^ vblankCounter;
 }
 
 u16 GetRandomizerOption(enum RandomizerOption option)
@@ -279,24 +293,29 @@ static void GetGroupRange(u16 group, enum RandomizerSpeciesMode mode, u16 *resul
 // Returns the range in the group table that covers the given group range.
 static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGroup, u16 maxGroup, u16 *start, u16 *end)
 {
-    u16 index, leftBound, rightBound;
+    u16 index, leftBound, rightBound, maxRightBound;
+    maxRightBound = RZ_SPECIES_COUNT;
     maxGroup = min(0xFFFEu, maxGroup);
     leftBound = 0;
     rightBound = RZ_SPECIES_COUNT;
     // Do leftmost binary search to find the lower limit.
     while (leftBound < rightBound)
     {
+        u16 leftFoundGroup;
         index = (leftBound + rightBound) / 2;
-        if (table->speciesGroups[index].group < minGroup)
+        leftFoundGroup = table->speciesGroups[index].group;
+        if (leftFoundGroup < minGroup)
             leftBound = index + 1;
         else
+        {
+            if (leftFoundGroup > maxGroup)
+                maxRightBound = index;
             rightBound = index;
+        }
     }
     *start = leftBound;
 
-    // It isn't necessary to reset leftBound because the end point will be
-    // at least leftBound.
-    rightBound = RZ_SPECIES_COUNT;
+    rightBound = maxRightBound;
 
     // Do rightmost binary search to find the upper limit.
     while (leftBound < rightBound)
@@ -356,6 +375,87 @@ static void FillSpeciesGroupsLegendary(struct SpeciesGroupEntry* entries)
     }
 }
 
+// This is a list of baby Pokémon that should not cause their evolution
+// to count as an evolved pokemon.
+static const u16 sPreevolutionBabyMons[] =
+{
+    SPECIES_PICHU,
+    SPECIES_CLEFFA,
+    SPECIES_IGGLYBUFF,
+    SPECIES_TYROGUE,
+    SPECIES_SMOOCHUM,
+    SPECIES_ELEKID,
+    SPECIES_MAGBY,
+    SPECIES_AZURILL,
+    SPECIES_WYNAUT,
+    SPECIES_BUDEW,
+    SPECIES_CHINGLING,
+    SPECIES_BONSLY,
+    SPECIES_MIME_JR,
+    SPECIES_HAPPINY,
+    SPECIES_MUNCHLAX,
+    SPECIES_MANTYKE,
+};
+
+struct EvoTableMarker {
+    u16 species;
+    const struct Evolution* evos;
+};
+
+static void MarkEvolutions(struct SpeciesGroupEntry *entries, u16 species, u16 stage)
+{
+    const struct Evolution *evos;
+    if (stage == RZ_MAX_EVO_STAGES)
+        return;
+
+    evos = GetSpeciesEvolutions(species);
+    if (evos != NULL)
+    {
+        u32 i;
+        for (i = 0; evos[i].method != 0xFFFF; i++)
+        {
+            if(entries[species-1].group <= stage)
+                MarkEvolutions(entries, evos->targetSpecies, stage+1);
+        }
+    }
+    entries[species-1].species = species;
+    entries[species-1].group = stage;
+}
+
+static void FillSpeciesGroupsEvolution(struct SpeciesGroupEntry* entries)
+{
+    u16 i;
+    static const u8 EVO_GROUP_LEGENDARY = 0x81;
+    static const u8 EVO_GROUP_NO_EVO = RZ_MAX_EVO_STAGES+1;
+
+    // Step 0: zero everything
+    memset(entries, 0, sizeof(sRamSpeciesTable.speciesTable.speciesGroups));
+
+    // Step 1: pre-visit the special babies
+    for (i = 0; i < ARRAY_COUNT(sPreevolutionBabyMons); i++)
+    {
+        u16 babyMonIndex = sPreevolutionBabyMons[i]-1;
+        entries[babyMonIndex].group = 0;
+        entries[babyMonIndex].species = babyMonIndex + 1;
+    }
+
+    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    {
+        u16 idx = i - 1;
+        if (entries[idx].species == 0) // This entry hasn't been visited yet.
+        {
+            const struct Evolution *evos = GetSpeciesEvolutions(i);
+            entries[idx].species = i;
+            if (IsRandomizerLegendary(i))
+                entries[idx].group = EVO_GROUP_LEGENDARY;
+            else if (evos == NULL || evos->method == 0xFFFF)
+                entries[idx].group = EVO_GROUP_NO_EVO;
+            else // There are evolutions! Let's check it out.
+                MarkEvolutions(entries, i, 0);
+        }
+    }
+}
+
 static inline u16 LeftChildIndex(u16 index)
 {
     return 2*index + 1;
@@ -378,6 +478,9 @@ static void BuildRandomizerSpeciesTable(enum RandomizerSpeciesMode mode)
             break;
         case MON_RANDOM_BST:
             FillSpeciesGroupsBST(groupTable);
+            break;
+        case MON_EVOLUTION:
+            FillSpeciesGroupsEvolution(groupTable);
             break;
         case MON_RANDOM:
         default:
