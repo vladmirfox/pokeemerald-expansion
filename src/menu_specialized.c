@@ -776,7 +776,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
         CopyWindowToVram(RELEARNERWIN_DESC_BATTLE, COPYWIN_GFX);
         return;
     }
-    move = &gBattleMoves[chosenMove];
+    move = &gMovesInfo[chosenMove];
     str = gTypeNames[move->type];
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 4, 25, TEXT_SKIP_DRAW, NULL);
 
@@ -807,7 +807,7 @@ static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
     AddTextPrinterParameterized(RELEARNERWIN_DESC_BATTLE, FONT_NORMAL, str, 106, 41, TEXT_SKIP_DRAW, NULL);
 
     if (move->effect != EFFECT_PLACEHOLDER)
-        str = gBattleMoves[chosenMove].description;
+        str = gMovesInfo[chosenMove].description;
     else
         str = gNotDoneYetDescription;
 
@@ -840,7 +840,7 @@ static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
         return;
     }
 
-    move = &gBattleMoves[chosenMove];
+    move = &gMovesInfo[chosenMove];
     str = gContestMoveTypeTextPointers[move->contestCategory];
     AddTextPrinterParameterized(RELEARNERWIN_DESC_CONTEST, FONT_NORMAL, str, 4, 25, TEXT_SKIP_DRAW, NULL);
 
