@@ -751,7 +751,7 @@ u8 LoadMoveRelearnerMovesList(const struct ListMenuItem *items, u16 numChoices)
 static void MoveRelearnerLoadBattleMoveDescription(u32 chosenMove)
 {
     s32 x;
-    const struct BattleMove *move;
+    const struct MovesInfo *move;
     u8 buffer[32];
     const u8 *str;
 
@@ -818,7 +818,7 @@ static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
 {
     s32 x;
     const u8 *str;
-    const struct BattleMove *move;
+    const struct MovesInfo *move;
 
     MoveRelearnerShowHideHearts(chosenMove);
     FillWindowPixelBuffer(RELEARNERWIN_DESC_CONTEST, PIXEL_FILL(1));

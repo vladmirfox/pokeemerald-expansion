@@ -104,7 +104,7 @@ static const u8 sFeintDescription[] = _(
     "An attack that hits foes\n"
     "using moves like Protect.");
 
-const struct BattleMove gMovesInfo[MOVES_COUNT_DYNAMAX] =
+const struct MovesInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
 {
     [MOVE_NONE] =
     {

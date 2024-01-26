@@ -443,7 +443,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x84 */ const struct FormChange *formChangeTable;
 };
 
-struct BattleMove
+struct MovesInfo
 {
     union {
         u8 moveName[MOVE_NAME_LENGTH + 1];
@@ -608,7 +608,7 @@ extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
 extern struct SpriteTemplate gMultiuseSpriteTemplate;
 
-extern const struct BattleMove gMovesInfo[];
+extern const struct MovesInfo gMovesInfo[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct SpeciesInfo gSpeciesInfo[];
