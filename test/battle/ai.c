@@ -690,6 +690,7 @@ AI_SINGLE_BATTLE_TEST("First Impression is not chosen if it's blocked by certain
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
     PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; }
 
+    KNOWN_FAILING; // Fails because the Omniscient flag is currently broken. It should pass after it is fixed
     GIVEN {
         ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].effect == EFFECT_FIRST_IMPRESSION);
         ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].power == 90);

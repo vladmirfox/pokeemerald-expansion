@@ -75,10 +75,10 @@ bool32 BattlerHasAi(u32 battlerId)
 
 bool32 IsAiBattlerAware(u32 battlerId)
 {
-    // if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT)
+    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT)
         return TRUE;
 
-    // return BattlerHasAi(battlerId);
+    return BattlerHasAi(battlerId);
 }
 
 void ClearBattlerMoveHistory(u32 battlerId)
