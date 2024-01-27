@@ -1103,6 +1103,10 @@ static const struct SpriteFrameImage sPicTable_MovingBox[] = {
     obj_frame_tiles(gObjectEventPic_MovingBox),
 };
 
+static const struct SpriteFrameImage sPicTable_PaperNote[] = {
+    obj_frame_tiles(gObjectEventPic_PaperNote),
+};
+
 static const struct SpriteFrameImage sPicTable_CableCar[] = {
     obj_frame_tiles(gObjectEventPic_CableCar),
 };
