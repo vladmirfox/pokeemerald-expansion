@@ -3892,6 +3892,15 @@ static void Cmd_seteffectsecondary(void)
     SetMoveEffect(FALSE, FALSE);
 }
 
+void BS_JumpIfMoveHasChargeTurnEffects(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+    if (MoveHasChargeTurnMoveEffect(gCurrentMove))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
 static void Cmd_clearstatusfromeffect(void)
 {
     CMD_ARGS(u8 battler);
@@ -10702,15 +10711,6 @@ static void Cmd_various(void)
             BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
         }
-        return;
-    }
-    case VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS:
-    {
-        VARIOUS_ARGS(const u8 *jumpInstr);
-        if (MoveHasChargeTurnMoveEffect(gCurrentMove))
-            gBattlescriptCurrInstr = cmd->jumpInstr;
-        else
-            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     } // End of switch (cmd->id)

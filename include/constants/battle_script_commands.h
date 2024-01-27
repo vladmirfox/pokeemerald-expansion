@@ -239,7 +239,6 @@
 #define VARIOUS_STORE_HEALING_WISH                   147
 #define VARIOUS_HIT_SWITCH_TARGET_FAILED             148
 #define VARIOUS_TRY_REVIVAL_BLESSING                 149
-#define VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS 150
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

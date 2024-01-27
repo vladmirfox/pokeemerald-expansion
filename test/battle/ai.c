@@ -273,12 +273,17 @@ AI_SINGLE_BATTLE_TEST("AI chooses the safest option to faint the target, taking 
     // Psychic and Solar Beam are chosen because user is holding Power Herb
     PARAMETRIZE { abilityAtk = ABILITY_STURDY; holdItemAtk = ITEM_POWER_HERB; move1 = MOVE_FOCUS_BLAST; move2 = MOVE_SOLAR_BEAM; move3 = MOVE_PSYCHIC; move4 = MOVE_DOUBLE_EDGE;
                   expectedMove = MOVE_PSYCHIC; expectedMove2 = MOVE_SOLAR_BEAM; }
-    // // Psychic and Skull Bash are chosen because user is holding Power Herb
-    // PARAMETRIZE { abilityAtk = ABILITY_STURDY; holdItemAtk = ITEM_POWER_HERB; move1 = MOVE_FOCUS_BLAST; move2 = MOVE_SKULL_BASH; move3 = MOVE_PSYCHIC; move4 = MOVE_DOUBLE_EDGE;
-    //               expectedMove = MOVE_PSYCHIC; expectedMove2 = MOVE_SKULL_BASH; }
     // Skull Bash is chosen because it's the most accurate and is holding Power Herb
     PARAMETRIZE { abilityAtk = ABILITY_STURDY; holdItemAtk = ITEM_POWER_HERB; move1 = MOVE_FOCUS_BLAST; move2 = MOVE_SKULL_BASH; move3 = MOVE_SLAM; move4 = MOVE_DOUBLE_EDGE;
                   expectedMove = MOVE_SKULL_BASH; }
+
+    // Neither of these work - for some reason, Skull Bash is now overvalued
+    // And this somehow causes the subsequent test to break, overvaluing Focus Blast compared to Crabhammer
+    // Will have a deeper look at AI scores at some point but this is not really in scope right now
+
+    // // Psychic and Skull Bash are chosen because user is holding Power Herb
+    // PARAMETRIZE { abilityAtk = ABILITY_STURDY; holdItemAtk = ITEM_POWER_HERB; move1 = MOVE_FOCUS_BLAST; move2 = MOVE_SKULL_BASH; move3 = MOVE_PSYCHIC; move4 = MOVE_DOUBLE_EDGE;
+    //               expectedMove = MOVE_PSYCHIC; expectedMove2 = MOVE_SKULL_BASH; }
     // // Crabhammer is chosen even if Skull Bash is more accurate, the user has no Power Herb
     // PARAMETRIZE { abilityAtk = ABILITY_STURDY; move1 = MOVE_FOCUS_BLAST; move2 = MOVE_SKULL_BASH; move3 = MOVE_SLAM; move4 = MOVE_CRABHAMMER;
     //               expectedMove = MOVE_CRABHAMMER; }

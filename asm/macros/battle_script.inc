@@ -1602,6 +1602,11 @@
 	callnative BS_SetPhotonGeyserCategory
 	.endm
 
+	.macro jumpifmovehaschargeturneffects jumpInstr:req
+	callnative BS_JumpIfMoveHasChargeTurnEffects
+	.4byte \jumpInstr
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
@@ -1885,11 +1890,6 @@
 
 	.macro powertrick battler:req
 	various \battler, VARIOUS_POWER_TRICK
-	.endm
-
-	.macro jumpifmovehaschargeturneffects jumpInstr:req
-	various BS_ATTACKER, VARIOUS_JUMP_IF_MOVE_HAS_CHARGE_TURN_EFFECTS
-	.4byte \jumpInstr
 	.endm
 
 	.macro jumpifnotgrounded battler:req, jumpInstr:req
