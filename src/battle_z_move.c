@@ -486,19 +486,19 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler)
             BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_3);
             gDisplayedStringBattle[0] = CHAR_Z;
             gDisplayedStringBattle[1] = CHAR_HYPHEN;
-            StringCopy(gDisplayedStringBattle + 2, GetBattleMoveName(move));
+            StringCopy(gDisplayedStringBattle + 2, GetMoveName(move));
         }
         else if (zmove == MOVE_EXTREME_EVOBOOST)
         {
             // Damaging move -> status z move
             StringCopy(gDisplayedStringBattle, sText_StatsPlus2);
             BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_3);
-            StringCopy(gDisplayedStringBattle, GetBattleMoveName(zmove));
+            StringCopy(gDisplayedStringBattle, GetMoveName(zmove));
         }
         else
         {
             ZMoveSelectionDisplayPower(move, zmove);
-            StringCopy(gDisplayedStringBattle, GetBattleMoveName(zmove));
+            StringCopy(gDisplayedStringBattle, GetMoveName(zmove));
         }
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_1);
 

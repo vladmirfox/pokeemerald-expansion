@@ -6465,7 +6465,7 @@ u16 GetSpeciesPreEvolution(u16 species)
     return SPECIES_NONE;
 }
 
-const u8 *GetBattleMoveName(u16 moveId)
+const u8 *GetMoveName(u16 moveId)
 {
     if (IsZMove(moveId) || IsMaxMove(moveId))
         return gMovesInfo[moveId].name.longMoveName;

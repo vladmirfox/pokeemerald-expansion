@@ -5340,7 +5340,7 @@ static void PrintStatsScreen_Moves_Top(u8 taskId)
     PrintStatsScreenTextSmallWhite(WIN_STATS_MOVES_TOP, gStringVar1, moves_x-1, moves_y+1);
 
     //Move name
-    StringCopy(gStringVar3, GetBattleMoveName(move));
+    StringCopy(gStringVar3, GetMoveName(move));
     StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 20);
     PrintStatsScreenTextSmall(WIN_STATS_MOVES_TOP, gStringVar3, moves_x, moves_y + 17);
 
@@ -6688,7 +6688,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_HOLD_NIGHT );
             break;
         case EVO_MOVE:
-            StringCopy(gStringVar2, GetBattleMoveName(evolutions[i].param));
+            StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
             break;
         case EVO_FRIENDSHIP_MOVE_TYPE:

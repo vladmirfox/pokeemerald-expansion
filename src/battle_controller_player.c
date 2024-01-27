@@ -1694,9 +1694,9 @@ static void MoveSelectionDisplayMoveNames(u32 battler)
         MoveSelectionDestroyCursorAt(i);
         if ((gBattleStruct->dynamax.playerSelect && CanDynamax(battler))
             || IsDynamaxed(battler))
-            StringCopy(gDisplayedStringBattle, GetBattleMoveName(GetMaxMove(battler, moveInfo->moves[i])));
+            StringCopy(gDisplayedStringBattle, GetMoveName(GetMaxMove(battler, moveInfo->moves[i])));
         else
-            StringCopy(gDisplayedStringBattle, GetBattleMoveName(moveInfo->moves[i]));
+            StringCopy(gDisplayedStringBattle, GetMoveName(moveInfo->moves[i]));
         // Prints on windows B_WIN_MOVE_NAME_1, B_WIN_MOVE_NAME_2, B_WIN_MOVE_NAME_3, B_WIN_MOVE_NAME_4
         BattlePutTextOnWindow(gDisplayedStringBattle, i + B_WIN_MOVE_NAME_1);
         if (moveInfo->moves[i] != MOVE_NONE)
