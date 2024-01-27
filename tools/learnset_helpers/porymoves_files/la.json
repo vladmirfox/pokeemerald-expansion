@@ -13401,14 +13401,7 @@
     "EggMoves": [],
     "TutorMoves": []
   },
-  "BASCULIN_RED_STRIPED": {
-    "LevelMoves": [],
-    "PreEvoMoves": [],
-    "TMMoves": [],
-    "EggMoves": [],
-    "TutorMoves": []
-  },
-  "BASCULIN_BLUE_STRIPED": {
+  "BASCULIN": {
     "LevelMoves": [],
     "PreEvoMoves": [],
     "TMMoves": [],
