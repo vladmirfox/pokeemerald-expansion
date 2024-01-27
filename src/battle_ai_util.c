@@ -75,10 +75,10 @@ bool32 BattlerHasAi(u32 battlerId)
 
 bool32 IsAiBattlerAware(u32 battlerId)
 {
-    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT)
+    // if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT)
         return TRUE;
 
-    return BattlerHasAi(battlerId);
+    // return BattlerHasAi(battlerId);
 }
 
 void ClearBattlerMoveHistory(u32 battlerId)
@@ -866,20 +866,20 @@ u32 NoOfHitsForTargetToFaintAI(u32 battlerDef, u32 battlerAtk)
     return leastNumberOfHits;
 }
 
-u32 GetBestDmgMoveFromTarget(u32 battlerDef, u32 battlerAtk)
+u32 GetBestDmgMoveFromBattler(u32 battlerAtk, u32 battlerDef)
 {
     u32 i;
     u32 move = 0;
     u32 bestDmg = 0;
-    u32 unusable = AI_DATA->moveLimitations[battlerDef];
-    u16 *moves = GetMovesArray(battlerDef);
+    u32 unusable = AI_DATA->moveLimitations[battlerAtk];
+    u16 *moves = GetMovesArray(battlerAtk);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & gBitTable[i])
-            && bestDmg < AI_DATA->simulatedDmg[battlerDef][battlerAtk][i])
+            && bestDmg < AI_DATA->simulatedDmg[battlerAtk][battlerDef][i])
         {
-            bestDmg = AI_DATA->simulatedDmg[battlerDef][battlerAtk][i];
+            bestDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
             move = moves[i];
         }
     }

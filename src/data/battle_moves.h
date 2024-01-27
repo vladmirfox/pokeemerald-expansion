@@ -9965,7 +9965,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FIRST_IMPRESSION] =
     {
-        .effect = EFFECT_FAKE_OUT,
+        .effect = EFFECT_FIRST_IMPRESSION,
         .power = 90,
         .type = TYPE_BUG,
         .accuracy = 100,

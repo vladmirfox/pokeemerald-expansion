@@ -879,6 +879,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 break;
             case ABILITY_DAZZLING:
             case ABILITY_QUEENLY_MAJESTY:
+            case ABILITY_ARMOR_TAIL:
                 if (atkPriority > 0)
                     RETURN_SCORE_MINUS(10);
                 break;
@@ -978,6 +979,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     break;
                 case ABILITY_DAZZLING:
                 case ABILITY_QUEENLY_MAJESTY:
+                case ABILITY_ARMOR_TAIL:
                     if (atkPriority > 0)
                         RETURN_SCORE_MINUS(10);
                     break;
@@ -1706,6 +1708,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             ADJUST_SCORE(-10);
             break;
         case EFFECT_FAKE_OUT:
+            if (!gDisableStructs[battlerAtk].isFirstTurn)
+                ADJUST_SCORE(-10);
+            break;
+        case EFFECT_FIRST_IMPRESSION:
             if (!gDisableStructs[battlerAtk].isFirstTurn)
                 ADJUST_SCORE(-10);
             break;
@@ -3876,13 +3882,12 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF, &score);
         break;
     case EFFECT_FAKE_OUT:
-        if (move == MOVE_FAKE_OUT) // filter out first impression
-        {
-            if (ShouldFakeOut(battlerAtk, battlerDef, move))
-                ADJUST_SCORE(4);
-            else
-                ADJUST_SCORE(-10);
-        }
+        if (ShouldFakeOut(battlerAtk, battlerDef, move))
+            ADJUST_SCORE(4);
+        break;
+    case EFFECT_FIRST_IMPRESSION:
+        if (gDisableStructs[battlerAtk].isFirstTurn && GetBestDmgMoveFromBattler(battlerAtk, battlerDef) == move)
+            ADJUST_SCORE(6);
         break;
     case EFFECT_STOCKPILE:
         if (aiData->abilities[battlerAtk] == ABILITY_CONTRARY)
@@ -4727,7 +4732,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
                         ADJUST_SCORE(3);
                     break;
                 case MOVE_EFFECT_THROAT_CHOP:
-                    if (gBattleMoves[GetBestDmgMoveFromTarget(battlerDef, battlerAtk)].soundMove)
+                    if (gBattleMoves[GetBestDmgMoveFromBattler(battlerDef, battlerAtk)].soundMove)
                     {
                         if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
                             ADJUST_SCORE(4);
