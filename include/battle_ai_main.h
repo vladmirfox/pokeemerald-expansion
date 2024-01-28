@@ -31,7 +31,7 @@
 
 #define BEST_DAMAGE_MOVE 1 // Move with the most amount of hits with the best accuracy/effect
 
-// Temprorary scores that are added together to determine a final score at the at of AI_CalcMoveScore
+// Temporary scores that are added together to determine a final score at the at of AI_CalcMoveScore
 #define WEAK_EFFECT      1
 #define DECENT_EFFECT    2
 #define GOOD_EFFECT      4
