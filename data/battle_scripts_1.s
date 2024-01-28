@@ -20,11 +20,10 @@
 
 	.section script_data, "aw", %progbits
 
-BattleScript_EffectUpperHand:
-    attackcanceler
-    tryupperhand BattleScript_FailedFromAtkString
-    accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-    goto BattleScript_HitFromAtkString
+BattleScript_EffectUpperHand::
+	attackcanceler
+	tryupperhand BattleScript_FailedFromAtkString
+	goto BattleScript_HitFromAccCheck
 
 BattleScript_EffectShedTail::
 	attackcanceler

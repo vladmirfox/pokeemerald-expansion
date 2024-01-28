@@ -16527,18 +16527,14 @@ void BS_TryDefog(void)
 
 void BS_TryUpperHand(void)
 {
-	NATIVE_ARGS(const u8 *failInstr);
-	
-	if (gProtectStructs[gBattlerTarget].obstructed) // Fails if target is obstructed
-		gBattlescriptCurrInstr = cmd->failInstr;
-	else if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)) // Fails if user moves after target
-		gBattlescriptCurrInstr = cmd->failInstr;
-	else if (IS_MOVE_STATUS(gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]])) // Fails if target is using a status move
-		gBattlescriptCurrInstr = cmd->failInstr;
-	else if (GetChosenMovePriority(gBattlerTarget) <= 0) // Fails if priority is not greater than 0
-		gBattlescriptCurrInstr = cmd->failInstr;
-	else
-		gBattlescriptCurrInstr = cmd->nextInstr;
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget) || 
+	IS_MOVE_STATUS(gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]) || 
+	GetChosenMovePriority(gBattlerTarget) <= 0 || GetChosenMovePriority(gBattlerTarget) > 3) // Fails if priority is not greater than 0 or greater than 3, if target already moved, or if using a status move
+        gBattlescriptCurrInstr = cmd->failInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_TryTriggerStatusForm(void)
