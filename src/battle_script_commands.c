@@ -6200,6 +6200,34 @@ static void Cmd_moveend(void)
                 gBattleStruct->sameMoveTurns[gBattlerAttacker]++;
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_SET_EVOLUTION_TRACKER:
+            // If the Pokémon needs to keep track of move usage for its evolutions, do it
+            if (originallyUsedMove != MOVE_NONE
+                && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
+                && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                                        | BATTLE_TYPE_EREADER_TRAINER
+                                        | BATTLE_TYPE_RECORDED_LINK
+                                        | BATTLE_TYPE_TRAINER_HILL
+                                        | BATTLE_TYPE_FRONTIER)))
+            {
+                const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
+                for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+                {
+                    if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+                        continue;
+                    if (evolutions[i].method == EVO_LEVEL_MOVE_TWENTY_TIMES && evolutions[i].param == originallyUsedMove)
+                    {
+                        u16 val;
+                        val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
+                        if (val < 20)
+                            val++;
+                        SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
+                        break;
+                    }
+                }
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gSpecialStatuses[gBattlerAttacker].instructedChosenTarget)
                 *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
@@ -6232,34 +6260,6 @@ static void Cmd_moveend(void)
             gBattleStruct->swapDamageCategory = FALSE;
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
-            gBattleScripting.moveendState++;
-            break;
-        case MOVEEND_SET_EVOLUTION_TRACKER:
-            // If the Pokémon needs to keep track of move usage for its evolutions, do it
-            if (originallyUsedMove != MOVE_NONE
-                && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
-                && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
-                                        | BATTLE_TYPE_EREADER_TRAINER
-                                        | BATTLE_TYPE_RECORDED_LINK
-                                        | BATTLE_TYPE_TRAINER_HILL
-                                        | BATTLE_TYPE_FRONTIER)))
-            {
-                const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
-                for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-                {
-                    if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
-                        continue;
-                    if (evolutions[i].method == EVO_LEVEL_MOVE_TWENTY_TIMES && evolutions[i].param == originallyUsedMove)
-                    {
-                        u16 val;
-                        val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
-                        if (val < 20)
-                            val++;
-                        SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
-                        break;
-                    }
-                }
-            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
