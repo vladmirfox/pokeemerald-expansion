@@ -4069,7 +4069,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .category = BATTLE_CATEGORY_PHYSICAL,
-        .argument = MOVE_FAKE_OUT,
         .sheerForceBoost = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_FLINCH,
@@ -9974,7 +9973,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 2,
         .category = BATTLE_CATEGORY_PHYSICAL,
-        .argument = MOVE_FIRST_IMPRESSION,
         .makesContact = TRUE,
     },
 
