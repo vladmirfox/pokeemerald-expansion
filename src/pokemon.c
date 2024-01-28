@@ -2110,6 +2110,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
     struct PokemonSubstruct1 *substruct1 = NULL;
     struct PokemonSubstruct2 *substruct2 = NULL;
     struct PokemonSubstruct3 *substruct3 = NULL;
+    union EvolutionTracker evoTracker;
 
     // Any field greater than MON_DATA_ENCRYPT_SEPARATOR is encrypted and must be treated as such
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
@@ -2491,7 +2492,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             break;
         }
         case MON_DATA_EVOLUTION_TRACKER:
-            union EvolutionTracker evoTracker;
             evoTracker.asField.a = substruct1->evolutionTracker1;
             evoTracker.asField.b = substruct1->evolutionTracker2;
             retVal = evoTracker.value;
