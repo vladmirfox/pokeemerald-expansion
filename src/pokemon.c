@@ -2089,8 +2089,8 @@ u32 GetMonData2(struct Pokemon *mon, s32 field)
 
 struct EvolutionTrackerBitfield {
   u16 a: 5;
-  u16 b: 5;
-  u16 unused: 6;
+  u16 b: 4;
+  u16 unused: 7;
 };
 
 union EvolutionTracker {

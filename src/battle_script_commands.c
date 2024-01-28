@@ -16625,10 +16625,10 @@ void BS_TryUpdateRecoilTracker(void)
             {
                 u16 val;
                 val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
-                if (val == 1024) // to account for the fact we only have 10 bits
+                if (val == 512) // to account for the fact we only have 10 bits
                     break;
-                if ((val + gBattleMoveDamage) > 1024)
-                    val = 1024;
+                if ((val + gBattleMoveDamage) > 512)
+                    val = 512;
                 else
                     val += gBattleMoveDamage;
                 if (gBattleMons[battler].hp == 0) // reset progress if you faint
