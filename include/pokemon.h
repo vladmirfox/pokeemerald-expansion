@@ -112,6 +112,7 @@ enum {
     MON_DATA_DYNAMAX_LEVEL,
     MON_DATA_GIGANTAMAX_FACTOR,
     MON_DATA_TERA_TYPE,
+    MON_DATA_EVOLUTION_TRACKER,
 };
 
 struct PokemonSubstruct0
@@ -133,9 +134,9 @@ struct PokemonSubstruct0
 struct PokemonSubstruct1
 {
     u16 move1:11; // 2047 moves.
-    u16 unused_00:5;
+    u16 evolutionTracker1:5;
     u16 move2:11; // 2047 moves.
-    u16 unused_02:5;
+    u16 evolutionTracker2:5;
     u16 move3:11; // 2047 moves.
     u16 unused_04:5;
     u16 move4:11; // 2047 moves.
