@@ -25,6 +25,8 @@
 #define BINDING_TURNS "2 to 5"
 #endif
 
+// Shared Move Description entries
+
 const u8 gNotDoneYetDescription[] = _(
     "This move can't be used. Its\n"
     "effect is in development.");
