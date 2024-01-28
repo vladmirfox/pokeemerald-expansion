@@ -27,7 +27,7 @@
     u16 *moves = GetMovesArray(battler);                                                                        \
     for (i = 0; i < MAX_MON_MOVES; i++)                                                                         \
     {                                                                                                           \
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].flag)               \
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gMovesInfo[moves[i]].flag)                 \
             return TRUE;                                                                                        \
     }                                                                                                           \
     return FALSE
