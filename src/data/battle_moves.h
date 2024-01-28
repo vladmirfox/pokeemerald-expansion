@@ -13574,7 +13574,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_UPPER_HAND] =
     {
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_UPPER_HAND
+        .effect = EFFECT_UPPER_HAND,
         .power = 65,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -13583,6 +13583,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 3,
         .category = BATTLE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .sheerForceBoost = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_FLINCH,
+            .chance = 100,
+        }),
     },
 
     [MOVE_MALIGNANT_CHAIN] =
