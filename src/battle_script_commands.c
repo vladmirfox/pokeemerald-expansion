@@ -16602,3 +16602,42 @@ void BS_SetPhotonGeyserCategory(void)
     gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == BATTLE_CATEGORY_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
+
+void BS_TryUpdateRecoilTracker(void)
+{
+    NATIVE_ARGS(u8 battler);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    u32 i;
+
+    if (GetBattlerSide(battler) == B_SIDE_PLAYER
+        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                                | BATTLE_TYPE_EREADER_TRAINER
+                                | BATTLE_TYPE_RECORDED_LINK
+                                | BATTLE_TYPE_TRAINER_HILL
+                                | BATTLE_TYPE_FRONTIER)))
+    {
+        const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[battler].species);
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+                continue;
+            if (evolutions[i].method == EVO_LEVEL_RECOIL_DAMAGE)
+            {
+                u16 val;
+                val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
+                if (val == 1024) // to account for the fact we only have 10 bits
+                    break;
+                if ((val + gBattleMoveDamage) > 1024)
+                    val = 1024;
+                else
+                    val += gBattleMoveDamage;
+                if (gBattleMons[battler].hp == 0) // reset progress if you faint
+                    val = 0;
+                SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
+                break;
+            }
+        }
+    }
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}

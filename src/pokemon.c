@@ -2915,7 +2915,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
             union EvolutionTracker evoTracker;
             u32 evoTrackerValue;
-            SET8(evoTrackerValue);
+            SET32(evoTrackerValue);
             evoTracker.value = evoTrackerValue;
             substruct1->evolutionTracker1 = evoTracker.asField.a;
             substruct1->evolutionTracker2 = evoTracker.asField.b;
@@ -4337,6 +4337,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 break;
             case EVO_LEVEL_MOVE_TWENTY_TIMES:
                 if (evolutionTracker >= 20)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_LEVEL_RECOIL_DAMAGE:
+                if (evolutionTracker >= evolutions[i].param)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             }

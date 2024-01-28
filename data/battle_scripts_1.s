@@ -7697,6 +7697,7 @@ BattleScript_DoRecoil::
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_PKMNHITWITHRECOIL
 	waitmessage B_WAIT_TIME_LONG
+	tryupdaterecoiltracker BS_ATTACKER
 	tryfaintmon BS_ATTACKER
 BattleScript_RecoilEnd::
 	return
