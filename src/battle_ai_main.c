@@ -1707,11 +1707,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_TELEPORT:
             ADJUST_SCORE(-10);
             break;
-        case EFFECT_FAKE_OUT:
-            if (!gDisableStructs[battlerAtk].isFirstTurn)
-                ADJUST_SCORE(-10);
-            break;
-        case EFFECT_FIRST_IMPRESSION:
+        case EFFECT_FIRST_TURN_ONLY:
             if (!gDisableStructs[battlerAtk].isFirstTurn)
                 ADJUST_SCORE(-10);
             break;
@@ -3881,12 +3877,10 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(1);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF, &score);
         break;
-    case EFFECT_FAKE_OUT:
-        if (ShouldFakeOut(battlerAtk, battlerDef, move))
+    case EFFECT_FIRST_TURN_ONLY:
+        if (gBattleMoves[move].argument == MOVE_FAKE_OUT && ShouldFakeOut(battlerAtk, battlerDef, move))
             ADJUST_SCORE(4);
-        break;
-    case EFFECT_FIRST_IMPRESSION:
-        if (gDisableStructs[battlerAtk].isFirstTurn && GetBestDmgMoveFromBattler(battlerAtk, battlerDef) == move)
+        else if (gBattleMoves[move].argument == MOVE_FIRST_IMPRESSION && gDisableStructs[battlerAtk].isFirstTurn && GetBestDmgMoveFromBattler(battlerAtk, battlerDef) == move)
             ADJUST_SCORE(6);
         break;
     case EFFECT_STOCKPILE:

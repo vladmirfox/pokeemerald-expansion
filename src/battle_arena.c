@@ -363,7 +363,7 @@ void BattleArena_AddMindPoints(u8 battler)
 // All moves with power == 0 give 0 points, with the following exceptions:
 //    - Protect, Detect, and Endure subtract 1 point
 
-    if (gBattleMoves[gCurrentMove].effect == EFFECT_FAKE_OUT
+    if (gBattleMoves[gCurrentMove].effect == EFFECT_FIRST_TURN_ONLY
      || gBattleMoves[gCurrentMove].effect == EFFECT_PROTECT
      || gBattleMoves[gCurrentMove].effect == EFFECT_ENDURE)
     {

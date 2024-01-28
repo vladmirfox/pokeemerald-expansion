@@ -669,7 +669,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will not switch out if Pokemo
 AI_SINGLE_BATTLE_TEST("First Impression is preferred on the first turn of the species if it's the best dmg move")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].effect == EFFECT_FIRST_IMPRESSION);
+        ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].effect == EFFECT_FIRST_TURN_ONLY);
         ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].power == 90);
         ASSUME(gBattleMoves[MOVE_LUNGE].power == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -692,7 +692,7 @@ AI_SINGLE_BATTLE_TEST("First Impression is not chosen if it's blocked by certain
 
     KNOWN_FAILING; // Fails because the Omniscient flag is currently broken. It should pass after it is fixed
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].effect == EFFECT_FIRST_IMPRESSION);
+        ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].effect == EFFECT_FIRST_TURN_ONLY);
         ASSUME(gBattleMoves[MOVE_FIRST_IMPRESSION].power == 90);
         ASSUME(gBattleMoves[MOVE_LUNGE].power == 80);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
