@@ -4711,7 +4711,7 @@ s8 GetMovePriority(u32 battler, u16 move)
     priority = gMovesInfo[move].priority;
 
     // Max Guard check
-    if (gBattleStruct->dynamax.usingMaxMove[battler] && gMovesInfo[move].category == BATTLE_CATEGORY_STATUS)
+    if (gBattleStruct->dynamax.usingMaxMove[battler] && gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return gMovesInfo[MOVE_MAX_GUARD].priority;
 
     if (ability == ABILITY_GALE_WINGS

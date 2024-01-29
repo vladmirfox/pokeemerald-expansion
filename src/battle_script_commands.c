@@ -5695,7 +5695,7 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_NUM_HITS:
             if (gBattlerAttacker != gBattlerTarget
-                && gMovesInfo[gCurrentMove].category != BATTLE_CATEGORY_STATUS
+                && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && TARGET_TURN_DAMAGED)
             {
@@ -15612,7 +15612,7 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
         && !gMovesInfo[move].parentalBondBanned
-        && gMovesInfo[move].category != BATTLE_CATEGORY_STATUS
+        && gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS
         && gMovesInfo[move].strikeCount < 2)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -16571,6 +16571,6 @@ void BS_AllySwitchFailChance(void)
 void BS_SetPhotonGeyserCategory(void)
 {
     NATIVE_ARGS();
-    gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == BATTLE_CATEGORY_PHYSICAL);
+    gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

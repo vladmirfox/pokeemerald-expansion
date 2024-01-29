@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Volt Absorb activates on status moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].type == TYPE_ELECTRIC);
-        ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].category == BATTLE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_THUNDER_WAVE].category == DAMAGE_CATEGORY_STATUS);
         PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

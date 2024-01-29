@@ -8,7 +8,7 @@ SINGLE_BATTLE_TEST("X Attack sharply raises battler's Attack stat", s16 damage)
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_X_ATTACK].battleUsage == EFFECT_ITEM_INCREASE_STAT);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("X Defense sharply raises battler's Defense stat", s16 damage
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_X_DEFENSE].battleUsage == EFFECT_ITEM_INCREASE_STAT);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("X Sp. Atk sharply raises battler's Sp. Attack stat", s16 dam
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_X_SP_ATK].battleUsage == EFFECT_ITEM_INCREASE_STAT);
-        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].category == BATTLE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("X Sp. Def sharply raises battler's Sp. Defense stat", s16 da
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_X_SP_DEF].battleUsage == EFFECT_ITEM_INCREASE_STAT);
-        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].category == BATTLE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DISARMING_VOICE].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

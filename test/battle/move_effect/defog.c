@@ -15,8 +15,8 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_STICKY_WEB].effect == EFFECT_STICKY_WEB);
     ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
     ASSUME(gMovesInfo[MOVE_SCREECH].effect == EFFECT_DEFENSE_DOWN_2);
-    ASSUME(gMovesInfo[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
-    ASSUME(gMovesInfo[MOVE_GUST].category == BATTLE_CATEGORY_SPECIAL);
+    ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
 }
 
 SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1")

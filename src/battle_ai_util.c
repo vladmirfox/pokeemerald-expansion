@@ -381,7 +381,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
         gBattleStruct->zmove.active = TRUE;
     }
     else if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
-        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == BATTLE_CATEGORY_PHYSICAL);
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
 
     if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();
@@ -1494,7 +1494,7 @@ bool32 ShouldLowerAttack(u32 battlerAtk, u32 battlerDef, u32 defAbility)
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_ATK] > 4
-      && HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL)
+      && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_WHITE_SMOKE
@@ -1513,7 +1513,7 @@ bool32 ShouldLowerDefense(u32 battlerAtk, u32 battlerDef, u32 defAbility)
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_DEF] > 4
-      && HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL)
+      && HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_WHITE_SMOKE
@@ -1549,7 +1549,7 @@ bool32 ShouldLowerSpAtk(u32 battlerAtk, u32 battlerDef, u32 defAbility)
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_SPATK] > 4
-      && HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL)
+      && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
@@ -1567,7 +1567,7 @@ bool32 ShouldLowerSpDef(u32 battlerAtk, u32 battlerDef, u32 defAbility)
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (gBattleMons[battlerDef].statStages[STAT_SPDEF] > 4
-      && HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL)
+      && HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL)
       && defAbility != ABILITY_CONTRARY
       && defAbility != ABILITY_CLEAR_BODY
       && defAbility != ABILITY_FULL_METAL_BODY
@@ -2212,11 +2212,11 @@ static bool32 AnyUsefulStatIsRaised(u32 battler)
             switch (statId)
             {
             case STAT_ATK:
-                if (HasMoveWithCategory(battler, BATTLE_CATEGORY_PHYSICAL))
+                if (HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
                     return TRUE;
                 break;
             case STAT_SPATK:
-                if (HasMoveWithCategory(battler, BATTLE_CATEGORY_SPECIAL))
+                if (HasMoveWithCategory(battler, DAMAGE_CATEGORY_SPECIAL))
                     return TRUE;
                 break;
             case STAT_SPEED:
@@ -2541,8 +2541,8 @@ bool32 ShouldPoisonSelf(u32 battler, u32 ability)
       || ability == ABILITY_POISON_HEAL
       || ability == ABILITY_QUICK_FEET
       || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_TOXIC_BOOST && HasMoveWithCategory(battler, BATTLE_CATEGORY_PHYSICAL))
-      || (ability == ABILITY_GUTS && HasMoveWithCategory(battler, BATTLE_CATEGORY_PHYSICAL))
+      || (ability == ABILITY_TOXIC_BOOST && HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
+      || (ability == ABILITY_GUTS && HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;    // battler can be poisoned and has move/ability that synergizes with being poisoned
@@ -2640,8 +2640,8 @@ bool32 ShouldBurnSelf(u32 battler, u32 ability)
      ability == ABILITY_QUICK_FEET
       || ability == ABILITY_HEATPROOF
       || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_FLARE_BOOST && HasMoveWithCategory(battler, BATTLE_CATEGORY_SPECIAL))
-      || (ability == ABILITY_GUTS && HasMoveWithCategory(battler, BATTLE_CATEGORY_PHYSICAL))
+      || (ability == ABILITY_FLARE_BOOST && HasMoveWithCategory(battler, DAMAGE_CATEGORY_SPECIAL))
+      || (ability == ABILITY_GUTS && HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;
@@ -2871,13 +2871,13 @@ bool32 ShouldSetScreen(u32 battlerAtk, u32 battlerDef, u32 moveEffect)
         break;
     case EFFECT_REFLECT:
         // Use only if the player has a physical move and AI doesn't already have Reflect itself active.
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL)
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL)
             && !(gSideStatuses[atkSide] & SIDE_STATUS_REFLECT))
             return TRUE;
         break;
     case EFFECT_LIGHT_SCREEN:
         // Use only if the player has a special move and AI doesn't already have Light Screen itself active.
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL)
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL)
             && !(gSideStatuses[atkSide] & SIDE_STATUS_LIGHTSCREEN))
             return TRUE;
         break;
@@ -3308,11 +3308,11 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
     switch (statId)
     {
     case STAT_CHANGE_ATK:
-        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL) && shouldSetUp)
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL) && shouldSetUp)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     case STAT_CHANGE_DEF:
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     case STAT_CHANGE_SPEED:
@@ -3320,19 +3320,19 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     case STAT_CHANGE_SPATK:
-        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL) && shouldSetUp)
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL) && shouldSetUp)
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     case STAT_CHANGE_SPDEF:
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         break;
     case STAT_CHANGE_ATK_2:
-        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL) && shouldSetUp)
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL) && shouldSetUp)
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         break;
     case STAT_CHANGE_DEF_2:
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         break;
     case STAT_CHANGE_SPEED_2:
@@ -3340,11 +3340,11 @@ void IncreaseStatUpScore(u32 battlerAtk, u32 battlerDef, u32 statId, s32 *score)
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         break;
     case STAT_CHANGE_SPATK_2:
-        if (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL) && shouldSetUp)
+        if (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL) && shouldSetUp)
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         break;
     case STAT_CHANGE_SPDEF_2:
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         break;
     case STAT_CHANGE_ACC:
@@ -3392,7 +3392,7 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
     if (AI_CanBurn(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
     {
         ADJUST_SCORE_PTR(WEAK_EFFECT); // burning is good
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_PHYSICAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
         {
             if (CanTargetFaintAi(battlerDef, battlerAtk))
                 ADJUST_SCORE_PTR(DECENT_EFFECT); // burning the target to stay alive is cool
@@ -3473,7 +3473,7 @@ void IncreaseFrostbiteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
     if (AI_CanGiveFrostbite(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
     {
         ADJUST_SCORE_PTR(WEAK_EFFECT); // frostbite is good
-        if (HasMoveWithCategory(battlerDef, BATTLE_CATEGORY_SPECIAL))
+        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
         {
             if (CanTargetFaintAi(battlerDef, battlerAtk))
                 ADJUST_SCORE_PTR(DECENT_EFFECT); // frostbiting the target to stay alive is cool
@@ -3550,9 +3550,9 @@ bool32 AI_ShouldCopyStatChanges(u32 battlerAtk, u32 battlerDef)
             switch (i)
             {
             case STAT_ATK:
-                return (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_PHYSICAL));
+                return (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL));
             case STAT_SPATK:
-                return (HasMoveWithCategory(battlerAtk, BATTLE_CATEGORY_SPECIAL));
+                return (HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL));
             case STAT_ACC:
             case STAT_EVASION:
             case STAT_SPEED:

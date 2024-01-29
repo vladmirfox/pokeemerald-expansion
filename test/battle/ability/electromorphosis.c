@@ -12,8 +12,8 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
         ASSUME(gMovesInfo[MOVE_GUST].power != 0);
-        ASSUME(gMovesInfo[MOVE_GUST].category == BATTLE_CATEGORY_SPECIAL);
-        ASSUME(gMovesInfo[MOVE_TACKLE].category == BATTLE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_GUST].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].power != 0);
         ASSUME(gMovesInfo[MOVE_THUNDER_SHOCK].type == TYPE_ELECTRIC);
 

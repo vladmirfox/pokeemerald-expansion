@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Earth Eater activates on status moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SAND_ATTACK].type == TYPE_GROUND);
-        ASSUME(gMovesInfo[MOVE_SAND_ATTACK].category == BATTLE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_SAND_ATTACK].category == DAMAGE_CATEGORY_STATUS);
         PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

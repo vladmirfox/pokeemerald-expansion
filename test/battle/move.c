@@ -136,7 +136,7 @@ SINGLE_BATTLE_TEST("Critical hits do not ignore positive stat stages", s16 damag
     PARAMETRIZE { move = MOVE_HOWL; }
     PARAMETRIZE { move = MOVE_TAIL_WHIP; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SCRATCH].category == BATTLE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_SCRATCH].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("Critical hits ignore negative stat stages", s16 damage)
     PARAMETRIZE { move = MOVE_HARDEN; }
     PARAMETRIZE { move = MOVE_GROWL; }
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_SCRATCH].category == BATTLE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_SCRATCH].category == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

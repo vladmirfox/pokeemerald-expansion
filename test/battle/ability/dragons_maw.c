@@ -17,8 +17,8 @@ SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage", s16 damage)
         ASSUME(gMovesInfo[MOVE_TACKLE].type != TYPE_DRAGON);
         ASSUME(gMovesInfo[MOVE_DRAGON_CLAW].type == TYPE_DRAGON);
         ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].type == TYPE_DRAGON);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CLAW].category == BATTLE_CATEGORY_PHYSICAL);
-        ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].category == BATTLE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DRAGON_CLAW].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_DRAGON_BREATH].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_REGIDRAGO) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

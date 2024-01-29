@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Water Absorb activates on status moves")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SOAK].type == TYPE_WATER);
-        ASSUME(gMovesInfo[MOVE_SOAK].category == BATTLE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_SOAK].category == DAMAGE_CATEGORY_STATUS);
         PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

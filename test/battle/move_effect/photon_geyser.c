@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Photon Geyser can be mirror coated if it is a special move")
 {
     GIVEN {
         // EFFECT_PHOTON_GEYSER requires the move data to be Special to work
-        ASSUME(gMovesInfo[MOVE_PHOTON_GEYSER].category == BATTLE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_PHOTON_GEYSER].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET) { Attack(100); SpAttack(110); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

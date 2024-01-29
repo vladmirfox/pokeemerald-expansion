@@ -3541,7 +3541,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleStruct->zmove.used[BATTLE_PARTNER(gBattlerAttacker)] = TRUE; //if 1v1 double, set partner used flag as well
 
                 gBattleScripting.battler = gBattlerAttacker;
-                if (gBattleStruct->zmove.activeCategory == BATTLE_CATEGORY_STATUS)
+                if (gBattleStruct->zmove.activeCategory == DAMAGE_CATEGORY_STATUS)
                 {
                     gBattleStruct->zmove.effect = gMovesInfo[gBattleStruct->zmove.baseMoves[gBattlerAttacker]].zMove.effect;
                     BattleScriptPushCursor();
@@ -6709,11 +6709,11 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
         break;
     case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
         if (B_BERRIES_INSTANT >= GEN_4)
-            effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, BATTLE_CATEGORY_PHYSICAL);
+            effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, DAMAGE_CATEGORY_PHYSICAL);
         break;
     case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
         if (B_BERRIES_INSTANT >= GEN_4)
-            effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, BATTLE_CATEGORY_SPECIAL);
+            effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, DAMAGE_CATEGORY_SPECIAL);
         break;
     case HOLD_EFFECT_RANDOM_STAT_UP:
         if (B_BERRIES_INSTANT >= GEN_4)
@@ -7693,10 +7693,10 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
-                effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, BATTLE_CATEGORY_PHYSICAL);
+                effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, DAMAGE_CATEGORY_PHYSICAL);
                 break;
             case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
-                effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, BATTLE_CATEGORY_SPECIAL);
+                effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, DAMAGE_CATEGORY_SPECIAL);
                 break;
             case HOLD_EFFECT_STICKY_BARB:
                 if (TARGET_TURN_DAMAGED
@@ -9827,7 +9827,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (gMovesInfo[move].category == BATTLE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
+    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS && move != MOVE_THUNDER_WAVE)
     {
         modifier = UQ_4_12(1.0);
         if (B_GLARE_GHOST < GEN_4 && move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
@@ -10467,16 +10467,16 @@ u8 GetBattleMoveCategory(u32 moveId)
     if (gBattleStruct != NULL && IsMaxMove(moveId)) // TODO: Might be buggy depending on when this is called.
         return gBattleStruct->dynamax.activeCategory;
     if (gBattleStruct != NULL && gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-        return BATTLE_CATEGORY_PHYSICAL;
+        return DAMAGE_CATEGORY_PHYSICAL;
     if (B_PHYSICAL_SPECIAL_SPLIT >= GEN_4)
         return gMovesInfo[moveId].category;
 
     if (IS_MOVE_STATUS(moveId))
-        return BATTLE_CATEGORY_STATUS;
+        return DAMAGE_CATEGORY_STATUS;
     else if (gMovesInfo[moveId].type < TYPE_MYSTERY)
-        return BATTLE_CATEGORY_PHYSICAL;
+        return DAMAGE_CATEGORY_PHYSICAL;
     else
-        return BATTLE_CATEGORY_SPECIAL;
+        return DAMAGE_CATEGORY_SPECIAL;
 }
 
 static bool32 TryRemoveScreens(u32 battler)
@@ -10530,9 +10530,9 @@ u8 GetCategoryBasedOnStats(u32 battler)
     spAttack = spAttack / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
 
     if (spAttack >= attack)
-        return BATTLE_CATEGORY_SPECIAL;
+        return DAMAGE_CATEGORY_SPECIAL;
     else
-        return BATTLE_CATEGORY_PHYSICAL;
+        return DAMAGE_CATEGORY_PHYSICAL;
 }
 
 static u32 GetFlingPowerFromItemId(u32 itemId)

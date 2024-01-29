@@ -519,7 +519,7 @@ static void ZMoveSelectionDisplayPower(u16 move, u16 zMove)
     if (zMove >= MOVE_CATASTROPIKA)
         power = gMovesInfo[zMove].power;
 
-    if (gMovesInfo[move].category != BATTLE_CATEGORY_STATUS)
+    if (gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS)
     {
         txtPtr = StringCopy(gDisplayedStringBattle, sText_PowerColon);
         ConvertIntToDecimalStringN(txtPtr, power, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -680,7 +680,7 @@ static bool32 AreStatsMaxed(u8 battler, u8 n)
 
 u16 GetZMovePower(u16 move)
 {
-    if (gMovesInfo[move].category == BATTLE_CATEGORY_STATUS)
+    if (gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
         return 0;
     if (gMovesInfo[move].effect == EFFECT_OHKO)
         return 180;

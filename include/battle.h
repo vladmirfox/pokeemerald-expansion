@@ -789,9 +789,9 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
         typeArg = gMovesInfo[move].type;                            \
 }
 
-#define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == BATTLE_CATEGORY_PHYSICAL)
-#define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == BATTLE_CATEGORY_SPECIAL)
-#define IS_MOVE_STATUS(move)(gMovesInfo[move].category == BATTLE_CATEGORY_STATUS)
+#define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
+#define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
+#define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
 
 #define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
 

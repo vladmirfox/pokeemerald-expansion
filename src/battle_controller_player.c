@@ -705,7 +705,7 @@ static void HandleInputChooseMove(u32 battler)
 
             QueueZMove(battler, chosenMove);
             gBattleStruct->zmove.viewing = FALSE;
-            if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category != BATTLE_CATEGORY_STATUS)
+            if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category != DAMAGE_CATEGORY_STATUS)
                 moveTarget = MOVE_TARGET_SELECTED;  //damaging z moves always have selected target
         }
 
