@@ -30,7 +30,6 @@ void TestRunner_Battle(const struct Test *);
 
 static bool32 MgbaOpen_(void);
 static void MgbaExit_(u8 exitCode);
-static s32 MgbaPuts_(const char *s);
 static s32 MgbaVPrintf_(const char *fmt, va_list va);
 static void Intr_Timer2(void);
 
@@ -503,11 +502,6 @@ static void MgbaExit_(u8 exitCode)
 {
     register u32 _exitCode asm("r0") = exitCode;
     asm("swi 0x3" :: "r" (_exitCode));
-}
-
-static s32 UNUSED MgbaPuts_(const char *s)
-{
-    return MgbaPrintf_("%s", s);
 }
 
 s32 MgbaPrintf_(const char *fmt, ...)
