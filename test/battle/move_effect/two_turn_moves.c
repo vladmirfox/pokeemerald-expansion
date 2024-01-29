@@ -3,9 +3,9 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_SKULL_BASH].effect == EFFECT_TWO_TURNS_ATTACK);
+    ASSUME(gMovesInfo[MOVE_SKULL_BASH].effect == EFFECT_TWO_TURNS_ATTACK);
     ASSUME(MoveHasMoveEffectSelf(MOVE_SKULL_BASH, MOVE_EFFECT_DEF_PLUS_1) == TRUE);
-    ASSUME(gBattleMoves[MOVE_SKY_ATTACK].effect == EFFECT_TWO_TURNS_ATTACK);
+    ASSUME(gMovesInfo[MOVE_SKY_ATTACK].effect == EFFECT_TWO_TURNS_ATTACK);
 }
 
 SINGLE_BATTLE_TEST("Razor Wind needs a charging turn")
