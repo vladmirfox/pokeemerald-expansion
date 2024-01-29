@@ -6211,6 +6211,11 @@ static void Cmd_moveend(void)
                                         | BATTLE_TYPE_FRONTIER)))
             {
                 const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
+                if (evolutions == NULL)
+                {
+                    gBattleScripting.moveendState++;
+                    break;
+                }
                 for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
                 {
                     if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
@@ -16616,6 +16621,11 @@ void BS_TryUpdateRecoilTracker(void)
                                 | BATTLE_TYPE_FRONTIER)))
     {
         const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
+        if (evolutions == NULL)
+        {
+            gBattlescriptCurrInstr = cmd->nextInstr;
+            return;
+        }
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
