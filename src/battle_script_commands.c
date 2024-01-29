@@ -6203,12 +6203,12 @@ static void Cmd_moveend(void)
         case MOVEEND_SET_EVOLUTION_TRACKER:
             // If the Pokémon needs to keep track of move usage for its evolutions, do it
             if (originallyUsedMove != MOVE_NONE
-                && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
-                && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
-                                        | BATTLE_TYPE_EREADER_TRAINER
-                                        | BATTLE_TYPE_RECORDED_LINK
-                                        | BATTLE_TYPE_TRAINER_HILL
-                                        | BATTLE_TYPE_FRONTIER)))
+             && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
+             && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                                     | BATTLE_TYPE_EREADER_TRAINER
+                                     | BATTLE_TYPE_RECORDED_LINK
+                                     | BATTLE_TYPE_TRAINER_HILL
+                                     | BATTLE_TYPE_FRONTIER)))
             {
                 const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
                 if (evolutions == NULL)
@@ -16614,11 +16614,11 @@ void BS_TryUpdateRecoilTracker(void)
     u32 i;
 
     if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
-        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
-                                | BATTLE_TYPE_EREADER_TRAINER
-                                | BATTLE_TYPE_RECORDED_LINK
-                                | BATTLE_TYPE_TRAINER_HILL
-                                | BATTLE_TYPE_FRONTIER)))
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
+                             | BATTLE_TYPE_EREADER_TRAINER
+                             | BATTLE_TYPE_RECORDED_LINK
+                             | BATTLE_TYPE_TRAINER_HILL
+                             | BATTLE_TYPE_FRONTIER)))
     {
         const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
         if (evolutions == NULL)
