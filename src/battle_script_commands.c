@@ -16605,18 +16605,17 @@ void BS_SetPhotonGeyserCategory(void)
 
 void BS_TryUpdateRecoilTracker(void)
 {
-    NATIVE_ARGS(u8 battler);
-    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    NATIVE_ARGS();
     u32 i;
 
-    if (GetBattlerSide(battler) == B_SIDE_PLAYER
+    if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
                                 | BATTLE_TYPE_EREADER_TRAINER
                                 | BATTLE_TYPE_RECORDED_LINK
                                 | BATTLE_TYPE_TRAINER_HILL
                                 | BATTLE_TYPE_FRONTIER)))
     {
-        const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[battler].species);
+        const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
@@ -16631,7 +16630,7 @@ void BS_TryUpdateRecoilTracker(void)
                     val = 512;
                 else
                     val += gBattleMoveDamage;
-                if (gBattleMons[battler].hp == 0) // reset progress if you faint
+                if (gBattleMons[gBattlerAttacker].hp == 0) // reset progress if you faint
                     val = 0;
                 SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
                 break;

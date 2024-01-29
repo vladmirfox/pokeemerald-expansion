@@ -1583,9 +1583,8 @@
 	callnative BS_SetPhotonGeyserCategory
 	.endm
 
-	.macro tryupdaterecoiltracker battler:req
+	.macro tryupdaterecoiltracker
 	callnative BS_TryUpdateRecoilTracker
-	.byte \battler
 	.endm
 
 @ various command changed to more readable macros
