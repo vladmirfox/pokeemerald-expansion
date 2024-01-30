@@ -2645,6 +2645,13 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (IsDynamaxed(battlerDef))
                 ADJUST_SCORE(-10);
             break;
+        case EFFECT_UPPER_HAND:
+            if (predictedMove != MOVE_NONE)
+            {
+                if (IS_MOVE_STATUS(predictedMove) || AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_SLOWER || gMovesInfo[predictedMove].priority < 1 || gMovesInfo[predictedMove].priority > 3) // Opponent going first or not using priority move
+                    ADJUST_SCORE(-10);
+            }
+            break;
         case EFFECT_PLACEHOLDER:
             return 0;   // cannot even select
     } // move effect checks

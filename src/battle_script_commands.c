@@ -1455,9 +1455,9 @@ static void Cmd_attackcanceler(void)
     }
     else if (IsBattlerProtected(gBattlerTarget, gCurrentMove)
      && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
-     && ((!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
-     && gBattleMoves[gCurrentMove].effect != EFFECT_SUCKER_PUNCH
-     && gBattleMoves[gCurrentMove].effect != EFFECT_UPPER_HAND)
+     && ((!gMovesInfo[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+     && gMovesInfo[gCurrentMove].effect != EFFECT_SUCKER_PUNCH
+     && gMovesInfo[gCurrentMove].effect != EFFECT_UPPER_HAND)
     {
         if (IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
             gProtectStructs[gBattlerAttacker].touchedProtectLike = TRUE;
@@ -5410,7 +5410,7 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_BanefulBunkerEffect;
                     effect = 1;
                 }
-                else if (gProtectStructs[gBattlerTarget].obstructed && gBattleMoves[gCurrentMove].effect != EFFECT_SUCKER_PUNCH && gBattleMoves[gCurrentMove].effect != EFFECT_UPPER_HAND)
+                else if (gProtectStructs[gBattlerTarget].obstructed && gMovesInfo[gCurrentMove].effect != EFFECT_SUCKER_PUNCH && gMovesInfo[gCurrentMove].effect != EFFECT_UPPER_HAND)
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     i = gBattlerAttacker;
