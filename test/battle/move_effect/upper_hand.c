@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is not using a priority move"
     }
 }
 
-TO_DO_BATTLE_TEST("Upper Hand succeeds if the target's move is boosted in priority by an Ability")
+SINGLE_BATTLE_TEST("Upper Hand succeeds if the target's move is boosted in priority by an Ability")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_DRAINING_KISS].category == BATTLE_CATEGORY_SPECIAL);
