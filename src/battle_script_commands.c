@@ -6215,10 +6215,24 @@ static void Cmd_moveend(void)
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
             
+            
+        
             if (gBattleStruct->savedAttackerCount > 0)
+            {
+                #if TESTING
+                Test_ExitWithResult(TEST_RESULT_ERROR,  "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
+                #else
                 DebugPrintfLevel(MGBA_LOG_WARN, "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
+                #endif
+            }
             if (gBattleStruct->savedTargetCount > 0)
+            {
+                #if TESTING
+                Test_ExitWithResult(TEST_RESULT_ERROR, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
+                #else
                 DebugPrintfLevel(MGBA_LOG_WARN, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
+                #endif
+            }
 
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
@@ -15503,7 +15517,11 @@ void BS_RestoreTarget(void)
     }
     else
     {
+        #if TESTING
+        Test_ExitWithResult(TEST_RESULT_ERROR, "BS_RestoreTarget attempting to restore an empty target!");
+        #else
         DebugPrintfLevel(MGBA_LOG_WARN, "BS_RestoreTarget attempting to restore an empty target!");
+        #endif
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -15525,7 +15543,11 @@ void BS_RestoreAttacker(void)
     }
     else
     {
+        #if TESTING
+        Test_ExitWithResult(TEST_RESULT_ERROR,  "BS_RestoreAttacker attempting to restore an empty attacker!");
+        #else
         DebugPrintfLevel(MGBA_LOG_WARN, "BS_RestoreAttacker attempting to restore an empty attacker!");
+        #endif
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
