@@ -7,7 +7,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_PLACEHOLDER] =
     {
         .battleScript = BattleScript_EffectPlaceholder,
-        .battleTvScore = 0, // TODO: Assign points
+        .battleTvScore = 0,
     },
 
     [EFFECT_HIT] =
