@@ -3,16 +3,16 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_UPPER_HAND].effect == EFFECT_UPPER_HAND);
-    ASSUME(gBattleMoves[MOVE_UPPER_HAND].priority == 3);
+    ASSUME(gMovesInfo[MOVE_UPPER_HAND].effect == EFFECT_UPPER_HAND);
+    ASSUME(gMovesInfo[MOVE_UPPER_HAND].priority == 3);
     ASSUME(MoveHasMoveEffect(MOVE_UPPER_HAND, MOVE_EFFECT_FLINCH) == TRUE);
 }
 
 SINGLE_BATTLE_TEST("Upper Hand succeeds if the target is using a priority attacking move and causes it to flinch")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_EXTREME_SPEED].category == BATTLE_CATEGORY_PHYSICAL);
-        ASSUME(gBattleMoves[MOVE_EXTREME_SPEED].priority == 2);
+        ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].priority == 2);
         PLAYER(SPECIES_MIENSHAO);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -28,8 +28,8 @@ SINGLE_BATTLE_TEST("Upper Hand succeeds if the target is using a priority attack
 SINGLE_BATTLE_TEST("Upper Hand fails if the target is using a status move")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_BABY_DOLL_EYES].category == BATTLE_CATEGORY_STATUS);
-        ASSUME(gBattleMoves[MOVE_BABY_DOLL_EYES].priority == 1);
+        ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].category == DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_BABY_DOLL_EYES].priority == 1);
         PLAYER(SPECIES_MIENSHAO);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -47,8 +47,8 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is using a status move")
 SINGLE_BATTLE_TEST("Upper Hand fails if the target is not using a priority move")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].category == BATTLE_CATEGORY_SPECIAL);
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].priority == 0);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
         PLAYER(SPECIES_MIENSHAO);
         OPPONENT(SPECIES_COMFEY) { Ability(ABILITY_FLOWER_VEIL); }
     } WHEN {
@@ -66,8 +66,8 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target is not using a priority move"
 SINGLE_BATTLE_TEST("Upper Hand succeeds if the target's move is boosted in priority by an Ability")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].category == BATTLE_CATEGORY_SPECIAL);
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].priority == 0);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
         PLAYER(SPECIES_MIENSHAO) { Speed(10); }
         OPPONENT(SPECIES_COMFEY) { Speed(5); Ability(ABILITY_TRIAGE); }
     } WHEN {
@@ -83,8 +83,8 @@ SINGLE_BATTLE_TEST("Upper Hand succeeds if the target's move is boosted in prior
 SINGLE_BATTLE_TEST("Upper Hand fails if the target moves first")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].category == BATTLE_CATEGORY_SPECIAL);
-        ASSUME(gBattleMoves[MOVE_DRAINING_KISS].priority == 0);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].category == DAMAGE_CATEGORY_SPECIAL);
+        ASSUME(gMovesInfo[MOVE_DRAINING_KISS].priority == 0);
         PLAYER(SPECIES_MIENSHAO) { Speed(5); }
         OPPONENT(SPECIES_COMFEY) { Speed(10); Ability(ABILITY_TRIAGE); }
     } WHEN {
@@ -102,9 +102,9 @@ SINGLE_BATTLE_TEST("Upper Hand fails if the target moves first")
 SINGLE_BATTLE_TEST("Upper Hand is boosted by Sheer Force")
 {
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_EXTREME_SPEED].category == BATTLE_CATEGORY_PHYSICAL);
-        ASSUME(gBattleMoves[MOVE_EXTREME_SPEED].priority == 2);
-        ASSUME(gBattleMoves[MOVE_UPPER_HAND].sheerForceBoost == TRUE);
+        ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].category == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(gMovesInfo[MOVE_EXTREME_SPEED].priority == 2);
+        ASSUME(gMovesInfo[MOVE_UPPER_HAND].sheerForceBoost == TRUE);
         PLAYER(SPECIES_HARIYAMA) { Ability(ABILITY_SHEER_FORCE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
