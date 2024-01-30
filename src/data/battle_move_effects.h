@@ -4,6 +4,12 @@
 
 const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 {
+    [EFFECT_PLACEHOLDER] =
+    {
+        .battleScript = BattleScript_EffectPlaceholder,
+        .battleTvScore = 0,
+    },
+
     [EFFECT_HIT] =
     {
         .battleScript = BattleScript_EffectHit,
@@ -1108,12 +1114,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_PLACEHOLDER] =
-    {
-        .battleScript = BattleScript_EffectPlaceholder,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_WATER_SPORT] =
     {
         .battleScript = BattleScript_EffectWaterSport,
@@ -2048,9 +2048,9 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_STEEL_BEAM] =
+    [EFFECT_MAX_HP_50_RECOIL] =
     {
-        .battleScript = BattleScript_EffectSteelBeam,
+        .battleScript = BattleScript_EffectMaxHp50Recoil,
         .battleTvScore = 0, // TODO: Assign points
     },
 
