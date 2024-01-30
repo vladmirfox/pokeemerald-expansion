@@ -356,6 +356,7 @@ static void RemoveAllTerrains(void);
 static bool8 CanAbilityPreventStatLoss(u16 abilityDef, bool8 isIntimidate);
 static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
+static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -6202,35 +6203,8 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_SET_EVOLUTION_TRACKER:
             // If the Pokémon needs to keep track of move usage for its evolutions, do it
-            if (originallyUsedMove != MOVE_NONE
-             && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
-             && !(gBattleTypeFlags & (BATTLE_TYPE_LINK
-                                     | BATTLE_TYPE_EREADER_TRAINER
-                                     | BATTLE_TYPE_RECORDED_LINK
-                                     | BATTLE_TYPE_TRAINER_HILL
-                                     | BATTLE_TYPE_FRONTIER)))
-            {
-                const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
-                if (evolutions == NULL)
-                {
-                    gBattleScripting.moveendState++;
-                    break;
-                }
-                for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-                {
-                    if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
-                        continue;
-                    if (evolutions[i].method == EVO_LEVEL_MOVE_TWENTY_TIMES && evolutions[i].param == originallyUsedMove)
-                    {
-                        u16 val;
-                        val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
-                        if (val < 20)
-                            val++;
-                        SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
-                        break;
-                    }
-                }
-            }
+            if (originallyUsedMove != MOVE_NONE)
+                TryUpdateEvolutionTracker(EVO_LEVEL_MOVE_TWENTY_TIMES, 1);
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
@@ -16608,9 +16582,8 @@ void BS_SetPhotonGeyserCategory(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-void BS_TryUpdateRecoilTracker(void)
+static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount)
 {
-    NATIVE_ARGS();
     u32 i;
 
     if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
@@ -16622,31 +16595,28 @@ void BS_TryUpdateRecoilTracker(void)
     {
         const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerAttacker].species);
         if (evolutions == NULL)
-        {
-            gBattlescriptCurrInstr = cmd->nextInstr;
             return;
-        }
+
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
                 continue;
-            if (evolutions[i].method == EVO_LEVEL_RECOIL_DAMAGE)
+
+            if (evolutions[i].method == evolutionMethod)
             {
-                u16 val;
-                val = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER);
-                if (val == 512) // to account for the fact we only have 10 bits
-                    break;
-                if ((val + gBattleMoveDamage) > 512)
-                    val = 512;
-                else
-                    val += gBattleMoveDamage;
-                if (gBattleMons[gBattlerAttacker].hp == 0) // reset progress if you faint
+                u16 val = min(511, GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER) + upAmount); // we only have 9 bits to use
+                if (gBattleMons[gBattlerAttacker].hp == 0 && evolutionMethod == EVO_LEVEL_RECOIL_DAMAGE) // reset progress if you faint, but only for the recoil method
                     val = 0;
                 SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
-                break;
+                return;
             }
         }
     }
+}
 
+void BS_TryUpdateRecoilTracker(void)
+{
+    NATIVE_ARGS();
+    TryUpdateEvolutionTracker(EVO_LEVEL_RECOIL_DAMAGE, gBattleMoveDamage);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
