@@ -8,10 +8,7 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN {
-            MOVE(player, MOVE_SUPER_FANG);
-            SEND_OUT(opponent, 1);
-        }
+        TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPER_FANG, player);
         HP_BAR(opponent);
@@ -26,9 +23,7 @@ SINGLE_BATTLE_TEST("Emergency Exit does not switch out when taking 50% max-hp da
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); Item(ITEM_SITRUS_BERRY); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN {
-            MOVE(player, MOVE_SUPER_FANG);
-        }
+        TURN { MOVE(player, MOVE_SUPER_FANG); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPER_FANG, player);
         HP_BAR(opponent);
@@ -37,17 +32,14 @@ SINGLE_BATTLE_TEST("Emergency Exit does not switch out when taking 50% max-hp da
     }
 }
 
-SINGLE_BATTLE_TEST("xx Emergency Exit switches out when taking 50% max-hp damage after a restore hp hold effect was used")
+SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage after a restore hp hold effect was used")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(133); Item(ITEM_ORAN_BERRY); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN {
-            MOVE(player, MOVE_SUPER_FANG);
-            SEND_OUT(opponent, 1);
-        }
+        TURN { MOVE(player, MOVE_SUPER_FANG); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPER_FANG, player);
         HP_BAR(opponent);
