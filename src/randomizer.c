@@ -15,15 +15,35 @@ bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature)
     switch(feature)
     {
         case RZ_WILD_MON:
-            return FlagGet(RZ_FLAG_WILD_MON);
+            #ifdef RZ_WILD_MON_FORCE
+                return RZ_WILD_MON_FORCE;
+            #else
+                return FlagGet(RZ_FLAG_WILD_MON);
+            #endif
         case RZ_FIELD_ITEMS:
-            return FlagGet(RZ_FLAG_FIELD_ITEMS);
+            #ifdef RZ_FIELD_ITEMS_FORCE
+                return RZ_FIELD_ITEMS_FORCE;
+            #else
+                return FlagGet(RZ_FLAG_FIELD_ITEMS);
+            #endif
         case RZ_TRAINER_MON:
-            return FlagGet(RZ_FLAG_TRAINER_MON);
+            #ifdef RZ_TRAINER_MON_FORCE
+                return RZ_TRAINER_MON_FORCE;
+            #else
+                return FlagGet(RZ_FLAG_TRAINER_MON);
+            #endif
         case RZ_FIXED_MON:
-            return FlagGet(RZ_FLAG_FIXED_MON);
+            #ifdef RZ_FIXED_MON_FORCE
+                return RZ_FIXED_MON_FORCE;
+            #else
+                return FlagGet(RZ_FLAG_FIXED_MON);
+            #endif
         case RZ_STARTERS:
-            return FlagGet(RZ_FLAG_STARTERS);
+            #ifdef RZ_STARTERS_FORCE
+                return RZ_STARTERS_FORCE;
+            #else
+                return FlagGet(RZ_FLAG_STARTERS);
+            #endif
         default:
             return FALSE;
     }
@@ -40,6 +60,7 @@ u32 GetRandomizerSeed(void)
     #endif
 }
 
+// Sets the seed that will be used for the randomizer if doing so is possible.
 bool8 SetRandomizerSeed(u32 newSeed)
 {
     #if RZ_TRAINER_ID_IS_SEED == TRUE
@@ -51,6 +72,21 @@ bool8 SetRandomizerSeed(u32 newSeed)
         return TRUE;
     #endif
 }
+
+static bool32 IsSpeciesPermitted(u16 species)
+{
+    // SPECIES_NONE is never valid.
+    if (species == SPECIES_NONE)
+        return FALSE;
+    // Megas should not appear as randomization choices.
+    if (species >= SPECIES_VENUSAUR_MEGA && species <= SPECIES_GROUDON_PRIMAL)
+        return FALSE;
+    // This is used to indicate a disabled species.
+    if (gSpeciesInfo[species].baseHP == 0)
+        return FALSE;
+
+    return TRUE;
+};
 
 u32 GenerateSeedForRandomizer(void)
 {
@@ -70,11 +106,22 @@ u16 GetRandomizerOption(enum RandomizerOption option)
     switch(option) {
         case RZO_SPECIES_MODE:
             return VarGet(RZ_VAR_SPECIES_MODE);
-        default:
+        default: // Unknown option.
             return 0;
     }
 }
 
+/* Seeds an SFC32 random number generator state for the randomizer.
+
+SFC32 can be seeded with up to 96 bits of data.
+RandomizerRandSeed uses 32 of those for the global randomizer seed, which
+represents a particular 'run' a player is on.
+The reason code is used to ensure random numbers used for different purposes
+with the same data1 and data2 do not produce the same results.
+Finally, data1 and data2 are 48 bits of data that a caller can use for
+any purpose they wish. Certain groups of functions will assign a purpose to
+these: for example, RandomizeMon uses data2 for the original species number.
+*/
 struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u16 data2)
 {
     struct Sfc32State state;
@@ -151,6 +198,8 @@ static inline bool8 IsKeyItem(u16 itemId)
     return ItemId_GetPocket(itemId) == POCKET_KEY_ITEMS;
 }
 
+// Don't randomize HMs or key items, that can make the game unwinnable.
+// ITEM_NONE also should not be randomized as it is invalid.
 static inline bool8 ShouldRandomizeItem(u16 itemId)
 {
     return !(IsItemHM(itemId) || IsKeyItem(itemId) || itemId == ITEM_NONE);
@@ -158,16 +207,18 @@ static inline bool8 ShouldRandomizeItem(u16 itemId)
 
 #include "data/randomizer/item_whitelist.h"
 
+// Given a found item and its location in the game, returns a replacement for that item.
 u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
 {
     struct Sfc32State state;
     u16 result;
     u32 mapSeed;
 
-    // Don't randomize HMs or key items, that can make the game unwinnable.
     if (!ShouldRandomizeItem(itemId))
         return itemId;
 
+    // Seed the generator using the original item and the object event that led up
+    // to this call.
     mapSeed = ((u32)mapGroup) << 16;
     mapSeed |= ((u32)mapNum) << 8;
     mapSeed |= localId;
@@ -193,6 +244,7 @@ static inline void RandomizeFoundItemScript(u16 *scriptVar)
 {
     if (RandomizerFeatureEnabled(RZ_FIELD_ITEMS))
     {
+        // Pull the object event information from the current object event.
         u8 objEvent = gSelectedObjectEvent;
         *scriptVar = RandomizeFoundItem(
             *scriptVar,
@@ -202,7 +254,8 @@ static inline void RandomizeFoundItemScript(u16 *scriptVar)
     }
 }
 
-// These functions are invoked by the scripts that handle found items.
+// These functions are invoked by the scripts that handle found items and
+// write the results of the randomization to the correct script variable.
 void FindItemRandomize_NativeCall(struct ScriptContext *ctx)
 {
     RandomizeFoundItemScript(&gSpecialVar_0x8000);
@@ -213,6 +266,7 @@ void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx)
     RandomizeFoundItemScript(&gSpecialVar_0x8005);
 }
 
+// Both legendary and mythical Pokémon are included
 static inline bool32 IsRandomizerLegendary(u16 species)
 {
     return gSpeciesInfo[species].isLegendary
@@ -220,21 +274,6 @@ static inline bool32 IsRandomizerLegendary(u16 species)
         || gSpeciesInfo[species].isUltraBeast;
 }
 
-EWRAM_DATA static u16 sRandomizerLegendaryCount = 0;
-void RandomizerCountLegendarySpecies(void)
-{
-    u32 i;
-    u16 count;
-    count = 0;
-    for (i = 1; i < RANDOMIZER_MAX_MON; i++)
-    {
-        if(IsRandomizerLegendary(i))
-            count++;
-    }
-    sRandomizerLegendaryCount = count;
-}
-
-#if RZ_SPECIES_BASIC_SUPPORT == FALSE
 #define RZ_SPECIES_COUNT (RANDOMIZER_MAX_MON-1)
 
 struct SpeciesGroupEntry
@@ -290,12 +329,13 @@ static void GetGroupRange(u16 group, enum RandomizerSpeciesMode mode, u16 *resul
         *resultMax = *resultMin = group;
 }
 
-// Returns the range in the group table that covers the given group range.
+//
 static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGroup, u16 maxGroup, u16 *start, u16 *end)
 {
     u16 index, leftBound, rightBound, maxRightBound;
     maxRightBound = RZ_SPECIES_COUNT;
     maxGroup = min(0xFFFEu, maxGroup);
+    minGroup = min(0xFFFEu, minGroup);
     leftBound = 0;
     rightBound = RZ_SPECIES_COUNT;
     // Do leftmost binary search to find the lower limit.
@@ -340,25 +380,46 @@ struct RamSpeciesTable
 
 EWRAM_DATA static struct RamSpeciesTable sRamSpeciesTable = {0};
 
+static void FillSpeciesGroupsRandom(struct SpeciesGroupEntry* entries)
+{
+    u16 i;
+    for (i = 1; i <= RANDOMIZER_MAX_MON; i++)
+    {
+        entries[i-1].species = i;
+        if (IsSpeciesPermitted(i))
+            entries[i-1].group = 0;
+        else
+            entries[i-1].group = GROUP_INVALID;
+    }
+}
+
 static void FillSpeciesGroupsBST(struct SpeciesGroupEntry* entries)
 {
     u16 i;
-    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    for(i = 1; i <= RANDOMIZER_MAX_MON; i++)
     {
         struct SpeciesGroupEntry entry;
         const struct SpeciesInfo *curSpeciesInfo;
         u16 bst;
-        curSpeciesInfo = &gSpeciesInfo[i];
-
-        bst = curSpeciesInfo->baseAttack;
-        bst += curSpeciesInfo->baseDefense;
-        bst += curSpeciesInfo->baseSpAttack;
-        bst += curSpeciesInfo->baseSpDefense;
-        bst += curSpeciesInfo->baseHP;
-        bst += curSpeciesInfo->baseSpeed;
 
         entry.species = i;
-        entry.group = bst;
+
+        if (IsSpeciesPermitted(i))
+        {
+            curSpeciesInfo = &gSpeciesInfo[i];
+
+            bst = curSpeciesInfo->baseAttack;
+            bst += curSpeciesInfo->baseDefense;
+            bst += curSpeciesInfo->baseSpAttack;
+            bst += curSpeciesInfo->baseSpDefense;
+            bst += curSpeciesInfo->baseHP;
+            bst += curSpeciesInfo->baseSpeed;
+
+            entry.group = bst;
+        }
+        else
+            entry.group = GROUP_INVALID;
+
         entries[i-1] = entry;
     }
 }
@@ -366,11 +427,14 @@ static void FillSpeciesGroupsBST(struct SpeciesGroupEntry* entries)
 static void FillSpeciesGroupsLegendary(struct SpeciesGroupEntry* entries)
 {
     u16 i;
-    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    for(i = 1; i <= RANDOMIZER_MAX_MON; i++)
     {
         struct SpeciesGroupEntry entry;
         entry.species = i;
-        entry.group = IsRandomizerLegendary(i);
+        if (!IsSpeciesPermitted(i))
+            entry.group = GROUP_INVALID;
+        else
+            entry.group = IsRandomizerLegendary(i);
         entries[i-1] = entry;
     }
 }
@@ -430,8 +494,11 @@ static void FillSpeciesGroupsEvolution(struct SpeciesGroupEntry* entries)
     for (i = 0; i < ARRAY_COUNT(sPreevolutionBabyMons); i++)
     {
         u16 babyMonIndex = sPreevolutionBabyMons[i]-1;
-        entries[babyMonIndex].group = 0;
         entries[babyMonIndex].species = babyMonIndex + 1;
+        if(IsSpeciesPermitted(babyMonIndex))
+            entries[babyMonIndex].group = 0;
+        else
+            entries[babyMonIndex].group = GROUP_INVALID;
     }
 
     for(i = 1; i < RANDOMIZER_MAX_MON; i++)
@@ -441,9 +508,11 @@ static void FillSpeciesGroupsEvolution(struct SpeciesGroupEntry* entries)
         {
             const struct Evolution *evos = GetSpeciesEvolutions(i);
             entries[idx].species = i;
-            if (IsRandomizerLegendary(i))
+            if (!IsSpeciesPermitted(i)) // This shouldn't show up in randomization.
+                entries[idx].group = GROUP_INVALID;
+            else if (IsRandomizerLegendary(i)) // Legendaries get their own group.
                 entries[idx].group = EVO_GROUP_LEGENDARY;
-            else if (evos == NULL || evos->method == 0xFFFF)
+            else if (evos == NULL || evos->method == 0xFFFF) //
                 entries[idx].group = EVO_GROUP_NO_EVO;
             else // There are evolutions! Let's check it out.
                 MarkEvolutions(entries, i, 0);
@@ -479,7 +548,7 @@ static void BuildRandomizerSpeciesTable(enum RandomizerSpeciesMode mode)
             break;
         case MON_RANDOM:
         default:
-            return;
+            FillSpeciesGroupsRandom(groupTable);
     }
 
     // Heap sort the table.
@@ -533,7 +602,11 @@ static const struct SpeciesTable* GetSpeciesTable(enum RandomizerSpeciesMode mod
         BuildRandomizerSpeciesTable(mode);
 
     return &sRamSpeciesTable.speciesTable;
+}
 
+void PreloadRandomizationTables(void)
+{
+    GetSpeciesTable(GetRandomizerOption(RZO_SPECIES_MODE));
 }
 
 #endif
@@ -558,65 +631,24 @@ static u16 RandomizeMonTableLookup(struct Sfc32State* state, enum RandomizerSpec
 }
 
 #undef RZ_SPECIES_COUNT
-#endif
 
 static u16 RandomizeMonFromSeed(struct Sfc32State *state, enum RandomizerSpeciesMode mode, u16 species)
 {
     if (species == SPECIES_NONE)
         return species;
 
-    #if RZ_SPECIES_BASIC_SUPPORT == TRUE
-        switch(mode) {
-            case MON_RANDOM_LEGEND_AWARE:
-                if (IsRandomizerLegendary(species) && sRandomizerLegendaryCount > 0)
-                {
-                    u16 i;
-                    u16 legendCount;
-                    u16 target = RandomizerNextRange(state, sRandomizerLegendaryCount);
-                    legendCount = 0;
-                    for (i = 1; i < RANDOMIZER_MAX_MON; i++)
-                    {
-                        if(IsRandomizerLegendary(i))
-                        {
-                            // RandRange returns 0 to the number of legendaries
-                            // minus 1, so check before incrementing.
-                            if(target == legendCount)
-                                return i;
-                            legendCount++;
-                        }
-                    }
-                    // Failsafe. This shouldn't happen, though...
-                    return SPECIES_MEW;
-                }
-                else
-                {
-                    u16 candidate;
-                    do
-                    {
-                        candidate =
-                        RandomizerNextRange(state, RANDOMIZER_MAX_MON) + 1;
-                    } while(IsRandomizerLegendary(candidate));
-                    return candidate;
-                }
-            case MON_RANDOM:
-            default:
-                break;
-        }
-    #else
-        if (mode != MON_RANDOM && mode < MAX_MON_MODE)
-            return RandomizeMonTableLookup(state, mode, species);
-    #endif
+    if (mode >= MAX_MON_MODE)
+        mode = MON_RANDOM;
 
-    // Default mode. Straight up randomization.
-    return RandomizerNextRange(state, RANDOMIZER_MAX_MON) + 1;
+    return RandomizeMonTableLookup(state, mode, species);
 
 }
 
+// Fills an array with count Pokémon, with no repeats.
 void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed1, u16 seed2, u8 count, const u16 *originalSpecies, u16 *resultSpecies)
 {
     u32 i, curMon;
     u32 seenMonBitVector[(RANDOMIZER_MAX_MON-1)/32+1] = {};
-    u32 lastMon = 0;
     struct Sfc32State state = RandomizerRandSeed(reason, seed1, seed2);
 
     for (i = 0; i < count; i++)
@@ -629,10 +661,20 @@ void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode m
             u16 wordIndex, adjustedCurMon;
             u32 bitVectorWord;
             u8 bitIndex;
-            curMon = RandomizeMonFromSeed(&state, mode, curOriginal);
 
-            if (lastMon == curMon)
+            if (!IsSpeciesPermitted(curOriginal))
+            {
+                // If there's non-permitted Pokémon in here, something is wrong.
+                // Just pass them through without marking.
+                foundNextMon = TRUE;
+                curMon = curOriginal;
                 continue;
+            }
+
+            // Generate a Pokémon. If it has already been generated, keep generating new ones
+            // until one that hasn't been seen is picked.
+
+            curMon = RandomizeMonFromSeed(&state, mode, curOriginal);
 
             // Compute the bit address of this mon.
             adjustedCurMon = curMon - 1;
@@ -652,7 +694,6 @@ void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode m
             foundNextMon = TRUE;
         }
         resultSpecies[i] = curMon;
-        lastMon = curMon;
     }
 }
 
@@ -667,6 +708,8 @@ u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea ar
 {
     if (RandomizerFeatureEnabled(RZ_WILD_MON))
     {
+        // Randomization is done based on the map number, the WildArea, and the encounter slot.
+        // This means a distinct species can appear in each encounter slot.
         u32 seed;
         seed = ((u32)mapGroup) << 24;
         seed |= ((u32)mapNum) << 16;
@@ -683,36 +726,23 @@ u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea ar
 bool8 IsRandomizationPossible(u16 originalSpecies, u16 targetSpecies)
 {
     const enum RandomizerSpeciesMode mode = GetRandomizerOption(RZO_SPECIES_MODE);
-    if (originalSpecies == SPECIES_NONE || targetSpecies == SPECIES_NONE)
+    if (!IsSpeciesPermitted(targetSpecies) || !IsSpeciesPermitted(originalSpecies))
         return FALSE;
 
-    #if RZ_SPECIES_BASIC_SUPPORT == TRUE
-        switch(mode)
-        {
-            case MON_RANDOM_LEGEND_AWARE:
-                return IsRandomizerLegendary(originalSpecies) == IsRandomizerLegendary(targetSpecies);
-            case MON_RANDOM:
-            default:
-                // Anything can happen!
-                break;
-        }
-    #else
-        if (mode != MON_RANDOM && mode < MAX_MON_MODE)
-        {
+    if (mode != MON_RANDOM && mode < MAX_MON_MODE)
+    {
+        u16 minGroupOriginal, maxGroupOriginal, minGroupTarget, maxGroupTarget,
+            originalGroup, targetGroup;
+        const struct SpeciesTable* table;
+        table = GetSpeciesTable(mode);
+        originalGroup = GetSpeciesGroup(table, originalSpecies);
+        targetGroup = GetSpeciesGroup(table, targetSpecies);
+        GetGroupRange(originalGroup, mode, &minGroupOriginal, &maxGroupOriginal);
+        GetGroupRange(targetGroup, mode, &minGroupTarget, &maxGroupTarget);
 
-            u16 minGroupOriginal, maxGroupOriginal, minGroupTarget, maxGroupTarget,
-                originalGroup, targetGroup;
-            const struct SpeciesTable* table;
-            table = GetSpeciesTable(mode);
-            originalGroup = GetSpeciesGroup(table, originalSpecies);
-            targetGroup = GetSpeciesGroup(table, targetSpecies);
-            GetGroupRange(originalGroup, mode, &minGroupOriginal, &maxGroupOriginal);
-            GetGroupRange(targetGroup, mode, &minGroupTarget, &maxGroupTarget);
-
-            // If the group ranges intersect, randomization is possible.
-            return maxGroupOriginal >= minGroupTarget && minGroupOriginal <= maxGroupTarget;
-        }
-    #endif
+        // If the group ranges intersect, randomization is possible.
+        return maxGroupOriginal >= minGroupTarget && minGroupOriginal <= maxGroupTarget;
+    }
 
     return TRUE;
 }
@@ -721,6 +751,8 @@ u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species)
 {
     if (RandomizerFeatureEnabled(RZ_TRAINER_MON))
     {
+        // The seed is based on the internal trainer number, the number of
+        // Pokémon in that trainer's party, and which party position it is in.
         u32 seed;
         seed = (u32)trainerId << 16;
         seed |= (u32)totalMons << 8;
