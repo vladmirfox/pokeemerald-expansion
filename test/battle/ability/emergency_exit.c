@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage")
     }
 }
 
-SINGLE_BATTLE_TEST("Emergency Exit does not switch out when taking 50% max-hp damage after a restore hp hold effect was used")
+SINGLE_BATTLE_TEST("Emergency Exit does not switch out when going below 50% max-HP but healed via held item back above the threshold")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Emergency Exit does not switch out when taking 50% max-hp da
     }
 }
 
-SINGLE_BATTLE_TEST("Emergency Exit switches out when taking 50% max-hp damage after a restore hp hold effect was used")
+SINGLE_BATTLE_TEST("Emergency Exit switches out when going below 50% max-HP but healing via held item is not enough to go back above the threshold")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
