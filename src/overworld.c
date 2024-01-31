@@ -67,6 +67,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "randomizer.h"
 
 struct CableClubPlayer
 {
@@ -1752,7 +1753,7 @@ void CB2_ContinueSavedGame(void)
     else
         LoadSaveblockObjEventScripts();
 
-    #if RZ_ENABLED == TRUE && RZ_SPECIES_TABLES_IN_RAM == TRUE
+    #if (RZ_ENABLE == TRUE) && (RZ_SPECIES_TABLES_IN_RAM == TRUE)
         PreloadRandomizationTables();
     #endif
 

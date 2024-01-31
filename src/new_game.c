@@ -45,6 +45,7 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/items.h"
+#include "randomizer.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -204,6 +205,10 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+
+    #if (RZ_ENABLE == TRUE) && (RZ_SPECIES_TABLES_IN_RAM == TRUE)
+        PreloadRandomizationTables();
+    #endif
 }
 
 static void ResetMiniGamesRecords(void)
