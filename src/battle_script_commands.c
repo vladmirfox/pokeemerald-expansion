@@ -16531,7 +16531,7 @@ void BS_TryUpperHand(void)
 
     if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget) 
 	|| gChosenMoveByBattler[gBattlerTarget] == MOVE_NONE 
-	|| IS_MOVE_STATUS(gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]) 
+	|| IS_MOVE_STATUS(gChosenMoveByBattler[gBattlerTarget]) 
 	|| GetChosenMovePriority(gBattlerTarget) < 1 || GetChosenMovePriority(gBattlerTarget) > 3) // Fails if priority is less than 1 or greater than 3, if target already moved, or if using a status move
         gBattlescriptCurrInstr = cmd->failInstr;
     else
