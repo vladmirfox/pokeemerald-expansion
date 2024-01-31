@@ -12319,7 +12319,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     {
         .effect = EFFECT_TRAP,
         .power = 100,
-        .type = TYPE_GRASS,
+        .type = TYPE_STEEL,
         .accuracy = 75,
         .pp = 5,
         .secondaryEffectChance = 100,
