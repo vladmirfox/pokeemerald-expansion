@@ -20,6 +20,11 @@
 
 	.section script_data, "aw", %progbits
 
+BattleScript_EffectUpperHand::
+	attackcanceler
+	tryupperhand BattleScript_FailedFromAtkString
+	goto BattleScript_HitFromAccCheck
+
 BattleScript_EffectShedTail::
 	attackcanceler
 	attackstring
@@ -4834,7 +4839,7 @@ BattleScript_AlreadyAtFullHp::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectFakeOut::
+BattleScript_EffectFirstTurnOnly::
 	attackcanceler
 	jumpifnotfirstturn BattleScript_FailedFromAtkString
 	goto BattleScript_EffectHit
