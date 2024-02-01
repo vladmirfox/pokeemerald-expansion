@@ -2087,15 +2087,17 @@ u32 GetMonData2(struct Pokemon *mon, s32 field)
     return GetMonData3(mon, field, NULL);
 }
 
-struct EvolutionTrackerBitfield {
-  u16 a: 5;
-  u16 b: 4;
-  u16 unused: 7;
+struct EvolutionTrackerBitfield
+{
+    u16 a: 5;
+    u16 b: 4;
+    u16 unused: 7;
 };
 
-union EvolutionTracker {
-  u16 value;
-  struct EvolutionTrackerBitfield asField;
+union EvolutionTracker
+{
+    u16 value;
+    struct EvolutionTrackerBitfield asField;
 };
 
 /* GameFreak called GetBoxMonData with either 2 or 3 arguments, for type
@@ -4339,8 +4341,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 if (evolutionTracker >= 20)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
-            case EVO_LEVEL_RECOIL_DAMAGE:
-                if (evolutionTracker >= evolutions[i].param)
+            case EVO_LEVEL_RECOIL_DAMAGE_MALE:
+                if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_MALE)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_LEVEL_RECOIL_DAMAGE_FEMALE:
+                if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_FEMALE)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             }

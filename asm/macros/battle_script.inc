@@ -1590,7 +1590,7 @@
   
 	.macro tryupdaterecoiltracker
 	callnative BS_TryUpdateRecoilTracker
-  .endm
+	.endm
 
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req

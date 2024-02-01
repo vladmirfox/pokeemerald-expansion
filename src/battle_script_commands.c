@@ -16618,8 +16618,10 @@ static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount)
 
             if (evolutions[i].method == evolutionMethod)
             {
-                u16 val = min(511, GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER) + upAmount); // we only have 9 bits to use
-                if (gBattleMons[gBattlerAttacker].hp == 0 && evolutionMethod == EVO_LEVEL_RECOIL_DAMAGE) // reset progress if you faint, but only for the recoil method
+                // We only have 9 bits to use
+                u16 val = min(511, GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER) + upAmount);
+                // Reset progress if you faint for the recoil method.
+                if (gBattleMons[gBattlerAttacker].hp == 0 && (evolutionMethod == EVO_LEVEL_RECOIL_DAMAGE_MALE || evolutionMethod == EVO_LEVEL_RECOIL_DAMAGE_FEMALE))
                     val = 0;
                 SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
                 return;
@@ -16631,6 +16633,7 @@ static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount)
 void BS_TryUpdateRecoilTracker(void)
 {
     NATIVE_ARGS();
-    TryUpdateEvolutionTracker(EVO_LEVEL_RECOIL_DAMAGE, gBattleMoveDamage);
+    TryUpdateEvolutionTracker(EVO_LEVEL_RECOIL_DAMAGE_MALE, gBattleMoveDamage);
+    TryUpdateEvolutionTracker(EVO_LEVEL_RECOIL_DAMAGE_FEMALE, gBattleMoveDamage);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
