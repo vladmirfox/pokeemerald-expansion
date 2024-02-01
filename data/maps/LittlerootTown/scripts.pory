@@ -409,7 +409,7 @@ LittlerootTown_EventScript_BirchsLabSign::
 
 LittlerootTown_EventScript_BrendansHouseSign::
 	lockall
-	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_RivalsHouse, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -882,41 +882,6 @@ LittlerootTown_Text_WillWeChoose:
 	.string "Hey {PLAYER}{KUN}!\p"
 	.string "So, d'you think we'll get to choose the\n"
 	.string "one we want?$"
-
-LittlerootTown_Text_RivalBeachSitDown:
-	.string "{PLAYER}{KUN}! Ya made it!\p"
-	.string "Come on, sit down next to me!$"
-	
-LittlerootTown_Text_RivalBeachRememberWhenWeWereLittle:
-	.string "Remember when we were little and we\n"
-	.string "used to fight each other to be the\l"
-	.string "first to sit on this bench?\p"
-	.string "Good times. Even though you always won,\n"
-	.string "hehe.\p"
-	.string "…$"
-	
-LittlerootTown_Text_RivalBeachYifuCity:
-	.string "Hey, look!\p"
-	.string "You can see YIFU CITY very clearly\n"
-	.string "today, it's gorgeous!\p"
-	.string "…\p"
-	.string "I guess I'm feeling a little nervous\n"
-	.string "about all this.\p"
-	.string "The POKéMON getting restless in the\n"
-	.string "GINKO WOODS…\p"
-	.string "Having my own POKéMON to care for…\p"
-	.string "It feels like everything's about to\l"
-	.string "change, though I'm not sure how yet.$"
-	
-LittlerootTown_Text_RivalBeachLookAtMeRambling:
-	.string "Look at me rambling! I'm sure\n"
-	.string "everything is going to be just fine.\p"
-	.string "Are you excited to become a POKéMON\n"
-	.string "trainer?\p"
-	.string "Come on, it's almost time! Let's go to\n"
-	.string "Elder IWA's house!\p"
-	.string "Race you there!!$"
-
 
 LittlerootTown_Text_HiImMom:
 	.string "Hey {PLAYER}, I'm mom!$"

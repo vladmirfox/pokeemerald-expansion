@@ -59,14 +59,7 @@
       "x": 1,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 2,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
+      "dest_map": "MAP_SUNRISE_VILLAGE",
       "dest_warp_id": "0"
     },
     {
@@ -74,6 +67,13 @@
       "y": 2,
       "elevation": 0,
       "dest_map": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE",
       "dest_warp_id": "0"
     }
   ],
@@ -83,7 +83,7 @@
       "x": 1,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "2",
       "script": "LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi"
     },
@@ -92,7 +92,7 @@
       "x": 3,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "2",
       "script": "LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi"
     },
@@ -101,7 +101,7 @@
       "x": 2,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "2",
       "script": "LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi"
     }

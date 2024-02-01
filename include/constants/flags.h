@@ -653,8 +653,8 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
 #define FLAG_BIGSIS_OUT   0x264  // True if bigsis is not home
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
+#define FLAG_HIDE_SUNRISE_BEACH_RIVAL 0x265 // True if talked to rival on the beach in intro sequence
+#define FLAG_RECEIVED_STARTER  0x266 // True if player has received their starter
 #define FLAG_UNUSED_0x267  0x267 // Unused Flag
 #define FLAG_UNUSED_0x268  0x268 // Unused Flag
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag

@@ -17,7 +17,7 @@ script LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi {
 	))
 	closemessage
 	setflag(FLAG_BIGSIS_OUT)
-	setvar(VAR_LITTLEROOT_INTRO_STATE, 3)
+	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 3)
 	applymovement(1, LittlerootTown_MaysHouse_1F_Movement_BigSisExits)
 	waitmovement(0)
 	playse(SE_EXIT)

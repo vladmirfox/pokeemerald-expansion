@@ -162,7 +162,13 @@
 #define VAR_BOARD_BRINEY_BOAT_STATE                      0x408E
 #define VAR_DEVON_CORP_3F_STATE                          0x408F
 #define VAR_BRINEY_HOUSE_STATE                           0x4090
-#define VAR_UNUSED_0x4091                                0x4091 // Unused Var
+// 0: Beginning
+// 1: Player has spawned in bedroom
+// 2: Big sis has called
+// 3: Big sis has talked to player upon arrival
+// 4: Player has talked to rival on beach before
+//    getting their Pokémon
+#define VAR_SUNRISE_VILLAGE_INTRO_STATE                  0x4091
 #define VAR_LITTLEROOT_INTRO_STATE                       0x4092
 #define VAR_MAUVILLE_GYM_STATE                           0x4093
 #define VAR_LILYCOVE_MUSEUM_2F_STATE                     0x4094
