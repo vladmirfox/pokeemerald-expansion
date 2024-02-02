@@ -929,7 +929,7 @@ static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level)
 
     SetMonData(mon, MON_DATA_EXP, &exp);
     SetMonData(mon, MON_DATA_LEVEL, &level);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 u8 GetNumFloorsInTrainerHillChallenge(void)

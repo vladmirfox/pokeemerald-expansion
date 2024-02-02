@@ -4570,7 +4570,7 @@ static void CreateInGameTradePokemonInternal(u8 whichPlayerMon, u8 whichInGameTr
             SetMonData(pokemon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
         }
     }
-    CalculateMonStats(&gEnemyParty[0]);
+    CalculateMonStats(&gEnemyParty[0], FALSE);
 }
 
 static void GetInGameTradeMail(struct Mail *mail, const struct InGameTrade *trade)

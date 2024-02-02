@@ -51,6 +51,10 @@ struct TrainerMonCustomized
     bool8 gender : 2;
     bool8 isShiny : 1;
     bool8 isShadow:1;
+    bool8 isXD;
+    u8 boostLevel;
+    u8 shadowAggro;
+    u8 shadowID;
     u16 heartGauge;
 };
 

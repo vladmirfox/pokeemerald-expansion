@@ -10889,7 +10889,7 @@ void CopyMonAbilityAndTypesToBattleMon(u32 battler, struct Pokemon *mon)
 
 void RecalcBattlerStats(u32 battler, struct Pokemon *mon)
 {
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, FALSE);
     CopyMonLevelAndBaseStatsToBattleMon(battler, mon);
     CopyMonAbilityAndTypesToBattleMon(battler, mon);
 }

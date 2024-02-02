@@ -92,6 +92,10 @@ enum {
     MON_DATA_WORLD_RIBBON,
     MON_DATA_UNUSED_RIBBONS,
     MON_DATA_IS_SHADOW,
+    MON_DATA_SHADOW_ID,
+    MON_DATA_IS_XD,
+    MON_DATA_SHADOW_AGGRO,
+    MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
@@ -210,9 +214,20 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     u8 nickname[POKEMON_NAME_LENGTH];
     struct Shadowdata
     {
-        u8 isReverse;
-        u16 heartValue;
-        u16 heartMax;
+    /* 0x00 */ u16 heartValue;
+    /* 0x02 */ u16 heartMax;
+    /* 0x04 */ u8 shadowID;
+    /* 0x05 */ u8 shadowAggro:3; //Determines chance to enter Reverse Mode
+    /* 0x05 */ u8 boostLevel:2; //Determines how much the Pokemon's stats are boosted before you can catch them
+    /* 0x05 */ u8 isXD:1; //for Shadow Lugia's special case
+    /* 0x05 */ u8 isReverse:1;
+    /* 0x05 */ u8 filler:1;
+    /* 0x06 */ 
+    /* 0x07 */ 
+    /* 0x08 */ 
+    /* 0x09 */ 
+    /* size = 10 */
+        
     } shadowData;
 };
 
@@ -315,8 +330,12 @@ struct BattlePokemon
     /*0x51*/ u32 status2;
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
-    /*0x5A*/ u8 isShadow;
-    /*0x5B*/ u8 isReverse;
+    /*0x5A*/ u8 isShadow:1;
+    /*0x5A*/ u8 boostLevel:2;
+    /*0x5A*/ u8 shadowAggro:3;
+    /*0x5A*/ u8 isReverse:1;
+    /*0x5A*/ u8 isXD:1;
+    /*0x5B*/ u8 shadowID;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;
 };
@@ -493,7 +512,7 @@ bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battlerId);
 u16 GetUnionRoomTrainerPic(void);
 u16 GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
-void CalculateMonStats(struct Pokemon *mon);
+void CalculateMonStats(struct Pokemon *mon, bool8 canBeBoosted);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
 u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon);

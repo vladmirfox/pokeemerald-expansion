@@ -919,6 +919,7 @@ static void SetLinkOpponentMonData(u8 monId)
     case REQUEST_ALL_BATTLE:
         {
             u8 iv;
+            u8 isShadow;
 
             SetMonData(&gEnemyParty[monId], MON_DATA_SPECIES, &battlePokemon->species);
             SetMonData(&gEnemyParty[monId], MON_DATA_HELD_ITEM, &battlePokemon->item);
@@ -952,7 +953,8 @@ static void SetLinkOpponentMonData(u8 monId)
             SetMonData(&gEnemyParty[monId], MON_DATA_SPEED, &battlePokemon->speed);
             SetMonData(&gEnemyParty[monId], MON_DATA_SPATK, &battlePokemon->spAttack);
             SetMonData(&gEnemyParty[monId], MON_DATA_SPDEF, &battlePokemon->spDefense);
-            SetMonData(&gEnemyParty[monId], MON_DATA_IS_SHADOW, &battlePokemon->isShadow);
+            isShadow = battlePokemon->isShadow;
+            SetMonData(&gEnemyParty[monId], MON_DATA_IS_SHADOW, &isShadow);
         }
         break;
     case REQUEST_SPECIES_BATTLE:

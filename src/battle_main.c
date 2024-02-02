@@ -2118,6 +2118,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 {
                     bool8 shad = TRUE;
                     SetMonData(&party[i], MON_DATA_IS_SHADOW, &shad);
+                    SetMonData(&party[i], MON_DATA_SHADOW_ID, &partyData[i].shadowID);
+                    SetMonData(&party[i], MON_DATA_SHADOW_AGGRO, &partyData[i].shadowAggro);
+                    SetMonData(&party[i], MON_DATA_IS_XD, &partyData[i].isXD);
+                    SetMonData(&party[i], MON_DATA_BOOST_LEVEL, &partyData[i].boostLevel);
                     SetMonData(&party[i], MON_DATA_HEART_VALUE, &partyData[i].heartGauge);
                     SetMonData(&party[i], MON_DATA_HEART_MAX, &partyData[i].heartGauge);
                 }
@@ -2125,7 +2129,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 {
                     SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
                 }
-                CalculateMonStats(&party[i]);
+                if (partyData[i].isShadow)
+                    CalculateMonStats(&party[i], TRUE);
+                else
+                    CalculateMonStats(&party[i], FALSE);
             }
             }
 
@@ -5477,7 +5484,7 @@ static void HandleEndTurn_FinishBattle(void)
         #if B_RECALCULATE_STATS >= GEN_5
             // Recalculate the stats of every party member before the end
             if (!changedForm)
-                CalculateMonStats(&gPlayerParty[i]);
+                CalculateMonStats(&gPlayerParty[i], FALSE);
         #endif
         }
         // Clear battle mon species to avoid a bug on the next battle that causes
