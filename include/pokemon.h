@@ -217,10 +217,9 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     /* 0x02 */ u16 heartMax;
     /* 0x04 */ u8 shadowID;
     /* 0x05 */ u8 shadowAggro:3; //Determines chance to enter Reverse Mode
-    /* 0x05 */ u8 boostLevel:2; //Determines how much the Pokemon's stats are boosted before you can catch them
     /* 0x05 */ u8 isXD:1; //for Shadow Lugia's special case
     /* 0x05 */ u8 isReverse:1;
-    /* 0x05 */ u8 filler:1;
+    /* 0x05 */ u8 filler:3;
     /* 0x06 */ 
     /* 0x07 */ 
     /* 0x08 */ 
