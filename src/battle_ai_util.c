@@ -64,7 +64,7 @@ bool32 BattlerHasAi(u32 battlerId)
     case B_POSITION_OPPONENT_LEFT:
         return TRUE;
     case B_POSITION_PLAYER_RIGHT:
-        if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT
+        if ((AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_OMNISCIENT || GetBattlerPosition(battlerId) == GetBattlerPosition(BATTLE_PARTNER(battlerId)))
          && ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER) || IsAiVsAiBattle()))
             return TRUE;
         else
