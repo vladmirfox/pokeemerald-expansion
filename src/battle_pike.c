@@ -1162,7 +1162,7 @@ bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate)
     for (i = 0; i < MAX_MON_MOVES; i++)
         SetMonMoveSlot(&gEnemyParty[0], wildMons[headerId][pikeMonId].moves[i], i);
 
-    CalculateMonStats(&gEnemyParty[0], TRUE);
+    CalculateMonStats(&gEnemyParty[0]);
     return TRUE;
 }
 

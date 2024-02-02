@@ -1408,7 +1408,7 @@ void GenerateBattlePyramidWildMon(void)
         for (i = 0; i < NUM_STATS; i++)
             SetMonData(&gEnemyParty[0], MON_DATA_HP_IV + i, &id);
     }
-    CalculateMonStats(&gEnemyParty[0], TRUE);
+    CalculateMonStats(&gEnemyParty[0]);
 }
 
 u8 GetPyramidRunMultiplier(void)

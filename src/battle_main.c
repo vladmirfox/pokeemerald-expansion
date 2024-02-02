@@ -1982,7 +1982,7 @@ static void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct Trai
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
-    u8 fixedIV;
+    u8 fixedIV, levelBoost = 0;
     s32 i, j;
     u8 monsCount;
     s32 ball = -1;
@@ -2114,6 +2114,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     ball = partyData[i].ball;
                     SetMonData(&party[i], MON_DATA_POKEBALL, &ball);
                 }
+                levelBoost = 0;
                 if (partyData[i].isShadow)
                 {
                     bool8 shad = TRUE;
@@ -2121,7 +2122,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     SetMonData(&party[i], MON_DATA_SHADOW_ID, &partyData[i].shadowID);
                     SetMonData(&party[i], MON_DATA_SHADOW_AGGRO, &partyData[i].shadowAggro);
                     SetMonData(&party[i], MON_DATA_IS_XD, &partyData[i].isXD);
-                    SetMonData(&party[i], MON_DATA_BOOST_LEVEL, &partyData[i].boostLevel);
+                    levelBoost = partyData[i].boostLevel;
                     SetMonData(&party[i], MON_DATA_HEART_VALUE, &partyData[i].heartGauge);
                     SetMonData(&party[i], MON_DATA_HEART_MAX, &partyData[i].heartGauge);
                 }
@@ -2129,10 +2130,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 {
                     SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
                 }
-                if (partyData[i].isShadow)
-                    CalculateMonStats(&party[i], TRUE);
-                else
-                    CalculateMonStats(&party[i]);
+                CalculateMonStats(&party[i], levelBoost);
             }
             }
 

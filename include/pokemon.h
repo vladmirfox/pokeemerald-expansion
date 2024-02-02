@@ -95,7 +95,6 @@ enum {
     MON_DATA_SHADOW_ID,
     MON_DATA_IS_XD,
     MON_DATA_SHADOW_AGGRO,
-    MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
@@ -331,7 +330,6 @@ struct BattlePokemon
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
     /*0x5A*/ u8 isShadow:1;
-    /*0x5A*/ u8 boostLevel:2;
     /*0x5A*/ u8 shadowAggro:3;
     /*0x5A*/ u8 isReverse:1;
     /*0x5A*/ u8 isXD:1;
@@ -513,7 +511,7 @@ u16 GetUnionRoomTrainerPic(void);
 u16 GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
 #define CalculateMonStats(...) CAT(CalculateMonStats, NARG_8(__VA_ARGS__))(__VA_ARGS__)
-void CalculateMonStats2(struct Pokemon *mon, bool8 canBeBoosted);
+void CalculateMonStats2(struct Pokemon *mon, u8 levelBoost);
 void CalculateMonStats1(struct Pokemon *mon);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
