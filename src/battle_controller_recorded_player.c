@@ -832,10 +832,10 @@ static u32 CopyRecordedPlayerMonData(u8 monId, u8 *dst)
         dst[0] = GetMonData(&gPlayerParty[monId], MON_DATA_IS_SHADOW);
         size = 1;
         break;
-    // case REQUEST_REVERSE_MODE_BATTLE:
-    //     dst[0] = GetMonData(&gPlayerParty[monId], MON_DATA_REVERSE_MODE);
-    //     size = 1;
-    //     break;
+    case REQUEST_REVERSE_MODE_BATTLE:
+        dst[0] = GetMonData(&gPlayerParty[monId], MON_DATA_REVERSE_MODE);
+        size = 1;
+        break;
     case REQUEST_HEART_VALUE_BATTLE:
         dst[0] = GetMonData(&gPlayerParty[monId], MON_DATA_HEART_VALUE);
         size = 1;
@@ -1095,9 +1095,9 @@ static void SetRecordedPlayerMonData(u8 monId)
     case REQUEST_IS_SHADOW_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_IS_SHADOW, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
-    // case REQUEST_REVERSE_MODE_BATTLE:
-    //     SetMonData(&gPlayerParty[monId], MON_DATA_REVERSE_MODE, &gBattleResources->bufferA[gActiveBattler][3]);
-    //     break;
+    case REQUEST_REVERSE_MODE_BATTLE:
+        SetMonData(&gPlayerParty[monId], MON_DATA_REVERSE_MODE, &gBattleResources->bufferA[gActiveBattler][3]);
+        break;
     case REQUEST_HEART_VALUE_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_HEART_VALUE, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
@@ -1562,7 +1562,7 @@ static void RecordedPlayerHandleStatusIconUpdate(void)
         gBattlerControllerFuncs[gActiveBattler] = CompleteOnFinishedStatusAnimation;
 
         if (gTestRunnerEnabled)
-            TestRunner_Battle_RecordStatus1(battlerId, GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE);
+            TestRunner_Battle_RecordStatus1(battlerId, GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS));
     }
 }
 

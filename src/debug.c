@@ -1790,9 +1790,7 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
             && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
             && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
         {
-            
-            u32 curStatus = GetMonData(&gPlayerParty[i], MON_DATA_STATUS, 0) & STATUS1_REVERSE_MODE;
-            curStatus |= STATUS1_POISON;
+            u32 curStatus = STATUS1_POISON;
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
         }
     }

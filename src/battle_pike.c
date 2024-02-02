@@ -935,7 +935,7 @@ static bool8 TryInflictRandomStatus(void)
             for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
             {
                 mon = &gPlayerParty[indices[i]];
-                if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_NONE
+                if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS)) == AILMENT_NONE
                     && GetMonData(mon, MON_DATA_HP) != 0)
                 {
                     j++;
@@ -978,7 +978,7 @@ static bool8 TryInflictRandomStatus(void)
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
         mon = &gPlayerParty[indices[i]];
-        if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_NONE
+        if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS)) == AILMENT_NONE
             && GetMonData(mon, MON_DATA_HP) != 0)
         {
             j++;
@@ -1010,7 +1010,7 @@ static bool8 AtLeastOneHealthyMon(void)
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
         struct Pokemon *mon = &gPlayerParty[i];
-        if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_NONE
+        if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS)) == AILMENT_NONE
             && GetMonData(mon, MON_DATA_HP) != 0)
         {
             healthyMonsCount++;
@@ -1300,7 +1300,7 @@ static void TryHealMons(u8 healCount)
         {
             canBeHealed = TRUE;
         }
-        else if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) != AILMENT_NONE)
+        else if (GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS)) != AILMENT_NONE)
         {
             canBeHealed = TRUE;
         }
@@ -1568,7 +1568,7 @@ static void IsPartyFullHealed(void)
         struct Pokemon *mon = &gPlayerParty[i];
         u16 curr = GetMonData(mon, MON_DATA_HP);
         u16 max = GetMonData(mon, MON_DATA_MAX_HP);
-        if (curr >= max && GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_NONE)
+        if (curr >= max && GetAilmentFromStatus(GetMonData(mon, MON_DATA_STATUS)) == AILMENT_NONE)
         {
             u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
             for (j = 0; j < MAX_MON_MOVES; j++)

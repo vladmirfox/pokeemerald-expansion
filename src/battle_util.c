@@ -671,9 +671,9 @@ void HandleAction_Run(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (gBattleMons[gBattlerAttacker].status1 & STATUS1_REVERSE_MODE)
+        if (gBattleMons[gBattlerAttacker].isReverse)
         {
-            gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_REVERSE_MODE;
+            gBattleMons[gBattlerAttacker].isReverse = FALSE;
             gBattlescriptCurrInstr = BattleScript_TrainerCallToMonReverse;
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
         }
@@ -3144,8 +3144,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_REVERSE_MODE:
 
             MAGIC_GUARD_CHECK;
-            if ((gBattleMons[gActiveBattler].status1 & STATUS1_REVERSE_MODE)
-                && gBattleMons[gActiveBattler].hp != 0)
+            if (gBattleMons[gActiveBattler].isReverse && gBattleMons[gActiveBattler].hp != 0)
             {
                 gBattleMoveDamage = (gBattleMons[gBattlerAttacker].maxHP / 16) + (Random() % 3) - 1;
                 if (gBattleMoveDamage == 0)
@@ -4826,7 +4825,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (gBattleMons[battler].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE))
                         StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
 
-                    gBattleMons[battler].status1 &= STATUS1_REVERSE_MODE;
+                    gBattleMons[battler].status1 = 0;
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     gBattleScripting.battler = gActiveBattler = battler;
                     BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
@@ -5864,7 +5863,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 switch (effect)
                 {
                 case 1: // status cleared
-                    gBattleMons[battler].status1 &= STATUS1_REVERSE_MODE;
+                    gBattleMons[battler].status1 = 0;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_AbilityCuredStatus;
                     break;
@@ -6885,7 +6884,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
             if (gBattleMons[battlerId].status2 & STATUS2_CONFUSION)
                 StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
 
-            gBattleMons[battlerId].status1 &= STATUS1_REVERSE_MODE;
+            gBattleMons[battlerId].status1 = 0;
             RemoveConfusionStatus(battlerId);
             BattleScriptPushCursor();
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
@@ -7125,7 +7124,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
                     else
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NORMALIZED_STATUS;
-                    gBattleMons[battlerId].status1 &= STATUS1_REVERSE_MODE;
+                    gBattleMons[battlerId].status1 = 0;
                     RemoveConfusionStatus(battlerId);
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     effect = ITEM_STATUS_CHANGE;
@@ -7472,7 +7471,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
                     else
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NORMALIZED_STATUS;
-                    gBattleMons[battlerId].status1 &= STATUS1_REVERSE_MODE;
+                    gBattleMons[battlerId].status1 = 0;
                     RemoveConfusionStatus(battlerId);
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     effect = ITEM_STATUS_CHANGE;
@@ -7817,7 +7816,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             if (CanBePoisoned(battlerId, battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
-                gBattleMons[battlerId].status1 |= STATUS1_TOXIC_POISON;
+                gBattleMons[battlerId].status1 = STATUS1_TOXIC_POISON;
                 BattleScriptExecute(BattleScript_ToxicOrb);
                 RecordItemEffectBattle(battlerId, battlerHoldEffect);
             }
@@ -7826,7 +7825,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             if (CanBeBurned(battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
-                gBattleMons[battlerId].status1 |= STATUS1_BURN;
+                gBattleMons[battlerId].status1 = STATUS1_BURN;
                 BattleScriptExecute(BattleScript_FlameOrb);
                 RecordItemEffectBattle(battlerId, battlerHoldEffect);
             }

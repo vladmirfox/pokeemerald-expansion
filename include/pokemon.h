@@ -354,7 +354,7 @@ struct BattlePokemon
     /*0x5A*/ u8 shadowAggro:3;
     /*0x5A*/ u8 isReverse:1;
     /*0x5A*/ u8 snagged:1;
-    /*0x5A*/ u8 filler:2;
+    /*0x5A*/ u8 filler:3;
     /*0x5B*/ u8 shadowID;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;

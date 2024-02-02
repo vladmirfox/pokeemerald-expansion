@@ -1008,7 +1008,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     u32 xPos;
     u8 *objVram;
     u8 battler = gSprites[healthboxSpriteId].hMain_Battler;
-    bool32 reverse = (gBattleMons[battler].status1 & STATUS1_REVERSE_MODE) ? TRUE : FALSE;
+    bool32 reverse = gBattleMons[battler].isReverse;;
 
     // Don't print Lv char if mon is mega evolved, primal reverted, or reverse mode.
     if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler) || reverse)
@@ -1538,7 +1538,7 @@ static bool32 MegaIndicator_ShouldBeInvisible(u32 battlerId, struct Sprite *spri
     u32 side = GetBattlerSide(battlerId);
     bool32 megaEvolved = IsBattlerMegaEvolved(battlerId);
     bool32 primalReverted = IsBattlerPrimalReverted(battlerId);
-    bool32 reverseMode = (gBattleMons[battlerId].status1 & STATUS1_REVERSE_MODE) ? TRUE : FALSE;
+    bool32 reverseMode = gBattleMons[battlerId].isReverse;
 
     if (!reverseMode && !megaEvolved && !primalReverted)
         return TRUE;
@@ -2200,7 +2200,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
-        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
+        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
         if (!WhichBattleCoords(battlerId))
             tileNumAdder = 0x1A;
         else
@@ -2208,7 +2208,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     }
     else
     {
-        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
+        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
         tileNumAdder = 0x11;
     }
 
