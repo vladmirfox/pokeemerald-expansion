@@ -1715,12 +1715,12 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
                 ScheduleBgCopyTilemapToVram(0);
                 HandleStatusTilemap(0, 2);
             }
-            if (sMonSummaryScreen->summary.ailment != AILMENT_SHADOW)
+            if (sMonSummaryScreen->summary.ailment != AILMENT_SHDW)
             {
                 LoadCompressedPalette(gSummaryShadow_Pal, 0, 0x100);
                 LoadPalette(&gPPTextPalette, 0x81, 0x1E);
             }
-            else if (sMonSummaryScreen->summary.ailment == AILMENT_SHADOW)
+            else if (sMonSummaryScreen->summary.ailment == AILMENT_SHDW)
             {
                 LoadCompressedPalette(gSummaryScreen_Pal, 0, 0x100);
                 LoadPalette(&gPPTextPalette, 0x81, 0x1E);

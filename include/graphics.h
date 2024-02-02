@@ -10132,6 +10132,11 @@ extern const u32 gBattleAnimSpritePal_ZMoveSymbol[];
 extern const u32 gBattleAnimSpriteGfx_Teapot[];
 extern const u32 gBattleAnimSpritePal_Teapot[];
 
+//Shadow Pokemon effects
+extern const u32 gBattleAnimSpriteGfx_ShadowParticles[];
+extern const u32 gBattleAnimSpritePal_ShadowParticles[];
+extern const u32 gBattleAnimSpritePal_ReverseParticles[];
+
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
 extern const u32 gBattleAnimBgImage_Psychic[];

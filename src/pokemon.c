@@ -1947,6 +1947,17 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
+const u8 gShadowAggressionTable[NUM_AGGRO_LEVELS][HEART_GAUGE_LEVELS] = 
+{
+    [SHADOW_AGGRO_NONE]         = { 0,  0,  0,  0,  0,  0},
+    [SHADOW_AGGRO_VERY_LOW]     = {15, 10,  5,  2,  0,  0},
+    [SHADOW_AGGRO_LOW]          = {20, 15, 10,  5,  0,  0},
+    [SHADOW_AGGRO_MEDIUM]       = {30, 20, 15, 10,  0,  0},
+    [SHADOW_AGGRO_HIGH]         = {40, 25, 15, 10,  0,  0},
+    [SHADOW_AGGRO_VERY_HIGH]    = {50, 35, 20, 10,  0,  0},
+    [SHADOW_AGGRO_TEST]         = {80, 80, 80, 80, 80, 80},
+};
+
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 #include "data/pokemon/species_info.h"
@@ -5101,10 +5112,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_SHADOW:
         retVal = substruct3->isShadow;
         break;
-    case MON_DATA_REVERSE_MODE:
-        if (substruct3->isShadow)
-            retVal = boxMon->nickData.shadowData.isReverse;
-        break;
     case MON_DATA_SHADOW_ID:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.shadowID;
@@ -5120,6 +5127,10 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_HEART_MAX:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.heartMax;
+        break;
+    case MON_DATA_SNAGGED:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.snagFlag;
         break;
     default:
         break;
@@ -5437,9 +5448,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_IS_SHADOW:
         SET8(substruct3->isShadow);
         break;
-    case MON_DATA_REVERSE_MODE:
-        SET8(boxMon->nickData.shadowData.isReverse);
-        break;
     case MON_DATA_SHADOW_ID:
         SET8(boxMon->nickData.shadowData.shadowID);
         break;
@@ -5451,6 +5459,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_HEART_MAX:
         SET16(boxMon->nickData.shadowData.heartMax);
+        break;
+    case MON_DATA_SNAGGED:
+        SET8(boxMon->nickData.shadowData.snagFlag);
         break;
     case MON_DATA_IVS:
     {
@@ -8772,6 +8783,25 @@ u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax)
     #undef h77
 }
 
+u8 GetReverseModeChance(struct BattlePokemon *mon)
+{
+    u8 chance = 0;
+    u8 heartSection, aggro;
+    u16 heartVal, heartMax;
+
+    if (mon->isShadow == TRUE)
+    {
+        aggro = mon->shadowAggro;
+        if (aggro >= NUM_AGGRO_LEVELS)
+            aggro = NUM_AGGRO_LEVELS - 1;
+        heartVal = mon->heartVal;
+        heartMax = mon->heartMax;
+        heartSection = GetHeartGaugeSection(heartVal, heartMax);
+        chance = gShadowAggressionTable[aggro][heartSection];
+    }
+    return chance;
+}
+
 u8 ShdwCanMonGainEXP(struct Pokemon *mon)
 {
     u16 hVal = GetMonData(mon, MON_DATA_HEART_VALUE, NULL);
@@ -8781,16 +8811,20 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
     return TRUE;
 }
 
-void ModifyHeartValue(void)
+u16 ModifyHeartValueInBattle(u8 battlerId, u16 amount)
 {
-    u16 hVal = gBattleMons[gActiveBattler].heartVal;
-    u16 hMax = gBattleMons[gActiveBattler].heartMax;
-    u16 newVal = min(max(hVal - 200, 0), hMax);
+    u16 hVal, hMax, newVal;
 
-    gActiveBattler = gBattleScripting.battler;
+    hVal = gBattleMons[battlerId].heartVal;
+    hMax = gBattleMons[battlerId].heartMax;
+    newVal = min(max(hVal - amount, 0), hMax);
 
-    if (gBattleMons[gActiveBattler].isShadow)
+    if (gBattleMons[battlerId].isShadow)
     {
-        gBattleMons[gActiveBattler].heartVal = newVal;
-    }    
+        gBattleMons[battlerId].heartVal = newVal;
+    }
+    
+    // SetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_HEART_VALUE, &newVal);
+    
+    return amount;
 }

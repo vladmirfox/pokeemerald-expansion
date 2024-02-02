@@ -672,8 +672,12 @@
 #define STRINGID_SHADOW_SKYCONTINUES                  670
 #define STRINGID_SHADOW_SKYSTOPPED                    671
 #define STRINGID_SHADOW_SKYDAMAGE                     672
+#define STRINGID_REVERSEMODE_ENTER                    673
+#define STRINGID_REVERSEMODE_DAMAGE                   674
+#define STRINGID_REVERSEMODE_CALLED                   675
+#define STRINGID_GOTCHAPKMNCAUGHTTRAINER              676
 
-#define BATTLESTRINGS_COUNT                           673
+#define BATTLESTRINGS_COUNT                           677
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

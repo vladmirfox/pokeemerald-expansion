@@ -926,6 +926,9 @@ gBattleAnims_StatusConditions::
 	.4byte Status_Curse                     @ B_ANIM_STATUS_CURSED
 	.4byte Status_Nightmare                 @ B_ANIM_STATUS_NIGHTMARE
 	.4byte Status_Powder
+	.4byte Status_Shadow                    @ B_ANIM_STATUS_SHADOW
+	.4byte Enter_Reverse_Mode               @ B_ANIM_ENTER_REVERSE_MODE
+	.4byte Status_Reverse_Mode              @ B_ANIM_STATUS_REVERSE_MODE
 
 	.align 2
 gBattleAnims_General::
@@ -967,6 +970,7 @@ gBattleAnims_General::
 	.4byte General_AffectionHangedOn        @ B_ANIM_AFFECTION_HANGED_ON
 	.4byte General_Snow                     @ B_ANIM_SNOW_CONTINUES
 	.4byte General_ShadowSky				@ B_ANIM_SHADOW_SKY_CONTINUES
+	.4byte General_Call_Reverse_Mode		@ B_ANIM_CALL_REVERSE_MODE
 
 	.align 2
 gBattleAnims_Special::
@@ -16451,6 +16455,30 @@ Move_PSYBLADE::
 Move_HYDRO_STEAM::
 	end @to do
 
+ShadowAuraEffect:
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
+ReverseAuraEffect:
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
 Move_SHADOW_BLITZ::
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
 	monbg ANIM_ATTACKER
@@ -27036,6 +27064,61 @@ Status_Nightmare:
 
 Status_Powder:
 	end
+
+Status_Shadow:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	call ShadowAuraEffect
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(22, 22, 31)
+	delay 8
+	call ShadowAuraEffect
+	waitforvisualfinish
+	end
+
+Status_Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 5, 2
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 10, 1
+	call ReverseAuraEffect
+	end
+
+Enter_Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(25, 0, 11)
+	call ReverseAuraEffect
+	delay 8
+	call ReverseAuraEffect
+	waitforvisualfinish
+	end
+
+General_Call_Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loadspritegfx ANIM_TAG_THIN_RING
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 18, 6
+	call ReverseAuraEffect
+	delay 8
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ReverseAuraEffect
+	delay 8
+	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 30, 30)
+	call ShadowAuraEffect
+	createsprite gBlendThinRingExpandingSpriteTemplate, ANIM_ATTACKER, 16, 0, 0, 0, 1
+	waitforvisualfinish
+	end
+
+	
 
 General_StatsChange:
 	createvisualtask AnimTask_StatsChange, 5

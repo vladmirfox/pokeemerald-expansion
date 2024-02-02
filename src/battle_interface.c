@@ -1008,9 +1008,10 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     u32 xPos;
     u8 *objVram;
     u8 battler = gSprites[healthboxSpriteId].hMain_Battler;
+    bool32 reverse = (gBattleMons[battler].status1 & STATUS1_REVERSE_MODE) ? TRUE : FALSE;
 
-    // Don't print Lv char if mon is mega evolved or primal reverted.
-    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler))
+    // Don't print Lv char if mon is mega evolved, primal reverted, or reverse mode.
+    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler) || reverse)
     {
         objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2))) - 1;
@@ -1458,6 +1459,7 @@ enum
     INDICATOR_MEGA,
     INDICATOR_ALPHA,
     INDICATOR_OMEGA,
+    INDICATOR_REVERSE,
     INDICATOR_COUNT,
 };
 
@@ -1465,6 +1467,7 @@ static const u8 ALIGNED(4) sMegaIndicatorGfx[] = INCBIN_U8("graphics/battle_inte
 static const u16 sMegaIndicatorPal[] = INCBIN_U16("graphics/battle_interface/mega_indicator.gbapal");
 static const u8 ALIGNED(4) sAlphaIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/alpha_indicator.4bpp");
 static const u8 ALIGNED(4) sOmegaIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/omega_indicator.4bpp");
+static const u8 ALIGNED(4) sReverseIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/reverse_indicator.4bpp");
 static const u16 sAlphaOmegaIndicatorPal[] = INCBIN_U16("graphics/battle_interface/alpha_indicator.gbapal");
 
 static const struct SpriteSheet sMegaIndicator_SpriteSheets[] =
@@ -1472,6 +1475,7 @@ static const struct SpriteSheet sMegaIndicator_SpriteSheets[] =
     [INDICATOR_MEGA] = {sMegaIndicatorGfx, sizeof(sMegaIndicatorGfx), TAG_MEGA_INDICATOR_TILE},
     [INDICATOR_ALPHA] = {sAlphaIndicatorGfx, sizeof(sAlphaIndicatorGfx), TAG_ALPHA_INDICATOR_TILE},
     [INDICATOR_OMEGA] = {sOmegaIndicatorGfx, sizeof(sOmegaIndicatorGfx), TAG_OMEGA_INDICATOR_TILE},
+    [INDICATOR_REVERSE] = {sReverseIndicatorGfx, sizeof(sReverseIndicatorGfx), TAG_REVERSE_INDICATOR_TILE},
     [INDICATOR_COUNT] = {0}
 };
 static const struct SpritePalette sMegaIndicator_SpritePalettes[] =
@@ -1479,6 +1483,7 @@ static const struct SpritePalette sMegaIndicator_SpritePalettes[] =
     [INDICATOR_MEGA] = {sMegaIndicatorPal, TAG_MEGA_INDICATOR_PAL},
     [INDICATOR_ALPHA] = {sAlphaOmegaIndicatorPal, TAG_ALPHA_OMEGA_INDICATOR_PAL},
     [INDICATOR_OMEGA] = {sAlphaOmegaIndicatorPal, TAG_ALPHA_OMEGA_INDICATOR_PAL},
+    [INDICATOR_REVERSE] = {sAlphaOmegaIndicatorPal, TAG_ALPHA_OMEGA_INDICATOR_PAL},
     [INDICATOR_COUNT] = {0}
 };
 
@@ -1505,6 +1510,7 @@ static const u16 sMegaIndicatorTags[][2] =
     [INDICATOR_MEGA] = {TAG_MEGA_INDICATOR_TILE, TAG_MEGA_INDICATOR_PAL},
     [INDICATOR_ALPHA] = {TAG_ALPHA_INDICATOR_TILE, TAG_ALPHA_OMEGA_INDICATOR_PAL},
     [INDICATOR_OMEGA] = {TAG_OMEGA_INDICATOR_TILE, TAG_ALPHA_OMEGA_INDICATOR_PAL},
+    [INDICATOR_REVERSE] = {TAG_REVERSE_INDICATOR_TILE, TAG_ALPHA_OMEGA_INDICATOR_PAL},
 };
 
 static const s8 sIndicatorPositions[][2] =
@@ -1532,11 +1538,14 @@ static bool32 MegaIndicator_ShouldBeInvisible(u32 battlerId, struct Sprite *spri
     u32 side = GetBattlerSide(battlerId);
     bool32 megaEvolved = IsBattlerMegaEvolved(battlerId);
     bool32 primalReverted = IsBattlerPrimalReverted(battlerId);
+    bool32 reverseMode = (gBattleMons[battlerId].status1 & STATUS1_REVERSE_MODE) ? TRUE : FALSE;
 
-    if (!megaEvolved && !primalReverted)
+    if (!reverseMode && !megaEvolved && !primalReverted)
         return TRUE;
 
-    if (megaEvolved)
+    if (reverseMode)
+        sprite->tType = INDICATOR_REVERSE;
+    else if (megaEvolved)
         sprite->tType = INDICATOR_MEGA;
     else if (primalReverted && gBattleMons[battlerId].species == SPECIES_KYOGRE_PRIMAL)
         sprite->tType = INDICATOR_ALPHA;
@@ -2102,20 +2111,11 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     u32 windowId, spriteTileNum, species;
     u8 *windowTileData;
     u8 gender;
-    u8 shadow;
     struct Pokemon *illusionMon = GetIllusionMonPtr(gSprites[healthboxSpriteId].hMain_Battler);
     if (illusionMon != NULL)
         mon = illusionMon;
 
-    shadow = GetMonData(mon, MON_DATA_IS_SHADOW);
-    if (shadow != 0)
-    {
-        StringCopy(gDisplayedStringBattle, gText_HealthboxShadow);
-    }
-    else
-    {
-        StringCopy(gDisplayedStringBattle, gText_HealthboxNickname);
-    }
+    StringCopy(gDisplayedStringBattle, gText_HealthboxNickname);
     GetMonData(mon, MON_DATA_NICKNAME, nickname);
     StringGet_Nickname(nickname);
     ptr = StringAppend(gDisplayedStringBattle, nickname);
@@ -2200,7 +2200,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
-        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
+        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
         if (!WhichBattleCoords(battlerId))
             tileNumAdder = 0x1A;
         else
@@ -2208,7 +2208,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     }
     else
     {
-        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
+        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
         tileNumAdder = 0x11;
     }
 

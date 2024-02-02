@@ -175,21 +175,41 @@ BattleScript_SuccessBallThrowEnd::
 BattleScript_SuccessBallThrowShadow::
 	setbyte sMON_CAUGHT, TRUE
 	incrementgamestat GAME_STAT_POKEMON_CAPTURES
-BattleScript_PrintCaughtMonInfoShadow::
-	printstring STRINGID_GOTCHAPKMNCAUGHTPLAYER
-	jumpifbyte CMP_NOT_EQUAL, sEXP_CATCH, TRUE, BattleScript_TryPrintCaughtMonInfo
+BattleScript_PrintSnaggedMonInfo::
+	printstring STRINGID_GOTCHAPKMNCAUGHTTRAINER
+	jumpifbyte CMP_NOT_EQUAL, sEXP_CATCH, TRUE, BattleScript_TrySetFaint
 	setbyte sGIVEEXP_STATE, 0
 	getexp BS_TARGET
 	sethword gBattle_BG2_X, 0
-BattleScript_GiveCaughtMonEndShadow::
-	givecaughtmon
+BattleScript_TrySetFaint::
+	tryfaintmon BS_TARGET
+	goto BattleScript_MoveEnd
+BattleScript_ShowCaughtTargetAsFainted::
 	tryillusionoff BS_TARGET
-	dofaintanimation BS_TARGET
 	cleareffectsonfaint BS_TARGET
+	trytrainerslidefirstdownmsg BS_TARGET
+	return
 	setbyte sMON_CAUGHT, FALSE
-BattleScript_SuccessBallThrowEndShadow::
-	moveendall
 	goto BattleScript_HandleFaintedMon
+
+BattleScript_TryPrintSnaggedMonInfo::
+    trysetcaughtmondexflags BattleScript_TryNicknameSnaggedMon
+    printstring STRINGID_PKMNDATAADDEDTODEX
+    waitstate
+    setbyte gBattleCommunication, 0
+    displaydexinfo
+BattleScript_TryNicknameSnaggedMon::
+    printstring STRINGID_GIVENICKNAMECAPTURED
+    waitstate
+    setbyte gBattleCommunication, 0
+    trygivecaughtmonnick BattleScript_GiveCaughtMonEnd
+    givecaughtmon
+    printfromtable gCaughtMonStringIds
+    waitmessage B_WAIT_TIME_LONG
+    return
+BattleScript_GiveSnaggedMonEnd::
+    givecaughtmon
+    return
 
 BattleScript_WallyBallThrow::
     printstring STRINGID_GOTCHAPKMNCAUGHTWALLY

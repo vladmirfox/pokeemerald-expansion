@@ -1961,7 +1961,7 @@ u8 GetMonAilment(struct Pokemon *mon)
     if (CheckPartyPokerus(mon, 0))
         return AILMENT_PKRS;
     if (CheckPartyShadow(mon, 0))
-        return AILMENT_SHADOW;
+        return AILMENT_SHDW;
     return AILMENT_NONE;
 }
 
@@ -2316,7 +2316,7 @@ static void DisplayPartyPokemonLevelCheck(struct Pokemon *mon, struct PartyMenuB
     if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE)
     {
         u8 ailment = GetMonAilment(mon);
-        if (ailment == AILMENT_NONE || ailment == AILMENT_PKRS || ailment == AILMENT_SHADOW)
+        if (ailment == AILMENT_NONE || ailment == AILMENT_PKRS || ailment == AILMENT_SHDW)
         {
             if (c != 0)
                 menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->dimensions[4] >> 3, (menuBox->infoRects->dimensions[5] >> 3) + 1, menuBox->infoRects->dimensions[6] >> 3, menuBox->infoRects->dimensions[7] >> 3, FALSE);
@@ -4242,7 +4242,7 @@ static void UpdatePartyMonAilmentGfx(u8 status, struct PartyMenuBox *menuBox)
     case AILMENT_PKRS:
         gSprites[menuBox->statusSpriteId].invisible = TRUE;
         break;
-    case AILMENT_SHADOW:
+    case AILMENT_SHDW:
         gSprites[menuBox->statusSpriteId].invisible = TRUE;
         break;
     default:

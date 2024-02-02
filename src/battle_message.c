@@ -489,6 +489,7 @@ static const u8 sText_ItAppearedCaught[] = _("Aww!\nIt appeared to be caught!");
 static const u8 sText_AarghAlmostHadIt[] = _("Aargh!\nAlmost had it!");
 static const u8 sText_ShootSoClose[] = _("Shoot!\nIt was so close, too!");
 static const u8 sText_GotchaPkmnCaughtPlayer[] = _("Gotcha!\n{B_DEF_NAME} was caught!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}\p");
+static const u8 sText_GotchaPkmnCaughtTrainer[] = _("Gotcha!\n{B_DEF_NAME} was caught!{WAIT_SE}\p");
 static const u8 sText_GotchaPkmnCaughtWally[] = _("Gotcha!\n{B_DEF_NAME} was caught!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}{PAUSE 127}");
 static const u8 sText_GiveNicknameCaptured[] = _("Give a nickname to the\ncaptured {B_DEF_NAME}?");
 static const u8 sText_PkmnSentToPC[] = _("{B_DEF_NAME} was sent to\n{B_PC_CREATOR_NAME} PC.");
@@ -807,6 +808,9 @@ static const u8 sText_ShadowPkmnNotice[] = _("Oh!\nA Shadow Pokémon!\p");
 static const u8 sText_TrainerCallToMon[] = _("{B_ATK_TRAINER_NAME} called out to {B_ATK_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnStoredEXP[] = _("{B_BUFF1} stored{B_BUFF2}\n{B_BUFF3} EXP. Points!\p");
 static const u8 sText_PkmnHeartValueUpdate[] = _("The door to {B_BUFF1}'s\nheart opened a little!\p");
+static const u8 sText_ReverseModeEnter[] = _("{B_ATK_NAME_WITH_PREFIX}'s emotions rose to a\nfever pitch! It entered Reverse Mode!");
+static const u8 sText_ReverseModeDamage[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt by Reverse Mode!");
+static const u8 sText_ReverseModeCalled[] = _("{B_ATK_NAME_WITH_PREFIX} came to its senses!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1180,6 +1184,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_AARGHALMOSTHADIT - BATTLESTRINGS_TABLE_START] = sText_AarghAlmostHadIt,
     [STRINGID_SHOOTSOCLOSE - BATTLESTRINGS_TABLE_START] = sText_ShootSoClose,
     [STRINGID_GOTCHAPKMNCAUGHTPLAYER - BATTLESTRINGS_TABLE_START] = sText_GotchaPkmnCaughtPlayer,
+    [STRINGID_GOTCHAPKMNCAUGHTTRAINER - BATTLESTRINGS_TABLE_START] = sText_GotchaPkmnCaughtTrainer,
     [STRINGID_GOTCHAPKMNCAUGHTWALLY - BATTLESTRINGS_TABLE_START] = sText_GotchaPkmnCaughtWally,
     [STRINGID_GIVENICKNAMECAPTURED - BATTLESTRINGS_TABLE_START] = sText_GiveNicknameCaptured,
     [STRINGID_PKMNSENTTOPC - BATTLESTRINGS_TABLE_START] = sText_PkmnSentToPC,
@@ -1470,6 +1475,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SHADOW_SKYCONTINUES - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyContinues,
     [STRINGID_SHADOW_SKYSTOPPED - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyStopped,
     [STRINGID_SHADOW_SKYDAMAGE - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyDamage,
+	[STRINGID_REVERSEMODE_ENTER - BATTLESTRINGS_TABLE_START] = sText_ReverseModeEnter,
+	[STRINGID_REVERSEMODE_DAMAGE - BATTLESTRINGS_TABLE_START] = sText_ReverseModeDamage,
+	[STRINGID_REVERSEMODE_CALLED - BATTLESTRINGS_TABLE_START] = sText_ReverseModeCalled,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

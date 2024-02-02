@@ -43,10 +43,11 @@ static bool32 AllMonsFainted(void)
 static void FaintFromFieldPoison(u8 partyIdx)
 {
     struct Pokemon *pokemon = &gPlayerParty[partyIdx];
-    u32 status = STATUS1_NONE;
+    u32 status = GetMonData(pokemon, MON_DATA_STATUS) & STATUS1_REVERSE_MODE;
 
 #if OW_POISON_DAMAGE < GEN_4
     AdjustFriendship(pokemon, FRIENDSHIP_EVENT_FAINT_FIELD_PSN);
+    status = STATUS1_NONE;
 #endif
     SetMonData(pokemon, MON_DATA_STATUS, &status);
     GetMonData(pokemon, MON_DATA_NICKNAME, gStringVar1);
@@ -57,9 +58,9 @@ static bool32 MonFaintedFromPoison(u8 partyIdx)
 {
     struct Pokemon *pokemon = &gPlayerParty[partyIdx];
 #if OW_POISON_DAMAGE < GEN_4
-    if (IsMonValidSpecies(pokemon) && GetMonData(pokemon, MON_DATA_HP) == 0 && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
+    if (IsMonValidSpecies(pokemon) && GetMonData(pokemon, MON_DATA_HP) == 0 && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_PSN)
 #else
-    if (IsMonValidSpecies(pokemon) && GetMonData(pokemon, MON_DATA_HP) == 1 && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
+    if (IsMonValidSpecies(pokemon) && GetMonData(pokemon, MON_DATA_HP) == 1 && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_PSN)
 #endif
         return TRUE;
 
@@ -130,7 +131,7 @@ s32 DoPoisonFieldEffect(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
+        if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE) == AILMENT_PSN)
         {
             // Apply poison damage
             hp = GetMonData(pokemon, MON_DATA_HP);

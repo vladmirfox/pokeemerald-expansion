@@ -95,6 +95,7 @@ enum {
     MON_DATA_SHADOW_ID,
     MON_DATA_SHADOW_AGGRO,
     MON_DATA_REVERSE_MODE,
+    MON_DATA_SNAGGED,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
     MON_DATA_KNOWN_MOVES,
@@ -218,7 +219,8 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     /* 0x05 */ u8 shadowAggro:3; //Determines chance to enter Reverse Mode
     /* 0x05 */ u8 isXD:1; //for Shadow Lugia's special case
     /* 0x05 */ u8 isReverse:1;
-    /* 0x05 */ u8 filler:3;
+    /* 0x05 */ u8 snagFlag:1; //Set when catching from another trainer, so that the mon is given to you after winning. Unset afterward.
+    /* 0x05 */ u8 filler:2;
     /* 0x06 */ 
     /* 0x07 */ 
     /* 0x08 */ 
@@ -226,6 +228,27 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     /* size = 10 */
         
     } shadowData;
+};
+
+enum {
+    SHADOW_AGGRO_NONE,
+    SHADOW_AGGRO_VERY_LOW,
+    SHADOW_AGGRO_LOW,
+    SHADOW_AGGRO_MEDIUM,
+    SHADOW_AGGRO_HIGH,
+    SHADOW_AGGRO_VERY_HIGH,
+    SHADOW_AGGRO_TEST,
+    NUM_AGGRO_LEVELS
+};
+
+enum {
+    HEART_GAUGE_EMPTY,
+    HEART_SECTION_1,
+    HEART_SECTION_2,
+    HEART_SECTION_3,
+    HEART_SECTION_4,
+    HEART_GAUGE_FULL,
+    HEART_GAUGE_LEVELS
 };
 
 struct BoxPokemon
@@ -330,7 +353,8 @@ struct BattlePokemon
     /*0x5A*/ u8 isShadow:1;
     /*0x5A*/ u8 shadowAggro:3;
     /*0x5A*/ u8 isReverse:1;
-    /*0x5A*/ u8 filler:3;
+    /*0x5A*/ u8 snagged:1;
+    /*0x5A*/ u8 filler:2;
     /*0x5B*/ u8 shadowID;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;
@@ -483,6 +507,7 @@ extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
+extern const u8 gShadowAggressionTable[][6];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
 extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
@@ -653,7 +678,9 @@ u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
 bool32 IsSpeciesEnabled(u16 species);
 u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax);
+u8 GetReverseModeChance(struct BattlePokemon *mon);
 u8 ShdwCanMonGainEXP(struct Pokemon *mon);
+u16 ModifyHeartValueInBattle(u8 battlerId, u16 amount);
 u8 CheckPartyShadow(struct Pokemon *party, u8 selection);
 
 #endif // GUARD_POKEMON_H
