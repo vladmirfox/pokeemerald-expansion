@@ -2132,7 +2132,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 if (partyData[i].isShadow)
                     CalculateMonStats(&party[i], TRUE);
                 else
-                    CalculateMonStats(&party[i], FALSE);
+                    CalculateMonStats(&party[i]);
             }
             }
 
@@ -5484,7 +5484,7 @@ static void HandleEndTurn_FinishBattle(void)
         #if B_RECALCULATE_STATS >= GEN_5
             // Recalculate the stats of every party member before the end
             if (!changedForm)
-                CalculateMonStats(&gPlayerParty[i], FALSE);
+                CalculateMonStats(&gPlayerParty[i]);
         #endif
         }
         // Clear battle mon species to avoid a bug on the next battle that causes

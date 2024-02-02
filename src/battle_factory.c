@@ -455,7 +455,7 @@ static void SetPlayerAndOpponentParties(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HP_EV + j, &evs);
             }
 
-            CalculateMonStats(&gPlayerParty[i], FALSE);
+            CalculateMonStats(&gPlayerParty[i]);
             friendship = 0;
             for (k = 0; k < MAX_MON_MOVES; k++)
                 SetMonMoveAvoidReturn(&gPlayerParty[i], gFacilityTrainerMons[monId].moves[k], k);

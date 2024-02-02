@@ -76,7 +76,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     if (targetSpecies != SPECIES_NONE)
     {
         SetMonData(&mon, MON_DATA_SPECIES, &targetSpecies);
-        CalculateMonStats(&mon, FALSE);
+        CalculateMonStats(&mon);
     }
 
     sentToPc = GiveMonToPlayer(&mon);

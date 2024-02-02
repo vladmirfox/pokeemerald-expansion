@@ -3037,7 +3037,7 @@ static void FillPartnerParty(u16 trainerId)
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_NAME, gTrainers[TRAINER_STEVEN].trainerName);
             j = MALE;
             SetMonData(&gPlayerParty[MULTI_PARTY_SIZE + i], MON_DATA_OT_GENDER, &j);
-            CalculateMonStats(&gPlayerParty[MULTI_PARTY_SIZE + i], FALSE);
+            CalculateMonStats(&gPlayerParty[MULTI_PARTY_SIZE + i]);
         }
     }
     else if (trainerId >= TRAINER_CUSTOM_PARTNER)
@@ -3158,7 +3158,7 @@ static void FillPartnerParty(u16 trainerId)
                 {
                     SetMonData(&gPlayerParty[i+3], MON_DATA_NICKNAME, partyData[i].nickname);
                 }
-                CalculateMonStats(&gPlayerParty[i+3], FALSE);
+                CalculateMonStats(&gPlayerParty[i+3]);
             }
             }
 

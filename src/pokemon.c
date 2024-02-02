@@ -3868,7 +3868,7 @@ void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 m
     language = src->language;
     SetMonData(mon, MON_DATA_LANGUAGE, &language);
     SetMonData(mon, MON_DATA_OT_NAME, GetApprenticeNameInLanguage(src->id, language));
-    CalculateMonStats(mon, FALSE);
+    CalculateMonStats(mon);
 }
 
 void CreateMonWithEVSpreadNatureOTID(struct Pokemon *mon, u16 species, u8 level, u8 nature, u8 fixedIV, u8 evSpread, u32 otId)
@@ -4096,7 +4096,12 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     SetMonData(mon, field, &n);                                 \
 }
 
-void CalculateMonStats(struct Pokemon *mon, bool8 canBeBoosted)
+void CalculateMonStats1(struct Pokemon *mon)
+{
+    CalculateMonStats2(mon, FALSE);
+}
+
+void CalculateMonStats2(struct Pokemon *mon, bool8 canBeBoosted)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
     s32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
@@ -4195,7 +4200,7 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     SetMonData(dest, MON_DATA_MAX_HP, &value);
     value = MAIL_NONE;
     SetMonData(dest, MON_DATA_MAIL, &value);
-    CalculateMonStats(dest, FALSE);
+    CalculateMonStats(dest);
 }
 
 u8 GetLevelFromMonExp(struct Pokemon *mon)
@@ -5943,7 +5948,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                 if (dataUnsigned != 0) // Failsafe
                 {
                     SetMonData(mon, MON_DATA_EXP, &dataUnsigned);
-                    CalculateMonStats(mon, FALSE);
+                    CalculateMonStats(mon);
                     retVal = FALSE;
                 }
             }
@@ -6043,7 +6048,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                         // Update EVs and stats
                         SetMonData(mon, sGetMonDataEVConstants[temp1], &dataSigned);
-                        CalculateMonStats(mon, FALSE);
+                        CalculateMonStats(mon);
                         itemEffectParam++;
                         retVal = FALSE;
                         break;
@@ -6223,7 +6228,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
                         // Update EVs and stats
                         SetMonData(mon, sGetMonDataEVConstants[temp1 + 2], &dataSigned);
-                        CalculateMonStats(mon, FALSE);
+                        CalculateMonStats(mon);
                         retVal = FALSE;
                         itemEffectParam++;
                         break;

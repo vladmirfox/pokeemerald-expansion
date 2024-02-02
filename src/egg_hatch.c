@@ -384,7 +384,7 @@ static void AddHatchedMonToParty(u8 id)
     SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
 
     MonRestorePP(mon);
-    CalculateMonStats(mon, FALSE);
+    CalculateMonStats(mon);
 }
 
 void ScriptHatchMon(void)

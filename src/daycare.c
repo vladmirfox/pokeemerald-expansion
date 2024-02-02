@@ -301,7 +301,7 @@ static void ApplyDaycareExperience(struct Pokemon *mon)
     }
 
     // Re-calculate the mons stats at its new level.
-    CalculateMonStats(mon, FALSE);
+    CalculateMonStats(mon);
 }
 
 static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
@@ -319,7 +319,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     if (newSpecies != SPECIES_NONE)
     {
         SetMonData(&pokemon, MON_DATA_SPECIES, &newSpecies);
-        CalculateMonStats(&pokemon, FALSE);
+        CalculateMonStats(&pokemon);
         species = newSpecies;
     }
 
