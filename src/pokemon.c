@@ -5109,10 +5109,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.shadowID;
         break;
-    case MON_DATA_IS_XD:
-        if (substruct3->isShadow)
-            retVal = boxMon->nickData.shadowData.isXD;
-        break;
     case MON_DATA_SHADOW_AGGRO:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.shadowAggro;
@@ -5447,9 +5443,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_SHADOW_ID:
         SET8(boxMon->nickData.shadowData.shadowID);
         break;
-    case MON_DATA_IS_XD:
-        SET8(boxMon->nickData.shadowData.isXD);
-        break;
     case MON_DATA_SHADOW_AGGRO:
         SET8(boxMon->nickData.shadowData.shadowAggro);
         break;
@@ -5769,7 +5762,6 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->type3 = TYPE_MYSTERY;
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     dst->isShadow = GetMonData(src, MON_DATA_IS_SHADOW, NULL);
-    dst->isXD = GetMonData(src, MON_DATA_IS_XD, NULL);
     dst->shadowAggro = GetMonData(src, MON_DATA_SHADOW_AGGRO, NULL);
     dst->shadowID = GetMonData(src, MON_DATA_SHADOW_ID, NULL);
     GetMonData(src, MON_DATA_NICKNAME, nickname);

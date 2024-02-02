@@ -93,7 +93,6 @@ enum {
     MON_DATA_UNUSED_RIBBONS,
     MON_DATA_IS_SHADOW,
     MON_DATA_SHADOW_ID,
-    MON_DATA_IS_XD,
     MON_DATA_SHADOW_AGGRO,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
@@ -331,7 +330,7 @@ struct BattlePokemon
     /*0x5A*/ u8 isShadow:1;
     /*0x5A*/ u8 shadowAggro:3;
     /*0x5A*/ u8 isReverse:1;
-    /*0x5A*/ u8 isXD:1;
+    /*0x5A*/ u8 filler:3;
     /*0x5B*/ u8 shadowID;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;
