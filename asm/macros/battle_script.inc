@@ -531,9 +531,10 @@
 	.byte 0x57
 	.endm
 
-	.macro returntoball battler:req
+	.macro returntoball battler:req, changingForm:req
 	.byte 0x58
 	.byte \battler
+	.byte \changingForm
 	.endm
 
 	.macro handlelearnnewmove learnedMoveInstr:req, nothingToLearnInstr:req, isFirstMove:req
@@ -1599,6 +1600,15 @@
 
 	.macro setphotongeysercategory
 	callnative BS_SetPhotonGeyserCategory
+	.endm
+
+	.macro tryupperhand failInstr:req
+	callnative BS_TryUpperHand
+	.4byte \failInstr
+	.endm
+  
+	.macro tryupdaterecoiltracker
+	callnative BS_TryUpdateRecoilTracker
 	.endm
 
 @ various command changed to more readable macros
