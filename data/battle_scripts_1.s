@@ -581,8 +581,8 @@ BattleScript_BeakBlastBurn::
 	return
 
 BattleScript_EffectSkyDrop::
-	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
 	attackcanceler
+	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -1913,7 +1913,7 @@ BattleScript_GrowthDoMoveAnim::
 	waitanimation
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_ATK | BIT_SPATK, 0
-	jumpifweathermovearg BS_ATTACKER, BattleScript_GrowthAtk2
+	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthAtk2
 	setstatchanger STAT_ATK, 1, FALSE
 	goto BattleScript_GrowthAtk
 BattleScript_GrowthAtk2:
@@ -1924,7 +1924,7 @@ BattleScript_GrowthAtk:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_GrowthTrySpAtk::
-	jumpifweathermovearg BS_ATTACKER, BattleScript_GrowthSpAtk2
+	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthSpAtk2
 	setstatchanger STAT_SPATK, 1, FALSE
 	goto BattleScript_GrowthSpAtk
 BattleScript_GrowthSpAtk2:
@@ -3711,27 +3711,13 @@ BattleScript_PowerHerbActivation:
 	return
 
 BattleScript_EffectTwoTurnsAttack::
-	jumpifmovehaschargeturneffects BattleScript_EffectTwoTurnsAttackTry
-	jumpifsemiinvulnerablemove BattleScript_EffectTwoTurnsAttackTry
-	jumpifweathermovearg BS_ATTACKER, BattleScript_EffectTwoTurnsAttackFireImmediately
-BattleScript_EffectTwoTurnsAttackTry::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
+	jumpifweathercheckchargeeffects BS_ATTACKER, TRUE, BattleScript_EffectHit
 	call BattleScript_FirstChargingTurn
-	jumpifsemiinvulnerablemove BattleScript_EffectTwoTurnsAttackTryPowerHerb
-	jumpifweathermovearg BS_ATTACKER, BattleScript_TwoTurnMovesSecondTurn
-BattleScript_EffectTwoTurnsAttackTryPowerHerb:
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-.if B_UPDATED_MOVE_DATA < GEN_5 @ before Gen 5, charge moves did not print an attack string on the charge turn
-	attackstring
-	waitmessage B_WAIT_TIME_LONG
-.endif
-	goto BattleScript_TwoTurnMovesSecondTurn
-
-BattleScript_EffectTwoTurnsAttackFireImmediately::
-	setbyte sB_ANIM_TURN, 1
-	goto BattleScript_EffectHit
+	jumpifweathercheckchargeeffects BS_ATTACKER, FALSE, BattleScript_TwoTurnMovesSecondTurn
+	jumpifholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_TwoTurnMovesSecondPowerHerbActivates
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectGeomancy::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_GeomancySecondTurn
@@ -3775,29 +3761,38 @@ BattleScript_GeomancyEnd::
 
 BattleScript_FirstChargingTurn::
 	attackcanceler
-	ppreduce
 .if B_UPDATED_MOVE_DATA >= GEN_5 @ before Gen 5, charge moves did not print an attack string on the charge turn
 	flushtextbox
 	attackstring
 	waitmessage B_WAIT_TIME_LONG
 .endif
+	ppreduce
 BattleScript_FirstChargingTurnAfterAttackString:
 	setsemiinvulnerablebit @ only for moves with EFFECT_SEMI_INVULNERABLE/EFFECT_SKY_DROP
 	orword gHitMarker, HITMARKER_CHARGING
 	seteffectprimary MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
-	twoturnmovestringandchargeanimation
+	twoturnmoveschargestringandanimation
 	setadditionaleffects @ only onChargeTurnOnly effects will work here
 	return
 
-BattleScript_TwoTurnMovesSecondTurn::
+BattleScript_TwoTurnMovesSecondPowerHerbActivates:
+	call BattleScript_PowerHerbActivation
 	call BattleScript_TwoTurnMovesSecondTurnRet
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+.if B_UPDATED_MOVE_DATA < GEN_5 @ before Gen 5, charge moves did not print an attack string on the charge turn
+	attackstring
+.endif
+	goto BattleScript_HitFromCritCalc
+
+BattleScript_TwoTurnMovesSecondTurn::
+	attackcanceler
+	call BattleScript_TwoTurnMovesSecondTurnRet
+	orword gHitMarker, HITMARKER_NO_PPDEDUCT
 	goto BattleScript_HitFromAccCheck
 
 BattleScript_TwoTurnMovesSecondTurnRet:
-	attackcanceler
 	setbyte sB_ANIM_TURN, 1
 	clearstatusfromeffect BS_ATTACKER, MOVE_EFFECT_CHARGING
-	orword gHitMarker, HITMARKER_NO_PPDEDUCT
 	clearsemiinvulnerablebit @ only for moves with EFFECT_SEMI_INVULNERABLE/EFFECT_SKY_DROP
 	return
 

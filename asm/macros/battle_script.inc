@@ -72,6 +72,10 @@
 	.2byte \id
 	.endm
 
+	.macro printsavedstring
+	printstring 0
+	.endm
+
 	.macro printselectionstring id:req
 	.byte 0x11
 	.2byte \id
@@ -775,11 +779,11 @@
 	.byte 0x8b
 	.endm
 
-	.macro twoturnmovestringandchargeanimation
+	.macro twoturnmoveschargestringandanimation
 	.byte 0x8c
 	.4byte 1f @animation then attack string
 	@default - attack string then animation
-	printfromtable gFirstTurnOfTwoStringIds
+	printsavedstring
 	waitmessage B_WAIT_TIME_LONG
 	attackanimation
 	waitanimation
@@ -787,7 +791,7 @@
 	1:
 	attackanimation
 	waitanimation
-	printfromtable gFirstTurnOfTwoStringIds
+	printsavedstring
 	waitmessage B_WAIT_TIME_LONG
 	2:
 	.endm
@@ -1056,8 +1060,10 @@
 	setsemiinvulnerablebit TRUE
 	.endm
 
-	.macro jumpifsemiinvulnerablemove jumpInstr:req
+	.macro jumpifweathercheckchargeeffects battler:req, checkChargeTurnEffects:req, jumpInstr:req
 	.byte 0xc6
+	.byte \battler
+	.byte \checkChargeTurnEffects
 	.4byte \jumpInstr
 	.endm
 
@@ -1355,13 +1361,6 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req
-	callnative BS_JumpIfHoldEffect
-	.byte \battler
-	.2byte \holdEffect
-	.4byte \jumpInstr
-	.endm
-
 	.macro dostockpilestatchangeswearoff, battler:req, statChangeInstr:req
 	callnative BS_DoStockpileStatChangesWearOff
 	.byte \battler
@@ -1600,11 +1599,6 @@
 
 	.macro setphotongeysercategory
 	callnative BS_SetPhotonGeyserCategory
-	.endm
-
-	.macro jumpifmovehaschargeturneffects jumpInstr:req
-	callnative BS_JumpIfMoveHasChargeTurnEffects
-	.4byte \jumpInstr
 	.endm
 
 @ various command changed to more readable macros
@@ -2019,10 +2013,15 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifnoholdeffect battler:req, holdEffect:req, jumpInstr:req
-	various \battler, VARIOUS_JUMP_IF_NO_HOLD_EFFECT
+	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req, equal=TRUE
+	various \battler, VARIOUS_JUMP_IF_HOLD_EFFECT
 	.byte \holdEffect
 	.4byte \jumpInstr
+	.byte \equal
+	.endm
+
+	.macro jumpifnoholdeffect battler:req, holdEffect:req, jumpInstr:req
+	jumpifholdeffect \battler, \holdEffect, \jumpInstr, FALSE
 	.endm
 
 	.macro infatuatewithbattler battler:req, infatuateWith:req
@@ -2130,9 +2129,9 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifweathermovearg battler:req, jumpInstr:req
-	various \battler, VARIOUS_JUMP_IF_WEATHER_MOVE_ARG
-	.4byte \jumpInstr
+	.macro jumpifweatheraffected battler:req, flags:req, jumpInstr:req
+	various \battler, VARIOUS_JUMP_IF_WEATHER_AFFECTED
+	.4byte \flags
 	.endm
 
 	.macro jumpifspecies battler:req, species:req, jumpInstr:req

@@ -497,7 +497,7 @@ static void Cmd_setdrainedhp(void);
 static void Cmd_statbuffchange(void);
 static void Cmd_normalisebuffs(void);
 static void Cmd_setbide(void);
-static void Cmd_twoturnmovestringandchargeanimation(void);
+static void Cmd_twoturnmoveschargestringandanimation(void);
 static void Cmd_setmultihitcounter(void);
 static void Cmd_initmultihitstring(void);
 static void Cmd_forcerandomswitch(void);
@@ -555,7 +555,7 @@ static void Cmd_selectfirstvalidtarget(void);
 static void Cmd_trysetfutureattack(void);
 static void Cmd_trydobeatup(void);
 static void Cmd_setsemiinvulnerablebit(void);
-static void Cmd_jumpifsemiinvulnerablemove(void);
+static void Cmd_jumpifweathercheckchargeeffects(void);
 static void Cmd_setminimize(void);
 static void Cmd_sethail(void);
 static void Cmd_trymemento(void);
@@ -756,7 +756,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_statbuffchange,                          //0x89
     Cmd_normalisebuffs,                          //0x8A
     Cmd_setbide,                                 //0x8B
-    Cmd_twoturnmovestringandchargeanimation,     //0x8C
+    Cmd_twoturnmoveschargestringandanimation,    //0x8C
     Cmd_setmultihitcounter,                      //0x8D
     Cmd_initmultihitstring,                      //0x8E
     Cmd_forcerandomswitch,                       //0x8F
@@ -814,7 +814,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_trysetfutureattack,                      //0xC3
     Cmd_trydobeatup,                             //0xC4
     Cmd_setsemiinvulnerablebit,                  //0xC5
-    Cmd_jumpifsemiinvulnerablemove,              //0xC6
+    Cmd_jumpifweathercheckchargeeffects,         //0xC6
     Cmd_setminimize,                             //0xC7
     Cmd_sethail,                                 //0xC8
     Cmd_trymemento,                              //0xC9
@@ -2613,13 +2613,43 @@ static void Cmd_resultmessage(void)
     }
 }
 
+// static void Cmd_printstring(void)
+// {
+//     CMD_ARGS(u16 id, bool8 selection);
+
+//     if (cmd->selection)
+//     {
+//         BtlController_EmitPrintSelectionString(gBattlerAttacker, BUFFER_A, cmd->id);
+//         MarkBattlerForControllerExec(gBattlerAttacker);
+//     }
+//     else if (gBattleControllerExecFlags == 0)
+//         PrepareStringBattle(cmd->id, gBattlerAttacker);
+//     else
+//         return;
+
+//     gBattlescriptCurrInstr = cmd->nextInstr;
+//     gBattleCommunication[MSG_DISPLAY] = 1;
+// }
+
+// static void Cmd_printselectionstring(void)
+// {
+//     CMD_ARGS(u16 id);
+
+//     if (gBattleControllerExecFlags == 0)
+//     {
+//         gBattlescriptCurrInstr = cmd->nextInstr;
+//         PrepareStringBattle(gBattleScripting.savedStringId, gBattlerAttacker);
+//         gBattleCommunication[MSG_DISPLAY] = 1;
+//     }
+// }
+
 static void Cmd_printstring(void)
 {
     CMD_ARGS(u16 id);
 
     if (gBattleControllerExecFlags == 0)
     {
-        u16 id = cmd->id;
+        u16 id = (cmd->id == 0 ? gBattleScripting.savedStringId : cmd->id);
 
         gBattlescriptCurrInstr = cmd->nextInstr;
         PrepareStringBattle(id, gBattlerAttacker);
@@ -8682,16 +8712,19 @@ static void Cmd_various(void)
         }
         return;
     }
-    case VARIOUS_JUMP_IF_NO_HOLD_EFFECT:
+    case VARIOUS_JUMP_IF_HOLD_EFFECT:
     {
-        VARIOUS_ARGS(u8 holdEffect, const u8 *jumpInstr);
-        if (GetBattlerHoldEffect(battler, TRUE) != cmd->holdEffect)
+        VARIOUS_ARGS(u8 holdEffect, const u8 *jumpInstr, u8 equal);
+        if ((GetBattlerHoldEffect(battler, TRUE) == cmd->holdEffect) == cmd->equal)
         {
+            if (cmd->equal)
+                gLastUsedItem = gBattleMons[battler].item; // For B_LAST_USED_ITEM
             gBattlescriptCurrInstr = cmd->jumpInstr;
         }
         else
         {
-            gLastUsedItem = gBattleMons[battler].item;   // For B_LAST_USED_ITEM
+            if (!cmd->equal)
+                gLastUsedItem = gBattleMons[battler].item; // For B_LAST_USED_ITEM
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -10286,10 +10319,10 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
-    case VARIOUS_JUMP_IF_WEATHER_MOVE_ARG:
+    case VARIOUS_JUMP_IF_WEATHER_AFFECTED:
         {
-            VARIOUS_ARGS(const u8 *jumpInstr);
-            u32 flags = gMovesInfo[gCurrentMove].argument;;
+            VARIOUS_ARGS(u32 flags, const u8 *jumpInstr);
+            u32 flags = cmd->flags;
             if (IsBattlerWeatherAffected(battler, flags))
                 gBattlescriptCurrInstr = cmd->jumpInstr;
             else
@@ -11678,57 +11711,11 @@ static void Cmd_setbide(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_twoturnmovestringandchargeanimation(void)
+static void Cmd_twoturnmoveschargestringandanimation(void)
 {
     CMD_ARGS(const u8 *animationThenStringPtr);
 
-    switch (gCurrentMove)
-    {
-        case MOVE_RAZOR_WIND:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_RAZOR_WIND;
-            break;
-        case MOVE_SOLAR_BEAM:
-        case MOVE_SOLAR_BLADE:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SOLAR_BEAM;
-            break;
-        case MOVE_SKULL_BASH:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKULL_BASH;
-            break;
-        case MOVE_SKY_ATTACK:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKY_ATTACK;
-            break;
-        case MOVE_FLY:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_FLY;
-            break;
-        case MOVE_DIG:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_DIG;
-            break;
-        case MOVE_DIVE:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_DIVE;
-            break;
-        case MOVE_BOUNCE:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_BOUNCE;
-            break;
-        case MOVE_PHANTOM_FORCE:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_PHANTOM_FORCE;
-            break;
-        case MOVE_GEOMANCY:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_GEOMANCY;
-            break;
-        case MOVE_FREEZE_SHOCK:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_FREEZE_SHOCK;
-            break;
-        case MOVE_SKY_DROP:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_SKY_DROP;
-            break;
-        case MOVE_METEOR_BEAM:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_METEOR_BEAM;
-            break;
-        case MOVE_ELECTRO_SHOT:
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TURN1_ELECTRO_SHOT;
-            break;
-    }
-
+    gBattleScripting.savedStringId = LOHALF(gMovesInfo[gCurrentMove].argument);
     if (B_UPDATED_MOVE_DATA < GEN_5 || MoveHasChargeTurnMoveEffect(gCurrentMove))
         gBattlescriptCurrInstr = cmd->animationThenStringPtr;
     else
@@ -13683,22 +13670,32 @@ static void Cmd_setsemiinvulnerablebit(void)
 {
     CMD_ARGS(bool8 clear);
 
-    if (cmd->clear)
-        gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
-    else if (gMovesInfo[gCurrentMove].effect == EFFECT_SEMI_INVULNERABLE
-      || gMovesInfo[gCurrentMove].effect == EFFECT_SKY_DROP)
-        gStatuses3[gBattlerAttacker] |= gMovesInfo[gCurrentMove].argument;
+    if (gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].semiInvulnerableEffect == TRUE)
+    {
+        u32 semiInvulnerableEffect = UNCOMPRESS_BITS(HIHALF(gMovesInfo[gCurrentMove].argument));
+        if (cmd->clear)
+            gStatuses3[gBattlerAttacker] &= ~semiInvulnerableEffect;
+        else
+            gStatuses3[gBattlerAttacker] |= semiInvulnerableEffect;
+    }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_jumpifsemiinvulnerablemove(void)
+static void Cmd_jumpifweathercheckchargeeffects(void)
 {
-    CMD_ARGS(const u8 *jumpInstr);
+    CMD_ARGS(u8 battler, bool8 checkChargeTurnEffects, const u8 *jumpInstr);
 
-    if (gMovesInfo[gCurrentMove].effect == EFFECT_SEMI_INVULNERABLE
-      || gMovesInfo[gCurrentMove].effect == EFFECT_SKY_DROP)
+    /* If this is NOT semi-invulnerable move and we don't have charge turn effects
+    yet to fire, we can fire the move right away so long as the weather matches
+    the argument and the battler is affected by it (not blocked by Cloud Nine etc) */
+    if (gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].semiInvulnerableEffect == FALSE
+      && !(cmd->checkChargeTurnEffects && MoveHasChargeTurnMoveEffect(gCurrentMove))
+      && IsBattlerWeatherAffected(cmd->battler, HIHALF(gMovesInfo[gCurrentMove].argument)))
+    {
+        gBattleScripting.animTurn = 1;
         gBattlescriptCurrInstr = cmd->jumpInstr;
+    }
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -15577,23 +15574,6 @@ void BS_JumpIfMoreThanHalfHP(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-void BS_JumpIfHoldEffect(void)
-{
-    u8 battler = gBattlescriptCurrInstr[5];
-    u16 holdEffect = T1_READ_16(gBattlescriptCurrInstr + 6);
-
-    if (GetBattlerHoldEffect(battler, TRUE) == holdEffect)
-    {
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 8);
-    }
-    else
-    {
-        RecordItemEffectBattle(battler, holdEffect);
-        gLastUsedItem = gBattleMons[battler].item;   // For B_LAST_USED_ITEM
-        gBattlescriptCurrInstr += 12;
-    }
-}
-
 void BS_DoStockpileStatChangesWearOff(void)
 {
     NATIVE_ARGS(u8 battler, const u8 *statChangeInstr);
@@ -16616,13 +16596,4 @@ void BS_SetPhotonGeyserCategory(void)
     NATIVE_ARGS();
     gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-void BS_JumpIfMoveHasChargeTurnEffects(void)
-{
-    NATIVE_ARGS(const u8 *jumpInstr);
-    if (MoveHasChargeTurnMoveEffect(gCurrentMove))
-        gBattlescriptCurrInstr = cmd->jumpInstr;
-    else
-        gBattlescriptCurrInstr = cmd->nextInstr;
 }
