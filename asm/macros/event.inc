@@ -1735,6 +1735,51 @@
 	.2byte \quantity
 	.endm
 
+	.macro _dynmultichoice left:req, top:req, ignoreBPress:req, maxBeforeScroll:req, shouldSort:req, initialSelected:req, callbacks:req argv:vararg
+	.byte 0xe3
+	.2byte \left
+	.2byte \top
+	.byte \ignoreBPress
+	.byte \maxBeforeScroll
+	.byte \shouldSort
+	.2byte \initialSelected
+	.byte \callbacks
+	.byte (.Ldynmultichoice_\@_2 - .Ldynmultichoice_\@_1) / 4
+.Ldynmultichoice_\@_1:
+	.4byte \argv
+.Ldynmultichoice_\@_2:
+	.endm
+
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made.
+	@ Lists of options are provided in argv.
+	@ If ignoreBPress is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	.macro dynmultichoice left:req, top:req, ignoreBPress:req, maxBeforeScroll:req, initialSelected:req, callbacks:req argv:vararg
+	_dynmultichoice \left, \top, \ignoreBPress, \maxBeforeScroll, FALSE, \initialSelected, \callbacks, \argv
+	.endm
+
+	.macro dynmultipush name:req, id:req
+	.byte 0xe4
+	.4byte \name
+	.2byte \id
+	.endm
+
+	.macro dynmultistack left:req, top:req, ignoreBPress:req, maxBeforeScroll:req, shouldSort:req, initialSelected:req, callbacks:req
+	_dynmultichoice \left, \top, \ignoreBPress, \maxBeforeScroll, \shouldSort, \initialSelected, \callbacks, NULL
+	.endm
+
+	@ As setwildbattle, but with one extra arg for each species to determine shadow mon values.
+	.macro setwildshadowbattle species:req, level:req, item=ITEM_NONE, heartValue:req, species2=SPECIES_NONE, level2=0, item2=ITEM_NONE, heartValue2=0
+	.byte 0xe5
+	.2byte \species
+	.byte \level
+	.2byte \item
+	.2byte \heartValue
+	.2byte \species2
+	.byte \level2
+	.2byte \item2
+	.2byte \heartValue2
+	.endm
+
 
 @ Supplementary
 
@@ -2018,16 +2063,40 @@
 	setvar VAR_0x8002, \tryMultiple
 	special TrySpecialOverworldEvo
 	.endm
+	
+	.macro ai_vs_ai_battle trainer1:req, trainer2:req
+	setflag B_FLAG_AI_VS_AI_BATTLE
+	setvar VAR_0x8004, \trainer1
+	callnative CreateTrainerPartyForPlayer
+	trainerbattle_no_intro \trainer2, NULL
+	.endm
 
-	@ As setwildbattle, but with one extra arg for each species to determine shadow mon values.
-	.macro setwildshadowbattle species:req, level:req, item=ITEM_NONE, heartValue:req, species2=SPECIES_NONE, level2=0, item2=ITEM_NONE, heartValue2=0
-	.byte 0xe3
-	.2byte \species
-	.byte \level
-	.2byte \item
-	.2byte \heartValue
-	.2byte \species2
-	.byte \level2
-	.2byte \item2
-	.2byte \heartValue2
+	@ Sets VAR_RESULT to TRUE if stat can be hyper trained, or to
+	@ FALSE otherwise.
+	.macro canhypertrain stat:req, slot:req
+	callnative CanHyperTrain
+	.byte \stat
+	.2byte \slot
+	.endm
+
+	@ Hyper Trains a stat.
+	.macro hypertrain stat:req, slot:req
+	callnative HyperTrain
+	.byte \stat
+	.2byte \slot
+	.endm
+
+	@ Sets VAR_RESULT to TRUE if the Pokemon has the Gigantamax Factor,
+	@ or to FALSE otherwise.
+	.macro hasgigantamaxfactor slot:req
+	callnative HasGigantamaxFactor
+	.2byte \slot
+	.endm
+
+	@ Toggles the Gigantamax Factor for a Pokemon.
+	@ Fails for Melmetal (vanilla behavior).
+	@ Sets VAR_RESULT to TRUE if it succeeds, and FALSE otherwise.
+	.macro togglegigantamaxfactor slot:req
+	callnative ToggleGigantamaxFactor
+	.2byte \slot
 	.endm

@@ -1,118 +1,191 @@
-# Shadow Pokemon
-This repo implements Shadow Pokemon. It requires (and is built upon) the RHH Expansion.
+# pokeemerald-expansion
 
-## Preface
-I'm still on hiatus from GBA dev in general (as of Feb. 2nd, 2023, when I'm writing this) but several people expressed interest in working on this project, so I cleaned it up a little and uploaded it to this repo. feel free to open issues and PRs/drafts for bugs and ideas. can't promise I'll be super active with checking them out, but I'm probably going to give Ed and maybe some others access to manage the repo and push things through.
+## What is pokeemerald-expansion?
 
-this'll be a rough/messy readme for the time being, just getting some notes out there for those that are interested in contributing or anyone who's curious on how this generally works. this is long, but probably isn't complete - just an overview and some details on why certain changes exist. feel free to skip straight to the diff and come back here if you aren't sure what's going on
+pokeemerald-expansion is a decomp hack base project based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. It's recommended that any new projects that plan on using it, to clone this repository instead of pret's vanilla repository, as we regurlarly incorporate pret's documentation changes. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
 
-I can still be reached through Discord as well at Crater#7777 if you have specific questions, but I can't promise I'll have a ton of time to dedicate to larger requests/issues/etc.
+If you use pokeemerald-expansion in your hack, please add RHH (Rom Hacking Hideout) to your credits list. Optionally, you can list the version used, so it can help players know what features to expect.
+You can phrase it as the following:
+```
+Based off RHH's pokeemerald-expansion v1.7.2 https://github.com/rh-hideout/pokeemerald-expansion/
+```
 
-## Tasks
-some general things to work on/look into/think about:
-- double battles likely still need some testing, and any nonstandard battle formats that RHH implements
-- a toggle for the snag machine being acquired may be useful for some projects
-- various EXP and level behavior - Rare Candy/EXP Candy immediately comes to mind, maybe EXP share as well. default battle EXP is already handled though
-- friendship-related mechanics or interop with similar existing systems from vanilla/RHH
-- in the same sense: mega evos, z-moves, and so on may work out of the box, but I think shadow mon should either be excluded until purification, or specific behavior could be implemented. for z-moves in particular, a Shadowium Z or something like that might be cool
-- move teaching system (TMs, move tutor) needs restrictions for shadow mon
-- a lot of the shadow moves in the gamecube games are just shadow-themed takes on existing moves. this concept should probably be extended to some of the more unique moves from newer generations, and some new concepts might be a good idea as well (one idea I had in particular was a shadow terrain move, but I didn't explore the concept beyond that)
-- an effect/blend/etc. for shadow mon icons in the PC storage system, to tell at a glance? not sure how viable this would be, iirc that area of the game struggles with VRAM and such, but it'd be nice
-- a better animation when a shadow mon is first identified during a battle (I think I currently use the poison anim as a placeholder, but it doesn't look that far off honestly)
-- a system for easily creating "purification immune" pokemon in the style of Shadow Lugia would be nice, it'll probably require the purify chamber to be implemented though (see below)
-- how do shadow mon/moves interact with contests? should they have new behavior outside of their moves?
-- plenty of other things I probably forgot about, haven't thought of, or haven't tested thoroughly
+## What features are included?
+- ***IMPORTANT*❗❗ Read through these to learn what features you can toggle**:
+    - [Battle configurations](/include/config/battle.h)
+    - [Pokémon configurations](/include/config/pokemon.h)
+    - [Item configurations](/include/config/item.h)
+    - [Overworld configurations](/include/config/overworld.h)
+    - [Debug configurations](/include/config/debug.h)
+- ***Upgraded battle engine.***
+    - Gen5+ damage calculation.
+    - 2v2 Wild battles support.
+    - 1v2/2v1 battles support.
+    - Fairy Type (configurable).
+    - Physical/Special/Status Category (configurable).
+    - New moves and abilities up to Scarlet and Violet.
+        - Custom Contest data up to SwSh, newer moves are WIP. ([source](https://pokemonurpg.com/info/contests/rse-move-list/))
+    - Mega Evolution
+    - Primal Reversion
+    - Ultra Burst
+    - Z-Moves
+        - Gen 8+ damaging moves are given power extrapolated from Gen 7.
+        - Gen 8+ status moves have no additional effects, like Healing Wish.
+    - Dynamax
+        - Gigantamax forms
+    - Initial battle parameters
+        - Queueing stat boosts (aka, Totem Boosts)
+        - Setting Terrains.
+    - Mid-turn speed recalculation.
+    - Quick Poké Ball selection in Wild Battles
+        - Press `R` to use last selected Poké Ball.
+        - Hold `R` to change selection with the D-Pad.
+    - Run option shortcut
+    - Faster battle intro
+        - Message and animation/cry happens at the same time.
+    - Faster HP drain.
+    - Battle Debug menu.
+        - Accessed by pressing `Select` on the "Fight/Bag/Pokémon/Run" menu.
+    - Option to use AI flags in wild Pokémon battles.
+    - FRLG/Gen4+ whiteout money calculation.
+    - Configurable experience settings
+        - Experience on catch.
+        - Splitting experience.
+        - Trainer experience.
+        - Scaled experience.
+        - Unevolved experience boost.
+    - Frostbite.
+        - Doesn't replace freezing unless a config is enabled, so you can mix and match.
+    - Critical capture.
+    - Removed badge boosts (configurable).
+    - Recalculating stats at the end of every battle.
+    - Level 100 Pokémon can earn EVs.
+    - Inverse battle support.
+    - TONS of other features listed [here](/include/config/battle.h).
+- ***Full Trainer customization***
+    - Nickname, EVs, IVs, moves, ability, ball, friendship, nature, gender, shininess.
+    - Custom tag battle support (teaming up an NPC in a double battle).
+    - Sliding trainer messages.
+    - Upgraded Trainer AI
+        - Considers newer move effects.
+        - New flag options to let you customize the intelligence of your trainers.
+        - Faster calculations.
+    - Specify Poké Balls by Trainer class.
+- ***Pokémon Species from Generations 1-9.***
+    - Simplified process to add new Pokémon.
+    - Option to disable unwanted families.
+    - Updated sprites to DS style.
+    - Updated stats, types, abilities and egg groups (configurable).
+    - Updated Hoenn's Regional Dex to match ORAS' (configurable).
+    - Updated National Dex incorporating the new species.
+    - Sprite and animation visualizer.
+        - Accesible by pressing `Select` on a Pokémon's Summary screen.
+    - Gen4+ evolution methods, with some changes:
+        - Mossy Rock, Icy Rock and Magnetic Field locations match ORAS'.
+            - Leaf, Ice and Thunder Stones may also be used.
+        - Inkay just needs level 30 to evolve.
+            - You can't physically have both the RTC and gyroscope, so we skip this requirement.
+        - Sylveon uses Gen8+'s evolution method (friendship + Fairy Move).
+        - Option to use hold evolution items directly like stones.
+    - Hidden Abilities.
+        - Available via Ability Patch.
+        - Compatible with Ghoul's DexNav branch.
+    - All gender differences.
+        - Custom female icons for female Hippopotas Hippowdon, Pikachu and Wobbufett
+    - 3 Perfect IVs on Legendaries, Mythicals and Ultra Beasts.
+- ***Customizable form change tables. Full list of methods [here](/include/constants/form_change_types.h).***
+    - Item holding (eg. Giratina/Arceus)
+    - Item using (eg. Oricorio)
+        - Time of day option for Shaymin
+    - Fainting
+    - Battle begin and end (eg. Xerneas)
+        - Move change option for Zacian/Zamazenta
+    - Battle end in terrains (eg. Burmy)
+    - Switched in battle (eg. Palafin)
+    - HP Threshold (eg. Darmanitan)
+    - Weather (eg. Castform)
+    - End of turn (eg. Morpeko)
+    - Time of day (Shaymin)
+- ***Breeding Improvements***
+    - Incense Baby Pokémon now happen automatically (configurable).
+    - Level 1 eggs (configurable).
+    - Poké Ball inheriting (configurable).
+    - Egg Move Transfer, including Mirror Herb (configurable).
+    - Nature inheriting 100% of the time with Everstone (configurable)
+    - Gen6+ Ability inheriting (configurable).
+- ***Items from newer Generations. Full list [here](/include/constants/items.h).***
+    - ***Gen 6+ Exp. Share*** (configurable)
+    - Berserk Gene
+    - Most battle items from Gen 4+
+    - Existing item data but missing effects:
+        - Mints
+        - Dynamax Candy
+        - Mulches
+        - Gimmighoul Coin
+        - Booster Energy
+        - Tera Shards
+        - Tera Orb
+- ***Feature branches incorporated (with permission):***
+    - [RHH intro credits](https://github.com/Xhyzi/pokeemerald/tree/rhh-intro-credits) by @Xhyzi.
+        - A small signature from all of us to show the collective effort in the project :)
+    - [Overworld debug](https://github.com/TheXaman/pokeemerald/tree/tx_debug_system) by @TheXaman
+        - May be disabled.
+        - Accesible by pressing `R + Start` in the overworld by default.
+        - **Additional features**:
+            - *Clear Boxes*: cleans every Pokémon from the Boxes.
+            - *Hatch an Egg*: lets you choose an Egg in your party and immediatly hatch it.
+    - [HGSS Pokédex](https://github.com/TheXaman/pokeemerald/tree/tx_pokedexPlus_hgss) by @TheXaman
+        - May be disabled.
+        - **Additional features**:
+            - *Support for new evolution methods*.
+            - *Dark Mode*.
+    - [Nature Colors](https://github.com/DizzyEggg/pokeemerald/tree/nature_color) in summary screen by @DizzyEggg
+    - [Dynamic Multichoice](https://github.com/SBird1337/pokeemerald/tree/feature/dynmulti) by @SBird1337
+- ***Other features***
+    - Pressing B while holding a Pokémon drops them like in modern games (configurable).
+    - Running indoors (configurable).
+    - Configurable overworld poison damage.
+    - Configurable flags for disabling Wild encounters and Trainer battles.
+    - Configurable flags for forcing or disabling Shinies.
+    - Reusable TM (configurable).
+    - B2W2+ Repel system that also supports LGPE's Lures
+    - Gen6+'s EV cap.
+    - All bugfixes from pret included.
+    - Fixed overworld snow effect.
 
-additional tasks specific to certain topics are mixed in below
+There are some mechanics, moves and abilities that are missing and being developed. Check [the project's milestones](https://github.com/rh-hideout/pokeemerald-expansion/milestones) to see which ones.
 
-## Heart Gauge/Purification
-the UI for this was a nightmare, but it works
 
-the heart gauge has data implemented in and out of battle (more on the details of that below), along with a long list of UI changes to attempt to emulate the behavior in the gamecube games functionality is implemented for setting the initial/max value (i.e. Spheal in XD has a value of 1500) and it can also be modified in-battle with the proper animations
+### [Documentation on features can be found here](https://github.com/rh-hideout/pokeemerald-expansion/wiki)
 
-there's one major difference from the gamecube games in that it has 4 sections instead of 5
+## If I already have a project based on regular pokeemerald, can I use pokeemerald-expansion?
+Yes! Keep in mind that we keep up with pret's documentation of pokeemerald, which means that if your project a bit old, you might get merge conflicts that you need to solve manually.
+- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
+- Once you have your remote set up, run the command `git pull RHH master`.
 
-this is due to the way the healthbox sprite works, and also because symmetrically-sized pixel art and the 8x8 tile system don't play nicely with odd numbers of *anything*, really. as a result, the effects of each stage will differ a bit - some things will be merged from one section into others
+With this, you'll get the latest version of pokeemerald-expansion, plus a couple of bugfixes that haven't been released into the next patch version :)
 
-todo:
-- the purification code and sequence (should probably just copy a lot of stuff from the evolution scene, but who knows)
-- the relic stone (should be super easy once the purification code is in place)
-- heart gauge lowering items (incense, time flute, whatever else - maybe some new stuff based on newer game mechanics?)
-- most of the heart gauge section unlock effects. I think I may have implemented EXP gain limitations that are stored until purification after a certain level, but I forget. pretty sure there's also a function I added for getting the current section. the rest is unimplemented atm but the groundwork is there
-- there's an animation called `Special_SectionUnlock` I set up for when a new section of the heart gauge is unlocked. it's just a direct copy of the anim the EXP bar plays when a mon levels up, I didn't actually do anything with it yet other than that. it might not look great depending on what we can do with it, but figured it'd be neat to set up eventually
+## **How do I update my version of pokeemerald-expansion?**
+- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
+- Once you have your remote set up, run the command `git pull RHH expansion/1.7.2`.
 
-## Purify Chamber
-this is more of a long-term goal, since it's probably going to be pretty difficult to pull off. there's very little completed on this so far. i have plans for a completely animated, custom-UI purification chamber with the mechanics being fairly close to the one in XD
+### Please consider crediting the entire [list of contributors](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) in your project, as they have all worked hard to develop this project :)
 
-so far I have a mockup of some of the UI elements and the general layout of things in Aseprite. the plan is to bastardize a lot of the PC storage UI elements (the cursor mechanics especially, as well as the mon icons, among other things), taking some animation code and such from things like the berry blender and maybe the casino games. but depending on what that looks like, it may be less *copying* and more *learning,* and then I'll just implement what I really want directly
+## There's a bug in the project. How do I let you guys know?
+Please submit any issues with the project [here](https://github.com/rh-hideout/pokeemerald-expansion/issues). Make sure that the issue wasn't reported by someone else by searching using the filters.
 
-additionally, I'd need to free up some saveblock space in order to store the mons inside it, just as the PC does most likely - either copying the method and using a new block of memory or using "ghost slots" in the existing box system that are inaccessible to the player. I'll end up needing space for 35 mons - while the gamecube games had 9 chambers, the UI layout I mocked up looks best with about 7, and each chamber holds 5 mon in it.
+## Can I contribute even if I'm not a member of ROM Hacking Hideout?
 
-also considered using the PC directly, since the player would use that to place the mons in the chamber - so when they're placed, they could stay in the PC box they're in, but be placed in a sort of inaccessible "in-use" state until they're removed from the chamber.
+Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Don't feel discouraged if we take a bit to review your PR, we'll get to it.
 
-## Moves
-the ones from XD are added to the move list, but that's about it. will probably need to implement a shadow type as well as effectiveness tables, unless it'd be a better idea to use a different method to determine shadow move behavior
+## Who maintains the project?
 
-Kobe#7673 made some excellent progress on shadow moves though (including anims) and we planned to collaborate, so I expect we'll have those done sooner rather than later
+The project was originally started by DizzyEgg alongside other contributors.
 
-## Hyper Mode/Reverse Mode
+The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
 
-I plan on implementing reverse mode, but any Colosseum diehards could also implement hyper mode as well I guess, could have a config toggle or something like that
+## What is the ROM Hacking Hideout?
 
-there's `isReverse` that's implemented in the `BoxPokemon` data (see below), as well as fully reciprocated through the battle controllers, but there's no functionality implemented yet in battles
+A Discord-based ROM hacking community that has many members who hack using the disassembly and decompilation projects for Pokémon. Quite a few contributors to the original feature branches by DizzyEgg were members of ROM Hacking Hideout. You can call it RHH for short!
 
-## Call To Mon
-basically, there's a new entry in `battle_message.h` called `gText_BattleMenuTrainer` that's used as a replacement for the battle actions. it just replaces "RUN" with "CALL" in every normal trainer battle, and performs heart gauge reduction (if the mon is shadow) as well as the accuracy boost that Pokemon XD introduced (if the mon isn't shadow). this also functions as a "turn pass" which is useful when dealing with certain situations in double battles while trying to catch a shadow pokemon from a trainer
-
-just a quick note: `BattleScript_TrainerCallToMonShadow` calls `modifyheartvalue BS_ATTACKER, -1000`
-this probably needs to be tweaked, -1000 was just a test value. it'll also need to be modified to only trigger when a mon is in reverse mode, instead of every time you call a shadow mon. see the reverse mode section below, there's a lot of work that needs done in this regard
-
-todo:
-- the above issue with the reduction script
-- calling should wake sleeping mon, which I believe was a function in both gamecube games? (maybe add some config for this. I don't think it should be possible on the sleeping mon's turn since that'd nullify sleep moves entirely, which means it should only be possible in double battles)
-- since wild shadow mon exist in system, it may be good to have a toggle for CALL/RUN in the battle menu. maybe something along the lines of pressing the select button to swap? open to other ideas
-
-## BoxPokemon Data
-this one's kinda big
-
-there's 4 new fields in the `BoxPokemon` struct: `isShadow, `isReverse`, `heartValue`, and `heartMax`
-but fear not: they take up no additional space! they also replace nothing! how, you may be asking?
-
-***unions*** (don't call your HR manager!)
-
-`NicknameShadowdata` is a union that's placed into the space where the nickname field used to be. since shadow pokemon can't have a nickname until they're purified (and at that point, they don't require shadow pokemon data) we can actually hotswap out the nickname for the shadow data without taking up any additional space. the nickname field was 10 bytes long (10 character limit) so that gives us quite a bit of space to work with. as it stands currently, `isReverse` is a u8 while `heartValue` and `heartMax` are both u16, so that leaves 5 additional unused bytes to play with, should this project (or any others that extend it) require it.
-
-you may be asking, "what about `isShadow`?" and that's a great question! it's actually not in the union - it's in `PokemonSubstruct3`, as a bitfield - replacing `eventLegal`. there may be "cleaner" places to put this bitfield, but I think `eventLegal` won't be missed by many - it's useless. I removed or commented out all relevant functionality tied to the field, should be pretty clean.
-
-you might also ask, "why not just put it in the nickname union? or use `heartMax` to determine if a mon is shadow or not?"
-
-I found that it helps to have `isShadow` outside the union for checks, because if you call what'd normally be `isShadow` (or try to see if heartMax is 0, etc.) while it's in nickname mode, you're obviously going to get nickname characters instead. that, and it might be useful to keep it true after purification to determine whether a mon is a purified shadow mon or just a normal mon, since it loses all other shadow data post-purification
-
-that said, I didn't start out with the above in mind. the nickname union idea was a clever idea suggested by (I think) MGriffin, and by that time I was actually using *more* of the substruct (the unused ribbons and such) to store my data. so feel free to use that as ammo against it, if you for some reason adore event-illegal mews. I'm open to using a different bitfield than `eventLegal` if someone feels really strongly about it, but I figured most of the "easier" bitfields are going to be the go-to for any other third party extensions that require the space. so I can avoid potential conflicts with them by using a more code-ingrained one while also (presumably) not actually breaking any vanilla behavior
-
-todo:
-- any code that changes nicknames may be prone to bugs, but I think I caught a lot of that behavior at the accessor functions already. dialgoue for things like that (name rater) may need some conditions and strings to handle it properly though.
-
-## Graphics
-modifications were made to a few graphics, namely ball_status_bar.png and expbar.png
-I honestly don't remember exactly what I did, but I believe I swapped the palettes around a bit. might have implemented colors for otherwise unused values so I could use them elsewhere
-
-some actual additions were made to the `summary_screen` tileset in previously blank/unused areas, and it also has a dedicated palette now. these changes facilitate the replacement of the EXP bar graphics with the heart gauge counterpart
-
-### Healthbox Split
-basically, the vanilla healthbox uses the same palette tag for all 4 healthboxes. undoing this took a lot of lot of time, and I ended up having to track down a lot of bugs regarding this stuff, but it should be fully stable and functional now.
-
-I say "all 4" because this is set up for double battles as well - if a mon is shadow, it'll set its healthbox palette to a different color. if it's the player's mon in a single battle, the healthbox changes drastically, with the EXP bar replaced with the Heart Gauge and so on. it works pretty nicely, I tested a lot of cases but I could have missed some - I didn't go far beyond normal single and double battles
-
-## Trainers & Testing
-in trainers.h there's `F_TRAINER_PARTY_SHADOW_TEST`. this ties in with `TrainerMonNoItemDefaultMovesShadow`, which was the only type I implemented so far. there should probably be shadow versions of all the vanilla constructors eventually, to allow custom moves/items/etc. but basically, it just passes in whether or not a given mon in the trainer party is shadow, and what the starting heart gauge value/max should be. the heart gauge value passed in should probably be evenly divisible by 100 like the gamecube games handle it, but it's not enforced by code (nor should it be, I guess - go wild)
-
-i defined a test trainer, `TRAINER_SHADOW_TEST`, which should probably be removed before a real release or whatever. it corresponds with the `sParty_ShadowTest` trainer party
-
-this stuff could use some polish and expansion, or at least a rename of some of the current things that have "test" in the name that are actually generic and usable
-
-also here's a very basic test script for wild shadow mon:
-```lockall
-setwildshadowbattle SPECIES_ZIGZAGOON, 10, 0, 1000
-dowildbattle
-releaseall```
+[Click here to join the RHH Discord Server!](https://discord.gg/6CzjAG6GZk)
