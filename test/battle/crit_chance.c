@@ -272,7 +272,7 @@ SINGLE_BATTLE_TEST("Focus Energy increases critical hit ratio by two")
 SINGLE_BATTLE_TEST("Dragon Cheer fails in a single battle")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -287,7 +287,7 @@ DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by one on non Drag
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -307,7 +307,7 @@ DOUBLE_BATTLE_TEST("Dragon Cheer increases critical hit ratio by two on Dragon t
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].criticalHitStage == 0);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DRATINI);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -327,7 +327,7 @@ DOUBLE_BATTLE_TEST("Dragon Cheer fails if critical hit stage was already increas
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
         ASSUME(gMovesInfo[MOVE_FOCUS_ENERGY].effect == EFFECT_FOCUS_ENERGY);
-        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_FOCUS_ENERGY);
+        ASSUME(gMovesInfo[MOVE_DRAGON_CHEER].effect == EFFECT_DRAGON_CHEER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
