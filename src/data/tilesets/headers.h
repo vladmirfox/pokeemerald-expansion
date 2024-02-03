@@ -825,3 +825,36 @@ const struct Tileset gTileset_UnionRoom =
     .metatileAttributes = gMetatileAttributes_UnionRoom,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_PorytilesPrimaryTutorial =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_PorytilesPrimaryTutorial,
+    .palettes = gTilesetPalettes_PorytilesPrimaryTutorial,
+    .metatiles = gMetatiles_PorytilesPrimaryTutorial,
+    .metatileAttributes = gMetatileAttributes_PorytilesPrimaryTutorial,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Sunrise_Village =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Sunrise_Village,
+    .palettes = gTilesetPalettes_Sunrise_Village,
+    .metatiles = gMetatiles_Sunrise_Village,
+    .metatileAttributes = gMetatileAttributes_Sunrise_Village,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_GinkoWoods =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_GinkoWoods,
+    .palettes = gTilesetPalettes_GinkoWoods,
+    .metatiles = gMetatiles_GinkoWoods,
+    .metatileAttributes = gMetatileAttributes_GinkoWoods,
+    .callback = NULL,
+};

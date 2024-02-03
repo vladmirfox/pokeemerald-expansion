@@ -168,6 +168,8 @@
 // 3: Big sis has talked to player upon arrival
 // 4: Player has talked to rival on beach before
 //    getting their Pokémon
+// 5: Listened to Elder's speech, Pokémon not chosen yet
+// 6: Got Pokémon and Pokédex
 #define VAR_SUNRISE_VILLAGE_INTRO_STATE                  0x4091
 #define VAR_LITTLEROOT_INTRO_STATE                       0x4092
 #define VAR_MAUVILLE_GYM_STATE                           0x4093

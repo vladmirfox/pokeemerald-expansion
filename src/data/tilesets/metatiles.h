@@ -207,3 +207,13 @@ const u16 gMetatileAttributes_MysteryEventsHouse[] = INCBIN_U16("data/tilesets/s
 
 const u16 gMetatiles_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatiles.bin");
 const u16 gMetatileAttributes_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatile_attributes.bin");
+
+const u16 gMetatiles_PorytilesPrimaryTutorial[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/metatiles.bin");
+const u16 gMetatileAttributes_PorytilesPrimaryTutorial[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/metatile_attributes.bin");
+
+const u16 gMetatiles_Sunrise_Village[] = INCBIN_U16("data/tilesets/secondary/sunrise_village/metatiles.bin");
+const u16 gMetatileAttributes_Sunrise_Village[] = INCBIN_U16("data/tilesets/secondary/sunrise_village/metatile_attributes.bin");
+
+
+const u16 gMetatiles_GinkoWoods[] = INCBIN_U16("data/tilesets/secondary/ginko_woods/metatiles.bin");
+const u16 gMetatileAttributes_GinkoWoods[] = INCBIN_U16("data/tilesets/secondary/ginko_woods/metatile_attributes.bin");
