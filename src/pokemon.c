@@ -6647,7 +6647,7 @@ u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax)
         return 3;
     else if (heartVal >= h25)
         return 2;
-    else if (heartVal >= 0)
+    else if (heartVal > 0)
         return 1;
     else
         return 0;
