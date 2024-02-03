@@ -2615,36 +2615,6 @@ static void Cmd_resultmessage(void)
     }
 }
 
-// static void Cmd_printstring(void)
-// {
-//     CMD_ARGS(u16 id, bool8 selection);
-
-//     if (cmd->selection)
-//     {
-//         BtlController_EmitPrintSelectionString(gBattlerAttacker, BUFFER_A, cmd->id);
-//         MarkBattlerForControllerExec(gBattlerAttacker);
-//     }
-//     else if (gBattleControllerExecFlags == 0)
-//         PrepareStringBattle(cmd->id, gBattlerAttacker);
-//     else
-//         return;
-
-//     gBattlescriptCurrInstr = cmd->nextInstr;
-//     gBattleCommunication[MSG_DISPLAY] = 1;
-// }
-
-// static void Cmd_printselectionstring(void)
-// {
-//     CMD_ARGS(u16 id);
-
-//     if (gBattleControllerExecFlags == 0)
-//     {
-//         gBattlescriptCurrInstr = cmd->nextInstr;
-//         PrepareStringBattle(gBattleScripting.savedStringId, gBattlerAttacker);
-//         gBattleCommunication[MSG_DISPLAY] = 1;
-//     }
-// }
-
 static void Cmd_printstring(void)
 {
     CMD_ARGS(u16 id);

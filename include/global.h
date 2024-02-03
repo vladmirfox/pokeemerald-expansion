@@ -129,11 +129,11 @@ Invalid input causes a compiler error. Sample: https://cexplore.karathan.at/z/x1
 #define COMPRESS_BITS_7 7, 1
 
 /* Will try and compress a set bit (or up to three sequential bits) into a single byte
-Input must be of the form (upper << lower ) where upper can be up to 3, lower up to 31 */
+Input must be of the form (upper << lower) where upper can be up to 3, lower up to 31 */
 #define COMPRESS_BITS(_val) COMPRESS_BITS_STEP_2 _val
 #define COMPRESS_BITS_STEP_2(_unpacked) COMPRESS_BITS_STEP_3(COMPRESS_BITS_## _unpacked)
 #define COMPRESS_BITS_STEP_3(...) COMPRESS_BITS_STEP_4(__VA_ARGS__)
-#define COMPRESS_BITS_STEP_4(upper, lower) (((upper % 7) << 5) + (BIT_INDEX(lower)))
+#define COMPRESS_BITS_STEP_4(upper, lower) (((upper % 8) << 5) + (BIT_INDEX(lower)))
 
 /* Will read a compressed bit stored by COMPRESS_BIT into a single byte */
 #define UNCOMPRESS_BITS(compressed) ((compressed >> 5) << (compressed & 0x1F))
