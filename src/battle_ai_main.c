@@ -52,6 +52,7 @@ static s32 AI_Roaming(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_Safari(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_FirstBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
+static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 
 
 static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
@@ -65,10 +66,10 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [6] = AI_PreferBatonPass,        // AI_FLAG_PREFER_BATON_PASS
     [7] = AI_DoubleBattle,           // AI_FLAG_DOUBLE_BATTLE
     [8] = AI_HPAware,                // AI_FLAG_HP_AWARE
-    [9] = NULL,                      // AI_FLAG_NEGATE_UNAWARE
-    [10] = NULL,                     // AI_FLAG_WILL_SUICIDE
-    [11] = NULL,                     // AI_FLAG_HELP_PARTNER
-    [12] = NULL,                     // Unused
+    [9] = AI_PowerfulStatus,         // AI_FLAG_POWERFUL_STATUS
+    [10] = NULL,                     // AI_FLAG_NEGATE_UNAWARE
+    [11] = NULL,                     // AI_FLAG_WILL_SUICIDE
+    [12] = NULL,                     // AI_FLAG_HELP_PARTNER
     [13] = NULL,                     // Unused
     [14] = NULL,                     // Unused
     [15] = NULL,                     // Unused
@@ -3481,8 +3482,6 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(BEST_EFFECT);
             if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_LIGHT_CLAY)
                 ADJUST_SCORE(DECENT_EFFECT);
-            if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_SCREENER)
-                ADJUST_SCORE(DECENT_EFFECT);
         }
         break;
     case EFFECT_REST:
@@ -3509,10 +3508,6 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_MEAN_LOOK:
         if (ShouldTrap(battlerAtk, battlerDef, move))
             ADJUST_SCORE(GOOD_EFFECT);
-        break;
-    case EFFECT_MIST:
-        if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_SCREENER)
-            ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_FOCUS_ENERGY:
     case EFFECT_LASER_FOCUS:
@@ -4675,7 +4670,6 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 
     // Calculates score based on effects of a move
     score += AI_CalcMoveScore(battlerAtk, battlerDef, move);
-
     return score;
 }
 
@@ -5114,6 +5108,81 @@ static s32 AI_HPAware(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     }
 
     return score;
+}
+
+static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
+{
+    u32 moveEffect = gMovesInfo[move].effect;
+
+    DebugPrintf("works");
+
+    if (IsDoubleBattle() || gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS || gMovesInfo[AI_DATA->partnerMove].effect == moveEffect)
+        return score;
+
+    switch (moveEffect)
+    {
+    case EFFECT_TAILWIND:
+        if (!(gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer || (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_TRICK_ROOM:
+        // if (!((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) || HasMoveEffect(battlerDef, EFFECT_TRICK_ROOM)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_MAGIC_ROOM:
+        if (!((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || HasMoveEffect(battlerDef, EFFECT_MAGIC_ROOM)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_WONDER_ROOM:
+        if (!((gFieldStatuses & STATUS_FIELD_WONDER_ROOM) || HasMoveEffect(battlerDef, EFFECT_WONDER_ROOM)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_GRAVITY:
+        if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_SAFEGUARD:
+        if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_MIST:
+        if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_LIGHT_SCREEN:
+    case EFFECT_REFLECT:
+    case EFFECT_AURORA_VEIL:
+        if (ShouldSetScreen(battlerAtk, battlerDef, moveEffect))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_SPIKES:
+    case EFFECT_STEALTH_ROCK:
+    case EFFECT_STICKY_WEB:
+    case EFFECT_TOXIC_SPIKES:
+        if (!(AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE || CountUsablePartyMons(battlerDef) == 0 || HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_GRASSY_TERRAIN:
+        if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_ELECTRIC_TERRAIN:
+        if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_PSYCHIC_TERRAIN:
+        if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_MISTY_TERRAIN:
+        if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_SANDSTORM:
+        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_SUNNY_DAY:
+        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_RAIN_DANCE:
+        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_HAIL:
+        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    case EFFECT_SNOWSCAPE:
+        if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)))
+            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+    default:
+        return FALSE;
+    }
 }
 
 static void AI_Flee(void)
