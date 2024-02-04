@@ -2142,6 +2142,7 @@
 	.macro jumpifweatheraffected battler:req, flags:req, jumpInstr:req
 	various \battler, VARIOUS_JUMP_IF_WEATHER_AFFECTED
 	.4byte \flags
+	.4byte \jumpInstr
 	.endm
 
 	.macro jumpifspecies battler:req, species:req, jumpInstr:req
