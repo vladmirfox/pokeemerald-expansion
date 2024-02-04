@@ -4016,75 +4016,77 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     switch (caseID)
     {
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:
-        u8 varTerrainTimer = VarGet(B_VAR_TERRAIN_TIMER);
-
-        gBattleScripting.battler = battler;
-        if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
         {
-            u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
-
-            if (varTerrainTimer == 0)
+            u8 varTerrainTimer = VarGet(B_VAR_TERRAIN_TIMER);
+        
+            gBattleScripting.battler = battler;
+            if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
             {
-                gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
+                u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
+        
+                if (varTerrainTimer == 0)
+                {
+                    gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
+                }
+                else
+                {
+                    gFieldStatuses |= terrainFlags;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
+        
+                switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+                {
+                case STATUS_FIELD_ELECTRIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+                    break;
+                case STATUS_FIELD_MISTY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+                    break;
+                case STATUS_FIELD_GRASSY_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
+                    break;
+                case STATUS_FIELD_PSYCHIC_TERRAIN:
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+                    break;
+                }
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
             }
-            else
+            else if (B_THUNDERSTORM_TERRAIN == TRUE
+                && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM
+                && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
             {
-                gFieldStatuses |= terrainFlags;
-                gFieldTimers.terrainTimer = varTerrainTimer;
-            }
-
-            switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
-            {
-            case STATUS_FIELD_ELECTRIC_TERRAIN:
+                // overworld weather started rain, so just do electric terrain anim
+                if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
+                {
+                    gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+                }
+                else
+                {
+                    gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
-                break;
-            case STATUS_FIELD_MISTY_TERRAIN:
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
+            }
+            else if (B_FOG_TERRAIN == TRUE
+                && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
+                && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+            {
+                if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
+                {
+                    gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+                }
+                else
+                {
+                    gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                    gFieldTimers.terrainTimer = varTerrainTimer;
+                }
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
-                break;
-            case STATUS_FIELD_GRASSY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
-                break;
-            case STATUS_FIELD_PSYCHIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
-                break;
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
+                effect++;
             }
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
-        }
-        else if (B_THUNDERSTORM_TERRAIN == TRUE
-            && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM
-            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-        {
-            // overworld weather started rain, so just do electric terrain anim
-            if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
-            {
-                gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
-            }
-            else
-            {
-                gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
-                gFieldTimers.terrainTimer = varTerrainTimer;
-            }
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
-        }
-        else if (B_FOG_TERRAIN == TRUE
-            && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
-            && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-        {
-            if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
-            {
-                gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
-            }
-            else
-            {
-                gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
-                gFieldTimers.terrainTimer = varTerrainTimer;
-            }
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
-            BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
-            effect++;
         }
         break;
     case ABILITYEFFECT_SWITCH_IN_WEATHER:
