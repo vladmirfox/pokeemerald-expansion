@@ -4018,12 +4018,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:
         {
             u8 varTerrainTimer = VarGet(B_VAR_TERRAIN_TIMER);
-        
+
             gBattleScripting.battler = battler;
             if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
             {
                 u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
-        
+
                 if (varTerrainTimer == 0)
                 {
                     gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
@@ -4033,7 +4033,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     gFieldStatuses |= terrainFlags;
                     gFieldTimers.terrainTimer = varTerrainTimer;
                 }
-        
+
                 switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
                 {
                 case STATUS_FIELD_ELECTRIC_TERRAIN:
