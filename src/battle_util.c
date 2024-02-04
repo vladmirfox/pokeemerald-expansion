@@ -1703,7 +1703,8 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
     {
         if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
             BattleScriptExecute(BattleScript_GrassyTerrainHeals);
-        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
+        if ((!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
+         || (gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT && VarGet(B_VAR_TERRAIN_TIMER) >= 0 && --gFieldTimers.terrainTimer == 0))
         {
             gFieldStatuses &= ~terrainFlag;
             TryToRevertMimicryAndFlags();
@@ -4016,12 +4017,24 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     switch (caseID)
     {
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:
+        u8 varTerrainTimer = VarGet(B_VAR_TERRAIN_TIMER);
+
         gBattleScripting.battler = battler;
-        if (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+        if (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
         {
-            u16 terrainFlags = VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
-            gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
-            switch (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
+            u16 terrainFlags = VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY;    // only works for status flag (1 << 15)
+
+            if (varTerrainTimer == 0)
+            {
+                gFieldStatuses = terrainFlags | STATUS_FIELD_TERRAIN_PERMANENT; // terrain is permanent
+            }
+            else
+            {
+                gFieldStatuses |= terrainFlags;
+                gFieldTimers.terrainTimer = varTerrainTimer;
+            }
+
+            switch (VarGet(B_VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
             {
             case STATUS_FIELD_ELECTRIC_TERRAIN:
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
@@ -4036,7 +4049,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
                 break;
             }
-
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
         }
@@ -4045,7 +4057,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
         {
             // overworld weather started rain, so just do electric terrain anim
-            gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
+            {
+                gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            }
+            else
+            {
+                gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                gFieldTimers.terrainTimer = varTerrainTimer;
+            }
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
@@ -4054,12 +4074,20 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && (GetCurrentWeather() == WEATHER_FOG_HORIZONTAL || GetCurrentWeather() == WEATHER_FOG_DIAGONAL)
             && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
         {
-            gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            if (VarGet(B_VAR_TERRAIN_TIMER) == 0)
+            {
+                gFieldStatuses = (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
+            }
+            else
+            {
+                gFieldStatuses |= STATUS_FIELD_ELECTRIC_TERRAIN;
+                gFieldTimers.terrainTimer = varTerrainTimer;
+            }
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
         }
-    break;
+        break;
     case ABILITYEFFECT_SWITCH_IN_WEATHER:
         gBattleScripting.battler = battler;
         if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))
