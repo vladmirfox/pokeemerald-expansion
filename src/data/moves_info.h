@@ -10,9 +10,8 @@
 
 // The Gen. 4+ contest data comes from urpg's contest movedex.
 
-#define FIRST(a, ...) a
 #if B_EXPANDED_MOVE_NAMES == TRUE
-#define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(FIRST(__VA_OPT__(__VA_ARGS__, ) _name))
+#define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(DEFAULT(_name, __VA_ARGS__))
 #else
 #define HANDLE_EXPANDED_MOVE_NAME(_name, ...) COMPOUND_STRING(_name)
 #endif
@@ -2894,6 +2893,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_ACC_UP_1 },
+        .argument = STATUS2_FOCUS_ENERGY,
         .ignoresProtect = TRUE,
         .mirrorMoveBanned = TRUE,
         .snatchAffected = TRUE,
@@ -19887,7 +19887,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Increases allies' critical hit\n"
             "ratio, especially if Dragons."),
-        .effect = EFFECT_PLACEHOLDER, //EFFECT_DRAGON_CHEER
+        .effect = EFFECT_DRAGON_CHEER,
         .power = 0,
         .type = TYPE_DRAGON,
         .accuracy = 0,
