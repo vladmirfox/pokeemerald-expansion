@@ -558,7 +558,7 @@ static const struct MenuAction MultichoiceList_ForcedStartMenu[] =
     {gText_Blank}, // blank because it's filled by the player's name
     {gText_MenuOptionSave},
     {gText_MenuOptionOption},
-    {gText_MenuOptionExit},
+    // {gText_MenuOptionExit},
 };
 
 static const struct MenuAction MultichoiceList_FrontierGamblerBet[] =

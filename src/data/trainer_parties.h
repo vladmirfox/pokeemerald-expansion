@@ -4025,10 +4025,10 @@ static const struct TrainerMon sParty_Shelby5[] = {
     }
 };
 
-static const struct TrainerMon sParty_Calvin1[] = {
+static const struct TrainerMon sParty_Toshio1[] = {
     {
-    .lvl = 5,
-    .species = SPECIES_POOCHYENA,
+    .lvl = 4,
+    .species = SPECIES_NIDORAN_F,
     }
 };
 
@@ -7719,14 +7719,18 @@ static const struct TrainerMon sParty_Crissy[] = {
     }
 };
 
-static const struct TrainerMon sParty_Rick[] = {
+static const struct TrainerMon sParty_Eiji[] = {
     {
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
+    .lvl = 5,
+    .species = SPECIES_TAILLOW,
     },
     {
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
+    .lvl = 2,
+    .species = SPECIES_JOLTIK,
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SEWADDLE,
     }
 };
 

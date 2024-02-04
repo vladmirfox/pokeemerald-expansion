@@ -1,0 +1,47 @@
+mapscripts GinkoWoods_MapScripts {
+
+}
+
+script GinkoWoods_EventScript_Toshio {
+	// TODO rematch
+	trainerbattle_single(
+		TRAINER_TOSHIO_1,
+		format("Our eyes met! Therefore we must battle!"),
+		format("Should have kept my mouth shut...")
+	)
+	// specialvar VAR_RESULT, ShouldTryRematchBattle
+	// goto_if_eq VAR_RESULT, TRUE, Route102_EventScript_CalvinRematch
+	// setvar VAR_0x8004, TRAINER_CALVIN_1
+	// specialvar VAR_RESULT, IsTrainerRegistered
+	// goto_if_eq VAR_RESULT, FALSE, Route102_EventScript_CalvinTryRegister
+	msgbox(format("Real trainers fight when they spot each other!\pAt least that's what my dad told me..."))
+	release
+	end
+}
+
+script GinkoWoods_EventScript_Eiji {
+	trainerbattle_single(
+		TRAINER_EIJI,
+		format("With the help of my brand-new Pokémon, I'm catching all sort of bugs!"),
+		format("My bugs!")
+	)
+	msgbox(format("I picked a bird Pokémon because they're strong against bugs!"))
+	release
+	end
+}
+
+script GinkoWoods_EventScript_OldMan {
+	lock
+	faceplayer
+	msgbox(format("Something something old man something something"))
+	release
+	end
+}
+
+script GinkoWoods_EventScript_TrainerTips1 {
+    msgbox(format("{PLAYER}'s HOUSE"), MSGBOX_SIGN)
+}
+
+script GinkoWoods_EventScript_TrainerTips2 {
+    msgbox(format("You can sort the contents of your bag by pressing START."), MSGBOX_SIGN)
+}

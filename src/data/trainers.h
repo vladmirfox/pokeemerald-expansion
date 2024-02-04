@@ -3816,16 +3816,16 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Shelby5),
     },
 
-    [TRAINER_CALVIN_1] =
+    [TRAINER_TOSHIO_1] =
     {
-        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_YOUNGSTER,
-        .trainerName = _("CALVIN"),
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("TOSHIO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_Calvin1),
+        .party = TRAINER_PARTY(sParty_Toshio1),
     },
 
     [TRAINER_BILLY] =
@@ -7380,16 +7380,16 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Crissy),
     },
 
-    [TRAINER_RICK] =
+    [TRAINER_EIJI] =
     {
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_BUG_CATCHER,
-        .trainerName = _("RICK"),
+        .trainerName = _("EIJI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_Rick),
+        .party = TRAINER_PARTY(sParty_Eiji),
     },
 
     [TRAINER_LYLE] =

@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_Sunrise_Village",
       "border_filepath": "data/layouts/Sunrise_Village_Beach/border.bin",
       "blockdata_filepath": "data/layouts/Sunrise_Village_Beach/map.bin"
+    },
+    {
+      "id": "LAYOUT_GINKO_WOODS",
+      "name": "GinkoWoods_Layout",
+      "width": 54,
+      "height": 60,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_GinkoWoods",
+      "border_filepath": "data/layouts/GinkoWoods/border.bin",
+      "blockdata_filepath": "data/layouts/GinkoWoods/map.bin"
     }
   ]
 }

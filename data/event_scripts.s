@@ -1074,3 +1074,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Sunrise_Village/scripts.inc"
 
 	.include "data/maps/Sunrise_Village_Beach/scripts.inc"
+
+	.include "data/maps/GinkoWoods/scripts.inc"
