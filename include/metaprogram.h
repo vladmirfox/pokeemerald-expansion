@@ -23,6 +23,12 @@
 #define THIRD(a, ...) __VA_OPT__(SECOND(__VA_ARGS__))
 #define FOURTH(a, ...) __VA_OPT__(THIRD(__VA_ARGS__))
 
+/* Expands to everything but the first x arguments */
+#define EXCEPT_1(a, ...) __VA_OPT__(__VA_ARGS__)
+#define EXCEPT_2(a, ...) __VA_OPT__(EXCEPT_1(__VA_ARGS__))
+#define EXCEPT_3(a, ...) __VA_OPT__(EXCEPT_2(__VA_ARGS__))
+#define EXCEPT_4(a, ...) __VA_OPT__(EXCEPT_3(__VA_ARGS__))
+
 /* 'UNPACK (x, y, z)' expands to 'x, y, z'.
  * Useful for passing arguments which may contain commas into a macro. */
 #define UNPACK(...) __VA_ARGS__
