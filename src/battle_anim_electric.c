@@ -484,9 +484,9 @@ const struct SpriteTemplate gFairyLockChainsSpriteTemplate =
     .tileTag = ANIM_TAG_FAIRY_LOCK_CHAINS,
     .paletteTag = ANIM_TAG_FAIRY_LOCK_CHAINS,
     .oam = &gOamData_AffineOff_ObjNormal_64x32,
-    .anims = sAnims_VoltTackleBolt,
+    .anims = gDummySpriteAnimTable,
     .images = NULL,
-    .affineAnims = sAffineAnims_VoltTackleBolt,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimVoltTackleBolt,
 };
 
@@ -1214,6 +1214,7 @@ static bool8 CreateVoltTackleBolt(struct Task *task, u8 taskId)
         gSprites[spriteId].data[6] = taskId;
         gSprites[spriteId].data[7] = 7;
         gSprites[spriteId].data[1] = isFairyLock ? 25 : 12; // How long the chains / bolts stay on screen.
+        gSprites[spriteId].data[2] = isFairyLock; // Whether to destroy the Oam Matrix.
         task->data[7]++;
     }
 
@@ -1242,7 +1243,8 @@ static void AnimVoltTackleBolt(struct Sprite *sprite)
     if (++sprite->data[0] > sprite->data[1])
     {
         gTasks[sprite->data[6]].data[sprite->data[7]]--;
-        FreeOamMatrix(sprite->oam.matrixNum);
+        if (!sprite->data[2])
+            FreeOamMatrix(sprite->oam.matrixNum);
         DestroySprite(sprite);
     }
 }
