@@ -1703,8 +1703,7 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
     {
         if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
             BattleScriptExecute(BattleScript_GrassyTerrainHeals);
-        if ((!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
-         || (gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT && VarGet(B_VAR_TERRAIN_TIMER) >= 0 && --gFieldTimers.terrainTimer == 0))
+        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
         {
             gFieldStatuses &= ~terrainFlag;
             TryToRevertMimicryAndFlags();
