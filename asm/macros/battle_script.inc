@@ -1327,11 +1327,11 @@
 	.byte \battler
 	.4byte \jumpInstr
 	.endm
-	
+
 	.macro allyswitchswapbattlers
 	callnative BS_AllySwitchSwapBattler
 	.endm
-	
+
 	.macro allyswitchfailchance jumpInstr:req
 	callnative BS_AllySwitchFailChance
 	.4byte \jumpInstr
@@ -1588,9 +1588,15 @@
 	callnative BS_TryUpperHand
 	.4byte \failInstr
 	.endm
-  
+
 	.macro tryupdaterecoiltracker
 	callnative BS_TryUpdateRecoilTracker
+	.endm
+
+	.macro trytidyup clear:req, failInstr:req
+	callnative BS_TryTidyUp
+	.byte \clear
+	.4byte \failInstr
 	.endm
 
 @ various command changed to more readable macros

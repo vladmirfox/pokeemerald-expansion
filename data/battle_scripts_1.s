@@ -20,6 +20,28 @@
 
 	.section script_data, "aw", %progbits
 
+BattleScript_EffectTidyUp::
+	attackcanceler
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	trytidyup FALSE, BattleScript_EffectTidyUpRestoreBattler
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	attackstring
+	pause B_WAIT_TIME_MED
+	ppreduce
+	waitstate
+	attackanimation
+	waitanimation
+	trytidyup TRUE, NULL
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	printstring STRINGID_TIDYINGUPCOMPLETE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectTidyUpStatsUp:
+	goto BattleScript_EffectDragonDanceFromStatUp
+
+BattleScript_EffectTidyUpRestoreBattler::
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	goto BattleScript_EffectDragonDanceFromAttackString
+
 BattleScript_EffectUpperHand::
 	attackcanceler
 	tryupperhand BattleScript_FailedFromAtkString
@@ -5608,8 +5630,10 @@ BattleScript_CantRaiseMultipleStats::
 
 BattleScript_EffectDragonDance::
 	attackcanceler
+BattleScript_EffectDragonDanceFromAttackString::
 	attackstring
 	ppreduce
+BattleScript_EffectDragonDanceFromStatUp::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_DragonDanceDoMoveAnim
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPEED, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
 BattleScript_DragonDanceDoMoveAnim::

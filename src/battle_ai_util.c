@@ -1709,7 +1709,7 @@ bool32 HasMoveEffectANDArg(u32 battlerId, u32 effect, u32 argument)
     return FALSE;
 }
 
-bool32 HasMoveWithMoveEffect(u32 battlerId, u32 moveEffect)
+bool32 HasMoveWithAdditionalEffect(u32 battlerId, u32 moveEffect)
 {
     s32 i;
     u16 *moves = GetMovesArray(battlerId);
@@ -1718,6 +1718,21 @@ bool32 HasMoveWithMoveEffect(u32 battlerId, u32 moveEffect)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
             && MoveHasMoveEffect(moves[i], moveEffect))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool32 HasMoveWithCriticalHitChance(u32 battlerId)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battlerId);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
+            && gMovesInfo[moves[i]].criticalHitStage > 0)
             return TRUE;
     }
 
