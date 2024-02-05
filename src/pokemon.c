@@ -2502,6 +2502,30 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_IS_SHADOW:
             retVal = substruct3->isShadow;
             break;
+        case MON_DATA_REVERSE_MODE:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.isReverse;
+            break;
+        case MON_DATA_SHADOW_ID:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.shadowID;
+            break;
+        case MON_DATA_SHADOW_AGGRO:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.shadowAggro;
+            break;
+        case MON_DATA_HEART_VALUE:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.heartValue;
+            break;
+        case MON_DATA_HEART_MAX:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.heartMax;
+            break;
+        case MON_DATA_SNAGGED:
+            if (substruct3->isShadow)
+                retVal = boxMon->nickData.shadowData.snagFlag;
+            break;
         case MON_DATA_DYNAMAX_LEVEL:
             retVal = substruct3->dynamaxLevel;
             break;
@@ -2591,33 +2615,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = nature ^ boxMon->hiddenNatureModifier;
             break;
         }
-        case MON_DATA_IS_SHADOW:
-            retVal = substruct3->isShadow;
-            break;
-        case MON_DATA_REVERSE_MODE:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.isReverse;
-            break;
-        case MON_DATA_SHADOW_ID:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.shadowID;
-            break;
-        case MON_DATA_SHADOW_AGGRO:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.shadowAggro;
-            break;
-        case MON_DATA_HEART_VALUE:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.heartValue;
-            break;
-        case MON_DATA_HEART_MAX:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.heartMax;
-            break;
-        case MON_DATA_SNAGGED:
-            if (substruct3->isShadow)
-                retVal = boxMon->nickData.shadowData.snagFlag;
-            break;
         default:
             break;
         }
