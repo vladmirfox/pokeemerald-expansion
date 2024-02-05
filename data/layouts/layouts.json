@@ -4414,8 +4414,8 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE",
       "name": "Sunrise_Village_Layout",
-      "width": 20,
-      "height": 26,
+      "width": 33,
+      "height": 35,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Sunrise_Village",
       "border_filepath": "data/layouts/Sunrise_Village/border.bin",
@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_GinkoWoods",
       "border_filepath": "data/layouts/GinkoWoods/border.bin",
       "blockdata_filepath": "data/layouts/GinkoWoods/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHII_TOWN",
+      "name": "ChiiTown_Layout",
+      "width": 38,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Sunrise_Village",
+      "border_filepath": "data/layouts/ChiiTown/border.bin",
+      "blockdata_filepath": "data/layouts/ChiiTown/map.bin"
     }
   ]
 }
