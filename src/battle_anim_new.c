@@ -4794,8 +4794,6 @@ const struct SpriteTemplate gReverseParticleSpriteTemplate =
     .callback = AnimEndureEnergy,
 };
 
-
-
 // Z MOVES
 //activate
 const struct SpriteTemplate gZMoveSymbolSpriteTemplate =
