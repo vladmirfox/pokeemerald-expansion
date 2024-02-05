@@ -1583,17 +1583,17 @@
 	.endm
 
 	@ Sets the modernFatefulEncounter bit for the Pokemon in the specified slot of the player's party.
-	@.macro setmodernfatefulencounter slot:req
-	@.byte 0xcd
-	@.2byte \slot
-	@.endm
+	.macro setmodernfatefulencounter slot:req
+	.byte 0xcd
+	.2byte \slot
+	.endm
 
 	@ Checks if the modernFatefulEncounter bit is set for the Pokemon in the specified slot of the player's party. If it isn't set,
 	@ VAR_RESULT is TRUE. If the bit is set (or if the specified slot is empty or invalid), VAR_RESULT is FALSE.
-	@.macro checkmodernfatefulencounter slot:req
-	@.byte 0xce
-	@.2byte \slot
-	@.endm
+	.macro checkmodernfatefulencounter slot:req
+	.byte 0xce
+	.2byte \slot
+	.endm
 
 	@ Jumps to the ram script saved from a Wonder Card. If there is no valid saved Wonder Card or if the
 	@ ram script is invalid then this does nothing.

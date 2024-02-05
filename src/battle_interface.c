@@ -2603,7 +2603,7 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
                 exp = GetMonData(mon, MON_DATA_EXP);
                 currLevelExp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
                 currExpBarValue = exp - currLevelExp;
-                maxExpBarValue = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - currLevelExp;\
+                maxExpBarValue = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - currLevelExp;
                 whichBar = EXP_BAR;
             }
             

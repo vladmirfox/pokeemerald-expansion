@@ -7816,7 +7816,7 @@ BattleScript_SpeedBoostActivates::
 BattleScript_SpeedBoostActivatesEnd:
 	end3
 
-@ Cant compare directly to a value, have to compare to value at pointer
+@ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
 
