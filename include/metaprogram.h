@@ -17,7 +17,10 @@
 #define STR(...) STR_(__VA_ARGS__)
 #define STR_(...) #__VA_ARGS__
 
-/* Expands to the first/second/third/fourth argument. */
+/* Converts a string to a compound literal, essentially making it a pointer to const u8 */
+#define COMPOUND_STRING(str) (const u8[]) _(str)
+
+/* Expands to the first/second/third/fourth argument (if it exists) */
 #define FIRST(a, ...) a
 #define SECOND(a, ...) __VA_OPT__(FIRST(__VA_ARGS__))
 #define THIRD(a, ...) __VA_OPT__(SECOND(__VA_ARGS__))
@@ -29,13 +32,20 @@
 #define EXCEPT_3(a, ...) __VA_OPT__(EXCEPT_2(__VA_ARGS__))
 #define EXCEPT_4(a, ...) __VA_OPT__(EXCEPT_3(__VA_ARGS__))
 
+/* Picks the xth VA_ARG if it exists, otherwise returns a default value */
+#define DEFAULT(_default, ...) FIRST(__VA_OPT__(__VA_ARGS__, ) _default)
+#define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, SECOND(__VA_ARGS__)))
+#define DEFAULT_3(_default, ...) DEFAULT(_default __VA_OPT__(, THIRD(__VA_ARGS__)))
+#define DEFAULT_4(_default, ...) DEFAULT(_default __VA_OPT__(, FOURTH(__VA_ARGS__)))
+
 /* 'UNPACK (x, y, z)' expands to 'x, y, z'.
  * Useful for passing arguments which may contain commas into a macro. */
 #define UNPACK(...) __VA_ARGS__
 
 /* Expands to 'macro(...args, ...)'. */
-#define INVOKE_WITH(macro, args, ...) INVOKE_WITH_(macro, UNPACK args __VA_OPT__(, __VA_ARGS__))
-#define INVOKE_WITH_(macro, ...) macro(__VA_ARGS__)
+#define INVOKE_WITH(macro, args, ...) INVOKE(macro, UNPACK args __VA_OPT__(, __VA_ARGS__))
+#define INVOKE(macro, ...) macro(__VA_ARGS__)
+#define INVOKE_() INVOKE
 
 /* Recursive macros.
  * Based on https://www.scs.stanford.edu/~dm/blog/va-opt.html
@@ -66,11 +76,130 @@
 #define R_FOR_EACH_WITH_(macro, args, a, ...) INVOKE_WITH(macro, args, a) __VA_OPT__(R_FOR_EACH_WITH_P PARENS (macro, args, __VA_ARGS__))
 #define R_FOR_EACH_WITH_P() R_FOR_EACH_WITH_
 
-/* Picks the xth VA_ARG if it exists, otherwise returns a default value */
-#define DEFAULT(_default, ...) FIRST(__VA_OPT__(__VA_ARGS__, ) _default)
-#define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, SECOND(__VA_ARGS__)))
-#define DEFAULT_3(_default, ...) DEFAULT(_default __VA_OPT__(, THIRD(__VA_ARGS__)))
-#define DEFAULT_4(_default, ...) DEFAULT(_default __VA_OPT__(, FOURTH(__VA_ARGS__)))
+/* current gen = 1*/
+#define CONFIG_BY_DEFINE_0_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_0_GTOE_1(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_2(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_3(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_4(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_5(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_0_GTOE_8(a, b) b
+
+/* current gen = 2 */
+#define CONFIG_BY_DEFINE_1_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_1_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_1_GTOE_2(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_3(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_4(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_5(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_1_GTOE_8(a, b) b
+
+/* current gen = 3 */
+#define CONFIG_BY_DEFINE_2_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_2_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_2_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_2_GTOE_3(a, b) b
+#define CONFIG_BY_DEFINE_2_GTOE_4(a, b) b
+#define CONFIG_BY_DEFINE_2_GTOE_5(a, b) b
+#define CONFIG_BY_DEFINE_2_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_2_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_2_GTOE_8(a, b) b
+
+/* current gen = 4 */
+#define CONFIG_BY_DEFINE_3_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_3_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_3_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_3_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_3_GTOE_4(a, b) b
+#define CONFIG_BY_DEFINE_3_GTOE_5(a, b) b
+#define CONFIG_BY_DEFINE_3_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_3_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_3_GTOE_8(a, b) b
+
+/* current gen = 5 */
+#define CONFIG_BY_DEFINE_4_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_4_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_4_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_4_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_4_GTOE_4(a, b) a
+#define CONFIG_BY_DEFINE_4_GTOE_5(a, b) b
+#define CONFIG_BY_DEFINE_4_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_4_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_4_GTOE_8(a, b) b
+
+/* current gen = 6 */
+#define CONFIG_BY_DEFINE_5_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_4(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_5(a, b) a
+#define CONFIG_BY_DEFINE_5_GTOE_6(a, b) b
+#define CONFIG_BY_DEFINE_5_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_5_GTOE_8(a, b) b
+
+/* current gen = 7 */
+#define CONFIG_BY_DEFINE_6_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_4(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_5(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_6(a, b) a
+#define CONFIG_BY_DEFINE_6_GTOE_7(a, b) b
+#define CONFIG_BY_DEFINE_6_GTOE_8(a, b) b
+
+/* current gen = 8 */
+#define CONFIG_BY_DEFINE_7_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_4(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_5(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_6(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_7(a, b) a
+#define CONFIG_BY_DEFINE_7_GTOE_8(a, b) b
+
+/* current gen = 9 */
+#define CONFIG_BY_DEFINE_8_GTOE_0(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_1(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_2(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_3(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_4(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_5(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_6(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_7(a, b) a
+#define CONFIG_BY_DEFINE_8_GTOE_8(a, b) a
+
+/* A "simple" macro that lets you define values by a config where a ternary wouldn't work
+Can be read from left to right as (define >= target ? val : val2)
+Define and target are compared on a "greater than or equal" (GTOE) basis and no other */
+#define CONFIG_BY_DEFINE(define, target, val1, val2) CONFIG_BY_DEFINE_(define, target)(val1, val2)
+#define CONFIG_BY_DEFINE_(define, target) CONFIG_BY_DEFINE_ ## define ## _GTOE_ ## target
+
+/* Similar but check for TRUE or FALSE - only works for booleans */
+#define CONFIG_BY_DEFINE_TRUE(define, val1, val2) CONFIG_BY_DEFINE_EQ_(define, 1)(val1, val2)
+#define CONFIG_BY_DEFINE_FALSE(define, val1, val2) CONFIG_BY_DEFINE_EQ_(define, 0)(val1, val2)
+#define CONFIG_BY_DEFINE_EQ_(define, target) CONFIG_BY_DEFINE_ ## define ## _EQ_ ## target
+#define CONFIG_BY_DEFINE_1_EQ_0(a, b) b
+#define CONFIG_BY_DEFINE_1_EQ_1(a, b) a
+#define CONFIG_BY_DEFINE_0_EQ_0(a, b) a
+#define CONFIG_BY_DEFINE_0_EQ_1(a, b) b
+
+/* Lets you define values that vary across generations without needing a ternary
+You should use it by defining CONFIG_BY_GEN in each file where you want to use it
+along with the relevant constant e.g. for moves_info.h:
+#define CONFIG_BY_GEN(...) CONFIG_BY_GEN_DEFINE(B_UPDATED_MOVE_DATA, __VA_ARGS__) */
+#define CONFIG_BY_GEN_DEFINE(define, ...) VARARG_8(CONFIG_BY_GEN_DEFINE_, define, __VA_ARGS__)
+#define CONFIG_BY_GEN_DEFINE_3(define, base, tuple) INVOKE(CONFIG_BY_DEFINE, define, UNPACK tuple, base)
+#define CONFIG_BY_GEN_DEFINE_4(define, base, tuple1, tuple2) INVOKE(CONFIG_BY_GEN_DEFINE_4_UNPACKED, define, base, UNPACK tuple1, UNPACK tuple2)
+#define CONFIG_BY_GEN_DEFINE_4_UNPACKED(define, base, target1, value1, target2, value2) CONFIG_BY_DEFINE_(define, target1)(CONFIG_BY_DEFINE_(define, target2)(value2, value1), base)
+#define CONFIG_BY_GEN_DEFINE_5(define, base, tuple1, tuple2, tuple3) INVOKE(CONFIG_BY_GEN_DEFINE_5_UNPACKED, define, base, UNPACK tuple1, UNPACK tuple2, UNPACK tuple3)
+#define CONFIG_BY_GEN_DEFINE_5_UNPACKED(define, base, target1, value1, target2, value2, target3, value3) CONFIG_BY_DEFINE_(define, target1)(CONFIG_BY_DEFINE_(define, target2)(CONFIG_BY_DEFINE_(define, target3)(value3, value2), value1), base)
 
 /* (Credit to MGriffin) A rather monstrous way of finding the set bit in a word.
 Invalid input causes a compiler error. Sample: https://cexplore.karathan.at/z/x1hm7B */
