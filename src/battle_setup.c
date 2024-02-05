@@ -1450,6 +1450,13 @@ static void CB2_EndTrainerBattle(void)
             SetBattledTrainersFlags();
         }
     }
+    // restore PP for moves with less than 5 after battle
+    int i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        {
+            MonRestoreLowPPOnly(&gPlayerParty[i]);
+        }
 }
 
 static void CB2_EndRematchBattle(void)

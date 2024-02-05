@@ -5209,6 +5209,30 @@ void BoxMonRestorePP(struct BoxPokemon *boxMon)
     }
 }
 
+void MonRestoreLowPPOnly(struct Pokemon *mon) 
+{
+    BoxMonRestoreLowPPOnly(&mon->box);
+}
+
+void BoxMonRestoreLowPPOnly(struct BoxPokemon *boxMon)
+{
+    int i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0))
+        {
+            u16 move = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0);
+            u16 bonus = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, 0);
+            u8 pp = CalculatePPWithBonus(move, bonus, i);
+            if (pp < 5)
+            {
+                SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp);
+            }
+        }
+    }
+}
+
 void SetMonPreventsSwitchingString(void)
 {
     gLastUsedAbility = gBattleStruct->abilityPreventingSwitchout;
