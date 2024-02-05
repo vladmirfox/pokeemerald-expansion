@@ -121,4 +121,19 @@ SINGLE_BATTLE_TEST("Shield Dust does not block self-targeting effects, primary o
     }
 }
 
-TO_DO_BATTLE_TEST("Shield Dust does not block Sparkling Aria in doubles"); // Would certainly fail at the moment
+DOUBLE_BATTLE_TEST("Shield Dust does not block Sparkling Aria in doubles")
+{
+    KNOWN_FAILING;
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
+        MESSAGE("Foe Vivillion's burn was healed.");
+        STATUS_ICON(opponentLeft, burn: TRUE);
+    }
+}
