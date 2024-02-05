@@ -2173,6 +2173,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 data[retVal++] = EXT_CTRL_CODE_ENG;
                 data[retVal] = EOS;
             }
+            /*
             else if (GetBoxMonData(boxMon, MON_DATA_IS_SHADOW, NULL)) // We don't call substruct3->isShadow directly because it's encrypted.
             {
                 u32 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
@@ -2181,6 +2182,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
 
                 data[retVal] = EOS;
             }
+            */
             else
             {
                 if (DECAP_ENABLED && !DECAP_NICKNAMES && IsStringAddrSafe(data, POKEMON_NAME_LENGTH))
