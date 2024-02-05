@@ -2181,16 +2181,14 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 data[retVal++] = EXT_CTRL_CODE_ENG;
                 data[retVal] = EOS;
             }
-            /*
-            else if (GetBoxMonData(boxMon, MON_DATA_IS_SHADOW, NULL)) // We don't call substruct3->isShadow directly because it's encrypted.
+            else if (substruct3->isShadow)
             {
-                u32 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+                u32 species = boxMon->isBadEgg ? SPECIES_EGG : substruct0->species;
                 for (retVal = 0; retVal < POKEMON_NAME_LENGTH; retVal++)
                     data[retVal] = gSpeciesInfo[species].speciesName[retVal];
 
                 data[retVal] = EOS;
             }
-            */
             else
             {
                 if (DECAP_ENABLED && !DECAP_NICKNAMES && IsStringAddrSafe(data, POKEMON_NAME_LENGTH))
@@ -2730,10 +2728,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         case MON_DATA_NICKNAME:
         {
             s32 i;
-            if (GetBoxMonData(boxMon, MON_DATA_IS_SHADOW, NULL)) // We don't call substruct3->isShadow directly because it's encrypted.
+            if (substruct3->isShadow)
             {
-                u32 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
-
+                u32 species = boxMon->isBadEgg ? SPECIES_EGG : substruct0->species;
                 for (i = 0; i < min(sizeof(boxMon->nickData.nickname), POKEMON_NAME_LENGTH); i++)
                     boxMon->nickData.nickname[i] = gSpeciesInfo[species].speciesName[i];
                 if (POKEMON_NAME_LENGTH >= 11)
