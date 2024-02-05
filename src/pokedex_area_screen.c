@@ -814,9 +814,6 @@ static void CreateAreaUnknownSprites(void)
 
 static void LoadHGSSScreenSelectBarSubmenu(void)
 {
-    if (!POKEDEX_PLUS_HGSS) return; // prevents the compiler from emitting static .rodata
-                                    // if the feature is disabled
-
     CopyToBgTilemapBuffer(1, sPokedexPlusHGSS_ScreenSelectBarSubmenu_Tilemap, 0, 0);
     CopyBgTilemapBufferToVram(1);
 }
