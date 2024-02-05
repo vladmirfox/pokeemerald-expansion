@@ -1606,6 +1606,10 @@ static u32 GetBattlerMonData(u32 battler, struct Pokemon *party, u32 monId, u8 *
         battleMon.otId = GetMonData(&party[monId], MON_DATA_OT_ID);
         battleMon.metLevel = GetMonData(&party[monId], MON_DATA_MET_LEVEL);
         battleMon.isShadow = GetMonData(&party[monId], MON_DATA_IS_SHADOW);
+        battleMon.shadowAggro = GetMonData(&party[monId], MON_DATA_REVERSE_MODE);
+        battleMon.isReverse = GetMonData(&party[monId], MON_DATA_SHADOW_AGGRO);
+        battleMon.snagged = GetMonData(&party[monId], MON_DATA_SNAGGED);
+        battleMon.shadowID = GetMonData(&party[monId], MON_DATA_SHADOW_ID);
         battleMon.heartVal = GetMonData(&party[monId], MON_DATA_HEART_VALUE);
         battleMon.heartMax = GetMonData(&party[monId], MON_DATA_HEART_MAX);
         GetMonData(&party[monId], MON_DATA_NICKNAME, nickname);
