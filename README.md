@@ -118,9 +118,6 @@ Based off RHH's pokeemerald-expansion v1.7.3 https://github.com/rh-hideout/pokee
     - Berserk Gene
     - Most battle items from Gen 4+
     - Existing item data but missing effects:
-        - Mints
-        - Dynamax Candy
-        - Mulches
         - Gimmighoul Coin
         - Booster Energy
         - Tera Shards
