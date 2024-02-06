@@ -22,6 +22,14 @@ struct PickupItem
     u8 percentage[10];
 };
 
+struct __attribute__((packed, aligned(2))) MoveEffectInfo
+{
+    u32 statusFlag;
+    u8 activateAfterFaint:1;
+    u8 finalHitOnly:1;
+    u8 delayedEffect:1;
+};
+
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk);
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility);
 s32 GetCritHitChance(s32 critChanceIndex);

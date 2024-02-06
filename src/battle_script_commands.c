@@ -348,7 +348,6 @@ static void DrawLevelUpBannerText(void);
 static void SpriteCB_MonIconOnLvlUpBanner(struct Sprite *sprite);
 static bool32 CriticalCapture(u32 odds);
 static void BestowItem(u32 battlerAtk, u32 battlerDef);
-static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
@@ -892,24 +891,337 @@ const struct StatFractions gAccuracyStageRatios[] =
     {  3,   1}, // +6
 };
 
-static const u32 sStatusFlagsForMoveEffects[NUM_MOVE_EFFECTS] =
-{
-    [MOVE_EFFECT_SLEEP]          = STATUS1_SLEEP,
-    [MOVE_EFFECT_POISON]         = STATUS1_POISON,
-    [MOVE_EFFECT_BURN]           = STATUS1_BURN,
-    [MOVE_EFFECT_FREEZE]         = STATUS1_FREEZE,
-    [MOVE_EFFECT_PARALYSIS]      = STATUS1_PARALYSIS,
-    [MOVE_EFFECT_TOXIC]          = STATUS1_TOXIC_POISON,
-    [MOVE_EFFECT_FROSTBITE]      = STATUS1_FROSTBITE,
-    [MOVE_EFFECT_CONFUSION]      = STATUS2_CONFUSION,
-    [MOVE_EFFECT_FLINCH]         = STATUS2_FLINCHED,
-    [MOVE_EFFECT_UPROAR]         = STATUS2_UPROAR,
-    [MOVE_EFFECT_CHARGING]       = STATUS2_MULTIPLETURNS,
-    [MOVE_EFFECT_WRAP]           = STATUS2_WRAPPED,
-    [MOVE_EFFECT_RECHARGE]       = STATUS2_RECHARGE,
-    [MOVE_EFFECT_PREVENT_ESCAPE] = STATUS2_ESCAPE_PREVENTION,
-    [MOVE_EFFECT_NIGHTMARE]      = STATUS2_NIGHTMARE,
-    [MOVE_EFFECT_THRASH]         = STATUS2_LOCK_CONFUSE,
+static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
+    [MOVE_EFFECT_SLEEP] = {
+        .statusFlag = STATUS1_SLEEP,
+    },
+
+    [MOVE_EFFECT_POISON] = {
+        .statusFlag = STATUS1_POISON,
+    },
+
+    [MOVE_EFFECT_BURN] = {
+        .statusFlag = STATUS1_BURN,
+    },
+
+    [MOVE_EFFECT_FREEZE] = {
+        .statusFlag = STATUS1_FREEZE,
+    },
+
+    [MOVE_EFFECT_PARALYSIS] = {
+        .statusFlag = STATUS1_PARALYSIS,
+    },
+
+    [MOVE_EFFECT_TOXIC] = {
+        .statusFlag = STATUS1_TOXIC_POISON,
+    },
+
+    [MOVE_EFFECT_FROSTBITE] = {
+        .statusFlag = STATUS1_FROSTBITE,
+    },
+
+    [MOVE_EFFECT_CONFUSION] = {
+        .statusFlag = STATUS2_CONFUSION,
+    },
+
+    [MOVE_EFFECT_FLINCH] = {
+        .statusFlag = STATUS2_FLINCHED,
+    },
+
+    [MOVE_EFFECT_TRI_ATTACK] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_UPROAR] = {
+        .statusFlag = STATUS2_UPROAR,
+    },
+
+    [MOVE_EFFECT_PAYDAY] = {
+        .statusFlag = 0,
+        .activateAfterFaint = TRUE,
+    },
+
+    [MOVE_EFFECT_CHARGING] = {
+        .statusFlag = STATUS2_MULTIPLETURNS,
+    },
+
+    [MOVE_EFFECT_WRAP] = {
+        .statusFlag = STATUS2_WRAPPED,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_ATK_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_DEF_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SPD_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_ATK_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_DEF_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ACC_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_EVS_PLUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ATK_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_DEF_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SPD_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_ATK_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_DEF_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ACC_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_EVS_MINUS_1] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_REMOVE_ARG_TYPE] = {
+        .statusFlag = 0,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_RECHARGE] = {
+        .statusFlag = STATUS2_RECHARGE,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_RAGE] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_STEAL_ITEM] = {
+        .statusFlag = 0,
+        .activateAfterFaint = TRUE,
+    },
+
+    [MOVE_EFFECT_PREVENT_ESCAPE] = {
+        .statusFlag = STATUS2_ESCAPE_PREVENTION,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_NIGHTMARE] = {
+        .statusFlag = STATUS2_NIGHTMARE,
+    },
+
+    [MOVE_EFFECT_ALL_STATS_UP] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_RAPIDSPIN] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_REMOVE_STATUS] = {
+        .statusFlag = 0,
+        .finalHitOnly = TRUE,
+        .delayedEffect = TRUE,
+    },
+
+    [MOVE_EFFECT_ATK_DEF_DOWN] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ATK_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_DEF_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SPD_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_ATK_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_DEF_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ACC_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_EVS_PLUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ATK_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_DEF_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SPD_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_ATK_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_DEF_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ACC_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_EVS_MINUS_2] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SCALE_SHOT] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_THRASH] = {
+        .statusFlag = STATUS2_LOCK_CONFUSE,
+    },
+
+    [MOVE_EFFECT_KNOCK_OFF] = {
+        .statusFlag = 0,
+        .delayedEffect = TRUE,
+    },
+
+    [MOVE_EFFECT_DEF_SPDEF_DOWN] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_CLEAR_SMOG] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SP_ATK_TWO_DOWN] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SMACK_DOWN] = {
+        .statusFlag = 0,
+        .finalHitOnly = TRUE,
+        .delayedEffect = TRUE,
+    },
+
+    [MOVE_EFFECT_FLAME_BURST] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_FEINT] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SPECTRAL_THIEF] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_V_CREATE] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_HAPPY_HOUR] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_CORE_ENFORCER] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_THROAT_CHOP] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_INCINERATE] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_BUG_BITE] = {
+        .statusFlag = 0,
+        .activateAfterFaint = TRUE,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_RECOIL_HP_25] = {
+        .statusFlag = 0,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_TRAP_BOTH] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_ROUND] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_STOCKPILE_WORE_OFF] = {
+        .statusFlag = 0,
+        .delayedEffect = TRUE,
+    },
+
+    [MOVE_EFFECT_DIRE_CLAW] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_STEALTH_ROCK] = {
+        .statusFlag = 0,
+        .activateAfterFaint = TRUE,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_SPIKES] = {
+        .statusFlag = 0,
+        .activateAfterFaint = TRUE,
+        .finalHitOnly = TRUE,
+    },
+
+    [MOVE_EFFECT_SYRUP_BOMB] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_FLORAL_HEALING] = {
+        .statusFlag = 0,
+    },
+
+    [MOVE_EFFECT_SECRET_POWER] = {
+        .statusFlag = 0,
+    },
 };
 
 static const u8 *const sMoveEffectBS_Ptrs[] =
@@ -970,18 +1282,6 @@ static const struct SpriteTemplate sSpriteTemplate_MonIconOnLvlUpBanner =
 };
 
 static const u16 sProtectSuccessRates[] = {USHRT_MAX, USHRT_MAX / 2, USHRT_MAX / 4, USHRT_MAX / 8};
-
-static const u16 sFinalStrikeOnlyEffects[] =
-{
-    MOVE_EFFECT_BUG_BITE,
-    MOVE_EFFECT_STEAL_ITEM,
-    MOVE_EFFECT_REMOVE_ARG_TYPE,
-    MOVE_EFFECT_SMACK_DOWN,
-    MOVE_EFFECT_REMOVE_STATUS,
-    MOVE_EFFECT_RECOIL_HP_25,
-    MOVE_EFFECT_PREVENT_ESCAPE,
-    MOVE_EFFECT_WRAP,
-};
 
 static const u16 sNaturePowerMoves[BATTLE_TERRAIN_COUNT] =
 {
@@ -2754,42 +3054,31 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
 
 void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
 {
-    s32 i, affectsUser = 0;
+    s32 i, affectsUser = (moveEffect & MOVE_EFFECT_AFFECTS_USER);
     bool32 statusChanged = FALSE;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
     u32 flags = 0;
     u16 battlerAbility;
-    bool8 activateAfterFaint = FALSE;
+
+    // Remove flags
+    moveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
 
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT
         && gBattleMons[gBattlerTarget].hp != 0
-        && IsFinalStrikeEffect(moveEffect))
-    {
+        && gMoveEffectsInfo[moveEffect].finalHitOnly)
         RESET_RETURN
-    }
 
-    switch (moveEffect) // Set move effects which happen later on
+    // Certain move effects only activate at moveend
+    if (gMoveEffectsInfo[moveEffect].delayedEffect)
     {
-    case MOVE_EFFECT_KNOCK_OFF:
-    case MOVE_EFFECT_SMACK_DOWN:
-    case MOVE_EFFECT_REMOVE_STATUS:
-    case MOVE_EFFECT_STOCKPILE_WORE_OFF:
         gBattleStruct->moveEffect2 = moveEffect;
-        RESET_RETURN
-    case MOVE_EFFECT_STEALTH_ROCK:
-    case MOVE_EFFECT_SPIKES:
-    case MOVE_EFFECT_PAYDAY:
-    case MOVE_EFFECT_STEAL_ITEM:
-    case MOVE_EFFECT_BUG_BITE:
-        activateAfterFaint = TRUE;
-        break;
+        gBattlescriptCurrInstr++;
+        return;
     }
 
-    if (moveEffect & MOVE_EFFECT_AFFECTS_USER)
+    if (affectsUser == MOVE_EFFECT_AFFECTS_USER)
     {
         gEffectBattler = gBattlerAttacker; // battler that effects get applied on
-        moveEffect &= ~MOVE_EFFECT_AFFECTS_USER;
-        affectsUser = MOVE_EFFECT_AFFECTS_USER;
         gBattleScripting.battler = gBattlerTarget; // theoretically the attacker
     }
     else
@@ -2799,9 +3088,6 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
     }
 
     battlerAbility = GetBattlerAbility(gEffectBattler);
-
-     // Just in case this flag is still set
-    moveEffect &= ~MOVE_EFFECT_CERTAIN;
 
     if (!primary && affectsUser != MOVE_EFFECT_AFFECTS_USER
       && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
@@ -2821,7 +3107,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
     if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove) && !primary && moveEffect != MOVE_EFFECT_CHARGING)
         RESET_RETURN
 
-    if (gBattleMons[gEffectBattler].hp == 0 && !activateAfterFaint)
+    if (gBattleMons[gEffectBattler].hp == 0 && !gMoveEffectsInfo[moveEffect].activateAfterFaint)
         RESET_RETURN
 
     if (DoesSubstituteBlockMove(gBattlerAttacker, gEffectBattler, gCurrentMove) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
@@ -2830,7 +3116,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
     if (moveEffect <= PRIMARY_STATUS_MOVE_EFFECT) // status change
     {
         const u8 *cancelMultiTurnMovesResult = NULL;
-        switch (sStatusFlagsForMoveEffects[moveEffect])
+        switch (gMoveEffectsInfo[moveEffect].statusFlag)
         {
         case STATUS1_SLEEP:
             // check active uproar
@@ -3063,7 +3349,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
         {
             BattleScriptPush(gBattlescriptCurrInstr + 1);
 
-            if (sStatusFlagsForMoveEffects[moveEffect] == STATUS1_SLEEP)
+            if (gMoveEffectsInfo[moveEffect].statusFlag == STATUS1_SLEEP)
             {
                 if (B_SLEEP_TURNS >= GEN_5)
                     gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 1, 3));
@@ -3072,7 +3358,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
             }
             else
             {
-                gBattleMons[gEffectBattler].status1 |= sStatusFlagsForMoveEffects[moveEffect];
+                gBattleMons[gEffectBattler].status1 |= gMoveEffectsInfo[moveEffect].statusFlag;
             }
 
             gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[moveEffect];
@@ -3110,7 +3396,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
     }
     else
     {
-        if (gBattleMons[gEffectBattler].status2 & sStatusFlagsForMoveEffects[moveEffect])
+        if (gBattleMons[gEffectBattler].status2 & gMoveEffectsInfo[moveEffect].statusFlag)
         {
             gBattlescriptCurrInstr++;
         }
@@ -3163,7 +3449,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                 else if (GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber
                         && !IsDynamaxed(gEffectBattler))
                 {
-                    gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[moveEffect];
+                    gBattleMons[gEffectBattler].status2 |= gMoveEffectsInfo[moveEffect].statusFlag;
                     gBattlescriptCurrInstr++;
                 }
                 break;
@@ -3906,10 +4192,10 @@ static void Cmd_clearstatusfromeffect(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
 
     if (gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
-        gBattleMons[battler].status1 &= (~sStatusFlagsForMoveEffects[gBattleScripting.moveEffect]);
+        gBattleMons[battler].status1 &= (~gMoveEffectsInfo[gBattleScripting.moveEffect].statusFlag);
     else
     {
-        gBattleMons[battler].status2 &= (~sStatusFlagsForMoveEffects[gBattleScripting.moveEffect]);
+        gBattleMons[battler].status2 &= (~gMoveEffectsInfo[gBattleScripting.moveEffect].statusFlag);
         if (gBattleScripting.moveEffect == MOVE_EFFECT_CHARGING)
             gProtectStructs[battler].chargingTurn = FALSE;
     }
@@ -15652,19 +15938,6 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
             }
         }
         return TRUE;
-    }
-    return FALSE;
-}
-
-static bool8 IsFinalStrikeEffect(u16 move)
-{
-    u32 i;
-    u16 moveEffect = gMovesInfo[move].effect;
-
-    for (i = 0; i < ARRAY_COUNT(sFinalStrikeOnlyEffects); i++)
-    {
-        if (moveEffect == sFinalStrikeOnlyEffects[i])
-            return TRUE;
     }
     return FALSE;
 }
