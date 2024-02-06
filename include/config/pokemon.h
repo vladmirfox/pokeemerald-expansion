@@ -9,6 +9,17 @@
 #define P_UPDATED_FRIENDSHIP        GEN_LATEST  // Since Gen 8, the base friendship of certain Pokémon was changed.
 #define P_UPDATED_EVS               GEN_LATEST  // Some Pokémon have received EV updates after their introduction.
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Since Gen 5, some Pokémon have received base Experience changes.
+
+// Learnsets
+//GEN_1 == Pokemon Yellow learnset
+//GEN_2 == Pokemon Crystal learnset
+//GEN_3 == RSE learnset
+//GEN_4 == HGSS learnset
+//GEN_5 == B2W2 learnset
+//GEN_6 == XY learnset
+//GEN_7 == USUM learnset
+//GEN_8 == For Pokemon in Gen 1 - Gen 4 BDSP learnset, Hisuian Pokemon have PLA learnset, Pokemon that are present in SWSH have SWSH learnset, others retain their USUM learnset
+//GEN_9 == For Pokemon present in SV, SV learnset, otherwise they have the same learnset as in GEN_8 (BDSP/PLA/SWSH if present, otherwise USUM)
 #define P_LVL_UP_LEARNSETS          GEN_LATEST  // Define which gens learnset you'd like, if your learnsets gen is lower than the gen a certain pokemon was introduced, it will revert to the learnset a pokemon had when it was first introduced
 
 // Evolution settings
