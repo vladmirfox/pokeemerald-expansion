@@ -4127,9 +4127,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_IRON_TAIL] =
     {
         .effect = EFFECT_DEFENSE_DOWN_HIT,
-        .power = 90,
+        .power = 100,
         .type = TYPE_STEEL,
-        .accuracy = 100,
+        .accuracy = 75,
         .pp = 15,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
