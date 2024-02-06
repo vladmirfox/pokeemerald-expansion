@@ -3346,6 +3346,7 @@ static void CursorCb_Moves(u8 taskId)
 {
     PlaySE(SE_SELECT);
 	FlagSet(FLAG_PARTY_MOVES);
+    gLastViewedMonIndex = gPartyMenu.slotId;
     gSpecialVar_0x8004 = gPartyMenu.slotId;
 	gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004]);
 	DisplayPartyPokemonDataForRelearner(gSpecialVar_0x8004);
