@@ -5989,20 +5989,24 @@ static void Cmd_moveend(void)
             break;
         }
         case MOVEEND_ENTER_REVERSE_MODE:
-        if (gBattleMons[gBattlerAttacker].isShadow == TRUE && !gBattleMons[gBattlerAttacker].isReverse && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
         {
-            u8 chance = GetReverseModeChance(&gBattleMons[gBattlerAttacker]);
-            u8 roll = Random() % 100;
-
-            if (roll < chance)
+            if (gBattleMons[gBattlerAttacker].isShadow == TRUE
+            && !gBattleMons[gBattlerAttacker].isReverse
+            && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
             {
-                gBattleMons[gBattlerAttacker].isReverse = FALSE;
-                BtlController_EmitSetMonData(gBattlerAttacker, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerAttacker].status1), &gBattleMons[gBattlerAttacker].status1);
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_ALL);
-                PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
-                LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
+                u8 chance = GetReverseModeChance(&gBattleMons[gBattlerAttacker]);
+                u8 roll = Random() % 100;
+
+                if (roll < chance)
+                {
+                    gBattleMons[gBattlerAttacker].isReverse = FALSE;
+                    BtlController_EmitSetMonData(gBattlerAttacker, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerAttacker].status1), &gBattleMons[gBattlerAttacker].status1);
+                    UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_ALL);
+                    PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
+                    LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
+                }
+                
             }
-            
             gBattleScripting.moveendState++;
             break;
         }
