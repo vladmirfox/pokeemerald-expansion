@@ -603,9 +603,6 @@ void HandleAction_Run(void)
     }
 }
 
-
-
-
 void HandleAction_WatchesCarefully(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];

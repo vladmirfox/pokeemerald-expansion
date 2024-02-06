@@ -15217,15 +15217,15 @@ static void Cmd_handleballthrow(void)
 
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-                    {
-                        bool8 snagFlag = TRUE;
-                        gBattleMons[gBattlerTarget].snagged = TRUE;
-                        gBattleMons[gBattlerTarget].hp = 0;
-                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SNAGGED, &snagFlag);
-                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
-                        SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
-                        gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
-                    }
+                {
+                    bool8 snagFlag = TRUE;
+                    gBattleMons[gBattlerTarget].snagged = TRUE;
+                    gBattleMons[gBattlerTarget].hp = 0;
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SNAGGED, &snagFlag);
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
+                    SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
+                }
                 else
                 {
                     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
