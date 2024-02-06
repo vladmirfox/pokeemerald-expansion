@@ -1903,6 +1903,7 @@ static void SetBattlerMonData(u32 battler, struct Pokemon *party, u32 monId)
     case REQUEST_ALL_BATTLE:
         {
             u8 iv;
+            u8 isShadow;
 
             SetMonData(&party[monId], MON_DATA_SPECIES, &battlePokemon->species);
             SetMonData(&party[monId], MON_DATA_HELD_ITEM, &battlePokemon->item);
@@ -1936,6 +1937,8 @@ static void SetBattlerMonData(u32 battler, struct Pokemon *party, u32 monId)
             SetMonData(&party[monId], MON_DATA_SPEED, &battlePokemon->speed);
             SetMonData(&party[monId], MON_DATA_SPATK, &battlePokemon->spAttack);
             SetMonData(&party[monId], MON_DATA_SPDEF, &battlePokemon->spDefense);
+            isShadow = battlePokemon->isShadow;
+            SetMonData(&party[monId], MON_DATA_IS_SHADOW, &isShadow);
         }
         break;
     case REQUEST_SPECIES_BATTLE:
