@@ -166,7 +166,6 @@ JSONPROC := tools/jsonproc/jsonproc$(EXE)
 PATCHELF := tools/patchelf/patchelf$(EXE)
 ROMTEST ?= $(shell { command -v mgba-rom-test || command -v tools/mgba/mgba-rom-test$(EXE); } 2>/dev/null)
 ROMTESTHYDRA := tools/mgba-rom-test-hydra/mgba-rom-test-hydra$(EXE)
-TEACHABLELEARNSETHELPER := $(shell { python3 tools/learnset_helpers/teachable.py; } 2>/dev/null)
 
 PERL := perl
 
@@ -464,7 +463,7 @@ $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 
 # NOTE: Depending on event_scripts.o is hacky, but we want to depend on everything event_scripts.s depends on without having to alter scaninc
 $(DATA_SRC_SUBDIR)/pokemon/teachable_learnsets.h: $(DATA_ASM_BUILDDIR)/event_scripts.o
-	$(TEACHABLELEARNSETHELPER)
+	python3 tools/learnset_helpers/teachable.py
 
 # NOTE: Based on C_DEP above, but without NODEP and KEEP_TEMPS handling.
 define TEST_DEP
