@@ -6671,12 +6671,12 @@ static u8 TrySetEnigmaBerry(u32 battler)
 
 static u8 DamagedStatBoostBerryEffect(u32 battler, u8 statId, u8 split)
 {
-    if (battler != gBattlerAttacker
-     && IsBattlerAlive(battler)
+    if (IsBattlerAlive(battler)
      && CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN)
      && (gBattleScripting.overrideBerryRequirements
          || (!DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
              && GetBattleMoveSplit(gCurrentMove) == split
+             && battler != gBattlerAttacker
              && TARGET_TURN_DAMAGED))
         )
     {
