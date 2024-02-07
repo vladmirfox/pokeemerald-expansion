@@ -3958,23 +3958,14 @@ bool32 ChangeTypeBasedOnTerrain(u32 battler)
     return TRUE;
 }
 
-// Supreme Overlord adds a damage boost for each fainted ally.
-// The first ally adds a x1.2 boost, and subsequent allies add an extra x0.1 boost each.
+// Supreme Overlord adds a x0.1 damage boost for each fainted ally.
 static uq4_12_t GetSupremeOverlordModifier(u32 battler)
 {
     u32 i;
-    struct Pokemon *party = GetBattlerParty(battler);
     uq4_12_t modifier = UQ_4_12(1.0);
-    bool32 appliedFirstBoost = FALSE;
 
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
-         && !GetMonData(&party[i], MON_DATA_IS_EGG)
-         && GetMonData(&party[i], MON_DATA_HP) == 0)
-            modifier += (!appliedFirstBoost) ? UQ_4_12(0.2) : UQ_4_12(0.1);
-        appliedFirstBoost = TRUE;
-    }
+    for (i = 0; i < gBattleStruct->supremeOverlordCounter[battler]; i++)
+        modifier += UQ_4_12(0.1);
 
     return modifier;
 }
@@ -4611,10 +4602,14 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_SUPREME_OVERLORD:
-            if (!gSpecialStatuses[battler].switchInAbilityDone && CountUsablePartyMons(battler) < PARTY_SIZE)
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->supremeOverlordModifier[battler] = GetSupremeOverlordModifier(battler);
+                if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.playerFaintCounter);
+                else
+                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.opponentFaintCounter);
+
                 BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
                 effect++;
             }
@@ -8673,6 +8668,12 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         if (RandomPercentage(RNG_FICKLE_BEAM, 30))
             basePower *= 2;
         break;
+    case EFFECT_LAST_RESPECTS:
+        if (GetBattlerSide(battlerAtk) == B_SIDE_PLAYER)
+            basePower += (basePower * min(100, gBattleResults.playerFaintCounter));
+        else
+            basePower += (basePower * min(100, gBattleResults.opponentFaintCounter));
+        break;
     }
 
     // Move-specific base power changes
@@ -8899,7 +8900,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SUPREME_OVERLORD:
-        modifier = uq4_12_multiply(modifier, gBattleStruct->supremeOverlordModifier[battlerAtk]);
+        modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
         break;
     }
 
