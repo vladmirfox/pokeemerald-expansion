@@ -5,7 +5,10 @@ import os
 
 # before all else, abort if the config is off
 with open("./include/config/pokemon.h", "r") as file:
-    if re.findall("#define P_LEARNSET_HELPER_TEACHABLE *([^ ]*)", file.read())[0] != "TRUE":
+    learnset_config = re.findall("#define P_LEARNSET_HELPER_TEACHABLE *([^ ]*)", file.read())
+    if len(learnset_config) != 1:
+        quit()
+    if learnset_config[0] != "TRUE":
         quit()
 
 def parse_mon_name(name):
