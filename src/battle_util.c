@@ -4604,12 +4604,17 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_SUPREME_OVERLORD:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                struct Pokemon* party = GetBattlerParty(battler);
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.playerFaintCounter);
-                else
-                    gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.opponentFaintCounter);
-
+                j = 0;
+                for (i = 0; i < PARTY_SIZE; i++)
+                {
+                    if (GetMonData(&party[i], MON_DATA_HP) == 0
+                     && GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
+                     && GetMonData(&party[i], MON_DATA_IS_EGG) == FALSE)
+                        j++;
+                }
+                gBattleStruct->supremeOverlordCounter[battler] = min(5, j);
                 if (gBattleStruct->supremeOverlordCounter[battler] > 0)
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
