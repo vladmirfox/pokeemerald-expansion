@@ -113,7 +113,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out after Ice Face activates")
     }
 }
 
-SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in by a bu U-turn and Intimidate activates after it: player side")
+SINGLE_BATTLE_TEST("Held items are consumed immediately after a mon switched in by U-turn and Intimidate activates after it: player side")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
