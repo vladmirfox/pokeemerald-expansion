@@ -903,7 +903,7 @@ static void HandleInputChooseMove(u32 battler)
     
     if (sDescriptionSubmenu)
     {
-        if (JOY_NEW(START_BUTTON) || JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
+        if (JOY_NEW(L_BUTTON) || JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         {
             sDescriptionSubmenu = FALSE;
             FillWindowPixelBuffer(B_WIN_MOVE_DESCRIPTION, PIXEL_FILL(0));
@@ -914,12 +914,11 @@ static void HandleInputChooseMove(u32 battler)
             MoveSelectionDisplayMoveType(battler);
         }
     }
-    else if (JOY_NEW(START_BUTTON) && !(CanMegaEvolve(battler)) && !(CanUltraBurst(battler)) && !(gBattleStruct->zmove.viable)) //AdditionalBattleInfo only displays when mega evolving isn't possible, so they don't conflict
+    else if (JOY_NEW(L_BUTTON))
     {
         sDescriptionSubmenu = TRUE;
         MoveSelectionDisplayMoveDescription(battler);
     }
-
     else if (JOY_NEW(START_BUTTON))
     {
         if (CanMegaEvolve(battler))
