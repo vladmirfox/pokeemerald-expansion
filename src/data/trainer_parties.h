@@ -2070,6 +2070,7 @@ static const struct TrainerMon sParty_Koichi[] = {
     .lvl = 24,
     .species = SPECIES_MACHOP,
     .heldItem = ITEM_FOCUS_SASH,
+    .moves = {MOVE_STORM_THROW, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     },
     {
     .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),

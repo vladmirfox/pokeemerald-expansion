@@ -1924,7 +1924,8 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     s32 critChance = 0;
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT || gStatuses3[battlerAtk] & STATUS3_CANT_SCORE_A_CRIT
-       || abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR || abilityDef == ABILITY_MAGMA_ARMOR)
+       || abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR || abilityDef == ABILITY_MAGMA_ARMOR
+       || (abilityDef == ABILITY_LEAF_GUARD && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)))
     {
         critChance = -1;
     }
@@ -2930,7 +2931,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             if (gCurrentMove == MOVE_BURNING_JEALOUSY && !gProtectStructs[gEffectBattler].statRaised)
                 break;
 
-            if ((battlerAbility == ABILITY_WATER_VEIL || battlerAbility == ABILITY_WATER_BUBBLE)
+            if ((battlerAbility == ABILITY_WATER_VEIL || battlerAbility == ABILITY_WATER_BUBBLE || battlerAbility == ABILITY_HEATPROOF)
               && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
                 gLastUsedAbility = battlerAbility;
@@ -6890,6 +6891,7 @@ static void Cmd_switchineffects(void)
     else if (!(gDisableStructs[battler].spikesDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SPIKES)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN
         && IsBattlerAffectedByHazards(battler, FALSE)
         && IsBattlerGrounded(battler))
     {
@@ -6904,7 +6906,8 @@ static void Cmd_switchineffects(void)
     else if (!(gDisableStructs[battler].stealthRockDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEALTH_ROCK)
         && IsBattlerAffectedByHazards(battler, FALSE)
-        && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
+        && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN)
     {
         gDisableStructs[battler].stealthRockDone = TRUE;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, battler);
@@ -6925,7 +6928,7 @@ static void Cmd_switchineffects(void)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_ToxicSpikesAbsorbed;
         }
-        else if (IsBattlerAffectedByHazards(battler, TRUE))
+        else if (IsBattlerAffectedByHazards(battler, TRUE) && GetBattlerAbility(battler) != ABILITY_FOREWARN)
         {
             if (!(gBattleMons[battler].status1 & STATUS1_ANY)
                 && !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
@@ -6950,6 +6953,7 @@ static void Cmd_switchineffects(void)
     else if (!(gDisableStructs[battler].stickyWebDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STICKY_WEB)
         && IsBattlerAffectedByHazards(battler, FALSE)
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN
         && IsBattlerGrounded(battler))
     {
         gDisableStructs[battler].stickyWebDone = TRUE;
@@ -6961,7 +6965,8 @@ static void Cmd_switchineffects(void)
     else if (!(gDisableStructs[battler].steelSurgeDone)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEELSURGE)
         && IsBattlerAffectedByHazards(battler, FALSE)
-        && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD)
+        && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN)
     {
         gDisableStructs[battler].steelSurgeDone = TRUE;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_G_MAX_STEELSURGE].type, battler);

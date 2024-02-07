@@ -43,7 +43,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_AIR_LOCK] = 5,
     [ABILITY_ANALYTIC] = 5,
     [ABILITY_ANGER_POINT] = 4,
-    [ABILITY_ANTICIPATION] = 2,
+    [ABILITY_ANTICIPATION] = 6,
     [ABILITY_ARENA_TRAP] = 9,
     [ABILITY_AROMA_VEIL] = 3,
     [ABILITY_AURA_BREAK] = 3,
@@ -2503,7 +2503,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
     if (flags == 0)
         return FALSE;
 
-    if (ability == ABILITY_MAGIC_GUARD)
+    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_FOREWARN)
         return FALSE;
     if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
         holdEffect = HOLD_EFFECT_NONE;
@@ -2864,6 +2864,7 @@ bool32 AI_CanBeBurned(u32 battler, u32 ability)
     if (ability == ABILITY_WATER_VEIL
       || ability == ABILITY_WATER_BUBBLE
       || ability == ABILITY_COMATOSE
+      || ability == ABILITY_HEATPROOF
       || IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)

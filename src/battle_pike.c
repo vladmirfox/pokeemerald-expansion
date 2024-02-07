@@ -824,7 +824,7 @@ static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
             ret = TRUE;
         break;
     case STATUS1_BURN:
-        if (ability == ABILITY_WATER_VEIL || ability == ABILITY_WATER_BUBBLE)
+        if (ability == ABILITY_WATER_VEIL || ability == ABILITY_WATER_BUBBLE || ability == ABILITY_HEATPROOF)
             ret = TRUE;
         break;
     case STATUS1_PARALYSIS:
