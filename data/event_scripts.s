@@ -1078,3 +1078,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/GinkoWoods/scripts.inc"
 
 	.include "data/maps/ChiiTown/scripts.inc"
+
+	.include "data/maps/RouteTranquil/scripts.inc"
+
+	.include "data/maps/Sunrise_Village_PlayersHouse_LR/scripts.inc"

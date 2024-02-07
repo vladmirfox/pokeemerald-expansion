@@ -95,14 +95,16 @@
     "Underwater_Route125",
     "Sunrise_Village",
     "Sunrise_Village_Beach",
-    "ChiiTown"
+    "ChiiTown",
+    "RouteTranquil"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
     "LittlerootTown_BrendansHouse_2F",
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
-    "LittlerootTown_ProfessorBirchsLab"
+    "LittlerootTown_ProfessorBirchsLab",
+    "Sunrise_Village_PlayersHouse_LR"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

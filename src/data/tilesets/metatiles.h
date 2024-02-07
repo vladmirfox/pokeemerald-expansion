@@ -217,3 +217,6 @@ const u16 gMetatileAttributes_Sunrise_Village[] = INCBIN_U16("data/tilesets/seco
 
 const u16 gMetatiles_GinkoWoods[] = INCBIN_U16("data/tilesets/secondary/ginko_woods/metatiles.bin");
 const u16 gMetatileAttributes_GinkoWoods[] = INCBIN_U16("data/tilesets/secondary/ginko_woods/metatile_attributes.bin");
+
+const u16 gMetatiles_InteriorGeneric[] = INCBIN_U16("data/tilesets/primary/interior_generic/metatiles.bin");
+const u16 gMetatileAttributes_InteriorGeneric[] = INCBIN_U16("data/tilesets/primary/interior_generic/metatile_attributes.bin");

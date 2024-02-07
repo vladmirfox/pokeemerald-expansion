@@ -858,3 +858,14 @@ const struct Tileset gTileset_GinkoWoods =
     .metatileAttributes = gMetatileAttributes_GinkoWoods,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_InteriorGeneric =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_InteriorGeneric,
+    .palettes = gTilesetPalettes_InteriorGeneric,
+    .metatiles = gMetatiles_InteriorGeneric,
+    .metatileAttributes = gMetatileAttributes_InteriorGeneric,
+    .callback = NULL,
+};

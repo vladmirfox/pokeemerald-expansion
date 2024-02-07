@@ -126,9 +126,9 @@ static void ClearFrontierRecord(void)
 
 static void WarpToStartPositionInPlayersBedroom(void)
 {
-    // SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), WARP_ID_NONE, -1, -1);
     // SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN_MAYS_HOUSE_2F), MAP_NUM(LITTLEROOT_TOWN_MAYS_HOUSE_2F), WARP_ID_NONE, 7, 4);
-    SetWarpDestination(MAP_GROUP(SUNRISE_VILLAGE), MAP_NUM(SUNRISE_VILLAGE), WARP_ID_NONE, 5, 19);
+    SetWarpDestination(MAP_GROUP(CHII_TOWN), MAP_NUM(CHII_TOWN), WARP_ID_NONE, 19, 15);
+    // SetWarpDestination(MAP_GROUP(SUNRISE_VILLAGE), MAP_NUM(SUNRISE_VILLAGE), WARP_ID_NONE, 5, 19);
     WarpIntoMap();
 }
 

@@ -1691,3 +1691,22 @@ const u16 gTilesetPalettes_GinkoWoods[][16] =
 };
 
 const u32 gTilesetTiles_GinkoWoods[] = INCBIN_U32("data/tilesets/secondary/ginko_woods/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_InteriorGeneric[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/interior_generic/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_InteriorGeneric[] = INCBIN_U32("data/tilesets/primary/interior_generic/tiles.4bpp.lz");

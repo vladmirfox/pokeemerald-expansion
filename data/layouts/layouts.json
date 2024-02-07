@@ -4450,6 +4450,26 @@
       "secondary_tileset": "gTileset_Sunrise_Village",
       "border_filepath": "data/layouts/ChiiTown/border.bin",
       "blockdata_filepath": "data/layouts/ChiiTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_TRANQUIL",
+      "name": "RouteTranquil_Layout",
+      "width": 44,
+      "height": 80,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Sunrise_Village",
+      "border_filepath": "data/layouts/RouteTranquil/border.bin",
+      "blockdata_filepath": "data/layouts/RouteTranquil/map.bin"
+    },
+    {
+      "id": "LAYOUT_SUNRISE_VILLAGE_PLAYERS_HOUSE_LR",
+      "name": "Sunrise_Village_PlayersHouse_LR_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_InteriorGeneric",
+      "secondary_tileset": "gTileset_Sunrise_Village",
+      "border_filepath": "data/layouts/Sunrise_Village_PlayersHouse_LR/border.bin",
+      "blockdata_filepath": "data/layouts/Sunrise_Village_PlayersHouse_LR/map.bin"
     }
   ]
 }
