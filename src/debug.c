@@ -5105,8 +5105,8 @@ static void DebugAction_Party_CheckIV(u8 taskId)
 static void DebugAction_Party_ClearParty(u8 taskId)
 {
     ZeroPlayerPartyMons();
-    Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
+    Debug_DestroyMenu_Full(taskId);
 }
 
 #endif //DEBUG_OVERWORLD_MENU == TRUE
