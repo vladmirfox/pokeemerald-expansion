@@ -159,7 +159,7 @@ for mon in list_of_mons:
         print("Updated %s" % mon)
 
 # add/update header
-header = "//\n// DO NOT MODIFY THIS FILE!\n//\n\n"
+header = "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from tools/learnset_helpers/teachable.py\n//\n\n"
 longest_move_name = 0
 for move in tm_moves + tutor_moves:
     if len(move) > longest_move_name:
