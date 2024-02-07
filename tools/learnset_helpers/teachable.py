@@ -3,6 +3,11 @@ import re
 import json
 import os
 
+# before all else, abort if the config is off
+with open("./include/config/pokemon.h", "r") as file:
+    if re.findall("#define P_LEARNSET_HELPER_TEACHABLE *([^ ]*)", file.read())[0] != "TRUE":
+        quit()
+
 def parse_mon_name(name):
     return re.sub('(?!^)([A-Z]+)', r'_\1', name).upper()
     
