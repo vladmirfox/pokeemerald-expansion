@@ -4610,8 +4610,11 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 else
                     gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleResults.opponentFaintCounter);
 
-                BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
-                effect++;
+                if (gBattleStruct->supremeOverlordCounter[battler] > 0)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
+                    effect++;
+                }
             }
             break;
         case ABILITY_COSTAR:
