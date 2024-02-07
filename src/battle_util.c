@@ -4217,7 +4217,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     u32 i, j;
     struct Pokemon *mon;
 
-
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
         return 0;
 

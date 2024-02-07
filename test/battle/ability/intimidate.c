@@ -162,7 +162,7 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
     }
 }
 
-DOUBLE_BATTLE_TEST("Intimidate activates immediatly after the mon was switched in as long as one opposing mon is alive")
+DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched in as long as one opposing mon is alive")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
