@@ -60,7 +60,6 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler);
 static u32 GetFlingPowerFromItemId(u32 itemId);
 static void SetRandomMultiHitCounter();
 static u32 GetBattlerItemHoldEffectParam(u32 battler, u32 item);
-static uq4_12_t GetSupremeOverlordModifier(u32 battler);
 static bool32 CanBeInfinitelyConfused(u32 battler);
 
 extern const u8 *const gBattlescriptsForRunningByItem[];
@@ -3959,15 +3958,9 @@ bool32 ChangeTypeBasedOnTerrain(u32 battler)
 }
 
 // Supreme Overlord adds a x0.1 damage boost for each fainted ally.
-static uq4_12_t GetSupremeOverlordModifier(u32 battler)
+static inline uq4_12_t GetSupremeOverlordModifier(u32 battler)
 {
-    u32 i;
-    uq4_12_t modifier = UQ_4_12(1.0);
-
-    for (i = 0; i < gBattleStruct->supremeOverlordCounter[battler]; i++)
-        modifier += UQ_4_12(0.1);
-
-    return modifier;
+    return UQ_4_12(1.0) + (UQ_4_12(0.1) * gBattleStruct->supremeOverlordCounter[battler]);
 }
 
 static inline bool32 HadMoreThanHalfHpNowHasLess(u32 battler)
