@@ -3957,6 +3957,16 @@ bool32 ChangeTypeBasedOnTerrain(u32 battler)
     return TRUE;
 }
 
+static inline u8 GetSideFaintCounter(u32 side)
+{
+    return (side == B_SIDE_PLAYER) ? gBattleResults.playerFaintCounter : gBattleResults.opponentFaintCounter;
+}
+
+static inline u8 GetBattlerSideFaintCounter(u32 battler)
+{
+    return GetSideFaintCounter(GetBattlerSide(battler));
+}
+
 // Supreme Overlord adds a x0.1 damage boost for each fainted ally.
 static inline uq4_12_t GetSupremeOverlordModifier(u32 battler)
 {
@@ -8670,10 +8680,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
             basePower *= 2;
         break;
     case EFFECT_LAST_RESPECTS:
-        if (GetBattlerSide(battlerAtk) == B_SIDE_PLAYER)
-            basePower += (basePower * min(100, gBattleResults.playerFaintCounter));
-        else
-            basePower += (basePower * min(100, gBattleResults.opponentFaintCounter));
+        basePower += (basePower * min(100, GetBattlerSideFaintCounter(battlerAtk)));
         break;
     }
 
