@@ -11,16 +11,12 @@
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Since Gen 5, some Pokémon have received base Experience changes.
 
 // Learnsets
-//GEN_1 == Pokemon Yellow learnset
-//GEN_2 == Pokemon Crystal learnset
-//GEN_3 == RSE learnset
-//GEN_4 == HGSS learnset
-//GEN_5 == B2W2 learnset
-//GEN_6 == XY learnset
-//GEN_7 == USUM learnset
-//GEN_8 == For Pokemon in Gen 1 - Gen 4 BDSP learnset, Hisuian Pokemon have PLA learnset, Pokemon that are present in SWSH have SWSH learnset, others retain their USUM learnset
-//GEN_9 == For Pokemon present in SV, SV learnset, otherwise they have the same learnset as in GEN_8 (BDSP/PLA/SWSH if present, otherwise USUM)
-#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Define which gens learnset you'd like, if your learnsets gen is lower than the gen a certain pokemon was introduced, it will revert to the learnset a pokemon had when it was first introduced
+#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Choose which set of Level Up Learnsets to use.
+                                                // For generations that hadn't introduced a species yet, we use their first appearence (eg. Chikorita's Gen2 data if the config is set to GEN_1).
+                                                // For generations that don't include a previously introduced species, we use their last apperance (eg. Snivy's Gen7 data if the config is set to GEN_8).
+                                                // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, XY, USUM learnsets respectively.
+                                                // GEN_8: Use the following priority: BDSP for Gen1-4 Pokémon, then LA for species introduced in that game, then SwSh for species present in those games. Otherwise, use GEN_7.
+                                                // GEN_9: SV For species present in those games. Otherwise use GEN_8.
 
 // Evolution settings
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Since Gen 8, Pokémon that evolve by friendship evolve at or above 160 friendship instead of 220.
