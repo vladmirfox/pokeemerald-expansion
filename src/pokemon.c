@@ -421,39 +421,23 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 
-#if P_LVL_UP_LEARNSETS == GEN_9
+#if P_LVL_UP_LEARNSETS >= GEN_9
 #include "data/pokemon/level_up_learnsets/gen_9.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_8
+#elif P_LVL_UP_LEARNSETS >= GEN_8
 #include "data/pokemon/level_up_learnsets/gen_8.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_7
+#elif P_LVL_UP_LEARNSETS >= GEN_7
 #include "data/pokemon/level_up_learnsets/gen_7.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_6
+#elif P_LVL_UP_LEARNSETS >= GEN_6
 #include "data/pokemon/level_up_learnsets/gen_6.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_5
+#elif P_LVL_UP_LEARNSETS >= GEN_5
 #include "data/pokemon/level_up_learnsets/gen_5.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_4
+#elif P_LVL_UP_LEARNSETS >= GEN_4
 #include "data/pokemon/level_up_learnsets/gen_4.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_3
+#elif P_LVL_UP_LEARNSETS >= GEN_3
 #include "data/pokemon/level_up_learnsets/gen_3.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_2
+#elif P_LVL_UP_LEARNSETS >= GEN_2
 #include "data/pokemon/level_up_learnsets/gen_2.h"
-#endif
-
-#if P_LVL_UP_LEARNSETS == GEN_1
+#elif P_LVL_UP_LEARNSETS >= GEN_1
 #include "data/pokemon/level_up_learnsets/gen_1.h"
 #endif
 
