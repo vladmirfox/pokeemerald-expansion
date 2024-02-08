@@ -132,17 +132,18 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing boosts moves of the same type to 60 BP
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
+        ASSUME(gMovesInfo[MOVE_ABSORB].power == 20);
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_CONFUSION, tera: tera); }
+        TURN { MOVE(player, MOVE_ABSORB, tera: tera); }
     } SCENE {
-        MESSAGE("Wobbuffet used Confusion!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSION, player);
+        MESSAGE("Wobbuffet used Absorb!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ABSORB, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        // The jump from 75 BP (50 * 1.5x) to 120 BP (60 * 2.0x) is a 1.6x boost.
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.6), results[1].damage);
+        // The jump from 20 BP to 90 BP (60 * 1.5x) is a 4.5x boost.
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(4.5), results[1].damage);
     }
 }
 
@@ -152,17 +153,18 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_PSYCHIC); }
+        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
+        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_CONFUSION, tera: tera); }
+        TURN { MOVE(player, MOVE_MEGA_DRAIN, tera: tera); }
     } SCENE {
-        MESSAGE("Mr. Mime used Confusion!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSION, player);
+        MESSAGE("Mr. Mime used Mega Drain!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         // This should be the same as a normal Tera boost.
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.333), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
 
@@ -406,8 +408,9 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Terastallized Pokemon's Tera 
 // This tests that Tera STAB modifiers depend on the user's original types, too.
 SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type while Terastallized, and changes STAB modifier depending on when it is used")
 {
-    s16 damage[3];
+    s16 damage[4];
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_DOUBLE_SHOCK].effect == EFFECT_FAIL_IF_NOT_ARG_TYPE);
         PLAYER(SPECIES_PICHU) { TeraType(TYPE_ELECTRIC); }
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(SPECIES_WOBBUFFET);
@@ -417,6 +420,7 @@ SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); MOVE(opponent, MOVE_RECOVER); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_RECOVER); }
         TURN { SWITCH(player, 0); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_DOUBLE_SHOCK); MOVE(opponent, MOVE_RECOVER); }
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
     } SCENE {
         // turn 1 - regular STAB
@@ -434,9 +438,14 @@ SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type
         MESSAGE("Pichu used Double Shock!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
+        // turn 7 - regular STAB + Tera boost stays
+        MESSAGE("Pichu used Double Shock!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
+        HP_BAR(opponent, captureDamage: &damage[3]);
     } THEN {
         EXPECT_EQ(damage[0], damage[1]);
         EXPECT_MUL_EQ(damage[0], Q_4_12(1.333), damage[2]);
+        EXPECT_EQ(damage[2], damage[3]);
     }
 }
 

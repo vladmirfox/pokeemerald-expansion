@@ -24,8 +24,8 @@ SINGLE_BATTLE_TEST("Tera Blast becomes a physical move if the user is Terastalli
 {
     bool32 tera;
     // Wobbuffet has equal defenses and Machamp has higher Attack than Sp. Attack.
-    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].spDefense == gSpeciesInfo[SPECIES_WOBBUFFET].defense)
-    ASSUME(gSpeciesInfo[SPECIES_MACHAMP].attack > gSpeciesInfo[SPECIES_MACHAMP].spAttack)
+    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].baseSpDefense == gSpeciesInfo[SPECIES_WOBBUFFET].baseDefense);
+    ASSUME(gSpeciesInfo[SPECIES_MACHAMP].baseAttack > gSpeciesInfo[SPECIES_MACHAMP].baseSpAttack);
 
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }

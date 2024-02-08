@@ -2111,12 +2111,12 @@ END:
     // of a move that is Super Effective against a Flying-type Pokémon.
     if (gBattleWeather & B_WEATHER_STRONG_WINDS)
     {
-        if ((GetBattlerType(gBattlerTarget, 0) == TYPE_FLYING
-         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 0)) >= UQ_4_12(2.0))
-         || (GetBattlerType(gBattlerTarget, 1) == TYPE_FLYING
-         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 1)) >= UQ_4_12(2.0))
-         || (GetBattlerType(gBattlerTarget, 2) == TYPE_FLYING
-         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 2)) >= UQ_4_12(2.0)))
+        if ((GetBattlerType(gBattlerTarget, 0, FALSE) == TYPE_FLYING
+         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 0, FALSE)) >= UQ_4_12(2.0))
+         || (GetBattlerType(gBattlerTarget, 1, FALSE) == TYPE_FLYING
+         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 1, FALSE)) >= UQ_4_12(2.0))
+         || (GetBattlerType(gBattlerTarget, 2, FALSE) == TYPE_FLYING
+         && GetTypeModifier(moveType, GetBattlerType(gBattlerTarget, 2, FALSE)) >= UQ_4_12(2.0)))
         {
             gBattlerAbility = gBattlerTarget;
             BattleScriptPushCursor();
@@ -9548,8 +9548,9 @@ static void Cmd_various(void)
     case VARIOUS_TRY_SOAK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (GetBattlerType(gBattlerTarget, 0) == gMovesInfo[gCurrentMove].type
-            && GetBattlerType(gBattlerTarget, 1) == gMovesInfo[gCurrentMove].type)
+        if ((GetBattlerType(gBattlerTarget, 0, FALSE) == gMovesInfo[gCurrentMove].type
+            && GetBattlerType(gBattlerTarget, 1, FALSE) == gMovesInfo[gCurrentMove].type)
+            || IsTerastallized(gBattlerTarget))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -9880,7 +9881,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_THIRD_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IS_BATTLER_OF_TYPE(battler, gMovesInfo[gCurrentMove].argument))
+        if (IS_BATTLER_OF_TYPE(battler, gMovesInfo[gCurrentMove].argument) || IsTerastallized(battler))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -16228,11 +16229,15 @@ void BS_TryReflectType(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
     u16 targetBaseSpecies = GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species);
-    u8 targetType1 = GetBattlerType(gBattlerTarget, 0);
-    u8 targetType2 = GetBattlerType(gBattlerTarget, 1);
-    u8 targetType3 = GetBattlerType(gBattlerTarget, 2);
+    u8 targetType1 = GetBattlerType(gBattlerTarget, 0, FALSE);
+    u8 targetType2 = GetBattlerType(gBattlerTarget, 1, FALSE);
+    u8 targetType3 = GetBattlerType(gBattlerTarget, 2, FALSE);
 
     if (targetBaseSpecies == SPECIES_ARCEUS || targetBaseSpecies == SPECIES_SILVALLY)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else if (IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

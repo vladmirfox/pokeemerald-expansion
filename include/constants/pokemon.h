@@ -22,6 +22,7 @@
 #define TYPE_DRAGON           16
 #define TYPE_DARK             17
 #define TYPE_FAIRY            18
+#define TYPE_STELLAR          254    // not included in types, but reference to it still needed
 #define NUMBER_OF_MON_TYPES   19
 
 // Pokémon egg groups
