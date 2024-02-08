@@ -228,6 +228,7 @@ const u8 gOgerponCornerstoneMaskPokedexText[] = _(
 #define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
 
 #define MON_TYPE(type1, ...) { type1, DEFAULT(type1, __VA_ARGS__) }
+#define MON_EGG_GROUP(group1, ...) { group1, DEFAULT(group1, __VA_ARGS__) }
 
 #define FLIP    0
 #define NO_FLIP 1
@@ -306,7 +307,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_NO_EGGS_DISCOVERED, EGG_GROUP_NO_EGGS_DISCOVERED },
+        .eggGroups = MON_EGG_GROUP(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_NONE, ABILITY_CURSED_BODY, ABILITY_DAMP },
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("??????????"),
