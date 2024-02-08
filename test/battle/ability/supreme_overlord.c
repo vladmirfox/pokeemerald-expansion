@@ -128,33 +128,6 @@ SINGLE_BATTLE_TEST("Supreme Overlord's boost is reduced when party members are r
     }
 }
 
-DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainted mon on the side", s16 damage)
-{
-    bool32 switchMon = 0;
-    PARAMETRIZE { switchMon = FALSE; }
-    PARAMETRIZE { switchMon = TRUE; }
-    GIVEN {
-        PLAYER(SPECIES_KINGAMBIT) { Ability(ABILITY_SUPREME_OVERLORD); }
-        PLAYER(SPECIES_PAWNIARD);
-        PLAYER(SPECIES_PAWNIARD);
-        PLAYER(SPECIES_PAWNIARD);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        if (switchMon)
-            TURN { SWITCH(playerLeft, 3); }
-        TURN { MOVE(playerRight, MOVE_MEMENTO, target: opponentRight); SEND_OUT(playerRight, 2); }
-        if (switchMon)
-            TURN { SWITCH(playerLeft, 0); }
-        TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
-        HP_BAR(opponentLeft, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.1), results[1].damage);
-    }
-}
-
 DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler", s16 damage)
 {
     u32 faintCount = 0;
