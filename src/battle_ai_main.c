@@ -405,6 +405,8 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
     moves = GetMovesArray(battlerAtk);
     weather = AI_GetWeather(aiData);
 
+    SetBattlerData(battlerAtk);
+    
     // Simulate dmg for both ai controlled mons and for player controlled mons.
     for (battlerDef = 0; battlerDef < battlersCount; battlerDef++)
     {
@@ -412,6 +414,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
             continue;
 
         SaveBattlerData(battlerDef);
+        SetBattlerData(battlerDef);
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             s32 dmg = 0;

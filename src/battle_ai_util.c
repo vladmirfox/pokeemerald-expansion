@@ -357,6 +357,8 @@ s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *type
     s32 dmg = 0;
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
+    SetBattlerData(battlerAtk);
+    SetBattlerData(battlerDef);
     dmg = AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA));
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
@@ -375,9 +377,6 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     s32 dmg, moveType;
     uq4_12_t effectivenessMultiplier;
     struct AiLogicData *aiData = AI_DATA;
-
-    SetBattlerData(battlerAtk);
-    SetBattlerData(battlerDef);
 
     if (considerZPower && IsViableZMove(battlerAtk, move))
     {
