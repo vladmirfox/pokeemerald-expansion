@@ -82,8 +82,6 @@ BattleScript_ItemHealAndCureStatus::
     call BattleScript_UseItemMessage
     itemrestorehp
     itemcurestatus
-    printstring STRINGID_ITEMRESTOREDSPECIESHEALTH
-    waitmessage B_WAIT_TIME_LONG
     bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
     healthbarupdate BS_SCRIPTING
