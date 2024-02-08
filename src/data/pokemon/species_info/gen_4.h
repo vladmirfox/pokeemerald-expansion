@@ -1197,7 +1197,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 36,                                                \
         .baseSpAttack  = 29,                                                \
         .baseSpDefense = 45,                                                \
-        .types = MON_TYPES(TYPE_BUG),                                        \
+        .types = MON_TYPES(TYPE_BUG),                                       \
         .catchRate = 120,                                                   \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 45 : 61,              \
         .evYield_SpDefense = 1,                                             \
@@ -1205,7 +1205,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 15,                                                    \
         .friendship = STANDARD_FRIENDSHIP,                                  \
         .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                          \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                         \
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT }, \
         .speciesName = _("Burmy"),                                          \
         .cryId = CRY_BURMY,                                                 \
@@ -1292,7 +1292,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 15,                                                        \
         .friendship = STANDARD_FRIENDSHIP,                                      \
         .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                              \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                             \
         .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT },  \
         .speciesName = _("Wormadam"),                                           \
         .cryId = CRY_WORMADAM,                                                  \
@@ -1747,7 +1747,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 85,                                         \
         .baseSpAttack  = 87,                                         \
         .baseSpDefense = 78,                                         \
-        .types = MON_TYPES(TYPE_GRASS),                               \
+        .types = MON_TYPES(TYPE_GRASS),                              \
         .catchRate = 75,                                             \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 158 : 133,     \
         .evYield_SpAttack = 2,                                       \
@@ -1822,7 +1822,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 34,                                                            \
         .baseSpAttack  = 57,                                                            \
         .baseSpDefense = 62,                                                            \
-        .types = MON_TYPES(TYPE_WATER),                                                  \
+        .types = MON_TYPES(TYPE_WATER),                                                 \
         .catchRate = 190,                                                               \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 65 : 73,                          \
         .evYield_HP = 1,                                                                \
@@ -1830,7 +1830,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 20,                                                                \
         .friendship = STANDARD_FRIENDSHIP,                                              \
         .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),             \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),            \
         .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
         .speciesName = _("Shellos"),                                                    \
         .cryId = CRY_SHELLOS,                                                           \
@@ -1891,7 +1891,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 39,                                                            \
         .baseSpAttack  = 92,                                                            \
         .baseSpDefense = 82,                                                            \
-        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),                                     \
+        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),                                    \
         .catchRate = 75,                                                                \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 166 : 176,                        \
         .evYield_HP = 2,                                                                \
@@ -1899,7 +1899,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 20,                                                                \
         .friendship = STANDARD_FRIENDSHIP,                                              \
         .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),             \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),            \
         .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
         .speciesName = _("Gastrodon"),                                                  \
         .cryId = CRY_GASTRODON,                                                         \
@@ -2688,7 +2688,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     },
 
 #define GARCHOMP_MISC_INFO                                              \
-        .types = MON_TYPES(TYPE_DRAGON, TYPE_GROUND),                    \
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_GROUND),                   \
         .catchRate = 45,                                                \
         .evYield_Attack = 3,                                            \
         .genderRatio = PERCENT_FEMALE(50),                              \
@@ -2828,7 +2828,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     },
 
 #define LUCARIO_MISC_INFO                                                  \
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),                      \
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),                     \
         .catchRate = 45,                                                   \
         .evYield_Attack = 1,                                               \
         .evYield_SpAttack = 1,                                             \
@@ -2836,7 +2836,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 25,                                                   \
         .friendship = STANDARD_FRIENDSHIP,                                 \
         .growthRate = GROWTH_MEDIUM_SLOW,                                  \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE), \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),\
         .bodyColor = BODY_COLOR_BLUE,                                      \
         .speciesName = _("Lucario"),                                       \
         .natDexNum = NATIONAL_DEX_LUCARIO,                                 \
@@ -3429,7 +3429,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     },
 
 #define ABOMASNOW_MISC_INFO                                            \
-        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),                       \
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),                      \
         .catchRate = 60,                                               \
         .evYield_Attack = 1,                                           \
         .evYield_SpAttack = 1,                                         \
@@ -3530,7 +3530,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 20,                                            \
         .friendship = STANDARD_FRIENDSHIP,                          \
         .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),            \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
         .bodyColor = BODY_COLOR_RED,                                \
         .speciesName = _("Rotom"),                                  \
@@ -3891,7 +3891,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif
 
 #define DIALGA_MISC_INFO                                                                \
-        .types = MON_TYPES(TYPE_STEEL, TYPE_DRAGON),                                     \
+        .types = MON_TYPES(TYPE_STEEL, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = DIALGA_EXP_YIELD,                                                   \
         .evYield_SpAttack = 3,                                                          \
@@ -3899,7 +3899,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 120,                                                               \
         .friendship = 0,                                                                \
         .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },             \
         .bodyColor = BODY_COLOR_WHITE,                                                  \
         .speciesName = _("Dialga"),                                                     \
@@ -3985,7 +3985,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif
 
 #define PALKIA_MISC_INFO                                                                \
-        .types = MON_TYPES(TYPE_WATER, TYPE_DRAGON),                                     \
+        .types = MON_TYPES(TYPE_WATER, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = PALKIA_EXP_YIELD,                                                   \
         .evYield_SpAttack = 3,                                                          \
@@ -3993,7 +3993,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 120,                                                               \
         .friendship = 0,                                                                \
         .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },             \
         .bodyColor = BODY_COLOR_PURPLE,                                                 \
         .speciesName = _("Palkia"),                                                     \
@@ -4191,7 +4191,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif
 
 #define GIRATINA_MISC_INFO                                                              \
-        .types = MON_TYPES(TYPE_GHOST, TYPE_DRAGON),                                     \
+        .types = MON_TYPES(TYPE_GHOST, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = GIRATINA_EXP_YIELD,                                                 \
         .evYield_HP = 3,                                                                \
@@ -4199,7 +4199,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 120,                                                               \
         .friendship = 0,                                                                \
         .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
         .bodyColor = BODY_COLOR_BLACK,                                                  \
         .speciesName = _("Giratina"),                                                   \
         .cryId = CRY_GIRATINA,                                                          \
@@ -4522,7 +4522,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 120,                                                               \
         .friendship = 100,                                                              \
         .growthRate = GROWTH_MEDIUM_SLOW,                                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
         .bodyColor = BODY_COLOR_GREEN,                                                  \
         .speciesName = _("Shaymin"),                                                    \
         .natDexNum = NATIONAL_DEX_SHAYMIN,                                              \
@@ -4627,7 +4627,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .baseSpeed     = 120,                                                           \
         .baseSpAttack  = 120,                                                           \
         .baseSpDefense = 120,                                                           \
-        .types = MON_TYPES(type),                                                        \
+        .types = MON_TYPES(type),                                                       \
         .catchRate = 3,                                                                 \
         .expYield = ARCEUS_EXP_YIELD,                                                   \
         .evYield_HP = 3,                                                                \
@@ -4635,7 +4635,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .eggCycles = 120,                                                               \
         .friendship = 0,                                                                \
         .growthRate = GROWTH_SLOW,                                                      \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
         .abilities = { ABILITY_MULTITYPE, ABILITY_NONE },                               \
         .bodyColor = BODY_COLOR_WHITE,                                                  \
         .speciesName = _("Arceus"),                                                     \
