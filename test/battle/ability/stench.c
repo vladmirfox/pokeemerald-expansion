@@ -35,6 +35,7 @@ DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].power > 0);
+        ASSUME(gBattleMoves[MOVE_FAKE_OUT].effect == EFFECT_FAKE_OUT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_STENCH); }
@@ -51,6 +52,30 @@ DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage")
         }
     } SCENE {
         NONE_OF { MESSAGE("Wynaut flinched!"); }
+    }
+}
+
+DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_TACKLE].power > 0);
+        ASSUME(gBattleMoves[MOVE_FAKE_OUT].effect == EFFECT_FAKE_OUT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(20); }
+        PLAYER(SPECIES_WYNAUT) { Speed(10); }
+        OPPONENT(SPECIES_GRIMER) { Speed(100); Ability(ABILITY_STENCH); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(50); }
+    } WHEN {
+        TURN {
+            MOVE(playerLeft, MOVE_FAKE_OUT, target: opponentLeft);
+            MOVE(opponentRight, MOVE_TACKLE, target: playerRight);
+            MOVE(playerRight, MOVE_TACKLE, target: opponentRight);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, playerLeft);
+        MESSAGE("Foe Grimer flinched!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        NOT MESSAGE("Wynaut flinched!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }
 
