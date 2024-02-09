@@ -33982,4 +33982,4 @@ General_DynamaxGrowth:: @ PORTED FROM CFRU
 	end
 
 General_TrickRoom::
-    goto Move_TRICK_ROOM
+	goto Move_TRICK_ROOM
