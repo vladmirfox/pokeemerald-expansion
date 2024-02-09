@@ -31,4 +31,27 @@ SINGLE_BATTLE_TEST("Stench does not stack with King's Rock")
     }
 }
 
+DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_TACKLE].power > 0);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_STENCH); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(playerLeft, MOVE_FAKE_OUT, target: opponentLeft);
+            MOVE(opponentLeft, MOVE_TACKLE, WITH_RNG(RNG_STENCH, TRUE),  target: playerRight);
+            MOVE(playerRight, MOVE_TACKLE, target: opponentRight);
+        }
+        TURN {
+            MOVE(opponentLeft, MOVE_SCARY_FACE, WITH_RNG(RNG_STENCH, TRUE),  target: playerRight);
+            MOVE(playerRight, MOVE_TACKLE, target: opponentRight);
+        }
+    } SCENE {
+        NONE_OF { MESSAGE("Wynaut flinched!"); }
+    }
+}
+
 // TODO: Test against interaction with multi hits
