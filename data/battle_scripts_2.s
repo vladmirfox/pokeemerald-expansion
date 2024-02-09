@@ -47,13 +47,13 @@ BattleScript_UseItemMessage:
     return
 	
 BattleScript_ItemRestoreHPRet:
-	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
+    bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
     healthbarupdate BS_SCRIPTING
     datahpupdate BS_SCRIPTING
     printstring STRINGID_ITEMRESTOREDSPECIESHEALTH
     waitmessage B_WAIT_TIME_LONG
-	return
+    return
 
 BattleScript_ItemRestoreHP::
     call BattleScript_UseItemMessage
@@ -88,8 +88,8 @@ BattleScript_ItemCureStatusEnd:
 BattleScript_ItemHealAndCureStatus::
     call BattleScript_UseItemMessage
     itemrestorehp BattleScript_ItemCureStatusAfterItemMsg
-	call BattleScript_ItemRestoreHPRet
-	goto BattleScript_ItemCureStatusAfterItemMsg
+    call BattleScript_ItemRestoreHPRet
+    goto BattleScript_ItemCureStatusAfterItemMsg
 
 BattleScript_ItemIncreaseStat::
     call BattleScript_UseItemMessage
@@ -116,7 +116,7 @@ BattleScript_ItemSetFocusEnergy::
     setfocusenergy
     playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
     waitanimation
-	copybyte sBATTLER, gBattlerAttacker
+    copybyte sBATTLER, gBattlerAttacker
     printstring STRINGID_PKMNUSEDXTOGETPUMPED
     waitmessage B_WAIT_TIME_LONG
     end
