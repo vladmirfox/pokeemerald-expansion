@@ -409,6 +409,14 @@ void Overworld_ResetBattleFlagsAndVars(void)
         VarSet(B_VAR_TERRAIN_TIMER, 0);
     #endif
 
+    #if B_SET_TRICK_ROOM
+        FlagClear(B_SET_TRICK_ROOM);
+    #endif
+
+    #if B_VAR_TRICK_ROOM_TIMER != 0
+        VarSet(B_VAR_TRICK_ROOM_TIMER, 0);
+    #endif
+
     #if B_VAR_WILD_AI_FLAGS != 0
         VarSet(B_VAR_WILD_AI_FLAGS,0);
     #endif

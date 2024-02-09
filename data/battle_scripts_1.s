@@ -9949,3 +9949,10 @@ BattleScript_EffectSnow::
 	call BattleScript_CheckPrimalWeather
 	setsnow
 	goto BattleScript_MoveWeatherChange
+
+BattleScript_TrickRoomBattle::
+    printstring STRINGID_TRICKROOM_BATTLE
+	waitmessage B_WAIT_TIME_LONG
+	playanimation BS_OPPONENT1, B_ANIM_TRICK_ROOM_BATTLE
+	waitanimation
+    end3

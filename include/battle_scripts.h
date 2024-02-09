@@ -823,5 +823,6 @@ extern const u8 BattleScript_EffectDoodle[];
 extern const u8 BattleScript_EffectFilletAway[];
 extern const u8 BattleScript_EffectShedTail[];
 extern const u8 BattleScript_EffectUpperHand[];
+extern const u8 BattleScript_TrickRoomBattle[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

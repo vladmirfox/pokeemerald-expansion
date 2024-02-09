@@ -3765,6 +3765,12 @@ static void TryDoEventsBeforeFirstTurn(void)
         return;
     }
 
+    if (!gBattleStruct->trickroomDone && TryTrickRoomBattle())
+    {
+        gBattleStruct->trickroomDone = TRUE;
+        return;
+    }
+
     // Totem boosts
     for (i = 0; i < gBattlersCount; i++)
     {
