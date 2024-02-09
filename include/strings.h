@@ -3058,4 +3058,8 @@ extern const u8 gText_BasePointsResetToZero[];
 extern const u8 gText_Fertilize[];
 extern const u8 gText_PlantBerry[];
 
+// show day/night in pokedex area screen
+extern const u8 gText_AButtonDay[];
+extern const u8 gText_AButtonNight[];
+
 #endif // GUARD_STRINGS_H

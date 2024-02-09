@@ -1853,3 +1853,7 @@ const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTI
 const u8 gText_BasePointsResetToZero[] = _("{STR_VAR_1}'s base points\nwere all reset to zero!{PAUSE_UNTIL_PRESS}");
 const u8 gText_Fertilize[] = _("FERTILIZE");
 const u8 gText_PlantBerry[] = _("PLANT BERRY");
+
+// show day/night in pokedex area screen
+const u8 gText_AButtonDay[] = _("{A_BUTTON} Day");
+const u8 gText_AButtonNight[] = _("{A_BUTTON} Night");
