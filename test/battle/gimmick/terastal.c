@@ -354,7 +354,7 @@ SINGLE_BATTLE_TEST("(TERA) Conversion fails if used by a Terastallized Pokemon")
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_REFLECT_TYPE, tera: TRUE); }
+        TURN { MOVE(player, MOVE_CONVERSION, tera: TRUE); }
     } SCENE {
         MESSAGE("Wobbuffet used Conversion!");
         MESSAGE("But it failed!");
@@ -559,6 +559,7 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base t
 
 SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move")
 {
+    KNOWN_FAILING; // Tera Blast not implemented yet
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -588,5 +589,102 @@ SINGLE_BATTLE_TEST("(TERA) Roost does not remove Flying-type ground immunity whe
         MESSAGE("Foe Wobbuffet used Ice Beam!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ICE_BEAM, opponent);
         MESSAGE("It's super effective!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar-type provides a one-time 2.0x boost to STAB moves")
+{
+    s16 damage[3];
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_EXTRASENSORY); }
+        TURN { MOVE(player, MOVE_EXTRASENSORY, tera: TRUE); }
+        TURN { MOVE(player, MOVE_EXTRASENSORY); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Extrasensory!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 2
+        MESSAGE("Wobbuffet used Extrasensory!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 3
+        MESSAGE("Wobbuffet used Extrasensory!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTRASENSORY, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+    } THEN {
+        // Extrasensory goes from a 50% boost to a 100% boost for a 1.33x total multiplier
+        EXPECT_MUL_EQ(damage[0], UQ_4_12(1.33), damage[1]);
+        EXPECT_EQ(damage[0], damage[2]);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar-type provides a one-time 1.2x boost to non-STAB moves")
+{
+    s16 damage[3];
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TAKE_DOWN); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN, tera: TRUE); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 2
+        MESSAGE("Wobbuffet used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 3
+        MESSAGE("Wobbuffet used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+    } THEN {
+        EXPECT_MUL_EQ(damage[0], UQ_4_12(1.2), damage[1]);
+        EXPECT_EQ(damage[0], damage[2]);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves up to 60 BP once per type")
+{
+    s16 damage[4];
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_MEGA_DRAIN].power == 40);
+        ASSUME(gMovesInfo[MOVE_BUBBLE].power == 40);
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MEGA_DRAIN); }
+        TURN { MOVE(player, MOVE_MEGA_DRAIN, tera: TRUE); }
+        TURN { MOVE(player, MOVE_MEGA_DRAIN); }
+        TURN { MOVE(player, MOVE_BUBBLE); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Mega Drain!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 2
+        MESSAGE("Wobbuffet used Mega Drain!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 3
+        MESSAGE("Wobbuffet used Mega Drain!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEGA_DRAIN, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+        // turn 4
+        MESSAGE("Wobbuffet used Bubble!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BUBBLE, player);
+        HP_BAR(opponent, captureDamage: &damage[3]);
+    } THEN {
+        // The jump from 40 BP to 72 BP (60 * 1.2x) is a 1.8x boost.
+        EXPECT_MUL_EQ(damage[0], Q_4_12(1.8), damage[1]);
+        EXPECT_EQ(damage[0], damage[2]);
+        EXPECT_EQ(damage[1], damage[3]);
     }
 }

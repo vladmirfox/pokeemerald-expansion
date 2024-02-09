@@ -53,12 +53,21 @@ bool32 IsTerastallized(u32 battler)
     return gBattleStruct->tera.isTerastallized[side] & gBitTable[gBattlerPartyIndexes[battler]];
 }
 
+
+// Uses up a type's Stellar boost.
+void ExpendTypeStellarBoost(u32 battler, u32 type)
+{
+    u32 side = GetBattlerSide(battler);
+    if (type < 32) // avoid OOB access
+        gBattleStruct->tera.stellarBoostFlags[side] |= gBitTable[type];
+}
+
 // Checks whether a type's Stellar boost has been expended.
 bool32 IsTypeStellarBoosted(u32 battler, u32 type)
 {
     u32 side = GetBattlerSide(battler);
     if (type < 32) // avoid OOB access
-        return gBattleStruct->tera.stellarBoostFlags[side] & gBitTable[type];
+        return !(gBattleStruct->tera.stellarBoostFlags[side] & gBitTable[type]);
     else
         return FALSE;
 }
@@ -78,14 +87,18 @@ uq4_12_t GetTeraMultiplier(u32 battler, u32 type)
     if (teraType == TYPE_STELLAR)
     {
         bool32 shouldBoost = IsTypeStellarBoosted(battler, type);
-        if (IS_BATTLER_OF_BASE_TYPE(battler, type) && shouldBoost)
-            return UQ_4_12(2.0);
+        if (IS_BATTLER_OF_BASE_TYPE(battler, type))
+        {
+            if (shouldBoost)
+                return UQ_4_12(2.0);
+            else
+                return UQ_4_12(1.5);
+        }
         else if (shouldBoost)
-            return UQ_4_12(1.5);
+            return UQ_4_12(1.2);
         else
             return UQ_4_12(1.0);
     }
-
     // Base and Tera type.
     if (type == teraType && IS_BATTLER_OF_BASE_TYPE(battler, type))
     {

@@ -11931,6 +11931,7 @@ static void Cmd_tryconversiontypechange(void)
     if (IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
+        return;
     }
 
     if (B_UPDATED_CONVERSION >= GEN_6)
@@ -12704,6 +12705,10 @@ static void Cmd_settypetorandomresistance(void)
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else if (IsTerastallized(gBattlerAttacker))
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else if (gLastHitByType[gBattlerAttacker] == TYPE_STELLAR)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

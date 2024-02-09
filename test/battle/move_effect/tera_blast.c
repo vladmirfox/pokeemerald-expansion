@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("Stellar-type Tera Blast has 100 BP and a one-time 1.2x boost
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
-    } FINALLY {
+    } THEN {
         // 80 BP to 120 BP (100 * 1.2) boost upon Terastallizing
         EXPECT_MUL_EQ(damage[0], UQ_4_12(1.50), damage[1]);
         // 120 BP to 100 BP after Stellar boost expended
