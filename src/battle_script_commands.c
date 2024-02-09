@@ -11928,6 +11928,11 @@ static void Cmd_tryconversiontypechange(void)
     u8 moveChecked = 0;
     u8 moveType = 0;
 
+    if (IsTerastallized(gBattlerAttacker))
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+
     if (B_UPDATED_CONVERSION >= GEN_6)
     {
         // Changes user's type to its first move's type
@@ -12695,6 +12700,10 @@ static void Cmd_settypetorandomresistance(void)
     }
     else if (gMovesInfo[gLastLandedMoves[gBattlerAttacker]].twoTurnMove
             && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else if (IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

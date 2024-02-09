@@ -348,6 +348,33 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type fails if used by a Terastallized Pokemon
     }
 }
 
+SINGLE_BATTLE_TEST("(TERA) Conversion fails if used by a Terastallized Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_REFLECT_TYPE, tera: TRUE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Conversion!");
+        MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if used by a Terastallized Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_CONVERSION_2, tera: TRUE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Conversion 2!");
+        MESSAGE("But it failed!");
+    }
+}
+
 SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Type")
 {
     GIVEN {
@@ -468,5 +495,98 @@ SINGLE_BATTLE_TEST("(TERA) Transform does not copy the target's Tera Type, and i
         MESSAGE("Wobbuffet used Tackle!");
         MESSAGE("It doesn't affect Ditto…");
         NOT { HP_BAR(opponent); }
+    }
+}
+
+// Stellar Type checks
+SINGLE_BATTLE_TEST("(TERA) Stellar type does not change the user's defensive profile", s16 damage)
+{
+    bool32 tera;
+    PARAMETRIZE { tera = FALSE; }
+    PARAMETRIZE { tera = TRUE; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, tera: tera); MOVE(opponent, MOVE_PSYCHIC); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Psychic!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC, opponent);
+        HP_BAR(player, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_EQ(results[0].damage, results[1].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Stellar-type Pokemon's base type")
+{
+    GIVEN {
+        PLAYER(SPECIES_BANETTE) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
+        TURN { MOVE(opponent, MOVE_REFLECT_TYPE); }
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        // turn 2
+        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
+        // turn 3
+        MESSAGE("Banette used Tackle!");
+        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        NOT { HP_BAR(opponent); }
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base type")
+{
+    GIVEN {
+        ASSUME(P_GEN_7_POKEMON);
+        PLAYER(SPECIES_ORICORIO_SENSU) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_GUMSHOOS);
+    } WHEN {
+        TURN { MOVE(player, MOVE_REVELATION_DANCE, tera: TRUE); }
+    } SCENE {
+        #if B_EXPANDED_MOVE_NAMES == TRUE
+        MESSAGE("Oricorio used Revelation Dance!");
+        #else
+        MESSAGE("Oricorio used RvlationDnce!");
+        #endif
+        MESSAGE("It doesn't affect Foe Gumshoos…");
+        NOT { HP_BAR(opponent); }
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
+        TURN { MOVE(opponent, MOVE_CONVERSION_2); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        // turn 2
+        MESSAGE("Wobbuffet used Conversion 2!");
+        MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Roost does not remove Flying-type ground immunity when Terastallized into the Stellar type")
+{
+    GIVEN {
+        PLAYER(SPECIES_ZAPDOS) { HP(1); TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST, tera: TRUE); MOVE(opponent, MOVE_ICE_BEAM); }
+    } SCENE {
+        MESSAGE("Zapdos used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICE_BEAM, opponent);
+        MESSAGE("It's super effective!");
     }
 }

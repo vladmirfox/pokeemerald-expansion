@@ -11090,7 +11090,8 @@ u8 GetBattlerType(u32 battler, u8 typeIndex, bool32 ignoreTera)
     // Handle Roost's Flying-type suppression
     if (typeIndex == 0 || typeIndex == 1)
     {
-        if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_ROOST)
+        if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_ROOST
+            && !IsTerastallized(battler))
         {
             if (types[0] == TYPE_FLYING && types[1] == TYPE_FLYING)
                 return B_ROOST_PURE_FLYING >= GEN_5 ? TYPE_NORMAL : TYPE_MYSTERY;

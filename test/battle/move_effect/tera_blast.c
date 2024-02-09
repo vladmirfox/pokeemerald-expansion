@@ -9,10 +9,11 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Tera Blast changes from Normal-type to the user's Tera Type")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_TERA_BLAST].type == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_DARK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_TERA_BLAST); }
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
     } SCENE {
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
@@ -42,5 +43,67 @@ SINGLE_BATTLE_TEST("Tera Blast becomes a physical move if the user is Terastalli
         // Since Wobbuffett has equal defenses, Tera Blast should do more damage than just the
         // newly gained STAB boost.
         EXPECT_GE(results[1].damage, results[0].damage * 1.50);
+    }
+}
+
+SINGLE_BATTLE_TEST("Stellar-type Tera Blast lowers both offensive stats")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TERA_BLAST); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's Attack fell!");
+        MESSAGE("Wobbuffet's Sp. Atk fell!");
+    }
+}
+
+
+SINGLE_BATTLE_TEST("Stellar-type Tera Blast has 100 BP and a one-time 1.2x boost")
+{
+    s16 damage[3];
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TERA_BLAST); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); MOVE(opponent, MOVE_COACHING); }
+        TURN { MOVE(player, MOVE_TERA_BLAST); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 2
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 3
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+    } FINALLY {
+        // 80 BP to 120 BP (100 * 1.2) boost upon Terastallizing
+        EXPECT_MUL_EQ(damage[0], UQ_4_12(1.50), damage[1]);
+        // 120 BP to 100 BP after Stellar boost expended
+        EXPECT_MUL_EQ(damage[0], UQ_4_12(1.20), damage[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Stellar-type Tera Blast is super-effective on Stellar-type Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); MOVE(opponent, MOVE_CELEBRATE, tera: TRUE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Tera Blast!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
+        MESSAGE("It's super effective!");
     }
 }

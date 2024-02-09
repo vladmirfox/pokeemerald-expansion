@@ -22,7 +22,7 @@
 #define TYPE_DRAGON           16
 #define TYPE_DARK             17
 #define TYPE_FAIRY            18
-#define TYPE_STELLAR          254    // not included in types, but reference to it still needed
+#define TYPE_STELLAR          30    // max value of 5 bits -- not in type table but need room for it
 #define NUMBER_OF_MON_TYPES   19
 
 // Pokémon egg groups
