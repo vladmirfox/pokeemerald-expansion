@@ -101,7 +101,7 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
     }
 }
 
-SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mons stat changes")
+SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
