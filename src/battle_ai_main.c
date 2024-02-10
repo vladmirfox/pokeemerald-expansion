@@ -3560,7 +3560,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_LEECH_SEED:
         if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
           || gStatuses3[battlerDef] & STATUS3_LEECHSEED
-          || HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN)
+          || HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPID_SPIN)
           || aiData->abilities[battlerDef] == ABILITY_LIQUID_OOZE
           || aiData->abilities[battlerDef] == ABILITY_MAGIC_GUARD)
             break;
@@ -3719,7 +3719,13 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
     case EFFECT_TOXIC_SPIKES:
-        score += AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData);
+        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
+        {
+            if (gDisableStructs[battlerAtk].isFirstTurn)
+                ADJUST_SCORE(BEST_EFFECT);
+            else
+                ADJUST_SCORE(DECENT_EFFECT);
+        }
         break;
     case EFFECT_FORESIGHT:
         if (aiData->abilities[battlerAtk] == ABILITY_SCRAPPY || aiData->abilities[battlerAtk] == ABILITY_MINDS_EYE)
@@ -4252,10 +4258,13 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(GOOD_EFFECT); // Partner might use pledge move
         break;
     case EFFECT_TRICK_ROOM:
-        if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef))
-            ADJUST_SCORE(GOOD_EFFECT);
-        else if ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && GetBattlerSideSpeedAverage(battlerAtk) >= GetBattlerSideSpeedAverage(battlerDef))
-            ADJUST_SCORE(GOOD_EFFECT);
+        if (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
+        {
+            if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef))
+                ADJUST_SCORE(GOOD_EFFECT);
+            else if ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && GetBattlerSideSpeedAverage(battlerAtk) >= GetBattlerSideSpeedAverage(battlerDef))
+                ADJUST_SCORE(GOOD_EFFECT);
+        }
         break;
     case EFFECT_MAGIC_ROOM:
         ADJUST_SCORE(WEAK_EFFECT);
@@ -4503,7 +4512,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
                         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF, &score);
                     }
                     break;
-                case MOVE_EFFECT_RAPIDSPIN:
+                case MOVE_EFFECT_RAPID_SPIN:
                     if ((gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
                     || (gStatuses3[battlerAtk] & STATUS3_LEECHSEED || gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED))
                         ADJUST_SCORE(GOOD_EFFECT);
@@ -4636,7 +4645,13 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     break;
                 case MOVE_EFFECT_STEALTH_ROCK:
                 case MOVE_EFFECT_SPIKES:
-                    score += AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData);
+                    if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
+                    {
+                        if (gDisableStructs[battlerAtk].isFirstTurn)
+                            ADJUST_SCORE(BEST_EFFECT);
+                        else
+                            ADJUST_SCORE(DECENT_EFFECT);
+                    }
                     break;
                 case MOVE_EFFECT_FEINT:
                     if (gMovesInfo[predictedMove].effect == EFFECT_PROTECT)
@@ -4652,7 +4667,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
                     }
                     break;
                 case MOVE_EFFECT_WRAP:
-                    if (!HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN) && ShouldTrap(battlerAtk, battlerDef, move))
+                    if (!HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPID_SPIN) && ShouldTrap(battlerAtk, battlerDef, move))
                         ADJUST_SCORE(BEST_EFFECT);
                     break;
             }
@@ -5168,10 +5183,7 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
     case EFFECT_TOXIC_SPIKES:
-        if (AI_DATA->abilities[battlerDef] != ABILITY_MAGIC_BOUNCE
-           && CountUsablePartyMons(battlerDef) != 0
-           && !HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN)
-           && !HasMoveEffect(battlerDef, EFFECT_DEFOG))
+        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, AI_DATA))
             ADJUST_SCORE(POWERFUL_STATUS_MOVE);
         break;
     case EFFECT_GRASSY_TERRAIN:
