@@ -22,25 +22,20 @@
 
 BattleScript_EffectTidyUp::
 	attackcanceler
-	copybyte sSAVED_BATTLER, gBattlerAttacker
-	trytidyup FALSE, BattleScript_EffectTidyUpRestoreBattler
-	copybyte gBattlerAttacker, sSAVED_BATTLER
 	attackstring
 	pause B_WAIT_TIME_MED
 	ppreduce
 	waitstate
+	trytidyup FALSE, BattleScript_EffectTidyUpDoMoveAnimation
+	goto BattleScript_EffectDragonDanceFromStatUp
+
+BattleScript_EffectTidyUpDoMoveAnimation::
 	attackanimation
 	waitanimation
 	trytidyup TRUE, NULL
-	copybyte gBattlerAttacker, sSAVED_BATTLER
 	printstring STRINGID_TIDYINGUPCOMPLETE
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_EffectTidyUpStatsUp:
 	goto BattleScript_EffectDragonDanceFromStatUp
-
-BattleScript_EffectTidyUpRestoreBattler::
-	copybyte gBattlerAttacker, sSAVED_BATTLER
-	goto BattleScript_EffectDragonDanceFromAttackString
 
 BattleScript_EffectUpperHand::
 	attackcanceler
@@ -5630,7 +5625,6 @@ BattleScript_CantRaiseMultipleStats::
 
 BattleScript_EffectDragonDance::
 	attackcanceler
-BattleScript_EffectDragonDanceFromAttackString::
 	attackstring
 	ppreduce
 BattleScript_EffectDragonDanceFromStatUp::

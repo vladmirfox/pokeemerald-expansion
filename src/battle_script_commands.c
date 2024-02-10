@@ -8409,6 +8409,8 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
 static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
 {
     s32 i;
+    u8 saveBattler = gBattlerAttacker;
+
     for (i = 0; i < NUM_BATTLE_SIDES; i++)
     {
         struct SideTimer *sideTimer = &gSideTimers[i];
@@ -8421,7 +8423,7 @@ static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
         DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebDefog, 0);
     }
 
-    for (i=0; i < MAX_BATTLERS_COUNT; i++)
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         if (gBattleMons[i].status2 & STATUS2_SUBSTITUTE)
         {
@@ -8433,10 +8435,12 @@ static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_SubstituteFade;
             }
+            gBattlerAttacker = saveBattler;
             return TRUE;
         }
     }
 
+    gBattlerAttacker = saveBattler;
     return FALSE;
 }
 
@@ -16684,7 +16688,7 @@ void BS_TryUpdateRecoilTracker(void)
 
 void BS_TryTidyUp(void)
 {
-    NATIVE_ARGS(u8 clear, const u8 *failInstr);
+    NATIVE_ARGS(u8 clear, const u8 *jumpInstr);
 
     if (cmd->clear)
     {
@@ -16696,8 +16700,8 @@ void BS_TryTidyUp(void)
     else
     {
         if (TryTidyUpClear(gBattlerAttacker, FALSE))
-            gBattlescriptCurrInstr = cmd->nextInstr;
+            gBattlescriptCurrInstr = cmd->jumpInstr;
         else
-            gBattlescriptCurrInstr = cmd->failInstr;
+            gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

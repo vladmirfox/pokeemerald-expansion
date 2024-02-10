@@ -1593,10 +1593,10 @@
 	callnative BS_TryUpdateRecoilTracker
 	.endm
 
-	.macro trytidyup clear:req, failInstr:req
+	.macro trytidyup clear:req, jumpInstr:req
 	callnative BS_TryTidyUp
 	.byte \clear
-	.4byte \failInstr
+	.4byte \jumpInstr
 	.endm
 
 @ various command changed to more readable macros
