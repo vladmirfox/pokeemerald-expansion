@@ -2341,15 +2341,18 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             {
                 ADJUST_SCORE(-10);
             }
-            else if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room Up
+            else if (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_POWERFUL_STATUS))
             {
-                if (GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef)) // Attacker side slower than target side
-                    ADJUST_SCORE(-10); // Keep the Trick Room up
-            }
-            else
-            {
-                if (GetBattlerSideSpeedAverage(battlerAtk) >= GetBattlerSideSpeedAverage(battlerDef)) // Attacker side faster than target side
-                    ADJUST_SCORE(-10); // Keep the Trick Room down
+                if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room Up
+                {
+                    if (GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef)) // Attacker side slower than target side
+                        ADJUST_SCORE(-10); // Keep the Trick Room up
+                }
+                else
+                {
+                    if (GetBattlerSideSpeedAverage(battlerAtk) >= GetBattlerSideSpeedAverage(battlerDef)) // Attacker side faster than target side
+                        ADJUST_SCORE(-10); // Keep the Trick Room down
+                }
             }
             break;
         case EFFECT_MAGIC_ROOM:
@@ -5114,75 +5117,92 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 {
     u32 moveEffect = gMovesInfo[move].effect;
 
-    DebugPrintf("works");
-
-    if (IsDoubleBattle() || gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS || gMovesInfo[AI_DATA->partnerMove].effect == moveEffect)
+    if (gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS || gMovesInfo[AI_DATA->partnerMove].effect == moveEffect)
         return score;
 
     switch (moveEffect)
     {
     case EFFECT_TAILWIND:
-        if (!(gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer || (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+        if (!gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1))
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_TRICK_ROOM:
-        // if (!((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) || HasMoveEffect(battlerDef, EFFECT_TRICK_ROOM)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+        if (!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && !HasMoveEffect(battlerDef, EFFECT_TRICK_ROOM))
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_MAGIC_ROOM:
-        if (!((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || HasMoveEffect(battlerDef, EFFECT_MAGIC_ROOM)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+        if (!(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) && !HasMoveEffect(battlerDef, EFFECT_MAGIC_ROOM))
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_WONDER_ROOM:
-        if (!((gFieldStatuses & STATUS_FIELD_WONDER_ROOM) || HasMoveEffect(battlerDef, EFFECT_WONDER_ROOM)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+        if (!(gFieldStatuses & STATUS_FIELD_WONDER_ROOM) && !HasMoveEffect(battlerDef, EFFECT_WONDER_ROOM))
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_GRAVITY:
         if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_SAFEGUARD:
         if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_MIST:
         if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_LIGHT_SCREEN:
     case EFFECT_REFLECT:
     case EFFECT_AURORA_VEIL:
         if (ShouldSetScreen(battlerAtk, battlerDef, moveEffect))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_SPIKES:
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
     case EFFECT_TOXIC_SPIKES:
-        if (!(AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE || CountUsablePartyMons(battlerDef) == 0 || HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+        if (AI_DATA->abilities[battlerDef] != ABILITY_MAGIC_BOUNCE
+           && CountUsablePartyMons(battlerDef) != 0
+           && !HasMoveWithMoveEffect(battlerDef, MOVE_EFFECT_RAPIDSPIN)
+           && !HasMoveEffect(battlerDef, EFFECT_DEFOG))
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_GRASSY_TERRAIN:
         if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_ELECTRIC_TERRAIN:
         if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_PSYCHIC_TERRAIN:
         if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_MISTY_TERRAIN:
         if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_SANDSTORM:
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_SUNNY_DAY:
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_RAIN_DANCE:
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_HAIL:
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
+        break;
     case EFFECT_SNOWSCAPE:
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)))
-            RETURN_SCORE_PLUS(POWERFUL_STATUS_MOVE);
-    default:
-        return FALSE;
+            ADJUST_SCORE(POWERFUL_STATUS_MOVE);
     }
+    return score;
 }
 
 static void AI_Flee(void)

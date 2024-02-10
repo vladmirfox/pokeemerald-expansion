@@ -76,6 +76,7 @@
 #define RETURN_SCORE_PLUS(val)      \
 {                                   \
     ADJUST_SCORE(val);              \
+    DebugPrintf("score: %d", score);              \
     return score;                   \
 }
 
