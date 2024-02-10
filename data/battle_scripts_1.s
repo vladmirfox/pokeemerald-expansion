@@ -9951,8 +9951,8 @@ BattleScript_EffectSnow::
 	goto BattleScript_MoveWeatherChange
 
 BattleScript_TrickRoomBattle::
-    playanimation BS_OPPONENT1, B_ANIM_TRICK_ROOM_BATTLE
-    printstring STRINGID_TRICKROOM_BATTLE
-    waitmessage B_WAIT_TIME_LONG
-    waitanimation
-    end3
+	playanimation BS_OPPONENT1, B_ANIM_TRICK_ROOM_BATTLE
+	printstring STRINGID_TRICKROOM_BATTLE
+	waitmessage B_WAIT_TIME_LONG
+	waitanimation
+	end3
