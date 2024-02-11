@@ -11152,11 +11152,9 @@ void RemoveBattlerType(u32 battler, u8 type)
 
 bool32 TryTrickRoomBattle(void)
 {
-    if (FlagGet(B_SET_TRICK_ROOM))
+    if (FlagGet(B_SET_PERMA_TRICK_ROOM))
     {
         gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-        if (VarGet(B_VAR_TRICK_ROOM_TIMER))
-            gFieldTimers.trickRoomTimer = VarGet(B_VAR_TRICK_ROOM_TIMER);
         BattleScriptPushCursorAndCallback(BattleScript_TrickRoomBattle);
         return TRUE;
     }
