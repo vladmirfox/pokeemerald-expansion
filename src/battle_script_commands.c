@@ -459,8 +459,8 @@ static void Cmd_drawpartystatussummary(void);
 static void Cmd_hidepartystatussummary(void);
 static void Cmd_jumptocalledmove(void);
 static void Cmd_statusanimation(void);
-static void Cmd_status2animation(void);
-static void Cmd_chosenstatusanimation(void);
+static void Cmd_unused_65(void);
+static void Cmd_unused_66(void);
 static void Cmd_yesnobox(void);
 static void Cmd_cancelallactions(void);
 static void Cmd_setgravity(void);
@@ -718,8 +718,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_hidepartystatussummary,                  //0x62
     Cmd_jumptocalledmove,                        //0x63
     Cmd_statusanimation,                         //0x64
-    Cmd_status2animation,                        //0x65
-    Cmd_chosenstatusanimation,                   //0x66
+    Cmd_unused_65,                               //0x65
+    Cmd_unused_66,                               //0x66
     Cmd_yesnobox,                                //0x67
     Cmd_cancelallactions,                        //0x68
     Cmd_setgravity,                              //0x69
@@ -4056,53 +4056,15 @@ if (_condition)                                 \
 
 static void Cmd_jumpifvolatilestatus(void)
 {
-    CMD_ARGS(u8 battler, u32 flags, const u8 *jumpInstr);
+    CMD_ARGS(u8 battler, u32 volatileStatus, const u8 *jumpInstr);
     u8 battler = GetBattlerForBattleScript(cmd->battler);
 
-    // By default, set next instruction
-    gBattlescriptCurrInstr = cmd->nextInstr;
-
-    // Always fail if battler's HP is 0
-    if (gBattleMons[battler].hp == 0)
-        return;
-
     // Check volatile status based on passed enum
-    switch (cmd->flags)
-    {
-        case ENUM_VOLATILE_STATUS_CONFUSION:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_CONFUSION)
-            break;
-        case ENUM_VOLATILE_STATUS_LOCK_CONFUSE:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE)
-            break;
-        case ENUM_VOLATILE_STATUS_ESCAPE_PREVENTION:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)
-            break;
-        case ENUM_VOLATILE_STATUS_MULTIPLETURNS:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_MULTIPLETURNS)
-            break;
-        case ENUM_VOLATILE_STATUS_FORESIGHT:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
-            break;
-        case ENUM_VOLATILE_STATUS_NIGHTMARE:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_NIGHTMARE)
-            break;
-        case ENUM_VOLATILE_STATUS_SUBSTITUTE:
-            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_SUBSTITUTE)
-            break;
-        case ENUM_VOLATILE_STATUS_LEECHSEED:
-            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_LEECHSEED)
-            break;
-        case ENUM_VOLATILE_STATUS_ROOTED:
-            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_ROOTED)
-            break;
-        case ENUM_VOLATILE_STATUS_HEAL_BLOCK:
-            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_HEAL_BLOCK)
-            break;
-        case ENUM_VOLATILE_STATUS_EMBARGO:
-            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_EMBARGO)
-            break;
-    }
+    if (gBattleMons[battler].hp == 0 // Always fail if battler's HP is 0
+      || !BattlerHasVolatileStatus(GetBattlerForBattleScript(cmd->battler), cmd->volatileStatus))
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    else
+        gBattlescriptCurrInstr = cmd->jumpInstr;
 }
 
 static void Cmd_jumpifability(void)
@@ -7684,58 +7646,36 @@ static void Cmd_jumptocalledmove(void)
 
 static void Cmd_statusanimation(void)
 {
-    CMD_ARGS(u8 battler);
+    CMD_ARGS(u8 battler, bool8 isVolatile, u8 volatileStatus);
 
     if (gBattleControllerExecFlags == 0)
     {
         u32 battler = GetBattlerForBattleScript(cmd->battler);
+        u32 status = cmd->isVolatile ?
+          cmd->volatileStatus * !!BattlerHasVolatileStatus(battler, cmd->volatileStatus) :
+          gBattleMons[battler].status1;
+
         if (!(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
             && gDisableStructs[battler].substituteHP == 0
             && !(gHitMarker & (HITMARKER_NO_ANIMATIONS | HITMARKER_DISABLE_ANIMATION)))
         {
-            BtlController_EmitStatusAnimation(battler, BUFFER_A, FALSE, gBattleMons[battler].status1);
+            BtlController_EmitStatusAnimation(battler, BUFFER_A, cmd->isVolatile, status);
             MarkBattlerForControllerExec(battler);
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
 
-static void Cmd_status2animation(void)
+static void Cmd_unused_65(void)
 {
-    CMD_ARGS(u8 battler, u32 status2);
-
-    if (gBattleControllerExecFlags == 0)
-    {
-        u32 battler = GetBattlerForBattleScript(cmd->battler);
-        u32 status2ToAnim = cmd->status2;
-        if (!(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
-            && gDisableStructs[battler].substituteHP == 0
-            && !(gHitMarker & (HITMARKER_NO_ANIMATIONS | HITMARKER_DISABLE_ANIMATION)))
-        {
-            BtlController_EmitStatusAnimation(battler, BUFFER_A, TRUE, gBattleMons[battler].status2 & status2ToAnim);
-            MarkBattlerForControllerExec(battler);
-        }
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+    CMD_ARGS();
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_chosenstatusanimation(void)
+static void Cmd_unused_66(void)
 {
-    CMD_ARGS(u8 battler, bool8 isStatus2, u32 status);
-
-    if (gBattleControllerExecFlags == 0)
-    {
-        u32 battler = GetBattlerForBattleScript(cmd->battler);
-        u32 wantedStatus = cmd->status;
-        if (!(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
-            && gDisableStructs[battler].substituteHP == 0
-            && !(gHitMarker & (HITMARKER_NO_ANIMATIONS | HITMARKER_DISABLE_ANIMATION)))
-        {
-            BtlController_EmitStatusAnimation(battler, BUFFER_A, cmd->isStatus2, wantedStatus);
-            MarkBattlerForControllerExec(battler);
-        }
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+    CMD_ARGS();
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_yesnobox(void)
@@ -8917,17 +8857,17 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *endInstr);
         // Doesn't apply to mons without a volatile status that makes them airborne
         if (!(gStatuses3[battler] & (STATUS3_ON_AIR | STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
-        {
             gBattlescriptCurrInstr = cmd->endInstr;
-            return;
+        else
+        {
+            // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
+            if (gStatuses3[battler] & STATUS3_ON_AIR && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
+                CancelMultiTurnMoves(battler);
+
+            gStatuses3[battler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR | STATUS3_SKY_DROPPED);
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
-
-        // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
-        if (gStatuses3[battler] & STATUS3_ON_AIR && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
-            CancelMultiTurnMoves(battler);
-
-        gStatuses3[battler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR | STATUS3_SKY_DROPPED);
-        break;
+        return;
     }
     case VARIOUS_SPECTRAL_THIEF:
     {

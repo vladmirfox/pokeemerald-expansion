@@ -979,7 +979,6 @@ gBattleAnims_StatusConditions::
 	.4byte Status_Freeze                    @ B_ANIM_STATUS_FRZ
 	.4byte Status_Curse                     @ B_ANIM_STATUS_CURSED
 	.4byte Status_Nightmare                 @ B_ANIM_STATUS_NIGHTMARE
-	.4byte Status_Powder
 
 	.align 2
 gBattleAnims_General::
@@ -27782,9 +27781,6 @@ Status_Nightmare:
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 14, 1
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
-	end
-
-Status_Powder:
 	end
 
 General_StatsChange:

@@ -11137,3 +11137,38 @@ void RemoveBattlerType(u32 battler, u8 type)
             *(u8 *)(&gBattleMons[battler].type1 + i) = TYPE_MYSTERY;
     }
 }
+
+bool32 BattlerHasVolatileStatus(u32 battler, u32 volatileStatus)
+{
+    switch (volatileStatus)
+    {
+        case ENUM_VOLATILE_STATUS_CONFUSION:
+            return (gBattleMons[battler].status2 & STATUS2_CONFUSION);
+        case ENUM_VOLATILE_STATUS_LOCK_CONFUSE:
+            return (gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE);
+        case ENUM_VOLATILE_STATUS_ESCAPE_PREVENTION:
+            return (gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION);
+        case ENUM_VOLATILE_STATUS_MULTIPLETURNS:
+            return (gBattleMons[battler].status2 & STATUS2_MULTIPLETURNS);
+        case ENUM_VOLATILE_STATUS_FORESIGHT:
+            return (gBattleMons[battler].status2 & STATUS2_FORESIGHT);
+        case ENUM_VOLATILE_STATUS_NIGHTMARE:
+            return (gBattleMons[battler].status2 & STATUS2_NIGHTMARE);
+        case ENUM_VOLATILE_STATUS_SUBSTITUTE:
+            return (gBattleMons[battler].status2 & STATUS2_SUBSTITUTE);
+        case ENUM_VOLATILE_STATUS_LEECHSEED:
+            return (gStatuses3[battler] & STATUS3_LEECHSEED);
+        case ENUM_VOLATILE_STATUS_ROOTED:
+            return (gStatuses3[battler] & STATUS3_ROOTED);
+        case ENUM_VOLATILE_STATUS_HEAL_BLOCK:
+            return (gStatuses3[battler] & STATUS3_HEAL_BLOCK);
+        case ENUM_VOLATILE_STATUS_EMBARGO:
+            return (gStatuses3[battler] & STATUS3_EMBARGO);
+        case ENUM_VOLATILE_STATUS_INFATUATION:
+            return (gBattleMons[battler].status2 & STATUS2_INFATUATION);
+        case ENUM_VOLATILE_STATUS_CURSED:
+            return (gBattleMons[battler].status2 & STATUS2_CURSED);
+    }
+
+    return FALSE;
+}

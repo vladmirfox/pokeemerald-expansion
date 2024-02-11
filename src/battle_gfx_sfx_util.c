@@ -439,18 +439,24 @@ void InitAndLaunchChosenStatusAnimation(u32 battler, bool32 isStatus2, u32 statu
     }
     else
     {
-        if (status & STATUS2_INFATUATION)
-            LaunchStatusAnimation(battler, B_ANIM_STATUS_INFATUATION);
-        else if (status & STATUS2_CONFUSION)
-            LaunchStatusAnimation(battler, B_ANIM_STATUS_CONFUSION);
-        else if (status & STATUS2_CURSED)
-            LaunchStatusAnimation(battler, B_ANIM_STATUS_CURSED);
-        else if (status & STATUS2_NIGHTMARE)
-            LaunchStatusAnimation(battler, B_ANIM_STATUS_NIGHTMARE);
-        else if (status & STATUS2_WRAPPED)
-            LaunchStatusAnimation(battler, B_ANIM_STATUS_WRAPPED); // this animation doesn't actually exist
-        else // no animation
-            gBattleSpritesDataPtr->healthBoxesData[battler].statusAnimActive = 0;
+        switch (status)
+        {
+            case ENUM_VOLATILE_STATUS_CONFUSION:
+                LaunchStatusAnimation(battler, B_ANIM_STATUS_CONFUSION);
+                break;
+            case ENUM_VOLATILE_STATUS_INFATUATION:
+                LaunchStatusAnimation(battler, B_ANIM_STATUS_INFATUATION);
+                break;
+            case ENUM_VOLATILE_STATUS_NIGHTMARE:
+                LaunchStatusAnimation(battler, B_ANIM_STATUS_NIGHTMARE);
+                break;
+            case ENUM_VOLATILE_STATUS_CURSED:
+                LaunchStatusAnimation(battler, B_ANIM_STATUS_CURSED);
+                break;
+            default: // no animation
+                gBattleSpritesDataPtr->healthBoxesData[battler].statusAnimActive = 0;
+                break;
+        }
     }
 }
 

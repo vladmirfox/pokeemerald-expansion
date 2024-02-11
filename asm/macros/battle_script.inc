@@ -592,22 +592,15 @@
 	.byte \notChosenMove
 	.endm
 
-	.macro statusanimation battler:req
+	.macro statusanimation battler:req, isVolatile=FALSE, volatileStatus=0
 	.byte 0x64
 	.byte \battler
+	.byte \isVolatile
+	.byte \volatileStatus
 	.endm
 
-	.macro status2animation battler:req, status2:req
-	.byte 0x65
-	.byte \battler
-	.4byte \status2
-	.endm
-
-	.macro chosenstatusanimation battler:req, isStatus2:req, status:req
-	.byte 0x66
-	.byte \battler
-	.byte \isStatus2
-	.4byte \status
+	.macro volatilestatusanimation battler:req, volatileStatus:req
+	statusanimation \battler, TRUE, \volatileStatus
 	.endm
 
 	.macro yesnobox
@@ -2273,14 +2266,6 @@
 	.macro setmoveeffect effect:req
 	sethword sMOVE_EFFECT, \effect
 	sethword sSAVED_MOVE_EFFECT, \effect
-	.endm
-
-	.macro chosenstatus1animation battler:req, status:req
-	chosenstatusanimation \battler, 0x0, \status
-	.endm
-
-	.macro chosenstatus2animation battler:req, status:req
-	chosenstatusanimation \battler, 0x1, \status
 	.endm
 
 	.macro sethword dst:req, value:req

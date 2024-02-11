@@ -206,6 +206,8 @@
 #define ENUM_VOLATILE_STATUS_ROOTED             9
 #define ENUM_VOLATILE_STATUS_HEAL_BLOCK         10
 #define ENUM_VOLATILE_STATUS_EMBARGO            11
+#define ENUM_VOLATILE_STATUS_INFATUATION        12
+#define ENUM_VOLATILE_STATUS_CURSED             13
 
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_IGNORE_BIDE           (1 << 5)
