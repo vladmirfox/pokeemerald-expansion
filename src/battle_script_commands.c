@@ -387,7 +387,7 @@ static void Cmd_tryfaintmon(void);
 static void Cmd_dofaintanimation(void);
 static void Cmd_cleareffectsonfaint(void);
 static void Cmd_jumpifstatus(void);
-static void Cmd_jumpifstatus2(void);
+static void Cmd_jumpifvolatilestatus(void);
 static void Cmd_jumpifability(void);
 static void Cmd_jumpifsideaffecting(void);
 static void Cmd_jumpifstat(void);
@@ -512,7 +512,7 @@ static void Cmd_weatherdamage(void);
 static void Cmd_tryinfatuating(void);
 static void Cmd_updatestatusicon(void);
 static void Cmd_setmist(void);
-static void Cmd_setfocusenergy(void);
+static void Cmd_setfocusenergyorfail(void);
 static void Cmd_transformdataexecution(void);
 static void Cmd_setsubstitute(void);
 static void Cmd_mimicattackcopy(void);
@@ -646,7 +646,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_dofaintanimation,                        //0x1A
     Cmd_cleareffectsonfaint,                     //0x1B
     Cmd_jumpifstatus,                            //0x1C
-    Cmd_jumpifstatus2,                           //0x1D
+    Cmd_jumpifvolatilestatus,                    //0x1D
     Cmd_jumpifability,                           //0x1E
     Cmd_jumpifsideaffecting,                     //0x1F
     Cmd_jumpifstat,                              //0x20
@@ -771,7 +771,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_tryinfatuating,                          //0x97
     Cmd_updatestatusicon,                        //0x98
     Cmd_setmist,                                 //0x99
-    Cmd_setfocusenergy,                          //0x9A
+    Cmd_setfocusenergyorfail,                    //0x9A
     Cmd_transformdataexecution,                  //0x9B
     Cmd_setsubstitute,                           //0x9C
     Cmd_mimicattackcopy,                         //0x9D
@@ -4047,18 +4047,62 @@ static void Cmd_jumpifstatus(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_jumpifstatus2(void)
+#define JUMP_IF_VOLATILE_STATUS(_condition)     \
+if (_condition)                                 \
+{                                               \
+    gBattlescriptCurrInstr = cmd->jumpInstr;    \
+    return;                                     \
+}
+
+static void Cmd_jumpifvolatilestatus(void)
 {
     CMD_ARGS(u8 battler, u32 flags, const u8 *jumpInstr);
-
     u8 battler = GetBattlerForBattleScript(cmd->battler);
-    u32 flags = cmd->flags;
-    const u8 *jumpInstr = cmd->jumpInstr;
 
-    if (gBattleMons[battler].status2 & flags && gBattleMons[battler].hp != 0)
-        gBattlescriptCurrInstr = jumpInstr;
-    else
-        gBattlescriptCurrInstr = cmd->nextInstr;
+    // By default, set next instruction
+    gBattlescriptCurrInstr = cmd->nextInstr;
+
+    // Always fail if battler's HP is 0
+    if (gBattleMons[battler].hp == 0)
+        return;
+
+    // Check volatile status based on passed enum
+    switch (cmd->flags)
+    {
+        case ENUM_VOLATILE_STATUS_CONFUSION:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_CONFUSION)
+            break;
+        case ENUM_VOLATILE_STATUS_LOCK_CONFUSE:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE)
+            break;
+        case ENUM_VOLATILE_STATUS_ESCAPE_PREVENTION:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION)
+            break;
+        case ENUM_VOLATILE_STATUS_MULTIPLETURNS:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_MULTIPLETURNS)
+            break;
+        case ENUM_VOLATILE_STATUS_FORESIGHT:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
+            break;
+        case ENUM_VOLATILE_STATUS_NIGHTMARE:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_NIGHTMARE)
+            break;
+        case ENUM_VOLATILE_STATUS_SUBSTITUTE:
+            JUMP_IF_VOLATILE_STATUS(gBattleMons[battler].status2 & STATUS2_SUBSTITUTE)
+            break;
+        case ENUM_VOLATILE_STATUS_LEECHSEED:
+            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_LEECHSEED)
+            break;
+        case ENUM_VOLATILE_STATUS_ROOTED:
+            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_ROOTED)
+            break;
+        case ENUM_VOLATILE_STATUS_HEAL_BLOCK:
+            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_HEAL_BLOCK)
+            break;
+        case ENUM_VOLATILE_STATUS_EMBARGO:
+            JUMP_IF_VOLATILE_STATUS(gStatuses3[battler] & STATUS3_EMBARGO)
+            break;
+    }
 }
 
 static void Cmd_jumpifability(void)
@@ -8165,18 +8209,20 @@ static void Cmd_setatktoplayer0(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_makevisible(void)
+static void MakeVisible(u32 battler)
 {
-    CMD_ARGS(u8 battler);
-    u32 battler;
-
     if (gBattleControllerExecFlags)
         return;
 
-    battler = GetBattlerForBattleScript(cmd->battler);
     BtlController_EmitSpriteInvisibility(battler, BUFFER_A, FALSE);
     MarkBattlerForControllerExec(battler);
+}
 
+static void Cmd_makevisible(void)
+{
+    CMD_ARGS(u8 battler);
+
+    MakeVisible(GetBattlerForBattleScript(cmd->battler));
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -8868,7 +8914,14 @@ static void Cmd_various(void)
     }
     case VARIOUS_GRAVITY_ON_AIRBORNE_MONS:
     {
-        VARIOUS_ARGS();
+        VARIOUS_ARGS(const u8 *endInstr);
+        // Doesn't apply to mons without a volatile status that makes them airborne
+        if (!(gStatuses3[battler] & (STATUS3_ON_AIR | STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
+        {
+            gBattlescriptCurrInstr = cmd->endInstr;
+            return;
+        }
+
         // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
         if (gStatuses3[battler] & STATUS3_ON_AIR && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
             CancelMultiTurnMoves(battler);
@@ -8896,10 +8949,16 @@ static void Cmd_various(void)
         }
         break;
     }
-    case VARIOUS_SET_POWDER:
+    case VARIOUS_SET_POWDER_OR_FAIL:
     {
-        VARIOUS_ARGS();
-        gBattleMons[battler].status2 |= STATUS2_POWDER;
+        VARIOUS_ARGS(const u8 *failInstr);
+        if (gBattleMons[battler].status2 & STATUS2_POWDER)
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+            return;
+        }
+        else
+            gBattleMons[battler].status2 |= STATUS2_POWDER;
         break;
     }
     case VARIOUS_ACUPRESSURE:
@@ -10129,10 +10188,13 @@ static void Cmd_various(void)
     case VARIOUS_SKY_DROP_YAWN: // If the mon that's sleeping due to Yawn was holding a Pokemon in Sky Drop, release the target and clear Sky Drop data.
     {
         VARIOUS_ARGS();
-        if (gBattleStruct->skyDropTargets[gEffectBattler] != 0xFF && !(gStatuses3[gEffectBattler] & STATUS3_SKY_DROPPED))
+        if (!(gStatuses3[battler] & STATUS3_SKY_DROPPED) && gBattleStruct->skyDropTargets[battler] != 0xFF)
         {
-            // Set the target of Sky Drop as gEffectBattler
-            gEffectBattler = gBattleStruct->skyDropTargets[gEffectBattler];
+            // Make battler visible
+            MakeVisible(battler);
+
+            // Set the target of Sky Drop as battler
+            gEffectBattler = gBattleStruct->skyDropTargets[battler];
 
             // Clear skyDropTargets data
             gBattleStruct->skyDropTargets[gBattleStruct->skyDropTargets[gEffectBattler]] = 0xFF;
@@ -12323,9 +12385,17 @@ static void Cmd_setmist(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_setfocusenergy(void)
+static void Cmd_setfocusenergyorfail(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(u8 battler, const u8 *failInstr);
+
+    // Not Dragon Cheer
+    if (gMovesInfo[gCurrentMove].effect != EFFECT_DRAGON_CHEER
+      && gBattleMons[GetBattlerForBattleScript(cmd->battler)].status2 & STATUS2_FOCUS_ENERGY_ANY)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+        return;
+    }
 
     if ((gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_CHEER && (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || (gAbsentBattlerFlags & gBitTable[gBattlerTarget])))
      || gBattleMons[gBattlerTarget].status2 & STATUS2_FOCUS_ENERGY_ANY)
@@ -13679,7 +13749,7 @@ static void Cmd_tryfiretwoturnmovenowbyeffect(void)
 {
     CMD_ARGS(u8 battler, bool8 checkChargeTurnEffects, const u8 *jumpInstr);
 
-    if (CheckIfCanFireTwoTurnMoveNow(cmd->battler, cmd->checkChargeTurnEffects) == TRUE)
+    if (CheckIfCanFireTwoTurnMoveNow(GetBattlerForBattleScript(cmd->battler), cmd->checkChargeTurnEffects) == TRUE)
     {
         gBattleScripting.animTurn = 1;
         gBattlescriptCurrInstr = cmd->jumpInstr;

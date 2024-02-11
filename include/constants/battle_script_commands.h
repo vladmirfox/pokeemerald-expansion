@@ -158,7 +158,7 @@
 #define VARIOUS_SET_AURORA_VEIL                      66
 #define VARIOUS_TRY_THIRD_TYPE                       67
 #define VARIOUS_ACUPRESSURE                          68
-#define VARIOUS_SET_POWDER                           69
+#define VARIOUS_SET_POWDER_OR_FAIL                   69
 #define VARIOUS_SPECTRAL_THIEF                       70
 #define VARIOUS_GRAVITY_ON_AIRBORNE_MONS             71
 #define VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS        72

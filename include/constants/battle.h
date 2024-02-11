@@ -194,6 +194,19 @@
 #define STATUS4_SYRUP_BOMB              (1 << 5)
 #define STATUS4_GLAIVE_RUSH             (1 << 6)
 
+// Enums for checking volatile statuses
+#define ENUM_VOLATILE_STATUS_CONFUSION          1
+#define ENUM_VOLATILE_STATUS_LOCK_CONFUSE       2
+#define ENUM_VOLATILE_STATUS_ESCAPE_PREVENTION  3
+#define ENUM_VOLATILE_STATUS_MULTIPLETURNS      4
+#define ENUM_VOLATILE_STATUS_FORESIGHT          5
+#define ENUM_VOLATILE_STATUS_NIGHTMARE          6
+#define ENUM_VOLATILE_STATUS_SUBSTITUTE         7
+#define ENUM_VOLATILE_STATUS_LEECHSEED          8
+#define ENUM_VOLATILE_STATUS_ROOTED             9
+#define ENUM_VOLATILE_STATUS_HEAL_BLOCK         10
+#define ENUM_VOLATILE_STATUS_EMBARGO            11
+
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_IGNORE_BIDE           (1 << 5)
 #define HITMARKER_DESTINYBOND           (1 << 6)

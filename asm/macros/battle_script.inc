@@ -155,7 +155,7 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifstatus2 battler:req, flags:req, jumpInstr:req
+	.macro jumpifvolatilestatus battler:req, flags:req, jumpInstr:req
 	.byte 0x1d
 	.byte \battler
 	.4byte \flags
@@ -855,8 +855,10 @@
 	.byte 0x99
 	.endm
 
-	.macro setfocusenergy
+	.macro setfocusenergyorfail battler:req, failInstr:req
 	.byte 0x9a
+	.byte \battler
+	.4byte \failInstr
 	.endm
 
 	.macro transformdataexecution
@@ -1938,16 +1940,18 @@
 	.4byte \failInstr
 	.endm
 
-	.macro setpowder battler:req
-	various \battler, VARIOUS_SET_POWDER
+	.macro setpowderorfail battler:req, failInstr:req
+	various \battler, VARIOUS_SET_POWDER_OR_FAIL
+	.4byte \failInstr
 	.endm
 
 	.macro spectralthiefprintstats
 	various BS_ATTACKER, VARIOUS_SPECTRAL_THIEF
 	.endm
 
-	.macro bringdownairbornebattler battler:req
+	.macro bringdownairbornebattlerorend battler:req, endInstr:req
 	various \battler, VARIOUS_GRAVITY_ON_AIRBORNE_MONS
+	.4byte \endInstr
 	.endm
 
 	.macro checkgrassyterrainheal battler:req, failInstr:req
@@ -2424,8 +2428,8 @@
 	.endm
 
 	@ Accounts for if the target of Sky Drop was in confuse_lock when the attacker falls asleep due to Yawn.
-	.macro skydropyawn
-	various 0, VARIOUS_SKY_DROP_YAWN
+	.macro skydropyawn battler:req
+	various \battler, VARIOUS_SKY_DROP_YAWN
 	.endm
 
 	@ Tries to increase or decrease a battler's stat's stat stage by a specified amount. If impossible, jumps to \script.
