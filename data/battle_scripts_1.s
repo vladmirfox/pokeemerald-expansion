@@ -1197,7 +1197,7 @@ BattleScript_EffectLaserFocus::
 	attackcanceler
 	attackstring
 	ppreduce
-	setuserstatus3 STATUS3_LASER_FOCUS, BattleScript_ButItFailed
+	setvolatilestatusorfail BS_ATTACKER, ENUM_VOLATILE_STATUS_LASER_FOCUS, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_LASERFOCUS
@@ -2517,7 +2517,7 @@ BattleScript_EffectMagnetRise::
 	attackcanceler
 	attackstring
 	ppreduce
-	setuserstatus3 STATUS3_MAGNET_RISE, BattleScript_ButItFailed
+	setvolatilestatusorfail BS_ATTACKER, ENUM_VOLATILE_STATUS_MAGNET_RISE, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNLEVITATEDONELECTROMAGNETISM
@@ -2561,7 +2561,7 @@ BattleScript_EffectAquaRing::
 	attackcanceler
 	attackstring
 	ppreduce
-	setuserstatus3 STATUS3_AQUA_RING, BattleScript_ButItFailed
+	setvolatilestatusorfail BS_ATTACKER, ENUM_VOLATILE_STATUS_AQUA_RING, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNSURROUNDEDWITHVEILOFWATER
@@ -5081,7 +5081,7 @@ BattleScript_EffectIngrain::
 	attackcanceler
 	attackstring
 	ppreduce
-	setuserstatus3 STATUS3_ROOTED, BattleScript_ButItFailed
+	setvolatilestatusorfail BS_ATTACKER, ENUM_VOLATILE_STATUS_ROOTED, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNPLANTEDROOTS
@@ -5236,7 +5236,7 @@ BattleScript_EffectGrudge::
 	attackcanceler
 	attackstring
 	ppreduce
-	setuserstatus3 STATUS3_GRUDGE, BattleScript_ButItFailed
+	setvolatilestatusorfail BS_ATTACKER, ENUM_VOLATILE_STATUS_GRUDGE, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printstring STRINGID_PKMNWANTSGRUDGE

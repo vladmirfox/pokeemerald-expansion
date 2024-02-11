@@ -11138,37 +11138,72 @@ void RemoveBattlerType(u32 battler, u8 type)
     }
 }
 
-bool32 BattlerHasVolatileStatus(u32 battler, u32 volatileStatus)
+
+#define TRY_UPDATE_VOLATILE(field, status)  \
+if (set)                                    \
+{                                           \
+    if (field & status)                     \
+        return FALSE;                       \
+    field |= status;                        \
+}
+
+#define RETURN_CHECK_OR_UPDATE_VOLATILE(field, status)  \
+TRY_UPDATE_VOLATILE(field, status)                      \
+return (field & status)
+
+static bool32 CheckOrUpdateBattlerVolatileStatus(u32 battler, u32 volatileStatus, bool32 set)
 {
     switch (volatileStatus)
     {
         case ENUM_VOLATILE_STATUS_CONFUSION:
-            return (gBattleMons[battler].status2 & STATUS2_CONFUSION);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_CONFUSION);
         case ENUM_VOLATILE_STATUS_LOCK_CONFUSE:
-            return (gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_LOCK_CONFUSE);
         case ENUM_VOLATILE_STATUS_ESCAPE_PREVENTION:
-            return (gBattleMons[battler].status2 & STATUS2_ESCAPE_PREVENTION);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_ESCAPE_PREVENTION);
         case ENUM_VOLATILE_STATUS_MULTIPLETURNS:
-            return (gBattleMons[battler].status2 & STATUS2_MULTIPLETURNS);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_MULTIPLETURNS);
         case ENUM_VOLATILE_STATUS_FORESIGHT:
-            return (gBattleMons[battler].status2 & STATUS2_FORESIGHT);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_FORESIGHT);
         case ENUM_VOLATILE_STATUS_NIGHTMARE:
-            return (gBattleMons[battler].status2 & STATUS2_NIGHTMARE);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_NIGHTMARE);
         case ENUM_VOLATILE_STATUS_SUBSTITUTE:
-            return (gBattleMons[battler].status2 & STATUS2_SUBSTITUTE);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_SUBSTITUTE);
         case ENUM_VOLATILE_STATUS_LEECHSEED:
-            return (gStatuses3[battler] & STATUS3_LEECHSEED);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_LEECHSEED);
         case ENUM_VOLATILE_STATUS_ROOTED:
-            return (gStatuses3[battler] & STATUS3_ROOTED);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_ROOTED);
         case ENUM_VOLATILE_STATUS_HEAL_BLOCK:
-            return (gStatuses3[battler] & STATUS3_HEAL_BLOCK);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_HEAL_BLOCK);
         case ENUM_VOLATILE_STATUS_EMBARGO:
-            return (gStatuses3[battler] & STATUS3_EMBARGO);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_EMBARGO);
         case ENUM_VOLATILE_STATUS_INFATUATION:
-            return (gBattleMons[battler].status2 & STATUS2_INFATUATION);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_INFATUATION);
         case ENUM_VOLATILE_STATUS_CURSED:
-            return (gBattleMons[battler].status2 & STATUS2_CURSED);
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gBattleMons[battler].status2, STATUS2_CURSED);
+        case ENUM_VOLATILE_STATUS_GRUDGE:
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_GRUDGE);
+        case ENUM_VOLATILE_STATUS_MAGNET_RISE:
+            TRY_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_MAGNET_RISE)
+            gDisableStructs[battler].magnetRiseTimer = 5;
+            return STATUS3_MAGNET_RISE;
+        case ENUM_VOLATILE_STATUS_AQUA_RING:
+            RETURN_CHECK_OR_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_AQUA_RING);
+        case ENUM_VOLATILE_STATUS_LASER_FOCUS:
+            TRY_UPDATE_VOLATILE(gStatuses3[battler], STATUS3_LASER_FOCUS)
+            gDisableStructs[battler].laserFocusTimer = 2;
+            return STATUS3_LASER_FOCUS;
     }
 
     return FALSE;
+}
+
+bool32 SetBattlerVolatileStatus(u32 battler, u32 volatileStatus)
+{
+    return CheckOrUpdateBattlerVolatileStatus(battler, volatileStatus, TRUE);
+}
+
+bool32 CheckBattlerVolatileStatus(u32 battler, u32 volatileStatus)
+{
+    return CheckOrUpdateBattlerVolatileStatus(battler, volatileStatus, FALSE);
 }

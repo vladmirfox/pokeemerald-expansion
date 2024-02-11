@@ -148,18 +148,23 @@
 	.byte \battler
 	.endm
 
-	.macro jumpifstatus battler:req, flags:req, jumpInstr:req
+	.macro jumpifstatus battler:req, status:req, jumpInstr:req, isVolatile=FALSE
 	.byte 0x1c
 	.byte \battler
-	.4byte \flags
+	.4byte \status
 	.4byte \jumpInstr
+	.byte \isVolatile
 	.endm
 
-	.macro jumpifvolatilestatus battler:req, flags:req, jumpInstr:req
+	.macro jumpifvolatilestatus battler:req, volatileStatus:req, jumpInstr:req
+	jumpifstatus \battler, \volatileStatus, \jumpInstr, TRUE
+	.endm
+
+	.macro setvolatilestatusorfail battler:req, status:req, failInstr:req
 	.byte 0x1d
 	.byte \battler
-	.4byte \flags
-	.4byte \jumpInstr
+	.4byte \status
+	.4byte \failInstr
 	.endm
 
 	.macro jumpifability battler:req, ability:req, jumpInstr:req
@@ -182,14 +187,6 @@
 	.byte \comparison
 	.byte \stat
 	.byte \value
-	.4byte \jumpInstr
-	.endm
-
-	.macro jumpifstatus3condition battler:req, flags:req, jumpIfTrue:req, jumpInstr:req
-	.byte 0x21
-	.byte \battler
-	.4byte \flags
-	.byte \jumpIfTrue
 	.4byte \jumpInstr
 	.endm
 
@@ -1175,12 +1172,6 @@
 
 	.macro setstealthrock failInstr:req
 	.byte 0xdc
-	.4byte \failInstr
-	.endm
-
-	.macro setuserstatus3 flags:req, failInstr:req
-	.byte 0xdd
-	.4byte \flags
 	.4byte \failInstr
 	.endm
 
@@ -2310,14 +2301,6 @@
 
 	.macro jumpifnotchosenmove move:req, jumpInstr:req
 	jumpifhalfword CMP_NOT_EQUAL, gChosenMove, \move, \jumpInstr
-	.endm
-
-	.macro jumpifstatus3 battler:req, flags:req, jumpInstr:req
-	jumpifstatus3condition \battler, \flags, FALSE, \jumpInstr
-	.endm
-
-	.macro jumpifnostatus3 battler:req, flags:req, jumpInstr:req
-	jumpifstatus3condition \battler, \flags, TRUE, \jumpInstr
 	.endm
 
 	.macro jumpifmovehadnoeffect jumpInstr:req

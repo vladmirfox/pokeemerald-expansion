@@ -208,6 +208,10 @@
 #define ENUM_VOLATILE_STATUS_EMBARGO            11
 #define ENUM_VOLATILE_STATUS_INFATUATION        12
 #define ENUM_VOLATILE_STATUS_CURSED             13
+#define ENUM_VOLATILE_STATUS_GRUDGE             14
+#define ENUM_VOLATILE_STATUS_MAGNET_RISE        15
+#define ENUM_VOLATILE_STATUS_AQUA_RING          16
+#define ENUM_VOLATILE_STATUS_LASER_FOCUS        17
 
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_IGNORE_BIDE           (1 << 5)

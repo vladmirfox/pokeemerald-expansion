@@ -387,11 +387,11 @@ static void Cmd_tryfaintmon(void);
 static void Cmd_dofaintanimation(void);
 static void Cmd_cleareffectsonfaint(void);
 static void Cmd_jumpifstatus(void);
-static void Cmd_jumpifvolatilestatus(void);
+static void Cmd_setvolatilestatusorfail(void);
 static void Cmd_jumpifability(void);
 static void Cmd_jumpifsideaffecting(void);
 static void Cmd_jumpifstat(void);
-static void Cmd_jumpifstatus3condition(void);
+static void Cmd_unused_21(void);
 static void Cmd_jumpbasedontype(void);
 static void Cmd_getexp(void);
 static void Cmd_checkteamslost(void);
@@ -579,7 +579,7 @@ static void Cmd_setroom(void);
 static void Cmd_tryswapabilities(void);
 static void Cmd_tryimprison(void);
 static void Cmd_setstealthrock(void);
-static void Cmd_setuserstatus3(void);
+static void Cmd_unused_dd(void);
 static void Cmd_assistattackselect(void);
 static void Cmd_trysetmagiccoat(void);
 static void Cmd_trysetsnatch(void);
@@ -646,11 +646,11 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_dofaintanimation,                        //0x1A
     Cmd_cleareffectsonfaint,                     //0x1B
     Cmd_jumpifstatus,                            //0x1C
-    Cmd_jumpifvolatilestatus,                    //0x1D
+    Cmd_setvolatilestatusorfail,                 //0x1D
     Cmd_jumpifability,                           //0x1E
     Cmd_jumpifsideaffecting,                     //0x1F
     Cmd_jumpifstat,                              //0x20
-    Cmd_jumpifstatus3condition,                  //0x21
+    Cmd_unused_21,                               //0x21
     Cmd_jumpbasedontype,                         //0x22
     Cmd_getexp,                                  //0x23
     Cmd_checkteamslost,                          //0x24
@@ -838,7 +838,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_tryswapabilities,                        //0xDA
     Cmd_tryimprison,                             //0xDB
     Cmd_setstealthrock,                          //0xDC
-    Cmd_setuserstatus3,                          //0xDD
+    Cmd_unused_dd,                               //0xDD
     Cmd_assistattackselect,                      //0xDE
     Cmd_trysetmagiccoat,                         //0xDF
     Cmd_trysetsnatch,                            //0xE0
@@ -4035,36 +4035,30 @@ static void Cmd_cleareffectsonfaint(void)
 
 static void Cmd_jumpifstatus(void)
 {
-    CMD_ARGS(u8 battler, u32 flags, const u8 *jumpInstr);
+    CMD_ARGS(u8 battler, u32 status, const u8 *jumpInstr, u8 isVolatile);
 
     u8 battler = GetBattlerForBattleScript(cmd->battler);
-    u32 flags = cmd->flags;
-    const u8 *jumpInstr = cmd->jumpInstr;
+    bool32 statusCheck = cmd-> isVolatile ?
+        CheckBattlerVolatileStatus(battler, cmd->status) :
+        gBattleMons[battler].status1 & cmd->status;
 
-    if (gBattleMons[battler].status1 & flags && gBattleMons[battler].hp != 0)
-        gBattlescriptCurrInstr = jumpInstr;
-    else
-        gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
-#define JUMP_IF_VOLATILE_STATUS(_condition)     \
-if (_condition)                                 \
-{                                               \
-    gBattlescriptCurrInstr = cmd->jumpInstr;    \
-    return;                                     \
-}
-
-static void Cmd_jumpifvolatilestatus(void)
-{
-    CMD_ARGS(u8 battler, u32 volatileStatus, const u8 *jumpInstr);
-    u8 battler = GetBattlerForBattleScript(cmd->battler);
-
-    // Check volatile status based on passed enum
-    if (gBattleMons[battler].hp == 0 // Always fail if battler's HP is 0
-      || !BattlerHasVolatileStatus(GetBattlerForBattleScript(cmd->battler), cmd->volatileStatus))
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    else
+    // Check status/volatile status based on passed arguments
+    // Always fail if the battler's HP is 0
+    if (statusCheck && gBattleMons[battler].hp != 0)
         gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static void Cmd_setvolatilestatusorfail(void)
+{
+    CMD_ARGS(u8 battler, u32 volatileStatus, const u8 *failInstr);
+
+    // Fails if the target already has the volatile status
+    if (SetBattlerVolatileStatus(GetBattlerForBattleScript(cmd->battler), cmd->volatileStatus))
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    else
+        gBattlescriptCurrInstr = cmd->failInstr;
 }
 
 static void Cmd_jumpifability(void)
@@ -4143,7 +4137,7 @@ static void Cmd_jumpifstat(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_jumpifstatus3condition(void)
+static void Cmd_unused_21(void)
 {
     CMD_ARGS(u8 battler, u32 flags, bool8 jumpIfTrue, const u8 *jumpInstr);
 
@@ -7652,7 +7646,7 @@ static void Cmd_statusanimation(void)
     {
         u32 battler = GetBattlerForBattleScript(cmd->battler);
         u32 status = cmd->isVolatile ?
-          cmd->volatileStatus * !!BattlerHasVolatileStatus(battler, cmd->volatileStatus) :
+          cmd->volatileStatus * !!CheckBattlerVolatileStatus(battler, cmd->volatileStatus) :
           gBattleMons[battler].status1;
 
         if (!(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
@@ -14297,25 +14291,10 @@ static void Cmd_setstealthrock(void)
     }
 }
 
-static void Cmd_setuserstatus3(void)
+static void Cmd_unused_dd(void)
 {
-    CMD_ARGS(u32 flags, const u8 *failInstr);
-
-    u32 flags = cmd->flags;
-
-    if (gStatuses3[gBattlerAttacker] & flags)
-    {
-        gBattlescriptCurrInstr = cmd->failInstr;
-    }
-    else
-    {
-        gStatuses3[gBattlerAttacker] |= flags;
-        if (flags & STATUS3_MAGNET_RISE)
-            gDisableStructs[gBattlerAttacker].magnetRiseTimer = 5;
-        if (flags & STATUS3_LASER_FOCUS)
-            gDisableStructs[gBattlerAttacker].laserFocusTimer = 2;
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+    CMD_ARGS();
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_assistattackselect(void)
