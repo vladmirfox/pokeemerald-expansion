@@ -33982,4 +33982,12 @@ General_DynamaxGrowth:: @ PORTED FROM CFRU
 	end
 
 General_TrickRoom::
-	goto Move_TRICK_ROOM
+	setalpha 8, 8
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
+	fadetobg BG_TRICK_ROOM
+	waitbgfadein
+	delay 0x40
+	restorebg
+	waitbgfadein
+	blendoff
+	end
