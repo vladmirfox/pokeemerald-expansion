@@ -4100,6 +4100,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     gBattlerAttacker = B_POSITION_PLAYER_LEFT;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TAILWIND_PLAYER;
                     gSideStatuses[B_SIDE_PLAYER] |= SIDE_STATUS_TAILWIND;
+                    gBattleScripting.animArg1 = B_ANIM_TAILWIND;
                     if (timerVal == 0)
                         gSideTimers[B_SIDE_PLAYER].tailwindTimer = 0; // infinite
                     else
@@ -4113,6 +4114,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_TAILWIND_OPPONENT;
                     gSideStatuses[B_SIDE_OPPONENT] |= SIDE_STATUS_TAILWIND;
+                    gBattleScripting.animArg1 = B_ANIM_TAILWIND;
                     if (timerVal == 0)
                         gSideTimers[B_SIDE_OPPONENT].tailwindTimer = 0; // infinite
                     else

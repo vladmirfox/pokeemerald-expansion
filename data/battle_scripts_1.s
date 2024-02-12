@@ -5990,7 +5990,7 @@ BattleScript_SunlightFaded::
 BattleScript_OverworldStatusStarts::
 	printfromtable gStartingStatusStringIds
 	waitmessage B_WAIT_TIME_LONG
-	playanimation_var BS_BATTLER_0, sB_ANIM_ARG1
+	playanimation_var BS_ATTACKER, sB_ANIM_ARG1
 	call BattleScript_OverworldStatusStarts_TryActivations
 	end3
 

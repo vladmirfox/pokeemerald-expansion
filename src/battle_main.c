@@ -3701,24 +3701,23 @@ static void DoBattleIntro(void)
             gBattleStruct->overworldWeatherDone = FALSE;
             SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
             Ai_InitPartyStruct(); // Save mons party counts, and first 2/4 mons on the battlefield.
+            
+            // Try to set a status to start the battle with
             gBattleStruct->startingStatus = 0;
-            if (B_VAR_STARTING_STATUS != 0)
+            if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && gTrainers[gTrainerBattleOpponent_B].startingStatus)
             {
-                if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && gTrainers[gTrainerBattleOpponent_B].startingStatus)
-                {
-                    gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_B].startingStatus;
-                    gBattleStruct->startingStatusTimer = 0; // infinite
-                }
-                else if (gTrainers[gTrainerBattleOpponent_A].startingStatus)
-                {
-                    gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_A].startingStatus;
-                    gBattleStruct->startingStatusTimer = 0; // infinite
-                }
-                else
-                {
-                    gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
-                    gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
-                }
+                gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_B].startingStatus;
+                gBattleStruct->startingStatusTimer = 0; // infinite
+            }
+            else if (gTrainers[gTrainerBattleOpponent_A].startingStatus)
+            {
+                gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_A].startingStatus;
+                gBattleStruct->startingStatusTimer = 0; // infinite
+            }
+            else if (B_VAR_STARTING_STATUS != 0)
+            {
+                gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
+                gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
             }
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
