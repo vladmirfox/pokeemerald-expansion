@@ -27,8 +27,8 @@
 #define OW_BERRY_PESTS                 FALSE      // If enabled, pests may approach Berry plants that the player needs to take care of. Without OW_BERRY_MOISTURE, pest bonuses are rounded down.
 #define OW_BERRY_SIX_STAGES            FALSE      // In XY, Berries go through six stages instead of four. This toggle does not affect the time it takes for a tree to be ready for harvest. Without OW_BERRY_MOISTURE, the two extra stages count as BERRY_STAGE_TALLER for watering purposes.
 
-#define OW_BERRY_GROWTH_RATE           GEN_3      // Presets for how long each Berry plant takes to grow.
-#define OW_BERRY_YIELD_RATE            GEN_3      // Presets for how many Berries each plant can yield.
+#define OW_BERRY_GROWTH_RATE           GEN_7      // Presets for how long each Berry plant takes to grow.
+#define OW_BERRY_YIELD_RATE            GEN_6      // Presets for how many Berries each plant can yield.
 #define OW_BERRY_DRAIN_RATE            GEN_6_ORAS // If OW_BERRY_MOISTURE is enabled, this setting changes how fast the soil dries out. GEN_4 uses a Berry-dependent drain rate, GEN_6_XY dries out in 24 hours (4 hours with the relevant Mulch) and GEN_6_ORAS dries out in 4 hours. Other values are illegal.
 
 // Out-of-battle Ability effects
@@ -44,6 +44,9 @@
 #define OW_FLASH_FIRE               GEN_LATEST // In Gen8, if a Pokémon with Flash Fire is leading the party, there is a 50% chance to encounter a Fire-type Pokémon.
 #define OW_MAGNET_PULL              GEN_LATEST // Prior to Gen9, if a Pokémon with Magnet Pull is leading the party, there is a 50% chance to encounter a Steel-type Pokémon.
 #define OW_STATIC                   GEN_LATEST // Prior to Gen9, if a Pokémon with Static is leading the party, there is a 50% chance to encounter an Electric-type Pokémon.
+
+// HMs
+#define OW_USE_HMS_WITHOUT_KNOWING  TRUE   // If EASY_HMS is enabled, player can use HMs if owned, has badge, and a party member can learn the move
 
 // Overworld flags
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
