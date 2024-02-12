@@ -3062,4 +3062,7 @@ extern const u8 gText_PlantBerry[];
 extern const u8 gText_AButtonDay[];
 extern const u8 gText_AButtonNight[];
 
+extern const u8 gText_AM[];
+extern const u8 gText_PM[];
+
 #endif // GUARD_STRINGS_H
