@@ -8518,7 +8518,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
             basePower *= 2;
         break;
     case EFFECT_WRING_OUT:
-        basePower = 120 * gBattleMons[battlerDef].hp / gBattleMons[battlerDef].maxHP;
+        basePower = gMovesInfo[move].argument * gBattleMons[battlerDef].hp / gBattleMons[battlerDef].maxHP;
         break;
     case EFFECT_ASSURANCE:
         if (gProtectStructs[battlerDef].physicalDmg != 0 || gProtectStructs[battlerDef].specialDmg != 0 || gProtectStructs[battlerDef].confusionSelfDmg)
