@@ -39,7 +39,8 @@ For a placeholder (only the placeholder will be fixed-case):
 ```
 See also the configuration in [text.h](gflib/text.h).
 
-There are also a number of bigram exceptions that will not be decapped: `TV, TM, HP, HM, PC, PP, PM`
+There's also special handling for "separated bigrams"; basically, two letter words.
+This includes: `"TM01", "PC", "EV"`, any two uppercase characters surrounded by digits, whitespace, or the start/end of a string. These will not be decapped.
 
 
 

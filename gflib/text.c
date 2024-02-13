@@ -323,6 +323,7 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
     else
     #endif
         sTempTextPrinter.lastChar = 0;
+    sTempTextPrinter.nextLastChar = 0;
     #endif
 
     for (i = 0; i < (int)ARRAY_COUNT(sTempTextPrinter.subStructFields); i++)
@@ -975,15 +976,21 @@ void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *c
 }
 
 #if DECAP_ENABLED
+// (Char)acter (Attr)ibute table
 // if table[char] & 0xFF == 0, character is not uppercase
-const u16 gLowercaseDiffTable[] = {
+// For uppercase characters, lower 8 bits are the diff
+// between a char and its lowercase equivalent
+const u16 gCharAttrTable[] = {
     // English
-    [CHAR_SPACE]                            = 0,
-    [CHAR_SPACER]                           = 0,
+    [CHAR_SPACE]                            = BIGRAM_SEP_FLAG,
+    [CHAR_SPACER]                           = BIGRAM_SEP_FLAG,
+    // Digits are considered bigram separators for "TM01", etc.
+    [CHAR_0 ... CHAR_9]                     = BIGRAM_SEP_FLAG,
     [CHAR_A ... CHAR_Z]                     = CHAR_a - CHAR_A,
-    // é treated as uppercase so POKéDEX, POKéMON, etc. decapped
-    [CHAR_e_ACUTE]                          = 0x100,
-    [CHAR_SGL_QUOTE_RIGHT]                  = 0x100,
+    // é and ’ treated as uppercase so POKéDEX, POKéMON, etc. decap
+    [CHAR_e_ACUTE]                          = UPPERCASE_FLAG,
+    [CHAR_SGL_QUOTE_RIGHT]                  = UPPERCASE_FLAG,
+    [CHAR_SLASH]                            = BIGRAM_SEP_FLAG,
     // International
     [CHAR_A_GRAVE ... CHAR_A_ACUTE]         = CHAR_a_GRAVE - CHAR_A_GRAVE,
     [CHAR_A_CIRCUMFLEX]                     = CHAR_a_CIRCUMFLEX,
@@ -991,7 +998,8 @@ const u16 gLowercaseDiffTable[] = {
     [CHAR_I_ACUTE]                          = CHAR_i_ACUTE,
     [CHAR_I_CIRCUMFLEX ... CHAR_N_TILDE]    = CHAR_i_CIRCUMFLEX - CHAR_I_CIRCUMFLEX,
     [CHAR_A_DIAERESIS ... CHAR_U_DIAERESIS] = CHAR_a_DIAERESIS - CHAR_A_DIAERESIS,
-    [EOS]                                   = 0,
+    // Ctrl chars
+    [CHAR_PROMPT_SCROLL ... EOS]            = BIGRAM_SEP_FLAG,
 };
 #endif
 
@@ -1001,6 +1009,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
     u32 currChar;
     #if DECAP_ENABLED
     u32 lastChar;
+    u32 nextLastChar;
     #endif
     s32 width;
     s32 widthHelper;
@@ -1031,8 +1040,11 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         textPrinter->printerTemplate.currentChar++;
         #if DECAP_ENABLED
         lastChar = textPrinter->lastChar;
-        if (lastChar != CHAR_FIXED_CASE)
+        nextLastChar = textPrinter->nextLastChar;
+        if (lastChar != CHAR_FIXED_CASE) {
+            textPrinter->nextLastChar = textPrinter->lastChar;
             textPrinter->lastChar = currChar;
+        }
         #endif
 
         switch (currChar)
@@ -1191,7 +1203,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case EOS:
         #if DECAP_ENABLED
             // Clear fixed case
-            textPrinter->lastChar = currChar;
+            textPrinter->nextLastChar = textPrinter->lastChar = currChar;
             return RENDER_FINISH;
         // Disable/enable decapitalization
         // In vanilla these are 1-2 pixel spaces
@@ -1201,32 +1213,20 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             if (!textPrinter->japanese)
                 return RENDER_REPEAT;
             break;
-        // common decap exceptions
-        case CHAR_V:
-            if (lastChar == CHAR_T) // TV
-                lastChar = 0;
-            break;
-        case CHAR_M:
-            if (lastChar == CHAR_T) { // TM
-                lastChar = 0;
-                break;
-            }
-        case CHAR_P:
-            if (lastChar == CHAR_H) { // HP, HM
-                lastChar = 0;
-                break;
-            }
-        case CHAR_C:
-            if (lastChar == CHAR_P) // PC, PP, PM
-                lastChar = 0;
-            break;
         }
 
         // If not Japanese or fixed case, try to decap
         if (!textPrinter->japanese && lastChar != CHAR_FIXED_CASE) {
-            // Two consecutive uppercase chars; lowercase this one
-            if (IS_UPPER(currChar) && IS_UPPER(lastChar))
+            // Two consecutive uppercase chars; lowercase this one,
+            // unless word is a separated bigram (like TM in " TM01")
+            if (IS_UPPER(currChar) &&
+                IS_UPPER(lastChar) &&
+                !(IS_BIGRAM_SEP(nextLastChar) &&
+                  IS_BIGRAM_SEP(*textPrinter->printerTemplate.currentChar))
+               )
+            {
                 currChar = TO_LOWER(currChar);
+            }
         }
         #else
             return RENDER_FINISH;

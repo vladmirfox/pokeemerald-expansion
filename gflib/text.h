@@ -10,12 +10,15 @@
 /*
 Enable automatic decapitalization of *all* text
 Exceptions:
-- Several bigrams: TV, TM, HP, HM, PC, PP, PM
+- Separated bigrams: "TM01", " PC ", " EV ", etc.
 - Player names, nicknames, box names
 - Strings beginning with {FIXED_CASE}:
   - C strings that use `_C` or `__C`
   - ASM strings that use `.fixstr`
 - If mirroring enabled, string addresses passed through MirrorPtr
+
+Note: If using poryscript, see the README for an argument
+      to pass for better compatibility with this + formatted strings
 */
 #define DECAP_ENABLED TRUE
 // Enables signaling that a string's case should be preserved
@@ -128,7 +131,9 @@ struct TextPrinter
     u8 minLetterSpacing;  // 0x20
     u8 japanese;
     #if DECAP_ENABLED
-    u8 lastChar; // used to determine whether to decap strings
+    // used to determine whether to decap strings
+    u8 lastChar;
+    u8 nextLastChar;
     #endif
 };
 
@@ -174,9 +179,21 @@ extern u8 gDisableTextPrinters;
 extern struct TextGlyph gCurGlyph;
 
 #if DECAP_ENABLED
-extern const u16 gLowercaseDiffTable[];
-#define IS_UPPER(x) (gLowercaseDiffTable[(x) & 0xFF])
-#define TO_LOWER(x) (((x) + gLowercaseDiffTable[(x)]) & 0xFF)
+extern const u16 gCharAttrTable[];
+#define CHAR_MASK 0xFF
+// in gCharAttrTable, 0x100 represents a character treated as uppercase,
+// but that maps to itself; only the lower 8 bits are used for mapping
+#define UPPERCASE_FLAG 0x100
+#define UPPERCASE_MASK (UPPERCASE_FLAG | CHAR_MASK)
+// Similarly, 0x200 represents a character treated as a bigram separator
+// i.e: whitespace, ctrl chars, /, digits
+#define BIGRAM_SEP_FLAG 0x200
+#define BIGRAM_SEP_MASK BIGRAM_SEP_FLAG
+#define IS_UPPER(x) (gCharAttrTable[(x) & CHAR_MASK] & UPPERCASE_MASK)
+// Includes whitespace, digits, /, and ctrl chars
+// Basically helps match the regex [/0-9\s]([A-Z]{2})[/0-9\s]
+#define IS_BIGRAM_SEP(x) (gCharAttrTable[(x) & CHAR_MASK] & BIGRAM_SEP_MASK)
+#define TO_LOWER(x) (((x) + gCharAttrTable[(x)]) & CHAR_MASK)
 
 #if DECAP_MIRRORING
 void * UnmirrorPtr(const void * ptr);
