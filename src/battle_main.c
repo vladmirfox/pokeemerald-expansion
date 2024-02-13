@@ -299,27 +299,84 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
-const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
+const struct Type gTypes[NUMBER_OF_MON_TYPES] =
 {
-    [TYPE_NORMAL] = _("Normal"),
-    [TYPE_FIGHTING] = _("Fight"),
-    [TYPE_FLYING] = _("Flying"),
-    [TYPE_POISON] = _("Poison"),
-    [TYPE_GROUND] = _("Ground"),
-    [TYPE_ROCK] = _("Rock"),
-    [TYPE_BUG] = _("Bug"),
-    [TYPE_GHOST] = _("Ghost"),
-    [TYPE_STEEL] = _("Steel"),
-    [TYPE_MYSTERY] = _("???"),
-    [TYPE_FIRE] = _("Fire"),
-    [TYPE_WATER] = _("Water"),
-    [TYPE_GRASS] = _("Grass"),
-    [TYPE_ELECTRIC] = _("Electr"),
-    [TYPE_PSYCHIC] = _("Psychc"),
-    [TYPE_ICE] = _("Ice"),
-    [TYPE_DRAGON] = _("Dragon"),
-    [TYPE_DARK] = _("Dark"),
-    [TYPE_FAIRY] = _("Fairy"),
+    [TYPE_NORMAL] =
+    {
+        .name = _("Normal")
+    },
+    [TYPE_FIGHTING] =
+    {
+        .name = _("Fight")
+    },
+    [TYPE_FLYING] =
+    {
+        .name = _("Flying")
+    },
+    [TYPE_POISON] =
+    {
+        .name = _("Poison")
+    },
+    [TYPE_GROUND] =
+    {
+        .name = _("Ground")
+    },
+    [TYPE_ROCK] =
+    {
+        .name = _("Rock")
+    },
+    [TYPE_BUG] =
+    {
+        .name = _("Bug")
+    },
+    [TYPE_GHOST] =
+    {
+        .name = _("Ghost")
+    },
+    [TYPE_STEEL] =
+    {
+        .name = _("Steel")
+    },
+    [TYPE_MYSTERY] =
+    {
+        .name = _("???")
+    },
+    [TYPE_FIRE] =
+    {
+        .name = _("Fire")
+    },
+    [TYPE_WATER] =
+    {
+        .name = _("Water")
+    },
+    [TYPE_GRASS] =
+    {
+        .name = _("Grass")
+    },
+    [TYPE_ELECTRIC] =
+    {
+        .name = _("Electr")
+    },
+    [TYPE_PSYCHIC] =
+    {
+        .name = _("Psychc")
+    },
+    [TYPE_ICE] =
+    {
+        .name = _("Ice")
+    },
+    [TYPE_DRAGON] =
+    {
+        .name = _("Dragon")
+    },
+    [TYPE_DARK] =
+    {
+        .name = _("Dark")
+    },
+    [TYPE_FAIRY] =
+    {
+        .name = _("Fairy")
+    },
 };
 
 // extra args are money and ball

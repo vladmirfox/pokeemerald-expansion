@@ -1955,24 +1955,24 @@ static const struct SearchOptionText sDexSearchColorOptions[] =
 static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES + 1] = // + 2 for "None" and terminator, - 1 for Mystery
 {
     {gText_DexEmptyString, gText_DexSearchTypeNone},
-    {gText_DexEmptyString, gTypeNames[TYPE_NORMAL]},
-    {gText_DexEmptyString, gTypeNames[TYPE_FIGHTING]},
-    {gText_DexEmptyString, gTypeNames[TYPE_FLYING]},
-    {gText_DexEmptyString, gTypeNames[TYPE_POISON]},
-    {gText_DexEmptyString, gTypeNames[TYPE_GROUND]},
-    {gText_DexEmptyString, gTypeNames[TYPE_ROCK]},
-    {gText_DexEmptyString, gTypeNames[TYPE_BUG]},
-    {gText_DexEmptyString, gTypeNames[TYPE_GHOST]},
-    {gText_DexEmptyString, gTypeNames[TYPE_STEEL]},
-    {gText_DexEmptyString, gTypeNames[TYPE_FIRE]},
-    {gText_DexEmptyString, gTypeNames[TYPE_WATER]},
-    {gText_DexEmptyString, gTypeNames[TYPE_GRASS]},
-    {gText_DexEmptyString, gTypeNames[TYPE_ELECTRIC]},
-    {gText_DexEmptyString, gTypeNames[TYPE_PSYCHIC]},
-    {gText_DexEmptyString, gTypeNames[TYPE_ICE]},
-    {gText_DexEmptyString, gTypeNames[TYPE_DRAGON]},
-    {gText_DexEmptyString, gTypeNames[TYPE_DARK]},
-    {gText_DexEmptyString, gTypeNames[TYPE_FAIRY]},
+    {gText_DexEmptyString, gTypes[TYPE_NORMAL].name},
+    {gText_DexEmptyString, gTypes[TYPE_FIGHTING].name},
+    {gText_DexEmptyString, gTypes[TYPE_FLYING].name},
+    {gText_DexEmptyString, gTypes[TYPE_POISON].name},
+    {gText_DexEmptyString, gTypes[TYPE_GROUND].name},
+    {gText_DexEmptyString, gTypes[TYPE_ROCK].name},
+    {gText_DexEmptyString, gTypes[TYPE_BUG].name},
+    {gText_DexEmptyString, gTypes[TYPE_GHOST].name},
+    {gText_DexEmptyString, gTypes[TYPE_STEEL].name},
+    {gText_DexEmptyString, gTypes[TYPE_FIRE].name},
+    {gText_DexEmptyString, gTypes[TYPE_WATER].name},
+    {gText_DexEmptyString, gTypes[TYPE_GRASS].name},
+    {gText_DexEmptyString, gTypes[TYPE_ELECTRIC].name},
+    {gText_DexEmptyString, gTypes[TYPE_PSYCHIC].name},
+    {gText_DexEmptyString, gTypes[TYPE_ICE].name},
+    {gText_DexEmptyString, gTypes[TYPE_DRAGON].name},
+    {gText_DexEmptyString, gTypes[TYPE_DARK].name},
+    {gText_DexEmptyString, gTypes[TYPE_FAIRY].name},
     {},
 };
 
@@ -6687,7 +6687,7 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringExpandPlaceholders(gStringVar4, sText_EVO_MOVE );
             break;
         case EVO_FRIENDSHIP_MOVE_TYPE:
-            StringCopy(gStringVar2, gTypeNames[evolutions[i].param]);
+            StringCopy(gStringVar2, gTypes[evolutions[i].param].name);
             StringExpandPlaceholders(gStringVar4, sText_EVO_FRIENDSHIP_MOVE_TYPE );
             break;
         case EVO_MAPSEC:
