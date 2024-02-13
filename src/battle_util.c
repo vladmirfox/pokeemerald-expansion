@@ -4132,8 +4132,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         break;
     case ABILITYEFFECT_SWITCH_IN_TERRAIN:   // terrain starting from overworld weather
         if (B_THUNDERSTORM_TERRAIN == TRUE
-            && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-            && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM)
+         && !(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+         && GetCurrentWeather() == WEATHER_RAIN_THUNDERSTORM)
         {
             // overworld weather started rain, so just do electric terrain anim
             gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
