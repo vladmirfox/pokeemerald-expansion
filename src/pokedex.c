@@ -274,7 +274,7 @@ static void Task_HandleCaughtMonPageInput(u8);
 static void Task_ExitCaughtMonPage(u8);
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite);
 static void PrintMonInfo(u32 num, u32, u32 owned, u32 newEntry);
-static void PrintMonMeasurements(u16 species, u32 owned);
+static u32 GetMeasurementTextPositions(u32 textElement);
 static void PrintUnknownMonMeasurements(void);
 static u8* GetUnknownMonHeightString(void);
 static u8* GetUnknownMonWeightString(void);
@@ -287,8 +287,6 @@ static u8* ConvertMonHeightToMetricString(u32 height);
 static u8* ConvertMonWeightToImperialString(u32 weight);
 static u8* ConvertMonWeightToMetricString(u32 weight);
 static u8* ConvertMeasurementToMetricString(u16 num, u32* index);
-static void PrintMonHeight(u16 height, u8 left, u8 top);
-static void PrintMonWeight(u16 weight, u8 left, u8 top);
 static void ResetOtherVideoRegisters(u16);
 static u8 PrintCryScreenSpeciesName(u8, u16, u8, u8);
 static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top);
@@ -4182,7 +4180,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         category = gText_5MarksPokemon;
     }
     PrintInfoScreenText(category, 0x64, 0x29);
-	PrintMonMeasurements(species,owned);
+    PrintMonMeasurements(species,owned);
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else
@@ -4190,10 +4188,14 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, DISPLAY_WIDTH), 95);
 }
 
-static void PrintMonMeasurements(u16 species, u32 owned)
+void PrintMonMeasurements(u16 species, u32 owned)
 {
-    PrintInfoScreenText(gText_HTHeight, 96, 57);
-    PrintInfoScreenText(gText_WTWeight, 96, 73);
+    u32 x = GetMeasurementTextPositions(DEX_HEADER_X);
+    u32 yTop = GetMeasurementTextPositions(DEX_Y_TOP);
+    u32 yBottom = GetMeasurementTextPositions(DEX_Y_BOTTOM);
+
+    PrintInfoScreenText(gText_HTHeight, x, yTop);
+    PrintInfoScreenText(gText_WTWeight, x, yBottom);
 
     if (owned)
         PrintOwnedMonMeasurements(species);
@@ -4201,54 +4203,76 @@ static void PrintMonMeasurements(u16 species, u32 owned)
         PrintUnknownMonMeasurements();
 }
 
+static u32 GetMeasurementTextPositions(u32 textElement)
+{
+    if (!POKEDEX_PLUS_HGSS)
+        return textElement;
+
+    switch(textElement)
+    {
+        case DEX_HEADER_X:
+            return (DEX_HEADER_X + DEX_HGSS_HEADER_X_PADDING);
+        case DEX_Y_TOP:
+            return (DEX_Y_TOP + DEX_HGSS_Y_TOP_PADDING);
+        case DEX_Y_BOTTOM:
+            return (DEX_Y_BOTTOM + DEX_HGSS_Y_BOTTOM_PADDING);
+        default:
+        case DEX_MEASUREMENT_X:
+            return (DEX_MEASUREMENT_X + DEX_HGSS_MEASUREMENT_X_PADDING);
+    }
+}
+
 static void PrintUnknownMonMeasurements(void)
 {
     u8* heightString = GetUnknownMonHeightString();
     u8* weightString = GetUnknownMonWeightString();
 
-    PrintInfoScreenText(heightString, 129, 57);
-    PrintInfoScreenText(weightString, 129, 73);
+    u32 x = GetMeasurementTextPositions(DEX_MEASUREMENT_X);
+    u32 yTop = GetMeasurementTextPositions(DEX_Y_TOP);
+    u32 yBottom = GetMeasurementTextPositions(DEX_Y_BOTTOM);
 
-	Free(heightString);
-	Free(weightString);
+    PrintInfoScreenText(heightString, x, yTop);
+    PrintInfoScreenText(weightString, x, yBottom);
+
+    Free(heightString);
+    Free(weightString);
 }
 
 static u8* GetUnknownMonHeightString(void)
 {
-	if (UNITS == UNITS_IMPERIAL)
-		return ReplaceDecimalSeparator(gText_UnkHeight);
-	else
-		return ReplaceDecimalSeparator(gText_UnkHeightMetric);
+    if (UNITS == UNITS_IMPERIAL)
+        return ReplaceDecimalSeparator(gText_UnkHeight);
+    else
+        return ReplaceDecimalSeparator(gText_UnkHeightMetric);
 }
 
 static u8* GetUnknownMonWeightString(void)
 {
-	if (UNITS == UNITS_IMPERIAL)
-		return ReplaceDecimalSeparator(gText_UnkWeight);
-	else
-		return ReplaceDecimalSeparator(gText_UnkWeightMetric);
+    if (UNITS == UNITS_IMPERIAL)
+        return ReplaceDecimalSeparator(gText_UnkWeight);
+    else
+        return ReplaceDecimalSeparator(gText_UnkWeightMetric);
 }
 
 static u8* ReplaceDecimalSeparator(const u8* originalString)
 {
-	bool32 replaced = FALSE;
-	u32 length = StringLength(originalString);
-	u8* modifiedString = Alloc(WEIGHT_HEIGHT_STR_MEM);
-	u32 i;
+    bool32 replaced = FALSE;
+    u32 length = StringLength(originalString), i;
+    u8* modifiedString = Alloc(WEIGHT_HEIGHT_STR_MEM);
 
-	for (i = 0; i < length; i++)
-	{
-		if ((originalString[i] != CHAR_PERIOD) || replaced)
-		{
-			modifiedString[i] = originalString[i];
-			continue;
-		}
+    for (i = 0; i < length; i++)
+    {
+        if ((originalString[i] != CHAR_PERIOD) || replaced)
+        {
+            modifiedString[i] = originalString[i];
+            continue;
+        }
 
-		modifiedString[i] = CHAR_DEC_SEPARATOR;
-		replaced = TRUE;
-	}
-	modifiedString[length] = EOS;
-	return modifiedString;
+        modifiedString[i] = CHAR_DEC_SEPARATOR;
+        replaced = TRUE;
+    }
+    modifiedString[length] = EOS;
+    return modifiedString;
 }
 
 static void PrintOwnedMonMeasurements(u16 species)
@@ -4260,29 +4284,34 @@ static void PrintOwnedMonMeasurements(u16 species)
 static void PrintOwnedMonHeight(u16 species)
 {
     u32 height = GetSpeciesHeight(species);
-	u8* heightString;
+    u8* heightString;
+
+    u32 x = GetMeasurementTextPositions(DEX_MEASUREMENT_X);
+    u32 yTop = GetMeasurementTextPositions(DEX_Y_TOP);
 
     if (UNITS == UNITS_IMPERIAL)
-		heightString = ConvertMonHeightToImperialString(height);
+        heightString = ConvertMonHeightToImperialString(height);
     else
-		heightString = ConvertMonHeightToMetricString(height);
+        heightString = ConvertMonHeightToMetricString(height);
 
-    PrintInfoScreenText(heightString, 129, 57);
-	Free(heightString);
+    PrintInfoScreenText(heightString, x, yTop);
+    Free(heightString);
 }
 
 static void PrintOwnedMonWeight(u16 species)
 {
     u32 weight = GetSpeciesWeight(species);
-	u8* weightString;
+    u8* weightString;
+    u32 x = GetMeasurementTextPositions(DEX_MEASUREMENT_X);
+    u32 yBottom = GetMeasurementTextPositions(DEX_Y_BOTTOM);
 
     if (UNITS == UNITS_IMPERIAL)
-		weightString = ConvertMonWeightToImperialString(weight);
+        weightString = ConvertMonWeightToImperialString(weight);
     else
-		weightString = ConvertMonWeightToMetricString(weight);
+        weightString = ConvertMonWeightToMetricString(weight);
 
-    PrintInfoScreenText(weightString, 129, 73);
-	Free(weightString);
+    PrintInfoScreenText(weightString, x, yBottom);
+    Free(weightString);
 }
 
 static u8* ConvertMonHeightToImperialString(u32 height)
@@ -4432,97 +4461,6 @@ static u8* ConvertMeasurementToMetricString(u16 num, u32* index)
     string[(*index)++] = CHAR_SPACE;
 
     return string;
-}
-
-static void UNUSED PrintMonHeight(u16 height, u8 left, u8 top)
-{
-    u8 buffer[16];
-    u32 inches, feet;
-    u8 i = 0;
-
-    inches = (height * 10000) / 254;
-    if (inches % 10 >= 5)
-        inches += 10;
-    feet = inches / 120;
-    inches = (inches - (feet * 120)) / 10;
-
-    buffer[i++] = EXT_CTRL_CODE_BEGIN;
-    buffer[i++] = EXT_CTRL_CODE_CLEAR_TO;
-    if (feet / 10 == 0)
-    {
-        buffer[i++] = 18;
-        buffer[i++] = feet + CHAR_0;
-    }
-    else
-    {
-        buffer[i++] = 12;
-        buffer[i++] = feet / 10 + CHAR_0;
-        buffer[i++] = (feet % 10) + CHAR_0;
-    }
-    buffer[i++] = CHAR_SGL_QUOTE_RIGHT;
-    buffer[i++] = (inches / 10) + CHAR_0;
-    buffer[i++] = (inches % 10) + CHAR_0;
-    buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
-    buffer[i++] = EOS;
-    PrintInfoScreenText(buffer, left, top);
-}
-
-static void UNUSED PrintMonWeight(u16 weight, u8 left, u8 top)
-{
-    u8 buffer[16];
-    bool8 output;
-    u8 i;
-    u32 lbs = (weight * 100000) / 4536;
-
-    if (lbs % 10u >= 5)
-        lbs += 10;
-    i = 0;
-    output = FALSE;
-
-    if ((buffer[i] = (lbs / 100000) + CHAR_0) == CHAR_0 && !output)
-    {
-        buffer[i++] = CHAR_SPACER;
-    }
-    else
-    {
-        output = TRUE;
-        i++;
-    }
-
-    lbs %= 100000;
-    if ((buffer[i] = (lbs / 10000) + CHAR_0) == CHAR_0 && !output)
-    {
-        buffer[i++] = CHAR_SPACER;
-    }
-    else
-    {
-        output = TRUE;
-        i++;
-    }
-
-    lbs %= 10000;
-    if ((buffer[i] = (lbs / 1000) + CHAR_0) == CHAR_0 && !output)
-    {
-        buffer[i++] = CHAR_SPACER;
-    }
-    else
-    {
-        output = TRUE;
-        i++;
-    }
-
-    lbs %= 1000;
-    buffer[i++] = (lbs / 100) + CHAR_0;
-    lbs %= 100;
-    buffer[i++] = CHAR_PERIOD;
-    buffer[i++] = (lbs / 10) + CHAR_0;
-    buffer[i++] = CHAR_SPACE;
-    buffer[i++] = CHAR_l;
-    buffer[i++] = CHAR_b;
-    buffer[i++] = CHAR_s;
-    buffer[i++] = CHAR_PERIOD;
-    buffer[i++] = EOS;
-    PrintInfoScreenText(buffer, left, top);
 }
 
 s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
