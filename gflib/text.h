@@ -100,7 +100,9 @@ struct TextPrinter
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
     u8 japanese;
-    u8 lastChar; // used to determine whether to decap strings
+    // used to determine whether to decap strings
+    u8 lastChar;
+    u8 nextLastChar;
 };
 
 struct FontInfo
@@ -144,13 +146,21 @@ extern TextFlags gTextFlags;
 extern u8 gDisableTextPrinters;
 extern struct TextGlyph gCurGlyph;
 
-extern const u16 gLowercaseDiffTable[];
-// in gLowercaseDiffTable, 0x100 represents a character treated as uppercase,
+extern const u16 gCharAttrTable[];
+#define CHAR_MASK 0xFF
+// in gCharAttrTable, 0x100 represents a character treated as uppercase,
 // but that maps to itself; only the lower 8 bits are used for mapping
-#define MARK_UPPER_FLAG 0x100
-#define LOWERCASE_DIFF_MASK 0xFF
-#define IS_UPPER(x) (gLowercaseDiffTable[(x) & LOWERCASE_DIFF_MASK])
-#define TO_LOWER(x) (((x) + gLowercaseDiffTable[(x)]) & LOWERCASE_DIFF_MASK)
+#define UPPERCASE_FLAG 0x100
+#define UPPERCASE_MASK (UPPERCASE_FLAG | CHAR_MASK)
+// Similarly, 0x200 represents a character treated as a bigram separator
+// i.e: whitespace, ctrl chars, /, digits
+#define BIGRAM_SEP_FLAG 0x200
+#define BIGRAM_SEP_MASK BIGRAM_SEP_FLAG
+#define IS_UPPER(x) (gCharAttrTable[(x) & CHAR_MASK] & UPPERCASE_MASK)
+// Includes whitespace, digits, /, and ctrl chars
+// Basically helps match the regex [/0-9\s]([A-Z]{2})[/0-9\s]
+#define IS_BIGRAM_SEP(x) (gCharAttrTable[(x) & CHAR_MASK] & BIGRAM_SEP_MASK)
+#define TO_LOWER(x) (((x) + gCharAttrTable[(x)]) & CHAR_MASK)
 
 void * UnmirrorPtr(const void * ptr);
 void * MirrorPtr(const void * ptr);

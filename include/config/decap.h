@@ -4,12 +4,15 @@
 /*
 Enable automatic decapitalization of *all* text
 Exceptions:
-- Several bigrams: TV, TM, HP, HM, PC, PP, PM
+- Separated bigrams: "TM01", " PC ", " EV ", etc.
 - Player names, nicknames, box names
-- Strings beginning with {FIXED_CASE}
-- C strings that use `_C` or `__C`
-- ASM strings that use `.fixstr`
+- Strings beginning with {FIXED_CASE}:
+  - C strings that use `_C` or `__C`
+  - ASM strings that use `.fixstr`
 - If mirroring enabled, string addresses passed through MirrorPtr
+
+Note: If using poryscript, see the README for an argument
+      to pass for better compatibility with this + formatted strings
 */
 #define DECAP_ENABLED TRUE
 // Enables signaling that a string's case should be preserved
