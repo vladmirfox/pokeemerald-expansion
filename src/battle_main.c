@@ -306,46 +306,55 @@ const struct Type gTypes[NUMBER_OF_MON_TYPES] =
     {
         .name = _("Normal"),
         .invalid = _("a NORMAL move"),
+        .maxMove = MOVE_MAX_STRIKE,
     },
     [TYPE_FIGHTING] =
     {
         .name = _("Fight"),
         .invalid = _("a FIGHTING move"),
+        .maxMove = MOVE_MAX_KNUCKLE,
     },
     [TYPE_FLYING] =
     {
         .name = _("Flying"),
         .invalid = _("a FLYING move"),
+        .maxMove = MOVE_MAX_AIRSTREAM,
     },
     [TYPE_POISON] =
     {
         .name = _("Poison"),
         .invalid = _("a POISON move"),
+        .maxMove = MOVE_MAX_OOZE,
     },
     [TYPE_GROUND] =
     {
         .name = _("Ground"),
         .invalid = _("a GROUND move"),
+        .maxMove = MOVE_MAX_QUAKE,
     },
     [TYPE_ROCK] =
     {
         .name = _("Rock"),
         .invalid = _("a ROCK move"),
+        .maxMove = MOVE_MAX_ROCKFALL,
     },
     [TYPE_BUG] =
     {
         .name = _("Bug"),
         .invalid = _("a BUG move"),
+        .maxMove = MOVE_MAX_FLUTTERBY,
     },
     [TYPE_GHOST] =
     {
         .name = _("Ghost"),
         .invalid = _("a GHOST move"),
+        .maxMove = MOVE_MAX_PHANTASM,
     },
     [TYPE_STEEL] =
     {
         .name = _("Steel"),
         .invalid = _("a STEEL move"),
+        .maxMove = MOVE_MAX_STEELSPIKE,
     },
     [TYPE_MYSTERY] =
     {
@@ -356,46 +365,55 @@ const struct Type gTypes[NUMBER_OF_MON_TYPES] =
     {
         .name = _("Fire"),
         .invalid = _("a FIRE move"),
+        .maxMove = MOVE_MAX_FLARE,
     },
     [TYPE_WATER] =
     {
         .name = _("Water"),
         .invalid = _("a WATER move"),
+        .maxMove = MOVE_MAX_GEYSER,
     },
     [TYPE_GRASS] =
     {
         .name = _("Grass"),
         .invalid = _("a GRASS move"),
+        .maxMove = MOVE_MAX_OVERGROWTH,
     },
     [TYPE_ELECTRIC] =
     {
         .name = _("Electr"),
         .invalid = _("an ELECTRIC move"),
+        .maxMove = MOVE_MAX_LIGHTNING,
     },
     [TYPE_PSYCHIC] =
     {
         .name = _("Psychc"),
         .invalid = _("a PSYCHIC move"),
+        .maxMove = MOVE_MAX_MINDSTORM,
     },
     [TYPE_ICE] =
     {
         .name = _("Ice"),
         .invalid = _("a ICE move"),
+        .maxMove = MOVE_MAX_HAILSTORM,
     },
     [TYPE_DRAGON] =
     {
         .name = _("Dragon"),
         .invalid = _("a DRAGON move"),
+        .maxMove = MOVE_MAX_WYRMWIND,
     },
     [TYPE_DARK] =
     {
         .name = _("Dark"),
         .invalid = _("a DARK move"),
+        .maxMove = MOVE_MAX_DARKNESS,
     },
     [TYPE_FAIRY] =
     {
         .name = _("Fairy"),
         .invalid = _("a FAIRY move"),
+        .maxMove = MOVE_MAX_STARFALL,
     },
 };
 

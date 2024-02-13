@@ -106,6 +106,7 @@ struct Type
 {
     u8 name[TYPE_NAME_LENGTH + 1];
     u8 invalid[17];
+    u16 maxMove;
 };
 
 extern const u16 gMinigameDigits_Pal[];
