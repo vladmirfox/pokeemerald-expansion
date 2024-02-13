@@ -1028,10 +1028,10 @@ gBattleAnims_General::
 	.4byte General_Rainbow                  @ B_ANIM_RAINBOW
 	.4byte General_SeaOfFire                @ B_ANIM_SEA_OF_FIRE
 	.4byte General_Swamp                    @ B_ANIM_SWAMP
-	.4byte General_TrickRoom				@ B_ANIM_TRICK_ROOM
-	.4byte General_WonderRoom				@ B_ANIM_WONDER_ROOM
-	.4byte General_MagicRoom				@ B_ANIM_MAGIC_ROOM
-	.4byte General_Tailwind					@ B_ANIM_TAILLWIND
+	.4byte General_TrickRoom                @ B_ANIM_TRICK_ROOM
+	.4byte General_WonderRoom               @ B_ANIM_WONDER_ROOM
+	.4byte General_MagicRoom                @ B_ANIM_MAGIC_ROOM
+	.4byte General_Tailwind                 @ B_ANIM_TAILLWIND
 
 	.align 2
 gBattleAnims_Special::

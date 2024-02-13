@@ -686,7 +686,6 @@ struct BattleStruct
     u8 startingStatusDone:1;
     u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
     u8 terrainDone:1;
-    u8 free:4;
     u8 startingStatus; // status to apply at battle start. defined in constants/battle.h
     u8 startingStatusTimer;
     u8 atkCancellerTracker;
