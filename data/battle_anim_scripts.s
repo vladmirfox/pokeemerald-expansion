@@ -3337,6 +3337,7 @@ Move_DEFOG:
 Move_TRICK_ROOM::
 	call InitRoomAnimation
 General_TrickRoom:
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
 	fadetobg BG_TRICK_ROOM
 	waitbgfadein
 	delay 0x40
@@ -3346,7 +3347,6 @@ General_TrickRoom:
 	end
 InitRoomAnimation:
 	setalpha 8, 8
-	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
 	createvisualtask AnimTask_ScaleMonAndRestore, 5, -6, -6, 15, ANIM_TARGET, 1
 	return
 
@@ -4967,6 +4967,7 @@ PowerSplitLaunch:
 Move_WONDER_ROOM::
 	call InitRoomAnimation
 General_WonderRoom:
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
 	fadetobg BG_WONDER_ROOM
 	waitbgfadein
 	delay 0x40
@@ -5148,6 +5149,7 @@ Move_TELEKINESIS::
 Move_MAGIC_ROOM::
 	call InitRoomAnimation
 General_MagicRoom:
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
 	fadetobg BG_MAGIC_ROOM
 	waitbgfadein
 	delay 0x40
