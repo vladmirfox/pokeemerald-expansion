@@ -299,139 +299,142 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
-// invalid is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
+#define INVALID(type) .invalid = _(#type" move")
+#define MAX_MOVE(move) .maxMove = MOVE_MAX_##move
+
+// .invalid is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct Type gTypes[NUMBER_OF_MON_TYPES] =
 {
     [TYPE_NORMAL] =
     {
         .name = _("Normal"),
-        .invalid = _("a NORMAL move"),
-        .maxMove = MOVE_MAX_STRIKE,
+        INVALID(a NORMAL),
+        MAX_MOVE(STRIKE),
         .palette = 13,
     },
     [TYPE_FIGHTING] =
     {
         .name = _("Fight"),
-        .invalid = _("a FIGHTING move"),
-        .maxMove = MOVE_MAX_KNUCKLE,
+        INVALID(a FIGHTING),
+        MAX_MOVE(KNUCKLE),
         .palette = 13,
     },
     [TYPE_FLYING] =
     {
         .name = _("Flying"),
-        .invalid = _("a FLYING move"),
-        .maxMove = MOVE_MAX_AIRSTREAM,
+        INVALID(a FLYING),
+        MAX_MOVE(AIRSTREAM),
         .palette = 14,
     },
     [TYPE_POISON] =
     {
         .name = _("Poison"),
-        .invalid = _("a POISON move"),
-        .maxMove = MOVE_MAX_OOZE,
+        INVALID(a POISON),
+        MAX_MOVE(OOZE),
         .palette = 14,
     },
     [TYPE_GROUND] =
     {
         .name = _("Ground"),
-        .invalid = _("a GROUND move"),
-        .maxMove = MOVE_MAX_QUAKE,
+        INVALID(a GROUND),
+        MAX_MOVE(QUAKE),
         .palette = 13,
     },
     [TYPE_ROCK] =
     {
         .name = _("Rock"),
-        .invalid = _("a ROCK move"),
-        .maxMove = MOVE_MAX_ROCKFALL,
+        INVALID(a ROCK),
+        MAX_MOVE(ROCKFALL),
         .palette = 13,
     },
     [TYPE_BUG] =
     {
         .name = _("Bug"),
-        .invalid = _("a BUG move"),
-        .maxMove = MOVE_MAX_FLUTTERBY,
+        INVALID(a BUG),
+        MAX_MOVE(FLUTTERBY),
         .palette = 15,
     },
     [TYPE_GHOST] =
     {
         .name = _("Ghost"),
-        .invalid = _("a GHOST move"),
-        .maxMove = MOVE_MAX_PHANTASM,
+        INVALID(a GHOST),
+        MAX_MOVE(PHANTASM),
         .palette = 14,
     },
     [TYPE_STEEL] =
     {
         .name = _("Steel"),
-        .invalid = _("a STEEL move"),
-        .maxMove = MOVE_MAX_STEELSPIKE,
+        INVALID(a STEEL),
+        MAX_MOVE(STEELSPIKE),
         .palette = 13,
     },
     [TYPE_MYSTERY] =
     {
         .name = _("???"),
-        .invalid = _("a ??? move"),
+        INVALID(a ???),
         .palette = 15,
     },
     [TYPE_FIRE] =
     {
         .name = _("Fire"),
-        .invalid = _("a FIRE move"),
-        .maxMove = MOVE_MAX_FLARE,
+        INVALID(a FIRE),
+        MAX_MOVE(FLARE),
         .palette = 13,
     },
     [TYPE_WATER] =
     {
         .name = _("Water"),
-        .invalid = _("a WATER move"),
-        .maxMove = MOVE_MAX_GEYSER,
+        INVALID(a WATER),
+        MAX_MOVE(GEYSER),
         .palette = 14,
     },
     [TYPE_GRASS] =
     {
         .name = _("Grass"),
-        .invalid = _("a GRASS move"),
-        .maxMove = MOVE_MAX_OVERGROWTH,
+        INVALID(a GRASS),
+        MAX_MOVE(OVERGROWTH),
         .palette = 15,
     },
     [TYPE_ELECTRIC] =
     {
         .name = _("Electr"),
-        .invalid = _("an ELECTRIC move"),
-        .maxMove = MOVE_MAX_LIGHTNING,
+        INVALID(an ELECTRIC),
+        MAX_MOVE(LIGHTNING),
         .palette = 13,
     },
     [TYPE_PSYCHIC] =
     {
         .name = _("Psychc"),
-        .invalid = _("a PSYCHIC move"),
-        .maxMove = MOVE_MAX_MINDSTORM,
+        INVALID(a PSYCHIC),
+        MAX_MOVE(MINDSTORM),
         .palette = 14,
     },
     [TYPE_ICE] =
     {
         .name = _("Ice"),
-        .invalid = _("a ICE move"),
-        .maxMove = MOVE_MAX_HAILSTORM,
+        INVALID(a ICE),
+        MAX_MOVE(HAILSTORM),
         .palette = 14,
     },
     [TYPE_DRAGON] =
     {
         .name = _("Dragon"),
-        .invalid = _("a DRAGON move"),
-        .maxMove = MOVE_MAX_WYRMWIND,
+        INVALID(a DRAGON),
+        MAX_MOVE(WYRMWIND),
         .palette = 15,
     },
     [TYPE_DARK] =
     {
         .name = _("Dark"),
-        .invalid = _("a DARK move"),
-        .maxMove = MOVE_MAX_DARKNESS,
+        INVALID(a DARK),
+        MAX_MOVE(DARKNESS),
         .palette = 13,
     },
     [TYPE_FAIRY] =
     {
         .name = _("Fairy"),
-        .invalid = _("a FAIRY move"),
-        .maxMove = MOVE_MAX_STARFALL,
+        INVALID(a FAIRY),
+        MAX_MOVE(STARFALL),
         .palette = 14,
     },
 };
