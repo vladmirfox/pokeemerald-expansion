@@ -299,83 +299,103 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
+// invalid is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct Type gTypes[NUMBER_OF_MON_TYPES] =
 {
     [TYPE_NORMAL] =
     {
-        .name = _("Normal")
+        .name = _("Normal"),
+        .invalid = _("a NORMAL move"),
     },
     [TYPE_FIGHTING] =
     {
-        .name = _("Fight")
+        .name = _("Fight"),
+        .invalid = _("a FIGHTING move"),
     },
     [TYPE_FLYING] =
     {
-        .name = _("Flying")
+        .name = _("Flying"),
+        .invalid = _("a FLYING move"),
     },
     [TYPE_POISON] =
     {
-        .name = _("Poison")
+        .name = _("Poison"),
+        .invalid = _("a POISON move"),
     },
     [TYPE_GROUND] =
     {
-        .name = _("Ground")
+        .name = _("Ground"),
+        .invalid = _("a GROUND move"),
     },
     [TYPE_ROCK] =
     {
-        .name = _("Rock")
+        .name = _("Rock"),
+        .invalid = _("a ROCK move"),
     },
     [TYPE_BUG] =
     {
-        .name = _("Bug")
+        .name = _("Bug"),
+        .invalid = _("a BUG move"),
     },
     [TYPE_GHOST] =
     {
-        .name = _("Ghost")
+        .name = _("Ghost"),
+        .invalid = _("a GHOST move"),
     },
     [TYPE_STEEL] =
     {
-        .name = _("Steel")
+        .name = _("Steel"),
+        .invalid = _("a STEEL move"),
     },
     [TYPE_MYSTERY] =
     {
-        .name = _("???")
+        .name = _("???"),
+        .invalid = _("a ??? move"),
     },
     [TYPE_FIRE] =
     {
-        .name = _("Fire")
+        .name = _("Fire"),
+        .invalid = _("a FIRE move"),
     },
     [TYPE_WATER] =
     {
-        .name = _("Water")
+        .name = _("Water"),
+        .invalid = _("a WATER move"),
     },
     [TYPE_GRASS] =
     {
-        .name = _("Grass")
+        .name = _("Grass"),
+        .invalid = _("a GRASS move"),
     },
     [TYPE_ELECTRIC] =
     {
-        .name = _("Electr")
+        .name = _("Electr"),
+        .invalid = _("an ELECTRIC move"),
     },
     [TYPE_PSYCHIC] =
     {
-        .name = _("Psychc")
+        .name = _("Psychc"),
+        .invalid = _("a PSYCHIC move"),
     },
     [TYPE_ICE] =
     {
-        .name = _("Ice")
+        .name = _("Ice"),
+        .invalid = _("a ICE move"),
     },
     [TYPE_DRAGON] =
     {
-        .name = _("Dragon")
+        .name = _("Dragon"),
+        .invalid = _("a DRAGON move"),
     },
     [TYPE_DARK] =
     {
-        .name = _("Dark")
+        .name = _("Dark"),
+        .invalid = _("a DARK move"),
     },
     [TYPE_FAIRY] =
     {
-        .name = _("Fairy")
+        .name = _("Fairy"),
+        .invalid = _("a FAIRY move"),
     },
 };
 
