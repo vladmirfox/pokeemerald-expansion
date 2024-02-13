@@ -2894,7 +2894,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
         if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
          && !IsZMove(gBattleMsgDataPtr->currentMove)
          && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-            StringCopy(gBattleTextBuff3, gTypes[*(&gBattleStruct->stringMoveType)].invalid);
+            StringCopy(gBattleTextBuff3, gTypes[*(&gBattleStruct->stringMoveType)].generic);
         else
             StringCopy(gBattleTextBuff3, GetMoveName(gBattleMsgDataPtr->currentMove));
         stringPtr = sText_AttackerUsedX;
@@ -3324,7 +3324,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 if (gBattleMsgDataPtr->currentMove >= MOVES_COUNT
                  && !IsZMove(gBattleMsgDataPtr->currentMove)
                  && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-                    toCpy = gTypes[gBattleStruct->stringMoveType].invalid;
+                    toCpy = gTypes[gBattleStruct->stringMoveType].generic;
                 else
                     toCpy = GetMoveName(gBattleMsgDataPtr->currentMove);
                 break;
@@ -3332,7 +3332,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 if (gBattleMsgDataPtr->originallyUsedMove >= MOVES_COUNT
                  && !IsZMove(gBattleMsgDataPtr->currentMove)
                  && !IsMaxMove(gBattleMsgDataPtr->currentMove))
-                    toCpy = gTypes[gBattleStruct->stringMoveType].invalid;
+                    toCpy = gTypes[gBattleStruct->stringMoveType].generic;
                 else
                     toCpy = GetMoveName(gBattleMsgDataPtr->originallyUsedMove);
                 break;

@@ -299,141 +299,141 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
-#define INVALID(type) .invalid = _(#type" move")
+#define GENERIC(type) .generic = _(#type" move")
 #define MAX_MOVE(move) .maxMove = MOVE_MAX_##move
 
-// .invalid is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
+// .generic is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct Type gTypes[NUMBER_OF_MON_TYPES] =
 {
     [TYPE_NORMAL] =
     {
         .name = _("Normal"),
-        INVALID(a NORMAL),
+        GENERIC(a NORMAL),
         .palette = 13,
         MAX_MOVE(STRIKE),
     },
     [TYPE_FIGHTING] =
     {
         .name = _("Fight"),
-        INVALID(a FIGHTING),
+        GENERIC(a FIGHTING),
         .palette = 13,
         MAX_MOVE(KNUCKLE),
     },
     [TYPE_FLYING] =
     {
         .name = _("Flying"),
-        INVALID(a FLYING),
+        GENERIC(a FLYING),
         .palette = 14,
         MAX_MOVE(AIRSTREAM),
     },
     [TYPE_POISON] =
     {
         .name = _("Poison"),
-        INVALID(a POISON),
+        GENERIC(a POISON),
         .palette = 14,
         MAX_MOVE(OOZE),
     },
     [TYPE_GROUND] =
     {
         .name = _("Ground"),
-        INVALID(a GROUND),
+        GENERIC(a GROUND),
         .palette = 13,
         MAX_MOVE(QUAKE),
     },
     [TYPE_ROCK] =
     {
         .name = _("Rock"),
-        INVALID(a ROCK),
+        GENERIC(a ROCK),
         .palette = 13,
         MAX_MOVE(ROCKFALL),
     },
     [TYPE_BUG] =
     {
         .name = _("Bug"),
-        INVALID(a BUG),
+        GENERIC(a BUG),
         .palette = 15,
         MAX_MOVE(FLUTTERBY),
     },
     [TYPE_GHOST] =
     {
         .name = _("Ghost"),
-        INVALID(a GHOST),
+        GENERIC(a GHOST),
         .palette = 14,
         MAX_MOVE(PHANTASM),
     },
     [TYPE_STEEL] =
     {
         .name = _("Steel"),
-        INVALID(a STEEL),
+        GENERIC(a STEEL),
         .palette = 13,
         MAX_MOVE(STEELSPIKE),
     },
     [TYPE_MYSTERY] =
     {
         .name = _("???"),
-        INVALID(a ???),
+        GENERIC(a ???),
         .palette = 15,
     },
     [TYPE_FIRE] =
     {
         .name = _("Fire"),
-        INVALID(a FIRE),
+        GENERIC(a FIRE),
         .palette = 13,
         MAX_MOVE(FLARE),
     },
     [TYPE_WATER] =
     {
         .name = _("Water"),
-        INVALID(a WATER),
+        GENERIC(a WATER),
         .palette = 14,
         MAX_MOVE(GEYSER),
     },
     [TYPE_GRASS] =
     {
         .name = _("Grass"),
-        INVALID(a GRASS),
+        GENERIC(a GRASS),
         .palette = 15,
         MAX_MOVE(OVERGROWTH),
     },
     [TYPE_ELECTRIC] =
     {
         .name = _("Electr"),
-        INVALID(an ELECTRIC),
+        GENERIC(an ELECTRIC),
         .palette = 13,
         MAX_MOVE(LIGHTNING),
     },
     [TYPE_PSYCHIC] =
     {
         .name = _("Psychc"),
-        INVALID(a PSYCHIC),
+        GENERIC(a PSYCHIC),
         .palette = 14,
         MAX_MOVE(MINDSTORM),
     },
     [TYPE_ICE] =
     {
         .name = _("Ice"),
-        INVALID(a ICE),
+        GENERIC(a ICE),
         .palette = 14,
         MAX_MOVE(HAILSTORM),
     },
     [TYPE_DRAGON] =
     {
         .name = _("Dragon"),
-        INVALID(a DRAGON),
+        GENERIC(a DRAGON),
         .palette = 15,
         MAX_MOVE(WYRMWIND),
     },
     [TYPE_DARK] =
     {
         .name = _("Dark"),
-        INVALID(a DARK),
+        GENERIC(a DARK),
         .palette = 13,
         MAX_MOVE(DARKNESS),
     },
     [TYPE_FAIRY] =
     {
         .name = _("Fairy"),
-        INVALID(a FAIRY),
+        GENERIC(a FAIRY),
         .palette = 14,
         MAX_MOVE(STARFALL),
     },
