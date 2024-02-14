@@ -300,7 +300,23 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
 #define GENERIC(type) .generic = _(#type" move")
-#define MAX_MOVE(move) .maxMove = MOVE_MAX_##move
+#define MOVES(z, max)               \
+        .zMove = MOVE_##z,          \
+        .maxMove = MOVE_MAX_##max,
+
+#define ITEMS(type, item, berryName, crystal) \
+        .enhanceItem = ITEM_##item,           \
+        .berry = ITEM_##berryName##_BERRY,    \
+        .gem = ITEM_##type##_GEM,             \
+        .zCrystal = ITEM_##crystal##IUM_Z,
+
+//Not in ITEMS since Normal doesn't have these two items (Blank Plate is not yet implemented)
+#define LEGENDARY_ITEMS(plateName, type)   \
+        .plate = ITEM_##plateName##_PLATE, \
+        .memory = ITEM_##type##_MEMORY,    \
+
+//Not in ITEMS since Stellar has Tera Shards but no other item
+#define TERA_SHARD(type) .teraShard = ITEM_##type##_TERA_SHARD,
 
 // .generic is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct Type gTypes[NUMBER_OF_MON_TYPES] =
@@ -310,63 +326,89 @@ const struct Type gTypes[NUMBER_OF_MON_TYPES] =
         .name = _("Normal"),
         GENERIC(a NORMAL),
         .palette = 13,
-        MAX_MOVE(STRIKE),
+        MOVES(BREAKNECK_BLITZ, STRIKE)
+        ITEMS(NORMAL, SILK_SCARF, CHILAN, NORMAL)
+        TERA_SHARD(NORMAL)
     },
     [TYPE_FIGHTING] =
     {
         .name = _("Fight"),
         GENERIC(a FIGHTING),
         .palette = 13,
-        MAX_MOVE(KNUCKLE),
+        MOVES(ALL_OUT_PUMMELING, KNUCKLE)
+        ITEMS(FIGHTING, BLACK_BELT, CHOPLE, FIGHTIN)
+        LEGENDARY_ITEMS(FIST, FIGHTING)
+        TERA_SHARD(FIGHTING)
     },
     [TYPE_FLYING] =
     {
         .name = _("Flying"),
         GENERIC(a FLYING),
         .palette = 14,
-        MAX_MOVE(AIRSTREAM),
+        MOVES(SUPERSONIC_SKYSTRIKE, AIRSTREAM)
+        ITEMS(FLYING, SHARP_BEAK, COBA, FLYIN)
+        LEGENDARY_ITEMS(SKY, FLYING)
+        TERA_SHARD(FLYING)
     },
     [TYPE_POISON] =
     {
         .name = _("Poison"),
         GENERIC(a POISON),
         .palette = 14,
-        MAX_MOVE(OOZE),
+        MOVES(ACID_DOWNPOUR, OOZE)
+        ITEMS(POISON, POISON_BARB, KEBIA, POISON)
+        LEGENDARY_ITEMS(TOXIC, POISON)
+        TERA_SHARD(POISON)
     },
     [TYPE_GROUND] =
     {
         .name = _("Ground"),
         GENERIC(a GROUND),
         .palette = 13,
-        MAX_MOVE(QUAKE),
+        MOVES(TECTONIC_RAGE, QUAKE)
+        ITEMS(GROUND, SOFT_SAND, SHUCA, GROUND)
+        LEGENDARY_ITEMS(EARTH, GROUND)
+        TERA_SHARD(GROUND)
     },
     [TYPE_ROCK] =
     {
         .name = _("Rock"),
         GENERIC(a ROCK),
         .palette = 13,
-        MAX_MOVE(ROCKFALL),
+        MOVES(CONTINENTAL_CRUSH, ROCKFALL)
+        ITEMS(ROCK, HARD_STONE, CHARTI, ROCK)
+        LEGENDARY_ITEMS(STONE, ROCK)
+        TERA_SHARD(ROCK)
     },
     [TYPE_BUG] =
     {
         .name = _("Bug"),
         GENERIC(a BUG),
         .palette = 15,
-        MAX_MOVE(FLUTTERBY),
+        MOVES(SAVAGE_SPIN_OUT, FLUTTERBY)
+        ITEMS(BUG, SILVER_POWDER, TANGA, BUGIN)
+        LEGENDARY_ITEMS(INSECT, BUG)
+        TERA_SHARD(BUG)
     },
     [TYPE_GHOST] =
     {
         .name = _("Ghost"),
         GENERIC(a GHOST),
         .palette = 14,
-        MAX_MOVE(PHANTASM),
+        MOVES(NEVER_ENDING_NIGHTMARE, PHANTASM)
+        ITEMS(GHOST, SPELL_TAG, KASIB, GHOST)
+        LEGENDARY_ITEMS(SPOOKY, GHOST)
+        TERA_SHARD(GHOST)
     },
     [TYPE_STEEL] =
     {
         .name = _("Steel"),
         GENERIC(a STEEL),
         .palette = 13,
-        MAX_MOVE(STEELSPIKE),
+        MOVES(CORKSCREW_CRASH, STEELSPIKE)
+        ITEMS(STEEL, METAL_COAT, BABIRI, STEEL)
+        LEGENDARY_ITEMS(IRON, STEEL)
+        TERA_SHARD(STEEL)
     },
     [TYPE_MYSTERY] =
     {
@@ -379,64 +421,98 @@ const struct Type gTypes[NUMBER_OF_MON_TYPES] =
         .name = _("Fire"),
         GENERIC(a FIRE),
         .palette = 13,
-        MAX_MOVE(FLARE),
+        MOVES(INFERNO_OVERDRIVE, FLARE)
+        ITEMS(FIRE, CHARCOAL, OCCA, FIR)
+        LEGENDARY_ITEMS(FLAME, FIRE)
+        TERA_SHARD(FIRE)
     },
     [TYPE_WATER] =
     {
         .name = _("Water"),
         GENERIC(a WATER),
         .palette = 14,
-        MAX_MOVE(GEYSER),
+        MOVES(HYDRO_VORTEX, GEYSER)
+        ITEMS(WATER, MYSTIC_WATER, PASSHO, WATER)
+        LEGENDARY_ITEMS(SPLASH, WATER)
+        TERA_SHARD(WATER)
     },
     [TYPE_GRASS] =
     {
         .name = _("Grass"),
         GENERIC(a GRASS),
         .palette = 15,
-        MAX_MOVE(OVERGROWTH),
+        MOVES(BLOOM_DOOM, OVERGROWTH)
+        ITEMS(GRASS, MIRACLE_SEED, RINDO, GRASS)
+        LEGENDARY_ITEMS(MEADOW, GRASS)
+        TERA_SHARD(GRASS)
     },
     [TYPE_ELECTRIC] =
     {
         .name = _("Electr"),
         GENERIC(an ELECTRIC),
         .palette = 13,
-        MAX_MOVE(LIGHTNING),
+        MOVES(GIGAVOLT_HAVOC, LIGHTNING)
+        ITEMS(ELECTRIC, MAGNET, WACAN, ELECTR)
+        LEGENDARY_ITEMS(ZAP, ELECTRIC)
+        TERA_SHARD(ELECTRIC)
     },
     [TYPE_PSYCHIC] =
     {
         .name = _("Psychc"),
         GENERIC(a PSYCHIC),
         .palette = 14,
-        MAX_MOVE(MINDSTORM),
+        MOVES(SHATTERED_PSYCHE, MINDSTORM)
+        ITEMS(PSYCHIC, TWISTED_SPOON, PAYAPA, PSYCH)
+        LEGENDARY_ITEMS(MIND, PSYCHIC)
+        TERA_SHARD(PSYCHIC)
     },
     [TYPE_ICE] =
     {
         .name = _("Ice"),
         GENERIC(a ICE),
         .palette = 14,
-        MAX_MOVE(HAILSTORM),
+        MOVES(SUBZERO_SLAMMER, HAILSTORM)
+        ITEMS(ICE, NEVER_MELT_ICE, YACHE, IC)
+        LEGENDARY_ITEMS(ICICLE, ICE)
+        TERA_SHARD(ICE)
     },
     [TYPE_DRAGON] =
     {
         .name = _("Dragon"),
         GENERIC(a DRAGON),
         .palette = 15,
-        MAX_MOVE(WYRMWIND),
+        MOVES(DEVASTATING_DRAKE, WYRMWIND)
+        ITEMS(DRAGON, DRAGON_FANG, HABAN, DRAGON)
+        LEGENDARY_ITEMS(DRACO, DRAGON)
+        TERA_SHARD(DRAGON)
     },
     [TYPE_DARK] =
     {
         .name = _("Dark"),
         GENERIC(a DARK),
         .palette = 13,
-        MAX_MOVE(DARKNESS),
+        MOVES(BLACK_HOLE_ECLIPSE, DARKNESS)
+        ITEMS(DARK, BLACK_GLASSES, COLBUR, DARKIN)
+        LEGENDARY_ITEMS(DREAD, DARK)
+        TERA_SHARD(DARK)
     },
     [TYPE_FAIRY] =
     {
         .name = _("Fairy"),
         GENERIC(a FAIRY),
         .palette = 14,
-        MAX_MOVE(STARFALL),
+        MOVES(TWINKLE_TACKLE, STARFALL)
+        ITEMS(FAIRY, FAIRY_FEATHER, ROSELI, FAIR)
+        LEGENDARY_ITEMS(PIXIE, FAIRY)
+        TERA_SHARD(FAIRY)
     },
+    /*
+    [TYPE_STELLAR] =
+    {
+        .name = _("Stellar"),
+        TERA_SHARD(STELLAR),
+    },
+    */
 };
 
 // extra args are money and ball
