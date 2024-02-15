@@ -4174,10 +4174,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK, &score);
         break;
     case EFFECT_TIDY_UP:
-        if ((gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
-         || (gStatuses3[battlerAtk] & STATUS3_LEECHSEED || gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED)
-         || (gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)))
-            ADJUST_SCORE(GOOD_EFFECT);
+        IncreaseTipyUpScore(battlerAtk, battlerDef, move, &score);
     case EFFECT_DRAGON_DANCE:
     case EFFECT_SHIFT_GEAR:
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED, &score);
