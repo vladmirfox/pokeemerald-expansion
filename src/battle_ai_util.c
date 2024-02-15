@@ -3592,9 +3592,6 @@ s32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *ai
 
 void IncreaseTipyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
-    u32 battlerAtkSide = GetBattlerSide(battlerAtk);
-    u32 battlerDefSide = GetBattlerSide(battlerDef);
-
     if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
         ADJUST_SCORE(GOOD_EFFECT);
     if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerDef) != 0)
