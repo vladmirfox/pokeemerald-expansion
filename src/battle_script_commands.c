@@ -3457,7 +3457,6 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                 if (!(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR))
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                    gLockedMoves[gEffectBattler] = gCurrentMove;
                     gBattleMons[gEffectBattler].status2 |= STATUS2_UPROAR_TURN(B_UPROAR_TURNS >= GEN_5 ? 3 : (Random() & 3) + 2);
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -3520,7 +3519,6 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_CHARGING:
                 gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
                 gProtectStructs[gEffectBattler].chargingTurn = TRUE;
                 gBattlescriptCurrInstr++;
                 break;
@@ -3648,7 +3646,6 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
             case MOVE_EFFECT_RECHARGE:
                 gBattleMons[gEffectBattler].status2 |= STATUS2_RECHARGE;
                 gDisableStructs[gEffectBattler].rechargeTimer = 2;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_RAGE:
@@ -3762,7 +3759,6 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                 else
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                    gLockedMoves[gEffectBattler] = gCurrentMove;
                     gBattleMons[gEffectBattler].status2 |= STATUS2_LOCK_CONFUSE_TURN(RandomUniform(RNG_RAMPAGE_TURNS, 2, 3));
                 }
                 break;
@@ -11964,7 +11960,6 @@ static void Cmd_setbide(void)
     CMD_ARGS();
 
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
-    gLockedMoves[gBattlerAttacker] = gCurrentMove;
     gBideDmg[gBattlerAttacker] = 0;
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_BIDE_TURN(2);
 
@@ -11975,6 +11970,7 @@ static void Cmd_twoturnmoveschargestringandanimation(void)
 {
     CMD_ARGS(const u8 *animationThenStringPtr);
 
+    gLastPrintedMoves[gBattlerAttacker] = gCurrentMove;
     gBattleScripting.savedStringId = LOHALF(gMovesInfo[gCurrentMove].argument);
     if (B_UPDATED_MOVE_DATA < GEN_5 || MoveHasChargeTurnMoveEffect(gCurrentMove))
         gBattlescriptCurrInstr = cmd->animationThenStringPtr;
@@ -13432,7 +13428,6 @@ static void Cmd_handlerollout(void)
             gDisableStructs[gBattlerAttacker].rolloutTimer = 5;
             gDisableStructs[gBattlerAttacker].rolloutTimerStartValue = 5;
             gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
-            gLockedMoves[gBattlerAttacker] = gCurrentMove;
         }
         if (--gDisableStructs[gBattlerAttacker].rolloutTimer == 0) // Last hit.
         {
