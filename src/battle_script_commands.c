@@ -3052,7 +3052,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     return;                     \
 }
 
-void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
+void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, u32 argument, u32 move)
 {
     s32 i, affectsUser = (moveEffect & MOVE_EFFECT_AFFECTS_USER);
     bool32 statusChanged = FALSE;
@@ -3104,13 +3104,16 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
         && !primary && moveEffect <= MOVE_EFFECT_CONFUSION)
         RESET_RETURN
 
-    if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove) && !primary && moveEffect != MOVE_EFFECT_CHARGING)
-        RESET_RETURN
+    if (move != MOVE_NONE)
+    {
+        if (TestSheerForceFlag(gBattlerAttacker, move) && !primary)
+            RESET_RETURN
+
+        if (DoesSubstituteBlockMove(gBattlerAttacker, gEffectBattler, move) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
+            RESET_RETURN
+    }
 
     if (gBattleMons[gEffectBattler].hp == 0 && !gMoveEffectsInfo[moveEffect].activateAfterFaint)
-        RESET_RETURN
-
-    if (DoesSubstituteBlockMove(gBattlerAttacker, gEffectBattler, gCurrentMove) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
         RESET_RETURN
 
     if (moveEffect <= PRIMARY_STATUS_MOVE_EFFECT) // status change
@@ -3514,7 +3517,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                         MOVE_EFFECT_FREEZE_OR_FROSTBITE,
                         MOVE_EFFECT_PARALYSIS
                     };
-                    SetMoveEffect(RandomElement(RNG_TRI_ATTACK, sTriAttackEffects), primary, certain);
+                    SetMoveEffect(RandomElement(RNG_TRI_ATTACK, sTriAttackEffects), primary, certain, argument, move);
                 }
                 break;
             case MOVE_EFFECT_CHARGING:
@@ -3949,7 +3952,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                 if (!gBattleMons[gEffectBattler].status1)
                 {
                     static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_PARALYSIS, MOVE_EFFECT_SLEEP };
-                    SetMoveEffect(RandomElement(RNG_DIRE_CLAW, sDireClawEffects), primary, certain);
+                    SetMoveEffect(RandomElement(RNG_DIRE_CLAW, sDireClawEffects), primary, certain, argument, move);
                 }
                 break;
             case MOVE_EFFECT_STEALTH_ROCK:
@@ -4066,7 +4069,7 @@ void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain)
                         break;
                     }
                 }
-                SetMoveEffect(moveEffect, primary, certain);
+                SetMoveEffect(moveEffect, primary, certain, argument, move);
                 break;
             case MOVE_EFFECT_PSYCHIC_NOISE:
                 battlerAbility = IsAbilityOnSide(gEffectBattler, ABILITY_AROMA_VEIL);
@@ -4134,7 +4137,9 @@ static void Cmd_setadditionaleffects(void)
                     SetMoveEffect(
                         additionalEffect->moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffect->self)),
                         percentChance == 0, // a primary effect
-                        percentChance >= 100 // certain to happen
+                        percentChance >= 100, // certain to happen,
+                        additionalEffect->argument,
+                        gCurrentMove
                     );
                 }
             }
@@ -4169,7 +4174,7 @@ static void Cmd_seteffectprimary(void)
 {
     CMD_ARGS();
 
-    SetMoveEffect(gBattleScripting.moveEffect, TRUE, FALSE);
+    SetMoveEffect(gBattleScripting.moveEffect, TRUE, FALSE, 0, gCurrentMove);
     gBattleScripting.moveEffect = 0;
 }
 
@@ -4177,7 +4182,7 @@ static void Cmd_seteffectsecondary(void)
 {
     CMD_ARGS();
 
-    SetMoveEffect(gBattleScripting.moveEffect, FALSE, FALSE);
+    SetMoveEffect(gBattleScripting.moveEffect, FALSE, FALSE, 0, gCurrentMove);
     gBattleScripting.moveEffect = 0;
 }
 

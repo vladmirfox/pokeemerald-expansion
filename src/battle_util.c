@@ -2674,7 +2674,13 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[battler].status2 &= ~STATUS2_MULTIPLETURNS;
                     if (!(gBattleMons[battler].status2 & STATUS2_CONFUSION))
                     {
-                        SetMoveEffect(MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER, TRUE, FALSE);
+                        SetMoveEffect(
+                            MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER,
+                            TRUE,
+                            FALSE,
+                            0,
+                            gLastPrintedMoves[battler]
+                        );
                         if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                             BattleScriptExecute(BattleScript_ThrashConfuses);
                         effect++;
@@ -5688,7 +5694,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !MoveHasMoveEffect(gCurrentMove, MOVE_EFFECT_FLINCH))
             {
                 BattleScriptPushCursor();
-                SetMoveEffect(MOVE_EFFECT_FLINCH, FALSE, FALSE);
+                SET_MOVE_EFFECT(MOVE_EFFECT_FLINCH);
                 BattleScriptPop();
                 effect++;
             }
@@ -7601,7 +7607,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     && ability != ABILITY_STENCH)
                 {
                     BattleScriptPushCursor();
-                    SetMoveEffect(MOVE_EFFECT_FLINCH, FALSE, FALSE);
+                    SET_MOVE_EFFECT(MOVE_EFFECT_FLINCH);
                     BattleScriptPop();
                 }
             }

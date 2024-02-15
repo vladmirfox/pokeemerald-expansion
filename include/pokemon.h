@@ -533,11 +533,12 @@ struct MoveInfo
 
 struct AdditionalEffect
 {
-    u8 self:1;
-    u8 onlyIfTargetRaisedStats:1;
-    u8 onChargeTurnOnly:1;
-    u8 chance; // 0% = effect certain, primary effect
     u16 moveEffect;
+    u16 chance:7; // 0% = effect certain, primary effect
+    u16 self:1;
+    u16 onlyIfTargetRaisedStats:1;
+    u16 onChargeTurnOnly:1;
+    u16 argument:1;
 };
 
 struct Ability
