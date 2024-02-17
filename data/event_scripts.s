@@ -1082,3 +1082,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/RouteTranquil/scripts.inc"
 
 	.include "data/maps/Sunrise_Village_PlayersHouse_LR/scripts.inc"
+
+	.include "data/maps/SakuTown/scripts.inc"
+
+	.include "data/maps/KuraTown/scripts.inc"
+
+	.include "data/maps/BeachboundRoute/scripts.inc"
+
+	.include "data/maps/MaguroHarbor/scripts.inc"

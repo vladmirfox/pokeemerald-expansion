@@ -96,7 +96,11 @@
     "Sunrise_Village",
     "Sunrise_Village_Beach",
     "ChiiTown",
-    "RouteTranquil"
+    "RouteTranquil",
+    "SakuTown",
+    "KuraTown",
+    "BeachboundRoute",
+    "MaguroHarbor"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

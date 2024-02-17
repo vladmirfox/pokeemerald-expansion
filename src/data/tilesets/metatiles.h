@@ -220,3 +220,6 @@ const u16 gMetatileAttributes_GinkoWoods[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_InteriorGeneric[] = INCBIN_U16("data/tilesets/primary/interior_generic/metatiles.bin");
 const u16 gMetatileAttributes_InteriorGeneric[] = INCBIN_U16("data/tilesets/primary/interior_generic/metatile_attributes.bin");
+
+const u16 gMetatiles_SakuKura[] = INCBIN_U16("data/tilesets/secondary/saku_kura/metatiles.bin");
+const u16 gMetatileAttributes_SakuKura[] = INCBIN_U16("data/tilesets/secondary/saku_kura/metatile_attributes.bin");

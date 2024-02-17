@@ -1710,3 +1710,22 @@ const u16 gTilesetPalettes_InteriorGeneric[][16] =
 };
 
 const u32 gTilesetTiles_InteriorGeneric[] = INCBIN_U32("data/tilesets/primary/interior_generic/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_SakuKura[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saku_kura/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_SakuKura[] = INCBIN_U32("data/tilesets/secondary/saku_kura/tiles.4bpp.lz");

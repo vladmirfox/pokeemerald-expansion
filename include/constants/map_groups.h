@@ -67,6 +67,10 @@
 #define MAP_SUNRISE_VILLAGE_BEACH (58 | (0 << 8))
 #define MAP_CHII_TOWN             (59 | (0 << 8))
 #define MAP_ROUTE_TRANQUIL        (60 | (0 << 8))
+#define MAP_SAKU_TOWN             (61 | (0 << 8))
+#define MAP_KURA_TOWN             (62 | (0 << 8))
+#define MAP_BEACHBOUND_ROUTE      (63 | (0 << 8))
+#define MAP_MAGURO_HARBOR         (64 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

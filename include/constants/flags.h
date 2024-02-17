@@ -656,7 +656,8 @@
 #define FLAG_HIDE_SUNRISE_BEACH_RIVAL 0x265 // True if talked to rival on the beach in intro sequence
 #define FLAG_RECEIVED_STARTER  0x266 // True if player has received their starter
 #define FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS  0x267 // True if all the Sunrise Village NPC's should be removed from their usual spot
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
+// True if the mysterious samurai on Tranquil Route has been talked to
+#define FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE  0x268
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag
 #define FLAG_UNUSED_0x26A  0x26A // Unused Flag
 #define FLAG_UNUSED_0x26B  0x26B // Unused Flag

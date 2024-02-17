@@ -4424,7 +4424,7 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE_BEACH",
       "name": "Sunrise_Village_Beach_Layout",
-      "width": 20,
+      "width": 26,
       "height": 35,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Sunrise_Village",
@@ -4454,7 +4454,7 @@
     {
       "id": "LAYOUT_ROUTE_TRANQUIL",
       "name": "RouteTranquil_Layout",
-      "width": 44,
+      "width": 70,
       "height": 80,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Sunrise_Village",
@@ -4470,6 +4470,46 @@
       "secondary_tileset": "gTileset_Sunrise_Village",
       "border_filepath": "data/layouts/Sunrise_Village_PlayersHouse_LR/border.bin",
       "blockdata_filepath": "data/layouts/Sunrise_Village_PlayersHouse_LR/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAKU_TOWN",
+      "name": "SakuTown_Layout",
+      "width": 56,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SakuKura",
+      "border_filepath": "data/layouts/SakuTown/border.bin",
+      "blockdata_filepath": "data/layouts/SakuTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_KURA_TOWN",
+      "name": "KuraTown_Layout",
+      "width": 56,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SakuKura",
+      "border_filepath": "data/layouts/KuraTown/border.bin",
+      "blockdata_filepath": "data/layouts/KuraTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_BEACHBOUND_ROUTE",
+      "name": "BeachboundRoute_Layout",
+      "width": 80,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SakuKura",
+      "border_filepath": "data/layouts/BeachboundRoute/border.bin",
+      "blockdata_filepath": "data/layouts/BeachboundRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAGURO_HARBOR",
+      "name": "MaguroHarbor_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SakuKura",
+      "border_filepath": "data/layouts/MaguroHarbor/border.bin",
+      "blockdata_filepath": "data/layouts/MaguroHarbor/map.bin"
     }
   ]
 }

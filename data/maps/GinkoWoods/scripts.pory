@@ -33,13 +33,13 @@ script GinkoWoods_EventScript_Eiji {
 script GinkoWoods_EventScript_OldMan {
 	lock
 	faceplayer
-	msgbox(format("Something something old man something something"))
+	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps they can hide from predators thanks to the color of these trees."))
 	release
 	end
 }
 
 script GinkoWoods_EventScript_TrainerTips1 {
-    msgbox(format("{PLAYER}'s HOUSE"), MSGBOX_SIGN)
+    msgbox(format("Some items can be hidden under the forest's thick canopy. Look around!"), MSGBOX_SIGN)
 }
 
 script GinkoWoods_EventScript_TrainerTips2 {

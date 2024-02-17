@@ -852,8 +852,8 @@ Route104_EventScript_Ivan::
 	end
 
 Route104_EventScript_Billy::
-	trainerbattle_single TRAINER_BILLY, Route104_Text_BillyIntro, Route104_Text_BillyDefeat
-	msgbox Route104_Text_BillyPostBattle, MSGBOX_AUTOCLOSE
+	// trainerbattle_single TRAINER_TAKESHI, Route104_Text_BillyIntro, Route104_Text_BillyDefeat
+	// msgbox Route104_Text_BillyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route104_EventScript_Haley::
@@ -939,14 +939,14 @@ Route104_EventScript_RematchWinston::
 	end
 
 Route104_EventScript_Cindy::
-	trainerbattle_single TRAINER_CINDY_1, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_TryRegisterCindyAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route104_EventScript_RematchCindy
-	setvar VAR_0x8004, TRAINER_CINDY_1
-	specialvar VAR_RESULT, IsTrainerRegistered
-	goto_if_eq VAR_RESULT, FALSE, Route104_EventScript_TryRegisterCindy
-	msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
-	release
+	// trainerbattle_single TRAINER_HANA, Route104_Text_CindyIntro, Route104_Text_CindyDefeat, Route104_EventScript_TryRegisterCindyAfterBattle
+	// specialvar VAR_RESULT, ShouldTryRematchBattle
+	// goto_if_eq VAR_RESULT, TRUE, Route104_EventScript_RematchCindy
+	// setvar VAR_0x8004, TRAINER_HANA
+	// specialvar VAR_RESULT, IsTrainerRegistered
+	// goto_if_eq VAR_RESULT, FALSE, Route104_EventScript_TryRegisterCindy
+	// msgbox Route104_Text_CindyPostBattle, MSGBOX_DEFAULT
+	// release
 	end
 
 Route104_EventScript_TryRegisterCindyAfterBattle::
@@ -958,7 +958,7 @@ Route104_EventScript_TryRegisterCindyAfterBattle::
 
 Route104_EventScript_RegisterCindyAfterBattle::
 	msgbox Route104_Text_CindyRegister2, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CINDY_1
+	register_matchcall TRAINER_HANA
 	release
 	end
 
@@ -970,32 +970,32 @@ Route104_EventScript_TryRegisterCindy::
 
 Route104_EventScript_RegisterCindy::
 	msgbox Route104_Text_CindyRegister1, MSGBOX_DEFAULT
-	register_matchcall TRAINER_CINDY_1
+	register_matchcall TRAINER_HANA
 	release
 	end
 
 Route104_EventScript_RematchCindy::
-	trainerbattle_rematch TRAINER_CINDY_1, Route104_Text_CindyRematchIntro, Route104_Text_CindyRematchDefeat
+	trainerbattle_rematch TRAINER_HANA, Route104_Text_CindyRematchIntro, Route104_Text_CindyRematchDefeat
 	msgbox Route104_Text_CindyPostRematch, MSGBOX_AUTOCLOSE
 	end
 
 Route104_EventScript_Gina::
-	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_GinaIntro, Route104_Text_GinaDefeat, Route104_Text_GinaNotEnoughMons
+	trainerbattle_double TRAINER_GINA_AND_MIA, Route104_Text_GinaIntro, Route104_Text_GinaDefeat, Route104_Text_GinaNotEnoughMons
 	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_GinaPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 Route104_EventScript_Mia::
-	trainerbattle_double TRAINER_GINA_AND_MIA_1, Route104_Text_MiaIntro, Route104_Text_MiaDefeat, Route104_Text_MiaNotEnoughMons
+	trainerbattle_double TRAINER_GINA_AND_MIA, Route104_Text_MiaIntro, Route104_Text_MiaDefeat, Route104_Text_MiaNotEnoughMons
 	special GetPlayerBigGuyGirlString
 	msgbox Route104_Text_MiaPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
 Route104_EventScript_Darian::
-	trainerbattle_single TRAINER_DARIAN, Route104_Text_DarianIntro, Route104_Text_DarianDefeat
-	msgbox Route104_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
+	// trainerbattle_single TRAINER_KENJI, Route104_Text_DarianIntro, Route104_Text_DarianDefeat
+	// msgbox Route104_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route104_Text_BrineyLivesInSeasideCottage:

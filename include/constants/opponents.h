@@ -115,7 +115,7 @@
 #define TRAINER_VALERIE_3                   111
 #define TRAINER_VALERIE_4                   112
 #define TRAINER_VALERIE_5                   113
-#define TRAINER_CINDY_1                     114
+#define TRAINER_HANA                     114
 #define TRAINER_DAPHNE                      115
 #define TRAINER_GRUNT_SPACE_CENTER_2        116
 #define TRAINER_CINDY_2                     117
@@ -320,7 +320,7 @@
 #define TRAINER_SHELBY_4                    316
 #define TRAINER_SHELBY_5                    317
 #define TRAINER_TOSHIO_1                    318
-#define TRAINER_BILLY                       319
+#define TRAINER_TAKESHI                       319
 #define TRAINER_JOSH                        320
 #define TRAINER_TOMMY                       321
 #define TRAINER_JOEY                        322
@@ -484,7 +484,7 @@
 #define TRAINER_DIANA_5                     480
 #define TRAINER_AMY_AND_LIV_1               481
 #define TRAINER_AMY_AND_LIV_2               482
-#define TRAINER_GINA_AND_MIA_1              483
+#define TRAINER_GINA_AND_MIA              483
 #define TRAINER_MIU_AND_YUKI                484
 #define TRAINER_AMY_AND_LIV_3               485
 #define TRAINER_GINA_AND_MIA_2              486
@@ -604,7 +604,7 @@
 #define TRAINER_MAY_RUSTBORO_MUDKIP         600
 #define TRAINER_MAXIE_MAGMA_HIDEOUT         601
 #define TRAINER_MAXIE_MT_CHIMNEY            602
-#define TRAINER_TIANA                       603
+#define TRAINER_CHIKAO                       603
 #define TRAINER_HALEY_1                     604
 #define TRAINER_JANICE                      605
 #define TRAINER_VIVI                        606
@@ -697,7 +697,7 @@
 #define TRAINER_CHRIS                       693
 #define TRAINER_DAWSON                      694
 #define TRAINER_SARAH                       695
-#define TRAINER_DARIAN                      696
+#define TRAINER_KENJI                      696
 #define TRAINER_HAILEY                      697
 #define TRAINER_CHANDLER                    698
 #define TRAINER_KALEB                       699

@@ -76,12 +76,16 @@ GinkoWoods_EventScript_Eiji_Text_2:
 
 GinkoWoods_EventScript_OldMan_Text_0:
 # 36 "data/maps/GinkoWoods/scripts.pory"
-	.string "Something something old man something\n"
-	.string "something$"
+	.string "These woods are fascinating.\p"
+	.string "There seem to be a lot of yellow\n"
+	.string "Pokémon here.\p"
+	.string "Perhaps they can hide from predators\n"
+	.string "thanks to the color of these trees.$"
 
 GinkoWoods_EventScript_TrainerTips1_Text_0:
 # 42 "data/maps/GinkoWoods/scripts.pory"
-	.string "{PLAYER}'s HOUSE$"
+	.string "Some items can be hidden under the\n"
+	.string "forest's thick canopy. Look around!$"
 
 GinkoWoods_EventScript_TrainerTips2_Text_0:
 # 46 "data/maps/GinkoWoods/scripts.pory"
