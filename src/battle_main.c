@@ -2002,7 +2002,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 if (ability >= maxAbilities)
                     ability = 0;
             }
-            else if (RANDOM_MON_ABILITY)
+            else if (B_TRAINER_MON_RANDOM_ABILITY)
             {
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
                 ability = personalityHash % 3;
