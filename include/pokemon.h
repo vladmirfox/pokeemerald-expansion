@@ -531,6 +531,12 @@ struct MoveInfo
 #define EFFECTS_ARR(...) (const struct AdditionalEffect[]) {__VA_ARGS__}
 #define ADDITIONAL_EFFECTS(...) EFFECTS_ARR( __VA_ARGS__ ), .numAdditionalEffects = ARRAY_COUNT(EFFECTS_ARR( __VA_ARGS__ ))
 
+typedef union {
+    u32 type;
+    u32 status;
+    u8 threeMoveEffects[3];
+} MoveEffectArgument;
+
 struct AdditionalEffect
 {
     u16 moveEffect;
@@ -538,7 +544,7 @@ struct AdditionalEffect
     u16 self:1;
     u16 onlyIfTargetRaisedStats:1;
     u16 onChargeTurnOnly:1;
-    u16 argument:1;
+    MoveEffectArgument argument;
 };
 
 struct Ability

@@ -702,20 +702,21 @@ struct BattleStruct
     u8 magnitudeBasePower;
     u8 presentBasePower;
     u8 roostTypes[MAX_BATTLERS_COUNT][2];
-    u8 savedBattlerTarget;
     bool8 ateBoost[MAX_BATTLERS_COUNT];
+    bool8 throwingPokeBall;
+    bool8 trainerSlideLowHpMsgDone;
+    u8 savedBattlerTarget;
     u8 activeAbilityPopUps; // as bits for each battler
     u8 abilityPopUpSpriteIds[MAX_BATTLERS_COUNT][2];    // two per battler
-    bool8 throwingPokeBall;
     struct MegaEvolutionData mega;
     struct UltraBurstData burst;
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
     const u8 *trainerSlideMsg;
-    bool8 trainerSlideLowHpMsgDone;
     u8 introState;
     u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
+    u8 quickClawBattlerId;
     u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
     u16 tracedAbility[MAX_BATTLERS_COUNT];
@@ -728,10 +729,10 @@ struct BattleStruct
     u8 soulheartBattlerId;
     u8 friskedBattler; // Frisk needs to identify 2 battlers in double battles.
     bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
+    u8 turnEndMoveEffect; // For Knock Off
+    MoveEffectArgument turnEndMoveEffectArgument;
     u8 sameMoveTurns[MAX_BATTLERS_COUNT]; // For Metronome, number of times the same moves has been SUCCESFULLY used.
-    u16 moveEffect2; // For Knock Off
     u16 changedSpecies[NUM_BATTLE_SIDES][PARTY_SIZE]; // For forms when multiple mons can change into the same pokemon.
-    u8 quickClawBattlerId;
     struct LostItem itemLost[PARTY_SIZE];  // Player's team that had items consumed or stolen (two bytes per party member)
     u8 forcedSwitch:4; // For each battler
     u8 blunderPolicy:1; // should blunder policy activate

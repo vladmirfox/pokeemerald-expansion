@@ -340,13 +340,13 @@
 #define MOVE_EFFECT_SP_DEF_PLUS_1       19
 #define MOVE_EFFECT_ACC_PLUS_1          20
 #define MOVE_EFFECT_EVS_PLUS_1          21
-#define MOVE_EFFECT_ATK_MINUS_1         22
-#define MOVE_EFFECT_DEF_MINUS_1         23
-#define MOVE_EFFECT_SPD_MINUS_1         24
-#define MOVE_EFFECT_SP_ATK_MINUS_1      25
-#define MOVE_EFFECT_SP_DEF_MINUS_1      26
-#define MOVE_EFFECT_ACC_MINUS_1         27
-#define MOVE_EFFECT_EVS_MINUS_1         28
+#define MOVE_EFFECT_ATK_PLUS_2          22
+#define MOVE_EFFECT_DEF_PLUS_2          23
+#define MOVE_EFFECT_SPD_PLUS_2          24
+#define MOVE_EFFECT_SP_ATK_PLUS_2       25
+#define MOVE_EFFECT_SP_DEF_PLUS_2       26
+#define MOVE_EFFECT_ACC_PLUS_2          27
+#define MOVE_EFFECT_EVS_PLUS_2          28
 #define MOVE_EFFECT_REMOVE_ARG_TYPE     29
 #define MOVE_EFFECT_RECHARGE            30
 #define MOVE_EFFECT_RAGE                31
@@ -357,13 +357,13 @@
 #define MOVE_EFFECT_RAPIDSPIN           36
 #define MOVE_EFFECT_REMOVE_STATUS       37
 #define MOVE_EFFECT_ATK_DEF_DOWN        38
-#define MOVE_EFFECT_ATK_PLUS_2          39
-#define MOVE_EFFECT_DEF_PLUS_2          40
-#define MOVE_EFFECT_SPD_PLUS_2          41
-#define MOVE_EFFECT_SP_ATK_PLUS_2       42
-#define MOVE_EFFECT_SP_DEF_PLUS_2       43
-#define MOVE_EFFECT_ACC_PLUS_2          44
-#define MOVE_EFFECT_EVS_PLUS_2          45
+#define MOVE_EFFECT_ATK_MINUS_1         39
+#define MOVE_EFFECT_DEF_MINUS_1         40
+#define MOVE_EFFECT_SPD_MINUS_1         41
+#define MOVE_EFFECT_SP_ATK_MINUS_1      42
+#define MOVE_EFFECT_SP_DEF_MINUS_1      43
+#define MOVE_EFFECT_ACC_MINUS_1         44
+#define MOVE_EFFECT_EVS_MINUS_1         45
 #define MOVE_EFFECT_ATK_MINUS_2         46
 #define MOVE_EFFECT_DEF_MINUS_2         47
 #define MOVE_EFFECT_SPD_MINUS_2         48
@@ -402,8 +402,8 @@
 #define NUM_MOVE_EFFECTS                80
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
-#define MOVE_EFFECT_CERTAIN             0x4000
-#define MOVE_EFFECT_CONTINUE            0x8000
+#define MOVE_EFFECT_CHECK               0x4000
+#define MOVE_EFFECT_DELAY_OR_CONTINUE   0x8000
 
 // Battle terrain defines for gBattleTerrain.
 #define BATTLE_TERRAIN_GRASS            0

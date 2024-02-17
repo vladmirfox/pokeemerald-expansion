@@ -25,12 +25,14 @@
 #define SECOND(a, ...) __VA_OPT__(FIRST(__VA_ARGS__))
 #define THIRD(a, ...) __VA_OPT__(SECOND(__VA_ARGS__))
 #define FOURTH(a, ...) __VA_OPT__(THIRD(__VA_ARGS__))
+#define FIFTH(a, ...) __VA_OPT__(FOURTH(__VA_ARGS__))
 
 /* Expands to everything but the first x arguments */
 #define EXCEPT_1(a, ...) __VA_OPT__(__VA_ARGS__)
 #define EXCEPT_2(a, ...) __VA_OPT__(EXCEPT_1(__VA_ARGS__))
 #define EXCEPT_3(a, ...) __VA_OPT__(EXCEPT_2(__VA_ARGS__))
 #define EXCEPT_4(a, ...) __VA_OPT__(EXCEPT_3(__VA_ARGS__))
+#define EXCEPT_5(a, ...) __VA_OPT__(EXCEPT_4(__VA_ARGS__))
 
 /* 'UNPACK (x, y, z)' expands to 'x, y, z'.
  * Useful for passing arguments which may contain commas into a macro. */
@@ -74,6 +76,7 @@
 #define DEFAULT_2(_default, ...) DEFAULT(_default __VA_OPT__(, SECOND(__VA_ARGS__)))
 #define DEFAULT_3(_default, ...) DEFAULT(_default __VA_OPT__(, THIRD(__VA_ARGS__)))
 #define DEFAULT_4(_default, ...) DEFAULT(_default __VA_OPT__(, FOURTH(__VA_ARGS__)))
+#define DEFAULT_5(_default, ...) DEFAULT(_default __VA_OPT__(, FIFTH(__VA_ARGS__)))
 
 /* (Credit to MGriffin) A rather monstrous way of finding the set bit in a word.
 Invalid input causes a compiler error. Sample: https://cexplore.karathan.at/z/x1hm7B */

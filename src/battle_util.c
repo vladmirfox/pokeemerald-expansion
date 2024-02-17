@@ -2674,11 +2674,11 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[battler].status2 &= ~STATUS2_MULTIPLETURNS;
                     if (!(gBattleMons[battler].status2 & STATUS2_CONFUSION))
                     {
-                        SetMoveEffect(
+                        SET_MOVE_EFFECT(
                             MOVE_EFFECT_CONFUSION | MOVE_EFFECT_AFFECTS_USER,
                             TRUE,
                             FALSE,
-                            0,
+                            gZeroArgument,
                             gLastPrintedMoves[battler]
                         );
                         if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
@@ -5860,7 +5860,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (!(gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY))
             {
-                gBattleStruct->synchronizeMoveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
+                gBattleStruct->synchronizeMoveEffect &= ~(MOVE_EFFECT_AFFECTS_USER);
                 if (B_SYNCHRONIZE_TOXIC < GEN_5 && gBattleStruct->synchronizeMoveEffect == MOVE_EFFECT_TOXIC)
                     gBattleStruct->synchronizeMoveEffect = MOVE_EFFECT_POISON;
 
@@ -5881,7 +5881,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (!(gBattleMons[gBattlerTarget].status1 & STATUS1_ANY))
             {
-                gBattleStruct->synchronizeMoveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN);
+                gBattleStruct->synchronizeMoveEffect &= ~(MOVE_EFFECT_AFFECTS_USER);
                 if (gBattleStruct->synchronizeMoveEffect == MOVE_EFFECT_TOXIC)
                     gBattleStruct->synchronizeMoveEffect = MOVE_EFFECT_POISON;
 

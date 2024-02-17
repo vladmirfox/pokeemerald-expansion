@@ -99,7 +99,7 @@
 	.macro setadditionaleffects
 	1:
 	.byte 0x15
-	jumpifhalfword CMP_EQUAL, sMOVE_EFFECT, MOVE_EFFECT_CONTINUE, 1b
+	jumpifhalfword CMP_EQUAL, sMOVE_EFFECT, MOVE_EFFECT_DELAY_OR_CONTINUE, 1b
 	.endm
 
 	.macro seteffectprimary moveEffect=0
@@ -160,6 +160,12 @@
 	.byte \battler
 	.4byte \flags
 	.4byte \jumpInstr
+	.endm
+
+	.macro jumpifnotstatus2 battler:req, flags:req, jumpInstr:req
+	jumpifstatus2 \battler, \flags, 1f
+	goto \jumpInstr
+	1:
 	.endm
 
 	.macro jumpifability battler:req, ability:req, jumpInstr:req

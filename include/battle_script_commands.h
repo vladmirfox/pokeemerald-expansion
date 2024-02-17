@@ -27,10 +27,11 @@ struct __attribute__((packed, aligned(2))) MoveEffectInfo
     u32 statusFlag;
     u8 activateAfterFaint:1;
     u8 finalHitOnly:1;
-    u8 delayedEffect:1;
+    u8 moveEndEffect:1;
+    u8 moveOnly:1;
 };
 
-#define SET_MOVE_EFFECT(moveEffect, ...) SetMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(0, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__))
+#define SET_MOVE_EFFECT(moveEffect, ...) SetMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(gZeroArgument, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__), DEFAULT_5(FALSE, __VA_ARGS__))
 
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk);
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility);
@@ -39,7 +40,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 u8 GetBattlerTurnOrderNum(u8 battlerId);
 bool32 NoAliveMonsForPlayer(void);
 bool32 NoAliveMonsForEitherParty(void);
-void SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, u32 argument, u32 move);
+bool32 SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check);
 bool32 CanBattlerSwitch(u32 battlerId);
 void BattleDestroyYesNoCursorAt(u8 cursorPosition);
 void BattleCreateYesNoCursorAt(u8 cursorPosition);
@@ -70,5 +71,6 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler);
 extern void (* const gBattleScriptingCommandsTable[])(void);
 extern const u8 gBattlePalaceNatureToMoveGroupLikelihood[NUM_NATURES][4];
 extern const struct StatFractions gAccuracyStageRatios[];
+extern const MoveEffectArgument gZeroArgument;
 
 #endif // GUARD_BATTLE_SCRIPT_COMMANDS_H
