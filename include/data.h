@@ -15,6 +15,8 @@
 // Red and Leaf's back pics have 5 frames, but this is presumably irrelevant in the places this is used.
 #define MAX_TRAINER_PIC_FRAMES 4
 
+#define RANDOM_MON_ABILITY     FALSE // If this is set to TRUE a random legal ability will be generated for a trainer mon
+
 enum {
     BATTLER_AFFINE_NORMAL,
     BATTLER_AFFINE_EMERGE,
