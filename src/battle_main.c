@@ -2008,7 +2008,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 ability = personalityHash % 3;
                 while (speciesInfo->abilities[ability] == ABILITY_NONE)
                 {
-                    ability = (personalityHash % 3) - 1;
+                    ability--;
                 }
             }
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
