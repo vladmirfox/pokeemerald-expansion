@@ -82,3 +82,57 @@ SINGLE_BATTLE_TEST("Spicy Extract Defense loss is prevented by Big Pecks")
         MESSAGE("Foe Pidgey's Big Pecks prevents Defense loss!");
     }
 }
+
+SINGLE_BATTLE_TEST("Spicy Extract bypasses accuracy checks")
+{
+    PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BRIGHTPOWDER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
+    } SCENE {
+        MESSAGE("Wobbuffet used SpicyExtract!");
+        NOT MESSAGE("Wobbuffet's attack missed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Wobbuffet's Attack sharply rose!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Wobbuffet's Defense harshly fell!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Spicy Extract will fail if target is in a semi-invulnerability state")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BRIGHTPOWDER); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_DIVE); MOVE(player, MOVE_SPICY_EXTRACT); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Dive!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DIVE, opponent);
+        MESSAGE("Wobbuffet used SpicyExtract!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+        MESSAGE("Wobbuffet's attack missed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defense only")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Item(ITEM_CLEAR_AMULET); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
+    } SCENE {
+        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Foe Snivy's Clear Amulet prevents its stats from being lowered!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Snivy's Defense sharply rose!");
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
+    }
+}
