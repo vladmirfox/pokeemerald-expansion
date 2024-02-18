@@ -509,7 +509,6 @@ static s32 GetParentToInheritNature(struct DayCare *daycare)
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
     s32 parent;
-    s32 natureTries = 0;
     u32 personality;
     struct PIDParameters parameters;
 
