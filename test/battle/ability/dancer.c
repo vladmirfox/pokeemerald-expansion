@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Dancer can copy a dance move immediately after it was used addionally to the users move")
+SINGLE_BATTLE_TEST("Dancer can copy a dance move immediately after it was used and allow the user of Dancer to still use its move")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_QUIVER_DANCE].danceMove == TRUE);
