@@ -4696,6 +4696,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
 
     // Calculates score based on effects of a move
     score += AI_CalcMoveScore(battlerAtk, battlerDef, move);
+
     return score;
 }
 
@@ -5222,6 +5223,7 @@ static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (!(AI_GetWeather(AI_DATA) & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)))
             ADJUST_SCORE(POWERFUL_STATUS_MOVE);
     }
+
     return score;
 }
 

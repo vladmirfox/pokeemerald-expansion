@@ -34,7 +34,7 @@
 #define AI_FLAG_PREFER_BATON_PASS     (1 << 6)
 #define AI_FLAG_DOUBLE_BATTLE         (1 << 7)   // removed, split between AI_FLAG_CHECK_BAD_MOVE & AI_FLAG_CHECK_GOOD_MOVE
 #define AI_FLAG_HP_AWARE              (1 << 8)
-#define AI_FLAG_POWERFUL_STATUS       (1 << 9)   // AI prefers moves that set up field effects or side statuses, even over a kill. Usega with caution
+#define AI_FLAG_POWERFUL_STATUS       (1 << 9)   // AI prefers moves that set up field effects or side statuses, even if the user can faint the target
 // New, Trainer Handicap Flags
 #define AI_FLAG_NEGATE_UNAWARE        (1 << 10)  // AI is NOT aware of negating effects like wonder room, mold breaker, etc
 #define AI_FLAG_WILL_SUICIDE          (1 << 11)  // AI will use explosion / self destruct / final gambit / etc
