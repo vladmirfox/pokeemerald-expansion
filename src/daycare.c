@@ -514,15 +514,6 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
     struct PIDParameters parameters;
 
     parameters.species = SPECIES_NONE;
-    parameters.pidType = PID_TYPE_EGG;
-
-    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
-        parameters.forceShiny = GENERATE_SHINY_LOCKED;
-    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
-        parameters.forceShiny = GENERATE_SHINY_FORCED;
-    else
-        parameters.forceShiny = GENERATE_SHINY_NORMAL;
-
     parameters.shinyRerolls = TRUE;
     parameters.forceNature = FALSE;
     parameters.nature = 0;

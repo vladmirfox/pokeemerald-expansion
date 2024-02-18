@@ -591,24 +591,9 @@ struct Fusion
 
 extern const struct Fusion *const gFusionTablePointers[NUM_SPECIES];
 
-enum
-{
-    PID_TYPE_NORMAL,
-    PID_TYPE_EGG
-};
-
-enum
-{
-    GENERATE_SHINY_NORMAL,
-    GENERATE_SHINY_LOCKED,
-    GENERATE_SHINY_FORCED
-};
-
 struct PIDParameters
 {
     u16 species;
-    u8 pidType;
-    u8 forceShiny;
     bool8 shinyRerolls;
     bool8 forceNature;
     u8 nature;
