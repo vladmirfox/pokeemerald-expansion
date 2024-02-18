@@ -3590,20 +3590,20 @@ s32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *ai
     return 2 * gDisableStructs[battlerAtk].isFirstTurn;
 }
 
-void IncreaseTipyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
+void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
     if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
-        ADJUST_SCORE(GOOD_EFFECT);
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
     if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerDef) != 0)
-        ADJUST_SCORE(-2);
+        ADJUST_SCORE_PTR(-2);
 
     if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE && AI_STRIKES_FIRST(battlerAtk, battlerDef, move))
-        ADJUST_SCORE(-10);
+        ADJUST_SCORE_PTR(-10);
     if (gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE)
-        ADJUST_SCORE(GOOD_EFFECT);
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
 
     if (gStatuses3[battlerAtk] & STATUS3_LEECHSEED)
-        ADJUST_SCORE(DECENT_EFFECT);
+        ADJUST_SCORE_PTR(DECENT_EFFECT);
     if (gStatuses3[battlerDef] & STATUS3_LEECHSEED)
-        ADJUST_SCORE(-2);
+        ADJUST_SCORE_PTR(-2);
 }

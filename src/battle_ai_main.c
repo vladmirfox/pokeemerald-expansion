@@ -3537,6 +3537,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_SUBSTITUTE:
+        ADJUST_SCORE(GOOD_EFFECT);
         if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
             ADJUST_SCORE(GOOD_EFFECT);
         if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
@@ -4174,7 +4175,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK, &score);
         break;
     case EFFECT_TIDY_UP:
-        IncreaseTipyUpScore(battlerAtk, battlerDef, move, &score);
+        IncreaseTidyUpScore(battlerAtk, battlerDef, move, &score);
     case EFFECT_DRAGON_DANCE:
     case EFFECT_SHIFT_GEAR:
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED, &score);
