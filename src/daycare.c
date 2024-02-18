@@ -513,23 +513,14 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
     u32 personality;
     struct PIDParameters parameters;
 
-    parameters.species = 0;
+    parameters.species = SPECIES_NONE;
     parameters.pidType = PID_TYPE_EGG;
 
-#if P_FLAG_FORCE_NO_SHINY != 0
-    if (FlagGet(P_FLAG_FORCE_NO_SHINY))
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
         parameters.forceShiny = GENERATE_SHINY_LOCKED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0
-    #if P_FLAG_FORCE_NO_SHINY != 0
-    else
-    #endif
-    if (FlagGet(P_FLAG_FORCE_SHINY))
+    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
         parameters.forceShiny = GENERATE_SHINY_FORCED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
     else
-#endif
         parameters.forceShiny = GENERATE_SHINY_NORMAL;
 
     parameters.shinyRerolls = TRUE;

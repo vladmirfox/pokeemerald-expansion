@@ -899,7 +899,7 @@ u32 GeneratePIDMaster(struct PIDParameters parameters)
     u32 rolls = 1;
 
     if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-        rolls += I_SHINY_CHARM_REROLLS;
+        rolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
     if (LURE_STEP_COUNT != 0)
         rolls += 1;
 
@@ -908,14 +908,14 @@ u32 GeneratePIDMaster(struct PIDParameters parameters)
         do
         {
             pid = GeneratePIDNature(parameters);
-        } while (IsShinyOtIdPersonality(tid, pid));
+        } while (GET_SHINY_VALUE(tid, pid) < SHINY_ODDS);
     }
     else if (parameters.forceShiny == GENERATE_SHINY_FORCED)
     {
         do
         {
             pid = GeneratePIDNature(parameters);
-        } while (!IsShinyOtIdPersonality(tid, pid));
+        } while (GET_SHINY_VALUE(tid, pid) >= SHINY_ODDS);
     }
     else if (parameters.shinyRerolls)
     {
@@ -923,7 +923,7 @@ u32 GeneratePIDMaster(struct PIDParameters parameters)
         {
             pid = GeneratePIDNature(parameters);
             rolls--;
-        } while (IsShinyOtIdPersonality(tid, pid));
+        } while (GET_SHINY_VALUE(tid, pid) >= SHINY_ODDS && rolls > 0);
     }
     else
     {
@@ -959,20 +959,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     parameters.species = species;
     parameters.pidType = PID_TYPE_NORMAL;
 
-#if P_FLAG_FORCE_NO_SHINY != 0
-    if (FlagGet(P_FLAG_FORCE_NO_SHINY))
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
         parameters.forceShiny = GENERATE_SHINY_LOCKED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0
-    #if P_FLAG_FORCE_NO_SHINY != 0
-    else
-    #endif
-    if (FlagGet(P_FLAG_FORCE_SHINY))
+    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
         parameters.forceShiny = GENERATE_SHINY_FORCED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
     else
-#endif
         parameters.forceShiny = GENERATE_SHINY_NORMAL;
 
     parameters.shinyRerolls = TRUE;
@@ -993,6 +984,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         else
             personality = GeneratePIDMaster(parameters);
 
+        value = Random32();
         isShiny = FALSE;
     }
     else if (otIdType == OT_ID_PRESET)
@@ -1007,15 +999,16 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else // Player is the OT
     {
+        if (hasFixedPersonality)
+            personality = fixedPersonality;
+        else
+            personality = GeneratePIDMaster(parameters);
+
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
-        if (hasFixedPersonality)
-            personality = fixedPersonality;
-        else
-            GeneratePIDMaster(parameters);
+        isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
     }
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
@@ -1143,21 +1136,12 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
     parameters.species = species;
     parameters.pidType = PID_TYPE_NORMAL;
 
-#if P_FLAG_FORCE_NO_SHINY != 0
-    if (FlagGet(P_FLAG_FORCE_NO_SHINY))
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
         parameters.forceShiny = GENERATE_SHINY_LOCKED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0
-    #if P_FLAG_FORCE_NO_SHINY != 0
-    else
-    #endif
-    if (FlagGet(P_FLAG_FORCE_SHINY))
+    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
         parameters.forceShiny = GENERATE_SHINY_FORCED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
     else
-#endif
-        parameters.forceShiny = GENERATE_SHINY_NORMAL;
+        parameters.forceShiny = GENERATE_SHINY_FORCED;
 
     parameters.shinyRerolls = TRUE;
     parameters.forceNature = TRUE;
@@ -1168,6 +1152,8 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
     parameters.unownLetter = 0;
 
     personality = GeneratePIDMaster(parameters);
+
+    CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
 
 void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter)
@@ -1178,20 +1164,11 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
     parameters.species = species;
     parameters.pidType = PID_TYPE_NORMAL;
 
-#if P_FLAG_FORCE_NO_SHINY != 0
-    if (FlagGet(P_FLAG_FORCE_NO_SHINY))
+    if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
         parameters.forceShiny = GENERATE_SHINY_LOCKED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0
-    #if P_FLAG_FORCE_NO_SHINY != 0
-    else
-    #endif
-    if (FlagGet(P_FLAG_FORCE_SHINY))
+    else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
         parameters.forceShiny = GENERATE_SHINY_FORCED;
-#endif
-#if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
     else
-#endif
         parameters.forceShiny = GENERATE_SHINY_NORMAL;
 
     parameters.shinyRerolls = TRUE;
@@ -1199,7 +1176,6 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
     parameters.nature = nature;
     parameters.forceGender = TRUE;
     parameters.gender = gender;
->>>>>>> 116eec6a6 (First draft for centralizing PID generation)
 
     if ((u8)(unownLetter - 1) < NUM_UNOWN_FORMS)
     {
