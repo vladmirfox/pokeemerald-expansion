@@ -20,6 +20,37 @@
 
 	.section script_data, "aw", %progbits
 
+BattleScript_EffectSpicyExtract::
+	attackcanceler
+	jumpifsubstituteblocks BattleScript_ButItFailed
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
+	attackstring
+	ppreduce
+	setstatchanger STAT_ATK, 2, FALSE
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectSpicyExtractDefenseDown2
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectSpicyExtractDefenseDown2
+	attackanimation
+	waitanimation
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_SpicyExtractDefDown:
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_TARGET, BIT_DEF, STAT_CHANGE_NEGATIVE | STAT_CHANGE_BY_TWO
+	setstatchanger STAT_DEF, 2, TRUE
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectSpicyExtract_End
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_DECREASE, BattleScript_EffectSpicyExtract_End
+	printfromtable gStatDownStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectSpicyExtract_End:
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectSpicyExtractDefenseDown2:
+	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
+	setstatchanger STAT_DEF, 2, TRUE
+	goto BattleScript_EffectStatDownFromStatBuffChange
+
 BattleScript_EffectUpperHand::
 	attackcanceler
 	tryupperhand BattleScript_FailedFromAtkString
@@ -3167,6 +3198,7 @@ BattleScript_EffectStatDown:
 BattleScript_StatDownFromAttackString:
 	attackstring
 	ppreduce
+BattleScript_EffectStatDownFromStatBuffChange:
 	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_StatDownEnd
 	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_DECREASE, BattleScript_StatDownDoAnim
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_FELL_EMPTY, BattleScript_StatDownEnd
