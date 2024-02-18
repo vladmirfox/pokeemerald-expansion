@@ -528,7 +528,6 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
     if (parent < 0)
     {
         personality = GeneratePIDMaster(parameters);
-        
     }
     // inherit nature
     else
