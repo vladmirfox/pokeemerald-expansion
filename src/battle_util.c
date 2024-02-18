@@ -11210,12 +11210,73 @@ u8 GetBattlerType(u32 battler, u8 typeIndex)
     return types[typeIndex];
 }
 
-void RemoveBattlerType(u32 battler, u8 type)
+bool32 RemoveBattlerType(u32 battler, u8 type)
 {
     u32 i;
+    bool32 success = FALSE;
+    // Multitype check?
     for (i = 0; i < 3; i++)
     {
         if (*(u8 *)(&gBattleMons[battler].type1 + i) == type)
+        {
+            success = TRUE;
             *(u8 *)(&gBattleMons[battler].type1 + i) = TYPE_MYSTERY;
+        }
     }
+    return success;
+}
+
+bool32 BattlerHasChangedStats(u32 battler)
+{
+    u32 i;
+
+    for (i = 0; i < NUM_BATTLE_STATS; i++)
+    {
+        if (gBattleMons[battler].statStages[i] != DEFAULT_STAT_STAGE)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef)
+{
+    u32 i;
+    gBattleStruct->stolenStats[0] = 0; // Stats to steal.
+    gBattleScripting.animArg1 = 0;
+    for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
+    {
+        if (gBattleMons[battlerDef].statStages[i] > DEFAULT_STAT_STAGE
+          && gBattleMons[battlerAtk].statStages[i] != MAX_STAT_STAGE)
+        {
+            bool32 byTwo = FALSE;
+
+            gBattleStruct->stolenStats[0] |= gBitTable[i];
+            // Store by how many stages to raise the stat.
+            gBattleStruct->stolenStats[i] = gBattleMons[battlerDef].statStages[i] - DEFAULT_STAT_STAGE;
+            while (gBattleMons[battlerAtk].statStages[i] + gBattleStruct->stolenStats[i] > MAX_STAT_STAGE)
+                gBattleStruct->stolenStats[i]--;
+            gBattleMons[battlerDef].statStages[i] = DEFAULT_STAT_STAGE;
+
+            if (gBattleStruct->stolenStats[i] >= 2)
+                byTwo++;
+
+            if (gBattleScripting.animArg1 == 0)
+            {
+                if (byTwo)
+                    gBattleScripting.animArg1 = STAT_ANIM_PLUS2 + i;
+                else
+                    gBattleScripting.animArg1 = STAT_ANIM_PLUS1 + i;
+            }
+            else
+            {
+                if (byTwo)
+                    gBattleScripting.animArg1 = STAT_ANIM_MULTIPLE_PLUS2;
+                else
+                    gBattleScripting.animArg1 = STAT_ANIM_MULTIPLE_PLUS1;
+            }
+        }
+    }
+
+    // Return TRUE or FALSE depending on whether or not there are any stats to steal
+    return (gBattleStruct->stolenStats[0] != 0);
 }

@@ -857,11 +857,6 @@ BattleScript_ButHoopaCantUseIt:
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_HyperspaceFuryRemoveProtect::
-	printstring STRINGID_BROKETHROUGHPROTECTION
-	waitmessage B_WAIT_TIME_LONG
-	return
-
 BattleScript_EffectPlasmaFists::
 	call BattleScript_EffectHit_Ret
 	tryfaintmon BS_TARGET
@@ -1405,7 +1400,7 @@ BattleScript_EffectAcupressureTry:
 	goto BattleScript_MoveEnd
 
 BattleScript_MoveEffectFeint::
-	printstring STRINGID_FELLFORFEINT
+	printsavedstring
 	waitmessage B_WAIT_TIME_LONG
 	return
 

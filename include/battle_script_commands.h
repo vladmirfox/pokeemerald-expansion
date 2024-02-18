@@ -25,6 +25,7 @@ struct PickupItem
 struct __attribute__((packed, aligned(2))) MoveEffectInfo
 {
     u32 statusFlag;
+    const u8 *battleScript;
     u8 activateAfterFaint:1;
     u8 finalHitOnly:1;
     u8 moveEndEffect:1;
