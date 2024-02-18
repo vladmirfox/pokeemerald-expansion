@@ -101,7 +101,10 @@ const u8 sText_s[] =_("s");
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    u8 *end = CopyItemName(itemId, dst) - 1;
+    u8 *end;
+
+    CopyItemName(itemId, dst);
+    end = dst - 1;
 
     if (quantity < 2)
         return;
