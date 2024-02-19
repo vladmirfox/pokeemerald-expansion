@@ -282,9 +282,9 @@ static u16 GetTypeBasedMaxMove(u16 battlerId, u16 type)
     }
 
     // Regular Max Move
-    if (gTypes[type].maxMove == MOVE_NONE) // failsafe
-        return gTypes[0].maxMove;
-    return gTypes[type].maxMove;
+    if (gTypesInfo[type].maxMove == MOVE_NONE) // failsafe
+        return gTypesInfo[0].maxMove;
+    return gTypesInfo[type].maxMove;
 }
 
 // Returns the appropriate Max Move or G-Max Move for a battler to use.
