@@ -3900,11 +3900,10 @@ void SetTypeSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 {
     struct Sprite *sprite = &gSprites[sMonSummaryScreen->spriteIds[spriteArrayId]];
     StartSpriteAnim(sprite, typeId);
-    if (typeId < NUMBER_OF_MON_TYPES) {
+    if (typeId < NUMBER_OF_MON_TYPES)
         sprite->oam.paletteNum = gTypes[typeId].palette;
-    } else {
+    else
         sprite->oam.paletteNum = sMoveTypeToOamPaletteNum[typeId - NUMBER_OF_MON_TYPES];
-    }
     sprite->x = x + 16;
     sprite->y = y + 8;
     SetSpriteInvisibility(spriteArrayId, FALSE);

@@ -299,218 +299,288 @@ const struct OamData gOamData_BattleSpritePlayerSide =
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 
-#define GENERIC(type) .generic = _(#type" move")
-#define MOVES(z, max)               \
-        .zMove = MOVE_##z,          \
-        .maxMove = MOVE_MAX_##max,
-
-#define ITEMS(type, item, berryName, crystal) \
-        .enhanceItem = ITEM_##item,           \
-        .berry = ITEM_##berryName##_BERRY,    \
-        .gem = ITEM_##type##_GEM,             \
-        .zCrystal = ITEM_##crystal##IUM_Z,
-
-//Not in ITEMS since Normal doesn't have these two items (Blank Plate is not yet implemented)
-#define LEGENDARY_ITEMS(plateName, type)   \
-        .plate = ITEM_##plateName##_PLATE, \
-        .memory = ITEM_##type##_MEMORY,    \
-
-//Not in ITEMS since Stellar has Tera Shards but no other item
-#define TERA_SHARD(type) .teraShard = ITEM_##type##_TERA_SHARD,
-
 // .generic is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct Type gTypes[NUMBER_OF_MON_TYPES] =
 {
     [TYPE_NORMAL] =
     {
         .name = _("Normal"),
-        GENERIC(a NORMAL),
+        .generic = _("a NORMAL move"),
         .palette = 13,
-        MOVES(BREAKNECK_BLITZ, STRIKE)
-        ITEMS(NORMAL, SILK_SCARF, CHILAN, NORMAL)
-        TERA_SHARD(NORMAL)
+        .zMove = MOVE_BREAKNECK_BLITZ,
+        .maxMove = MOVE_MAX_STRIKE,
+        .enhanceItem = ITEM_SILK_SCARF,
+        .berry = ITEM_CHILAN_BERRY,
+        .gem = ITEM_NORMAL_GEM,
+        .zCrystal = ITEM_NORMALIUM_Z,
+        .teraShard = ITEM_NORMAL_TERA_SHARD,
     },
     [TYPE_FIGHTING] =
     {
         .name = _("Fight"),
-        GENERIC(a FIGHTING),
+        .generic = _("a FIGHTING move"),
         .palette = 13,
-        MOVES(ALL_OUT_PUMMELING, KNUCKLE)
-        ITEMS(FIGHTING, BLACK_BELT, CHOPLE, FIGHTIN)
-        LEGENDARY_ITEMS(FIST, FIGHTING)
-        TERA_SHARD(FIGHTING)
+        .zMove = MOVE_ALL_OUT_PUMMELING,
+        .maxMove = MOVE_MAX_KNUCKLE,
+        .enhanceItem = ITEM_BLACK_BELT,
+        .berry = ITEM_CHOPLE_BERRY,
+        .gem = ITEM_FIGHTING_GEM,
+        .zCrystal = ITEM_FIGHTINIUM_Z,
+        .plate= ITEM_FIST_PLATE,
+        .memory = ITEM_FIGHTING_MEMORY,
+        .teraShard = ITEM_FIGHTING_TERA_SHARD,
     },
     [TYPE_FLYING] =
     {
         .name = _("Flying"),
-        GENERIC(a FLYING),
+        .generic = _("a FLYING move"),
         .palette = 14,
-        MOVES(SUPERSONIC_SKYSTRIKE, AIRSTREAM)
-        ITEMS(FLYING, SHARP_BEAK, COBA, FLYIN)
-        LEGENDARY_ITEMS(SKY, FLYING)
-        TERA_SHARD(FLYING)
+        .zMove = MOVE_SUPERSONIC_SKYSTRIKE,
+        .maxMove = MOVE_MAX_AIRSTREAM,
+        .enhanceItem = ITEM_SHARP_BEAK,
+        .berry = ITEM_COBA_BERRY,
+        .gem = ITEM_FLYING_GEM,
+        .zCrystal = ITEM_FLYINIUM_Z,
+        .plate= ITEM_SKY_PLATE,
+        .memory = ITEM_FLYING_MEMORY,
+        .teraShard = ITEM_FLYING_TERA_SHARD,
     },
     [TYPE_POISON] =
     {
         .name = _("Poison"),
-        GENERIC(a POISON),
+        .generic = _("a POISON move"),
         .palette = 14,
-        MOVES(ACID_DOWNPOUR, OOZE)
-        ITEMS(POISON, POISON_BARB, KEBIA, POISON)
-        LEGENDARY_ITEMS(TOXIC, POISON)
-        TERA_SHARD(POISON)
+        .zMove = MOVE_ACID_DOWNPOUR,
+        .maxMove = MOVE_MAX_OOZE,
+        .enhanceItem = ITEM_POISON_BARB,
+        .berry = ITEM_KEBIA_BERRY,
+        .gem = ITEM_POISON_GEM,
+        .zCrystal = ITEM_POISONIUM_Z,
+        .plate= ITEM_TOXIC_PLATE,
+        .memory = ITEM_POISON_MEMORY,
+        .teraShard = ITEM_POISON_TERA_SHARD,
     },
     [TYPE_GROUND] =
     {
         .name = _("Ground"),
-        GENERIC(a GROUND),
+        .generic = _("a GROUND move"),
         .palette = 13,
-        MOVES(TECTONIC_RAGE, QUAKE)
-        ITEMS(GROUND, SOFT_SAND, SHUCA, GROUND)
-        LEGENDARY_ITEMS(EARTH, GROUND)
-        TERA_SHARD(GROUND)
+        .zMove = MOVE_TECTONIC_RAGE,
+        .maxMove = MOVE_MAX_QUAKE,
+        .enhanceItem = ITEM_SOFT_SAND,
+        .berry = ITEM_SHUCA_BERRY,
+        .gem = ITEM_GROUND_GEM,
+        .zCrystal = ITEM_GROUNDIUM_Z,
+        .plate= ITEM_EARTH_PLATE,
+        .memory = ITEM_GROUND_MEMORY,
+        .teraShard = ITEM_GROUND_TERA_SHARD,
     },
     [TYPE_ROCK] =
     {
         .name = _("Rock"),
-        GENERIC(a ROCK),
+        .generic = _("a ROCK move"),
         .palette = 13,
-        MOVES(CONTINENTAL_CRUSH, ROCKFALL)
-        ITEMS(ROCK, HARD_STONE, CHARTI, ROCK)
-        LEGENDARY_ITEMS(STONE, ROCK)
-        TERA_SHARD(ROCK)
+        .zMove = MOVE_CONTINENTAL_CRUSH,
+        .maxMove = MOVE_MAX_ROCKFALL,
+        .enhanceItem = ITEM_HARD_STONE,
+        .berry = ITEM_CHARTI_BERRY,
+        .gem = ITEM_ROCK_GEM,
+        .zCrystal = ITEM_ROCKIUM_Z,
+        .plate= ITEM_STONE_PLATE,
+        .memory = ITEM_ROCK_MEMORY,
+        .teraShard = ITEM_ROCK_TERA_SHARD,
     },
     [TYPE_BUG] =
     {
         .name = _("Bug"),
-        GENERIC(a BUG),
+        .generic = _("a BUG move"),
         .palette = 15,
-        MOVES(SAVAGE_SPIN_OUT, FLUTTERBY)
-        ITEMS(BUG, SILVER_POWDER, TANGA, BUGIN)
-        LEGENDARY_ITEMS(INSECT, BUG)
-        TERA_SHARD(BUG)
+        .zMove = MOVE_SAVAGE_SPIN_OUT,
+        .maxMove = MOVE_MAX_FLUTTERBY,
+        .enhanceItem = ITEM_SILVER_POWDER,
+        .berry = ITEM_TANGA_BERRY,
+        .gem = ITEM_BUG_GEM,
+        .zCrystal = ITEM_BUGINIUM_Z,
+        .plate= ITEM_INSECT_PLATE,
+        .memory = ITEM_BUG_MEMORY,
+        .teraShard = ITEM_BUG_TERA_SHARD,
     },
     [TYPE_GHOST] =
     {
         .name = _("Ghost"),
-        GENERIC(a GHOST),
+        .generic = _("a GHOST move"),
         .palette = 14,
-        MOVES(NEVER_ENDING_NIGHTMARE, PHANTASM)
-        ITEMS(GHOST, SPELL_TAG, KASIB, GHOST)
-        LEGENDARY_ITEMS(SPOOKY, GHOST)
-        TERA_SHARD(GHOST)
+        .zMove = MOVE_NEVER_ENDING_NIGHTMARE,
+        .maxMove = MOVE_MAX_PHANTASM,
+        .enhanceItem = ITEM_SPELL_TAG,
+        .berry = ITEM_KASIB_BERRY,
+        .gem = ITEM_GHOST_GEM,
+        .zCrystal = ITEM_GHOSTIUM_Z,
+        .plate= ITEM_SPOOKY_PLATE,
+        .memory = ITEM_GHOST_MEMORY,
+        .teraShard = ITEM_GHOST_TERA_SHARD,
     },
     [TYPE_STEEL] =
     {
         .name = _("Steel"),
-        GENERIC(a STEEL),
+        .generic = _("a STEEL move"),
         .palette = 13,
-        MOVES(CORKSCREW_CRASH, STEELSPIKE)
-        ITEMS(STEEL, METAL_COAT, BABIRI, STEEL)
-        LEGENDARY_ITEMS(IRON, STEEL)
-        TERA_SHARD(STEEL)
+        .zMove = MOVE_CORKSCREW_CRASH,
+        .maxMove = MOVE_MAX_STEELSPIKE,
+        .enhanceItem = ITEM_METAL_COAT,
+        .berry = ITEM_BABIRI_BERRY,
+        .gem = ITEM_STEEL_GEM,
+        .zCrystal = ITEM_STEELIUM_Z,
+        .plate= ITEM_IRON_PLATE,
+        .memory = ITEM_STEEL_MEMORY,
+        .teraShard = ITEM_STEEL_TERA_SHARD,
     },
     [TYPE_MYSTERY] =
     {
         .name = _("???"),
-        GENERIC(a ???),
+        .generic = _("a ??? move"),
         .palette = 15,
     },
     [TYPE_FIRE] =
     {
         .name = _("Fire"),
-        GENERIC(a FIRE),
+        .generic = _("a FIRE move"),
         .palette = 13,
-        MOVES(INFERNO_OVERDRIVE, FLARE)
-        ITEMS(FIRE, CHARCOAL, OCCA, FIR)
-        LEGENDARY_ITEMS(FLAME, FIRE)
-        TERA_SHARD(FIRE)
+        .zMove = MOVE_INFERNO_OVERDRIVE,
+        .maxMove = MOVE_MAX_FLARE,
+        .enhanceItem = ITEM_CHARCOAL,
+        .berry = ITEM_OCCA_BERRY,
+        .gem = ITEM_FIRE_GEM,
+        .zCrystal = ITEM_FIRIUM_Z,
+        .plate= ITEM_FLAME_PLATE,
+        .memory = ITEM_FIRE_MEMORY,
+        .teraShard = ITEM_FIRE_TERA_SHARD,
     },
     [TYPE_WATER] =
     {
         .name = _("Water"),
-        GENERIC(a WATER),
+        .generic = _("a WATER move"),
         .palette = 14,
-        MOVES(HYDRO_VORTEX, GEYSER)
-        ITEMS(WATER, MYSTIC_WATER, PASSHO, WATER)
-        LEGENDARY_ITEMS(SPLASH, WATER)
-        TERA_SHARD(WATER)
+        .zMove = MOVE_HYDRO_VORTEX,
+        .maxMove = MOVE_MAX_GEYSER,
+        .enhanceItem = ITEM_MYSTIC_WATER,
+        .berry = ITEM_PASSHO_BERRY,
+        .gem = ITEM_WATER_GEM,
+        .zCrystal = ITEM_WATERIUM_Z,
+        .plate= ITEM_SPLASH_PLATE,
+        .memory = ITEM_WATER_MEMORY,
+        .teraShard = ITEM_WATER_TERA_SHARD,
     },
     [TYPE_GRASS] =
     {
         .name = _("Grass"),
-        GENERIC(a GRASS),
+        .generic = _("a GRASS move"),
         .palette = 15,
-        MOVES(BLOOM_DOOM, OVERGROWTH)
-        ITEMS(GRASS, MIRACLE_SEED, RINDO, GRASS)
-        LEGENDARY_ITEMS(MEADOW, GRASS)
-        TERA_SHARD(GRASS)
+        .zMove = MOVE_BLOOM_DOOM,
+        .maxMove = MOVE_MAX_OVERGROWTH,
+        .enhanceItem = ITEM_MIRACLE_SEED,
+        .berry = ITEM_RINDO_BERRY,
+        .gem = ITEM_GRASS_GEM,
+        .zCrystal = ITEM_GRASSIUM_Z,
+        .plate= ITEM_MEADOW_PLATE,
+        .memory = ITEM_GRASS_MEMORY,
+        .teraShard = ITEM_GRASS_TERA_SHARD,
     },
     [TYPE_ELECTRIC] =
     {
         .name = _("Electr"),
-        GENERIC(an ELECTRIC),
+        .generic = _("an ELECTRIC move"),
         .palette = 13,
-        MOVES(GIGAVOLT_HAVOC, LIGHTNING)
-        ITEMS(ELECTRIC, MAGNET, WACAN, ELECTR)
-        LEGENDARY_ITEMS(ZAP, ELECTRIC)
-        TERA_SHARD(ELECTRIC)
+        .zMove = MOVE_GIGAVOLT_HAVOC,
+        .maxMove = MOVE_MAX_LIGHTNING,
+        .enhanceItem = ITEM_MAGNET,
+        .berry = ITEM_WACAN_BERRY,
+        .gem = ITEM_ELECTRIC_GEM,
+        .zCrystal = ITEM_ELECTRIUM_Z,
+        .plate= ITEM_ZAP_PLATE,
+        .memory = ITEM_ELECTRIC_MEMORY,
+        .teraShard = ITEM_ELECTRIC_TERA_SHARD,
     },
     [TYPE_PSYCHIC] =
     {
         .name = _("Psychc"),
-        GENERIC(a PSYCHIC),
+        .generic = _("a PSYCHIC move"),
         .palette = 14,
-        MOVES(SHATTERED_PSYCHE, MINDSTORM)
-        ITEMS(PSYCHIC, TWISTED_SPOON, PAYAPA, PSYCH)
-        LEGENDARY_ITEMS(MIND, PSYCHIC)
-        TERA_SHARD(PSYCHIC)
+        .zMove = MOVE_SHATTERED_PSYCHE,
+        .maxMove = MOVE_MAX_MINDSTORM,
+        .enhanceItem = ITEM_TWISTED_SPOON,
+        .berry = ITEM_PAYAPA_BERRY,
+        .gem = ITEM_PSYCHIC_GEM,
+        .zCrystal = ITEM_PSYCHIUM_Z,
+        .plate= ITEM_MIND_PLATE,
+        .memory = ITEM_PSYCHIC_MEMORY,
+        .teraShard = ITEM_PSYCHIC_TERA_SHARD,
     },
     [TYPE_ICE] =
     {
         .name = _("Ice"),
-        GENERIC(a ICE),
+        .generic = _("an ICE move"),
         .palette = 14,
-        MOVES(SUBZERO_SLAMMER, HAILSTORM)
-        ITEMS(ICE, NEVER_MELT_ICE, YACHE, IC)
-        LEGENDARY_ITEMS(ICICLE, ICE)
-        TERA_SHARD(ICE)
+        .zMove = MOVE_SUBZERO_SLAMMER,
+        .maxMove = MOVE_MAX_HAILSTORM,
+        .enhanceItem = ITEM_NEVER_MELT_ICE,
+        .berry = ITEM_YACHE_BERRY,
+        .gem = ITEM_ICE_GEM,
+        .zCrystal = ITEM_ICIUM_Z,
+        .plate= ITEM_ICICLE_PLATE,
+        .memory = ITEM_ICE_MEMORY,
+        .teraShard = ITEM_ICE_TERA_SHARD,
     },
     [TYPE_DRAGON] =
     {
         .name = _("Dragon"),
-        GENERIC(a DRAGON),
+        .generic = _("a DRAGON move"),
         .palette = 15,
-        MOVES(DEVASTATING_DRAKE, WYRMWIND)
-        ITEMS(DRAGON, DRAGON_FANG, HABAN, DRAGON)
-        LEGENDARY_ITEMS(DRACO, DRAGON)
-        TERA_SHARD(DRAGON)
+        .zMove = MOVE_DEVASTATING_DRAKE,
+        .maxMove = MOVE_MAX_WYRMWIND,
+        .enhanceItem = ITEM_DRAGON_FANG,
+        .berry = ITEM_HABAN_BERRY,
+        .gem = ITEM_DRAGON_GEM,
+        .zCrystal = ITEM_DRAGONIUM_Z,
+        .plate= ITEM_DRACO_PLATE,
+        .memory = ITEM_DRAGON_MEMORY,
+        .teraShard = ITEM_DRAGON_TERA_SHARD,
     },
     [TYPE_DARK] =
     {
         .name = _("Dark"),
-        GENERIC(a DARK),
+        .generic = _("a DARK move"),
         .palette = 13,
-        MOVES(BLACK_HOLE_ECLIPSE, DARKNESS)
-        ITEMS(DARK, BLACK_GLASSES, COLBUR, DARKIN)
-        LEGENDARY_ITEMS(DREAD, DARK)
-        TERA_SHARD(DARK)
+        .zMove = MOVE_BLACK_HOLE_ECLIPSE,
+        .maxMove = MOVE_MAX_DARKNESS,
+        .enhanceItem = ITEM_BLACK_GLASSES,
+        .berry = ITEM_COLBUR_BERRY,
+        .gem = ITEM_DARK_GEM,
+        .zCrystal = ITEM_DARKINIUM_Z,
+        .plate= ITEM_DREAD_PLATE,
+        .memory = ITEM_DARK_MEMORY,
+        .teraShard = ITEM_DARK_TERA_SHARD,
     },
     [TYPE_FAIRY] =
     {
         .name = _("Fairy"),
-        GENERIC(a FAIRY),
+        .generic = _("a FAIRY move"),
         .palette = 14,
-        MOVES(TWINKLE_TACKLE, STARFALL)
-        ITEMS(FAIRY, FAIRY_FEATHER, ROSELI, FAIR)
-        LEGENDARY_ITEMS(PIXIE, FAIRY)
-        TERA_SHARD(FAIRY)
+        .zMove = MOVE_TWINKLE_TACKLE,
+        .maxMove = MOVE_MAX_STARFALL,
+        .enhanceItem = ITEM_FAIRY_FEATHER,
+        .berry = ITEM_ROSELI_BERRY,
+        .gem = ITEM_FAIRY_GEM,
+        .zCrystal = ITEM_FAIRIUM_Z,
+        .plate= ITEM_PIXIE_PLATE,
+        .memory = ITEM_FAIRY_MEMORY,
+        .teraShard = ITEM_FAIRY_TERA_SHARD,
     },
     /*
     [TYPE_STELLAR] =
     {
         .name = _("Stellar"),
-        TERA_SHARD(STELLAR),
+        .teraShard = ITEM_STELLAR_TERA_SHARD,,
     },
     */
 };
