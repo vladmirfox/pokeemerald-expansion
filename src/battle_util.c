@@ -708,7 +708,7 @@ void HandleAction_NothingIsFainted(void)
 
 void HandleAction_ActionFinished(void)
 {
-    u32 i, j;
+    u32 i, j, moveType;
     bool32 afterYouActive = gSpecialStatuses[gBattlerByTurnOrder[gCurrentTurnActionNumber + 1]].afterYou;
     *(gBattleStruct->monToSwitchIntoId + gBattlerByTurnOrder[gCurrentTurnActionNumber]) = gSelectedMonPartyId = PARTY_SIZE;
     gCurrentTurnActionNumber++;
@@ -720,11 +720,13 @@ void HandleAction_ActionFinished(void)
                     | HITMARKER_CHARGING | HITMARKER_NEVER_SET | HITMARKER_IGNORE_DISGUISE);
 
     // check if Stellar type boost should be used up
+    GET_MOVE_TYPE(gCurrentMove, moveType);
     if (IsTerastallized(gBattlerAttacker)
         && GetBattlerTeraType(gBattlerAttacker) == TYPE_STELLAR
-        && IsTypeStellarBoosted(gBattlerAttacker, gMovesInfo[gChosenMove].type))
+        && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
+        && IsTypeStellarBoosted(gBattlerAttacker, moveType))
     {
-        ExpendTypeStellarBoost(gBattlerAttacker, gMovesInfo[gChosenMove].type);
+        ExpendTypeStellarBoost(gBattlerAttacker, moveType);
     }
 
     gCurrentMove = 0;
@@ -8637,6 +8639,10 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         if (RandomPercentage(RNG_FICKLE_BEAM, 30))
             basePower *= 2;
         break;
+    case EFFECT_TERA_BLAST:
+        if (IsTerastallized(battlerAtk) && GetBattlerTeraType(battlerAtk) == TYPE_STELLAR)
+            basePower = 100;
+        break;
     }
 
     // Move-specific base power changes
@@ -9914,11 +9920,15 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
 {
     uq4_12_t modifier = UQ_4_12(1.0);
 
-    if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
+    if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY && moveType != TYPE_STELLAR)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier, defAbility);
         if (gMovesInfo[move].effect == EFFECT_TWO_TYPED_MOVE)
             modifier = CalcTypeEffectivenessMultiplierInternal(move, gMovesInfo[move].argument, battlerAtk, battlerDef, recordAbilities, modifier, defAbility);
+    }
+    else if (moveType == TYPE_STELLAR)
+    {
+        modifier = IsTerastallized(battlerDef) ? UQ_4_12(2.0) : UQ_4_12(1.0);
     }
 
     if (recordAbilities)
@@ -10548,7 +10558,7 @@ static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
     return FALSE;
 }
 
-// Photon geyser & light that burns the sky
+// Photon Geyser, Light That Burns the Sky, Tera Blast
 u8 GetCategoryBasedOnStats(u32 battler)
 {
     u32 attack = gBattleMons[battler].attack;

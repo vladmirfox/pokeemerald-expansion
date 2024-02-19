@@ -559,7 +559,6 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base t
 
 SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move")
 {
-    KNOWN_FAILING; // Tera Blast not implemented yet
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -571,7 +570,7 @@ SINGLE_BATTLE_TEST("(TERA) Conversion2 fails if last hit by a Stellar-type move"
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         // turn 2
-        MESSAGE("Wobbuffet used Conversion 2!");
+        MESSAGE("Foe Wobbuffet used Conversion 2!");
         MESSAGE("But it failed!");
     }
 }

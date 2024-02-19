@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Stellar-type Tera Blast lowers both offensive stats")
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_TERA_BLAST); }
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
     } SCENE {
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
@@ -71,7 +71,8 @@ SINGLE_BATTLE_TEST("Stellar-type Tera Blast has 100 BP and a one-time 1.2x boost
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST); MOVE(opponent, MOVE_RECOVER); }
-        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); MOVE(opponent, MOVE_COACHING); }
+        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
+        TURN { MOVE(player, MOVE_WORK_UP); }
         TURN { MOVE(player, MOVE_TERA_BLAST); }
     } SCENE {
         // turn 1
@@ -82,7 +83,7 @@ SINGLE_BATTLE_TEST("Stellar-type Tera Blast has 100 BP and a one-time 1.2x boost
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
-        // turn 3
+        // turn 4
         MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         HP_BAR(opponent, captureDamage: &damage[2]);
@@ -90,7 +91,7 @@ SINGLE_BATTLE_TEST("Stellar-type Tera Blast has 100 BP and a one-time 1.2x boost
         // 80 BP to 120 BP (100 * 1.2) boost upon Terastallizing
         EXPECT_MUL_EQ(damage[0], UQ_4_12(1.50), damage[1]);
         // 120 BP to 100 BP after Stellar boost expended
-        EXPECT_MUL_EQ(damage[0], UQ_4_12(1.20), damage[1]);
+        EXPECT_MUL_EQ(damage[2], UQ_4_12(1.20), damage[1]);
     }
 }
 
