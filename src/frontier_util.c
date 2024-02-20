@@ -2428,14 +2428,16 @@ void CopyFrontierBrainTrainerName(u8 *dst)
 {
     s32 i;
     s32 facility;
+    const u8 *trainerName;
 
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
         facility = GetRecordedBattleFrontierFacility();
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
+    trainerName = GetTrainerNameFromId(sFrontierBrainTrainerIds[facility]);
     for (i = 0; i < PLAYER_NAME_LENGTH; i++)
-        dst[i] = gTrainers[sFrontierBrainTrainerIds[facility]].trainerName[i];
+        dst[i] = trainerName[i];
 
     dst[i] = EOS;
 }

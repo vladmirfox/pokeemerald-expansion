@@ -3147,7 +3147,7 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
     }
     else
     {
-        toCpy = gTrainers[trainerId].trainerName;
+        toCpy = GetTrainerNameFromId(trainerId);
     }
 
     return toCpy;
