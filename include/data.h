@@ -172,4 +172,9 @@ static inline const u8 GetTrainerStartingStatusFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].startingStatus;
 }
 
+static inline const bool32 IsTrainerDoubleBattle(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].doubleBattle;
+}
+
 #endif // GUARD_DATA_H

@@ -895,13 +895,13 @@ u8 GetTrainerBattleTransition(void)
         || trainerClass == TRAINER_CLASS_AQUA_ADMIN)
         return B_TRANSITION_AQUA;
 
-    if (gTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
+    if (IsTrainerDoubleBattle(trainerId))
         minPartyCount = 2; // double battles always at least have 2 Pokémon.
     else
         minPartyCount = 1;
 
     transitionType = GetBattleTransitionTypeByMap();
-    enemyLevel = GetSumOfEnemyPartyLevel(gTrainerBattleOpponent_A, minPartyCount);
+    enemyLevel = GetSumOfEnemyPartyLevel(trainerId, minPartyCount);
     playerLevel = GetSumOfPlayerPartyLevel(minPartyCount);
 
     if (enemyLevel < playerLevel)

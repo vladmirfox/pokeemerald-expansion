@@ -2061,7 +2061,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
-        gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
+        gBattleTypeFlags |= (IsTrainerDoubleBattle(trainerNum) ? BATTLE_TYPE_DOUBLE : 0);
     }
     return retVal;
 }
