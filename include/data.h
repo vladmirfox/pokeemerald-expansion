@@ -133,4 +133,25 @@ extern const struct Trainer gBattlePartners[];
 
 extern const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT];
 
+static inline u16 SanitizeTrainerId(u16 trainerId)
+{
+    if (trainerId >= TRAINERS_COUNT)
+        return TRAINER_NONE;
+    return trainerId;
+}
+
+static inline const u8 *GetTrainerClassNameFromId(u16 trainerId)
+{
+    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
+        return gTrainerClasses[gBattlePartners[trainerId].trainerClass].name;
+    return gTrainerClasses[gTrainers[SanitizeTrainerId(trainerId)].trainerClass].name;
+}
+
+static inline const u8 *GetTrainerNameFromId(u16 trainerId)
+{
+    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
+        return gBattlePartners[trainerId].trainerName;
+    return gTrainers[SanitizeTrainerId(trainerId)].trainerName;
+}
+
 #endif // GUARD_DATA_H

@@ -5906,26 +5906,6 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
     }
 }
 
-const u8 *GetTrainerClassNameFromId(u16 trainerId)
-{
-    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gTrainerClasses[gBattlePartners[trainerId].trainerClass].name;
-    else if (trainerId < TRAINERS_COUNT)
-        return gTrainerClasses[gTrainers[trainerId].trainerClass].name;
-
-    return gTrainerClasses[gTrainers[TRAINER_NONE].trainerClass].name;
-}
-
-const u8 *GetTrainerNameFromId(u16 trainerId)
-{
-    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gBattlePartners[trainerId].trainerName;
-    else if (trainerId < TRAINERS_COUNT)
-        return gTrainers[trainerId].trainerName;
-
-    return gTrainers[TRAINER_NONE].trainerName;
-}
-
 bool8 HasTwoFramesAnimation(u16 species)
 {
     return species != SPECIES_UNOWN;
