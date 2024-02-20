@@ -1799,9 +1799,12 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
     const u8 *speciesName;
 
     trainerId = GetLastBeatenRematchTrainerId(sMatchCallTrainers[matchCallId].trainerId);
-    party = gTrainers[trainerId].party;
+    party = GetTrainerPartyFromId(trainerId);
     monId = Random() % GetTrainerPartySizeFromId(trainerId);
-    speciesName = GetSpeciesName(party[monId].species);
+    if (party != NULL)
+        speciesName = GetSpeciesName(party[monId].species);
+    else
+        speciesName = GetSpeciesName(SPECIES_NONE);
 
     StringCopy(destStr, speciesName);
 }

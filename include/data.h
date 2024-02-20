@@ -197,4 +197,9 @@ static inline const u16 *GetTrainerItemsFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].items;
 }
 
+static inline const struct TrainerMon *GetTrainerPartyFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].party;
+}
+
 #endif // GUARD_DATA_H
