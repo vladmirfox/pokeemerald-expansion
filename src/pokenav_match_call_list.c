@@ -337,7 +337,7 @@ int GetMatchCallTrainerPic(int index)
     if (!state->matchCallEntries[index].isSpecialTrainer)
     {
         index = GetTrainerIdxByRematchIdx(state->matchCallEntries[index].headerId);
-        return gTrainers[index].trainerPic;
+        return GetTrainerPicFromId(index);
     }
 
     headerId = state->matchCallEntries[index].headerId;
@@ -345,7 +345,7 @@ int GetMatchCallTrainerPic(int index)
     if (index != REMATCH_TABLE_ENTRIES)
     {
         index = GetTrainerIdxByRematchIdx(index);
-        return gTrainers[index].trainerPic;
+        return GetTrainerPicFromId(index);
     }
 
     index = MatchCall_GetOverrideFacilityClass(headerId);

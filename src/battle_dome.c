@@ -6065,7 +6065,7 @@ static void CopyDomeTrainerName(u8 *str, u16 trainerId)
 
 static u8 GetDomeBrainTrainerPicId(void)
 {
-    return gTrainers[TRAINER_TUCKER].trainerPic;
+    return GetTrainerPicFromId(TRAINER_TUCKER);
 }
 
 static u8 GetDomeBrainTrainerClass(void)

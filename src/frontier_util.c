@@ -2409,7 +2409,7 @@ u8 GetFrontierBrainTrainerPicIndex(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return gTrainers[sFrontierBrainTrainerIds[facility]].trainerPic;
+    return GetTrainerPicFromId(sFrontierBrainTrainerIds[facility]);
 }
 
 u8 GetFrontierBrainTrainerClass(void)

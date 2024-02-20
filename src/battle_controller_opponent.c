@@ -455,13 +455,13 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
     else if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
     {
         if (battlerId != 1)
-            trainerPicId = gTrainers[gTrainerBattleOpponent_B].trainerPic;
+            trainerPicId = GetTrainerPicFromId(gTrainerBattleOpponent_B);
         else
-            trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+            trainerPicId = GetTrainerPicFromId(gTrainerBattleOpponent_A);
     }
     else
     {
-        trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        trainerPicId = GetTrainerPicFromId(gTrainerBattleOpponent_A);
     }
 
     return trainerPicId;

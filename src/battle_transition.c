@@ -2518,7 +2518,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 {
     struct Sprite *opponentSprite, *playerSprite;
 
-    u8 trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+    u8 trainerPicId = GetTrainerPicFromId(gTrainerBattleOpponent_A);
     s16 opponentRotationScales = 0;
 
     gReservedSpritePaletteCount = 10;

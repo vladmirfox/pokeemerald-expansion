@@ -157,4 +157,9 @@ static inline const u8 *GetTrainerNameFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].trainerName;
 }
 
+static inline const u8 GetTrainerPicFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].trainerPic;
+}
+
 #endif // GUARD_DATA_H
