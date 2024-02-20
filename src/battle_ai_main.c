@@ -96,6 +96,7 @@ void BattleAI_SetupItems(void)
 {
     s32 i;
     u8 *data = (u8 *)BATTLE_HISTORY;
+    const u16 *items = GetTrainerItemsFromId(gTrainerBattleOpponent_A);
 
     for (i = 0; i < sizeof(struct BattleHistory); i++)
         data[i] = 0;
@@ -110,9 +111,9 @@ void BattleAI_SetupItems(void)
     {
         for (i = 0; i < MAX_TRAINER_ITEMS; i++)
         {
-            if (gTrainers[gTrainerBattleOpponent_A].items[i] != 0)
+            if (items[i] != ITEM_NONE)
             {
-                BATTLE_HISTORY->trainerItems[BATTLE_HISTORY->itemsNo] = gTrainers[gTrainerBattleOpponent_A].items[i];
+                BATTLE_HISTORY->trainerItems[BATTLE_HISTORY->itemsNo] = items[i];
                 BATTLE_HISTORY->itemsNo++;
             }
         }

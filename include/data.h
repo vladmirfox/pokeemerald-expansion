@@ -192,4 +192,9 @@ static inline const u8 GetTrainerMugshotColorFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].mugshotColor;
 }
 
+static inline const u16 *GetTrainerItemsFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].items;
+}
+
 #endif // GUARD_DATA_H
