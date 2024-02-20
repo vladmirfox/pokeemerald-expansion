@@ -3714,14 +3714,14 @@ static void DoBattleIntro(void)
             
             // Try to set a status to start the battle with
             gBattleStruct->startingStatus = 0;
-            if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && gTrainers[gTrainerBattleOpponent_B].startingStatus)
+            if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && GetTrainerStartingStatusFromId(gTrainerBattleOpponent_B))
             {
-                gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_B].startingStatus;
+                gBattleStruct->startingStatus = GetTrainerStartingStatusFromId(gTrainerBattleOpponent_B);
                 gBattleStruct->startingStatusTimer = 0; // infinite
             }
-            else if (gTrainers[gTrainerBattleOpponent_A].startingStatus)
+            else if (GetTrainerStartingStatusFromId(gTrainerBattleOpponent_A))
             {
-                gBattleStruct->startingStatus = gTrainers[gTrainerBattleOpponent_A].startingStatus;
+                gBattleStruct->startingStatus = GetTrainerStartingStatusFromId(gTrainerBattleOpponent_A);
                 gBattleStruct->startingStatusTimer = 0; // infinite
             }
             else if (B_VAR_STARTING_STATUS != 0)
