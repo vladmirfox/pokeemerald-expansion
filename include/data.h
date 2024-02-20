@@ -177,4 +177,9 @@ static inline const bool32 IsTrainerDoubleBattle(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].doubleBattle;
 }
 
+static inline const u8 GetTrainerPartySizeFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].partySize;
+}
+
 #endif // GUARD_DATA_H

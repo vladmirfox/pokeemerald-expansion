@@ -7469,7 +7469,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
 {
     u32 lastMonLevel = 0;
     u32 moneyReward;
-    u8 trainerMoney;
+    u8 trainerMoney = 0;
 
     if (trainerId == TRAINER_SECRET_BASE)
     {
@@ -7478,7 +7478,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     else
     {
         const struct TrainerMon *party = gTrainers[trainerId].party;
-        lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+        lastMonLevel = party[GetTrainerPartySizeFromId(trainerId) - 1].lvl;
         trainerMoney = gTrainerClasses[GetTrainerClassFromId(trainerId)].money;
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
