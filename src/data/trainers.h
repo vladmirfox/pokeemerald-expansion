@@ -7254,6 +7254,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("TIANA"),
         .items = {},
         .doubleBattle = FALSE,
+        .mugshotEnabled = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = TRAINER_PARTY(sParty_Tiana),
     },

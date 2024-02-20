@@ -182,4 +182,14 @@ static inline const u8 GetTrainerPartySizeFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].partySize;
 }
 
+static inline const bool32 DoesTrainerHaveMugshot(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].mugshotEnabled;
+}
+
+static inline const u8 GetTrainerMugshotColorFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].mugshotColor;
+}
+
 #endif // GUARD_DATA_H
