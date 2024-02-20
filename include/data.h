@@ -202,4 +202,9 @@ static inline const struct TrainerMon *GetTrainerPartyFromId(u16 trainerId)
     return gTrainers[SanitizeTrainerId(trainerId)].party;
 }
 
+static inline const bool32 GetTrainerAIFlagsFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].aiFlags;
+}
+
 #endif // GUARD_DATA_H
