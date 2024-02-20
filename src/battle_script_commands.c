@@ -7479,7 +7479,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     {
         const struct TrainerMon *party = gTrainers[trainerId].party;
         lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
-        trainerMoney = gTrainerClasses[gTrainers[trainerId].trainerClass].money;
+        trainerMoney = gTrainerClasses[GetTrainerClassFromId(trainerId)].money;
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * trainerMoney;

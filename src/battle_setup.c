@@ -879,18 +879,20 @@ u8 GetTrainerBattleTransition(void)
     u8 transitionType;
     u8 enemyLevel;
     u8 playerLevel;
+    u32 trainerId = SanitizeTrainerId(gTrainerBattleOpponent_A);
+    u32 trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
-    if (gTrainers[gTrainerBattleOpponent_A].mugshotEnabled)
+    if (gTrainers[trainerId].mugshotEnabled)
         return B_TRANSITION_MUGSHOT;
 
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_TEAM_MAGMA
-        || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_MAGMA_LEADER
-        || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_MAGMA_ADMIN)
+    if (trainerClass == TRAINER_CLASS_TEAM_MAGMA
+        || trainerClass == TRAINER_CLASS_MAGMA_LEADER
+        || trainerClass == TRAINER_CLASS_MAGMA_ADMIN)
         return B_TRANSITION_MAGMA;
 
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_TEAM_AQUA
-        || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_AQUA_LEADER
-        || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_AQUA_ADMIN)
+    if (trainerClass == TRAINER_CLASS_TEAM_AQUA
+        || trainerClass == TRAINER_CLASS_AQUA_LEADER
+        || trainerClass == TRAINER_CLASS_AQUA_ADMIN)
         return B_TRANSITION_AQUA;
 
     if (gTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)

@@ -6070,7 +6070,7 @@ static u8 GetDomeBrainTrainerPicId(void)
 
 static u8 GetDomeBrainTrainerClass(void)
 {
-    return gTrainers[TRAINER_TUCKER].trainerClass;
+    return GetTrainerClassFromId(TRAINER_TUCKER);
 }
 
 static void CopyDomeBrainTrainerName(u8 *str)

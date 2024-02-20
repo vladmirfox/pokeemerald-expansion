@@ -4792,11 +4792,11 @@ u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
     return retVal;
 }
 
-#define IS_LEAGUE_BATTLE                                                                \
-    ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)                                           \
-    && (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR    \
-     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER        \
-     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION))    \
+#define IS_LEAGUE_BATTLE(trainerClass)              \
+    ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)       \
+    && (trainerClass == TRAINER_CLASS_ELITE_FOUR    \
+     || trainerClass == TRAINER_CLASS_LEADER        \
+     || trainerClass == TRAINER_CLASS_CHAMPION))    \
 
 void AdjustFriendship(struct Pokemon *mon, u8 event)
 {
@@ -4829,6 +4829,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     {
         u8 friendshipLevel = 0;
         s16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
+        u32 opponentTrainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
         if (friendship > 99)
             friendshipLevel++;
@@ -4836,7 +4837,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
             friendshipLevel++;
 
         if ((event != FRIENDSHIP_EVENT_WALKING || !(Random() & 1))
-         && (event != FRIENDSHIP_EVENT_LEAGUE_BATTLE || IS_LEAGUE_BATTLE))
+         && (event != FRIENDSHIP_EVENT_LEAGUE_BATTLE || IS_LEAGUE_BATTLE(opponentTrainerClass)))
         {
             s8 mod = sFriendshipEventModifiers[event][friendshipLevel];
             if (mod > 0 && holdEffect == HOLD_EFFECT_FRIENDSHIP_UP)
@@ -5383,7 +5384,7 @@ u16 GetBattleBGM(void)
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
-            trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
         switch (trainerClass)
         {

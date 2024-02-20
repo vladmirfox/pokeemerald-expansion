@@ -138,11 +138,16 @@ static inline u16 SanitizeTrainerId(u16 trainerId)
     return trainerId;
 }
 
+static inline const u8 GetTrainerClassFromId(u16 trainerId)
+{
+    return gTrainers[SanitizeTrainerId(trainerId)].trainerClass;
+}
+
 static inline const u8 *GetTrainerClassNameFromId(u16 trainerId)
 {
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
         return gTrainerClasses[gBattlePartners[trainerId].trainerClass].name;
-    return gTrainerClasses[gTrainers[SanitizeTrainerId(trainerId)].trainerClass].name;
+    return gTrainerClasses[GetTrainerClassFromId(trainerId)].name;
 }
 
 static inline const u8 *GetTrainerNameFromId(u16 trainerId)

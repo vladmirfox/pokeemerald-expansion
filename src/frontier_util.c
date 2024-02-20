@@ -2421,7 +2421,7 @@ u8 GetFrontierBrainTrainerClass(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return gTrainers[sFrontierBrainTrainerIds[facility]].trainerClass;
+    return GetTrainerClassFromId(sFrontierBrainTrainerIds[facility]);
 }
 
 void CopyFrontierBrainTrainerName(u8 *dst)
