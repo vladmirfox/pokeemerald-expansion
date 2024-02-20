@@ -215,15 +215,35 @@ void SetMainCallback2(MainCallback callback)
 
 void StartTimer1(void)
 {
+    #if HQ_RANDOM == TRUE
+        REG_TM2CNT_L = 0;
+        // Increment when TM1 overflows.
+        REG_TM2CNT_H = 0x84;
+    #endif
+
     REG_TM1CNT_H = 0x80;
 }
 
 void SeedRngAndSetTrainerId(void)
 {
-    u16 val = REG_TM1CNT_L;
+    #if HQ_RANDOM == TRUE
+        u32 val;
+        REG_TM1CNT_H = 0;
+        REG_TM2CNT_H = 0;
+        val = ((u32)REG_TM2CNT_L) << 16;
+        val |= REG_TM1CNT_L;
+    #else
+        u16 val = REG_TM1CNT_L;
+    #endif
+
     SeedRng(val);
-    REG_TM1CNT_H = 0;
-    sTrainerId = val;
+
+    #if HQ_RANDOM == TRUE
+        sTrainerId = Random();
+    #else
+        REG_TM1CNT_H = 0;
+        sTrainerId = val;
+    #endif
 }
 
 u16 GetGeneratedTrainerIdLower(void)
