@@ -687,3 +687,85 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the Stellar type boosts all moves
         EXPECT_EQ(damage[1], damage[3]);
     }
 }
+
+SINGLE_BATTLE_TEST("(TERA) Protean cannot change the type of a Terastallized Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_PROTEAN); TeraType(TYPE_GRASS); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BUBBLE, tera: TRUE); 
+               MOVE(opponent, MOVE_EMBER); }
+    } SCENE {
+        MESSAGE("Greninja used Bubble!");
+        MESSAGE("Foe Wobbuffet used Ember!");
+        MESSAGE("It's super effective!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Status moves don't expend Stellar's one-time type boost")
+{
+    s16 damage[2];
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_GROWL, tera: TRUE); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Wobbuffet used Growl!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, player);
+        // turn 2
+        MESSAGE("Wobbuffet used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 3
+        MESSAGE("Wobbuffet used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_MUL_EQ(damage[1], UQ_4_12(1.20), damage[0]);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-typed moves")
+{
+    s16 damage[4];
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_WEATHER_BALL].type == TYPE_NORMAL);
+        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_DRIZZLE); TeraType(TYPE_STELLAR); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_WEATHER_BALL, tera: TRUE); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_TAKE_DOWN); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_WATER_PULSE); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_WATER_PULSE); MOVE(opponent, MOVE_RECOVER); }
+    } SCENE {
+        MESSAGE("Pelipper used Weather Ball!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WEATHER_BALL, player);
+        // turn 2
+        MESSAGE("Pelipper used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 3
+        MESSAGE("Pelipper used Take Down!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_DOWN, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 4
+        MESSAGE("Pelipper used Water Pulse!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PULSE, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+        // turn 5
+        MESSAGE("Pelipper used Water Pulse!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PULSE, player);
+        HP_BAR(opponent, captureDamage: &damage[3]);
+    } THEN {
+        // Take Down should have a Normal type boost applied
+        EXPECT_MUL_EQ(damage[1], UQ_4_12(1.20), damage[0]);
+        // Water Pulse should not have a Water type boost applied
+        EXPECT_EQ(damage[3], damage[2]);
+    }
+}

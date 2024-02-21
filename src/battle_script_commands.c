@@ -1245,7 +1245,8 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
          && !gDisableStructs[gBattlerAttacker].usedProteanLibero
          && (gBattleMons[battler].type1 != moveType || gBattleMons[battler].type2 != moveType
              || (gBattleMons[battler].type3 != moveType && gBattleMons[battler].type3 != TYPE_MYSTERY))
-         && move != MOVE_STRUGGLE)
+         && move != MOVE_STRUGGLE
+         && !IsTerastallized(battler))
     {
         SET_BATTLER_TYPE(battler, moveType);
         return TRUE;
@@ -14692,7 +14693,7 @@ static void Cmd_settypetoterrain(void)
         break;
     }
 
-    if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, terrainType))
+    if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, terrainType) && !IsTerastallized(gBattlerAttacker))
     {
         SET_BATTLER_TYPE(gBattlerAttacker, terrainType);
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, terrainType);
