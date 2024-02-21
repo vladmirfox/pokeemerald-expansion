@@ -1019,7 +1019,7 @@ SlateportCity_Text_GoingToCompeteInBattleTent:
 
 SlateportCity_Text_BushedHikingFromMauville:
 	.string "Whew… I'm just bushed…\p"
-	.string "I hiked over from MAUVILLE CITY.\n"
+	.string "I hiked over from AMSTERDAM.\n"
 	.string "But, boy, this city's huge.\p"
 	.string "If I'd known this, I would've ridden\n"
 	.string "my BIKE here.$"
@@ -1259,7 +1259,7 @@ SlateportCity_Text_OceanicMuseumSign:
 	.string "OCEANIC MUSEUM$"
 
 SlateportCity_Text_CitySign:
-	.string "SLATEPORT CITY\p"
+	.string "ALKMAAR\p"
 	.string "“The port where people and POKéMON\n"
 	.string "cross paths.”$"
 
