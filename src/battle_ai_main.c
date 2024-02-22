@@ -1909,19 +1909,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 break;
             }
             break;
-        case EFFECT_TEETER_DANCE:
-            if (((gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
-              || (!DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move) && aiData->abilities[battlerDef] == ABILITY_OWN_TEMPO)
-              || (IsBattlerGrounded(battlerDef) && AI_IsTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
-              || (DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
-             && ((gBattleMons[BATTLE_PARTNER(battlerDef)].status2 & STATUS2_CONFUSION)
-              || (!DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move) && aiData->abilities[BATTLE_PARTNER(battlerDef)] == ABILITY_OWN_TEMPO)
-              || (IsBattlerGrounded(BATTLE_PARTNER(battlerDef)) && AI_IsTerrainAffected(BATTLE_PARTNER(battlerDef), STATUS_FIELD_MISTY_TERRAIN))
-              || (DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), move))))
-            {
-               ADJUST_SCORE(-10);
-            }
-            break;
         case EFFECT_TRANSFORM:
             if (gBattleMons[battlerAtk].status2 & STATUS2_TRANSFORMED
               || (gBattleMons[battlerDef].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))) //Leave out Illusion b/c AI is supposed to be fooled
@@ -2964,7 +2951,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case EFFECT_SWAGGER:
                 if (gBattleMons[battlerAtkPartner].statStages[STAT_ATK] < MAX_STAT_STAGE
                  && HasMoveWithSplit(battlerAtkPartner, SPLIT_PHYSICAL)
-                 && (!AI_CanBeConfused(battlerAtkPartner, TRUE)
+                 && (!AI_CanBeConfused(battlerAtk, battlerAtkPartner, move, TRUE)
                   || atkPartnerHoldEffect == HOLD_EFFECT_CURE_CONFUSION
                   || atkPartnerHoldEffect == HOLD_EFFECT_CURE_STATUS))
                 {
@@ -2974,7 +2961,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case EFFECT_FLATTER:
                 if (gBattleMons[battlerAtkPartner].statStages[STAT_SPATK] < MAX_STAT_STAGE
                  && HasMoveWithSplit(battlerAtkPartner, SPLIT_SPECIAL)
-                 && (!AI_CanBeConfused(battlerAtkPartner, TRUE)
+                 && (!AI_CanBeConfused(battlerAtk, battlerAtkPartner, move, TRUE)
                   || atkPartnerHoldEffect == HOLD_EFFECT_CURE_CONFUSION
                   || atkPartnerHoldEffect == HOLD_EFFECT_CURE_STATUS))
                 {
@@ -4989,7 +4976,6 @@ static s32 AI_SetupFirstTurn(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     case EFFECT_WILL_O_WISP:
     case EFFECT_INGRAIN:
     case EFFECT_IMPRISON:
-    case EFFECT_TEETER_DANCE:
     case EFFECT_TICKLE:
     case EFFECT_COSMIC_POWER:
     case EFFECT_BULK_UP:
@@ -5059,7 +5045,6 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     case EFFECT_MIRROR_COAT:
     case EFFECT_FOCUS_PUNCH:
     case EFFECT_REVENGE:
-    case EFFECT_TEETER_DANCE:
         if (Random() & 1)
             ADJUST_SCORE(2);
         break;
