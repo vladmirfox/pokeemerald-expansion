@@ -1,6 +1,7 @@
 #ifndef GUARD_BATTLE_SCRIPTS_H
 #define GUARD_BATTLE_SCRIPTS_H
 
+extern const u8 BattleScript_SupersweetSyrupActivates[];
 extern const u8 BattleScript_OpportunistCopyStatChange[];
 extern const u8 BattleScript_MirrorHerbCopyStatChange[];
 extern const u8 BattleScript_MirrorHerbCopyStatChangeEnd2[];
@@ -53,6 +54,7 @@ extern const u8 BattleScript_DamagingWeatherContinues[];
 extern const u8 BattleScript_SandStormHailSnowEnds[];
 extern const u8 BattleScript_SunlightContinues[];
 extern const u8 BattleScript_SunlightFaded[];
+extern const u8 BattleScript_OverworldStatusStarts[];
 extern const u8 BattleScript_OverworldWeatherStarts[];
 extern const u8 BattleScript_OverworldTerrain[];
 extern const u8 BattleScript_SideStatusWoreOff[];
@@ -612,7 +614,6 @@ extern const u8 BattleScript_EffectSleepTalk[];
 extern const u8 BattleScript_EffectDestinyBond[];
 extern const u8 BattleScript_EffectSpite[];
 extern const u8 BattleScript_EffectHealBell[];
-extern const u8 BattleScript_EffectTripleKick[];
 extern const u8 BattleScript_EffectMeanLook[];
 extern const u8 BattleScript_EffectNightmare[];
 extern const u8 BattleScript_EffectMinimize[];
@@ -682,7 +683,6 @@ extern const u8 BattleScript_EffectImprison[];
 extern const u8 BattleScript_EffectRefresh[];
 extern const u8 BattleScript_EffectGrudge[];
 extern const u8 BattleScript_EffectSnatch[];
-extern const u8 BattleScript_EffectTeeterDance[];
 extern const u8 BattleScript_EffectHitEscape[];
 extern const u8 BattleScript_EffectMudSport[];
 extern const u8 BattleScript_EffectTickle[];
@@ -825,5 +825,6 @@ extern const u8 BattleScript_EffectDoodle[];
 extern const u8 BattleScript_EffectFilletAway[];
 extern const u8 BattleScript_EffectShedTail[];
 extern const u8 BattleScript_EffectUpperHand[];
+extern const u8 BattleScript_EffectTidyUp[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

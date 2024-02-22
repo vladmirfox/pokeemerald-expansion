@@ -420,7 +420,27 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
-#include "data/pokemon/level_up_learnsets.h"
+
+#if P_LVL_UP_LEARNSETS >= GEN_9
+#include "data/pokemon/level_up_learnsets/gen_9.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_8
+#include "data/pokemon/level_up_learnsets/gen_8.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_7
+#include "data/pokemon/level_up_learnsets/gen_7.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_6
+#include "data/pokemon/level_up_learnsets/gen_6.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_5
+#include "data/pokemon/level_up_learnsets/gen_5.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_4
+#include "data/pokemon/level_up_learnsets/gen_4.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_3
+#include "data/pokemon/level_up_learnsets/gen_3.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_2
+#include "data/pokemon/level_up_learnsets/gen_2.h"
+#elif P_LVL_UP_LEARNSETS >= GEN_1
+#include "data/pokemon/level_up_learnsets/gen_1.h"
+#endif
+
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
@@ -1927,7 +1947,7 @@ void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerPicId, u8 battlerPosition
             gMultiuseSpriteTemplate = gMonSpritesGfxPtr->templates[battlerPosition];
         else
             gMultiuseSpriteTemplate = gBattlerSpriteTemplates[battlerPosition];
-        gMultiuseSpriteTemplate.anims = gTrainerSprites[trainerPicId].animation;
+        gMultiuseSpriteTemplate.anims = sAnims_Trainer;
     }
 }
 
@@ -1939,7 +1959,7 @@ void SetMultiuseSpriteTemplateToTrainerFront(u16 trainerPicId, u8 battlerPositio
         gMultiuseSpriteTemplate = gBattlerSpriteTemplates[battlerPosition];
 
     gMultiuseSpriteTemplate.paletteTag = trainerPicId;
-    gMultiuseSpriteTemplate.anims = gTrainerSprites[trainerPicId].animation;
+    gMultiuseSpriteTemplate.anims = sAnims_Trainer;
 }
 
 static void EncryptBoxMon(struct BoxPokemon *boxMon)
@@ -3438,7 +3458,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+    #if FREE_ENIGMA_BERRY == FALSE
         holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+    #else
+        holdEffect = 0;
+    #endif //FREE_ENIGMA_BERRY
     else
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
@@ -3995,7 +4019,11 @@ u8 *UseStatIncreaseItem(u16 itemId)
         if (gMain.inBattle)
             itemEffect = gEnigmaBerries[gBattlerInMenuId].itemEffect;
         else
+        #if FREE_ENIGMA_BERRY == FALSE
             itemEffect = gSaveBlock1Ptr->enigmaBerry.itemEffect;
+        #else
+            itemEffect = 0;
+        #endif //FREE_ENIGMA_BERRY
     }
     else
     {
@@ -4088,7 +4116,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
         partnerHeldItem = GetMonData(tradePartner, MON_DATA_HELD_ITEM, 0);
 
         if (partnerHeldItem == ITEM_ENIGMA_BERRY_E_READER)
+        #if FREE_ENIGMA_BERRY == FALSE
             partnerHoldEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+            partnerHoldEffect = 0;
+        #endif //FREE_ENIGMA_BERRY
         else
             partnerHoldEffect = ItemId_GetHoldEffect(partnerHeldItem);
     }
@@ -4100,7 +4132,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     }
 
     if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+    #if FREE_ENIGMA_BERRY == FALSE
         holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+    #else
+        holdEffect = 0;
+    #endif //FREE_ENIGMA_BERRY
     else
         holdEffect = ItemId_GetHoldEffect(heldItem);
 
@@ -4717,7 +4753,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
     else if (InTrainerHillChallenge())
         return GetTrainerEncounterMusicIdInTrainerHill(trainerOpponentId);
     else
-        return TRAINER_ENCOUNTER_MUSIC(trainerOpponentId);
+        return gTrainers[SanitizeTrainerId(trainerOpponentId)].encounterMusic_gender & (F_TRAINER_FEMALE - 1);
 }
 
 u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
@@ -4756,11 +4792,11 @@ u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
     return retVal;
 }
 
-#define IS_LEAGUE_BATTLE                                                                \
-    ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)                                           \
-    && (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR    \
-     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER        \
-     || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION))    \
+#define IS_LEAGUE_BATTLE(trainerClass)              \
+    ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)       \
+    && (trainerClass == TRAINER_CLASS_ELITE_FOUR    \
+     || trainerClass == TRAINER_CLASS_LEADER        \
+     || trainerClass == TRAINER_CLASS_CHAMPION))    \
 
 void AdjustFriendship(struct Pokemon *mon, u8 event)
 {
@@ -4778,7 +4814,11 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
         if (gMain.inBattle)
             holdEffect = gEnigmaBerries[0].holdEffect;
         else
+        #if FREE_ENIGMA_BERRY == FALSE
             holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+            holdEffect = 0;
+        #endif //FREE_ENIGMA_BERRY
     }
     else
     {
@@ -4789,6 +4829,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     {
         u8 friendshipLevel = 0;
         s16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
+        u32 opponentTrainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
         if (friendship > 99)
             friendshipLevel++;
@@ -4796,7 +4837,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
             friendshipLevel++;
 
         if ((event != FRIENDSHIP_EVENT_WALKING || !(Random() & 1))
-         && (event != FRIENDSHIP_EVENT_LEAGUE_BATTLE || IS_LEAGUE_BATTLE))
+         && (event != FRIENDSHIP_EVENT_LEAGUE_BATTLE || IS_LEAGUE_BATTLE(opponentTrainerClass)))
         {
             s8 mod = sFriendshipEventModifiers[event][friendshipLevel];
             if (mod > 0 && holdEffect == HOLD_EFFECT_FRIENDSHIP_UP)
@@ -4835,7 +4876,11 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         if (gMain.inBattle)
             holdEffect = gEnigmaBerries[0].holdEffect;
         else
+        #if FREE_ENIGMA_BERRY == FALSE
             holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+        #else
+            holdEffect = 0;
+        #endif //FREE_ENIGMA_BERRY
     }
     else
     {
@@ -5127,27 +5172,19 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
         switch (move)
         {
         case MOVE_BADDY_BAD:
-        case MOVE_BLAST_BURN:
         case MOVE_BOUNCY_BUBBLE:
         case MOVE_BUZZY_BUZZ:
-        case MOVE_DRACO_METEOR:
         case MOVE_DRAGON_ASCENT:
-        case MOVE_FIRE_PLEDGE:
         case MOVE_FLOATY_FALL:
         case MOVE_FREEZY_FROST:
-        case MOVE_FRENZY_PLANT:
         case MOVE_GLITZY_GLOW:
-        case MOVE_GRASS_PLEDGE:
-        case MOVE_HYDRO_CANNON:
         case MOVE_RELIC_SONG:
         case MOVE_SAPPY_SEED:
         case MOVE_SECRET_SWORD:
         case MOVE_SIZZLY_SLIDE:
         case MOVE_SPARKLY_SWIRL:
         case MOVE_SPLISHY_SPLASH:
-        case MOVE_STEEL_BEAM:
         case MOVE_VOLT_TACKLE:
-        case MOVE_WATER_PLEDGE:
         case MOVE_ZIPPY_ZAP:
             return FALSE;
         default:
@@ -5347,7 +5384,7 @@ u16 GetBattleBGM(void)
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
-            trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
 
         switch (trainerClass)
         {
@@ -5366,7 +5403,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
-            if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))
+            if (!StringCompare(GetTrainerNameFromId(gTrainerBattleOpponent_A), gText_BattleWallyName))
                 return MUS_VS_TRAINER;
             return MUS_VS_RIVAL;
         case TRAINER_CLASS_ELITE_FOUR:
@@ -5651,7 +5688,7 @@ const u8 *GetTrainerPartnerName(void)
     {
         if (gPartnerTrainerId == TRAINER_PARTNER(PARTNER_STEVEN))
         {
-            return gTrainers[TRAINER_STEVEN].trainerName;
+            return GetTrainerNameFromId(TRAINER_STEVEN);
         }
         else
         {
@@ -5868,26 +5905,6 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
         if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
     }
-}
-
-const u8 *GetTrainerClassNameFromId(u16 trainerId)
-{
-    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gTrainerClasses[gBattlePartners[trainerId].trainerClass].name;
-    else if (trainerId < TRAINERS_COUNT)
-        return gTrainerClasses[gTrainers[trainerId].trainerClass].name;
-
-    return gTrainerClasses[gTrainers[TRAINER_NONE].trainerClass].name;
-}
-
-const u8 *GetTrainerNameFromId(u16 trainerId)
-{
-    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gBattlePartners[trainerId].trainerName;
-    else if (trainerId < TRAINERS_COUNT)
-        return gTrainers[trainerId].trainerName;
-
-    return gTrainers[TRAINER_NONE].trainerName;
 }
 
 bool8 HasTwoFramesAnimation(u16 species)

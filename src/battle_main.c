@@ -322,85 +322,83 @@ const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
     [TYPE_FAIRY] = _("Fairy"),
 };
 
-#define DEFAULT_MONEY 5
-#define DEFAULT_BALL ITEM_POKE_BALL
-
-#define TRAINER_CLASS(trainerClass, trainerName, trainerMoney, trainerBall) \
-    [TRAINER_CLASS_##trainerClass] =                                        \
-    {                                                                       \
-        .name = _(trainerName),                                             \
-        .money = trainerMoney,                                              \
-        .ball = trainerBall,                                                \
+// extra args are money and ball
+#define TRAINER_CLASS(trainerClass, trainerName, ...)   \
+    [TRAINER_CLASS_##trainerClass] =                    \
+    {                                                   \
+        .name = _(trainerName),                         \
+        .money = DEFAULT(5, __VA_ARGS__),               \
+        .ball = DEFAULT_2(ITEM_POKE_BALL, __VA_ARGS__), \
     }
 
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
 {
-    TRAINER_CLASS(PKMN_TRAINER_1, "{PKMN} TRAINER", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PKMN_TRAINER_2, "{PKMN} TRAINER", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(HIKER, "HIKER", 10, DEFAULT_BALL),
-    TRAINER_CLASS(TEAM_AQUA, "TEAM AQUA", 5, DEFAULT_BALL),
+    TRAINER_CLASS(PKMN_TRAINER_1, "{PKMN} TRAINER"),
+    TRAINER_CLASS(PKMN_TRAINER_2, "{PKMN} TRAINER"),
+    TRAINER_CLASS(HIKER, "HIKER", 10),
+    TRAINER_CLASS(TEAM_AQUA, "TEAM AQUA"),
     TRAINER_CLASS(PKMN_BREEDER, "{PKMN} BREEDER", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_HEAL_BALL : ITEM_FRIEND_BALL),
     TRAINER_CLASS(COOLTRAINER, "COOLTRAINER", 12, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(BIRD_KEEPER, "BIRD KEEPER", 8, DEFAULT_BALL),
+    TRAINER_CLASS(BIRD_KEEPER, "BIRD KEEPER", 8),
     TRAINER_CLASS(COLLECTOR, "COLLECTOR", 15, ITEM_PREMIER_BALL),
     TRAINER_CLASS(SWIMMER_M, "SWIMMER♂", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TEAM_MAGMA, "TEAM MAGMA", 5, DEFAULT_BALL),
-    TRAINER_CLASS(EXPERT, "EXPERT", 10, DEFAULT_BALL),
-    TRAINER_CLASS(AQUA_ADMIN, "AQUA ADMIN", 10, DEFAULT_BALL),
+    TRAINER_CLASS(TEAM_MAGMA, "TEAM MAGMA"),
+    TRAINER_CLASS(EXPERT, "EXPERT", 10),
+    TRAINER_CLASS(AQUA_ADMIN, "AQUA ADMIN", 10),
     TRAINER_CLASS(BLACK_BELT, "BLACK BELT", 8, ITEM_ULTRA_BALL),
     TRAINER_CLASS(AQUA_LEADER, "AQUA LEADER", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(HEX_MANIAC, "HEX MANIAC", 6, DEFAULT_BALL),
-    TRAINER_CLASS(AROMA_LADY, "AROMA LADY", 10, DEFAULT_BALL),
-    TRAINER_CLASS(RUIN_MANIAC, "RUIN MANIAC", 15, DEFAULT_BALL),
-    TRAINER_CLASS(INTERVIEWER, "INTERVIEWER", 12, DEFAULT_BALL),
-    TRAINER_CLASS(TUBER_F, "TUBER", 1, DEFAULT_BALL),
-    TRAINER_CLASS(TUBER_M, "TUBER", 1, DEFAULT_BALL),
-    TRAINER_CLASS(LADY, "LADY", 50, DEFAULT_BALL),
-    TRAINER_CLASS(BEAUTY, "BEAUTY", 20, DEFAULT_BALL),
-    TRAINER_CLASS(RICH_BOY, "RICH BOY", 50, DEFAULT_BALL),
-    TRAINER_CLASS(POKEMANIAC, "POKéMANIAC", 15, DEFAULT_BALL),
-    TRAINER_CLASS(GUITARIST, "GUITARIST", 8, DEFAULT_BALL),
-    TRAINER_CLASS(KINDLER, "KINDLER", 8, DEFAULT_BALL),
-    TRAINER_CLASS(CAMPER, "CAMPER", 4, DEFAULT_BALL),
-    TRAINER_CLASS(PICNICKER, "PICNICKER", 4, DEFAULT_BALL),
-    TRAINER_CLASS(BUG_MANIAC, "BUG MANIAC", 15, DEFAULT_BALL),
-    TRAINER_CLASS(PSYCHIC, "PSYCHIC", 6, DEFAULT_BALL),
+    TRAINER_CLASS(HEX_MANIAC, "HEX MANIAC", 6),
+    TRAINER_CLASS(AROMA_LADY, "AROMA LADY", 10),
+    TRAINER_CLASS(RUIN_MANIAC, "RUIN MANIAC", 15),
+    TRAINER_CLASS(INTERVIEWER, "INTERVIEWER", 12),
+    TRAINER_CLASS(TUBER_F, "TUBER", 1),
+    TRAINER_CLASS(TUBER_M, "TUBER", 1),
+    TRAINER_CLASS(LADY, "LADY", 50),
+    TRAINER_CLASS(BEAUTY, "BEAUTY", 20),
+    TRAINER_CLASS(RICH_BOY, "RICH BOY", 50),
+    TRAINER_CLASS(POKEMANIAC, "POKéMANIAC", 15),
+    TRAINER_CLASS(GUITARIST, "GUITARIST", 8),
+    TRAINER_CLASS(KINDLER, "KINDLER", 8),
+    TRAINER_CLASS(CAMPER, "CAMPER", 4),
+    TRAINER_CLASS(PICNICKER, "PICNICKER", 4),
+    TRAINER_CLASS(BUG_MANIAC, "BUG MANIAC", 15),
+    TRAINER_CLASS(PSYCHIC, "PSYCHIC", 6),
     TRAINER_CLASS(GENTLEMAN, "GENTLEMAN", 20, ITEM_LUXURY_BALL),
     TRAINER_CLASS(ELITE_FOUR, "ELITE FOUR", 25, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(LEADER, "LEADER", 25, DEFAULT_BALL),
-    TRAINER_CLASS(SCHOOL_KID, "SCHOOL KID", 5, DEFAULT_BALL),
-    TRAINER_CLASS(SR_AND_JR, "SR. AND JR.", 4, DEFAULT_BALL),
-    TRAINER_CLASS(WINSTRATE, "WINSTRATE", 10, DEFAULT_BALL),
-    TRAINER_CLASS(POKEFAN, "POKéFAN", 20, DEFAULT_BALL),
-    TRAINER_CLASS(YOUNGSTER, "YOUNGSTER", 4, DEFAULT_BALL),
-    TRAINER_CLASS(CHAMPION, "CHAMPION", 50, DEFAULT_BALL),
+    TRAINER_CLASS(LEADER, "LEADER", 25),
+    TRAINER_CLASS(SCHOOL_KID, "SCHOOL KID"),
+    TRAINER_CLASS(SR_AND_JR, "SR. AND JR.", 4),
+    TRAINER_CLASS(WINSTRATE, "WINSTRATE", 10),
+    TRAINER_CLASS(POKEFAN, "POKéFAN", 20),
+    TRAINER_CLASS(YOUNGSTER, "YOUNGSTER", 4),
+    TRAINER_CLASS(CHAMPION, "CHAMPION", 50),
     TRAINER_CLASS(FISHERMAN, "FISHERMAN", 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? ITEM_DIVE_BALL : ITEM_LURE_BALL),
-    TRAINER_CLASS(TRIATHLETE, "TRIATHLETE", 10, DEFAULT_BALL),
-    TRAINER_CLASS(DRAGON_TAMER, "DRAGON TAMER", 12, DEFAULT_BALL),
-    TRAINER_CLASS(NINJA_BOY, "NINJA BOY", 3, DEFAULT_BALL),
-    TRAINER_CLASS(BATTLE_GIRL, "BATTLE GIRL", 6, DEFAULT_BALL),
-    TRAINER_CLASS(PARASOL_LADY, "PARASOL LADY", 10, DEFAULT_BALL),
+    TRAINER_CLASS(TRIATHLETE, "TRIATHLETE", 10),
+    TRAINER_CLASS(DRAGON_TAMER, "DRAGON TAMER", 12),
+    TRAINER_CLASS(NINJA_BOY, "NINJA BOY", 3),
+    TRAINER_CLASS(BATTLE_GIRL, "BATTLE GIRL", 6),
+    TRAINER_CLASS(PARASOL_LADY, "PARASOL LADY", 10),
     TRAINER_CLASS(SWIMMER_F, "SWIMMER♀", 2, ITEM_DIVE_BALL),
-    TRAINER_CLASS(TWINS, "TWINS", 3, DEFAULT_BALL),
-    TRAINER_CLASS(SAILOR, "SAILOR", 8, DEFAULT_BALL),
-    TRAINER_CLASS(COOLTRAINER_2, "COOLTRAINER", DEFAULT_MONEY, ITEM_ULTRA_BALL),
-    TRAINER_CLASS(MAGMA_ADMIN, "MAGMA ADMIN", 10, DEFAULT_BALL),
-    TRAINER_CLASS(RIVAL, "{PKMN} TRAINER", 15, DEFAULT_BALL),
-    TRAINER_CLASS(BUG_CATCHER, "BUG CATCHER", 4, DEFAULT_BALL),
-    TRAINER_CLASS(PKMN_RANGER, "{PKMN} RANGER", 12, DEFAULT_BALL),
+    TRAINER_CLASS(TWINS, "TWINS", 3),
+    TRAINER_CLASS(SAILOR, "SAILOR", 8),
+    TRAINER_CLASS(COOLTRAINER_2, "COOLTRAINER", 5, ITEM_ULTRA_BALL),
+    TRAINER_CLASS(MAGMA_ADMIN, "MAGMA ADMIN", 10),
+    TRAINER_CLASS(RIVAL, "{PKMN} TRAINER", 15),
+    TRAINER_CLASS(BUG_CATCHER, "BUG CATCHER", 4),
+    TRAINER_CLASS(PKMN_RANGER, "{PKMN} RANGER", 12),
     TRAINER_CLASS(MAGMA_LEADER, "MAGMA LEADER", 20, ITEM_MASTER_BALL),
-    TRAINER_CLASS(LASS, "LASS", 4, DEFAULT_BALL),
-    TRAINER_CLASS(YOUNG_COUPLE, "YOUNG COUPLE", 8, DEFAULT_BALL),
-    TRAINER_CLASS(OLD_COUPLE, "OLD COUPLE", 10, DEFAULT_BALL),
-    TRAINER_CLASS(SIS_AND_BRO, "SIS AND BRO", 3, DEFAULT_BALL),
-    TRAINER_CLASS(SALON_MAIDEN, "SALON MAIDEN", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(DOME_ACE, "DOME ACE", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PALACE_MAVEN, "PALACE MAVEN", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(ARENA_TYCOON, "ARENA TYCOON", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(FACTORY_HEAD, "FACTORY HEAD", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PIKE_QUEEN, "PIKE QUEEN", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(PYRAMID_KING, "PYRAMID KING", DEFAULT_MONEY, DEFAULT_BALL),
-    TRAINER_CLASS(RS_PROTAG, "{PKMN} TRAINER", DEFAULT_MONEY, DEFAULT_BALL),
+    TRAINER_CLASS(LASS, "LASS", 4),
+    TRAINER_CLASS(YOUNG_COUPLE, "YOUNG COUPLE", 8),
+    TRAINER_CLASS(OLD_COUPLE, "OLD COUPLE", 10),
+    TRAINER_CLASS(SIS_AND_BRO, "SIS AND BRO", 3),
+    TRAINER_CLASS(SALON_MAIDEN, "SALON MAIDEN"),
+    TRAINER_CLASS(DOME_ACE, "DOME ACE"),
+    TRAINER_CLASS(PALACE_MAVEN, "PALACE MAVEN"),
+    TRAINER_CLASS(ARENA_TYCOON, "ARENA TYCOON"),
+    TRAINER_CLASS(FACTORY_HEAD, "FACTORY HEAD"),
+    TRAINER_CLASS(PIKE_QUEEN, "PIKE QUEEN"),
+    TRAINER_CLASS(PYRAMID_KING, "PYRAMID KING"),
+    TRAINER_CLASS(RS_PROTAG, "{PKMN} TRAINER"),
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -647,6 +645,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
 
     if (IsEnigmaBerryValid() == TRUE)
     {
+    #if FREE_ENIGMA_BERRY == FALSE
         for (i = 0; i < BERRY_NAME_LENGTH; i++)
             battleBerry->name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
         battleBerry->name[i] = EOS;
@@ -656,6 +655,7 @@ static void SetPlayerBerryDataInBattleStruct(void)
 
         battleBerry->holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
         battleBerry->holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+    #endif //FREE_ENIGMA_BERRY
     }
     else
     {
@@ -681,6 +681,7 @@ static void SetAllPlayersBerryData(void)
     {
         if (IsEnigmaBerryValid() == TRUE)
         {
+        #if FREE_ENIGMA_BERRY == FALSE
             for (i = 0; i < BERRY_NAME_LENGTH; i++)
             {
                 gEnigmaBerries[0].name[i] = gSaveBlock1Ptr->enigmaBerry.berry.name[i];
@@ -699,6 +700,7 @@ static void SetAllPlayersBerryData(void)
             gEnigmaBerries[2].holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
             gEnigmaBerries[0].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
             gEnigmaBerries[2].holdEffectParam = gSaveBlock1Ptr->enigmaBerry.holdEffectParam;
+        #endif //FREE_ENIGMA_BERRY
         }
         else
         {
@@ -1926,7 +1928,7 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
-    s32 i, j;
+    s32 i;
     u8 monsCount;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
@@ -1954,6 +1956,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             const struct TrainerMon *partyData = trainer->party;
             u32 otIdType = OT_ID_RANDOM_NO_SHINY;
             u32 fixedOtId = 0;
+            u32 ability = 0;
 
             if (trainer->doubleBattle == TRUE)
                 personalityValue = 0x80;
@@ -1967,8 +1970,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
-            if (partyData[i].nature != 0)
-                ModifyPersonalityForNature(&personalityValue, partyData[i].nature - 1);
+            ModifyPersonalityForNature(&personalityValue, partyData[i].nature);
             if (partyData[i].isShiny)
             {
                 otIdType = OT_ID_PRESET;
@@ -1992,14 +1994,24 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
                 u32 maxAbilities = ARRAY_COUNT(speciesInfo->abilities);
-                for (j = 0; j < maxAbilities; ++j)
+                for (ability = 0; ability < maxAbilities; ++ability)
                 {
-                    if (speciesInfo->abilities[j] == partyData[i].ability)
+                    if (speciesInfo->abilities[ability] == partyData[i].ability)
                         break;
                 }
-                if (j < maxAbilities)
-                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &j);
+                if (ability >= maxAbilities)
+                    ability = 0;
             }
+            else if (B_TRAINER_MON_RANDOM_ABILITY)
+            {
+                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[i].species];
+                ability = personalityHash % 3;
+                while (speciesInfo->abilities[ability] == ABILITY_NONE)
+                {
+                    ability--;
+                }
+            }
+            SetMonData(&party[i], MON_DATA_ABILITY_NUM, &ability);
             SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[i].friendship));
             if (partyData[i].ball != ITEM_NONE)
             {
@@ -2043,13 +2055,13 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 retVal;
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
-    retVal = CreateNPCTrainerPartyFromTrainer(party, &gTrainers[trainerNum], firstTrainer, gBattleTypeFlags);
+    retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
-        gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
+        gBattleTypeFlags |= (IsTrainerDoubleBattle(trainerNum) ? BATTLE_TYPE_DOUBLE : 0);
     }
     return retVal;
 }
@@ -2058,7 +2070,7 @@ void CreateTrainerPartyForPlayer(void)
 {
     ZeroPlayerPartyMons();
     gPartnerTrainerId = gSpecialVar_0x8004;
-    CreateNPCTrainerPartyFromTrainer(gPlayerParty, &gTrainers[gSpecialVar_0x8004], TRUE, BATTLE_TYPE_TRAINER);
+    CreateNPCTrainerPartyFromTrainer(gPlayerParty, GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, BATTLE_TYPE_TRAINER);
 }
 
 void VBlankCB_Battle(void)
@@ -3106,7 +3118,7 @@ void SwitchInClearSetData(u32 battler)
     }
     if (gMovesInfo[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
-        gBattleMons[battler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
+        gBattleMons[battler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY_ANY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
         gStatuses3[battler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
                                        | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
                                        | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
@@ -3232,6 +3244,7 @@ const u8* FaintClearSetData(u32 battler)
 {
     s32 i;
     const u8 *result = NULL;
+    u8 battlerSide = GetBattlerSide(battler);
 
     for (i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[battler].statStages[i] = DEFAULT_STAT_STAGE;
@@ -3318,7 +3331,7 @@ const u8* FaintClearSetData(u32 battler)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (i != battler && GetBattlerSide(i) != GetBattlerSide(battler))
+        if (i != battler && GetBattlerSide(i) != battlerSide)
             gBattleStruct->lastTakenMove[i] = MOVE_NONE;
 
         gBattleStruct->lastTakenMoveFrom[i][battler] = 0;
@@ -3698,6 +3711,24 @@ static void DoBattleIntro(void)
             gBattleStruct->overworldWeatherDone = FALSE;
             SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
             Ai_InitPartyStruct(); // Save mons party counts, and first 2/4 mons on the battlefield.
+            
+            // Try to set a status to start the battle with
+            gBattleStruct->startingStatus = 0;
+            if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && GetTrainerStartingStatusFromId(gTrainerBattleOpponent_B))
+            {
+                gBattleStruct->startingStatus = GetTrainerStartingStatusFromId(gTrainerBattleOpponent_B);
+                gBattleStruct->startingStatusTimer = 0; // infinite
+            }
+            else if (GetTrainerStartingStatusFromId(gTrainerBattleOpponent_A))
+            {
+                gBattleStruct->startingStatus = GetTrainerStartingStatusFromId(gTrainerBattleOpponent_A);
+                gBattleStruct->startingStatusTimer = 0; // infinite
+            }
+            else if (B_VAR_STARTING_STATUS != 0)
+            {
+                gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
+                gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
+            }
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
         break;
@@ -3760,6 +3791,14 @@ static void TryDoEventsBeforeFirstTurn(void)
     if (!gBattleStruct->terrainDone && AbilityBattleEffects(ABILITYEFFECT_SWITCH_IN_TERRAIN, 0, 0, ABILITYEFFECT_SWITCH_IN_TERRAIN, 0) != 0)
     {
         gBattleStruct->terrainDone = TRUE;
+        return;
+    }
+
+    if (!gBattleStruct->startingStatusDone
+     && gBattleStruct->startingStatus
+     && AbilityBattleEffects(ABILITYEFFECT_SWITCH_IN_STATUSES, 0, 0, ABILITYEFFECT_SWITCH_IN_STATUSES, 0) != 0)
+    {
+        gBattleStruct->startingStatusDone = TRUE;
         return;
     }
 
@@ -4769,9 +4808,9 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
             strikesFirst = -1;
         else if (ability2 == ABILITY_STALL && ability1 != ABILITY_STALL)
             strikesFirst = 1;
-        else if (ability1 == ABILITY_MYCELIUM_MIGHT && ability2 != ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove))
+        else if (ability1 == ABILITY_MYCELIUM_MIGHT && ability2 != ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gChosenMoveByBattler[battler1]))
             strikesFirst = -1;
-        else if (ability2 == ABILITY_MYCELIUM_MIGHT && ability1 != ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove))
+        else if (ability2 == ABILITY_MYCELIUM_MIGHT && ability1 != ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gChosenMoveByBattler[battler2]))
             strikesFirst = 1;
         else
         {
@@ -4954,6 +4993,7 @@ static void TurnValuesCleanUp(bool8 var0)
         else
         {
             memset(&gProtectStructs[i], 0, sizeof(struct ProtectStruct));
+            memset(&gQueuedStatBoosts[i], 0, sizeof(struct QueuedStatBoost));
 
             if (gDisableStructs[i].isFirstTurn)
                 gDisableStructs[i].isFirstTurn--;
@@ -5269,7 +5309,7 @@ static void HandleEndTurn_BattleWon(void)
         BattleStopLowHpSound();
         gBattlescriptCurrInstr = BattleScript_LocalTrainerBattleWon;
 
-        switch (gTrainers[gTrainerBattleOpponent_A].trainerClass)
+        switch (GetTrainerClassFromId(gTrainerBattleOpponent_A))
         {
         case TRAINER_CLASS_ELITE_FOUR:
         case TRAINER_CLASS_CHAMPION:
