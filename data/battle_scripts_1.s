@@ -20,6 +20,14 @@
 
 	.section script_data, "aw", %progbits
 
+BattleScript_Terastallization::
+	@ TODO: no string prints in S/V, but right now this helps with clarity
+	printstring STRINGID_PKMNTERASTALLIZEDINTO
+	@ TODO: replace this animation
+	playanimation BS_ATTACKER, B_ANIM_TOTEM_FLARE
+	waitanimation
+	end3
+
 BattleScript_LowerAtkSpAtk::
 	jumpifstat BS_EFFECT_BATTLER, CMP_GREATER_THAN, STAT_ATK, MIN_STAT_STAGE, BattleScript_LowerAtkSpAtkDoAnim
 	jumpifstat BS_EFFECT_BATTLER, CMP_EQUAL, STAT_SPATK, MIN_STAT_STAGE, BattleScript_LowerAtkSpAtkEnd

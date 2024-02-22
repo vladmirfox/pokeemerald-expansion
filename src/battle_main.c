@@ -5012,7 +5012,8 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 gBattleScripting.battler = gBattlerAttacker;
                 gBattleStruct->tera.toTera &= ~(gBitTable[gBattlerAttacker]);
                 PrepareBattlerForTera(gBattlerAttacker);
-                // BattleScriptExecute(BattleScript_DynamaxBegins);
+                PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(gBattlerAttacker));
+                BattleScriptExecute(BattleScript_Terastallization);
                 return TRUE;
             }
             // Dynamax Check
