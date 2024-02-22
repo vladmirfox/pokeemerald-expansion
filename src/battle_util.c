@@ -9804,6 +9804,9 @@ static uq4_12_t GetWeatherDamageModifier(u32 battlerAtk, u32 move, u32 moveType,
 
 static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 abilityAtk) // also for infatuation
 {
+    if (gBattleMons[battlerAtk].status2 & STATUS2_INFATUATION
+        && abilityAtk != ABILITY_OBLIVIOUS)
+        return UQ_4_12(0.5);
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN
         && IS_MOVE_PHYSICAL(move)
         && (B_BURN_FACADE_DMG < GEN_6 || gBattleMoves[move].effect != EFFECT_FACADE)
@@ -9813,9 +9816,6 @@ static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 
         && IS_MOVE_SPECIAL(move)
         && (B_BURN_FACADE_DMG < GEN_6 || gBattleMoves[move].effect != EFFECT_FACADE)
         && abilityAtk != ABILITY_GUTS)
-        return UQ_4_12(0.5);
-    if (gBattleMons[battlerAtk].status2 & STATUS2_INFATUATION
-        && abilityAtk != ABILITY_OBLIVIOUS)
         return UQ_4_12(0.5);
     return UQ_4_12(1.0);
 }
