@@ -217,7 +217,7 @@ void StartTimer1(void)
 {
     #if HQ_RANDOM == TRUE
         REG_TM2CNT_L = 0;
-        // Increment when TM1 overflows.
+        // Set timer 2 to count timer 1 overflows.
         REG_TM2CNT_H = 0x84;
     #endif
 
