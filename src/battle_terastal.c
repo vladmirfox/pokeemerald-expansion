@@ -179,14 +179,12 @@ const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
     [TYPE_DRAGON] = RGB(10, 18, 27),
     [TYPE_DARK] = RGB(6, 5, 8),
     [TYPE_FAIRY] = RGB(31, 15, 21),
+    [TYPE_STELLAR] = RGB(10, 18, 27),
 };
 
 u16 GetTeraTypeRGB(u32 type)
 {
-    if (type == TYPE_STELLAR)
-        return RGB(10, 18, 27);
-    else
-        return sTeraTypeRGBValues[type];
+    return sTeraTypeRGBValues[type];
 }
 
 // TERASTAL TRIGGER:
@@ -625,11 +623,6 @@ static const struct SpriteTemplate sSpriteTemplate_StellarIndicator =
     .callback = SpriteCb_TeraIndicator,
 };
 
-static const struct SpriteSheet sStellarIndicatorSpriteSheet =
-{
-    sStellarIndicatorGfx, sizeof(sStellarIndicatorGfx), TAG_STELLAR_INDICATOR_TILE,
-};
-
 static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] =
 {
     {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE},
@@ -651,6 +644,7 @@ static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] 
     {sDragonIndicatorGfx, sizeof(sDragonIndicatorGfx), TAG_DRAGON_INDICATOR_TILE},
     {sDarkIndicatorGfx, sizeof(sDarkIndicatorGfx), TAG_DARK_INDICATOR_TILE},
     {sFairyIndicatorGfx, sizeof(sFairyIndicatorGfx), TAG_FAIRY_INDICATOR_TILE},
+    {sStellarIndicatorGfx, sizeof(sFairyIndicatorGfx), TAG_STELLAR_INDICATOR_TILE},
 };
 
 static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_OF_MON_TYPES] =
@@ -673,6 +667,7 @@ static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_
     [TYPE_DRAGON] = &sSpriteTemplate_DragonIndicator,
     [TYPE_DARK] = &sSpriteTemplate_DarkIndicator,
     [TYPE_FAIRY] = &sSpriteTemplate_FairyIndicator,
+    [TYPE_STELLAR] = &sSpriteTemplate_StellarIndicator,
 };
 
 // for sprite data fields
@@ -697,7 +692,6 @@ static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_
 void TeraIndicator_LoadSpriteGfx(void)
 {
     LoadSpriteSheets(sTeraIndicatorSpriteSheets);
-    LoadSpriteSheet(&sStellarIndicatorSpriteSheet);
     LoadSpritePalette(&sSpritePalette_TeraIndicator);
 }
 
@@ -755,10 +749,7 @@ void TeraIndicator_CreateSprite(u32 battler, u32 healthboxSpriteId)
     x = sIndicatorPositions[position][0];
     y += sIndicatorPositions[position][1];
 
-    if (type == TYPE_STELLAR)
-        spriteId = gBattleStruct->tera.indicatorSpriteId[battler] = CreateSpriteAtEnd(&sSpriteTemplate_StellarIndicator, 0, y, 0);
-    else
-        spriteId = gBattleStruct->tera.indicatorSpriteId[battler] = CreateSpriteAtEnd(sTeraIndicatorSpriteTemplates[type], 0, y, 0);
+    spriteId = gBattleStruct->tera.indicatorSpriteId[battler] = CreateSpriteAtEnd(sTeraIndicatorSpriteTemplates[type], 0, y, 0);
     gSprites[spriteId].tBattler = battler;
     gSprites[spriteId].tPosX = x;
     gSprites[spriteId].invisible = TRUE;
