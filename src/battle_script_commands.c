@@ -3396,7 +3396,27 @@ static void SetStatus1Misc(u32 battler, u32 moveEffect, bool32 synchronize)
     }
 }
 
-struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check)
+struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
+{
+    struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, FALSE);
+    u16 moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
+    if (result.nextScript != 0)
+    {
+        BattleScriptPush(gBattlescriptCurrInstr + !moveEnd);
+        gBattlescriptCurrInstr = result.nextScript;
+    }
+    else
+        gBattlescriptCurrInstr += !moveEnd;
+
+    return result;
+}
+
+bool32 CheckMoveEffectResult(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
+{
+    return !CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, TRUE).fail;
+}
+
+struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check)
 {
     s32 i;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
@@ -4018,7 +4038,7 @@ static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additional
     if (additionalEffect->onlyIfTargetRaisedStats && !gProtectStructs[gBattlerTarget].statRaised)
         return FALSE;
 
-    // Certain additional effects on a turn where they've charged a two-turn move
+    // Certain additional effects only apply on a turn where they've charged a two-turn move
     // Other additional effects only apply after the charge move hits
     if (additionalEffect->onChargeTurnOnly != gProtectStructs[gBattlerAttacker].chargingTurn)
         return FALSE;
