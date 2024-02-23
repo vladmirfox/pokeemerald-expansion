@@ -1161,8 +1161,8 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
     {
         u16 premierBallsToAdd = tItemCount / 10;
         if (premierBallsToAdd >= 1
-            && ((I_PREMIER_BALL_BONUS <= GEN_6 && tItemId == ITEM_POKE_BALL)
-             || (I_PREMIER_BALL_BONUS >= GEN_7 && (ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS))))
+            && ((I_PREMIER_BALL_BONUS <= GEN_7 && tItemId == ITEM_POKE_BALL)
+             || (I_PREMIER_BALL_BONUS >= GEN_8 && (ItemId_GetPocket(tItemId) == POCKET_POKE_BALLS))))
         {
             u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_PREMIER_BALL);
             if (spaceAvailable < premierBallsToAdd)
@@ -1173,6 +1173,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
             premierBallsToAdd = 0;
         }
 
+        PlaySE(SE_SELECT);
         AddBagItem(ITEM_PREMIER_BALL, premierBallsToAdd);
         if (premierBallsToAdd > 0)
         {
@@ -1180,7 +1181,9 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
             BuyMenuDisplayMessage(taskId, (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall), BuyMenuReturnToItemList);
         }
         else
+        {
             BuyMenuReturnToItemList(taskId);
+        }
     }
 }
 
