@@ -1089,7 +1089,7 @@ const u8* CancelMultiTurnMoves(u32 battler)
                 else if (gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
                 {
                     gBattlerAttacker = otherSkyDropper;
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    // BattleScriptPush(gBattlescriptCurrInstr + 1);
                     result = BattleScript_ThrashConfuses;
                 }
             }
@@ -6114,28 +6114,33 @@ bool32 IsMoldBreakerTypeAbility(u32 ability)
 
 u32 GetBattlerAbility(u32 battler)
 {
-    if (gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed)
-        return gBattleMons[battler].ability;
+    return GetBattlerAbilityWithArgs(gBattlerAttacker, battler, gCurrentMove);
+}
 
-    if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
+u32 GetBattlerAbilityWithArgs(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    if (gAbilitiesInfo[gBattleMons[battlerDef].ability].cantBeSuppressed)
+        return gBattleMons[battlerDef].ability;
+
+    if (gStatuses3[battlerDef] & STATUS3_GASTRO_ACID)
         return ABILITY_NONE;
 
-    if (IsNeutralizingGasOnField() && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS)
+    if (IsNeutralizingGasOnField() && gBattleMons[battlerDef].ability != ABILITY_NEUTRALIZING_GAS)
         return ABILITY_NONE;
 
     if (IsMyceliumMightOnField())
         return ABILITY_NONE;
 
-    if (((IsMoldBreakerTypeAbility(gBattleMons[gBattlerAttacker].ability)
-            && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
-            || gMovesInfo[gCurrentMove].ignoresTargetAbility)
-            && gAbilitiesInfo[gBattleMons[battler].ability].breakable
-            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
-            && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
+    if (((IsMoldBreakerTypeAbility(gBattleMons[battlerAtk].ability)
+            && !(gStatuses3[battlerAtk] & STATUS3_GASTRO_ACID))
+            || gMovesInfo[move].ignoresTargetAbility)
+            && gAbilitiesInfo[gBattleMons[battlerDef].ability].breakable
+            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == battlerAtk
+            && gActionsByTurnOrder[gBattlerByTurnOrder[battlerAtk]] == B_ACTION_USE_MOVE
             && gCurrentTurnActionNumber < gBattlersCount)
         return ABILITY_NONE;
 
-    return gBattleMons[battler].ability;
+    return gBattleMons[battlerDef].ability;
 }
 
 u32 IsAbilityOnSide(u32 battler, u32 ability)
@@ -6145,7 +6150,7 @@ u32 IsAbilityOnSide(u32 battler, u32 ability)
     else if (IsBattlerAlive(BATTLE_PARTNER(battler)) && GetBattlerAbility(BATTLE_PARTNER(battler)) == ability)
         return BATTLE_PARTNER(battler) + 1;
     else
-        return 0;
+        return FALSE;
 }
 
 u32 IsAbilityOnOpposingSide(u32 battler, u32 ability)
@@ -11279,4 +11284,19 @@ bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef)
 
     // Return TRUE or FALSE depending on whether or not there are any stats to steal
     return (gBattleStruct->stolenStats[0] != 0);
+}
+
+bool32 BattlerSleepBlockedByUproar(u32 battlerAbility)
+{
+    u32 i;
+    if (battlerAbility != ABILITY_SOUNDPROOF)
+    {
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (gBattleMons[i].status2 & STATUS2_UPROAR)
+                return TRUE;
+        }
+    }
+    return FALSE;
+
 }

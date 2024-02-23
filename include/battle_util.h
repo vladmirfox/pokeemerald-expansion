@@ -148,6 +148,7 @@ bool32 TryPrimalReversion(u32 battler);
 bool32 IsNeutralizingGasOnField(void);
 bool32 IsMoldBreakerTypeAbility(u32 ability);
 u32 GetBattlerAbility(u32 battler);
+u32 GetBattlerAbilityWithArgs(u32 battlerAtk, u32 battlerDef, u32 move);
 u32 IsAbilityOnSide(u32 battler, u32 ability);
 u32 IsAbilityOnOpposingSide(u32 battler, u32 ability);
 u32 IsAbilityOnField(u32 ability);
@@ -252,5 +253,6 @@ bool8 IsMonBannedFromSkyBattles(u16 species);
 bool32 RemoveBattlerType(u32 battler, u8 type);
 bool32 BattlerHasChangedStats(u32 battler);
 bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef);
+bool32 BattlerSleepBlockedByUproar(u32 battlerAbility);
 
 #endif // GUARD_BATTLE_UTIL_H

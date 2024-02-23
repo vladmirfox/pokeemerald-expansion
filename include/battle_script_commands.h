@@ -22,14 +22,70 @@ struct PickupItem
     u8 percentage[10];
 };
 
+enum {
+    MOVE_EFFECT_BLOCKER_ABILITY,
+    MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE,
+    MOVE_EFFECT_BLOCKER_SUBSTITUTE,
+    MOVE_EFFECT_BLOCKER_TERRAIN,
+    MOVE_EFFECT_BLOCKER_SAFEGUARD,
+    MOVE_EFFECT_BLOCKER_ACCURACY,
+    MOVE_EFFECT_BLOCKER_UPROAR,
+    MOVE_EFFECT_BLOCKER_FLOWER_VEIL,
+    MOVE_EFFECT_BLOCKER_LEAF_GUARD,
+    MOVE_EFFECT_BLOCKER_SHIELDS_DOWN,
+    MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1,
+    MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1,
+    MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2,
+    MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3,
+    MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4,
+    MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY,
+    MOVE_EFFECT_BLOCKER_END
+};
+
+#define MOVE_EFFECT_BLOCKER_HAS_ANY_STATUS_1_FAIL_SCRIPT BattleScript_ButItFailed
+
+#define MOVE_EFFECT_BLOCKER_ABILITY(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY, .blockerId = _ability, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE, .blockerId = _ability, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_SUBSTITUTE(...) { .type = MOVE_EFFECT_BLOCKER_SUBSTITUTE, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_TERRAIN(_terrain, _script) { .type = MOVE_EFFECT_BLOCKER_TERRAIN, .blockerId = _terrain, .battleScript = _script }
+#define MOVE_EFFECT_BLOCKER_SAFEGUARD(...) { .type = MOVE_EFFECT_BLOCKER_SAFEGUARD, .battleScript = DEFAULT(BattleScript_SafeguardProtected, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ACCURACY(...) { .type = MOVE_EFFECT_BLOCKER_ACCURACY, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_UPROAR(...) { .type = MOVE_EFFECT_BLOCKER_UPROAR, .battleScript = DEFAULT(0, __VA_ARGS__) } /* BattleScript_CantMakeAsleep */
+#define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtectsRet, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(0, __VA_ARGS__) } /*BattleScript_AbilityProtectsDoesntAffectRet*/
+#define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(0, __VA_ARGS__) } /*BattleScript_AbilityProtectsDoesntAffectRet*/
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY(...) { .type = MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY, .battleScript = DEFAULT(0, __VA_ARGS__) }
+
+#define MAX_BLOCKERS 31 // arbitrary
+#define MOVE_EFFECT_BLOCKERS(...) (const struct MoveEffectBlocker[]){__VA_ARGS__, { .type = MOVE_EFFECT_BLOCKER_END}}
+
+struct MoveEffectBlocker
+{
+    u16 type;
+    u16 blockerId;
+    const u8 *battleScript;
+};
+
+struct MoveEffectResult
+{
+    bool32 fail;
+    const u8 *nextScript;
+};
+
 struct __attribute__((packed, aligned(2))) MoveEffectInfo
 {
     u32 statusFlag;
     const u8 *battleScript;
-    u8 activateAfterFaint:1;
-    u8 finalHitOnly:1;
-    u8 moveEndEffect:1;
-    u8 moveOnly:1;
+    const struct MoveEffectBlocker *blockers;
+    u16 activateAfterFaint:1;
+    u16 finalHitOnly:1;
+    u16 moveEndEffect:1;
+    u16 moveOnly:1;
 };
 
 #define SET_MOVE_EFFECT(moveEffect, ...) SetMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(gZeroArgument, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__), DEFAULT_5(FALSE, __VA_ARGS__))
@@ -41,7 +97,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
 u8 GetBattlerTurnOrderNum(u8 battlerId);
 bool32 NoAliveMonsForPlayer(void);
 bool32 NoAliveMonsForEitherParty(void);
-bool32 SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check);
+struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check);
 bool32 CanBattlerSwitch(u32 battlerId);
 void BattleDestroyYesNoCursorAt(u8 cursorPosition);
 void BattleCreateYesNoCursorAt(u8 cursorPosition);
