@@ -769,3 +769,34 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-
         EXPECT_EQ(damage[3], damage[2]);
     }
 }
+
+SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly")
+{
+    u32 type;
+    PARAMETRIZE { type = TYPE_NORMAL; }
+    PARAMETRIZE { type = TYPE_FIGHTING; }
+    PARAMETRIZE { type = TYPE_FLYING; }
+    PARAMETRIZE { type = TYPE_POISON; }
+    PARAMETRIZE { type = TYPE_GROUND; }
+    PARAMETRIZE { type = TYPE_ROCK; }
+    PARAMETRIZE { type = TYPE_BUG; }
+    PARAMETRIZE { type = TYPE_GHOST; }
+    PARAMETRIZE { type = TYPE_STEEL; }
+    PARAMETRIZE { type = TYPE_MYSTERY; }
+    PARAMETRIZE { type = TYPE_FIRE; }
+    PARAMETRIZE { type = TYPE_WATER; }
+    PARAMETRIZE { type = TYPE_GRASS; }
+    PARAMETRIZE { type = TYPE_ELECTRIC; }
+    PARAMETRIZE { type = TYPE_PSYCHIC; }
+    PARAMETRIZE { type = TYPE_ICE; }
+    PARAMETRIZE { type = TYPE_DRAGON; }
+    PARAMETRIZE { type = TYPE_DARK; }
+    PARAMETRIZE { type = TYPE_FAIRY; }
+    PARAMETRIZE { type = TYPE_STELLAR; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(type); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
+    }
+}

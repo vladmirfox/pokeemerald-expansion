@@ -49,7 +49,7 @@ bool32 CanTerastallize(u32 battler)
     if ((battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
         && !(CheckBagHasItem(ITEM_TERA_ORB, 1) && FlagGet(B_FLAG_TERA_ORB_CHARGE)))
 #endif
-        return FALSE;
+        // return FALSE;
 
     // Check if Trainer has already Terastallized.
     if (gBattleStruct->tera.alreadyTerastallized[battler])
@@ -170,6 +170,7 @@ const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
     [TYPE_BUG] = RGB(18, 24, 6),
     [TYPE_GHOST] = RGB(12, 10, 16),
     [TYPE_STEEL] = RGB(19, 19, 20),
+    [TYPE_MYSTERY] = RGB_WHITE,
     [TYPE_FIRE] = RGB(31, 20, 11),
     [TYPE_WATER] = RGB(10, 18, 27),
     [TYPE_GRASS] = RGB(12, 24, 11),
@@ -623,7 +624,7 @@ static const struct SpriteTemplate sSpriteTemplate_StellarIndicator =
     .callback = SpriteCb_TeraIndicator,
 };
 
-static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] =
+static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES + 1] =
 {
     {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE},
     {sFightingIndicatorGfx, sizeof(sFightingIndicatorGfx), TAG_FIGHTING_INDICATOR_TILE},
@@ -634,7 +635,7 @@ static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] 
     {sBugIndicatorGfx, sizeof(sBugIndicatorGfx), TAG_BUG_INDICATOR_TILE},
     {sGhostIndicatorGfx, sizeof(sGhostIndicatorGfx), TAG_GHOST_INDICATOR_TILE},
     {sSteelIndicatorGfx, sizeof(sSteelIndicatorGfx), TAG_STEEL_INDICATOR_TILE},
-    {0},
+    {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE}, // TYPE_MYSTERY
     {sFireIndicatorGfx, sizeof(sFireIndicatorGfx), TAG_FIRE_INDICATOR_TILE},
     {sWaterIndicatorGfx, sizeof(sWaterIndicatorGfx), TAG_WATER_INDICATOR_TILE},
     {sGrassIndicatorGfx, sizeof(sGrassIndicatorGfx), TAG_GRASS_INDICATOR_TILE},
@@ -644,7 +645,8 @@ static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] 
     {sDragonIndicatorGfx, sizeof(sDragonIndicatorGfx), TAG_DRAGON_INDICATOR_TILE},
     {sDarkIndicatorGfx, sizeof(sDarkIndicatorGfx), TAG_DARK_INDICATOR_TILE},
     {sFairyIndicatorGfx, sizeof(sFairyIndicatorGfx), TAG_FAIRY_INDICATOR_TILE},
-    {sStellarIndicatorGfx, sizeof(sFairyIndicatorGfx), TAG_STELLAR_INDICATOR_TILE},
+    {sStellarIndicatorGfx, sizeof(sStellarIndicatorGfx), TAG_STELLAR_INDICATOR_TILE},
+    {0}
 };
 
 static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_OF_MON_TYPES] =
@@ -658,6 +660,7 @@ static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_
     [TYPE_BUG] = &sSpriteTemplate_BugIndicator,
     [TYPE_GHOST] = &sSpriteTemplate_GhostIndicator,
     [TYPE_STEEL] = &sSpriteTemplate_SteelIndicator,
+    [TYPE_MYSTERY] = &sSpriteTemplate_NormalIndicator, // just in case
     [TYPE_FIRE] = &sSpriteTemplate_FireIndicator,
     [TYPE_WATER] = &sSpriteTemplate_WaterIndicator,
     [TYPE_GRASS] = &sSpriteTemplate_GrassIndicator,
