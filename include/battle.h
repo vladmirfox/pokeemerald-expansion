@@ -397,6 +397,7 @@ struct BattleResources
     struct AiLogicData *aiData;
     struct AIPartyData *aiParty;
     struct BattleHistory *battleHistory;
+    const u8 *lastCalledInstr;
     u8 bufferA[MAX_BATTLERS_COUNT][0x200];
     u8 bufferB[MAX_BATTLERS_COUNT][0x200];
     u8 transferBuffer[0x100];

@@ -51,9 +51,9 @@ enum {
 #define MOVE_EFFECT_BLOCKER_SAFEGUARD(...) { .type = MOVE_EFFECT_BLOCKER_SAFEGUARD, .battleScript = DEFAULT(BattleScript_SafeguardProtected, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ACCURACY(...) { .type = MOVE_EFFECT_BLOCKER_ACCURACY, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_UPROAR(...) { .type = MOVE_EFFECT_BLOCKER_UPROAR, .battleScript = DEFAULT(0, __VA_ARGS__) } /* BattleScript_CantMakeAsleep */
-#define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtectsRet, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(0, __VA_ARGS__) } /*BattleScript_AbilityProtectsDoesntAffectRet*/
-#define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(0, __VA_ARGS__) } /*BattleScript_AbilityProtectsDoesntAffectRet*/
+#define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtects, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
@@ -73,7 +73,7 @@ struct MoveEffectBlocker
 
 struct MoveEffectResult
 {
-    bool32 fail;
+    bool32 pass;
     const u8 *nextScript;
 };
 
@@ -86,9 +86,11 @@ struct __attribute__((packed, aligned(2))) MoveEffectInfo
     u16 finalHitOnly:1;
     u16 moveEndEffect:1;
     u16 moveOnly:1;
+    u16 canBeSynchronized;
 };
 
-#define SET_MOVE_EFFECT(moveEffect, ...) CheckOrSetMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(gZeroArgument, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__), DEFAULT_5(FALSE, __VA_ARGS__))
+#define SET_MOVE_EFFECT(moveEffect, ...) SetMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(gZeroArgument, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__))
+#define CHECK_MOVE_EFFECT(moveEffect, ...) CheckMoveEffect(moveEffect, DEFAULT(FALSE, __VA_ARGS__), DEFAULT_2(FALSE, __VA_ARGS__), DEFAULT_3(gZeroArgument, __VA_ARGS__), DEFAULT_4(MOVE_NONE, __VA_ARGS__), DEFAULT_5(FALSE, __VA_ARGS__))
 
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk);
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility);
@@ -98,7 +100,7 @@ u8 GetBattlerTurnOrderNum(u8 battlerId);
 bool32 NoAliveMonsForPlayer(void);
 bool32 NoAliveMonsForEitherParty(void);
 struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move);
-bool32 CheckMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move);
+bool32 CheckMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, bool32 callFailScript);
 struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check);
 bool32 CanBattlerSwitch(u32 battlerId);
 void BattleDestroyYesNoCursorAt(u8 cursorPosition);

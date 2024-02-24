@@ -102,23 +102,36 @@
 	jumpifhalfword CMP_EQUAL, sMOVE_EFFECT, MOVE_EFFECT_DELAY_OR_CONTINUE, 1b
 	.endm
 
-	.macro seteffectprimary moveEffect=0
+	.macro setmoveeffect moveEffect=0, primary:req
 	.if \moveEffect != 0
-		setmoveeffect \moveEffect
+		sethword sMOVE_EFFECT, \moveEffect
+		sethword sSAVED_MOVE_EFFECT, \moveEffect
 	.endif
 	.byte 0x16
 	.endm
 
+	.macro seteffectprimary moveEffect=0
+	setmoveeffect \moveEffect, TRUE
+	.endm
+
 	.macro seteffectsecondary moveEffect=0
-	.if \moveEffect != 0
-		setmoveeffect \moveEffect
-	.endif
+	setmoveeffect \moveEffect, FALSE
+	.endm
+
+	.macro checkifcansetmoveeffect moveEffect:req, primary=TRUE, callFailInstr=FALSE
 	.byte 0x17
+	.2byte \moveEffect
+	.byte \primary
+	.byte \callFailInstr
+	.endm
+
+	.macro failifcannotsetmoveeffect moveEffect:req
+	checkifcansetmoveeffect \moveEffect, TRUE, TRUE
 	.endm
 
 	.macro clearstatusfromeffect battler:req, moveEffect=0
 	.if \moveEffect != 0
-		setmoveeffect \moveEffect
+		sethword sMOVE_EFFECT, \moveEffect
 	.endif
 	.byte 0x18
 	.byte \battler
@@ -381,6 +394,11 @@
 
 	.macro end3
 	.byte 0x3f
+	.endm
+
+	.macro returnifcalled calledInstr:req
+	.byte 0x40
+	.4byte \calledInstr
 	.endm
 
 	.macro call instr:req
@@ -2167,6 +2185,12 @@
 	.4byte \jumpInstr
 	.endm
 
+	.macro jumpifnotspecies battler:req, species:req, jumpInstr:req
+	jumpifspecies \battler, \species, 1f
+	goto \jumpInstr
+	1:
+	.endm
+
 	.macro tryendneutralizinggas battler:req
 	various \battler, VARIOUS_TRY_END_NEUTRALIZING_GAS
 	.endm
@@ -2270,11 +2294,6 @@
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER, \stat | \stages << 3 | \down << 7
-	.endm
-
-	.macro setmoveeffect effect:req
-	sethword sMOVE_EFFECT, \effect
-	sethword sSAVED_MOVE_EFFECT, \effect
 	.endm
 
 	.macro chosenstatus1animation battler:req, status:req

@@ -19,6 +19,24 @@ SINGLE_BATTLE_TEST("Insomnia prevents sleep")
     }
 }
 
+SINGLE_BATTLE_TEST("Insomnia prevents sleep via secondary effect")
+{
+    GIVEN {
+        ASSUME(MoveHasMoveEffect(MOVE_RELIC_SONG, MOVE_EFFECT_SLEEP));
+        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); }
+        OPPONENT(SPECIES_MELOETTA);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_RELIC_SONG); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RELIC_SONG, opponent);
+        NONE_OF {
+            ABILITY_POPUP(player, ABILITY_INSOMNIA);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+            STATUS_ICON(player, sleep: TRUE);
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Insomnia prevents yawn")
 {
     GIVEN {

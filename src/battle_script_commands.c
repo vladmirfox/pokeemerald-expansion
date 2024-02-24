@@ -356,6 +356,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef, bool8 isIntimidate);
 static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
 static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount);
+static void CallInstrSetLastCalled(const u8 *instr);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -379,8 +380,8 @@ static void Cmd_waitmessage(void);
 static void Cmd_printfromtable(void);
 static void Cmd_printselectionstringfromtable(void);
 static void Cmd_setadditionaleffects(void);
-static void Cmd_seteffectprimary(void);
-static void Cmd_seteffectsecondary(void);
+static void Cmd_setmoveeffect(void);
+static void Cmd_checkifcansetmoveeffect(void);
 static void Cmd_clearstatusfromeffect(void);
 static void Cmd_tryfaintmon(void);
 static void Cmd_dofaintanimation(void);
@@ -421,7 +422,7 @@ static void Cmd_return(void);
 static void Cmd_end(void);
 static void Cmd_end2(void);
 static void Cmd_end3(void);
-static void Cmd_unused5(void);
+static void Cmd_returnifcalled(void);
 static void Cmd_call(void);
 static void Cmd_setroost(void);
 static void Cmd_jumpifabilitypresent(void);
@@ -638,8 +639,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_printfromtable,                          //0x13
     Cmd_printselectionstringfromtable,           //0x14
     Cmd_setadditionaleffects,                    //0x15
-    Cmd_seteffectprimary,                        //0x16
-    Cmd_seteffectsecondary,                      //0x17
+    Cmd_setmoveeffect,                           //0x16
+    Cmd_checkifcansetmoveeffect,                 //0x17
     Cmd_clearstatusfromeffect,                   //0x18
     Cmd_tryfaintmon,                             //0x19
     Cmd_dofaintanimation,                        //0x1A
@@ -680,7 +681,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_end,                                     //0x3D
     Cmd_end2,                                    //0x3E
     Cmd_end3,                                    //0x3F
-    Cmd_unused5,                 //0x40
+    Cmd_returnifcalled,                          //0x40
     Cmd_call,                                    //0x41
     Cmd_setroost,                                //0x42
     Cmd_jumpifabilitypresent,                    //0x43
@@ -899,19 +900,19 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectSleep,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(/*BattleScript_AlreadyAsleepRet*/),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(BattleScript_AlreadyAsleep),
             MOVE_EFFECT_BLOCKER_UPROAR(),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, /*BattleScript_AbilityPreventsSleepRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, /*BattleScript_AbilityPreventsSleepRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, BattleScript_AbilityPreventsSleep),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, BattleScript_AbilityPreventsSleep),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
-            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_SWEET_VEIL, BattleScript_SweetVeilProtectsRet),
+            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_SWEET_VEIL, BattleScript_SweetVeilProtects),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, /*BattleScript_ElectricTerrainPreventsRet*/0),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, BattleScript_ElectricTerrainPrevents),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
             MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
@@ -920,6 +921,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_POISON] = {
         .statusFlag = STATUS1_POISON,
         .battleScript = BattleScript_MoveEffectPoison,
+        .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, 0),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
@@ -941,6 +943,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_BURN] = {
         .statusFlag = STATUS1_BURN,
         .battleScript = BattleScript_MoveEffectBurn,
+        .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(0),
@@ -967,6 +970,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_PARALYSIS] = {
         .statusFlag = STATUS1_PARALYSIS,
         .battleScript = BattleScript_MoveEffectParalysis,
+        .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_LIMBER, 0),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
@@ -989,6 +993,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_TOXIC] = {
         .statusFlag = STATUS1_TOXIC_POISON,
         .battleScript = BattleScript_MoveEffectToxic,
+        .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, 0),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
@@ -1408,7 +1413,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_EffectPsychicNoise,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtectsRet)
+            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects)
         ),
     },
 };
@@ -1981,20 +1986,17 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
     return FALSE;
 }
 
-static void Cmd_unused5(void)
+static void Cmd_returnifcalled(void)
 {
-    CMD_ARGS(const u8 *failInstr);
+    CMD_ARGS(const u8 *calledInstr);
 
-    if (IsBattlerProtected(gBattlerTarget, gCurrentMove))
+    if (gBattleResources->lastCalledInstr == cmd->calledInstr)
     {
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
-        JumpIfMoveFailed(sizeof(*cmd), MOVE_NONE);
-        gBattleCommunication[MISS_TYPE] = B_MSG_PROTECTED;
+        gBattleResources->lastCalledInstr = 0;
+        BattleScriptPop();
     }
     else
-    {
         gBattlescriptCurrInstr = cmd->nextInstr;
-    }
 }
 
 static bool8 JumpIfMoveAffectedByProtect(u16 move)
@@ -3232,30 +3234,35 @@ static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertai
     return TRUE;
 }
 
-#define SET_FAIL_RESULT_END_LOOP                            \
-{                                                           \
-    result.fail = TRUE;                                     \
-    if (primaryOrCertain)                                   \
-        result.nextScript = info.blockers[i].battleScript;  \
-    i = MAX_BLOCKERS;                                       \
+#define SET_FAIL_RESULT_END_LOOP                        \
+{                                                       \
+    result.pass = FALSE;                                \
+    result.nextScript = info.blockers[i].battleScript;  \
+    return result;                                      \
 }
 
-#define IF_CAN_APPLY_MOVE_EFFECT(conditions, _moveEffect, ...)                                           \
-{                                                                                                        \
-    if (!(result = CanApplyMoveEffectWithCondition(moveEffect, move, (primary || certain), gEffectBattler, battlerAbility, UNPACK (conditions))).fail) \
-    {                                                                                                    \
-        if (!check)                                                                                      \
-        {                                                                                                \
-            UNPACK _moveEffect                                                                           \
-        }                                                                                                \
-    }                                                                                                    \
-    __VA_OPT__(else UNPACK __VA_ARGS__)                                                                                      \
+#define IF_CAN_APPLY_MOVE_EFFECT(conditions, _moveEffect, ...)  \
+{                                                               \
+    if ((result = CanApplyMoveEffectWithCondition(              \
+        moveEffect,                                             \
+        move,                                                   \
+        (primary || certain),                                   \
+        gEffectBattler,                                         \
+        battlerAbility,                                         \
+        UNPACK (conditions))).pass)                             \
+    {                                                           \
+        if (!check)                                             \
+        {                                                       \
+            UNPACK _moveEffect                                  \
+        }                                                       \
+    }                                                           \
+    __VA_OPT__(else UNPACK __VA_ARGS__)                         \
 }
 
 static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool32 primaryOrCertain, u32 battlerDef, u32 battlerAbility)
 {
     u32 i = 0;
-    struct MoveEffectResult result = { .fail = FALSE, .nextScript = gMoveEffectsInfo[moveEffect].battleScript };
+    struct MoveEffectResult result = { .pass = TRUE, .nextScript = gMoveEffectsInfo[moveEffect].battleScript };
     struct MoveEffectInfo info = gMoveEffectsInfo[moveEffect];
     if (info.blockers)
     {
@@ -3353,7 +3360,7 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
                         SET_FAIL_RESULT_END_LOOP
                     break;
                 default:
-                    i = MAX_BLOCKERS;
+                    return result;
             }
         } while (++i < MAX_BLOCKERS);
     }
@@ -3365,16 +3372,16 @@ static struct MoveEffectResult CanApplyMoveEffectWithCondition(u16 moveEffect, u
 {
     struct MoveEffectResult result = CanApplyMoveEffect(moveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
 
-    if (!result.fail && conditions == FALSE)
+    if (result.pass && conditions == FALSE)
     {
-        result.fail = TRUE;
+        result.pass = FALSE;
         result.nextScript = 0;
     }
 
     return result;
 }
 
-static void SetStatus1Misc(u32 battler, u32 moveEffect, bool32 synchronize)
+static void SetStatus1Misc(u32 battler)
 {
     BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
     MarkBattlerForControllerExec(battler);
@@ -3388,32 +3395,46 @@ static void SetStatus1Misc(u32 battler, u32 moveEffect, bool32 synchronize)
     {
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STATUSED;
     }
-
-    if (synchronize == TRUE)
-    {
-        gBattleStruct->synchronizeMoveEffect = moveEffect;
-        gHitMarker |= HITMARKER_SYNCHRONISE_EFFECT;
-    }
 }
 
 struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
 {
     struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, FALSE);
     u16 moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
-    if (result.nextScript != 0)
+
+    // In the case of failure, we only call nextScript if the effect is primary/certain
+    if (result.nextScript != 0 && (result.pass || primary || certain))
     {
         BattleScriptPush(gBattlescriptCurrInstr + !moveEnd);
-        gBattlescriptCurrInstr = result.nextScript;
+        CallInstrSetLastCalled(result.nextScript);
     }
     else
-        gBattlescriptCurrInstr += !moveEnd;
+        gBattlescriptCurrInstr += !moveEnd; // continue silently
+
+    // Activate synchronize
+    if (result.pass && gMoveEffectsInfo[moveEffect].canBeSynchronized == TRUE)
+    {
+        gBattleStruct->synchronizeMoveEffect = moveEffect;
+        gHitMarker |= HITMARKER_SYNCHRONISE_EFFECT;
+    }
 
     return result;
 }
 
-bool32 CheckMoveEffectResult(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
+bool32 CheckMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, bool32 callFailScript)
 {
-    return !CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, TRUE).fail;
+    struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, TRUE);
+
+    // If we set "callFailScript", we always go to the failure script
+    if (!result.pass && callFailScript)
+    {
+        if (result.nextScript != 0)
+            gBattlescriptCurrInstr = result.nextScript;
+        else
+            gBattlescriptCurrInstr = BattleScript_ButItFailed; // sensible default
+    }
+
+    return result.pass;
 }
 
 struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check)
@@ -3502,19 +3523,24 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             else
                 gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 2, 5));
 
-            SetStatus1Misc(gEffectBattler, moveEffect, FALSE);
+            SetStatus1Misc(gEffectBattler);
         ))
         break;
     case MOVE_EFFECT_POISON:
+    case MOVE_EFFECT_TOXIC:
         IF_CAN_APPLY_MOVE_EFFECT(TRUE,
         (
-            SetStatus1Misc(gEffectBattler, moveEffect, TRUE);
+            gBattleMons[gEffectBattler].status1 |= gMoveEffectsInfo[moveEffect].statusFlag;
+            SetStatus1Misc(gEffectBattler);
         ))
         break;
     case MOVE_EFFECT_BURN:
+    case MOVE_EFFECT_PARALYSIS:
+    case MOVE_EFFECT_FROSTBITE:
         IF_CAN_APPLY_MOVE_EFFECT(PassesGen1StatusTypeImmunityCheck(move, (primary || certain)),
         (
-            SetStatus1Misc(gEffectBattler, moveEffect, TRUE);
+            gBattleMons[gEffectBattler].status1 |= gMoveEffectsInfo[moveEffect].statusFlag;
+            SetStatus1Misc(gEffectBattler);
         ))
         break;
     case MOVE_EFFECT_FREEZE:
@@ -3524,24 +3550,8 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             if (cancelMultiTurnMovesResult)
                 result.nextScript = cancelMultiTurnMovesResult;
 
-            SetStatus1Misc(gEffectBattler, moveEffect, FALSE);
-        ))
-        break;
-    case MOVE_EFFECT_PARALYSIS:
-        IF_CAN_APPLY_MOVE_EFFECT(PassesGen1StatusTypeImmunityCheck(move, (primary || certain)),
-        (
-            SetStatus1Misc(gEffectBattler, moveEffect, TRUE);
-        ))
-        break;
-    case MOVE_EFFECT_FROSTBITE:
-        IF_CAN_APPLY_MOVE_EFFECT(PassesGen1StatusTypeImmunityCheck(move, (primary || certain)),
-        (
-            SetStatus1Misc(gEffectBattler, moveEffect, FALSE);
-        ))
-        break;
-    case MOVE_EFFECT_TOXIC:
-        IF_CAN_APPLY_MOVE_EFFECT(TRUE, (
-            SetStatus1Misc(gEffectBattler, moveEffect, TRUE);
+            gBattleMons[gEffectBattler].status1 |= gMoveEffectsInfo[moveEffect].statusFlag;
+            SetStatus1Misc(gEffectBattler);
         ))
         break;
     case MOVE_EFFECT_CONFUSION:
@@ -4066,7 +4076,7 @@ static void Cmd_setadditionaleffects(void)
                 // Activate effect if it's primary (chance == 0) or if RNGesus says so
                 if ((percentChance == 0) || RandomPercentage(RNG_SECONDARY_EFFECT + gBattleStruct->additionalEffectsCounter, percentChance))
                 {
-                    SET_MOVE_EFFECT(
+                    SetMoveEffect(
                         additionalEffect->moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffect->self)),
                         percentChance == 0, // a primary effect
                         percentChance >= 100, // certain to happen,
@@ -4102,20 +4112,20 @@ static void Cmd_setadditionaleffects(void)
     gBattleScripting.multihitMoveEffect = 0;
 }
 
-static void Cmd_seteffectprimary(void)
+static void Cmd_setmoveeffect(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(bool8 primary);
 
-    SET_MOVE_EFFECT(gBattleScripting.moveEffect, TRUE, FALSE, gZeroArgument, gCurrentMove);
+    SetMoveEffect(gBattleScripting.moveEffect, cmd->primary, FALSE, gZeroArgument, gCurrentMove);
     gBattleScripting.moveEffect = 0;
 }
 
-static void Cmd_seteffectsecondary(void)
+static void Cmd_checkifcansetmoveeffect(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(u16 moveEffect, bool8 primary, bool8 callFailInstr);
 
-    SET_MOVE_EFFECT(gBattleScripting.moveEffect, FALSE, FALSE, gZeroArgument, gCurrentMove);
-    gBattleScripting.moveEffect = 0;
+    if (CheckMoveEffect(cmd->moveEffect, cmd->primary, TRUE, gZeroArgument, gCurrentMove, TRUE))
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_clearstatusfromeffect(void)
@@ -5252,12 +5262,18 @@ static void Cmd_end3(void)
     gBattleMainFunc = gBattleResources->battleCallbackStack->function[gBattleResources->battleCallbackStack->size];
 }
 
+static void CallInstrSetLastCalled(const u8 *instr)
+{
+    gBattleResources->lastCalledInstr = instr;
+    gBattlescriptCurrInstr = instr;
+}
+
 static void Cmd_call(void)
 {
     CMD_ARGS(const u8 *instr);
 
     BattleScriptPush(cmd->nextInstr);
-    gBattlescriptCurrInstr = cmd->instr;
+    CallInstrSetLastCalled(cmd->instr);
 }
 
 static void Cmd_setroost(void)
@@ -11685,7 +11701,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                     BattleScriptPush(BS_ptr);
                     gBattleScripting.battler = battler;
                     gBattlerAbility = index - 1;
-                    gBattlescriptCurrInstr = BattleScript_FlowerVeilProtectsRet;
+                    CallInstrSetLastCalled(BattleScript_FlowerVeilProtects);
                     gLastUsedAbility = ABILITY_FLOWER_VEIL;
                     gSpecialStatuses[battler].statLowered = TRUE;
                 }
