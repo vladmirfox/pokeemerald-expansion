@@ -1366,6 +1366,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_EVASION_DOWN:
         case EFFECT_EVASION_DOWN_2:
+        case EFFECT_SPICY_EXTRACT:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_EVASION))
                 ADJUST_SCORE(-10);
             break;
@@ -2781,6 +2782,16 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
               || gMovesInfo[aiData->partnerMove].criticalHitStage > 0
               || HasMoveWithCriticalHitChance(battlerAtkPartner))
             ADJUST_SCORE(GOOD_EFFECT);
+        break;
+    case EFFECT_SPICY_EXTRACT:
+    {
+        u32 selectedTarget = GetMoveTarget(aiData->partnerMove, NO_TARGET_OVERRIDE);
+        if (gMovesInfo[aiData->partnerMove].category == DAMAGE_CATEGORY_PHYSICAL
+         && AI_STRIKES_FIRST(battlerAtkPartner, selectedTarget, aiData->partnerMove)
+         && !CanTargetMoveFaintAi(aiData->partnerMove, selectedTarget, battlerAtkPartner, 1))
+            ADJUST_SCORE(GOOD_EFFECT);
+        break;
+    }
     } // our effect relative to partner
 
     // consider global move effects
@@ -3394,6 +3405,9 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(WEAK_EFFECT);
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] < 7 || aiData->abilities[battlerAtk] == ABILITY_NO_GUARD)
             ADJUST_SCORE(-2);
+        break;
+    case EFFECT_SPICY_EXTRACT:
+        // TODO: Make IncreaseStatDownScore function, just like IncreaseStatUpScore
         break;
 	case EFFECT_BIDE:
         if (aiData->hpPercents[battlerAtk] < 90)
