@@ -35,6 +35,7 @@ BattleScript_EffectSpicyExtract::
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectSpicyExtractFromDefenseDrop:
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_TARGET, BIT_DEF, STAT_CHANGE_NEGATIVE | STAT_CHANGE_BY_TWO
 	setstatchanger STAT_DEF, 2, TRUE
@@ -44,6 +45,15 @@ BattleScript_EffectSpicyExtract::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_EffectSpicyExtract_End:
 	goto BattleScript_MoveEnd
+
+BattleScript_ItemNoStatLossSpicyExtract::
+	attackanimation
+	waitanimation
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_CLEARAMULETWONTLOWERSTATS
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_EffectSpicyExtractFromDefenseDrop
+
 
 BattleScript_EffectSpicyExtractDefenseDown2:
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT

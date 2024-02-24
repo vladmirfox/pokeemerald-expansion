@@ -17846,7 +17846,6 @@ ElectroShotUnleash:
 	end
 
 Move_SPICY_EXTRACT::
-Move_SPICY_EXTRACT::
 	loadspritegfx ANIM_TAG_SMALL_EMBER
 	loadspritegfx ANIM_TAG_POISON_BUBBLE
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES

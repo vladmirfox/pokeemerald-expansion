@@ -118,6 +118,28 @@ SINGLE_BATTLE_TEST("Spicy Extract will fail if target is in a semi-invulnerabili
     }
 }
 
+SINGLE_BATTLE_TEST("Spicy Extract stat changes will be inverted by Contrary")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
+    } SCENE {
+        MESSAGE("Wobbuffet used SpicyExtract!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Snivy's Attack harshly fell!");
+
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Snivy's Defense sharply rose!");
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 2);
+        EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
 SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defense only")
 {
     GIVEN {
@@ -127,8 +149,12 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
         MESSAGE("Wobbuffet used SpicyExtract!");
-        MESSAGE("Foe Snivy's Clear Amulet prevents its stats from being lowered!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Foe Snivy's Attack harshly fell!");
+        }
+        MESSAGE("Foe Snivy's Clear Amulet prevents its stats from being lowered!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Snivy's Defense sharply rose!");
     } THEN {
