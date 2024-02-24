@@ -50,7 +50,7 @@ enum {
 #define MOVE_EFFECT_BLOCKER_TERRAIN(_terrain, _script) { .type = MOVE_EFFECT_BLOCKER_TERRAIN, .blockerId = _terrain, .battleScript = _script }
 #define MOVE_EFFECT_BLOCKER_SAFEGUARD(...) { .type = MOVE_EFFECT_BLOCKER_SAFEGUARD, .battleScript = DEFAULT(BattleScript_SafeguardProtected, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ACCURACY(...) { .type = MOVE_EFFECT_BLOCKER_ACCURACY, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_UPROAR(...) { .type = MOVE_EFFECT_BLOCKER_UPROAR, .battleScript = DEFAULT(0, __VA_ARGS__) } /* BattleScript_CantMakeAsleep */
+#define MOVE_EFFECT_BLOCKER_UPROAR(...) { .type = MOVE_EFFECT_BLOCKER_UPROAR, .battleScript = DEFAULT(BattleScript_CantMakeAsleep, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtects, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }

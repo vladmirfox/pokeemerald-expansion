@@ -497,6 +497,7 @@ extern const u8 BattleScript_AromaVeilProtects[];
 
 // Move effect blockers
 extern const u8 BattleScript_AlreadyAsleep[];
+extern const u8 BattleScript_CantMakeAsleep[];
 extern const u8 BattleScript_AbilityPreventsSleep[];
 extern const u8 BattleScript_AbilityProtectsDoesntAffect[];
 extern const u8 BattleScript_ElectricTerrainPrevents[];
