@@ -2788,6 +2788,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         u32 selectedTarget = GetMoveTarget(aiData->partnerMove, NO_TARGET_OVERRIDE);
         if (gMovesInfo[aiData->partnerMove].category == DAMAGE_CATEGORY_PHYSICAL
          && AI_STRIKES_FIRST(battlerAtkPartner, selectedTarget, aiData->partnerMove)
+         && AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, move) // Faster then partner
          && !CanTargetMoveFaintAi(aiData->partnerMove, selectedTarget, battlerAtkPartner, 1))
             ADJUST_SCORE(GOOD_EFFECT);
         break;
