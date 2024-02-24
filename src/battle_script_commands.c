@@ -3615,7 +3615,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 MOVE_EFFECT_FREEZE_OR_FROSTBITE,
                 MOVE_EFFECT_PARALYSIS
             };
-            return SET_MOVE_EFFECT(RandomElement(RNG_TRI_ATTACK, sTriAttackEffects), primary, certain, argument, move);
+            return CheckOrSetMoveEffect(RandomElement(RNG_TRI_ATTACK, sTriAttackEffects), primary, certain, argument, move, check);
         }
     case MOVE_EFFECT_CHARGING:
         IF_CAN_APPLY_MOVE_EFFECT(TRUE,
@@ -3914,7 +3914,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         IF_CAN_APPLY_MOVE_EFFECT((!gBattleMons[gEffectBattler].status1),
         (
             static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_PARALYSIS, MOVE_EFFECT_SLEEP };
-            return SET_MOVE_EFFECT(RandomElement(RNG_DIRE_CLAW, sDireClawEffects), primary, certain, argument, move);
+            return CheckOrSetMoveEffect(RandomElement(RNG_DIRE_CLAW, sDireClawEffects), primary, certain, argument, move, check);
         ))
         break;
     case MOVE_EFFECT_STEALTH_ROCK:
@@ -4023,7 +4023,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 break;
             }
         }
-        return SET_MOVE_EFFECT(moveEffect, primary, certain, argument, move);
+        return CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, check);
     case MOVE_EFFECT_PSYCHIC_NOISE:
         IF_CAN_APPLY_MOVE_EFFECT((!(gStatuses3[gEffectBattler] & STATUS3_HEAL_BLOCK)),
         (
