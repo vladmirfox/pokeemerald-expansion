@@ -78,6 +78,10 @@
 #define DEFAULT_4(_default, ...) DEFAULT(_default __VA_OPT__(, FOURTH(__VA_ARGS__)))
 #define DEFAULT_5(_default, ...) DEFAULT(_default __VA_OPT__(, FIFTH(__VA_ARGS__)))
 
+/* A, B, C, or A, B, B, or A, A, A*/
+#define AUTOFILL_2(a, ...) a, DEFAULT(a, __VA_ARGS__)
+#define AUTOFILL_3(a, ...) a, DEFAULT(a, __VA_ARGS__), FIRST(__VA_OPT__(DEFAULT(FIRST(__VA_ARGS__), EXCEPT_1(__VA_ARGS__)),) a)
+
 /* (Credit to MGriffin) A rather monstrous way of finding the set bit in a word.
 Invalid input causes a compiler error. Sample: https://cexplore.karathan.at/z/x1hm7B */
 #define BIT_INDEX(n) \

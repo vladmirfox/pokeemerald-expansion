@@ -897,11 +897,6 @@
 #define B_MSG_STATUSED            0
 #define B_MSG_STATUSED_BY_ABILITY 1
 
-// gBRNPreventionStringIds / gPRLZPreventionStringIds / gPSNPreventionStringIds
-#define B_MSG_ABILITY_PREVENTS_MOVE_STATUS    0
-#define B_MSG_ABILITY_PREVENTS_ABILITY_STATUS 1
-#define B_MSG_STATUS_HAD_NO_EFFECT            2
-
 // gGotDefrostedStringIds
 #define B_MSG_DEFROSTED         0
 #define B_MSG_DEFROSTED_BY_MOVE 1

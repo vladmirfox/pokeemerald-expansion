@@ -33,41 +33,50 @@ enum {
     MOVE_EFFECT_BLOCKER_FLOWER_VEIL,
     MOVE_EFFECT_BLOCKER_LEAF_GUARD,
     MOVE_EFFECT_BLOCKER_SHIELDS_DOWN,
+    MOVE_EFFECT_BLOCKER_TYPE,
     MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1,
     MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1,
     MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2,
     MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3,
     MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4,
     MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY,
+    MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT,
     MOVE_EFFECT_BLOCKER_END
 };
 
 #define MOVE_EFFECT_BLOCKER_HAS_ANY_STATUS_1_FAIL_SCRIPT BattleScript_ButItFailed
 
-#define MOVE_EFFECT_BLOCKER_ABILITY(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY, .blockerId = _ability, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE, .blockerId = _ability, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ABILITY(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY, .blocker = { .ability = _ability }, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(_ability, ...) { .type = MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE, .blocker = { .ability = _ability }, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_SUBSTITUTE(...) { .type = MOVE_EFFECT_BLOCKER_SUBSTITUTE, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_TERRAIN(_terrain, _script) { .type = MOVE_EFFECT_BLOCKER_TERRAIN, .blockerId = _terrain, .battleScript = _script }
+#define MOVE_EFFECT_BLOCKER_TERRAIN(_terrain, _script) { .type = MOVE_EFFECT_BLOCKER_TERRAIN, .blocker = { .terrain = _terrain }, .battleScript = _script }
 #define MOVE_EFFECT_BLOCKER_SAFEGUARD(...) { .type = MOVE_EFFECT_BLOCKER_SAFEGUARD, .battleScript = DEFAULT(BattleScript_SafeguardProtected, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ACCURACY(...) { .type = MOVE_EFFECT_BLOCKER_ACCURACY, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_UPROAR(...) { .type = MOVE_EFFECT_BLOCKER_UPROAR, .battleScript = DEFAULT(BattleScript_CantMakeAsleep, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtects, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(BattleScript_AbilityProtectsDoesntAffect, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_TYPE(_types, ...) { .type = MOVE_EFFECT_BLOCKER_TYPE, .blocker = { .types = { AUTOFILL_3 _types } }, .battleScript = DEFAULT(BattleScript_NotAffected, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1, .battleScript = DEFAULT(BattleScript_AlreadyHasMoveEffectStatus, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2, .battleScript = DEFAULT(BattleScript_AlreadyHasMoveEffectStatus, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY(...) { .type = MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY, .battleScript = DEFAULT(0, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT(_moveEffect) { .type = MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT, .blocker = { .otherMoveEffect = _moveEffect } }
 
 #define MAX_BLOCKERS 31 // arbitrary
 #define MOVE_EFFECT_BLOCKERS(...) (const struct MoveEffectBlocker[]){__VA_ARGS__, { .type = MOVE_EFFECT_BLOCKER_END}}
 
 struct MoveEffectBlocker
 {
-    u16 type;
-    u16 blockerId;
+    u8 type;
+    union {
+        u16 ability;
+        u16 terrain;
+        u16 otherMoveEffect;
+        u8 types[3];
+    } blocker;
     const u8 *battleScript;
 };
 

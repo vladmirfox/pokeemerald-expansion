@@ -174,9 +174,6 @@ extern const u8 BattleScript_FlashFireBoost_PPLoss[];
 extern const u8 BattleScript_FlashFireBoost[];
 extern const u8 BattleScript_AbilityNoStatLoss[];
 extern const u8 BattleScript_ItemNoStatLoss[];
-extern const u8 BattleScript_BRNPrevention[];
-extern const u8 BattleScript_PRLZPrevention[];
-extern const u8 BattleScript_PSNPrevention[];
 extern const u8 BattleScript_ObliviousPreventsAttraction[];
 extern const u8 BattleScript_FlinchPrevention[];
 extern const u8 BattleScript_OwnTempoPrevents[];
@@ -337,6 +334,7 @@ extern const u8 BattleScript_KingsShieldEffect[];
 extern const u8 BattleScript_BanefulBunkerEffect[];
 extern const u8 BattleScript_FlowerVeilProtects[];
 extern const u8 BattleScript_SweetVeilProtects[];
+extern const u8 BattleScript_PastelVeilProtects[];
 extern const u8 BattleScript_MoveEffectCoreEnforcer[];
 extern const u8 BattleScript_SelectingNotAllowedMoveThroatChop[];
 extern const u8 BattleScript_MoveUsedIsThroatChopPrevented[];
@@ -496,12 +494,15 @@ extern const u8 BattleScript_EffectPsychicNoise[];
 extern const u8 BattleScript_AromaVeilProtects[];
 
 // Move effect blockers
-extern const u8 BattleScript_AlreadyAsleep[];
+extern const u8 BattleScript_AlreadyHasMoveEffectStatus[];
 extern const u8 BattleScript_CantMakeAsleep[];
 extern const u8 BattleScript_AbilityPreventsSleep[];
 extern const u8 BattleScript_AbilityProtectsDoesntAffect[];
 extern const u8 BattleScript_ElectricTerrainPrevents[];
 extern const u8 BattleScript_MistyTerrainPrevents[];
+extern const u8 BattleScript_LimberProtected[];
+extern const u8 BattleScript_AbilityPreventsBurns[];
+extern const u8 BattleScript_ImmunityProtected[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];

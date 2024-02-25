@@ -900,7 +900,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectSleep,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(BattleScript_AlreadyAsleep),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
             MOVE_EFFECT_BLOCKER_UPROAR(),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, BattleScript_AbilityPreventsSleep),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, BattleScript_AbilityPreventsSleep),
@@ -913,7 +913,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, BattleScript_ElectricTerrainPrevents),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
+            // MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
     },
@@ -923,18 +923,18 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectPoison,
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_PASTEL_VEIL, 0),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, BattleScript_ImmunityProtected),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_PASTEL_VEIL, BattleScript_PastelVeilProtects),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(0),
-            // MOVE_EFFECT_BLOCKER_TYPE()
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
+            MOVE_EFFECT_BLOCKER_TYPE((TYPE_POISON, TYPE_STEEL)),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
             MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
@@ -946,25 +946,39 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(0),
-            // MOVE_EFFECT_BLOCKER_TYPE()
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_VEIL, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_BUBBLE, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
+            MOVE_EFFECT_BLOCKER_TYPE((TYPE_FIRE)),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_VEIL, BattleScript_AbilityPreventsBurns),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_BUBBLE, BattleScript_AbilityPreventsBurns),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
+            // MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
-        )
+        ),
     },
 
     [MOVE_EFFECT_FREEZE] = {
         .statusFlag = STATUS1_FREEZE,
         .battleScript = BattleScript_MoveEffectFreeze,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
+            MOVE_EFFECT_BLOCKER_TYPE((TYPE_ICE)),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_MAGMA_ARMOR, 0),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
+            MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
+            MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
+            MOVE_EFFECT_BLOCKER_SAFEGUARD()
+        ),
     },
 
     [MOVE_EFFECT_PARALYSIS] = {
@@ -972,19 +986,21 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectParalysis,
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_LIMBER, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_LIMBER, BattleScript_LimberProtected),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            // MOVE_EFFECT_BLOCKER_TYPE_CHART()
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(0),
+            // MOVE_EFFECT_BLOCKER_TYPE_CHART() // For Thunder Wave
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
             // MOVE_EFFECT_BLOCKER_ABSORB() // this one's funky
-            // MOVE_EFFECT_BLOCKER_TYPE()
+        #if B_PARALYZE_ELECTRIC >= GEN_6
+            MOVE_EFFECT_BLOCKER_TYPE((TYPE_ELECTRIC)),
+        #endif
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
             MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
@@ -995,37 +1011,26 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectToxic,
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, /*BattleScript_AbilityProtectsDoesntAffectRet*/0),
-            MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_PASTEL_VEIL, 0),
-            MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
-            MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
-            MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
-            MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(0),
-            // MOVE_EFFECT_BLOCKER_TYPE()
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, /*BattleScript_ElectricTerrainPreventsRet*/0),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
-            MOVE_EFFECT_BLOCKER_SAFEGUARD()
+            MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT(MOVE_EFFECT_POISON)
         ),
     },
 
     [MOVE_EFFECT_FROSTBITE] = {
         .statusFlag = STATUS1_FROSTBITE,
         .battleScript = BattleScript_MoveEffectFrostbite,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT(MOVE_EFFECT_FREEZE)
+        ),
     },
 
     [MOVE_EFFECT_CONFUSION] = {
         .statusFlag = STATUS2_CONFUSION,
         .battleScript = BattleScript_MoveEffectConfusion,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_OWN_TEMPO, /*BattleScript_OwnTempoPreventsRet*/0),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents),
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(/*BattleScript_AlreadyConfused*/0),
-            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, /*BattleScript_MistyTerrainPreventsRet*/0),
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(),
+            MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
             MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
@@ -3236,9 +3241,9 @@ static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertai
 
 #define SET_FAIL_RESULT_END_LOOP                        \
 {                                                       \
-    result.pass = FALSE;                                \
-    result.nextScript = info.blockers[i].battleScript;  \
-    return result;                                      \
+    result->pass = FALSE;                               \
+    result->nextScript = info.blockers[i].battleScript; \
+    return;                                             \
 }
 
 #define IF_CAN_APPLY_MOVE_EFFECT(conditions, _moveEffect, ...)  \
@@ -3259,10 +3264,9 @@ static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertai
     __VA_OPT__(else UNPACK __VA_ARGS__)                         \
 }
 
-static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool32 primaryOrCertain, u32 battlerDef, u32 battlerAbility)
+static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, u16 move, bool32 primaryOrCertain, u32 battlerDef, u32 battlerAbility)
 {
     u32 i = 0;
-    struct MoveEffectResult result = { .pass = TRUE, .nextScript = gMoveEffectsInfo[moveEffect].battleScript };
     struct MoveEffectInfo info = gMoveEffectsInfo[moveEffect];
     if (info.blockers)
     {
@@ -3270,7 +3274,7 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
             switch (info.blockers[i].type)
             {
                 case MOVE_EFFECT_BLOCKER_ABILITY:
-                    if (battlerAbility == info.blockers[i].blockerId)
+                    if (battlerAbility == info.blockers[i].blocker.ability)
                     {
                         if (primaryOrCertain)
                         {
@@ -3283,14 +3287,14 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
                     break;
                 case MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE:
                 {
-                    u32 abilityOnSide = IsAbilityOnSide(battlerDef, info.blockers[i].blockerId);
+                    u32 abilityOnSide = IsAbilityOnSide(battlerDef, info.blockers[i].blocker.ability);
                     if (abilityOnSide)
                     {
                         if (primaryOrCertain)
                         {
                             gBattlerAbility = abilityOnSide - 1;
-                            gLastUsedAbility = info.blockers[i].blockerId;
-                            RecordAbilityBattle(gBattlerAbility, info.blockers[i].blockerId);
+                            gLastUsedAbility = info.blockers[i].blocker.ability;
+                            RecordAbilityBattle(gBattlerAbility, info.blockers[i].blocker.ability);
                         }
                         SET_FAIL_RESULT_END_LOOP
                     }
@@ -3301,7 +3305,7 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
                         SET_FAIL_RESULT_END_LOOP
                     break;
                 case MOVE_EFFECT_BLOCKER_TERRAIN:
-                    if (IsBattlerTerrainAffected(battlerDef, info.blockers[i].blockerId))
+                    if (IsBattlerTerrainAffected(battlerDef, info.blockers[i].blocker.terrain))
                         SET_FAIL_RESULT_END_LOOP
                     break;
                 case MOVE_EFFECT_BLOCKER_SAFEGUARD:
@@ -3335,17 +3339,49 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
                         SET_FAIL_RESULT_END_LOOP
                     }
                     break;
+                case MOVE_EFFECT_BLOCKER_TYPE:
+                    {
+                        u32 j;
+                        for (j = 0; j < ARRAY_COUNT(info.blockers[i].blocker.types); j++)
+                        {
+                            // Special case for Corrosion
+                            switch (info.blockers[i].blocker.types[j])
+                            {
+                                case TYPE_POISON:
+                                case TYPE_STEEL:
+                                    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_CORROSION)
+                                        continue;
+                                default:
+                                    if (IS_BATTLER_OF_TYPE(battlerDef, info.blockers[i].blocker.types[j]))
+                                        SET_FAIL_RESULT_END_LOOP
+                            }
+                        }
+                    }
+                    break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1:
                     if (gBattleMons[battlerDef].status1 != 0)
                         SET_FAIL_RESULT_END_LOOP
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1:
-                    if (gBattleMons[battlerDef].status1 & info.statusFlag)
+                {
+                    // Requires a special case for poison/toxic
+                    u32 statusFlag = info.statusFlag;
+                    if (statusFlag & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                        statusFlag |= (STATUS1_POISON | STATUS1_TOXIC_POISON);
+
+                    if (gBattleMons[battlerDef].status1 & statusFlag)
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
                         SET_FAIL_RESULT_END_LOOP
+                    }
                     break;
+                }
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2:
                     if (gBattleMons[battlerDef].status2 & info.statusFlag)
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
                         SET_FAIL_RESULT_END_LOOP
+                    }
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3:
                     if (gStatuses3[battlerDef] & info.statusFlag)
@@ -3359,18 +3395,19 @@ static struct MoveEffectResult CanApplyMoveEffect(u16 moveEffect, u16 move, bool
                     if (NoAliveMonsForEitherParty())
                         SET_FAIL_RESULT_END_LOOP
                     break;
+                case MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT:
+                    return CanApplyMoveEffect(result, info.blockers[i].blocker.otherMoveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
                 default:
-                    return result;
+                    return;
             }
         } while (++i < MAX_BLOCKERS);
     }
-
-    return result;
 }
 
 static struct MoveEffectResult CanApplyMoveEffectWithCondition(u16 moveEffect, u16 move, bool32 primaryOrCertain, u32 battlerDef, u32 battlerAbility, u32 conditions)
 {
-    struct MoveEffectResult result = CanApplyMoveEffect(moveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
+    struct MoveEffectResult result = { TRUE, gMoveEffectsInfo[moveEffect].battleScript };
+    CanApplyMoveEffect(&result, moveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
 
     if (result.pass && conditions == FALSE)
     {
@@ -3401,6 +3438,7 @@ struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 cer
 {
     struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, FALSE);
     u16 moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
+    moveEnd &= ~MOVE_EFFECT_DELAY_OR_CONTINUE;
 
     // In the case of failure, we only call nextScript if the effect is primary/certain
     if (result.nextScript != 0 && (result.pass || primary || certain))
@@ -3414,7 +3452,7 @@ struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 cer
     // Activate synchronize
     if (result.pass && gMoveEffectsInfo[moveEffect].canBeSynchronized == TRUE)
     {
-        gBattleStruct->synchronizeMoveEffect = moveEffect;
+        gBattleStruct->synchronizeMoveEffect = moveEffect; // cannot be a moveEffect with an argument (for now)
         gHitMarker |= HITMARKER_SYNCHRONISE_EFFECT;
     }
 
@@ -3445,7 +3483,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
     u16 battlerAbility;
     u8 side;
-    struct MoveEffectResult result = { 0 };
+    struct MoveEffectResult result = { .pass = FALSE };
 
     // Remove flags
     moveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_DELAY_OR_CONTINUE);
@@ -3465,6 +3503,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     {
         gBattleStruct->turnEndMoveEffect = moveEffect;
         gBattleStruct->turnEndMoveEffectArgument = argument;
+        result.pass = TRUE; // We don't want to trigger a failure response
         return result;
     }
 
@@ -3636,12 +3675,15 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             gBattleStruct->wrappedMove[gEffectBattler] = move;
             gBattleStruct->wrappedBy[gEffectBattler] = gBattlerAttacker;
 
+
             for (gBattleCommunication[MULTISTRING_CHOOSER] = 0; gBattleCommunication[MULTISTRING_CHOOSER] < NUM_TRAPPING_MOVES; gBattleCommunication[MULTISTRING_CHOOSER]++)
             {
                 if (sTrappingMoves[gBattleCommunication[MULTISTRING_CHOOSER]] == move)
                     break;
             }
+            DebugPrintf("Do we get here? %d", gBattleCommunication[MULTISTRING_CHOOSER]);
         ))
+        break;
     case MOVE_EFFECT_ATK_PLUS_1:
     case MOVE_EFFECT_DEF_PLUS_1:
     case MOVE_EFFECT_SPD_PLUS_1:
@@ -3692,6 +3734,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         (if (!mirrorArmorReflected)
             result.nextScript = gBattlescriptCurrInstr + 1;
         ))
+        break;
     case MOVE_EFFECT_RECHARGE:
         IF_CAN_APPLY_MOVE_EFFECT(TRUE,
         (
@@ -3786,7 +3829,8 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         break;
     case MOVE_EFFECT_THRASH:
         // Petal Dance doesn't lock mons that copy the move with Dancer
-        IF_CAN_APPLY_MOVE_EFFECT(!gSpecialStatuses[gEffectBattler].dancerUsedMove,
+        IF_CAN_APPLY_MOVE_EFFECT(!(gSpecialStatuses[gEffectBattler].dancerUsedMove
+          || (gBattleMons[gEffectBattler].status2 & STATUS2_LOCK_CONFUSE)),
         (
             gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
             gBattleMons[gEffectBattler].status2 |= STATUS2_LOCK_CONFUSE_TURN(RandomUniform(RNG_RAMPAGE_TURNS, 2, 3));
@@ -3910,6 +3954,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         IF_CAN_APPLY_MOVE_EFFECT(TRUE, (
             TryUpdateRoundTurnOrder(); // If another Pokémon uses Round before the user this turn, the user will use Round directly after it
         ))
+        break;
     case MOVE_EFFECT_DIRE_CLAW:
         IF_CAN_APPLY_MOVE_EFFECT((!gBattleMons[gEffectBattler].status1),
         (
