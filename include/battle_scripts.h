@@ -495,14 +495,10 @@ extern const u8 BattleScript_AromaVeilProtects[];
 
 // Move effect blockers
 extern const u8 BattleScript_AlreadyHasMoveEffectStatus[];
+extern const u8 BattleScript_AbilityPreventsMoveEffectStatus[];
 extern const u8 BattleScript_CantMakeAsleep[];
-extern const u8 BattleScript_AbilityPreventsSleep[];
-extern const u8 BattleScript_AbilityProtectsDoesntAffect[];
 extern const u8 BattleScript_ElectricTerrainPrevents[];
 extern const u8 BattleScript_MistyTerrainPrevents[];
-extern const u8 BattleScript_LimberProtected[];
-extern const u8 BattleScript_AbilityPreventsBurns[];
-extern const u8 BattleScript_ImmunityProtected[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
@@ -666,7 +662,7 @@ extern const u8 BattleScript_EffectWorrySeed[];
 extern const u8 BattleScript_EffectHail[];
 extern const u8 BattleScript_EffectTorment[];
 extern const u8 BattleScript_EffectFlatter[];
-extern const u8 BattleScript_EffectWillOWisp[];
+extern const u8 BattleScript_EffectBurn[];
 extern const u8 BattleScript_EffectMemento[];
 extern const u8 BattleScript_EffectFocusPunch[];
 extern const u8 BattleScript_EffectFollowMe[];

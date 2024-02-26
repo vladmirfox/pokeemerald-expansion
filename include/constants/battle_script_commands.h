@@ -253,7 +253,7 @@
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)
 
-// Cmd_statbuffchange / 
+// Cmd_statbuffchange
 #define STAT_CHANGE_ALLOW_PTR               (1 << 0)   // If set, allow use of jumpptr. Set in every use of statbuffchange
 #define STAT_CHANGE_MIRROR_ARMOR            (1 << 1)   // Stat change redirection caused by Mirror Armor ability.
 #define STAT_CHANGE_NOT_PROTECT_AFFECTED    (1 << 5)

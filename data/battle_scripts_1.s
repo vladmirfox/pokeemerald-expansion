@@ -2854,24 +2854,6 @@ BattleScript_PastelVeilProtects::
 	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
 	goto BattleScript_MoveEnd
 
-BattleScript_AbilityProtectsDoesntAffect::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_ITDOESNTAFFECT
-	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_AbilityProtectsDoesntAffect
-	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
-	goto BattleScript_MoveEnd
-
-BattleScript_AbilityPreventsSleep::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNSTAYEDAWAKEUSING
-	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_AbilityPreventsSleep
-	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
-	goto BattleScript_MoveEnd
-
 BattleScript_AlreadyHasMoveEffectStatus::
 	setalreadystatusedmoveattempt BS_ATTACKER
 	pause B_WAIT_TIME_SHORT
@@ -3330,15 +3312,6 @@ BattleScript_AlreadyPoisoned::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
-BattleScript_ImmunityProtected::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNPREVENTSPOISONINGWITH
-	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_ImmunityProtected
-	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
-	goto BattleScript_MoveEnd
-
 BattleScript_EffectAuroraVeil::
 	attackcanceler
 	attackstring
@@ -3360,9 +3333,10 @@ BattleScript_EffectRest::
 	jumpifstatus BS_ATTACKER, STATUS1_SLEEP, BattleScript_RestIsAlreadyAsleep
 	jumpifability BS_ATTACKER, ABILITY_COMATOSE, BattleScript_RestIsAlreadyAsleep
 	jumpifuproarwakes BattleScript_RestCantSleep
-	jumpifability BS_TARGET, ABILITY_INSOMNIA, BattleScript_AbilityPreventsSleep
-	jumpifability BS_TARGET, ABILITY_VITAL_SPIRIT, BattleScript_AbilityPreventsSleep
-	jumpifability BS_ATTACKER, ABILITY_PURIFYING_SALT, BattleScript_AbilityPreventsSleep
+	setbyte cMULTISTRING_CHOOSER, MOVE_EFFECT_SLEEP
+	jumpifability BS_TARGET, ABILITY_INSOMNIA, BattleScript_AbilityPreventsMoveEffectStatus
+	jumpifability BS_TARGET, ABILITY_VITAL_SPIRIT, BattleScript_AbilityPreventsMoveEffectStatus
+	jumpifability BS_ATTACKER, ABILITY_PURIFYING_SALT, BattleScript_AbilityPreventsMoveEffectStatus
 .if B_LEAF_GUARD_PREVENTS_REST >= GEN_5
 	jumpifleafguardprotected BS_TARGET, BattleScript_LeafGuardPreventsRest
 .endif
@@ -3632,15 +3606,6 @@ BattleScript_VoltAbsorbHeal:
 	copybyte gBattlerAbility, gBattlerTarget
 	tryhealquarterhealth BS_TARGET BattleScript_MonMadeMoveUseless @ Check if max hp
 	goto BattleScript_MoveHPDrain
-
-BattleScript_LimberProtected::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNPREVENTSPARALYSISWITH
-	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_LimberProtected
-	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
-	goto BattleScript_MoveEnd
 
 BattleScript_PowerHerbActivation:
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT
@@ -4250,7 +4215,8 @@ BattleScript_EffectSwagger::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SwaggerTryConfuse:
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
+	setbyte cMULTISTRING_CHOOSER, MOVE_EFFECT_CONFUSION
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_AbilityPreventsMoveEffectStatus
 	jumpifsafeguard BattleScript_SafeguardProtected
 	seteffectprimary MOVE_EFFECT_CONFUSION
 	goto BattleScript_MoveEnd
@@ -4793,12 +4759,13 @@ BattleScript_EffectFlatter::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_FlatterTryConfuse::
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
+	setbyte cMULTISTRING_CHOOSER, MOVE_EFFECT_CONFUSION
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_AbilityPreventsMoveEffectStatus
 	jumpifsafeguard BattleScript_SafeguardProtected
 	seteffectprimary MOVE_EFFECT_CONFUSION
 	goto BattleScript_MoveEnd
 
-BattleScript_EffectWillOWisp::
+BattleScript_EffectBurn::
 	attackcanceler
 	attackstring
 	ppreduce
@@ -4809,12 +4776,12 @@ BattleScript_EffectWillOWisp::
 	seteffectprimary MOVE_EFFECT_BURN
 	goto BattleScript_MoveEnd
 
-BattleScript_AbilityPreventsBurns::
+BattleScript_AbilityPreventsMoveEffectStatus::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNSXPREVENTSBURNS
+	printfromtable gAbilityPreventsMoveEffectStatusStringIds
 	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_AbilityPreventsBurns
+	returnifcalled BattleScript_AbilityPreventsMoveEffectStatus
 	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
 	goto BattleScript_MoveEnd
 
@@ -5071,10 +5038,11 @@ BattleScript_EffectYawn::
 	jumpifability BS_TARGET, ABILITY_VITAL_SPIRIT, BattleScript_PrintBattlerAbilityMadeIneffective
 	jumpifability BS_TARGET, ABILITY_INSOMNIA, BattleScript_PrintBattlerAbilityMadeIneffective
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_PrintBattlerAbilityMadeIneffective
-	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect
+	setbyte cMULTISTRING_CHOOSER, 0
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_AbilityPreventsMoveEffectStatus
 	jumpifflowerveil BattleScript_FlowerVeilProtects
-	jumpifleafguardprotected BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
-	jumpifshieldsdown BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
+	jumpifleafguardprotected BS_TARGET, BattleScript_AbilityPreventsMoveEffectStatus
+	jumpifshieldsdown BS_TARGET, BattleScript_AbilityPreventsMoveEffectStatus
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpifsafeguard BattleScript_SafeguardProtected
 	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
@@ -8130,21 +8098,6 @@ BattleScript_ObliviousPreventsAttraction::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNPREVENTSROMANCEWITH
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
-
-BattleScript_FlinchPrevention::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNSXPREVENTSFLINCHING
-	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
-
-BattleScript_OwnTempoPrevents::
-	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
-	printstring STRINGID_PKMNPREVENTSCONFUSIONWITH
-	waitmessage B_WAIT_TIME_LONG
-	returnifcalled BattleScript_OwnTempoPrevents
 	goto BattleScript_MoveEnd
 
 BattleScript_SoundproofProtected::

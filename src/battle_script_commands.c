@@ -902,10 +902,10 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
             MOVE_EFFECT_BLOCKER_UPROAR(),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, BattleScript_AbilityPreventsSleep),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, BattleScript_AbilityPreventsSleep),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, FALSE),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_SWEET_VEIL, BattleScript_SweetVeilProtects),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
@@ -913,7 +913,6 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_ELECTRIC_TERRAIN, BattleScript_ElectricTerrainPrevents),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
-            // MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
     },
@@ -923,9 +922,9 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectPoison,
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, BattleScript_ImmunityProtected),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_IMMUNITY, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, FALSE),
             MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_PASTEL_VEIL, BattleScript_PastelVeilProtects),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
@@ -935,7 +934,6 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_TYPE((TYPE_POISON, TYPE_STEEL)),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
     },
@@ -948,10 +946,10 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TYPE((TYPE_FIRE)),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_VEIL, BattleScript_AbilityPreventsBurns),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_BUBBLE, BattleScript_AbilityPreventsBurns),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_VEIL, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_WATER_BUBBLE, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, FALSE),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
@@ -969,9 +967,9 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TYPE((TYPE_ICE)),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_MAGMA_ARMOR, 0),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_MAGMA_ARMOR, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, FALSE),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
@@ -986,9 +984,9 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectParalysis,
         .canBeSynchronized = TRUE,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_LIMBER, BattleScript_LimberProtected),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect),
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_LIMBER, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_PURIFYING_SALT, FALSE),
             MOVE_EFFECT_BLOCKER_FLOWER_VEIL(),
             MOVE_EFFECT_BLOCKER_LEAF_GUARD(),
             MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(),
@@ -1001,7 +999,6 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         #endif
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
     },
@@ -1027,11 +1024,10 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = STATUS2_CONFUSION,
         .battleScript = BattleScript_MoveEffectConfusion,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_OWN_TEMPO, TRUE),
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(),
             MOVE_EFFECT_BLOCKER_TERRAIN(STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents),
-            MOVE_EFFECT_BLOCKER_ACCURACY(),
             MOVE_EFFECT_BLOCKER_SAFEGUARD()
         ),
     },
@@ -1039,7 +1035,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_FLINCH] = {
         .statusFlag = STATUS2_FLINCHED,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INNER_FOCUS, BattleScript_FlinchPrevention),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INNER_FOCUS, TRUE),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(0)
         )
     },
@@ -3281,6 +3277,9 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
                             gLastUsedAbility = battlerAbility;
                             gBattlerAbility = battlerDef;
                             RecordAbilityBattle(gEffectBattler, battlerAbility);
+                            if (info.blockers[i].battleScript)
+                                gBattleCommunication[MULTISTRING_CHOOSER] = info.blockers[i].useMultistring ? moveEffect : 0;
+
                         }
                         SET_FAIL_RESULT_END_LOOP
                     }
@@ -3313,10 +3312,6 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
                       (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD))
                         SET_FAIL_RESULT_END_LOOP
                     break;
-                // weird but this comes in the middle of a bunch of other checks
-                case MOVE_EFFECT_BLOCKER_ACCURACY:
-                    // to do
-                    break;
                 case MOVE_EFFECT_BLOCKER_UPROAR:
                     if (BattlerSleepBlockedByUproar(battlerAbility))
                         SET_FAIL_RESULT_END_LOOP
@@ -3329,6 +3324,7 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
                     if (IsLeafGuardProtected(battlerDef))
                     {
                         gBattlerAbility = battlerDef;
+                        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                         SET_FAIL_RESULT_END_LOOP
                     }
                     break;
@@ -3336,6 +3332,7 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
                     if (IsShieldsDownProtected(battlerDef))
                     {
                         gBattlerAbility = battlerDef;
+                        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                         SET_FAIL_RESULT_END_LOOP
                     }
                     break;
@@ -3371,7 +3368,8 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
 
                     if (gBattleMons[battlerDef].status1 & statusFlag)
                     {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
+                        if (info.blockers[i].battleScript)
+                            gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
                         SET_FAIL_RESULT_END_LOOP
                     }
                     break;
@@ -3379,7 +3377,8 @@ static void CanApplyMoveEffect(struct MoveEffectResult *result, u16 moveEffect, 
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2:
                     if (gBattleMons[battlerDef].status2 & info.statusFlag)
                     {
-                        gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
+                        if (info.blockers[i].battleScript)
+                            gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
                         SET_FAIL_RESULT_END_LOOP
                     }
                     break;

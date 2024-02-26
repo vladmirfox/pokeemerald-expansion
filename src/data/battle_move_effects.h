@@ -869,7 +869,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_WILL_O_WISP] =
     {
-        .battleScript = BattleScript_EffectWillOWisp,
+        .battleScript = BattleScript_EffectBurn,
         .battleTvScore = 5,
         .encourageEncore = TRUE,
     },
