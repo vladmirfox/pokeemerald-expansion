@@ -4241,11 +4241,11 @@ const struct SpriteTemplate gSpriteTemplate_SpiritBreakExplode = {
 };
 
 // chloroblast
-static const union AffineAnimCmd sSpriteAffineAnim_HydroCannonBall[] = {
+const union AffineAnimCmd sSpriteAffineAnim_HydroCannonBall[] = {
 	AFFINEANIMCMD_FRAME(16, 16, 0, 16), //Double in size
 	AFFINEANIMCMD_END
 };
-static const union AffineAnimCmd* const sSpriteAffineAnimTable_HydroCannonBall[] = {
+const union AffineAnimCmd* const sSpriteAffineAnimTable_HydroCannonBall[] = {
 	sSpriteAffineAnim_HydroCannonBall,
 };
 const struct SpriteTemplate gSpriteTemplate_ChloroblastShot = {
@@ -5680,13 +5680,13 @@ const struct SpriteTemplate gBlackHoleEclipseRedRingInwardsSpriteTemplate =
     .affineAnims = gThinRingShrinkingAffineAnimTable,
     .callback = AnimSpriteOnMonPos
 };
-static const union AffineAnimCmd gGrowingBackHoleTargetAffineCmds[] = {
+static const union AffineAnimCmd sGrowingBackHoleTargetAffineCmds[] = {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
     AFFINEANIMCMD_FRAME(0, 0, -10, 0x88),
     AFFINEANIMCMD_END,
 };
 static const union AffineAnimCmd *const gGrowingBlackHoleTargetAffineAnimTable[] = {
-    gGrowingBackHoleTargetAffineCmds,
+    sGrowingBackHoleTargetAffineCmds,
 };
 const struct SpriteTemplate gBlackHoleEclipseHoleSpriteTemplate =
 {
@@ -5698,13 +5698,13 @@ const struct SpriteTemplate gBlackHoleEclipseHoleSpriteTemplate =
     .affineAnims = gGrowingBlackHoleTargetAffineAnimTable,
     .callback = AnimSpriteOnMonPos
 };
-static const union AffineAnimCmd gShrinkingBlackHoleAffineCmds[] = {
+static const union AffineAnimCmd sShrinkingBlackHoleAffineCmds[] = {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
     AFFINEANIMCMD_FRAME(-0x10, -0x10, 0xf6, 8),
     AFFINEANIMCMD_END_ALT(1),
 };
 static const union AffineAnimCmd *const gShrinkingBlackHoleAffineAnimTable[] = {
-    gShrinkingBlackHoleAffineCmds,
+    sShrinkingBlackHoleAffineCmds,
 };
 const struct SpriteTemplate gBlackHoleEclipseHoleShrinkSpriteTemplate =
 {
@@ -5716,13 +5716,13 @@ const struct SpriteTemplate gBlackHoleEclipseHoleShrinkSpriteTemplate =
     .affineAnims = gShrinkingBlackHoleAffineAnimTable,
     .callback = AnimSpriteOnMonPos
 };
-static const union AffineAnimCmd gGrowingBackHoleAffineCmds[] = {
+static const union AffineAnimCmd sGrowingBackHoleAffineCmds[] = {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
     AFFINEANIMCMD_FRAME(0, 0, -10, 0x48),
     AFFINEANIMCMD_END,
 };
 static const union AffineAnimCmd *const gGrowingBlackHoleAffineAnimTable[] = {
-    gGrowingBackHoleAffineCmds,
+    sGrowingBackHoleAffineCmds,
 };
 const struct SpriteTemplate gBlackHoleEclipseHoleUserSpriteTemplate =
 {
@@ -7247,7 +7247,7 @@ static void InitSpritePosToGivenTarget(struct Sprite *sprite, u8 target)
     sprite->y2 = gBattleAnimArgs[1];
 }
 
-static void InitSpritePosToAnimTargetsCentre(struct Sprite *sprite, bool8 respectMonPicOffsets)
+void InitSpritePosToAnimTargetsCentre(struct Sprite *sprite, bool32 respectMonPicOffsets)
 {
     if (!respectMonPicOffsets)
     {
@@ -8630,7 +8630,7 @@ void AnimTask_TerrainPulse(u8 taskId)
 
 void AnimTask_AffectionHangedOn(u8 taskId)
 {
-    gBattleAnimArgs[0] = GetBattlerFriendshipScore(gBattleAnimTarget);
+    gBattleAnimArgs[0] = GetBattlerAffectionHearts(gBattleAnimTarget);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -9131,7 +9131,7 @@ void AnimTask_DynamaxGrowth(u8 taskId) // from CFRU
 
 void AnimTask_GetWeatherToSet(u8 taskId)
 {
-    switch (gBattleMoves[gCurrentMove].argument)
+    switch (gMovesInfo[gCurrentMove].argument)
     {
         case MAX_EFFECT_SUN:
             gBattleAnimArgs[ARG_RET_ID] = 1;
@@ -9152,18 +9152,12 @@ void AnimTask_GetWeatherToSet(u8 taskId)
 void AnimTask_SyrupBomb(u8 taskId)
 {
     struct Pokemon *party = GetBattlerParty(gBattleAnimAttacker);
-    u32 isShiny = IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]);
-
-    gDisableStructs[gBattleAnimTarget].syrupBombIsShiny = isShiny;
-    gBattleAnimArgs[0] = isShiny;
+    gBattleAnimArgs[0] = IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]);
     DestroyAnimVisualTask(taskId);
 }
 
 void AnimTask_StickySyrup(u8 taskId)
 {
-    if (gDisableStructs[gBattleAnimTarget].syrupBombIsShiny)
-        gBattleAnimArgs[0] = TRUE;
-    else
-        gBattleAnimArgs[0] = FALSE;
+    gBattleAnimArgs[0] = gAnimDisableStructPtr->syrupBombIsShiny;
     DestroyAnimVisualTask(taskId);
 }
