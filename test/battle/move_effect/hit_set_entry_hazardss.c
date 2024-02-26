@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
         if (move == MOVE_CEASELESS_EDGE) {
-            MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+            MESSAGE("Spikes were scattered all around the opposing team!");
         }
         else {
             MESSAGE("Pointed stones float in the air around the opposing team!");
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         MESSAGE("2 sent out Wobbuffet!");
         if (move == MOVE_CEASELESS_EDGE) {
             HP_BAR(opponent, damage: maxHP / 8);
-            MESSAGE("Foe Wobbuffet was hurt by the spikes!");
+            MESSAGE("Foe Wobbuffet is hurt by spikes!");
         }
         else {
             HP_BAR(opponent, damage: maxHP / 8);
@@ -58,23 +58,23 @@ SINGLE_BATTLE_TEST("Ceaseless Edge can set up to 3 layers of Spikes")
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
         HP_BAR(opponent);
-        MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+        MESSAGE("Spikes were scattered all around the opposing team!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
         HP_BAR(opponent);
-        MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+        MESSAGE("Spikes were scattered all around the opposing team!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
         HP_BAR(opponent);
-        MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+        MESSAGE("Spikes were scattered all around the opposing team!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
         HP_BAR(opponent);
-        NOT MESSAGE("Spikes were scattered on the ground all around the opposing team!");
+        NOT MESSAGE("Spikes were scattered all around the opposing team!");
 
         MESSAGE("2 sent out Wynaut!");
         HP_BAR(opponent, damage: maxHP / 4);
-        MESSAGE("Foe Wynaut was hurt by the spikes!");
+        MESSAGE("Foe Wynaut is hurt by spikes!");
     }
 }
 

@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
-        MESSAGE("You're in charge, Wynaut!");
+        MESSAGE("Go! Wynaut!");
     }
 }
 

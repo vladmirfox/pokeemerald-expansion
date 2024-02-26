@@ -77,9 +77,9 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         // Everyone faints.
 
-        MESSAGE("You're in charge, Ekans!");
+        MESSAGE("Go! Ekans!");
         MESSAGE("2 sent out Arbok!");
-        MESSAGE("You're in charge, Abra!");
+        MESSAGE("Go! Abra!");
         MESSAGE("2 sent out Wynaut!");
 
         NONE_OF {
@@ -147,12 +147,12 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
 
 
     } SCENE {
-        MESSAGE("Wobbuffet, come back!");
-        MESSAGE("You're in charge, Wynaut!");
+        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Go! Wynaut!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUNK_SHOT, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponentRight);
-        MESSAGE("Wynaut, come back!");
-        MESSAGE("You're in charge, Hitmontop!");
+        MESSAGE("Wynaut, that's enough! Come back!");
+        MESSAGE("Go! Hitmontop!");
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         NONE_OF {
             MESSAGE("Hitmontop's Intimidate cuts Foe Ralts's attack!");

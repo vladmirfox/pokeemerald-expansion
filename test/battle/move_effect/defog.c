@@ -73,8 +73,8 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Reflect and Light 
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe Wobbuffet's evasiveness fell!");
-            MESSAGE("The opposing team's Reflect wore off!");
-            MESSAGE("The opposing team's Light Screen wore off!");
+            MESSAGE("Foe's Reflect wore off!");
+            MESSAGE("Foe's Light Screen wore off!");
         }
         MESSAGE("Wobbuffet used Tackle!");
         HP_BAR(opponentLeft, captureDamage: &results[i].damagePhysical);
@@ -105,10 +105,10 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAFEGUARD, opponentRight);
         if (move == MOVE_DEFOG) {
-            MESSAGE("Foe Wobbuffet is protected by the mist!");
+            MESSAGE("Foe Wobbuffet is protected by MIST!");
             ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
-            MESSAGE("The opposing team's Mist wore off!");
-            MESSAGE("The opposing team's Safeguard wore off!");
+            MESSAGE("Foe's Mist wore off!");
+            MESSAGE("Foe's Safeguard wore off!");
         }
         MESSAGE("Wobbuffet used Screech!");
         if (move == MOVE_DEFOG) {
@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by the mist!");
+            MESSAGE("Foe Wobbuffet is protected by MIST!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         MESSAGE("Wobbuffet used Toxic!");
@@ -125,7 +125,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             STATUS_ICON(opponentRight, badPoison: TRUE);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by Safeguard!");
+            MESSAGE("Foe Wobbuffet's party is protected by Safeguard!");
             NOT STATUS_ICON(opponentRight, badPoison: TRUE);
         }
     }
@@ -158,8 +158,8 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
             MESSAGE("The sticky web has disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Wobbuffet, come back!");
-        MESSAGE("You're in charge, Wobbuffet!");
+        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Go! Wobbuffet!");
         if (move != MOVE_DEFOG) {
             HP_BAR(playerLeft);
             MESSAGE("Pointed stones dug into Wobbuffet!");
@@ -201,16 +201,16 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
             MESSAGE("The spikes disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Wobbuffet, come back!");
-        MESSAGE("You're in charge, Wobbuffet!");
+        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Go! Wobbuffet!");
         if (move != MOVE_DEFOG) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet was hurt by the spikes!");
+            MESSAGE("Wobbuffet is hurt by spikes!");
         }
         else {
             NONE_OF {
                 HP_BAR(player);
-                MESSAGE("Wobbuffet was hurt by the spikes!");
+                MESSAGE("Wobbuffet is hurt by spikes!");
             }
         }
     }
@@ -313,7 +313,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Aurora Veil from p
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
             MESSAGE("Glalie's evasiveness fell!");
-            MESSAGE("Your team's Aurora Veil wore off!");
+            MESSAGE("Ally's Aurora Veil wore off!");
         }
         MESSAGE("Foe Glalie used Tackle!");
         HP_BAR(playerLeft, captureDamage: &results[i].damagePhysical);
@@ -347,14 +347,14 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything it can"
         TURN { MOVE(playerLeft, MOVE_MIST); MOVE(playerRight, MOVE_SAFEGUARD); MOVE(opponentLeft, MOVE_MIST); MOVE(opponentRight, MOVE_DEFOG, target: playerLeft); }
     } SCENE {
         MESSAGE("Foe Glalie used Defog!");
-        MESSAGE("Glalie is protected by the mist!");
+        MESSAGE("Glalie is protected by MIST!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponentRight);
         // Player side
-        MESSAGE("Your team's Reflect wore off!");
-        MESSAGE("Your team's Light Screen wore off!");
-        MESSAGE("Your team's Mist wore off!");
-        MESSAGE("Your team's Aurora Veil wore off!");
-        MESSAGE("Your team's Safeguard wore off!");
+        MESSAGE("Ally's Reflect wore off!");
+        MESSAGE("Ally's Light Screen wore off!");
+        MESSAGE("Ally's Mist wore off!");
+        MESSAGE("Ally's Aurora Veil wore off!");
+        MESSAGE("Ally's Safeguard wore off!");
 
         MESSAGE("The spikes disappeared from the ground around your team!");
         MESSAGE("The pointed stones disappeared from around your team!");

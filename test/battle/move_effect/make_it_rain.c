@@ -21,13 +21,13 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAKE_IT_RAIN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
-        MESSAGE("Coins were scattered everywhere!");
+        MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Wobbuffet's Sp. Atk fell!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAKE_IT_RAIN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
-        MESSAGE("Coins were scattered everywhere!");
+        MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Wobbuffet's Sp. Atk fell!");
     } THEN {

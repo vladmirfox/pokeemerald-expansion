@@ -27,15 +27,15 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         MESSAGE("Foe Wobbuffet used Toxic Spikes!");
         MESSAGE("Wynaut used Court Change!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
-        MESSAGE("You're in charge, Wynaut!");
+        MESSAGE("Go! Wynaut!");
         NONE_OF {
-            MESSAGE("Wynaut was hurt by the spikes!");
+            MESSAGE("Wynaut is hurt by spikes!");
             MESSAGE("Pointed stones dug into Wynaut!");
             MESSAGE("Wynaut was poisoned!");
             MESSAGE("Wynaut was caught in a Sticky Web!");
         }
         MESSAGE("2 sent out Wobbuffet!");
-        MESSAGE("Foe Wobbuffet was hurt by the spikes!");
+        MESSAGE("Foe Wobbuffet is hurt by spikes!");
         MESSAGE("Pointed stones dug into Foe Wobbuffet!");
         MESSAGE("Foe Wobbuffet was poisoned!");
         MESSAGE("Foe Wobbuffet was caught in a Sticky Web!");
@@ -63,14 +63,14 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         MESSAGE("Wobbuffet used Toxic Spikes!");
         MESSAGE("Foe Wynaut used Court Change!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
-        MESSAGE("You're in charge, Wobbuffet!");
-        MESSAGE("Wobbuffet was hurt by the spikes!");
+        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Wobbuffet is hurt by spikes!");
         MESSAGE("Pointed stones dug into Wobbuffet!");
         MESSAGE("Wobbuffet was poisoned!");
         MESSAGE("Wobbuffet was caught in a Sticky Web!");
         MESSAGE("2 sent out Wynaut!");
         NONE_OF {
-            MESSAGE("Foe Wynaut was hurt by the spikes!");
+            MESSAGE("Foe Wynaut is hurt by spikes!");
             MESSAGE("Pointed stones dug into Foe Wynaut!");
             MESSAGE("Foe Wynaut was poisoned!");
             MESSAGE("Foe Wynaut was caught in a Sticky Web!");
@@ -106,12 +106,12 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Lucky
         MESSAGE("Wynaut used Court Change!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
-        MESSAGE("Your team's Mist wore off!");
-        MESSAGE("Your team is no longer protected by Safeguard!");
-        MESSAGE("Your team's Reflect wore off!");
+        MESSAGE("Ally's Mist wore off!");
+        MESSAGE("Ally's party is no longer protected by Safeguard!");
+        MESSAGE("Ally's Reflect wore off!");
         MESSAGE("Your team's Lucky Chant wore off!");
         MESSAGE("Your team's tailwind petered out!");
-        MESSAGE("Your team's Light Screen wore off!");
+        MESSAGE("Ally's Light Screen wore off!");
     }
 }
 
@@ -143,11 +143,11 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Luc
         MESSAGE("Foe Wynaut used Court Change!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
-        MESSAGE("The opposing team's Mist wore off!");
-        MESSAGE("The opposing team is no longer protected by Safeguard!");
-        MESSAGE("The opposing team's Reflect wore off!");
+        MESSAGE("Foe's Mist wore off!");
+        MESSAGE("Foe's party is no longer protected by Safeguard!");
+        MESSAGE("Foe's Reflect wore off!");
         MESSAGE("The opposing team's Lucky Chant wore off!");
         MESSAGE("The opposing team's tailwind petered out!");
-        MESSAGE("The opposing team's Light Screen wore off!");
+        MESSAGE("Foe's Light Screen wore off!");
     }
 }

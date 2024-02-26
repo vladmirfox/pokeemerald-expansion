@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
         MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Spiky Shield!");
         if (faintOnSpiky){
             MESSAGE("Wobbuffet fainted!");
-            MESSAGE("You're in charge, Wynaut!");
+            MESSAGE("Go! Wynaut!");
             NONE_OF {
                 MESSAGE("Wobbuffet kept going and crashed!");
                 HP_BAR(player);
@@ -93,7 +93,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
             HP_BAR(player);
             if (faintOnJumpKick) {
                 MESSAGE("Wobbuffet fainted!");
-                MESSAGE("You're in charge, Wynaut!");
+                MESSAGE("Go! Wynaut!");
             }
         }
     }
