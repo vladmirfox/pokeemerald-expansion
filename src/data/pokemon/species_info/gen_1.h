@@ -101,34 +101,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_VENUSAUR}),
     },
 
-#define VENUSAUR_MISC_INFO                                                  \
-        .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),                        \
-        .catchRate = 45,                                                    \
-        .evYield_SpAttack = 2,                                              \
-        .evYield_SpDefense = 1,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),    \
-        .bodyColor = BODY_COLOR_GREEN,                                      \
-        .speciesName = _("Venusaur"),                                       \
-        .natDexNum = NATIONAL_DEX_VENUSAUR,                                 \
-        .categoryName = _("Seed"),                                          \
-        FOOTPRINT(Venusaur)                                                 \
-        LEARNSETS(Venusaur),                                                \
-        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,                  \
-        .formChangeTable = sVenusaurFormChangeTable
-
     [SPECIES_VENUSAUR] =
     {
-        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 82,
         .baseDefense   = 83,
         .baseSpeed     = 80,
         .baseSpAttack  = 100,
         .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),
+        .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 263,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -136,8 +118,19 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 208,
     #endif
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Venusaur"),
         .cryId = CRY_VENUSAUR,
+        .natDexNum = NATIONAL_DEX_VENUSAUR,
+        .categoryName = _("Seed"),
         .height = 20,
         .weight = 1000,
         .description = COMPOUND_STRING(
@@ -160,21 +153,37 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_H_SHAKE,
         PALETTES(Venusaur),
         ICON(Venusaur, 4),
+        FOOTPRINT(Venusaur)
+        LEARNSETS(Venusaur),
+        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
+        .formChangeTable = sVenusaurFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_VENUSAUR_MEGA] =
     {
-        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 123,
         .baseSpeed     = 80,
         .baseSpAttack  = 122,
         .baseSpDefense = 120,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 313 : 281,
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_THICK_FAT, ABILITY_THICK_FAT, ABILITY_THICK_FAT },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Venusaur"),
         .cryId = CRY_VENUSAUR_MEGA,
+        .natDexNum = NATIONAL_DEX_VENUSAUR,
+        .categoryName = _("Seed"),
         .height = 24,
         .weight = 1555,
         .description = COMPOUND_STRING(
@@ -194,6 +203,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         PALETTES(VenusaurMega),
         ICON(VenusaurMega, 4),
+        FOOTPRINT(Venusaur)
+        LEARNSETS(Venusaur),
+        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
+        .formChangeTable = sVenusaurFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
@@ -201,16 +214,28 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_VENUSAUR_GIGANTAMAX] =
     {
-        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 82,
         .baseDefense   = 83,
         .baseSpeed     = 80,
         .baseSpAttack  = 100,
         .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),
+        .catchRate = 45,
         .expYield = 236,
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
         .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Venusaur"),
         .cryId = CRY_VENUSAUR,
+        .natDexNum = NATIONAL_DEX_VENUSAUR,
+        .categoryName = _("Seed"),
         .height = 240,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -231,6 +256,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(VenusaurGigantamax),
         ICON(VenusaurGigantamax, 0),
+        FOOTPRINT(Venusaur)
+        LEARNSETS(Venusaur),
+        .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
+        .formChangeTable = sVenusaurFormChangeTable,
         .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
@@ -334,25 +363,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
     },
 
-#define CHARIZARD_MISC_INFO                                             \
-        .catchRate = 45,                                                \
-        .evYield_SpAttack = 3,                                          \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),\
-        .speciesName = _("Charizard"),                                  \
-        .natDexNum = NATIONAL_DEX_CHARIZARD,                            \
-        .categoryName = _("Flame"),                                     \
-        FOOTPRINT(Charizard)                                            \
-        LEARNSETS(Charizard),                                           \
-        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,             \
-        .formChangeTable = sCharizardFormChangeTable
-
     [SPECIES_CHARIZARD] =
     {
-        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -360,6 +372,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 109,
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
+        .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 267,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -367,9 +380,18 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 209,
     #endif
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Charizard"),
         .cryId = CRY_CHARIZARD,
+        .natDexNum = NATIONAL_DEX_CHARIZARD,
+        .categoryName = _("Flame"),
         .height = 17,
         .weight = 905,
         .description = COMPOUND_STRING(
@@ -390,12 +412,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(Charizard),
         ICON(Charizard, 0),
+        FOOTPRINT(Charizard)
+        LEARNSETS(Charizard),
+        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
+        .formChangeTable = sCharizardFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_CHARIZARD_MEGA_X] =
     {
-        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 130,
         .baseDefense   = 111,
@@ -403,10 +428,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 130,
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_FIRE, TYPE_DRAGON),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 317 : 285,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Charizard"),
         .cryId = CRY_CHARIZARD_MEGA_X,
+        .natDexNum = NATIONAL_DEX_CHARIZARD,
+        .categoryName = _("Flame"),
         .height = 17,
         .weight = 1105,
         .description = COMPOUND_STRING(
@@ -426,12 +461,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(CharizardMegaX),
         ICON(CharizardMegaX, 0),
+        FOOTPRINT(Charizard)
+        LEARNSETS(Charizard),
+        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
+        .formChangeTable = sCharizardFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 
     [SPECIES_CHARIZARD_MEGA_Y] =
     {
-        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 104,
         .baseDefense   = 78,
@@ -439,10 +477,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 159,
         .baseSpDefense = 115,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 317 : 285,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_DROUGHT, ABILITY_DROUGHT, ABILITY_DROUGHT },
         .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Charizard"),
         .cryId = CRY_CHARIZARD_MEGA_Y,
+        .natDexNum = NATIONAL_DEX_CHARIZARD,
+        .categoryName = _("Flame"),
         .height = 17,
         .weight = 1005,
         .description = COMPOUND_STRING(
@@ -463,6 +511,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         PALETTES(CharizardMegaY),
         ICON(CharizardMegaY, 0),
+        FOOTPRINT(Charizard)
+        LEARNSETS(Charizard),
+        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
+        .formChangeTable = sCharizardFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
@@ -470,7 +522,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_CHARIZARD_GIGANTAMAX] =
     {
-        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -478,10 +529,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 109,
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
+        .catchRate = 45,
         .expYield = 240,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER },
         .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Charizard"),
         .cryId = CRY_CHARIZARD,
+        .natDexNum = NATIONAL_DEX_CHARIZARD,
+        .categoryName = _("Flame"),
         .height = 280,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -502,6 +563,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(CharizardGigantamax),
         ICON(CharizardGigantamax, 0),
+        FOOTPRINT(Charizard)
+        LEARNSETS(Charizard),
+        .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
+        .formChangeTable = sCharizardFormChangeTable,
         .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
@@ -605,33 +670,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLASTOISE}),
     },
 
-#define BLASTOISE_MISC_INFO                                                 \
-        .types = MON_TYPES(TYPE_WATER),                                     \
-        .catchRate = 45,                                                    \
-        .evYield_SpDefense = 3,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 20,                                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),  \
-        .bodyColor = BODY_COLOR_BLUE,                                       \
-        .speciesName = _("Blastoise"),                                      \
-        .natDexNum = NATIONAL_DEX_BLASTOISE,                                \
-        .categoryName = _("Shellfish"),                                     \
-        FOOTPRINT(Blastoise)                                                \
-        LEARNSETS(Blastoise),                                               \
-        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,                 \
-        .formChangeTable = sBlastoiseFormChangeTable
-
     [SPECIES_BLASTOISE] =
     {
-        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 83,
         .baseDefense   = 100,
         .baseSpeed     = 78,
         .baseSpAttack  = 85,
         .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 265,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -639,8 +687,18 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 210,
     #endif
+        .evYield_SpDefense = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Blastoise"),
         .cryId = CRY_BLASTOISE,
+        .natDexNum = NATIONAL_DEX_BLASTOISE,
+        .categoryName = _("Shellfish"),
         .height = 16,
         .weight = 855,
         .description = COMPOUND_STRING(
@@ -662,21 +720,36 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(Blastoise),
         ICON(Blastoise, 2),
+        FOOTPRINT(Blastoise)
+        LEARNSETS(Blastoise),
+        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
+        .formChangeTable = sBlastoiseFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_BLASTOISE_MEGA] =
     {
-        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 103,
         .baseDefense   = 120,
         .baseSpeed     = 78,
         .baseSpAttack  = 135,
         .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 315 : 284,
+        .evYield_SpDefense = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Blastoise"),
         .cryId = CRY_BLASTOISE_MEGA,
+        .natDexNum = NATIONAL_DEX_BLASTOISE,
+        .categoryName = _("Shellfish"),
         .height = 16,
         .weight = 1011,
         .description = COMPOUND_STRING(
@@ -697,6 +770,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         PALETTES(BlastoiseMega),
         ICON(BlastoiseMega, 2),
+        FOOTPRINT(Blastoise)
+        LEARNSETS(Blastoise),
+        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
+        .formChangeTable = sBlastoiseFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
@@ -704,16 +781,27 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_BLASTOISE_GIGANTAMAX] =
     {
-        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 83,
         .baseDefense   = 100,
         .baseSpeed     = 78,
         .baseSpAttack  = 85,
         .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_WATER),
+        .catchRate = 45,
         .expYield = 239,
+        .evYield_SpDefense = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
         .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Blastoise"),
         .cryId = CRY_BLASTOISE,
+        .natDexNum = NATIONAL_DEX_BLASTOISE,
+        .categoryName = _("Shellfish"),
         .height = 250,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -734,6 +822,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(BlastoiseGigantamax),
         ICON(BlastoiseGigantamax, 0),
+        FOOTPRINT(Blastoise)
+        LEARNSETS(Blastoise),
+        .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
+        .formChangeTable = sBlastoiseFormChangeTable,
         .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
