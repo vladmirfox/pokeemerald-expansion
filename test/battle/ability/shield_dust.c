@@ -28,12 +28,12 @@ SINGLE_BATTLE_TEST("Shield Dust blocks secondary effects")
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
         NONE_OF {
-            MESSAGE("Foe Vivillon is paralyzed! It may be unable to move!");
-            MESSAGE("Foe Vivillon was burned!");
-            MESSAGE("Foe Vivillon was poisoned!");
-            MESSAGE("Foe Vivillon flinched!");
+            MESSAGE("The opposing Vivillon is paralyzed, so it may be unable to move!");
+            MESSAGE("The opposing Vivillon was burned!");
+            MESSAGE("The opposing Vivillon was poisoned!");
+            MESSAGE("The opposing Vivillon flinched!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Vivillon was prevented from healing!");
+            MESSAGE("The opposing Vivillon was prevented from healing!");
         }
     } THEN { // Can't find good way to test trapping
         EXPECT(!(opponent->status2 & STATUS2_ESCAPE_PREVENTION));
@@ -64,16 +64,16 @@ SINGLE_BATTLE_TEST("Shield Dust does not block primary effects")
         switch (move)
         {
             case MOVE_INFESTATION:
-                MESSAGE("Foe Vivillon has been afflicted with an infestation by Wobbuffet!");
+                MESSAGE("The opposing Vivillon has been afflicted with an infestation by Wobbuffet!");
                 break;
             case MOVE_THOUSAND_ARROWS:
-                MESSAGE("Foe Vivillon fell straight down!");
+                MESSAGE("The opposing Vivillon fell straight down!");
                 break;
             case MOVE_JAW_LOCK:
                 MESSAGE("Neither Pokémon can run away!");
                 break;
             case MOVE_PAY_DAY:
-                MESSAGE("Coins scattered everywhere!");
+                MESSAGE("Coins were scattered everywhere!");
                 break;
         }
     } THEN { // Can't find good way to test trapping
@@ -133,7 +133,7 @@ DOUBLE_BATTLE_TEST("Shield Dust does not block Sparkling Aria in doubles")
         TURN { MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
-        MESSAGE("Foe Vivillion's burn was healed.");
+        MESSAGE("The opposing Vivillion's burn was healed.");
         STATUS_ICON(opponentLeft, burn: TRUE);
     }
 }

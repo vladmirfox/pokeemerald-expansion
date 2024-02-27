@@ -58,9 +58,9 @@ DOUBLE_BATTLE_TEST("White Herb restores stats after Attack was lowered by Intimi
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
-        MESSAGE("Foe Wobbuffet's White Herb restored its status!");
+        MESSAGE("The opposing Wobbuffet's White Herb restored its status!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
-        MESSAGE("Foe Wynaut's White Herb restored its status!");
+        MESSAGE("The opposing Wynaut's White Herb restored its status!");
     } THEN {
         EXPECT(opponentLeft->item == ITEM_NONE);
         EXPECT(opponentLeft->statStages[STAT_DEF] = DEFAULT_STAT_STAGE);
@@ -144,9 +144,9 @@ SINGLE_BATTLE_TEST("White Herb wont have time to activate if it is knocked off o
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         if (move == MOVE_THIEF)
-            MESSAGE("Foe Wobbuffet stole Slugma's White Herb!");
+            MESSAGE("The opposing Wobbuffet stole Slugma's White Herb!");
         else
-            MESSAGE("Foe Wobbuffet knocked off Slugma's White Herb!");
+            MESSAGE("The opposing Wobbuffet knocked off Slugma's White Herb!");
         ABILITY_POPUP(player, ABILITY_WEAK_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Slugma's Weak Armor lowered its Defense!");

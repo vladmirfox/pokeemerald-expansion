@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         MESSAGE("2 sent out Wobbuffet!");
         if (move == MOVE_CEASELESS_EDGE) {
             HP_BAR(opponent, damage: maxHP / 8);
-            MESSAGE("Foe Wobbuffet is hurt by spikes!");
+            MESSAGE("The opposing Wobbuffet is hurt by spikes!");
         }
         else {
             HP_BAR(opponent, damage: maxHP / 8);
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Ceaseless Edge can set up to 3 layers of Spikes")
 
         MESSAGE("2 sent out Wynaut!");
         HP_BAR(opponent, damage: maxHP / 4);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("The opposing Wynaut is hurt by spikes!");
     }
 }
 

@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Full Metal Body prevents intimidate")
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         ABILITY_POPUP(opponent, ABILITY_FULL_METAL_BODY);
-        MESSAGE("Foe Solgaleo's Full Metal Body prevents stat loss!");
+        MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);

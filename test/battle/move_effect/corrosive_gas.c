@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Corrosive Gas doesn't destroy the item of a Pokemon with the
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
         NOT MESSAGE("Wobbuffet corroded Foe Wobbuffet's Potion!");
         ABILITY_POPUP(opponent, ABILITY_STICKY_HOLD);
-        MESSAGE("Foe Muk's Sticky Hold made CorrosiveGas ineffective!");
+        MESSAGE("The opposing Muk's Sticky Hold made CorrosiveGas ineffective!");
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_POISON_BARB);
     }
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Items lost to Corrosive Gas cannot be restored by Recycle")
         MESSAGE("Wobbuffet used CorrosiveGas!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
         MESSAGE("Wobbuffet corroded Foe Wobbuffet's Oran Berry!");
-        MESSAGE("Foe Wobbuffet used Recycle!");
+        MESSAGE("The opposing Wobbuffet used Recycle!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_NONE);

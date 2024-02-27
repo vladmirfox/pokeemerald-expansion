@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("Mind Blown causes the user & the target to faint when below 
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("Wobbuffet fainted!");
     }
 }
@@ -97,11 +97,11 @@ DOUBLE_BATTLE_TEST("Mind Blown causes everyone to faint in a double battle")
         HP_BAR(playerLeft, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, playerLeft);
         HP_BAR(opponentLeft, hp: 0);
-        MESSAGE("Foe Abra fainted!");
+        MESSAGE("The opposing Abra fainted!");
         HP_BAR(playerRight, hp: 0);
         MESSAGE("Wynaut fainted!");
         HP_BAR(opponentRight, hp: 0);
-        MESSAGE("Foe Kadabra fainted!");
+        MESSAGE("The opposing Kadabra fainted!");
         MESSAGE("Wobbuffet fainted!");
     }
 }

@@ -16,6 +16,6 @@ SINGLE_BATTLE_TEST("Quick Claw activates 10% of the time")
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Wobbuffet used Tackle!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
     }
 }
