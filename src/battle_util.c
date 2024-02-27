@@ -2682,7 +2682,8 @@ u8 DoBattlerEndTurnEffects(void)
             break;
         case ENDTURN_POISON:  // poison
             if ((gBattleMons[battler].status1 & STATUS1_POISON)
-                && gBattleMons[battler].hp != 0)
+                && gBattleMons[battler].hp != 0
+                && ability != ABILITY_TOXIC_BOOST)
             {
                 MAGIC_GUARD_CHECK;
 
@@ -2711,7 +2712,8 @@ u8 DoBattlerEndTurnEffects(void)
             break;
         case ENDTURN_BAD_POISON:  // toxic poison
             if ((gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
-                && gBattleMons[battler].hp != 0)
+                && gBattleMons[battler].hp != 0
+                && ability != ABILITY_TOXIC_BOOST)
             {
                 MAGIC_GUARD_CHECK;
 
@@ -2743,7 +2745,8 @@ u8 DoBattlerEndTurnEffects(void)
             break;
         case ENDTURN_BURN:  // burn
             if ((gBattleMons[battler].status1 & STATUS1_BURN)
-                && gBattleMons[battler].hp != 0)
+                && gBattleMons[battler].hp != 0
+                && ability != ABILITY_FLARE_BOOST)
             {
                 MAGIC_GUARD_CHECK;
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
@@ -6508,6 +6511,7 @@ bool32 CanSleep(u32 battler)
       || ability == ABILITY_VITAL_SPIRIT
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_WONDER_SKIN
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
@@ -6527,6 +6531,7 @@ bool32 CanBePoisoned(u32 battlerAttacker, u32 battlerTarget)
      || ability == ABILITY_IMMUNITY
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_PURIFYING_SALT
+     || ability == ABILITY_WONDER_SKIN
      || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
      || IsAbilityStatusProtected(battlerTarget)
      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -6546,6 +6551,7 @@ bool32 CanBeBurned(u32 battler)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_THERMAL_EXCHANGE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_WONDER_SKIN
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -6560,6 +6566,7 @@ bool32 CanBeParalyzed(u32 battler)
         || ability == ABILITY_LIMBER
         || ability == ABILITY_COMATOSE
         || ability == ABILITY_PURIFYING_SALT
+        || ability == ABILITY_WONDER_SKIN
         || gBattleMons[battler].status1 & STATUS1_ANY
         || IsAbilityStatusProtected(battler)
         || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6576,6 +6583,7 @@ bool32 CanBeFrozen(u32 battler)
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_WONDER_SKIN
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6591,6 +6599,7 @@ bool32 CanGetFrostbite(u32 battler)
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_WONDER_SKIN
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -9443,7 +9452,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_DEFEATIST:
-        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 2))
+        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 4))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
         break;
     case ABILITY_FLASH_FIRE:
@@ -9495,6 +9504,10 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     case ABILITY_GUTS:
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_ILLUSION:
+        if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.3));
         break;
     }
 

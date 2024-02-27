@@ -1562,8 +1562,12 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
+    // make fire-types never miss will o', electric-types never miss twave, and TODO ice-types never miss frostbite move
     if ((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
      || (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+     || (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_WILL_O_WISP && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE))
+     || (B_TOXIC_NEVER_MISS >= GEN_6 && move == MOVE_THUNDER_WAVE && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ELECTRIC))
+     || GetBattlerAbility(gBattlerAttacker) == ABILITY_VICTORY_STAR
      || gStatuses4[gBattlerTarget] & STATUS4_GLAIVE_RUSH)
     {
         JumpIfMoveFailed(7, move);
@@ -1683,9 +1687,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
         moveAcc = 50;
-    // Check Wonder Skin.
-    if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
-        moveAcc = 50;
+    // Check Wonder Skin. Removed due to new effect.
+    // if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
+    //     moveAcc = 50;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
@@ -1699,9 +1703,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     case ABILITY_KEEN_EYE:
         calc = (calc * 120) / 100; // 1.2 keen eye boost
         break;
-    case ABILITY_VICTORY_STAR:
+    // no longer needed due to updated Victory Star effect
+/*     case ABILITY_VICTORY_STAR:
         calc = (calc * 110) / 100; // 1.1 victory star boost
-        break;
+        break; */
     case ABILITY_HUSTLE:
         if (IS_MOVE_PHYSICAL(move))
             calc = (calc * 80) / 100; // 1.2 hustle loss
@@ -1800,6 +1805,11 @@ static void Cmd_accuracycheck(void)
         || !(gBattleMoves[move].effect == EFFECT_TRIPLE_KICK || gBattleMoves[move].effect == EFFECT_POPULATION_BOMB))))
     {
         // No acc checks for second hit of Parental Bond or multi hit moves, except Triple Kick/Triple Axel/Population Bomb
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    // make Victory Star bypass accuracy check
+    else if (abilityAtk == ABILITY_VICTORY_STAR)
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -12116,6 +12126,7 @@ static void Cmd_tryKO(void)
         if ((((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS)
                 && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
+            || GetBattlerAbility(gBattlerAttacker) == ABILITY_VICTORY_STAR
             || targetAbility == ABILITY_NO_GUARD)
             && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
         {

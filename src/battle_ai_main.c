@@ -806,6 +806,14 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     break;
                 }
                 break;
+            case ABILITY_TOXIC_BOOST:
+                if ((moveEffect == EFFECT_POISON || moveEffect == EFFECT_TOXIC) && HasMoveWithSplit(battlerDef, SPLIT_PHYSICAL))
+                    RETURN_SCORE_MINUS(20);
+                break;
+            case ABILITY_FLARE_BOOST:
+                if (moveEffect == EFFECT_WILL_O_WISP && HasMoveWithSplit(battlerDef, SPLIT_SPECIAL))
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_VOLT_ABSORB:
             case ABILITY_MOTOR_DRIVE:
             case ABILITY_LIGHTNING_ROD:
