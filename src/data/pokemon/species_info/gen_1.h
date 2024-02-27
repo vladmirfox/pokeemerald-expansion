@@ -940,38 +940,31 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #define BUTTERFREE_EXP_YIELD 160
 #endif
 
-#define BUTTERFREE_MISC_INFO                                                        \
-        .baseHP        = 60,                                                        \
-        .baseAttack    = 45,                                                        \
-        .baseDefense   = 50,                                                        \
-        .baseSpeed     = 70,                                                        \
-        .baseSpDefense = 80,                                                        \
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 90 : 80,                        \
-        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),                                  \
-        .catchRate = 45,                                                            \
-        .expYield = BUTTERFREE_EXP_YIELD,                                           \
-        .evYield_SpAttack = 2,                                                      \
-        .evYield_SpDefense = 1,                                                     \
-        .itemRare = ITEM_SILVER_POWDER,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 15,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                                 \
-        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS },  \
-        .bodyColor = BODY_COLOR_WHITE,                                              \
-        .speciesName = _("Butterfree"),                                             \
-        .cryId = CRY_BUTTERFREE,                                                    \
-        .natDexNum = NATIONAL_DEX_BUTTERFREE,                                       \
-        .categoryName = _("Butterfly"),                                             \
-        FOOTPRINT(Butterfree)                                                       \
-        LEARNSETS(Butterfree),                                                      \
-        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,                        \
-        .formChangeTable = sButterfreeFormChangeTable
-
     [SPECIES_BUTTERFREE] =
     {
-        BUTTERFREE_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 50,
+        .baseSpeed     = 70,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 90 : 80,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .catchRate = 45,
+        .expYield = BUTTERFREE_EXP_YIELD,
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_SILVER_POWDER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Butterfree"),
+        .cryId = CRY_BUTTERFREE,
+        .natDexNum = NATIONAL_DEX_BUTTERFREE,
+        .categoryName = _("Butterfly"),
         .height = 11,
         .weight = 320,
         .description = COMPOUND_STRING(
@@ -995,12 +988,38 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         PALETTES(Butterfree),
         ICON(Butterfree, 0),
+        FOOTPRINT(Butterfree)
+        LEARNSETS(Butterfree),
+        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,
+        .formChangeTable = sButterfreeFormChangeTable,
     },
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_BUTTERFREE_GIGANTAMAX] =
     {
-        BUTTERFREE_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 50,
+        .baseSpeed     = 70,
+        .baseSpAttack  = P_UPDATED_STATS >= GEN_6 ? 90 : 80,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
+        .catchRate = 45,
+        .expYield = BUTTERFREE_EXP_YIELD,
+        .evYield_SpAttack = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_SILVER_POWDER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Butterfree"),
+        .cryId = CRY_BUTTERFREE,
+        .natDexNum = NATIONAL_DEX_BUTTERFREE,
+        .categoryName = _("Butterfly"),
         .height = 170,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -1022,6 +1041,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(ButterfreeGigantamax),
         ICON(ButterfreeGigantamax, 0),
+        FOOTPRINT(Butterfree)
+        LEARNSETS(Butterfree),
+        .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,
+        .formChangeTable = sButterfreeFormChangeTable,
         .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
@@ -1130,35 +1153,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
 #define BEEDRILL_ATTACK (P_UPDATED_STATS >= GEN_6 ? 90 : 80)
 
-#define BEEDRILL_MISC_INFO                                  \
-        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),          \
-        .catchRate = 45,                                    \
-        .evYield_Attack = 2,                                \
-        .evYield_SpDefense = 1,                             \
-        .itemRare = ITEM_POISON_BARB,                       \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),         \
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .speciesName = _("Beedrill"),                       \
-        .natDexNum = NATIONAL_DEX_BEEDRILL,                 \
-        .categoryName = _("Poison Bee"),                    \
-        FOOTPRINT(Beedrill)                                 \
-        LEARNSETS(Beedrill),                                \
-        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,  \
-        .formChangeTable = sBeedrillFormChangeTable
-
     [SPECIES_BEEDRILL] =
     {
-        BEEDRILL_MISC_INFO,
         .baseHP        = 65,
+        .baseAttack    = BEEDRILL_ATTACK,
         .baseDefense   = 40,
         .baseSpeed     = 75,
         .baseSpAttack  = 45,
         .baseSpDefense = 80,
-        .baseAttack    = BEEDRILL_ATTACK,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 198,
     #elif P_UPDATED_EXP_YIELDS >= GEN_7
@@ -1168,8 +1172,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 159,
     #endif
+        .evYield_Attack = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Beedrill"),
         .cryId = CRY_BEEDRILL,
+        .natDexNum = NATIONAL_DEX_BEEDRILL,
+        .categoryName = _("Poison Bee"),
         .height = 10,
         .weight = 295,
         .description = COMPOUND_STRING(
@@ -1191,21 +1207,38 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(Beedrill),
         ICON(Beedrill, 2),
+        FOOTPRINT(Beedrill)
+        LEARNSETS(Beedrill),
+        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
+        .formChangeTable = sBeedrillFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_BEEDRILL_MEGA] =
     {
-        BEEDRILL_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = BEEDRILL_ATTACK + 60,
         .baseDefense   = 40,
         .baseSpeed     = 145,
         .baseSpAttack  = 15,
         .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_BUG, TYPE_POISON),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 248 : 223,
+        .evYield_Attack = 2,
+        .evYield_SpDefense = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
         .abilities = { ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Beedrill"),
         .cryId = CRY_BEEDRILL_MEGA,
+        .natDexNum = NATIONAL_DEX_BEEDRILL,
+        .categoryName = _("Poison Bee"),
         .height = 14,
         .weight = 405,
         .description = COMPOUND_STRING(
@@ -1227,6 +1260,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTES(BeedrillMega),
         ICON(BeedrillMega, 2),
+        FOOTPRINT(Beedrill)
+        LEARNSETS(Beedrill),
+        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
+        .formChangeTable = sBeedrillFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
@@ -1332,33 +1369,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
 #define PIDGEOT_SPEED (P_UPDATED_STATS >= GEN_6 ? 101 : 91)
 
-#define PIDGEOT_MISC_INFO                                   \
-        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),       \
-        .catchRate = 45,                                    \
-        .evYield_Speed = 3,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),      \
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Pidgeot"),                        \
-        .natDexNum = NATIONAL_DEX_PIDGEOT,                  \
-        .categoryName = _("Bird"),                          \
-        FOOTPRINT(Pidgeot)                                  \
-        LEARNSETS(Pidgeot),                                 \
-        .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,   \
-        .formChangeTable = sPidgeotFormChangeTable
-
     [SPECIES_PIDGEOT] =
     {
-        PIDGEOT_MISC_INFO,
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 75,
+        .baseSpeed     = PIDGEOT_SPEED,
         .baseSpAttack  = 70,
         .baseSpDefense = 70,
-        .baseSpeed     = PIDGEOT_SPEED,
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),
+        .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 240,
     #elif P_UPDATED_EXP_YIELDS >= GEN_7
@@ -1368,8 +1388,18 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 172,
     #endif
+        .evYield_Speed = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Pidgeot"),
         .cryId = CRY_PIDGEOT,
+        .natDexNum = NATIONAL_DEX_PIDGEOT,
+        .categoryName = _("Bird"),
         .height = 15,
         .weight = 395,
         .description = COMPOUND_STRING(
@@ -1391,21 +1421,36 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(Pidgeot),
         ICON(Pidgeot, 0),
+        FOOTPRINT(Pidgeot)
+        LEARNSETS(Pidgeot),
+        .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,
+        .formChangeTable = sPidgeotFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_PIDGEOT_MEGA] =
     {
-        PIDGEOT_MISC_INFO,
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 80,
         .baseSpeed     = PIDGEOT_SPEED + 20,
         .baseSpAttack  = 135,
         .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),
+        .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,
+        .evYield_Speed = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
         .abilities = { ABILITY_NO_GUARD, ABILITY_NO_GUARD, ABILITY_NO_GUARD },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Pidgeot"),
         .cryId = CRY_PIDGEOT_MEGA,
+        .natDexNum = NATIONAL_DEX_PIDGEOT,
+        .categoryName = _("Bird"),
         .height = 22,
         .weight = 505,
         .description = COMPOUND_STRING(
@@ -1426,6 +1471,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PALETTES(PidgeotMega),
         ICON(PidgeotMega, 0),
+        FOOTPRINT(Pidgeot)
+        LEARNSETS(Pidgeot),
+        .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,
+        .formChangeTable = sPidgeotFormChangeTable,
         .isMegaEvolution = TRUE,
     },
 #endif
