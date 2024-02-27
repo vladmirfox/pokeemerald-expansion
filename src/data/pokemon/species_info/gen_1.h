@@ -1481,49 +1481,29 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif //P_FAMILY_PIDGEY
 
 #if P_FAMILY_RATTATA
-#define RATTATA_FAMILY_MISC_INFO                            \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD)
-
-#define RATTATA_MISC_INFO                                       \
-        .baseHP        = 30,                                    \
-        .baseAttack    = 56,                                    \
-        .baseDefense   = 35,                                    \
-        .baseSpeed     = 72,                                    \
-        .baseSpAttack  = 25,                                    \
-        .baseSpDefense = 35,                                    \
-        .catchRate = 255,                                       \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 51 : 57,  \
-        .evYield_Speed = 1,                                     \
-        .speciesName = _("Rattata"),                            \
-        .cryId = CRY_RATTATA,                                   \
-        .natDexNum = NATIONAL_DEX_RATTATA,                      \
-        .categoryName = _("Mouse"),                             \
-        FOOTPRINT(Rattata)                                      \
-        .formSpeciesIdTable = sRattataFormSpeciesIdTable
-
-#define RATICATE_MISC_INFO                                          \
-        .catchRate = 127,                                           \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 145 : 116,    \
-        .evYield_Speed = 2,                                         \
-        .speciesName = _("Raticate"),                               \
-        .cryId = CRY_RATICATE,                                      \
-        .natDexNum = NATIONAL_DEX_RATICATE,                         \
-        .categoryName = _("Mouse"),                                 \
-        .height = 7,                                                \
-        FOOTPRINT(Raticate)                                         \
-        .formSpeciesIdTable = sRaticateFormSpeciesIdTable
-
     [SPECIES_RATTATA] =
     {
-        RATTATA_FAMILY_MISC_INFO,
-        RATTATA_MISC_INFO,
+        .baseHP        = 30,
+        .baseAttack    = 56,
+        .baseDefense   = 35,
+        .baseSpeed     = 72,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 35,
         .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 51 : 57,
+        .evYield_Speed = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE },
         .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Rattata"),
+        .cryId = CRY_RATTATA,
+        .natDexNum = NATIONAL_DEX_RATTATA,
+        .categoryName = _("Mouse"),
         .height = 3,
         .weight = 35,
         .description = COMPOUND_STRING(
@@ -1546,14 +1526,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         PALETTES(Rattata),
         ICON(Rattata, 2),
+        FOOTPRINT(Rattata)
         LEARNSETS(Rattata),
+        .formSpeciesIdTable = sRattataFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_RATICATE}),
     },
 
     [SPECIES_RATICATE] =
     {
-        RATTATA_FAMILY_MISC_INFO,
-        RATICATE_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 81,
         .baseDefense   = 60,
@@ -1561,8 +1541,21 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 50,
         .baseSpDefense = 70,
         .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 127,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 145 : 116,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE },
         .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Raticate"),
+        .cryId = CRY_RATICATE,
+        .natDexNum = NATIONAL_DEX_RATICATE,
+        .categoryName = _("Mouse"),
+        .height = 7,
         .weight = 185,
         .description = COMPOUND_STRING(
             "A Raticate's sturdy fangs grow steadily.\n"
@@ -1584,18 +1577,36 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         PALETTES(Raticate),
         ICON(Raticate, 2),
+        FOOTPRINT(Raticate)
         LEARNSETS(Raticate),
+        .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
     [SPECIES_RATTATA_ALOLAN] =
     {
-        RATTATA_FAMILY_MISC_INFO,
-        RATTATA_MISC_INFO,
+        .baseHP        = 30,
+        .baseAttack    = 56,
+        .baseDefense   = 35,
+        .baseSpeed     = 72,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 35,
         .types = MON_TYPES(TYPE_DARK, TYPE_NORMAL),
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 51 : 57,
+        .evYield_Speed = 1,
         .itemRare = ITEM_PECHA_BERRY,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Rattata"),
+        .cryId = CRY_RATTATA,
+        .natDexNum = NATIONAL_DEX_RATTATA,
+        .categoryName = _("Mouse"),
         .height = 3,
         .weight = 38,
         .description = COMPOUND_STRING(
@@ -1616,15 +1627,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RattataAlolan),
         ICON(RattataAlolan, 2),
+        FOOTPRINT(Rattata)
         LEARNSETS(RattataAlolan),
         .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sRattataFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
     },
 
     [SPECIES_RATICATE_ALOLAN] =
     {
-        RATTATA_FAMILY_MISC_INFO,
-        RATICATE_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 71,
         .baseDefense   = 70,
@@ -1632,9 +1643,22 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpAttack  = 40,
         .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_DARK, TYPE_NORMAL),
+        .catchRate = 127,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 145 : 116,
+        .evYield_Speed = 2,
         .itemRare = ITEM_PECHA_BERRY,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Raticate"),
+        .cryId = CRY_RATICATE,
+        .natDexNum = NATIONAL_DEX_RATICATE,
+        .categoryName = _("Mouse"),
+        .height = 7,
         .weight = 255,
         .description = COMPOUND_STRING(
             "It forms a group of Rattata, which it \n"
@@ -1654,7 +1678,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(RaticateAlolan),
         ICON(RaticateAlolan, 2),
+        FOOTPRINT(Raticate)
         LEARNSETS(RaticateAlolan),
+        .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
         .isAlolanForm = TRUE,
     },
 #endif //P_ALOLAN_FORMS
