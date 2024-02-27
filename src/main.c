@@ -215,35 +215,37 @@ void SetMainCallback2(MainCallback callback)
 
 void StartTimer1(void)
 {
-    #if HQ_RANDOM == TRUE
+    if (HQ_RANDOM)
+    {
         REG_TM2CNT_L = 0;
-        // Set timer 2 to count timer 1 overflows.
-        REG_TM2CNT_H = 0x84;
-    #endif
+        REG_TM2CNT_H = TIMER_ENABLE | TIMER_COUNTUP;
+    }
 
-    REG_TM1CNT_H = 0x80;
+    REG_TM1CNT_H = TIMER_ENABLE;
 }
 
 void SeedRngAndSetTrainerId(void)
 {
-    #if HQ_RANDOM == TRUE
-        u32 val;
+    u32 val;
+
+    if (HQ_RANDOM)
+    {
         REG_TM1CNT_H = 0;
         REG_TM2CNT_H = 0;
         val = ((u32)REG_TM2CNT_L) << 16;
         val |= REG_TM1CNT_L;
-    #else
-        u16 val = REG_TM1CNT_L;
-    #endif
-
-    SeedRng(val);
-
-    #if HQ_RANDOM == TRUE
+        SeedRng(val);
         sTrainerId = Random();
-    #else
+    }
+    else
+    {
+        // Do it exactly like it was originally done, including not stopping
+        // the timer beforehand.
+        val = REG_TM1CNT_L;
+        SeedRng((u16)val);
         REG_TM1CNT_H = 0;
         sTrainerId = val;
-    #endif
+    }
 }
 
 u16 GetGeneratedTrainerIdLower(void)
