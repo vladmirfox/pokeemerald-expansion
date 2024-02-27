@@ -11063,6 +11063,11 @@ static void Cmd_manipulatedamage(void)
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
         break;
+    case DMG_1_6_TARGET_HP:
+        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 6;
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        break;
     case DMG_FULL_ATTACKER_HP:
         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker);
         break;
