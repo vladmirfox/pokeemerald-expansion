@@ -106,13 +106,13 @@ struct TypeInfo
     u8 palette;
     //u16 zMove;
     u16 maxMove;
-    /*u16 enhanceItem;
-    u16 berry;
-    u16 gem;
-    u16 plate;
-    u16 memory;
-    u16 zCrystal;
-    u16 teraShard;*/
+    //u16 enhanceItem;
+    //u16 berry;
+    //u16 gem;
+    //u16 plate;
+    //u16 memory;
+    //u16 zCrystal;
+    //u16 teraShard;
 };
 
 extern const u16 gMinigameDigits_Pal[];
