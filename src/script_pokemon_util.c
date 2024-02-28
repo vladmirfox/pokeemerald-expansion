@@ -494,10 +494,13 @@ void Script_SetStatus1(struct ScriptContext *ctx)
 
     if (slot >= PARTY_SIZE)
     {
+        u16 species;
+
         for (slot = 0; slot < PARTY_SIZE; slot++)
         {
-            if (GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES) != SPECIES_NONE
-             && GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES) != SPECIES_EGG
+            species = GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES);
+            if (species != SPECIES_NONE
+             && species != SPECIES_EGG
              && GetMonData(&gPlayerParty[slot], MON_DATA_HP) != 0)
                 SetMonData(&gPlayerParty[slot], MON_DATA_STATUS, &status1);
         }
