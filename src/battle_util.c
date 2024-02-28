@@ -6512,6 +6512,7 @@ bool32 CanSleep(u32 battler)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
       || ability == ABILITY_WONDER_SKIN
+      || ability == ABILITY_FLOWER_VEIL
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
@@ -6532,6 +6533,7 @@ bool32 CanBePoisoned(u32 battlerAttacker, u32 battlerTarget)
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_PURIFYING_SALT
      || ability == ABILITY_WONDER_SKIN
+     || ability == ABILITY_FLOWER_VEIL
      || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
      || IsAbilityStatusProtected(battlerTarget)
      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -6552,6 +6554,7 @@ bool32 CanBeBurned(u32 battler)
       || ability == ABILITY_THERMAL_EXCHANGE
       || ability == ABILITY_PURIFYING_SALT
       || ability == ABILITY_WONDER_SKIN
+      || ability == ABILITY_FLOWER_VEIL
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -6567,6 +6570,7 @@ bool32 CanBeParalyzed(u32 battler)
         || ability == ABILITY_COMATOSE
         || ability == ABILITY_PURIFYING_SALT
         || ability == ABILITY_WONDER_SKIN
+        || ability == ABILITY_FLOWER_VEIL
         || gBattleMons[battler].status1 & STATUS1_ANY
         || IsAbilityStatusProtected(battler)
         || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6584,6 +6588,7 @@ bool32 CanBeFrozen(u32 battler)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
       || ability == ABILITY_WONDER_SKIN
+      || ability == ABILITY_FLOWER_VEIL
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6600,6 +6605,7 @@ bool32 CanGetFrostbite(u32 battler)
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
       || ability == ABILITY_WONDER_SKIN
+      || ability == ABILITY_FLOWER_VEIL
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -9179,6 +9185,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         if (gBattleMoves[move].soundMove)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
+    case ABILITY_LIQUID_VOICE:
+        if (gBattleMoves[move].soundMove)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_STEELY_SPIRIT:
         if (moveType == TYPE_STEEL)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
@@ -9530,6 +9540,14 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
         break;
+        case ABILITY_WATER_COMPACTION:
+        if (moveType == TYPE_WATER)
+        {
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_WATER_COMPACTION);
+        }
+        break;
     }
 
     // ally's abilities
@@ -9674,7 +9692,7 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
         }
         break;
     case ABILITY_GRASS_PELT:
-        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
             if (updateFlags)
@@ -10157,6 +10175,12 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
+    }
+    else if (moveType == TYPE_POISON && defType == TYPE_STEEL && GetBattlerAbility(battlerAtk) == ABILITY_CORROSION && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))

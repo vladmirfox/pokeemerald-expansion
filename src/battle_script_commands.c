@@ -1936,7 +1936,8 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT || gStatuses3[battlerAtk] & STATUS3_CANT_SCORE_A_CRIT
        || abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR || abilityDef == ABILITY_MAGMA_ARMOR
-       || (abilityDef == ABILITY_LEAF_GUARD && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN)))
+       || (abilityDef == ABILITY_LEAF_GUARD && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN))
+       || (abilityDef == ABILITY_GRASS_PELT && IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_GRASSY_TERRAIN)))
     {
         critChance = -1;
     }
@@ -5113,6 +5114,7 @@ static void Cmd_playstatchangeanimation(void)
                         && ability != ABILITY_CLEAR_BODY
                         && ability != ABILITY_FULL_METAL_BODY
                         && ability != ABILITY_WHITE_SMOKE
+                        && ability != ABILITY_FLOWER_VEIL
                         && !(ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
                         && !(B_ILLUMINATE_EFFECT >= GEN_9 && ability == ABILITY_ILLUMINATE && currStat == STAT_ACC)
                         && !(ability == ABILITY_HYPER_CUTTER && (currStat == STAT_ATK || currStat == STAT_SPATK))
@@ -8265,6 +8267,8 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
 
 u32 IsFlowerVeilProtected(u32 battler)
 {
+    if (IsBattlerAlive(battler) && GetBattlerAbility(battler) == ABILITY_FLOWER_VEIL)
+        return battler + 1;
     if (IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
         return IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL);
     else
@@ -15750,6 +15754,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef, bool8 byIntimidate)
     case ABILITY_CLEAR_BODY:
     case ABILITY_FULL_METAL_BODY:
     case ABILITY_WHITE_SMOKE:
+    case ABILITY_FLOWER_VEIL:
         return TRUE;
     case ABILITY_INNER_FOCUS:
     case ABILITY_SCRAPPY:
