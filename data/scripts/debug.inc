@@ -98,7 +98,7 @@ Debug_BoxFilledMessage_Text:
 Debug_EventScript_CheckEV::
 	lockall
 	getpartysize
-	goto_if_eq VAR_RESULT, 0, Debug_HatchAnEgg_NoPokemon
+	goto_if_eq VAR_RESULT, 0, Debug_NoPokemon
 	special ChoosePartyMon
 	waitstate
 	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_EventScript_CheckEV_End
@@ -119,7 +119,7 @@ Debug_EventScript_Text_DefensiveEV:
 Debug_EventScript_CheckIV::
 	lockall
 	getpartysize
-	goto_if_eq VAR_RESULT, 0, Debug_HatchAnEgg_NoPokemon
+	goto_if_eq VAR_RESULT, 0, Debug_NoPokemon
 	special ChoosePartyMon
 	waitstate
 	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_EventScript_CheckIV_End
@@ -202,7 +202,7 @@ Debug_ROMSize::
 Debug_HatchAnEgg::
 	lockall
 	getpartysize
-	goto_if_eq VAR_RESULT, 0, Debug_HatchAnEgg_NoPokemon
+	goto_if_eq VAR_RESULT, 0, Debug_NoPokemon
 	special ChoosePartyMon
 	waitstate
 	goto_if_ge VAR_0x8004, PARTY_SIZE, Debug_HatchAnEgg_End
@@ -214,7 +214,7 @@ Debug_HatchAnEgg_End::
 	releaseall
 	end
 
-Debug_HatchAnEgg_NoPokemon::
+Debug_NoPokemon::
 	msgbox DebugScript_Text_EmptyParty, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -299,7 +299,7 @@ Debug_FlagsAndVarNotSetBattleConfigMessage_Text:
 Debug_EventScript_InflictStatus1::
 	lockall
 	getpartysize
-	goto_if_eq VAR_RESULT, 0, Debug_EventScript_InflictStatus1_NoPokemon
+	goto_if_eq VAR_RESULT, 0, Debug_NoPokemon
 	dynmultipush Debug_EventScript_InflictStatus1_Text_Single, 0
 	dynmultipush Debug_EventScript_InflictStatus1_Text_PartyWide, 1
 	dynmultipush Debug_EventScript_InflictStatus1_Text_Close, 2
@@ -309,11 +309,6 @@ Debug_EventScript_InflictStatus1::
 	case 1, Debug_EventScript_InflictStatus1_Party
 	case 2, Debug_EventScript_InflictStatus1_Close
 Debug_EventScript_InflictStatus1_Close:
-	releaseall
-	end
-
-Debug_EventScript_InflictStatus1_NoPokemon:
-	msgbox DebugScript_Text_EmptyParty, MSGBOX_DEFAULT
 	releaseall
 	end
 
