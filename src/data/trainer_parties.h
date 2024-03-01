@@ -2070,7 +2070,7 @@ static const struct TrainerMon sParty_Koichi[] = {
     .lvl = 24,
     .species = SPECIES_FLAREON,
     .ability = ABILITY_GUTS,
-    .moves = {MOVE_SPORE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .moves = {MOVE_PURSUIT, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     }
 };
 
