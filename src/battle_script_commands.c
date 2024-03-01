@@ -1153,10 +1153,14 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_RAGE] = {
         .statusFlag = STATUS2_RAGE,
     },
-
     [MOVE_EFFECT_STEAL_ITEM] = {
         .statusFlag = 0,
         .activateAfterFaint = TRUE,
+        .battleScript = BattleScript_ItemSteal,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_2_ARG(CanStealItem, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_STICKY_HOLD, 0, BattleScript_NoItemSteal)
+        )
     },
 
     [MOVE_EFFECT_PREVENT_ESCAPE] = {
@@ -1172,7 +1176,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_AllStatsUp,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1191,7 +1195,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_AtkDefDown,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1282,7 +1286,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_DefSpDefDown,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1295,7 +1299,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_SAtkDown2,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1319,7 +1323,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_SpectralThiefSteal,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1327,7 +1331,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_VCreateStatLoss,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1339,7 +1343,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = 0,
         .battleScript = BattleScript_MoveEffectCoreEnforcer,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY()
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE)
         ),
     },
 
@@ -1350,6 +1354,10 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_INCINERATE] = {
         .statusFlag = 0,
         .battleScript = BattleScript_MoveEffectIncinerate,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG(CanBattlerItemBeIncinerated, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_STICKY_HOLD, 0, BattleScript_NoItemSteal)
+        ),
     },
 
     [MOVE_EFFECT_BUG_BITE] = {
@@ -1357,6 +1365,10 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_MoveEffectBugBite,
         .activateAfterFaint = TRUE,
         .finalHitOnly = TRUE,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG(IsBattlerItemBerry, FALSE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_STICKY_HOLD, 0, BattleScript_NoItemSteal)
+        ),
     },
 
     [MOVE_EFFECT_RECOIL_HP_25] = {
@@ -1379,10 +1391,6 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .moveEndEffect = TRUE,
     },
 
-    [MOVE_EFFECT_DIRE_CLAW] = {
-        .statusFlag = 0,
-    },
-
     [MOVE_EFFECT_STEALTH_ROCK] = {
         .statusFlag = 0,
         .battleScript = BattleScript_StealthRockActivates,
@@ -1401,7 +1409,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .statusFlag = STATUS4_SYRUP_BOMB,
         .battleScript = BattleScript_SyrupBombActivates,
         .blockers = MOVE_EFFECT_BLOCKERS(
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS4(0)
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4(0)
         ),
     },
 
@@ -1418,7 +1426,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .battleScript = BattleScript_EffectPsychicNoise,
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE(ABILITY_AROMA_VEIL, BattleScript_AromaVeilProtects),
-            MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS3(0)
+            MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3(0)
         ),
     },
 };
@@ -3239,11 +3247,11 @@ static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertai
     return TRUE;
 }
 
-#define SET_FAIL_RESULT_END_LOOP                        \
-{                                                       \
-    result->pass = FALSE;                               \
-    result->nextScript = info.blockers[i].battleScript; \
-    return FALSE;                                       \
+static bool32 MoveEffectBlockerFailResult(struct MoveEffectResult *result, const u8 *failScript)
+{
+    result->pass = FALSE;
+    result->nextScript = failScript;
+    return FALSE;
 }
 
 static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEffect, u16 move, bool32 primaryOrCertain, u32 battlerDef, u32 battlerAbility)
@@ -3263,11 +3271,11 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                             gLastUsedAbility = battlerAbility;
                             gBattlerAbility = battlerDef;
                             RecordAbilityBattle(gEffectBattler, battlerAbility);
-                            if (info.blockers[i].battleScript)
+                            if (info.blockers[i].pointer.script)
                                 gBattleCommunication[MULTISTRING_CHOOSER] = info.blockers[i].useMultistring ? moveEffect : 0;
 
                         }
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE:
@@ -3281,37 +3289,38 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                             gLastUsedAbility = info.blockers[i].blocker.ability;
                             RecordAbilityBattle(gBattlerAbility, info.blockers[i].blocker.ability);
                         }
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 }
                 case MOVE_EFFECT_BLOCKER_SUBSTITUTE:
                     if (DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, move))
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_TERRAIN:
                     if (IsBattlerTerrainAffected(battlerDef, info.blockers[i].blocker.terrain))
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_SAFEGUARD:
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_INFILTRATOR &&
+                      !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT) &&
                       (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD))
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_UPROAR:
-                    if (BattlerSleepBlockedByUproar(battlerAbility))
-                        SET_FAIL_RESULT_END_LOOP
+                    if (BattlerSleepBlockedByUproar(battlerDef))
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_FLOWER_VEIL:
                     if (IsFlowerVeilProtected(battlerDef))
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_LEAF_GUARD:
                     if (IsLeafGuardProtected(battlerDef))
                     {
                         gBattlerAbility = battlerDef;
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_SHIELDS_DOWN:
@@ -3319,7 +3328,7 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                     {
                         gBattlerAbility = battlerDef;
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_TYPE:
@@ -3336,14 +3345,14 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                                         continue;
                                 default:
                                     if (IS_BATTLER_OF_TYPE(battlerDef, info.blockers[i].blocker.types[j]))
-                                        SET_FAIL_RESULT_END_LOOP
+                                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                             }
                         }
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1:
                     if (gBattleMons[battlerDef].status1 != 0)
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1:
                 {
@@ -3354,31 +3363,39 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
 
                     if (gBattleMons[battlerDef].status1 & statusFlag)
                     {
-                        if (info.blockers[i].battleScript)
+                        if (info.blockers[i].pointer.script)
                             gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 }
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2:
                     if (gBattleMons[battlerDef].status2 & info.statusFlag)
                     {
-                        if (info.blockers[i].battleScript)
+                        if (info.blockers[i].pointer.script)
                             gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3:
                     if (gStatuses3[battlerDef] & info.statusFlag)
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4:
                     if (gStatuses4[battlerDef] & info.statusFlag)
-                        SET_FAIL_RESULT_END_LOOP
+                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
                     break;
-                case MOVE_EFFECT_BLOCKER_NO_MONS_ALIVE_EITHER_PARTY:
-                    if (NoAliveMonsForEitherParty())
-                        SET_FAIL_RESULT_END_LOOP
+                case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG:
+                    if (info.blockers[i].pointer.function0() == info.blockers[i].blocker.result)
+                        return MoveEffectBlockerFailResult(result, 0);
+                    break;
+                case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG:
+                    if (info.blockers[i].pointer.function1(battlerDef) == info.blockers[i].blocker.result)
+                        return MoveEffectBlockerFailResult(result, 0);
+                    break;
+                case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_2_ARG:
+                    if (info.blockers[i].pointer.function2(gBattlerAttacker, battlerDef) == info.blockers[i].blocker.result)
+                        return MoveEffectBlockerFailResult(result, 0);
                     break;
                 case MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT:
                     return MoveEffectIsNotBlocked(result, info.blockers[i].blocker.otherMoveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
@@ -3466,10 +3483,9 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     u32 affectsUser = (moveEffect & MOVE_EFFECT_AFFECTS_USER),
         moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
     u16 battlerAbility;
-    u8 side;
     struct MoveEffectResult result = { .pass = FALSE };
 
-    // NULL move effect
+    // Zero move effect
     if (moveEffect == 0)
         return result;
 
@@ -3518,10 +3534,6 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             RecordItemEffectBattle(gEffectBattler, HOLD_EFFECT_COVERT_CLOAK);
         return result;
     }
-
-    if (gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
-        && !primary && moveEffect <= MOVE_EFFECT_CONFUSION)
-        return result;
 
     if (move != MOVE_NONE)
     {
@@ -3650,15 +3662,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             }
             break;
         case MOVE_EFFECT_TRI_ATTACK:
-            {
-                static const u8 sTriAttackEffects[] =
-                {
-                    MOVE_EFFECT_BURN,
-                    MOVE_EFFECT_FREEZE_OR_FROSTBITE,
-                    MOVE_EFFECT_PARALYSIS
-                };
-                return CheckOrSetMoveEffect(RandomElement(RNG_TRI_ATTACK, sTriAttackEffects), primary, certain, argument, move, check);
-            }
+            return CheckOrSetMoveEffect(RandomElement(RNG_TRI_ATTACK, argument.threeMoveEffects), primary, certain, argument, move, check);
         case MOVE_EFFECT_CHARGING:
             if (result.pass && !check)
             {
@@ -3753,57 +3757,13 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             }
             break;
         case MOVE_EFFECT_STEAL_ITEM:
+            if (CheckAdditionalConditions(&result, !(gBattleMons[gBattlerAttacker].item != ITEM_NONE
+                  || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY_E_READER
+                  || gBattleMons[gBattlerTarget].item == ITEM_NONE)) && !check)
             {
-                if (!CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item))
-                {
-                    gBattlescriptCurrInstr++;
-                    break;
-                }
-
-                side = GetBattlerSide(gBattlerAttacker);
-                if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT
-                    && !(gBattleTypeFlags &
-                        (BATTLE_TYPE_EREADER_TRAINER
-                        | BATTLE_TYPE_FRONTIER
-                        | BATTLE_TYPE_LINK
-                        | BATTLE_TYPE_RECORDED_LINK
-                        | BATTLE_TYPE_SECRET_BASE)))
-                {
-                    gBattlescriptCurrInstr++;
-                }
-                else if (!(gBattleTypeFlags &
-                        (BATTLE_TYPE_EREADER_TRAINER
-                        | BATTLE_TYPE_FRONTIER
-                        | BATTLE_TYPE_LINK
-                        | BATTLE_TYPE_RECORDED_LINK
-                        | BATTLE_TYPE_SECRET_BASE))
-                    && (gWishFutureKnock.knockedOffMons[side] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
-                {
-                    gBattlescriptCurrInstr++;
-                }
-                else if (gBattleMons[gBattlerTarget].item
-                    && GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD)
-                {
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_NoItemSteal;
-
-                    gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
-                    RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
-                }
-                else if (gBattleMons[gBattlerAttacker].item != ITEM_NONE
-                    || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY_E_READER
-                    || gBattleMons[gBattlerTarget].item == ITEM_NONE)
-                {
-                    gBattlescriptCurrInstr++;
-                }
-                else
-                {
-                    StealTargetItem(gBattlerAttacker, gBattlerTarget);  // Attacker steals target item
-                    gBattleMons[gBattlerAttacker].item = ITEM_NONE; // Item assigned later on with thief (see MOVEEND_CHANGED_ITEMS)
-                    gBattleStruct->changedItems[gBattlerAttacker] = gLastUsedItem; // Stolen item to be assigned later
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_ItemSteal;
-                }
+                StealTargetItem(gBattlerAttacker, gBattlerTarget);  // Attacker steals target item
+                gBattleMons[gBattlerAttacker].item = ITEM_NONE; // Item assigned later on with thief (see MOVEEND_CHANGED_ITEMS)
+                gBattleStruct->changedItems[gBattlerAttacker] = gLastUsedItem; // Stolen item to be assigned later
             }
             break;
         case MOVE_EFFECT_PREVENT_ESCAPE:
@@ -3893,9 +3853,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 gDisableStructs[gEffectBattler].throatChopTimer = 2;
             break;
         case MOVE_EFFECT_INCINERATE:
-            if (CheckAdditionalConditions(&result, (gBattleMons[gEffectBattler].item >= FIRST_BERRY_INDEX
-              && gBattleMons[gEffectBattler].item <= LAST_BERRY_INDEX)
-              || (B_INCINERATE_GEMS >= GEN_6 && GetBattlerHoldEffect(gEffectBattler, FALSE) == HOLD_EFFECT_GEMS)) && !check)
+            if (!check)
             {
                 gLastUsedItem = gBattleMons[gEffectBattler].item;
                 gBattleMons[gEffectBattler].item = 0;
@@ -3906,8 +3864,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             }
             break;
         case MOVE_EFFECT_BUG_BITE:
-            if (CheckAdditionalConditions(&result, (ItemId_GetPocket(gBattleMons[gEffectBattler].item) == POCKET_BERRIES
-              && battlerAbility != ABILITY_STICKY_HOLD)) && !check)
+            if (!check)
             {
                 // target loses their berry
                 gLastUsedItem = gBattleMons[gEffectBattler].item;
@@ -3953,12 +3910,6 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         case MOVE_EFFECT_ROUND:
             if (!check)
                 TryUpdateRoundTurnOrder(); // If another Pokémon uses Round before the user this turn, the user will use Round directly after it
-            break;
-        case MOVE_EFFECT_DIRE_CLAW:
-            {
-                static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_PARALYSIS, MOVE_EFFECT_SLEEP };
-                return CheckOrSetMoveEffect(RandomElement(RNG_DIRE_CLAW, sDireClawEffects), primary, certain, argument, move, check);
-            }
             break;
         case MOVE_EFFECT_STEALTH_ROCK:
             if (CheckAdditionalConditions(&result, !(gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_STEALTH_ROCK)) && !check)
@@ -6130,7 +6081,7 @@ static void Cmd_moveend(void)
               && gBattleMons[gBattlerTarget].item != ITEM_NONE
               && IsBattlerAlive(gBattlerAttacker)
               && TARGET_TURN_DAMAGED
-              && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
+              && CanStealItem(gBattlerAttacker, gBattlerTarget)
               && !gSpecialStatuses[gBattlerAttacker].gemBoost   // In base game, gems are consumed after magician would activate.
               && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & gBitTable[gBattlerPartyIndexes[gBattlerTarget]])
               && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
@@ -6389,7 +6340,7 @@ static void Cmd_moveend(void)
                       && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)              // Subsitute unaffected
                       && IsBattlerAlive(battler)                                                        // Battler must be alive to pickpocket
                       && gBattleMons[battler].item == ITEM_NONE                                         // Pickpocketer can't have an item already
-                      && CanStealItem(battler, gBattlerAttacker, gBattleMons[gBattlerAttacker].item))   // Cannot steal plates, mega stones, etc
+                      && CanStealItem(battler, gBattlerAttacker))                                       // Cannot steal plates, mega stones, etc
                     {
                         gBattlerTarget = gBattlerAbility = battler;
                         // Battle scripting is super brittle so we shall do the item exchange now (if possible)

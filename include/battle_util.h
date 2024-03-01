@@ -205,7 +205,7 @@ u8 GetCategoryBasedOnStats(u32 battler);
 bool32 MoveIsAffectedBySheerForce(u16 move);
 bool32 TestIfSheerForceAffected(u32 battler, u16 move);
 void TryRestoreHeldItems(void);
-bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item);
+bool32 CanStealItem(u32 battlerStealing, u32 battlerItem);
 void TrySaveExchangedItem(u32 battler, u16 stolenItem);
 bool32 IsPartnerMonFromSameTrainer(u32 battler);
 u8 TryHandleSeed(u32 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 execute);
@@ -254,6 +254,8 @@ bool8 IsMonBannedFromSkyBattles(u16 species);
 bool32 RemoveBattlerType(u32 battler, u8 type);
 bool32 BattlerHasChangedStats(u32 battler);
 bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef);
-bool32 BattlerSleepBlockedByUproar(u32 battlerAbility);
+bool32 BattlerSleepBlockedByUproar(u32 battler);
+bool32 IsBattlerItemBerry(u32 battler);
+bool32 CanBattlerItemBeIncinerated(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H

@@ -391,15 +391,14 @@
 #define MOVE_EFFECT_TRAP_BOTH           70
 #define MOVE_EFFECT_ROUND               71
 #define MOVE_EFFECT_STOCKPILE_WORE_OFF  72
-#define MOVE_EFFECT_DIRE_CLAW           73
-#define MOVE_EFFECT_STEALTH_ROCK        74
-#define MOVE_EFFECT_SPIKES              75
-#define MOVE_EFFECT_SYRUP_BOMB          76
-#define MOVE_EFFECT_FLORAL_HEALING      77
-#define MOVE_EFFECT_SECRET_POWER        78
-#define MOVE_EFFECT_PSYCHIC_NOISE       79
+#define MOVE_EFFECT_STEALTH_ROCK        73
+#define MOVE_EFFECT_SPIKES              74
+#define MOVE_EFFECT_SYRUP_BOMB          75
+#define MOVE_EFFECT_FLORAL_HEALING      76
+#define MOVE_EFFECT_SECRET_POWER        77
+#define MOVE_EFFECT_PSYCHIC_NOISE       78
 
-#define NUM_MOVE_EFFECTS                80
+#define NUM_MOVE_EFFECTS                79
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CHECK               0x4000

@@ -545,10 +545,10 @@ typedef union {
 struct AdditionalEffect
 {
     u16 moveEffect;
+    u8 chance:7; // 0% = effect certain, primary effect
     u8 self:1;
     u8 onlyIfTargetRaisedStats:1;
     u8 onChargeTurnOnly:1;
-    u8 chance; // 0% = effect certain, primary effect
     MoveEffectArgument argument;
 };
 

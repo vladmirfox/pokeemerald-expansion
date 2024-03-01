@@ -7826,7 +7826,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                   && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
                   && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
                   && IsBattlerAlive(gBattlerAttacker)
-                  && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
+                  && CanStealItem(gBattlerAttacker, gBattlerTarget)
                   && gBattleMons[gBattlerAttacker].item == ITEM_NONE)
                 {
                     // No sticky hold checks.
@@ -10745,9 +10745,14 @@ void TryRestoreHeldItems(void)
     }
 }
 
-bool32 CanStealItem(u32 battlerStealing, u32 battlerItem, u16 item)
+bool32 CanStealItem(u32 battlerStealing, u32 battlerItem)
 {
     u8 stealerSide = GetBattlerSide(battlerStealing);
+    u16 item = gBattleMons[battlerItem].item;
+
+    // Cannot steal item from self
+    if (battlerStealing == battlerItem)
+        return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
         return FALSE;
@@ -11276,10 +11281,10 @@ bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef)
     return (gBattleStruct->stolenStats[0] != 0);
 }
 
-bool32 BattlerSleepBlockedByUproar(u32 battlerAbility)
+bool32 BattlerSleepBlockedByUproar(u32 battler)
 {
     u32 i;
-    if (battlerAbility != ABILITY_SOUNDPROOF || B_UPROAR_IGNORE_SOUNDPROOF >= GEN_5)
+    if (GetBattlerAbility(battler) != ABILITY_SOUNDPROOF || B_UPROAR_IGNORE_SOUNDPROOF >= GEN_5)
     {
         for (i = 0; i < gBattlersCount; i++)
         {
@@ -11287,6 +11292,17 @@ bool32 BattlerSleepBlockedByUproar(u32 battlerAbility)
                 return TRUE;
         }
     }
-    return FALSE;
 
+    return FALSE;
+}
+
+bool32 IsBattlerItemBerry(u32 battler)
+{
+    return ItemId_GetPocket(gBattleMons[battler].item) == POCKET_BERRIES;
+}
+
+bool32 CanBattlerItemBeIncinerated(u32 battler)
+{
+    return IsBattlerItemBerry(battler)
+     || (B_INCINERATE_GEMS >= GEN_6 && GetBattlerHoldEffect(gEffectBattler, FALSE) == HOLD_EFFECT_GEMS);
 }

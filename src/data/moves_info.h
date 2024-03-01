@@ -3956,6 +3956,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_TRI_ATTACK,
             .chance = 20,
+            .argument = { .threeMoveEffects = {
+                MOVE_EFFECT_BURN,
+                MOVE_EFFECT_FREEZE_OR_FROSTBITE,
+                MOVE_EFFECT_PARALYSIS,
+            }}
         }),
         .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
@@ -17940,8 +17945,13 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_DIRE_CLAW,
+            .moveEffect = MOVE_EFFECT_TRI_ATTACK,
             .chance = 50,
+            .argument = { .threeMoveEffects = {
+                MOVE_EFFECT_POISON,
+                MOVE_EFFECT_PARALYSIS,
+                MOVE_EFFECT_SLEEP,
+            }}
         }),
     },
 
