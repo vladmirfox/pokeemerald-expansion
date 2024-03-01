@@ -3733,7 +3733,9 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_MOVE:
-            if ((gBattleMoves[gCurrentMove].powderMove) && (gBattlerAttacker != gBattlerTarget))
+            if ((gBattleMoves[gCurrentMove].powderMove) 
+                 && (gBattlerAttacker != gBattlerTarget) 
+                 && !(gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT && gBattleMoves[gCurrentMove].split == SPLIT_STATUS))
             {
                 if (B_POWDER_GRASS >= GEN_6
                     && (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT))
@@ -6544,7 +6546,8 @@ bool32 CanBePoisoned(u32 battlerAttacker, u32 battlerTarget)
 bool32 CanBeBurned(u32 battler)
 {
     u16 ability = GetBattlerAbility(battler);
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
+    if ((IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
+      && (gBattleMons[gBattlerAttacker].ability != ABILITY_MYCELIUM_MIGHT || gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battler].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
@@ -6564,7 +6567,8 @@ bool32 CanBeBurned(u32 battler)
 bool32 CanBeParalyzed(u32 battler)
 {
     u16 ability = GetBattlerAbility(battler);
-    if ((B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC))
+    if ((B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC) 
+        && (gBattleMons[gBattlerAttacker].ability != ABILITY_MYCELIUM_MIGHT || gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
         || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
         || ability == ABILITY_LIMBER
         || ability == ABILITY_COMATOSE
@@ -6581,7 +6585,8 @@ bool32 CanBeParalyzed(u32 battler)
 bool32 CanBeFrozen(u32 battler)
 {
     u16 ability = GetBattlerAbility(battler);
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+    if ((IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      && (gBattleMons[gBattlerAttacker].ability != ABILITY_MYCELIUM_MIGHT || gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
       || IsBattlerWeatherAffected(battler, B_WEATHER_SUN)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
@@ -6599,7 +6604,8 @@ bool32 CanBeFrozen(u32 battler)
 bool32 CanGetFrostbite(u32 battler)
 {
     u16 ability = GetBattlerAbility(battler);
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+    if ((IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      && (gBattleMons[gBattlerAttacker].ability != ABILITY_MYCELIUM_MIGHT || gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
@@ -10251,11 +10257,26 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (gBattleMoves[move].split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE)
+    if (gBattleMoves[move].split == SPLIT_STATUS && move != MOVE_THUNDER_WAVE && move != MOVE_WILL_O_WISP)
     {
         modifier = UQ_4_12(1.0);
         if (B_GLARE_GHOST < GEN_4 && move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
             modifier = UQ_4_12(0.0);
+    }
+    if (move == MOVE_THUNDER_WAVE && gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT)
+    {
+        modifier = UQ_4_12(1.0);
+    }
+    if (move == MOVE_WILL_O_WISP)
+    {
+        if (gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT)
+        {
+            modifier = UQ_4_12(1.0);
+        }
+        else
+        {
+            modifier = UQ_4_12(0.0);
+        }
     }
     else if (moveType == TYPE_GROUND && !IsBattlerGrounded2(battlerDef, TRUE) && !(gBattleMoves[move].ignoreTypeIfFlyingAndUngrounded))
     {

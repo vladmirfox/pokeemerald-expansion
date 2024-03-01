@@ -2967,7 +2967,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 RESET_RETURN
             }
-            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_FIRE)
+            if (!CanBurnType(gBattleScripting.battler, gEffectBattler)
                 && (gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT)
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
@@ -2978,6 +2978,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 RESET_RETURN
             }
 
+            if (!CanBurnType(gBattleScripting.battler, gEffectBattler))
+                break;
             if (!CanBeBurned(gEffectBattler))
                 break;
 
@@ -8161,13 +8163,21 @@ static bool32 HasAttackerFaintedTarget(void)
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
     return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+            || (gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
             || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL))
             || ((IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)) && gBattleMoves[gCurrentMove].effect == EFFECT_POISON_STEEL_HIT)); 
 }
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))
+            || (gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT && gBattleMoves[gCurrentMove].split == SPLIT_STATUS);
+}
+
+bool32 CanBurnType(u8 battlerAttacker, u8 battlerTarget)
+{
+    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_FIRE))
+            || (gBattleMons[gBattlerAttacker].ability == ABILITY_MYCELIUM_MIGHT && gBattleMoves[gCurrentMove].split == SPLIT_STATUS);
 }
 
 bool32 CanUseLastResort(u8 battler)

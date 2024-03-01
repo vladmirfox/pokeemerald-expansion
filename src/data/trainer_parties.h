@@ -2068,25 +2068,9 @@ static const struct TrainerMon sParty_Koichi[] = {
     {
     .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
     .lvl = 24,
-    .species = SPECIES_KLINKLANG,
-    .moves = {MOVE_NIGHT_SLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
-    },
-    {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
-    .lvl = 24,
-    .species = SPECIES_MACHOP,
-    .heldItem = ITEM_FOCUS_SASH,
-    .moves = {MOVE_STORM_THROW, MOVE_NONE, MOVE_NONE, MOVE_NONE},
-    },
-    {
-    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 28,
-    .species = SPECIES_MACHOKE,
-    },
-    {
-    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 28,
-    .species = SPECIES_MACHOKE,
+    .species = SPECIES_FLAREON,
+    .ability = ABILITY_GUTS,
+    .moves = {MOVE_SPORE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     }
 };
 

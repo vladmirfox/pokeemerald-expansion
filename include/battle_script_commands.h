@@ -40,6 +40,7 @@ bool32 DoesSubstituteBlockMove(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 DoesDisguiseBlockMove(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget);
+bool32 CanBurnType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanUseLastResort(u8 battlerId);
 u32 IsFlowerVeilProtected(u32 battler);
 u32 IsLeafGuardProtected(u32 battler);
