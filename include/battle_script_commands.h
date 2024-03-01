@@ -52,7 +52,7 @@ enum {
 #define MOVE_EFFECT_BLOCKER_FLOWER_VEIL(...) { .type = MOVE_EFFECT_BLOCKER_FLOWER_VEIL, .battleScript = DEFAULT(BattleScript_FlowerVeilProtects, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_LEAF_GUARD(...) { .type = MOVE_EFFECT_BLOCKER_LEAF_GUARD, .battleScript = DEFAULT(BattleScript_AbilityPreventsMoveEffectStatus, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_SHIELDS_DOWN(...) { .type = MOVE_EFFECT_BLOCKER_SHIELDS_DOWN, .battleScript = DEFAULT(BattleScript_AbilityPreventsMoveEffectStatus, __VA_ARGS__) }
-#define MOVE_EFFECT_BLOCKER_TYPE(_types, ...) { .type = MOVE_EFFECT_BLOCKER_TYPE, .blocker = { .types = { AUTOFILL_3 _types } }, .battleScript = DEFAULT(BattleScript_NotAffected, __VA_ARGS__) }
+#define MOVE_EFFECT_BLOCKER_TYPE(_types, ...) { .type = MOVE_EFFECT_BLOCKER_TYPE, .blocker = { .types = { AUTOFILL_2 _types } }, .battleScript = DEFAULT(BattleScript_NotAffected, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1, .battleScript = DEFAULT(BattleScript_ButItFailed, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1, .battleScript = DEFAULT(BattleScript_AlreadyHasMoveEffectStatus, __VA_ARGS__) }
 #define MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2(...) { .type = MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2, .battleScript = DEFAULT(BattleScript_AlreadyHasMoveEffectStatus, __VA_ARGS__) }

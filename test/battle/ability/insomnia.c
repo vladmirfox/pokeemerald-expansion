@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents sleep")
 SINGLE_BATTLE_TEST("Insomnia prevents sleep via secondary effect")
 {
     GIVEN {
-        ASSUME(MoveHasMoveEffect(MOVE_RELIC_SONG, MOVE_EFFECT_SLEEP));
+        ASSUME(MoveHasAdditionalEffect(MOVE_RELIC_SONG, MOVE_EFFECT_SLEEP));
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); }
         OPPONENT(SPECIES_MELOETTA);
     } WHEN {
