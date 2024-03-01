@@ -5773,6 +5773,28 @@ static void Cmd_moveend(void)
                 gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
                 effect = TRUE;
             }
+            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_FRISK
+              && gCurrentMove != MOVE_FLING && gCurrentMove != MOVE_NATURAL_GIFT
+              && gBattleMons[gBattlerAttacker].item == ITEM_NONE
+              && gBattleMons[gBattlerTarget].item != ITEM_NONE
+              && IsBattlerAlive(gBattlerAttacker)
+              && TARGET_TURN_DAMAGED
+              && gBattleMoves[gCurrentMove].makesContact
+              && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
+              && !gSpecialStatuses[gBattlerAttacker].gemBoost   // In base game, gems are consumed after magician would activate.
+              && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & gBitTable[gBattlerPartyIndexes[gBattlerTarget]])
+              && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
+              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+              && (GetBattlerAbility(gBattlerTarget) != ABILITY_STICKY_HOLD || !IsBattlerAlive(gBattlerTarget)))
+            {
+                StealTargetItem(gBattlerAttacker, gBattlerTarget);
+                gBattleScripting.battler = gBattlerAbility = gBattlerAttacker;
+                gEffectBattler = gBattlerTarget;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_MagicianActivates;
+                gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
+                effect = TRUE;
+            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
@@ -16220,7 +16242,8 @@ void BS_JumpIfRod(void)
 void BS_JumpIfAbsorb(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsElectricAbilityAffected(ABILITY_VOLT_ABSORB))
+    if (IsElectricAbilityAffected(ABILITY_VOLT_ABSORB)
+        || IsElectricAbilityAffected(ABILITY_MINUS))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

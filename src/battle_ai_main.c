@@ -817,6 +817,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             case ABILITY_VOLT_ABSORB:
             case ABILITY_MOTOR_DRIVE:
             case ABILITY_LIGHTNING_ROD:
+            case ABILITY_MINUS:
                 if (moveType == TYPE_ELECTRIC)
                     RETURN_SCORE_MINUS(20);
                 break;
@@ -2846,6 +2847,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             switch (atkPartnerAbility)
             {
             case ABILITY_VOLT_ABSORB:
+            case ABILITY_MINUS:
                 if (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_HP_AWARE))
                 {
                     RETURN_SCORE_MINUS(10);
@@ -4696,7 +4698,8 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     case EFFECT_ION_DELUGE:
         if ((aiData->abilities[battlerAtk] == ABILITY_VOLT_ABSORB
           || aiData->abilities[battlerAtk] == ABILITY_MOTOR_DRIVE
-          || aiData->abilities[battlerAtk] == ABILITY_LIGHTNING_ROD)
+          || aiData->abilities[battlerAtk] == ABILITY_LIGHTNING_ROD
+          || aiData->abilities[battlerAtk] == ABILITY_MINUS)
           && gBattleMoves[predictedMove].type == TYPE_NORMAL)
             ADJUST_SCORE(2);
         break;
@@ -4765,7 +4768,8 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (predictedMove != MOVE_NONE
          && (aiData->abilities[battlerAtk] == ABILITY_VOLT_ABSORB
           || aiData->abilities[battlerAtk] == ABILITY_MOTOR_DRIVE
-          || aiData->abilities[battlerAtk] == ABILITY_LIGHTNING_ROD))
+          || aiData->abilities[battlerAtk] == ABILITY_LIGHTNING_ROD
+          || aiData->abilities[battlerAtk] == ABILITY_MINUS))
         {
             ADJUST_SCORE(3);
         }
@@ -5145,6 +5149,7 @@ static s32 AI_HPAware(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     {
         if ((effect == EFFECT_HEAL_PULSE || effect == EFFECT_HIT_ENEMY_HEAL_ALLY)
          || (moveType == TYPE_ELECTRIC && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_VOLT_ABSORB)
+         || (moveType == TYPE_ELECTRIC && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_MINUS)
          || (moveType == TYPE_WATER && (AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_DRY_SKIN || AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_WATER_ABSORB)))
         {
             if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)

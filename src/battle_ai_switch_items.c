@@ -299,7 +299,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(u32 battler)
 {
     u8 battlerIn1, battlerIn2;
     u8 numAbsorbingAbilities = 0;
-    u16 absorbingTypeAbilities[3]; // Array size is maximum number of absorbing abilities for a single type
+    u16 absorbingTypeAbilities[4]; // Array size is maximum number of absorbing abilities for a single type
     s32 firstId;
     s32 lastId; // + 1
     struct Pokemon *party;
@@ -346,7 +346,8 @@ static bool8 FindMonThatAbsorbsOpponentsMove(u32 battler)
         absorbingTypeAbilities[0] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[1] = ABILITY_MOTOR_DRIVE;
         absorbingTypeAbilities[2] = ABILITY_LIGHTNING_ROD;
-        numAbsorbingAbilities = 3;
+        absorbingTypeAbilities[3] = ABILITY_MINUS;
+        numAbsorbingAbilities = 4;
     }
     else if (gBattleMoves[gLastLandedMoves[battler]].type == TYPE_GRASS)
     {

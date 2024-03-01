@@ -5172,6 +5172,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             u8 statAmount = 1;
             switch (gLastUsedAbility)
             {
+            case ABILITY_MINUS:
             case ABILITY_VOLT_ABSORB:
                 if (moveType == TYPE_ELECTRIC && gBattleMoves[move].target != MOVE_TARGET_ALL_BATTLERS)
                     effect = 1;
@@ -9199,6 +9200,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         if (moveType == TYPE_STEEL)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_PLUS:
     case ABILITY_TRANSISTOR:
         if (moveType == TYPE_ELECTRIC)
         #if B_TRANSISTOR_BOOST >= GEN_9
