@@ -164,7 +164,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 95,
         .types = { TYPE_GRASS, TYPE_FIGHTING },
-        .abilities = { ABILITY_OVERGROW, ABILITY_SCRAPPY, ABILITY_SCRAPPY }, // CHANGE HA TO IRON SOLE
+        .abilities = { ABILITY_OVERGROW, ABILITY_SCRAPPY, ABILITY_SCRAPPY }, // CHANGE HA TO RANGER
         .weight = 370,
         .description = COMPOUND_STRING(
             "The air stored inside the rachises\n"

@@ -196,7 +196,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO }, // CHANGE A2 TO IRON SOLE
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_SOLE, ABILITY_LIBERO },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Scorbunny"),
         .cryId = CRY_SCORBUNNY,
@@ -244,7 +244,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO }, // CHANGE A2 TO IRON SOLE
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_SOLE, ABILITY_LIBERO },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Raboot"),
         .cryId = CRY_RABOOT,
@@ -274,34 +274,34 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_CINDERACE}),
     },
 
-#define CINDERACE_MISC_INFO                                             \
-        .baseHP        = 80,                                            \
-        .baseAttack    = 116,                                           \
-        .baseDefense   = 75,                                            \
-        .baseSpeed     = 119,                                           \
-        .baseSpAttack  = 65,                                            \
-        .baseSpDefense = 75,                                            \
-        .types = { TYPE_FIRE, TYPE_FIRE },                              \
-        .catchRate = 45,                                                \
-        .expYield = 265,                                                \
-        .evYield_Speed = 3,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },         \
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_LIBERO },   \
-        .bodyColor = BODY_COLOR_WHITE,                                  \
-        .speciesName = _("Cinderace"),                                  \
-        .cryId = CRY_CINDERACE,                                         \
-        .natDexNum = NATIONAL_DEX_CINDERACE,                            \
-        .categoryName = _("Striker"),                                   \
-        .footprint = gMonFootprint_Cinderace,                           \
-        LEARNSETS(Cinderace),                                           \
-        .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,             \
+#define CINDERACE_MISC_INFO                                                  \
+        .baseHP        = 80,                                                 \
+        .baseAttack    = 116,                                                \
+        .baseDefense   = 75,                                                 \
+        .baseSpeed     = 119,                                                \
+        .baseSpAttack  = 65,                                                 \
+        .baseSpDefense = 75,                                                 \
+        .types = { TYPE_FIRE, TYPE_FIRE },                                   \
+        .catchRate = 45,                                                     \
+        .expYield = 265,                                                     \
+        .evYield_Speed = 3,                                                  \
+        .genderRatio = PERCENT_FEMALE(12.5),                                 \
+        .eggCycles = 20,                                                     \
+        .friendship = STANDARD_FRIENDSHIP,                                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                    \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE },              \
+        .abilities = { ABILITY_BLAZE, ABILITY_IRON_SOLE, ABILITY_LIBERO },   \
+        .bodyColor = BODY_COLOR_WHITE,                                       \
+        .speciesName = _("Cinderace"),                                       \
+        .cryId = CRY_CINDERACE,                                              \
+        .natDexNum = NATIONAL_DEX_CINDERACE,                                 \
+        .categoryName = _("Striker"),                                        \
+        .footprint = gMonFootprint_Cinderace,                                \
+        LEARNSETS(Cinderace),                                                \
+        .formSpeciesIdTable = sCinderaceFormSpeciesIdTable,                  \
         .formChangeTable = sCinderaceFormChangeTable
 
-    [SPECIES_CINDERACE] = // CHANGE A2 TO IRON SOLE
+    [SPECIES_CINDERACE] =
     {
         CINDERACE_MISC_INFO,
         .height = 14,

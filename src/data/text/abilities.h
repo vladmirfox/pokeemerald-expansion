@@ -298,6 +298,8 @@ static const u8 sEmbodyAspectCornerstoneDescription[] = _("Raises Defense.");
 static const u8 sToxicChainDescription[] = _("30% chance to badly poison\nthe target when attacking.");
 static const u8 sPoisonTouchDescription[] = _("The Pokémon's contact moves\nhave a 30% poison chance.");
 static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
+static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
+static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -609,6 +611,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_EMBODY_ASPECT_CORNERSTONE] = _("Embody Aspect"),
     [ABILITY_TOXIC_CHAIN] = _("Toxic Chain"),
     [ABILITY_SUPERSWEET_SYRUP] = _("Supersweet Syrup"),
+    [ABILITY_IRON_SOLE] = _("Iron Sole"),
+    [ABILITY_SELF_SUFFICIENT] = _("Self-Sufficient"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -920,6 +924,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_EMBODY_ASPECT_CORNERSTONE] = _("EmbodyAspect"),
     [ABILITY_TOXIC_CHAIN] = _("Toxic Chain"),
     [ABILITY_SUPERSWEET_SYRUP] = _("SuprswtSyrup"),
+    [ABILITY_IRON_SOLE] = _("Iron Sole"),
+    [ABILITY_SELF_SUFFICIENT] = _("Slf-Sffcnt"),
 };
 #endif
 
@@ -1232,4 +1238,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_EMBODY_ASPECT_CORNERSTONE] = sEmbodyAspectCornerstoneDescription,
     [ABILITY_TOXIC_CHAIN] = sToxicChainDescription,
     [ABILITY_SUPERSWEET_SYRUP] = sSupersweetSyrupDescription,
+    [ABILITY_IRON_SOLE] = sIronSoleDescription,
+    [ABILITY_SELF_SUFFICIENT] = sSelfSufficientDescription,
 };
