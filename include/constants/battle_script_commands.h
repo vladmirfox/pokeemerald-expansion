@@ -292,7 +292,7 @@
 #define MOVEEND_ATTACKER_VISIBLE                  10
 #define MOVEEND_TARGET_VISIBLE                    11
 #define MOVEEND_ITEM_EFFECTS_TARGET               12
-#define MOVEEND_MOVE_EFFECTS2                     13
+#define MOVEEND_MOVE_EFFECT                     13
 #define MOVEEND_ITEM_EFFECTS_ALL                  14
 #define MOVEEND_KINGSROCK                         15    // These item effects will occur each strike of a multi-hit move
 #define MOVEEND_NUM_HITS                          16

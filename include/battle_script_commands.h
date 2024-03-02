@@ -73,6 +73,7 @@ struct MoveEffectBlocker
     u8 afterAccuracyCheck:1; // to do
     u8 padding:6;
     u8 result; // used by functions
+    const u8 *battleScript;
     union {
         u16 ability;
         u16 terrain;
@@ -82,7 +83,6 @@ struct MoveEffectBlocker
         const bool32 (*function1)(u32 battlerDef);
         const bool32 (*function2)(u32 battlerAtk, u32 battlerDef);
     } blocker;
-    const u8 *battleScript;
 };
 
 struct MoveEffectResult

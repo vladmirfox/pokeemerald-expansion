@@ -11306,3 +11306,9 @@ bool32 CanBattlerItemBeIncinerated(u32 battler)
     return IsBattlerItemBerry(battler)
      || (B_INCINERATE_GEMS >= GEN_6 && GetBattlerHoldEffect(gEffectBattler, FALSE) == HOLD_EFFECT_GEMS);
 }
+
+bool32 CanKnockOffBattler(u32 battlerDef)
+{
+    return gBattleMons[battlerDef].item != 0
+      && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item);
+}

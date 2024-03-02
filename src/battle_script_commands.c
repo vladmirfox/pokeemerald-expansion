@@ -1040,9 +1040,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         )
     },
 
-    [MOVE_EFFECT_TRI_ATTACK] = {
-        .statusFlag = 0,
-    },
+    [MOVE_EFFECT_TRI_ATTACK] = { 0 },
 
     [MOVE_EFFECT_UPROAR] = {
         .statusFlag = STATUS2_UPROAR,
@@ -1280,6 +1278,12 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_KNOCK_OFF] = {
         .statusFlag = 0,
         .moveEndEffect = TRUE,
+        .battleScript = BattleScript_KnockedOff,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG(CanKnockOffBattler, FALSE),
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG(NoAliveMonsForEitherParty, TRUE),
+            MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_STICKY_HOLD, 0, BattleScript_StickyHoldActivates)
+        )
     },
 
     [MOVE_EFFECT_DEF_SPDEF_DOWN] = {
@@ -1304,9 +1308,13 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     },
 
     [MOVE_EFFECT_SMACK_DOWN] = {
-        .statusFlag = 0,
+        .statusFlag = STATUS3_SMACKED_DOWN,
         .finalHitOnly = TRUE,
         .moveEndEffect = TRUE,
+        .battleScript = BattleScript_MoveEffectSmackDown,
+        .blockers = MOVE_EFFECT_BLOCKERS(
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG(IsBattlerGrounded, TRUE)
+        )
     },
 
     [MOVE_EFFECT_FLAME_BURST] = {
@@ -1389,6 +1397,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
     [MOVE_EFFECT_STOCKPILE_WORE_OFF] = {
         .statusFlag = 0,
         .moveEndEffect = TRUE,
+        .battleScript = BattleScript_MoveEffectStockpileWoreOff,
     },
 
     [MOVE_EFFECT_STEALTH_ROCK] = {
@@ -3237,7 +3246,8 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
 
 static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertain)
 {
-    if (B_STATUS_TYPE_IMMUNITY == GEN_1 && move != MOVE_NONE)
+    if (B_STATUS_TYPE_IMMUNITY == GEN_1 && move != MOVE_NONE
+      && gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS)
     {
         u8 moveType = 0;
         GET_MOVE_TYPE(move, moveType);
@@ -3499,10 +3509,15 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         return result;
 
     // Certain move effects only activate at moveend
-    if (gMoveEffectsInfo[moveEffect].moveEndEffect && !moveEnd)
+    if (gMoveEffectsInfo[moveEffect].moveEndEffect && !moveEnd && !check)
     {
-        gBattleStruct->turnEndMoveEffect = moveEffect;
-        gBattleStruct->turnEndMoveEffectArgument = argument;
+        struct AdditionalEffect moveEndAdditionalEffect = {
+            .moveEffect = moveEffect,
+            .chance = !primary * (99 + certain),
+            .self = !!affectsUser,
+            .argument = argument
+        };
+        gBattleStruct->moveEndAdditionalEffect = moveEndAdditionalEffect;
         result.pass = TRUE; // We don't want to trigger a failure response
         return result;
     }
@@ -3769,6 +3784,31 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
             }
             break;
+        case MOVE_EFFECT_REMOVE_STATUS: // Smelling salts, Wake-Up Slap, Sparkling Aria
+            if (CheckAdditionalConditions(&result, gBattleMons[gEffectBattler].status1 & argument.status) && !check)
+            {
+                switch (argument.status)
+                {
+                case STATUS1_PARALYSIS:
+                    result.nextScript = BattleScript_TargetPRLZHeal;
+                    break;
+                case STATUS1_SLEEP:
+                    result.nextScript = BattleScript_TargetWokeUp;
+                    break;
+                case STATUS1_BURN:
+                    result.nextScript = BattleScript_TargetBurnHeal;
+                    break;
+                default: // no script provided
+                    result.pass = FALSE;
+                    result.nextScript = 0;
+                    return result;
+                }
+
+                gBattleMons[gEffectBattler].status1 &= ~argument.status;
+                BtlController_EmitSetMonData(gEffectBattler, 0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gEffectBattler].status1);
+                MarkBattlerForControllerExec(gEffectBattler);
+            }
+            break; // MOVE_EFFECT_REMOVE_STATUS
         // case MOVE_EFFECT_ALL_STATS_UP:
         // case MOVE_EFFECT_ATK_DEF_DOWN: // SuperPower
         // case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
@@ -3796,12 +3836,32 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 gBattleMons[gEffectBattler].status2 |= STATUS2_LOCK_CONFUSE_TURN(RandomUniform(RNG_RAMPAGE_TURNS, 2, 3));
             }
             break;
+        case MOVE_EFFECT_KNOCK_OFF:
+            if (!check)
+            {
+                u32 side = GetBattlerSide(gEffectBattler);
+
+                gLastUsedItem = gBattleMons[gEffectBattler].item;
+                gBattleMons[gEffectBattler].item = 0;
+                if (gBattleMons[gEffectBattler].ability != ABILITY_GORILLA_TACTICS)
+                    gBattleStruct->choicedMove[gEffectBattler] = 0;
+                gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[gEffectBattler]];
+                CheckSetUnburden(gEffectBattler);
+            }
+            break;
         case MOVE_EFFECT_CLEAR_SMOG:
             if (CheckAdditionalConditions(&result, ((gSpecialStatuses[gEffectBattler].physicalDmg || gSpecialStatuses[gEffectBattler].specialDmg)
               && BattlerHasChangedStats(gEffectBattler))) && !check)
             {
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
                     gBattleMons[gEffectBattler].statStages[i] = DEFAULT_STAT_STAGE;
+            }
+            break;
+        case MOVE_EFFECT_SMACK_DOWN:
+            if (!check)
+            {
+                gStatuses3[gEffectBattler] |= gMoveEffectsInfo[moveEffect].statusFlag;
+                gStatuses3[gEffectBattler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
             }
             break;
         case MOVE_EFFECT_FLAME_BURST:
@@ -3816,18 +3876,18 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
             }
             break;
         case MOVE_EFFECT_FEINT:
-            if (CheckAdditionalConditions(&result, IS_BATTLER_PROTECTED(gBattlerTarget)) && !check)
+            if (CheckAdditionalConditions(&result, IS_BATTLER_PROTECTED(gEffectBattler)) && !check)
             {
-                gProtectStructs[gBattlerTarget].protected = FALSE;
-                gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_WIDE_GUARD;
-                gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
-                gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
-                gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_MAT_BLOCK;
-                gProtectStructs[gBattlerTarget].spikyShielded = FALSE;
-                gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
-                gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
-                gProtectStructs[gBattlerTarget].obstructed = FALSE;
-                gProtectStructs[gBattlerTarget].silkTrapped = FALSE;
+                gProtectStructs[gEffectBattler].protected = FALSE;
+                gSideStatuses[GetBattlerSide(gEffectBattler)] &= ~SIDE_STATUS_WIDE_GUARD;
+                gSideStatuses[GetBattlerSide(gEffectBattler)] &= ~SIDE_STATUS_QUICK_GUARD;
+                gSideStatuses[GetBattlerSide(gEffectBattler)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
+                gSideStatuses[GetBattlerSide(gEffectBattler)] &= ~SIDE_STATUS_MAT_BLOCK;
+                gProtectStructs[gEffectBattler].spikyShielded = FALSE;
+                gProtectStructs[gEffectBattler].kingsShielded = FALSE;
+                gProtectStructs[gEffectBattler].banefulBunkered = FALSE;
+                gProtectStructs[gEffectBattler].obstructed = FALSE;
+                gProtectStructs[gEffectBattler].silkTrapped = FALSE;
                 gProtectStructs[gBattlerAttacker].burningBulwarked = FALSE;
 
                 // Hyperspace Fury has its own string
@@ -3906,6 +3966,10 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         case MOVE_EFFECT_ROUND:
             if (!check)
                 TryUpdateRoundTurnOrder(); // If another Pokémon uses Round before the user this turn, the user will use Round directly after it
+            break;
+        case MOVE_EFFECT_STOCKPILE_WORE_OFF:
+            if (CheckAdditionalConditions(&result, gDisableStructs[gEffectBattler].stockpileCounter != 0) && !check)
+                gDisableStructs[gEffectBattler].stockpileCounter = 0;
             break;
         case MOVE_EFFECT_STEALTH_ROCK:
             if (CheckAdditionalConditions(&result, !(gSideStatuses[GetBattlerSide(gEffectBattler)] & SIDE_STATUS_STEALTH_ROCK)) && !check)
@@ -5520,37 +5584,6 @@ static void Cmd_playstatchangeanimation(void)
     }
 }
 
-static bool32 TryKnockOffBattleScript(u32 battlerDef)
-{
-    if (gBattleMons[battlerDef].item != 0
-        && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item)
-        && !NoAliveMonsForEitherParty())
-    {
-        if (GetBattlerAbility(battlerDef) == ABILITY_STICKY_HOLD && IsBattlerAlive(battlerDef))
-        {
-            gBattlerAbility = battlerDef;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_StickyHoldActivates;
-        }
-        else
-        {
-            u32 side = GetBattlerSide(battlerDef);
-
-            gLastUsedItem = gBattleMons[battlerDef].item;
-            gBattleMons[battlerDef].item = 0;
-            if (gBattleMons[battlerDef].ability != ABILITY_GORILLA_TACTICS)
-                gBattleStruct->choicedMove[battlerDef] = 0;
-            gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
-            CheckSetUnburden(battlerDef);
-
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_KnockedOff;
-        }
-        return TRUE;
-    }
-    return FALSE;
-}
-
 #define SYMBIOSIS_CHECK(battler, ally)                                                                                               \
     GetBattlerAbility(ally) == ABILITY_SYMBIOSIS                   \
     && gBattleMons[battler].item == ITEM_NONE                      \
@@ -5825,60 +5858,23 @@ static void Cmd_moveend(void)
                 effect = TRUE;
             gBattleScripting.moveendState++;
             break;
-        case MOVEEND_MOVE_EFFECTS2: // For effects which should happen after target items, for example Knock Off after damage from Rocky Helmet.
+        case MOVEEND_MOVE_EFFECT: // For effects which should happen after target items, for example Knock Off after damage from Rocky Helmet.
         {
-            switch (gBattleStruct->turnEndMoveEffect)
+            if (gBattleStruct->moveEndAdditionalEffect.moveEffect)
             {
-            case MOVE_EFFECT_KNOCK_OFF:
-                effect = TryKnockOffBattleScript(gBattlerTarget);
-                break;
-            case MOVE_EFFECT_STOCKPILE_WORE_OFF:
-                if (gDisableStructs[gBattlerAttacker].stockpileCounter != 0)
-                {
-                    gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
-                    effect = TRUE;
-                    BattleScriptPush(gBattlescriptCurrInstr);
-                    gBattlescriptCurrInstr = BattleScript_MoveEffectStockpileWoreOff;
-                }
-                break;
-            case MOVE_EFFECT_SMACK_DOWN:
-                if (!IsBattlerGrounded(gBattlerTarget) && IsBattlerAlive(gBattlerTarget))
-                {
-                    gStatuses3[gBattlerTarget] |= STATUS3_SMACKED_DOWN;
-                    gStatuses3[gBattlerTarget] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
-                    effect = TRUE;
-                    BattleScriptPush(gBattlescriptCurrInstr);
-                    gBattlescriptCurrInstr = BattleScript_MoveEffectSmackDown;
-                }
-                break;
-            case MOVE_EFFECT_REMOVE_STATUS: // Smelling salts, Wake-Up Slap, Sparkling Aria
-                if ((gBattleMons[gBattlerTarget].status1 & gMovesInfo[gCurrentMove].argument) && IsBattlerAlive(gBattlerTarget))
-                {
-                    gBattleMons[gBattlerTarget].status1 &= ~(gMovesInfo[gCurrentMove].argument);
-
-                    BtlController_EmitSetMonData(gBattlerTarget, 0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gBattlerTarget].status1);
-                    MarkBattlerForControllerExec(gBattlerTarget);
-                    effect = TRUE;
-                    BattleScriptPush(gBattlescriptCurrInstr);
-                    switch (gMovesInfo[gCurrentMove].argument)
-                    {
-                    case STATUS1_PARALYSIS:
-                        gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
-                        break;
-                    case STATUS1_SLEEP:
-                        gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
-                        break;
-                    case STATUS1_BURN:
-                        gBattlescriptCurrInstr = BattleScript_TargetBurnHeal;
-                        break;
-                    }
-                }
-                break; // MOVE_EFFECT_REMOVE_STATUS
+                effect = SetMoveEffect(
+                    gBattleStruct->moveEndAdditionalEffect.moveEffect
+                      | (MOVE_EFFECT_AFFECTS_USER * (gBattleStruct->moveEndAdditionalEffect.self))
+                      | MOVE_EFFECT_DELAY_OR_CONTINUE,
+                    gBattleStruct->moveEndAdditionalEffect.chance == 0, // a primary effect
+                    gBattleStruct->moveEndAdditionalEffect.chance >= 100, // certain to happen,
+                    gBattleStruct->moveEndAdditionalEffect.argument,
+                    gCurrentMove
+                ).pass;
+                memset(&gBattleStruct->moveEndAdditionalEffect, 0, sizeof(struct AdditionalEffect));
             }
-            gBattleStruct->turnEndMoveEffect = 0;
-            gBattleStruct->turnEndMoveEffectArgument = gZeroArgument;
             gBattleScripting.moveendState++;
-            break; // MOVEEND_MOVE_EFFECTS2
+            break; // MOVEEND_MOVE_EFFECT
         }
         case MOVEEND_ITEM_EFFECTS_ALL: // item effects for all battlers
             if (ItemBattleEffects(ITEMEFFECT_MOVE_END, 0, FALSE))
@@ -11487,8 +11483,11 @@ static void Cmd_stockpiletobasedamage(void)
 
         if (!(gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT && gBattleMons[gBattlerTarget].hp != 0))
         {
-            gBattleStruct->turnEndMoveEffect = MOVE_EFFECT_STOCKPILE_WORE_OFF;
-
+            struct AdditionalEffect moveEndAdditionalEffect = {
+                .moveEffect = MOVE_EFFECT_STOCKPILE_WORE_OFF,
+                .self = TRUE,
+            };
+            gBattleStruct->moveEndAdditionalEffect = moveEndAdditionalEffect;
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -11523,7 +11522,11 @@ static void Cmd_stockpiletohpheal(void)
             gBattleMoveDamage *= -1;
 
             gBattleScripting.animTurn = gDisableStructs[gBattlerAttacker].stockpileCounter;
-            gBattleStruct->turnEndMoveEffect = MOVE_EFFECT_STOCKPILE_WORE_OFF;
+            struct AdditionalEffect moveEndAdditionalEffect = {
+                .moveEffect = MOVE_EFFECT_STOCKPILE_WORE_OFF,
+                .self = TRUE,
+            };
+            gBattleStruct->moveEndAdditionalEffect = moveEndAdditionalEffect;
             gBattlescriptCurrInstr = cmd->nextInstr;
             gBattlerTarget = gBattlerAttacker;
         }

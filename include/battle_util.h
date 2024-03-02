@@ -257,5 +257,6 @@ bool32 PrepareToStealBattlerStats(u32 battlerAtk, u32 battlerDef);
 bool32 BattlerSleepBlockedByUproar(u32 battler);
 bool32 IsBattlerItemBerry(u32 battler);
 bool32 CanBattlerItemBeIncinerated(u32 battler);
+bool32 CanKnockOffBattler(u32 battler);
 
 #endif // GUARD_BATTLE_UTIL_H
