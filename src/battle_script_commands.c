@@ -901,7 +901,7 @@ static const struct MoveEffectInfo gMoveEffectsInfo[NUM_MOVE_EFFECTS] = {
         .blockers = MOVE_EFFECT_BLOCKERS(
             MOVE_EFFECT_BLOCKER_SUBSTITUTE(),
             MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1(),
-            MOVE_EFFECT_BLOCKER_UPROAR(),
+            MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG(BattlerSleepBlockedByUproar, TRUE, BattleScript_CantMakeAsleep),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_INSOMNIA, TRUE),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_VITAL_SPIRIT, TRUE),
             MOVE_EFFECT_BLOCKER_ABILITY(ABILITY_COMATOSE, FALSE),
@@ -3247,10 +3247,10 @@ static bool32 PassesGen1StatusTypeImmunityCheck(u32 move, bool32 primaryOrCertai
     return TRUE;
 }
 
-static bool32 MoveEffectBlockerFailResult(struct MoveEffectResult *result, const u8 *failScript)
+static bool32 MoveEffectBlockerFailResult(struct MoveEffectResult *result, const struct MoveEffectBlocker *blocker)
 {
     result->pass = FALSE;
-    result->nextScript = failScript;
+    result->nextScript = blocker->battleScript;
     return FALSE;
 }
 
@@ -3271,11 +3271,11 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                             gLastUsedAbility = battlerAbility;
                             gBattlerAbility = battlerDef;
                             RecordAbilityBattle(gEffectBattler, battlerAbility);
-                            if (info.blockers[i].pointer.script)
+                            if (info.blockers[i].battleScript)
                                 gBattleCommunication[MULTISTRING_CHOOSER] = info.blockers[i].useMultistring ? moveEffect : 0;
 
                         }
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ABILITY_ON_SIDE:
@@ -3289,38 +3289,34 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                             gLastUsedAbility = info.blockers[i].blocker.ability;
                             RecordAbilityBattle(gBattlerAbility, info.blockers[i].blocker.ability);
                         }
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 }
                 case MOVE_EFFECT_BLOCKER_SUBSTITUTE:
                     if (DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, move))
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_TERRAIN:
                     if (IsBattlerTerrainAffected(battlerDef, info.blockers[i].blocker.terrain))
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_SAFEGUARD:
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_INFILTRATOR &&
                       !(gHitMarker & HITMARKER_STATUS_ABILITY_EFFECT) &&
                       (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD))
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
-                    break;
-                case MOVE_EFFECT_BLOCKER_UPROAR:
-                    if (BattlerSleepBlockedByUproar(battlerDef))
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_FLOWER_VEIL:
                     if (IsFlowerVeilProtected(battlerDef))
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_LEAF_GUARD:
                     if (IsLeafGuardProtected(battlerDef))
                     {
                         gBattlerAbility = battlerDef;
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_SHIELDS_DOWN:
@@ -3328,7 +3324,7 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                     {
                         gBattlerAbility = battlerDef;
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_TYPE:
@@ -3345,14 +3341,14 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
                                         continue;
                                 default:
                                     if (IS_BATTLER_OF_TYPE(battlerDef, info.blockers[i].blocker.types[j]))
-                                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                             }
                         }
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_STATUS_1:
                     if (gBattleMons[battlerDef].status1 != 0)
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_1:
                 {
@@ -3363,39 +3359,39 @@ static bool32 MoveEffectIsNotBlocked(struct MoveEffectResult *result, u16 moveEf
 
                     if (gBattleMons[battlerDef].status1 & statusFlag)
                     {
-                        if (info.blockers[i].pointer.script)
+                        if (info.blockers[i].battleScript)
                             gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 }
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_2:
                     if (gBattleMons[battlerDef].status2 & info.statusFlag)
                     {
-                        if (info.blockers[i].pointer.script)
+                        if (info.blockers[i].battleScript)
                             gBattleCommunication[MULTISTRING_CHOOSER] = moveEffect;
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     }
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_3:
                     if (gStatuses3[battlerDef] & info.statusFlag)
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_ALREADY_HAS_SAME_STATUS_4:
                     if (gStatuses4[battlerDef] & info.statusFlag)
-                        return MoveEffectBlockerFailResult(result, info.blockers[i].pointer.script);
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_0_ARG:
-                    if (info.blockers[i].pointer.function0() == info.blockers[i].blocker.result)
-                        return MoveEffectBlockerFailResult(result, 0);
+                    if (info.blockers[i].blocker.function0() == info.blockers[i].result)
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_1_ARG:
-                    if (info.blockers[i].pointer.function1(battlerDef) == info.blockers[i].blocker.result)
-                        return MoveEffectBlockerFailResult(result, 0);
+                    if (info.blockers[i].blocker.function1(battlerDef) == info.blockers[i].result)
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_FROM_FUNCTION_2_ARG:
-                    if (info.blockers[i].pointer.function2(gBattlerAttacker, battlerDef) == info.blockers[i].blocker.result)
-                        return MoveEffectBlockerFailResult(result, 0);
+                    if (info.blockers[i].blocker.function2(gBattlerAttacker, battlerDef) == info.blockers[i].result)
+                        return MoveEffectBlockerFailResult(result, &info.blockers[i]);
                     break;
                 case MOVE_EFFECT_BLOCKER_SAME_AS_OTHER_MOVE_EFFECT:
                     return MoveEffectIsNotBlocked(result, info.blockers[i].blocker.otherMoveEffect, move, primaryOrCertain, battlerDef, battlerAbility);
