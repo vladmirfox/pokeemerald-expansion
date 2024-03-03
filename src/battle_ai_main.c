@@ -4615,7 +4615,12 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         return score;
 
     if (gMovesInfo[move].power)
-        score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
+    {
+        if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex) == 0)
+            ADJUST_SCORE(-20);
+        else
+            score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
+    }
 
     // Calculates score based on effects of a move
     score += AI_CalcMoveScore(battlerAtk, battlerDef, move);
