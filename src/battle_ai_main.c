@@ -807,6 +807,18 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (IsTwoTurnNotSemiInvulnerableMove(battlerAtk, move) && CanTargetFaintAi(battlerDef, battlerAtk))
         RETURN_SCORE_MINUS(10);
 
+    // check if negates type
+    switch (effectiveness)
+    {
+    case AI_EFFECTIVENESS_x0:
+        RETURN_SCORE_MINUS(20);
+        break;
+    case AI_EFFECTIVENESS_x0_125:
+    case AI_EFFECTIVENESS_x0_25:
+        RETURN_SCORE_MINUS(10);
+        break;
+    }
+
     // check non-user target
     if (!(moveTarget & MOVE_TARGET_USER))
     {
