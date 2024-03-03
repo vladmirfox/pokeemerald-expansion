@@ -162,3 +162,19 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
     }
 }
+
+SINGLE_BATTLE_TEST("X1")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Item(ITEM_CLEAR_AMULET); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
+    } SCENE {
+        MESSAGE("Wobbuffet used SpicyExtract!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
+    }
+}

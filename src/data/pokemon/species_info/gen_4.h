@@ -1,8 +1,3 @@
-#ifdef __INTELLISENSE__
-const struct SpeciesInfo gSpeciesInfoGen4[] =
-{
-#endif
-
 #if P_FAMILY_TURTWIG
     [SPECIES_TURTWIG] =
     {
@@ -4684,7 +4679,3 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     [SPECIES_ARCEUS_DARK]     = ARCEUS_SPECIES_INFO(TYPE_DARK, Dark),
     [SPECIES_ARCEUS_FAIRY]    = ARCEUS_SPECIES_INFO(TYPE_FAIRY, Fairy),
 #endif //P_FAMILY_ARCEUS
-
-#ifdef __INTELLISENSE__
-};
-#endif
