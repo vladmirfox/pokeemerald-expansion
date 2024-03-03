@@ -27,8 +27,8 @@ BattleScript_EffectSpicyExtract::
 	attackstring
 	ppreduce
 	setstatchanger STAT_ATK, 2, FALSE
-	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectSpicyExtractDefenseDown2
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectSpicyExtractDefenseDown2
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectSpicyExtractDefenseDown
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectSpicyExtractDefenseDown
 	attackanimation
 	waitanimation
 	setgraphicalstatchangevalues
@@ -36,7 +36,7 @@ BattleScript_EffectSpicyExtract::
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_DISABLE_ANIMATION
-BattleScript_EffectSpicyExtractDefenseDown2:
+BattleScript_EffectSpicyExtractDefenseDown:
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	setstatchanger STAT_DEF, 2, TRUE
 	goto BattleScript_EffectStatDownFromStatBuffChange
@@ -47,7 +47,7 @@ BattleScript_ItemNoStatLossSpicyExtract::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_CLEARAMULETWONTLOWERSTATS
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_EffectSpicyExtractDefenseDown2
+	goto BattleScript_EffectSpicyExtractDefenseDown
 
 BattleScript_EffectTidyUp::
 	attackcanceler
