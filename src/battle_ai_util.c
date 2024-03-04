@@ -366,7 +366,7 @@ static inline s32 LowestRollDmg(s32 dmg)
     return dmg;
 }
 
-bool8 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
+bool32 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
 {
     s32 moveType;
     struct AiLogicData *aiData = AI_DATA;
@@ -382,8 +382,6 @@ bool8 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
 
     switch (battlerDefAbility)
     {
-    case ABILITY_NONE:
-        break;
     case ABILITY_VOLT_ABSORB:
     case ABILITY_MOTOR_DRIVE:
     case ABILITY_LIGHTNING_ROD:
@@ -445,7 +443,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
 {
     s32 dmg, moveType;
     uq4_12_t effectivenessMultiplier;
-    bool8 isDamageMoveUnusable = FALSE;
+    bool32 isDamageMoveUnusable = FALSE;
     struct AiLogicData *aiData = AI_DATA;
 
     SetBattlerData(battlerAtk);
