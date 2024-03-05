@@ -2,7 +2,7 @@
 #define GUARD_REGIONMAPSEC_H
 
 #define MAPSEC_SUNRISE_VILLAGE              0x00
-#define MAPSEC_OLDALE_TOWN                  0x01
+#define MAPSEC_CHII_TOWN                  0x01
 #define MAPSEC_DEWFORD_TOWN                 0x02
 #define MAPSEC_LAVARIDGE_TOWN               0x03
 #define MAPSEC_FALLARBOR_TOWN               0x04
