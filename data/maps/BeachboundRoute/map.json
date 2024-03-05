@@ -17,6 +17,11 @@
       "map": "MAP_KURA_TOWN",
       "offset": 0,
       "direction": "left"
+    },
+    {
+      "map": "MAP_MAGURO_HARBOR",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [
