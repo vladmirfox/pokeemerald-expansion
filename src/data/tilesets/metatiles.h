@@ -223,3 +223,9 @@ const u16 gMetatileAttributes_InteriorGeneric[] = INCBIN_U16("data/tilesets/prim
 
 const u16 gMetatiles_SakuKura[] = INCBIN_U16("data/tilesets/secondary/saku_kura/metatiles.bin");
 const u16 gMetatileAttributes_SakuKura[] = INCBIN_U16("data/tilesets/secondary/saku_kura/metatile_attributes.bin");
+
+const u16 gMetatiles_SilverTunnel[] = INCBIN_U16("data/tilesets/secondary/silver_tunnel/metatiles.bin");
+const u16 gMetatileAttributes_SilverTunnel[] = INCBIN_U16("data/tilesets/secondary/silver_tunnel/metatile_attributes.bin");
+
+const u16 gMetatiles_Silveridge[] = INCBIN_U16("data/tilesets/secondary/silveridge/metatiles.bin");
+const u16 gMetatileAttributes_Silveridge[] = INCBIN_U16("data/tilesets/secondary/silveridge/metatile_attributes.bin");

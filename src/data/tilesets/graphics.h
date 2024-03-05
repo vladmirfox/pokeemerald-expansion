@@ -1729,3 +1729,41 @@ const u16 gTilesetPalettes_SakuKura[][16] =
 };
 
 const u32 gTilesetTiles_SakuKura[] = INCBIN_U32("data/tilesets/secondary/saku_kura/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_SilverTunnel[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silver_tunnel/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_SilverTunnel[] = INCBIN_U32("data/tilesets/secondary/silver_tunnel/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Silveridge[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/silveridge/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Silveridge[] = INCBIN_U32("data/tilesets/secondary/silveridge/tiles.4bpp.lz");

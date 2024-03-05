@@ -56,7 +56,7 @@ script Sunrise_Village_Beach_EventScript_RivalSpeech {
 		"Are you excited to become a POKéMON"
 		"trainer?\p"
 		"Come on, it's almost time! Let's go to"
-		"Elder IWA's house!\p"
+		"Elder KABA's house!\p"
 		"Race ya there!!"
 	))
 	closemessage

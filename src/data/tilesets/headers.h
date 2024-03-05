@@ -880,3 +880,25 @@ const struct Tileset gTileset_SakuKura =
     .metatileAttributes = gMetatileAttributes_SakuKura,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_SilverTunnel =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SilverTunnel,
+    .palettes = gTilesetPalettes_SilverTunnel,
+    .metatiles = gMetatiles_SilverTunnel,
+    .metatileAttributes = gMetatileAttributes_SilverTunnel,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Silveridge =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Silveridge,
+    .palettes = gTilesetPalettes_Silveridge,
+    .metatiles = gMetatiles_Silveridge,
+    .metatileAttributes = gMetatileAttributes_Silveridge,
+    .callback = NULL,
+};
