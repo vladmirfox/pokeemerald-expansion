@@ -5349,14 +5349,14 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
     return FALSE;
 }
 
-#define SYMBIOSIS_CHECK(battler, ally)                                                                                               \
-    GetBattlerAbility(ally) == ABILITY_SYMBIOSIS                   \
-    && gBattleMons[battler].item == ITEM_NONE                      \
+#define SYMBIOSIS_CHECK(battler, ally)                             \
+    (gBattleMons[battler].item == ITEM_NONE                        \
     && gBattleMons[ally].item != ITEM_NONE                         \
+    && gBattleMons[battler].hp != 0                                \
+    && gBattleMons[ally].hp != 0                                   \
     && CanBattlerGetOrLoseItem(battler, gBattleMons[ally].item)    \
     && CanBattlerGetOrLoseItem(ally, gBattleMons[ally].item)       \
-    && gBattleMons[battler].hp != 0                                \
-    && gBattleMons[ally].hp != 0
+    && GetBattlerAbility(ally) == ABILITY_SYMBIOSIS)
 
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
 {
@@ -6027,9 +6027,9 @@ static void Cmd_moveend(void)
                     // Attacker is the damage-dealer, battler is mon to be switched out
                     if (IsBattlerAlive(battler)
                       && gBattlerAttacker != battler
-                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_BUTTON
                       && BATTLER_TURN_DAMAGED(battler)
-                      && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
+                      && CountUsablePartyMons(battler) > 0  // Has mon to switch into
+                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_BUTTON)
                     {
                         gBattleScripting.battler = battler;
                         gLastUsedItem = gBattleMons[battler].item;
@@ -6062,9 +6062,9 @@ static void Cmd_moveend(void)
                     if (battler != gBattlerAttacker
                       && IsBattlerAlive(battler)
                       && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RED_CARD
                       && BATTLER_TURN_DAMAGED(battler)
-                      && CanBattlerSwitch(gBattlerAttacker))
+                      && CanBattlerSwitch(gBattlerAttacker)
+                      && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RED_CARD)
                     {
                         gLastUsedItem = gBattleMons[battler].item;
                         gBattleStruct->savedBattlerTarget = gBattleScripting.battler = battler;  // Battler with red card
@@ -6091,9 +6091,9 @@ static void Cmd_moveend(void)
                     if (IsBattlerAlive(battler)
                      && gProtectStructs[battler].statFell
                      && gProtectStructs[battler].disableEjectPack == 0
-                     && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_PACK
                      && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))  // Does not activate if attacker used Parting Shot and can switch out
-                     && CountUsablePartyMons(battler) > 0)  // Has mon to switch into
+                     && CountUsablePartyMons(battler) > 0  // Has mon to switch into
+                     && GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_EJECT_PACK)
                     {
                         gProtectStructs[battler].statFell = FALSE;
                         gBattleScripting.battler = battler;
@@ -7836,13 +7836,15 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef)
 // Called by Cmd_removeitem. itemId represents the item that was removed, not being given.
 static bool32 TrySymbiosis(u32 battler, u32 itemId)
 {
+    u32 holdEffect;
     if (!gBattleStruct->itemLost[gBattlerPartyIndexes[battler]].stolen
         && gBattleStruct->changedItems[battler] == ITEM_NONE
-        && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_EJECT_BUTTON
-        && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_EJECT_PACK
         && (B_SYMBIOSIS_GEMS < GEN_7 || !(gSpecialStatuses[battler].gemBoost))
         && gCurrentMove != MOVE_FLING //Fling and damage-reducing berries are handled separately.
         && !gSpecialStatuses[battler].berryReduced
+        && (holdEffect = GetBattlerHoldEffect(battler, TRUE))
+        && holdEffect != HOLD_EFFECT_EJECT_BUTTON
+        && holdEffect != HOLD_EFFECT_EJECT_PACK
         && SYMBIOSIS_CHECK(battler, BATTLE_PARTNER(battler)))
     {
         BestowItem(BATTLE_PARTNER(battler), battler);
@@ -9375,8 +9377,8 @@ static void Cmd_various(void)
         i = GetBattlerAbility(gBattlerAbility);
         if (IsBattlerAlive(gBattlerAbility)
             && (i == ABILITY_RECEIVER || i == ABILITY_POWER_OF_ALCHEMY)
-            && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD
-            && !gAbilitiesInfo[gBattleMons[battler].ability].cantBeCopied)
+            && !gAbilitiesInfo[gBattleMons[battler].ability].cantBeCopied
+            && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
         {
             gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[battler].ability; // re-using the variable for trace
             gBattleScripting.battler = battler;
@@ -9510,6 +9512,11 @@ static void Cmd_various(void)
             RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
             gBattlescriptCurrInstr = cmd->failInstr;
         }
+        else if (gBattleMons[gBattlerTarget].ability == gBattleMons[gBattlerAttacker].ability
+            || IsDynamaxed(gBattlerTarget))
+        {
+            gBattlescriptCurrInstr = cmd->failInstr;
+        }
         else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
         {
             RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_ABILITY_SHIELD);
@@ -9517,16 +9524,8 @@ static void Cmd_various(void)
         }
         else
         {
-            if (gBattleMons[gBattlerTarget].ability == gBattleMons[gBattlerAttacker].ability
-                || IsDynamaxed(gBattlerTarget))
-            {
-                gBattlescriptCurrInstr = cmd->failInstr;
-            }
-            else
-            {
-                gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gBattleMons[gBattlerAttacker].ability;
-                gBattlescriptCurrInstr = cmd->nextInstr;
-            }
+            gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gBattleMons[gBattlerAttacker].ability;
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
     }
@@ -14272,6 +14271,10 @@ static void Cmd_tryswapabilities(void)
         RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+    else if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT || IsDynamaxed(gBattlerTarget))
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
     else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
     {
         RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_ABILITY_SHIELD);
@@ -14279,18 +14282,11 @@ static void Cmd_tryswapabilities(void)
     }
     else
     {
-        if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT || IsDynamaxed(gBattlerTarget))
-        {
-            gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        else
-        {
-            u16 abilityAtk = gBattleMons[gBattlerAttacker].ability;
-            gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
-            gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = abilityAtk;
+        u16 abilityAtk = gBattleMons[gBattlerAttacker].ability;
+        gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
+        gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = abilityAtk;
 
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
+        gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
 

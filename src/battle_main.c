@@ -5166,7 +5166,7 @@ static void TryChangingTurnOrderEffects(u32 battler1, u32 battler2)
 
 static void CheckChangingTurnOrderEffects(void)
 {
-    u32 i, battler;
+    u32 i, battler, holdEffect;
 
     if (!(gHitMarker & HITMARKER_RUN))
     {
@@ -5185,14 +5185,15 @@ static void CheckChangingTurnOrderEffects(void)
                 {
                     gLastUsedItem = gBattleMons[battler].item;
                     PREPARE_ITEM_BUFFER(gBattleTextBuff1, gLastUsedItem);
-                    if (GetBattlerHoldEffect(battler, FALSE) == HOLD_EFFECT_CUSTAP_BERRY)
+                    holdEffect = GetBattlerHoldEffect(battler, FALSE);
+                    if (holdEffect == HOLD_EFFECT_CUSTAP_BERRY)
                     {
                         // don't record berry since its gone now
                         BattleScriptExecute(BattleScript_CustapBerryActivation);
                     }
                     else
                     {
-                        RecordItemEffectBattle(battler, GetBattlerHoldEffect(battler, FALSE));
+                        RecordItemEffectBattle(battler, holdEffect);
                         BattleScriptExecute(BattleScript_QuickClawActivation);
                     }
                 }
