@@ -1,9 +1,9 @@
 {
-  "id": "MAP_ROUTE_TRANQUIL",
-  "name": "RouteTranquil",
-  "layout": "LAYOUT_ROUTE_TRANQUIL",
+  "id": "MAP_TRANQUIL_ROUTE",
+  "name": "TranquilRoute",
+  "layout": "LAYOUT_TRANQUIL_ROUTE",
   "music": "MUS_RG_ROUTE1",
-  "region_map_section": "MAPSEC_ROUTE_101",
+  "region_map_section": "MAPSEC_TRANQUIL_ROUTE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -40,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "7",
-      "script": "RouteTranquil_EventScript_Chikao",
+      "script": "TranquilRoute_EventScript_Chikao",
       "flag": "0"
     },
     {
@@ -53,7 +53,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RouteTranquil_EventScript_Girl",
+      "script": "TranquilRoute_EventScript_Girl",
       "flag": "0"
     },
     {
@@ -66,7 +66,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "4",
-      "script": "RouteTranquil_EventScript_Takeshi",
+      "script": "TranquilRoute_EventScript_Takeshi",
       "flag": "0"
     },
     {
@@ -79,7 +79,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "8",
-      "script": "RouteTranquil_EventScript_Kenji",
+      "script": "TranquilRoute_EventScript_Kenji",
       "flag": "0"
     },
     {
@@ -92,7 +92,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RouteTranquil_EventScript_BerryWoman",
+      "script": "TranquilRoute_EventScript_BerryWoman",
       "flag": "FLAG_RECEIVED_WAILMER_PAIL"
     },
     {
@@ -131,7 +131,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "8",
-      "script": "RouteTranquil_EventScript_Hana",
+      "script": "TranquilRoute_EventScript_Hana",
       "flag": "0"
     },
     {
@@ -144,7 +144,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "RouteTranquil_EventScript_MysteriousSamurai",
+      "script": "TranquilRoute_EventScript_MysteriousSamurai",
       "flag": "FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE"
     }
   ],

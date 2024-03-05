@@ -2,11 +2,11 @@ const LOCALID_BERRYWOMAN = 5
 const LOCALID_MYSTERIOUS_SAMURAI = 9
 
 
-mapscripts RouteTranquil_MapScripts {
+mapscripts TranquilRoute_MapScripts {
 
 }
 
-script RouteTranquil_EventScript_Chikao {
+script TranquilRoute_EventScript_Chikao {
 	trainerbattle_single(
 		TRAINER_CHIKAO,
 		format("I've been studying Pokémon at school! I can't lose!"),
@@ -16,7 +16,7 @@ script RouteTranquil_EventScript_Chikao {
 	end
 }
 
-script RouteTranquil_EventScript_Takeshi {
+script TranquilRoute_EventScript_Takeshi {
 	trainerbattle_single(
 		TRAINER_TAKESHI,
 		format("Stay right there! I'll defeat you with my ninja skills!"),
@@ -26,7 +26,7 @@ script RouteTranquil_EventScript_Takeshi {
 	end
 }
 
-script RouteTranquil_EventScript_Hana {
+script TranquilRoute_EventScript_Hana {
 	trainerbattle_single(
 		TRAINER_HANA,
 		format("Ugh, how can Kenji paint a portrait of me if people keep walking between us?"),
@@ -36,7 +36,7 @@ script RouteTranquil_EventScript_Hana {
 	end
 }
 
-script RouteTranquil_EventScript_Kenji {
+script TranquilRoute_EventScript_Kenji {
 	trainerbattle_single(
 		TRAINER_KENJI,
 		format("You're interrupting my creative flow!!"),
@@ -50,7 +50,7 @@ script RouteTranquil_EventScript_Kenji {
 }
 
 // Evil team member
-script RouteTranquil_EventScript_MysteriousSamurai {
+script TranquilRoute_EventScript_MysteriousSamurai {
 	lock
 	msgbox(format(
 		"So you are one of those new Pokémon trainers, right?\p"
@@ -61,7 +61,7 @@ script RouteTranquil_EventScript_MysteriousSamurai {
 	))
 	closemessage
 
-	applymovement(LOCALID_MYSTERIOUS_SAMURAI, RouteTranquil_Movement_MysteriousSamuraiWalksAway)
+	applymovement(LOCALID_MYSTERIOUS_SAMURAI, TranquilRoute_Movement_MysteriousSamuraiWalksAway)
 	removeobject(LOCALID_MYSTERIOUS_SAMURAI)
 
 	setflag(FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE)
@@ -69,7 +69,7 @@ script RouteTranquil_EventScript_MysteriousSamurai {
 	end
 }
 
-movement RouteTranquil_Movement_MysteriousSamuraiWalksAway {
+movement TranquilRoute_Movement_MysteriousSamuraiWalksAway {
 	walk_right
 	walk_right
 	walk_right
@@ -78,14 +78,14 @@ movement RouteTranquil_Movement_MysteriousSamuraiWalksAway {
 	walk_right
 }
 
-script RouteTranquil_EventScript_Girl {
+script TranquilRoute_EventScript_Girl {
 	lock
 	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_AUTOCLOSE)
 	release
 	end
 }
 
-script RouteTranquil_EventScript_BerryWoman {
+script TranquilRoute_EventScript_BerryWoman {
 	lock
 	// TODO EVA add speech bubble with  little musical notes
 	msgbox(format("Hi, young one! See this?"))
@@ -125,7 +125,7 @@ script RouteTranquil_EventScript_BerryWoman {
 	end
 }
 
-script RouteTranquil_TrainerTips1 {
+script TranquilRoute_TrainerTips1 {
 	msgbox(format(
 		"Some Pokémon only come out come nighttime.\p"
 		"Visit the same spot at different times of day to have a chance of seeing rare Pokémon!"
@@ -133,7 +133,7 @@ script RouteTranquil_TrainerTips1 {
 }
 
 
-script RouteTranquil_TrainerTips2 {
+script TranquilRoute_TrainerTips2 {
 	msgbox(format(
 		"Several items can be assigned to the SELECT button from your bag."
 	), MSGBOX_SIGN)

@@ -4452,14 +4452,14 @@
       "blockdata_filepath": "data/layouts/ChiiTown/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE_TRANQUIL",
-      "name": "RouteTranquil_Layout",
+      "id": "LAYOUT_TRANQUIL_ROUTE",
+      "name": "TranquilRoute_Layout",
       "width": 70,
       "height": 80,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Sunrise_Village",
-      "border_filepath": "data/layouts/RouteTranquil/border.bin",
-      "blockdata_filepath": "data/layouts/RouteTranquil/map.bin"
+      "border_filepath": "data/layouts/TranquilRoute/border.bin",
+      "blockdata_filepath": "data/layouts/TranquilRoute/map.bin"
     },
     {
       "id": "LAYOUT_SUNRISE_VILLAGE_PLAYERS_HOUSE_LR",
