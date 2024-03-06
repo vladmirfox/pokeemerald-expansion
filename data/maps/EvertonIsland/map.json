@@ -1,0 +1,62 @@
+{
+  "id": "MAP_EVERTON_ISLAND",
+  "name": "EvertonIsland",
+  "layout": "LAYOUT_EVERTON_ISLAND",
+  "music": "MUS_VERDANTURF",
+  "region_map_section": "MAPSEC_EVERTON_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 16,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_EVERTON_ISLAND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 29,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_EVERTON_ISLAND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_EVERTON_ISLAND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_EVERTON_ISLAND",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_EVERTON_ISLAND",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

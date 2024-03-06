@@ -4410,6 +4410,26 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_EVERTON_ISLAND",
+      "name": "EvertonIsland_Layout",
+      "width": 40,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/EvertonIsland/border.bin",
+      "blockdata_filepath": "data/layouts/EvertonIsland/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYER_HOUSE2F",
+      "name": "PlayerHouse2F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/PlayerHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/PlayerHouse2F/map.bin"
     }
   ]
 }
