@@ -990,7 +990,10 @@ const u16 gCharAttrTable[] = {
     // é and ’ treated as uppercase so POKéDEX, POKéMON, etc. decap
     [CHAR_e_ACUTE]                          = UPPERCASE_FLAG,
     [CHAR_SGL_QUOTE_RIGHT]                  = UPPERCASE_FLAG,
+    [CHAR_COMMA]                            = BIGRAM_SEP_FLAG,
     [CHAR_SLASH]                            = BIGRAM_SEP_FLAG,
+    // For'TMs'
+    [CHAR_s]                                = BIGRAM_SEP_FLAG,
     // International
     [CHAR_A_GRAVE ... CHAR_A_ACUTE]         = CHAR_a_GRAVE - CHAR_A_GRAVE,
     [CHAR_A_CIRCUMFLEX]                     = CHAR_a_CIRCUMFLEX,
@@ -1212,6 +1215,17 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             textPrinter->lastChar = currChar;
             if (!textPrinter->japanese)
                 return RENDER_REPEAT;
+            break;
+        // Bigram exceptions
+        // These are some two-letter words which *should* be decapped
+        // https://en.wiktionary.org/wiki/Appendix:Glossary_of_two-letter_English_words
+        case CHAR_F: // OF
+            if (lastChar == CHAR_O)
+                nextLastChar = CHAR_DOWN_ARROW; // any non-bigram sep char
+            break;
+        case CHAR_O: // NO
+            if (lastChar == CHAR_N)
+                nextLastChar = CHAR_DOWN_ARROW;
             break;
         }
 
