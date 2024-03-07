@@ -67,6 +67,8 @@ RIGHT_ARROW = 7C
 @ but that kana is practically unused in JP text.
 FIXED_CASE  = 7D
 UNFIX_CASE  = 7E
+@ Zero-width when decap enabled, normal space otherwise
+ZW_SPACE    = 7F
 
 SUPER_E     = 84
 '<'         = 85

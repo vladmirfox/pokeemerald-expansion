@@ -1216,6 +1216,10 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             if (!textPrinter->japanese)
                 return RENDER_REPEAT;
             break;
+        case ZW_SPACE: // zero-width when decap enabled
+            if (!textPrinter->japanese)
+                return RENDER_REPEAT;
+            break;
         // Bigram exceptions
         // These are some two-letter words which *should* be decapped
         // https://en.wiktionary.org/wiki/Appendix:Glossary_of_two-letter_English_words

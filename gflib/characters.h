@@ -80,6 +80,9 @@
 // Case-fixing characters
 #define CHAR_FIXED_CASE        0x7D
 #define CHAR_UNFIX_CASE        0x7E
+// When decap disabled, this is instead a normal-width space
+// Use this to decap phrases like "IRON{ZW_SPACE}THORNS" into "IronThorns" or "IRON THORNS"
+#define ZW_SPACE               0x7F
 //
 #define CHAR_SUPER_E           0x84
 #define CHAR_LESS_THAN         0x85
