@@ -5,27 +5,27 @@
 // Global control. If FALSE, no randomizer functionality will be enabled.
 // If this is TRUE, that doesn't necessarily mean that a particular part of the randomizer
 // will be enabled.
-#define RZ_ENABLE                   TRUE
+#define RANDOMIZER_AVAILABLE                   TRUE
 
-#if RZ_ENABLE == TRUE
+#if RANDOMIZER_AVAILABLE == TRUE
 
 // If TRUE, the trainer ID (including secret ID) will be the randomizer seed.
 #define RZ_TRAINER_ID_IS_SEED       TRUE
 
 // If TRUE, dynamically generated randomization tables stored in EWRAM are used.
 // This consumes 6 bytes for each species present.
-#define RZ_SPECIES_TABLES_IN_RAM    TRUE
+#define RANDOMIZER_DYNAMIC_SPECIES    TRUE
 
-#if RZ_SPECIES_TABLES_IN_RAM == TRUE
+#if RANDOMIZER_DYNAMIC_SPECIES == TRUE
 
 // If the longest evolutionary chain (excluding babies) is longer than this,
 // the dynamic evolutionary stage randomization table will be generated
 // incorrectly.
-#define RZ_MAX_EVO_STAGES   5
+#define RANDOMIZER_MAX_EVO_STAGES   5
 
-#endif // RZ_SPECIES_TABLES_IN_RAM
+#endif // RANDOMIZER_DYNAMIC_SPECIES
 
-#define RZ_MAX_TM           ITEM_TM50
+#define RANDOMIZER_MAX_TM           ITEM_TM50
 
 // Vars and features
 
@@ -34,41 +34,41 @@
 // If undefined, the feature will be enabled if one of the flags below is set.
 // If defined and set to TRUE, the feature will always be enabled.
 // If defined and set to FALSE, the feature will always be disabled.
-//#define RZ_WILD_MON_FORCE         TRUE
-//#define RZ_FIELD_ITEMS_FORCE      TRUE
-//#define RZ_TRAINER_MON_FORCE      TRUE
-//#define RZ_FIXED_MON_FORCE        TRUE
-//#define RZ_STARTERS_FORCE    TRUE
+//#define FORCE_RANDOMIZE_WILD_MON      TRUE
+//#define FORCE_RANDOMIZE_FIELD_ITEMS   TRUE
+//#define FORCE_RANDOMIZE_TRAINER_MON   TRUE
+//#define FORCE_RANDOMIZE_FIXED_MON     TRUE
+//#define FORCE_RANDOMIZE_STARTERS      TRUE
 
 // These flags control whether a particular randomization feature is active.
-// They are ignored and disabled if the _FORCE flags above are set.
-#ifndef RZ_WILD_MON_FORCE
-#define RZ_FLAG_WILD_MON            FLAG_UNUSED_0x020
+// They are ignored and disabled if the flags above are set.
+#ifndef FORCE_RANDOMIZE_WILD_MON
+#define RANDOMIZER_FLAG_WILD_MON            FLAG_UNUSED_0x020
 #endif
 
-#ifndef RZ_FIELD_ITEMS_FORCE
-#define RZ_FLAG_FIELD_ITEMS         FLAG_UNUSED_0x021
+#ifndef FORCE_RANDOMIZE_FIELD_ITEMS
+#define RANDOMIZER_FLAG_FIELD_ITEMS         FLAG_UNUSED_0x021
 #endif
 
-#ifndef RZ_TRAINER_MON_FORCE
-#define RZ_FLAG_TRAINER_MON         FLAG_UNUSED_0x022
+#ifndef FORCE_RANDOMIZE_TRAINER_MON
+#define RANDOMIZER_FLAG_TRAINER_MON         FLAG_UNUSED_0x022
 #endif
 
-#ifndef RZ_FIXED_MON_FORCE
-#define RZ_FLAG_FIXED_MON           FLAG_UNUSED_0x023
+#ifndef FORCE_RANDOMIZE_FIXED_MON
+#define RANDOMIZER_FLAG_FIXED_MON           FLAG_UNUSED_0x023
 #endif
 
-#ifndef RZ_STARTERS_FORCE
-#define RZ_FLAG_STARTERS            FLAG_UNUSED_0x024
+#ifndef FORCE_RANDOMIZE_STARTERS
+#define RANDOMIZER_FLAG_STARTERS            FLAG_UNUSED_0x024
 #endif
 
-#define RZ_VAR_SPECIES_MODE         VAR_UNUSED_0x404E
+#define RANDOMIZER_VAR_SPECIES_MODE         VAR_UNUSED_0x404E
 
-#if RZ_TRAINER_ID_IS_SEED == FALSE
-#define RZ_VAR_SEED_L               VAR_UNUSED_0x40FA
-#define RZ_VAR_SEED_H               VAR_UNUSED_0x40FB
+#if RANDOMIZER_SEED_IS_TRAINER_ID == FALSE
+#define RANDOMIZER_VAR_SEED_L               VAR_UNUSED_0x40FA
+#define RANDOMIZER_VAR_SEED_H               VAR_UNUSED_0x40FB
 #endif
 
-#endif // RZ_ENABLE
+#endif // RANDOMIZER_AVAILABLE
 
 #endif // GUARD_CONFIG_RANDOMIZER_H

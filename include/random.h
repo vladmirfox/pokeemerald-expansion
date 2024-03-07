@@ -23,7 +23,7 @@
 * also available in non-HQ mode for consistency.
 */
 
-#if HQ_RANDOM == TRUE || RZ_ENABLE == TRUE
+#if HQ_RANDOM == TRUE || RANDOMIZER_AVAILABLE == TRUE
 struct Sfc32State {
     u32 a;
     u32 b;

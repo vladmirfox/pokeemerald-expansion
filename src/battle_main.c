@@ -1957,9 +1957,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             u32 fixedOtId = 0;
             u16 species = partyData[i].species;
 
-            #if RZ_ENABLE == TRUE
+            if (RANDOMIZER_AVAILABLE)
                 species = RandomizeTrainerMon(seed, i, monsCount, species);
-            #endif
 
             if (trainer->doubleBattle == TRUE)
                 personalityValue = 0x80;

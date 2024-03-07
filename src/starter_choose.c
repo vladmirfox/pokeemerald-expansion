@@ -355,7 +355,7 @@ u16 GetStarterPokemon(u16 chosenStarterId)
     if (chosenStarterId > STARTER_MON_COUNT)
         chosenStarterId = 0;
 
-    #if RZ_ENABLE == TRUE
+    #if RANDOMIZER_AVAILABLE == TRUE
         species = RandomizeStarter(chosenStarterId, sStarterMon);
     #else
         species = sStarterMon[chosenStarterId];

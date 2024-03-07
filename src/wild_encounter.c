@@ -508,7 +508,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
         return FALSE;
 
     species = wildMonInfo->wildPokemon[wildMonIndex].species;
-    #if RZ_ENABLE == TRUE
+    #if RANDOMIZER_AVAILABLE == TRUE
         species = RandomizeWildEncounter(
             species,
             gSaveBlock1Ptr->location.mapNum,
@@ -526,7 +526,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
     u16 species = wildMonInfo->wildPokemon[wildMonIndex].species;
 
-    #if RZ_ENABLE == TRUE
+    #if RANDOMIZER_AVAILABLE == TRUE
         species = RandomizeWildEncounter(
             species,
             gSaveBlock1Ptr->location.mapNum,
@@ -944,7 +944,7 @@ u16 GetLocalWildMon(bool8 *isWaterMon)
         index = ChooseWildMonIndex_WaterRock();
         species = waterMonsInfo->wildPokemon[index].species;
     }
-    #if RZ_ENABLE == TRUE
+    #if RANDOMIZER_AVAILABLE == TRUE
     {
         enum WildArea area;
         if (*isWaterMon)
@@ -974,7 +974,7 @@ u16 GetLocalWaterMon(void)
             u16 species;
             index = ChooseWildMonIndex_WaterRock();
             species = waterMonsInfo->wildPokemon[index].species;
-            #if RZ_ENABLE == TRUE
+            #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeWildEncounter(
                     species, gWildMonHeaders[headerId].mapNum,
                     gWildMonHeaders[headerId].mapGroup, WILD_AREA_WATER,

@@ -1975,7 +1975,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     u8 level2 = ScriptReadByte(ctx);
     u16 item2 = ScriptReadHalfword(ctx);
 
-    #if RZ_ENABLE == TRUE
+    #if RANDOMIZER_AVAILABLE == TRUE
         u8 mapNum = gSaveBlock1Ptr->location.mapNum;
         u8 mapGroup = gSaveBlock1Ptr->location.mapGroup;
         u8 localId = gObjectEvents[gSelectedObjectEvent].localId;
@@ -1990,7 +1990,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext *ctx)
     }
     else
     {
-        #if RZ_ENABLE == TRUE
+        #if RANDOMIZER_AVAILABLE == TRUE
             species2 = RandomizeFixedEncounterMon(species2, mapNum, mapGroup, localId);
         #endif
 

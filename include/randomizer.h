@@ -2,7 +2,7 @@
 #define GUARD_RANDOMIZER_H
 
 #include "config/randomizer.h"
-#if RZ_ENABLE == TRUE
+#if RANDOMIZER_AVAILABLE == TRUE
 
 #define RANDOMIZER_MAX_MON  (SPECIES_DECIDUEYE_HISUIAN)
 
@@ -17,38 +17,38 @@
 enum RandomizerFeature
 {
     // Wild encounter randomization.
-    RZ_WILD_MON,
+    RANDOMIZE_WILD_MON,
     // Trainer party randomization.
-    RZ_TRAINER_MON,
+    RANDOMIZE_TRAINER_MON,
     // Item ball and hidden item randomization.
-    RZ_FIELD_ITEMS,
+    RANDOMIZE_FIELD_ITEMS,
     // Randomization of species base stats. Not yet implemented.
-    RZ_BASE_STATS,
+    RANDOMIZE_BASE_STATS,
     // Randomization of species types. Not yet implemented.
-    RZ_MON_TYPES,
+    RANDOMIZE_MON_TYPES,
     // Randomization of species learnset. Not yet implemented.
-    RZ_LEARNSET,
+    RANDOMIZE_LEARNSET,
     // Randomization of fixed encounters.
-    RZ_FIXED_MON,
+    RANDOMIZE_FIXED_MON,
     // Randomization of starter Pokémon species.
-    RZ_STARTERS,
+    RANDOMIZE_STARTERS,
 };
 
 enum RandomizerReason
 {
-    RZR_WILD_ENCOUNTER,
-    RZR_FIXED_ENCOUNTER,
-    RZR_TRAINER_PARTY,
-    RZR_BASE_STATS,
-    RZR_SPECIES_TYPE,
-    RZR_LEARNSET,
-    RZR_FIELD_ITEM,
-    RZR_STARTER,
+    RANDOMIZER_REASON_WILD_ENCOUNTER,
+    RANDOMIZER_REASON_FIXED_ENCOUNTER,
+    RANDOMIZER_REASON_TRAINER_PARTY,
+    RANDOMIZER_REASON_BASE_STATS,
+    RANDOMIZER_REASON_SPECIES_TYPE,
+    RANDOMIZER_REASON_LEARNSET,
+    RANDOMIZER_REASON_FIELD_ITEM,
+    RANDOMIZER_REASON_STARTER,
 };
 
 enum RandomizerOption {
     // Controls how a species is randomized.
-    RZO_SPECIES_MODE,
+    RANDOMIZER_OPTION_SPECIES_MODE,
 };
 
 enum RandomizerSpeciesMode {
@@ -81,7 +81,7 @@ u16 RandomizerRandRange(enum RandomizerReason reason, u32 data1, u16 data2, u16 
 
 static inline u8 RandomizeMonType(u16 species, u8 typeNum)
 {
-    return (u8)RandomizerRandRange(RZR_SPECIES_TYPE, species, typeNum, NUMBER_OF_MON_TYPES);
+    return (u8)RandomizerRandRange(RANDOMIZER_REASON_SPECIES_TYPE, species, typeNum, NUMBER_OF_MON_TYPES);
 }
 
 u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId);
@@ -103,13 +103,13 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
 // Given a starter slot and the list of original starters, returns the starter in that slot.
 u16 RandomizeStarter(u16 starterSlot, const u16* originalStarters);
 
-#if RZ_SPECIES_TABLES_IN_RAM == TRUE
+#if RANDOMIZER_DYNAMIC_SPECIES == TRUE
 // Once the randomizer is set up, in RAM mode, you can call this to preload the tables.
 // This avoids a short hitch the first time the randomizer is used.
 // It's also a good idea to call this function if the randomizer mode changes.
 void PreloadRandomizationTables(void);
 #endif
 
-#endif // RZ_ENABLE
+#endif // RANDOMIZER_AVAILABLE
 
 #endif // GUARD_RANDOMIZER_H

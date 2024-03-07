@@ -206,7 +206,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
 
-    #if (RZ_ENABLE == TRUE) && (RZ_SPECIES_TABLES_IN_RAM == TRUE)
+    #if (RANDOMIZER_AVAILABLE == TRUE) && (RANDOMIZER_DYNAMIC_SPECIES == TRUE)
         PreloadRandomizationTables();
     #endif
 }
