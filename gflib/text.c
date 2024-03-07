@@ -990,6 +990,7 @@ const u16 gCharAttrTable[] = {
     // é and ’ treated as uppercase so POKéDEX, POKéMON, etc. decap
     [CHAR_e_ACUTE]                          = UPPERCASE_FLAG,
     [CHAR_SGL_QUOTE_RIGHT]                  = UPPERCASE_FLAG,
+    [CHAR_PERIOD]                           = BIGRAM_SEP_FLAG,
     [CHAR_COMMA]                            = BIGRAM_SEP_FLAG,
     [CHAR_SLASH]                            = BIGRAM_SEP_FLAG,
     // For'TMs'
