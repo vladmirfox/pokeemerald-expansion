@@ -1334,7 +1334,9 @@ bool32 ShouldTryOHKO(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbil
 bool32 ShouldSetSandstorm(u32 battler, u32 ability, u32 holdEffect)
 {
     u32 weather = AI_GetWeather(AI_DATA);
-    if (weather & B_WEATHER_SANDSTORM)
+
+    if (weather & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)
+     || IsMoveEffectWeather(AI_DATA->partnerMove))
         return FALSE;
 
     if (ability == ABILITY_SAND_VEIL
@@ -1357,7 +1359,8 @@ bool32 ShouldSetSandstorm(u32 battler, u32 ability, u32 holdEffect)
 bool32 ShouldSetHail(u32 battler, u32 ability, u32 holdEffect)
 {
     u32 weather = AI_GetWeather(AI_DATA);
-    if (weather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
+    if (weather & (B_WEATHER_HAIL | B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)
+     || IsMoveEffectWeather(AI_DATA->partnerMove))
         return FALSE;
 
     if (ability == ABILITY_SNOW_CLOAK
@@ -1380,7 +1383,8 @@ bool32 ShouldSetHail(u32 battler, u32 ability, u32 holdEffect)
 bool32 ShouldSetRain(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
 {
     u32 weather = AI_GetWeather(AI_DATA);
-    if (weather & B_WEATHER_RAIN)
+    if (weather & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)
+     || IsMoveEffectWeather(AI_DATA->partnerMove))
         return FALSE;
 
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
@@ -1401,7 +1405,8 @@ bool32 ShouldSetRain(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
 bool32 ShouldSetSun(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
 {
     u32 weather = AI_GetWeather(AI_DATA);
-    if (weather & B_WEATHER_SUN)
+    if (weather & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)
+     || IsMoveEffectWeather(AI_DATA->partnerMove))
         return FALSE;
 
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
@@ -1427,7 +1432,9 @@ bool32 ShouldSetSun(u32 battlerAtk, u32 atkAbility, u32 holdEffect)
 bool32 ShouldSetSnow(u32 battler, u32 ability, u32 holdEffect)
 {
     u32 weather = AI_GetWeather(AI_DATA);
-    if (weather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
+
+    if (weather & (B_WEATHER_SNOW | B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)
+     || IsMoveEffectWeather(AI_DATA->partnerMove))
         return FALSE;
 
     if (ability == ABILITY_SNOW_CLOAK
@@ -2959,6 +2966,9 @@ bool32 ShouldSetScreen(u32 battlerAtk, u32 battlerDef, u32 moveEffect)
 {
     u32 atkSide = GetBattlerSide(battlerAtk);
 
+    if (PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), moveEffect, AI_DATA->partnerMove))
+        return FALSE;
+
     if (HasMoveEffect(battlerDef, EFFECT_BRICK_BREAK)) // Don't waste a turn if screens will be broken
         return FALSE;
 
@@ -3024,12 +3034,12 @@ bool32 DoesPartnerHaveSameMoveEffect(u32 battlerAtkPartner, u32 battlerDef, u32 
 }
 
 //PARTNER_MOVE_EFFECT_IS_SAME_NO_TARGET
-bool32 PartnerHasSameMoveEffectWithoutTarget(u32 battlerAtkPartner, u32 move, u32 partnerMove)
+bool32 PartnerHasSameMoveEffectWithoutTarget(u32 battlerAtkPartner, u32 moveEffect, u32 partnerMove)
 {
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gMovesInfo[move].effect == gMovesInfo[partnerMove].effect
+    if (moveEffect == gMovesInfo[partnerMove].effect
       && partnerMove != MOVE_NONE)
         return TRUE;
     return FALSE;
@@ -3502,6 +3512,10 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         else
             ADJUST_SCORE_PTR(WEAK_EFFECT);
     }
+    else
+    {
+        ADJUST_SCORE_PTR(BAD_MOVE);
+    }
 }
 
 void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
@@ -3522,6 +3536,10 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
           || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN))
             ADJUST_SCORE_PTR(WEAK_EFFECT);
+    }
+    else
+    {
+        ADJUST_SCORE_PTR(BAD_MOVE);
     }
 }
 
@@ -3545,6 +3563,10 @@ void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         else
             ADJUST_SCORE_PTR(DECENT_EFFECT);
     }
+    else
+    {
+        ADJUST_SCORE_PTR(BAD_MOVE);
+    }
 }
 
 void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
@@ -3556,7 +3578,7 @@ void IncreaseSleepScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
     if (AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
         ADJUST_SCORE_PTR(DECENT_EFFECT);
     else
-        return;
+        ADJUST_SCORE_PTR(BAD_MOVE);
 
     if ((HasMoveEffect(battlerAtk, EFFECT_DREAM_EATER) || HasMoveEffect(battlerAtk, EFFECT_NIGHTMARE))
       && !(HasMoveEffect(battlerDef, EFFECT_SNORE) || HasMoveEffect(battlerDef, EFFECT_SLEEP_TALK)))
@@ -3583,6 +3605,10 @@ void IncreaseConfusionScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score
             ADJUST_SCORE_PTR(GOOD_EFFECT);
         else
             ADJUST_SCORE_PTR(DECENT_EFFECT);
+    }
+    else
+    {
+        ADJUST_SCORE_PTR(BAD_MOVE);
     }
 }
 

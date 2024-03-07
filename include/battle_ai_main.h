@@ -37,6 +37,7 @@
 #define DECENT_EFFECT    2
 #define GOOD_EFFECT      4
 #define BEST_EFFECT      6
+#define BAD_MOVE         -10
 
 // AI_CalcMoveScore final score
 #define NOT_GOOD_ENOUGH           0 // Not worth using over a damaging move
