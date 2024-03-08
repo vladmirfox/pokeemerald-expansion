@@ -1312,6 +1312,11 @@
 	.byte \battler
 	.4byte \jumpInstr
 	.endm
+	
+	.macro itemstatchangeeffects battler:req
+	callnative BS_RunStatChangeItems
+	.byte \battler
+	.endm
 
 	.macro jumpifholdeffect battler:req, holdEffect:req, jumpInstr:req
 	callnative BS_JumpIfHoldEffect
