@@ -300,6 +300,7 @@ static const u8 sPoisonTouchDescription[] = _("The Pokémon's contact moves\nhav
 static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
 static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
 static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
+static const u8 sRegeneratorDescription[] = _("Heals 1/3 of max HP upon\nswitching out.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1075,7 +1076,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MOODY] = sMoodyDescription,
     [ABILITY_OVERCOAT] = sOvercoatDescription,
     [ABILITY_POISON_TOUCH] = sPoisonTouchDescription,
-    [ABILITY_REGENERATOR] = sNaturalCureDescription,
+    [ABILITY_REGENERATOR] = sRegeneratorDescription,
     [ABILITY_BIG_PECKS] = sBigPecksDescription,
     [ABILITY_SAND_RUSH] = sSandRushDescription,
     [ABILITY_WONDER_SKIN] = sWonderSkinDescription,
