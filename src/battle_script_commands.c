@@ -5855,9 +5855,10 @@ static void Cmd_moveend(void)
                 u32 ejectPackBattlers = 0, ejectButtonBattlers = 0, i;
                 for (i = 0; i < gBattlersCount; i++)
                 {
+                    u32 holdEffect;
                     if (i == gBattlerAttacker)
                         continue;
-                    u32 holdEffect = GetBattlerHoldEffect(i, TRUE);
+                    holdEffect = GetBattlerHoldEffect(i, TRUE);
                     if (holdEffect == HOLD_EFFECT_EJECT_BUTTON)
                         ejectButtonBattlers |= gBitTable[i];
                     else if (holdEffect == HOLD_EFFECT_EJECT_PACK)
