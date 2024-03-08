@@ -298,10 +298,10 @@ static const u8 sEmbodyAspectCornerstoneDescription[] = _("Raises Defense.");
 static const u8 sToxicChainDescription[] = _("30% chance to badly poison\nthe target when attacking.");
 static const u8 sPoisonTouchDescription[] = _("The Pokémon's contact moves\nhave a 30% poison chance.");
 static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
-static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
-static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
 static const u8 sRegeneratorDescription[] = _("Heals 1/3 of max HP upon\nswitching out.");
 static const u8 sMagicianDescription[] = _("Steals the target's item\nafter dealing damage.");
+static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
+static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
