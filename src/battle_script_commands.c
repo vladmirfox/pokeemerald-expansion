@@ -5954,7 +5954,8 @@ static void Cmd_moveend(void)
             if ((gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET || gBattleStruct->hitSwitchTargetFailed)
               && IsBattlerAlive(gBattlerAttacker)
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove)
-              && GetBattlerAbility(gBattlerAttacker) != ABILITY_GUARD_DOG)
+              && GetBattlerAbility(gBattlerAttacker) != ABILITY_GUARD_DOG
+              && GetBattlerAbility(gBattlerAttacker) != ABILITY_HEAVY_METAL)
             {
                 // Since we check if battler was damaged, we don't need to check move result.
                 // In fact, doing so actually prevents multi-target moves from activating red card properly
@@ -6913,6 +6914,7 @@ static void Cmd_switchineffects(void)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SPIKES)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
         && GetBattlerAbility(battler) != ABILITY_FOREWARN
+        && GetBattlerAbility(battler) != ABILITY_LIGHT_METAL
         && IsBattlerAffectedByHazards(battler, FALSE)
         && IsBattlerGrounded(battler))
     {
@@ -6928,7 +6930,8 @@ static void Cmd_switchineffects(void)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEALTH_ROCK)
         && IsBattlerAffectedByHazards(battler, FALSE)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
-        && GetBattlerAbility(battler) != ABILITY_FOREWARN)
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN
+        && GetBattlerAbility(battler) != ABILITY_LIGHT_METAL)
     {
         gDisableStructs[battler].stealthRockDone = TRUE;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, battler);
@@ -6949,7 +6952,9 @@ static void Cmd_switchineffects(void)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_ToxicSpikesAbsorbed;
         }
-        else if (IsBattlerAffectedByHazards(battler, TRUE) && GetBattlerAbility(battler) != ABILITY_FOREWARN)
+        else if (IsBattlerAffectedByHazards(battler, TRUE) 
+                && GetBattlerAbility(battler) != ABILITY_FOREWARN
+                && GetBattlerAbility(battler) != ABILITY_LIGHT_METAL)
         {
             if (!(gBattleMons[battler].status1 & STATUS1_ANY)
                 && !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
@@ -6975,6 +6980,7 @@ static void Cmd_switchineffects(void)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STICKY_WEB)
         && IsBattlerAffectedByHazards(battler, FALSE)
         && GetBattlerAbility(battler) != ABILITY_FOREWARN
+        && GetBattlerAbility(battler) != ABILITY_LIGHT_METAL
         && IsBattlerGrounded(battler))
     {
         gDisableStructs[battler].stickyWebDone = TRUE;
@@ -6987,7 +6993,8 @@ static void Cmd_switchineffects(void)
         && (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_STEELSURGE)
         && IsBattlerAffectedByHazards(battler, FALSE)
         && GetBattlerAbility(battler) != ABILITY_MAGIC_GUARD
-        && GetBattlerAbility(battler) != ABILITY_FOREWARN)
+        && GetBattlerAbility(battler) != ABILITY_FOREWARN
+        && GetBattlerAbility(battler) != ABILITY_LIGHT_METAL)
     {
         gDisableStructs[battler].steelSurgeDone = TRUE;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_G_MAX_STEELSURGE].type, battler);
@@ -9662,7 +9669,8 @@ static void Cmd_various(void)
          && IsBattlerAlive(gBattlerTarget)
          && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
          && TARGET_TURN_DAMAGED
-         && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG)
+         && GetBattlerAbility(gBattlerTarget) != ABILITY_GUARD_DOG
+         && GetBattlerAbility(gBattlerTarget) != ABILITY_HEAVY_METAL)
         {
             gBattleScripting.switchCase = B_SWITCH_HIT;
             gBattlescriptCurrInstr = cmd->nextInstr;

@@ -109,7 +109,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_HARVEST] = 5,
     [ABILITY_HEALER] = 0,
     [ABILITY_HEATPROOF] = 5,
-    [ABILITY_HEAVY_METAL] = -1,
+    [ABILITY_HEAVY_METAL] = 1,
     [ABILITY_HONEY_GATHER] = 0,
     [ABILITY_HUGE_POWER] = 10,
     [ABILITY_HUSTLE] = 7,
@@ -2511,7 +2511,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
     if (flags == 0)
         return FALSE;
 
-    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_FOREWARN)
+    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_FOREWARN || ability == ABILITY_LIGHT_METAL)
         return FALSE;
     if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
         holdEffect = HOLD_EFFECT_NONE;

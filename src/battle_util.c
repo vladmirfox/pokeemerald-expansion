@@ -4652,6 +4652,27 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_FORECAST:
+            if (gBattleMons[battler].item == ITEM_DAMP_ROCK 
+                || gBattleMons[battler].item == ITEM_MYSTIC_WATER
+                || gBattleMons[battler].item == ITEM_SPLASH_PLATE)
+            {
+                goto DRIZZLE;
+            }
+            if (gBattleMons[battler].item == ITEM_HEAT_ROCK 
+                || gBattleMons[battler].item == ITEM_CHARCOAL
+                || gBattleMons[battler].item == ITEM_FLAME_PLATE)
+            {
+                goto DROUGHT;
+            }
+            if (gBattleMons[battler].item == ITEM_ICY_ROCK 
+                || gBattleMons[battler].item == ITEM_NEVERMELTICE
+                || gBattleMons[battler].item == ITEM_ICICLE_PLATE)
+            {
+                goto SNOW_WARNING;
+            }
+            break;
+        DRIZZLE:
         case ABILITY_DRIZZLE:
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
             {
@@ -4678,6 +4699,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        DROUGHT:
         case ABILITY_DROUGHT:
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
@@ -4691,6 +4713,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        SNOW_WARNING:
         case ABILITY_SNOW_WARNING:
             if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
             {
@@ -9202,7 +9225,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case ABILITY_NORMALIZE:
         if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
+            modifier = uq4_12_multiply(modifier, UQ_4_12(2));
         break;
     case ABILITY_PUNK_ROCK:
         if (gBattleMoves[move].soundMove)

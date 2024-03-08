@@ -1338,14 +1338,14 @@ static const u8 sPurpleNectarDesc[] = _(
 
 // Plates
 static const u8 sFlamePlateDesc[] = _(
-    "A tablet that ups\n"
-    "the power of\n"
-    "Fire-type moves.");
+    "Raises the power of\n"
+    "Fire-type moves.\n"
+    "Castform sets sun.");
 
 static const u8 sSplashPlateDesc[] = _(
-    "A tablet that ups\n"
-    "the power of\n"
-    "Water-type moves.");
+    "Raises the power of\n"
+    "Water-type moves.\n"
+    "Castform sets rain.");
 
 static const u8 sZapPlateDesc[] = _(
     "A tablet that ups\n"
@@ -1358,9 +1358,9 @@ static const u8 sMeadowPlateDesc[] = _(
     "Grass-type moves.");
 
 static const u8 sIciclePlateDesc[] = _(
-    "A tablet that ups\n"
-    "the power of\n"
-    "Ice-type moves.");
+    "Raises the power of\n"
+    "Ice-type moves.\n"
+    "Castform sets snow.");
 
 static const u8 sFistPlateDesc[] = _(
     "A tablet that ups\n"
@@ -2225,14 +2225,14 @@ static const u8 sSilkScarfDesc[] = _(
     "Normal-type moves.");
 
 static const u8 sCharcoalDesc[] = _(
-    "A hold item that\n"
-    "raises the power of\n"
-    "Fire-type moves.");
+    "Raises the power of\n"
+    "Fire-type moves.\n"
+    "Castform sets sun.");
 
 static const u8 sMysticWaterDesc[] = _(
-    "A hold item that\n"
-    "raises the power of\n"
-    "Water-type moves.");
+    "Raises the power of\n"
+    "Water-type moves.\n"
+    "Castform sets rain.");
 
 static const u8 sMagnetDesc[] = _(
     "A hold item that\n"
@@ -2245,9 +2245,9 @@ static const u8 sMiracleSeedDesc[] = _(
     "Grass-type moves.");
 
 static const u8 sNeverMeltIceDesc[] = _(
-    "A hold item that\n"
-    "raises the power of\n"
-    "Ice-type moves.");
+    "Raises the power of\n"
+    "Ice-type moves.\n"
+    "Castform sets snow.");
 
 static const u8 sBlackBeltDesc[] = _(
     "A hold item that\n"
@@ -2334,13 +2334,13 @@ static const u8 sToxicOrbDesc[] = _(
 // Weather Rocks
 static const u8 sDampRockDesc[] = _(
     "Extends the length\n"
-    "of Rain Dance if\n"
-    "used by the holder.");
+    "of Rain Dance.\n"
+    "Castform sets rain.");
 
 static const u8 sHeatRockDesc[] = _(
     "Extends the length\n"
-    "of Sunny Day if\n"
-    "used by the holder.");
+    "of Sunny Day.\n"
+    "Castform sets sun.");
 
 static const u8 sSmoothRockDesc[] = _(
     "Extends the length\n"
@@ -2349,8 +2349,8 @@ static const u8 sSmoothRockDesc[] = _(
 
 static const u8 sIcyRockDesc[] = _(
     "Extends the length\n"
-    "of the move Hail\n"
-    "used by the holder.");
+    "of Snowscape.\n"
+    "Castform sets snow.");
 
 // Terrain Seeds
 static const u8 sElectricSeedDesc[] = _(
