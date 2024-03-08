@@ -301,6 +301,7 @@ static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
 static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
 static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
 static const u8 sRegeneratorDescription[] = _("Heals 1/3 of max HP upon\nswitching out.");
+static const u8 sMagicianDescription[] = _("Steals the target's item\nafter dealing damage.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -1102,7 +1103,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CHEEK_POUCH] = sCheekPouchDescription,
     [ABILITY_PROTEAN] = sProteanDescription,
     [ABILITY_FUR_COAT] = sFurCoatDescription,
-    [ABILITY_MAGICIAN] = sPickpocketDescription,
+    [ABILITY_MAGICIAN] = sMagicianDescription,
     [ABILITY_BULLETPROOF] = sBulletproofDescription,
     [ABILITY_COMPETITIVE] = sCompetitiveDescription,
     [ABILITY_STRONG_JAW] = sStrongJawDescription,
