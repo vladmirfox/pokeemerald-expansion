@@ -11778,6 +11778,7 @@ static const u16 sMagcargoTeachableLearnset[] = {
     MOVE_SNORE,
     MOVE_SUBSTITUTE,
     MOVE_SWAGGER,
+    MOVE_FLASH,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SLUGMA
