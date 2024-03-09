@@ -1494,12 +1494,14 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
     if (AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD)
         return TRUE;
 
-    if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+    if ((gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+        || (gBattleMoves[move].effect == EFFECT_WILL_O_WISP && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_FIRE))
+        || (move == MOVE_THUNDER_WAVE && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_ELECTRIC)))
         return TRUE;
 
     // discouraged from hitting
     weather = AI_GetWeather(AI_DATA);
-    if ((weather & B_WEATHER_SUN)
+    if (((weather & B_WEATHER_SUN) || AI_DATA->abilities[battlerDef] == ABILITY_SUN_SALUTE)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
         return FALSE;
 
@@ -2275,7 +2277,7 @@ bool32 IsChargingMove(u32 battlerAtk, u32 effect)
     switch (effect)
     {
     case EFFECT_SOLAR_BEAM:
-        if (AI_GetWeather(AI_DATA) & B_WEATHER_SUN)
+        if ((AI_GetWeather(AI_DATA) & B_WEATHER_SUN) || GetBattlerAbility(battlerAtk) == ABILITY_SUN_SALUTE)
             return FALSE;
     case EFFECT_SKULL_BASH:
     case EFFECT_METEOR_BEAM:

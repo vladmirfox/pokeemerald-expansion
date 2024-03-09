@@ -30,6 +30,7 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
@@ -1818,7 +1819,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_HIDDEN_POWER)
+    if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_HIDDEN_POWER)
     {
         u8 typeBits  = ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_HP_IV) & 1) << 0)
                      | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_ATK_IV) & 1) << 1)
@@ -1832,6 +1833,23 @@ if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_HIDDEN_POWER)
             type++;
         type |= 0xC0;
         StringCopy(txtPtr, gTypeNames[type & 0x3F]);
+    }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_WEATHER_BALL)
+    {
+        u8 type = TYPE_NORMAL;
+        if (gBattleWeather & B_WEATHER_RAIN)
+            type = TYPE_WATER;
+        else if (gBattleWeather & B_WEATHER_SUN)
+            type = TYPE_FIRE;
+        else if (gBattleWeather & B_WEATHER_SNOW)
+            type = TYPE_ICE;
+
+        mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
+        u32 ability = GetMonAbility(mon);
+        if (ability == ABILITY_SUN_SALUTE)
+            type = TYPE_FIRE;
+        
+        StringCopy(txtPtr, gTypeNames[type]);
     }
     else
     {

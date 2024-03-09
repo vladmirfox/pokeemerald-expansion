@@ -6630,6 +6630,7 @@ bool32 CanBeFrozen(u32 battler)
       || ability == ABILITY_PURIFYING_SALT
       || ability == ABILITY_WONDER_SKIN
       || ability == ABILITY_FLOWER_VEIL
+      || ability == ABILITY_SUN_SALUTE
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -9854,18 +9855,20 @@ static uq4_12_t GetWeatherDamageModifier(u32 battlerAtk, u32 move, u32 moveType,
 {
     if (weather == B_WEATHER_NONE)
         return UQ_4_12(1.0);
-    if (gBattleMoves[move].effect == EFFECT_HYDRO_STEAM && (weather & B_WEATHER_SUN) && holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
+    if (gBattleMoves[move].effect == EFFECT_HYDRO_STEAM 
+        && ((weather & B_WEATHER_SUN) || GetBattlerAbility(battlerAtk) == ABILITY_SUN_SALUTE) 
+        && holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
         return UQ_4_12(1.5);
     if (holdEffectDef == HOLD_EFFECT_UTILITY_UMBRELLA)
         return UQ_4_12(1.0);
 
-    if (weather & B_WEATHER_RAIN)
+    if ((weather & B_WEATHER_RAIN) && GetBattlerAbility(battlerAtk) != ABILITY_SUN_SALUTE)
     {
         if (moveType != TYPE_FIRE && moveType != TYPE_WATER)
             return UQ_4_12(1.0);
         return (moveType == TYPE_FIRE) ? UQ_4_12(0.5) : UQ_4_12(1.5);
     }
-    if (weather & B_WEATHER_SUN)
+    if ((weather & B_WEATHER_SUN) || GetBattlerAbility(battlerAtk) == ABILITY_SUN_SALUTE)
     {
         if (moveType != TYPE_FIRE && moveType != TYPE_WATER)
             return UQ_4_12(1.0);

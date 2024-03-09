@@ -302,6 +302,7 @@ static const u8 sRegeneratorDescription[] = _("Heals 1/3 of max HP upon\nswitchi
 static const u8 sMagicianDescription[] = _("Steals the target's item\nafter dealing damage.");
 static const u8 sIronSoleDescription[] = _("30% damage boost for\nkicking moves.");
 static const u8 sSelfSufficientDescription[] = _("Heal 1/16 of max HP at the\nend of each turn.");
+static const u8 sSunSaluteDescription[] = _("Fire immunity. Always acts\nas if in harsh sunlight.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -615,6 +616,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SUPERSWEET_SYRUP] = _("Supersweet Syrup"),
     [ABILITY_IRON_SOLE] = _("Iron Sole"),
     [ABILITY_SELF_SUFFICIENT] = _("Self-Sufficient"),
+    [ABILITY_SUN_SALUTE] = _("Sun Salute"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -928,6 +930,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SUPERSWEET_SYRUP] = _("SuprswtSyrup"),
     [ABILITY_IRON_SOLE] = _("Iron Sole"),
     [ABILITY_SELF_SUFFICIENT] = _("Slf-Sffcnt"),
+    [ABILITY_SUN_SALUTE] = _("Sun Salute"),
 };
 #endif
 
@@ -1242,4 +1245,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SUPERSWEET_SYRUP] = sSupersweetSyrupDescription,
     [ABILITY_IRON_SOLE] = sIronSoleDescription,
     [ABILITY_SELF_SUFFICIENT] = sSelfSufficientDescription,
+    [ABILITY_SUN_SALUTE] = sSunSaluteDescription,
 };
