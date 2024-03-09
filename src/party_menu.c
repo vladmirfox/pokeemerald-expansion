@@ -5566,10 +5566,24 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         }
         else
         {
-            gPartyMenuUseExitCallback = FALSE;
-            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = task;
+            if (holdEffectParam == 0)
+                targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_CANT_STOP, ITEM_NONE, NULL);
+
+            if (targetSpecies != SPECIES_NONE)
+            {
+                RemoveBagItem(gSpecialVar_ItemId, 1);
+                FreePartyPointers();
+                gCB2_AfterEvolution = gPartyMenu.exitCallback;
+                BeginEvolutionScene(mon, targetSpecies, FALSE, gPartyMenu.slotId);
+                DestroyTask(taskId);
+            }
+            else
+            {
+                gPartyMenuUseExitCallback = FALSE;
+                DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+                ScheduleBgCopyTilemapToVram(2);
+                gTasks[taskId].func = task;
+            }
         }
     }
     else
@@ -5753,10 +5767,25 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
     else
     {
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
-            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_CANT_STOP, ITEM_NONE, NULL);
+
+        if (targetSpecies != SPECIES_NONE)
+        {
+            FreePartyPointers();
+            if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RareCandy && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+                gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingRareCandy;
+            else
+                gCB2_AfterEvolution = gPartyMenu.exitCallback;
+            BeginEvolutionScene(mon, targetSpecies, FALSE, gPartyMenu.slotId);
+            DestroyTask(taskId);
+        }
         else
-            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        {
+            if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+                gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            else
+                gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        }
     }
 }
 

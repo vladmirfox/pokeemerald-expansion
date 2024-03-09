@@ -5577,6 +5577,18 @@ static void TryEvolvePokemon(void)
                     EvolutionScene(&gPlayerParty[i], species, TRUE, i);
                     return;
                 }
+                else
+                {
+                    species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_CANT_STOP, levelUpBits, NULL);
+
+                    if (species != SPECIES_NONE)
+                    {
+                        FreeAllWindowBuffers();
+                        gBattleMainFunc = WaitForEvoSceneToFinish;
+                        EvolutionScene(&gPlayerParty[i], species, FALSE, i);
+                        return;
+                    }
+                }
             }
         }
     }
