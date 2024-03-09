@@ -3441,20 +3441,18 @@ static void SetStatus1Misc(u32 battler)
     }
 }
 
-struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
+struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, const u8 *nextInstr)
 {
     struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, FALSE);
-    u16 moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
-    moveEnd &= ~MOVE_EFFECT_DELAY_OR_CONTINUE;
 
     // In the case of failure, we only call nextScript if the effect is primary/certain
     if (result.nextScript != 0 && (result.pass || primary || certain))
     {
-        BattleScriptPush(gBattlescriptCurrInstr + !moveEnd);
+        BattleScriptPush(nextInstr);
         CallInstrSetLastCalled(result.nextScript);
     }
     else
-        gBattlescriptCurrInstr += !moveEnd; // continue silently
+        gBattlescriptCurrInstr = nextInstr; // continue silently
 
     // Activate synchronize
     if (result.pass && gMoveEffectsInfo[moveEffect].canBeSynchronized == TRUE)
@@ -3487,7 +3485,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     s32 i;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
     u32 affectsUser = (moveEffect & MOVE_EFFECT_AFFECTS_USER),
-        moveEnd = (moveEffect & MOVE_EFFECT_DELAY_OR_CONTINUE);
+        moveEnd = (moveEffect & MOVE_EFFECT_MOVEEND);
     u16 battlerAbility;
     struct MoveEffectResult result = { .pass = FALSE };
 
@@ -3496,7 +3494,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
         return result;
 
     // Remove flags
-    moveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_DELAY_OR_CONTINUE);
+    moveEffect &= ~(MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_MOVEEND);
 
     // Certain move effects require a defined move
     if (gMoveEffectsInfo[moveEffect].moveOnly && move == MOVE_NONE)
@@ -4089,7 +4087,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     return result;
 }
 
-static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additionalEffect)
+static bool32 CanApplyAdditionalEffectWithChance(const struct AdditionalEffect *additionalEffect, u32 *percentChance, u32 rngCounter)
 {
     // Self-targeting move effects only apply after the last mon has been hit
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -4106,70 +4104,69 @@ static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additional
     if (additionalEffect->onChargeTurnOnly != gProtectStructs[gBattlerAttacker].chargingTurn)
         return FALSE;
 
-    return TRUE;
+    // Else, apply based on chance
+    *percentChance = CalcSecondaryEffectChance(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), additionalEffect);
+
+    return *percentChance == 0 || RandomPercentage(RNG_SECONDARY_EFFECT + (rngCounter % 3), *percentChance);
+}
+
+#define CLEAR_COUNTER_AND_CONTINUE              \
+{                                               \
+    gBattleStruct->additionalEffectsCounter = 0;\
+    gBattlescriptCurrInstr = cmd->nextInstr;    \
 }
 
 static void Cmd_setadditionaleffects(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(bool8 check);
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
         GET_ADDITIONAL_EFFECTS_AND_COUNT(gCurrentMove, additionalEffectsCount, additionalEffects);
         if (additionalEffectsCount > gBattleStruct->additionalEffectsCounter)
         {
-            u32 percentChance, i = gBattleStruct->additionalEffectsCounter;
-            const u8 *currentPtr = gBattlescriptCurrInstr;
+            u32 percentChance, i = gBattleStruct->additionalEffectsCounter++;
 
             // Various checks for if this move effect can be applied this turn
-            if (CanApplyAdditionalEffect(&additionalEffects[i]))
+            // Then activate effect if it's primary (chance == 0) or if RNGesus says so
+            if (CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i))
             {
-                percentChance = CalcSecondaryEffectChance(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), &additionalEffects[i]);
+                SetMoveEffect(
+                    additionalEffects[i].moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffects[i].self)),
+                    percentChance == 0, // a primary effect
+                    percentChance >= 100, // certain to happen,
+                    additionalEffects[i].argument,
+                    gCurrentMove,
+                    ((i + 1) >= additionalEffectsCount) ?
+                        cmd->nextInstr :
+                        gBattlescriptCurrInstr
+                );
 
-                // Activate effect if it's primary (chance == 0) or if RNGesus says so
-                if ((percentChance == 0) || RandomPercentage(RNG_SECONDARY_EFFECT + (i % 3), percentChance))
-                {
-                    SetMoveEffect(
-                        additionalEffects[i].moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffects[i].self)),
-                        percentChance == 0, // a primary effect
-                        percentChance >= 100, // certain to happen,
-                        additionalEffects[i].argument,
-                        gCurrentMove
-                    );
-                }
+                // Reset counter if necessary
+                gBattleStruct->additionalEffectsCounter %= additionalEffectsCount;
             }
-
-            // Move script along if we haven't jumped elsewhere
-            if (gBattlescriptCurrInstr == currentPtr)
-                gBattlescriptCurrInstr = cmd->nextInstr;
-
-            // Call setadditionaleffects again in the case of a move with multiple effects
-            gBattleStruct->additionalEffectsCounter++;
-            if (additionalEffectsCount > gBattleStruct->additionalEffectsCounter)
-                gBattleScripting.moveEffect = MOVE_EFFECT_DELAY_OR_CONTINUE;
-            else
-                gBattleScripting.moveEffect = gBattleStruct->additionalEffectsCounter = 0;
+            else if ((i + 1) >= additionalEffectsCount)
+                CLEAR_COUNTER_AND_CONTINUE
         }
         else
-        {
-            gBattleScripting.moveEffect = 0;
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
+            CLEAR_COUNTER_AND_CONTINUE
     }
     else
-    {
-        gBattleScripting.moveEffect = 0;
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-
-    gBattleScripting.multihitMoveEffect = 0;
+        CLEAR_COUNTER_AND_CONTINUE
 }
 
 static void Cmd_setmoveeffect(void)
 {
     CMD_ARGS(bool8 primary);
 
-    SetMoveEffect(gBattleScripting.moveEffect, cmd->primary, FALSE, gZeroArgument, gCurrentMove);
+    SetMoveEffect(
+        gBattleScripting.moveEffect,
+        cmd->primary,
+        FALSE,
+        gZeroArgument,
+        gCurrentMove,
+        gBattlescriptCurrInstr + 1
+    );
     gBattleScripting.moveEffect = 0;
 }
 
@@ -5865,11 +5862,12 @@ static void Cmd_moveend(void)
                 effect = SetMoveEffect(
                     gBattleStruct->moveEndAdditionalEffect.moveEffect
                       | (MOVE_EFFECT_AFFECTS_USER * (gBattleStruct->moveEndAdditionalEffect.self))
-                      | MOVE_EFFECT_DELAY_OR_CONTINUE,
+                      | MOVE_EFFECT_MOVEEND,
                     gBattleStruct->moveEndAdditionalEffect.chance == 0, // a primary effect
                     gBattleStruct->moveEndAdditionalEffect.chance >= 100, // certain to happen,
                     gBattleStruct->moveEndAdditionalEffect.argument,
-                    gCurrentMove
+                    gCurrentMove,
+                    gBattlescriptCurrInstr
                 ).pass;
                 memset(&gBattleStruct->moveEndAdditionalEffect, 0, sizeof(struct AdditionalEffect));
             }

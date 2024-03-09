@@ -96,10 +96,9 @@
 	.4byte \ptr
 	.endm
 
-	.macro setadditionaleffects
-	1:
+	.macro setadditionaleffects check=FALSE
 	.byte 0x15
-	jumpifhalfword CMP_EQUAL, sMOVE_EFFECT, MOVE_EFFECT_DELAY_OR_CONTINUE, 1b
+	.byte \check
 	.endm
 
 	.macro setmoveeffect moveEffect=0, primary:req

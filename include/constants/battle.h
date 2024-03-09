@@ -402,7 +402,7 @@
 
 #define MOVE_EFFECT_AFFECTS_USER        0x2000
 #define MOVE_EFFECT_CHECK               0x4000
-#define MOVE_EFFECT_DELAY_OR_CONTINUE   0x8000
+#define MOVE_EFFECT_MOVEEND             0x8000
 
 // Battle terrain defines for gBattleTerrain.
 #define BATTLE_TERRAIN_GRASS            0
