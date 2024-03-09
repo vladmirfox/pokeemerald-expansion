@@ -1092,3 +1092,13 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/MaguroHarbor/scripts.inc"
 
 	.include "data/maps/WindsweptRoute/scripts.inc"
+
+	.include "data/maps/Sunrise_Village_PlayersHouse_Bedroom/scripts.inc"
+
+	.include "data/maps/House1/scripts.inc"
+
+	.include "data/maps/SakuTown_House1/scripts.inc"
+
+	.include "data/maps/Sunrise_Village_EldersHouse/scripts.inc"
+
+	.include "data/maps/Sunrise_Village_EldersHouse_PrivateQuarters/scripts.inc"

@@ -859,17 +859,6 @@ const struct Tileset gTileset_GinkoWoods =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_InteriorGeneric =
-{
-    .isCompressed = TRUE,
-    .isSecondary = FALSE,
-    .tiles = gTilesetTiles_InteriorGeneric,
-    .palettes = gTilesetPalettes_InteriorGeneric,
-    .metatiles = gMetatiles_InteriorGeneric,
-    .metatileAttributes = gMetatileAttributes_InteriorGeneric,
-    .callback = NULL,
-};
-
 const struct Tileset gTileset_SakuKura =
 {
     .isCompressed = TRUE,
@@ -900,5 +889,38 @@ const struct Tileset gTileset_Silveridge =
     .palettes = gTilesetPalettes_Silveridge,
     .metatiles = gMetatiles_Silveridge,
     .metatileAttributes = gMetatileAttributes_Silveridge,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Maguro =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Maguro,
+    .palettes = gTilesetPalettes_Maguro,
+    .metatiles = gMetatiles_Maguro,
+    .metatileAttributes = gMetatileAttributes_Maguro,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Building_Generic =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Building_Generic,
+    .palettes = gTilesetPalettes_Building_Generic,
+    .metatiles = gMetatiles_Building_Generic,
+    .metatileAttributes = gMetatileAttributes_Building_Generic,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_House =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_House,
+    .palettes = gTilesetPalettes_House,
+    .metatiles = gMetatiles_House,
+    .metatileAttributes = gMetatileAttributes_House,
     .callback = NULL,
 };
