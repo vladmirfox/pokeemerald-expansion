@@ -241,8 +241,8 @@
       "x": 22,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_SUNRISE_VILLAGE_ELDERS_HOUSE",
+      "dest_warp_id": "2"
     },
     {
       "x": 17,
@@ -264,6 +264,20 @@
       "elevation": 0,
       "dest_map": "MAP_GINKO_WOODS",
       "dest_warp_id": "3"
+    },
+    {
+      "x": 21,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE_RIVALS_HOUSE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE_HOUSE1",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

@@ -74,16 +74,17 @@
 #define MAP_WINDSWEPT_ROUTE                       (65 | (0 << 8))
 #define MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_BEDROOM (66 | (0 << 8))
 
-// gMapGroup_IndoorLittleroot
+// gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F             (1 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F                 (2 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F                 (3 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB          (4 | (1 << 8))
 #define MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_LR              (5 | (1 << 8))
-#define MAP_HOUSE1                                        (6 | (1 << 8))
-#define MAP_SUNRISE_VILLAGE_ELDERS_HOUSE                  (7 | (1 << 8))
-#define MAP_SUNRISE_VILLAGE_ELDERS_HOUSE_PRIVATE_QUARTERS (8 | (1 << 8))
+#define MAP_SUNRISE_VILLAGE_ELDERS_HOUSE                  (6 | (1 << 8))
+#define MAP_SUNRISE_VILLAGE_ELDERS_HOUSE_PRIVATE_QUARTERS (7 | (1 << 8))
+#define MAP_SUNRISE_VILLAGE_RIVALS_HOUSE                  (8 | (1 << 8))
+#define MAP_SUNRISE_VILLAGE_HOUSE1                        (9 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

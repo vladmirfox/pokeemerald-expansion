@@ -596,8 +596,8 @@
       "name": "House2_Layout",
       "width": 11,
       "height": 8,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/House2/border.bin",
       "blockdata_filepath": "data/layouts/House2/map.bin"
     },
@@ -636,8 +636,8 @@
       "name": "House3_Layout",
       "width": 10,
       "height": 8,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/House3/border.bin",
       "blockdata_filepath": "data/layouts/House3/map.bin"
     },
@@ -665,9 +665,9 @@
       "id": "LAYOUT_HOUSE4",
       "name": "House4_Layout",
       "width": 10,
-      "height": 9,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
+      "height": 10,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/House4/border.bin",
       "blockdata_filepath": "data/layouts/House4/map.bin"
     },
@@ -4464,7 +4464,7 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE_PLAYERS_HOUSE_LR",
       "name": "Sunrise_Village_PlayersHouse_LR_Layout",
-      "width": 11,
+      "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
       "secondary_tileset": "gTileset_House",
@@ -4544,7 +4544,7 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE_ELDERS_HOUSE",
       "name": "Sunrise_Village_EldersHouse_Layout",
-      "width": 14,
+      "width": 10,
       "height": 14,
       "primary_tileset": "gTileset_Building_Generic",
       "secondary_tileset": "gTileset_House",
@@ -4560,6 +4560,16 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/Sunrise_Village_EldersHouse_PrivateQuarters/border.bin",
       "blockdata_filepath": "data/layouts/Sunrise_Village_EldersHouse_PrivateQuarters/map.bin"
+    },
+    {
+      "id": "LAYOUT_SUNRISE_VILLAGE_RIVALS_HOUSE",
+      "name": "SunriseVillage_RivalsHouse_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
+      "border_filepath": "data/layouts/SunriseVillage_RivalsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/SunriseVillage_RivalsHouse/map.bin"
     }
   ]
 }

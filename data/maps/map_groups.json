@@ -1,7 +1,7 @@
 {
   "group_order": [
     "gMapGroup_TownsAndRoutes",
-    "gMapGroup_IndoorLittleroot",
+    "gMapGroup_IndoorSunriseVillage",
     "gMapGroup_IndoorOldale",
     "gMapGroup_IndoorDewford",
     "gMapGroup_IndoorLavaridge",
@@ -104,16 +104,17 @@
     "WindsweptRoute",
     "Sunrise_Village_PlayersHouse_Bedroom"
   ],
-  "gMapGroup_IndoorLittleroot": [
+  "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
     "LittlerootTown_BrendansHouse_2F",
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
     "LittlerootTown_ProfessorBirchsLab",
     "Sunrise_Village_PlayersHouse_LR",
-    "House1",
     "Sunrise_Village_EldersHouse",
-    "Sunrise_Village_EldersHouse_PrivateQuarters"
+    "Sunrise_Village_EldersHouse_PrivateQuarters",
+    "SunriseVillage_RivalsHouse",
+    "SunriseVillage_House1"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
