@@ -24,7 +24,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_OldWoman",
+      "script": "SunriseVillage_Event_OldWoman",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Kirlia",
+      "script": "SunriseVillage_Event_Kirlia",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_LittleGirl",
+      "script": "SunriseVillage_Event_LittleGirl",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Azurill",
+      "script": "SunriseVillage_Event_Azurill",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {

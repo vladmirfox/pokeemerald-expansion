@@ -1,6 +1,6 @@
 const LOCALID_FATGUY = 3
 
-mapscripts Sunrise_Village_MapScripts {
+mapscripts SunriseVillage_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 6) {
             setflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
@@ -12,7 +12,7 @@ mapscripts Sunrise_Village_MapScripts {
 }
 
 // "Science is amazing" fat guy
-script Sunrise_Village_Event_FatGuy {
+script SunriseVillage_Event_FatGuy {
     lock
     faceplayer
 
@@ -34,7 +34,7 @@ script Sunrise_Village_Event_FatGuy {
 }
 
 // Man guarding the forest while you have no Pokémon
-script Sunrise_Village_Event_GuardForest {
+script SunriseVillage_Event_GuardForest {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
@@ -64,7 +64,7 @@ script Sunrise_Village_Event_GuardForest {
 }
 
 // Little running girl
-script Sunrise_Village_Event_LittleGirl {
+script SunriseVillage_Event_LittleGirl {
     lockall
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
@@ -84,7 +84,7 @@ script Sunrise_Village_Event_LittleGirl {
 }
 
 // Boy
-script Sunrise_Village_Event_Boy {
+script SunriseVillage_Event_Boy {
     lockall
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
@@ -104,7 +104,7 @@ script Sunrise_Village_Event_Boy {
 }
 
 // Old woman
-script Sunrise_Village_Event_OldWoman {
+script SunriseVillage_Event_OldWoman {
     lockall
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
@@ -124,7 +124,7 @@ script Sunrise_Village_Event_OldWoman {
 }
 
 // Azurill
-script Sunrise_Village_Event_Azurill {
+script SunriseVillage_Event_Azurill {
     lock
     faceplayer
     waitse
@@ -138,7 +138,7 @@ script Sunrise_Village_Event_Azurill {
 }
 
 // Kecleon
-script Sunrise_Village_Event_Kecleon {
+script SunriseVillage_Event_Kecleon {
     lock
     faceplayer
     waitse
@@ -152,7 +152,7 @@ script Sunrise_Village_Event_Kecleon {
 }
 
 // Kirlia
-script Sunrise_Village_Event_Kirlia {
+script SunriseVillage_Event_Kirlia {
     lock
     faceplayer
     msgbox(format(
@@ -162,19 +162,19 @@ script Sunrise_Village_Event_Kirlia {
     end
 }
 
-script Sunrise_Village_Event_TownSign {
+script SunriseVillage_Event_TownSign {
     msgbox(format("SUNRISE VILLAGE\n“A village bathing in sunshine.”"), MSGBOX_SIGN)
 }
 
-script Sunrise_Village_Event_PlayersHouseSign {
+script SunriseVillage_Event_PlayersHouseSign {
     msgbox(format("{PLAYER}'s HOUSE"), MSGBOX_SIGN)
 }
 
-script Sunrise_Village_Event_RivalsHouseSign {
+script SunriseVillage_Event_RivalsHouseSign {
     msgbox(format("{RIVAL}'s HOUSE"), MSGBOX_SIGN)
 }
 
-script Sunrise_Village_Event_EldersHouseSign {
+script SunriseVillage_Event_EldersHouseSign {
     msgbox(format("ELDER IWA's HOUSE"), MSGBOX_SIGN)
 }
 

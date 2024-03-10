@@ -1,6 +1,6 @@
 {
   "id": "MAP_SUNRISE_VILLAGE",
-  "name": "Sunrise_Village",
+  "name": "SunriseVillage",
   "layout": "LAYOUT_SUNRISE_VILLAGE",
   "music": "MUS_FALLARBOR",
   "region_map_section": "MAPSEC_SUNRISE_VILLAGE",
@@ -30,7 +30,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -43,7 +43,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_FatGuy",
+      "script": "SunriseVillage_Event_FatGuy",
       "flag": "0"
     },
     {
@@ -56,7 +56,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -69,7 +69,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -82,7 +82,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -95,7 +95,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -108,7 +108,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_OldWoman",
+      "script": "SunriseVillage_Event_OldWoman",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -121,7 +121,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -134,7 +134,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Boy",
+      "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -147,7 +147,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_GuardForest",
+      "script": "SunriseVillage_Event_GuardForest",
       "flag": "FLAG_RECEIVED_STARTER"
     },
     {
@@ -160,7 +160,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Azurill",
+      "script": "SunriseVillage_Event_Azurill",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -173,7 +173,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_Kecleon",
+      "script": "SunriseVillage_Event_Kecleon",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -186,7 +186,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Sunrise_Village_Event_LittleGirl",
+      "script": "SunriseVillage_Event_LittleGirl",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     }
   ],
@@ -249,7 +249,7 @@
       "elevation": 0,
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "4",
-      "script": "Sunrise_Village_Event_GuardForest"
+      "script": "SunriseVillage_Event_GuardForest"
     },
     {
       "type": "trigger",
@@ -258,7 +258,7 @@
       "elevation": 0,
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "4",
-      "script": "Sunrise_Village_Event_GuardForest"
+      "script": "SunriseVillage_Event_GuardForest"
     },
     {
       "type": "trigger",
@@ -267,7 +267,7 @@
       "elevation": 0,
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "5",
-      "script": "Sunrise_Village_Event_GuardForest"
+      "script": "SunriseVillage_Event_GuardForest"
     },
     {
       "type": "trigger",
@@ -276,7 +276,7 @@
       "elevation": 0,
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "5",
-      "script": "Sunrise_Village_Event_GuardForest"
+      "script": "SunriseVillage_Event_GuardForest"
     }
   ],
   "bg_events": [
@@ -286,7 +286,7 @@
       "y": 12,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Sunrise_Village_Event_PlayersHouseSign"
+      "script": "SunriseVillage_Event_PlayersHouseSign"
     },
     {
       "type": "sign",
@@ -294,7 +294,7 @@
       "y": 22,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Sunrise_Village_Event_RivalsHouseSign"
+      "script": "SunriseVillage_Event_RivalsHouseSign"
     },
     {
       "type": "sign",
@@ -302,7 +302,7 @@
       "y": 13,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Sunrise_Village_Event_EldersHouseSign"
+      "script": "SunriseVillage_Event_EldersHouseSign"
     },
     {
       "type": "sign",
@@ -310,7 +310,7 @@
       "y": 14,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Sunrise_Village_Event_TownSign"
+      "script": "SunriseVillage_Event_TownSign"
     }
   ]
 }

@@ -1,10 +1,10 @@
-mapscripts Sunrise_Village_Beach_MapScripts {
+mapscripts SunriseVillage_Beach_MapScripts {
 
 }
 
 const LOCALID_RIVAL = 1
 
-script Sunrise_Village_Beach_EventScript_RivalSpeech {
+script SunriseVillage_Beach_EventScript_RivalSpeech {
     lock
 	faceplayer
 	playse(SE_PIN)
@@ -62,7 +62,7 @@ script Sunrise_Village_Beach_EventScript_RivalSpeech {
 	closemessage
 
 	// Rival runs towards the village
-	applymovement(LOCALID_RIVAL, Sunrise_Village_Beach_Movement_RivalRaces)
+	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalRaces)
 	waitmovement(0)
 
 	setflag(FLAG_HIDE_SUNRISE_BEACH_RIVAL)
@@ -73,7 +73,7 @@ script Sunrise_Village_Beach_EventScript_RivalSpeech {
     end
 }
 
-movement Sunrise_Village_Beach_Movement_RivalRaces {
+movement SunriseVillage_Beach_Movement_RivalRaces {
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right

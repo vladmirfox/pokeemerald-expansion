@@ -93,8 +93,8 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "Sunrise_Village",
-    "Sunrise_Village_Beach",
+    "SunriseVillage",
+    "SunriseVillage_Beach",
     "ChiiTown",
     "TranquilRoute",
     "SakuTown",
@@ -102,7 +102,7 @@
     "BeachboundRoute",
     "MaguroHarbor",
     "WindsweptRoute",
-    "Sunrise_Village_PlayersHouse_Bedroom"
+    "SunriseVillage_PlayersHouse_Bedroom"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
@@ -110,9 +110,9 @@
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
     "LittlerootTown_ProfessorBirchsLab",
-    "Sunrise_Village_PlayersHouse_LR",
-    "Sunrise_Village_EldersHouse",
-    "Sunrise_Village_EldersHouse_PrivateQuarters",
+    "SunriseVillage_PlayersHouse_LR",
+    "SunriseVillage_EldersHouse",
+    "SunriseVillage_EldersHouse_PrivateQuarters",
     "SunriseVillage_RivalsHouse",
     "SunriseVillage_House1"
   ],

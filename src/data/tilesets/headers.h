@@ -837,14 +837,14 @@ const struct Tileset gTileset_PorytilesPrimaryTutorial =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_Sunrise_Village =
+const struct Tileset gTileset_SunriseVillage =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
-    .tiles = gTilesetTiles_Sunrise_Village,
-    .palettes = gTilesetPalettes_Sunrise_Village,
-    .metatiles = gMetatiles_Sunrise_Village,
-    .metatileAttributes = gMetatileAttributes_Sunrise_Village,
+    .tiles = gTilesetTiles_SunriseVillage,
+    .palettes = gTilesetPalettes_SunriseVillage,
+    .metatiles = gMetatiles_SunriseVillage,
+    .metatileAttributes = gMetatileAttributes_SunriseVillage,
     .callback = NULL,
 };
 

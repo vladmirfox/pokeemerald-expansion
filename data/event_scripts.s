@@ -1077,9 +1077,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 
-	.include "data/maps/Sunrise_Village/scripts.inc"
+	.include "data/maps/SunriseVillage/scripts.inc"
 
-	.include "data/maps/Sunrise_Village_Beach/scripts.inc"
+	.include "data/maps/SunriseVillage_Beach/scripts.inc"
 
 	.include "data/maps/GinkoWoods/scripts.inc"
 
@@ -1087,7 +1087,7 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/TranquilRoute/scripts.inc"
 
-	.include "data/maps/Sunrise_Village_PlayersHouse_LR/scripts.inc"
+	.include "data/maps/SunriseVillage_PlayersHouse_LR/scripts.inc"
 
 	.include "data/maps/SakuTown/scripts.inc"
 
@@ -1099,13 +1099,13 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/WindsweptRoute/scripts.inc"
 
-	.include "data/maps/Sunrise_Village_PlayersHouse_Bedroom/scripts.inc"
+	.include "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.inc"
 
 	.include "data/maps/SakuTown_House1/scripts.inc"
 
-	.include "data/maps/Sunrise_Village_EldersHouse/scripts.inc"
+	.include "data/maps/SunriseVillage_EldersHouse/scripts.inc"
 
-	.include "data/maps/Sunrise_Village_EldersHouse_PrivateQuarters/scripts.inc"
+	.include "data/maps/SunriseVillage_EldersHouse_PrivateQuarters/scripts.inc"
 
 	.include "data/maps/SunriseVillage_RivalsHouse/scripts.inc"
 
