@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 GinkoWoods_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
@@ -664,4 +665,9 @@ MagmaHideout_4F_EventScript_ItemMaxRevive::
 
 MagmaHideout_3F_3R_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
+=======
+Common_EventScript_FindItem::
+	callnative GetItemBallIdAndAmountFromTemplate
+	finditem VAR_RESULT VAR_0x8009
+>>>>>>> ff482957bd93415cd373a3638a6fcdcd52663ea8
 	end
