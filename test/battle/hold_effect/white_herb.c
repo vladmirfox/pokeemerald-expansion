@@ -94,7 +94,6 @@ SINGLE_BATTLE_TEST("White Herb restores stats after Attack was lowered by Intimi
     }
 }
 
-
 SINGLE_BATTLE_TEST("White Herb restores stats after all hits of a multi hit move happened")
 {
     u16 species;
@@ -185,36 +184,6 @@ SINGLE_BATTLE_TEST("White Herb wont have time to activate if Magician steals it"
         EXPECT(player->statStages[STAT_SPEED] = DEFAULT_STAT_STAGE + 1);
     }
 }
-
-/*
-I'm not sure how to check PickPocket interaction with White Herb.
-The below tests fails, because MOVE_LEAF_STORM does not make contact.
-SINGLE_BATTLE_TEST("White Herb wont have time to activate if Pickpocket steals it")
-{
-    KNOWN_FAILING; // White Herb is activated
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_LEAF_STORM].effect == EFFECT_OVERHEAT);
-        PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
-        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_PICKPOCKET); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_LEAF_STORM); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_LEAF_STORM, player);
-        ABILITY_POPUP(player, ABILITY_PICKPOCKET);
-        ABILITY_POPUP(player, ABILITY_WEAK_ARMOR);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Slugma's Weak Armor lowered its Defense!");
-        MESSAGE("Slugma's Weak Armor raised its Speed!");
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Wobbuffet's White Herb restored its status!");
-        }
-    } THEN {
-        EXPECT(player->statStages[STAT_DEF] = DEFAULT_STAT_STAGE - 1);
-        EXPECT(player->statStages[STAT_SPEED] = DEFAULT_STAT_STAGE + 1);
-    }
-}
-*/
 
 SINGLE_BATTLE_TEST("White Herb has correct interactions with Intimidate triggered Defiant and Competitive")
 {
