@@ -1190,7 +1190,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_SHIELDON
 
 #if P_FAMILY_BURMY
-#define BURMY_MISC_INFO                                                     \
+    [SPECIES_BURMY_PLANT_CLOAK] =
+    {
         .baseHP        = 40,                                                \
         .baseAttack    = 29,                                                \
         .baseDefense   = 45,                                                \
@@ -1225,11 +1226,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         LEARNSETS(Burmy),                                                   \
         .tmIlliterate = TRUE,                                               \
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,                     \
-        .formChangeTable = sBurmyFormChangeTable
-
-    [SPECIES_BURMY_PLANT_CLOAK] =
-    {
-        BURMY_MISC_INFO,
+        .formChangeTable = sBurmyFormChangeTable,
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
             "If its cloak is even slightly damaged, it\n"
@@ -1248,7 +1245,41 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_BURMY_SANDY_CLOAK] =
     {
-        BURMY_MISC_INFO,
+        .baseHP        = 40,                                                \
+        .baseAttack    = 29,                                                \
+        .baseDefense   = 45,                                                \
+        .baseSpeed     = 36,                                                \
+        .baseSpAttack  = 29,                                                \
+        .baseSpDefense = 45,                                                \
+        .types = MON_TYPES(TYPE_BUG),                                       \
+        .catchRate = 120,                                                   \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 45 : 61,              \
+        .evYield_SpDefense = 1,                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                  \
+        .eggCycles = 15,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                         \
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT }, \
+        .speciesName = _("Burmy"),                                          \
+        .cryId = CRY_BURMY,                                                 \
+        .natDexNum = NATIONAL_DEX_BURMY,                                    \
+        .categoryName = _("Bagworm"),                                       \
+        .height = 2,                                                        \
+        .weight = 34,                                                       \
+        .pokemonScale = 682,                                                \
+        .pokemonOffset = 24,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        .frontAnimFrames = sAnims_Burmy,                                    \
+        .frontAnimId = ANIM_V_STRETCH,                                      \
+        .enemyMonElevation = 10,                                            \
+        .backAnimId = BACK_ANIM_H_SHAKE,                                    \
+        FOOTPRINT(Burmy)                                                    \
+        LEARNSETS(Burmy),                                                   \
+        .tmIlliterate = TRUE,                                               \
+        .formSpeciesIdTable = sBurmyFormSpeciesIdTable,                     \
+        .formChangeTable = sBurmyFormChangeTable,
         .bodyColor = BODY_COLOR_BROWN,
         .description = COMPOUND_STRING(
             "It weaves a cloak together with sand, mud,\n"
@@ -1267,7 +1298,41 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_BURMY_TRASH_CLOAK] =
     {
-        BURMY_MISC_INFO,
+        .baseHP        = 40,                                                \
+        .baseAttack    = 29,                                                \
+        .baseDefense   = 45,                                                \
+        .baseSpeed     = 36,                                                \
+        .baseSpAttack  = 29,                                                \
+        .baseSpDefense = 45,                                                \
+        .types = MON_TYPES(TYPE_BUG),                                       \
+        .catchRate = 120,                                                   \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 45 : 61,              \
+        .evYield_SpDefense = 1,                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                  \
+        .eggCycles = 15,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                         \
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT }, \
+        .speciesName = _("Burmy"),                                          \
+        .cryId = CRY_BURMY,                                                 \
+        .natDexNum = NATIONAL_DEX_BURMY,                                    \
+        .categoryName = _("Bagworm"),                                       \
+        .height = 2,                                                        \
+        .weight = 34,                                                       \
+        .pokemonScale = 682,                                                \
+        .pokemonOffset = 24,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        .frontAnimFrames = sAnims_Burmy,                                    \
+        .frontAnimId = ANIM_V_STRETCH,                                      \
+        .enemyMonElevation = 10,                                            \
+        .backAnimId = BACK_ANIM_H_SHAKE,                                    \
+        FOOTPRINT(Burmy)                                                    \
+        LEARNSETS(Burmy),                                                   \
+        .tmIlliterate = TRUE,                                               \
+        .formSpeciesIdTable = sBurmyFormSpeciesIdTable,                     \
+        .formChangeTable = sBurmyFormChangeTable,
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
             "When confronted by a lack of other\n"
@@ -1284,7 +1349,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
                                 {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
     },
 
-#define WORMADAM_MISC_INFO                                                      \
+    [SPECIES_WORMADAM_PLANT_CLOAK] =
+    {
         .catchRate = 45,                                                        \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 148 : 159,                \
         .itemRare = ITEM_SILVER_POWDER,                                         \
@@ -1311,11 +1377,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backPicYOffset = 2,                                                    \
         .backAnimId = BACK_ANIM_V_SHAKE,                                        \
         FOOTPRINT(Wormadam)                                                     \
-        .formSpeciesIdTable = sWormadamFormSpeciesIdTable
-
-    [SPECIES_WORMADAM_PLANT_CLOAK] =
-    {
-        WORMADAM_MISC_INFO,
+        .formSpeciesIdTable = sWormadamFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 59,
         .baseDefense   = 85,
@@ -1339,7 +1401,33 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_WORMADAM_SANDY_CLOAK] =
     {
-        WORMADAM_MISC_INFO,
+        .catchRate = 45,                                                        \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 148 : 159,                \
+        .itemRare = ITEM_SILVER_POWDER,                                         \
+        .genderRatio = MON_FEMALE,                                              \
+        .eggCycles = 15,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                             \
+        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT },  \
+        .speciesName = _("Wormadam"),                                           \
+        .cryId = CRY_WORMADAM,                                                  \
+        .natDexNum = NATIONAL_DEX_WORMADAM,                                     \
+        .categoryName = _("Bagworm"),                                           \
+        .height = 5,                                                            \
+        .weight = 65,                                                           \
+        .pokemonScale = 432,                                                    \
+        .pokemonOffset = 13,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .frontPicYOffset = 10,                                                  \
+        .frontAnimFrames = sAnims_Wormadam,                                     \
+        .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,                            \
+        .enemyMonElevation = 8,                                                 \
+        .backPicYOffset = 2,                                                    \
+        .backAnimId = BACK_ANIM_V_SHAKE,                                        \
+        FOOTPRINT(Wormadam)                                                     \
+        .formSpeciesIdTable = sWormadamFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 79,
         .baseDefense   = 105,
@@ -1363,7 +1451,33 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_WORMADAM_TRASH_CLOAK] =
     {
-        WORMADAM_MISC_INFO,
+        .catchRate = 45,                                                        \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 148 : 159,                \
+        .itemRare = ITEM_SILVER_POWDER,                                         \
+        .genderRatio = MON_FEMALE,                                              \
+        .eggCycles = 15,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                             \
+        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT },  \
+        .speciesName = _("Wormadam"),                                           \
+        .cryId = CRY_WORMADAM,                                                  \
+        .natDexNum = NATIONAL_DEX_WORMADAM,                                     \
+        .categoryName = _("Bagworm"),                                           \
+        .height = 5,                                                            \
+        .weight = 65,                                                           \
+        .pokemonScale = 432,                                                    \
+        .pokemonOffset = 13,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .frontPicYOffset = 10,                                                  \
+        .frontAnimFrames = sAnims_Wormadam,                                     \
+        .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,                            \
+        .enemyMonElevation = 8,                                                 \
+        .backPicYOffset = 2,                                                    \
+        .backAnimId = BACK_ANIM_V_SHAKE,                                        \
+        FOOTPRINT(Wormadam)                                                     \
+        .formSpeciesIdTable = sWormadamFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 69,
         .baseDefense   = 95,
@@ -1740,7 +1854,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_CHERRIM_OVERCAST}),
     },
 
-#define CHERRIM_MISC_INFO                                            \
+    [SPECIES_CHERRIM_OVERCAST] =
+    {
         .baseHP        = 70,                                         \
         .baseAttack    = 60,                                         \
         .baseDefense   = 70,                                         \
@@ -1771,11 +1886,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Cherrim)                                           \
         LEARNSETS(Cherrim),                                          \
         .formSpeciesIdTable = sCherrimFormSpeciesIdTable,            \
-        .formChangeTable = sCherrimFormChangeTable
-
-    [SPECIES_CHERRIM_OVERCAST] =
-    {
-        CHERRIM_MISC_INFO,
+        .formChangeTable = sCherrimFormChangeTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It's motionless, save for the occasional\n"
@@ -1795,7 +1906,37 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_CHERRIM_SUNSHINE] =
     {
-        CHERRIM_MISC_INFO,
+        .baseHP        = 70,                                         \
+        .baseAttack    = 60,                                         \
+        .baseDefense   = 70,                                         \
+        .baseSpeed     = 85,                                         \
+        .baseSpAttack  = 87,                                         \
+        .baseSpDefense = 78,                                         \
+        .types = MON_TYPES(TYPE_GRASS),                              \
+        .catchRate = 75,                                             \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 158 : 133,     \
+        .evYield_SpAttack = 2,                                       \
+        .itemRare = ITEM_MIRACLE_SEED,                               \
+        .genderRatio = PERCENT_FEMALE(50),                           \
+        .eggCycles = 20,                                             \
+        .friendship = STANDARD_FRIENDSHIP,                           \
+        .growthRate = GROWTH_MEDIUM_FAST,                            \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),\
+        .abilities = { ABILITY_FLOWER_GIFT, ABILITY_NONE },          \
+        .speciesName = _("Cherrim"),                                 \
+        .cryId = CRY_CHERRIM,                                        \
+        .natDexNum = NATIONAL_DEX_CHERRIM,                           \
+        .categoryName = _("Blossom"),                                \
+        .height = 5,                                                 \
+        .weight = 93,                                                \
+        .pokemonScale = 432,                                         \
+        .pokemonOffset = 13,                                         \
+        .trainerScale = 256,                                         \
+        .trainerOffset = 0,                                          \
+        FOOTPRINT(Cherrim)                                           \
+        LEARNSETS(Cherrim),                                          \
+        .formSpeciesIdTable = sCherrimFormSpeciesIdTable,            \
+        .formChangeTable = sCherrimFormChangeTable,
         .bodyColor = BODY_COLOR_PINK,
         .description = COMPOUND_STRING(
             "Cherrim takes this form on sunny days.\n"
@@ -1815,7 +1956,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_CHERUBI
 
 #if P_FAMILY_SHELLOS
-#define SHELLOS_MISC_INFO                                                               \
+    [SPECIES_SHELLOS_WEST_SEA] =
+    {
         .baseHP        = 76,                                                            \
         .baseAttack    = 48,                                                            \
         .baseDefense   = 48,                                                            \
@@ -1848,11 +1990,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_H_SPRING,                                               \
         FOOTPRINT(Shellos)                                                              \
         LEARNSETS(Shellos),                                                             \
-        .formSpeciesIdTable = sShellosFormSpeciesIdTable
-
-    [SPECIES_SHELLOS_WEST_SEA] =
-    {
-        SHELLOS_MISC_INFO,
+        .formSpeciesIdTable = sShellosFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It oozes a purple fluid to deter enemies.\n"
@@ -1869,7 +2007,39 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_SHELLOS_EAST_SEA] =
     {
-        SHELLOS_MISC_INFO,
+        .baseHP        = 76,                                                            \
+        .baseAttack    = 48,                                                            \
+        .baseDefense   = 48,                                                            \
+        .baseSpeed     = 34,                                                            \
+        .baseSpAttack  = 57,                                                            \
+        .baseSpDefense = 62,                                                            \
+        .types = MON_TYPES(TYPE_WATER),                                                 \
+        .catchRate = 190,                                                               \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 65 : 73,                          \
+        .evYield_HP = 1,                                                                \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),            \
+        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
+        .speciesName = _("Shellos"),                                                    \
+        .cryId = CRY_SHELLOS,                                                           \
+        .natDexNum = NATIONAL_DEX_SHELLOS,                                              \
+        .categoryName = _("Sea Slug"),                                                  \
+        .height = 3,                                                                    \
+        .weight = 63,                                                                   \
+        .pokemonScale = 530,                                                            \
+        .pokemonOffset = 13,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        .frontAnimFrames = sAnims_Shellos,                                              \
+        .frontAnimId = ANIM_V_STRETCH,                                                  \
+        .backPicYOffset = 8,                                                            \
+        .backAnimId = BACK_ANIM_H_SPRING,                                               \
+        FOOTPRINT(Shellos)                                                              \
+        LEARNSETS(Shellos),                                                             \
+        .formSpeciesIdTable = sShellosFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
             "It's capable of spending a limited amount\n"
@@ -1884,7 +2054,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST_SEA}),
     },
 
-#define GASTRODON_MISC_INFO                                                             \
+    [SPECIES_GASTRODON_WEST_SEA] =
+    {
         .baseHP        = 111,                                                           \
         .baseAttack    = 83,                                                            \
         .baseDefense   = 68,                                                            \
@@ -1918,11 +2089,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                                    \
         FOOTPRINT(Gastrodon)                                                            \
         LEARNSETS(Gastrodon),                                                           \
-        .formSpeciesIdTable = sGastrodonFormSpeciesIdTable
-
-    [SPECIES_GASTRODON_WEST_SEA] =
-    {
-        GASTRODON_MISC_INFO,
+        .formSpeciesIdTable = sGastrodonFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PURPLE,
         .description = COMPOUND_STRING(
             "It appears on shallow-water beaches to\n"
@@ -1937,7 +2104,40 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_GASTRODON_EAST_SEA] =
     {
-        GASTRODON_MISC_INFO,
+        .baseHP        = 111,                                                           \
+        .baseAttack    = 83,                                                            \
+        .baseDefense   = 68,                                                            \
+        .baseSpeed     = 39,                                                            \
+        .baseSpAttack  = 92,                                                            \
+        .baseSpDefense = 82,                                                            \
+        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),                                    \
+        .catchRate = 75,                                                                \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 166 : 176,                        \
+        .evYield_HP = 2,                                                                \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),            \
+        .abilities = { ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE },  \
+        .speciesName = _("Gastrodon"),                                                  \
+        .cryId = CRY_GASTRODON,                                                         \
+        .natDexNum = NATIONAL_DEX_GASTRODON,                                            \
+        .categoryName = _("Sea Slug"),                                                  \
+        .height = 9,                                                                    \
+        .weight = 299,                                                                  \
+        .pokemonScale = 338,                                                            \
+        .pokemonOffset = 8,                                                             \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        .frontPicYOffset = 8,                                                           \
+        .frontAnimFrames = sAnims_Gastrodon,                                            \
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,                                     \
+        .backPicYOffset = 3,                                                            \
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                                    \
+        FOOTPRINT(Gastrodon)                                                            \
+        LEARNSETS(Gastrodon),                                                           \
+        .formSpeciesIdTable = sGastrodonFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
             "Found more often on land than in the sea.\n"
@@ -2099,7 +2299,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
     },
 
-#define LOPUNNY_MISC_INFO                                                 \
+    [SPECIES_LOPUNNY] =
+    {
         .catchRate = 60,                                                  \
         .evYield_Speed = 2,                                               \
         .genderRatio = PERCENT_FEMALE(50),                                \
@@ -2114,11 +2315,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Lopunny)                                                \
         LEARNSETS(Lopunny),                                               \
         .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,                 \
-        .formChangeTable = sLopunnyFormChangeTable
-
-    [SPECIES_LOPUNNY] =
-    {
-        LOPUNNY_MISC_INFO,
+        .formChangeTable = sLopunnyFormChangeTable,
         .baseHP        = 65,
         .baseAttack    = 76,
         .baseDefense   = 84,
@@ -2154,7 +2351,21 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_LOPUNNY_MEGA] =
     {
-        LOPUNNY_MISC_INFO,
+        .catchRate = 60,                                                  \
+        .evYield_Speed = 2,                                               \
+        .genderRatio = PERCENT_FEMALE(50),                                \
+        .eggCycles = 20,                                                  \
+        .friendship = 140,                                                \
+        .growthRate = GROWTH_MEDIUM_FAST,                                 \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),\
+        .bodyColor = BODY_COLOR_BROWN,                                    \
+        .speciesName = _("Lopunny"),                                      \
+        .natDexNum = NATIONAL_DEX_LOPUNNY,                                \
+        .categoryName = _("Rabbit"),                                      \
+        FOOTPRINT(Lopunny)                                                \
+        LEARNSETS(Lopunny),                                               \
+        .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,                 \
+        .formChangeTable = sLopunnyFormChangeTable,
         .baseHP        = 65,
         .baseAttack    = 136,
         .baseDefense   = 94,
@@ -2687,7 +2898,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_GARCHOMP}),
     },
 
-#define GARCHOMP_MISC_INFO                                              \
+    [SPECIES_GARCHOMP] =
+    {
         .types = MON_TYPES(TYPE_DRAGON, TYPE_GROUND),                   \
         .catchRate = 45,                                                \
         .evYield_Attack = 3,                                            \
@@ -2709,11 +2921,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Garchomp)                                             \
         LEARNSETS(Garchomp),                                            \
         .formSpeciesIdTable = sGarchompFormSpeciesIdTable,              \
-        .formChangeTable = sGarchompFormChangeTable
-
-    [SPECIES_GARCHOMP] =
-    {
-        GARCHOMP_MISC_INFO,
+        .formChangeTable = sGarchompFormChangeTable,
         .baseHP        = 108,
         .baseAttack    = 130,
         .baseDefense   = 95,
@@ -2749,7 +2957,28 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_GARCHOMP_MEGA] =
     {
-        GARCHOMP_MISC_INFO,
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_GROUND),                   \
+        .catchRate = 45,                                                \
+        .evYield_Attack = 3,                                            \
+        .genderRatio = PERCENT_FEMALE(50),                              \
+        .eggCycles = 40,                                                \
+        .friendship = STANDARD_FRIENDSHIP,                              \
+        .growthRate = GROWTH_SLOW,                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),\
+        .bodyColor = BODY_COLOR_BLUE,                                   \
+        .speciesName = _("Garchomp"),                                   \
+        .natDexNum = NATIONAL_DEX_GARCHOMP,                             \
+        .categoryName = _("Mach"),                                      \
+        .height = 19,                                                   \
+        .weight = 950,                                                  \
+        .pokemonScale = 256,                                            \
+        .pokemonOffset = 1,                                             \
+        .trainerScale = 326,                                            \
+        .trainerOffset = 4,                                             \
+        FOOTPRINT(Garchomp)                                             \
+        LEARNSETS(Garchomp),                                            \
+        .formSpeciesIdTable = sGarchompFormSpeciesIdTable,              \
+        .formChangeTable = sGarchompFormChangeTable,
         .baseHP        = 108,
         .baseAttack    = 170,
         .baseDefense   = 115,
@@ -2827,7 +3056,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP_DAY, 0, SPECIES_LUCARIO}),
     },
 
-#define LUCARIO_MISC_INFO                                                  \
+    [SPECIES_LUCARIO] =
+    {
         .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),                     \
         .catchRate = 45,                                                   \
         .evYield_Attack = 1,                                               \
@@ -2844,11 +3074,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Lucario)                                                 \
         LEARNSETS(Lucario),                                                \
         .formSpeciesIdTable = sLucarioFormSpeciesIdTable,                  \
-        .formChangeTable = sLucarioFormChangeTable
-
-    [SPECIES_LUCARIO] =
-    {
-        LUCARIO_MISC_INFO,
+        .formChangeTable = sLucarioFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 70,
@@ -2883,7 +3109,23 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_LUCARIO_MEGA] =
     {
-        LUCARIO_MISC_INFO,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),                     \
+        .catchRate = 45,                                                   \
+        .evYield_Attack = 1,                                               \
+        .evYield_SpAttack = 1,                                             \
+        .genderRatio = PERCENT_FEMALE(12.5),                               \
+        .eggCycles = 25,                                                   \
+        .friendship = STANDARD_FRIENDSHIP,                                 \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                  \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),\
+        .bodyColor = BODY_COLOR_BLUE,                                      \
+        .speciesName = _("Lucario"),                                       \
+        .natDexNum = NATIONAL_DEX_LUCARIO,                                 \
+        .categoryName = _("Aura"),                                         \
+        FOOTPRINT(Lucario)                                                 \
+        LEARNSETS(Lucario),                                                \
+        .formSpeciesIdTable = sLucarioFormSpeciesIdTable,                  \
+        .formChangeTable = sLucarioFormChangeTable,
         .baseHP        = 70,
         .baseAttack    = 145,
         .baseDefense   = 88,
@@ -3428,7 +3670,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW}),
     },
 
-#define ABOMASNOW_MISC_INFO                                            \
+    [SPECIES_ABOMASNOW] =
+    {
         .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),                      \
         .catchRate = 60,                                               \
         .evYield_Attack = 1,                                           \
@@ -3446,11 +3689,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Abomasnow)                                           \
         LEARNSETS(Abomasnow),                                          \
         .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,            \
-        .formChangeTable = sAbomasnowFormChangeTable
-
-    [SPECIES_ABOMASNOW] =
-    {
-        ABOMASNOW_MISC_INFO,
+        .formChangeTable = sAbomasnowFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 92,
         .baseDefense   = 75,
@@ -3486,7 +3725,24 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_ABOMASNOW_MEGA] =
     {
-        ABOMASNOW_MISC_INFO,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_ICE),                      \
+        .catchRate = 60,                                               \
+        .evYield_Attack = 1,                                           \
+        .evYield_SpAttack = 1,                                         \
+        .itemRare = ITEM_NEVER_MELT_ICE,                               \
+        .genderRatio = PERCENT_FEMALE(50),                             \
+        .eggCycles = 20,                                               \
+        .friendship = STANDARD_FRIENDSHIP,                             \
+        .growthRate = GROWTH_SLOW,                                     \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),\
+        .bodyColor = BODY_COLOR_WHITE,                                 \
+        .speciesName = _("Abomasnow"),                                 \
+        .natDexNum = NATIONAL_DEX_ABOMASNOW,                           \
+        .categoryName = _("Frost Tree"),                               \
+        FOOTPRINT(Abomasnow)                                           \
+        LEARNSETS(Abomasnow),                                          \
+        .formSpeciesIdTable = sAbomasnowFormSpeciesIdTable,            \
+        .formChangeTable = sAbomasnowFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 132,
         .baseDefense   = 105,
@@ -3522,7 +3778,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_SNOVER
 
 #if P_FAMILY_ROTOM
-#define ROTOM_MISC_INFO                                             \
+    [SPECIES_ROTOM] =
+    {
         .catchRate = 45,                                            \
         .evYield_Speed = 1,                                         \
         .evYield_SpAttack = 1,                                      \
@@ -3546,11 +3803,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Rotom)                                            \
         LEARNSETS(Rotom),                                           \
         .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
-        .formChangeTable = sRotomFormChangeTable
-
-    [SPECIES_ROTOM] =
-    {
-        ROTOM_MISC_INFO,
+        .formChangeTable = sRotomFormChangeTable,
         .baseHP        = 50,
         .baseAttack    = 50,
         .baseDefense   = 77,
@@ -3584,20 +3837,40 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define ROTOM_APPLIANCE_EXP_YIELD 132
 #endif
 
-#define ROTOM_APPLIANCE_INFO(form)                                  \
+    [SPECIES_ROTOM_HEAT] =
+    {
+        .catchRate = 45,                                            \
+        .evYield_Speed = 1,                                         \
+        .evYield_SpAttack = 1,                                      \
+        .genderRatio = MON_GENDERLESS,                              \
+        .eggCycles = 20,                                            \
+        .friendship = STANDARD_FRIENDSHIP,                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
+        .bodyColor = BODY_COLOR_RED,                                \
+        .speciesName = _("Rotom"),                                  \
+        .cryId = CRY_ROTOM,                                         \
+        .natDexNum = NATIONAL_DEX_ROTOM,                            \
+        .categoryName = _("Plasma"),                                \
+        .height = 3,                                                \
+        .weight = 3,                                                \
+        .pokemonScale = 530,                                        \
+        .pokemonOffset = 13,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        FOOTPRINT(Rotom)                                            \
+        LEARNSETS(Rotom),                                           \
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
+        .formChangeTable = sRotomFormChangeTable,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
         .baseHP        = 50,                                        \
         .baseAttack    = 65,                                        \
         .baseDefense   = 107,                                       \
         .baseSpeed     = 86,                                        \
         .baseSpAttack  = 105,                                       \
         .baseSpDefense = 107,                                       \
-        .expYield = ROTOM_APPLIANCE_EXP_YIELD
-
-    [SPECIES_ROTOM_HEAT] =
-    {
-        ROTOM_MISC_INFO,
-        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
-        ROTOM_APPLIANCE_INFO(Heat),
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .description = COMPOUND_STRING(
             "If the convection microwave oven is not\n"
             "working properly, then the Rotom inhabiting\n"
@@ -3617,10 +3890,39 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_ROTOM_WASH] =
     {
-        ROTOM_MISC_INFO,
+        .catchRate = 45,                                            \
+        .evYield_Speed = 1,                                         \
+        .evYield_SpAttack = 1,                                      \
+        .genderRatio = MON_GENDERLESS,                              \
+        .eggCycles = 20,                                            \
+        .friendship = STANDARD_FRIENDSHIP,                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
+        .bodyColor = BODY_COLOR_RED,                                \
+        .speciesName = _("Rotom"),                                  \
+        .cryId = CRY_ROTOM,                                         \
+        .natDexNum = NATIONAL_DEX_ROTOM,                            \
+        .categoryName = _("Plasma"),                                \
+        .height = 3,                                                \
+        .weight = 3,                                                \
+        .pokemonScale = 530,                                        \
+        .pokemonOffset = 13,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        FOOTPRINT(Rotom)                                            \
+        LEARNSETS(Rotom),                                           \
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
+        .formChangeTable = sRotomFormChangeTable,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_WATER),
         .noFlip = TRUE,
-        ROTOM_APPLIANCE_INFO(Wash),
+        .baseHP        = 50,                                        \
+        .baseAttack    = 65,                                        \
+        .baseDefense   = 107,                                       \
+        .baseSpeed     = 86,                                        \
+        .baseSpAttack  = 105,                                       \
+        .baseSpDefense = 107,                                       \
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .description = COMPOUND_STRING(
             "It enjoys coming up with water-based\n"
             "pranks. The model of washing machine that\n"
@@ -3640,9 +3942,38 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_ROTOM_FROST] =
     {
-        ROTOM_MISC_INFO,
+        .catchRate = 45,                                            \
+        .evYield_Speed = 1,                                         \
+        .evYield_SpAttack = 1,                                      \
+        .genderRatio = MON_GENDERLESS,                              \
+        .eggCycles = 20,                                            \
+        .friendship = STANDARD_FRIENDSHIP,                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
+        .bodyColor = BODY_COLOR_RED,                                \
+        .speciesName = _("Rotom"),                                  \
+        .cryId = CRY_ROTOM,                                         \
+        .natDexNum = NATIONAL_DEX_ROTOM,                            \
+        .categoryName = _("Plasma"),                                \
+        .height = 3,                                                \
+        .weight = 3,                                                \
+        .pokemonScale = 530,                                        \
+        .pokemonOffset = 13,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        FOOTPRINT(Rotom)                                            \
+        LEARNSETS(Rotom),                                           \
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
+        .formChangeTable = sRotomFormChangeTable,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_ICE),
-        ROTOM_APPLIANCE_INFO(Frost),
+        .baseHP        = 50,                                        \
+        .baseAttack    = 65,                                        \
+        .baseDefense   = 107,                                       \
+        .baseSpeed     = 86,                                        \
+        .baseSpAttack  = 105,                                       \
+        .baseSpDefense = 107,                                       \
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .description = COMPOUND_STRING(
             "In this form, Rotom likes to play freezing\n"
             "cold pranks. You may find it's turned the\n"
@@ -3662,9 +3993,38 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_ROTOM_FAN] =
     {
-        ROTOM_MISC_INFO,
+        .catchRate = 45,                                            \
+        .evYield_Speed = 1,                                         \
+        .evYield_SpAttack = 1,                                      \
+        .genderRatio = MON_GENDERLESS,                              \
+        .eggCycles = 20,                                            \
+        .friendship = STANDARD_FRIENDSHIP,                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
+        .bodyColor = BODY_COLOR_RED,                                \
+        .speciesName = _("Rotom"),                                  \
+        .cryId = CRY_ROTOM,                                         \
+        .natDexNum = NATIONAL_DEX_ROTOM,                            \
+        .categoryName = _("Plasma"),                                \
+        .height = 3,                                                \
+        .weight = 3,                                                \
+        .pokemonScale = 530,                                        \
+        .pokemonOffset = 13,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        FOOTPRINT(Rotom)                                            \
+        LEARNSETS(Rotom),                                           \
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
+        .formChangeTable = sRotomFormChangeTable,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FLYING),
-        ROTOM_APPLIANCE_INFO(Fan),
+        .baseHP        = 50,                                        \
+        .baseAttack    = 65,                                        \
+        .baseDefense   = 107,                                       \
+        .baseSpeed     = 86,                                        \
+        .baseSpAttack  = 105,                                       \
+        .baseSpDefense = 107,                                       \
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .description = COMPOUND_STRING(
             "The first appliance developed that Rotom\n"
             "coud inspirit was the electric fan. It uses\n"
@@ -3685,9 +4045,38 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_ROTOM_MOW] =
     {
-        ROTOM_MISC_INFO,
+        .catchRate = 45,                                            \
+        .evYield_Speed = 1,                                         \
+        .evYield_SpAttack = 1,                                      \
+        .genderRatio = MON_GENDERLESS,                              \
+        .eggCycles = 20,                                            \
+        .friendship = STANDARD_FRIENDSHIP,                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),           \
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },            \
+        .bodyColor = BODY_COLOR_RED,                                \
+        .speciesName = _("Rotom"),                                  \
+        .cryId = CRY_ROTOM,                                         \
+        .natDexNum = NATIONAL_DEX_ROTOM,                            \
+        .categoryName = _("Plasma"),                                \
+        .height = 3,                                                \
+        .weight = 3,                                                \
+        .pokemonScale = 530,                                        \
+        .pokemonOffset = 13,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        FOOTPRINT(Rotom)                                            \
+        LEARNSETS(Rotom),                                           \
+        .formSpeciesIdTable = sRotomFormSpeciesIdTable,             \
+        .formChangeTable = sRotomFormChangeTable,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_GRASS),
-        ROTOM_APPLIANCE_INFO(Mow),
+        .baseHP        = 50,                                        \
+        .baseAttack    = 65,                                        \
+        .baseDefense   = 107,                                       \
+        .baseSpeed     = 86,                                        \
+        .baseSpAttack  = 105,                                       \
+        .baseSpDefense = 107,                                       \
+        .expYield = ROTOM_APPLIANCE_EXP_YIELD,
         .description = COMPOUND_STRING(
             "The lawn mower is an appliance that led to\n"
             "the development of the Rotom Dex. It will\n"
@@ -3890,7 +4279,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define DIALGA_EXP_YIELD  220
 #endif
 
-#define DIALGA_MISC_INFO                                                                \
+    [SPECIES_DIALGA] =
+    {
         .types = MON_TYPES(TYPE_STEEL, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = DIALGA_EXP_YIELD,                                                   \
@@ -3910,11 +4300,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         LEARNSETS(Dialga),                                                              \
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,                                \
         .formChangeTable = sDialgaFormChangeTable,                                      \
-        .isLegendary = TRUE
-
-    [SPECIES_DIALGA] =
-    {
-        DIALGA_MISC_INFO,
+        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 120,
         .baseDefense   = 120,
@@ -3945,7 +4331,26 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_DIALGA_ORIGIN] =
     {
-        DIALGA_MISC_INFO,
+        .types = MON_TYPES(TYPE_STEEL, TYPE_DRAGON),                                    \
+        .catchRate = 3,                                                                 \
+        .expYield = DIALGA_EXP_YIELD,                                                   \
+        .evYield_SpAttack = 3,                                                          \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 0,                                                                \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },             \
+        .bodyColor = BODY_COLOR_WHITE,                                                  \
+        .speciesName = _("Dialga"),                                                     \
+        .cryId = CRY_DIALGA,                                                            \
+        .natDexNum = NATIONAL_DEX_DIALGA,                                               \
+        .categoryName = _("Temporal"),                                                  \
+        FOOTPRINT(Dialga)                                                               \
+        LEARNSETS(Dialga),                                                              \
+        .formSpeciesIdTable = sDialgaFormSpeciesIdTable,                                \
+        .formChangeTable = sDialgaFormChangeTable,                                      \
+        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -3984,7 +4389,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define PALKIA_EXP_YIELD  220
 #endif
 
-#define PALKIA_MISC_INFO                                                                \
+    [SPECIES_PALKIA] =
+    {
         .types = MON_TYPES(TYPE_WATER, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = PALKIA_EXP_YIELD,                                                   \
@@ -4004,11 +4410,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         LEARNSETS(Palkia),                                                              \
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,                                \
         .formChangeTable = sPalkiaFormChangeTable,                                      \
-        .isLegendary = TRUE
-
-    [SPECIES_PALKIA] =
-    {
-        PALKIA_MISC_INFO,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -4039,7 +4441,26 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_PALKIA_ORIGIN] =
     {
-        PALKIA_MISC_INFO,
+        .types = MON_TYPES(TYPE_WATER, TYPE_DRAGON),                                    \
+        .catchRate = 3,                                                                 \
+        .expYield = PALKIA_EXP_YIELD,                                                   \
+        .evYield_SpAttack = 3,                                                          \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 0,                                                                \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY },             \
+        .bodyColor = BODY_COLOR_PURPLE,                                                 \
+        .speciesName = _("Palkia"),                                                     \
+        .cryId = CRY_PALKIA,                                                            \
+        .natDexNum = NATIONAL_DEX_PALKIA,                                               \
+        .categoryName = _("Spatial"),                                                   \
+        FOOTPRINT(Palkia)                                                               \
+        LEARNSETS(Palkia),                                                              \
+        .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,                                \
+        .formChangeTable = sPalkiaFormChangeTable,                                      \
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -4190,7 +4611,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define GIRATINA_EXP_YIELD 220
 #endif
 
-#define GIRATINA_MISC_INFO                                                              \
+    [SPECIES_GIRATINA_ALTERED] =
+    {
         .types = MON_TYPES(TYPE_GHOST, TYPE_DRAGON),                                    \
         .catchRate = 3,                                                                 \
         .expYield = GIRATINA_EXP_YIELD,                                                 \
@@ -4209,11 +4631,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         LEARNSETS(Giratina),                                                            \
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,                              \
         .formChangeTable = sGiratinaFormChangeTable,                                    \
-        .isLegendary = TRUE
-
-    [SPECIES_GIRATINA_ALTERED] =
-    {
-        GIRATINA_MISC_INFO,
+        .isLegendary = TRUE,
         .baseHP        = 150,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -4245,7 +4663,25 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_GIRATINA_ORIGIN] =
     {
-        GIRATINA_MISC_INFO,
+        .types = MON_TYPES(TYPE_GHOST, TYPE_DRAGON),                                    \
+        .catchRate = 3,                                                                 \
+        .expYield = GIRATINA_EXP_YIELD,                                                 \
+        .evYield_HP = 3,                                                                \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 0,                                                                \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_BLACK,                                                  \
+        .speciesName = _("Giratina"),                                                   \
+        .cryId = CRY_GIRATINA,                                                          \
+        .natDexNum = NATIONAL_DEX_GIRATINA,                                             \
+        .categoryName = _("Renegade"),                                                  \
+        FOOTPRINT(Giratina)                                                             \
+        LEARNSETS(Giratina),                                                            \
+        .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,                              \
+        .formChangeTable = sGiratinaFormChangeTable,                                    \
+        .isLegendary = TRUE,
         .baseHP        = 150,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -4513,7 +4949,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     #define SHAYMIN_EXP_YIELD 64
 #endif
 
-#define SHAYMIN_MISC_INFO                                                               \
+    [SPECIES_SHAYMIN_LAND] =
+    {
         .catchRate = 45,                                                                \
         .expYield = SHAYMIN_EXP_YIELD,                                                  \
         .itemCommon = ITEM_LUM_BERRY,                                                   \
@@ -4530,11 +4967,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Shaymin)                                                              \
         .formSpeciesIdTable = sShayminFormSpeciesIdTable,                               \
         .formChangeTable = sShayminFormChangeTable,                                     \
-        .isMythical = TRUE
-
-    [SPECIES_SHAYMIN_LAND] =
-    {
-        SHAYMIN_MISC_INFO,
+        .isMythical = TRUE,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -4570,7 +5003,23 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_SHAYMIN_SKY] =
     {
-        SHAYMIN_MISC_INFO,
+        .catchRate = 45,                                                                \
+        .expYield = SHAYMIN_EXP_YIELD,                                                  \
+        .itemCommon = ITEM_LUM_BERRY,                                                   \
+        .itemRare = ITEM_LUM_BERRY,                                                     \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 100,                                                              \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_GREEN,                                                  \
+        .speciesName = _("Shaymin"),                                                    \
+        .natDexNum = NATIONAL_DEX_SHAYMIN,                                              \
+        .categoryName = _("Gratitude"),                                                 \
+        FOOTPRINT(Shaymin)                                                              \
+        .formSpeciesIdTable = sShayminFormSpeciesIdTable,                               \
+        .formChangeTable = sShayminFormChangeTable,                                     \
+        .isMythical = TRUE,
         .baseHP        = 100,
         .baseAttack    = 103,
         .baseDefense   = 75,
@@ -4665,24 +5114,24 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .isMythical = TRUE,                                                             \
     }
 
-    [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL, Normal),
+    [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL,   Normal),
     [SPECIES_ARCEUS_FIGHTING] = ARCEUS_SPECIES_INFO(TYPE_FIGHTING, Fighting),
-    [SPECIES_ARCEUS_FLYING]   = ARCEUS_SPECIES_INFO(TYPE_FLYING, Flying),
-    [SPECIES_ARCEUS_POISON]   = ARCEUS_SPECIES_INFO(TYPE_POISON, Poison),
-    [SPECIES_ARCEUS_GROUND]   = ARCEUS_SPECIES_INFO(TYPE_GROUND, Ground),
-    [SPECIES_ARCEUS_ROCK]     = ARCEUS_SPECIES_INFO(TYPE_ROCK, Rock),
-    [SPECIES_ARCEUS_BUG]      = ARCEUS_SPECIES_INFO(TYPE_BUG, Bug),
-    [SPECIES_ARCEUS_GHOST]    = ARCEUS_SPECIES_INFO(TYPE_GHOST, Ghost),
-    [SPECIES_ARCEUS_STEEL]    = ARCEUS_SPECIES_INFO(TYPE_STEEL, Steel),
-    [SPECIES_ARCEUS_FIRE]     = ARCEUS_SPECIES_INFO(TYPE_FIRE, Fire),
-    [SPECIES_ARCEUS_WATER]    = ARCEUS_SPECIES_INFO(TYPE_WATER, Water),
-    [SPECIES_ARCEUS_GRASS]    = ARCEUS_SPECIES_INFO(TYPE_GRASS, Grass),
+    [SPECIES_ARCEUS_FLYING]   = ARCEUS_SPECIES_INFO(TYPE_FLYING,   Flying),
+    [SPECIES_ARCEUS_POISON]   = ARCEUS_SPECIES_INFO(TYPE_POISON,   Poison),
+    [SPECIES_ARCEUS_GROUND]   = ARCEUS_SPECIES_INFO(TYPE_GROUND,   Ground),
+    [SPECIES_ARCEUS_ROCK]     = ARCEUS_SPECIES_INFO(TYPE_ROCK,     Rock),
+    [SPECIES_ARCEUS_BUG]      = ARCEUS_SPECIES_INFO(TYPE_BUG,      Bug),
+    [SPECIES_ARCEUS_GHOST]    = ARCEUS_SPECIES_INFO(TYPE_GHOST,    Ghost),
+    [SPECIES_ARCEUS_STEEL]    = ARCEUS_SPECIES_INFO(TYPE_STEEL,    Steel),
+    [SPECIES_ARCEUS_FIRE]     = ARCEUS_SPECIES_INFO(TYPE_FIRE,     Fire),
+    [SPECIES_ARCEUS_WATER]    = ARCEUS_SPECIES_INFO(TYPE_WATER,    Water),
+    [SPECIES_ARCEUS_GRASS]    = ARCEUS_SPECIES_INFO(TYPE_GRASS,    Grass),
     [SPECIES_ARCEUS_ELECTRIC] = ARCEUS_SPECIES_INFO(TYPE_ELECTRIC, Electric),
-    [SPECIES_ARCEUS_PSYCHIC]  = ARCEUS_SPECIES_INFO(TYPE_PSYCHIC, Psychic),
-    [SPECIES_ARCEUS_ICE]      = ARCEUS_SPECIES_INFO(TYPE_ICE, Ice),
-    [SPECIES_ARCEUS_DRAGON]   = ARCEUS_SPECIES_INFO(TYPE_DRAGON, Dragon),
-    [SPECIES_ARCEUS_DARK]     = ARCEUS_SPECIES_INFO(TYPE_DARK, Dark),
-    [SPECIES_ARCEUS_FAIRY]    = ARCEUS_SPECIES_INFO(TYPE_FAIRY, Fairy),
+    [SPECIES_ARCEUS_PSYCHIC]  = ARCEUS_SPECIES_INFO(TYPE_PSYCHIC,  Psychic),
+    [SPECIES_ARCEUS_ICE]      = ARCEUS_SPECIES_INFO(TYPE_ICE,      Ice),
+    [SPECIES_ARCEUS_DRAGON]   = ARCEUS_SPECIES_INFO(TYPE_DRAGON,   Dragon),
+    [SPECIES_ARCEUS_DARK]     = ARCEUS_SPECIES_INFO(TYPE_DARK,     Dark),
+    [SPECIES_ARCEUS_FAIRY]    = ARCEUS_SPECIES_INFO(TYPE_FAIRY,    Fairy),
 #endif //P_FAMILY_ARCEUS
 
 #ifdef __INTELLISENSE__

@@ -3073,7 +3073,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     },
 
 #if P_GEN_9_CROSS_EVOS
-#define DUDUNSPARCE_MISC_INFO(segments)                                             \
+    [SPECIES_DUDUNSPARCE_TWO_SEGMENT] =
+    {
         .baseHP        = 125,                                                       \
         .baseAttack    = 100,                                                       \
         .baseDefense   = 80,                                                        \
@@ -3099,22 +3100,18 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .pokemonOffset = 17,                                                        \
         .trainerScale = 256,                                                        \
         .trainerOffset = 0,                                                         \
-        FRONT_PIC(Dudunsparce ##segments##Segment, 64, 64),                         \
+        FRONT_PIC(DudunsparceTwoSegment, 64, 64),                         \
         .frontPicYOffset = 10,                                                      \
         .frontAnimFrames = sAnims_Dudunsparce,                                      \
-        BACK_PIC(Dudunsparce ##segments##Segment, 64, 64),                          \
+        BACK_PIC(DudunsparceTwoSegment, 64, 64),                          \
         .backPicYOffset = 11,                                                       \
         PALETTES(Dudunsparce),                                                      \
         ICON(Dudunsparce, 0),                                                       \
         LEARNSETS(Dudunsparce),                                                     \
-        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable
+        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
-        //FOOTPRINT(Dudunsparce)
-
-    [SPECIES_DUDUNSPARCE_TWO_SEGMENT] =
-    {
-        DUDUNSPARCE_MISC_INFO(Two),
+        //FOOTPRINT(Dudunsparce),
         .height = 36,
         .weight = 392,
         .description = COMPOUND_STRING(
@@ -3126,7 +3123,43 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] =
     {
-        DUDUNSPARCE_MISC_INFO(Three),
+        .baseHP        = 125,                                                       \
+        .baseAttack    = 100,                                                       \
+        .baseDefense   = 80,                                                        \
+        .baseSpeed     = 55,                                                        \
+        .baseSpAttack  = 85,                                                        \
+        .baseSpDefense = 75,                                                        \
+        .types = MON_TYPES(TYPE_NORMAL),                                            \
+        .catchRate = 45,                                                            \
+        .expYield = 182,                                                            \
+        .evYield_HP = 2,                                                            \
+        .genderRatio = PERCENT_FEMALE(50),                                          \
+        .eggCycles = 20,                                                            \
+        .friendship = STANDARD_FRIENDSHIP,                                          \
+        .growthRate = GROWTH_MEDIUM_FAST,                                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                               \
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },   \
+        .bodyColor = BODY_COLOR_YELLOW,                                             \
+        .speciesName = _("Dudunsprce"),                                             \
+        .cryId = CRY_DUDUNSPARCE,                                                   \
+        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,                                      \
+        .categoryName = _("Land Snake"),                                            \
+        .pokemonScale = 356,                                                        \
+        .pokemonOffset = 17,                                                        \
+        .trainerScale = 256,                                                        \
+        .trainerOffset = 0,                                                         \
+        FRONT_PIC(DudunsparceThreeSegment, 64, 64),                         \
+        .frontPicYOffset = 10,                                                      \
+        .frontAnimFrames = sAnims_Dudunsparce,                                      \
+        BACK_PIC(DudunsparceThreeSegment, 64, 64),                          \
+        .backPicYOffset = 11,                                                       \
+        PALETTES(Dudunsparce),                                                      \
+        ICON(Dudunsparce, 0),                                                       \
+        LEARNSETS(Dudunsparce),                                                     \
+        .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //FOOTPRINT(Dudunsparce),
         .height = 45,
         .weight = 474,
         .description = COMPOUND_STRING(
