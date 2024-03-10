@@ -4786,11 +4786,8 @@ BattleScript_EffectBurn::
 	attackcanceler
 	attackstring
 	ppreduce
-	failifcannotsetmoveeffect MOVE_EFFECT_BURN
 	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
-	attackanimation
-	waitanimation
-	seteffectprimary MOVE_EFFECT_BURN
+	tryanimateandsetadditionaleffects
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilityPreventsMoveEffectStatus::
@@ -9782,3 +9779,8 @@ BattleScript_EffectSnow::
 	call BattleScript_CheckPrimalWeather
 	setsnow
 	goto BattleScript_MoveWeatherChange
+
+BattleScript_AttackAnimation::
+	attackanimation
+	waitanimation
+	return

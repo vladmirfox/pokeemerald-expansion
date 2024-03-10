@@ -3464,20 +3464,9 @@ struct MoveEffectResult SetMoveEffect(u16 moveEffect, bool32 primary, bool32 cer
     return result;
 }
 
-bool32 CheckMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, bool32 callFailScript)
+struct MoveEffectResult CheckMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move)
 {
-    struct MoveEffectResult result = CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, TRUE);
-
-    // If we set "callFailScript", we always go to the failure script
-    if (!result.pass && callFailScript)
-    {
-        if (result.nextScript != 0)
-            gBattlescriptCurrInstr = result.nextScript;
-        else
-            gBattlescriptCurrInstr = BattleScript_ButItFailed; // sensible default
-    }
-
-    return result.pass;
+    return CheckOrSetMoveEffect(moveEffect, primary, certain, argument, move, TRUE);
 }
 
 struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, bool32 certain, MoveEffectArgument argument, u32 move, u32 check)
@@ -3562,7 +3551,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     if (gBattleMons[gEffectBattler].hp == 0 && !gMoveEffectsInfo[moveEffect].activateAfterFaint)
         return result;
 
-    // Passed checks that block the MOVE (or ability)
+    // Passed checks that block the MOVE (or ability) rather than the effect
     result.pass = TRUE;
     result.nextScript = gMoveEffectsInfo[moveEffect].battleScript;
 
@@ -3806,7 +3795,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
                 BtlController_EmitSetMonData(gEffectBattler, 0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gEffectBattler].status1);
                 MarkBattlerForControllerExec(gEffectBattler);
             }
-            break; // MOVE_EFFECT_REMOVE_STATUS
+            break;
         // case MOVE_EFFECT_ALL_STATS_UP:
         // case MOVE_EFFECT_ATK_DEF_DOWN: // SuperPower
         // case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
@@ -4110,49 +4099,102 @@ static bool32 CanApplyAdditionalEffectWithChance(const struct AdditionalEffect *
     return *percentChance == 0 || RandomPercentage(RNG_SECONDARY_EFFECT + (rngCounter % 3), *percentChance);
 }
 
-#define CLEAR_COUNTER_AND_CONTINUE              \
+static struct MoveEffectResult CheckOrSetAdditionalEffect(const struct AdditionalEffect *additionalEffect, u32 percentChance, u32 move, bool32 check, const u8 *nextInstr)
+{
+    if (check)
+    {
+        return CheckMoveEffect(
+            additionalEffect->moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffect->self)),
+            percentChance == 0, // a primary effect
+            percentChance >= 100, // certain to happen,
+            additionalEffect->argument,
+            move
+        );
+    }
+    else
+    {
+        return SetMoveEffect(
+            additionalEffect->moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffect->self)),
+            percentChance == 0, // a primary effect
+            percentChance >= 100, // certain to happen,
+            additionalEffect->argument,
+            move,
+            nextInstr
+        );
+    }
+}
+
+#define CLEAR_COUNTER_AND_CONTINUE(...)         \
 {                                               \
     gBattleStruct->additionalEffectsCounter = 0;\
-    gBattlescriptCurrInstr = cmd->nextInstr;    \
+    if (!cmd->check)                            \
+        gBattlescriptCurrInstr = cmd->nextInstr;\
+    __VA_OPT__(__VA_ARGS__;)                    \
 }
 
 static void Cmd_setadditionaleffects(void)
 {
-    CMD_ARGS(bool8 check);
+    // If provided with check, this function will check all the move's additional effects
+    // If it can't find one that works, then it will jump to that instruction, otherwise continue
+    CMD_ARGS(bool8 check, const u8* checkFailInstr);
+    GET_ADDITIONAL_EFFECTS_AND_COUNT(gCurrentMove, additionalEffectsCount, additionalEffects);
+    bool32 hasAtLeastOneSuccess = 0;
+    bool32 check = cmd->check & !gBattleStruct->additionalEffectsChecked;
+    struct MoveEffectResult lastResult = { 0 };
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
-        GET_ADDITIONAL_EFFECTS_AND_COUNT(gCurrentMove, additionalEffectsCount, additionalEffects);
-        if (additionalEffectsCount > gBattleStruct->additionalEffectsCounter)
-        {
-            u32 percentChance, i = gBattleStruct->additionalEffectsCounter++;
-
-            // Various checks for if this move effect can be applied this turn
-            // Then activate effect if it's primary (chance == 0) or if RNGesus says so
-            if (CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i))
+        do {
+            if (additionalEffectsCount > gBattleStruct->additionalEffectsCounter)
             {
-                SetMoveEffect(
-                    additionalEffects[i].moveEffect | (MOVE_EFFECT_AFFECTS_USER * (additionalEffects[i].self)),
-                    percentChance == 0, // a primary effect
-                    percentChance >= 100, // certain to happen,
-                    additionalEffects[i].argument,
-                    gCurrentMove,
-                    ((i + 1) >= additionalEffectsCount) ?
-                        cmd->nextInstr :
-                        gBattlescriptCurrInstr
-                );
+                u32 percentChance, i = gBattleStruct->additionalEffectsCounter++;
 
+                // Various checks for if this move effect can be applied this turn
+                // Then activate effect if it's primary (chance == 0) or if RNGesus says so
+                if (check || CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i))
+                {
+                    hasAtLeastOneSuccess |= (lastResult = CheckOrSetAdditionalEffect(
+                        &additionalEffects[i],
+                        percentChance,
+                        gCurrentMove,
+                        check,
+                        ((i + 1) >= additionalEffectsCount) ?
+                            cmd->nextInstr :
+                            gBattlescriptCurrInstr
+                    )).pass;
+                }
                 // Reset counter if necessary
-                gBattleStruct->additionalEffectsCounter %= additionalEffectsCount;
+                if ((i + 1) >= additionalEffectsCount)
+                    CLEAR_COUNTER_AND_CONTINUE(break)
             }
-            else if ((i + 1) >= additionalEffectsCount)
-                CLEAR_COUNTER_AND_CONTINUE
-        }
-        else
-            CLEAR_COUNTER_AND_CONTINUE
+            else
+                CLEAR_COUNTER_AND_CONTINUE(break)
+        } while (check && hasAtLeastOneSuccess == 0);
     }
     else
-        CLEAR_COUNTER_AND_CONTINUE
+        CLEAR_COUNTER_AND_CONTINUE()
+
+    // If we haven't had a single successful effect after checking, jump to fail instruction
+    // Otherwise, call move animation script
+    if (check)
+    {
+        if (hasAtLeastOneSuccess)
+        {
+            // Mark as already checked, called next attack animation
+            // Come back and run effects
+            gBattleStruct->additionalEffectsChecked = TRUE;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_AttackAnimation;
+        }
+        else if (additionalEffectsCount == 1) // use the blocker script in case of a single effect
+            gBattlescriptCurrInstr = lastResult.nextScript;
+        else if (cmd->checkFailInstr)
+            gBattlescriptCurrInstr = cmd->checkFailInstr;
+        else // sensible default
+            gBattlescriptCurrInstr = BattleScript_ButItFailed;
+    }
+    else
+        gBattleStruct->additionalEffectsChecked = FALSE;
 }
 
 static void Cmd_setmoveeffect(void)
@@ -4173,8 +4215,16 @@ static void Cmd_setmoveeffect(void)
 static void Cmd_checkifcansetmoveeffect(void)
 {
     CMD_ARGS(u16 moveEffect, bool8 primary, bool8 callFailInstr);
-
-    if (CheckMoveEffect(cmd->moveEffect, cmd->primary, TRUE, gZeroArgument, gCurrentMove, TRUE))
+    struct MoveEffectResult result = CheckMoveEffect(cmd->moveEffect, cmd->primary, TRUE, gZeroArgument, gCurrentMove);
+    
+    if (!result.pass && cmd->callFailInstr)
+    {
+        if (result.nextScript != 0)
+            gBattlescriptCurrInstr = result.nextScript;
+        else
+            gBattlescriptCurrInstr = BattleScript_ButItFailed; // sensible default
+    }
+    else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

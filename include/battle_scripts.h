@@ -492,6 +492,7 @@ extern const u8 BattleScript_TheSwampDisappeared[];
 extern const u8 BattleScript_ItemRestoreHP_Party[];
 extern const u8 BattleScript_EffectPsychicNoise[];
 extern const u8 BattleScript_AromaVeilProtects[];
+extern const u8 BattleScript_AttackAnimation[];
 
 // Move effect blockers
 extern const u8 BattleScript_AlreadyHasMoveEffectStatus[];

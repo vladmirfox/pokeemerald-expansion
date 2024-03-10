@@ -35,3 +35,19 @@ SINGLE_BATTLE_TEST("Burn reduces Attack by 50%", s16 damage)
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
     }
 }
+
+SINGLE_BATTLE_TEST("Will-o-Wisp burns the target")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_WILL_O_WISP].category == DAMAGE_CATEGORY_STATUS);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_WILL_O_WISP); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Will-o-Wisp!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WILL_O_WISP, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponent);
+        STATUS_ICON(opponent, burn: TRUE);
+    }
+}

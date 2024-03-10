@@ -96,9 +96,14 @@
 	.4byte \ptr
 	.endm
 
-	.macro setadditionaleffects check=FALSE
+	.macro setadditionaleffects check=0, checkFailInstr=0
 	.byte 0x15
 	.byte \check
+	.4byte \checkFailInstr
+	.endm
+
+	.macro tryanimateandsetadditionaleffects failInstr=0
+	setadditionaleffects TRUE, \failInstr
 	.endm
 
 	.macro setmoveeffect moveEffect=0, primary:req
