@@ -488,7 +488,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
                                 {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE_FEMALE}),
     },
 
-#define OINKOLOGNE_MISC_INFO                                \
+    [SPECIES_OINKOLOGNE_MALE] =
+    {
         .types = MON_TYPES(TYPE_NORMAL),                    \
         .catchRate = 100,                                   \
         .expYield = 171,                                    \
@@ -508,11 +509,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         .teachableLearnset = sOinkologneTeachableLearnset,  \
-        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable
-
-    [SPECIES_OINKOLOGNE_MALE] =
-    {
-        OINKOLOGNE_MISC_INFO,
+        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable,
         .baseHP        = 110,
         .baseAttack    = 100,
         .baseDefense   = 75,
@@ -541,7 +538,26 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_OINKOLOGNE_FEMALE] =
     {
-        OINKOLOGNE_MISC_INFO,
+        .types = MON_TYPES(TYPE_NORMAL),                    \
+        .catchRate = 100,                                   \
+        .expYield = 171,                                    \
+        .evYield_HP = 2,                                    \
+        .eggCycles = 15,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .bodyColor = BODY_COLOR_GRAY,                       \
+        .speciesName = _("Oinkologne"),                     \
+        .natDexNum = NATIONAL_DEX_OINKOLOGNE,               \
+        .categoryName = _("Hog"),                           \
+        .height = 10,                                       \
+        .weight = 1200,                                     \
+        .pokemonScale = 356,                                \
+        .pokemonOffset = 17,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        .teachableLearnset = sOinkologneTeachableLearnset,  \
+        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable,
         .baseHP        = 115,
         .baseAttack    = 90,
         .baseDefense   = 70,
@@ -959,7 +975,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
                                 {EVO_LEVEL_FAMILY_OF_THREE, 25, SPECIES_MAUSHOLD_FAMILY_OF_THREE}),
     },
 
-#define MAUSHOLD_SPECIES_INFO                                                           \
+    [SPECIES_MAUSHOLD_FAMILY_OF_THREE] =
+    {
         .baseHP        = 74,                                                            \
         .baseAttack    = 75,                                                            \
         .baseDefense   = 70,                                                            \
@@ -987,17 +1004,13 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerOffset = 0,                                                             \
         .frontPicYOffset = 15,                                                          \
         .frontAnimFrames = sAnims_Maushold,                                             \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/                                    \
         .backPicYOffset = 15,                                                           \
+        /*.backAnimId = BACK_ANIM_NONE,*/                                               \
         PALETTES(Maushold),                                                             \
+        /*FOOTPRINT(Maushold)*/                                                         \
         LEARNSETS(Maushold),                                                            \
-        .formSpeciesIdTable = sMausholdFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //FOOTPRINT(Maushold)
-
-    [SPECIES_MAUSHOLD_FAMILY_OF_THREE] =
-    {
-        MAUSHOLD_SPECIES_INFO,
+        .formSpeciesIdTable = sMausholdFormSpeciesIdTable,
         .cryId = CRY_MAUSHOLD_FAMILY_OF_THREE,
         .weight = 23,
         .description = COMPOUND_STRING(
@@ -1011,7 +1024,40 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
     [SPECIES_MAUSHOLD_FAMILY_OF_FOUR] =
     {
-        MAUSHOLD_SPECIES_INFO,
+        .baseHP        = 74,                                                            \
+        .baseAttack    = 75,                                                            \
+        .baseDefense   = 70,                                                            \
+        .baseSpeed     = 111,                                                           \
+        .baseSpAttack  = 65,                                                            \
+        .baseSpDefense = 75,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL),                                                \
+        .catchRate = 75,                                                                \
+        .expYield = 165,                                                                \
+        .evYield_Speed = 2,                                                             \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 10,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_FAST,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),                  \
+        .abilities = { ABILITY_FRIEND_GUARD, ABILITY_CHEEK_POUCH, ABILITY_TECHNICIAN }, \
+        .bodyColor = BODY_COLOR_WHITE,                                                  \
+        .speciesName = _("Maushold"),                                                   \
+        .natDexNum = NATIONAL_DEX_MAUSHOLD,                                             \
+        .categoryName = _("Family"),                                                    \
+        .height = 3,                                                                    \
+        .pokemonScale = 356,                                                            \
+        .pokemonOffset = 17,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        .frontPicYOffset = 15,                                                          \
+        .frontAnimFrames = sAnims_Maushold,                                             \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/                                    \
+        .backPicYOffset = 15,                                                           \
+        /*.backAnimId = BACK_ANIM_NONE,*/                                               \
+        PALETTES(Maushold),                                                             \
+        /*FOOTPRINT(Maushold)*/                                                         \
+        LEARNSETS(Maushold),                                                            \
+        .formSpeciesIdTable = sMausholdFormSpeciesIdTable,
         .cryId = CRY_MAUSHOLD_FAMILY_OF_FOUR,
         .weight = 28,
         .description = COMPOUND_STRING(
@@ -1268,7 +1314,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_SMOLIV
 
 #if P_FAMILY_SQUAWKABILLY
-#define SQUAWKABILLY_MISC_INFO                                  \
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
+    {
         .baseHP        = 82,                                    \
         .baseAttack    = 96,                                    \
         .baseDefense   = 51,                                    \
@@ -1297,17 +1344,13 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FRONT_PIC(Squawkabilly, 64, 64),                        \
         .frontPicYOffset = 4,                                   \
         .frontAnimFrames = sAnims_Squawkabilly,                 \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
         BACK_PIC(Squawkabilly, 64, 64),                         \
         .backPicYOffset = 4,                                    \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Squawkabilly)*/
         LEARNSETS(Squawkabilly),                                \
-        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //FOOTPRINT(Squawkabilly)
-
-    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
-    {
-        SQUAWKABILLY_MISC_INFO,
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
@@ -1321,7 +1364,41 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] =
     {
-        SQUAWKABILLY_MISC_INFO,
+        .baseHP        = 82,                                    \
+        .baseAttack    = 96,                                    \
+        .baseDefense   = 51,                                    \
+        .baseSpeed     = 92,                                    \
+        .baseSpAttack  = 45,                                    \
+        .baseSpDefense = 51,                                    \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),           \
+        .catchRate = 190,                                       \
+        .expYield = 146,                                        \
+        .evYield_Attack = 1,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 15,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_ERRATIC,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),          \
+        .speciesName = _("Sqawkabily"),                         \
+        .cryId = CRY_SQUAWKABILLY,                              \
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,                 \
+        .categoryName = _("Parrot"),                            \
+        .height = 6,                                            \
+        .weight = 24,                                           \
+        .pokemonScale = 356,                                    \
+        .pokemonOffset = 17,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        FRONT_PIC(Squawkabilly, 64, 64),                        \
+        .frontPicYOffset = 4,                                   \
+        .frontAnimFrames = sAnims_Squawkabilly,                 \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        BACK_PIC(Squawkabilly, 64, 64),                         \
+        .backPicYOffset = 4,                                    \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Squawkabilly)*/
+        LEARNSETS(Squawkabilly),                                \
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS },
         .bodyColor = BODY_COLOR_BLUE,
         .description = COMPOUND_STRING(
@@ -1335,7 +1412,41 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] =
     {
-        SQUAWKABILLY_MISC_INFO,
+        .baseHP        = 82,                                    \
+        .baseAttack    = 96,                                    \
+        .baseDefense   = 51,                                    \
+        .baseSpeed     = 92,                                    \
+        .baseSpAttack  = 45,                                    \
+        .baseSpDefense = 51,                                    \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),           \
+        .catchRate = 190,                                       \
+        .expYield = 146,                                        \
+        .evYield_Attack = 1,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 15,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_ERRATIC,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),          \
+        .speciesName = _("Sqawkabily"),                         \
+        .cryId = CRY_SQUAWKABILLY,                              \
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,                 \
+        .categoryName = _("Parrot"),                            \
+        .height = 6,                                            \
+        .weight = 24,                                           \
+        .pokemonScale = 356,                                    \
+        .pokemonOffset = 17,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        FRONT_PIC(Squawkabilly, 64, 64),                        \
+        .frontPicYOffset = 4,                                   \
+        .frontAnimFrames = sAnims_Squawkabilly,                 \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        BACK_PIC(Squawkabilly, 64, 64),                         \
+        .backPicYOffset = 4,                                    \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Squawkabilly)*/
+        LEARNSETS(Squawkabilly),                                \
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_YELLOW,
         .description = COMPOUND_STRING(
@@ -1349,7 +1460,41 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] =
     {
-        SQUAWKABILLY_MISC_INFO,
+        .baseHP        = 82,                                    \
+        .baseAttack    = 96,                                    \
+        .baseDefense   = 51,                                    \
+        .baseSpeed     = 92,                                    \
+        .baseSpAttack  = 45,                                    \
+        .baseSpDefense = 51,                                    \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_FLYING),           \
+        .catchRate = 190,                                       \
+        .expYield = 146,                                        \
+        .evYield_Attack = 1,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 15,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_ERRATIC,                           \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),          \
+        .speciesName = _("Sqawkabily"),                         \
+        .cryId = CRY_SQUAWKABILLY,                              \
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,                 \
+        .categoryName = _("Parrot"),                            \
+        .height = 6,                                            \
+        .weight = 24,                                           \
+        .pokemonScale = 356,                                    \
+        .pokemonOffset = 17,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        FRONT_PIC(Squawkabilly, 64, 64),                        \
+        .frontPicYOffset = 4,                                   \
+        .frontAnimFrames = sAnims_Squawkabilly,                 \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        BACK_PIC(Squawkabilly, 64, 64),                         \
+        .backPicYOffset = 4,                                    \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Squawkabilly)*/
+        LEARNSETS(Squawkabilly),                                \
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable,
         .abilities = { ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_WHITE,
         .description = COMPOUND_STRING(
@@ -2913,7 +3058,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PALAFIN_ZERO}),
     },
 
-#define PALAFIN_MISC_INFO                                              \
+    [SPECIES_PALAFIN_ZERO] =
+    {
         .types = MON_TYPES(TYPE_WATER),                                \
         .catchRate = 45,                                               \
         .evYield_HP = 2,                                               \
@@ -2931,15 +3077,11 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerScale = 256,                                           \
         .trainerOffset = 0,                                            \
         .frontAnimFrames = sAnims_Palafin,                             \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        /*FOOTPRINT(Palafin)*/
         LEARNSETS(Palafin),                                            \
         .formSpeciesIdTable = sPalafinFormSpeciesIdTable,              \
-        .formChangeTable = sPalafinZeroFormChangeTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //FOOTPRINT(Palafin)
-
-    [SPECIES_PALAFIN_ZERO] =
-    {
-        PALAFIN_MISC_INFO,
+        .formChangeTable = sPalafinZeroFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 70,
         .baseDefense   = 72,
@@ -2967,7 +3109,28 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_PALAFIN_HERO] =
     {
-        PALAFIN_MISC_INFO,
+        .types = MON_TYPES(TYPE_WATER),                                \
+        .catchRate = 45,                                               \
+        .evYield_HP = 2,                                               \
+        .genderRatio = PERCENT_FEMALE(50),                             \
+        .eggCycles = 40,                                               \
+        .friendship = STANDARD_FRIENDSHIP,                             \
+        .growthRate = GROWTH_SLOW,                                     \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_WATER_2),\
+        .abilities = { ABILITY_ZERO_TO_HERO, ABILITY_NONE },           \
+        .bodyColor = BODY_COLOR_BLUE,                                  \
+        .speciesName = _("Palafin"),                                   \
+        .natDexNum = NATIONAL_DEX_PALAFIN,                             \
+        .pokemonScale = 356,                                           \
+        .pokemonOffset = 17,                                           \
+        .trainerScale = 256,                                           \
+        .trainerOffset = 0,                                            \
+        .frontAnimFrames = sAnims_Palafin,                             \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        /*FOOTPRINT(Palafin)*/
+        LEARNSETS(Palafin),                                            \
+        .formSpeciesIdTable = sPalafinFormSpeciesIdTable,              \
+        .formChangeTable = sPalafinZeroFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 160,
         .baseDefense   = 97,
@@ -3632,7 +3795,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_DONDOZO
 
 #if P_FAMILY_TATSUGIRI
-#define TATSUGIRI_MISC_INFO                                                     \
+    [SPECIES_TATSUGIRI_CURLY] =
+    {
         .baseHP        = 68,                                                    \
         .baseAttack    = 50,                                                    \
         .baseDefense   = 60,                                                    \
@@ -3660,16 +3824,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .trainerOffset = 0,                                                     \
         .frontPicYOffset = 14,                                                  \
         .frontAnimFrames = sAnims_Tatsugiri,                                    \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
         .backPicYOffset = 17,                                                   \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Tatsugiri)*/
         LEARNSETS(Tatsugiri),                                                   \
-        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
-        //FOOTPRINT(Tatsugiri)
-
-    [SPECIES_TATSUGIRI_CURLY] =
-    {
-        TATSUGIRI_MISC_INFO,
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_TATSUGIRI_CURLY,
         .description = COMPOUND_STRING(
@@ -3685,7 +3845,39 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_TATSUGIRI_DROOPY] =
     {
-        TATSUGIRI_MISC_INFO,
+        .baseHP        = 68,                                                    \
+        .baseAttack    = 50,                                                    \
+        .baseDefense   = 60,                                                    \
+        .baseSpeed     = 82,                                                    \
+        .baseSpAttack  = 120,                                                   \
+        .baseSpDefense = 95,                                                    \
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_WATER),                            \
+        .catchRate = 100,                                                       \
+        .expYield = 166,                                                        \
+        .evYield_SpAttack = 2,                                                  \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 35,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),                         \
+        .abilities = { ABILITY_COMMANDER, ABILITY_NONE, ABILITY_STORM_DRAIN },  \
+        .speciesName = _("Tatsugiri"),                                          \
+        .natDexNum = NATIONAL_DEX_TATSUGIRI,                                    \
+        .categoryName = _("Mimicry"),                                           \
+        .height = 3,                                                            \
+        .weight = 80,                                                           \
+        .pokemonScale = 356,                                                    \
+        .pokemonOffset = 17,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .frontPicYOffset = 14,                                                  \
+        .frontAnimFrames = sAnims_Tatsugiri,                                    \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        .backPicYOffset = 17,                                                   \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Tatsugiri)*/
+        LEARNSETS(Tatsugiri),                                                   \
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PINK,
         .cryId = CRY_TATSUGIRI_DROOPY,
         .description = COMPOUND_STRING(
@@ -3700,7 +3892,39 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_TATSUGIRI_STRETCHY] =
     {
-        TATSUGIRI_MISC_INFO,
+        .baseHP        = 68,                                                    \
+        .baseAttack    = 50,                                                    \
+        .baseDefense   = 60,                                                    \
+        .baseSpeed     = 82,                                                    \
+        .baseSpAttack  = 120,                                                   \
+        .baseSpDefense = 95,                                                    \
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_WATER),                            \
+        .catchRate = 100,                                                       \
+        .expYield = 166,                                                        \
+        .evYield_SpAttack = 2,                                                  \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 35,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),                         \
+        .abilities = { ABILITY_COMMANDER, ABILITY_NONE, ABILITY_STORM_DRAIN },  \
+        .speciesName = _("Tatsugiri"),                                          \
+        .natDexNum = NATIONAL_DEX_TATSUGIRI,                                    \
+        .categoryName = _("Mimicry"),                                           \
+        .height = 3,                                                            \
+        .weight = 80,                                                           \
+        .pokemonScale = 356,                                                    \
+        .pokemonOffset = 17,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .frontPicYOffset = 14,                                                  \
+        .frontAnimFrames = sAnims_Tatsugiri,                                    \
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
+        .backPicYOffset = 17,                                                   \
+        /*.backAnimId = BACK_ANIM_NONE,*/
+        /*FOOTPRINT(Tatsugiri)*/
+        LEARNSETS(Tatsugiri),                                                   \
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_YELLOW,
         .cryId = CRY_TATSUGIRI_STRETCHY,
         .description = COMPOUND_STRING(
@@ -4464,7 +4688,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_FRIGIBAX
 
 #if P_FAMILY_GIMMIGHOUL
-#define GIMMIGHOUL_MISC_INFO                                                            \
+    [SPECIES_GIMMIGHOUL_CHEST] =
+    {
         .types = MON_TYPES(TYPE_GHOST),                                                 \
         .catchRate = 45,                                                                \
         .expYield = 60,                                                                 \
@@ -4478,16 +4703,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .cryId = CRY_GIMMIGHOUL,                                                        \
         .natDexNum = NATIONAL_DEX_GIMMIGHOUL,                                           \
         .frontAnimFrames = sAnims_Gimmighoul,                                           \
-        LEARNSETS(Gimmighoul),                                                          \
-        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,                            \
-        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO})
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //FOOTPRINT(Gimmighoul)
-
-    [SPECIES_GIMMIGHOUL_CHEST] =
-    {
-        GIMMIGHOUL_MISC_INFO,
+        LEARNSETS(Gimmighoul),                                                          \
+        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,                            \
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO}),
         .baseHP        = 45,
         .baseAttack    = 30,
         .baseDefense   = 70,
@@ -4518,7 +4739,25 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_GIMMIGHOUL_ROAMING] =
     {
-        GIMMIGHOUL_MISC_INFO,
+        .types = MON_TYPES(TYPE_GHOST),                                                 \
+        .catchRate = 45,                                                                \
+        .expYield = 60,                                                                 \
+        .evYield_SpAttack = 1,                                                          \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 50,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .speciesName = _("Gimmighoul"),                                                 \
+        .cryId = CRY_GIMMIGHOUL,                                                        \
+        .natDexNum = NATIONAL_DEX_GIMMIGHOUL,                                           \
+        .frontAnimFrames = sAnims_Gimmighoul,                                           \
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //FOOTPRINT(Gimmighoul)
+        LEARNSETS(Gimmighoul),                                                          \
+        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,                            \
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO}),
         .baseHP        = 45,
         .baseAttack    = 30,
         .baseDefense   = 25,
@@ -5097,7 +5336,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_IRON_LEAVES
 
 #if P_FAMILY_POLTCHAGEIST
-#define POLTCHAGEIST_MISC_INFO                                                  \
+    [SPECIES_POLTCHAGEIST_COUNTERFEIT] =
+    {
         .baseHP        = 40,                                                    \
         .baseAttack    = 45,                                                    \
         .baseDefense   = 45,                                                    \
@@ -5128,19 +5368,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FRONT_PIC(Poltchageist, 64, 64),                                        \
         .frontPicYOffset = 7,                                                   \
         .frontAnimFrames = sAnims_Poltchageist,                                 \
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 10,                                                \
         BACK_PIC(Poltchageist, 64, 64),                                         \
         .backPicYOffset = 5,                                                    \
+        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Poltchageist),                                                 \
         ICON(Poltchageist, 4),                                                  \
-        LEARNSETS(Poltchageist)
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
         //FOOTPRINT(Poltchageist)
-
-    [SPECIES_POLTCHAGEIST_COUNTERFEIT] =
-    {
-        POLTCHAGEIST_MISC_INFO,
+        LEARNSETS(Poltchageist),
         .description = COMPOUND_STRING(
             "Supposedly, the regrets of a tea\n"
             "ceremony master who died before\n"
@@ -5150,7 +5386,45 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
     [SPECIES_POLTCHAGEIST_ARTISAN] =
     {
-        POLTCHAGEIST_MISC_INFO,
+        .baseHP        = 40,                                                    \
+        .baseAttack    = 45,                                                    \
+        .baseDefense   = 45,                                                    \
+        .baseSpeed     = 50,                                                    \
+        .baseSpAttack  = 74,                                                    \
+        .baseSpDefense = 54,                                                    \
+        .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),                             \
+        .catchRate = 120,                                                       \
+        .expYield = 62,                                                         \
+        .evYield_SpAttack = 1,                                                  \
+        .genderRatio = MON_GENDERLESS,                                          \
+        .eggCycles = 20,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),    \
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },  \
+        .bodyColor = BODY_COLOR_GREEN,                                          \
+        .speciesName = _("Ptchageist"),                                         \
+        .cryId = CRY_POLTCHAGEIST,                                              \
+        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,                                 \
+        .categoryName = _("Matcha"),                                            \
+        .height = 1,                                                            \
+        .weight = 11,                                                           \
+        .pokemonScale = 356,                                                    \
+        .pokemonOffset = 17,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        FRONT_PIC(Poltchageist, 64, 64),                                        \
+        .frontPicYOffset = 7,                                                   \
+        .frontAnimFrames = sAnims_Poltchageist,                                 \
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 10,                                                \
+        BACK_PIC(Poltchageist, 64, 64),                                         \
+        .backPicYOffset = 5,                                                    \
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(Poltchageist),                                                 \
+        ICON(Poltchageist, 4),                                                  \
+        //FOOTPRINT(Poltchageist)
+        LEARNSETS(Poltchageist),
         .description = COMPOUND_STRING(
             "It has taken up residence in a very\n"
             "expensive tea caddy. It takes an\n"
@@ -5159,7 +5433,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
     },
 
-#define SINISTCHA_MISC_INFO                                                     \
+    [SPECIES_SINISTCHA_UNREMARKABLE] =
+    {
         .baseHP        = 71,                                                    \
         .baseAttack    = 60,                                                    \
         .baseDefense   = 106,                                                   \
@@ -5190,19 +5465,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FRONT_PIC(Sinistcha, 64, 64),                                           \
         .frontPicYOffset = 10,                                                  \
         .frontAnimFrames = sAnims_Sinistcha,                                    \
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 10,                                                \
         BACK_PIC(Sinistcha, 64, 64),                                            \
         .backPicYOffset = 13,                                                   \
+        //.backAnimId = BACK_ANIM_NONE,
         PALETTES(Sinistcha),                                                    \
         ICON(Sinistcha, 1),                                                     \
-        LEARNSETS(Sinistcha)
-        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        //.backAnimId = BACK_ANIM_NONE,
         //FOOTPRINT(Sinistcha)
-
-    [SPECIES_SINISTCHA_UNREMARKABLE] =
-    {
-        SINISTCHA_MISC_INFO,
+        LEARNSETS(Sinistcha),
         .description = COMPOUND_STRING(
             "It pretends to be tea, trying to fool\n"
             "people into drinking it so it can\n"
@@ -5211,7 +5482,45 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
     [SPECIES_SINISTCHA_MASTERPIECE] =
     {
-        SINISTCHA_MISC_INFO,
+        .baseHP        = 71,                                                    \
+        .baseAttack    = 60,                                                    \
+        .baseDefense   = 106,                                                   \
+        .baseSpeed     = 70,                                                    \
+        .baseSpAttack  = 121,                                                   \
+        .baseSpDefense = 80,                                                    \
+        .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),                             \
+        .catchRate = 60,                                                        \
+        .expYield = 178,                                                        \
+        .evYield_SpAttack = 2,                                                  \
+        .genderRatio = MON_GENDERLESS,                                          \
+        .eggCycles = 20,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),    \
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },  \
+        .bodyColor = BODY_COLOR_GREEN,                                          \
+        .speciesName = _("Sinistcha"),                                          \
+        .cryId = CRY_SINISTCHA,                                                 \
+        .natDexNum = NATIONAL_DEX_SINISTCHA,                                    \
+        .categoryName = _("Matcha"),                                            \
+        .height = 2,                                                            \
+        .weight = 22,                                                           \
+        .pokemonScale = 356,                                                    \
+        .pokemonOffset = 17,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        FRONT_PIC(Sinistcha, 64, 64),                                           \
+        .frontPicYOffset = 10,                                                  \
+        .frontAnimFrames = sAnims_Sinistcha,                                    \
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 10,                                                \
+        BACK_PIC(Sinistcha, 64, 64),                                            \
+        .backPicYOffset = 13,                                                   \
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTES(Sinistcha),                                                    \
+        ICON(Sinistcha, 1),                                                     \
+        //FOOTPRINT(Sinistcha)
+        LEARNSETS(Sinistcha),
         .description = COMPOUND_STRING(
             "The more stirring it does with the\n"
             "tea whisk on its head, the more\n"
@@ -5631,7 +5940,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #endif //P_FAMILY_IRON_CROWN
 
 #if P_FAMILY_TERAPAGOS
-#define TERAPAGOS_MISC_INFO                                                             \
+    [SPECIES_TERAPAGOS_NORMAL] =
+    {
         .types = MON_TYPES(TYPE_NORMAL),                                                \
         .catchRate = 255,                                                               \
         .genderRatio = PERCENT_FEMALE(50),                                              \
@@ -5645,14 +5955,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .natDexNum = NATIONAL_DEX_TERAPAGOS,                                            \
         .categoryName = _("Tera"),                                                      \
         LEARNSETS(Terapagos),                                                           \
+        //FOOTPRINT(Terapagos)
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,                             \
         .formChangeTable = sTerapagosFormChangeTable,                                   \
-        .isLegendary = TRUE
-        //FOOTPRINT(Terapagos)
-
-    [SPECIES_TERAPAGOS_NORMAL] =
-    {
-        TERAPAGOS_MISC_INFO,
+        .isLegendary = TRUE,
         .baseHP        = 90,
         .baseAttack    = 65,
         .baseDefense   = 85,
@@ -5686,7 +5992,23 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_TERAPAGOS_TERASTAL] =
     {
-        TERAPAGOS_MISC_INFO,
+        .types = MON_TYPES(TYPE_NORMAL),                                                \
+        .catchRate = 255,                                                               \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 5,                                                                 \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_BLUE,                                                   \
+        .speciesName = _("Terapagos"),                                                  \
+        .cryId = CRY_TERAPAGOS,                                                         \
+        .natDexNum = NATIONAL_DEX_TERAPAGOS,                                            \
+        .categoryName = _("Tera"),                                                      \
+        LEARNSETS(Terapagos),                                                           \
+        //FOOTPRINT(Terapagos)
+        .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,                             \
+        .formChangeTable = sTerapagosFormChangeTable,                                   \
+        .isLegendary = TRUE,
         .baseHP        = 95,
         .baseAttack    = 95,
         .baseDefense   = 110,
@@ -5721,7 +6043,23 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_TERAPAGOS_STELLAR] =
     {
-        TERAPAGOS_MISC_INFO,
+        .types = MON_TYPES(TYPE_NORMAL),                                                \
+        .catchRate = 255,                                                               \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 5,                                                                 \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_BLUE,                                                   \
+        .speciesName = _("Terapagos"),                                                  \
+        .cryId = CRY_TERAPAGOS,                                                         \
+        .natDexNum = NATIONAL_DEX_TERAPAGOS,                                            \
+        .categoryName = _("Tera"),                                                      \
+        LEARNSETS(Terapagos),                                                           \
+        //FOOTPRINT(Terapagos)
+        .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,                             \
+        .formChangeTable = sTerapagosFormChangeTable,                                   \
+        .isLegendary = TRUE,
         .baseHP        = 160,
         .baseAttack    = 105,
         .baseDefense   = 110,
