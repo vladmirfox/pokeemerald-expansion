@@ -4,15 +4,15 @@
 // const LOCALID_BALL_SPHEAL = 5
 // const LOCALID_RIVAL = 6
 
-// mapscripts LittlerootTown_ProfessorBirchsLab_MapScripts {
-// 	// TODO EVA REMOVE THIS FFS
-// 	MAP_SCRIPT_ON_LOAD {
-// 		setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 4)
-// 	}
-// 	MAP_SCRIPT_ON_FRAME_TABLE [
-//         VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene
-//     ]
-// }
+mapscripts LittlerootTown_ProfessorBirchsLab_MapScripts {
+	// TODO EVA REMOVE THIS FFS
+	// MAP_SCRIPT_ON_LOAD {
+	// 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 4)
+	// }
+	// MAP_SCRIPT_ON_FRAME_TABLE [
+    //     VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene
+    // ]
+}
 
 // script LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene {
 // 	lockall

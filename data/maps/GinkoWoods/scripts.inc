@@ -71,8 +71,8 @@ GinkoWoods_EventScript_Eiji_Text_1:
 
 GinkoWoods_EventScript_Eiji_Text_2:
 # 28 "data/maps/GinkoWoods/scripts.pory"
-	.string "I picked a bird Pokémon because they're\n"
-	.string "strong against bugs!$"
+	.string "I asked Elder Kaba for a bird Pokémon,\n"
+	.string "because they're strong against bugs!$"
 
 GinkoWoods_EventScript_OldMan_Text_0:
 # 36 "data/maps/GinkoWoods/scripts.pory"

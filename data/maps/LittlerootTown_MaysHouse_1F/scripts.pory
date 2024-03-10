@@ -1,5 +1,5 @@
-// mapscripts LittlerootTown_MaysHouse_1F_MapScripts {
-// }
+mapscripts LittlerootTown_MaysHouse_1F_MapScripts {
+}
 
 // script LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi {
 //     lock

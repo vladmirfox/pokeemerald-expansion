@@ -136,5 +136,5 @@ Sunrise_Village_Beach_EventScript_RivalSpeech_Text_3:
 	.string "Are you excited to become a POKéMON\n"
 	.string "trainer?\p"
 	.string "Come on, it's almost time! Let's go to\n"
-	.string "Elder IWA's house!\p"
+	.string "Elder KABA's house!\p"
 	.string "Race ya there!!$"

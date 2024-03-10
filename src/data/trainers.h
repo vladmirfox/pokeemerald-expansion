@@ -8364,7 +8364,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_KENJI] =
     {
-        .trainerClass = TRAINER_CLASS_PAINTER,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER, // TODO EVA: Painter
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_RICH,
         .trainerPic = TRAINER_PIC_FISHERMAN, // TODO EVA
         .trainerName = _("KENJI"),

@@ -2308,14 +2308,14 @@ bool8 ScrFunc_getfolloweraction(struct ScriptContext *ctx) // Essentially a big 
         case MAPSEC_PEWTER_CITY:
             multi = TYPE_ROCK;
             break;
-        case MAPSEC_DEWFORD_TOWN:
+        case MAPSEC_SAKU_TOWN:
             multi = TYPE_FIGHTING;
             break;
         case MAPSEC_MAUVILLE_CITY:
         case MAPSEC_VERMILION_CITY:
             multi = TYPE_ELECTRIC;
             break;
-        case MAPSEC_LAVARIDGE_TOWN:
+        case MAPSEC_KURA_TOWN:
         case MAPSEC_CINNABAR_ISLAND:
             multi = TYPE_FIRE;
             break;
