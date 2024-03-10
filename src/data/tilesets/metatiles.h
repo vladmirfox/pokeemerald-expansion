@@ -235,3 +235,6 @@ const u16 gMetatileAttributes_Building_Generic[] = INCBIN_U16("data/tilesets/pri
 
 const u16 gMetatiles_House[] = INCBIN_U16("data/tilesets/secondary/house/metatiles.bin");
 const u16 gMetatileAttributes_House[] = INCBIN_U16("data/tilesets/secondary/house/metatile_attributes.bin");
+
+const u16 gMetatiles_Refuge[] = INCBIN_U16("data/tilesets/secondary/refuge/metatiles.bin");
+const u16 gMetatileAttributes_Refuge[] = INCBIN_U16("data/tilesets/secondary/refuge/metatile_attributes.bin");

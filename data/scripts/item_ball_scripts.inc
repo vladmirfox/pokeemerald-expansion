@@ -1,3 +1,11 @@
+GinkoWoods_EventScript_ItemPotion::
+	finditem ITEM_POTION
+	end
+
+GinkoWoods_EventScript_ItemParalyzeHeal::
+	finditem ITEM_PARALYZE_HEAL
+	end
+
 Route102_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
