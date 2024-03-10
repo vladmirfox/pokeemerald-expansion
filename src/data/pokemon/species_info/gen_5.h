@@ -442,7 +442,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
                                 {EVO_NONE, 0, SPECIES_SAMUROTT_HISUIAN}),
     },
 
-#define SAMUROTT_MISC_INFO                                                  \
+    [SPECIES_SAMUROTT] =
+    {
         .catchRate = 45,                                                    \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 264 : 238,            \
         .genderRatio = PERCENT_FEMALE(12.5),                                \
@@ -461,11 +462,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerScale = 271,                                                \
         .trainerOffset = 0,                                                 \
         FOOTPRINT(Samurott)                                                 \
-        .formSpeciesIdTable = sSamurottFormSpeciesIdTable
-
-    [SPECIES_SAMUROTT] =
-    {
-        SAMUROTT_MISC_INFO,
+        .formSpeciesIdTable = sSamurottFormSpeciesIdTable,
         .baseHP        = 95,
         .baseAttack    = 100,
         .baseDefense   = 85,
@@ -496,7 +493,25 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_HISUIAN_FORMS
     [SPECIES_SAMUROTT_HISUIAN] =
     {
-        SAMUROTT_MISC_INFO,
+        .catchRate = 45,                                                    \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 264 : 238,            \
+        .genderRatio = PERCENT_FEMALE(12.5),                                \
+        .eggCycles = 20,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                       \
+        .bodyColor = BODY_COLOR_BLUE,                                       \
+        .speciesName = _("Samurott"),                                       \
+        .cryId = CRY_SAMUROTT,                                              \
+        .natDexNum = NATIONAL_DEX_SAMUROTT,                                 \
+        .categoryName = _("Formidable"),                                    \
+        .height = 15,                                                       \
+        .pokemonScale = 268,                                                \
+        .pokemonOffset = 2,                                                 \
+        .trainerScale = 271,                                                \
+        .trainerOffset = 0,                                                 \
+        FOOTPRINT(Samurott)                                                 \
+        .formSpeciesIdTable = sSamurottFormSpeciesIdTable,
         .baseHP        = 90,
         .baseAttack    = 108,
         .baseDefense   = 80,
@@ -1873,7 +1888,9 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     },
 #endif //P_FAMILY_DRILBUR
 
-#define AUDINO_MISC_INFO                                    \
+#if P_FAMILY_AUDINO
+    [SPECIES_AUDINO] =
+    {
         .catchRate = 255,                                   \
         .evYield_HP = 2,                                    \
         .itemCommon = ITEM_ORAN_BERRY,                      \
@@ -1889,12 +1906,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Audino)                                   \
         LEARNSETS(Audino),                                  \
         .formSpeciesIdTable = sAudinoFormSpeciesIdTable,    \
-        .formChangeTable = sAudinoFormChangeTable
-
-#if P_FAMILY_AUDINO
-    [SPECIES_AUDINO] =
-    {
-        AUDINO_MISC_INFO,
+        .formChangeTable = sAudinoFormChangeTable,
         .baseHP        = 103,
         .baseAttack    = 60,
         .baseDefense   = 86,
@@ -1931,7 +1943,22 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_AUDINO_MEGA] =
     {
-        AUDINO_MISC_INFO,
+        .catchRate = 255,                                   \
+        .evYield_HP = 2,                                    \
+        .itemCommon = ITEM_ORAN_BERRY,                      \
+        .itemRare = ITEM_SITRUS_BERRY,                      \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_FAST,                          \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),       \
+        .speciesName = _("Audino"),                         \
+        .natDexNum = NATIONAL_DEX_AUDINO,                   \
+        .categoryName = _("Hearing"),                       \
+        FOOTPRINT(Audino)                                   \
+        LEARNSETS(Audino),                                  \
+        .formSpeciesIdTable = sAudinoFormSpeciesIdTable,    \
+        .formChangeTable = sAudinoFormChangeTable,
         .baseHP        = 103,
         .baseAttack    = 60,
         .baseDefense   = 126,
@@ -2843,7 +2870,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
                                 {EVO_NONE, 0, SPECIES_LILLIGANT_HISUIAN}),
     },
 
-#define LILLIGANT_MISC_INFO                                 \
+    [SPECIES_LILLIGANT] =
+    {
         .catchRate = 75,                                    \
         .expYield = 168,                                    \
         .itemRare = ITEM_ABSORB_BULB,                       \
@@ -2858,11 +2886,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .cryId = CRY_LILLIGANT,                             \
         .natDexNum = NATIONAL_DEX_LILLIGANT,                \
         FOOTPRINT(Lilligant)                                \
-        .formSpeciesIdTable = sLilligantFormSpeciesIdTable
-
-    [SPECIES_LILLIGANT] =
-    {
-        LILLIGANT_MISC_INFO,
+        .formSpeciesIdTable = sLilligantFormSpeciesIdTable,
         .baseHP        = 70,
         .baseAttack    = 60,
         .baseDefense   = 75,
@@ -2899,7 +2923,21 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_HISUIAN_FORMS
     [SPECIES_LILLIGANT_HISUIAN] =
     {
-        LILLIGANT_MISC_INFO,
+        .catchRate = 75,                                    \
+        .expYield = 168,                                    \
+        .itemRare = ITEM_ABSORB_BULB,                       \
+        .genderRatio = MON_FEMALE,                          \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),       \
+        .bodyColor = BODY_COLOR_GREEN,                      \
+        .noFlip = TRUE,                                     \
+        .speciesName = _("Lilligant"),                      \
+        .cryId = CRY_LILLIGANT,                             \
+        .natDexNum = NATIONAL_DEX_LILLIGANT,                \
+        FOOTPRINT(Lilligant)                                \
+        .formSpeciesIdTable = sLilligantFormSpeciesIdTable,
         .baseHP        = 70,
         .baseAttack    = 105,
         .baseDefense   = 75,
@@ -2938,7 +2976,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_PETILIL
 
 #if P_FAMILY_BASCULIN
-#define BASCULIN_MISC_INFO                                      \
+    [SPECIES_BASCULIN_RED_STRIPED] =
+    {
         .baseHP        = 70,                                    \
         .baseAttack    = 92,                                    \
         .baseDefense   = 65,                                    \
@@ -2966,11 +3005,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerOffset = 0,                                     \
         .enemyMonElevation = 6,                                 \
         FOOTPRINT(Basculin)                                     \
-        .formSpeciesIdTable = sBasculinFormSpeciesIdTable
-
-    [SPECIES_BASCULIN_RED_STRIPED] =
-    {
-        BASCULIN_MISC_INFO,
+        .formSpeciesIdTable = sBasculinFormSpeciesIdTable,
         .itemRare = ITEM_DEEP_SEA_TOOTH,
         .abilities = { ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Hostile"),
@@ -2993,7 +3028,34 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_BASCULIN_BLUE_STRIPED] =
     {
-        BASCULIN_MISC_INFO,
+        .baseHP        = 70,                                    \
+        .baseAttack    = 92,                                    \
+        .baseDefense   = 65,                                    \
+        .baseSpeed     = 98,                                    \
+        .baseSpAttack  = 80,                                    \
+        .baseSpDefense = 55,                                    \
+        .types = MON_TYPES(TYPE_WATER),                         \
+        .catchRate = 190,                                       \
+        .expYield = 161,                                        \
+        .evYield_Speed = 2,                                     \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 40,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),         \
+        .bodyColor = BODY_COLOR_GREEN,                          \
+        .speciesName = _("Basculin"),                           \
+        .cryId = CRY_BASCULIN,                                  \
+        .natDexNum = NATIONAL_DEX_BASCULIN,                     \
+        .height = 10,                                           \
+        .weight = 180,                                          \
+        .pokemonScale = 316,                                    \
+        .pokemonOffset = 7,                                     \
+        .trainerScale = 257,                                    \
+        .trainerOffset = 0,                                     \
+        .enemyMonElevation = 6,                                 \
+        FOOTPRINT(Basculin)                                     \
+        .formSpeciesIdTable = sBasculinFormSpeciesIdTable,
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Hostile"),
@@ -3017,7 +3079,34 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_HISUIAN_FORMS
     [SPECIES_BASCULIN_WHITE_STRIPED] =
     {
-        BASCULIN_MISC_INFO,
+        .baseHP        = 70,                                    \
+        .baseAttack    = 92,                                    \
+        .baseDefense   = 65,                                    \
+        .baseSpeed     = 98,                                    \
+        .baseSpAttack  = 80,                                    \
+        .baseSpDefense = 55,                                    \
+        .types = MON_TYPES(TYPE_WATER),                         \
+        .catchRate = 190,                                       \
+        .expYield = 161,                                        \
+        .evYield_Speed = 2,                                     \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 40,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),         \
+        .bodyColor = BODY_COLOR_GREEN,                          \
+        .speciesName = _("Basculin"),                           \
+        .cryId = CRY_BASCULIN,                                  \
+        .natDexNum = NATIONAL_DEX_BASCULIN,                     \
+        .height = 10,                                           \
+        .weight = 180,                                          \
+        .pokemonScale = 316,                                    \
+        .pokemonOffset = 7,                                     \
+        .trainerScale = 257,                                    \
+        .trainerOffset = 0,                                     \
+        .enemyMonElevation = 6,                                 \
+        FOOTPRINT(Basculin)                                     \
+        .formSpeciesIdTable = sBasculinFormSpeciesIdTable,
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = { ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },
         .categoryName = _("Mellow"),
@@ -3040,7 +3129,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
                                 {EVO_LEVEL_RECOIL_DAMAGE_FEMALE, 294, SPECIES_BASCULEGION_FEMALE}),
     },
 
-#define BASCULEGION_MISC_INFO                                                               \
+    [SPECIES_BASCULEGION_MALE] =
+    {
         .types = MON_TYPES(TYPE_WATER, TYPE_GHOST),                                         \
         .catchRate = 45,                                                                    \
         .expYield = 265,                                                                    \
@@ -3066,14 +3156,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .enemyMonElevation = 5,                                                             \
         .backPicYOffset = 8,                                                                \
         LEARNSETS(Basculegion),                                                             \
-        .formSpeciesIdTable = sBasculegionFormSpeciesIdTable
+        .formSpeciesIdTable = sBasculegionFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
-        //FOOTPRINT(Basculegion)
-
-    [SPECIES_BASCULEGION_MALE] =
-    {
-        BASCULEGION_MISC_INFO,
+        //FOOTPRINT(Basculegion),
         .baseHP        = 120,
         .baseAttack    = 112,
         .baseDefense   = 65,
@@ -3094,7 +3180,35 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_BASCULEGION_FEMALE] =
     {
-        BASCULEGION_MISC_INFO,
+        .types = MON_TYPES(TYPE_WATER, TYPE_GHOST),                                         \
+        .catchRate = 45,                                                                    \
+        .expYield = 265,                                                                    \
+        .evYield_HP = 3,                                                                    \
+        .eggCycles = 20,                                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),                                     \
+        .abilities = { ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER },    \
+        .bodyColor = BODY_COLOR_GREEN,                                                      \
+        .speciesName = _("Bsculegion"),                                                     \
+        .cryId = CRY_BASCULEGION,                                                           \
+        .natDexNum = NATIONAL_DEX_BASCULEGION,                                              \
+        .categoryName = _("Big Fish"),                                                      \
+        .height = 30,                                                                       \
+        .weight = 1100,                                                                     \
+        .pokemonScale = 275,                                                                \
+        .pokemonOffset = 7,                                                                 \
+        .trainerScale = 256,                                                                \
+        .trainerOffset = 0,                                                                 \
+        .frontAnimFrames = sAnims_Basculegion,                                              \
+        .frontPicYOffset = 0,                                                               \
+        .enemyMonElevation = 5,                                                             \
+        .backPicYOffset = 8,                                                                \
+        LEARNSETS(Basculegion),                                                             \
+        .formSpeciesIdTable = sBasculegionFormSpeciesIdTable,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //FOOTPRINT(Basculegion),
         .baseHP        = 120,
         .baseAttack    = 92,
         .baseDefense   = 65,
@@ -3269,7 +3383,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_SANDILE
 
 #if P_FAMILY_DARUMAKA
-#define DARUMAKA_MISC_INFO                                                  \
+    [SPECIES_DARUMAKA] =
+    {
         .baseHP        = 70,                                                \
         .baseAttack    = 90,                                                \
         .baseDefense   = 45,                                                \
@@ -3290,11 +3405,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .natDexNum = NATIONAL_DEX_DARUMAKA,                                 \
         .categoryName = _("Zen Charm"),                                     \
         FOOTPRINT(Darumaka)                                                 \
-        .formSpeciesIdTable = sDarumakaFormSpeciesIdTable
-
-    [SPECIES_DARUMAKA] =
-    {
-        DARUMAKA_MISC_INFO,
+        .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_FIRE),
         .bodyColor = BODY_COLOR_RED,
         .height = 6,
@@ -3321,7 +3432,16 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD_MODE}),
     },
 
-#define DARMANITAN_MISC_INFO                                \
+    [SPECIES_DARMANITAN_STANDARD_MODE] =
+    {
+        .baseHP        = 105,           \
+        .baseAttack    = 140,           \
+        .baseDefense   = 55,            \
+        .baseSpeed     = 95,            \
+        .baseSpAttack  = 30,            \
+        .baseSpDefense = 55,            \
+        .expYield = 168,                \
+        .evYield_Attack = 2,            \
         .catchRate = 60,                                    \
         .genderRatio = PERCENT_FEMALE(50),                  \
         .eggCycles = 20,                                    \
@@ -3332,26 +3452,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .cryId = CRY_DARMANITAN,                            \
         .natDexNum = NATIONAL_DEX_DARMANITAN,               \
         FOOTPRINT(Darmanitan)                               \
-        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable
-
-#define DARMANITAN_STANDARD_MISC_INFO   \
-        .baseHP        = 105,           \
-        .baseAttack    = 140,           \
-        .baseDefense   = 55,            \
-        .baseSpeed     = 95,            \
-        .baseSpAttack  = 30,            \
-        .baseSpDefense = 55,            \
-        .expYield = 168,                \
-        .evYield_Attack = 2,            \
-        DARMANITAN_MISC_INFO
-
-#define DARMANITAN_ZEN_MODE_MISC_INFO                           \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_7) ? 189 : 168,\
-        .evYield_SpAttack = 2,                                  \
-        .categoryName = _("Blazing"),                           \
-        DARMANITAN_MISC_INFO
-
-#define DARMANITAN_UNOVAN_MISC_INFO                                         \
+        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
         .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE },\
         .height = 13,                                                       \
         .weight = 929,                                                      \
@@ -3360,12 +3461,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
         LEARNSETS(Darmanitan),                                              \
-        .formChangeTable = sDarmanitanFormChangeTable
-
-    [SPECIES_DARMANITAN_STANDARD_MODE] =
-    {
-        DARMANITAN_STANDARD_MISC_INFO,
-        DARMANITAN_UNOVAN_MISC_INFO,
+        .formChangeTable = sDarmanitanFormChangeTable,
         .types = MON_TYPES(TYPE_FIRE),
         .bodyColor = BODY_COLOR_RED,
         .categoryName = _("Blazing"),
@@ -3387,8 +3483,29 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_DARMANITAN_ZEN_MODE] =
     {
-        DARMANITAN_ZEN_MODE_MISC_INFO,
-        DARMANITAN_UNOVAN_MISC_INFO,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_7) ? 189 : 168,\
+        .evYield_SpAttack = 2,                                  \
+        .categoryName = _("Blazing"),                           \
+        .catchRate = 60,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .speciesName = _("Darmanitan"),                     \
+        .cryId = CRY_DARMANITAN,                            \
+        .natDexNum = NATIONAL_DEX_DARMANITAN,               \
+        FOOTPRINT(Darmanitan)                               \
+        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE },\
+        .height = 13,                                                       \
+        .weight = 929,                                                      \
+        .pokemonScale = 272,                                                \
+        .pokemonOffset = 3,                                                 \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        LEARNSETS(Darmanitan),                                              \
+        .formChangeTable = sDarmanitanFormChangeTable,
         .baseHP        = 105,
         .baseAttack    = 30,
         .baseDefense   = 105,
@@ -3415,7 +3532,27 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_GALARIAN_FORMS
     [SPECIES_DARUMAKA_GALARIAN] =
     {
-        DARUMAKA_MISC_INFO,
+        .baseHP        = 70,                                                \
+        .baseAttack    = 90,                                                \
+        .baseDefense   = 45,                                                \
+        .baseSpeed     = 50,                                                \
+        .baseSpAttack  = 15,                                                \
+        .baseSpDefense = 45,                                                \
+        .catchRate = 120,                                                   \
+        .expYield = 63,                                                     \
+        .evYield_Attack = 1,                                                \
+        .genderRatio = PERCENT_FEMALE(50),                                  \
+        .eggCycles = 20,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                       \
+        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_INNER_FOCUS }, \
+        .speciesName = _("Darumaka"),                                       \
+        .cryId = CRY_DARUMAKA,                                              \
+        .natDexNum = NATIONAL_DEX_DARUMAKA,                                 \
+        .categoryName = _("Zen Charm"),                                     \
+        FOOTPRINT(Darumaka)                                                 \
+        .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_ICE),
         .bodyColor = BODY_COLOR_WHITE,
         .height = 7,
@@ -3443,7 +3580,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
     },
 
-#define DARMANITAN_GALARIAN_MISC_INFO                                           \
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] =
+    {
         .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },\
         .bodyColor = BODY_COLOR_WHITE,                                          \
         .height = 17,                                                           \
@@ -3454,12 +3592,26 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerOffset = 0,                                                     \
         LEARNSETS(DarmanitanGalarian),                                          \
         .formChangeTable = sDarmanitanGalarianFormChangeTable,                  \
-        .isGalarianForm = TRUE
-
-    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] =
-    {
-        DARMANITAN_GALARIAN_MISC_INFO,
-        DARMANITAN_STANDARD_MISC_INFO,
+        .isGalarianForm = TRUE,
+        .baseHP        = 105,           \
+        .baseAttack    = 140,           \
+        .baseDefense   = 55,            \
+        .baseSpeed     = 95,            \
+        .baseSpAttack  = 30,            \
+        .baseSpDefense = 55,            \
+        .expYield = 168,                \
+        .evYield_Attack = 2,            \
+        .catchRate = 60,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .speciesName = _("Darmanitan"),                     \
+        .cryId = CRY_DARMANITAN,                            \
+        .natDexNum = NATIONAL_DEX_DARMANITAN,               \
+        FOOTPRINT(Darmanitan)                               \
+        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_ICE),
         .categoryName = _("Zen Charm"),
         .description = COMPOUND_STRING(
@@ -3480,8 +3632,31 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] =
     {
-        DARMANITAN_GALARIAN_MISC_INFO,
-        DARMANITAN_ZEN_MODE_MISC_INFO,
+        .abilities = { ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE },\
+        .bodyColor = BODY_COLOR_WHITE,                                          \
+        .height = 17,                                                           \
+        .weight = 1200,                                                         \
+        .pokemonScale = 272,                                                    \
+        .pokemonOffset = 3,                                                     \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        LEARNSETS(DarmanitanGalarian),                                          \
+        .formChangeTable = sDarmanitanGalarianFormChangeTable,                  \
+        .isGalarianForm = TRUE,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_7) ? 189 : 168,\
+        .evYield_SpAttack = 2,                                  \
+        .categoryName = _("Blazing"),                           \
+        .catchRate = 60,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .speciesName = _("Darmanitan"),                     \
+        .cryId = CRY_DARMANITAN,                            \
+        .natDexNum = NATIONAL_DEX_DARMANITAN,               \
+        FOOTPRINT(Darmanitan)                               \
+        .formSpeciesIdTable = sDarmanitanFormSpeciesIdTable,
         .baseHP        = 105,
         .baseAttack    = 160,
         .baseDefense   = 55,
@@ -3807,7 +3982,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_SIGILYPH
 
 #if P_FAMILY_YAMASK
-#define YAMASK_MISC_INFO                                                   \
+    [SPECIES_YAMASK] =
+    {
         .catchRate = 190,                                                  \
         .expYield = 61,                                                    \
         .evYield_Defense = 1,                                              \
@@ -3828,11 +4004,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerScale = 256,                                               \
         .trainerOffset = 0,                                                \
         FOOTPRINT(Yamask)                                                  \
-        .formSpeciesIdTable = sYamaskFormSpeciesIdTable
-
-    [SPECIES_YAMASK] =
-    {
-        YAMASK_MISC_INFO,
+        .formSpeciesIdTable = sYamaskFormSpeciesIdTable,
         .baseHP        = 38,
         .baseAttack    = 30,
         .baseDefense   = 85,
@@ -3912,7 +4084,27 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_GALARIAN_FORMS
     [SPECIES_YAMASK_GALARIAN] =
     {
-        YAMASK_MISC_INFO,
+        .catchRate = 190,                                                  \
+        .expYield = 61,                                                    \
+        .evYield_Defense = 1,                                              \
+        .genderRatio = PERCENT_FEMALE(50),                                 \
+        .eggCycles = 25,                                                   \
+        .friendship = STANDARD_FRIENDSHIP,                                 \
+        .growthRate = GROWTH_MEDIUM_FAST,                                  \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),\
+        .bodyColor = BODY_COLOR_BLACK,                                     \
+        .speciesName = _("Yamask"),                                        \
+        .cryId = CRY_YAMASK,                                               \
+        .natDexNum = NATIONAL_DEX_YAMASK,                                  \
+        .categoryName = _("Spirit"),                                       \
+        .height = 5,                                                       \
+        .weight = 15,                                                      \
+        .pokemonScale = 432,                                               \
+        .pokemonOffset = 13,                                               \
+        .trainerScale = 256,                                               \
+        .trainerOffset = 0,                                                \
+        FOOTPRINT(Yamask)                                                  \
+        .formSpeciesIdTable = sYamaskFormSpeciesIdTable,
         .baseHP        = 38,
         .baseAttack    = 55,
         .baseDefense   = 85,
@@ -4235,7 +4427,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GARBODOR}),
     },
 
-#define GARBODOR_MISC_INFO                                                      \
+    [SPECIES_GARBODOR] =
+    {
         .baseHP        = 80,                                                    \
         .baseAttack    = 95,                                                    \
         .baseDefense   = 82,                                                    \
@@ -4263,11 +4456,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Garbodor)                                                     \
         LEARNSETS(Garbodor),                                                    \
         .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,                      \
-        .formChangeTable = sGarbodorFormChangeTable
-
-    [SPECIES_GARBODOR] =
-    {
-        GARBODOR_MISC_INFO,
+        .formChangeTable = sGarbodorFormChangeTable,
         .height = 19,
         .weight = 1073,
         .description = COMPOUND_STRING(
@@ -4293,7 +4482,34 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_GARBODOR_GIGANTAMAX] =
     {
-        GARBODOR_MISC_INFO,
+        .baseHP        = 80,                                                    \
+        .baseAttack    = 95,                                                    \
+        .baseDefense   = 82,                                                    \
+        .baseSpeed     = 75,                                                    \
+        .baseSpAttack  = 60,                                                    \
+        .baseSpDefense = 82,                                                    \
+        .types = MON_TYPES(TYPE_POISON),                                        \
+        .catchRate = 60,                                                        \
+        .expYield = 166,                                                        \
+        .evYield_Attack = 2,                                                    \
+        .itemCommon = ITEM_SILK_SCARF,                                          \
+        .itemRare = ITEM_BLACK_SLUDGE,                                          \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 20,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                         \
+        .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH }, \
+        .bodyColor = BODY_COLOR_GREEN,                                          \
+        .noFlip = TRUE,                                                         \
+        .speciesName = _("Garbodor"),                                           \
+        .cryId = CRY_GARBODOR,                                                  \
+        .natDexNum = NATIONAL_DEX_GARBODOR,                                     \
+        .categoryName = _("Trash Heap"),                                        \
+        FOOTPRINT(Garbodor)                                                     \
+        LEARNSETS(Garbodor),                                                    \
+        .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,                      \
+        .formChangeTable = sGarbodorFormChangeTable,
         .height = 210,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -4320,7 +4536,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_TRUBBISH
 
 #if P_FAMILY_ZORUA
-#define ZORUA_MISC_INFO                                     \
+    [SPECIES_ZORUA] =
+    {
         .catchRate = 75,                                    \
         .expYield = 66,                                     \
         .evYield_SpAttack = 1,                              \
@@ -4341,33 +4558,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         FOOTPRINT(Zorua)                                    \
-        .formSpeciesIdTable = sZoruaFormSpeciesIdTable
-
-#define ZOROARK_MISC_INFO                                   \
-        .catchRate = 45,                                    \
-        .expYield = 179,                                    \
-        .evYield_SpAttack = 2,                              \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
-        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .speciesName = _("Zoroark"),                        \
-        .cryId = CRY_ZOROARK,                               \
-        .natDexNum = NATIONAL_DEX_ZOROARK,                  \
-        .height = 16,                                       \
-        .pokemonScale = 259,                                \
-        .pokemonOffset = 1,                                 \
-        .trainerScale = 296,                                \
-        .trainerOffset = 1,                                 \
-        FOOTPRINT(Zoroark)                                  \
-        .formSpeciesIdTable = sZoroarkFormSpeciesIdTable
-
-    [SPECIES_ZORUA] =
-    {
-        ZORUA_MISC_INFO,
+        .formSpeciesIdTable = sZoruaFormSpeciesIdTable,
         .baseHP        = 40,
         .baseAttack    = 65,
         .baseDefense   = 40,
@@ -4396,7 +4587,26 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_ZOROARK] =
     {
-        ZOROARK_MISC_INFO,
+        .catchRate = 45,                                    \
+        .expYield = 179,                                    \
+        .evYield_SpAttack = 2,                              \
+        .genderRatio = PERCENT_FEMALE(12.5),                \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
+        .bodyColor = BODY_COLOR_GRAY,                       \
+        .speciesName = _("Zoroark"),                        \
+        .cryId = CRY_ZOROARK,                               \
+        .natDexNum = NATIONAL_DEX_ZOROARK,                  \
+        .height = 16,                                       \
+        .pokemonScale = 259,                                \
+        .pokemonOffset = 1,                                 \
+        .trainerScale = 296,                                \
+        .trainerOffset = 1,                                 \
+        FOOTPRINT(Zoroark)                                  \
+        .formSpeciesIdTable = sZoroarkFormSpeciesIdTable,
         .baseHP        = 60,
         .baseAttack    = 105,
         .baseDefense   = 60,
@@ -4426,7 +4636,27 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_HISUIAN_FORMS
     [SPECIES_ZORUA_HISUIAN] =
     {
-        ZORUA_MISC_INFO,
+        .catchRate = 75,                                    \
+        .expYield = 66,                                     \
+        .evYield_SpAttack = 1,                              \
+        .genderRatio = PERCENT_FEMALE(12.5),                \
+        .eggCycles = 25,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
+        .bodyColor = BODY_COLOR_GRAY,                       \
+        .speciesName = _("Zorua"),                          \
+        .cryId = CRY_ZORUA,                                 \
+        .natDexNum = NATIONAL_DEX_ZORUA,                    \
+        .height = 7,                                        \
+        .weight = 125,                                      \
+        .pokemonScale = 365,                                \
+        .pokemonOffset = 12,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        FOOTPRINT(Zorua)                                    \
+        .formSpeciesIdTable = sZoruaFormSpeciesIdTable,
         .baseHP        = 35,
         .baseAttack    = 60,
         .baseDefense   = 40,
@@ -4456,7 +4686,26 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_ZOROARK_HISUIAN] =
     {
-        ZOROARK_MISC_INFO,
+        .catchRate = 45,                                    \
+        .expYield = 179,                                    \
+        .evYield_SpAttack = 2,                              \
+        .genderRatio = PERCENT_FEMALE(12.5),                \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
+        .abilities = { ABILITY_ILLUSION, ABILITY_NONE },    \
+        .bodyColor = BODY_COLOR_GRAY,                       \
+        .speciesName = _("Zoroark"),                        \
+        .cryId = CRY_ZOROARK,                               \
+        .natDexNum = NATIONAL_DEX_ZOROARK,                  \
+        .height = 16,                                       \
+        .pokemonScale = 259,                                \
+        .pokemonOffset = 1,                                 \
+        .trainerScale = 296,                                \
+        .trainerOffset = 1,                                 \
+        FOOTPRINT(Zoroark)                                  \
+        .formSpeciesIdTable = sZoroarkFormSpeciesIdTable,
         .baseHP        = 55,
         .baseAttack    = 100,
         .baseDefense   = 60,
@@ -5124,7 +5373,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_VANILLITE
 
 #if P_FAMILY_DEERLING
-#define DEERLING_MISC_INFO                                                              \
+    [SPECIES_DEERLING_SPRING] =
+    {
         .baseHP        = 60,                                                            \
         .baseAttack    = 60,                                                            \
         .baseDefense   = 50,                                                            \
@@ -5160,11 +5410,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_H_SLIDE,                                                \
         FOOTPRINT(Deerling)                                                             \
         LEARNSETS(Deerling),                                                            \
-        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable
-
-    [SPECIES_DEERLING_SPRING] =
-    {
-        DEERLING_MISC_INFO,
+        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_PINK,
         .description = COMPOUND_STRING(
             "Deerling have different scents\n"
@@ -5175,9 +5421,45 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(DeerlingSpring, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_SPRING}),
     },
+    
     [SPECIES_DEERLING_SUMMER] =
     {
-        DEERLING_MISC_INFO,
+        .baseHP        = 60,                                                            \
+        .baseAttack    = 60,                                                            \
+        .baseDefense   = 50,                                                            \
+        .baseSpeed     = 75,                                                            \
+        .baseSpAttack  = 40,                                                            \
+        .baseSpDefense = 50,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 190,                                                               \
+        .expYield = 67,                                                                 \
+        .evYield_Speed = 1,                                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .speciesName = _("Deerling"),                                                   \
+        .cryId = CRY_DEERLING,                                                          \
+        .natDexNum = NATIONAL_DEX_DEERLING,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 6,                                                                    \
+        .weight = 195,                                                                  \
+        .pokemonScale = 422,                                                            \
+        .pokemonOffset = 14,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        FRONT_PIC(Deerling, 32, 48),                                                    \
+        .frontPicYOffset = 11,                                                          \
+        .frontAnimFrames = sAnims_Deerling,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        BACK_PIC(Deerling, 48, 56),                                                     \
+        .backPicYOffset = 9,                                                            \
+        .backAnimId = BACK_ANIM_H_SLIDE,                                                \
+        FOOTPRINT(Deerling)                                                             \
+        LEARNSETS(Deerling),                                                            \
+        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_GREEN,
         .description = COMPOUND_STRING(
             "To prevent Deerling from entering\n"
@@ -5188,9 +5470,45 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(DeerlingSummer, 1),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_SUMMER}),
     },
+    
     [SPECIES_DEERLING_AUTUMN] =
     {
-        DEERLING_MISC_INFO,
+        .baseHP        = 60,                                                            \
+        .baseAttack    = 60,                                                            \
+        .baseDefense   = 50,                                                            \
+        .baseSpeed     = 75,                                                            \
+        .baseSpAttack  = 40,                                                            \
+        .baseSpDefense = 50,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 190,                                                               \
+        .expYield = 67,                                                                 \
+        .evYield_Speed = 1,                                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .speciesName = _("Deerling"),                                                   \
+        .cryId = CRY_DEERLING,                                                          \
+        .natDexNum = NATIONAL_DEX_DEERLING,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 6,                                                                    \
+        .weight = 195,                                                                  \
+        .pokemonScale = 422,                                                            \
+        .pokemonOffset = 14,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        FRONT_PIC(Deerling, 32, 48),                                                    \
+        .frontPicYOffset = 11,                                                          \
+        .frontAnimFrames = sAnims_Deerling,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        BACK_PIC(Deerling, 48, 56),                                                     \
+        .backPicYOffset = 9,                                                            \
+        .backAnimId = BACK_ANIM_H_SLIDE,                                                \
+        FOOTPRINT(Deerling)                                                             \
+        LEARNSETS(Deerling),                                                            \
+        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_RED,
         .description = COMPOUND_STRING(
             "Deerling have different scents\n"
@@ -5201,9 +5519,45 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         ICON(DeerlingAutumn, 0),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_AUTUMN}),
     },
+    
     [SPECIES_DEERLING_WINTER] =
     {
-        DEERLING_MISC_INFO,
+        .baseHP        = 60,                                                            \
+        .baseAttack    = 60,                                                            \
+        .baseDefense   = 50,                                                            \
+        .baseSpeed     = 75,                                                            \
+        .baseSpAttack  = 40,                                                            \
+        .baseSpDefense = 50,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 190,                                                               \
+        .expYield = 67,                                                                 \
+        .evYield_Speed = 1,                                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .speciesName = _("Deerling"),                                                   \
+        .cryId = CRY_DEERLING,                                                          \
+        .natDexNum = NATIONAL_DEX_DEERLING,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 6,                                                                    \
+        .weight = 195,                                                                  \
+        .pokemonScale = 422,                                                            \
+        .pokemonOffset = 14,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        FRONT_PIC(Deerling, 32, 48),                                                    \
+        .frontPicYOffset = 11,                                                          \
+        .frontAnimFrames = sAnims_Deerling,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        BACK_PIC(Deerling, 48, 56),                                                     \
+        .backPicYOffset = 9,                                                            \
+        .backAnimId = BACK_ANIM_H_SLIDE,                                                \
+        FOOTPRINT(Deerling)                                                             \
+        LEARNSETS(Deerling),                                                            \
+        .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
         .bodyColor = BODY_COLOR_BROWN,
         .description = COMPOUND_STRING(
             "Deerling's scent changes with the\n"
@@ -5215,7 +5569,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_WINTER}),
     },
 
-#define SAWSBUCK_MISC_INFO                                                              \
+    [SPECIES_SAWSBUCK_SPRING] =
+    {
         .baseHP        = 80,                                                            \
         .baseAttack    = 100,                                                           \
         .baseDefense   = 70,                                                            \
@@ -5250,11 +5605,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,                                         \
         FOOTPRINT(Sawsbuck)                                                             \
         LEARNSETS(Sawsbuck),                                                            \
-        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable
-
-    [SPECIES_SAWSBUCK_SPRING] =
-    {
-        SAWSBUCK_MISC_INFO,
+        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Some people call Sawsbuck the harbingers\n"
             "of spring because the plants growing on\n"
@@ -5268,7 +5619,41 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_SAWSBUCK_SUMMER] =
     {
-        SAWSBUCK_MISC_INFO,
+        .baseHP        = 80,                                                            \
+        .baseAttack    = 100,                                                           \
+        .baseDefense   = 70,                                                            \
+        .baseSpeed     = 95,                                                            \
+        .baseSpAttack  = 60,                                                            \
+        .baseSpDefense = 70,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 75,                                                                \
+        .expYield = 166,                                                                \
+        .evYield_Attack = 2,                                                            \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .bodyColor = BODY_COLOR_BROWN,                                                  \
+        .speciesName = _("Sawsbuck"),                                                   \
+        .cryId = CRY_SAWSBUCK,                                                          \
+        .natDexNum = NATIONAL_DEX_SAWSBUCK,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 19,                                                                   \
+        .weight = 925,                                                                  \
+        .pokemonScale = 256,                                                            \
+        .pokemonOffset = 1,                                                             \
+        .trainerScale = 326,                                                            \
+        .trainerOffset = 4,                                                             \
+        .frontPicYOffset = 0,                                                           \
+        .frontAnimFrames = sAnims_Sawsbuck,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        .backPicYOffset = 5,                                                            \
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,                                         \
+        FOOTPRINT(Sawsbuck)                                                             \
+        LEARNSETS(Sawsbuck),                                                            \
+        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The thicker and larger the\n"
             "branches and leaves on its antlers, the\n"
@@ -5282,7 +5667,41 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_SAWSBUCK_AUTUMN] =
     {
-        SAWSBUCK_MISC_INFO,
+        .baseHP        = 80,                                                            \
+        .baseAttack    = 100,                                                           \
+        .baseDefense   = 70,                                                            \
+        .baseSpeed     = 95,                                                            \
+        .baseSpAttack  = 60,                                                            \
+        .baseSpDefense = 70,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 75,                                                                \
+        .expYield = 166,                                                                \
+        .evYield_Attack = 2,                                                            \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .bodyColor = BODY_COLOR_BROWN,                                                  \
+        .speciesName = _("Sawsbuck"),                                                   \
+        .cryId = CRY_SAWSBUCK,                                                          \
+        .natDexNum = NATIONAL_DEX_SAWSBUCK,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 19,                                                                   \
+        .weight = 925,                                                                  \
+        .pokemonScale = 256,                                                            \
+        .pokemonOffset = 1,                                                             \
+        .trainerScale = 326,                                                            \
+        .trainerOffset = 4,                                                             \
+        .frontPicYOffset = 0,                                                           \
+        .frontAnimFrames = sAnims_Sawsbuck,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        .backPicYOffset = 5,                                                            \
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,                                         \
+        FOOTPRINT(Sawsbuck)                                                             \
+        LEARNSETS(Sawsbuck),                                                            \
+        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Sawsbuck in their Autumn Form are\n"
             "known for having very short\n"
@@ -5296,7 +5715,41 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_SAWSBUCK_WINTER] =
     {
-        SAWSBUCK_MISC_INFO,
+        .baseHP        = 80,                                                            \
+        .baseAttack    = 100,                                                           \
+        .baseDefense   = 70,                                                            \
+        .baseSpeed     = 95,                                                            \
+        .baseSpAttack  = 60,                                                            \
+        .baseSpDefense = 70,                                                            \
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),                                    \
+        .catchRate = 75,                                                                \
+        .expYield = 166,                                                                \
+        .evYield_Attack = 2,                                                            \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 20,                                                                \
+        .friendship = STANDARD_FRIENDSHIP,                                              \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                                   \
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE }, \
+        .bodyColor = BODY_COLOR_BROWN,                                                  \
+        .speciesName = _("Sawsbuck"),                                                   \
+        .cryId = CRY_SAWSBUCK,                                                          \
+        .natDexNum = NATIONAL_DEX_SAWSBUCK,                                             \
+        .categoryName = _("Season"),                                                    \
+        .height = 19,                                                                   \
+        .weight = 925,                                                                  \
+        .pokemonScale = 256,                                                            \
+        .pokemonOffset = 1,                                                             \
+        .trainerScale = 326,                                                            \
+        .trainerOffset = 4,                                                             \
+        .frontPicYOffset = 0,                                                           \
+        .frontAnimFrames = sAnims_Sawsbuck,                                             \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        .backPicYOffset = 5,                                                            \
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,                                         \
+        FOOTPRINT(Sawsbuck)                                                             \
+        LEARNSETS(Sawsbuck),                                                            \
+        .formSpeciesIdTable = sSawsbuckFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Though there are many enthusiasts\n"
             "for Sawsbuck as a species, this\n"
@@ -6863,7 +7316,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_SHELMET
 
 #if P_FAMILY_STUNFISK
-#define STUNFISK_MISC_INFO                                                 \
+    [SPECIES_STUNFISK] =
+    {
         .catchRate = 75,                                                   \
         .expYield = 165,                                                   \
         .evYield_HP = 2,                                                   \
@@ -6881,11 +7335,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .trainerScale = 256,                                               \
         .trainerOffset = 0,                                                \
         FOOTPRINT(Stunfisk)                                                \
-        .formSpeciesIdTable = sStunfiskFormSpeciesIdTable
-
-    [SPECIES_STUNFISK] =
-    {
-        STUNFISK_MISC_INFO,
+        .formSpeciesIdTable = sStunfiskFormSpeciesIdTable,
         .baseHP        = 109,
         .baseAttack    = 66,
         .baseDefense   = 84,
@@ -6918,7 +7368,24 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_GALARIAN_FORMS
     [SPECIES_STUNFISK_GALARIAN] =
     {
-        STUNFISK_MISC_INFO,
+        .catchRate = 75,                                                   \
+        .expYield = 165,                                                   \
+        .evYield_HP = 2,                                                   \
+        .genderRatio = PERCENT_FEMALE(50),                                 \
+        .eggCycles = 20,                                                   \
+        .growthRate = GROWTH_MEDIUM_FAST,                                  \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),\
+        .speciesName = _("Stunfisk"),                                      \
+        .cryId = CRY_STUNFISK,                                             \
+        .natDexNum = NATIONAL_DEX_STUNFISK,                                \
+        .categoryName = _("Trap"),                                         \
+        .height = 7,                                                       \
+        .pokemonScale = 365,                                               \
+        .pokemonOffset = 14,                                               \
+        .trainerScale = 256,                                               \
+        .trainerOffset = 0,                                                \
+        FOOTPRINT(Stunfisk)                                                \
+        .formSpeciesIdTable = sStunfiskFormSpeciesIdTable,
         .baseHP        = 109,
         .baseAttack    = 81,
         .baseDefense   = 99,
@@ -7444,7 +7911,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
                                 {EVO_NONE, 0, SPECIES_BRAVIARY_HISUIAN}),
     },
 
-#define BRAVIARY_MISC_INFO                                      \
+    [SPECIES_BRAVIARY] =
+    {
         .catchRate = 60,                                        \
         .expYield = 179,                                        \
         .genderRatio = MON_MALE,                                \
@@ -7456,11 +7924,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .cryId = CRY_BRAVIARY,                                  \
         .natDexNum = NATIONAL_DEX_BRAVIARY,                     \
         FOOTPRINT(Braviary)                                     \
-        .formSpeciesIdTable = sBraviaryFormSpeciesIdTable
-
-    [SPECIES_BRAVIARY] =
-    {
-        BRAVIARY_MISC_INFO,
+        .formSpeciesIdTable = sBraviaryFormSpeciesIdTable,
         .baseHP        = 100,
         .baseAttack    = 123,
         .baseDefense   = 75,
@@ -7499,7 +7963,18 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_HISUIAN_FORMS
     [SPECIES_BRAVIARY_HISUIAN] =
     {
-        BRAVIARY_MISC_INFO,
+        .catchRate = 60,                                        \
+        .expYield = 179,                                        \
+        .genderRatio = MON_MALE,                                \
+        .eggCycles = 20,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_SLOW,                              \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),          \
+        .speciesName = _("Braviary"),                           \
+        .cryId = CRY_BRAVIARY,                                  \
+        .natDexNum = NATIONAL_DEX_BRAVIARY,                     \
+        FOOTPRINT(Braviary)                                     \
+        .formSpeciesIdTable = sBraviaryFormSpeciesIdTable,
         .baseHP        = 110,
         .baseAttack    = 83,
         .baseDefense   = 70,
@@ -8129,7 +8604,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_VIRIZION
 
 #if P_FAMILY_TORNADUS
-#define TORNADUS_MISC_INFO                                                              \
+    [SPECIES_TORNADUS_INCARNATE] =
+    {
         .types = MON_TYPES(TYPE_FLYING),                                                \
         .catchRate = 3,                                                                 \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,                        \
@@ -8148,11 +8624,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Tornadus)                                                             \
         LEARNSETS(Tornadus),                                                            \
         .formSpeciesIdTable = sTornadusFormSpeciesIdTable,                              \
-        .formChangeTable = sTornadusFormChangeTable
-
-    [SPECIES_TORNADUS_INCARNATE] =
-    {
-        TORNADUS_MISC_INFO,
+        .formChangeTable = sTornadusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -8185,7 +8657,25 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_TORNADUS_THERIAN] =
     {
-        TORNADUS_MISC_INFO,
+        .types = MON_TYPES(TYPE_FLYING),                                                \
+        .catchRate = 3,                                                                 \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,                        \
+        .evYield_Attack = 3,                                                            \
+        .genderRatio = MON_MALE,                                                        \
+        .eggCycles = 120,                                                               \
+        .friendship = 90,                                                               \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_GREEN,                                                  \
+        .isLegendary = TRUE,                                                            \
+        .speciesName = _("Tornadus"),                                                   \
+        .natDexNum = NATIONAL_DEX_TORNADUS,                                             \
+        .categoryName = _("Cyclone"),                                                   \
+        .weight = 630,                                                                  \
+        FOOTPRINT(Tornadus)                                                             \
+        LEARNSETS(Tornadus),                                                            \
+        .formSpeciesIdTable = sTornadusFormSpeciesIdTable,                              \
+        .formChangeTable = sTornadusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 100,
         .baseDefense   = 80,
@@ -8217,7 +8707,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_TORNADUS
 
 #if P_FAMILY_THUNDURUS
-#define THUNDURUS_MISC_INFO                                                             \
+    [SPECIES_THUNDURUS_INCARNATE] =
+    {
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FLYING),                                 \
         .catchRate = 3,                                                                 \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,                        \
@@ -8235,11 +8726,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Thundurus)                                                            \
         LEARNSETS(Thundurus),                                                           \
         .formSpeciesIdTable = sThundurusFormSpeciesIdTable,                             \
-        .formChangeTable = sThundurusFormChangeTable
-
-    [SPECIES_THUNDURUS_INCARNATE] =
-    {
-        THUNDURUS_MISC_INFO,
+        .formChangeTable = sThundurusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -8273,7 +8760,24 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_THUNDURUS_THERIAN] =
     {
-        THUNDURUS_MISC_INFO,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FLYING),                                 \
+        .catchRate = 3,                                                                 \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,                        \
+        .genderRatio = MON_MALE,                                                        \
+        .eggCycles = 120,                                                               \
+        .friendship = 90,                                                               \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_BLUE,                                                   \
+        .isLegendary = TRUE,                                                            \
+        .speciesName = _("Thundurus"),                                                  \
+        .natDexNum = NATIONAL_DEX_THUNDURUS,                                            \
+        .categoryName = _("Bolt Strike"),                                               \
+        .weight = 610,                                                                  \
+        FOOTPRINT(Thundurus)                                                            \
+        LEARNSETS(Thundurus),                                                           \
+        .formSpeciesIdTable = sThundurusFormSpeciesIdTable,                             \
+        .formChangeTable = sThundurusFormChangeTable,
         .baseHP        = 79,
         .baseAttack    = 105,
         .baseDefense   = 70,
@@ -8407,7 +8911,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_ZEKROM
 
 #if P_FAMILY_LANDORUS
-#define LANDORUS_MISC_INFO                                                              \
+    [SPECIES_LANDORUS_INCARNATE] =
+    {
         .types = MON_TYPES(TYPE_GROUND, TYPE_FLYING),                                   \
         .catchRate = 3,                                                                 \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 300 : 270,                        \
@@ -8425,11 +8930,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Landorus)                                                             \
         LEARNSETS(Landorus),                                                            \
         .formSpeciesIdTable = sLandorusFormSpeciesIdTable,                              \
-        .formChangeTable = sLandorusFormChangeTable
-
-    [SPECIES_LANDORUS_INCARNATE] =
-    {
-        LANDORUS_MISC_INFO,
+        .formChangeTable = sLandorusFormChangeTable,
         .baseHP        = 89,
         .baseAttack    = 125,
         .baseDefense   = 90,
@@ -8463,7 +8964,24 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_LANDORUS_THERIAN] =
     {
-        LANDORUS_MISC_INFO,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_FLYING),                                   \
+        .catchRate = 3,                                                                 \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 300 : 270,                        \
+        .genderRatio = MON_MALE,                                                        \
+        .eggCycles = 120,                                                               \
+        .friendship = 90,                                                               \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_BROWN,                                                  \
+        .isLegendary = TRUE,                                                            \
+        .speciesName = _("Landorus"),                                                   \
+        .natDexNum = NATIONAL_DEX_LANDORUS,                                             \
+        .categoryName = _("Abundance"),                                                 \
+        .weight = 680,                                                                  \
+        FOOTPRINT(Landorus)                                                             \
+        LEARNSETS(Landorus),                                                            \
+        .formSpeciesIdTable = sLandorusFormSpeciesIdTable,                              \
+        .formChangeTable = sLandorusFormChangeTable,
         .baseHP        = 89,
         .baseAttack    = 145,
         .baseDefense   = 90,
@@ -8496,7 +9014,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_LANDORUS
 
 #if P_FAMILY_KYUREM
-#define KYUREM_MISC_INFO                                                                \
+    [SPECIES_KYUREM] =
+    {
         .types = MON_TYPES(TYPE_DRAGON, TYPE_ICE),                                      \
         .catchRate = 3,                                                                 \
         .genderRatio = MON_GENDERLESS,                                                  \
@@ -8512,11 +9031,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .weight = 3250,                                                                 \
         FOOTPRINT(Kyurem)                                                               \
         .formSpeciesIdTable = sKyuremFormSpeciesIdTable,                                \
-        .isLegendary = TRUE
-
-    [SPECIES_KYUREM] =
-    {
-        KYUREM_MISC_INFO,
+        .isLegendary = TRUE,
         .baseHP        = 125,
         .baseAttack    = 130,
         .baseDefense   = 90,
@@ -8554,7 +9069,22 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_FUSION_FORMS
     [SPECIES_KYUREM_WHITE] =
     {
-        KYUREM_MISC_INFO,
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_ICE),                                      \
+        .catchRate = 3,                                                                 \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 0,                                                                \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_GRAY,                                                   \
+        .noFlip = TRUE,                                                                 \
+        .speciesName = _("Kyurem"),                                                     \
+        .natDexNum = NATIONAL_DEX_KYUREM,                                               \
+        .categoryName = _("Boundary"),                                                  \
+        .weight = 3250,                                                                 \
+        FOOTPRINT(Kyurem)                                                               \
+        .formSpeciesIdTable = sKyuremFormSpeciesIdTable,                                \
+        .isLegendary = TRUE,
         .baseHP        = 125,
         .baseAttack    = 120,
         .baseDefense   = 90,
@@ -8597,7 +9127,22 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_KYUREM_BLACK] =
     {
-        KYUREM_MISC_INFO,
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_ICE),                                      \
+        .catchRate = 3,                                                                 \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 0,                                                                \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .bodyColor = BODY_COLOR_GRAY,                                                   \
+        .noFlip = TRUE,                                                                 \
+        .speciesName = _("Kyurem"),                                                     \
+        .natDexNum = NATIONAL_DEX_KYUREM,                                               \
+        .categoryName = _("Boundary"),                                                  \
+        .weight = 3250,                                                                 \
+        FOOTPRINT(Kyurem)                                                               \
+        .formSpeciesIdTable = sKyuremFormSpeciesIdTable,                                \
+        .isLegendary = TRUE,
         .baseHP        = 125,
         .baseAttack    = 170,
         .baseDefense   = 100,
@@ -8641,7 +9186,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_KYUREM
 
 #if P_FAMILY_KELDEO
-#define KELDEO_MISC_INFO                                                                \
+    [SPECIES_KELDEO_ORDINARY] =
+    {
         .baseHP        = 91,                                                            \
         .baseAttack    = 72,                                                            \
         .baseDefense   = 90,                                                            \
@@ -8673,11 +9219,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Keldeo)                                                               \
         LEARNSETS(Keldeo),                                                              \
         .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,                                \
-        .formChangeTable = sKeldeoFormChangeTable
-
-    [SPECIES_KELDEO_ORDINARY] =
-    {
-        KELDEO_MISC_INFO,
+        .formChangeTable = sKeldeoFormChangeTable,
         .description = COMPOUND_STRING(
             "When it is resolute, its body fills with\n"
             "power and it becomes swifter. It crosses\n"
@@ -8696,7 +9238,38 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_KELDEO_RESOLUTE] =
     {
-        KELDEO_MISC_INFO,
+        .baseHP        = 91,                                                            \
+        .baseAttack    = 72,                                                            \
+        .baseDefense   = 90,                                                            \
+        .baseSpeed     = 108,                                                           \
+        .baseSpAttack  = 129,                                                           \
+        .baseSpDefense = 90,                                                            \
+        .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),                                  \
+        .catchRate = 3,                                                                 \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 290 : 261,                        \
+        .evYield_SpAttack = 3,                                                          \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 80,                                                                \
+        .friendship = 35,                                                               \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .abilities = { ABILITY_JUSTIFIED, ABILITY_NONE },                               \
+        .bodyColor = BODY_COLOR_YELLOW,                                                 \
+        .isMythical = TRUE,                                                             \
+        .speciesName = _("Keldeo"),                                                     \
+        .cryId = CRY_KELDEO,                                                            \
+        .natDexNum = NATIONAL_DEX_KELDEO,                                               \
+        .categoryName = _("Colt"),                                                      \
+        .height = 14,                                                                   \
+        .weight = 485,                                                                  \
+        .pokemonScale = 265,                                                            \
+        .pokemonOffset = 2,                                                             \
+        .trainerScale = 262,                                                            \
+        .trainerOffset = 0,                                                             \
+        FOOTPRINT(Keldeo)                                                               \
+        LEARNSETS(Keldeo),                                                              \
+        .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,                                \
+        .formChangeTable = sKeldeoFormChangeTable,
         .noFlip = TRUE,
         .description = COMPOUND_STRING(
             "The power that lay hidden in its\n"
@@ -8716,7 +9289,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_KELDEO
 
 #if P_FAMILY_MELOETTA
-#define MELOETTA_MISC_INFO                                                              \
+    [SPECIES_MELOETTA_ARIA] =
+    {
         .catchRate = 3,                                                                 \
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 300 : 270,                        \
         .evYield_Speed = 1,                                                             \
@@ -8744,11 +9318,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOOTPRINT(Meloetta)                                                             \
         LEARNSETS(Meloetta),                                                            \
         .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,                              \
-        .formChangeTable = sMeloettaFormChangeTable
-
-    [SPECIES_MELOETTA_ARIA] =
-    {
-        MELOETTA_MISC_INFO,
+        .formChangeTable = sMeloettaFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 77,
         .baseDefense   = 77,
@@ -8777,7 +9347,34 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_MELOETTA_PIROUETTE] =
     {
-        MELOETTA_MISC_INFO,
+        .catchRate = 3,                                                                 \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 300 : 270,                        \
+        .evYield_Speed = 1,                                                             \
+        .itemCommon = ITEM_STAR_PIECE,                                                  \
+        .itemRare = ITEM_STAR_PIECE,                                                    \
+        .genderRatio = MON_GENDERLESS,                                                  \
+        .eggCycles = 120,                                                               \
+        .friendship = 100,                                                              \
+        .growthRate = GROWTH_SLOW,                                                      \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),                      \
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE },                            \
+        .bodyColor = BODY_COLOR_WHITE,                                                  \
+        .noFlip = TRUE,                                                                 \
+        .isMythical = TRUE,                                                             \
+        .speciesName = _("Meloetta"),                                                   \
+        .cryId = CRY_MELOETTA,                                                          \
+        .natDexNum = NATIONAL_DEX_MELOETTA,                                             \
+        .categoryName = _("Melody"),                                                    \
+        .height = 6,                                                                    \
+        .weight = 65,                                                                   \
+        .pokemonScale = 422,                                                            \
+        .pokemonOffset = 12,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        FOOTPRINT(Meloetta)                                                             \
+        LEARNSETS(Meloetta),                                                            \
+        .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,                              \
+        .formChangeTable = sMeloettaFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 128,
         .baseDefense   = 90,
