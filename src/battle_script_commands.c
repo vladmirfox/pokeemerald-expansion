@@ -4076,7 +4076,7 @@ struct MoveEffectResult CheckOrSetMoveEffect(u16 moveEffect, bool32 primary, boo
     return result;
 }
 
-static bool32 CanApplyAdditionalEffectWithChance(const struct AdditionalEffect *additionalEffect, u32 *percentChance, u32 rngCounter)
+static bool32 CanApplyAdditionalEffectWithChance(const struct AdditionalEffect *additionalEffect, u32 *percentChance, u32 rngCounter, bool32 check)
 {
     // Self-targeting move effects only apply after the last mon has been hit
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -4092,6 +4092,10 @@ static bool32 CanApplyAdditionalEffectWithChance(const struct AdditionalEffect *
     // Certain additional effects only apply on a two-turn move's charge turn
     if (additionalEffect->onChargeTurnOnly != gProtectStructs[gBattlerAttacker].chargingTurn)
         return FALSE;
+
+    // If we're only checking, skip chance check
+    if (check)
+        return TRUE;
 
     // Else, apply based on chance
     *percentChance = CalcSecondaryEffectChance(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker), additionalEffect);
@@ -4151,7 +4155,7 @@ static void Cmd_setadditionaleffects(void)
 
                 // Various checks for if this move effect can be applied this turn
                 // Then activate effect if it's primary (chance == 0) or if RNGesus says so
-                if (check || CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i))
+                if (CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i, check))
                 {
                     hasAtLeastOneSuccess |= (lastResult = CheckOrSetAdditionalEffect(
                         &additionalEffects[i],
@@ -4163,16 +4167,23 @@ static void Cmd_setadditionaleffects(void)
                             gBattlescriptCurrInstr
                     )).pass;
                 }
-                // Reset counter if necessary
-                if ((i + 1) >= additionalEffectsCount)
-                    CLEAR_COUNTER_AND_CONTINUE(break)
             }
-            else
-                CLEAR_COUNTER_AND_CONTINUE(break)
+
+            // Reset counter if necessary
+            if (gBattleStruct->additionalEffectsCounter >= additionalEffectsCount)
+            {
+                gBattleStruct->additionalEffectsCounter = 0;
+                gBattlescriptCurrInstr = cmd->nextInstr;
+                break;
+            }
+
         } while (check && hasAtLeastOneSuccess == 0);
     }
     else
-        CLEAR_COUNTER_AND_CONTINUE()
+    {
+        gBattleStruct->additionalEffectsCounter = 0;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
 
     // If we haven't had a single successful effect after checking, jump to fail instruction
     // Otherwise, call move animation script
@@ -4180,8 +4191,8 @@ static void Cmd_setadditionaleffects(void)
     {
         if (hasAtLeastOneSuccess)
         {
-            // Mark as already checked, called next attack animation
-            // Come back and run effects
+            // Mark as already checked, call attack animation
+            // Come back and actually apply additional effects
             gBattleStruct->additionalEffectsChecked = TRUE;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_AttackAnimation;
