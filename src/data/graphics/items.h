@@ -2071,9 +2071,13 @@ const u32 gItemIconPalette_FineRemedy[] = INCBIN_U32("graphics/items/icon_palett
 const u32 gItemIcon_SuperbRemedy[] = INCBIN_U32("graphics/items/icons/superb_remedy.4bpp.lz");
 const u32 gItemIconPalette_SuperbRemedy[] = INCBIN_U32("graphics/items/icon_palettes/superb_remedy.gbapal.lz");
 
-const u32 gItemIcon_AuxBottle[] = INCBIN_U32("graphics/items/icons/aux_bottle.4bpp.lz");
+const u32 gItemIcon_AuxEvasion[] = INCBIN_U32("graphics/items/icons/aux_evasion.4bpp.lz");
 const u32 gItemIconPalette_AuxEvasion[] = INCBIN_U32("graphics/items/icon_palettes/aux_evasion.gbapal.lz");
+
+const u32 gItemIcon_AuxGuard[] = INCBIN_U32("graphics/items/icons/aux_guard.4bpp.lz");
 const u32 gItemIconPalette_AuxGuard[] = INCBIN_U32("graphics/items/icon_palettes/aux_guard.gbapal.lz");
+
+const u32 gItemIcon_AuxPower[] = INCBIN_U32("graphics/items/icons/aux_power.4bpp.lz");
 const u32 gItemIconPalette_AuxPower[] = INCBIN_U32("graphics/items/icon_palettes/aux_power.gbapal.lz");
 
 const u32 gItemIcon_AuxPowerguard[] = INCBIN_U32("graphics/items/icons/aux_powerguard.4bpp.lz");
