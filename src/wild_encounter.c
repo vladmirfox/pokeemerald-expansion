@@ -905,8 +905,16 @@ u32 CalculateChainFishingShinyRolls(void)
     return (1 + (2 * GetCurrentFishingStreak()));
 }
 
+static void IsChainFishingEnabled(void)
+{
+    return (I_FISHING_CHAIN == TRUE);
+}
+
 static void HandleChainFishingStreak(u32 species)
 {
+    if (!IsChainFishingEnabled())
+        return;
+
     if (DoesSpeciesMatchLastFishingSpecies(species))
     {
         if (!IsChainFishingStreakAtMax())
