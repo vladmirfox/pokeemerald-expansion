@@ -1491,7 +1491,9 @@ bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move)
     if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS || gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
         return TRUE;
 
-    if (AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD)
+    if (AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD
+        || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD
+        || AI_DATA->abilities[battlerAtk] == ABILITY_VICTORY_STAR)
         return TRUE;
 
     if ((gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
