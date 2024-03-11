@@ -1,3 +1,13 @@
+/* TODO: 
+LIST OF ALL TEACHABLE MOVES TO COPY/PASTE
+// TMS/HMS
+    MOVE_FOCUS_PUNCH,
+    MOVE_DRAGON_CLAW,
+    MOVE_WATER_PULSE,
+
+*/
+
+
 static const u16 sNoneTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
