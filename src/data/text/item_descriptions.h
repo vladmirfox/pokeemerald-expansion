@@ -3062,9 +3062,9 @@ static const u8 sTM06Desc[] = _(
     "gradually worsens.");
 
 static const u8 sTM07Desc[] = _(
-    "Creates a hailstorm\n"
-    "that damages all\n"
-    "types except Ice.");
+    "Calls a snowstorm\n"
+    "that ups Defense of\n"
+    "Ice-type Pokémon.");
 
 static const u8 sTM08Desc[] = _(
     "Bulks up the body\n"
