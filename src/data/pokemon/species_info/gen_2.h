@@ -267,19 +267,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_TYPHLOSION] =
     {
-        .catchRate = 45,                                                \
-        .expYield = TYPHLOSION_EXP_YIELD,                               \
-        .evYield_SpAttack = 3,                                          \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                   \
-        .bodyColor = BODY_COLOR_YELLOW,                                 \
-        .speciesName = _("Typhlosion"),                                 \
-        .cryId = CRY_TYPHLOSION,                                        \
-        .natDexNum = NATIONAL_DEX_TYPHLOSION,                           \
-        FOOTPRINT(Typhlosion)                                           \
+        .catchRate = 45,
+        .expYield = TYPHLOSION_EXP_YIELD,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Typhlosion"),
+        .cryId = CRY_TYPHLOSION,
+        .natDexNum = NATIONAL_DEX_TYPHLOSION,
+        FOOTPRINT(Typhlosion)
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
         .baseHP        = 78,
         .baseAttack    = 84,
@@ -317,19 +317,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_HISUIAN_FORMS
     [SPECIES_TYPHLOSION_HISUIAN] =
     {
-        .catchRate = 45,                                                \
-        .expYield = TYPHLOSION_EXP_YIELD,                               \
-        .evYield_SpAttack = 3,                                          \
-        .genderRatio = PERCENT_FEMALE(12.5),                            \
-        .eggCycles = 20,                                                \
-        .friendship = STANDARD_FRIENDSHIP,                              \
-        .growthRate = GROWTH_MEDIUM_SLOW,                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                   \
-        .bodyColor = BODY_COLOR_YELLOW,                                 \
-        .speciesName = _("Typhlosion"),                                 \
-        .cryId = CRY_TYPHLOSION,                                        \
-        .natDexNum = NATIONAL_DEX_TYPHLOSION,                           \
-        FOOTPRINT(Typhlosion)                                           \
+        .catchRate = 45,
+        .expYield = TYPHLOSION_EXP_YIELD,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Typhlosion"),
+        .cryId = CRY_TYPHLOSION,
+        .natDexNum = NATIONAL_DEX_TYPHLOSION,
+        FOOTPRINT(Typhlosion)
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
         .baseHP        = 73,
         .baseAttack    = 84,
@@ -1389,26 +1389,26 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_AMPHAROS] =
     {
-        .catchRate = 45,                                               \
-        .evYield_SpAttack = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(50),                             \
-        .eggCycles = 20,                                               \
-        .friendship = STANDARD_FRIENDSHIP,                             \
-        .growthRate = GROWTH_MEDIUM_SLOW,                              \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),\
-        .bodyColor = BODY_COLOR_YELLOW,                                \
-        .speciesName = _("Ampharos"),                                  \
-        .natDexNum = NATIONAL_DEX_AMPHAROS,                            \
-        .categoryName = _("Light"),                                    \
-        .height = 14,                                                  \
-        .weight = 615,                                                 \
-        .pokemonScale = 256,                                           \
-        .pokemonOffset = 4,                                            \
-        .trainerScale = 256,                                           \
-        .trainerOffset = 0,                                            \
-        FOOTPRINT(Ampharos)                                            \
-        LEARNSETS(Ampharos),                                           \
-        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,             \
+        .catchRate = 45,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Ampharos"),
+        .natDexNum = NATIONAL_DEX_AMPHAROS,
+        .categoryName = _("Light"),
+        .height = 14,
+        .weight = 615,
+        .pokemonScale = 256,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Ampharos)
+        LEARNSETS(Ampharos),
+        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,
         .formChangeTable = sAmpharosFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 75,
@@ -1448,26 +1448,26 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_AMPHAROS_MEGA] =
     {
-        .catchRate = 45,                                               \
-        .evYield_SpAttack = 3,                                         \
-        .genderRatio = PERCENT_FEMALE(50),                             \
-        .eggCycles = 20,                                               \
-        .friendship = STANDARD_FRIENDSHIP,                             \
-        .growthRate = GROWTH_MEDIUM_SLOW,                              \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),\
-        .bodyColor = BODY_COLOR_YELLOW,                                \
-        .speciesName = _("Ampharos"),                                  \
-        .natDexNum = NATIONAL_DEX_AMPHAROS,                            \
-        .categoryName = _("Light"),                                    \
-        .height = 14,                                                  \
-        .weight = 615,                                                 \
-        .pokemonScale = 256,                                           \
-        .pokemonOffset = 4,                                            \
-        .trainerScale = 256,                                           \
-        .trainerOffset = 0,                                            \
-        FOOTPRINT(Ampharos)                                            \
-        LEARNSETS(Ampharos),                                           \
-        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,             \
+        .catchRate = 45,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Ampharos"),
+        .natDexNum = NATIONAL_DEX_AMPHAROS,
+        .categoryName = _("Light"),
+        .height = 14,
+        .weight = 615,
+        .pokemonScale = 256,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Ampharos)
+        LEARNSETS(Ampharos),
+        .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,
         .formChangeTable = sAmpharosFormChangeTable,
         .baseHP        = 90,
         .baseAttack    = 95,
@@ -2228,29 +2228,29 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_FAMILY_WOOPER
     [SPECIES_WOOPER] =
     {
-        .baseHP        = 55,                                                    \
-        .baseAttack    = 45,                                                    \
-        .baseDefense   = 45,                                                    \
-        .baseSpeed     = 15,                                                    \
-        .baseSpAttack  = 25,                                                    \
-        .baseSpDefense = 25,                                                    \
-        .catchRate = 255,                                                       \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 42 : 52,                  \
-        .evYield_HP = 1,                                                        \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),        \
-        .speciesName = _("Wooper"),                                             \
-        .cryId = CRY_WOOPER,                                                    \
-        .natDexNum = NATIONAL_DEX_WOOPER,                                       \
-        .height = 4,                                                            \
-        .pokemonScale = 479,                                                    \
-        .pokemonOffset = 21,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FOOTPRINT(Wooper)                                                       \
+        .baseHP        = 55,
+        .baseAttack    = 45,
+        .baseDefense   = 45,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 25,
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 42 : 52,
+        .evYield_HP = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .speciesName = _("Wooper"),
+        .cryId = CRY_WOOPER,
+        .natDexNum = NATIONAL_DEX_WOOPER,
+        .height = 4,
+        .pokemonScale = 479,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Wooper)
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),
         .abilities = { ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
@@ -2329,29 +2329,29 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_PALDEAN_FORMS
     [SPECIES_WOOPER_PALDEAN] =
     {
-        .baseHP        = 55,                                                    \
-        .baseAttack    = 45,                                                    \
-        .baseDefense   = 45,                                                    \
-        .baseSpeed     = 15,                                                    \
-        .baseSpAttack  = 25,                                                    \
-        .baseSpDefense = 25,                                                    \
-        .catchRate = 255,                                                       \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 42 : 52,                  \
-        .evYield_HP = 1,                                                        \
-        .genderRatio = PERCENT_FEMALE(50),                                      \
-        .eggCycles = 20,                                                        \
-        .friendship = STANDARD_FRIENDSHIP,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),        \
-        .speciesName = _("Wooper"),                                             \
-        .cryId = CRY_WOOPER,                                                    \
-        .natDexNum = NATIONAL_DEX_WOOPER,                                       \
-        .height = 4,                                                            \
-        .pokemonScale = 479,                                                    \
-        .pokemonOffset = 21,                                                    \
-        .trainerScale = 256,                                                    \
-        .trainerOffset = 0,                                                     \
-        FOOTPRINT(Wooper)                                                       \
+        .baseHP        = 55,
+        .baseAttack    = 45,
+        .baseDefense   = 45,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 25,
+        .baseSpDefense = 25,
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 42 : 52,
+        .evYield_HP = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .speciesName = _("Wooper"),
+        .cryId = CRY_WOOPER,
+        .natDexNum = NATIONAL_DEX_WOOPER,
+        .height = 4,
+        .pokemonScale = 479,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Wooper)
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_POISON, TYPE_GROUND),
         .abilities = { ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE },
@@ -3075,39 +3075,39 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_GEN_9_CROSS_EVOS
     [SPECIES_DUDUNSPARCE_TWO_SEGMENT] =
     {
-        .baseHP        = 125,                                                       \
-        .baseAttack    = 100,                                                       \
-        .baseDefense   = 80,                                                        \
-        .baseSpeed     = 55,                                                        \
-        .baseSpAttack  = 85,                                                        \
-        .baseSpDefense = 75,                                                        \
-        .types = MON_TYPES(TYPE_NORMAL),                                            \
-        .catchRate = 45,                                                            \
-        .expYield = 182,                                                            \
-        .evYield_HP = 2,                                                            \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                               \
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                             \
-        .speciesName = _("Dudunsprce"),                                             \
-        .cryId = CRY_DUDUNSPARCE,                                                   \
-        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,                                      \
-        .categoryName = _("Land Snake"),                                            \
-        .pokemonScale = 356,                                                        \
-        .pokemonOffset = 17,                                                        \
-        .trainerScale = 256,                                                        \
-        .trainerOffset = 0,                                                         \
-        FRONT_PIC(DudunsparceTwoSegment, 64, 64),                         \
-        .frontPicYOffset = 10,                                                      \
-        .frontAnimFrames = sAnims_Dudunsparce,                                      \
-        BACK_PIC(DudunsparceTwoSegment, 64, 64),                          \
-        .backPicYOffset = 11,                                                       \
-        PALETTES(Dudunsparce),                                                      \
-        ICON(Dudunsparce, 0),                                                       \
-        LEARNSETS(Dudunsparce),                                                     \
+        .baseHP        = 125,
+        .baseAttack    = 100,
+        .baseDefense   = 80,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 45,
+        .expYield = 182,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Dudunsprce"),
+        .cryId = CRY_DUDUNSPARCE,
+        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+        .categoryName = _("Land Snake"),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(DudunsparceTwoSegment, 64, 64),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Dudunsparce,
+        BACK_PIC(DudunsparceTwoSegment, 64, 64),
+        .backPicYOffset = 11,
+        PALETTES(Dudunsparce),
+        ICON(Dudunsparce, 0),
+        LEARNSETS(Dudunsparce),
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
@@ -3123,39 +3123,39 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] =
     {
-        .baseHP        = 125,                                                       \
-        .baseAttack    = 100,                                                       \
-        .baseDefense   = 80,                                                        \
-        .baseSpeed     = 55,                                                        \
-        .baseSpAttack  = 85,                                                        \
-        .baseSpDefense = 75,                                                        \
-        .types = MON_TYPES(TYPE_NORMAL),                                            \
-        .catchRate = 45,                                                            \
-        .expYield = 182,                                                            \
-        .evYield_HP = 2,                                                            \
-        .genderRatio = PERCENT_FEMALE(50),                                          \
-        .eggCycles = 20,                                                            \
-        .friendship = STANDARD_FRIENDSHIP,                                          \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),                               \
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },   \
-        .bodyColor = BODY_COLOR_YELLOW,                                             \
-        .speciesName = _("Dudunsprce"),                                             \
-        .cryId = CRY_DUDUNSPARCE,                                                   \
-        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,                                      \
-        .categoryName = _("Land Snake"),                                            \
-        .pokemonScale = 356,                                                        \
-        .pokemonOffset = 17,                                                        \
-        .trainerScale = 256,                                                        \
-        .trainerOffset = 0,                                                         \
-        FRONT_PIC(DudunsparceThreeSegment, 64, 64),                         \
-        .frontPicYOffset = 10,                                                      \
-        .frontAnimFrames = sAnims_Dudunsparce,                                      \
-        BACK_PIC(DudunsparceThreeSegment, 64, 64),                          \
-        .backPicYOffset = 11,                                                       \
-        PALETTES(Dudunsparce),                                                      \
-        ICON(Dudunsparce, 0),                                                       \
-        LEARNSETS(Dudunsparce),                                                     \
+        .baseHP        = 125,
+        .baseAttack    = 100,
+        .baseDefense   = 80,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 75,
+        .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 45,
+        .expYield = 182,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Dudunsprce"),
+        .cryId = CRY_DUDUNSPARCE,
+        .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
+        .categoryName = _("Land Snake"),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(DudunsparceThreeSegment, 64, 64),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Dudunsparce,
+        BACK_PIC(DudunsparceThreeSegment, 64, 64),
+        .backPicYOffset = 11,
+        PALETTES(Dudunsparce),
+        ICON(Dudunsparce, 0),
+        LEARNSETS(Dudunsparce),
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
@@ -3392,33 +3392,33 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_QWILFISH] =
     {
-        .baseHP        = 65,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,                            \
-        .baseSpeed     = 85,                                                            \
-        .baseSpAttack  = 55,                                                            \
-        .baseSpDefense = 55,                                                            \
-        .catchRate = 45,                                                                \
-        .expYield = QWILFISH_EXP_YIELD,                                                 \
-        .evYield_Attack = 1,                                                            \
-        .itemRare = ITEM_POISON_BARB,                                                   \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),                                 \
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },  \
-        .speciesName = _("Qwilfish"),                                                   \
-        .cryId = CRY_QWILFISH,                                                          \
-        .natDexNum = NATIONAL_DEX_QWILFISH,                                             \
-        .categoryName = _("Balloon"),                                                   \
-        .height = 5,                                                                    \
-        .weight = 39,                                                                   \
-        .pokemonScale = 430,                                                            \
-        .pokemonOffset = 0,                                                             \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        FOOTPRINT(Qwilfish)                                                             \
+        .baseHP        = 65,
+        .baseAttack    = 95,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 55,
+        .catchRate = 45,
+        .expYield = QWILFISH_EXP_YIELD,
+        .evYield_Attack = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
+        .speciesName = _("Qwilfish"),
+        .cryId = CRY_QWILFISH,
+        .natDexNum = NATIONAL_DEX_QWILFISH,
+        .categoryName = _("Balloon"),
+        .height = 5,
+        .weight = 39,
+        .pokemonScale = 430,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Qwilfish)
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_WATER, TYPE_POISON),
         .bodyColor = BODY_COLOR_GRAY,
@@ -3443,33 +3443,33 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_HISUIAN_FORMS
     [SPECIES_QWILFISH_HISUIAN] =
     {
-        .baseHP        = 65,                                                            \
-        .baseAttack    = 95,                                                            \
-        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,                            \
-        .baseSpeed     = 85,                                                            \
-        .baseSpAttack  = 55,                                                            \
-        .baseSpDefense = 55,                                                            \
-        .catchRate = 45,                                                                \
-        .expYield = QWILFISH_EXP_YIELD,                                                 \
-        .evYield_Attack = 1,                                                            \
-        .itemRare = ITEM_POISON_BARB,                                                   \
-        .genderRatio = PERCENT_FEMALE(50),                                              \
-        .eggCycles = 20,                                                                \
-        .friendship = STANDARD_FRIENDSHIP,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                                               \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),                                 \
-        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },  \
-        .speciesName = _("Qwilfish"),                                                   \
-        .cryId = CRY_QWILFISH,                                                          \
-        .natDexNum = NATIONAL_DEX_QWILFISH,                                             \
-        .categoryName = _("Balloon"),                                                   \
-        .height = 5,                                                                    \
-        .weight = 39,                                                                   \
-        .pokemonScale = 430,                                                            \
-        .pokemonOffset = 0,                                                             \
-        .trainerScale = 256,                                                            \
-        .trainerOffset = 0,                                                             \
-        FOOTPRINT(Qwilfish)                                                             \
+        .baseHP        = 65,
+        .baseAttack    = 95,
+        .baseDefense   = P_UPDATED_STATS >= GEN_7 ? 85 : 75,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 55,
+        .catchRate = 45,
+        .expYield = QWILFISH_EXP_YIELD,
+        .evYield_Attack = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2),
+        .abilities = { ABILITY_POISON_POINT, ABILITY_SWIFT_SWIM, ABILITY_INTIMIDATE },
+        .speciesName = _("Qwilfish"),
+        .cryId = CRY_QWILFISH,
+        .natDexNum = NATIONAL_DEX_QWILFISH,
+        .categoryName = _("Balloon"),
+        .height = 5,
+        .weight = 39,
+        .pokemonScale = 430,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Qwilfish)
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_DARK, TYPE_POISON),
         .bodyColor = BODY_COLOR_BLACK,
@@ -3597,21 +3597,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_FAMILY_HERACROSS
     [SPECIES_HERACROSS] =
     {
-        .types = MON_TYPES(TYPE_BUG, TYPE_FIGHTING),        \
-        .catchRate = 45,                                    \
-        .evYield_Attack = 2,                                \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),         \
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Heracross"),                      \
-        .natDexNum = NATIONAL_DEX_HERACROSS,                \
-        .categoryName = _("Single Horn"),                   \
-        FOOTPRINT(Heracross)                                \
-        LEARNSETS(Heracross),                               \
-        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable, \
+        .types = MON_TYPES(TYPE_BUG, TYPE_FIGHTING),
+        .catchRate = 45,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Heracross"),
+        .natDexNum = NATIONAL_DEX_HERACROSS,
+        .categoryName = _("Single Horn"),
+        FOOTPRINT(Heracross)
+        LEARNSETS(Heracross),
+        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable,
         .formChangeTable = sHeracrossFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 125,
@@ -3649,21 +3649,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_HERACROSS_MEGA] =
     {
-        .types = MON_TYPES(TYPE_BUG, TYPE_FIGHTING),        \
-        .catchRate = 45,                                    \
-        .evYield_Attack = 2,                                \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),         \
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .speciesName = _("Heracross"),                      \
-        .natDexNum = NATIONAL_DEX_HERACROSS,                \
-        .categoryName = _("Single Horn"),                   \
-        FOOTPRINT(Heracross)                                \
-        LEARNSETS(Heracross),                               \
-        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable, \
+        .types = MON_TYPES(TYPE_BUG, TYPE_FIGHTING),
+        .catchRate = 45,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Heracross"),
+        .natDexNum = NATIONAL_DEX_HERACROSS,
+        .categoryName = _("Single Horn"),
+        FOOTPRINT(Heracross)
+        LEARNSETS(Heracross),
+        .formSpeciesIdTable = sHeracrossFormSpeciesIdTable,
         .formChangeTable = sHeracrossFormChangeTable,
         .baseHP        = 80,
         .baseAttack    = 185,
@@ -3702,32 +3702,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_FAMILY_SNEASEL
     [SPECIES_SNEASEL] =
     {
-        .baseHP        = 55,                                    \
-        .baseAttack    = 95,                                    \
-        .baseDefense   = 55,                                    \
-        .baseSpeed     = 115,                                   \
-        .baseSpAttack  = 35,                                    \
-        .baseSpDefense = 75,                                    \
-        .catchRate = 60,                                        \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 86 : 132, \
-        .evYield_Speed = 1,                                     \
-        .itemRare = ITEM_QUICK_CLAW,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),           \
-        .noFlip = TRUE,                                         \
-        .speciesName = _("Sneasel"),                            \
-        .cryId = CRY_SNEASEL,                                   \
-        .natDexNum = NATIONAL_DEX_SNEASEL,                      \
-        .categoryName = _("Sharp Claw"),                        \
-        .height = 9,                                            \
-        .pokemonScale = 413,                                    \
-        .pokemonOffset = -3,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        FOOTPRINT(Sneasel)                                      \
+        .baseHP        = 55,
+        .baseAttack    = 95,
+        .baseDefense   = 55,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 75,
+        .catchRate = 60,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 86 : 132,
+        .evYield_Speed = 1,
+        .itemRare = ITEM_QUICK_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .noFlip = TRUE,
+        .speciesName = _("Sneasel"),
+        .cryId = CRY_SNEASEL,
+        .natDexNum = NATIONAL_DEX_SNEASEL,
+        .categoryName = _("Sharp Claw"),
+        .height = 9,
+        .pokemonScale = 413,
+        .pokemonOffset = -3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Sneasel)
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_DARK, TYPE_ICE),
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET },
@@ -3810,32 +3810,32 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_HISUIAN_FORMS
     [SPECIES_SNEASEL_HISUIAN] =
     {
-        .baseHP        = 55,                                    \
-        .baseAttack    = 95,                                    \
-        .baseDefense   = 55,                                    \
-        .baseSpeed     = 115,                                   \
-        .baseSpAttack  = 35,                                    \
-        .baseSpDefense = 75,                                    \
-        .catchRate = 60,                                        \
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 86 : 132, \
-        .evYield_Speed = 1,                                     \
-        .itemRare = ITEM_QUICK_CLAW,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),           \
-        .noFlip = TRUE,                                         \
-        .speciesName = _("Sneasel"),                            \
-        .cryId = CRY_SNEASEL,                                   \
-        .natDexNum = NATIONAL_DEX_SNEASEL,                      \
-        .categoryName = _("Sharp Claw"),                        \
-        .height = 9,                                            \
-        .pokemonScale = 413,                                    \
-        .pokemonOffset = -3,                                    \
-        .trainerScale = 256,                                    \
-        .trainerOffset = 0,                                     \
-        FOOTPRINT(Sneasel)                                      \
+        .baseHP        = 55,
+        .baseAttack    = 95,
+        .baseDefense   = 55,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 75,
+        .catchRate = 60,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 86 : 132,
+        .evYield_Speed = 1,
+        .itemRare = ITEM_QUICK_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .noFlip = TRUE,
+        .speciesName = _("Sneasel"),
+        .cryId = CRY_SNEASEL,
+        .natDexNum = NATIONAL_DEX_SNEASEL,
+        .categoryName = _("Sharp Claw"),
+        .height = 9,
+        .pokemonScale = 413,
+        .pokemonOffset = -3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Sneasel)
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .types = MON_TYPES(TYPE_FIGHTING, TYPE_POISON),
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET },
@@ -4016,17 +4016,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_GEN_8_CROSS_EVOS
     [SPECIES_URSALUNA] =
     {
-        .expYield = 275,                                    \
-        .types = MON_TYPES(TYPE_GROUND, TYPE_NORMAL),       \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Ursaluna"),                       \
-        .cryId = CRY_URSALUNA,                              \
-        .natDexNum = NATIONAL_DEX_URSALUNA,                 \
-        .categoryName = _("Peat"),                          \
+        .expYield = 275,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_NORMAL),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Ursaluna"),
+        .cryId = CRY_URSALUNA,
+        .natDexNum = NATIONAL_DEX_URSALUNA,
+        .categoryName = _("Peat"),
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,
         .baseHP        = 130,
         .baseAttack    = 140,
@@ -4063,17 +4063,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_URSALUNA_BLOODMOON] =
     {
-        .expYield = 275,                                    \
-        .types = MON_TYPES(TYPE_GROUND, TYPE_NORMAL),       \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
-        .bodyColor = BODY_COLOR_BROWN,                      \
-        .speciesName = _("Ursaluna"),                       \
-        .cryId = CRY_URSALUNA,                              \
-        .natDexNum = NATIONAL_DEX_URSALUNA,                 \
-        .categoryName = _("Peat"),                          \
+        .expYield = 275,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_NORMAL),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Ursaluna"),
+        .cryId = CRY_URSALUNA,
+        .natDexNum = NATIONAL_DEX_URSALUNA,
+        .categoryName = _("Peat"),
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,
         .baseHP        = 113,
         .baseAttack    = 70,
@@ -4385,24 +4385,24 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_CORSOLA] =
     {
-        .catchRate = 60,                                                 \
-        .expYield = CORSOLA_EXP_YIELD,                                   \
-        .evYield_SpDefense = 1,                                          \
-        .genderRatio = PERCENT_FEMALE(75),                               \
-        .eggCycles = 20,                                                 \
-        .friendship = STANDARD_FRIENDSHIP,                               \
-        .growthRate = GROWTH_FAST,                                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),\
-        .speciesName = _("Corsola"),                                     \
-        .cryId = CRY_CORSOLA,                                            \
-        .natDexNum = NATIONAL_DEX_CORSOLA,                               \
-        .categoryName = _("Coral"),                                      \
-        .height = 6,                                                     \
-        .pokemonScale = 410,                                             \
-        .pokemonOffset = 15,                                             \
-        .trainerScale = 256,                                             \
-        .trainerOffset = 0,                                              \
-        FOOTPRINT(Corsola)                                               \
+        .catchRate = 60,
+        .expYield = CORSOLA_EXP_YIELD,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
+        .speciesName = _("Corsola"),
+        .cryId = CRY_CORSOLA,
+        .natDexNum = NATIONAL_DEX_CORSOLA,
+        .categoryName = _("Coral"),
+        .height = 6,
+        .pokemonScale = 410,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Corsola)
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
         .baseHP        = CORSOLA_HP,
         .baseAttack    = 55,
@@ -4436,24 +4436,24 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_GALARIAN_FORMS
     [SPECIES_CORSOLA_GALARIAN] =
     {
-        .catchRate = 60,                                                 \
-        .expYield = CORSOLA_EXP_YIELD,                                   \
-        .evYield_SpDefense = 1,                                          \
-        .genderRatio = PERCENT_FEMALE(75),                               \
-        .eggCycles = 20,                                                 \
-        .friendship = STANDARD_FRIENDSHIP,                               \
-        .growthRate = GROWTH_FAST,                                       \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),\
-        .speciesName = _("Corsola"),                                     \
-        .cryId = CRY_CORSOLA,                                            \
-        .natDexNum = NATIONAL_DEX_CORSOLA,                               \
-        .categoryName = _("Coral"),                                      \
-        .height = 6,                                                     \
-        .pokemonScale = 410,                                             \
-        .pokemonOffset = 15,                                             \
-        .trainerScale = 256,                                             \
-        .trainerOffset = 0,                                              \
-        FOOTPRINT(Corsola)                                               \
+        .catchRate = 60,
+        .expYield = CORSOLA_EXP_YIELD,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(75),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
+        .speciesName = _("Corsola"),
+        .cryId = CRY_CORSOLA,
+        .natDexNum = NATIONAL_DEX_CORSOLA,
+        .categoryName = _("Coral"),
+        .height = 6,
+        .pokemonScale = 410,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FOOTPRINT(Corsola)
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
         .baseHP        = CORSOLA_HP - 5,
         .baseAttack    = 55,
@@ -4890,21 +4890,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_HOUNDOOM] =
     {
-        .types = MON_TYPES(TYPE_DARK, TYPE_FIRE),           \
-        .catchRate = 45,                                    \
-        .evYield_SpAttack = 2,                              \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .speciesName = _("Houndoom"),                       \
-        .natDexNum = NATIONAL_DEX_HOUNDOOM,                 \
-        .categoryName = _("Dark"),                          \
-        FOOTPRINT(Houndoom)                                 \
-        LEARNSETS(Houndoom),                                \
-        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,  \
+        .types = MON_TYPES(TYPE_DARK, TYPE_FIRE),
+        .catchRate = 45,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Houndoom"),
+        .natDexNum = NATIONAL_DEX_HOUNDOOM,
+        .categoryName = _("Dark"),
+        FOOTPRINT(Houndoom)
+        LEARNSETS(Houndoom),
+        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,
         .formChangeTable = sHoundoomFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 90,
@@ -4942,21 +4942,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_HOUNDOOM_MEGA] =
     {
-        .types = MON_TYPES(TYPE_DARK, TYPE_FIRE),           \
-        .catchRate = 45,                                    \
-        .evYield_SpAttack = 2,                              \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),       \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .speciesName = _("Houndoom"),                       \
-        .natDexNum = NATIONAL_DEX_HOUNDOOM,                 \
-        .categoryName = _("Dark"),                          \
-        FOOTPRINT(Houndoom)                                 \
-        LEARNSETS(Houndoom),                                \
-        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,  \
+        .types = MON_TYPES(TYPE_DARK, TYPE_FIRE),
+        .catchRate = 45,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Houndoom"),
+        .natDexNum = NATIONAL_DEX_HOUNDOOM,
+        .categoryName = _("Dark"),
+        FOOTPRINT(Houndoom)
+        LEARNSETS(Houndoom),
+        .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,
         .formChangeTable = sHoundoomFormChangeTable,
         .baseHP        = 75,
         .baseAttack    = 90,
@@ -5574,21 +5574,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 
     [SPECIES_TYRANITAR] =
     {
-        .types = MON_TYPES(TYPE_ROCK, TYPE_DARK),               \
-        .catchRate = 45,                                        \
-        .evYield_Attack = 3,                                    \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),         \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .speciesName = _("Tyranitar"),                          \
-        .natDexNum = NATIONAL_DEX_TYRANITAR,                    \
-        .categoryName = _("Armor"),                             \
-        FOOTPRINT(Tyranitar)                                    \
-        LEARNSETS(Tyranitar),                                   \
-        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,     \
+        .types = MON_TYPES(TYPE_ROCK, TYPE_DARK),
+        .catchRate = 45,
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Tyranitar"),
+        .natDexNum = NATIONAL_DEX_TYRANITAR,
+        .categoryName = _("Armor"),
+        FOOTPRINT(Tyranitar)
+        LEARNSETS(Tyranitar),
+        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,
         .formChangeTable = sTyranitarFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 134,
@@ -5631,21 +5631,21 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #if P_MEGA_EVOLUTIONS
     [SPECIES_TYRANITAR_MEGA] =
     {
-        .types = MON_TYPES(TYPE_ROCK, TYPE_DARK),               \
-        .catchRate = 45,                                        \
-        .evYield_Attack = 3,                                    \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 40,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),         \
-        .bodyColor = BODY_COLOR_GREEN,                          \
-        .speciesName = _("Tyranitar"),                          \
-        .natDexNum = NATIONAL_DEX_TYRANITAR,                    \
-        .categoryName = _("Armor"),                             \
-        FOOTPRINT(Tyranitar)                                    \
-        LEARNSETS(Tyranitar),                                   \
-        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,     \
+        .types = MON_TYPES(TYPE_ROCK, TYPE_DARK),
+        .catchRate = 45,
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Tyranitar"),
+        .natDexNum = NATIONAL_DEX_TYRANITAR,
+        .categoryName = _("Armor"),
+        FOOTPRINT(Tyranitar)
+        LEARNSETS(Tyranitar),
+        .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,
         .formChangeTable = sTyranitarFormChangeTable,
         .baseHP        = 100,
         .baseAttack    = 164,
