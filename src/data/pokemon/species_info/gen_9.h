@@ -4480,7 +4480,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .frontAnimFrames = sAnims_Gimmighoul,                                           \
         LEARNSETS(Gimmighoul),                                                          \
         .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,                            \
-        .evolutions = EVOLUTION({EVO_LEVEL_COLLECT_999, ITEM_GIMMIGHOUL_COIN, SPECIES_GHOLDENGO})
+        .evolutions = EVOLUTION({EVO_LEVEL_ITEM_COUNT_999, ITEM_GIMMIGHOUL_COIN, SPECIES_GHOLDENGO})
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
         //FOOTPRINT(Gimmighoul)
