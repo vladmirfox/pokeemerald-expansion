@@ -1718,6 +1718,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
     u8 i;
     u16 moveId = ScriptReadHalfword(ctx);
 
+    // first, if a mon knows a field move, show it during the animation
     gSpecialVar_Result = PARTY_SIZE;
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -1731,6 +1732,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
             break;
         }
     }
+    // if no mon knows the move, show a mon that can learn it
     if (gSpecialVar_Result == PARTY_SIZE && (CheckBagHasItem(MoveToHM(moveId), 1))){
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -1745,7 +1747,8 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
             }
         }
     }
-    if (gSpecialVar_Result == PARTY_SIZE && PlayerHasMove(moveId)){  // If no mon have the move, but the player has the HM in bag, use the first mon
+    // if no mon has the move, but the player has the HM in bag, use the first mon
+    if (gSpecialVar_Result == PARTY_SIZE && PlayerHasMove(moveId)){
             gSpecialVar_Result = 0;
             gSpecialVar_0x8004 = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
     }
