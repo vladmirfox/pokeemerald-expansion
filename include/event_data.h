@@ -1,6 +1,6 @@
 #ifndef GUARD_EVENT_DATA_H
 #define GUARD_EVENT_DATA_H
-#define NUM_LEVEL_CAPS 8 // sets the number of hard level caps
+#define NUM_LEVEL_CAPS 9 // sets the number of hard level caps
 
 void InitEventData(void);
 void ClearTempFieldEventData(void);

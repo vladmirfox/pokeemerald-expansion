@@ -616,10 +616,11 @@ const u16 sLevelCapFlags[NUM_LEVEL_CAPS] =
 {
     FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
     FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
+    FLAG_IS_CHAMPION,
 };
 
 // sets the acutal levels for each level cap
-const u16 sLevelCaps[NUM_LEVEL_CAPS] = { 13, 21, 35, 44, 52, 58, 65, 72 };
+const u16 sLevelCaps[NUM_LEVEL_CAPS] = { 15, 24, 38, 46, 54, 61, 66, 72, 90 };
 
 // gets the current level cap
 u8 gCurrentLevelCap(void) {
