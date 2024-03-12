@@ -129,7 +129,9 @@ static u8 Fishing_InitDots(struct Task *);
 static u8 Fishing_ShowDots(struct Task *);
 static u8 Fishing_CheckForBite(struct Task *);
 static u8 Fishing_GotBite(struct Task *);
+static u8 Fishing_ChangeMinigame(struct Task *);
 static u8 Fishing_WaitForA(struct Task *);
+static u8 Fishing_APressNoMinigame(struct Task *);
 static u8 Fishing_CheckMoreDots(struct Task *);
 static u8 Fishing_MonOnHook(struct Task *);
 static u8 Fishing_StartEncounter(struct Task *);
@@ -1678,30 +1680,24 @@ static void Task_WaitStopSurfing(u8 taskId)
 #define tPlayerGfxId       data[14]
 #define tFishingRod        data[15]
 
-// Some states are jumped to directly, labeled below
-#define FISHING_START_ROUND 3
-#define FISHING_GOT_BITE 6
-#define FISHING_ON_HOOK 9
-#define FISHING_NO_BITE 11
-#define FISHING_GOT_AWAY 12
-#define FISHING_SHOW_RESULT 13
-
 static bool8 (*const sFishingStateFuncs[])(struct Task *) =
 {
     Fishing_Init,
     Fishing_GetRodOut,
     Fishing_WaitBeforeDots,
-    Fishing_InitDots,       // FISHING_START_ROUND
+    Fishing_InitDots,
     Fishing_ShowDots,
     Fishing_CheckForBite,
-    Fishing_GotBite,        // FISHING_GOT_BITE
+    Fishing_GotBite,
+    Fishing_ChangeMinigame,
     Fishing_WaitForA,
+    Fishing_APressNoMinigame,
     Fishing_CheckMoreDots,
-    Fishing_MonOnHook,      // FISHING_ON_HOOK
+    Fishing_MonOnHook,
     Fishing_StartEncounter,
-    Fishing_NotEvenNibble,  // FISHING_NO_BITE
-    Fishing_GotAway,        // FISHING_GOT_AWAY
-    Fishing_NoMon,          // FISHING_SHOW_RESULT
+    Fishing_NotEvenNibble,
+    Fishing_GotAway,
+    Fishing_NoMon,
     Fishing_PutRodAway,
     Fishing_EndNoMon,
 };
@@ -1857,11 +1853,29 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 
 static bool8 Fishing_GotBite(struct Task *task)
 {
+    DebugPrintf("Fishing_GotBite");
     AlignFishingAnimationFrames();
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_OhABite, 0, 17, 0, NULL);
     task->tStep++;
     task->tFrameCounter = 0;
     return FALSE;
+}
+
+static u8 Fishing_ChangeMinigame(struct Task *task)
+{
+    DebugPrintf("Fishing_ChangeMinigame");
+    switch (I_FISHING_MINIGAME)
+    {
+        case GEN_1:
+        case GEN_2:
+            task->tStep = FISHING_A_PRESS_NO_MINIGAME;
+            break;
+        case GEN_3:
+        default:
+            task->tStep = FISHING_WAIT_FOR_A;
+            break;
+    }
+    return TRUE;
 }
 
 // We have a bite. Now, wait for the player to press A, or the timer to expire.
@@ -1872,6 +1886,8 @@ static bool8 Fishing_WaitForA(struct Task *task)
         [GOOD_ROD]  = 33,
         [SUPER_ROD] = 30
     };
+    DebugPrintf("Fishing_WaitForA");
+
 
     AlignFishingAnimationFrames();
     task->tFrameCounter++;
@@ -1879,6 +1895,14 @@ static bool8 Fishing_WaitForA(struct Task *task)
         task->tStep = FISHING_GOT_AWAY;
     else if (JOY_NEW(A_BUTTON))
         task->tStep++;
+    return FALSE;
+}
+
+static bool8 Fishing_APressNoMinigame(struct Task *task)
+{
+    AlignFishingAnimationFrames();
+    if (JOY_NEW(A_BUTTON))
+        task->tStep = FISHING_ON_HOOK;
     return FALSE;
 }
 
@@ -1911,6 +1935,7 @@ static bool8 Fishing_CheckMoreDots(struct Task *task)
 
 static bool8 Fishing_MonOnHook(struct Task *task)
 {
+    DebugPrintf("Fishing_MonOnHook");
     AlignFishingAnimationFrames();
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     AddTextPrinterParameterized2(0, FONT_NORMAL, gText_PokemonOnHook, 1, 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);

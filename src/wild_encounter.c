@@ -905,7 +905,7 @@ u32 CalculateChainFishingShinyRolls(void)
     return (1 + (2 * GetCurrentFishingStreak()));
 }
 
-static void IsChainFishingEnabled(void)
+static bool32 IsChainFishingEnabled(void)
 {
     return (I_FISHING_CHAIN == TRUE);
 }

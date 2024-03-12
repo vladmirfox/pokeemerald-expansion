@@ -38,7 +38,7 @@
 
 //Fishing
 #define I_FISHING_CHAIN             TRUE    // Hooking the same Pokémon repeatedly will increase the odds of that mon being shiny.
-#define I_FISHING_MINIGAME          GEN_3   // Each generation uses a variation of reeling in Pokémon once they have been hooked.
+#define I_FISHING_MINIGAME          GEN_1   // Each generation uses a variation of reeling in Pokémon once they have been hooked.
 #define I_FISHING_PROXIMITY         TRUE    // Introduces in XY,  fishing away from other people in enclosed areas will increase the chances of a Pokémon being hooked.
 
 #endif // GUARD_CONFIG_ITEM_H
