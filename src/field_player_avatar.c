@@ -33,6 +33,8 @@
 #define NUM_FORCED_MOVEMENTS 18
 #define NUM_ACRO_BIKE_COLLISIONS 5
 
+#define FISHING_PROXIMITY_ODDS
+
 static EWRAM_DATA u8 sSpinStartFacingDir = 0;
 EWRAM_DATA struct ObjectEvent gObjectEvents[OBJECT_EVENTS_COUNT] = {};
 EWRAM_DATA struct PlayerAvatar gPlayerAvatar = {};
@@ -141,6 +143,10 @@ static u8 Fishing_NoMon(struct Task *);
 static u8 Fishing_PutRodAway(struct Task *);
 static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
+static u32 CalculateFishingProximityOdds(void);
+static u32 CalculateFishingBiteOdds(bool32);
+static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
+
 
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
 
@@ -1813,6 +1819,51 @@ static bool8 Fishing_ShowDots(struct Task *task)
     }
 }
 
+static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void)
+{
+    u32 ability;
+
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
+        return FALSE;
+
+    ability = GetMonAbility(&gPlayerParty[0]);
+
+    return (ability == ABILITY_SUCTION_CUPS || ability == ABILITY_STICKY_HOLD);
+}
+
+static u32 CalculateFishingBiteOdds(bool32 isStickyHold)
+{
+    u32 odds = 50;
+
+    if (isStickyHold)
+        odds -= 36;
+
+    return (odds -= CalculateFishingProximityOdds());
+}
+
+static u32 CalculateFishingProximityOdds(void)
+{
+    if (!I_FISHING_PROXIMITY)
+        return 0;
+    else
+        return (3 * 4);
+}
+
+static bool32 Fishing_RollForBite(bool32 isStickyHold)
+{
+    return (Random() > CalculateFishingBiteOdds(isStickyHold));
+}
+
+static bool32 Fishing_CheckForBiteWithStickyHold(void)
+{
+    return Fishing_RollForBite(TRUE);
+}
+
+static bool32 Fishing_CheckForBiteNoStickyHold(void)
+{
+    return Fishing_RollForBite(FALSE);
+}
+
 static bool8 Fishing_CheckForBite(struct Task *task)
 {
     bool8 bite;
@@ -1827,25 +1878,15 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     }
     else
     {
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
-        {
-            u16 ability = GetMonAbility(&gPlayerParty[0]);
-            if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
-            {
-                if (Random() % 100 > 14)
-                    bite = TRUE;
-            }
-        }
+        if(Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold())
+            bite = Fishing_CheckForBiteWithStickyHold();
 
         if (!bite)
-        {
-            if (Random() & 1)
-                task->tStep = FISHING_NO_BITE;
-            else
-                bite = TRUE;
-        }
+            bite = Fishing_CheckForBiteNoStickyHold();
+        else
+            task->tStep = FISHING_NO_BITE;
 
-        if (bite == TRUE)
+        if (bite)
             StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
     }
     return TRUE;
