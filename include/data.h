@@ -113,6 +113,7 @@ struct TypeInfo
     //u16 memory;
     //u16 zCrystal;
     //u16 teraShard;
+    //u16 arceusForm;
 };
 
 extern const u16 gMinigameDigits_Pal[];
