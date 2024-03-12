@@ -2800,18 +2800,9 @@ BattleScript_MoveMissed::
 
 BattleScript_EffectDarkVoid::
 .if B_DARK_VOID_FAIL >= GEN_7
-	jumpifnotspecies BS_ATTACKER, SPECIES_DARKRAI, BattleScript_PokemonCantUseTheMove
+	jumpifspecies BS_ATTACKER, SPECIES_DARKRAI, BattleScript_EffectSleep
 .endif
-BattleScript_EffectSleep::
-	attackcanceler
-	attackstring
-	ppreduce
-	failifcannotsetmoveeffect MOVE_EFFECT_SLEEP
-	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
-	attackanimation
-	waitanimation
-	seteffectprimary MOVE_EFFECT_SLEEP
-	goto BattleScript_MoveEnd
+	goto BattleScript_PokemonCantUseTheMove
 
 BattleScript_TerrainPreventsEnd2::
 	pause B_WAIT_TIME_SHORT
@@ -4782,6 +4773,7 @@ BattleScript_FlatterTryConfuse::
 	seteffectprimary MOVE_EFFECT_CONFUSION
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectSleep::
 BattleScript_EffectBurn::
 	attackcanceler
 	attackstring

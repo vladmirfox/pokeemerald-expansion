@@ -102,8 +102,16 @@
 	.4byte \checkFailInstr
 	.endm
 
-	.macro tryanimateandsetadditionaleffects failInstr=0
+	.macro checkadditionaleffects failInstr=0
 	setadditionaleffects TRUE, \failInstr
+	.endm
+
+	@ status moves must follow this logic
+	.macro tryanimateandsetadditionaleffects failInstr=0
+	checkadditionaleffects \failInstr
+	attackanimation
+	waitanimation
+	setadditionaleffects
 	.endm
 
 	.macro setmoveeffect moveEffect=0, primary:req

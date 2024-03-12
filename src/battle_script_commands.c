@@ -4128,14 +4128,6 @@ static struct MoveEffectResult CheckOrSetAdditionalEffect(const struct Additiona
     }
 }
 
-#define CLEAR_COUNTER_AND_CONTINUE(...)         \
-{                                               \
-    gBattleStruct->additionalEffectsCounter = 0;\
-    if (!cmd->check)                            \
-        gBattlescriptCurrInstr = cmd->nextInstr;\
-    __VA_OPT__(__VA_ARGS__;)                    \
-}
-
 static void Cmd_setadditionaleffects(void)
 {
     // If provided with check, this function will check all the move's additional effects
@@ -4143,8 +4135,11 @@ static void Cmd_setadditionaleffects(void)
     CMD_ARGS(bool8 check, const u8* checkFailInstr);
     GET_ADDITIONAL_EFFECTS_AND_COUNT(gCurrentMove, additionalEffectsCount, additionalEffects);
     bool32 hasAtLeastOneSuccess = 0;
-    bool32 check = cmd->check & !gBattleStruct->additionalEffectsChecked;
     struct MoveEffectResult lastResult = { 0 };
+
+    // By default - go to next instruction
+    const u8 *currInstr = gBattlescriptCurrInstr;
+    gBattlescriptCurrInstr = cmd->nextInstr;
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
@@ -4155,16 +4150,14 @@ static void Cmd_setadditionaleffects(void)
 
                 // Various checks for if this move effect can be applied this turn
                 // Then activate effect if it's primary (chance == 0) or if RNGesus says so
-                if (CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i, check))
+                if (CanApplyAdditionalEffectWithChance(&additionalEffects[i], &percentChance, i, cmd->check))
                 {
                     hasAtLeastOneSuccess |= (lastResult = CheckOrSetAdditionalEffect(
                         &additionalEffects[i],
                         percentChance,
                         gCurrentMove,
-                        check,
-                        ((i + 1) >= additionalEffectsCount) ?
-                            cmd->nextInstr :
-                            gBattlescriptCurrInstr
+                        cmd->check,
+                        ((i + 1) >= additionalEffectsCount) ? cmd->nextInstr : currInstr
                     )).pass;
                 }
             }
@@ -4173,39 +4166,24 @@ static void Cmd_setadditionaleffects(void)
             if (gBattleStruct->additionalEffectsCounter >= additionalEffectsCount)
             {
                 gBattleStruct->additionalEffectsCounter = 0;
-                gBattlescriptCurrInstr = cmd->nextInstr;
                 break;
             }
 
-        } while (check && hasAtLeastOneSuccess == 0);
-    }
-    else
-    {
-        gBattleStruct->additionalEffectsCounter = 0;
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
+        } while (cmd->check && hasAtLeastOneSuccess == 0);
 
-    // If we haven't had a single successful effect after checking, jump to fail instruction
-    // Otherwise, call move animation script
-    if (check)
-    {
-        if (hasAtLeastOneSuccess)
+        // If we haven't had a single successful effect after
+        // checking, go to to fail instruction
+        if (cmd->check && !hasAtLeastOneSuccess)
         {
-            // Mark as already checked, call attack animation
-            // Come back and actually apply additional effects
-            gBattleStruct->additionalEffectsChecked = TRUE;
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_AttackAnimation;
+            // use the blocker script in case of a single effect
+            if (additionalEffectsCount == 1)
+                gBattlescriptCurrInstr = lastResult.nextScript;
+            else if (cmd->checkFailInstr)
+                gBattlescriptCurrInstr = cmd->checkFailInstr;
+            else // sensible default
+                gBattlescriptCurrInstr = BattleScript_ButItFailed;
         }
-        else if (additionalEffectsCount == 1) // use the blocker script in case of a single effect
-            gBattlescriptCurrInstr = lastResult.nextScript;
-        else if (cmd->checkFailInstr)
-            gBattlescriptCurrInstr = cmd->checkFailInstr;
-        else // sensible default
-            gBattlescriptCurrInstr = BattleScript_ButItFailed;
     }
-    else
-        gBattleStruct->additionalEffectsChecked = FALSE;
 }
 
 static void Cmd_setmoveeffect(void)
