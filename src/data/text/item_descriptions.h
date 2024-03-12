@@ -3063,8 +3063,8 @@ static const u8 sTM06Desc[] = _(
 
 static const u8 sTM07Desc[] = _(
     "Calls a snowstorm\n"
-    "that ups Defense of\n"
-    "Ice-type Pokémon.");
+    "that ups Defense\n"
+    "of Ice-types.");
 
 static const u8 sTM08Desc[] = _(
     "Bulks up the body\n"
