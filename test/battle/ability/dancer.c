@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Dancer can copy Teeter Dance")
 
 DOUBLE_BATTLE_TEST("Dancer can copy Teeter Dance and confuse both opposing targets")
 {
-    KNOWN_FAILING; // Fails because opied move that targets both opposing mons, targets only one when copied by Dancer
+    KNOWN_FAILING; // Fails because copied move that targets both opposing mons, targets only one when copied by Dancer
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TEETER_DANCE].danceMove == TRUE);
         PLAYER(SPECIES_WOBBUFFET)
