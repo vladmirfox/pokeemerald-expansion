@@ -303,7 +303,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_None,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 0,
         .backPic = gMonBackPic_CircledQuestionMark,
         .backPicSize = MON_COORDS_SIZE(64, 64),
         //.backPicFemale = gMonBackPic_CircledQuestionMarkF,

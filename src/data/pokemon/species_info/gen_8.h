@@ -1116,11 +1116,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cryId = CRY_ORBEETLE,
         .natDexNum = NATIONAL_DEX_ORBEETLE,
         .categoryName = _("Seven Spot"),
-        FOOTPRINT(Orbeetle)
-        .levelUpLearnset = sOrbeetleLevelUpLearnset,
-        .teachableLearnset = sOrbeetleTeachableLearnset,
-        .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
-        .formChangeTable = sOrbeetleFormChangeTable,
         .height = 4,
         .weight = 408,
         .description = COMPOUND_STRING(
@@ -1134,6 +1129,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Orbeetle,
         .frontPicSize = MON_COORDS_SIZE(48, 56),
+        FOOTPRINT(Orbeetle)
+        .levelUpLearnset = sOrbeetleLevelUpLearnset,
+        .teachableLearnset = sOrbeetleTeachableLearnset,
+        .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
+        .formChangeTable = sOrbeetleFormChangeTable,
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Orbeetle,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -1173,11 +1173,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cryId = CRY_ORBEETLE,
         .natDexNum = NATIONAL_DEX_ORBEETLE,
         .categoryName = _("Seven Spot"),
-        FOOTPRINT(Orbeetle)
-        .levelUpLearnset = sOrbeetleLevelUpLearnset,
-        .teachableLearnset = sOrbeetleTeachableLearnset,
-        .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
-        .formChangeTable = sOrbeetleFormChangeTable,
         .height = 140,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -1191,6 +1186,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_OrbeetleGigantamax,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
+        FOOTPRINT(Orbeetle)
+        .levelUpLearnset = sOrbeetleLevelUpLearnset,
+        .teachableLearnset = sOrbeetleTeachableLearnset,
+        .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
+        .formChangeTable = sOrbeetleFormChangeTable,
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_OrbeetleGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -4524,6 +4524,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_EISCUE
     [SPECIES_EISCUE_ICE_FACE] =
     {
+        .baseHP        = 75,
+        .baseAttack    = 80,
+        .baseDefense   = 110,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_ICE),
         .catchRate = 60,
         .expYield = 165,
@@ -4549,12 +4555,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sEiscueTeachableLearnset,
         .formSpeciesIdTable = sEiscueFormSpeciesIdTable,
         .formChangeTable = sEiscueFormChangeTable,
-        .baseHP        = 75,
-        .baseAttack    = 80,
-        .baseDefense   = 110,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 90,
         .cryId = CRY_EISCUE_ICE_FACE,
         .description = COMPOUND_STRING(
             "It drifted in on the flow of ocean waters\n"
@@ -4578,6 +4578,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_EISCUE_NOICE_FACE] =
     {
+        .baseHP        = 75,
+        .baseAttack    = 80,
+        .baseDefense   = 70,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 50,
         .types = MON_TYPES(TYPE_ICE),
         .catchRate = 60,
         .expYield = 165,
@@ -4603,12 +4609,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sEiscueTeachableLearnset,
         .formSpeciesIdTable = sEiscueFormSpeciesIdTable,
         .formChangeTable = sEiscueFormChangeTable,
-        .baseHP        = 75,
-        .baseAttack    = 80,
-        .baseDefense   = 70,
-        .baseSpeed     = 130,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 50,
         .cryId = CRY_EISCUE_NOICE_FACE,
         .description = COMPOUND_STRING(
             "The hair on its head connects to\n"
@@ -4634,9 +4634,16 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_INDEEDEE
     [SPECIES_INDEEDEE_MALE] =
     {
+        .baseHP        = 60,
+        .baseAttack    = 65,
+        .baseDefense   = 55,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 95,
         .types = MON_TYPES(TYPE_PSYCHIC, TYPE_NORMAL),
         .catchRate = 30,
         .expYield = 166,
+        .evYield_SpAttack = 2,
         .eggCycles = 40,
         .friendship = 140,
         .growthRate = GROWTH_FAST,
@@ -4653,13 +4660,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 0,
         FOOTPRINT(Indeedee)
         .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable,
-        .baseHP        = 60,
-        .baseAttack    = 65,
-        .baseDefense   = 55,
-        .baseSpeed     = 95,
-        .baseSpAttack  = 105,
-        .baseSpDefense = 95,
-        .evYield_SpAttack = 2,
         .genderRatio = MON_MALE,
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE },
         .cryId = CRY_INDEEDEE_MALE,
@@ -4687,9 +4687,16 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_INDEEDEE_FEMALE] =
     {
+        .baseHP        = 70,
+        .baseAttack    = 55,
+        .baseDefense   = 65,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 105,
         .types = MON_TYPES(TYPE_PSYCHIC, TYPE_NORMAL),
         .catchRate = 30,
         .expYield = 166,
+        .evYield_SpDefense = 2,
         .eggCycles = 40,
         .friendship = 140,
         .growthRate = GROWTH_FAST,
@@ -4706,13 +4713,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 0,
         FOOTPRINT(Indeedee)
         .formSpeciesIdTable = sIndeedeeFormSpeciesIdTable,
-        .baseHP        = 70,
-        .baseAttack    = 55,
-        .baseDefense   = 65,
-        .baseSpeed     = 85,
-        .baseSpAttack  = 95,
-        .baseSpDefense = 105,
-        .evYield_SpDefense = 2,
         .genderRatio = MON_FEMALE,
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE },
         .cryId = CRY_INDEEDEE_FEMALE,
@@ -4928,17 +4928,17 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cryId = CRY_COPPERAJAH,
         .natDexNum = NATIONAL_DEX_COPPERAJAH,
         .categoryName = _("Copperderm"),
-        FOOTPRINT(Copperajah)
-        .levelUpLearnset = sCopperajahLevelUpLearnset,
-        .teachableLearnset = sCopperajahTeachableLearnset,
-        .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
-        .formChangeTable = sCopperajahFormChangeTable,
         .height = 30,
         .weight = 6500,
         .description = COMPOUND_STRING(
             "They came over from another region long\n"
             "ago and worked together with humans.\n"
             "Their green skin is resistant to water."),
+        FOOTPRINT(Copperajah)
+        .levelUpLearnset = sCopperajahLevelUpLearnset,
+        .teachableLearnset = sCopperajahTeachableLearnset,
+        .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
+        .formChangeTable = sCopperajahFormChangeTable,
         .pokemonScale = 275,
         .pokemonOffset = 7,
         .trainerScale = 256,
@@ -4983,11 +4983,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .cryId = CRY_COPPERAJAH,
         .natDexNum = NATIONAL_DEX_COPPERAJAH,
         .categoryName = _("Copperderm"),
-        FOOTPRINT(Copperajah)
-        .levelUpLearnset = sCopperajahLevelUpLearnset,
-        .teachableLearnset = sCopperajahTeachableLearnset,
-        .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
-        .formChangeTable = sCopperajahFormChangeTable,
         .height = 230,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -5001,6 +4996,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_CopperajahGigantamax,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
+        FOOTPRINT(Copperajah)
+        .levelUpLearnset = sCopperajahLevelUpLearnset,
+        .teachableLearnset = sCopperajahTeachableLearnset,
+        .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
+        .formChangeTable = sCopperajahFormChangeTable,
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_CopperajahGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
@@ -5564,7 +5564,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_ZACIAN
     [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
     {
+        .baseHP        = 92,
+        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseDefense   = 115,
+        .baseSpeed     = 138,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_FAIRY),
         .catchRate = 10,
+        .expYield = 335,
         .evYield_Speed = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5587,14 +5595,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sZacianTeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
         .formChangeTable = sZacianFormChangeTable,
-        .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
-        .baseDefense   = 115,
-        .baseSpeed     = 138,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 115,
-        .types = MON_TYPES(TYPE_FAIRY),
-        .expYield = 335,
         .cryId = CRY_ZACIAN_HERO_OF_MANY_BATTLES,
         .weight = 1100,
         .description = COMPOUND_STRING(
@@ -5618,7 +5618,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_ZACIAN_CROWNED_SWORD] =
     {
+        .baseHP        = 92,
+        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 150 : 170,
+        .baseDefense   = 115,
+        .baseSpeed     = 148,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_FAIRY, TYPE_STEEL),
         .catchRate = 10,
+        .expYield = 360,
         .evYield_Speed = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5641,14 +5649,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sZacianTeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
         .formChangeTable = sZacianFormChangeTable,
-        .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 150 : 170,
-        .baseDefense   = 115,
-        .baseSpeed     = 148,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 115,
-        .types = MON_TYPES(TYPE_FAIRY, TYPE_STEEL),
-        .expYield = 360,
         .cryId = CRY_ZACIAN_CROWNED_SWORD,
         .weight = 3550,
         .description = COMPOUND_STRING(
@@ -5675,7 +5675,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_ZAMAZENTA
     [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
     {
+        .baseHP        = 92,
+        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseDefense   = 115,
+        .baseSpeed     = 138,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_FIGHTING),
         .catchRate = 10,
+        .expYield = 335,
         .evYield_Speed = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5698,14 +5706,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sZamazentaTeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
         .formChangeTable = sZamazentaFormChangeTable,
-        .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
-        .baseDefense   = 115,
-        .baseSpeed     = 138,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 115,
-        .types = MON_TYPES(TYPE_FIGHTING),
-        .expYield = 335,
         .cryId = CRY_ZAMAZENTA_HERO_OF_MANY_BATTLES,
         .weight = 2100,
         .description = COMPOUND_STRING(
@@ -5730,7 +5730,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_ZAMAZENTA_CROWNED_SHIELD] =
     {
+        .baseHP        = 92,
+        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
+        .baseDefense   = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
+        .baseSpeed     = 128,
+        .baseSpAttack  = 80,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),
         .catchRate = 10,
+        .expYield = 360,
         .evYield_Speed = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5753,14 +5761,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .teachableLearnset = sZamazentaTeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
         .formChangeTable = sZamazentaFormChangeTable,
-        .baseHP        = 92,
-        .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
-        .baseDefense   = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
-        .baseSpeed     = 128,
-        .baseSpAttack  = 80,
-        .baseSpDefense = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_STEEL),
-        .expYield = 360,
         .cryId = CRY_ZAMAZENTA_CROWNED_SHIELD,
         .weight = 7850,
         .description = COMPOUND_STRING(
@@ -5787,8 +5787,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_ETERNATUS
     [SPECIES_ETERNATUS] =
     {
+        .baseHP        = 140,
+        .baseAttack    = 85,
+        .baseDefense   = 95,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 145,
+        .baseSpDefense = 95,
         .types = MON_TYPES(TYPE_POISON, TYPE_DRAGON),
         .catchRate = 255,
+        .expYield = 345,
         .evYield_HP = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5805,13 +5812,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sEternatusLevelUpLearnset,
         .teachableLearnset = sEternatusTeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
-        .baseHP        = 140,
-        .baseAttack    = 85,
-        .baseDefense   = 95,
-        .baseSpeed     = 130,
-        .baseSpAttack  = 145,
-        .baseSpDefense = 95,
-        .expYield = 345,
         .cryId = CRY_ETERNATUS,
         .height = 200,
         .weight = 9500,
@@ -5842,8 +5842,15 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_ETERNATUS_ETERNAMAX] =
     {
+        .baseHP        = 255,
+        .baseAttack    = 115,
+        .baseDefense   = 250,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 125,
+        .baseSpDefense = 250,
         .types = MON_TYPES(TYPE_POISON, TYPE_DRAGON),
         .catchRate = 255,
+        .expYield = 563,
         .evYield_HP = 3,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
@@ -5860,13 +5867,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sEternatusLevelUpLearnset,
         .teachableLearnset = sEternatusTeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
-        .baseHP        = 255,
-        .baseAttack    = 115,
-        .baseDefense   = 250,
-        .baseSpeed     = 130,
-        .baseSpAttack  = 125,
-        .baseSpDefense = 250,
-        .expYield = 563,
         .cryId = CRY_ETERNATUS_ETERNAMAX,
         .height = 1000,
         .weight = 0,
@@ -5955,19 +5955,19 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE] =
     {
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
-        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
-        .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
-        .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
         .baseHP        = 100,
         .baseAttack    = 130,
         .baseDefense   = 100,
         .baseSpeed     = 97,
         .baseSpAttack  = 63,
         .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
         .catchRate = 3,
         .expYield = 275,
         .evYield_Attack = 3,
+        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
+        .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
+        .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggCycles = 120,
         .friendship = STANDARD_FRIENDSHIP,
@@ -6011,19 +6011,19 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] =
     {
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
-        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
-        .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
-        .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
         .baseHP        = 100,
         .baseAttack    = 130,
         .baseDefense   = 100,
         .baseSpeed     = 97,
         .baseSpAttack  = 63,
         .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
         .catchRate = 3,
         .expYield = 275,
         .evYield_Attack = 3,
+        .cryId = CRY_URSHIFU_SINGLE_STRIKE_STYLE,
+        .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
+        .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggCycles = 120,
         .friendship = STANDARD_FRIENDSHIP,
@@ -6067,19 +6067,19 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE] =
     {
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_WATER),
-        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
-        .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
-        .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
         .baseHP        = 100,
         .baseAttack    = 130,
         .baseDefense   = 100,
         .baseSpeed     = 97,
         .baseSpAttack  = 63,
         .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_WATER),
         .catchRate = 3,
         .expYield = 275,
         .evYield_Attack = 3,
+        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
+        .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
+        .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggCycles = 120,
         .friendship = STANDARD_FRIENDSHIP,
@@ -6123,19 +6123,19 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_GIGANTAMAX_FORMS
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] =
     {
-        .types = MON_TYPES(TYPE_FIGHTING, TYPE_WATER),
-        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
-        .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
-        .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
         .baseHP        = 100,
         .baseAttack    = 130,
         .baseDefense   = 100,
         .baseSpeed     = 97,
         .baseSpAttack  = 63,
         .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_WATER),
         .catchRate = 3,
         .expYield = 275,
         .evYield_Attack = 3,
+        .cryId = CRY_URSHIFU_RAPID_STRIKE_STYLE,
+        .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
+        .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggCycles = 120,
         .friendship = STANDARD_FRIENDSHIP,
@@ -6512,11 +6512,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_CALYREX
     [SPECIES_CALYREX] =
     {
-        .speciesName = _("Calyrex"),
-        .natDexNum = NATIONAL_DEX_CALYREX,
-        FOOTPRINT(Calyrex)
-        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -6527,6 +6522,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .catchRate = 3,
         .expYield = 250,
         .evYield_HP = 3,
+        .speciesName = _("Calyrex"),
+        .natDexNum = NATIONAL_DEX_CALYREX,
+        FOOTPRINT(Calyrex)
+        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
         .friendship = 100,
@@ -6567,11 +6567,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FUSION_FORMS
     [SPECIES_CALYREX_ICE_RIDER] =
     {
-        .speciesName = _("Calyrex"),
-        .natDexNum = NATIONAL_DEX_CALYREX,
-        FOOTPRINT(Calyrex)
-        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 165,
         .baseDefense   = 150,
@@ -6582,6 +6577,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .catchRate = 3,
         .expYield = 340,
         .evYield_Attack = 3,
+        .speciesName = _("Calyrex"),
+        .natDexNum = NATIONAL_DEX_CALYREX,
+        FOOTPRINT(Calyrex)
+        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
         .friendship = 100,
@@ -6622,11 +6622,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_CALYREX_SHADOW_RIDER] =
     {
-        .speciesName = _("Calyrex"),
-        .natDexNum = NATIONAL_DEX_CALYREX,
-        FOOTPRINT(Calyrex)
-        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .baseHP        = 100,
         .baseAttack    = 85,
         .baseDefense   = 80,
@@ -6637,6 +6632,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .catchRate = 3,
         .expYield = 340,
         .evYield_SpAttack = 3,
+        .speciesName = _("Calyrex"),
+        .natDexNum = NATIONAL_DEX_CALYREX,
+        FOOTPRINT(Calyrex)
+        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
+        .isLegendary = TRUE,
         .genderRatio = MON_GENDERLESS,
         .eggCycles = 120,
         .friendship = 100,
@@ -6680,6 +6680,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #if P_FAMILY_ENAMORUS
     [SPECIES_ENAMORUS_INCARNATE] =
     {
+        .baseHP        = 74,
+        .baseAttack    = 115,
+        .baseDefense   = 70,
+        .baseSpeed     = 106,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_FAIRY, TYPE_FLYING),
         .catchRate = 3,
         .expYield = 116,
@@ -6703,12 +6709,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sEnamorusLevelUpLearnset,
         .teachableLearnset = sEnamorusTeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
-        .baseHP        = 74,
-        .baseAttack    = 115,
-        .baseDefense   = 70,
-        .baseSpeed     = 106,
-        .baseSpAttack  = 135,
-        .baseSpDefense = 80,
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_CONTRARY },
         .cryId = CRY_ENAMORUS_INCARNATE,
         .description = COMPOUND_STRING(
@@ -6735,6 +6735,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 
     [SPECIES_ENAMORUS_THERIAN] =
     {
+        .baseHP        = 74,
+        .baseAttack    = 115,
+        .baseDefense   = 110,
+        .baseSpeed     = 46,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 100,
         .types = MON_TYPES(TYPE_FAIRY, TYPE_FLYING),
         .catchRate = 3,
         .expYield = 116,
@@ -6758,12 +6764,6 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sEnamorusLevelUpLearnset,
         .teachableLearnset = sEnamorusTeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
-        .baseHP        = 74,
-        .baseAttack    = 115,
-        .baseDefense   = 110,
-        .baseSpeed     = 46,
-        .baseSpAttack  = 135,
-        .baseSpDefense = 100,
         .abilities = { ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE },
         .cryId = CRY_ENAMORUS_THERIAN,
         .description = COMPOUND_STRING(
