@@ -157,6 +157,10 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
         DrawSpindaSpots(personality, dest, FALSE);
         DrawSpindaSpots(personality, dest, TRUE);
     }
+    else if (species == SPECIES_GYARADOS && isFrontPic) {
+        DrawKoiGyaradosSpots(personality, dest, FALSE);
+        DrawKoiGyaradosSpots(personality, dest, TRUE);
+    }
 }
 
 void Unused_LZDecompressWramIndirect(const void **src, void *dest)

@@ -162,6 +162,15 @@ script SunriseVillage_Event_Kirlia {
     end
 }
 
+script SunriseVillage_Event_TestGyarados {
+    lock
+    givemon(SPECIES_SPHEAL, 100)
+    setwildbattle(SPECIES_GYARADOS, 50)
+    dowildbattle
+    release
+    end
+}
+
 script SunriseVillage_Event_TownSign {
     msgbox(format("SUNRISE VILLAGE\n“A village bathing in sunshine.”"), MSGBOX_SIGN)
 }

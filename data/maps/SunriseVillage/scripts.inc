@@ -181,26 +181,40 @@ SunriseVillage_Event_Kirlia::
 	end
 
 
-SunriseVillage_Event_TownSign::
+SunriseVillage_Event_TestGyarados::
 # 166 "data/maps/SunriseVillage/scripts.pory"
+	lock
+# 167 "data/maps/SunriseVillage/scripts.pory"
+	givemon SPECIES_SPHEAL, 100
+# 168 "data/maps/SunriseVillage/scripts.pory"
+	setwildbattle SPECIES_GYARADOS, 50
+# 169 "data/maps/SunriseVillage/scripts.pory"
+	dowildbattle
+# 170 "data/maps/SunriseVillage/scripts.pory"
+	release
+	end
+
+
+SunriseVillage_Event_TownSign::
+# 175 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_PlayersHouseSign::
-# 170 "data/maps/SunriseVillage/scripts.pory"
+# 179 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_PlayersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_RivalsHouseSign::
-# 174 "data/maps/SunriseVillage/scripts.pory"
+# 183 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_RivalsHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_EldersHouseSign::
-# 178 "data/maps/SunriseVillage/scripts.pory"
+# 187 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_EldersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -281,18 +295,18 @@ SunriseVillage_Event_Kirlia_Text_0:
 	.string "...$"
 
 SunriseVillage_Event_TownSign_Text_0:
-# 166 "data/maps/SunriseVillage/scripts.pory"
+# 175 "data/maps/SunriseVillage/scripts.pory"
 	.string "SUNRISE VILLAGE\n"
 	.string "“A village bathing in sunshine.”$"
 
 SunriseVillage_Event_PlayersHouseSign_Text_0:
-# 170 "data/maps/SunriseVillage/scripts.pory"
+# 179 "data/maps/SunriseVillage/scripts.pory"
 	.string "{PLAYER}'s HOUSE$"
 
 SunriseVillage_Event_RivalsHouseSign_Text_0:
-# 174 "data/maps/SunriseVillage/scripts.pory"
+# 183 "data/maps/SunriseVillage/scripts.pory"
 	.string "{RIVAL}'s HOUSE$"
 
 SunriseVillage_Event_EldersHouseSign_Text_0:
-# 178 "data/maps/SunriseVillage/scripts.pory"
+# 187 "data/maps/SunriseVillage/scripts.pory"
 	.string "ELDER IWA's HOUSE$"

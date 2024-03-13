@@ -571,6 +571,15 @@ struct SpindaSpot
     u16 image[SPINDA_SPOT_HEIGHT];
 };
 
+#define GYARADOS_SPOT_WIDTH 32
+#define GYARADOS_SPOT_HEIGHT 32
+
+struct GyaradosSpot
+{
+    u8 x, y;
+    u32 image[GYARADOS_SPOT_HEIGHT];
+};
+
 struct LevelUpMove
 {
     u16 move;
@@ -738,6 +747,7 @@ u16 SpeciesToNationalPokedexNum(u16 species);
 u16 SpeciesToHoennPokedexNum(u16 species);
 u16 HoennToNationalOrder(u16 hoennNum);
 void DrawSpindaSpots(u32 personality, u8 *dest, bool32 isSecondFrame);
+void DrawKoiGyaradosSpots(u32 personality, u8 *dest, bool32 isSecondFrame);
 void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies);
 u8 GetPlayerFlankId(void);
 u16 GetLinkTrainerFlankId(u8 id);
