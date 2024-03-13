@@ -52,7 +52,8 @@
     F(SKILL_SWAP) \
     F(SNATCH) \
     F(OVERHEAT) \
-    F(DAZZLING_GLEAM)
+    F(DAZZLING_GLEAM) \
+    F(POUNCE)
 
 #define FOREACH_HM(F) \
     F(CUT) \

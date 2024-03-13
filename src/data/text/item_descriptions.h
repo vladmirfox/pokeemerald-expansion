@@ -3286,7 +3286,9 @@ static const u8 sTM51Desc[] = _(
     "a powerful flash.");
 
 static const u8 sTM52Desc[] = _( // Todo
-    "?????");
+    "The user pounces\n"
+    "on the foe, which\n"
+    "lowers Speed.");
 
 static const u8 sTM53Desc[] = _( // Todo
     "?????");
