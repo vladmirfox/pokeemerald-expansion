@@ -17,6 +17,7 @@
 * LocalRandom(*val) allows you to have local random states that are the same
 * type as the global states regardless of HQ_RANDOM setting, which is useful
 * if you want to be able to set them from or assign them to gRngValue.
+* SeedLocalRandom(*val, u32) properly seeds a local random state.
 *
 * Random2_32() was added to HQ_RANDOM because the output of the generator is
 * always 32 bits and Random()/Random2() are just wrappers in that mode. It is
@@ -61,6 +62,7 @@ static inline u16 Random(void)
 
 void SeedRng(u32 seed);
 void SeedRng2(u32 seed);
+void SeedLocalRandom(rng_value_t *val, u32 seed);
 
 static inline u16 Random2(void)
 {
@@ -94,6 +96,11 @@ static inline u16 LocalRandom(rng_value_t *val)
 static inline void AdvanceRandom(void)
 {
     Random();
+}
+
+static inline void SeedLocalRandom(rng_value_t *val, u32 seed)
+{
+    *val = seed;
 }
 
 #endif
