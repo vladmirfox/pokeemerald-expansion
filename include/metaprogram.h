@@ -4,7 +4,7 @@
 
 /* Check if VA_OPT_ is supported by the compiler. GCC's version should be at least 9.5*/
 #define PP_THIRD_ARG(a,b,c,...) c
-#define VA_OPT_SUPPORTED_I(...) PP_THIRD_ARG(__VA_OPT__(,),true,false,)
+#define VA_OPT_SUPPORTED_I(...) PP_THIRD_ARG(__VA_OPT__(,),TRUE,FALSE,)
 #define VA_OPT_SUPPORTED VA_OPT_SUPPORTED_I(?)
 
 #if !VA_OPT_SUPPORTED
