@@ -620,16 +620,29 @@ const u16 sLevelCapFlags[NUM_LEVEL_CAPS] =
 };
 
 // sets the acutal levels for each level cap
-const u16 sLevelCaps[NUM_LEVEL_CAPS] = { 15, 24, 38, 46, 54, 61, 66, 72, 90 };
+const u16 sLevelCapsNormal[NUM_LEVEL_CAPS] = { 15, 24, 38, 46, 54, 61, 66, 72, 90 };
+const u16 sLevelCapsHard[NUM_LEVEL_CAPS] = { 14, 23, 37, 45, 53, 60, 65, 71, 89 };
 
 // gets the current level cap
 u8 gCurrentLevelCap(void) {
     u8 i;
 
-    for (i = 0; i < NUM_LEVEL_CAPS; i++) {
-        if (!FlagGet(sLevelCapFlags[i])) {
-            return sLevelCaps[i];
-        }
+    switch (VAR_LEVEL_CAPS)
+    {
+        case OPTIONS_LEVEL_CAPS_NORMAL:
+            for (i = 0; i < NUM_LEVEL_CAPS; i++) {
+                if (!FlagGet(sLevelCapFlags[i])) {
+                    return sLevelCapsNormal[i];
+                }
+            }
+            break;
+        case OPTIONS_LEVEL_CAPS_HARD:
+            for (i = 0; i < NUM_LEVEL_CAPS; i++) {
+                if (!FlagGet(sLevelCapFlags[i])) {
+                    return sLevelCapsHard[i];
+                }
+            }
+            break;
     }
 
     return MAX_LEVEL;

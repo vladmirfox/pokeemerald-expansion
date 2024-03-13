@@ -27,6 +27,7 @@
 #define tWindowFrameType data[6]
 #define tBagInBattle data[7]
 #define tDifficulty data[8]
+#define tLevelCaps data[9]
 
 // menu items pg. 1
 enum
@@ -46,6 +47,7 @@ enum
 {
     MENUITEM_BAGINBATTLE,
     MENUITEM_DIFFICULTY,
+    MENUITEM_LEVELCAPS,
     MENUITEM_CANCEL_PG2,
     MENUITEM_COUNT_PG2,
 };
@@ -67,6 +69,7 @@ enum
 //Pg2
 #define YPOS_BAGINBATTLE     (MENUITEM_BAGINBATTLE * 16)
 #define YPOS_DIFFICULTY      (MENUITEM_DIFFICULTY * 16)
+#define YPOS_LEVELCAPS       (MENUITEM_LEVELCAPS * 16)
 
 #define PAGE_COUNT  2
 
@@ -93,6 +96,8 @@ static u8 FrameType_ProcessInput(u8 selection);
 static void FrameType_DrawChoices(u8 selection);
 static u8 ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
+static u8 LevelCaps_ProcessInput(u8 selection);
+static void LevelCaps_DrawChoices(u8 selection);
 static void DrawHeaderText(void);
 static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
@@ -119,6 +124,7 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
 {
     [MENUITEM_BAGINBATTLE]     = gText_BagInBattle,
     [MENUITEM_DIFFICULTY]      = gText_Difficulty,
+    [MENUITEM_LEVELCAPS]       = gText_LevelCaps,
     [MENUITEM_CANCEL_PG2]      = gText_OptionMenuCancel,
 };
 
@@ -196,6 +202,7 @@ static void ReadAllCurrentSettings(u8 taskId)
     gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
     gTasks[taskId].tBagInBattle = FlagGet(B_FLAG_NO_BAG_USE);
     gTasks[taskId].tDifficulty = VarGet(VAR_DIFFICULTY);
+    gTasks[taskId].tLevelCaps = VarGet(VAR_LEVEL_CAPS);
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -216,6 +223,7 @@ static void DrawOptionsPg2(u8 taskId)
     ReadAllCurrentSettings(taskId);
     BagInBattle_DrawChoices(gTasks[taskId].tBagInBattle);
     Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
+    LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -518,6 +526,13 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tDifficulty)
                 Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
             break;
+        case MENUITEM_LEVELCAPS:
+            previousOption = gTasks[taskId].tLevelCaps;
+            gTasks[taskId].tLevelCaps = LevelCaps_ProcessInput(gTasks[taskId].tLevelCaps);
+
+            if (previousOption != gTasks[taskId].tLevelCaps)
+                LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
+            break;
         default:
             return;
         }
@@ -541,6 +556,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
     gTasks[taskId].tBagInBattle == 0 ? FlagClear(B_FLAG_NO_BAG_USE) : FlagSet(B_FLAG_NO_BAG_USE);
     VarSet(VAR_DIFFICULTY, gTasks[taskId].tDifficulty);
+    VarSet(VAR_LEVEL_CAPS, gTasks[taskId].tLevelCaps);
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -899,6 +915,63 @@ static void Difficulty_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_DifficultyNormal, xMid, YPOS_DIFFICULTY, styles[1]);
 
     DrawOptionMenuChoice(gText_DifficultyHard, GetStringRightAlignXOffset(FONT_NORMAL, gText_DifficultyHard, 198), YPOS_DIFFICULTY, styles[2]);
+}
+
+static u8 LevelCaps_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (selection <= 1)
+            selection++;
+        else
+            selection = 0;
+
+        sArrowPressed = TRUE;
+    }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (selection != 0)
+            selection--;
+        else
+            selection = 2;
+
+        sArrowPressed = TRUE;
+    }
+    return selection;
+}
+
+static void LevelCaps_DrawChoices(u8 selection)
+{
+    u8 styles[3];
+    /* FALSE = Have the middle text be exactly in between where the first text ends and second text begins.
+       TRUE = Have the mid text be in the middle of the frame, ignoring the first and last text size. 
+    Setting it to FALSE is how vanilla code does it for the TEST SPEED, but the layout looks off-center if there's
+    multiple three-item options in one page and the length of characters for the first and last choices
+    of one of the options mismatch.*/
+    bool8 centerMid = TRUE;
+    s32 widthEasy, widthNormal, widthHard, xMid;
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[2] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_LevelCapsNone, 104, YPOS_LEVELCAPS, styles[0]);
+
+    widthNormal = GetStringWidth(FONT_NORMAL, gText_LevelCapsNormal, 0);
+    if (centerMid){
+        xMid = (94 - widthNormal) / 2 + 104;
+    }
+    else{
+        widthEasy = GetStringWidth(FONT_NORMAL, gText_LevelCapsNone, 0);
+        widthHard = GetStringWidth(FONT_NORMAL, gText_LevelCapsHard, 0);
+        widthNormal -= 94;
+        xMid = (widthEasy - widthNormal - widthHard) / 2 + 104;
+    }
+
+    DrawOptionMenuChoice(gText_LevelCapsNormal, xMid, YPOS_LEVELCAPS, styles[1]);
+
+    DrawOptionMenuChoice(gText_LevelCapsHard, GetStringRightAlignXOffset(FONT_NORMAL, gText_LevelCapsHard, 198), YPOS_LEVELCAPS, styles[2]);
 }
 
 static void DrawHeaderText(void)

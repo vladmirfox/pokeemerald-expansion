@@ -212,6 +212,11 @@ void NewGameInitData(void)
     gSaveBlock2Ptr->activeQuest = 0;
     gSaveBlock2Ptr->autoRun = FALSE;
     memset(&gSaveBlock2Ptr->itemFlags, 0, sizeof(gSaveBlock2Ptr->itemFlags));
+
+    // SET OPTION MENU VARIABLES FOR A NEW GAME
+    FlagSet(B_FLAG_NO_BAG_USE);
+    VarSet(VAR_DIFFICULTY, 1);
+    VarSet(VAR_LEVEL_CAPS, OPTIONS_LEVEL_CAPS_NORMAL);
 }
 
 static void ResetMiniGamesRecords(void)
