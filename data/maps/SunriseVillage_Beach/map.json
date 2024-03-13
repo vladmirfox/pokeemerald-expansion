@@ -41,13 +41,6 @@
 
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 14,
-      "y": 5,
-      "elevation": 0,
-      "item": "ITEM_BURN_HEAL",
-      "flag": "FLAG_TEMP_1"
-    }
+
   ]
 }

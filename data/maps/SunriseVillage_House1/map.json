@@ -19,7 +19,7 @@
       "x": 3,
       "y": 3,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -28,7 +28,7 @@
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RALTS)",
       "x": 3,
       "y": 4,
       "elevation": 0,
@@ -54,7 +54,7 @@
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(AZURILL)",
       "x": 7,
       "y": 5,
       "elevation": 0,
