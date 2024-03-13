@@ -46,6 +46,7 @@ u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId);
 void ItemUseOutOfBattle_Pokevial(u8);
 void FieldUseFunc_VsSeeker(u8 taskId);
 void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId);
+void ItemUseOutOfBattle_TownMap(u8 taskId);
 
 enum {
     BALL_THROW_UNABLE_TWO_MONS,

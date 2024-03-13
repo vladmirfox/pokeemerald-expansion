@@ -1489,6 +1489,15 @@ void ItemUseOutOfBattle_CleanseTag(u8 taskId)
     CleanseTagUse(isPlayerUsingRegisteredKeyItem, taskId);
 }
 
+void ItemUseOutOfBattle_TownMap(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        FieldInitRegionMap(CB2_ReturnToField);
+    else
+        FieldInitRegionMap(CB2_ReturnToBagMenuPocket);
+    DestroyTask(taskId);
+}
+
 //Start Pokevial Branch
 static void UsePokevialYes(u8 taskId)
 {
