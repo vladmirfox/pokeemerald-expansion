@@ -49,6 +49,18 @@ const u8 gGreninjaPokedexText[] = _(
     "movements, while slicing them with throwing\n"
     "stars made of compressed water.");
 
+const u8 gScatterbugPokedexText[] = _(
+    "When under attack from bird Pokémon,\n"
+    "it spews a poisonous black powder that\n"
+    "causes paralysis on contact. Scatterbug\n"
+    "can live in any region or climate.");
+
+const u8 gSpewpaPokedexText[] = _(
+    "It lives hidden within thicket shadows.\n"
+    "When predators attack, it quickly bristles\n"
+    "the fur covering its body in an effort to\n"
+    "threaten them.");
+
 const u8 gFurfrouPokedexText[] = _(
     "Trimming its fluffy fur not only makes\n"
     "it more elegant but also increases the\n"

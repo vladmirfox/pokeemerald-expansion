@@ -685,8 +685,10 @@
 #define SPECIES_FLETCHLING                              661
 #define SPECIES_FLETCHINDER                             662
 #define SPECIES_TALONFLAME                              663
-#define SPECIES_SCATTERBUG                              664
-#define SPECIES_SPEWPA                                  665
+#define SPECIES_SCATTERBUG                              SPECIES_SCATTERBUG_ICY_SNOW
+#define SPECIES_SCATTERBUG_ICY_SNOW                     664
+#define SPECIES_SPEWPA                                  SPECIES_SPEWPA_ICY_SNOW
+#define SPECIES_SPEWPA_ICY_SNOW                         665
 #define SPECIES_VIVILLON                                SPECIES_VIVILLON_ICY_SNOW
 #define SPECIES_VIVILLON_ICY_SNOW                       666
 #define SPECIES_LITLEO                                  667

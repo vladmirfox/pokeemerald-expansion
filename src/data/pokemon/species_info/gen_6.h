@@ -857,113 +857,149 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
 #endif //P_FAMILY_FLETCHLING
 
 #if P_FAMILY_SCATTERBUG
-    [SPECIES_SCATTERBUG] =
-    {
-        .baseHP        = 38,
-        .baseAttack    = 35,
-        .baseDefense   = 40,
-        .baseSpeed     = 35,
-        .baseSpAttack  = 27,
-        .baseSpDefense = 25,
-        .types = MON_TYPES(TYPE_BUG),
-        .catchRate = 255,
-        .expYield = 40,
-        .evYield_Defense = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },
-        .bodyColor = BODY_COLOR_BLACK,
-        .speciesName = _("Scatterbug"),
-        .cryId = CRY_SCATTERBUG,
-        .natDexNum = NATIONAL_DEX_SCATTERBUG,
-        .categoryName = _("Scatterdust"),
-        .height = 3,
-        .weight = 25,
-        .description = COMPOUND_STRING(
-            "When under attack from bird Pokémon,\n"
-            "it spews a poisonous black powder that\n"
-            "causes paralysis on contact. Scatterbug\n"
-            "can live in any region or climate."),
-        .pokemonScale = 530,
-        .pokemonOffset = 13,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Scatterbug,
-        .frontPicSize = MON_COORDS_SIZE(32, 48),
-        .frontPicYOffset = 13,
-        .frontAnimFrames = sAnims_Scatterbug,
-        .frontAnimId = ANIM_V_STRETCH,
-        .backPic = gMonBackPic_Scatterbug,
-        .backPicSize = MON_COORDS_SIZE(40, 56),
-        .backPicYOffset = 12,
-        .backAnimId = BACK_ANIM_H_SLIDE,
-        .palette = gMonPalette_Scatterbug,
-        .shinyPalette = gMonShinyPalette_Scatterbug,
-        .iconSprite = gMonIcon_Scatterbug,
-        .iconPalIndex = 1,
-        FOOTPRINT(Scatterbug)
-        .tmIlliterate = TRUE,
-        .levelUpLearnset = sScatterbugLevelUpLearnset,
-        .teachableLearnset = sScatterbugTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA}),
-    },
+#define SCATTERBUG_SPECIES_INFO(evolution)                                                  \
+    {                                                                                       \
+        .baseHP        = 38,                                                                \
+        .baseAttack    = 35,                                                                \
+        .baseDefense   = 40,                                                                \
+        .baseSpeed     = 35,                                                                \
+        .baseSpAttack  = 27,                                                                \
+        .baseSpDefense = 25,                                                                \
+        .types = MON_TYPES(TYPE_BUG),                                                       \
+        .catchRate = 255,                                                                   \
+        .expYield = 40,                                                                     \
+        .evYield_Defense = 1,                                                               \
+        .genderRatio = PERCENT_FEMALE(50),                                                  \
+        .eggCycles = 15,                                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                                         \
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD },  \
+        .bodyColor = BODY_COLOR_BLACK,                                                      \
+        .speciesName = _("Scatterbug"),                                                     \
+        .cryId = CRY_SCATTERBUG,                                                            \
+        .natDexNum = NATIONAL_DEX_SCATTERBUG,                                               \
+        .categoryName = _("Scatterdust"),                                                   \
+        .height = 3,                                                                        \
+        .weight = 25,                                                                       \
+        .description = gScatterbugPokedexText,                                              \
+        .pokemonScale = 530,                                                                \
+        .pokemonOffset = 13,                                                                \
+        .trainerScale = 256,                                                                \
+        .trainerOffset = 0,                                                                 \
+        .frontPic = gMonFrontPic_Scatterbug,                                                \
+        .frontPicSize = MON_COORDS_SIZE(32, 48),                                            \
+        .frontPicYOffset = 13,                                                              \
+        .frontAnimFrames = sAnims_Scatterbug,                                               \
+        .frontAnimId = ANIM_V_STRETCH,                                                      \
+        .backPic = gMonBackPic_Scatterbug,                                                  \
+        .backPicSize = MON_COORDS_SIZE(40, 56),                                             \
+        .backPicYOffset = 12,                                                               \
+        .backAnimId = BACK_ANIM_H_SLIDE,                                                    \
+        .palette = gMonPalette_Scatterbug,                                                  \
+        .shinyPalette = gMonShinyPalette_Scatterbug,                                        \
+        .iconSprite = gMonIcon_Scatterbug,                                                  \
+        .iconPalIndex = 1,                                                                  \
+        FOOTPRINT(Scatterbug)                                                               \
+        .tmIlliterate = TRUE,                                                               \
+        .levelUpLearnset = sScatterbugLevelUpLearnset,                                      \
+        .teachableLearnset = sScatterbugTeachableLearnset,                                  \
+        .formSpeciesIdTable = sScatterbugFormSpeciesIdTable,                                \
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_##evolution}),                \
+    }                                                                                       \
 
-    [SPECIES_SPEWPA] =
-    {
-        .baseHP        = 45,
-        .baseAttack    = 22,
-        .baseDefense   = 60,
-        .baseSpeed     = 29,
-        .baseSpAttack  = 27,
-        .baseSpDefense = 30,
-        .types = MON_TYPES(TYPE_BUG),
-        .catchRate = 120,
-        .expYield = 75,
-        .evYield_Defense = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD },
-        .bodyColor = BODY_COLOR_BLACK,
-        .speciesName = _("Spewpa"),
-        .cryId = CRY_SPEWPA,
-        .natDexNum = NATIONAL_DEX_SPEWPA,
-        .categoryName = _("Scatterdust"),
-        .height = 3,
-        .weight = 84,
-        .description = COMPOUND_STRING(
-            "It lives hidden within thicket shadows.\n"
-            "When predators attack, it quickly bristles\n"
-            "the fur covering its body in an effort to\n"
-            "threaten them."),
-        .pokemonScale = 530,
-        .pokemonOffset = 13,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Spewpa,
-        .frontPicSize = MON_COORDS_SIZE(40, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Spewpa,
-        .frontAnimId = ANIM_V_SHAKE,
-        .backPic = gMonBackPic_Spewpa,
-        .backPicSize = MON_COORDS_SIZE(48, 48),
-        .backPicYOffset = 12,
-        .backAnimId = BACK_ANIM_H_VIBRATE,
-        .palette = gMonPalette_Spewpa,
-        .shinyPalette = gMonShinyPalette_Spewpa,
-        .iconSprite = gMonIcon_Spewpa,
-        .iconPalIndex = 1,
-        FOOTPRINT(Spewpa)
-        .tmIlliterate = TRUE,
-        .levelUpLearnset = sSpewpaLevelUpLearnset,
-        .teachableLearnset = sSpewpaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_ICY_SNOW}),
-    },
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(ICY_SNOW),
+    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO(POLAR),
+    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO(TUNDRA),
+    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO(CONTINENTAL),
+    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO(GARDEN),
+    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO(ELEGANT),
+    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO(MEADOW),
+    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO(MODERN),
+    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO(MARINE),
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO(ARCHIPELAGO),
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO(HIGH_PLAINS),
+    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO(SANDSTORM),
+    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO(RIVER),
+    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO(MONSOON),
+    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO(SAVANNA),
+    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO(SUN),
+    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(OCEAN),
+    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(JUNGLE),
+    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(FANCY),
+    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO(POKE_BALL),
+
+#define SPEWPA_SPECIES_INFO(evolution)                                          \
+    {                                                                           \
+        .baseHP        = 45,                                                    \
+        .baseAttack    = 22,                                                    \
+        .baseDefense   = 60,                                                    \
+        .baseSpeed     = 29,                                                    \
+        .baseSpAttack  = 27,                                                    \
+        .baseSpDefense = 30,                                                    \
+        .types = MON_TYPES(TYPE_BUG),                                           \
+        .catchRate = 120,                                                       \
+        .expYield = 75,                                                         \
+        .evYield_Defense = 2,                                                   \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 15,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                             \
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD }, \
+        .bodyColor = BODY_COLOR_BLACK,                                          \
+        .speciesName = _("Spewpa"),                                             \
+        .cryId = CRY_SPEWPA,                                                    \
+        .natDexNum = NATIONAL_DEX_SPEWPA,                                       \
+        .categoryName = _("Scatterdust"),                                       \
+        .height = 3,                                                            \
+        .weight = 84,                                                           \
+        .description = gSpewpaPokedexText,                                      \
+        .pokemonScale = 530,                                                    \
+        .pokemonOffset = 13,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .frontPic = gMonFrontPic_Spewpa,                                        \
+        .frontPicSize = MON_COORDS_SIZE(40, 48),                                \
+        .frontPicYOffset = 11,                                                  \
+        .frontAnimFrames = sAnims_Spewpa,                                       \
+        .frontAnimId = ANIM_V_SHAKE,                                            \
+        .backPic = gMonBackPic_Spewpa,                                          \
+        .backPicSize = MON_COORDS_SIZE(48, 48),                                 \
+        .backPicYOffset = 12,                                                   \
+        .backAnimId = BACK_ANIM_H_VIBRATE,                                      \
+        .palette = gMonPalette_Spewpa,                                          \
+        .shinyPalette = gMonShinyPalette_Spewpa,                                \
+        .iconSprite = gMonIcon_Spewpa,                                          \
+        .iconPalIndex = 1,                                                      \
+        FOOTPRINT(Spewpa)                                                       \
+        .tmIlliterate = TRUE,                                                   \
+        .levelUpLearnset = sSpewpaLevelUpLearnset,                              \
+        .teachableLearnset = sSpewpaTeachableLearnset,                          \
+        .formSpeciesIdTable = sSpewpaFormSpeciesIdTable,                        \
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_##evolution}), \
+    }
+
+    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(ICY_SNOW),
+    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO(POLAR),
+    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO(TUNDRA),
+    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO(CONTINENTAL),
+    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO(GARDEN),
+    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO(ELEGANT),
+    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO(MEADOW),
+    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO(MODERN),
+    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO(MARINE),
+    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO(ARCHIPELAGO),
+    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO(HIGH_PLAINS),
+    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO(SANDSTORM),
+    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO(RIVER),
+    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO(MONSOON),
+    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO(SAVANNA),
+    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO(SUN),
+    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO(OCEAN),
+    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO(JUNGLE),
+    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO(FANCY),
+    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO(POKE_BALL),
 
 #define VIVILLON_MISC_INFO(form, color, iconPal)                                            \
         .baseHP        = 80,                                                                \
