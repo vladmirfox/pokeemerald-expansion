@@ -87,4 +87,11 @@ enum
     FISHING_END_NO_MON,
 };
 
+enum
+{
+    AXIS_X,
+    AXIS_Y,
+    AXIS_COUNT,
+};
+
 #endif // GUARD_FIELD_PLAYER_AVATAR_H
