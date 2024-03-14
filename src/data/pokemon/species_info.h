@@ -1,6 +1,12 @@
 #include "constants/abilities.h"
 
 // Shared Pokédex entries
+const u8 gRaticateAlolanPokedexText[] = _(
+    "It forms a group of Rattata, which it \n"
+    "assumes command of. Each group\n"
+    "has its own territory, and disputes\n"
+    "over food happen often.");
+
 const u8 gPichuPokedexText[] = _(
     "It is still inept at retaining electricity.\n"
     "When it is startled, it discharges power\n"
