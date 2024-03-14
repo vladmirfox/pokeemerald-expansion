@@ -1867,7 +1867,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Charcadet,
         .shinyPalette = gMonShinyPalette_Charcadet,
         .iconSprite = gMonIcon_Charcadet,
-        .iconPalIndex = 1,
+        .iconPalIndex = 0,
         //FOOTPRINT(Charcadet)
         .levelUpLearnset = sCharcadetLevelUpLearnset,
         .teachableLearnset = sCharcadetTeachableLearnset,
