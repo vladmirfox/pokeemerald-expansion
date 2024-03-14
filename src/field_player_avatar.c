@@ -33,8 +33,6 @@
 #define NUM_FORCED_MOVEMENTS 18
 #define NUM_ACRO_BIKE_COLLISIONS 5
 
-#define FISHING_PROXIMITY_ODDS
-
 static EWRAM_DATA u8 sSpinStartFacingDir = 0;
 EWRAM_DATA struct ObjectEvent gObjectEvents[OBJECT_EVENTS_COUNT] = {};
 EWRAM_DATA struct PlayerAvatar gPlayerAvatar = {};
@@ -1843,20 +1841,15 @@ static u32 CalculateFishingBiteOdds(bool32 isStickyHold)
     return (odds -= CalculateFishingProximityOdds());
 }
 
+#define FISHING_PROXIMITY_ODDS 4
+
 static u32 CalculateFishingProximityOdds(void)
 {
-    u32 facingDirection, metatiles[4] = {0};
-    s16 playerX = 0, playerY = 0;
-    s16 bobberX = 0, bobberY = 0;
-    s16 tileX = 0, tileY = 0;
-    s16 tileCoord[4][2] = {{0,0}};
-    u32 qualify = 0;
-    u32 i = 0;
-    bool32 hasLand = FALSE;
-
+    s16 player[AXIS_COUNT], bobber[AXIS_COUNT], tile[AXIS_COUNT];
+    s16 surroundingTile[CARDINAL_DIRECTION_COUNT][AXIS_COUNT] = {{0,0}};
+    u32 collison, direction, facingDirection, numQualifyingTile = 0;
+    bool32 isTileLand[CARDINAL_DIRECTION_COUNT] = {FALSE};
     struct ObjectEvent *objectEvent;
-    u32 collison;
-
 
     // It is unknown how exactly the feature in XY work. This is an approximation of the observed effects of the feature, and should be updated once a Pokemon X decomp or datamine is available with this information.
 
@@ -1864,112 +1857,56 @@ static u32 CalculateFishingProximityOdds(void)
         return 0;
 
     objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
-    playerX = bobberX = objectEvent->currentCoords.x;
-    playerY = bobberY = objectEvent->currentCoords.y;
+
+    // Get the coordinates for the tiles around the bobber
+    player[AXIS_X] = objectEvent->currentCoords.x;
+    player[AXIS_Y] = objectEvent->currentCoords.y;
+    bobber[AXIS_X] = objectEvent->currentCoords.x;
+    bobber[AXIS_Y] = objectEvent->currentCoords.y;
 
     facingDirection = GetPlayerFacingDirection();
-    MoveCoords(facingDirection, &bobberX, &bobberY);
+    MoveCoords(facingDirection, &bobber[AXIS_X], &bobber[AXIS_Y]);
 
-    DebugPrintf("player| x %d | y %d",playerX,playerY);
-    DebugPrintf("bobber | x %d | y %d",bobberX,bobberY);
-
-    tileCoord[0][0] = bobberX + 1;
-    tileCoord[0][1] = bobberY;
-    tileCoord[1][0] = bobberX;
-    tileCoord[1][1] = bobberY + 1;
-    tileCoord[2][0] = bobberX;
-    tileCoord[2][1] = bobberY - 1;
-    tileCoord[3][0] = bobberX - 1;
-    tileCoord[3][1] = bobberY;
-
-    for(i = 0; i < 4; i++)
+    for(direction = DIR_SOUTH; direction < CARDINAL_DIRECTION_COUNT; direction++)
     {
-        tileX = tileCoord[i][0];
-        tileY = tileCoord[i][1];
+        surroundingTile[direction][AXIS_X] = bobber[AXIS_X];
+        surroundingTile[direction][AXIS_Y] = bobber[AXIS_Y];
+        MoveCoords(direction,&surroundingTile[direction][AXIS_X],&surroundingTile[direction][AXIS_Y]);
+    }
 
-        switch(i)
-        {
-            case DIR_SOUTH:
-                DebugPrintf("start SOUTH");
-                break;
-            case DIR_NORTH:
-                DebugPrintf("start NORTH");
-                break;
-            case DIR_WEST:
-                DebugPrintf("start WEST");
-                break;
-            default:
-            case DIR_EAST:
-                DebugPrintf("start EAST");
-                break;
-        }
-        DebugPrintf("x %d | y %d",tileX,tileY);
+    // Load the coordinates for each tile around the bobber and check against all tile checks
+    for(direction = DIR_SOUTH; direction < CARDINAL_DIRECTION_COUNT; direction++)
+    {
+        tile[AXIS_X] = surroundingTile[direction][AXIS_X];
+        tile[AXIS_Y] = surroundingTile[direction][AXIS_Y];
 
-        collison = GetCollisionAtCoords(objectEvent, tileX, tileY, facingDirection);
-        DebugPrintf("collison %d",collison);
+        collison = GetCollisionAtCoords(objectEvent, tile[AXIS_X], tile[AXIS_Y], facingDirection);
 
-        if (IsPlayerHere(tileX,tileY,playerX,playerY))
-        {
-            DebugPrintf("player is here");
-            metatiles[i] = 0;
-        }
-        else if (MetatileBehavior_IsSurfableFishableWater(MapGridGetMetatileBehaviorAt(tileX, tileY)))
-        {
-            DebugPrintf("surfablefishable water");
-            metatiles[i] = 0;
-        }
-        else if (IsMetatileBlocking(tileX,tileY, collison))
-        {
-            DebugPrintf("tile blocking");
-            qualify++;
-            metatiles[i] = 1;
-        }
-        else if (IsMetatileLand(tileX,tileY, collison))
-        {
-            DebugPrintf("tile land");
-            hasLand = TRUE;
-            metatiles[i] = 2;
-        }
+        if (IsPlayerHere(tile[AXIS_X],tile[AXIS_Y],player[AXIS_X],player[AXIS_Y]))
+            continue;
+        else if (MetatileBehavior_IsSurfableFishableWater(MapGridGetMetatileBehaviorAt(tile[AXIS_X], tile[AXIS_Y])))
+            continue;
+        else if (IsMetatileBlocking(tile[AXIS_X],tile[AXIS_Y], collison))
+            numQualifyingTile++;
+        else if (IsMetatileLand(tile[AXIS_X],tile[AXIS_Y], collison))
+            isTileLand[direction] = TRUE;
         else
-        {
-            DebugPrintf("other");
-            metatiles[i] = 0;
-        }
-
-        switch(i)
-        {
-            case DIR_SOUTH: DebugPrintf("end SOUTH metatiles %d",metatiles[i]);
-                            break;
-            case DIR_NORTH: DebugPrintf("end NORTH metatiles %d",metatiles[i]);
-                            break;
-            case DIR_WEST: DebugPrintf("end WEST metatiles %d",metatiles[i]);
-                           break;
-            default:
-            case DIR_EAST: DebugPrintf("end EAST metatiles %d",metatiles[i]);
-                           break;
-        }
+            continue;
     }
 
-    if (hasLand)
+    // Mark land tiles as qualifiying if not the only one
+    for(direction = DIR_SOUTH; direction < CARDINAL_DIRECTION_COUNT; direction++)
     {
-        for (i = 0; i < 4; i++)
-        {
-            if (metatiles[i] != 2)
-                continue;
+        if (!numQualifyingTile)
+            break;
 
-            if (!qualify)
-            {
-                metatiles[i] = 0;
-                continue;
-            }
+        if (!isTileLand[direction])
+            continue;
 
-            metatiles[i] = 2;
-            qualify++;
-        }
+        numQualifyingTile++;
     }
-    DebugPrintf("qualify %d",qualify);
-    DebugPrintf("------------------");
-    return qualify * 4;
+    DebugPrintf("numQu %d",numQualifyingTile);
+    return (numQualifyingTile * FISHING_PROXIMITY_ODDS);
 }
 
 static bool32 IsPlayerHere(s16 x, s16 y, s16 playerX, s16 playerY)
@@ -2033,21 +1970,21 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     if (!DoesCurrentMapHaveFishingMons())
     {
         task->tStep = FISHING_NO_BITE;
+        return TRUE;
     }
-    else
-    {
-        if(Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold())
-            bite = Fishing_CheckForBiteWithStickyHold();
 
-        if (!bite)
-            bite = Fishing_CheckForBiteNoStickyHold();
+    if(Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold())
+        bite = Fishing_CheckForBiteWithStickyHold();
 
-        if (!bite)
-            task->tStep = FISHING_NO_BITE;
+    if (!bite)
+        bite = Fishing_CheckForBiteNoStickyHold();
 
-        if (bite)
-            StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
-    }
+    if (!bite)
+        task->tStep = FISHING_NO_BITE;
+
+    if (bite)
+        StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
+
     return TRUE;
 }
 
