@@ -795,10 +795,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 14,
         //.backAnimId = BACK_ANIM_NONE,
+<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Nymble,
         .shinyPalette = gMonShinyPalette_Nymble,
         .iconSprite = gMonIcon_Nymble,
         .iconPalIndex = 0,
+=======
+        PALETTES(Nymble),
+        ICON(Nymble, 1),
+>>>>>>> b8ab2f2b4d (Nymble family):src/data/pokemon/species_info/gen_9.h
         //FOOTPRINT(Nymble)
         .levelUpLearnset = sNymbleLevelUpLearnset,
         .teachableLearnset = sNymbleTeachableLearnset,
@@ -848,10 +853,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 7,
         //.backAnimId = BACK_ANIM_NONE,
+<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Lokix,
         .shinyPalette = gMonShinyPalette_Lokix,
         .iconSprite = gMonIcon_Lokix,
         .iconPalIndex = 0,
+=======
+        PALETTES(Lokix),
+        ICON(Lokix, 1),
+>>>>>>> b8ab2f2b4d (Nymble family):src/data/pokemon/species_info/gen_9.h
         //FOOTPRINT(Lokix)
         .levelUpLearnset = sLokixLevelUpLearnset,
         .teachableLearnset = sLokixTeachableLearnset,
