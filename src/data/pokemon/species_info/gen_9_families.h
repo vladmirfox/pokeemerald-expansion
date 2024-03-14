@@ -1279,7 +1279,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Dachsbun,
         .shinyPalette = gMonShinyPalette_Dachsbun,
         .iconSprite = gMonIcon_Dachsbun,
-        .iconPalIndex = 0, // TODO
+        .iconPalIndex = 0,
         //FOOTPRINT(Dachsbun)
         .levelUpLearnset = sDachsbunLevelUpLearnset,
         .teachableLearnset = sDachsbunTeachableLearnset,
