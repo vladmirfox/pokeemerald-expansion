@@ -1712,6 +1712,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         FOOTPRINT(Mothim)                                                   \
         .levelUpLearnset = sMothimLevelUpLearnset,                          \
         .teachableLearnset = sMothimTeachableLearnset,                      \
+        .formSpeciesIdTable = sMothimFormSpeciesIdTable,                    \
     }
 
     [SPECIES_MOTHIM_PLANT_CLOAK] = MOTHIM_SPECIES_INFO,

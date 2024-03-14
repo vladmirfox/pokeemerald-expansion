@@ -803,6 +803,13 @@ static const u16 sWormadamFormSpeciesIdTable[] = {
     SPECIES_WORMADAM_TRASH_CLOAK,
     FORM_SPECIES_END,
 };
+
+static const u16 sMothimFormSpeciesIdTable[] = {
+    SPECIES_MOTHIM_PLANT_CLOAK,
+    SPECIES_MOTHIM_SANDY_CLOAK,
+    SPECIES_MOTHIM_TRASH_CLOAK,
+    FORM_SPECIES_END,
+};
 #endif //P_FAMILY_BURMY
 
 #if P_FAMILY_CHERUBI
