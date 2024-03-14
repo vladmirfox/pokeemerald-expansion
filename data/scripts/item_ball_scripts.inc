@@ -59,7 +59,7 @@ Route110_EventScript_ItemElixir::
 	end
 
 Route111_EventScript_ItemTMSandstorm::
-	finditem ITEM_TM_SANDSTORM
+	finditem ITEM_TM_SHADOW_CLAW
 	end
 
 Route111_EventScript_ItemStardust::

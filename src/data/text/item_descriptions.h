@@ -3187,9 +3187,9 @@ static const u8 sTM31Desc[] = _(
     "and causes damage.");
 
 static const u8 sTM32Desc[] = _(
-    "Creates illusory\n"
-    "copies to enhance\n"
-    "elusiveness.");
+    "Deal double damage\n"
+    "if the user is not\n"
+    "holding an item.");
 
 static const u8 sTM33Desc[] = _(
     "Creates a wall of\n"
@@ -3212,9 +3212,9 @@ static const u8 sTM36Desc[] = _(
     "the foe.");
 
 static const u8 sTM37Desc[] = _(
-    "Causes a sandstorm\n"
-    "that hits the foe\n"
-    "over several turns.");
+    "Strikes with a\n"
+    "shadow claw. High\n"
+    "critical-hit rate.");
 
 static const u8 sTM38Desc[] = _(
     "A powerful fire\n"
@@ -3232,9 +3232,8 @@ static const u8 sTM40Desc[] = _(
     "be avoided.");
 
 static const u8 sTM41Desc[] = _(
-    "Prevents the foe\n"
-    "from using the same\n"
-    "move in a row.");
+    "Fires a perculiar\n"
+    "ray at the foe.");
 
 static const u8 sTM42Desc[] = _(
     "Raises Attack when\n"
@@ -3242,9 +3241,8 @@ static const u8 sTM42Desc[] = _(
     "or paralyzed.");
 
 static const u8 sTM43Desc[] = _(
-    "Adds an effect to\n"
-    "attack depending\n"
-    "on the location.");
+    "The user lets out\n"
+    "a charming cry.");
 
 static const u8 sTM44Desc[] = _(
     "The user sleeps for\n"
@@ -3252,9 +3250,9 @@ static const u8 sTM44Desc[] = _(
     "health and status.");
 
 static const u8 sTM45Desc[] = _(
-    "Makes it tough to\n"
-    "attack a foe of the\n"
-    "opposite gender.");
+    "The user attacks\n"
+    "suddenly, raising\n"
+    "its Speed.");
 
 static const u8 sTM46Desc[] = _(
     "While attacking,\n"
@@ -3272,9 +3270,9 @@ static const u8 sTM48Desc[] = _(
     "turn this is used.");
 
 static const u8 sTM49Desc[] = _(
-    "Steals the effects\n"
-    "of the move the foe\n"
-    "is trying to use.");
+    "Doubles in power\n"
+    "if used after a\n"
+    "failed move.");
 
 static const u8 sTM50Desc[] = _(
     "Enables full-power\n"

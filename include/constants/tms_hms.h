@@ -33,24 +33,24 @@
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \
-    F(DOUBLE_TEAM) \
+    F(ACROBATICS) \
     F(REFLECT) \
     F(SHOCK_WAVE) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    F(SANDSTORM) \
+    F(SHADOW_CLAW) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \
-    F(TORMENT) \
+    F(PSYBEAM) \
     F(FACADE) \
-    F(SECRET_POWER) \
+    F(DISARMING_VOICE) \
     F(REST) \
-    F(ATTRACT) \
+    F(TRAILBLAZE) \
     F(THIEF) \
     F(STEEL_WING) \
     F(SKILL_SWAP) \
-    F(SNATCH) \
+    F(STOMPING_TANTRUM) \
     F(OVERHEAT) \
     F(DAZZLING_GLEAM) \
     F(POUNCE)
