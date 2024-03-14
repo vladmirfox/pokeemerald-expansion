@@ -3062,9 +3062,9 @@ static const u8 sTM06Desc[] = _(
     "gradually worsens.");
 
 static const u8 sTM07Desc[] = _(
-    "Calls a snowstorm\n"
-    "that ups Defense\n"
-    "of Ice-types.");
+    "Attacks the foe\n"
+    "with the power of\n"
+    "nature.");
 
 static const u8 sTM08Desc[] = _(
     "Bulks up the body\n"
@@ -3077,14 +3077,14 @@ static const u8 sTM09Desc[] = _(
     "the foe.");
 
 static const u8 sTM10Desc[] = _(
-    "The attack power\n"
+    "The attack's type\n"
     "varies among\n"
     "different Pokémon.");
 
 static const u8 sTM11Desc[] = _(
-    "Raises the power of\n"
-    "Fire-type moves\n"
-    "for 5 turns.");
+    "Sharpens claws to \n"
+    "raise Attack and\n"
+    "accuracy.");
 
 static const u8 sTM12Desc[] = _(
     "Enrages the foe so\n"
@@ -3117,9 +3117,9 @@ static const u8 sTM17Desc[] = _(
     "in succession.");
 
 static const u8 sTM18Desc[] = _(
-    "Raises the power of\n"
-    "Water-type moves\n"
-    "for 5 turns.");
+    "Powerful, but needs\n"
+    "recharging the\n"
+    "next turn.");
 
 static const u8 sTM19Desc[] = _(
     "Recovers half the\n"
@@ -3132,9 +3132,9 @@ static const u8 sTM20Desc[] = _(
     "mystical power.");
 
 static const u8 sTM21Desc[] = _(
-    "The less the user\n"
-    "likes you, the more\n"
-    "powerful this move.");
+    "A sinister ray\n"
+    "that will always\n"
+    "confuse the foe.");
 
 static const u8 sTM22Desc[] = _(
     "Absorbs sunlight in\n"
@@ -3285,7 +3285,7 @@ static const u8 sTM51Desc[] = _(
     "Deals damage with\n"
     "a powerful flash.");
 
-static const u8 sTM52Desc[] = _( // Todo
+static const u8 sTM52Desc[] = _( 
     "The user pounces\n"
     "on the foe, which\n"
     "lowers Speed.");

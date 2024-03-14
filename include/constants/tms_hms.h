@@ -8,21 +8,21 @@
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
-    F(SNOWSCAPE) \
+    F(ENERGY_BALL) \
     F(BULK_UP) \
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
-    F(SUNNY_DAY) \
+    F(HONE_CLAWS) \
     F(TAUNT) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
     F(HYPER_BEAM) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
-    F(RAIN_DANCE) \
+    F(GIGA_IMPACT) \
     F(GIGA_DRAIN) \
     F(SAFEGUARD) \
-    F(FRUSTRATION) \
+    F(CONFUSE_RAY) \
     F(SOLAR_BEAM) \
     F(IRON_TAIL) \
     F(THUNDERBOLT) \

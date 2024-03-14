@@ -455,11 +455,11 @@ AbandonedShip_HiddenFloorRooms_EventScript_ItemWaterStone::
 	end
 
 AbandonedShip_HiddenFloorRooms_EventScript_ItemTMRainDance::
-	finditem ITEM_TM_RAIN_DANCE
+	finditem ITEM_TM_GIGA_IMPACT
 	end
 
 ScorchedSlab_EventScript_ItemTMSunnyDay::
-	finditem ITEM_TM_SUNNY_DAY
+	finditem ITEM_TM_HONE_CLAWS
 	end
 
 SafariZone_Northwest_EventScript_ItemTMSolarBeam::
@@ -555,7 +555,7 @@ ShoalCave_LowTideStairsRoom_EventScript_ItemIceHeal::
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemTMHail::
-	finditem ITEM_TM_SNOWSCAPE
+	finditem ITEM_TM_ENERGY_BALL
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce::
