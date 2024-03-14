@@ -11478,15 +11478,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                     if (battlerHoldEffect == HOLD_EFFECT_CLEAR_AMULET)
                     {
                         gLastUsedItem = gBattleMons[battler].item;
-                        if (gMovesInfo[gCurrentMove].effect == EFFECT_SPICY_EXTRACT)
-                        {
-                            gBattlescriptCurrInstr = BattleScript_ItemNoStatLossSpicyExtract;
-                        }
-                        else
-                        {
-                            BattleScriptPush(BS_ptr);
-                            gBattlescriptCurrInstr = BattleScript_ItemNoStatLoss;
-                        }
+                        BattleScriptPush(BS_ptr);
+                        gBattlescriptCurrInstr = BattleScript_ItemNoStatLoss;
                         RecordItemEffectBattle(battler, HOLD_EFFECT_CLEAR_AMULET);
                     }
                     else

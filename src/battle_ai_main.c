@@ -2784,15 +2784,12 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             ADJUST_SCORE(GOOD_EFFECT);
         break;
     case EFFECT_SPICY_EXTRACT:
-    {
-        u32 selectedTarget = GetMoveTarget(aiData->partnerMove, NO_TARGET_OVERRIDE);
-        if (gMovesInfo[aiData->partnerMove].category == DAMAGE_CATEGORY_PHYSICAL
-         && AI_STRIKES_FIRST(battlerAtkPartner, selectedTarget, aiData->partnerMove)
-         && AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, move) // Faster then partner
-         && !CanTargetMoveFaintAi(aiData->partnerMove, selectedTarget, battlerAtkPartner, 1))
+        if (HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL)
+         && (GetWhichBattlerFaster(battlerAtkPartner, battlerDef, TRUE) == AI_IS_FASTER
+          || GetWhichBattlerFaster(battlerAtkPartner, BATTLE_PARTNER(battlerDef), TRUE) == AI_IS_FASTER)
+         && AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, move)) // Faster then partner
             ADJUST_SCORE(GOOD_EFFECT);
         break;
-    }
     } // our effect relative to partner
 
     // consider global move effects
@@ -3410,7 +3407,7 @@ static u32 AI_CalcMoveScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_SPICY_EXTRACT:
         // TODO: Make IncreaseStatDownScore function, just like IncreaseStatUpScore
         break;
-	case EFFECT_BIDE:
+    case EFFECT_BIDE:
         if (aiData->hpPercents[battlerAtk] < 90)
             ADJUST_SCORE(-2); // Should be either removed or turned into increasing score
     case EFFECT_ACUPRESSURE:

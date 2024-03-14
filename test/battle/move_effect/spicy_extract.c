@@ -162,3 +162,26 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
     }
 }
+
+AI_DOUBLE_BATTLE_TEST("Spicy Extract partner will raise Atk for partner if conditions are right")
+{
+    u32 speedPlayer;
+
+    PARAMETRIZE { speedPlayer = 10; }
+    PARAMETRIZE { speedPlayer = 30; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(speedPlayer); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(speedPlayer); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(40); Moves(MOVE_TACKLE, MOVE_SPICY_EXTRACT); }
+    } WHEN {
+        TURN {
+            if (speedPlayer == 10)
+                EXPECT_MOVE(opponentRight, MOVE_SPICY_EXTRACT);
+            else
+                EXPECT_MOVE(opponentRight, MOVE_TACKLE);
+        }
+    }
+}
