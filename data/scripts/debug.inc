@@ -138,7 +138,6 @@ Debug_EventScript_Text_DefensiveIV:
 	.string "HP IV: {STR_VAR_1}, DEF IV: {STR_VAR_2}, SPDEF IV: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
-    additem ITEM_SUPER_ROD,1
 	end
 
 Debug_EventScript_Script_2::
