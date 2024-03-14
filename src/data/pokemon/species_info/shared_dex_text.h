@@ -95,6 +95,12 @@ const u8 gZygarde10PokedexText[] = _(
     "sinks its sharp fangs into them.");
 
 // Gen 7 families
+const u8 gGumshoosPokedexText[] = _(
+    "When it finds a trace of its prey, it\n"
+    "patiently stakes out the location...\n"
+    "but as it's diurnal, it's always snoozing\n"
+    "by nightfall.");
+
 const u8 gRockruffPokedexText[] = _(
     "This Pokémon has lived with people since\n"
     "times long ago. It can sense when its\n"
