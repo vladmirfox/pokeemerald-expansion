@@ -207,15 +207,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 4,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Fuecoco,
         .shinyPalette = gMonShinyPalette_Fuecoco,
         .iconSprite = gMonIcon_Fuecoco,
-        .iconPalIndex = 0,
-=======
-        PALETTES(Fuecoco),
-        ICON(Fuecoco, 2),
->>>>>>> 7df74aa8fd (Fuecoco family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 2,
         //FOOTPRINT(Fuecoco)
         .levelUpLearnset = sFuecocoLevelUpLearnset,
         .teachableLearnset = sFuecocoTeachableLearnset,
@@ -375,7 +370,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Quaxly,
         .shinyPalette = gMonShinyPalette_Quaxly,
         .iconSprite = gMonIcon_Quaxly,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         //FOOTPRINT(Quaxly)
         .levelUpLearnset = sQuaxlyLevelUpLearnset,
         .teachableLearnset = sQuaxlyTeachableLearnset,
