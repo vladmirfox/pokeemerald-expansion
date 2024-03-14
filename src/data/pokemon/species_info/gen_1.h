@@ -153,15 +153,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 388,
         .trainerOffset = 6,
         .frontPic = gMonFrontPic_Venusaur,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_VenusaurF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Venusaur,
         .frontAnimId = ANIM_ROTATE_UP_SLAM_DOWN,
         .backPic = gMonBackPic_Venusaur,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_VenusaurF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_H_SHAKE,
@@ -225,11 +225,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_VenusaurMega,
         .iconPalIndex = 4,
         FOOTPRINT(Venusaur)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sVenusaurLevelUpLearnset,
         .teachableLearnset = sVenusaurTeachableLearnset,
         .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
         .formChangeTable = sVenusaurFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
 
@@ -283,11 +283,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_VenusaurGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Venusaur)
+        .isGigantamax = TRUE,
         .levelUpLearnset = sVenusaurLevelUpLearnset,
         .teachableLearnset = sVenusaurTeachableLearnset,
         .formSpeciesIdTable = sVenusaurFormSpeciesIdTable,
         .formChangeTable = sVenusaurFormChangeTable,
-        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_BULBASAUR
@@ -508,11 +508,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_CharizardMegaX,
         .iconPalIndex = 0,
         FOOTPRINT(Charizard)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sCharizardLevelUpLearnset,
         .teachableLearnset = sCharizardTeachableLearnset,
         .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
         .formChangeTable = sCharizardFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 
     [SPECIES_CHARIZARD_MEGA_Y] =
@@ -563,11 +563,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_CharizardMegaY,
         .iconPalIndex = 0,
         FOOTPRINT(Charizard)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sCharizardLevelUpLearnset,
         .teachableLearnset = sCharizardTeachableLearnset,
         .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
         .formChangeTable = sCharizardFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
 
@@ -620,11 +620,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_CharizardGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Charizard)
+        .isGigantamax = TRUE,
         .levelUpLearnset = sCharizardLevelUpLearnset,
         .teachableLearnset = sCharizardTeachableLearnset,
         .formSpeciesIdTable = sCharizardFormSpeciesIdTable,
         .formChangeTable = sCharizardFormChangeTable,
-        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CHARMANDER
@@ -847,11 +847,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_BlastoiseMega,
         .iconPalIndex = 2,
         FOOTPRINT(Blastoise)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sBlastoiseLevelUpLearnset,
         .teachableLearnset = sBlastoiseTeachableLearnset,
         .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
         .formChangeTable = sBlastoiseFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
 
@@ -904,11 +904,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_BlastoiseGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Blastoise)
+        .isGigantamax = TRUE,
         .levelUpLearnset = sBlastoiseLevelUpLearnset,
         .teachableLearnset = sBlastoiseTeachableLearnset,
         .formSpeciesIdTable = sBlastoiseFormSpeciesIdTable,
         .formChangeTable = sBlastoiseFormChangeTable,
-        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SQUIRTLE
@@ -962,9 +962,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Caterpie,
         .iconPalIndex = 1,
         FOOTPRINT(Caterpie)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sCaterpieLevelUpLearnset,
         .teachableLearnset = sCaterpieTeachableLearnset,
-        .tmIlliterate = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
     },
 
@@ -1016,9 +1016,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Metapod,
         .iconPalIndex = 1,
         FOOTPRINT(Metapod)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sMetapodLevelUpLearnset,
         .teachableLearnset = sMetapodTeachableLearnset,
-        .tmIlliterate = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
     },
 
@@ -1069,16 +1069,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Butterfree,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_ButterfreeF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Butterfree,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .enemyMonElevation = 12,
         .backPic = gMonBackPic_Butterfree,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_ButterfreeF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -1145,11 +1145,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_ButterfreeGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Butterfree)
+        .isGigantamax = TRUE,
         .levelUpLearnset = sButterfreeLevelUpLearnset,
         .teachableLearnset = sButterfreeTeachableLearnset,
         .formSpeciesIdTable = sButterfreeFormSpeciesIdTable,
         .formChangeTable = sButterfreeFormChangeTable,
-        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CATERPIE
@@ -1204,9 +1204,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Weedle,
         .iconPalIndex = 2,
         FOOTPRINT(Weedle)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sWeedleLevelUpLearnset,
         .teachableLearnset = sWeedleTeachableLearnset,
-        .tmIlliterate = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_KAKUNA}),
     },
 
@@ -1259,9 +1259,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Kakuna,
         .iconPalIndex = 2,
         FOOTPRINT(Kakuna)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sKakunaLevelUpLearnset,
         .teachableLearnset = sKakunaTeachableLearnset,
-        .tmIlliterate = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
     },
 
@@ -1384,11 +1384,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_BeedrillMega,
         .iconPalIndex = 2,
         FOOTPRINT(Beedrill)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sBeedrillLevelUpLearnset,
         .teachableLearnset = sBeedrillTeachableLearnset,
         .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
         .formChangeTable = sBeedrillFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_WEEDLE
@@ -1615,11 +1615,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PidgeotMega,
         .iconPalIndex = 0,
         FOOTPRINT(Pidgeot)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sPidgeotLevelUpLearnset,
         .teachableLearnset = sPidgeotTeachableLearnset,
         .formSpeciesIdTable = sPidgeotFormSpeciesIdTable,
         .formChangeTable = sPidgeotFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif
 #endif //P_FAMILY_PIDGEY
@@ -1660,15 +1660,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Rattata,
-        .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicFemale = gMonFrontPic_RattataF,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicSizeFemale = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Rattata,
         .frontAnimId = ANIM_H_JUMPS,
         .backPic = gMonBackPic_Rattata,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_RattataF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 7,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
@@ -1718,15 +1718,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Raticate,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_RaticateF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Raticate,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backPic = gMonBackPic_Raticate,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_RaticateF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
@@ -1790,9 +1790,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_RattataAlolan,
         .iconPalIndex = 2,
         FOOTPRINT(Rattata)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sRattataAlolanLevelUpLearnset,
         .teachableLearnset = sRattataAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
         .formSpeciesIdTable = sRattataFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
     },
@@ -1846,10 +1846,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_RaticateAlolan,
         .iconPalIndex = 2,
         FOOTPRINT(Raticate)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sRaticateAlolanLevelUpLearnset,
         .teachableLearnset = sRaticateAlolanTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
-        .isAlolanForm = TRUE,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_RATTATA
@@ -2112,10 +2112,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FOOTPRINT(Pichu)
-        .levelUpLearnset = sPichuLevelUpLearnset,
-        .teachableLearnset = sPichuTeachableLearnset,
-        .formSpeciesIdTable = sPichuFormSpeciesIdTable,
         .frontPic = gMonFrontPic_Pichu,
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 14,
@@ -2129,6 +2125,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Pichu,
         .iconSprite = gMonIcon_Pichu,
         .iconPalIndex = 1,
+        FOOTPRINT(Pichu)
+        .levelUpLearnset = sPichuLevelUpLearnset,
+        .teachableLearnset = sPichuTeachableLearnset,
+        .formSpeciesIdTable = sPichuFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PIKACHU}),
     },
 
@@ -2163,10 +2163,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FOOTPRINT(Pichu)
-        .levelUpLearnset = sPichuLevelUpLearnset,
-        .teachableLearnset = sPichuTeachableLearnset,
-        .formSpeciesIdTable = sPichuFormSpeciesIdTable,
         .frontPic = gMonFrontPic_PichuSpikyEared,
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 13,
@@ -2180,6 +2176,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PichuSpikyEared,
         .iconSprite = gMonIcon_PichuSpikyEared,
         .iconPalIndex = 1,
+        FOOTPRINT(Pichu)
+        .levelUpLearnset = sPichuLevelUpLearnset,
+        .teachableLearnset = sPichuTeachableLearnset,
+        .formSpeciesIdTable = sPichuFormSpeciesIdTable,
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -2217,26 +2217,22 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_Pikachu,
-        .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicFemale = gMonFrontPic_PikachuF,
+        .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Pikachu,
         .frontAnimId = ANIM_FLASH_YELLOW,
         .frontAnimDelay = 25,
         .backPic = gMonBackPic_Pikachu,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_PikachuF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 4,
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
@@ -2248,6 +2244,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSpriteFemale = gMonIcon_PikachuF,
         .iconPalIndexFemale = 2,
     #endif
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
         .formChangeTable = sPikachuFormChangeTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU},
                                 {EVO_NONE, 0, SPECIES_RAICHU_ALOLAN}),
@@ -2280,15 +2280,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuCosplay,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2302,6 +2298,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuCosplay,
         .iconSprite = gMonIcon_PikachuCosplay,
         .iconPalIndex = 2,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_ROCK_STAR] =
@@ -2330,15 +2330,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuRockStar,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2352,6 +2348,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuRockStar,
         .iconSprite = gMonIcon_PikachuRockStar,
         .iconPalIndex = 1,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_BELLE] =
@@ -2381,15 +2381,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuBelle,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2403,6 +2399,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuBelle,
         .iconSprite = gMonIcon_PikachuBelle,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_POP_STAR] =
@@ -2432,15 +2432,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuPopStar,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2454,6 +2450,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuPopStar,
         .iconSprite = gMonIcon_PikachuPopStar,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_PH_D] =
@@ -2482,15 +2482,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuPhD,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2504,6 +2500,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuPhD,
         .iconSprite = gMonIcon_PikachuPhD,
         .iconPalIndex = 1,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_LIBRE] =
@@ -2532,15 +2532,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .description = gPikachuPokedexText,
         .pokemonScale = 479,
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .description = gPikachuPokedexText,
         .frontPic = gMonFrontPic_PikachuLibre,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2554,6 +2550,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuLibre,
         .iconSprite = gMonIcon_PikachuLibre,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
 #endif //P_COSPLAY_PIKACHU_FORMS
@@ -2586,19 +2586,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across many different regions."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuOriginalCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2612,6 +2608,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuOriginalCap,
         .iconSprite = gMonIcon_PikachuOriginalCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_HOENN_CAP] =
@@ -2640,19 +2640,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the Hoenn region together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuHoennCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2666,6 +2662,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuHoennCap,
         .iconSprite = gMonIcon_PikachuHoennCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_SINNOH_CAP] =
@@ -2694,19 +2694,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the Sinnoh region together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuSinnohCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2720,6 +2716,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuSinnohCap,
         .iconSprite = gMonIcon_PikachuSinnohCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_UNOVA_CAP] =
@@ -2748,19 +2748,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the Unova region together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuUnovaCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2774,6 +2770,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuUnovaCap,
         .iconSprite = gMonIcon_PikachuUnovaCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_KALOS_CAP] =
@@ -2802,19 +2802,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the Kalos region together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuKalosCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2828,6 +2824,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuKalosCap,
         .iconSprite = gMonIcon_PikachuKalosCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_ALOLA_CAP] =
@@ -2856,19 +2856,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the Alola region together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuAlolaCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2882,6 +2878,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuAlolaCap,
         .iconSprite = gMonIcon_PikachuAlolaCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_PARTNER_CAP] =
@@ -2911,19 +2911,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed as the two overcame\n"
             "many hardships together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuPartnerCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2937,6 +2933,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuPartnerCap,
         .iconSprite = gMonIcon_PikachuPartnerCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
     [SPECIES_PIKACHU_WORLD_CAP] =
@@ -2965,19 +2965,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 4,
         .weight = 60,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "This Pikachu wears its partner's cap, which\n"
             "is proof of the strong bond Pikachu and\n"
             "its partner formed during adventures\n"
             "across the world together."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuWorldCap,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -2991,6 +2987,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuWorldCap,
         .iconSprite = gMonIcon_PikachuWorldCap,
         .iconPalIndex = 0,
+        FOOTPRINT(Pikachu)
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
     },
 
 #endif //P_CAP_PIKACHU_FORMS
@@ -3022,19 +3022,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 210,
         .weight = 0,
-        FOOTPRINT(Pikachu)
-        .levelUpLearnset = sPikachuLevelUpLearnset,
-        .teachableLearnset = sPikachuTeachableLearnset,
-        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
-        .pokemonScale = 479,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
         .description = COMPOUND_STRING(
             "When it smashes its opponents with\n"
             "its bolt-shaped tail, it delivers a\n"
             "surge of electricity equivalent to a\n"
             "lightning strike."),
+        .pokemonScale = 479,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_PikachuGigantamax,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
@@ -3048,8 +3044,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PikachuGigantamax,
         .iconSprite = gMonIcon_PikachuGigantamax,
         .iconPalIndex = 2,
-        .formChangeTable = sPikachuFormChangeTable,
+        FOOTPRINT(Pikachu)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
+        .formChangeTable = sPikachuFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -3090,8 +3090,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 8,
         .weight = 300,
-        FOOTPRINT(Raichu)
-        .formSpeciesIdTable = sRaichuFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "If it stores too much electricity, its\n"
             "behavior turns aggressive. To avoid this,\n"
@@ -3102,8 +3100,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Raichu,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_RaichuF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Raichu,
@@ -3116,8 +3114,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Raichu,
         .iconSprite = gMonIcon_Raichu,
         .iconPalIndex = 0,
+        FOOTPRINT(Raichu)
         .levelUpLearnset = sRaichuLevelUpLearnset,
         .teachableLearnset = sRaichuTeachableLearnset,
+        .formSpeciesIdTable = sRaichuFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -3146,9 +3146,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 7,
         .weight = 210,
-        FOOTPRINT(Raichu)
-        .formSpeciesIdTable = sRaichuFormSpeciesIdTable,
-        .isAlolanForm = TRUE,
         .description = COMPOUND_STRING(
             "It uses psychokinesis to control\n"
             "electricity. It focuses psychic energy\n"
@@ -3172,8 +3169,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_RaichuAlolan,
         .iconSprite = gMonIcon_RaichuAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Raichu)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sRaichuAlolanLevelUpLearnset,
         .teachableLearnset = sRaichuAlolanTeachableLearnset,
+        .formSpeciesIdTable = sRaichuFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_PIKACHU
@@ -3205,8 +3205,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 6,
         .weight = 120,
-        FOOTPRINT(Sandshrew)
-        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "When it curls up in a ball, it can make any\n"
             "attack bounce off harmlessly. Its hide has\n"
@@ -3229,8 +3227,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Sandshrew,
         .iconSprite = gMonIcon_Sandshrew,
         .iconPalIndex = 2,
+        FOOTPRINT(Sandshrew)
         .levelUpLearnset = sSandshrewLevelUpLearnset,
         .teachableLearnset = sSandshrewTeachableLearnset,
+        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH}),
     },
 
@@ -3260,8 +3260,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 10,
         .weight = 295,
-        FOOTPRINT(Sandslash)
-        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It curls up in a ball to protect itself from\n"
             "enemy attacks. It also curls up to prevent\n"
@@ -3284,8 +3282,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Sandslash,
         .iconSprite = gMonIcon_Sandslash,
         .iconPalIndex = 2,
+        FOOTPRINT(Sandslash)
         .levelUpLearnset = sSandslashLevelUpLearnset,
         .teachableLearnset = sSandslashTeachableLearnset,
+        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -3315,8 +3315,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 7,
         .weight = 400,
-        FOOTPRINT(Sandshrew)
-        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Life on mountains covered with deep snow\n"
             "has granted this Pokémon a body of ice\n"
@@ -3339,9 +3337,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SandshrewAlolan,
         .iconSprite = gMonIcon_SandshrewAlolan,
         .iconPalIndex = 0,
+        FOOTPRINT(Sandshrew)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sSandshrewAlolanLevelUpLearnset,
         .teachableLearnset = sSandshrewAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH_ALOLAN}),
     },
 
@@ -3371,8 +3371,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mouse"),
         .height = 12,
         .weight = 550,
-        FOOTPRINT(Sandslash)
-        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It uses large, hooked claws to cut a path\n"
             "through deep snow as it runs.\n"
@@ -3395,9 +3393,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SandslashAlolan,
         .iconSprite = gMonIcon_SandslashAlolan,
         .iconPalIndex = 0,
+        FOOTPRINT(Sandslash)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sSandslashAlolanLevelUpLearnset,
         .teachableLearnset = sSandslashAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_SANDSHREW
@@ -3947,17 +3947,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fox"),
         .height = 6,
         .weight = 99,
-        .pokemonScale = 542,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Vulpix)
-        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It can freely control fire, making fiery\n"
             "orbs fly like will-o'-the-wisps. Just\n"
             "before evolution, its six tails grow hot \n"
             "as if on fire."),
+        .pokemonScale = 542,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Vulpix,
         .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 11,
@@ -3971,8 +3969,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Vulpix,
         .iconSprite = gMonIcon_Vulpix,
         .iconPalIndex = 5,
+        FOOTPRINT(Vulpix)
         .levelUpLearnset = sVulpixLevelUpLearnset,
         .teachableLearnset = sVulpixTeachableLearnset,
+        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_NINETALES}),
     },
 
@@ -4003,17 +4003,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fox"),
         .height = 11,
         .weight = 199,
-        .pokemonScale = 339,
-        .pokemonOffset = 10,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Ninetales)
-        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It has long been said that each of the\n"
             "nine tails embody an enchanted power.\n"
             "A long-lived Ninetales will have fur that\n"
             "shines like gold."),
+        .pokemonScale = 339,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Ninetales,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
@@ -4027,8 +4025,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Ninetales,
         .iconSprite = gMonIcon_Ninetales,
         .iconPalIndex = 3,
+        FOOTPRINT(Ninetales)
         .levelUpLearnset = sNinetalesLevelUpLearnset,
         .teachableLearnset = sNinetalesTeachableLearnset,
+        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -4058,17 +4058,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fox"),
         .height = 6,
         .weight = 99,
-        .pokemonScale = 542,
-        .pokemonOffset = 19,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Vulpix)
-        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "They live together in a skulk, helping\n"
             "one another. In hot weather, this Pokémon\n"
             "makes ice shards with its six tails and\n"
             "sprays them around to cool itself off."),
+        .pokemonScale = 542,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_VulpixAlolan,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 10,
@@ -4082,10 +4080,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_VulpixAlolan,
         .iconSprite = gMonIcon_VulpixAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Vulpix)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sVulpixAlolanLevelUpLearnset,
         .teachableLearnset = sVulpixAlolanTeachableLearnset,
+        .formSpeciesIdTable = sVulpixFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLAN}),
-        .isAlolanForm = TRUE,
     },
 
     [SPECIES_NINETALES_ALOLAN] =
@@ -4115,17 +4115,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fox"),
         .height = 11,
         .weight = 199,
-        .pokemonScale = 339,
-        .pokemonOffset = 10,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Ninetales)
-        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "While it will guide travelers who get lost\n"
             "on a snowy mountain down to the\n"
             "mountain's base, it won't forgive anyone\n"
             "who harms nature."),
+        .pokemonScale = 339,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_NinetalesAlolan,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
@@ -4139,9 +4137,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_NinetalesAlolan,
         .iconSprite = gMonIcon_NinetalesAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Ninetales)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sNinetalesAlolanLevelUpLearnset,
         .teachableLearnset = sNinetalesAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sNinetalesFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_VULPIX
@@ -4363,16 +4363,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Zubat,
-        .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicFemale = gMonFrontPic_ZubatF,
+        .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_Zubat,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 16,
         .backPic = gMonBackPic_Zubat,
-        .backPicSize = MON_COORDS_SIZE(56, 56),
         .backPicFemale = gMonBackPic_ZubatF,
+        .backPicSize = MON_COORDS_SIZE(56, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(56, 56),
         .backPicYOffset = 7,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -4421,16 +4421,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Golbat,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_GolbatF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Golbat,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .enemyMonElevation = 10,
         .backPic = gMonBackPic_Golbat,
-        .backPicSize = MON_COORDS_SIZE(56, 40),
         .backPicFemale = gMonBackPic_GolbatF,
+        .backPicSize = MON_COORDS_SIZE(56, 40),
         .backPicSizeFemale = MON_COORDS_SIZE(56, 40),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -4597,15 +4597,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Gloom,
-        .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicFemale = gMonFrontPic_GloomF,
+        .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Gloom,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Gloom,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_GloomF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 11,
         .backAnimId = BACK_ANIM_H_SLIDE,
@@ -4664,15 +4664,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Vileplume,
-        .frontPicSize = MON_COORDS_SIZE(56, 56),
         .frontPicFemale = gMonFrontPic_VileplumeF,
+        .frontPicSize = MON_COORDS_SIZE(56, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Vileplume,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backPic = gMonBackPic_Vileplume,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_VileplumeF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -5012,17 +5012,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mole"),
         .height = 2,
         .weight = 8,
-        .pokemonScale = 833,
-        .pokemonOffset = 25,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Diglett)
-        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Diglett are raised in most farms.\n"
             "The reason is simple--wherever they\n"
             "burrow, the soil is left perfectly tilled\n"
             "for growing delicious crops."),
+        .pokemonScale = 833,
+        .pokemonOffset = 25,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Diglett,
         .frontPicSize = MON_COORDS_SIZE(32, 32),
         .frontPicYOffset = 17,
@@ -5037,8 +5035,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Diglett,
         .iconSprite = gMonIcon_Diglett,
         .iconPalIndex = 2,
+        FOOTPRINT(Diglett)
         .levelUpLearnset = sDiglettLevelUpLearnset,
         .teachableLearnset = sDiglettTeachableLearnset,
+        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO}),
     },
 
@@ -5068,17 +5068,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mole"),
         .height = 7,
         .weight = 333,
-        .pokemonScale = 406,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Dugtrio)
-        .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Because the triplets originally split from\n"
             "one body, they think exactly alike.\n"
             "They work cooperatively to burrow\n"
             "endlessly through the ground."),
+        .pokemonScale = 406,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Dugtrio,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
@@ -5093,8 +5091,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Dugtrio,
         .iconSprite = gMonIcon_Dugtrio,
         .iconPalIndex = 2,
+        FOOTPRINT(Dugtrio)
         .levelUpLearnset = sDugtrioLevelUpLearnset,
         .teachableLearnset = sDugtrioTeachableLearnset,
+        .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -5124,17 +5124,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mole"),
         .height = 2,
         .weight = 10,
-        .pokemonScale = 833,
-        .pokemonOffset = 25,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Diglett)
-        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The metal-rich geology of its habitat\n"
             "caused it to develop steel whiskers on its\n"
             "head that change shape depending on its\n"
             "mood and when communicating with others."),
+        .pokemonScale = 833,
+        .pokemonOffset = 25,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_DiglettAlolan,
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 19,
@@ -5148,9 +5146,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_DiglettAlolan,
         .iconSprite = gMonIcon_DiglettAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Diglett)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sDiglettAlolanLevelUpLearnset,
         .teachableLearnset = sDiglettAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN}),
     },
 
@@ -5181,17 +5181,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Mole"),
         .height = 7,
         .weight = 666,
-        .pokemonScale = 406,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Dugtrio)
-        .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Their beautiful, metallic whiskers create\n"
             "a sort of protective helmet on\n"
             "heir heads, and they also function\n"
             "as highly precise sensors."),
+        .pokemonScale = 406,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_DugtrioAlolan,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
@@ -5205,9 +5203,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_DugtrioAlolan,
         .iconSprite = gMonIcon_DugtrioAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Dugtrio)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sDugtrioAlolanLevelUpLearnset,
         .teachableLearnset = sDugtrioAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_DIGLETT
@@ -5239,8 +5239,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Scratch Cat"),
         .height = 4,
         .weight = 42,
-        FOOTPRINT(Meowth)
-        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Meowth withdraw their sharp claws into\n"
             "their paws to silently sneak about.\n"
@@ -5264,8 +5262,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Meowth,
         .iconSprite = gMonIcon_Meowth,
         .iconPalIndex = 1,
+        FOOTPRINT(Meowth)
         .levelUpLearnset = sMeowthLevelUpLearnset,
         .teachableLearnset = sMeowthTeachableLearnset,
+        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .formChangeTable = sMeowthFormChangeTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERSIAN}),
     },
@@ -5296,8 +5296,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Classy Cat"),
         .height = 10,
         .weight = 320,
-        FOOTPRINT(Persian)
-        .formSpeciesIdTable = sPersianFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "A Persian's six bold whiskers sense air\n"
             "movements to determine what is in its\n"
@@ -5321,8 +5319,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Persian,
         .iconSprite = gMonIcon_Persian,
         .iconPalIndex = 1,
+        FOOTPRINT(Persian)
         .levelUpLearnset = sPersianLevelUpLearnset,
         .teachableLearnset = sPersianTeachableLearnset,
+        .formSpeciesIdTable = sPersianFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -5352,8 +5352,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Scratch Cat"),
         .height = 4,
         .weight = 42,
-        FOOTPRINT(Meowth)
-        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It's accustomed to luxury because it used\n"
             "to live with Alolan royalty. Highly smart\n"
@@ -5376,9 +5374,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MeowthAlolan,
         .iconSprite = gMonIcon_MeowthAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Meowth)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sMeowthAlolanLevelUpLearnset,
         .teachableLearnset = sMeowthAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PERSIAN_ALOLAN}),
     },
 
@@ -5408,8 +5408,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Classy Cat"),
         .height = 11,
         .weight = 330,
-        FOOTPRINT(Persian)
-        .formSpeciesIdTable = sPersianFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It looks down on everyone other than\n"
             "itself. In contrast to its lovely face, it\n"
@@ -5432,9 +5430,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PersianAlolan,
         .iconSprite = gMonIcon_PersianAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Persian)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sPersianAlolanLevelUpLearnset,
         .teachableLearnset = sPersianAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sPersianFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 
@@ -5464,8 +5464,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Scratch Cat"),
         .height = 4,
         .weight = 75,
-        FOOTPRINT(Meowth)
-        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Living with a savage, seafaring people has\n"
             "hardened its body so much that parts of it\n"
@@ -5488,9 +5486,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MeowthGalarian,
         .iconSprite = gMonIcon_MeowthGalarian,
         .iconPalIndex = 0,
+        FOOTPRINT(Meowth)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sMeowthGalarianLevelUpLearnset,
         .teachableLearnset = sMeowthGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERRSERKER}),
     },
 
@@ -5573,8 +5573,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Scratch Cat"),
         .height = 330,
         .weight = 0,
-        FOOTPRINT(Meowth)
-        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The pattern that has appeared on\n"
             "its giant coin is thought to be the\n"
@@ -5597,9 +5595,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MeowthGigantamax,
         .iconSprite = gMonIcon_MeowthGigantamax,
         .iconPalIndex = 1,
+        FOOTPRINT(Meowth)
+        .isGigantamax = TRUE,
         .levelUpLearnset = sMeowthLevelUpLearnset,
         .teachableLearnset = sMeowthTeachableLearnset,
-        .isGigantamax = TRUE,
+        .formSpeciesIdTable = sMeowthFormSpeciesIdTable,
         .formChangeTable = sMeowthFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
@@ -5901,8 +5901,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Puppy"),
         .height = 7,
         .weight = 190,
-        FOOTPRINT(Growlithe)
-        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its superb sense of smell ensures that\n"
             "this Pokémon won't forget any scent,\n"
@@ -5926,8 +5924,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Growlithe,
         .iconSprite = gMonIcon_Growlithe,
         .iconPalIndex = 3,
+        FOOTPRINT(Growlithe)
         .levelUpLearnset = sGrowlitheLevelUpLearnset,
         .teachableLearnset = sGrowlitheTeachableLearnset,
+        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE}),
     },
 
@@ -5956,8 +5956,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Legendary"),
         .height = 19,
         .weight = 1550,
-        FOOTPRINT(Arcanine)
-        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "This fleet-footed Pokémon is said to run\n"
             "over 6,200 miles in a single day and night.\n"
@@ -5981,8 +5979,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Arcanine,
         .iconSprite = gMonIcon_Arcanine,
         .iconPalIndex = 3,
+        FOOTPRINT(Arcanine)
         .levelUpLearnset = sArcanineLevelUpLearnset,
         .teachableLearnset = sArcanineTeachableLearnset,
+        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
     },
 
 #if P_HISUIAN_FORMS
@@ -6011,8 +6011,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Scout"),
         .height = 8,
         .weight = 227,
-        FOOTPRINT(Growlithe)
-        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "They patrol their territory in pairs.\n"
             "It's believed the igneous rock components\n"
@@ -6035,9 +6033,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GrowlitheHisuian,
         .iconSprite = gMonIcon_GrowlitheHisuian,
         .iconPalIndex = 0,
+        FOOTPRINT(Growlithe)
+        .isHisuianForm = TRUE,
         .levelUpLearnset = sGrowlitheHisuianLevelUpLearnset,
         .teachableLearnset = sGrowlitheHisuianTeachableLearnset,
-        .isHisuianForm = TRUE,
+        .formSpeciesIdTable = sGrowlitheFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE_HISUIAN}),
     },
 
@@ -6066,8 +6066,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Legendary"),
         .height = 20,
         .weight = 1680,
-        FOOTPRINT(Arcanine)
-        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Snaps at its foes with fangs cloaked in\n"
             "blazing flame. Despite its bulk, it deftly\n"
@@ -6090,9 +6088,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ArcanineHisuian,
         .iconSprite = gMonIcon_ArcanineHisuian,
         .iconPalIndex = 0,
+        FOOTPRINT(Arcanine)
+        .isHisuianForm = TRUE,
         .levelUpLearnset = sArcanineHisuianLevelUpLearnset,
         .teachableLearnset = sArcanineHisuianTeachableLearnset,
-        .isHisuianForm = TRUE,
+        .formSpeciesIdTable = sArcanineFormSpeciesIdTable,
     },
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_GROWLITHE
@@ -6316,16 +6316,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Politoed,
-        .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicFemale = gMonFrontPic_PolitoedF,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Politoed,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .frontAnimDelay = 40,
         .backPic = gMonBackPic_Politoed,
-        .backPicSize = MON_COORDS_SIZE(56, 56),
         .backPicFemale = gMonBackPic_PolitoedF,
+        .backPicSize = MON_COORDS_SIZE(56, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(56, 56),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
@@ -6438,15 +6438,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Kadabra,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_KadabraF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Kadabra,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Kadabra,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_KadabraF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 8,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -6473,22 +6473,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = ALAKAZAM_SP_DEF,
         .types = MON_TYPES(TYPE_PSYCHIC),
         .catchRate = 50,
-        .evYield_SpAttack = 3,
-        .itemRare = ITEM_TWISTED_SPOON,
-        .genderRatio = PERCENT_FEMALE(25),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-        .bodyColor = BODY_COLOR_BROWN,
-        .speciesName = _("Alakazam"),
-        .natDexNum = NATIONAL_DEX_ALAKAZAM,
-        .categoryName = _("Psi"),
-        FOOTPRINT(Alakazam)
-        .levelUpLearnset = sAlakazamLevelUpLearnset,
-        .teachableLearnset = sAlakazamTeachableLearnset,
-        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,
-        .formChangeTable = sAlakazamFormChangeTable,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 250,
     #elif P_UPDATED_EXP_YIELDS >= GEN_7
@@ -6498,8 +6482,19 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 186,
     #endif
+        .evYield_SpAttack = 3,
+        .itemRare = ITEM_TWISTED_SPOON,
+        .genderRatio = PERCENT_FEMALE(25),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Alakazam"),
         .cryId = CRY_ALAKAZAM,
+        .natDexNum = NATIONAL_DEX_ALAKAZAM,
+        .categoryName = _("Psi"),
         .height = 15,
         .weight = 480,
         .description = COMPOUND_STRING(
@@ -6512,15 +6507,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Alakazam,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_AlakazamF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Alakazam,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backPic = gMonBackPic_Alakazam,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_AlakazamF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_GROW_STUTTER,
@@ -6528,6 +6523,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Alakazam,
         .iconSprite = gMonIcon_Alakazam,
         .iconPalIndex = 2,
+        FOOTPRINT(Alakazam)
+        .levelUpLearnset = sAlakazamLevelUpLearnset,
+        .teachableLearnset = sAlakazamTeachableLearnset,
+        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,
+        .formChangeTable = sAlakazamFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -6557,11 +6557,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Psi"),
         .height = 12,
         .weight = 480,
-        FOOTPRINT(Alakazam)
-        .levelUpLearnset = sAlakazamLevelUpLearnset,
-        .teachableLearnset = sAlakazamTeachableLearnset,
-        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,
-        .formChangeTable = sAlakazamFormChangeTable,
         .description = COMPOUND_STRING(
             "Having traded away its muscles, Alakazam's\n"
             "true power has been unleashed. With its\n"
@@ -6584,7 +6579,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_AlakazamMega,
         .iconSprite = gMonIcon_AlakazamMega,
         .iconPalIndex = 2,
+        FOOTPRINT(Alakazam)
         .isMegaEvolution = TRUE,
+        .levelUpLearnset = sAlakazamLevelUpLearnset,
+        .teachableLearnset = sAlakazamTeachableLearnset,
+        .formSpeciesIdTable = sAlakazamFormSpeciesIdTable,
+        .formChangeTable = sAlakazamFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_ABRA
@@ -6740,11 +6740,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Superpower"),
         .height = 16,
         .weight = 1300,
-        FOOTPRINT(Machamp)
-        .levelUpLearnset = sMachampLevelUpLearnset,
-        .teachableLearnset = sMachampTeachableLearnset,
-        .formSpeciesIdTable = sMachampFormSpeciesIdTable,
-        .formChangeTable = sMachampFormChangeTable,
         .description = COMPOUND_STRING(
             "It is impossible to defend against punches\n"
             "and chops doled out by its four arms.\n"
@@ -6767,6 +6762,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Machamp,
         .iconSprite = gMonIcon_Machamp,
         .iconPalIndex = 0,
+        FOOTPRINT(Machamp)
+        .levelUpLearnset = sMachampLevelUpLearnset,
+        .teachableLearnset = sMachampTeachableLearnset,
+        .formSpeciesIdTable = sMachampFormSpeciesIdTable,
+        .formChangeTable = sMachampFormChangeTable,
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -6796,11 +6796,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Superpower"),
         .height = 250,
         .weight = 0,
-        FOOTPRINT(Machamp)
-        .levelUpLearnset = sMachampLevelUpLearnset,
-        .teachableLearnset = sMachampTeachableLearnset,
-        .formSpeciesIdTable = sMachampFormSpeciesIdTable,
-        .formChangeTable = sMachampFormChangeTable,
         .description = COMPOUND_STRING(
             "One of these Pokémon once used\n"
             "its immeasurable strength to lift a\n"
@@ -6823,7 +6818,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MachampGigantamax,
         .iconSprite = gMonIcon_MachampGigantamax,
         .iconPalIndex = 0,
+        FOOTPRINT(Machamp)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sMachampLevelUpLearnset,
+        .teachableLearnset = sMachampTeachableLearnset,
+        .formSpeciesIdTable = sMachampFormSpeciesIdTable,
+        .formChangeTable = sMachampFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MACHOP
@@ -7154,17 +7154,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Rock"),
         .height = 4,
         .weight = 200,
-        .pokemonScale = 347,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Geodude)
-        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It climbs mountain paths using only the\n"
             "power of its arms. Because they look just\n"
             "like boulders lining paths, hikers may step\n"
             "on them without noticing."),
+        .pokemonScale = 347,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Geodude,
         .frontPicSize = MON_COORDS_SIZE(64, 32),
         .frontPicYOffset = 19,
@@ -7179,8 +7177,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Geodude,
         .iconSprite = gMonIcon_Geodude,
         .iconPalIndex = 1,
+        FOOTPRINT(Geodude)
         .levelUpLearnset = sGeodudeLevelUpLearnset,
         .teachableLearnset = sGeodudeTeachableLearnset,
+        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER}),
     },
 
@@ -7210,17 +7210,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Rock"),
         .height = 10,
         .weight = 1050,
-        .pokemonScale = 256,
-        .pokemonOffset = 2,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Graveler)
-        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "They descend from mountains by tumbling\n"
             "down steep slopes. They are so brutal,\n"
             "they smash aside obstructing trees and\n"
             "massive boulders with thunderous tackles."),
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Graveler,
         .frontPicSize = MON_COORDS_SIZE(64, 48),
         .frontPicYOffset = 9,
@@ -7234,8 +7232,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Graveler,
         .iconSprite = gMonIcon_Graveler,
         .iconPalIndex = 1,
+        FOOTPRINT(Graveler)
         .levelUpLearnset = sGravelerLevelUpLearnset,
         .teachableLearnset = sGravelerTeachableLearnset,
+        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM},
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM}),
     },
@@ -7266,8 +7266,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Megaton"),
         .height = 14,
         .weight = 3000,
-        FOOTPRINT(Golem)
-        .formSpeciesIdTable = sGolemFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It is said to live in volcanic craters\n"
             "on mountain peaks. Once a year, it sheds\n"
@@ -7290,8 +7288,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Golem,
         .iconSprite = gMonIcon_Golem,
         .iconPalIndex = 2,
+        FOOTPRINT(Golem)
         .levelUpLearnset = sGolemLevelUpLearnset,
         .teachableLearnset = sGolemTeachableLearnset,
+        .formSpeciesIdTable = sGolemFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -7321,18 +7321,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Rock"),
         .height = 4,
         .weight = 203,
-        .isAlolanForm = TRUE,
-        .pokemonScale = 347,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Geodude)
-        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its body is a magnetic stone. Iron sand\n"
             "attach to parts of its body with stronger\n"
             "magnetism. If you carelessly step on one,\n"
             "it will headbutt and shock you in anger."),
+        .pokemonScale = 347,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_GeodudeAlolan,
         .frontPicSize = MON_COORDS_SIZE(48, 32),
         .frontPicYOffset = 17,
@@ -7347,8 +7344,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GeodudeAlolan,
         .iconSprite = gMonIcon_GeodudeAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Geodude)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sGeodudeAlolanLevelUpLearnset,
         .teachableLearnset = sGeodudeAlolanTeachableLearnset,
+        .formSpeciesIdTable = sGeodudeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER_ALOLAN}),
     },
 
@@ -7378,18 +7378,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Rock"),
         .height = 10,
         .weight = 1100,
-        .isAlolanForm = TRUE,
-        .pokemonScale = 256,
-        .pokemonOffset = 2,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Graveler)
-        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "When two Graveler smash each other over\n"
             "dravite, their favorite food, they cause\n"
             "flashes of light and booming noises.\n"
             "People call them “fireworks of the earth.”"),
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_GravelerAlolan,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 8,
@@ -7403,8 +7400,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GravelerAlolan,
         .iconSprite = gMonIcon_GravelerAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Graveler)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sGravelerAlolanLevelUpLearnset,
         .teachableLearnset = sGravelerAlolanTeachableLearnset,
+        .formSpeciesIdTable = sGravelerFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM_ALOLAN},
                                 {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM_ALOLAN}),
     },
@@ -7435,9 +7435,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Megaton"),
         .height = 17,
         .weight = 3160,
-        .isAlolanForm = TRUE,
-        FOOTPRINT(Golem)
-        .formSpeciesIdTable = sGolemFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It fires rocks charged with electricity.\n"
             "Even if the rock isn't fired that\n"
@@ -7460,8 +7457,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GolemAlolan,
         .iconSprite = gMonIcon_GolemAlolan,
         .iconPalIndex = 2,
+        FOOTPRINT(Golem)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sGolemAlolanLevelUpLearnset,
         .teachableLearnset = sGolemAlolanTeachableLearnset,
+        .formSpeciesIdTable = sGolemFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_GEODUDE
@@ -7492,8 +7492,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fire Horse"),
         .height = 10,
         .weight = 300,
-        FOOTPRINT(Ponyta)
-        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "A Ponyta is very weak at birth. It can\n"
             "barely stand up. Its legs become stronger\n"
@@ -7517,8 +7515,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Ponyta,
         .iconSprite = gMonIcon_Ponyta,
         .iconPalIndex = 3,
+        FOOTPRINT(Ponyta)
         .levelUpLearnset = sPonytaLevelUpLearnset,
         .teachableLearnset = sPonytaTeachableLearnset,
+        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_RAPIDASH}),
     },
 
@@ -7547,17 +7547,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fire Horse"),
         .height = 17,
         .weight = 950,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 289,
-        .trainerOffset = 1,
-        FOOTPRINT(Rapidash)
-        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It usually canters casually in the fields\n"
             "and plains. But once a Rapidash turns\n"
             "serious, its fiery manes flare and blaze\n"
             "as it gallops its way up to 150 mph."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 289,
+        .trainerOffset = 1,
         .frontPic = gMonFrontPic_Rapidash,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -7571,8 +7569,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Rapidash,
         .iconSprite = gMonIcon_Rapidash,
         .iconPalIndex = 3,
+        FOOTPRINT(Rapidash)
         .levelUpLearnset = sRapidashLevelUpLearnset,
         .teachableLearnset = sRapidashTeachableLearnset,
+        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -7601,9 +7601,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Unique Horn"),
         .height = 8,
         .weight = 240,
-        .isGalarianForm = TRUE,
-        FOOTPRINT(Ponyta)
-        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its small horn hides a healing power.\n"
             "This Pokémon will look into your eyes and\n"
@@ -7626,8 +7623,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PonytaGalarian,
         .iconSprite = gMonIcon_PonytaGalarian,
         .iconPalIndex = 2,
+        FOOTPRINT(Ponyta)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sPonytaGalarianLevelUpLearnset,
         .teachableLearnset = sPonytaGalarianTeachableLearnset,
+        .formSpeciesIdTable = sPonytaFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_RAPIDASH_GALARIAN}),
     },
 
@@ -7656,18 +7656,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Unique Horn"),
         .height = 17,
         .weight = 800,
-        .isGalarianForm = TRUE,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 289,
-        .trainerOffset = 1,
-        FOOTPRINT(Rapidash)
-        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Little can stand up to its psycho cut.\n"
             "Unleashed from this Pokémon's horn,\n"
             "the move will punch a hole right\n"
             "through a thick metal sheet."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 289,
+        .trainerOffset = 1,
         .frontPic = gMonFrontPic_RapidashGalarian,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -7681,8 +7678,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_RapidashGalarian,
         .iconSprite = gMonIcon_RapidashGalarian,
         .iconPalIndex = 2,
+        FOOTPRINT(Rapidash)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sRapidashGalarianLevelUpLearnset,
         .teachableLearnset = sRapidashGalarianTeachableLearnset,
+        .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
     },
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_PONYTA
@@ -7714,17 +7714,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Dopey"),
         .height = 12,
         .weight = 360,
-        .pokemonScale = 256,
-        .pokemonOffset = 10,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Slowpoke)
-        .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It catches prey by dipping its tail in\n"
             "water at the side of a river. But it often\n"
             "forgets what it is doing and spends entire\n"
             "days just loafing at water's edge."),
+        .pokemonScale = 256,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Slowpoke,
         .frontPicSize = MON_COORDS_SIZE(64, 32),
         .frontPicYOffset = 16,
@@ -7738,8 +7736,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Slowpoke,
         .iconSprite = gMonIcon_Slowpoke,
         .iconPalIndex = 0,
+        FOOTPRINT(Slowpoke)
         .levelUpLearnset = sSlowpokeLevelUpLearnset,
         .teachableLearnset = sSlowpokeTeachableLearnset,
+        .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_SLOWBRO},
                                 {EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING},
                                 {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING}),
@@ -7771,8 +7771,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hermit Crab"),
         .height = 16,
         .weight = 785,
-        FOOTPRINT(Slowbro)
-        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its tail has a Shellder firmly attached\n"
             "with a bite. As a result, the tail can't be\n"
@@ -7795,8 +7793,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Slowbro,
         .iconSprite = gMonIcon_Slowbro,
         .iconPalIndex = 0,
+        FOOTPRINT(Slowbro)
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
+        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
         .formChangeTable = sSlowbroFormChangeTable,
     },
 
@@ -7827,8 +7827,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Royal"),
         .height = 20,
         .weight = 795,
-        FOOTPRINT(Slowking)
-        .formSpeciesIdTable = sSlowkingFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It undertakes research every day to\n"
             "solve the mysteries of the world.\n"
@@ -7851,8 +7849,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Slowking,
         .iconSprite = gMonIcon_Slowking,
         .iconPalIndex = 0,
+        FOOTPRINT(Slowking)
         .levelUpLearnset = sSlowkingLevelUpLearnset,
         .teachableLearnset = sSlowkingTeachableLearnset,
+        .formSpeciesIdTable = sSlowkingFormSpeciesIdTable,
     },
 #endif //P_GEN_2_CROSS_EVOS
 
@@ -7883,8 +7883,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hermit Crab"),
         .height = 20,
         .weight = 1200,
-        FOOTPRINT(Slowbro)
-        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "When bathed in the energy of Mega\n"
             "Evolution, Shellder converts into\n"
@@ -7907,10 +7905,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SlowbroMega,
         .iconSprite = gMonIcon_SlowbroMega,
         .iconPalIndex = 0,
+        FOOTPRINT(Slowbro)
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
+        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
         .formChangeTable = sSlowbroFormChangeTable,
-        .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
 
@@ -7940,17 +7940,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Dopey"),
         .height = 12,
         .weight = 360,
-        .pokemonScale = 256,
-        .pokemonOffset = 10,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Slowpoke)
-        .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Although it is normally zoned out, its\n"
             "expression abruptly sharpens on occasion.\n"
             "The cause seems to lie in Slowpoke's diet,\n"
             "which also give their tails a spicy flavor."),
+        .pokemonScale = 256,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_SlowpokeGalarian,
         .frontPicSize = MON_COORDS_SIZE(56, 32),
         .frontPicYOffset = 19,
@@ -7964,9 +7962,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SlowpokeGalarian,
         .iconSprite = gMonIcon_SlowpokeGalarian,
         .iconPalIndex = 1,
+        FOOTPRINT(Slowpoke)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sSlowpokeGalarianLevelUpLearnset,
         .teachableLearnset = sSlowpokeGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sSlowpokeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_GALARICA_CUFF, SPECIES_SLOWBRO_GALARIAN},
                                 {EVO_ITEM, ITEM_GALARICA_WREATH, SPECIES_SLOWKING_GALARIAN}),
     },
@@ -7997,8 +7997,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hermit Crab"),
         .height = 16,
         .weight = 705,
-        FOOTPRINT(Slowbro)
-        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "A Shellder bite set off a chemical reaction\n"
             "with the spices inside Slowbro's body,\n"
@@ -8021,9 +8019,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SlowbroGalarian,
         .iconSprite = gMonIcon_SlowbroGalarian,
         .iconPalIndex = 0,
+        FOOTPRINT(Slowbro)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sSlowbroGalarianLevelUpLearnset,
         .teachableLearnset = sSlowbroGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sSlowbroFormSpeciesIdTable,
     },
 
 #if P_GEN_2_CROSS_EVOS
@@ -8052,8 +8052,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Hexpert"),
         .height = 18,
         .weight = 795,
-        FOOTPRINT(Slowking)
-        .formSpeciesIdTable = sSlowkingFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "A combination of toxins and the shock of\n"
             "evolving has increased Shellder's\n"
@@ -8076,9 +8074,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SlowkingGalarian,
         .iconSprite = gMonIcon_SlowkingGalarian,
         .iconPalIndex = 2,
+        FOOTPRINT(Slowking)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sSlowkingGalarianLevelUpLearnset,
         .teachableLearnset = sSlowkingGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sSlowkingFormSpeciesIdTable,
     },
 #endif //P_GEN_2_CROSS_EVOS
 #endif //P_GALARIAN_FORMS
@@ -8296,8 +8296,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Duck"),
         .height = 8,
         .weight = 150,
-        FOOTPRINT(Farfetchd)
-        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It is always seen with a stick from a plant.\n"
             "Apparently, there are good sticks and bad\n"
@@ -8320,8 +8318,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Farfetchd,
         .iconSprite = gMonIcon_Farfetchd,
         .iconPalIndex = 1,
+        FOOTPRINT(Farfetchd)
         .levelUpLearnset = sFarfetchdLevelUpLearnset,
         .teachableLearnset = sFarfetchdTeachableLearnset,
+        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -8351,8 +8351,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Duck"),
         .height = 8,
         .weight = 420,
-        FOOTPRINT(Farfetchd)
-        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The stalks of leeks are thicker and longer\n"
             "in the Galar region. Brave Farfetch'd\n"
@@ -8375,9 +8373,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_FarfetchdGalarian,
         .iconSprite = gMonIcon_FarfetchdGalarian,
         .iconPalIndex = 1,
+        FOOTPRINT(Farfetchd)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sFarfetchdGalarianLevelUpLearnset,
         .teachableLearnset = sFarfetchdGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sFarfetchdFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_CRITICAL_HITS, 3, SPECIES_SIRFETCHD}),
     },
 
@@ -8473,15 +8473,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 257,
         .trainerOffset = -1,
         .frontPic = gMonFrontPic_Doduo,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_DoduoF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_Doduo,
         .frontAnimId = ANIM_H_SHAKE_SLOW,
         .backPic = gMonBackPic_Doduo,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_DoduoF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -8537,15 +8537,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 268,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Dodrio,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_DodrioF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Dodrio,
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Dodrio,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_DodrioF,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 3,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -8693,8 +8693,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sludge"),
         .height = 9,
         .weight = 300,
-        FOOTPRINT(Grimer)
-        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Born from polluted sludge in the sea,\n"
             "Grimer's favorite food is anything filthy.\n"
@@ -8717,8 +8715,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Grimer,
         .iconSprite = gMonIcon_Grimer,
         .iconPalIndex = 2,
+        FOOTPRINT(Grimer)
         .levelUpLearnset = sGrimerLevelUpLearnset,
         .teachableLearnset = sGrimerTeachableLearnset,
+        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK}),
     },
 
@@ -8749,8 +8749,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sludge"),
         .height = 12,
         .weight = 300,
-        FOOTPRINT(Muk)
-        .formSpeciesIdTable = sMukFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It prefers warm and humid habitats.\n"
             "In the summertime, the toxic substances\n"
@@ -8774,8 +8772,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Muk,
         .iconSprite = gMonIcon_Muk,
         .iconPalIndex = 2,
+        FOOTPRINT(Muk)
         .levelUpLearnset = sMukLevelUpLearnset,
         .teachableLearnset = sMukTeachableLearnset,
+        .formSpeciesIdTable = sMukFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -8805,9 +8805,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sludge"),
         .height = 7,
         .weight = 420,
-        .isAlolanForm = TRUE,
-        FOOTPRINT(Grimer)
-        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "There are a hundred or so of them living\n"
             "in Alola's waste-disposal site. They're all\n"
@@ -8830,8 +8827,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GrimerAlolan,
         .iconSprite = gMonIcon_GrimerAlolan,
         .iconPalIndex = 1,
+        FOOTPRINT(Grimer)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sGrimerAlolanLevelUpLearnset,
         .teachableLearnset = sGrimerAlolanTeachableLearnset,
+        .formSpeciesIdTable = sGrimerFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK_ALOLAN}),
     },
 
@@ -8863,9 +8863,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sludge"),
         .height = 10,
         .weight = 520,
-        FOOTPRINT(Muk)
-        .formSpeciesIdTable = sMukFormSpeciesIdTable,
-        .isAlolanForm = TRUE,
         .description = COMPOUND_STRING(
             "While it's unexpectedly quiet and friendly,\n"
             "if it's not fed any trash for a while,,\n"
@@ -8888,8 +8885,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MukAlolan,
         .iconSprite = gMonIcon_MukAlolan,
         .iconPalIndex = 0,
+        FOOTPRINT(Muk)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sMukAlolanLevelUpLearnset,
         .teachableLearnset = sMukAlolanTeachableLearnset,
+        .formSpeciesIdTable = sMukFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_GRIMER
@@ -9133,21 +9133,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_GHOST, TYPE_POISON),
         .catchRate = 45,
-        .evYield_SpAttack = 3,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = _("Gengar"),
-        .natDexNum = NATIONAL_DEX_GENGAR,
-        .categoryName = _("Shadow"),
-        FOOTPRINT(Gengar)
-        .levelUpLearnset = sGengarLevelUpLearnset,
-        .teachableLearnset = sGengarTeachableLearnset,
-        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
-        .formChangeTable = sGengarFormChangeTable,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 250,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -9155,7 +9140,17 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 190,
     #endif
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
         .abilities = GENGAR_ABILITIES,
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Gengar"),
+        .natDexNum = NATIONAL_DEX_GENGAR,
+        .categoryName = _("Shadow"),
         .height = 15,
         .weight = 405,
         .description = COMPOUND_STRING(
@@ -9180,6 +9175,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Gengar,
         .iconSprite = gMonIcon_Gengar,
         .iconPalIndex = 2,
+        FOOTPRINT(Gengar)
+        .levelUpLearnset = sGengarLevelUpLearnset,
+        .teachableLearnset = sGengarTeachableLearnset,
+        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
+        .formChangeTable = sGengarFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -9205,12 +9205,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .speciesName = _("Gengar"),
         .natDexNum = NATIONAL_DEX_GENGAR,
         .categoryName = _("Shadow"),
-        FOOTPRINT(Gengar)
-        .levelUpLearnset = sGengarLevelUpLearnset,
-        .teachableLearnset = sGengarTeachableLearnset,
-        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
-        .formChangeTable = sGengarFormChangeTable,
-        .isMegaEvolution = TRUE,
         .height = 14,
         .weight = 405,
         .description = COMPOUND_STRING(
@@ -9235,6 +9229,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GengarMega,
         .iconSprite = gMonIcon_GengarMega,
         .iconPalIndex = 2,
+        FOOTPRINT(Gengar)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sGengarLevelUpLearnset,
+        .teachableLearnset = sGengarTeachableLearnset,
+        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
+        .formChangeTable = sGengarFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 
@@ -9261,12 +9261,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .speciesName = _("Gengar"),
         .natDexNum = NATIONAL_DEX_GENGAR,
         .categoryName = _("Shadow"),
-        FOOTPRINT(Gengar)
-        .levelUpLearnset = sGengarLevelUpLearnset,
-        .teachableLearnset = sGengarTeachableLearnset,
-        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
-        .formChangeTable = sGengarFormChangeTable,
-        .isGigantamax = TRUE,
         .height = 200,
         .weight = 0,
         .description = COMPOUND_STRING(
@@ -9291,6 +9285,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GengarGigantamax,
         .iconSprite = gMonIcon_GengarGigantamax,
         .iconPalIndex = 2,
+        FOOTPRINT(Gengar)
+        .isGigantamax = TRUE,
+        .levelUpLearnset = sGengarLevelUpLearnset,
+        .teachableLearnset = sGengarTeachableLearnset,
+        .formSpeciesIdTable = sGengarFormSpeciesIdTable,
+        .formChangeTable = sGengarFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_GASTLY
@@ -9377,11 +9377,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Iron Snake"),
         .height = 92,
         .weight = 4000,
-        FOOTPRINT(Steelix)
-        .levelUpLearnset = sSteelixLevelUpLearnset,
-        .teachableLearnset = sSteelixTeachableLearnset,
-        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
-        .formChangeTable = sSteelixFormChangeTable,
         .description = COMPOUND_STRING(
             "Steelix live even further underground\n"
             "than Onix. This Pokémon is known to dig\n"
@@ -9392,16 +9387,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 516,
         .trainerOffset = 13,
         .frontPic = gMonFrontPic_Steelix,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_SteelixF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Steelix,
         .frontAnimId = ANIM_V_SHAKE,
         .frontAnimDelay = 45,
         .backPic = gMonBackPic_Steelix,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_SteelixF,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 2,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -9409,6 +9404,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Steelix,
         .iconSprite = gMonIcon_Steelix,
         .iconPalIndex = 0,
+        FOOTPRINT(Steelix)
+        .levelUpLearnset = sSteelixLevelUpLearnset,
+        .teachableLearnset = sSteelixTeachableLearnset,
+        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
+        .formChangeTable = sSteelixFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -9438,11 +9438,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Iron Snake"),
         .height = 105,
         .weight = 7400,
-        FOOTPRINT(Steelix)
-        .levelUpLearnset = sSteelixLevelUpLearnset,
-        .teachableLearnset = sSteelixTeachableLearnset,
-        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
-        .formChangeTable = sSteelixFormChangeTable,
         .description = COMPOUND_STRING(
             "The cells within its body, crystallized by\n"
             "the energy produced from Mega Evolution,\n"
@@ -9465,7 +9460,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SteelixMega,
         .iconSprite = gMonIcon_SteelixMega,
         .iconPalIndex = 0,
+        FOOTPRINT(Steelix)
         .isMegaEvolution = TRUE,
+        .levelUpLearnset = sSteelixLevelUpLearnset,
+        .teachableLearnset = sSteelixTeachableLearnset,
+        .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
+        .formChangeTable = sSteelixFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_GEN_2_CROSS_EVOS
@@ -9561,16 +9561,16 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 257,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Hypno,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_HypnoF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Hypno,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .frontAnimDelay = 40,
         .backPic = gMonBackPic_Hypno,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_HypnoF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -9664,11 +9664,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Pincer"),
         .height = 13,
         .weight = 600,
-        FOOTPRINT(Kingler)
-        .levelUpLearnset = sKinglerLevelUpLearnset,
-        .teachableLearnset = sKinglerTeachableLearnset,
-        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,
-        .formChangeTable = sKinglerFormChangeTable,
         .description = COMPOUND_STRING(
             "It waves its huge, oversized claw in the\n"
             "air to communicate with others.\n"
@@ -9692,6 +9687,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Kingler,
         .iconSprite = gMonIcon_Kingler,
         .iconPalIndex = 0,
+        FOOTPRINT(Kingler)
+        .levelUpLearnset = sKinglerLevelUpLearnset,
+        .teachableLearnset = sKinglerTeachableLearnset,
+        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,
+        .formChangeTable = sKinglerFormChangeTable,
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -9721,11 +9721,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Pincer"),
         .height = 190,
         .weight = 0,
-        FOOTPRINT(Kingler)
-        .levelUpLearnset = sKinglerLevelUpLearnset,
-        .teachableLearnset = sKinglerTeachableLearnset,
-        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,
-        .formChangeTable = sKinglerFormChangeTable,
         .description = COMPOUND_STRING(
             "The flow of Gigantamax energy has\n"
             "spurred this Pokémon's left pincer\n"
@@ -9748,7 +9743,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_KinglerGigantamax,
         .iconSprite = gMonIcon_KinglerGigantamax,
         .iconPalIndex = 0,
+        FOOTPRINT(Kingler)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sKinglerLevelUpLearnset,
+        .teachableLearnset = sKinglerTeachableLearnset,
+        .formSpeciesIdTable = sKinglerFormSpeciesIdTable,
+        .formChangeTable = sKinglerFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_KRABBY
@@ -9787,17 +9787,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Ball"),
         .height = 5,
         .weight = 104,
-        .pokemonScale = 364,
-        .pokemonOffset = -8,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Voltorb)
-        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It bears an uncanny and unexplained\n"
             "resemblance to a Poké Ball. Because it\n"
             "explodes at the slightest shock, even\n"
             "veteran Trainers treat it with caution."),
+        .pokemonScale = 364,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Voltorb,
         .frontPicSize = MON_COORDS_SIZE(32, 40),
         .frontPicYOffset = 15,
@@ -9811,8 +9809,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Voltorb,
         .iconSprite = gMonIcon_Voltorb,
         .iconPalIndex = 0,
+        FOOTPRINT(Voltorb)
         .levelUpLearnset = sVoltorbLevelUpLearnset,
         .teachableLearnset = sVoltorbTeachableLearnset,
+        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ELECTRODE}),
     },
 
@@ -9841,17 +9841,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Ball"),
         .height = 12,
         .weight = 666,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Electrode)
-        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "They appear in great numbers at electric\n"
             "power plants. Because they feed on\n"
             "electricity, they cause massive and\n"
             "chaotic blackouts in nearby cities."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Electrode,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 11,
@@ -9865,8 +9863,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Electrode,
         .iconSprite = gMonIcon_Electrode,
         .iconPalIndex = 0,
+        FOOTPRINT(Electrode)
         .levelUpLearnset = sElectrodeLevelUpLearnset,
         .teachableLearnset = sElectrodeTeachableLearnset,
+        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
     },
 
 #if P_HISUIAN_FORMS
@@ -9895,17 +9895,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sphere"),
         .height = 5,
         .weight = 130,
-        .pokemonScale = 364,
-        .pokemonOffset = -8,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Voltorb)
-        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It esembles an ancient Poké Ball design.\n"
             "When excited, it discharges the electric\n"
             "current it has stored in its belly, then\n"
             "lets out a great, uproarious laugh."),
+        .pokemonScale = 364,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_VoltorbHisuian,
         .frontPicSize = MON_COORDS_SIZE(32, 32),
         .frontPicYOffset = 17,
@@ -9919,9 +9917,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_VoltorbHisuian,
         .iconSprite = gMonIcon_VoltorbHisuian,
         .iconPalIndex = 0,
+        FOOTPRINT(Voltorb)
+        .isHisuianForm = TRUE,
         .levelUpLearnset = sVoltorbHisuianLevelUpLearnset,
         .teachableLearnset = sVoltorbHisuianTeachableLearnset,
-        .isHisuianForm = TRUE,
+        .formSpeciesIdTable = sVoltorbFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_ELECTRODE_HISUIAN}),
     },
 
@@ -9950,17 +9950,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sphere"),
         .height = 12,
         .weight = 710,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Electrode)
-        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The tissue on the surface of its body is\n"
             "similar in composition to an Apricorn.\n"
             "When irritated, it lets loose an electric\n"
             "current equal to 20 lightning bolts."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_ElectrodeHisuian,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .frontPicYOffset = 9,
@@ -9974,9 +9972,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ElectrodeHisuian,
         .iconSprite = gMonIcon_ElectrodeHisuian,
         .iconPalIndex = 1,
+        FOOTPRINT(Electrode)
+        .isHisuianForm = TRUE,
         .levelUpLearnset = sElectrodeHisuianLevelUpLearnset,
         .teachableLearnset = sElectrodeHisuianTeachableLearnset,
-        .isHisuianForm = TRUE,
+        .formSpeciesIdTable = sElectrodeFormSpeciesIdTable,
     },
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_VOLTORB
@@ -10072,8 +10072,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Coconut"),
         .height = 20,
         .weight = 1200,
-        FOOTPRINT(Exeggutor)
-        .formSpeciesIdTable = sExeggutorFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Originally from the tropics, Exeggutor's\n"
             "heads grow larger from exposure to strong\n"
@@ -10096,8 +10094,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Exeggutor,
         .iconSprite = gMonIcon_Exeggutor,
         .iconPalIndex = 1,
+        FOOTPRINT(Exeggutor)
         .levelUpLearnset = sExeggutorLevelUpLearnset,
         .teachableLearnset = sExeggutorTeachableLearnset,
+        .formSpeciesIdTable = sExeggutorFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -10126,8 +10126,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Coconut"),
         .height = 109,
         .weight = 4156,
-        FOOTPRINT(Exeggutor)
-        .formSpeciesIdTable = sExeggutorFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Alola is the best environment for\n"
             "this Pokémon. Local people take pride\n"
@@ -10150,9 +10148,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ExeggutorAlolan,
         .iconSprite = gMonIcon_ExeggutorAlolan,
         .iconPalIndex = 1,
+        FOOTPRINT(Exeggutor)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sExeggutorAlolanLevelUpLearnset,
         .teachableLearnset = sExeggutorAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sExeggutorFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_EXEGGCUTE
@@ -10240,17 +10240,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Bone Keeper"),
         .height = 10,
         .weight = 450,
-        .pokemonScale = 293,
-        .pokemonOffset = 12,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Marowak)
-        .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "A Marowak is the evolved form of a Cubone\n"
             "that has grown tough by overcoming the\n"
             "grief of losing its mother. Its tempered\n"
             "and hardened spirit is not easily broken."),
+        .pokemonScale = 293,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Marowak,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 8,
@@ -10264,8 +10262,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Marowak,
         .iconSprite = gMonIcon_Marowak,
         .iconPalIndex = 2,
+        FOOTPRINT(Marowak)
         .levelUpLearnset = sMarowakLevelUpLearnset,
         .teachableLearnset = sMarowakTeachableLearnset,
+        .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
     },
 
 #if P_ALOLAN_FORMS
@@ -10295,17 +10295,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Bone Keeper"),
         .height = 10,
         .weight = 340,
-        .pokemonScale = 293,
-        .pokemonOffset = 12,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Marowak)
-        .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "The cursed flames that light up the bone\n"
             "carried by this Pokémon are said\n"
             "to cause both mental and physical\n"
             "pain that will never fade."),
+        .pokemonScale = 293,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_MarowakAlolan,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
@@ -10319,9 +10317,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MarowakAlolan,
         .iconSprite = gMonIcon_MarowakAlolan,
         .iconPalIndex = 1,
+        FOOTPRINT(Marowak)
+        .isAlolanForm = TRUE,
         .levelUpLearnset = sMarowakAlolanLevelUpLearnset,
         .teachableLearnset = sMarowakAlolanTeachableLearnset,
-        .isAlolanForm = TRUE,
+        .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_CUBONE
@@ -10673,11 +10673,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
-        #if P_UPDATED_ABILITIES >= GEN_8
-            .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH },
-        #else
-            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-        #endif
+    #if P_UPDATED_ABILITIES >= GEN_8
+        .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH },
+    #else
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+    #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Koffing"),
         .cryId = CRY_KOFFING,
@@ -10733,19 +10733,17 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+    #if P_UPDATED_ABILITIES >= GEN_8
+        .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH },
+    #else
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
+    #endif
+        .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = TRUE,
         .speciesName = _("Weezing"),
         .cryId = CRY_WEEZING,
         .natDexNum = NATIONAL_DEX_WEEZING,
         .categoryName = _("Poison Gas"),
-        FOOTPRINT(Weezing)
-        .formSpeciesIdTable = sWeezingFormSpeciesIdTable,
-        #if P_UPDATED_ABILITIES >= GEN_8
-            .abilities = { ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH },
-        #else
-            .abilities = { ABILITY_LEVITATE, ABILITY_NONE },
-        #endif
-        .bodyColor = BODY_COLOR_PURPLE,
         .height = 12,
         .weight = 95,
         .description = COMPOUND_STRING(
@@ -10771,8 +10769,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Weezing,
         .iconSprite = gMonIcon_Weezing,
         .iconPalIndex = 2,
+        FOOTPRINT(Weezing)
         .levelUpLearnset = sWeezingLevelUpLearnset,
         .teachableLearnset = sWeezingTeachableLearnset,
+        .formSpeciesIdTable = sWeezingFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -10803,9 +10803,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Poison Gas"),
         .height = 30,
         .weight = 160,
-        FOOTPRINT(Weezing)
-        .formSpeciesIdTable = sWeezingFormSpeciesIdTable,
-        .isGalarianForm = TRUE,
         .description = COMPOUND_STRING(
             "Long ago, when droves of factories fouled\n"
             "the air with pollution, it changed into this\n"
@@ -10829,8 +10826,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_WeezingGalarian,
         .iconSprite = gMonIcon_WeezingGalarian,
         .iconPalIndex = 1,
+        FOOTPRINT(Weezing)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sWeezingGalarianLevelUpLearnset,
         .teachableLearnset = sWeezingGalarianTeachableLearnset,
+        .formSpeciesIdTable = sWeezingFormSpeciesIdTable,
     },
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_KOFFING
@@ -10871,15 +10871,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Rhyhorn,
-        .frontPicSize = MON_COORDS_SIZE(56, 40),
         .frontPicFemale = gMonFrontPic_RhyhornF,
+        .frontPicSize = MON_COORDS_SIZE(56, 40),
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Rhyhorn,
         .frontAnimId = ANIM_V_SHAKE,
         .backPic = gMonBackPic_Rhyhorn,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_RhyhornF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 11,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -10928,15 +10928,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 299,
         .trainerOffset = 2,
         .frontPic = gMonFrontPic_Rhydon,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_RhydonF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Rhydon,
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Rhydon,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_RhydonF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -10993,15 +10993,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 369,
         .trainerOffset = 7,
         .frontPic = gMonFrontPic_Rhyperior,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_RhyperiorF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Rhyperior,
         .frontAnimId = ANIM_V_SHAKE_TWICE,
         .backPic = gMonBackPic_Rhyperior,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_RhyperiorF,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -11274,8 +11274,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 334,
         .trainerOffset = 4,
         .frontPic = gMonFrontPic_Tangrowth,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_TangrowthF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Tangrowth,
@@ -11321,20 +11321,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Parent"),
         .height = 22,
         .weight = 800,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 387,
-        .trainerOffset = 8,
-        FOOTPRINT(Kangaskhan)
-        .levelUpLearnset = sKangaskhanLevelUpLearnset,
-        .teachableLearnset = sKangaskhanTeachableLearnset,
-        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,
-        .formChangeTable = sKangaskhanFormChangeTable,
         .description = COMPOUND_STRING(
             "If you come across a young Kangaskhan\n"
             "playing by itself, never try to catch it.\n"
             "The baby's parent is sure to be in the area,\n"
             "and it will become violently enraged."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
         .frontPic = gMonFrontPic_Kangaskhan,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
@@ -11348,6 +11343,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Kangaskhan,
         .iconSprite = gMonIcon_Kangaskhan,
         .iconPalIndex = 2,
+        FOOTPRINT(Kangaskhan)
+        .levelUpLearnset = sKangaskhanLevelUpLearnset,
+        .teachableLearnset = sKangaskhanTeachableLearnset,
+        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,
+        .formChangeTable = sKangaskhanFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -11376,21 +11376,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Parent"),
         .height = 22,
         .weight = 1000,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 387,
-        .trainerOffset = 8,
-        FOOTPRINT(Kangaskhan)
-        .levelUpLearnset = sKangaskhanLevelUpLearnset,
-        .teachableLearnset = sKangaskhanTeachableLearnset,
-        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,
-        .formChangeTable = sKangaskhanFormChangeTable,
-        .isMegaEvolution = TRUE,
         .description = COMPOUND_STRING(
             "When the mother sees the back of her\n"
             "Mega-Evolved child, it makes her think\n"
             "of the day when her child will inevitably\n"
             "leave her."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
         .frontPic = gMonFrontPic_KangaskhanMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -11404,6 +11398,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_KangaskhanMega,
         .iconSprite = gMonIcon_KangaskhanMega,
         .iconPalIndex = 2,
+        FOOTPRINT(Kangaskhan)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sKangaskhanLevelUpLearnset,
+        .teachableLearnset = sKangaskhanTeachableLearnset,
+        .formSpeciesIdTable = sKangaskhanFormSpeciesIdTable,
+        .formChangeTable = sKangaskhanFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_KANGASKHAN
@@ -11620,15 +11620,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Goldeen,
-        .frontPicSize = MON_COORDS_SIZE(64, 40),
         .frontPicFemale = gMonFrontPic_GoldeenF,
+        .frontPicSize = MON_COORDS_SIZE(64, 40),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Goldeen,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backPic = gMonBackPic_Goldeen,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_GoldeenF,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 9,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -11678,15 +11678,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Seaking,
-        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicFemale = gMonFrontPic_SeakingF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Seaking,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backPic = gMonBackPic_Seaking,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_SeakingF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -11822,11 +11822,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 70,
         .baseSpDefense = 90,
-        #if P_UPDATED_TYPES >= GEN_6
-            .types = MON_TYPES(TYPE_PSYCHIC, TYPE_FAIRY),
-        #else
-            .types = MON_TYPES(TYPE_PSYCHIC),
-        #endif
+    #if P_UPDATED_TYPES >= GEN_6
+        .types = MON_TYPES(TYPE_PSYCHIC, TYPE_FAIRY),
+    #else
+        .types = MON_TYPES(TYPE_PSYCHIC),
+    #endif
         .catchRate = 145,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 62 : 78,
         .evYield_SpDefense = 1,
@@ -11881,26 +11881,20 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 120,
+        .types = MON_TYPES(TYPE_PSYCHIC),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 161 : 136,
+        .evYield_SpDefense = 2,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 25,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN },
+        .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Mr. Mime"),
         .cryId = CRY_MR_MIME,
         .natDexNum = NATIONAL_DEX_MR_MIME,
-        FOOTPRINT(MrMime)
-        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable,
-        #if P_UPDATED_TYPES >= GEN_6
-            .types = MON_TYPES(TYPE_PSYCHIC, TYPE_FAIRY),
-        #else
-            .types = MON_TYPES(TYPE_PSYCHIC),
-        #endif
-        .evYield_SpDefense = 2,
-        .abilities = { ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN },
-        .bodyColor = BODY_COLOR_PINK,
         .categoryName = _("Barrier"),
         .height = 13,
         .weight = 545,
@@ -11926,8 +11920,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MrMime,
         .iconSprite = gMonIcon_MrMime,
         .iconPalIndex = 0,
+        FOOTPRINT(MrMime)
         .levelUpLearnset = sMrMimeLevelUpLearnset,
         .teachableLearnset = sMrMimeTeachableLearnset,
+        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -11956,8 +11952,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Dancing"),
         .height = 14,
         .weight = 568,
-        FOOTPRINT(MrMime)
-        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "Its talent is tap-dancing. It can radiate\n"
             "chilliness from the bottoms of its feet to\n"
@@ -11980,9 +11974,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MrMimeGalarian,
         .iconSprite = gMonIcon_MrMimeGalarian,
         .iconPalIndex = 0,
+        FOOTPRINT(MrMime)
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sMrMimeGalarianLevelUpLearnset,
         .teachableLearnset = sMrMimeGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sMrMimeFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_MR_RIME}),
     },
 
@@ -12075,8 +12071,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 293,
         .trainerOffset = 2,
         .frontPic = gMonFrontPic_Scyther,
-        .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicFemale = gMonFrontPic_ScytherF,
+        .frontPicSize = MON_COORDS_SIZE(56, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 64),
         .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Scyther,
@@ -12124,11 +12120,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Pincer"),
         .height = 18,
         .weight = 1180,
-        FOOTPRINT(Scizor)
-        .levelUpLearnset = sScizorLevelUpLearnset,
-        .teachableLearnset = sScizorTeachableLearnset,
-        .formSpeciesIdTable = sScizorFormSpeciesIdTable,
-        .formChangeTable = sScizorFormChangeTable,
         .description = COMPOUND_STRING(
             "A Scizor has a body with the hardness of\n"
             "steel. It is not easily fazed by ordinary\n"
@@ -12139,8 +12130,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Scizor,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_ScizorF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Scizor,
@@ -12154,6 +12145,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Scizor,
         .iconSprite = gMonIcon_Scizor,
         .iconPalIndex = 0,
+        FOOTPRINT(Scizor)
+        .levelUpLearnset = sScizorLevelUpLearnset,
+        .teachableLearnset = sScizorTeachableLearnset,
+        .formSpeciesIdTable = sScizorFormSpeciesIdTable,
+        .formChangeTable = sScizorFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -12182,12 +12178,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Pincer"),
         .height = 20,
         .weight = 1250,
-        FOOTPRINT(Scizor)
-        .levelUpLearnset = sScizorLevelUpLearnset,
-        .teachableLearnset = sScizorTeachableLearnset,
-        .formSpeciesIdTable = sScizorFormSpeciesIdTable,
-        .formChangeTable = sScizorFormChangeTable,
-        .isMegaEvolution = TRUE,
         .description = COMPOUND_STRING(
             "The excess energy that bathes this\n"
             "Pokémon keeps it in constant danger of\n"
@@ -12210,6 +12200,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ScizorMega,
         .iconSprite = gMonIcon_ScizorMega,
         .iconPalIndex = 0,
+        FOOTPRINT(Scizor)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sScizorLevelUpLearnset,
+        .teachableLearnset = sScizorTeachableLearnset,
+        .formSpeciesIdTable = sScizorFormSpeciesIdTable,
+        .formChangeTable = sScizorFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_GEN_2_CROSS_EVOS
@@ -12757,11 +12753,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Stag Beetle"),
         .height = 15,
         .weight = 550,
-        FOOTPRINT(Pinsir)
-        .levelUpLearnset = sPinsirLevelUpLearnset,
-        .teachableLearnset = sPinsirTeachableLearnset,
-        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,
-        .formChangeTable = sPinsirFormChangeTable,
         .description = COMPOUND_STRING(
             "Their pincers are strong enough to\n"
             "shatter thick logs. Because they dislike\n"
@@ -12784,6 +12775,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Pinsir,
         .iconSprite = gMonIcon_Pinsir,
         .iconPalIndex = 2,
+        FOOTPRINT(Pinsir)
+        .levelUpLearnset = sPinsirLevelUpLearnset,
+        .teachableLearnset = sPinsirTeachableLearnset,
+        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,
+        .formChangeTable = sPinsirFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -12812,11 +12808,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Stag Beetle"),
         .height = 17,
         .weight = 590,
-        FOOTPRINT(Pinsir)
-        .levelUpLearnset = sPinsirLevelUpLearnset,
-        .teachableLearnset = sPinsirTeachableLearnset,
-        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,
-        .formChangeTable = sPinsirFormChangeTable,
         .description = COMPOUND_STRING(
             "The influence of Mega Evolution leaves it\n"
             "in a state of constant excitement.\n"
@@ -12840,7 +12831,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_PinsirMega,
         .iconSprite = gMonIcon_PinsirMega,
         .iconPalIndex = 2,
+        FOOTPRINT(Pinsir)
         .isMegaEvolution = TRUE,
+        .levelUpLearnset = sPinsirLevelUpLearnset,
+        .teachableLearnset = sPinsirTeachableLearnset,
+        .formSpeciesIdTable = sPinsirFormSpeciesIdTable,
+        .formChangeTable = sPinsirFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_PINSIR
@@ -12872,17 +12868,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Bull"),
         .height = 14,
         .weight = 884,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Tauros)
-        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
         .description = COMPOUND_STRING(
             "It is not satisfied unless it is rampaging\n"
             "at all times. If there is no opponent for\n"
             "Tauros to battle, it will charge at thick\n"
             "trees and knock them down to calm itself."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_Tauros,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 5,
@@ -12897,8 +12891,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Tauros,
         .iconSprite = gMonIcon_Tauros,
         .iconPalIndex = 2,
+        FOOTPRINT(Tauros)
         .levelUpLearnset = sTaurosLevelUpLearnset,
         .teachableLearnset = sTaurosTeachableLearnset,
+        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
     },
 
 #if P_PALDEAN_FORMS
@@ -12927,33 +12923,33 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Bull"),
         .height = 14,
         .weight = 1150,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Tauros)
-        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
-        .frontAnimFrames = sAnims_TaurosPaldean,
-        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
-        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .isPaldeanForm = TRUE,
         .description = COMPOUND_STRING(
             "This Pokémon has a muscular body\n"
             "and excels at close-quarters combat.\n"
             "It uses its short horns to strike\n"
             "the opponent’s weak spots."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_TaurosPaldeanCombatBreed,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_TaurosPaldean,
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
         .backPic = gMonBackPic_TaurosPaldeanCombatBreed,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_TaurosPaldeanCombatBreed,
         .shinyPalette = gMonShinyPalette_TaurosPaldeanCombatBreed,
         .iconSprite = gMonIcon_TaurosPaldeanCombatBreed,
         .iconPalIndex = 0,
+        FOOTPRINT(Tauros)
+        .isPaldeanForm = TRUE,
         .levelUpLearnset = sTaurosPaldeanCombatBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanCombatBreedTeachableLearnset,
+        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
     },
 
     [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
@@ -12981,33 +12977,33 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Bull"),
         .height = 14,
         .weight = 850,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Tauros)
-        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
-        .frontAnimFrames = sAnims_TaurosPaldean,
-        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
-        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .isPaldeanForm = TRUE,
         .description = COMPOUND_STRING(
             "When heated by fire energy, its horns can\n"
             "get hotter than 1,800 degrees Fahrenheit.\n"
             "Those gored by them will suffer\n"
             "both wounds and burns."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_TaurosPaldeanBlazeBreed,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_TaurosPaldean,
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
         .backPic = gMonBackPic_TaurosPaldeanBlazeBreed,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_TaurosPaldeanBlazeBreed,
         .shinyPalette = gMonShinyPalette_TaurosPaldeanBlazeBreed,
         .iconSprite = gMonIcon_TaurosPaldeanBlazeBreed,
         .iconPalIndex = 0,
+        FOOTPRINT(Tauros)
+        .isPaldeanForm = TRUE,
         .levelUpLearnset = sTaurosPaldeanBlazeBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanBlazeBreedTeachableLearnset,
+        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
     },
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
@@ -13035,33 +13031,33 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Wild Bull"),
         .height = 14,
         .weight = 1100,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        FOOTPRINT(Tauros)
-        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
-        .frontAnimFrames = sAnims_TaurosPaldean,
-        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
-        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .isPaldeanForm = TRUE,
         .description = COMPOUND_STRING(
             "This Pokémon blasts water from holes on\n"
             "the tips of its horns--the high-pressure\n"
             "jets pierce right through\n"
             "Tauros’s enemies."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         .frontPic = gMonFrontPic_TaurosPaldeanAquaBreed,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_TaurosPaldean,
+        /*.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,*/
         .backPic = gMonBackPic_TaurosPaldeanAquaBreed,
         .backPicSize = MON_COORDS_SIZE(64, 48),
         .backPicYOffset = 9,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .palette = gMonPalette_TaurosPaldeanAquaBreed,
         .shinyPalette = gMonShinyPalette_TaurosPaldeanAquaBreed,
         .iconSprite = gMonIcon_TaurosPaldeanAquaBreed,
         .iconPalIndex = 0,
+        FOOTPRINT(Tauros)
+        .isPaldeanForm = TRUE,
         .levelUpLearnset = sTaurosPaldeanAquaBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanAquaBreedTeachableLearnset,
+        .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
     },
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
@@ -13102,15 +13098,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Magikarp,
-        .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicFemale = gMonFrontPic_MagikarpF,
+        .frontPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Magikarp,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
         .backPic = gMonBackPic_Magikarp,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_MagikarpF,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 6,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
@@ -13119,9 +13115,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Magikarp,
         .iconPalIndex = 0,
         FOOTPRINT(Magikarp)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sMagikarpLevelUpLearnset,
         .teachableLearnset = sMagikarpTeachableLearnset,
-        .tmIlliterate = TRUE,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     },
 
@@ -13150,30 +13146,25 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Atrocious"),
         .height = 65,
         .weight = 2350,
-        .pokemonScale = 256,
-        .pokemonOffset = 6,
-        .trainerScale = 481,
-        .trainerOffset = 13,
-        FOOTPRINT(Gyarados)
-        .levelUpLearnset = sGyaradosLevelUpLearnset,
-        .teachableLearnset = sGyaradosTeachableLearnset,
-        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,
-        .formChangeTable = sGyaradosFormChangeTable,
         .description = COMPOUND_STRING(
             "It is an extremely vicious and violent\n"
             "Pokémon. When humans begin to fight,\n"
             "it will appear and burn everything to the\n"
             "ground with intensely hot flames."),
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 481,
+        .trainerOffset = 13,
         .frontPic = gMonFrontPic_Gyarados,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicFemale = gMonFrontPic_GyaradosF,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Gyarados,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backPic = gMonBackPic_Gyarados,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_GyaradosF,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -13181,6 +13172,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Gyarados,
         .iconSprite = gMonIcon_Gyarados,
         .iconPalIndex = 0,
+        FOOTPRINT(Gyarados)
+        .levelUpLearnset = sGyaradosLevelUpLearnset,
+        .teachableLearnset = sGyaradosTeachableLearnset,
+        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,
+        .formChangeTable = sGyaradosFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -13209,20 +13205,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Atrocious"),
         .height = 65,
         .weight = 3050,
-        .pokemonScale = 256,
-        .pokemonOffset = 6,
-        .trainerScale = 481,
-        .trainerOffset = 13,
-        FOOTPRINT(Gyarados)
-        .levelUpLearnset = sGyaradosLevelUpLearnset,
-        .teachableLearnset = sGyaradosTeachableLearnset,
-        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,
-        .formChangeTable = sGyaradosFormChangeTable,
         .description = COMPOUND_STRING(
             "Although it obeys its instinctive drive to\n"
             "destroy everything within its reach, it\n"
             "will respond to orders from a Trainer it\n"
             "truly trusts."),
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 481,
+        .trainerOffset = 13,
         .frontPic = gMonFrontPic_GyaradosMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 0,
@@ -13237,7 +13228,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_GyaradosMega,
         .iconSprite = gMonIcon_GyaradosMega,
         .iconPalIndex = 0,
+        FOOTPRINT(Gyarados)
         .isMegaEvolution = TRUE,
+        .levelUpLearnset = sGyaradosLevelUpLearnset,
+        .teachableLearnset = sGyaradosTeachableLearnset,
+        .formSpeciesIdTable = sGyaradosFormSpeciesIdTable,
+        .formChangeTable = sGyaradosFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_MAGIKARP
@@ -13270,11 +13266,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Transport"),
         .height = 25,
         .weight = 2200,
-        FOOTPRINT(Lapras)
-        .levelUpLearnset = sLaprasLevelUpLearnset,
-        .teachableLearnset = sLaprasTeachableLearnset,
-        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,
-        .formChangeTable = sLaprasFormChangeTable,
         .description = COMPOUND_STRING(
             "People have driven Lapras almost to the\n"
             "point of extinction. In the evenings,\n"
@@ -13297,6 +13288,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Lapras,
         .iconSprite = gMonIcon_Lapras,
         .iconPalIndex = 2,
+        FOOTPRINT(Lapras)
+        .levelUpLearnset = sLaprasLevelUpLearnset,
+        .teachableLearnset = sLaprasTeachableLearnset,
+        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,
+        .formChangeTable = sLaprasFormChangeTable,
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -13327,11 +13323,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Transport"),
         .height = 240,
         .weight = 0,
-        FOOTPRINT(Lapras)
-        .levelUpLearnset = sLaprasLevelUpLearnset,
-        .teachableLearnset = sLaprasTeachableLearnset,
-        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,
-        .formChangeTable = sLaprasFormChangeTable,
         .description = COMPOUND_STRING(
             "Over 5,000 people can ride on its\n"
             "shell at once. And it's a very\n"
@@ -13354,7 +13345,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_LaprasGigantamax,
         .iconSprite = gMonIcon_LaprasGigantamax,
         .iconPalIndex = 2,
+        FOOTPRINT(Lapras)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sLaprasLevelUpLearnset,
+        .teachableLearnset = sLaprasTeachableLearnset,
+        .formSpeciesIdTable = sLaprasFormSpeciesIdTable,
+        .formChangeTable = sLaprasFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_LAPRAS
@@ -13410,9 +13406,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Ditto,
         .iconPalIndex = 2,
         FOOTPRINT(Ditto)
+        .tmIlliterate = TRUE,
         .levelUpLearnset = sDittoLevelUpLearnset,
         .teachableLearnset = sDittoTeachableLearnset,
-        .tmIlliterate = TRUE,
     },
 #endif //P_FAMILY_DITTO
 
@@ -13442,11 +13438,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Evolution"),
         .height = 3,
         .weight = 65,
-        FOOTPRINT(Eevee)
-        .levelUpLearnset = sEeveeLevelUpLearnset,
-        .teachableLearnset = sEeveeTeachableLearnset,
-        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
-        .formChangeTable = sEeveeFormChangeTable,
         .description = COMPOUND_STRING(
             "An Eevee has an unstable genetic makeup\n"
             "that suddenly mutates due to its\n"
@@ -13457,15 +13448,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Eevee,
-        .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicFemale = gMonFrontPic_EeveeF,
+        .frontPicSize = MON_COORDS_SIZE(40, 48),
         .frontPicSizeFemale = MON_COORDS_SIZE(40, 48),
         .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_Eevee,
         .frontAnimId = ANIM_V_STRETCH,
         .backPic = gMonBackPic_Eevee,
-        .backPicSize = MON_COORDS_SIZE(56, 48),
         .backPicFemale = gMonBackPic_EeveeF,
+        .backPicSize = MON_COORDS_SIZE(56, 48),
         .backPicSizeFemale = MON_COORDS_SIZE(56, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
@@ -13473,6 +13464,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Eevee,
         .iconSprite = gMonIcon_Eevee,
         .iconPalIndex = 2,
+        FOOTPRINT(Eevee)
+        .levelUpLearnset = sEeveeLevelUpLearnset,
+        .teachableLearnset = sEeveeTeachableLearnset,
+        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
+        .formChangeTable = sEeveeFormChangeTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
                                 {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
                                 {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},
@@ -13511,11 +13507,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Evolution"),
         .height = 180,
         .weight = 0,
-        FOOTPRINT(Eevee)
-        .levelUpLearnset = sEeveeLevelUpLearnset,
-        .teachableLearnset = sEeveeTeachableLearnset,
-        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
-        .formChangeTable = sEeveeFormChangeTable,
         .description = COMPOUND_STRING(
             "Having gotten even friendlier and\n"
             "more innocent, Eevee tries to play\n"
@@ -13538,7 +13529,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_EeveeGigantamax,
         .iconSprite = gMonIcon_EeveeGigantamax,
         .iconPalIndex = 2,
+        FOOTPRINT(Eevee)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sEeveeLevelUpLearnset,
+        .teachableLearnset = sEeveeTeachableLearnset,
+        .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
+        .formChangeTable = sEeveeFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -14398,11 +14394,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fossil"),
         .height = 18,
         .weight = 590,
-        FOOTPRINT(Aerodactyl)
-        .levelUpLearnset = sAerodactylLevelUpLearnset,
-        .teachableLearnset = sAerodactylTeachableLearnset,
-        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
-        .formChangeTable = sAerodactylFormChangeTable,
         .description = COMPOUND_STRING(
             "Aerodactyl is a Pokémon from the age\n"
             "of dinosaurs. It was regenerated from DNA\n"
@@ -14426,6 +14417,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Aerodactyl,
         .iconSprite = gMonIcon_Aerodactyl,
         .iconPalIndex = 2,
+        FOOTPRINT(Aerodactyl)
+        .levelUpLearnset = sAerodactylLevelUpLearnset,
+        .teachableLearnset = sAerodactylTeachableLearnset,
+        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
+        .formChangeTable = sAerodactylFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -14454,11 +14450,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Fossil"),
         .height = 21,
         .weight = 790,
-        FOOTPRINT(Aerodactyl)
-        .levelUpLearnset = sAerodactylLevelUpLearnset,
-        .teachableLearnset = sAerodactylTeachableLearnset,
-        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
-        .formChangeTable = sAerodactylFormChangeTable,
         .description = COMPOUND_STRING(
             "The power of Mega Evolution has\n"
             "completely restored its genes. The rocks\n"
@@ -14481,7 +14472,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_AerodactylMega,
         .iconSprite = gMonIcon_AerodactylMega,
         .iconPalIndex = 2,
+        FOOTPRINT(Aerodactyl)
         .isMegaEvolution = TRUE,
+        .levelUpLearnset = sAerodactylLevelUpLearnset,
+        .teachableLearnset = sAerodactylTeachableLearnset,
+        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
+        .formChangeTable = sAerodactylFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_AERODACTYL
@@ -14571,11 +14567,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sleeping"),
         .height = 21,
         .weight = 4600,
-        FOOTPRINT(Snorlax)
-        .levelUpLearnset = sSnorlaxLevelUpLearnset,
-        .teachableLearnset = sSnorlaxTeachableLearnset,
-        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,
-        .formChangeTable = sSnorlaxFormChangeTable,
         .description = COMPOUND_STRING(
             "Snorlax's typical day consists of nothing\n"
             "more than eating and sleeping. It is such\n"
@@ -14598,6 +14589,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Snorlax,
         .iconSprite = gMonIcon_Snorlax,
         .iconPalIndex = 3,
+        FOOTPRINT(Snorlax)
+        .levelUpLearnset = sSnorlaxLevelUpLearnset,
+        .teachableLearnset = sSnorlaxTeachableLearnset,
+        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,
+        .formChangeTable = sSnorlaxFormChangeTable,
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -14628,11 +14624,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Sleeping"),
         .height = 350,
         .weight = 0,
-        FOOTPRINT(Snorlax)
-        .levelUpLearnset = sSnorlaxLevelUpLearnset,
-        .teachableLearnset = sSnorlaxTeachableLearnset,
-        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,
-        .formChangeTable = sSnorlaxFormChangeTable,
         .description = COMPOUND_STRING(
             "Gigantamax energy has affected\n"
             "stray seeds and even pebbles that\n"
@@ -14655,7 +14646,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_SnorlaxGigantamax,
         .iconSprite = gMonIcon_SnorlaxGigantamax,
         .iconPalIndex = 3,
+        FOOTPRINT(Snorlax)
         .isGigantamax = TRUE,
+        .levelUpLearnset = sSnorlaxLevelUpLearnset,
+        .teachableLearnset = sSnorlaxTeachableLearnset,
+        .formSpeciesIdTable = sSnorlaxFormSpeciesIdTable,
+        .formChangeTable = sSnorlaxFormChangeTable,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SNORLAX
@@ -14671,21 +14667,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 125,
         .types = MON_TYPES(TYPE_ICE, TYPE_FLYING),
         .catchRate = 3,
-        .genderRatio = MON_GENDERLESS,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .speciesName = _("Articuno"),
-        .cryId = CRY_ARTICUNO,
-        .natDexNum = NATIONAL_DEX_ARTICUNO,
-        .height = 17,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 309,
-        .trainerOffset = 2,
-        FOOTPRINT(Articuno)
-        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
-        .isLegendary = TRUE,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -14694,16 +14675,28 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 215,
     #endif
         .evYield_SpDefense = 3,
+        .genderRatio = MON_GENDERLESS,
         .eggCycles = 80,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_SNOW_CLOAK },
         .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Articuno"),
+        .cryId = CRY_ARTICUNO,
+        .natDexNum = NATIONAL_DEX_ARTICUNO,
         .categoryName = _("Freeze"),
+        .height = 17,
         .weight = 554,
         .description = COMPOUND_STRING(
             "Articuno is a legendary bird Pokémon that\n"
             "can control ice. The flapping of its wings\n"
             "chills the air. As a result, it is said that\n"
             "when this Pokémon flies, snow will fall."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 309,
+        .trainerOffset = 2,
         .frontPic = gMonFrontPic_Articuno,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 2,
@@ -14717,8 +14710,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Articuno,
         .iconSprite = gMonIcon_Articuno,
         .iconPalIndex = 2,
+        FOOTPRINT(Articuno)
+        .isLegendary = TRUE,
         .levelUpLearnset = sArticunoLevelUpLearnset,
         .teachableLearnset = sArticunoTeachableLearnset,
+        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -14747,18 +14743,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Cruel"),
         .height = 17,
         .weight = 509,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 309,
-        .trainerOffset = 2,
-        FOOTPRINT(Articuno)
-        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .description = COMPOUND_STRING(
             "It fires beams that immobilize opponents\n"
             "as if they had been frozen solid.\n"
             "Its feather-like blades of psychic energy\n"
             "rip through thick iron sheets like paper."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 309,
+        .trainerOffset = 2,
         .frontPic = gMonFrontPic_ArticunoGalarian,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 7,
@@ -14773,9 +14766,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ArticunoGalarian,
         .iconSprite = gMonIcon_ArticunoGalarian,
         .iconPalIndex = 2,
+        FOOTPRINT(Articuno)
+        .isLegendary = TRUE,
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sArticunoGalarianLevelUpLearnset,
         .teachableLearnset = sArticunoGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
     },
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_ARTICUNO
@@ -14791,22 +14787,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FLYING),
         .catchRate = 3,
-        .genderRatio = MON_GENDERLESS,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = _("Zapdos"),
-        .cryId = CRY_ZAPDOS,
-        .natDexNum = NATIONAL_DEX_ZAPDOS,
-        .height = 16,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 318,
-        .trainerOffset = 3,
-        FOOTPRINT(Zapdos)
-        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
-        .isLegendary = TRUE,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -14815,19 +14795,32 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 216,
     #endif
         .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
         .eggCycles = 80,
-        #if P_UPDATED_ABILITIES >= GEN_6
-            .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_STATIC },
-        #else
-            .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
-        #endif
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+    #if P_UPDATED_ABILITIES >= GEN_6
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_STATIC },
+    #else
+        .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
+    #endif
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Zapdos"),
+        .cryId = CRY_ZAPDOS,
+        .natDexNum = NATIONAL_DEX_ZAPDOS,
         .categoryName = _("Electric"),
+        .height = 16,
         .weight = 526,
         .description = COMPOUND_STRING(
             "Zapdos is a legendary bird Pokémon that\n"
             "has the ability to control electricity.\n"
             "It usually lives in thunderclouds. It gains\n"
             "power if it is stricken by lightning bolts."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 318,
+        .trainerOffset = 3,
         .frontPic = gMonFrontPic_Zapdos,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 4,
@@ -14842,8 +14835,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Zapdos,
         .iconSprite = gMonIcon_Zapdos,
         .iconPalIndex = 0,
+        FOOTPRINT(Zapdos)
+        .isLegendary = TRUE,
         .levelUpLearnset = sZapdosLevelUpLearnset,
         .teachableLearnset = sZapdosTeachableLearnset,
+        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -14872,18 +14868,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Strong Legs"),
         .height = 16,
         .weight = 582,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 318,
-        .trainerOffset = 3,
-        FOOTPRINT(Zapdos)
-        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .description = COMPOUND_STRING(
             "When its feathers rub together, they\n"
             "produce a crackling sound like the\n"
             "zapping of electricity. Apparently, it runs\n"
             "through the mountains at over 180 mph."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 318,
+        .trainerOffset = 3,
         .frontPic = gMonFrontPic_ZapdosGalarian,
         .frontPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 0,
@@ -14897,9 +14890,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_ZapdosGalarian,
         .iconSprite = gMonIcon_ZapdosGalarian,
         .iconPalIndex = 0,
+        FOOTPRINT(Zapdos)
+        .isLegendary = TRUE,
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sZapdosGalarianLevelUpLearnset,
         .teachableLearnset = sZapdosGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
     },
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_ZAPDOS
@@ -14915,21 +14911,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 85,
         .types = MON_TYPES(TYPE_FIRE, TYPE_FLYING),
         .catchRate = 3,
-        .genderRatio = MON_GENDERLESS,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .speciesName = _("Moltres"),
-        .cryId = CRY_MOLTRES,
-        .natDexNum = NATIONAL_DEX_MOLTRES,
-        .height = 20,
-        .pokemonScale = 270,
-        .pokemonOffset = 0,
-        .trainerScale = 387,
-        .trainerOffset = 8,
-        FOOTPRINT(Moltres)
-        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
-        .isLegendary = TRUE,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 290,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -14938,16 +14919,28 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .expYield = 217,
     #endif
         .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
         .eggCycles = 80,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FLAME_BODY },
         .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Moltres"),
+        .cryId = CRY_MOLTRES,
+        .natDexNum = NATIONAL_DEX_MOLTRES,
         .categoryName = _("Flame"),
+        .height = 20,
         .weight = 600,
         .description = COMPOUND_STRING(
             "Moltres is a legendary bird Pokémon\n"
             "that can control fire. If injured, it is said\n"
             "to dip its body in the molten magma of\n"
             "a volcano to burn and heal itself."),
+        .pokemonScale = 270,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
         .frontPic = gMonFrontPic_Moltres,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
@@ -14961,8 +14954,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Moltres,
         .iconSprite = gMonIcon_Moltres,
         .iconPalIndex = 0,
+        FOOTPRINT(Moltres)
+        .isLegendary = TRUE,
         .levelUpLearnset = sMoltresLevelUpLearnset,
         .teachableLearnset = sMoltresTeachableLearnset,
+        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
@@ -14991,18 +14987,15 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Malevolent"),
         .height = 20,
         .weight = 660,
-        .pokemonScale = 270,
-        .pokemonOffset = 0,
-        .trainerScale = 387,
-        .trainerOffset = 8,
-        FOOTPRINT(Moltres)
-        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
-        .isLegendary = TRUE,
         .description = COMPOUND_STRING(
             "This Pokémon's sinister, flame-like aura\n"
             "will consume the spirit of any creature\n"
             "it hits. Victims become burned-out\n"
             "shadows of themselves."),
+        .pokemonScale = 270,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
         .frontPic = gMonFrontPic_MoltresGalarian,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .frontPicYOffset = 1,
@@ -15016,9 +15009,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MoltresGalarian,
         .iconSprite = gMonIcon_MoltresGalarian,
         .iconPalIndex = 0,
+        FOOTPRINT(Moltres)
+        .isLegendary = TRUE,
+        .isGalarianForm = TRUE,
         .levelUpLearnset = sMoltresGalarianLevelUpLearnset,
         .teachableLearnset = sMoltresGalarianTeachableLearnset,
-        .isGalarianForm = TRUE,
+        .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
     },
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_MOLTRES
@@ -15203,22 +15199,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_PSYCHIC),
         .catchRate = 3,
-        .evYield_SpAttack = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-        .bodyColor = BODY_COLOR_PURPLE,
-        .speciesName = _("Mewtwo"),
-        .natDexNum = NATIONAL_DEX_MEWTWO,
-        .categoryName = _("Genetic"),
-        FOOTPRINT(Mewtwo)
-        .levelUpLearnset = sMewtwoLevelUpLearnset,
-        .teachableLearnset = sMewtwoTeachableLearnset,
-        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
-        .formChangeTable = sMewtwoFormChangeTable,
-        .isLegendary = TRUE,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
         .expYield = 340,
     #elif P_UPDATED_EXP_YIELDS >= GEN_5
@@ -15226,8 +15206,18 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
     #else
         .expYield = 220,
     #endif
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_UNNERVE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Mewtwo"),
         .cryId = CRY_MEWTWO,
+        .natDexNum = NATIONAL_DEX_MEWTWO,
+        .categoryName = _("Genetic"),
         .height = 20,
         .weight = 1220,
         .description = COMPOUND_STRING(
@@ -15252,6 +15242,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_Mewtwo,
         .iconSprite = gMonIcon_Mewtwo,
         .iconPalIndex = 2,
+        FOOTPRINT(Mewtwo)
+        .isLegendary = TRUE,
+        .levelUpLearnset = sMewtwoLevelUpLearnset,
+        .teachableLearnset = sMewtwoTeachableLearnset,
+        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
+        .formChangeTable = sMewtwoFormChangeTable,
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -15280,13 +15276,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Genetic"),
         .height = 23,
         .weight = 1270,
-        FOOTPRINT(Mewtwo)
-        .levelUpLearnset = sMewtwoLevelUpLearnset,
-        .teachableLearnset = sMewtwoTeachableLearnset,
-        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
-        .formChangeTable = sMewtwoFormChangeTable,
-        .isLegendary = TRUE,
-        .isMegaEvolution = TRUE,
         .description = COMPOUND_STRING(
             "Psychic power has augmented its muscles.\n"
             "It has a grip strength of one ton and can\n"
@@ -15309,6 +15298,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MewtwoMegaX,
         .iconSprite = gMonIcon_MewtwoMegaX,
         .iconPalIndex = 2,
+        FOOTPRINT(Mewtwo)
+        .isLegendary = TRUE,
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sMewtwoLevelUpLearnset,
+        .teachableLearnset = sMewtwoTeachableLearnset,
+        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
+        .formChangeTable = sMewtwoFormChangeTable,
     },
 
     [SPECIES_MEWTWO_MEGA_Y] =
@@ -15336,13 +15332,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Genetic"),
         .height = 15,
         .weight = 330,
-        FOOTPRINT(Mewtwo)
-        .levelUpLearnset = sMewtwoLevelUpLearnset,
-        .teachableLearnset = sMewtwoTeachableLearnset,
-        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
-        .formChangeTable = sMewtwoFormChangeTable,
-        .isLegendary = TRUE,
-        .isMegaEvolution = TRUE,
         .description = COMPOUND_STRING(
             "Despite its diminished size, its mental\n"
             "power has grown phenomenally. With a mere\n"
@@ -15366,6 +15355,13 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .shinyPalette = gMonShinyPalette_MewtwoMegaY,
         .iconSprite = gMonIcon_MewtwoMegaY,
         .iconPalIndex = 2,
+        FOOTPRINT(Mewtwo)
+        .isLegendary = TRUE,
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sMewtwoLevelUpLearnset,
+        .teachableLearnset = sMewtwoTeachableLearnset,
+        .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
+        .formChangeTable = sMewtwoFormChangeTable,
     },
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_MEWTWO
@@ -15398,7 +15394,6 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_PINK,
-        .isMythical = TRUE,
         .speciesName = _("Mew"),
         .cryId = CRY_MEW,
         .natDexNum = NATIONAL_DEX_MEW,
@@ -15429,6 +15424,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Mew,
         .iconPalIndex = 0,
         FOOTPRINT(Mew)
+        .isMythical = TRUE,
         .levelUpLearnset = sMewLevelUpLearnset,
         .teachableLearnset = sMewTeachableLearnset,
     },
