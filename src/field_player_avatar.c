@@ -145,8 +145,10 @@ static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
 static u32 CalculateFishingProximityOdds(void);
 static u32 CalculateFishingBiteOdds(bool32);
+static bool32 IsMetatileLand(s16 x, s16 y, u32);
+static bool32 IsMetatileBlocking(s16 x, s16 y, u32);
+static bool32 IsPlayerHere(s16,s16,s16,s16);
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
-
 
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
 
@@ -1843,15 +1845,171 @@ static u32 CalculateFishingBiteOdds(bool32 isStickyHold)
 
 static u32 CalculateFishingProximityOdds(void)
 {
+    u32 facingDirection, metatiles[4] = {0};
+    s16 playerX = 0, playerY = 0;
+    s16 bobberX = 0, bobberY = 0;
+    s16 tileX = 0, tileY = 0;
+    s16 tileCoord[4][2] = {{0,0}};
+    u32 qualify = 0;
+    u32 i = 0;
+    bool32 hasLand = FALSE;
+
+    struct ObjectEvent *objectEvent;
+    u32 collison;
+
+
+    // It is unknown how exactly the feature in XY work. This is an approximation of the observed effects of the feature, and should be updated once a Pokemon X decomp or datamine is available with this information.
+
     if (!I_FISHING_PROXIMITY)
         return 0;
-    else
-        return (3 * 4);
+
+    objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    playerX = bobberX = objectEvent->currentCoords.x;
+    playerY = bobberY = objectEvent->currentCoords.y;
+
+    facingDirection = GetPlayerFacingDirection();
+    MoveCoords(facingDirection, &bobberX, &bobberY);
+
+    DebugPrintf("player| x %d | y %d",playerX,playerY);
+    DebugPrintf("bobber | x %d | y %d",bobberX,bobberY);
+
+    tileCoord[0][0] = bobberX + 1;
+    tileCoord[0][1] = bobberY;
+    tileCoord[1][0] = bobberX;
+    tileCoord[1][1] = bobberY + 1;
+    tileCoord[2][0] = bobberX;
+    tileCoord[2][1] = bobberY - 1;
+    tileCoord[3][0] = bobberX - 1;
+    tileCoord[3][1] = bobberY;
+
+    for(i = 0; i < 4; i++)
+    {
+        tileX = tileCoord[i][0];
+        tileY = tileCoord[i][1];
+
+        switch(i)
+        {
+            case DIR_SOUTH:
+                DebugPrintf("start SOUTH");
+                break;
+            case DIR_NORTH:
+                DebugPrintf("start NORTH");
+                break;
+            case DIR_WEST:
+                DebugPrintf("start WEST");
+                break;
+            default:
+            case DIR_EAST:
+                DebugPrintf("start EAST");
+                break;
+        }
+        DebugPrintf("x %d | y %d",tileX,tileY);
+
+        collison = GetCollisionAtCoords(objectEvent, tileX, tileY, facingDirection);
+        DebugPrintf("collison %d",collison);
+
+        if (IsPlayerHere(tileX,tileY,playerX,playerY))
+        {
+            DebugPrintf("player is here");
+            metatiles[i] = 0;
+        }
+        else if (MetatileBehavior_IsSurfableFishableWater(MapGridGetMetatileBehaviorAt(tileX, tileY)))
+        {
+            DebugPrintf("surfablefishable water");
+            metatiles[i] = 0;
+        }
+        else if (IsMetatileBlocking(tileX,tileY, collison))
+        {
+            DebugPrintf("tile blocking");
+            qualify++;
+            metatiles[i] = 1;
+        }
+        else if (IsMetatileLand(tileX,tileY, collison))
+        {
+            DebugPrintf("tile land");
+            hasLand = TRUE;
+            metatiles[i] = 2;
+        }
+        else
+        {
+            DebugPrintf("other");
+            metatiles[i] = 0;
+        }
+
+        switch(i)
+        {
+            case DIR_SOUTH: DebugPrintf("end SOUTH metatiles %d",metatiles[i]);
+                            break;
+            case DIR_NORTH: DebugPrintf("end NORTH metatiles %d",metatiles[i]);
+                            break;
+            case DIR_WEST: DebugPrintf("end WEST metatiles %d",metatiles[i]);
+                           break;
+            default:
+            case DIR_EAST: DebugPrintf("end EAST metatiles %d",metatiles[i]);
+                           break;
+        }
+    }
+
+    if (hasLand)
+    {
+        for (i = 0; i < 4; i++)
+        {
+            if (metatiles[i] != 2)
+                continue;
+
+            if (!qualify)
+            {
+                metatiles[i] = 0;
+                continue;
+            }
+
+            metatiles[i] = 2;
+            qualify++;
+        }
+    }
+    DebugPrintf("qualify %d",qualify);
+    DebugPrintf("------------------");
+    return qualify * 4;
+}
+
+static bool32 IsPlayerHere(s16 x, s16 y, s16 playerX, s16 playerY)
+{
+    return (
+            x == playerX &&
+            y == playerY
+           );
+}
+
+static bool32 IsMetatileBlocking(s16 x, s16 y, u32 collison)
+{
+    switch(collison)
+    {
+        case COLLISION_NONE:
+        case COLLISION_STOP_SURFING:
+        case COLLISION_ELEVATION_MISMATCH:
+            return FALSE;
+        default:
+            return TRUE;
+        case COLLISION_OBJECT_EVENT:
+            if (gObjectEvents[GetObjectEventIdByXY(x,y)].inanimate)
+                return TRUE;
+            else
+                return FALSE;
+    }
+    return TRUE;
+}
+
+static bool32 IsMetatileLand(s16 x, s16 y, u32 collison)
+{
+    if (collison != COLLISION_NONE)
+        return FALSE;
+
+    return TRUE;
 }
 
 static bool32 Fishing_RollForBite(bool32 isStickyHold)
 {
-    return (Random() > CalculateFishingBiteOdds(isStickyHold));
+    return ((Random() % 100) > CalculateFishingBiteOdds(isStickyHold));
 }
 
 static bool32 Fishing_CheckForBiteWithStickyHold(void)
@@ -1883,7 +2041,8 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 
         if (!bite)
             bite = Fishing_CheckForBiteNoStickyHold();
-        else
+
+        if (!bite)
             task->tStep = FISHING_NO_BITE;
 
         if (bite)
@@ -1894,7 +2053,6 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 
 static bool8 Fishing_GotBite(struct Task *task)
 {
-    DebugPrintf("Fishing_GotBite");
     AlignFishingAnimationFrames();
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_OhABite, 0, 17, 0, NULL);
     task->tStep++;
@@ -1904,7 +2062,6 @@ static bool8 Fishing_GotBite(struct Task *task)
 
 static u8 Fishing_ChangeMinigame(struct Task *task)
 {
-    DebugPrintf("Fishing_ChangeMinigame");
     switch (I_FISHING_MINIGAME)
     {
         case GEN_1:
