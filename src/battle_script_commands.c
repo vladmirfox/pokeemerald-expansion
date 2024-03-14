@@ -14685,7 +14685,7 @@ bool32 DoesSubstituteBlockMove(u32 battlerAtk, u32 battlerDef, u32 move)
 
 bool32 DoesDisguiseBlockMove(u32 battlerAtk, u32 battlerDef, u32 move)
 {
-    if (gBattleMons[battlerDef].species != SPECIES_MIMIKYU_DISGUISED
+    if (!(gBattleMons[battlerDef].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battlerDef].species == SPECIES_MIMIKYU_TOTEM_DISGUISED)
         || gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED
         || IS_MOVE_STATUS(move)
         || gHitMarker & HITMARKER_IGNORE_DISGUISE
