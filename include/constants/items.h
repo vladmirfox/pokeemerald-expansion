@@ -827,7 +827,7 @@
 #define ITEM_TM97 678
 #define ITEM_TM98 679
 #define ITEM_TM99 680
-#define ITEM_TM100 681
+#define ITEM_TM00 681
 
 #define ITEM_HM01 682
 #define ITEM_HM02 683

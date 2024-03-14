@@ -1941,8 +1941,8 @@ static const u8 sAcidSprayDescription[] = _(
     "Sharply reduces Sp. Def.");
 
 static const u8 sFoulPlayDescription[] = _(
-    "The higher the foe's Attack\n"
-    "the more damage caused.");
+    "Deal damage using the foe's\n"
+    "Attack stat against them.");
 
 static const u8 sSimpleBeamDescription[] = _(
     "A beam that changes the\n"
@@ -2241,8 +2241,8 @@ static const u8 sTopsyTurvyDescription[] = _(
     "affect the target.");
 
 static const u8 sDrainingKissDescription[] = _(
-    "An attack that absorbs over\n"
-    "half the damage inflicted.");
+    "An attack that absorbs 75%\n"
+    "of the damage inflicted.");
 
 static const u8 sCraftyShieldDescription[] = _(
     "Evades status moves for\n"
@@ -2514,7 +2514,7 @@ static const u8 sSpeedSwapDescription[] = _(
 
 static const u8 sSmartStrikeDescription[] = _(
     "Hits with an accurate\n"
-    "horn that never misses.");
+    "horn. Never misses.");
 
 static const u8 sPurifyDescription[] = _(
     "Recovers up to 50% max HP\n"

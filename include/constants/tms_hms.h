@@ -53,7 +53,8 @@
     F(STOMPING_TANTRUM) \
     F(OVERHEAT) \
     F(DAZZLING_GLEAM) \
-    F(POUNCE)
+    F(POUNCE) \
+    F(FLAME_CHARGE)
 
 #define FOREACH_HM(F) \
     F(CUT) \
