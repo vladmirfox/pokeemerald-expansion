@@ -1851,6 +1851,64 @@ static void MoveSelectionDisplayMoveType(u32 battler)
         
         StringCopy(txtPtr, gTypeNames[type]);
     }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERRAIN_PULSE
+            || moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_NATURE_POWER)
+    {
+        u8 type = TYPE_NORMAL;
+        if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN) && IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN))
+            type = TYPE_ELECTRIC;
+        else if ((gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN) && IsBattlerTerrainAffected(battler, STATUS_FIELD_GRASSY_TERRAIN))
+            type = TYPE_GRASS;
+        else if ((gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN) && IsBattlerTerrainAffected(battler, STATUS_FIELD_PSYCHIC_TERRAIN))
+            type = TYPE_PSYCHIC;
+        else if ((gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN) && IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
+            type = TYPE_FAIRY;
+        
+        StringCopy(txtPtr, gTypeNames[type]);
+    }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_RAGING_BULL)
+    {
+        u8 type = TYPE_NORMAL;
+        u8 secondType = gBattleMons[battler].type2;
+        if (secondType != TYPE_MYSTERY)
+            type = secondType;
+        
+        StringCopy(txtPtr, gTypeNames[type]);
+    }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_REVELATION_DANCE)
+    {
+        u8 type = TYPE_NORMAL;
+        if (gBattleMons[battler].type1 != TYPE_MYSTERY)
+            type = gBattleMons[battler].type1;
+        else if (gBattleMons[battler].type2 != TYPE_MYSTERY)
+            type = gBattleMons[battler].type2;
+        else if (gBattleMons[battler].type3 != TYPE_MYSTERY)
+            type = gBattleMons[battler].type3;
+
+        StringCopy(txtPtr, gTypeNames[type]);
+    }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_NATURAL_GIFT)
+    {
+        u8 type = TYPE_NORMAL;
+        if (ItemId_GetPocket(gBattleMons[battler].item) == POCKET_BERRIES)
+            type = gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battler].item)].type;
+        
+        StringCopy(txtPtr, gTypeNames[type]);
+    }
+    else if ((moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_JUDGMENT
+            || moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TECHNO_BLAST
+            || moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_MULTI_ATTACK)
+            && GetBattlerHoldEffect(battler, TRUE) == gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].argument)
+    {
+        u8 type = ItemId_GetSecondaryId(gBattleMons[battler].item);
+
+        StringCopy(txtPtr, gTypeNames[type]);
+    }
+    else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_AURA_WHEEL
+            && gBattleMons[battler].species == SPECIES_MORPEKO_HANGRY)
+    {       
+        StringCopy(txtPtr, gTypeNames[TYPE_DARK]);
+    }
     else
     {
         if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
