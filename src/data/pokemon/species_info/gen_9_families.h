@@ -1439,7 +1439,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Arboliva,
         .shinyPalette = gMonShinyPalette_Arboliva,
         .iconSprite = gMonIcon_Arboliva,
-        .iconPalIndex = 5,
+        .iconPalIndex = 1,
         //FOOTPRINT(Arboliva)
         .levelUpLearnset = sArbolivaLevelUpLearnset,
         .teachableLearnset = sArbolivaTeachableLearnset,
