@@ -1378,7 +1378,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
         .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_PLANT_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_PLANT_CLOAK}),
     },
 
     [SPECIES_BURMY_SANDY_CLOAK] =
@@ -1436,7 +1436,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
         .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_SANDY_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_SANDY_CLOAK}),
     },
 
     [SPECIES_BURMY_TRASH_CLOAK] =
@@ -1494,7 +1494,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
         .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_TRASH_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_TRASH_CLOAK}),
     },
 
     [SPECIES_WORMADAM_PLANT_CLOAK] =
@@ -1663,60 +1663,60 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sWormadamFormSpeciesIdTable,
     },
 
-    [SPECIES_MOTHIM] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 94,
-        .baseDefense   = 50,
-        .baseSpeed     = 66,
-        .baseSpAttack  = 94,
-        .baseSpDefense = 50,
-        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),
-        .catchRate = 45,
-        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 148 : 159,
-        .evYield_Attack = 1,
-        .evYield_SpAttack = 1,
-        .itemRare = ITEM_SILVER_POWDER,
-        .genderRatio = MON_MALE,
-        .eggCycles = 15,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_TINTED_LENS },
-        .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = _("Mothim"),
-        .cryId = CRY_MOTHIM,
-        .natDexNum = NATIONAL_DEX_MOTHIM,
-        .categoryName = _("Moth"),
-        .height = 9,
-        .weight = 233,
-        .description = COMPOUND_STRING(
-            "It does not keep a nest. While it\n"
-            "loves floral honey, it won't gather\n"
-            "any itself. Instead, it plots to steal\n"
-            "honey collected by Combee."),
-        .pokemonScale = 338,
-        .pokemonOffset = 8,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Mothim,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 12,
-        .frontAnimFrames = sAnims_Mothim,
-        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
-        .enemyMonElevation = 10,
-        .backPic = gMonBackPic_Mothim,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
-        .backPicYOffset = 8,
-        .backAnimId = BACK_ANIM_H_SHAKE,
-        .palette = gMonPalette_Mothim,
-        .shinyPalette = gMonShinyPalette_Mothim,
-        .iconSprite = gMonIcon_Mothim,
-        .iconPalIndex = 0,
-        FOOTPRINT(Mothim)
-        .levelUpLearnset = sMothimLevelUpLearnset,
-        .teachableLearnset = sMothimTeachableLearnset,
-    },
+#define MOTHIM_SPECIES_INFO                                                 \
+    {                                                                       \
+        .baseHP        = 70,                                                \
+        .baseAttack    = 94,                                                \
+        .baseDefense   = 50,                                                \
+        .baseSpeed     = 66,                                                \
+        .baseSpAttack  = 94,                                                \
+        .baseSpDefense = 50,                                                \
+        .types = MON_TYPES(TYPE_BUG, TYPE_FLYING),                          \
+        .catchRate = 45,                                                    \
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 148 : 159,            \
+        .evYield_Attack = 1,                                                \
+        .evYield_SpAttack = 1,                                              \
+        .itemRare = ITEM_SILVER_POWDER,                                     \
+        .genderRatio = MON_MALE,                                            \
+        .eggCycles = 15,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),                         \
+        .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_TINTED_LENS },  \
+        .bodyColor = BODY_COLOR_YELLOW,                                     \
+        .speciesName = _("Mothim"),                                         \
+        .cryId = CRY_MOTHIM,                                                \
+        .natDexNum = NATIONAL_DEX_MOTHIM,                                   \
+        .categoryName = _("Moth"),                                          \
+        .height = 9,                                                        \
+        .weight = 233,                                                      \
+        .description = gMothimPokedexText,                                  \
+        .pokemonScale = 338,                                                \
+        .pokemonOffset = 8,                                                 \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        .frontPic = gMonFrontPic_Mothim,                                    \
+        .frontPicSize = MON_COORDS_SIZE(64, 64),                            \
+        .frontPicYOffset = 12,                                              \
+        .frontAnimFrames = sAnims_Mothim,                                   \
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,                                 \
+        .enemyMonElevation = 10,                                            \
+        .backPic = gMonBackPic_Mothim,                                      \
+        .backPicSize = MON_COORDS_SIZE(64, 56),                             \
+        .backPicYOffset = 8,                                                \
+        .backAnimId = BACK_ANIM_H_SHAKE,                                    \
+        .palette = gMonPalette_Mothim,                                      \
+        .shinyPalette = gMonShinyPalette_Mothim,                            \
+        .iconSprite = gMonIcon_Mothim,                                      \
+        .iconPalIndex = 0,                                                  \
+        FOOTPRINT(Mothim)                                                   \
+        .levelUpLearnset = sMothimLevelUpLearnset,                          \
+        .teachableLearnset = sMothimTeachableLearnset,                      \
+    }
+
+    [SPECIES_MOTHIM_PLANT_CLOAK] = MOTHIM_SPECIES_INFO,
+    [SPECIES_MOTHIM_SANDY_CLOAK] = MOTHIM_SPECIES_INFO,
+    [SPECIES_MOTHIM_TRASH_CLOAK] = MOTHIM_SPECIES_INFO,
 #endif //P_FAMILY_BURMY
 
 #if P_FAMILY_COMBEE
