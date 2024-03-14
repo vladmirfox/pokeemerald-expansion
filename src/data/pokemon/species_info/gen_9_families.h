@@ -912,10 +912,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
         //.backAnimId = BACK_ANIM_NONE,
+<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmi,
         .shinyPalette = gMonShinyPalette_Pawmi,
         .iconSprite = gMonIcon_Pawmi,
         .iconPalIndex = 3,
+=======
+        PALETTES(Pawmi),
+        ICON(Pawmi, 0),
+>>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
         //FOOTPRINT(Pawmi)
         .levelUpLearnset = sPawmiLevelUpLearnset,
         .teachableLearnset = sPawmiTeachableLearnset,
@@ -965,10 +970,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 4,
         //.backAnimId = BACK_ANIM_NONE,
+<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmo,
         .shinyPalette = gMonShinyPalette_Pawmo,
         .iconSprite = gMonIcon_Pawmo,
         .iconPalIndex = 3,
+=======
+        PALETTES(Pawmo),
+        ICON(Pawmo, 0),
+>>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
         //FOOTPRINT(Pawmo)
         .levelUpLearnset = sPawmoLevelUpLearnset,
         .teachableLearnset = sPawmoTeachableLearnset,
@@ -1018,10 +1028,15 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 6,
         //.backAnimId = BACK_ANIM_NONE,
+<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmot,
         .shinyPalette = gMonShinyPalette_Pawmot,
         .iconSprite = gMonIcon_Pawmot,
         .iconPalIndex = 3,
+=======
+        PALETTES(Pawmot),
+        ICON(Pawmot, 0),
+>>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
         //FOOTPRINT(Pawmot)
         .levelUpLearnset = sPawmotLevelUpLearnset,
         .teachableLearnset = sPawmotTeachableLearnset,
