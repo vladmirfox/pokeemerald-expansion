@@ -795,15 +795,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 14,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Nymble,
         .shinyPalette = gMonShinyPalette_Nymble,
         .iconSprite = gMonIcon_Nymble,
-        .iconPalIndex = 0,
-=======
-        PALETTES(Nymble),
-        ICON(Nymble, 1),
->>>>>>> b8ab2f2b4d (Nymble family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 1,
         //FOOTPRINT(Nymble)
         .levelUpLearnset = sNymbleLevelUpLearnset,
         .teachableLearnset = sNymbleTeachableLearnset,
@@ -853,15 +848,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 7,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Lokix,
         .shinyPalette = gMonShinyPalette_Lokix,
         .iconSprite = gMonIcon_Lokix,
-        .iconPalIndex = 0,
-=======
-        PALETTES(Lokix),
-        ICON(Lokix, 1),
->>>>>>> b8ab2f2b4d (Nymble family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 1,
         //FOOTPRINT(Lokix)
         .levelUpLearnset = sLokixLevelUpLearnset,
         .teachableLearnset = sLokixTeachableLearnset,
@@ -912,15 +902,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 0,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmi,
         .shinyPalette = gMonShinyPalette_Pawmi,
         .iconSprite = gMonIcon_Pawmi,
-        .iconPalIndex = 3,
-=======
-        PALETTES(Pawmi),
-        ICON(Pawmi, 0),
->>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 0,
         //FOOTPRINT(Pawmi)
         .levelUpLearnset = sPawmiLevelUpLearnset,
         .teachableLearnset = sPawmiTeachableLearnset,
@@ -970,15 +955,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 4,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmo,
         .shinyPalette = gMonShinyPalette_Pawmo,
         .iconSprite = gMonIcon_Pawmo,
-        .iconPalIndex = 3,
-=======
-        PALETTES(Pawmo),
-        ICON(Pawmo, 0),
->>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 0,
         //FOOTPRINT(Pawmo)
         .levelUpLearnset = sPawmoLevelUpLearnset,
         .teachableLearnset = sPawmoTeachableLearnset,
@@ -1028,15 +1008,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backPicSize = MON_COORDS_SIZE(64, 64),
         .backPicYOffset = 6,
         //.backAnimId = BACK_ANIM_NONE,
-<<<<<<< HEAD:src/data/pokemon/species_info/gen_9_families.h
         .palette = gMonPalette_Pawmot,
         .shinyPalette = gMonShinyPalette_Pawmot,
         .iconSprite = gMonIcon_Pawmot,
-        .iconPalIndex = 3,
-=======
-        PALETTES(Pawmot),
-        ICON(Pawmot, 0),
->>>>>>> 61ca3c89fc (Pawmi family):src/data/pokemon/species_info/gen_9.h
+        .iconPalIndex = 0,
         //FOOTPRINT(Pawmot)
         .levelUpLearnset = sPawmotLevelUpLearnset,
         .teachableLearnset = sPawmotTeachableLearnset,
@@ -1090,7 +1065,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Tandemaus,
         .shinyPalette = gMonShinyPalette_Tandemaus,
         .iconSprite = gMonIcon_Tandemaus,
-        .iconPalIndex = 0,
+        .iconPalIndex = 1,
         //FOOTPRINT(Tandemaus)
         .levelUpLearnset = sTandemausLevelUpLearnset,
         .teachableLearnset = sTandemausTeachableLearnset,
@@ -1144,7 +1119,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Maushold,
         .shinyPalette = gMonShinyPalette_Maushold,
         .iconSprite = gMonIcon_MausholdFamilyOfThree,
-        .iconPalIndex = 0,
+        .iconPalIndex = 1,
         /*FOOTPRINT(Maushold)*/
         .levelUpLearnset = sMausholdLevelUpLearnset,
         .teachableLearnset = sMausholdTeachableLearnset,
@@ -1196,7 +1171,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Maushold,
         .shinyPalette = gMonShinyPalette_Maushold,
         .iconSprite = gMonIcon_MausholdFamilyOfFour,
-        .iconPalIndex = 0,
+        .iconPalIndex = 1,
         /*FOOTPRINT(Maushold)*/
         .levelUpLearnset = sMausholdLevelUpLearnset,
         .teachableLearnset = sMausholdTeachableLearnset,
