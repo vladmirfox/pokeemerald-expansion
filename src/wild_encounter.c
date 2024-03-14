@@ -869,19 +869,29 @@ bool8 DoesCurrentMapHaveFishingMons(void)
         return FALSE;
 }
 
+static u32 GetLastFishingSpecies(void)
+{
+    return sLastFishingSpecies;
+}
+
 static bool32 DoesSpeciesMatchLastFishingSpecies(u32 species)
 {
-    return (species == sLastFishingSpecies);
+    return (species == GetLastFishingSpecies());
+}
+
+static u32 GetCurrentFishingStreak(void)
+{
+    return gChainFishingStreak;
 }
 
 static bool32 IsChainFishingStreakAtMax(void)
 {
-    return (gChainFishingStreak < CHAIN_FISHING_LENGTH_MAX);
+    return (GetCurrentFishingStreak() < CHAIN_FISHING_LENGTH_MAX);
 }
 
 static void IncrementChainFishingStreak(void)
 {
-    if (gChainFishingStreak < UCHAR_MAX)
+    if (GetCurrentFishingStreak() < UCHAR_MAX)
         gChainFishingStreak++;
 }
 
@@ -890,14 +900,14 @@ void ResetChainFishingStreak(void)
     gChainFishingStreak = 0;
 }
 
-static u32 GetCurrentFishingStreak(void)
-{
-    return gChainFishingStreak;
-}
-
 bool32 IsCurrentEncounterFishing(void)
 {
     return gIsFishingEncounter;
+}
+
+static void SetEncounterFishing(void)
+{
+    gIsFishingEncounter = TRUE;
 }
 
 u32 CalculateChainFishingShinyRolls(void)
@@ -908,6 +918,11 @@ u32 CalculateChainFishingShinyRolls(void)
 static bool32 IsChainFishingEnabled(void)
 {
     return (I_FISHING_CHAIN == TRUE);
+}
+
+static void SetLastFishingSpecies(u32 species)
+{
+    sLastFishingSpecies = species;
 }
 
 static void HandleChainFishingStreak(u32 species)
@@ -942,11 +957,10 @@ void FishingWildEncounter(u8 rod)
     }
 
     HandleChainFishingStreak(species);
-
-    sLastFishingSpecies = species;
+    SetLastFishingSpecies(species);
     IncrementGameStat(GAME_STAT_FISHING_ENCOUNTERS);
     SetPokemonAnglerSpecies(species);
-    gIsFishingEncounter = TRUE;
+    SetEncounterFishing();
     BattleSetup_StartWildBattle();
 }
 

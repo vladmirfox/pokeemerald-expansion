@@ -65,7 +65,6 @@
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "cable_club.h"
-#include "wild_encounter.h"
 
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
