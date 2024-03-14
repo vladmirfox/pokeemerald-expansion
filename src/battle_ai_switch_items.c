@@ -1343,15 +1343,9 @@ static s32 GetSwitchinWeatherImpact(void)
         // Healing
         if (gBattleWeather & B_WEATHER_RAIN)
         {
-            if (ability == ABILITY_DRY_SKIN)
+            if (ability == ABILITY_DRY_SKIN || ability == ABILITY_RAIN_DISH)
             {
                 weatherImpact = maxHP / 8;
-                if (weatherImpact == 0)
-                    weatherImpact = 1;
-            }
-            else if (ability == ABILITY_RAIN_DISH)
-            {
-                weatherImpact = maxHP / 16;
                 if (weatherImpact == 0)
                     weatherImpact = 1;
             }

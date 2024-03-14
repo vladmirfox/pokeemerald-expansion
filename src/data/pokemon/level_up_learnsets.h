@@ -17210,6 +17210,9 @@ static const struct LevelUpMove sYveltalLevelUpLearnset[] = {
 
 #if P_FAMILY_ZYGARDE
 static const struct LevelUpMove sZygardeLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_CORE_ENFORCER),
+    LEVEL_UP_MOVE( 1, MOVE_THOUSAND_ARROWS),
+    LEVEL_UP_MOVE( 1, MOVE_THOUSAND_WAVES),
     LEVEL_UP_MOVE( 1, MOVE_GLARE),
     LEVEL_UP_MOVE( 1, MOVE_BULLDOZE),
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),

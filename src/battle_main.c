@@ -4754,9 +4754,11 @@ u32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
             strikesFirst = 1;
         else if (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler1 != HOLD_EFFECT_LAGGING_TAIL)
             strikesFirst = 0;
-        else if (ability1 == ABILITY_STALL && ability2 != ABILITY_STALL)
+        else if ((ability1 == ABILITY_STALL && ability2 != ABILITY_STALL)
+                    || (ability2 == ABILITY_STALL && ability1 != ABILITY_STALL && (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)))
             strikesFirst = 1;
-        else if (ability2 == ABILITY_STALL && ability1 != ABILITY_STALL)
+        else if ((ability2 == ABILITY_STALL && ability1 != ABILITY_STALL)
+                    || (ability1 == ABILITY_STALL && ability2 != ABILITY_STALL && (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)))
             strikesFirst = 0;
         else if (ability1 == ABILITY_MYCELIUM_MIGHT && ability2 != ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gChosenMoveByBattler[battler1]))
             strikesFirst = 1;
