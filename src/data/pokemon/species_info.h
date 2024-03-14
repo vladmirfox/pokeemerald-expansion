@@ -57,15 +57,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sNoneTeachableLearnset,
     },
 
-    #include "species_info/gen_1.h"
-    #include "species_info/gen_2.h"
-    #include "species_info/gen_3.h"
-    #include "species_info/gen_4.h"
-    #include "species_info/gen_5.h"
-    #include "species_info/gen_6.h"
-    #include "species_info/gen_7.h"
-    #include "species_info/gen_8.h"
-    #include "species_info/gen_9.h"
+    #include "species_info/gen_1_families.h"
+    #include "species_info/gen_2_families.h"
+    #include "species_info/gen_3_families.h"
+    #include "species_info/gen_4_families.h"
+    #include "species_info/gen_5_families.h"
+    #include "species_info/gen_6_families.h"
+    #include "species_info/gen_7_families.h"
+    #include "species_info/gen_8_families.h"
+    #include "species_info/gen_9_families.h"
 
     [SPECIES_EGG] =
     {
