@@ -636,7 +636,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_OinkologneFemale,
         .shinyPalette = gMonShinyPalette_OinkologneFemale,
         .iconSprite = gMonIcon_OinkologneFemale,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         //FOOTPRINT(Oinkologne)
         .levelUpLearnset = sOinkologneFemaleLevelUpLearnset,
         .teachableLearnset = sOinkologneTeachableLearnset,
