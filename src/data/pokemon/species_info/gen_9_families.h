@@ -1546,7 +1546,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_SquawkabillyBluePlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyBluePlumage,
         .iconSprite = gMonIcon_SquawkabillyBluePlumage,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         /*FOOTPRINT(Squawkabilly)*/
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
@@ -1652,7 +1652,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_SquawkabillyWhitePlumage,
         .shinyPalette = gMonShinyPalette_SquawkabillyWhitePlumage,
         .iconSprite = gMonIcon_SquawkabillyWhitePlumage,
-        .iconPalIndex = 1,
+        .iconPalIndex = 0,
         /*FOOTPRINT(Squawkabilly)*/
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,
         .teachableLearnset = sSquawkabillyTeachableLearnset,
