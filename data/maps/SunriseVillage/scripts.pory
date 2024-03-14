@@ -165,7 +165,7 @@ script SunriseVillage_Event_Kirlia {
 script SunriseVillage_Event_TestGyarados {
     lock
     givemon(SPECIES_SPHEAL, 100)
-    setwildbattle(SPECIES_GYARADOS, 50)
+    setwildbattle(SPECIES_GYARADOS, 5)
     dowildbattle
     release
     end

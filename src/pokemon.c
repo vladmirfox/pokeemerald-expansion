@@ -359,11 +359,12 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
     {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_3.1bpp")}
 };
 
-const struct GyaradosSpot gGyaradosSpotGraphics[3] =
+const struct GyaradosSpot gGyaradosSpotGraphics[] =
 {
-    {.x = 16, .y =  7, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_0.1bpp")},
-    {.x = 40, .y =  8, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_1.1bpp")},
-    {.x = 22, .y = 25, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_2.1bpp")}
+    {.x = 16, .y =  32, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_0.1bpp")},
+    {.x = 32, .y =  8, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_1.1bpp")},
+    {.x = 54, .y = 40, .image = INCBIN_U32("graphics/pokemon/gyarados/spots/spot_2.1bpp")},
+    {.x = 34, .y = 26, .image = INCBIN_U32("graphics/pokemon/spinda/spots/spot_3.1bpp")}
 };
 
 const u8 *const gNatureNamePointers[NUM_NATURES] =
@@ -4701,10 +4702,10 @@ void DrawSpindaSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
     }
 }
 
-// Spots can be drawn on Gyarados's color indexes 8, 9, 10 or 11
+// Spots can be drawn on Gyarados's color indexes 8 (white), 9 (shaded white)
 #define GYARADOS_FIRST_SPOT_COLOR 8
-#define GYARADOS_LAST_SPOT_COLOR  11
-// To draw a spot pixel, add 4 to the color index
+#define GYARADOS_LAST_SPOT_COLOR  9
+// To draw a spot pixel, add 2 to the color index
 #define GYARADOS_SPOT_COLOR_ADJUSTMENT 2
 void DrawKoiGyaradosSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
 {
@@ -4712,8 +4713,8 @@ void DrawKoiGyaradosSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
     for (i = 0; i < (s32)ARRAY_COUNT(gGyaradosSpotGraphics); i++)
     {
         s32 row;
-        u8 x = gGyaradosSpotGraphics[i].x + (personality & 0x0F);
-        u8 y = gGyaradosSpotGraphics[i].y + ((personality & 0xF0) >> 4);
+        u8 x = gGyaradosSpotGraphics[i].x + (personality & 0x0F) * 2;
+        u8 y = gGyaradosSpotGraphics[i].y + ((personality & 0xF0) >> 4) * 2;
 
         if (isSecondFrame)
         {
@@ -4722,8 +4723,8 @@ void DrawKoiGyaradosSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
         }
         else
         {
-            x -= 8;
-            y -= 8;
+            x -= 16;
+            y -= 16;
         }
 
         for (row = 0; row < GYARADOS_SPOT_HEIGHT; row++)
@@ -4760,8 +4761,11 @@ void DrawKoiGyaradosSpots(u32 personality, u8 *dest, bool32 isSecondFrame)
                         if (
                             (u8)((*destPixels & 0xF) - GYARADOS_FIRST_SPOT_COLOR) <= (GYARADOS_LAST_SPOT_COLOR - GYARADOS_FIRST_SPOT_COLOR)
                         )
+                        {
                             *destPixels += GYARADOS_SPOT_COLOR_ADJUSTMENT;
+                        }
                     }
+
                 }
 
                 spotPixelRow >>= 1;
