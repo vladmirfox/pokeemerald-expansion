@@ -125,6 +125,18 @@ const u8 gMiniorCorePokedexText[] = _(
     "may survive if it's put into a Poké Ball\n"
     "quickly enough.");
 
+const u8 gMimikyuDisguisedPokedexText[] = _(
+    "A lonely Pokémon, it hides its terrifying\n"
+    "appearance beneath an old rag so it can\n"
+    "get closer to people and other Pokémon.\n"
+    "Its actual appearance is unknown.");
+
+const u8 gMimikyuBustedPokedexText[] = _(
+    "After going to all the effort of\n"
+    "disguising itself, its neck was\n"
+    "broken. Whatever is inside is probably\n"
+    "unharmed, but it's still feeling sad.");
+
 // Gen 8 families
 const u8 gAlcremieVanillaCreamPokedexText[] = _(
     "If Alcremie is content, the secreted cream\n"

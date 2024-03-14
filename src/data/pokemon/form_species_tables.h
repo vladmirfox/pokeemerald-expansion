@@ -1423,6 +1423,8 @@ static const u16 sMiniorFormSpeciesIdTable[] = {
 static const u16 sMimikyuFormSpeciesIdTable[] = {
     SPECIES_MIMIKYU_DISGUISED,
     SPECIES_MIMIKYU_BUSTED,
+    SPECIES_MIMIKYU_TOTEM_DISGUISED,
+    SPECIES_MIMIKYU_TOTEM_BUSTED,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_MIMIKYU
