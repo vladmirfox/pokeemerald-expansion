@@ -1459,7 +1459,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Cutiefly)
         .levelUpLearnset = sCutieflyLevelUpLearnset,
         .teachableLearnset = sCutieflyTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_RIBOMBEE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_RIBOMBEE},
+                                {EVO_NONE, 0, SPECIES_RIBOMBEE_TOTEM}),
     },
 
     [SPECIES_RIBOMBEE] =
@@ -1488,11 +1489,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Bee Fly"),
         .height = 2,
         .weight = 5,
-        .description = COMPOUND_STRING(
-            "Ribombee rolls up pollen into puffs.\n"
-            "It makes many different varieties, some\n"
-            "used as food and others used in battle.\n"
-            "They are sometimes sold as supplements."),
+        .description = gRibombeePokedexText,
         .pokemonScale = 682,
         .pokemonOffset = 24,
         .trainerScale = 256,
@@ -1514,6 +1511,59 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Ribombee)
         .levelUpLearnset = sRibombeeLevelUpLearnset,
         .teachableLearnset = sRibombeeTeachableLearnset,
+        .formSpeciesIdTable = sRibombeeFormSpeciesIdTable,
+    },
+
+    [SPECIES_RIBOMBEE_TOTEM] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 55,
+        .baseDefense   = 60,
+        .baseSpeed     = 124,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_BUG, TYPE_FAIRY),
+        .catchRate = 75,
+        .expYield = 162,
+        .evYield_Speed = 2,
+        .itemRare = ITEM_HONEY,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_FAIRY),
+        .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Ribombee"),
+        .cryId = CRY_RIBOMBEE,
+        .natDexNum = NATIONAL_DEX_RIBOMBEE,
+        .categoryName = _("Bee Fly"),
+        .height = 4,
+        .weight = 20,
+        .description = gRibombeePokedexText,
+        .pokemonScale = 682,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Ribombee,
+        .frontPicSize = MON_COORDS_SIZE(32, 47),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_Ribombee,
+        .frontAnimId = ANIM_CONVEX_DOUBLE_ARC_TWICE,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_Ribombee,
+        .backPicSize = MON_COORDS_SIZE(56, 48),
+        .backPicYOffset = 11,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        .palette = gMonPalette_Ribombee,
+        .shinyPalette = gMonShinyPalette_Ribombee,
+        .iconSprite = gMonIcon_Ribombee,
+        .iconPalIndex = 2,
+        FOOTPRINT(Ribombee)
+        .isTotem = TRUE,
+        .levelUpLearnset = sRibombeeLevelUpLearnset,
+        .teachableLearnset = sRibombeeTeachableLearnset,
+        .formSpeciesIdTable = sRibombeeFormSpeciesIdTable,
     },
 #endif //P_FAMILY_CUTIEFLY
 
@@ -2160,7 +2210,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Dewpider)
         .levelUpLearnset = sDewpiderLevelUpLearnset,
         .teachableLearnset = sDewpiderTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARAQUANID}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARAQUANID},
+                                {EVO_NONE, 0, SPECIES_ARAQUANID_TOTEM}),
     },
 
     [SPECIES_ARAQUANID] =
@@ -2189,11 +2240,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Water Bubble"),
         .height = 18,
         .weight = 820,
-        .description = COMPOUND_STRING(
-            "Despite what its appearance suggests,\n"
-            "it cares for others. If it finds vulnerable,\n"
-            "weak Pokémon, it protectively brings\n"
-            "them into its water bubble."),
+        .description = gAraquanidPokedexText,
         .pokemonScale = 267,
         .pokemonOffset = 2,
         .trainerScale = 286,
@@ -2214,6 +2261,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Araquanid)
         .levelUpLearnset = sAraquanidLevelUpLearnset,
         .teachableLearnset = sAraquanidTeachableLearnset,
+        .formSpeciesIdTable = sAraquanidFormSpeciesIdTable,
+    },
+
+    [SPECIES_ARAQUANID_TOTEM] =
+    {
+        .baseHP        = 68,
+        .baseAttack    = 70,
+        .baseDefense   = 92,
+        .baseSpeed     = 42,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 132,
+        .types = MON_TYPES(TYPE_WATER, TYPE_BUG),
+        .catchRate = 100,
+        .expYield = 159,
+        .evYield_SpDefense = 2,
+        .itemRare = ITEM_MYSTIC_WATER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_BUG),
+        .abilities = { ABILITY_WATER_BUBBLE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Araquanid"),
+        .cryId = CRY_ARAQUANID,
+        .natDexNum = NATIONAL_DEX_ARAQUANID,
+        .categoryName = _("Water Bubble"),
+        .height = 31,
+        .weight = 2175,
+        .description = gAraquanidPokedexText,
+        .pokemonScale = 267,
+        .pokemonOffset = 2,
+        .trainerScale = 286,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_Araquanid,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Araquanid,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backPic = gMonBackPic_Araquanid,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
+        .backPicYOffset = 12,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Araquanid,
+        .shinyPalette = gMonShinyPalette_Araquanid,
+        .iconSprite = gMonIcon_Araquanid,
+        .iconPalIndex = 2,
+        FOOTPRINT(Araquanid)
+        .isTotem = TRUE,
+        .levelUpLearnset = sAraquanidLevelUpLearnset,
+        .teachableLearnset = sAraquanidTeachableLearnset,
+        .formSpeciesIdTable = sAraquanidFormSpeciesIdTable,
     },
 #endif //P_FAMILY_DEWPIDER
 
@@ -2269,7 +2368,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Fomantis)
         .levelUpLearnset = sFomantisLevelUpLearnset,
         .teachableLearnset = sFomantisTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 34, SPECIES_LURANTIS}),
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 34, SPECIES_LURANTIS},
+                                {EVO_NONE, 0, SPECIES_LURANTIS_TOTEM}),
     },
 
     [SPECIES_LURANTIS] =
@@ -2298,11 +2398,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Bloom Sickle"),
         .height = 9,
         .weight = 185,
-        .description = COMPOUND_STRING(
-            "It requires a lot of effort to maintain\n"
-            "Lurantis's vivid coloring, but some\n"
-            "collectors enjoy this work and treat it\n"
-            "as their hobby."),
+        .description = gLurantisPokedexText,
         .pokemonScale = 338,
         .pokemonOffset = 8,
         .trainerScale = 256,
@@ -2323,6 +2419,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Lurantis)
         .levelUpLearnset = sLurantisLevelUpLearnset,
         .teachableLearnset = sLurantisTeachableLearnset,
+        .formSpeciesIdTable = sLurantisFormSpeciesIdTable,
+    },
+
+    [SPECIES_LURANTIS_TOTEM] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 105,
+        .baseDefense   = 90,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_GRASS),
+        .catchRate = 75,
+        .expYield = 168,
+        .evYield_Attack = 2,
+        .itemRare = ITEM_MIRACLE_SEED,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
+        .abilities = { ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Lurantis"),
+        .cryId = CRY_LURANTIS,
+        .natDexNum = NATIONAL_DEX_LURANTIS,
+        .categoryName = _("Bloom Sickle"),
+        .height = 15,
+        .weight = 580,
+        .description = gLurantisPokedexText,
+        .pokemonScale = 338,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Lurantis,
+        .frontPicSize = MON_COORDS_SIZE(48, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Lurantis,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Lurantis,
+        .backPicSize = MON_COORDS_SIZE(56, 64),
+        .backPicYOffset = 1,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Lurantis,
+        .shinyPalette = gMonShinyPalette_Lurantis,
+        .iconSprite = gMonIcon_Lurantis,
+        .iconPalIndex = 1,
+        FOOTPRINT(Lurantis)
+        .isTotem = TRUE,
+        .levelUpLearnset = sLurantisLevelUpLearnset,
+        .teachableLearnset = sLurantisTeachableLearnset,
+        .formSpeciesIdTable = sLurantisFormSpeciesIdTable,
     },
 #endif //P_FAMILY_FOMANTIS
 
@@ -2489,7 +2637,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Salandit)
         .levelUpLearnset = sSalanditLevelUpLearnset,
         .teachableLearnset = sSalanditTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 33, SPECIES_SALAZZLE}),
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 33, SPECIES_SALAZZLE},
+                                {EVO_NONE, 0, SPECIES_SALAZZLE_TOTEM}),
     },
 
     [SPECIES_SALAZZLE] =
@@ -2518,11 +2667,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Toxic Lizard"),
         .height = 12,
         .weight = 222,
-        .description = COMPOUND_STRING(
-            "For some reason, only females have\n"
-            "been found. It creates a reverse harem of\n"
-            "male Salandit to live with. Its poisonous\n"
-            "gas is filled with pheromones."),
+        .description = gSalazzlePokedexText,
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -2543,6 +2688,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Salazzle)
         .levelUpLearnset = sSalazzleLevelUpLearnset,
         .teachableLearnset = sSalazzleTeachableLearnset,
+        .formSpeciesIdTable = sSalanditFormSpeciesIdTable,
+    },
+
+    [SPECIES_SALAZZLE_TOTEM] =
+    {
+        .baseHP        = 68,
+        .baseAttack    = 64,
+        .baseDefense   = 60,
+        .baseSpeed     = 117,
+        .baseSpAttack  = 111,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_POISON, TYPE_FIRE),
+        .catchRate = 45,
+        .expYield = 168,
+        .evYield_Speed = 2,
+        .itemRare = ITEM_SMOKE_BALL,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("Salazzle"),
+        .cryId = CRY_SALAZZLE,
+        .natDexNum = NATIONAL_DEX_SALAZZLE,
+        .categoryName = _("Toxic Lizard"),
+        .height = 21,
+        .weight = 810,
+        .description = gSalazzlePokedexText,
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Salazzle,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_Salazzle,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Salazzle,
+        .backPicSize = MON_COORDS_SIZE(48, 64),
+        .backPicYOffset = 3,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Salazzle,
+        .shinyPalette = gMonShinyPalette_Salazzle,
+        .iconSprite = gMonIcon_Salazzle,
+        .iconPalIndex = 0,
+        FOOTPRINT(Salazzle)
+        .isTotem = TRUE,
+        .levelUpLearnset = sSalazzleLevelUpLearnset,
+        .teachableLearnset = sSalazzleTeachableLearnset,
+        .formSpeciesIdTable = sSalanditFormSpeciesIdTable,
     },
 #endif //P_FAMILY_SALANDIT
 

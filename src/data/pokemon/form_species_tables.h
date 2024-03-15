@@ -1369,6 +1369,14 @@ static const u16 sOricorioFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_ORICORIO
 
+#if P_FAMILY_CUTIEFLY
+static const u16 sRibombeeFormSpeciesIdTable[] = {
+    SPECIES_RIBOMBEE,
+    SPECIES_RIBOMBEE_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_CUTIEFLY
+
 #if P_FAMILY_ROCKRUFF
 static const u16 sRockruffFormSpeciesIdTable[] = {
     SPECIES_ROCKRUFF,
@@ -1391,6 +1399,30 @@ static const u16 sWishiwashiFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_WISHIWASHI
+
+#if P_FAMILY_DEWPIDER
+static const u16 sAraquanidFormSpeciesIdTable[] = {
+    SPECIES_ARAQUANID,
+    SPECIES_ARAQUANID_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_DEWPIDER
+
+#if P_FAMILY_FOMANTIS
+static const u16 sLurantisFormSpeciesIdTable[] = {
+    SPECIES_LURANTIS,
+    SPECIES_LURANTIS_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_FOMANTIS
+
+#if P_FAMILY_SALANDIT
+static const u16 sSalanditFormSpeciesIdTable[] = {
+    SPECIES_SALAZZLE,
+    SPECIES_SALAZZLE_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_FOMANTIS
 
 #if P_FAMILY_TYPE_NULL
 static const u16 sSilvallyFormSpeciesIdTable[] = {
