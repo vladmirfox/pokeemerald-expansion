@@ -35,6 +35,7 @@
 #define P_GALARIAN_FORMS                 FALSE
 #define P_HISUIAN_FORMS                  TRUE
 #define P_PALDEAN_FORMS                  FALSE
+#define P_TOKUAN_FORMS                   TRUE
 
 // Big groups of forms that aren't always desired when choosing families.
 #define P_PIKACHU_EXTRA_FORMS            FALSE

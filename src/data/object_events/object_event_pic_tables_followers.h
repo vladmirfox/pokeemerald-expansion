@@ -3363,6 +3363,18 @@ static const struct SpriteFrameImage sPicTable_Swadloon[] = {
 static const struct SpriteFrameImage sPicTable_Leavanny[] = {
     overworld_ascending_frames(gObjectEventPic_Leavanny, 4, 4),
 };
+
+#if P_TOKUAN_FORMS
+static const struct SpriteFrameImage sPicTable_SewaddleTokuan[] = {
+    overworld_ascending_frames(gObjectEventPic_SewaddleTokuan, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_SwadloonTokuan[] = {
+    overworld_ascending_frames(gObjectEventPic_SwadloonTokuan, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_LeavannyTokuan[] = {
+    overworld_ascending_frames(gObjectEventPic_LeavannyTokuan, 4, 4),
+};
+#endif //P_TOKUAN_FORMS
 #endif //P_FAMILY_SEWADDLE
 
 #if P_FAMILY_VENIPEDE

@@ -2568,6 +2568,163 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         FOLLOWER(Leavanny, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
         LEARNSETS(Leavanny),
     },
+#if P_TOKUAN_FORMS
+[SPECIES_SEWADDLE_TOKUAN] =
+    {
+        .baseHP        = 45,
+        .baseAttack    = 53,
+        .baseDefense   = 70,
+        .baseSpeed     = 42,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 60,
+        .types = MON_TYPES(TYPE_BUG, TYPE_ELECTRIC),
+        .catchRate = 255,
+        .expYield = 62,
+        .evYield_Defense = 1,
+        .itemRare = ITEM_MENTAL_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SWARM, ABILITY_CHLOROPHYLL, ABILITY_STATIC },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Sewaddle"),
+        .cryId = CRY_SEWADDLE,
+        .natDexNum = NATIONAL_DEX_SEWADDLE,
+        .categoryName = _("Sewing"),
+        .height = 3,
+        .weight = 25,
+        .description = COMPOUND_STRING(
+            "It chews up leaves and sews them with\n"
+            "its saliva. Living in an environment\n"
+            "filled with static electricity has\n"
+            "altered its growth."),
+        .pokemonScale = 530,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(SewaddleTokuan, 40, 40),
+        .frontPicYOffset = 14,
+        .frontAnimFrames = sAnims_Sewaddle,
+        .frontAnimId = ANIM_CIRCLE_INTO_BG,
+        BACK_PIC(SewaddleTokuan, 40, 48),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_H_SLIDE,
+        PALETTES(SewaddleTokuan),
+        ICON(SewaddleTokuan, 1),
+        FOOTPRINT(Sewaddle)
+        FOLLOWER(SewaddleTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Sewaddle),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SWADLOON}),
+    },
+
+    [SPECIES_SWADLOON_TOKUAN] =
+    {
+        .baseHP        = 55,
+        .baseAttack    = 63,
+        .baseDefense   = 90,
+        .baseSpeed     = 42,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_BUG, TYPE_ELECTRIC),
+        .catchRate = 120,
+        .expYield = 133,
+        .evYield_Defense = 2,
+        .itemRare = ITEM_MENTAL_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL, ABILITY_STATIC },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Swadloon"),
+        .cryId = CRY_SWADLOON,
+        .natDexNum = NATIONAL_DEX_SWADLOON,
+        .categoryName = _("Leaf-Wrapped"),
+        .height = 5,
+        .weight = 73,
+        .description = COMPOUND_STRING(
+            "Static electricity gathers under\n"
+            "its coat. Swadloon uses that power to\n"
+            "stay warm during the winter."
+        ),
+        .pokemonScale = 432,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(SwadloonTokuan, 56, 48),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_Swadloon,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        BACK_PIC(SwadloonTokuan, 48, 48),
+        .backPicYOffset = 10,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        PALETTES(SwadloonTokuan),
+        ICON(SwadloonTokuan, 1),
+        FOOTPRINT(Swadloon)
+        FOLLOWER(SwadloonTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Swadloon),
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LEAVANNY}),
+    },
+
+    [SPECIES_LEAVANNY_TOKUAN] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 103,
+        .baseDefense   = 80,
+        .baseSpeed     = 92,
+        .baseSpAttack  = 70,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 80 : 70,
+        .types = MON_TYPES(TYPE_BUG, TYPE_ELECTRIC),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 250,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_7
+        .expYield = 225,
+    #else
+        .expYield = 221,
+    #endif
+        .evYield_Attack = 3,
+        .itemRare = ITEM_MENTAL_HERB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SWARM, ABILITY_CHLOROPHYLL, ABILITY_OVERCOAT },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Leavanny"),
+        .cryId = CRY_LEAVANNY,
+        .natDexNum = NATIONAL_DEX_LEAVANNY,
+        .categoryName = _("Nurturing"),
+        .height = 12,
+        .weight = 205,
+        .description = COMPOUND_STRING(
+            "It weaves warm wrappings for Sewaddle\n"
+            "and rubs them with its arms to fill them\n"
+            "with static. Its strong maternal instinct\n"
+            "makes it a great companion."
+        ),
+        .pokemonScale = 282,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(LeavannyTokuan, 48, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Leavanny,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(LeavannyTokuan, 56, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        PALETTES(LeavannyTokuan),
+        ICON(LeavannyTokuan, 1),
+        FOOTPRINT(Leavanny)
+        FOLLOWER(LeavannyTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Leavanny),
+    },
+#endif //P_TOKUAN_FORMS
 #endif //P_FAMILY_SEWADDLE
 
 #if P_FAMILY_VENIPEDE

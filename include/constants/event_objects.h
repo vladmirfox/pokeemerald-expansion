@@ -379,6 +379,9 @@
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
 #define OBJ_EVENT_PAL_TAG_AROMA_LADY              0x1125
+#define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
+#define OBJ_EVENT_PAL_TAG_OLD_WOMAN               0x1127
+#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128
 
 #if OW_MON_POKEBALLS
 // Vanilla

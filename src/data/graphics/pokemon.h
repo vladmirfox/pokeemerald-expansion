@@ -9355,6 +9355,35 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if OW_FOLLOWERS_ENABLED
     const u32 gObjectEventPic_Leavanny[] = INCBIN_COMP("graphics/pokemon/leavanny/follower.4bpp");
 #endif //OW_FOLLOWERS_ENABLED
+
+#if P_TOKUAN_FORMS
+    const u32 gMonFrontPic_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/anim_front.4bpp.lz");
+    const u32 gMonPalette_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/normal.gbapal.lz");
+    const u32 gMonBackPic_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/back.4bpp.lz");
+    const u32 gMonShinyPalette_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/shiny.gbapal.lz");
+    const u8 gMonIcon_SewaddleTokuan[] = INCBIN_U8("graphics/pokemon/sewaddle/tokuan/icon.4bpp");
+#if OW_FOLLOWERS_ENABLED
+    const u32 gObjectEventPic_SewaddleTokuan[] = INCBIN_COMP("graphics/pokemon/sewaddle/tokuan/follower.4bpp");
+#endif //OW_FOLLOWERS_ENABLED
+
+    const u32 gMonFrontPic_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/anim_front.4bpp.lz");
+    const u32 gMonPalette_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/normal.gbapal.lz");
+    const u32 gMonBackPic_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/back.4bpp.lz");
+    const u32 gMonShinyPalette_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/shiny.gbapal.lz");
+    const u8 gMonIcon_SwadloonTokuan[] = INCBIN_U8("graphics/pokemon/swadloon/tokuan/icon.4bpp");
+#if OW_FOLLOWERS_ENABLED
+    const u32 gObjectEventPic_SwadloonTokuan[] = INCBIN_COMP("graphics/pokemon/swadloon/tokuan/follower.4bpp");
+#endif //OW_FOLLOWERS_ENABLED
+
+    const u32 gMonFrontPic_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/anim_front.4bpp.lz");
+    const u32 gMonPalette_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/normal.gbapal.lz");
+    const u32 gMonBackPic_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/back.4bpp.lz");
+    const u32 gMonShinyPalette_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/shiny.gbapal.lz");
+    const u8 gMonIcon_LeavannyTokuan[] = INCBIN_U8("graphics/pokemon/leavanny/tokuan/icon.4bpp");
+#if OW_FOLLOWERS_ENABLED
+    const u32 gObjectEventPic_LeavannyTokuan[] = INCBIN_COMP("graphics/pokemon/leavanny/tokuan/follower.4bpp");
+#endif //OW_FOLLOWERS_ENABLED
+#endif //P_TOKUAN_FORMS
 #endif //P_FAMILY_SEWADDLE
 
 #if P_FAMILY_VENIPEDE
