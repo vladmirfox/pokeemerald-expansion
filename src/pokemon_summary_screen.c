@@ -41,6 +41,7 @@
 #include "text.h"
 #include "tv.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
@@ -680,19 +681,19 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .bg = 0,
         .tilemapLeft = 15,
         .tilemapTop = 4,
-        .width = 9,
+        .width = 11,
         .height = 10,
         .paletteNum = 6,
         .baseBlock = 451,
     },
     [PSS_DATA_WINDOW_MOVE_PP] = {
         .bg = 0,
-        .tilemapLeft = 24,
+        .tilemapLeft = 26,
         .tilemapTop = 4,
-        .width = 6,
+        .width = 4,
         .height = 10,
         .paletteNum = 8,
-        .baseBlock = 541,
+        .baseBlock = 561,
     },
     [PSS_DATA_WINDOW_MOVE_DESCRIPTION] = {
         .bg = 0,
@@ -747,7 +748,7 @@ static const u8 sMemoMiscTextColor[] = _("{COLOR WHITE}{SHADOW DARK_GRAY}"); // 
 static const u8 sStatsLeftColumnLayout[] = _("{DYNAMIC 0}/{DYNAMIC 1}\n{DYNAMIC 2}\n{DYNAMIC 3}");
 static const u8 sStatsLeftColumnLayoutIVEV[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
 static const u8 sStatsRightColumnLayout[] = _("{DYNAMIC 0}\n{DYNAMIC 1}\n{DYNAMIC 2}");
-static const u8 sMovesPPLayout[] = _("{PP}{DYNAMIC 0}/{DYNAMIC 1}");
+static const u8 sMovesPPLayout[] = _("{FONT_NARROW}{DYNAMIC 0}/{DYNAMIC 1}");
 
 #define TAG_MOVE_SELECTOR 30000
 #define TAG_MON_STATUS 30001
@@ -2901,7 +2902,7 @@ static void DrawPagination(void) // Updates the pagination dots at the top of th
             tilemap[j + 2 * PSS_PAGE_COUNT + 1] = 0x59;
         }
     }
-    CopyToBgTilemapBufferRect_ChangePalette(3, tilemap, 11, 0, PSS_PAGE_COUNT * 2, 2, 16);
+    CopyToBgTilemapBufferRect_ChangePalette(3, tilemap, 10, 0, PSS_PAGE_COUNT * 2, 2, 16);
     ScheduleBgCopyTilemapToVram(3);
     Free(tilemap);
 }
@@ -3229,6 +3230,11 @@ static void ResetWindows(void)
 static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
 {
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
+}
+
+static void PrintNarrowTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
+{
+    AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
 }
 
 static void PrintMonInfo(void)
@@ -4189,7 +4195,7 @@ static void PrintMoveNameAndPP(u8 moveIndex)
     if (move != 0)
     {
         pp = CalculatePPWithBonus(move, summary->ppBonuses, moveIndex);
-        PrintTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
+        PrintNarrowTextOnWindow(moveNameWindowId, gMoveNames[move], 0, moveIndex * 16 + 1, 0, 1);
         ConvertIntToDecimalStringN(gStringVar1, summary->pp[moveIndex], STR_CONV_MODE_RIGHT_ALIGN, 2);
         ConvertIntToDecimalStringN(gStringVar2, pp, STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
@@ -4198,14 +4204,14 @@ static void PrintMoveNameAndPP(u8 moveIndex)
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sMovesPPLayout);
         text = gStringVar4;
         ppState = GetCurrentPpToMaxPpState(summary->pp[moveIndex], pp) + 9;
-        x = GetStringRightAlignXOffset(FONT_NORMAL, text, 44);
+        x = GetStringRightAlignXOffset(FONT_NORMAL, text, 12);
     }
     else
     {
         PrintTextOnWindow(moveNameWindowId, gText_OneDash, 0, moveIndex * 16 + 1, 0, 1);
         text = gText_TwoDashes;
         ppState = 12;
-        x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 44);
+        x = GetStringCenterAlignXOffset(FONT_NORMAL, text, 12);
     }
 
     PrintTextOnWindow(ppValueWindowId, text, x, moveIndex * 16 + 1, 0, ppState);
@@ -4366,7 +4372,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gStringVar1);
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sMovesPPLayout);
-        PrintTextOnWindow(windowId2, gStringVar4, GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 44), 65, 0, 12);
+        PrintTextOnWindow(windowId2, gStringVar4, GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 12), 65, 0, 12);
     }
 }
 
@@ -4500,33 +4506,105 @@ static void SetMonTypeIcons(void)
 static void SetMoveTypeIcons(void)
 {
     u8 i;
+    bool8 isHiddenPower = FALSE;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    // u16 species = GetMonData(mon, MON_DATA_SPECIES); <- unused
+    u32 ability = GetMonAbility(mon);
+    u32 ateType;
+    u8 primaryType = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[0];
+    u8 secondType = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[1];
+
+    u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
+     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
+     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
+     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
+     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
+     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
+    
+    u8 type = (15 * typeBits) / 63 + 1;
+
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE) {
-            if (summary->moves[i] == MOVE_HIDDEN_POWER) {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
+            if (summary->moves[i] == MOVE_HIDDEN_POWER) 
+            {
                 if (type >= TYPE_MYSTERY)
                     type++;
                 type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
-            } else {
-            {
-            if (summary->moves[i] == MOVE_IVY_CUDGEL && ItemId_GetHoldEffect(summary->item) == HOLD_EFFECT_MASK)
-                SetTypeSpritePosAndPal(ItemId_GetSecondaryId(summary->item), 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
-            else
-                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
             }
-        }
+            else if (summary->moves[i] == MOVE_RAGING_BULL) 
+            {
+                type = TYPE_NORMAL;
+                if (secondType != TYPE_MYSTERY)
+                    type = secondType;
+            }
+            else if (summary->moves[i] == MOVE_REVELATION_DANCE)
+            {
+                type = TYPE_NORMAL;
+                if (primaryType != TYPE_MYSTERY)
+                    type = primaryType;
+                else if (secondType != TYPE_MYSTERY)
+                    type = secondType;
+            }
+            else if (summary->moves[i] == MOVE_NATURAL_GIFT)
+            {
+                type = TYPE_NORMAL;
+                if (ItemId_GetPocket(summary->item) == POCKET_BERRIES)
+                    type = gNaturalGiftTable[ITEM_TO_BERRY(summary->item)].type;
+            }
+            else if ((summary->moves[i] == MOVE_IVY_CUDGEL && ItemId_GetHoldEffect(summary->item) == HOLD_EFFECT_MASK)
+                    || ((summary->moves[i] == MOVE_JUDGMENT
+                        || summary->moves[i] == MOVE_TECHNO_BLAST
+                        || summary->moves[i] == MOVE_MULTI_ATTACK)
+                        && ItemId_GetHoldEffect(summary->item) == gBattleMoves[summary->moves[i]].argument))
+            {
+                type = ItemId_GetSecondaryId(summary->item);
+            }
+            else
+            {
+                type = gBattleMoves[summary->moves[i]].type;
+            }
+
+            if (type == TYPE_NORMAL
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_HIDDEN_POWER
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_WEATHER_BALL
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_TERRAIN_PULSE
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_NATURAL_GIFT
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_REVELATION_DANCE
+                        && gBattleMoves[summary->moves[i]].effect != EFFECT_RAGING_BULL
+                        && ((ability == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
+                            || (ability == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
+                            || (ability == ABILITY_AERILATE && (ateType = TYPE_FLYING))
+                            || ((ability == ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
+                            )
+                        )
+                {
+                    type = ateType;
+                }
+            else if (type != TYPE_NORMAL
+                    && gBattleMoves[summary->moves[i]].effect != EFFECT_HIDDEN_POWER
+                    && gBattleMoves[summary->moves[i]].effect != EFFECT_WEATHER_BALL
+                    && gBattleMoves[summary->moves[i]].effect != EFFECT_TERRAIN_PULSE
+                    && gBattleMoves[summary->moves[i]].effect != EFFECT_REVELATION_DANCE
+                    && gBattleMoves[summary->moves[i]].effect != EFFECT_RAGING_BULL
+                    && ability == ABILITY_NORMALIZE)
+            {
+                type = TYPE_NORMAL;
+            }
+            else if (gBattleMoves[summary->moves[i]].soundMove && ability == ABILITY_LIQUID_VOICE)
+            {
+                type = TYPE_WATER;
+            }
+            else if (summary->moves[i] == MOVE_AURA_WHEEL && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MORPEKO_HANGRY)
+            {
+                type = TYPE_DARK;
+            }
+
+            if (isHiddenPower)
+                SetTypeSpritePosAndPal(type & 0x3F, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+            else
+                SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
@@ -4548,8 +4626,22 @@ static void SetContestMoveTypeIcons(void)
 
 static void SetNewMoveTypeIcon(void)
 {
+    bool8 isHiddenPower = FALSE;
+    struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    //u16 species = GetMonData(mon, MON_DATA_SPECIES); <- unused
+    u32 ability = GetMonAbility(mon);
+    u32 ateType;
+    u8 primaryType = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[0];
+    u8 secondType = gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES)].types[1];
+
+    u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
+     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
+     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
+     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
+     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
+     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
+    
+    u8 type = (15 * typeBits) / 63 + 1;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
@@ -4558,22 +4650,87 @@ static void SetNewMoveTypeIcon(void)
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
+        {
+            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) 
+            {
                 if (type >= TYPE_MYSTERY)
                     type++;
                 type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 85, 96, SPRITE_ARR_ID_TYPE + 4);
-            } else {
-                SetTypeSpritePosAndPal(gBattleMoves[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
             }
+            else if (sMonSummaryScreen->newMove == MOVE_RAGING_BULL) 
+            {
+                type = TYPE_NORMAL;
+                if (secondType != TYPE_MYSTERY)
+                    type = secondType;
+            }
+            else if (sMonSummaryScreen->newMove == MOVE_REVELATION_DANCE)
+            {
+                type = TYPE_NORMAL;
+                if (primaryType != TYPE_MYSTERY)
+                    type = primaryType;
+                else if (secondType != TYPE_MYSTERY)
+                    type = secondType;
+            }
+            else if (sMonSummaryScreen->newMove == MOVE_NATURAL_GIFT)
+            {
+                type = TYPE_NORMAL;
+                if (ItemId_GetPocket(summary->item) == POCKET_BERRIES)
+                    type = gNaturalGiftTable[ITEM_TO_BERRY(summary->item)].type;
+            }
+            else if ((sMonSummaryScreen->newMove == MOVE_IVY_CUDGEL && ItemId_GetHoldEffect(summary->item) == HOLD_EFFECT_MASK)
+                    || ((sMonSummaryScreen->newMove == MOVE_JUDGMENT
+                        || sMonSummaryScreen->newMove == MOVE_TECHNO_BLAST
+                        || sMonSummaryScreen->newMove == MOVE_MULTI_ATTACK)
+                        && ItemId_GetHoldEffect(summary->item) == gBattleMoves[sMonSummaryScreen->newMove].argument))
+            {
+                type = ItemId_GetSecondaryId(summary->item);
+            }
+            else
+            {
+                type = gBattleMoves[sMonSummaryScreen->newMove].type;
+            }
+
+            if (type == TYPE_NORMAL
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_HIDDEN_POWER
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_WEATHER_BALL
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_TERRAIN_PULSE
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_NATURAL_GIFT
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_REVELATION_DANCE
+                        && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_RAGING_BULL
+                        && ((ability == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
+                            || (ability == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
+                            || (ability == ABILITY_AERILATE && (ateType = TYPE_FLYING))
+                            || ((ability == ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
+                            )
+                        )
+                {
+                    type = ateType;
+                }
+            else if (type != TYPE_NORMAL
+                    && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_HIDDEN_POWER
+                    && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_WEATHER_BALL
+                    && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_TERRAIN_PULSE
+                    && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_REVELATION_DANCE
+                    && gBattleMoves[sMonSummaryScreen->newMove].effect != EFFECT_RAGING_BULL
+                    && ability == ABILITY_NORMALIZE)
+            {
+                type = TYPE_NORMAL;
+            }
+            else if (gBattleMoves[sMonSummaryScreen->newMove].soundMove && ability == ABILITY_LIQUID_VOICE)
+            {
+                type = TYPE_WATER;
+            }
+            else if (sMonSummaryScreen->newMove == MOVE_AURA_WHEEL && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MORPEKO_HANGRY)
+            {
+                type = TYPE_DARK;
+            }
+
+            if (isHiddenPower)
+                SetTypeSpritePosAndPal(type & 0x3F, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+            else
+                SetTypeSpritePosAndPal(type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+        }
         else
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gContestMoves[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
     }

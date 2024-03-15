@@ -5625,7 +5625,7 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
             else if (gBattleWeather & B_WEATHER_SANDSTORM)
                 gBattleStruct->dynamicMoveType = TYPE_ROCK | F_DYNAMIC_TYPE_SET;
             else if ((gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-                    || gBattleMons[battlerAtk].ability == ABILITY_SUN_SALUTE)
+                    || GetBattlerAbility(battlerAtk) == ABILITY_SUN_SALUTE)
                 gBattleStruct->dynamicMoveType = TYPE_FIRE | F_DYNAMIC_TYPE_SET;
             else if (gBattleWeather & (B_WEATHER_HAIL |B_WEATHER_SNOW))
                 gBattleStruct->dynamicMoveType = TYPE_ICE | F_DYNAMIC_TYPE_SET;
@@ -5695,8 +5695,11 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     if (gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_TERRAIN_PULSE
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && gBattleMoves[move].effect != EFFECT_REVELATION_DANCE
+             && gBattleMoves[move].effect != EFFECT_RAGING_BULL
              && ((attackerAbility == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
                  || (attackerAbility == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
                  || (attackerAbility == ABILITY_AERILATE && (ateType = TYPE_FLYING))
@@ -5711,6 +5714,9 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_TERRAIN_PULSE
+             && gBattleMoves[move].effect != EFFECT_REVELATION_DANCE
+             && gBattleMoves[move].effect != EFFECT_RAGING_BULL
              && attackerAbility == ABILITY_NORMALIZE)
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_SET;

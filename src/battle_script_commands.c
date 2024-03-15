@@ -13584,10 +13584,10 @@ static void Cmd_recoverbasedonsunlight(void)
         else
         {
             if ((!(gBattleWeather & B_WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
-                && gBattleMons[gBattlerAttacker].ability != ABILITY_SUN_SALUTE)
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_SUN_SALUTE)
                 gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 2;
             else if (gBattleWeather & B_WEATHER_SUN
-                    || gBattleMons[gBattlerAttacker].ability == ABILITY_SUN_SALUTE)
+                    || GetBattlerAbility(gBattlerAttacker) == ABILITY_SUN_SALUTE)
                 gBattleMoveDamage = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
             else // not sunny weather
                 gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
