@@ -640,8 +640,7 @@ u8 gCurrentLevelCap(void) {
             }
         }
     }
-    
-    if (difficulty == OPTIONS_LEVEL_CAPS_HARD)
+    else if (difficulty == OPTIONS_LEVEL_CAPS_HARD)
     {
         for (i = 0; i < NUM_LEVEL_CAPS; i++)
         {
