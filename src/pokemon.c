@@ -3211,8 +3211,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                 {
                     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
                     dataUnsigned = sExpCandyExperienceTable[param - 1] + GetMonData(mon, MON_DATA_EXP, NULL);
-                    if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL])
-                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][MAX_LEVEL];
+                    if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][gCurrentLevelCap()])
+                        dataUnsigned = gExperienceTables[gSpeciesInfo[species].growthRate][gCurrentLevelCap()];
                 }
 
                 if (dataUnsigned != 0) // Failsafe
