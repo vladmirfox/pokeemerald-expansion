@@ -1896,6 +1896,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Raticate)
         .isTotem = TRUE,
         .isAlolanForm = TRUE,
+        .shinyLocked = TRUE,
         .levelUpLearnset = sRaticateAlolanLevelUpLearnset,
         .teachableLearnset = sRaticateAlolanTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
@@ -2226,6 +2227,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PichuSpikyEared,
         .iconPalIndex = 1,
         FOOTPRINT(Pichu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPichuLevelUpLearnset,
         .teachableLearnset = sPichuTeachableLearnset,
         .formSpeciesIdTable = sPichuFormSpeciesIdTable,
@@ -2348,6 +2350,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuCosplay,
         .iconPalIndex = 2,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2398,6 +2401,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuRockStar,
         .iconPalIndex = 1,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2449,6 +2453,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuBelle,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2500,6 +2505,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuPopStar,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2550,6 +2556,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuPhD,
         .iconPalIndex = 1,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2600,6 +2607,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuLibre,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2658,6 +2666,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuOriginalCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2712,6 +2721,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuHoennCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2766,6 +2776,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuSinnohCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2820,6 +2831,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuUnovaCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2874,6 +2886,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuKalosCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2928,6 +2941,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuAlolaCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -2983,6 +2997,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuPartnerCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        //.shinyLocked = TRUE, // Due to a bug, it's never been officially shiny-locked.
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -3037,6 +3052,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_PikachuWorldCap,
         .iconPalIndex = 0,
         FOOTPRINT(Pikachu)
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -3158,6 +3174,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Pikachu)
         .cannotBeTraded = TRUE,
         .allPerfectIVs = TRUE,
+        .shinyLocked = TRUE,
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .formSpeciesIdTable = sPikachuFormSpeciesIdTable,
@@ -10478,6 +10495,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Marowak)
         .isTotem = TRUE,
         .isAlolanForm = TRUE,
+        .shinyLocked = TRUE,
         .levelUpLearnset = sMarowakAlolanLevelUpLearnset,
         .teachableLearnset = sMarowakAlolanTeachableLearnset,
         .formSpeciesIdTable = sMarowakFormSpeciesIdTable,
@@ -13743,6 +13761,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Eevee)
         .cannotBeTraded = TRUE,
         .allPerfectIVs = TRUE,
+        .shinyLocked = TRUE,
         .levelUpLearnset = sEeveeLevelUpLearnset,
         .teachableLearnset = sEeveeTeachableLearnset,
         .formSpeciesIdTable = sEeveeFormSpeciesIdTable,
