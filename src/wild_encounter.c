@@ -922,9 +922,6 @@ static void SetLastFishingSpecies(u32 species)
 
 static void HandleChainFishingStreak(u32 species)
 {
-    if (!I_FISHING_CHAIN)
-        return;
-
     if (DoesSpeciesMatchLastFishingSpecies(species))
     {
         if (!IsChainFishingStreakAtMax())
@@ -936,6 +933,9 @@ static void HandleChainFishingStreak(u32 species)
 
 static void UpdateChainFishingSpeciesAndStreak(u32 species)
 {
+    if (!I_FISHING_CHAIN)
+        return;
+
     SetLastFishingSpecies(species);
     HandleChainFishingStreak(species);
 }
