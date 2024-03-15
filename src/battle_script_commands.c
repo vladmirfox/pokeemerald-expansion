@@ -620,32 +620,40 @@ const u16 sLevelCapFlags[NUM_LEVEL_CAPS] =
 };
 
 // sets the acutal levels for each level cap
-const u16 sLevelCapsNormal[NUM_LEVEL_CAPS] = { 15, 24, 38, 46, 54, 61, 66, 72, 90 };
-const u16 sLevelCapsHard[NUM_LEVEL_CAPS] = { 14, 23, 37, 45, 53, 60, 65, 71, 89 };
+const u8 sLevelCapsNormal[NUM_LEVEL_CAPS] = { 15, 24, 38, 46, 54, 61, 66, 72, 90 };
+const u8 sLevelCapsHard[NUM_LEVEL_CAPS] = { 14, 23, 37, 45, 53, 60, 65, 71, 89 };
 
 // gets the current level cap
 u8 gCurrentLevelCap(void) {
+    u8 level = MAX_LEVEL;
     u8 i;
+    u8 difficulty = VarGet(VAR_LEVEL_CAPS);
 
-    switch (VAR_LEVEL_CAPS)
+    if (difficulty == OPTIONS_LEVEL_CAPS_NORMAL)
     {
-        case OPTIONS_LEVEL_CAPS_NORMAL:
-            for (i = 0; i < NUM_LEVEL_CAPS; i++) {
-                if (!FlagGet(sLevelCapFlags[i])) {
-                    return sLevelCapsNormal[i];
-                }
+        for (i = 0; i < NUM_LEVEL_CAPS; i++)
+        {
+            if (!FlagGet(sLevelCapFlags[i]))
+            {
+                level = sLevelCapsNormal[i];
+                break;
             }
-            break;
-        case OPTIONS_LEVEL_CAPS_HARD:
-            for (i = 0; i < NUM_LEVEL_CAPS; i++) {
-                if (!FlagGet(sLevelCapFlags[i])) {
-                    return sLevelCapsHard[i];
-                }
+        }
+    }
+    
+    if (difficulty == OPTIONS_LEVEL_CAPS_HARD)
+    {
+        for (i = 0; i < NUM_LEVEL_CAPS; i++)
+        {
+            if (!FlagGet(sLevelCapFlags[i]))
+            {
+                level = sLevelCapsHard[i];
+                break;
             }
-            break;
+        }
     }
 
-    return MAX_LEVEL;
+    return level;
 }
 
 void (* const gBattleScriptingCommandsTable[])(void) =
@@ -1098,36 +1106,13 @@ static const u16 sNaturePowerMoves[BATTLE_TERRAIN_COUNT] =
 
 static const struct PickupItem sPickupTable[] =
 {//   Item                      1+  11+  21+  31+  41+  51+  61+  71+  81+  91+   Levels
-    { ITEM_POTION,          {  35,   _,   _,   _,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_TINY_MUSHROOM,   {  25,  10,   _,   _,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_REPEL,           {   8,  30,   _,   _,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_SUPER_POTION,    {   8,  10,  30,   _,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_POKE_DOLL,       {   8,  10,   9,  30,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_BIG_MUSHROOM,    {   3,  10,   9,   _,   _,   _,   _,   _,   _,   _, } },
-    { ITEM_SUPER_REPEL,     {   3,  10,   9,   9,  30,   _,   _,   _,   _,   _, } },
-    { ITEM_FULL_HEAL,       {   3,   3,   9,   8,   9,  30,   _,   _,   _,   _, } },
-    { ITEM_REVIVE,          {   3,   3,   3,   8,   8,   9,  30,   _,   _,   _, } },
-    { ITEM_HYPER_POTION,    {   3,   3,   3,   4,   8,   9,   8,  30,   _,   _, } },
-    { ITEM_ETHER,           {   1,   1,   3,   4,   4,   _,   _,   _,   _,   _, } },
-    { ITEM_MAX_REPEL,       {   _,   3,   3,   4,   4,   9,   8,   8,  30,   _, } },
-    { ITEM_EXP_CANDY_S,     {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
-    { ITEM_EXP_CANDY_M,     {   _,   3,   3,   4,   4,   4,   4,   5,   9,  10, } },
-    { ITEM_RARE_CANDY,      {   _,   1,   1,   1,   1,   4,   4,   5,   4,   5, } },
-    { ITEM_NUGGET,          {   _,   _,   3,   4,   4,   4,   4,   5,   4,   5, } },
-    { ITEM_MAX_POTION,      {   _,   _,   3,   4,   4,   4,   8,   8,   9,  30, } },
-    { ITEM_MAX_ETHER,       {   _,   _,   1,   1,   4,   4,   4,   _,   _,   _, } },
-    { ITEM_EXP_CANDY_L,     {   _,   _,   1,   1,   1,   4,   4,   5,   4,   5, } },
-    { ITEM_BIG_NUGGET,      {   _,   _,   1,   1,   1,   1,   4,   5,   4,   5, } },
-    { ITEM_DESTINY_KNOT,    {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
-    { ITEM_EVERSTONE,       {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
-    { ITEM_MENTAL_HERB,     {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
-    { ITEM_POWER_HERB,      {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
-    { ITEM_WHITE_HERB,      {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
-    { ITEM_BALM_MUSHROOM,   {   _,   _,   1,   4,   4,   4,   4,   5,   4,   5, } },
-    { ITEM_MAX_REVIVE,      {   _,   _,   _,   4,   4,   4,   4,   7,   9,   9, } },
-    { ITEM_ELIXIR,          {   _,   _,   _,   _,   1,   1,   4,   5,   4,   5, } },
-    { ITEM_MAX_ELIXIR,      {   _,   _,   _,   _,   _,   _,   1,   1,   4,   5, } },
-    { ITEM_STAR_PIECE,      {   _,   _,   _,   _,   _,   _,   _,   1,   1,   1, } },
+    { ITEM_FLUFFY_TAIL,     {  35,  25,  10,  10,  10,  10,  10,  10,  10,  10, } },
+    { ITEM_EXP_CANDY_XS,    {  25,  20,   _,   _,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_EXP_CANDY_S,     {   8,  30,   _,   _,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_EXP_CANDY_M,     {   8,  10,  30,  30,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_EXP_CANDY_L,     {   8,  10,   9,   9,  30,  30,   _,   _,   _,   _, } },
+    { ITEM_EXP_CANDY_XL,    {   3,  10,   9,   9,   9,   9,  30,  30,  30,   _, } },
+    { ITEM_RARE_CANDY,      {   3,  10,   9,   9,   9,   9,   9,   9,   9,  30, } },
 };
 
 #undef _
