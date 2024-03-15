@@ -320,6 +320,8 @@ extern const u8 gText_DifficultyHard[];
 extern const u8 gText_LevelCapsNone[];
 extern const u8 gText_LevelCapsNormal[];
 extern const u8 gText_LevelCapsHard[];
+extern const u8 gText_EXPShareEnabled[];
+extern const u8 gText_EXPShareDisabled[];
 extern const u8 gText_Option[];
 extern const u8 gText_OptionMenu[];
 extern const u8 gText_SmallDot[];
@@ -335,6 +337,7 @@ extern const u8 gText_ButtonMode[];
 extern const u8 gText_BagInBattle[];
 extern const u8 gText_Difficulty[];
 extern const u8 gText_LevelCaps[];
+extern const u8 gText_EXPShare[];
 
 extern const u8 gText_MaleSymbol[];
 extern const u8 gText_FemaleSymbol[];

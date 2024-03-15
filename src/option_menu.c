@@ -28,6 +28,7 @@
 #define tBagInBattle data[7]
 #define tDifficulty data[8]
 #define tLevelCaps data[9]
+#define tEXPShare data[10]
 
 // menu items pg. 1
 enum
@@ -48,6 +49,7 @@ enum
     MENUITEM_BAGINBATTLE,
     MENUITEM_DIFFICULTY,
     MENUITEM_LEVELCAPS,
+    MENUITEM_EXPSHARE,
     MENUITEM_CANCEL_PG2,
     MENUITEM_COUNT_PG2,
 };
@@ -70,6 +72,7 @@ enum
 #define YPOS_BAGINBATTLE     (MENUITEM_BAGINBATTLE * 16)
 #define YPOS_DIFFICULTY      (MENUITEM_DIFFICULTY * 16)
 #define YPOS_LEVELCAPS       (MENUITEM_LEVELCAPS * 16)
+#define YPOS_EXPSHARE        (MENUITEM_EXPSHARE * 16)
 
 #define PAGE_COUNT  2
 
@@ -98,6 +101,8 @@ static u8 ButtonMode_ProcessInput(u8 selection);
 static void ButtonMode_DrawChoices(u8 selection);
 static u8 LevelCaps_ProcessInput(u8 selection);
 static void LevelCaps_DrawChoices(u8 selection);
+static u8 EXPShare_ProcessInput(u8 selection);
+static void EXPShare_DrawChoices(u8 selection);
 static void DrawHeaderText(void);
 static void DrawOptionMenuTexts(void);
 static void DrawBgWindowFrames(void);
@@ -125,6 +130,7 @@ static const u8 *const sOptionMenuItemsNames_Pg2[MENUITEM_COUNT_PG2] =
     [MENUITEM_BAGINBATTLE]     = gText_BagInBattle,
     [MENUITEM_DIFFICULTY]      = gText_Difficulty,
     [MENUITEM_LEVELCAPS]       = gText_LevelCaps,
+    [MENUITEM_EXPSHARE]        = gText_EXPShare,
     [MENUITEM_CANCEL_PG2]      = gText_OptionMenuCancel,
 };
 
@@ -203,6 +209,7 @@ static void ReadAllCurrentSettings(u8 taskId)
     gTasks[taskId].tBagInBattle = FlagGet(B_FLAG_NO_BAG_USE);
     gTasks[taskId].tDifficulty = VarGet(VAR_DIFFICULTY);
     gTasks[taskId].tLevelCaps = VarGet(VAR_LEVEL_CAPS);
+    gTasks[taskId].tEXPShare = !FlagGet(I_EXP_SHARE_FLAG);
 }
 
 static void DrawOptionsPg1(u8 taskId)
@@ -224,6 +231,7 @@ static void DrawOptionsPg2(u8 taskId)
     BagInBattle_DrawChoices(gTasks[taskId].tBagInBattle);
     Difficulty_DrawChoices(gTasks[taskId].tDifficulty);
     LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
+    EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
     HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
     CopyWindowToVram(WIN_OPTIONS, COPYWIN_FULL);
 }
@@ -533,6 +541,13 @@ static void Task_OptionMenuProcessInput_Pg2(u8 taskId)
             if (previousOption != gTasks[taskId].tLevelCaps)
                 LevelCaps_DrawChoices(gTasks[taskId].tLevelCaps);
             break;
+        case MENUITEM_EXPSHARE:
+            previousOption = gTasks[taskId].tEXPShare;
+            gTasks[taskId].tEXPShare = EXPShare_ProcessInput(gTasks[taskId].tEXPShare);
+
+            if (previousOption != gTasks[taskId].tEXPShare)
+                EXPShare_DrawChoices(gTasks[taskId].tEXPShare);
+            break;
         default:
             return;
         }
@@ -557,6 +572,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gTasks[taskId].tBagInBattle == 0 ? FlagClear(B_FLAG_NO_BAG_USE) : FlagSet(B_FLAG_NO_BAG_USE);
     VarSet(VAR_DIFFICULTY, gTasks[taskId].tDifficulty);
     VarSet(VAR_LEVEL_CAPS, gTasks[taskId].tLevelCaps);
+    gTasks[taskId].tEXPShare == 0 ? FlagSet(I_EXP_SHARE_FLAG) : FlagClear(I_EXP_SHARE_FLAG);
 
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     gTasks[taskId].func = Task_OptionMenuFadeOut;
@@ -972,6 +988,29 @@ static void LevelCaps_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_LevelCapsNormal, xMid, YPOS_LEVELCAPS, styles[1]);
 
     DrawOptionMenuChoice(gText_LevelCapsHard, GetStringRightAlignXOffset(FONT_NORMAL, gText_LevelCapsHard, 198), YPOS_LEVELCAPS, styles[2]);
+}
+
+static u8 EXPShare_ProcessInput(u8 selection)
+{
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        selection ^= 1;
+        sArrowPressed = TRUE;
+    }
+
+    return selection;
+}
+
+static void EXPShare_DrawChoices(u8 selection)
+{
+    u8 styles[2];
+
+    styles[0] = 0;
+    styles[1] = 0;
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(gText_EXPShareEnabled, 104, YPOS_EXPSHARE, styles[0]);
+    DrawOptionMenuChoice(gText_EXPShareDisabled, GetStringRightAlignXOffset(FONT_NORMAL, gText_EXPShareDisabled, 198), YPOS_EXPSHARE, styles[1]);
 }
 
 static void DrawHeaderText(void)
