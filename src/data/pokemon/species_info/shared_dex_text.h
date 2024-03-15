@@ -23,6 +23,12 @@ const u8 gMarowakAlolanPokedexText[] = _(
     "to cause both mental and physical\n"
     "pain that will never fade.");
 
+const u8 gEeveePokedexText[] = _(
+    "An Eevee has an unstable genetic makeup\n"
+    "that suddenly mutates due to its\n"
+    "environment. Radiation from various\n"
+    "Stones causes this Pokémon to evolve.");
+
 // Gen 2 families
 const u8 gUnownPokedexText[] = _(
     "This Pokémon is shaped like ancient text\n"
