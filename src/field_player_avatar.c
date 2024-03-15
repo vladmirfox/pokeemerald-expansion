@@ -146,7 +146,7 @@ static bool32 Fishing_CheckForBiteWithStickyHold(void);
 static bool32 Fishing_CheckForBiteNoStickyHold(void);
 static bool32 Fishing_RollForBite(bool32);
 static u32 CalculateFishingBiteOdds(bool32);
-static u32 CalculateFishingProximityBoost(void);
+static u32 CalculateFishingProximityBoost(u32 odds);
 static void GetCoordinatesAroundBobber(s16[], s16[][AXIS_COUNT], u32);
 static u32 CountQualifyingTiles(s16[][AXIS_COUNT], s16 player[], u8 facingDirection, struct ObjectEvent *objectEvent, bool32 isTileLand[]);
 static bool32 CheckTileQualification(s16 tile[], s16 player[], u32 facingDirection, struct ObjectEvent* objectEvent, bool32 isTileLand[], u32 direction);
@@ -2101,10 +2101,10 @@ static u32 CalculateFishingBiteOdds(bool32 isStickyHold)
     if (isStickyHold)
         odds -= FISHING_STICKY_BOOST;
 
-    return (odds -= CalculateFishingProximityBoost());
+    return (odds -= CalculateFishingProximityBoost(odds));
 }
 
-static u32 CalculateFishingProximityBoost(void)
+static u32 CalculateFishingProximityBoost(u32 odds)
 {
     s16 player[AXIS_COUNT], bobber[AXIS_COUNT];
     s16 surroundingTile[CARDINAL_DIRECTION_COUNT][AXIS_COUNT] = {{0, 0}};
@@ -2134,7 +2134,8 @@ static u32 CalculateFishingProximityBoost(void)
         numQualifyingTile += CountLandTiles(isTileLand);
 
     DebugPrintf("numQu %d", numQualifyingTile);
-    return (numQualifyingTile * FISHING_PROXIMITY_BOOST);
+
+    return (numQualifyingTile == 3) ? odds : (numQualifyingTile * FISHING_PROXIMITY_BOOST);
 }
 
 static void GetCoordinatesAroundBobber(s16 bobber[], s16 surroundingTile[][AXIS_COUNT], u32 facingDirection)

@@ -934,6 +934,12 @@ static void HandleChainFishingStreak(u32 species)
         ResetChainFishingStreak();
 }
 
+static void UpdateChainFishingSpeciesAndStreak(u32 species)
+{
+    SetLastFishingSpecies(species);
+    HandleChainFishingStreak(species);
+}
+
 void FishingWildEncounter(u8 rod)
 {
     u16 species;
@@ -950,8 +956,7 @@ void FishingWildEncounter(u8 rod)
         species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     }
 
-    HandleChainFishingStreak(species);
-    SetLastFishingSpecies(species);
+    UpdateChainFishingSpeciesAndStreak(species);
     IncrementGameStat(GAME_STAT_FISHING_ENCOUNTERS);
     SetPokemonAnglerSpecies(species);
     SetEncounterFishing();
