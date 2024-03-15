@@ -141,6 +141,7 @@ static u8 Fishing_NoMon(struct Task *);
 static u8 Fishing_PutRodAway(struct Task *);
 static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
+static bool32 DoesFishingMinigameAllowCancel(void);
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
 static bool32 Fishing_CheckForBiteWithStickyHold(void);
 static bool32 Fishing_CheckForBiteNoStickyHold(void);
@@ -1825,6 +1826,9 @@ static bool8 Fishing_ShowDots(struct Task *task)
     task->tFrameCounter++;
     if (JOY_NEW(A_BUTTON))
     {
+        if (!DoesFishingMinigameAllowCancel())
+            return FALSE;
+
         task->tStep = FISHING_NO_BITE;
         if (task->tRoundsPlayed != 0)
             task->tStep = FISHING_GOT_AWAY;
@@ -2065,6 +2069,19 @@ static bool8 Fishing_EndNoMon(struct Task *task)
         DestroyTask(FindTaskIdByFunc(Task_Fishing));
     }
     return FALSE;
+}
+
+static bool32 DoesFishingMinigameAllowCancel(void)
+{
+    switch(I_FISHING_MINIGAME)
+    {
+        case GEN_1:
+        case GEN_2:
+            return FALSE;
+        case GEN_3:
+        default:
+            return TRUE;
+    }
 }
 
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void)
