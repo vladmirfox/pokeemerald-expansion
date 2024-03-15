@@ -3815,11 +3815,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Roly-Poly"),
         .height = 3,
         .weight = 33,
-        .description = COMPOUND_STRING(
-            "The spiny fur on its back is normally\n"
-            "at rest. When this Pokémon becomes\n"
-            "agitated, its fur stands on end and stabs\n"
-            "into its attackers."),
+        .description = gTogedemaruPokedexText,
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,
@@ -3840,6 +3836,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Togedemaru)
         .levelUpLearnset = sTogedemaruLevelUpLearnset,
         .teachableLearnset = sTogedemaruTeachableLearnset,
+        .formSpeciesIdTable = sTogedemaruFormSpeciesIdTable,
+    },
+
+    [SPECIES_TOGEDEMARU_TOTEM] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 98,
+        .baseDefense   = 63,
+        .baseSpeed     = 96,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 73,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_STEEL),
+        .catchRate = 180,
+        .expYield = 152,
+        .evYield_Attack = 2,
+        .itemRare = ITEM_ELECTRIC_SEED,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 10,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
+        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Togedemaru"),
+        .cryId = CRY_TOGEDEMARU,
+        .natDexNum = NATIONAL_DEX_TOGEDEMARU,
+        .categoryName = _("Roly-Poly"),
+        .height = 6,
+        .weight = 130,
+        .description = gTogedemaruPokedexText,
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Togedemaru,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = 9,
+        .frontAnimFrames = sAnims_Togedemaru,
+        .frontAnimId = ANIM_FLASH_YELLOW,
+        .backPic = gMonBackPic_Togedemaru,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        .palette = gMonPalette_Togedemaru,
+        .shinyPalette = gMonShinyPalette_Togedemaru,
+        .iconSprite = gMonIcon_Togedemaru,
+        .iconPalIndex = 2,
+        FOOTPRINT(Togedemaru)
+        .isTotem = TRUE,
+        .levelUpLearnset = sTogedemaruLevelUpLearnset,
+        .teachableLearnset = sTogedemaruTeachableLearnset,
+        .formSpeciesIdTable = sTogedemaruFormSpeciesIdTable,
     },
 #endif //P_FAMILY_TOGEDEMARU
 
@@ -4323,7 +4371,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(HakamoO)
         .levelUpLearnset = sHakamoOLevelUpLearnset,
         .teachableLearnset = sHakamoOTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_KOMMO_O}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_KOMMO_O},
+                                {EVO_NONE, 0, SPECIES_KOMMO_O_TOTEM}),
     },
 
     [SPECIES_KOMMO_O] =
@@ -4352,11 +4401,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Scaly"),
         .height = 16,
         .weight = 782,
-        .description = COMPOUND_STRING(
-            "Its rigid scales function as offense and\n"
-            "defense. In the past, its scales were\n"
-            "processed and used to make weapons\n"
-            "and other valuable commodities."),
+        .description = gKommoOPokedexText,
         .pokemonScale = 259,
         .pokemonOffset = 1,
         .trainerScale = 296,
@@ -4377,6 +4422,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(KommoO)
         .levelUpLearnset = sKommoOLevelUpLearnset,
         .teachableLearnset = sKommoOTeachableLearnset,
+        .formSpeciesIdTable = sKommoOFormSpeciesIdTable,
+    },
+
+    [SPECIES_KOMMO_O_TOTEM] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 110,
+        .baseDefense   = 125,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_FIGHTING),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 300 : 270,
+        .evYield_Defense = 3,
+        .itemCommon = ITEM_RAZOR_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Kommo-o"),
+        .cryId = CRY_KOMMO_O,
+        .natDexNum = NATIONAL_DEX_KOMMO_O,
+        .categoryName = _("Scaly"),
+        .height = 24,
+        .weight = 2075,
+        .description = gKommoOPokedexText,
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_KommoO,
+        .frontPicSize = MON_COORDS_SIZE(63, 63),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Kommo_O,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backPic = gMonBackPic_KommoO,
+        .backPicSize = MON_COORDS_SIZE(60, 60),
+        .backPicYOffset = 2,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_KommoO,
+        .shinyPalette = gMonShinyPalette_KommoO,
+        .iconSprite = gMonIcon_KommoO,
+        .iconPalIndex = 2,
+        FOOTPRINT(KommoO)
+        .isTotem = TRUE,
+        .levelUpLearnset = sKommoOLevelUpLearnset,
+        .teachableLearnset = sKommoOTeachableLearnset,
+        .formSpeciesIdTable = sKommoOFormSpeciesIdTable,
     },
 #endif //P_FAMILY_JANGMO_O
 

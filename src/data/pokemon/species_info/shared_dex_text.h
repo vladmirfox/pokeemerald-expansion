@@ -167,6 +167,12 @@ const u8 gMiniorCorePokedexText[] = _(
     "may survive if it's put into a Poké Ball\n"
     "quickly enough.");
 
+const u8 gTogedemaruPokedexText[] = _(
+    "The spiny fur on its back is normally\n"
+    "at rest. When this Pokémon becomes\n"
+    "agitated, its fur stands on end and stabs\n"
+    "into its attackers.");
+
 const u8 gMimikyuDisguisedPokedexText[] = _(
     "A lonely Pokémon, it hides its terrifying\n"
     "appearance beneath an old rag so it can\n"
@@ -178,6 +184,12 @@ const u8 gMimikyuBustedPokedexText[] = _(
     "disguising itself, its neck was\n"
     "broken. Whatever is inside is probably\n"
     "unharmed, but it's still feeling sad.");
+
+const u8 gKommoOPokedexText[] = _(
+    "Its rigid scales function as offense and\n"
+    "defense. In the past, its scales were\n"
+    "processed and used to make weapons\n"
+    "and other valuable commodities.");
 
 // Gen 8 families
 const u8 gAlcremieVanillaCreamPokedexText[] = _(

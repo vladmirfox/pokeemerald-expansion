@@ -1468,6 +1468,14 @@ static const u16 sMiniorFormSpeciesIdTable[] = {
 };
 #endif //P_FAMILY_MINIOR
 
+#if P_FAMILY_TOGEDEMARU
+static const u16 sTogedemaruFormSpeciesIdTable[] = {
+    SPECIES_TOGEDEMARU,
+    SPECIES_TOGEDEMARU_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_TOGEDEMARU
+
 #if P_FAMILY_MIMIKYU
 static const u16 sMimikyuFormSpeciesIdTable[] = {
     SPECIES_MIMIKYU_DISGUISED,
@@ -1477,6 +1485,14 @@ static const u16 sMimikyuFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_MIMIKYU
+
+#if P_FAMILY_JANGMO_O
+static const u16 sKommoOFormSpeciesIdTable[] = {
+    SPECIES_KOMMO_O,
+    SPECIES_KOMMO_O_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_JANGMO_O
 
 #if P_FAMILY_NECROZMA
 static const u16 sNecrozmaFormSpeciesIdTable[] = {
