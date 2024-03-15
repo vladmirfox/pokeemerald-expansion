@@ -17,6 +17,12 @@ const u8 gPikachuPokedexText[] = _(
     "energy in a burst, the electric power is\n"
     "equal to a lightning bolt.");
 
+const u8 gMarowakAlolanPokedexText[] = _(
+    "The cursed flames that light up the bone\n"
+    "carried by this Pokémon are said\n"
+    "to cause both mental and physical\n"
+    "pain that will never fade.");
+
 // Gen 2 families
 const u8 gUnownPokedexText[] = _(
     "This Pokémon is shaped like ancient text\n"
@@ -100,6 +106,12 @@ const u8 gGumshoosPokedexText[] = _(
     "patiently stakes out the location...\n"
     "but as it's diurnal, it's always snoozing\n"
     "by nightfall.");
+
+const u8 gVikavoltPokedexText[] = _(
+    "It concentrates electrical energy within\n"
+    "its large jaws and uses it to zap its foes.\n"
+    "It overwhelms bird Pokémon with shocking\n"
+    "beams of electrical energy.");
 
 const u8 gRockruffPokedexText[] = _(
     "This Pokémon has lived with people since\n"

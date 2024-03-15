@@ -807,6 +807,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Gumshoos)
         .levelUpLearnset = sGumshoosLevelUpLearnset,
         .teachableLearnset = sGumshoosTeachableLearnset,
+        .formSpeciesIdTable = sGumshoosFormSpeciesIdTable,
     },
 
     [SPECIES_GUMSHOOS_TOTEM] =
@@ -857,6 +858,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .isTotem = TRUE,
         .levelUpLearnset = sGumshoosLevelUpLearnset,
         .teachableLearnset = sGumshoosTeachableLearnset,
+        .formSpeciesIdTable = sGumshoosFormSpeciesIdTable,
     },
 #endif //P_FAMILY_YUNGOOS
 
@@ -966,7 +968,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .levelUpLearnset = sCharjabugLevelUpLearnset,
         .teachableLearnset = sCharjabugTeachableLearnset,
         .evolutions = EVOLUTION({EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_VIKAVOLT},
-                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_VIKAVOLT}),
+                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_VIKAVOLT},
+                                {EVO_NONE, 0, SPECIES_VIKAVOLT_TOTEM}),
     },
 
     [SPECIES_VIKAVOLT] =
@@ -994,11 +997,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .categoryName = _("Stag Beetle"),
         .height = 15,
         .weight = 450,
-        .description = COMPOUND_STRING(
-            "It concentrates electrical energy within\n"
-            "its large jaws and uses it to zap its foes.\n"
-            "It overwhelms bird Pokémon with shocking\n"
-            "beams of electrical energy."),
+        .description = gVikavoltPokedexText,
         .pokemonScale = 268,
         .pokemonOffset = 2,
         .trainerScale = 271,
@@ -1020,6 +1019,58 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         FOOTPRINT(Vikavolt)
         .levelUpLearnset = sVikavoltLevelUpLearnset,
         .teachableLearnset = sVikavoltTeachableLearnset,
+        .formSpeciesIdTable = sVikavoltFormSpeciesIdTable,
+    },
+
+    [SPECIES_VIKAVOLT_TOTEM] =
+    {
+        .baseHP        = 77,
+        .baseAttack    = 70,
+        .baseDefense   = 90,
+        .baseSpeed     = 43,
+        .baseSpAttack  = 145,
+        .baseSpDefense = 75,
+        .types = MON_TYPES(TYPE_BUG, TYPE_ELECTRIC),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 250 : 225,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Vikavolt"),
+        .cryId = CRY_VIKAVOLT,
+        .natDexNum = NATIONAL_DEX_VIKAVOLT,
+        .categoryName = _("Stag Beetle"),
+        .height = 26,
+        .weight = 1475,
+        .description = gVikavoltPokedexText,
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Vikavolt,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_Vikavolt,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
+        .enemyMonElevation = 8,
+        .backPic = gMonBackPic_Vikavolt,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 7,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Vikavolt,
+        .shinyPalette = gMonShinyPalette_Vikavolt,
+        .iconSprite = gMonIcon_Vikavolt,
+        .iconPalIndex = 0,
+        FOOTPRINT(Vikavolt)
+        .isTotem = TRUE,
+        .levelUpLearnset = sVikavoltLevelUpLearnset,
+        .teachableLearnset = sVikavoltTeachableLearnset,
+        .formSpeciesIdTable = sVikavoltFormSpeciesIdTable,
     },
 #endif //P_FAMILY_GRUBBIN
 

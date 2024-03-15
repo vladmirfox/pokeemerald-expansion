@@ -321,6 +321,7 @@ static const u16 sExeggutorFormSpeciesIdTable[] = {
 static const u16 sMarowakFormSpeciesIdTable[] = {
     SPECIES_MAROWAK,
     SPECIES_MAROWAK_ALOLAN,
+    SPECIES_MAROWAK_ALOLAN_TOTEM,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_CUBONE
@@ -1341,6 +1342,22 @@ static const u16 sDecidueyeFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_ROWLET
+
+#if P_FAMILY_YUNGOOS
+static const u16 sGumshoosFormSpeciesIdTable[] = {
+    SPECIES_GUMSHOOS,
+    SPECIES_GUMSHOOS_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_YUNGOOS
+
+#if P_FAMILY_GRUBBIN
+static const u16 sVikavoltFormSpeciesIdTable[] = {
+    SPECIES_VIKAVOLT,
+    SPECIES_VIKAVOLT_TOTEM,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_GRUBBIN
 
 #if P_FAMILY_ORICORIO
 static const u16 sOricorioFormSpeciesIdTable[] = {
