@@ -2958,8 +2958,8 @@ static const u8 sPsyshieldBashDescription[] = _(
     "energy. Will raise Defense.");
 
 static const u8 sPowerShiftDescription[] = _(
-    "The user swaps its Attack\n"
-    "and Defense stats.");
+    "The user's offensive and\n"
+    "defensive stats swap.");
 
 static const u8 sStoneAxeDescription[] = _(
     "High critical hit ratio. Sets\n"
