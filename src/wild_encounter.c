@@ -915,11 +915,6 @@ u32 CalculateChainFishingShinyRolls(void)
     return (1 + (2 * GetCurrentFishingStreak()));
 }
 
-static bool32 IsChainFishingEnabled(void)
-{
-    return (I_FISHING_CHAIN == TRUE);
-}
-
 static void SetLastFishingSpecies(u32 species)
 {
     sLastFishingSpecies = species;
@@ -927,7 +922,7 @@ static void SetLastFishingSpecies(u32 species)
 
 static void HandleChainFishingStreak(u32 species)
 {
-    if (!IsChainFishingEnabled())
+    if (!I_FISHING_CHAIN)
         return;
 
     if (DoesSpeciesMatchLastFishingSpecies(species))
@@ -943,7 +938,6 @@ void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
         u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
