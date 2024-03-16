@@ -4531,7 +4531,6 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         //.iconSprite = gMonIcon_UrsalunaBloodmoon,
         //.iconPalIndex = 0,
         //FOOTPRINT(UrsalunaBloodmoon)
-        .shinyLocked = TRUE,
         .levelUpLearnset = sUrsalunaBloodmoonLevelUpLearnset,
         .teachableLearnset = sUrsalunaBloodmoonTeachableLearnset,
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,

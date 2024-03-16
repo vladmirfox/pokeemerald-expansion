@@ -53,7 +53,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 0,
         FOOTPRINT(Victini)
         .isMythical = TRUE,
-        .shinyLocked = TRUE,
         .levelUpLearnset = sVictiniLevelUpLearnset,
         .teachableLearnset = sVictiniTeachableLearnset,
     },
@@ -10156,7 +10155,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 0,
         FOOTPRINT(Keldeo)
         .isMythical = TRUE,
-        .shinyLocked = TRUE,
         .levelUpLearnset = sKeldeoLevelUpLearnset,
         .teachableLearnset = sKeldeoTeachableLearnset,
         .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
@@ -10213,7 +10211,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 0,
         FOOTPRINT(Keldeo)
         .isMythical = TRUE,
-        .shinyLocked = TRUE,
         .levelUpLearnset = sKeldeoLevelUpLearnset,
         .teachableLearnset = sKeldeoTeachableLearnset,
         .formSpeciesIdTable = sKeldeoFormSpeciesIdTable,
@@ -10277,7 +10274,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 4,
         FOOTPRINT(Meloetta)
         .isMythical = TRUE,
-        .shinyLocked = TRUE,
         .levelUpLearnset = sMeloettaLevelUpLearnset,
         .teachableLearnset = sMeloettaTeachableLearnset,
         .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,
@@ -10338,7 +10334,6 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 0,
         FOOTPRINT(Meloetta)
         .isMythical = TRUE,
-        .shinyLocked = TRUE,
         .levelUpLearnset = sMeloettaLevelUpLearnset,
         .teachableLearnset = sMeloettaTeachableLearnset,
         .formSpeciesIdTable = sMeloettaFormSpeciesIdTable,
@@ -10393,12 +10388,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Genesect,                                \
         .iconPalIndex = 2,                                              \
         FOOTPRINT(Genesect)                                             \
-        .isMythical = TRUE,                                             \
-        .shinyLocked = TRUE,                                            \
         .levelUpLearnset = sGenesectLevelUpLearnset,                    \
         .teachableLearnset = sGenesectTeachableLearnset,                \
         .formSpeciesIdTable = sGenesectFormSpeciesIdTable,              \
         .formChangeTable = sGenesectFormChangeTable,                    \
+        .isMythical = TRUE,                                             \
     }
 
     [SPECIES_GENESECT]             = GENESECT_SPECIES_INFO(Genesect),
