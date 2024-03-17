@@ -19,7 +19,7 @@ script SakuTown_PokemonCenter_EventScript_Traveler {
 	msgbox(format(
 		"This Pokémon refuge is brand-new, courtesy of the Pokémon League!\p"
 		"As you can see, it's still being built. Watch out for the falling bricks, ha ha, just kidding!\p"
-		"But seriously, do watch out."
+		"Seriously though, do watch out. We're held responsible if anything happens to you."
 	))
 	release
 	end

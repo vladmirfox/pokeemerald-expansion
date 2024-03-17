@@ -78,7 +78,7 @@
 #define OBJ_EVENT_GFX_NOLAND                      74
 #define OBJ_EVENT_GFX_LUCY                        75
 #define OBJ_EVENT_GFX_AROMA_LADY                  76
-#define OBJ_EVENT_GFX_UNUSED_MAGNEMITE_DOLL       77
+#define OBJ_EVENT_GFX_FARMER                      77
 #define OBJ_EVENT_GFX_UNUSED_SQUIRTLE_DOLL        78
 #define OBJ_EVENT_GFX_UNUSED_WOOPER_DOLL          79
 #define OBJ_EVENT_GFX_UNUSED_PIKACHU_DOLL         80
@@ -385,6 +385,8 @@
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
+#define OBJ_EVENT_PAL_TAG_WOMAN_2                 0x112C
+#define OBJ_EVENT_PAL_TAG_FARMER                  0x112D
 
 #if OW_MON_POKEBALLS
 // Vanilla

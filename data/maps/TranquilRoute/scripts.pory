@@ -117,6 +117,7 @@ script TranquilRoute_EventScript_BerryWoman {
 	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
 
 	msgbox(format(
+		"Isn't it cute? It's friend-shaped!\p"
 		"Don't worry about it, I have a spare one.\p"
 		"Have fun gardening!"
 	))

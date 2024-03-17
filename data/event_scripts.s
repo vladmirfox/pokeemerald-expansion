@@ -1114,3 +1114,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/TranquilRoute_CutHouse/scripts.inc"
 
 	.include "data/maps/SakuTown_PokemonCenter/scripts.inc"
+
+	.include "data/maps/SakuTown_BonsaiShop/scripts.inc"

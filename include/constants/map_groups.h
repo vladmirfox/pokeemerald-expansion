@@ -613,6 +613,7 @@
 
 // gMapGroup_IndoorSaku
 #define MAP_SAKU_TOWN_POKEMON_CENTER (0 | (35 << 8))
+#define MAP_SAKU_TOWN_BONSAI_SHOP    (1 | (35 << 8))
 
 #define MAP_GROUPS_COUNT 36
 

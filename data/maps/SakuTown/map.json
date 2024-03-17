@@ -70,7 +70,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 33,
       "y": 34,
       "elevation": 0,
@@ -83,16 +83,42 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_FARMER",
       "x": 16,
       "y": 40,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SakuTown_EventScript_Farmer",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 35,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SakuTown_EventScript_Farmer",
+      "script": "SakuTown_EventScript_Karateka",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FARMER",
+      "x": 22,
+      "y": 42,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SakuTown_EventScript_Farmer2",
       "flag": "0"
     }
   ],
@@ -102,6 +128,20 @@
       "y": 36,
       "elevation": 0,
       "dest_map": "MAP_SAKU_TOWN_HOUSE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 40,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_SAKU_TOWN_POKEMON_CENTER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_SAKU_TOWN_BONSAI_SHOP",
       "dest_warp_id": "0"
     }
   ],

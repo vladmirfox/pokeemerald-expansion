@@ -4580,6 +4580,16 @@
       "secondary_tileset": "gTileset_Refuge",
       "border_filepath": "data/layouts/SakuTown_PokemonCenter/border.bin",
       "blockdata_filepath": "data/layouts/SakuTown_PokemonCenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAKU_TOWN_BONSAI_SHOP",
+      "name": "SakuTown_BonsaiShop_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
+      "border_filepath": "data/layouts/SakuTown_BonsaiShop/border.bin",
+      "blockdata_filepath": "data/layouts/SakuTown_BonsaiShop/map.bin"
     }
   ]
 }

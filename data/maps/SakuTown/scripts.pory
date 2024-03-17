@@ -1,3 +1,5 @@
+const LOCALID_KARATEKA = 6
+
 mapscripts SakuTown_MapScripts {
 	
 }
@@ -6,7 +8,16 @@ script SakuTown_EventScript_Farmer {
 	lock
 	faceplayer
 	msgbox(format(
-		"I'm cultivatin' Ryss berries. Saku Village exports its berries to many towns."
+		"We're cultivatin' Ryss berries. Saku Village exports its berries to many towns."
+	))
+	release
+}
+
+script SakuTown_EventScript_Farmer2 {
+	lock
+	msgbox(format(
+		"Whew...\p"
+		"Working in the fields sure is tiring..."
 	))
 	release
 }
@@ -16,7 +27,22 @@ script SakuTown_EventScript_Woman {
 	faceplayer
 	msgbox(format(
 		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
-		"They don’t even have a Pokémon refuge!"
+		"They don't even have a Pokémon refuge!"
+	))
+	release
+}
+
+script SakuTown_EventScript_Karateka {
+	lock
+	faceplayer
+	msgbox(format(
+		"I let the Pokémon League borrow my super-strong Pokémon to help build the new Pokémon refuges throughout the region.\p"
+	))
+	applymovement(LOCALID_KARATEKA, Common_Movement_FaceRight)
+	waitmovement(0)
+	delay(30)
+	msgbox(format(
+		"Come on, Mama, Kuku! Daddy loves you!!\p"
 	))
 	release
 }

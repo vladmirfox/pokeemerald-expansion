@@ -644,6 +644,7 @@
     "TranquilRoute_CutHouse"
   ],
   "gMapGroup_IndoorSaku": [
-    "SakuTown_PokemonCenter"
+    "SakuTown_PokemonCenter",
+    "SakuTown_BonsaiShop"
   ]
 }
