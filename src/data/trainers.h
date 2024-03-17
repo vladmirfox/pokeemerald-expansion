@@ -7401,17 +7401,17 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = TRAINER_PARTY(sParty_Eiji),
     },
-
-    [TRAINER_LYLE] =
+    // TODO EVA UNUSED
+    [TRAINER_KAWASE] =
     {
-        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_BUG_CATCHER,
-        .trainerName = _("LYLE"),
+        .trainerClass = TRAINER_CLASS_ARTIST,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_RICH,
+        .trainerPic = TRAINER_PIC_ARTIST,
+        .trainerName = _("Kawase"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_Lyle),
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_SMART_SWITCHING | AI_FLAG_TRY_TO_FAINT,
+        .party = TRAINER_PARTY(sParty_Kawase),
     },
 
     [TRAINER_JOSE] =
@@ -7462,16 +7462,17 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Kent),
     },
 
-    [TRAINER_JAMES_1] =
+    // TODO EVA UNUSED
+    [TRAINER_TSUYA] =
     {
-        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_BUG_CATCHER,
-        .trainerName = _("JAMES"),
+        .trainerClass = TRAINER_CLASS_AROMA_LADY,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_AROMA_LADY,
+        .trainerName = _("Tsuya"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_James1),
+        .party = TRAINER_PARTY(sParty_Tsuya),
     },
 
     [TRAINER_JAMES_2] =
@@ -8364,9 +8365,9 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_KENJI] =
     {
-        .trainerClass = TRAINER_CLASS_BUG_CATCHER, // TODO EVA: Painter
+        .trainerClass = TRAINER_CLASS_ARTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_RICH,
-        .trainerPic = TRAINER_PIC_FISHERMAN, // TODO EVA
+        .trainerPic = TRAINER_PIC_ARTIST,
         .trainerName = _("KENJI"),
         .items = {},
         .doubleBattle = FALSE,

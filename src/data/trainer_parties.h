@@ -7733,22 +7733,10 @@ static const struct TrainerMon sParty_Eiji[] = {
     }
 };
 
-static const struct TrainerMon sParty_Lyle[] = {
+static const struct TrainerMon sParty_Kawase[] = {
     {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
+    .lvl = 8,
+    .species = SPECIES_SMEARGLE,
     }
 };
 
@@ -7794,14 +7782,10 @@ static const struct TrainerMon sParty_Kent[] = {
     }
 };
 
-static const struct TrainerMon sParty_James1[] = {
+static const struct TrainerMon sParty_Tsuya[] = {
     {
     .lvl = 6,
-    .species = SPECIES_NINCADA,
-    },
-    {
-    .lvl = 6,
-    .species = SPECIES_NINCADA,
+    .species = SPECIES_FEEBAS,
     }
 };
 

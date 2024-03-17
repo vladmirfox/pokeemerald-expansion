@@ -1,0 +1,61 @@
+mapscripts SakuTown_MapScripts {
+	
+}
+
+script SakuTown_EventScript_Farmer {
+	lock
+	faceplayer
+	msgbox(format(
+		"I'm cultivatin' Ryss berries. Saku Village exports its berries to many towns."
+	))
+	release
+}
+
+script SakuTown_EventScript_Woman {
+	lock
+	faceplayer
+	msgbox(format(
+		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
+		"They don’t even have a Pokémon refuge!"
+	))
+	release
+}
+
+script SakuTown_EventScript_TownSign {
+	msgbox(format("Saku Village\n“A village of tender flower petals.”"), MSGBOX_SIGN)
+}
+
+script SakuTown_EventScript_TrainerTips {
+	msgbox(format("Did you know? Saku Village is in all ways superior to Kura Village!"), MSGBOX_SIGN)
+}
+
+script SakuTown_EventScript_FloristSign {
+	msgbox(format("Humble Blossom\nBonsai & flower shop"), MSGBOX_SIGN)
+}
+
+script SakuTown_EventScript_Mart {
+	lock
+	faceplayer
+	message(gText_HowMayIServeYou)
+	waitmessage
+	pokemart(SakuTown_Mart)
+	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	release
+}
+
+mart SakuTown_Mart {
+	ITEM_POKE_BALL
+	ITEM_BERRY_JUICE
+	ITEM_PARALYZE_HEAL
+	ITEM_ANTIDOTE
+	ITEM_AWAKENING
+	ITEM_ESCAPE_ROPE
+	ITEM_REPEL
+}
+
+script SakuTown_EventScript_Makuhita {
+	lock
+	faceplayer
+	msgbox(format("Kuhi!"))
+	release
+}

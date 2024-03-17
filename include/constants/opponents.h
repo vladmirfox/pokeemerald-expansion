@@ -619,12 +619,12 @@
 #define TRAINER_ANDREA                      613
 #define TRAINER_CRISSY                      614
 #define TRAINER_EIJI                        615
-#define TRAINER_LYLE                        616
+#define TRAINER_KAWASE                        616
 #define TRAINER_JOSE                        617
 #define TRAINER_DOUG                        618
 #define TRAINER_GREG                        619
 #define TRAINER_KENT                        620
-#define TRAINER_JAMES_1                     621
+#define TRAINER_TSUYA                       621
 #define TRAINER_JAMES_2                     622
 #define TRAINER_JAMES_3                     623
 #define TRAINER_JAMES_4                     624

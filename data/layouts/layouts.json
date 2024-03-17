@@ -4570,6 +4570,16 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/SunriseVillage_RivalsHouse/border.bin",
       "blockdata_filepath": "data/layouts/SunriseVillage_RivalsHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAKU_TOWN_POKEMON_CENTER",
+      "name": "SakuTown_PokemonCenter_Layout",
+      "width": 14,
+      "height": 11,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_Refuge",
+      "border_filepath": "data/layouts/SakuTown_PokemonCenter/border.bin",
+      "blockdata_filepath": "data/layouts/SakuTown_PokemonCenter/map.bin"
     }
   ]
 }

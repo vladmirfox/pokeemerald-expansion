@@ -88,6 +88,7 @@ script TranquilRoute_EventScript_Girl {
 script TranquilRoute_EventScript_BerryWoman {
 	lock
 	// TODO EVA add speech bubble with  little musical notes
+	faceplayer
 	msgbox(format("Hi, young one! See this?"))
 	closemessage
 	applymovement(LOCALID_BERRYWOMAN, Common_Movement_FaceRight)
@@ -136,5 +137,12 @@ script TranquilRoute_TrainerTips1 {
 script TranquilRoute_TrainerTips2 {
 	msgbox(format(
 		"Several items can be assigned to the SELECT button from your bag."
+	), MSGBOX_SIGN)
+}
+
+script TranquilRoute_DirectionSign {
+	msgbox(format(
+		"{UP_ARROW} Saku Village"
+		"{LEFT_ARROW} Whiteslab route"
 	), MSGBOX_SIGN)
 }

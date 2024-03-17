@@ -541,7 +541,7 @@
 #define FLAG_HIDDEN_ITEMS_START                                                         0x1F4
 #define FLAG_HIDDEN_ITEM_GINKO_WOODS_POKEBALL                (FLAG_HIDDEN_ITEMS_START + 0x00)
 #define FLAG_HIDDEN_ITEM_GINKO_WOODS_TINY_MUSHROOM           (FLAG_HIDDEN_ITEMS_START + 0x01)
-#define FLAG_HIDDEN_ITEM_TRICK_HOUSE_NUGGET                  (FLAG_HIDDEN_ITEMS_START + 0x02)
+#define FLAG_HIDDEN_ITEM_TRANQUIL_ROUTE_RARE_CANDY           (FLAG_HIDDEN_ITEMS_START + 0x02)
 #define FLAG_HIDDEN_ITEM_GINKO_WOODS_TINY_MUSHROOM_2         (FLAG_HIDDEN_ITEMS_START + 0x03)
 #define FLAG_HIDDEN_ITEM_ROUTE_114_CARBOS                    (FLAG_HIDDEN_ITEMS_START + 0x04)
 #define FLAG_HIDDEN_ITEM_ROUTE_119_CALCIUM                   (FLAG_HIDDEN_ITEMS_START + 0x05)
@@ -1221,8 +1221,8 @@
 #define FLAG_ITEM_GINKO_WOODS_PARALYZE_HEAL                         0x493
 #define FLAG_ITEM_GINKO_WOODS_POTION                                0x494
 #define FLAG_ITEM_GINKO_WOODS_POTION_2                              0x495
+#define FLAG_ITEM_TRANQUIL_ROUTE_POKEBALL                           0x496
 
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
 #define FLAG_UNUSED_0x499                                           0x499 // Unused Flag

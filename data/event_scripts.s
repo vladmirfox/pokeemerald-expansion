@@ -1110,3 +1110,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SunriseVillage_RivalsHouse/scripts.inc"
 
 	.include "data/maps/SunriseVillage_House1/scripts.inc"
+
+	.include "data/maps/TranquilRoute_CutHouse/scripts.inc"
+
+	.include "data/maps/SakuTown_PokemonCenter/scripts.inc"

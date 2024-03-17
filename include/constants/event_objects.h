@@ -383,6 +383,8 @@
 #define OBJ_EVENT_PAL_TAG_OLD_WOMAN               0x1127
 #define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
+#define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
+#define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
 
 #if OW_MON_POKEBALLS
 // Vanilla

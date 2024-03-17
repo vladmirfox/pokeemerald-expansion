@@ -162,6 +162,7 @@ script SunriseVillage_Event_Kirlia {
     end
 }
 
+// TODO EVA remove
 script SunriseVillage_Event_TestGyarados {
     lock
     givemon(SPECIES_SPHEAL, 100)
@@ -172,18 +173,18 @@ script SunriseVillage_Event_TestGyarados {
 }
 
 script SunriseVillage_Event_TownSign {
-    msgbox(format("SUNRISE VILLAGE\n“A village bathing in sunshine.”"), MSGBOX_SIGN)
+    msgbox(format("Sunrise Village\n“A village bathing in sunshine.”"), MSGBOX_SIGN)
 }
 
 script SunriseVillage_Event_PlayersHouseSign {
-    msgbox(format("{PLAYER}'s HOUSE"), MSGBOX_SIGN)
+    msgbox(format("{PLAYER}'s house"), MSGBOX_SIGN)
 }
 
 script SunriseVillage_Event_RivalsHouseSign {
-    msgbox(format("{RIVAL}'s HOUSE"), MSGBOX_SIGN)
+    msgbox(format("{RIVAL}'s house"), MSGBOX_SIGN)
 }
 
 script SunriseVillage_Event_EldersHouseSign {
-    msgbox(format("ELDER IWA's HOUSE"), MSGBOX_SIGN)
+    msgbox(format("Elder Kaba's house"), MSGBOX_SIGN)
 }
 
