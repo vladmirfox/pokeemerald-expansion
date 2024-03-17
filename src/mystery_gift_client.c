@@ -234,6 +234,7 @@ static u32 Client_Run(struct MysteryGiftClient * client)
     case CLI_RECV_EREADER_TRAINER:
     #if FREE_BATTLE_TOWER_E_READER == FALSE
         memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, client->recvBuffer, sizeof(gSaveBlock2Ptr->frontier.ereaderTrainer));
+        ConvertEReaderTrainerClassToFacilityClass();
         ValidateEReaderTrainer();
     #endif //FREE_BATTLE_TOWER_E_READER
         break;

@@ -1669,11 +1669,17 @@ const struct BerryTree gBlankBerryTree = {};
 void SetEnigmaBerry(u8 *src)
 {
 #if FREE_ENIGMA_BERRY == FALSE
-    u32 i;
+    u32 i, j = 0;
     u8 *dest = (u8 *)&gSaveBlock1Ptr->enigmaBerry;
 
-    for (i = 0; i < sizeof(gSaveBlock1Ptr->enigmaBerry); i++)
-        dest[i] = src[i];
+    for (i = 0; i < 0x52C; i++)
+    {
+        if (i < 0x01C || i >= 0x4BC)
+        {
+            dest[j] = src[i];
+            j++;
+        }
+    }
 #endif //FREE_ENIGMA_BERRY
 }
 
@@ -1706,6 +1712,25 @@ bool32 IsEnigmaBerryValid(void)
 #else
     return FALSE;
 #endif //FREE_ENIGMA_BERRY
+}
+
+bool32 WasEnigmaBerryReceivedCorrectly(u8 *src)
+{
+    u32 i;
+    u32 checksum;
+    u32 checksumReceived;
+
+    checksum = 0;
+    checksumReceived = (src[0x52F] << 24) | (src[0x52E] << 16) | (src[0x52D] << 8) | src[0x52C];
+
+    for (i = 0; i < 0x52C; i++)
+        checksum += src[i];
+    
+    if (checksum != checksumReceived)
+        return FALSE;
+
+    gSaveBlock1Ptr->enigmaBerry.checksum = GetEnigmaBerryChecksum(&gSaveBlock1Ptr->enigmaBerry);
+    return TRUE;
 }
 
 const struct Berry *GetBerryInfo(u8 berry)

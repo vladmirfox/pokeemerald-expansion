@@ -83,14 +83,28 @@ void SetBagItemsPointers(void)
 
 void CopyItemName(u16 itemId, u8 *dst)
 {
-    StringCopy(dst, ItemId_GetName(itemId));
+    u8 *txtPtr;
+
+    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
+    {
+        txtPtr = StringCopy(dst, GetBerryInfo(ITEM_TO_BERRY(ITEM_ENIGMA_BERRY_E_READER))->name);
+        *txtPtr = CHAR_SPACE;
+        StringCopy(txtPtr + 1, gText_Berry);
+    }
+    else
+    {
+        StringCopy(dst, ItemId_GetName(itemId));
+    }
 }
 
 const u8 sText_s[] =_("s");
 
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
-    u8 *end = StringCopy(dst, ItemId_GetName(itemId)) - 1;
+    u8 *end;
+
+    CopyItemName(itemId, dst);
+    end = dst - 1;
 
     if (quantity < 2)
         return;

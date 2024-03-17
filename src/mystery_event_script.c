@@ -19,8 +19,8 @@
 extern ScrCmdFunc gMysteryEventScriptCmdTable[];
 extern ScrCmdFunc gMysteryEventScriptCmdTableEnd[];
 
-// 0x1 in FireRed, 0x2 in LeafGreen, 0x80 in Ruby, 0x100 in Sapphire
-#define VERSION_MASK (1 << 9)
+// Bit 0 is FR, bit 1 is LG, bit 7 is R, bit 8 is S, bit 9 is E
+#define VERSION_MASK ((1 << 9) | (1 << 8) | (1 << 7))
 
 #define mScriptBase data[0]
 #define mOffset data[1]
@@ -29,18 +29,16 @@ extern ScrCmdFunc gMysteryEventScriptCmdTableEnd[];
 
 EWRAM_DATA static struct ScriptContext sMysteryEventScriptContext = {0};
 
-static bool32 CheckCompatibility(u16 unk0, u32 unk1, u16 unk2, u32 version)
+static bool32 CheckCompatibility(u16 language, u32 languageDuplicate, u16 unknown, u32 version)
 {
-    // 0x1 in English FRLG, 0x2 in English RS, 0x4 in German RS
-    if (!(unk0 & 0x1))
+    if (!(language & GAME_LANGUAGE))
         return FALSE;
 
-    // Same as above
-    if (!(unk1 & 0x1))
+    if (!(languageDuplicate & GAME_LANGUAGE))
         return FALSE;
 
     // 0x1 in FRLG, 0x4 in RS
-    if (!(unk2 & 0x4))
+    if (!(unknown & 0x4))
         return FALSE;
 
     if (!(version & VERSION_MASK))
@@ -177,18 +175,18 @@ bool8 MEScrCmd_end(struct ScriptContext *ctx)
 
 bool8 MEScrCmd_checkcompat(struct ScriptContext *ctx)
 {
-    u16 unk0;
-    u32 unk1;
-    u16 unk2;
+    u16 language;
+    u32 languageDuplicate;
+    u16 unknown;
     u32 version;
 
     ctx->mOffset = ScriptReadWord(ctx);
-    unk0 = ScriptReadHalfword(ctx);
-    unk1 = ScriptReadWord(ctx);
-    unk2 = ScriptReadHalfword(ctx);
+    language = ScriptReadHalfword(ctx);
+    languageDuplicate = ScriptReadWord(ctx);
+    unknown = ScriptReadHalfword(ctx);
     version = ScriptReadWord(ctx);
 
-    if (CheckCompatibility(unk0, unk1, unk2, version) == TRUE)
+    if (CheckCompatibility(language, languageDuplicate, unknown, version) == TRUE)
         ctx->mValid = TRUE;
     else
         SetIncompatible();
@@ -255,7 +253,7 @@ bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
 
     ctx->mStatus = MEVENT_STATUS_SUCCESS;
 
-    if (IsEnigmaBerryValid() == TRUE)
+    if (WasEnigmaBerryReceivedCorrectly(berry) == TRUE)
         VarSet(VAR_ENIGMA_BERRY_AVAILABLE, 1);
     else
         ctx->mStatus = MEVENT_STATUS_LOAD_ERROR;
@@ -362,6 +360,7 @@ bool8 MEScrCmd_addtrainer(struct ScriptContext *ctx)
 #if FREE_BATTLE_TOWER_E_READER == FALSE
     u32 data = ScriptReadWord(ctx) - ctx->mOffset + ctx->mScriptBase;
     memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, (void *)data, sizeof(gSaveBlock2Ptr->frontier.ereaderTrainer));
+    ConvertEReaderTrainerClassToFacilityClass();
     ValidateEReaderTrainer();
     StringExpandPlaceholders(gStringVar4, gText_MysteryEventNewTrainer);
     ctx->mStatus = MEVENT_STATUS_SUCCESS;

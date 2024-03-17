@@ -447,13 +447,19 @@ static void PrintBerryFirmness(void)
 static void PrintBerryDescription1(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description1, 0, 1, 0, NULL);
+    if (sBerryTag->berryId == ItemIdToBerryType(ITEM_ENIGMA_BERRY_E_READER))
+        AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, gSaveBlock1Ptr->enigmaBerry.description1, 0, 1, 0, NULL);
+    else
+        AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description1, 0, 1, 0, NULL);
 }
 
 static void PrintBerryDescription2(void)
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description2, 0, 0x11, 0, NULL);
+    if (sBerryTag->berryId == ItemIdToBerryType(ITEM_ENIGMA_BERRY_E_READER))
+        AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, gSaveBlock1Ptr->enigmaBerry.description2, 0, 0x11, 0, NULL);
+    else
+        AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description2, 0, 0x11, 0, NULL);
 }
 
 static void CreateBerrySprite(void)
