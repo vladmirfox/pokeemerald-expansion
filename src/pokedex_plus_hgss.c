@@ -6655,8 +6655,8 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_RECOIL_DAMAGE_FEMALE);
             break;
         case EVO_LEVEL_ITEM_COUNT_999:
-            item = evolutions[i].param; //item
-            CopyItemName(item, gStringVar2); //item
+            item = evolutions[i].param;
+            CopyItemName(item, gStringVar2);
             StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_ITEM_COUNT_999);
             break;
         default:
