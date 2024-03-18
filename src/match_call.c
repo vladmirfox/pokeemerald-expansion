@@ -1461,7 +1461,11 @@ static void Task_SpinPokenavIcon(u8 taskId)
 
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
+#if FREE_MATCH_CALL == FALSE
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
+#else
+    return FALSE;
+#endif //FREE_MATCH_CALL
 }
 
 static u16 GetRematchTrainerLocation(int matchCallId)
@@ -1690,7 +1694,7 @@ static void PopulateTrainerName(int matchCallId, u8 *destStr)
         }
     }
 
-    StringCopy(destStr, gTrainers[trainerId].trainerName);
+    StringCopy(destStr, GetTrainerNameFromId(trainerId));
 }
 
 static void PopulateMapName(int matchCallId, u8 *destStr)
@@ -1813,20 +1817,26 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
 {
     u16 trainerId, species;
     const struct TrainerMon *party;
-    u8 monId, partySize;
+    u32 partySize;
     const u8 *speciesName;
 
     trainerId = GetLastBeatenRematchTrainerId(sMatchCallTrainers[matchCallId].trainerId);
-    party = gTrainers[trainerId].party;
-    partySize = gTrainers[trainerId].partySize;
-    monId = Random() % partySize;
-    species = party[monId].species;
+    party = GetTrainerPartyFromId(trainerId);
+    partySize = GetTrainerPartySizeFromId(trainerId);
+    if (party != NULL && partySize > 0)
+    {
+        u32 monId;
+        monId = Random() % partySize;
+        species = party[monId].species;
 
-    #if RANDOMIZER_AVAILABLE == TRUE
-        species = RandomizeTrainerMon(trainerId, monId, partySize, species);
-    #endif
+        #if RANDOMIZER_AVAILABLE == TRUE
+            species = RandomizeTrainerMon(trainerId, monId, partySize, species);
+        #endif
 
-    speciesName = GetSpeciesName(species);
+        speciesName = GetSpeciesName(species);
+    }
+    else
+        speciesName = GetSpeciesName(SPECIES_NONE);
 
     StringCopy(destStr, speciesName);
 }
