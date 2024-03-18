@@ -2241,11 +2241,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             const struct TrainerMon *partyData = trainer->party;
             u32 otIdType = OT_ID_RANDOM_NO_SHINY;
             u32 fixedOtId = 0;
+            u32 ability = 0;
             u16 species = partyData[i].species;
 
             if (RANDOMIZER_AVAILABLE)
                 species = RandomizeTrainerMon(seed, i, monsCount, species);
-            u32 ability = 0;
 
             if (trainer->doubleBattle == TRUE)
                 personalityValue = 0x80;
