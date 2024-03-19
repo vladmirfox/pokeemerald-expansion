@@ -2938,7 +2938,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Flittle,
         .shinyPalette = gMonShinyPalette_Flittle,
         .iconSprite = gMonIcon_Flittle,
-        .iconPalIndex = 3,
+        .iconPalIndex = 1,
         //FOOTPRINT(Flittle)
         .levelUpLearnset = sFlittleLevelUpLearnset,
         .teachableLearnset = sFlittleTeachableLearnset,
@@ -2991,7 +2991,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Espathra,
         .shinyPalette = gMonShinyPalette_Espathra,
         .iconSprite = gMonIcon_Espathra,
-        .iconPalIndex = 5,
+        .iconPalIndex = 0,
         //FOOTPRINT(Espathra)
         .levelUpLearnset = sEspathraLevelUpLearnset,
         .teachableLearnset = sEspathraTeachableLearnset,
