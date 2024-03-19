@@ -351,12 +351,12 @@ struct Evolution
 
 struct SpeciesInfo /*0x8C*/
 {
- /* 0x00 */ u8 baseHP;
- /* 0x01 */ u8 baseAttack;
- /* 0x02 */ u8 baseDefense;
- /* 0x03 */ u8 baseSpeed;
- /* 0x04 */ u8 baseSpAttack;
- /* 0x05 */ u8 baseSpDefense;
+ /* 0x00 */ u16 baseHP;
+ /* 0x01 */ u16 baseAttack;
+ /* 0x02 */ u16 baseDefense;
+ /* 0x03 */ u16 baseSpeed;
+ /* 0x04 */ u16 baseSpAttack;
+ /* 0x05 */ u16 baseSpDefense;
  /* 0x06 */ u8 types[2];
  /* 0x08 */ u8 catchRate;
  /* 0x09 */ u8 padding1;
