@@ -3367,24 +3367,45 @@ static const struct TrainerMon sParty_Drake[] = {
 static const struct TrainerMon sParty_Roxanne1[] = {
     {
     .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 12,
-    .species = SPECIES_GEODUDE,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .lvl = 10,
+    .species = SPECIES_TYRANITAR,
+    .heldItem = ITEM_FOCUS_SASH,
+    .moves = {MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_CRUNCH, MOVE_ICE_FANG}
     },
     {
     .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 12,
-    .species = SPECIES_GEODUDE,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .lvl = 13,
+    .species = SPECIES_RHYPERIOR,
+    .heldItem = ITEM_LEFTOVERS,
+    .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_WRECKER, MOVE_HAMMER_ARM, MOVE_MEGAHORN}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 11,
+    .species = SPECIES_TERRAKION,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_SACRED_SWORD, MOVE_ROCK_SLIDE, MOVE_POISON_JAB, MOVE_TAKE_DOWN}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 14,
+    .species = SPECIES_AGGRON_MEGA,
+    .heldItem = ITEM_AGGRONITE,
+    .moves = {MOVE_ROCK_SLIDE, MOVE_IRON_HEAD, MOVE_HEADBUTT, MOVE_DRAGON_CLAW}
     },
     {
     .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
     .lvl = 15,
-    .species = SPECIES_NOSEPASS,
-    .heldItem = ITEM_ORAN_BERRY,
-    .moves = {MOVE_BLOCK, MOVE_HARDEN, MOVE_TACKLE, MOVE_ROCK_TOMB}
+    .species = SPECIES_COALOSSAL_GIGANTAMAX,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .moves = {MOVE_FLAMETHROWER, MOVE_POWER_GEM, MOVE_IRON_HEAD, MOVE_EARTHQUAKE}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 12,
+    .species = SPECIES_REGIROCK,
+    .heldItem = ITEM_LIFE_ORB,
+    .moves = {MOVE_REST, MOVE_SLEEP_TALK, MOVE_STONE_EDGE, MOVE_CURSE}
     }
 };
 
