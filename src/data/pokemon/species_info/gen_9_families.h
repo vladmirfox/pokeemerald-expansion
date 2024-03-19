@@ -2456,7 +2456,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Bramblin,
         .shinyPalette = gMonShinyPalette_Bramblin,
         .iconSprite = gMonIcon_Bramblin,
-        .iconPalIndex = 3,
+        .iconPalIndex = 1,
         //FOOTPRINT(Bramblin)
         .levelUpLearnset = sBramblinLevelUpLearnset,
         .teachableLearnset = sBramblinTeachableLearnset,
@@ -2509,7 +2509,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Brambleghast,
         .shinyPalette = gMonShinyPalette_Brambleghast,
         .iconSprite = gMonIcon_Brambleghast,
-        .iconPalIndex = 5,
+        .iconPalIndex = 2,
         //FOOTPRINT(Brambleghast)
         .levelUpLearnset = sBrambleghastLevelUpLearnset,
         .teachableLearnset = sBrambleghastTeachableLearnset,
