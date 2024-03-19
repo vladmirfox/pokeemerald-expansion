@@ -182,39 +182,39 @@ SunriseVillage_Event_Kirlia::
 
 
 SunriseVillage_Event_TestGyarados::
-# 166 "data/maps/SunriseVillage/scripts.pory"
-	lock
 # 167 "data/maps/SunriseVillage/scripts.pory"
-	givemon SPECIES_SPHEAL, 100
+	lock
 # 168 "data/maps/SunriseVillage/scripts.pory"
-	setwildbattle SPECIES_LEAVANNY_TOKUAN, 5
+	givemon SPECIES_SPHEAL, 100
 # 169 "data/maps/SunriseVillage/scripts.pory"
-	dowildbattle
+	setwildbattle SPECIES_LEAVANNY_TOKUAN, 5
 # 170 "data/maps/SunriseVillage/scripts.pory"
+	dowildbattle
+# 171 "data/maps/SunriseVillage/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_Event_TownSign::
-# 175 "data/maps/SunriseVillage/scripts.pory"
+# 176 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_PlayersHouseSign::
-# 179 "data/maps/SunriseVillage/scripts.pory"
+# 180 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_PlayersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_RivalsHouseSign::
-# 183 "data/maps/SunriseVillage/scripts.pory"
+# 184 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_RivalsHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_EldersHouseSign::
-# 187 "data/maps/SunriseVillage/scripts.pory"
+# 188 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_EldersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -295,18 +295,18 @@ SunriseVillage_Event_Kirlia_Text_0:
 	.string "...$"
 
 SunriseVillage_Event_TownSign_Text_0:
-# 175 "data/maps/SunriseVillage/scripts.pory"
-	.string "SUNRISE VILLAGE\n"
+# 176 "data/maps/SunriseVillage/scripts.pory"
+	.string "Sunrise Village\n"
 	.string "“A village bathing in sunshine.”$"
 
 SunriseVillage_Event_PlayersHouseSign_Text_0:
-# 179 "data/maps/SunriseVillage/scripts.pory"
-	.string "{PLAYER}'s HOUSE$"
+# 180 "data/maps/SunriseVillage/scripts.pory"
+	.string "{PLAYER}'s house$"
 
 SunriseVillage_Event_RivalsHouseSign_Text_0:
-# 183 "data/maps/SunriseVillage/scripts.pory"
-	.string "{RIVAL}'s HOUSE$"
+# 184 "data/maps/SunriseVillage/scripts.pory"
+	.string "{RIVAL}'s house$"
 
 SunriseVillage_Event_EldersHouseSign_Text_0:
-# 187 "data/maps/SunriseVillage/scripts.pory"
-	.string "ELDER IWA's HOUSE$"
+# 188 "data/maps/SunriseVillage/scripts.pory"
+	.string "Elder Kaba's house$"

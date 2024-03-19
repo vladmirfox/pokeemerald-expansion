@@ -7574,7 +7574,7 @@ static const struct TrainerMon sParty_MaxieMtChimney[] = {
 static const struct TrainerMon sParty_Chikao[] = {
     {
     .lvl = 4,
-    .species = SPECIES_SEWADDLE,
+    .species = SPECIES_SEWADDLE_TOKUAN,
     },
     {
     .lvl = 5,
@@ -7729,7 +7729,7 @@ static const struct TrainerMon sParty_Eiji[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_SEWADDLE,
+    .species = SPECIES_SEWADDLE_TOKUAN,
     }
 };
 

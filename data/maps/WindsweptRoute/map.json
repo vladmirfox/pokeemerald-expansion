@@ -17,6 +17,11 @@
       "map": "MAP_KURA_TOWN",
       "offset": -16,
       "direction": "down"
+    },
+    {
+      "map": "MAP_SILVERIDGE",
+      "offset": 54,
+      "direction": "left"
     }
   ],
   "object_events": [

@@ -4494,7 +4494,7 @@
     {
       "id": "LAYOUT_BEACHBOUND_ROUTE",
       "name": "BeachboundRoute_Layout",
-      "width": 80,
+      "width": 65,
       "height": 30,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
@@ -4590,6 +4590,16 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/SakuTown_BonsaiShop/border.bin",
       "blockdata_filepath": "data/layouts/SakuTown_BonsaiShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVERIDGE",
+      "name": "Silveridge_Layout",
+      "width": 40,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Silveridge",
+      "border_filepath": "data/layouts/Silveridge/border.bin",
+      "blockdata_filepath": "data/layouts/Silveridge/map.bin"
     }
   ]
 }

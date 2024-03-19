@@ -82,6 +82,9 @@ mart SakuTown_Mart {
 script SakuTown_EventScript_Makuhita {
 	lock
 	faceplayer
+	waitse
+	playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
 	msgbox(format("Kuhi!"))
+	waitmoncry
 	release
 }

@@ -35,7 +35,9 @@
     "gMapGroup_IndoorRoute119",
     "gMapGroup_IndoorRoute124",
     "gMapGroup_IndoorTranquilRoute",
-    "gMapGroup_IndoorSaku"
+    "gMapGroup_IndoorSaku",
+    "gMapGroup_IndoorKura",
+    "gMapGroup_IndoorChii"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -104,7 +106,8 @@
     "BeachboundRoute",
     "MaguroHarbor",
     "WindsweptRoute",
-    "SunriseVillage_PlayersHouse_Bedroom"
+    "SunriseVillage_PlayersHouse_Bedroom",
+    "Silveridge"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
@@ -646,5 +649,11 @@
   "gMapGroup_IndoorSaku": [
     "SakuTown_PokemonCenter",
     "SakuTown_BonsaiShop"
+  ],
+  "gMapGroup_IndoorKura": [
+    "KuraTown_House1"
+  ],
+  "gMapGroup_IndoorChii": [
+    "ChiiTown_House1"
   ]
 }

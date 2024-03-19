@@ -73,6 +73,7 @@
 #define MAP_MAGURO_HARBOR                         (64 | (0 << 8))
 #define MAP_WINDSWEPT_ROUTE                       (65 | (0 << 8))
 #define MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_BEDROOM (66 | (0 << 8))
+#define MAP_SILVERIDGE                            (67 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
@@ -615,6 +616,12 @@
 #define MAP_SAKU_TOWN_POKEMON_CENTER (0 | (35 << 8))
 #define MAP_SAKU_TOWN_BONSAI_SHOP    (1 | (35 << 8))
 
-#define MAP_GROUPS_COUNT 36
+// gMapGroup_IndoorKura
+#define MAP_KURA_TOWN_HOUSE1 (0 | (36 << 8))
+
+// gMapGroup_IndoorChii
+#define MAP_CHII_TOWN_HOUSE1 (0 | (37 << 8))
+
+#define MAP_GROUPS_COUNT 38
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

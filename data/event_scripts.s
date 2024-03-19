@@ -1116,3 +1116,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SakuTown_PokemonCenter/scripts.inc"
 
 	.include "data/maps/SakuTown_BonsaiShop/scripts.inc"
+
+	.include "data/maps/KuraTown_House1/scripts.inc"
+
+	.include "data/maps/ChiiTown_House1/scripts.inc"
+
+	.include "data/maps/Silveridge/scripts.inc"

@@ -87,42 +87,47 @@ script TranquilRoute_EventScript_Girl {
 
 script TranquilRoute_EventScript_BerryWoman {
 	lock
-	// TODO EVA add speech bubble with  little musical notes
 	faceplayer
-	msgbox(format("Hi, young one! See this?"))
-	closemessage
-	applymovement(LOCALID_BERRYWOMAN, Common_Movement_FaceRight)
-	waitmovement(0)
-	delay(48)
-	applymovement(LOCALID_BERRYWOMAN, Common_Movement_FacePlayer)
-	waitmovement(0)
-	msgbox(format(
-		"You can plant berries in the ground in fertile spots like this.\p"
-		"The seeds will eventually grow into a healthy berry tree, ready to be harvested!\p"
-		"I see you're a trainer. Well, different berries have different effects when they're fed to Pokémon.\p"
-		"I love berries, hopefully you'll soon learn to love them too!\p"
-		"Here, try planting a few!"
-	))
-	closemessage
-	giveitem(ITEM_ORAN_BERRY, 3)
-	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+	// TODO EVA add speech bubble with  little musical notes
+	if (flag(FLAG_RECEIVED_WAILMER_PAIL)) {
+		msgbox(format("Enjoy gardening!"))
+	}
+	else {
+		msgbox(format("Hi, young one! See this?"))
+		closemessage
+		applymovement(LOCALID_BERRYWOMAN, Common_Movement_FaceRight)
+		waitmovement(0)
+		delay(48)
+		applymovement(LOCALID_BERRYWOMAN, Common_Movement_FacePlayer)
+		waitmovement(0)
+		msgbox(format(
+			"You can plant berries in the ground in fertile spots like this.\p"
+			"The seeds will eventually grow into a healthy berry tree, ready to be harvested!\p"
+			"I see you're a trainer. Well, different berries have different effects when they're fed to Pokémon.\p"
+			"I love berries, hopefully you'll soon learn to love them too!\p"
+			"Here, try planting a few!"
+		))
+		closemessage
+		giveitem(ITEM_ORAN_BERRY, 3)
+		goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
 
-	msgbox(format(
-		"Oh, right, I was almost forgetting!\p"
-		"You must remember to water them regularly, or they won't grow!\p"
-		"I like you. Take this!"
-	))
-	closemessage
-	giveitem(ITEM_WAILMER_PAIL)
-	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+		msgbox(format(
+			"Oh, right, I was almost forgetting!\p"
+			"You must remember to water them regularly, or they won't grow!\p"
+			"I like you. Take this!"
+		))
+		closemessage
+		giveitem(ITEM_WAILMER_PAIL)
+		goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
 
-	msgbox(format(
-		"Isn't it cute? It's friend-shaped!\p"
-		"Don't worry about it, I have a spare one.\p"
-		"Have fun gardening!"
-	))
+		msgbox(format(
+			"Isn't it cute? It's friend-shaped!\p"
+			"Don't worry about it, I have a spare one.\p"
+			"Have fun gardening!"
+		))
 
-	setflag(FLAG_RECEIVED_WAILMER_PAIL)
+		setflag(FLAG_RECEIVED_WAILMER_PAIL)
+	}
 	release
 	end
 }
