@@ -3210,7 +3210,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .palette = gMonPalette_Farigiraf,
         .shinyPalette = gMonShinyPalette_Farigiraf,
         .iconSprite = gMonIcon_Farigiraf,
-        .iconPalIndex = 0,
+        .iconPalIndex = 1,
         //FOOTPRINT(Farigiraf)
         .levelUpLearnset = sFarigirafLevelUpLearnset,
         .teachableLearnset = sFarigirafTeachableLearnset,
