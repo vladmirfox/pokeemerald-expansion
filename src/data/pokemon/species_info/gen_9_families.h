@@ -4120,7 +4120,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Veluza,
         .shinyPalette = gMonShinyPalette_Veluza,
         .iconSprite = gMonIcon_Veluza,
-        .iconPalIndex = 4,
+        .iconPalIndex = 1,
         //FOOTPRINT(Veluza)
         .levelUpLearnset = sVeluzaLevelUpLearnset,
         .teachableLearnset = sVeluzaTeachableLearnset,
