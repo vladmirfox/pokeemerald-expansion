@@ -6587,8 +6587,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         //.palette = gMonPalette_TerapagosNormal,
         //.shinyPalette = gMonShinyPalette_TerapagosNormal,
-        //.iconSprite = gMonIcon_TerapagosNormal,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_TerapagosNormal,
+        .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
@@ -6643,8 +6643,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         //.palette = gMonPalette_TerapagosTerastal,
         //.shinyPalette = gMonShinyPalette_TerapagosTerastal,
-        //.iconSprite = gMonIcon_TerapagosTerastal,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_TerapagosTerastal,
+        .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
@@ -6698,8 +6698,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         //.palette = gMonPalette_TerapagosStellar,
         //.shinyPalette = gMonShinyPalette_TerapagosStellar,
-        //.iconSprite = gMonIcon_TerapagosStellar,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_TerapagosStellar,
+        .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
