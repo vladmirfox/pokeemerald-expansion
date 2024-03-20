@@ -4528,8 +4528,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_UrsalunaBloodmoon,
         .shinyPalette = gMonShinyPalette_UrsalunaBloodmoon,
-        .iconSprite = gMonIcon_UrsalunaBloodmoon,
-        .iconPalIndex = 2,
+        //.iconSprite = gMonIcon_UrsalunaBloodmoon,
+        //.iconPalIndex = 0,
         //FOOTPRINT(UrsalunaBloodmoon)
         .levelUpLearnset = sUrsalunaBloodmoonLevelUpLearnset,
         .teachableLearnset = sUrsalunaBloodmoonTeachableLearnset,
