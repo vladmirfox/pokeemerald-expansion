@@ -4610,7 +4610,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_SlitherWing,
         .shinyPalette = gMonShinyPalette_SlitherWing,
         .iconSprite = gMonIcon_SlitherWing,
-        .iconPalIndex = 3,
+        .iconPalIndex = 1,
         //FOOTPRINT(SlitherWing)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sSlitherWingLevelUpLearnset,
