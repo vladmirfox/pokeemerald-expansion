@@ -6532,8 +6532,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_IronCrown,
         .shinyPalette = gMonShinyPalette_IronCrown,
-        //.iconSprite = gMonIcon_IronCrown,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_IronCrown,
+        .iconPalIndex = 3,
         //FOOTPRINT(IronCrown)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronCrownLevelUpLearnset,
