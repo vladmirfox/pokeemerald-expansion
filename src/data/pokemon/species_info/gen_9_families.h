@@ -6368,8 +6368,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_GougingFire,
         .shinyPalette = gMonShinyPalette_GougingFire,
-        //.iconSprite = gMonIcon_GougingFire,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_GougingFire,
+        .iconPalIndex = 5,
         //FOOTPRINT(GougingFire)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sGougingFireLevelUpLearnset,

@@ -12967,7 +12967,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonPalette_GougingFire[] = INCBIN_U32("graphics/pokemon/gouging_fire/normal.gbapal.lz");
     const u32 gMonBackPic_GougingFire[] = INCBIN_U32("graphics/pokemon/gouging_fire/back.4bpp.lz");
     const u32 gMonShinyPalette_GougingFire[] = INCBIN_U32("graphics/pokemon/gouging_fire/shiny.gbapal.lz");
-    // const u8 gMonIcon_GougingFire[] = INCBIN_U8("graphics/pokemon/gouging_fire/icon.4bpp");
+    const u8 gMonIcon_GougingFire[] = INCBIN_U8("graphics/pokemon/gouging_fire/icon.4bpp");
 #if P_FOOTPRINTS
     // const u8 gMonFootprint_GougingFire[] = INCBIN_U8("graphics/pokemon/gouging_fire/footprint.1bpp");
 #endif //P_FOOTPRINTS
