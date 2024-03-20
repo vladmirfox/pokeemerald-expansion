@@ -4556,7 +4556,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_FlutterMane,
         .shinyPalette = gMonShinyPalette_FlutterMane,
         .iconSprite = gMonIcon_FlutterMane,
-        .iconPalIndex = 4,
+        .iconPalIndex = 2,
         //FOOTPRINT(FlutterMane)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sFlutterManeLevelUpLearnset,
