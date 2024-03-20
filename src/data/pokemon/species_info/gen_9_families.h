@@ -5650,7 +5650,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_IronValiant,
         .shinyPalette = gMonShinyPalette_IronValiant,
         .iconSprite = gMonIcon_IronValiant,
-        .iconPalIndex = 4,
+        .iconPalIndex = 1,
         //FOOTPRINT(IronValiant)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronValiantLevelUpLearnset,
