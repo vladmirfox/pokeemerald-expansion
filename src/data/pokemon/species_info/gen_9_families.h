@@ -4942,7 +4942,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_IronMoth,
         .shinyPalette = gMonShinyPalette_IronMoth,
         .iconSprite = gMonIcon_IronMoth,
-        .iconPalIndex = 3,
+        .iconPalIndex = 0,
         //FOOTPRINT(IronMoth)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronMothLevelUpLearnset,
