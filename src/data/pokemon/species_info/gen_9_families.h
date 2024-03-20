@@ -4720,7 +4720,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_IronTreads,
         .shinyPalette = gMonShinyPalette_IronTreads,
         .iconSprite = gMonIcon_IronTreads,
-        .iconPalIndex = 0,
+        .iconPalIndex = 1,
         //FOOTPRINT(IronTreads)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronTreadsLevelUpLearnset,
