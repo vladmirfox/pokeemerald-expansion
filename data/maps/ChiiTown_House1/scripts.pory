@@ -37,6 +37,7 @@ script ChiiTown_House1_EventScript_GrowlitheGrrr {
 	applymovement(LOCALID_GROWLITHE, Common_Movement_Delay48)
 	waitmovement(0)
 	msgbox(format("Grrrrrrr..."))
+	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, ChiiTown_House1_Movement_PlayerStepsAwayFromGrowlithe)
 	waitmovement(0)
 	release
@@ -66,6 +67,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	applymovement(LOCALID_GROWLITHE, Common_Movement_FaceRight)
 	waitmovement(0)
 	msgbox(format("Good girl, Growlithe, good girl."))
+	closemessage
 
 	applymovement(LOCALID_OLD_MAN, Common_Movement_FaceDown)
 	waitmovement(0)
