@@ -3688,7 +3688,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Orthworm,
         .shinyPalette = gMonShinyPalette_Orthworm,
         .iconSprite = gMonIcon_Orthworm,
-        .iconPalIndex = 4,
+        .iconPalIndex = 0,
         //FOOTPRINT(Orthworm)
         .levelUpLearnset = sOrthwormLevelUpLearnset,
         .teachableLearnset = sOrthwormTeachableLearnset,
