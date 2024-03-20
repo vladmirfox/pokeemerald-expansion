@@ -5596,7 +5596,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_RoaringMoon,
         .shinyPalette = gMonShinyPalette_RoaringMoon,
         .iconSprite = gMonIcon_RoaringMoon,
-        .iconPalIndex = 3,
+        .iconPalIndex = 0,
         //FOOTPRINT(RoaringMoon)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sRoaringMoonLevelUpLearnset,
