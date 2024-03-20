@@ -6423,8 +6423,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_RagingBolt,
         .shinyPalette = gMonShinyPalette_RagingBolt,
-        //.iconSprite = gMonIcon_RagingBolt,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_RagingBolt,
+        .iconPalIndex = 2,
         //FOOTPRINT(RagingBolt)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sRagingBoltLevelUpLearnset,
