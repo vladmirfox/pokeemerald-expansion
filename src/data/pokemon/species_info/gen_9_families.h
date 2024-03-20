@@ -3527,7 +3527,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Varoom,
         .shinyPalette = gMonShinyPalette_Varoom,
         .iconSprite = gMonIcon_Varoom,
-        .iconPalIndex = 5,
+        .iconPalIndex = 2,
         //FOOTPRINT(Varoom)
         .levelUpLearnset = sVaroomLevelUpLearnset,
         .teachableLearnset = sVaroomTeachableLearnset,
@@ -3580,7 +3580,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_Revavroom,
         .shinyPalette = gMonShinyPalette_Revavroom,
         .iconSprite = gMonIcon_Revavroom,
-        .iconPalIndex = 5,
+        .iconPalIndex = 2,
         //FOOTPRINT(Revavroom)
         .levelUpLearnset = sRevavroomLevelUpLearnset,
         .teachableLearnset = sRevavroomTeachableLearnset,
