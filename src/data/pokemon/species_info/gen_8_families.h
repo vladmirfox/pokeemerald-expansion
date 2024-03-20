@@ -5389,8 +5389,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Archaludon,
         .shinyPalette = gMonShinyPalette_Archaludon,
-        //.iconSprite = gMonIcon_Archaludon,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_Archaludon,
+        .iconPalIndex = 0,
         //FOOTPRINT(Archaludon)
         .levelUpLearnset = sArchaludonLevelUpLearnset,
         .teachableLearnset = sArchaludonTeachableLearnset,
