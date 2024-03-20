@@ -6477,8 +6477,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_IronBoulder,
         .shinyPalette = gMonShinyPalette_IronBoulder,
-        //.iconSprite = gMonIcon_IronBoulder,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_IronBoulder,
+        .iconPalIndex = 5,
         //FOOTPRINT(IronBoulder)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronBoulderLevelUpLearnset,
