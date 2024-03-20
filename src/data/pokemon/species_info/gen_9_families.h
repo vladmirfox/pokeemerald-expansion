@@ -6755,8 +6755,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         //.backAnimId = BACK_ANIM_NONE,
         //.palette = gMonPalette_Pecharunt,
         //.shinyPalette = gMonShinyPalette_Pecharunt,
-        //.iconSprite = gMonIcon_Pecharunt,
-        //.iconPalIndex = 0,
+        .iconSprite = gMonIcon_Pecharunt,
+        .iconPalIndex = 0,
         //FOOTPRINT(Pecharunt)
         .isMythical = TRUE,
         .levelUpLearnset = sPecharuntLevelUpLearnset,
