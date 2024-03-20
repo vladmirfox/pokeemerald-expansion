@@ -4886,7 +4886,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .palette = gMonPalette_IronJugulis,
         .shinyPalette = gMonShinyPalette_IronJugulis,
         .iconSprite = gMonIcon_IronJugulis,
-        .iconPalIndex = 2,
+        .iconPalIndex = 0,
         //FOOTPRINT(IronJugulis)
         .isParadoxForm = TRUE,
         .levelUpLearnset = sIronJugulisLevelUpLearnset,
