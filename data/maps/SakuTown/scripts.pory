@@ -16,8 +16,8 @@ script SakuTown_EventScript_Farmer {
 script SakuTown_EventScript_Farmer2 {
 	lock
 	msgbox(format(
-		"Whew...\p"
-		"Working in the fields sure is tiring..."
+		"Whew…\p"
+		"Working in the fields sure is tiring…"
 	))
 	release
 }

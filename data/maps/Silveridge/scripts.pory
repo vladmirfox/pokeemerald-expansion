@@ -1,0 +1,30 @@
+mapscripts Silveridge_MapScripts {
+	
+}
+
+script Silveridge_EventScript_LotOfRocks {
+	lock
+	faceplayer
+	msgbox(format(
+		"We don't have a lot of natural resources here in Silveridge.\p"
+		"We don't have a lot of wood…\p"
+		"Or steel…\p"
+		"Or freshwater…\p"
+		"Or crops…\p"
+		"What we do have in abundance is rocks. We have a LOT of rocks."
+	))
+	release
+}
+
+script Silveridge_EventScript_HousesMadeOfSilverTunnelStone {
+	lock
+	faceplayer
+	msgbox(format(
+		"See the houses around here? They were all built using the stones we got from digging the Silver tunnel."
+	))
+	release
+}
+
+script Silveridge_EventScript_TownSign {
+	msgbox(format("Silveridge\n“A rocky town in shades of grey.”"), MSGBOX_SIGN)
+}

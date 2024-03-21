@@ -9,14 +9,14 @@ script TranquilRoute_CutHouse_EventScript_CutMaster {
 	if (flag(FLAG_RECEIVED_HM_CUT)) {
 		msgbox(format(
 			"Are you finding the Cut technique useful?\p"
-			"No, I still haven't trimmed my garden. I really should get to it..."
+			"No, I still haven't trimmed my garden. I really should get to it…"
 		))
 	}
 	else {
 		msgbox(format(
 		"Hello, there. I don't get many visitors, so sit down, have some tea!\p"
 		"What? The weeds are growing all over the place in my garden?\p"
-		"Ho ho ho...\p"
+		"Ho ho ho…\p"
 		"You're right, I have been neglecting it lately. You see, my old back isn't as strong as it used to be.\p"
 		"Here, your Pokémon can trim them using this."
 		))

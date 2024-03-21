@@ -156,7 +156,7 @@ script SunriseVillage_Event_Kirlia {
     lock
     faceplayer
     msgbox(format(
-        "..."
+        "…"
     ))
     release
     end

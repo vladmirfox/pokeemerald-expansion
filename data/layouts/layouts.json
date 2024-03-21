@@ -4595,11 +4595,21 @@
       "id": "LAYOUT_SILVERIDGE",
       "name": "Silveridge_Layout",
       "width": 40,
-      "height": 30,
+      "height": 40,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
       "border_filepath": "data/layouts/Silveridge/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVERIDGE_HOUSE1",
+      "name": "Silveridge_House1_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
+      "border_filepath": "data/layouts/Silveridge_House1/border.bin",
+      "blockdata_filepath": "data/layouts/Silveridge_House1/map.bin"
     }
   ]
 }

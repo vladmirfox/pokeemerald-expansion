@@ -15,12 +15,37 @@
   "connections": [
     {
       "map": "MAP_WINDSWEPT_ROUTE",
-      "offset": -54,
+      "offset": -48,
       "direction": "right"
     }
   ],
   "object_events": [
-
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 18,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Silveridge_EventScript_LotOfRocks",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 23,
+      "y": 34,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Silveridge_EventScript_HousesMadeOfSilverTunnelStone",
+      "flag": "0"
+    }
   ],
   "warp_events": [
 
@@ -29,6 +54,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 21,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Silveridge_EventScript_TownSign"
+    }
   ]
 }

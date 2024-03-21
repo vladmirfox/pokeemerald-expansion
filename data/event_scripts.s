@@ -1122,3 +1122,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ChiiTown_House1/scripts.inc"
 
 	.include "data/maps/Silveridge/scripts.inc"
+
+	.include "data/maps/Silveridge_House1/scripts.inc"

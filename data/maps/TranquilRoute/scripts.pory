@@ -10,9 +10,9 @@ script TranquilRoute_EventScript_Chikao {
 	trainerbattle_single(
 		TRAINER_CHIKAO,
 		format("I've been studying Pokémon at school! I can't lose!"),
-		format("I should have listened in class...")
+		format("I should have listened in class…")
 	)
-	msgbox("Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh... It's too complicated to explain.", MSGBOX_AUTOCLOSE)
+	msgbox("Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh… It's too complicated to explain.", MSGBOX_AUTOCLOSE)
 	end
 }
 
