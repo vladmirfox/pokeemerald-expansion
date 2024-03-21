@@ -3376,7 +3376,7 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
     .lvl = 13,
     .species = SPECIES_RHYPERIOR,
-    .heldItem = ITEM_LEFTOVERS,
+    .heldItem = ITEM_LIFE_ORB,
     .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_WRECKER, MOVE_HAMMER_ARM, MOVE_MEGAHORN}
     },
     {
@@ -3404,7 +3404,7 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
     .lvl = 12,
     .species = SPECIES_REGIROCK,
-    .heldItem = ITEM_LIFE_ORB,
+    .heldItem = ITEM_LEFTOVERS,
     .moves = {MOVE_REST, MOVE_SLEEP_TALK, MOVE_STONE_EDGE, MOVE_CURSE}
     }
 };
