@@ -1,41 +1,41 @@
 const fs = require('fs');
 
 // Read the input file
-const inputFile = 'species_info.h'; // Change this to the actual file name
-const outputFile = inputFile; // Change this to the desired output file name
+// const inputFile = 'species_info.h'; // Change this to the actual file name
+// const outputFile = inputFile; // Change this to the desired output file name
 
-fs.readFile(inputFile, 'utf8', (err, data) => {
-    if (err) {
-        console.error(`Error reading file: ${err}`);
-        return;
-    }
+// fs.readFile(inputFile, 'utf8', (err, data) => {
+//     if (err) {
+//         console.error(`Error reading file: ${err}`);
+//         return;
+//     }
 
-    // Define the regex pattern to match the specified lines
-    const pattern = /(\.baseHP\s*=\s*)(\d+),\s*(\.baseAttack\s*=\s*)(\d+),\s*(\.baseDefense\s*=\s*)(\d+),\s*(\.baseSpeed\s*=\s*)(\d+),\s*(\.baseSpAttack\s*=\s*)(\d+),\s*(\.baseSpDefense\s*=\s*)(\d+)/g;
+//     // Define the regex pattern to match the specified lines
+//     const pattern = /(\.baseHP\s*=\s*)(\d+),\s*(\.baseAttack\s*=\s*)(\d+),\s*(\.baseDefense\s*=\s*)(\d+),\s*(\.baseSpeed\s*=\s*)(\d+),\s*(\.baseSpAttack\s*=\s*)(\d+),\s*(\.baseSpDefense\s*=\s*)(\d+)/g;
 
-    // Replace the numbers with random ones between 1 and 999
-    // const replacedData = data.replace(pattern, (match, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
-    // return `${p1}${1},${p3}${1},${p5}${1},${p7}${1},${p9}${1},${p11}${1}`;
-    // return `${p1}${getRandomNumber()},${p3}${getRandomNumber()},${p5}${getRandomNumber()},${p7}${getRandomNumber()},${p9}${getRandomNumber()},${p11}${getRandomNumber()}`;
-    // });
+//     // Replace the numbers with random ones between 1 and 999
+//     // const replacedData = data.replace(pattern, (match, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) => {
+//     // return `${p1}${1},${p3}${1},${p5}${1},${p7}${1},${p9}${1},${p11}${1}`;
+//     // return `${p1}${getRandomNumber()},${p3}${getRandomNumber()},${p5}${getRandomNumber()},${p7}${getRandomNumber()},${p9}${getRandomNumber()},${p11}${getRandomNumber()}`;
+//     // });
 
-    // Split the file content into lines
-    // const inputLines = replacedData.split('\n');
-    const inputLines = data.split('\n');
+//     // Split the file content into lines
+//     // const inputLines = replacedData.split('\n');
+//     const inputLines = data.split('\n');
 
-    // Replace abilities
-    const outputLines = replaceAbilities(inputLines);
+//     // Replace abilities
+//     const outputLines = replaceAbilities(inputLines);
 
-    // Write the result to the output file
-    fs.writeFile(outputFile, outputLines.join('\n'), 'utf8', (err) => {
-        if (err) {
-            console.error(`Error writing to file: ${err}`);
-        } else {
-            console.log(`Replacement successful. Output written to ${outputFile}`);
-        }
-    });
+//     // Write the result to the output file
+//     fs.writeFile(outputFile, outputLines.join('\n'), 'utf8', (err) => {
+//         if (err) {
+//             console.error(`Error writing to file: ${err}`);
+//         } else {
+//             console.log(`Replacement successful. Output written to ${outputFile}`);
+//         }
+//     });
 
-});
+// });
 
 // Function to generate a random number between 1 and 255
 function getRandomNumber() {
@@ -1676,13 +1676,12 @@ function getRandomPokemon() {
 
 function shufflePokemon(lines) {
     const outputLines = lines.map(line => {
-        if (line.includes('\"species\"')) {
-            const randomPokemon = getRandomPokemon();
+        if (line.includes('"species"')) {
             let selectedPokemon = getRandomPokemon();
         while (selectedPokemon.includes("OLD")) {
             selectedPokemon = getRandomPokemon();
         }
-            return `\"species\": \"${selectedPokemon}\"`;
+            return `                "species": "${selectedPokemon}"`;
         } else {
             return line;
         }
@@ -1719,36 +1718,36 @@ fs.readFile(randomisePokemonEncounters, 'utf8', (err, data) => {
 });
 
 
-const evolutionFile = 'evolution.h'; // Change this to the actual file name
+// const evolutionFile = 'evolution.h'; // Change this to the actual file name
 
-fs.readFile(evolutionFile, 'utf8', (err, data) => {
-    if (err) {
-        console.error(`Error reading file: ${err}`);
-        return;
-    }
+// fs.readFile(evolutionFile, 'utf8', (err, data) => {
+//     if (err) {
+//         console.error(`Error reading file: ${err}`);
+//         return;
+//     }
 
-    const pattern = /\[SPECIES_[A-Z_]+\]\s*=\s*{{[^]+}},/g;
+//     const pattern = /\[SPECIES_[A-Z_]+\]\s*=\s*{{[^]+}},/g;
 
 
-    let evolList = "";
+//     let evolList = "";
 
-    speciesList.forEach(species => {
-        evolList += `[${species}] = {${generateRandomEvolutionList()}},\n`;
-    });
+//     speciesList.forEach(species => {
+//         evolList += `[${species}] = {${generateRandomEvolutionList()}},\n`;
+//     });
 
-    // Replace the numbers with random ones between 1 and 999
-    const replacedData = data.replace(pattern, evolList);
+//     // Replace the numbers with random ones between 1 and 999
+//     const replacedData = data.replace(pattern, evolList);
 
-    // Write the result to the output file
-    fs.writeFile(evolutionFile, replacedData, 'utf8', (err) => {
-        if (err) {
-            console.error(`Error writing to file: ${err}`);
-        } else {
-            console.log(`Replacement successful. Output written to ${evolutionFile}`);
-        }
-    });
+//     // Write the result to the output file
+//     fs.writeFile(evolutionFile, replacedData, 'utf8', (err) => {
+//         if (err) {
+//             console.error(`Error writing to file: ${err}`);
+//         } else {
+//             console.log(`Replacement successful. Output written to ${evolutionFile}`);
+//         }
+//     });
 
-});
+// });
 
 function generateRandomEvolutionList() {
     let levelList = "";
