@@ -547,7 +547,7 @@ static void OpponentHandleChooseMove(u32 battler)
                     bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;
                     u16 trainerId = isSecondTrainer ? gTrainerBattleOpponent_B : gTrainerBattleOpponent_A;
                     const struct TrainerMon *party = GetTrainerPartyFromId(trainerId);
-                    bool32 shouldDynamax = FALSE;
+                    bool32 shouldDynamax = TRUE;
                     if (party != NULL)
                         shouldDynamax = party[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]].shouldDynamax;
 

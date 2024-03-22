@@ -3395,18 +3395,18 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     },
     {
     .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
+    .lvl = 12,
+    .species = SPECIES_REGIROCK,
+    .heldItem = ITEM_LEFTOVERS,
+    .moves = {MOVE_FLASH_CANNON, MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_CURSE}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
     .lvl = 15,
     .species = SPECIES_COALOSSAL_GIGANTAMAX,
     .heldItem = ITEM_ASSAULT_VEST,
     .moves = {MOVE_FLAMETHROWER, MOVE_POWER_GEM, MOVE_IRON_HEAD, MOVE_EARTHQUAKE}
     },
-    {
-    .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
-    .lvl = 12,
-    .species = SPECIES_REGIROCK,
-    .heldItem = ITEM_LEFTOVERS,
-    .moves = {MOVE_REST, MOVE_SLEEP_TALK, MOVE_STONE_EDGE, MOVE_CURSE}
-    }
 };
 
 static const struct TrainerMon sParty_Brawly1[] = {
