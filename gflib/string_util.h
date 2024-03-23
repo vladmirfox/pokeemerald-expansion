@@ -14,6 +14,7 @@ enum StringConvertMode
 };
 
 bool32 IsStringAddrSafe(u8 *ptr, u32 length);
+u8 TrimCaseChars(u8 *str, s32 length);
 u8 *StringCopy_Nickname(u8 *dest, const u8 *src);
 u8 *StringGet_Nickname(u8 *str);
 u8 *StringCopy_PlayerName(u8 *dest, const u8 *src);
