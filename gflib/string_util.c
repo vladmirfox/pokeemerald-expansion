@@ -36,6 +36,33 @@ bool32 IsStringAddrSafe(u8 *str, u32 length)
     return (str >= gStringVar1 && str < sUnknownStringVar);
 }
 
+// Trim leading CHAR_*_CASE from string in-place
+u8 TrimCaseChars(u8 *str, s32 length) {
+    u8 rtn = 0;
+    s32 i = 0;
+    s32 j;
+
+    // Traverse leading case chars
+    while (i < length) {
+        if (str[i] == CHAR_FIXED_CASE)
+            rtn = str[i++];
+        // None; no changes needed
+        else if (i == 0)
+            return 0;
+        else
+            break;
+    }
+    length -= i;
+    if (length < 0) // failsafe
+        return 0;
+
+    for (j = 0; j < length; i++, j++)
+        str[j] = str[i];
+    str[j] = EOS;
+
+    return rtn;
+}
+
 u8 *StringCopy_Nickname(u8 *dest, const u8 *src)
 {
     u32 i;

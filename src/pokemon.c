@@ -2153,10 +2153,22 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             }
             else
             {
-                if (DECAP_ENABLED && !DECAP_NICKNAMES && IsStringAddrSafe(data, POKEMON_NAME_LENGTH))
+                i = min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH);
+
+                if (DECAP_ENABLED && !DECAP_NICKNAMES)
+                {
+                    if (boxMon->nickname[i - 1] == EOS)
+                    {
                         *data++ = CHAR_FIXED_CASE;
+                        i--;
+                    }
+                    else if (IsStringAddrSafe(data, i))
+                    {
+                        *data++ = CHAR_FIXED_CASE;
+                    }
+                }
                 retVal = 0;
-                while (retVal < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH))
+                while (retVal < i)
                 {
                     data[retVal] = boxMon->nickname[retVal];
                     retVal++;
@@ -2383,7 +2395,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             if (substruct0->species && !substruct3->isEgg)
             {
                 u16 *moves = (u16 *)data;
-                s32 i = 0;
+                i = 0;
 
                 while (moves[i] != MOVES_COUNT)
                 {
@@ -2517,11 +2529,23 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             break;
         case MON_DATA_OT_NAME:
         {
-            if (DECAP_ENABLED && !DECAP_NICKNAMES && IsStringAddrSafe(data, PLAYER_NAME_LENGTH))
-                *data++ = CHAR_FIXED_CASE;
-            retVal = 0;
+            i = PLAYER_NAME_LENGTH;
 
-            while (retVal < PLAYER_NAME_LENGTH)
+            if (DECAP_ENABLED && !DECAP_NICKNAMES)
+            {
+                if (boxMon->otName[i - 1] == EOS)
+                {
+                    *data++ = CHAR_FIXED_CASE;
+                    i--;
+                }
+                else if (IsStringAddrSafe(data, i))
+                {
+                    *data++ = CHAR_FIXED_CASE;
+                }
+            }
+
+            retVal = 0;
+            while (retVal < i)
             {
                 data[retVal] = boxMon->otName[retVal];
                 retVal++;
@@ -2635,6 +2659,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     struct PokemonSubstruct2 *substruct2 = NULL;
     struct PokemonSubstruct3 *substruct3 = NULL;
 
+    s32 i;
+
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
     {
         substruct0 = &(GetSubstruct(boxMon, boxMon->personality, 0)->type0);
@@ -2657,7 +2683,11 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
         case MON_DATA_NICKNAME:
         {
-            s32 i;
+            // Trim any leading fixed-case chars
+            // boxMon->language != LANGUAGE_JAPANESE *not* checked
+            if (DECAP_ENABLED)
+                for (i = 0; i < POKEMON_NAME_LENGTH && *data == CHAR_FIXED_CASE; data++) {}
+
             for (i = 0; i < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH); i++)
                 boxMon->nickname[i] = data[i];
             if (POKEMON_NAME_LENGTH >= 11)
@@ -2935,12 +2965,13 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             SET8(boxMon->isEgg);
             break;
         case MON_DATA_OT_NAME:
-        {
-            s32 i;
+            // Trim any leading fixed-case chars
+            if (DECAP_ENABLED)
+                for (i = 0; i < PLAYER_NAME_LENGTH && *data == CHAR_FIXED_CASE; data++) {}
+
             for (i = 0; i < PLAYER_NAME_LENGTH; i++)
                 boxMon->otName[i] = data[i];
             break;
-        }
         case MON_DATA_MARKINGS:
             SET8(boxMon->markings);
             break;
