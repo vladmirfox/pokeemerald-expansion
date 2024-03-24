@@ -984,13 +984,16 @@ const u16 gCharAttrTable[] = {
     // English
     [CHAR_SPACE]                            = BIGRAM_SEP_FLAG,
     [CHAR_SPACER]                           = BIGRAM_SEP_FLAG,
-    // Digits are considered bigram separators for "TM01", etc.
-    [CHAR_0 ... CHAR_9]                     = BIGRAM_SEP_FLAG,
+    // Digits are bigram separators for "TM01", etc.
+    // 0-9, !, ?, ., -
+    [CHAR_0 ... CHAR_HYPHEN]                = BIGRAM_SEP_FLAG,
     [CHAR_A ... CHAR_Z]                     = CHAR_a - CHAR_A,
     // é and ’ treated as uppercase so POKéDEX, POKéMON, etc. decap
     [CHAR_e_ACUTE]                          = UPPERCASE_FLAG,
-    [CHAR_SGL_QUOTE_RIGHT]                  = UPPERCASE_FLAG,
-    [CHAR_PERIOD]                           = BIGRAM_SEP_FLAG,
+    [CHAR_SGL_QUOTE_RIGHT]                  = UPPERCASE_FLAG | BIGRAM_SEP_FLAG,
+    [CHAR_SGL_QUOTE_LEFT]                   = BIGRAM_SEP_FLAG,
+    [CHAR_DBL_QUOTE_LEFT]                   = BIGRAM_SEP_FLAG,
+    [CHAR_DBL_QUOTE_RIGHT]                  = BIGRAM_SEP_FLAG,
     [CHAR_COMMA]                            = BIGRAM_SEP_FLAG,
     [CHAR_SLASH]                            = BIGRAM_SEP_FLAG,
     // For'TMs'
@@ -1004,6 +1007,31 @@ const u16 gCharAttrTable[] = {
     [CHAR_A_DIAERESIS ... CHAR_U_DIAERESIS] = CHAR_a_DIAERESIS - CHAR_A_DIAERESIS,
     // Ctrl chars
     [CHAR_PROMPT_SCROLL ... EOS]            = BIGRAM_SEP_FLAG,
+};
+
+#define CHAR_TUPLE(x0, x1, x2, x3) (CHAR_##x0 | (CHAR_##x1 << 8) | (CHAR_##x2 << 16) | (CHAR_##x3 << 24))
+#define ALPHA_IDX(x) (CHAR_##x - CHAR_A)
+
+// Checks if word has a zero byte
+// See https://graphics.stanford.edu/~seander/bithacks.html#ValueInWord
+#define HAS_ZEROB(word) (((word) - 0x01010101UL) & ~(word) & 0x80808080UL)
+#define HAS_BYTE(word, byte) (HAS_ZEROB((word) ^ (~0UL/255 * (byte))))
+
+// List of bigram exceptions whose case should be preserved
+// i.e, if 'TV' is surrounded by BIGRAM_SEP chars, don't decap!
+static const u32 sBigramExceptions[CHAR_Z - CHAR_A] = {
+    [ALPHA_IDX(A)] = CHAR_TUPLE(I, _, _, _), // AI
+    [ALPHA_IDX(B)] = CHAR_TUPLE(P, _, _, _), // BP
+    [ALPHA_IDX(H)] = CHAR_TUPLE(M, P, _, _), // HM, HP
+    [ALPHA_IDX(I)] = CHAR_TUPLE(D, _, _, _), // ID
+    [ALPHA_IDX(K)] = CHAR_TUPLE(O, _, _, _), // KO
+    [ALPHA_IDX(L)] = CHAR_TUPLE(R, _, _, _), // LR
+    [ALPHA_IDX(M)] = CHAR_TUPLE(B, C, _, _), // MB, MC
+    [ALPHA_IDX(O)] = CHAR_TUPLE(T, _, _, _), // OT
+    [ALPHA_IDX(P)] = CHAR_TUPLE(C, P, _, _), // PC, PP
+    [ALPHA_IDX(T)] = CHAR_TUPLE(M, V, _, _), // TM, TV
+    [ALPHA_IDX(U)] = CHAR_TUPLE(V, _, _, _), // UV
+    [ALPHA_IDX(X)] = CHAR_TUPLE(L, S, _, _), // XL, XS
 };
 #endif
 
@@ -1214,34 +1242,26 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case CHAR_FIXED_CASE:
         case CHAR_UNFIX_CASE:
             textPrinter->lastChar = currChar;
-            if (!textPrinter->japanese)
-                return RENDER_REPEAT;
-            break;
+        // fallthrough
         case ZW_SPACE: // zero-width when decap enabled
             if (!textPrinter->japanese)
                 return RENDER_REPEAT;
-            break;
-        // Bigram exceptions
-        // These are some two-letter words which *should* be decapped
-        // https://en.wiktionary.org/wiki/Appendix:Glossary_of_two-letter_English_words
-        case CHAR_F: // OF
-            if (lastChar == CHAR_O)
-                nextLastChar = CHAR_DOWN_ARROW; // any non-bigram sep char
-            break;
-        case CHAR_O: // NO
-            if (lastChar == CHAR_N)
-                nextLastChar = CHAR_DOWN_ARROW;
             break;
         }
 
         // If not Japanese or fixed case, try to decap
         if (!textPrinter->japanese && lastChar != CHAR_FIXED_CASE) {
-            // Two consecutive uppercase chars; lowercase this one,
-            // unless word is a separated bigram (like TM in " TM01")
+            // Two consecutive uppercase chars; lowercase `currChar`
+            // unless word is a separated bigram in sBigramExceptions
+            // (i.e, TM in " TM01")
             if (IS_UPPER(currChar) &&
                 IS_UPPER(lastChar) &&
-                !(IS_BIGRAM_SEP(nextLastChar) &&
-                  IS_BIGRAM_SEP(*textPrinter->printerTemplate.currentChar))
+                // check if separated bigram
+                !(lastChar >= CHAR_A &&
+                  IS_BIGRAM_SEP(nextLastChar) &&
+                  IS_BIGRAM_SEP(*textPrinter->printerTemplate.currentChar) &&
+                  HAS_BYTE(sBigramExceptions[lastChar - CHAR_A], currChar)
+                 )
                )
             {
                 currChar = TO_LOWER(currChar);

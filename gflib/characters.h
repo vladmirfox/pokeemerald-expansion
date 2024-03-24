@@ -2,6 +2,7 @@
 #define GUARD_CHARACTERS_H
 
 #define CHAR_SPACE             0x00
+#define CHAR__                 0x00 // empty
 #define CHAR_A_GRAVE           0x01
 #define CHAR_A_ACUTE           0x02
 #define CHAR_A_CIRCUMFLEX      0x03
