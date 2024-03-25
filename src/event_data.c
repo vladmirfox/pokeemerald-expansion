@@ -183,7 +183,7 @@ u16 VarGetIfExist(u16 id)
 {
     u16 *ptr = GetVarPointer(id);
     if (!ptr)
-        return 65535;
+        return 0xFFFF;
     return *ptr;
 }
 

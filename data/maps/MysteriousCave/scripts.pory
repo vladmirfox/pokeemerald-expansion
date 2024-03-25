@@ -1,0 +1,143 @@
+const ENCOUNTER_OBJID = 1
+
+mapscripts MysteriousCave_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setrespawn(HEAL_LOCATION_MYSTERIOUS_CAVE)
+    }
+
+    MAP_SCRIPT_ON_RESUME {
+        if (flag(FLAG_DEFEATED_FIRST_ENCOUNTER)) {
+            removeobject(ENCOUNTER_OBJID)
+        }
+    }
+
+    MAP_SCRIPT_ON_LOAD {
+        call(OpenCloseExit)
+    }
+}
+
+script(local) OpenCloseExit {
+    if (flag(FLAG_DEFEATED_FIRST_ENCOUNTER)) {
+        setmetatile(9, 1, METATILE_Cave_Exit_Top, TRUE)
+        setmetatile(9, 2, METATILE_Cave_Exit_Bottom, FALSE)
+    }
+    else {
+        setmetatile(9, 1, METATILE_Cave_Exit_Closed, TRUE)
+        setmetatile(9, 2, METATILE_Cave_Exit_Closed, TRUE)
+    }
+    special(DrawWholeMapView)
+}
+
+script(local) RandomArceus {
+    random(18)
+    copyvar(VAR_TEMP_0, VAR_RESULT)
+    subvar(VAR_TEMP_0, 1)
+    switch (var(VAR_TEMP_0)) {
+        case -1:
+            setvar(VAR_TEMP_0, SPECIES_ARCEUS_NORMAL)
+        default:
+            addvar(VAR_TEMP_0, SPECIES_ARCEUS_FIGHTING)
+    }
+
+    switch (var(VAR_TEMP_0)) {
+        case SPECIES_ARCEUS_NORMAL:
+            setvar(VAR_TEMP_1, ITEM_NONE)
+            setvar(VAR_TEMP_2, TYPE_NORMAL)
+        case SPECIES_ARCEUS_FIGHTING:
+            setvar(VAR_TEMP_1, ITEM_FIST_PLATE)
+            setvar(VAR_TEMP_2, TYPE_FIGHTING)
+        case SPECIES_ARCEUS_FLYING:
+            setvar(VAR_TEMP_1, ITEM_SKY_PLATE)
+            setvar(VAR_TEMP_2, TYPE_FLYING)
+		case SPECIES_ARCEUS_POISON:
+			setvar(VAR_TEMP_1, ITEM_TOXIC_PLATE)
+            setvar(VAR_TEMP_2, TYPE_POISON)
+		case SPECIES_ARCEUS_GROUND:
+			setvar(VAR_TEMP_1, ITEM_EARTH_PLATE)
+            setvar(VAR_TEMP_2, TYPE_GROUND)
+		case SPECIES_ARCEUS_ROCK:
+			setvar(VAR_TEMP_1, ITEM_STONE_PLATE)
+            setvar(VAR_TEMP_2, TYPE_ROCK)
+		case SPECIES_ARCEUS_BUG:
+			setvar(VAR_TEMP_1, ITEM_INSECT_PLATE)
+            setvar(VAR_TEMP_2, TYPE_BUG)
+		case SPECIES_ARCEUS_GHOST:
+			setvar(VAR_TEMP_1, ITEM_SPOOKY_PLATE)
+            setvar(VAR_TEMP_2, TYPE_GHOST)
+		case SPECIES_ARCEUS_STEEL:
+			setvar(VAR_TEMP_1, ITEM_IRON_PLATE)
+            setvar(VAR_TEMP_2, TYPE_STEEL)
+		case SPECIES_ARCEUS_FIRE:
+			setvar(VAR_TEMP_1, ITEM_FLAME_PLATE)
+            setvar(VAR_TEMP_2, TYPE_FIRE)
+		case SPECIES_ARCEUS_WATER:
+			setvar(VAR_TEMP_1, ITEM_SPLASH_PLATE)
+            setvar(VAR_TEMP_2, TYPE_WATER)
+		case SPECIES_ARCEUS_GRASS:
+			setvar(VAR_TEMP_1, ITEM_MEADOW_PLATE)
+            setvar(VAR_TEMP_2, TYPE_GRASS)
+		case SPECIES_ARCEUS_ELECTRIC:
+			setvar(VAR_TEMP_1, ITEM_ZAP_PLATE)
+            setvar(VAR_TEMP_2, TYPE_ELECTRIC)
+		case SPECIES_ARCEUS_PSYCHIC:
+			setvar(VAR_TEMP_1, ITEM_MIND_PLATE)
+            setvar(VAR_TEMP_2, TYPE_PSYCHIC)
+		case SPECIES_ARCEUS_ICE:
+			setvar(VAR_TEMP_1, ITEM_ICICLE_PLATE)
+            setvar(VAR_TEMP_2, TYPE_ICE)
+		case SPECIES_ARCEUS_DRAGON:
+			setvar(VAR_TEMP_1, ITEM_DRACO_PLATE)
+            setvar(VAR_TEMP_2, TYPE_DRAGON)
+		case SPECIES_ARCEUS_DARK:
+			setvar(VAR_TEMP_1, ITEM_DREAD_PLATE)
+            setvar(VAR_TEMP_2, TYPE_DARK)
+		case SPECIES_ARCEUS_FAIRY:
+			setvar(VAR_TEMP_1, ITEM_PIXIE_PLATE)
+            setvar(VAR_TEMP_2, TYPE_FAIRY)
+    }
+}
+
+script(local) RandomArceusStarter {
+    if (!flag(FLAG_STARTER_GIVEN)) {
+        call(RandomArceus)
+
+        givemon(SPECIES_ARCEUS, 1, VAR_TEMP_1,,,,,,,,,,,,,,,,,,,,,,, VAR_TEMP_2)
+        msgbox("{PLAYER} recieved an Arceus holding a plate!")
+        bufferspeciesname(STR_VAR_1, SPECIES_ARCEUS)
+        msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
+        
+        if (var(VAR_RESULT) == YES) {
+            call(Common_EventScript_GetGiftMonPartySlot)
+            call(Common_EventScript_NameReceivedPartyMon)
+        }
+
+        setflag(FLAG_STARTER_GIVEN)
+        setflag(FLAG_SYS_POKEMON_GET)
+    }
+}
+
+script RandomArceusEncounter {
+    lock()
+    waitse()
+
+    call(RandomArceusStarter)
+
+    playmoncry(SPECIES_ARCEUS, CRY_MODE_ENCOUNTER)
+    waitmoncry()
+
+    call(RandomArceus)
+    
+    setwildbattle(VAR_TEMP_0, 1, VAR_TEMP_1)
+    dowildbattle()
+
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        playse(SE_CLICK)
+        removeobject(ENCOUNTER_OBJID)
+
+        setflag(FLAG_DEFEATED_FIRST_ENCOUNTER)
+
+        call(OpenCloseExit)
+    }
+
+    releaseall()
+}
