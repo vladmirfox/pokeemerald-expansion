@@ -310,7 +310,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.gem = ITEM_NORMAL_GEM,
         //.zCrystal = ITEM_NORMALIUM_Z,
         //.teraShard = ITEM_NORMAL_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_NORMAL,
+        .arceusForm = SPECIES_ARCEUS_NORMAL,
     },
     [TYPE_FIGHTING] =
     {
@@ -326,7 +326,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_FIST_PLATE,
         //.memory = ITEM_FIGHTING_MEMORY,
         //.teraShard = ITEM_FIGHTING_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_FIGHTING,
+        .arceusForm = SPECIES_ARCEUS_FIGHTING,
     },
     [TYPE_FLYING] =
     {
@@ -342,7 +342,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_SKY_PLATE,
         //.memory = ITEM_FLYING_MEMORY,
         //.teraShard = ITEM_FLYING_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_FLYING,
+        .arceusForm = SPECIES_ARCEUS_FLYING,
     },
     [TYPE_POISON] =
     {
@@ -358,7 +358,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_TOXIC_PLATE,
         //.memory = ITEM_POISON_MEMORY,
         //.teraShard = ITEM_POISON_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_POISON,
+        .arceusForm = SPECIES_ARCEUS_POISON,
     },
     [TYPE_GROUND] =
     {
@@ -374,7 +374,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_EARTH_PLATE,
         //.memory = ITEM_GROUND_MEMORY,
         //.teraShard = ITEM_GROUND_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_GROUND,
+        .arceusForm = SPECIES_ARCEUS_GROUND,
     },
     [TYPE_ROCK] =
     {
@@ -390,7 +390,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_STONE_PLATE,
         //.memory = ITEM_ROCK_MEMORY,
         //.teraShard = ITEM_ROCK_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_ROCK,
+        .arceusForm = SPECIES_ARCEUS_ROCK,
     },
     [TYPE_BUG] =
     {
@@ -406,7 +406,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_INSECT_PLATE,
         //.memory = ITEM_BUG_MEMORY,
         //.teraShard = ITEM_BUG_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_BUG,
+        .arceusForm = SPECIES_ARCEUS_BUG,
     },
     [TYPE_GHOST] =
     {
@@ -422,7 +422,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_SPOOKY_PLATE,
         //.memory = ITEM_GHOST_MEMORY,
         //.teraShard = ITEM_GHOST_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_GHOST,
+        .arceusForm = SPECIES_ARCEUS_GHOST,
     },
     [TYPE_STEEL] =
     {
@@ -438,7 +438,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_IRON_PLATE,
         //.memory = ITEM_STEEL_MEMORY,
         //.teraShard = ITEM_STEEL_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_STEEL,
+        .arceusForm = SPECIES_ARCEUS_STEEL,
     },
     [TYPE_MYSTERY] =
     {
@@ -460,7 +460,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_FLAME_PLATE,
         //.memory = ITEM_FIRE_MEMORY,
         //.teraShard = ITEM_FIRE_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_FIRE,
+        .arceusForm = SPECIES_ARCEUS_FIRE,
     },
     [TYPE_WATER] =
     {
@@ -476,7 +476,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_SPLASH_PLATE,
         //.memory = ITEM_WATER_MEMORY,
         //.teraShard = ITEM_WATER_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_WATER,
+        .arceusForm = SPECIES_ARCEUS_WATER,
     },
     [TYPE_GRASS] =
     {
@@ -492,7 +492,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_MEADOW_PLATE,
         //.memory = ITEM_GRASS_MEMORY,
         //.teraShard = ITEM_GRASS_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_GRASS,
+        .arceusForm = SPECIES_ARCEUS_GRASS,
     },
     [TYPE_ELECTRIC] =
     {
@@ -508,7 +508,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_ZAP_PLATE,
         //.memory = ITEM_ELECTRIC_MEMORY,
         //.teraShard = ITEM_ELECTRIC_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_ELECTRIC,
+        .arceusForm = SPECIES_ARCEUS_ELECTRIC,
     },
     [TYPE_PSYCHIC] =
     {
@@ -524,7 +524,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_MIND_PLATE,
         //.memory = ITEM_PSYCHIC_MEMORY,
         //.teraShard = ITEM_PSYCHIC_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_PSYCHIC,
+        .arceusForm = SPECIES_ARCEUS_PSYCHIC,
     },
     [TYPE_ICE] =
     {
@@ -540,7 +540,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_ICICLE_PLATE,
         //.memory = ITEM_ICE_MEMORY,
         //.teraShard = ITEM_ICE_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_ICE,
+        .arceusForm = SPECIES_ARCEUS_ICE,
     },
     [TYPE_DRAGON] =
     {
@@ -556,7 +556,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_DRACO_PLATE,
         //.memory = ITEM_DRAGON_MEMORY,
         //.teraShard = ITEM_DRAGON_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_DRAGON,
+        .arceusForm = SPECIES_ARCEUS_DRAGON,
     },
     [TYPE_DARK] =
     {
@@ -572,7 +572,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_DREAD_PLATE,
         //.memory = ITEM_DARK_MEMORY,
         //.teraShard = ITEM_DARK_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_DARK,
+        .arceusForm = SPECIES_ARCEUS_DARK,
     },
     [TYPE_FAIRY] =
     {
@@ -588,7 +588,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.plate= ITEM_PIXIE_PLATE,
         //.memory = ITEM_FAIRY_MEMORY,
         //.teraShard = ITEM_FAIRY_TERA_SHARD,
-        //.arceusForm = SPECIES_ARCEUS_FAIRY,
+        .arceusForm = SPECIES_ARCEUS_FAIRY,
     },
     /*
     [TYPE_STELLAR] =
@@ -5971,7 +5971,15 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     }
     else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM && holdEffect == gMovesInfo[move].argument)
     {
-        gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | F_DYNAMIC_TYPE_SET;
+        u8 type = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item);
+
+        // LEGEND PLATE
+        if (type == TYPE_NONE) {
+            u16 moveTarget = gBattleStruct->moveTarget[battlerAtk];
+            type = CalcMostEffectiveType(move, battlerAtk, moveTarget, gBattleMons[moveTarget].ability, TRUE);
+        }
+        
+        gBattleStruct->dynamicMoveType = type | F_DYNAMIC_TYPE_SET;
     }
     else if (gMovesInfo[move].effect == EFFECT_REVELATION_DANCE)
     {

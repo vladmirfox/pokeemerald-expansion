@@ -10056,6 +10056,61 @@ uq4_12_t GetTypeModifier(u32 atkType, u32 defType)
     return sTypeEffectivenessTable[atkType][defType];
 }
 
+u32 CalcMostEffectiveType(u32 move, u32 battlerAtk, u32 battlerDef, u32 defAbility, bool8 includeResistance)
+{
+    u8 tiedTypes[18] = {};
+    u8 tiedTypesCount = 0;
+    uq4_12_t tiedTypeEffectiveness = UQ_4_12(0.0);
+
+    // get highest effectiveness against defender
+    for (int type = 0; type < 19; type++) {
+        if (type == TYPE_MYSTERY)
+            type++;
+
+        uq4_12_t currEffectiveness = CalcTypeEffectivenessMultiplier(move, type, battlerAtk, battlerDef, defAbility, FALSE);
+        if (currEffectiveness > tiedTypeEffectiveness) {
+            tiedTypeEffectiveness = currEffectiveness;
+            tiedTypesCount = 1;
+            tiedTypes[0] = type;
+        }
+        else if (currEffectiveness == tiedTypeEffectiveness)
+            tiedTypes[tiedTypesCount++] = type;
+    }
+
+    // Early return if we're not gonna test for resistances
+    if (!includeResistance) {
+        int r = Random() % tiedTypesCount;
+        return tiedTypes[r];
+    }
+
+    // Test for best resistance against defender types
+    for (int t = 0; t < 3 && tiedTypesCount > 1; t++) {
+        u8 enemyType = (&gBattleMons[battlerDef].type1)[t];
+        if (enemyType == TYPE_MYSTERY)
+            continue;
+
+        tiedTypeEffectiveness = UQ_4_12(256.0);
+        u8 newTiedTypesCount = 0;
+
+        for (int i = 0; i < tiedTypesCount; i++) {
+            uq4_12_t currEffectiveness = GetTypeModifier(enemyType, tiedTypes[i]);
+            if (currEffectiveness < tiedTypeEffectiveness) {
+                tiedTypeEffectiveness = currEffectiveness;
+                newTiedTypesCount = 1;
+                tiedTypes[0] = tiedTypes[i];
+            }
+            else if (currEffectiveness == tiedTypeEffectiveness)
+                tiedTypes[newTiedTypesCount++] = tiedTypes[i];
+        }
+
+        tiedTypesCount = newTiedTypesCount;
+    }
+
+    // Return a random one if there are still types that are tied in effectiveness and resistance
+    int r = Random() % tiedTypesCount;
+    return tiedTypes[r];
+}
+
 s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 maxHp)
 {
     s32 dmg = 0;

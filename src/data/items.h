@@ -4223,6 +4223,39 @@ const struct Item gItemsInfo[] =
         .flingPower = 90,
     },
 
+    [ITEM_BLANK_PLATE] =
+    {
+        .name = _("Blank Plate"),
+        .price = 1000,
+        .holdEffect = HOLD_EFFECT_PLATE,
+        .holdEffectParam = 20,
+        .description = COMPOUND_STRING(
+            "A stone tablet that\n"
+            "boosts the power of\n"
+            "Normal-type moves."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_NORMAL,
+        .flingPower = 90,
+    },
+
+    [ITEM_LEGEND_PLATE] =
+    {
+        .name = _("Legend Plate"),
+        .price = 18000,
+        .holdEffect = HOLD_EFFECT_PLATE,
+        .description = COMPOUND_STRING(
+            "A stone tablet that\n"
+            "allows a certain {PKMN}\n"
+            "to use every type."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = TYPE_NONE,
+        .flingPower = 90,
+    },
+
 // Drives
 
     [ITEM_DOUSE_DRIVE] =

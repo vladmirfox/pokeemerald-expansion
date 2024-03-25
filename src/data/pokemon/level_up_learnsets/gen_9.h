@@ -11596,6 +11596,7 @@ static const struct LevelUpMove sShayminSkyLevelUpLearnset[] = {
 static const struct LevelUpMove sArceusLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SEISMIC_TOSS),
     LEVEL_UP_MOVE( 1, MOVE_COSMIC_POWER),
+    LEVEL_UP_MOVE( 1, MOVE_JUDGMENT),
     LEVEL_UP_MOVE(10, MOVE_GRAVITY),
     LEVEL_UP_MOVE(20, MOVE_EARTH_POWER),
     LEVEL_UP_MOVE(30, MOVE_HYPER_VOICE),

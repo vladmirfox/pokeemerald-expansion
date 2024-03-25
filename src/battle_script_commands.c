@@ -1254,6 +1254,20 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
+bool32 LegendPlateTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
+{
+    if (gBattleMons[battler].item == ITEM_LEGEND_PLATE &&
+        move == MOVE_JUDGMENT && 
+        ability == ABILITY_MULTITYPE &&
+        !(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED) &&
+        gBattleMons[battler].species != gTypesInfo[moveType].arceusForm)
+    {
+        gBattleMons[battler].species = gTypesInfo[moveType].arceusForm;
+        return TRUE;
+    }
+    return FALSE;
+}
+
 bool32 IsMoveNotAllowedInSkyBattles(u32 move)
 {
     return ((gBattleStruct->isSkyBattle) && (gMovesInfo[gCurrentMove].skyBattleBanned));
@@ -1332,6 +1346,17 @@ static void Cmd_attackcanceler(void)
         PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
         gBattleCommunication[MSG_DISPLAY] = 1;
         gBattlescriptCurrInstr = BattleScript_ProteanActivates;
+        return;
+    }
+
+    // Check Legend Plate activation
+    if (LegendPlateTryChangeType(gBattlerAttacker, attackerAbility, gCurrentMove, moveType))
+    {
+        BattleScriptPush(cmd->nextInstr);
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
+        PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
+        gBattleCommunication[MSG_DISPLAY] = 1;
+        gBattlescriptCurrInstr = BattleScript_LegendPlateActivates;
         return;
     }
 
