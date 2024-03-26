@@ -4252,7 +4252,7 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_NONE,
+        .secondaryId = TYPE_NORMAL,
         .flingPower = 90,
     },
 

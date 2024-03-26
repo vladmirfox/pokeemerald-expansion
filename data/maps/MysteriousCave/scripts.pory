@@ -41,7 +41,7 @@ script(local) RandomArceus {
 
     switch (var(VAR_TEMP_0)) {
         case SPECIES_ARCEUS_NORMAL:
-            setvar(VAR_TEMP_1, ITEM_NONE)
+            setvar(VAR_TEMP_1, ITEM_BLANK_PLATE)
             setvar(VAR_TEMP_2, TYPE_NORMAL)
         case SPECIES_ARCEUS_FIGHTING:
             setvar(VAR_TEMP_1, ITEM_FIST_PLATE)
@@ -101,7 +101,7 @@ script(local) RandomArceusStarter {
     if (!flag(FLAG_STARTER_GIVEN)) {
         call(RandomArceus)
 
-        givemon(SPECIES_ARCEUS, 1, VAR_TEMP_1,,,,,,,,,,,,,,,,,,,,,,, VAR_TEMP_2)
+        givemon(SPECIES_ARCEUS, 1, ITEM_LEGEND_PLATE,,,,,,,,,,,,,,,,,,,,,,, VAR_TEMP_2)
         msgbox("{PLAYER} recieved an Arceus holding a plate!")
         bufferspeciesname(STR_VAR_1, SPECIES_ARCEUS)
         msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
@@ -113,6 +113,9 @@ script(local) RandomArceusStarter {
 
         setflag(FLAG_STARTER_GIVEN)
         setflag(FLAG_SYS_POKEMON_GET)
+        setflag(FLAG_SYS_POKEDEX_GET)
+
+        setmonmove(0, 2, MOVE_JUDGMENT)
     }
 }
 
@@ -126,15 +129,18 @@ script RandomArceusEncounter {
     waitmoncry()
 
     call(RandomArceus)
-    
-    setwildbattle(VAR_TEMP_0, 1, VAR_TEMP_1)
+    copyvar(VAR_TEMP_3, VAR_TEMP_0)
+    copyvar(VAR_TEMP_4, VAR_TEMP_1)
+    call(RandomArceus)
+
+    setwildbattle(VAR_TEMP_0, 1, VAR_TEMP_1, VAR_TEMP_3, 1, VAR_TEMP_4)
     dowildbattle()
 
     if (var(VAR_RESULT) == B_OUTCOME_WON) {
         playse(SE_CLICK)
-        removeobject(ENCOUNTER_OBJID)
+        //removeobject(ENCOUNTER_OBJID)
 
-        setflag(FLAG_DEFEATED_FIRST_ENCOUNTER)
+        //setflag(FLAG_DEFEATED_FIRST_ENCOUNTER)
 
         call(OpenCloseExit)
     }

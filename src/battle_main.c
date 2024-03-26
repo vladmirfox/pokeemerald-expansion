@@ -4122,6 +4122,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         gChosenActionByBattler[i] = B_ACTION_NONE;
         gChosenMoveByBattler[i] = MOVE_NONE;
     }
+
     TurnValuesCleanUp(FALSE);
     SpecialStatusesClear();
     *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
@@ -5288,6 +5289,13 @@ static void TurnValuesCleanUp(bool8 var0)
         gSpecialStatuses[i].parentalBondState = PARENTAL_BOND_OFF;
     }
 
+    for (int i = 0; i < MAX_BATTLERS_COUNT; i++) {
+        gBattleStruct->mostEffectiveType[i][0] = TYPE_MYSTERY;
+        gBattleStruct->mostEffectiveType[i][1] = TYPE_MYSTERY;
+        gBattleStruct->mostEffectiveType[i][2] = TYPE_MYSTERY;
+        gBattleStruct->mostEffectiveType[i][3] = TYPE_MYSTERY;
+    }
+
     gSideStatuses[B_SIDE_PLAYER] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideStatuses[B_SIDE_OPPONENT] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideTimers[B_SIDE_PLAYER].followmeTimer = 0;
@@ -5974,9 +5982,10 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
         u8 type = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item);
 
         // LEGEND PLATE
-        if (type == TYPE_NONE) {
+        if (gBattleMons[battlerAtk].item == ITEM_LEGEND_PLATE) {
             u16 moveTarget = gBattleStruct->moveTarget[battlerAtk];
-            type = CalcMostEffectiveType(move, battlerAtk, moveTarget, gBattleMons[moveTarget].ability, TRUE);
+
+            type = UpdateMostEffectiveType(move, battlerAtk, moveTarget, TRUE);
         }
         
         gBattleStruct->dynamicMoveType = type | F_DYNAMIC_TYPE_SET;

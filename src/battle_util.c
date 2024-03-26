@@ -10111,6 +10111,20 @@ u32 CalcMostEffectiveType(u32 move, u32 battlerAtk, u32 battlerDef, u32 defAbili
     return tiedTypes[r];
 }
 
+u32 UpdateMostEffectiveType(u32 move, u32 battlerAtk, u32 battlerDef, bool8 includeResistance) {
+    u32 type;
+
+    if (gBattleStruct->mostEffectiveType[battlerAtk][battlerDef] == TYPE_MYSTERY)
+    {
+        type = CalcMostEffectiveType(move, battlerAtk, battlerDef, gBattleMons[battlerDef].ability, TRUE);
+        gBattleStruct->mostEffectiveType[battlerAtk][battlerDef] = type;
+    }
+    else
+        type = gBattleStruct->mostEffectiveType[battlerAtk][battlerDef];
+
+    return type;
+}
+
 s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 maxHp)
 {
     s32 dmg = 0;

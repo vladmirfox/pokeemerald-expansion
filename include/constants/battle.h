@@ -456,7 +456,7 @@
 #define B_WIN_MOVE_NAME_2         4 // Top right
 #define B_WIN_MOVE_NAME_3         5 // Bottom left
 #define B_WIN_MOVE_NAME_4         6 // Bottom right
-#define B_WIN_PP                  7
+#define B_WIN_MOVE_CAT            7
 #define B_WIN_DUMMY               8
 #define B_WIN_PP_REMAINING        9
 #define B_WIN_MOVE_TYPE          10
@@ -473,6 +473,9 @@
 #define B_WIN_VS_OUTCOME_DRAW    21
 #define B_WIN_VS_OUTCOME_LEFT    22
 #define B_WIN_VS_OUTCOME_RIGHT   23
+#define B_WIN_TYPE_SUPER_EFF     24
+#define B_WIN_TYPE_NOT_VERY_EFF  25
+#define B_WIN_TYPE_NO_EFF        26
 
 // The following are duplicate id values for windows that Battle Arena uses differently.
 #define ARENA_WIN_PLAYER_NAME      15

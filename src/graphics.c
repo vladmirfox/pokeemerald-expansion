@@ -1769,6 +1769,11 @@ const u16 gMenuInfoElements2_Pal[] = INCBIN_U16("graphics/interface/menu_info2.g
 const u16 gMenuInfoElements3_Pal[] = INCBIN_U16("graphics/interface/menu_info3.gbapal");
 const u8 gMenuInfoElements_Gfx[] = INCBIN_U8("graphics/interface/menu_info.4bpp");
 
+const u16 gCategoryIconsElements_Pal[] = INCBIN_U16("graphics/interface/category_icons.gbapal");
+const u32 gCategoryIconsElements_Gfx[] = INCBIN_U32("graphics/interface/category_icons.4bpp.lz");
+const u16 gCategoryIconsElements1_Pal[] = INCBIN_U16("graphics/interface/category_icons1.gbapal");
+const u8 gCategoryIconsElements1_Gfx[] = INCBIN_U8("graphics/interface/category_icons1.4bpp");
+
 const u8 gBagMenuHMIcon_Gfx[] = INCBIN_U8("graphics/bag/hm.4bpp");
 
 // contest results screen

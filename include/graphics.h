@@ -1745,6 +1745,12 @@ extern const u16 gMenuInfoElements2_Pal[16];
 extern const u16 gMenuInfoElements3_Pal[16];
 extern const u8 gMenuInfoElements_Gfx[];
 
+// category icon graphics
+extern const u16 gCategoryIconsElements_Pal[];
+extern const u32 gCategoryIconsElements_Gfx[];
+extern const u16 gCategoryIconsElements1_Pal[];
+extern const u8 gCategoryIconsElements1_Gfx[];
+
 // item menu graphics
 extern const u32 gBagScreen_Gfx[];
 extern const u32 gBagScreen_GfxTileMap[];
