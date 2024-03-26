@@ -21,23 +21,23 @@
 	.section script_data, "aw", %progbits
 
 BattleScript_EffectSpicyExtract::
-    attackcanceler
-    jumpifsubstituteblocks BattleScript_ButItFailed
+	attackcanceler
+	jumpifsubstituteblocks BattleScript_ButItFailed
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-    jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE BattleScript_SpicyExtract_CheckShouldSkipAttackAnim
-    jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_SpicyExtract_CheckShouldSkipAttackAnim
-    goto BattleScript_ButItFailed
+	jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE BattleScript_SpicyExtract_CheckShouldSkipAttackAnim
+	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_SpicyExtract_CheckShouldSkipAttackAnim
+	goto BattleScript_ButItFailed
 BattleScript_SpicyExtract_CheckShouldSkipAttackAnim:
 	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0, BattleScript_SpicyExtract_RaiseAtk
-    attackstring
-    ppreduce
+	attackstring
+	ppreduce
 	bicword gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT
-    goto BattleScript_SpicyExtract_SkipAttackAnim
+	goto BattleScript_SpicyExtract_SkipAttackAnim
 BattleScript_SpicyExtract_RaiseAtk:
-    attackstring
-    ppreduce
-    attackanimation
-    waitanimation
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
 BattleScript_SpicyExtract_SkipAttackAnim:
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_TARGET, BIT_ATK, STAT_CHANGE_BY_TWO
