@@ -70,6 +70,8 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
        return expValue;
     }
     else
+    {
         return 0;
+    }
 
 }
