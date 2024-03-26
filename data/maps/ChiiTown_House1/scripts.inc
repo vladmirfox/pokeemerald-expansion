@@ -119,117 +119,121 @@ ChiiTown_House1_EventScript_GrowlitheBarks::
 # 73 "data/maps/ChiiTown_House1/scripts.pory"
 	waitmovement 0
 # 74 "data/maps/ChiiTown_House1/scripts.pory"
-	applymovement 1, Common_Movement_Delay48
+	applymovement 2, Common_Movement_FaceDown
 # 75 "data/maps/ChiiTown_House1/scripts.pory"
 	waitmovement 0
 # 76 "data/maps/ChiiTown_House1/scripts.pory"
-	msgbox ChiiTown_House1_EventScript_GrowlitheBarks_Text_2
-# 78 "data/maps/ChiiTown_House1/scripts.pory"
 	applymovement 1, Common_Movement_Delay48
-# 79 "data/maps/ChiiTown_House1/scripts.pory"
+# 77 "data/maps/ChiiTown_House1/scripts.pory"
 	waitmovement 0
+# 78 "data/maps/ChiiTown_House1/scripts.pory"
+	msgbox ChiiTown_House1_EventScript_GrowlitheBarks_Text_2
+# 80 "data/maps/ChiiTown_House1/scripts.pory"
+	applymovement 1, Common_Movement_Delay48
 # 81 "data/maps/ChiiTown_House1/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
-# 82 "data/maps/ChiiTown_House1/scripts.pory"
 	waitmovement 0
+# 83 "data/maps/ChiiTown_House1/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 # 84 "data/maps/ChiiTown_House1/scripts.pory"
-	setvar VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 2
-# 85 "data/maps/ChiiTown_House1/scripts.pory"
-	warp MAP_CHII_TOWN, 24, 21
+	waitmovement 0
 # 86 "data/maps/ChiiTown_House1/scripts.pory"
+	setvar VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 2
+# 87 "data/maps/ChiiTown_House1/scripts.pory"
+	warp MAP_CHII_TOWN, 24, 21
+# 88 "data/maps/ChiiTown_House1/scripts.pory"
 	release
 	return
 
 
 ChiiTown_House1_EventScript_Cheater::
-# 90 "data/maps/ChiiTown_House1/scripts.pory"
-	lock
-# 91 "data/maps/ChiiTown_House1/scripts.pory"
-	faceplayer
 # 92 "data/maps/ChiiTown_House1/scripts.pory"
-	setwildbattle SPECIES_ELECTRODE, 100
+	lock
 # 93 "data/maps/ChiiTown_House1/scripts.pory"
-	waitse
+	faceplayer
 # 94 "data/maps/ChiiTown_House1/scripts.pory"
-	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
+	setwildbattle SPECIES_ELECTRODE, 100
 # 95 "data/maps/ChiiTown_House1/scripts.pory"
-	delay 40
+	waitse
 # 96 "data/maps/ChiiTown_House1/scripts.pory"
-	waitmoncry
+	playmoncry SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER
 # 97 "data/maps/ChiiTown_House1/scripts.pory"
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	delay 40
 # 98 "data/maps/ChiiTown_House1/scripts.pory"
-	dowildbattle
+	waitmoncry
 # 99 "data/maps/ChiiTown_House1/scripts.pory"
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
 # 100 "data/maps/ChiiTown_House1/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
+	dowildbattle
 # 101 "data/maps/ChiiTown_House1/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 # 102 "data/maps/ChiiTown_House1/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
+	specialvar VAR_RESULT, GetBattleOutcome
 # 103 "data/maps/ChiiTown_House1/scripts.pory"
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
 # 104 "data/maps/ChiiTown_House1/scripts.pory"
-	setflag FLAG_DEFEATED_ELECTRODE_CHII_TOWN_HOUSE
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
 # 105 "data/maps/ChiiTown_House1/scripts.pory"
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ChiiTown_House1_EventScript_CheaterDefeatedElectrode
+# 106 "data/maps/ChiiTown_House1/scripts.pory"
+	setflag FLAG_DEFEATED_ELECTRODE_CHII_TOWN_HOUSE
+# 107 "data/maps/ChiiTown_House1/scripts.pory"
 	release
 	return
 
 
 ChiiTown_House1_EventScript_CheaterDefeatedElectrode::
-# 109 "data/maps/ChiiTown_House1/scripts.pory"
+# 111 "data/maps/ChiiTown_House1/scripts.pory"
 	setflag FLAG_DEFEATED_ELECTRODE_CHII_TOWN_HOUSE
-# 110 "data/maps/ChiiTown_House1/scripts.pory"
+# 112 "data/maps/ChiiTown_House1/scripts.pory"
 	goto Common_EventScript_RemoveStaticPokemon
 	end
 
 
 ChiiTown_House1_OnResume::
-# 115 "data/maps/ChiiTown_House1/scripts.pory"
+# 117 "data/maps/ChiiTown_House1/scripts.pory"
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, ChiiTown_House1_EventScript_TryRemoveElectrode
 	end
 
 
 ChiiTown_House1_EventScript_TryRemoveElectrode::
-# 120 "data/maps/ChiiTown_House1/scripts.pory"
-	specialvar VAR_RESULT, GetBattleOutcome
-# 121 "data/maps/ChiiTown_House1/scripts.pory"
-	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
 # 122 "data/maps/ChiiTown_House1/scripts.pory"
+	specialvar VAR_RESULT, GetBattleOutcome
+# 123 "data/maps/ChiiTown_House1/scripts.pory"
+	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+# 124 "data/maps/ChiiTown_House1/scripts.pory"
 	removeobject VAR_LAST_TALKED
 	return
 
 
-# 126 "data/maps/ChiiTown_House1/scripts.pory"
-ChiiTown_House1_Movement_GrowlitheRunsUpToPlayer:
-# 127 "data/maps/ChiiTown_House1/scripts.pory"
-	walk_faster_right
 # 128 "data/maps/ChiiTown_House1/scripts.pory"
-	walk_faster_right
+ChiiTown_House1_Movement_GrowlitheRunsUpToPlayer:
 # 129 "data/maps/ChiiTown_House1/scripts.pory"
-	walk_faster_up
+	walk_faster_right
 # 130 "data/maps/ChiiTown_House1/scripts.pory"
 	walk_faster_right
 # 131 "data/maps/ChiiTown_House1/scripts.pory"
+	walk_faster_up
+# 132 "data/maps/ChiiTown_House1/scripts.pory"
+	walk_faster_right
+# 133 "data/maps/ChiiTown_House1/scripts.pory"
 	face_down
 	step_end
 
-# 134 "data/maps/ChiiTown_House1/scripts.pory"
-ChiiTown_House1_Movement_OldManWalksUpToGrowlithe:
-# 135 "data/maps/ChiiTown_House1/scripts.pory"
-	walk_down
 # 136 "data/maps/ChiiTown_House1/scripts.pory"
-	walk_down
+ChiiTown_House1_Movement_OldManWalksUpToGrowlithe:
 # 137 "data/maps/ChiiTown_House1/scripts.pory"
 	walk_down
 # 138 "data/maps/ChiiTown_House1/scripts.pory"
+	walk_down
+# 139 "data/maps/ChiiTown_House1/scripts.pory"
+	walk_down
+# 140 "data/maps/ChiiTown_House1/scripts.pory"
 	face_right
 	step_end
 
-# 141 "data/maps/ChiiTown_House1/scripts.pory"
+# 143 "data/maps/ChiiTown_House1/scripts.pory"
 ChiiTown_House1_Movement_PlayerStepsAwayFromGrowlithe:
-# 142 "data/maps/ChiiTown_House1/scripts.pory"
+# 144 "data/maps/ChiiTown_House1/scripts.pory"
 	walk_right
 	step_end
 
@@ -245,17 +249,17 @@ ChiiTown_House1_EventScript_OldManTrespassing_Text_0:
 
 ChiiTown_House1_EventScript_GrowlitheGrrr_Text_0:
 # 39 "data/maps/ChiiTown_House1/scripts.pory"
-	.string "Grrrrrrr...$"
+	.string "Grrrrrrr…$"
 
 ChiiTown_House1_EventScript_GrowlitheBarks_Text_0:
 # 62 "data/maps/ChiiTown_House1/scripts.pory"
-	.string "BARK!\p"
-	.string "BARKBARKBARKBARKBARK!$"
+	.string "{FIXED_CASE}BARK!\p"
+	.string "BARKBARKBARKBARKBARK!{UNFIX_CASE}$"
 
 ChiiTown_House1_EventScript_GrowlitheBarks_Text_1:
 # 69 "data/maps/ChiiTown_House1/scripts.pory"
 	.string "Good girl, Growlithe, good girl.$"
 
 ChiiTown_House1_EventScript_GrowlitheBarks_Text_2:
-# 76 "data/maps/ChiiTown_House1/scripts.pory"
+# 78 "data/maps/ChiiTown_House1/scripts.pory"
 	.string "She keeps intruders out.$"

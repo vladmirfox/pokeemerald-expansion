@@ -137,8 +137,8 @@ SakuTown_EventScript_Farmer_Text_0:
 
 SakuTown_EventScript_Farmer2_Text_0:
 # 19 "data/maps/SakuTown/scripts.pory"
-	.string "Whew...\p"
-	.string "Working in the fields sure is tiring...$"
+	.string "Whew…\p"
+	.string "Working in the fields sure is tiring…$"
 
 SakuTown_EventScript_Woman_Text_0:
 # 29 "data/maps/SakuTown/scripts.pory"

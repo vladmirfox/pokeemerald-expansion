@@ -74,6 +74,7 @@
 #define MAP_WINDSWEPT_ROUTE                       (65 | (0 << 8))
 #define MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_BEDROOM (66 | (0 << 8))
 #define MAP_SILVERIDGE                            (67 | (0 << 8))
+#define MAP_WINDY_CAPE                            (68 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
@@ -122,6 +123,7 @@
 #define MAP_FALLARBOR_TOWN_COZMOS_HOUSE            (6 | (5 << 8))
 #define MAP_FALLARBOR_TOWN_MOVE_RELEARNERS_HOUSE   (7 | (5 << 8))
 #define MAP_SILVERIDGE_HOUSE1                      (8 | (5 << 8))
+#define MAP_SILVERIDGE_SCULPTORS_HOUSE             (9 | (5 << 8))
 
 // gMapGroup_IndoorVerdanturf
 #define MAP_VERDANTURF_TOWN_BATTLE_TENT_LOBBY       (0 | (6 << 8))
@@ -619,9 +621,11 @@
 
 // gMapGroup_IndoorKura
 #define MAP_KURA_TOWN_HOUSE1 (0 | (36 << 8))
+#define MAP_KURA_TOWN_HOUSE2 (1 | (36 << 8))
 
 // gMapGroup_IndoorChii
-#define MAP_CHII_TOWN_HOUSE1 (0 | (37 << 8))
+#define MAP_CHII_TOWN_HOUSE1         (0 | (37 << 8))
+#define MAP_CHII_TOWN_POKEMON_CENTER (1 | (37 << 8))
 
 #define MAP_GROUPS_COUNT 38
 

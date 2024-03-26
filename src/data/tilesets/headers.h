@@ -889,7 +889,7 @@ const struct Tileset gTileset_Silveridge =
     .palettes = gTilesetPalettes_Silveridge,
     .metatiles = gMetatiles_Silveridge,
     .metatileAttributes = gMetatileAttributes_Silveridge,
-    .callback = NULL,
+    .callback = InitTilesetAnim_Silveridge,
 };
 
 const struct Tileset gTileset_Maguro =

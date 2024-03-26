@@ -1124,3 +1124,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Silveridge/scripts.inc"
 
 	.include "data/maps/Silveridge_House1/scripts.inc"
+
+	.include "data/maps/ChiiTown_PokemonCenter/scripts.inc"
+
+	.include "data/maps/KuraTown_House2/scripts.inc"
+
+	.include "data/maps/WindyCape/scripts.inc"
+
+	.include "data/maps/Silveridge_SculptorsHouse/scripts.inc"

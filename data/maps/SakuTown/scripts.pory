@@ -1,4 +1,5 @@
 const LOCALID_KARATEKA = 6
+const LOCALID_GUARD = 8
 
 mapscripts SakuTown_MapScripts {
 	
@@ -47,12 +48,65 @@ script SakuTown_EventScript_Karateka {
 	release
 }
 
+script SakuTown_EventScript_Guard {
+	lock
+	faceplayer
+	msgbox(format(
+		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
+		"They don't even have a Pokémon refuge!"
+	))
+	release
+}
+
+script SakuTown_EventScript_GuardSeesYou {
+	lock
+	msgbox(format("Hey!"))
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
+	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+	waitmovement(LOCALID_GUARD)
+
+	if (flag(FLAG_TEMP_1)) {
+		msgbox(format(
+			"Are you trying to sneak in from Kura Village?\p"
+			"…Oh, you're that traveler from before. Come on in, then.\p"
+			"How was it? Awful, right? Welcome back to Saku Village!"
+		))
+	}
+	elif (!flag(FLAG_TEMP_1)) {
+		msgbox(format(
+			"Are you trying to sneak into Kura Village?\p"
+			"…Oh, you're just a traveler. Nevermind then, you can go through.\p"
+			"Though I wouldn't recommend visiting the next village, there's really nothing interesting there."
+		))
+	}
+
+	applymovement(LOCALID_GUARD, Common_Movement_FaceDown)
+
+	setvar(VAR_SAKU_KURA_VILLAGES_STATE, 1)
+
+	release
+}
+
+script SakuTown_EventScript_NorthOfGuard {
+	setflag(FLAG_TEMP_1)
+}
+
+script SakuTown_EventScript_SouthOfGuard {
+	clearflag(FLAG_TEMP_1)
+}
+
 script SakuTown_EventScript_TownSign {
 	msgbox(format("Saku Village\n“A village of tender flower petals.”"), MSGBOX_SIGN)
 }
 
 script SakuTown_EventScript_TrainerTips {
 	msgbox(format("Did you know? Saku Village is in all ways superior to Kura Village!"), MSGBOX_SIGN)
+}
+
+script SakuTown_EventScript_TrainerTips2 {
+	msgbox(format("Did you know? The folk from Kura Village are a bunch of mean jerks!"), MSGBOX_SIGN)
 }
 
 script SakuTown_EventScript_FloristSign {

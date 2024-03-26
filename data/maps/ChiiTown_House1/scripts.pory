@@ -59,7 +59,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
 	waitmovement(0)
 	playmoncry(SPECIES_GROWLITHE, CRY_MODE_NORMAL)
-	msgbox(format("BARK!\pBARKBARKBARKBARKBARK!"))
+	msgbox(format("{FIXED_CASE}BARK!\pBARKBARKBARKBARKBARK!{UNFIX_CASE}"))
 	waitmoncry
 
 	applymovement(LOCALID_OLD_MAN, ChiiTown_House1_Movement_OldManWalksUpToGrowlithe)
@@ -70,6 +70,8 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	closemessage
 
 	applymovement(LOCALID_OLD_MAN, Common_Movement_FaceDown)
+	waitmovement(0)
+	applymovement(LOCALID_GROWLITHE, Common_Movement_FaceDown)
 	waitmovement(0)
 	applymovement(LOCALID_OLD_MAN, Common_Movement_Delay48)
 	waitmovement(0)

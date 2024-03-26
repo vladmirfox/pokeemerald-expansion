@@ -292,7 +292,7 @@ SunriseVillage_Event_Kecleon_Text_0:
 
 SunriseVillage_Event_Kirlia_Text_0:
 # 159 "data/maps/SunriseVillage/scripts.pory"
-	.string "...$"
+	.string "…$"
 
 SunriseVillage_Event_TownSign_Text_0:
 # 176 "data/maps/SunriseVillage/scripts.pory"

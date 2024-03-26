@@ -76,7 +76,7 @@
       "x": 0,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -85,7 +85,7 @@
       "x": 1,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -94,7 +94,7 @@
       "x": 5,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -103,7 +103,7 @@
       "x": 4,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -112,7 +112,7 @@
       "x": 3,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -121,7 +121,7 @@
       "x": 2,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -130,7 +130,7 @@
       "x": 9,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -139,7 +139,7 @@
       "x": 7,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -148,7 +148,7 @@
       "x": 6,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     },
@@ -157,7 +157,7 @@
       "x": 3,
       "y": 6,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_GrowlitheGrrr"
     },
@@ -166,7 +166,7 @@
       "x": 3,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_GrowlitheGrrr"
     },
@@ -175,7 +175,7 @@
       "x": 8,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE",
       "var_value": "0",
       "script": "ChiiTown_House1_EventScript_OldManTrespassing"
     }

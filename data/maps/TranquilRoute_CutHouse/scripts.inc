@@ -35,7 +35,7 @@ TranquilRoute_CutHouse_EventScript_CutMaster_Text_0:
 	.string "Are you finding the Cut technique\n"
 	.string "useful?\p"
 	.string "No, I still haven't trimmed my garden. I\n"
-	.string "really should get to it...$"
+	.string "really should get to it…$"
 
 TranquilRoute_CutHouse_EventScript_CutMaster_Text_1:
 # 17 "data/maps/TranquilRoute_CutHouse/scripts.pory"
@@ -43,7 +43,7 @@ TranquilRoute_CutHouse_EventScript_CutMaster_Text_1:
 	.string "so sit down, have some tea!\p"
 	.string "What? The weeds are growing all over\n"
 	.string "the place in my garden?\p"
-	.string "Ho ho ho...\p"
+	.string "Ho ho ho…\p"
 	.string "You're right, I have been neglecting it\n"
 	.string "lately. You see, my old back isn't as\l"
 	.string "strong as it used to be.\p"

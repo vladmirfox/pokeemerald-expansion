@@ -387,6 +387,8 @@
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B
 #define OBJ_EVENT_PAL_TAG_WOMAN_2                 0x112C
 #define OBJ_EVENT_PAL_TAG_FARMER                  0x112D
+#define OBJ_EVENT_PAL_TAG_BUG_CATCHER             0x112E
+#define OBJ_EVENT_PAL_TAG_BOY_1                   0x112F
 
 #if OW_MON_POKEBALLS
 // Vanilla

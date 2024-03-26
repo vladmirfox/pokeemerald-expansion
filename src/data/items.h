@@ -11610,15 +11610,16 @@ const struct Item gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_RAINBOW_PASS] =
+    [ITEM_ASHIIS_SCARF] =
     {
-        .name = _("Rainbow Pass"),
-        .pluralName = _("Rainbow Passes"),
+        .name = _("Ashii's Scarf"),
+        .pluralName = _("Ashii's Scarves"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "For ferries serving\n"
-            "Vermilion and the\n"
-            "Sevii Islands."),
+            "A soft silk scarf,\n"
+            "proof of a girl's\n"
+            "love."
+        ),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,

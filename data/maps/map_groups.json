@@ -107,7 +107,8 @@
     "MaguroHarbor",
     "WindsweptRoute",
     "SunriseVillage_PlayersHouse_Bedroom",
-    "Silveridge"
+    "Silveridge",
+    "WindyCape"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
@@ -155,7 +156,8 @@
     "FallarborTown_PokemonCenter_2F",
     "FallarborTown_CozmosHouse",
     "FallarborTown_MoveRelearnersHouse",
-    "Silveridge_House1"
+    "Silveridge_House1",
+    "Silveridge_SculptorsHouse"
   ],
   "gMapGroup_IndoorVerdanturf": [
     "VerdanturfTown_BattleTentLobby",
@@ -652,9 +654,11 @@
     "SakuTown_BonsaiShop"
   ],
   "gMapGroup_IndoorKura": [
-    "KuraTown_House1"
+    "KuraTown_House1",
+    "KuraTown_House2"
   ],
   "gMapGroup_IndoorChii": [
-    "ChiiTown_House1"
+    "ChiiTown_House1",
+    "ChiiTown_PokemonCenter"
   ]
 }

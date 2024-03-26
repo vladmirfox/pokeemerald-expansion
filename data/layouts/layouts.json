@@ -4594,7 +4594,7 @@
     {
       "id": "LAYOUT_SILVERIDGE",
       "name": "Silveridge_Layout",
-      "width": 40,
+      "width": 42,
       "height": 40,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
@@ -4610,6 +4610,26 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/Silveridge_House1/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_WINDY_CAPE",
+      "name": "WindyCape_Layout",
+      "width": 60,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Silveridge",
+      "border_filepath": "data/layouts/WindyCape/border.bin",
+      "blockdata_filepath": "data/layouts/WindyCape/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVERIDGE_SCULPTORS_HOUSE",
+      "name": "Silveridge_SculptorsHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
+      "border_filepath": "data/layouts/Silveridge_SculptorsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/Silveridge_SculptorsHouse/map.bin"
     }
   ]
 }

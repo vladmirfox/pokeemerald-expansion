@@ -4,6 +4,35 @@ mapscripts ChiiTown_MapScripts {
     ]	
 }
 
+script ChiiTown_EventScript_PlantingFlowers {
+	lock
+	faceplayer
+	msgbox(format(
+		"I'm planting flowers so that the Pokémon become happy again!"
+	))
+	release	
+}
+
+script ChiiTown_EventScript_Mart {
+	lock
+	faceplayer
+	message(format("Welcome to Chii Town's market! How may I help you?"))
+	waitmessage
+	pokemart(ChiiTown_Mart)
+	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	release
+}
+
+mart ChiiTown_Mart {
+	ITEM_POKE_BALL
+	ITEM_BERRY_JUICE
+	ITEM_PARALYZE_HEAL
+	ITEM_ANTIDOTE
+	ITEM_AWAKENING
+	ITEM_ESCAPE_ROPE
+	ITEM_REPEL
+}
+
 script ChiiTown_EventScript_TownSign {
 	msgbox(format("Chii Town\n“The smallest town, with the biggest heart.”"), MSGBOX_SIGN)
 }

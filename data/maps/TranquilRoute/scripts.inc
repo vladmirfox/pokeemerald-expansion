@@ -155,11 +155,11 @@ TranquilRoute_EventScript_Chikao_Text_0:
 
 TranquilRoute_EventScript_Chikao_Text_1:
 # 13 "data/maps/TranquilRoute/scripts.pory"
-	.string "I should have listened in class...$"
+	.string "I should have listened in class…$"
 
 TranquilRoute_EventScript_Chikao_Text_2:
 # 15 "data/maps/TranquilRoute/scripts.pory"
-	.string "Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh... It's too complicated to explain.$"
+	.string "Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh… It's too complicated to explain.$"
 
 TranquilRoute_EventScript_Takeshi_Text_0:
 # 22 "data/maps/TranquilRoute/scripts.pory"
