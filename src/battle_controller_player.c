@@ -1796,10 +1796,13 @@ static void MoveSelectionDisplayMoveType(u32 battlerAtk, u32 battlerDef)
     BattlePutTextOnWindow(gDisplayedStringBattle, TypeColor(move, type, battlerAtk, battlerDef));
 
     u8 icon = GetBattleMoveCategory(move);
+    LoadBgTiles(0, gCategoryIconsElements1_Gfx + 0x80 * icon, 16*8, 0x40);
     LoadPalette(gCategoryIconsElements1_Pal, 10 * 0x10, 0x20);
-    BlitBitmapToWindow(B_WIN_MOVE_CAT, gCategoryIconsElements1_Gfx + 0x80 * icon, 0, 0, 16, 16);
-    PutWindowTilemap(B_WIN_MOVE_CAT);
-    CopyWindowToVram(B_WIN_MOVE_CAT, COPYWIN_FULL);
+    CopyToBgTilemapBufferRect_ChangePalette(0, gCategoryIconsElements1_Gfx + 0x80 * icon, 0, 0, 16, 16, 0x10);
+    CopyBgTilemapBufferToVram(0);
+    //BlitBitmapToWindow(B_WIN_MOVE_CAT, gCategoryIconsElements1_Gfx + 0x80 * icon, 0, 0, 16, 16);
+    //PutWindowTilemap(B_WIN_MOVE_CAT);
+    //CopyWindowToVram(B_WIN_MOVE_CAT, COPYWIN_FULL);
 }
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)

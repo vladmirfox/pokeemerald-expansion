@@ -243,7 +243,7 @@ RandomArceusStarter_1:
 # 102 "data/maps/MysteriousCave/scripts.pory"
 	call RandomArceus
 # 104 "data/maps/MysteriousCave/scripts.pory"
-	givemon SPECIES_ARCEUS, 1, ITEM_LEGEND_PLATE, , , , , , , , , , , , , , , , , , , , , , , VAR_TEMP_2
+	givemon SPECIES_SILVALLY, 1, ITEM_LEGEND_PLATE, , , , , , , , , , , , , , , , , , , , , , , VAR_TEMP_2
 # 105 "data/maps/MysteriousCave/scripts.pory"
 	msgbox RandomArceusStarter_Text_0
 # 106 "data/maps/MysteriousCave/scripts.pory"
