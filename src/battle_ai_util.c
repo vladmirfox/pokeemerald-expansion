@@ -3715,8 +3715,39 @@ bool32 AI_ShouldCopyStatChanges(u32 battlerAtk, u32 battlerDef)
 }
 
 //TODO - track entire opponent party data to determine hazard effectiveness
-bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData)
+bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
 {
+    u32 side = GetBattlerSide(battlerDef);
+
+    if (gMovesInfo[move].effect == EFFECT_SPIKES)
+    {
+        if (gSideTimers[side].spikesAmount >= 3)
+            return FALSE;
+        if (PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove)
+         && gSideTimers[side].spikesAmount == 2)
+            return FALSE;
+    }
+    else if (gMovesInfo[move].effect == EFFECT_STEALTH_ROCK)
+    {
+        if (gSideTimers[GetBattlerSide(battlerDef)].stealthRockAmount > 0
+         || PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove))
+            return FALSE;
+    }
+    else if (gMovesInfo[move].effect == EFFECT_STICKY_WEB)
+    {
+        if (gSideTimers[side].stickyWebAmount
+         || PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove))
+            return FALSE;
+    }
+    else if (gMovesInfo[move].effect == EFFECT_TOXIC_SPIKES)
+    {
+        if (gSideTimers[side].toxicSpikesAmount >= 2)
+            return FALSE;
+        if (PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, aiData->partnerMove)
+         && gSideTimers[side].toxicSpikesAmount == 1)
+            return FALSE;
+    }
+
     if (aiData->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE
      || CountUsablePartyMons(battlerDef) == 0
      || HasMoveWithAdditionalEffect(battlerDef, MOVE_EFFECT_RAPID_SPIN)
@@ -3726,6 +3757,18 @@ bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData 
     return TRUE;
 }
 
+bool32 AI_ShouldSetUpLeechSeed(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData)
+{
+    if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
+     || gStatuses3[battlerDef] & STATUS3_LEECHSEED
+     || HasMoveWithAdditionalEffect(battlerDef, MOVE_EFFECT_RAPID_SPIN)
+     || aiData->abilities[battlerDef] == ABILITY_LIQUID_OOZE
+     || aiData->abilities[battlerDef] == ABILITY_MAGIC_GUARD
+     || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), EFFECT_LEECH_SEED, aiData->partnerMove))
+        return FALSE;
+
+    return TRUE;
+}
 void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
 {
     if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)

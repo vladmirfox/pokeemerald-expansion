@@ -74,6 +74,12 @@
         (*score) += val; \
     } while (0) \
 
+#define RETURN_SCORE(val)           \
+{                                   \
+    ADJUST_SCORE(val);              \
+    return score;                   \
+}
+
 #define RETURN_SCORE_PLUS(val)      \
 {                                   \
     ADJUST_SCORE(val);              \
