@@ -30,7 +30,9 @@ struct MenuInfoIcon
 {
     u8 width;
     u8 height;
-    u16 offset;
+    u8 x;
+    u8 y;
+    u8 pal;
 };
 
 struct Menu
@@ -110,34 +112,33 @@ static const u8 sTextColors[] = { TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_C
 
 // Table of move info icon offsets in graphics/interface/menu_info.png
 static const struct MenuInfoIcon sMenuInfoIcons[] =
-{   // { width, height, offset }
-    { 12, 12, 0x00 },  // Unused
-    [TYPE_NORMAL + 1]   = { 32, 12, 0x20 },
-    [TYPE_FIGHTING + 1] = { 32, 12, 0x64 },
-    [TYPE_FLYING + 1]   = { 32, 12, 0x60 },
-    [TYPE_POISON + 1]   = { 32, 12, 0x80 },
-    [TYPE_GROUND + 1]   = { 32, 12, 0x48 },
-    [TYPE_ROCK + 1]     = { 32, 12, 0x44 },
-    [TYPE_BUG + 1]      = { 32, 12, 0x6C },
-    [TYPE_GHOST + 1]    = { 32, 12, 0x68 },
-    [TYPE_STEEL + 1]    = { 32, 12, 0x88 },
-    [TYPE_MYSTERY + 1]  = { 32, 12, 0xA4 },
-    [TYPE_FIRE + 1]     = { 32, 12, 0x24 },
-    [TYPE_WATER + 1]    = { 32, 12, 0x28 },
-    [TYPE_GRASS + 1]    = { 32, 12, 0x2C },
-    [TYPE_ELECTRIC + 1] = { 32, 12, 0x40 },
-    [TYPE_PSYCHIC + 1]  = { 32, 12, 0x84 },
-    [TYPE_ICE + 1]      = { 32, 12, 0x4C },
-    [TYPE_DRAGON + 1]   = { 32, 12, 0xA0 },
-    [TYPE_DARK + 1]     = { 32, 12, 0x8C },
-    [TYPE_FAIRY + 1]    = { 32, 12, 0x4  },
-    [MENU_INFO_ICON_TYPE]      = { 42, 12, 0xA8 },
-    [MENU_INFO_ICON_POWER]     = { 42, 12, 0xC0 },
-    [MENU_INFO_ICON_ACCURACY]  = { 42, 12, 0xC8 },
-    [MENU_INFO_ICON_PP]        = { 42, 12, 0xE0 },
-    [MENU_INFO_ICON_EFFECT]    = { 42, 12, 0xE8 }, // Unused
-    [MENU_INFO_ICON_BALL_RED]  = {  8,  8, 0xAE }, // For placed decorations in Secret Base
-    [MENU_INFO_ICON_BALL_BLUE] = {  8,  8, 0xAF }, // For placed decorations in player's room
+{
+    [TYPE_NORMAL]   = { .width = 32, .height = 12, .x = 0,  .y = 16, .pal = 2 },
+    [TYPE_FIGHTING] = { .width = 32, .height = 12, .x = 32, .y = 48, .pal = 1 },
+    [TYPE_FLYING]   = { .width = 32, .height = 12, .x = 0,  .y = 48, .pal = 0 },
+    [TYPE_POISON]   = { .width = 32, .height = 12, .x = 0,  .y = 64, .pal = 2 },
+    [TYPE_GROUND]   = { .width = 32, .height = 12, .x = 64, .y = 32, .pal = 2 },
+    [TYPE_ROCK]     = { .width = 32, .height = 12, .x = 32, .y = 32, .pal = 2 },
+    [TYPE_BUG]      = { .width = 32, .height = 12, .x = 96, .y = 48, .pal = 0 },
+    [TYPE_GHOST]    = { .width = 32, .height = 12, .x = 64, .y = 48, .pal = 2 },
+    [TYPE_STEEL]    = { .width = 32, .height = 12, .x = 64, .y = 64, .pal = 1 },
+    [TYPE_MYSTERY]  = { .width = 32, .height = 12, .x = 32, .y = 80, .pal = 1 },
+    [TYPE_FIRE]     = { .width = 32, .height = 12, .x = 32, .y = 16, .pal = 2 },
+    [TYPE_WATER]    = { .width = 32, .height = 12, .x = 64, .y = 16, .pal = 0 },
+    [TYPE_GRASS]    = { .width = 32, .height = 12, .x = 96, .y = 16, .pal = 0 },
+    [TYPE_ELECTRIC] = { .width = 32, .height = 12, .x = 0,  .y = 32, .pal = 2 },
+    [TYPE_PSYCHIC]  = { .width = 32, .height = 12, .x = 32, .y = 64, .pal = 0 },
+    [TYPE_ICE]      = { .width = 32, .height = 12, .x = 96, .y = 32, .pal = 0 },
+    [TYPE_DRAGON]   = { .width = 32, .height = 12, .x = 0,  .y = 80, .pal = 1 },
+    [TYPE_DARK]     = { .width = 32, .height = 12, .x = 96, .y = 64, .pal = 1 },
+    [TYPE_FAIRY]    = { .width = 32, .height = 12, .x = 0,  .y = 0,  .pal = 0  },
+    [MENU_INFO_ICON_TYPE]     = { .width = 42, .height = 12, .x = 64, .y = 80,  .pal = 0 },
+    [MENU_INFO_ICON_POWER]    = { .width = 42, .height = 12, .x = 0,  .y = 96,  .pal = 0 },
+    [MENU_INFO_ICON_ACCURACY] = { .width = 42, .height = 12, .x = 64, .y = 96,  .pal = 0 },
+    [MENU_INFO_ICON_PP]       = { .width = 42, .height = 12, .x = 0,  .y = 112, .pal = 0 },
+    [MENU_TYPE_CAT_PHYSICAL] = { .width = 20, .height = 12, .x = 68,  .y = 0, .pal = 2 },
+    [MENU_TYPE_CAT_SPECIAL]  = { .width = 20, .height = 12, .x = 88,  .y = 0, .pal = 2 },
+    [MENU_TYPE_CAT_STATUS]   = { .width = 20, .height = 12, .x = 108, .y = 0, .pal = 2 },
 };
 
 void InitStandardTextBoxWindows(void)
@@ -2074,11 +2075,12 @@ static void UNUSED DrawMonIconAtPos(u8 windowId, u16 speciesId, u32 personality,
     BlitBitmapToWindow(windowId, GetMonIconPtr(speciesId, personality), x, y, 32, 32);
 }
 
-void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
+void ListMenuLoadStdPalAt(u8 palOffset, u8 iconId)
 {
     const u16 *palette;
+    const struct MenuInfoIcon* icon = &sMenuInfoIcons[iconId];
 
-    switch (palId)
+    switch (icon->pal)
     {
         case 0:
         default:
@@ -2097,7 +2099,8 @@ void ListMenuLoadStdPalAt(u8 palOffset, u8 palId)
 
 void BlitMenuInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y)
 {
-    BlitBitmapRectToWindow(windowId, &gMenuInfoElements_Gfx[sMenuInfoIcons[iconId].offset * 32], 0, 0, 128, 128, x, y, sMenuInfoIcons[iconId].width, sMenuInfoIcons[iconId].height);
+    const struct MenuInfoIcon* icon = &sMenuInfoIcons[iconId];
+    BlitBitmapRectToWindow(windowId, gMenuInfoElements_Gfx, icon->x, icon->y, 128, 128, x, y, icon->width, icon->height);
 }
 
 void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)

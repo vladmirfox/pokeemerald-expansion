@@ -40,8 +40,6 @@
 #define PARTY_ACTION_USE_ITEM           3
 #define PARTY_ACTION_ABILITY_PREVENTS   4
 #define PARTY_ACTION_GIVE_ITEM          5
-#define PARTY_ACTION_GIVE_PC_ITEM       6   // Unused. Not possible to give non-mail items directly from PC
-#define PARTY_ACTION_GIVE_MAILBOX_MAIL  7
 #define PARTY_ACTION_SWITCH             8
 #define PARTY_ACTION_SWITCHING          9
 #define PARTY_ACTION_SOFTBOILED         10
@@ -77,7 +75,6 @@
 #define PARTY_MSG_RESTORE_WHICH_MOVE        22
 #define PARTY_MSG_BOOST_PP_WHICH_MOVE       23
 #define PARTY_MSG_DO_WHAT_WITH_ITEM         24
-#define PARTY_MSG_DO_WHAT_WITH_MAIL         25
 #define PARTY_MSG_ALREADY_HOLDING_ONE       26
 #define PARTY_MSG_WHICH_APPLIANCE           27
 #define PARTY_MSG_CHOOSE_SECOND_FUSION      28
@@ -100,7 +97,6 @@
 
 #define SELECTWINDOW_ACTIONS     0
 #define SELECTWINDOW_ITEM        1
-#define SELECTWINDOW_MAIL        2
 #define SELECTWINDOW_MOVES       3
 #define SELECTWINDOW_CATALOG     4
 #define SELECTWINDOW_ZYGARDECUBE 5

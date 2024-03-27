@@ -15,7 +15,6 @@
 #include "item.h"
 #include "item_icon.h"
 #include "item_menu.h"
-#include "mail.h"
 #include "main.h"
 #include "menu.h"
 #include "mon_markings.h"
@@ -84,7 +83,6 @@ enum {
     MSG_CAME_BACK,
     MSG_WORRIED,
     MSG_SURPRISE,
-    MSG_PLEASE_REMOVE_MAIL,
     MSG_IS_SELECTED2,
     MSG_GIVE_TO_MON,
     MSG_PLACED_IN_BAG,
@@ -92,7 +90,6 @@ enum {
     MSG_PUT_IN_BAG,
     MSG_ITEM_IS_HELD,
     MSG_CHANGED_TO_ITEM,
-    MSG_CANT_STORE_MAIL,
 };
 
 // IDs for how to resolve variables in the above messages
@@ -117,7 +114,6 @@ enum {
     MENU_PLACE,
     MENU_SUMMARY,
     MENU_RELEASE,
-    MENU_MARK,
     MENU_JUMP,
     MENU_WALLPAPER,
     MENU_NAME,
@@ -600,7 +596,6 @@ static void Task_ShowItemInfo(u8);
 static void Task_GiveItemFromBag(u8);
 static void Task_ItemToBag(u8);
 static void Task_TakeItemForMoving(u8);
-static void Task_ShowMarkMenu(u8);
 static void Task_ShowMonSummary(u8);
 static void Task_ReleaseMon(u8);
 static void Task_ReshowPokeStorage(u8);
@@ -608,7 +603,6 @@ static void Task_PokeStorageMain(u8);
 static void Task_JumpBox(u8);
 static void Task_HandleWallpapers(u8);
 static void Task_NameBox(u8);
-static void Task_PrintCantStoreMail(u8);
 static void Task_HandleMovingMonFromParty(u8);
 
 // Input handlers
@@ -676,7 +670,6 @@ static void SaveMovingMon(void);
 static void LoadSavedMovingMon(void);
 static void InitSummaryScreenData(void);
 static void SetSelectionAfterSummaryScreen(void);
-static void SetMonMarkings(u8);
 static bool8 IsRemovingLastPartyMon(void);
 static bool8 CanPlaceMon(void);
 static bool8 CanShiftMon(void);
@@ -1092,7 +1085,6 @@ static const struct StorageMessage sMessages[] =
     [MSG_CAME_BACK]            = {gText_PkmnCameBack,            MSG_VAR_MON_NAME_1},
     [MSG_WORRIED]              = {gText_WasItWorriedAboutYou,    MSG_VAR_NONE},
     [MSG_SURPRISE]             = {gText_FourEllipsesExclamation, MSG_VAR_NONE},
-    [MSG_PLEASE_REMOVE_MAIL]   = {gText_PleaseRemoveTheMail,     MSG_VAR_NONE},
     [MSG_IS_SELECTED2]         = {gText_PkmnIsSelected,          MSG_VAR_ITEM_NAME},
     [MSG_GIVE_TO_MON]          = {gText_GiveToAPkmn,             MSG_VAR_NONE},
     [MSG_PLACED_IN_BAG]        = {gText_PlacedItemInBag,         MSG_VAR_ITEM_NAME},
@@ -1100,7 +1092,6 @@ static const struct StorageMessage sMessages[] =
     [MSG_PUT_IN_BAG]           = {gText_PutItemInBag,            MSG_VAR_NONE},
     [MSG_ITEM_IS_HELD]         = {gText_ItemIsNowHeld,           MSG_VAR_ITEM_NAME},
     [MSG_CHANGED_TO_ITEM]      = {gText_ChangedToNewItem,        MSG_VAR_ITEM_NAME},
-    [MSG_CANT_STORE_MAIL]      = {gText_MailCantBeStored,        MSG_VAR_NONE},
 };
 
 static const struct WindowTemplate sYesNoWindowTemplate =
@@ -2264,7 +2255,6 @@ enum {
     MSTATE_SCROLL_BOX,
     MSTATE_WAIT_MSG,
     MSTATE_ERROR_LAST_PARTY_MON,
-    MSTATE_ERROR_HAS_MAIL,
     MSTATE_WAIT_ERROR_MSG,
     MSTATE_MULTIMOVE_RUN,
     MSTATE_MULTIMOVE_RUN_CANCEL,
@@ -2299,10 +2289,7 @@ static void Task_PokeStorageMain(u8 taskId)
         case INPUT_HIDE_PARTY:
             if (sStorage->boxOption == OPTION_MOVE_MONS)
             {
-                if (IsMonBeingMoved() && ItemIsMail(sStorage->displayMonItemId))
-                    sStorage->state = MSTATE_ERROR_HAS_MAIL;
-                else
-                    SetPokeStorageTask(Task_HidePartyPokemon);
+                SetPokeStorageTask(Task_HidePartyPokemon);
             }
             else if (sStorage->boxOption == OPTION_MOVE_ITEMS)
             {
@@ -2357,15 +2344,8 @@ static void Task_PokeStorageMain(u8 taskId)
         case INPUT_DEPOSIT:
             if (!IsRemovingLastPartyMon())
             {
-                if (ItemIsMail(sStorage->displayMonItemId))
-                {
-                    sStorage->state = MSTATE_ERROR_HAS_MAIL;
-                }
-                else
-                {
-                    PlaySE(SE_SELECT);
-                    SetPokeStorageTask(Task_DepositMenu);
-                }
+                PlaySE(SE_SELECT);
+                SetPokeStorageTask(Task_DepositMenu);
             }
             else
             {
@@ -2493,11 +2473,6 @@ static void Task_PokeStorageMain(u8 taskId)
     case MSTATE_ERROR_LAST_PARTY_MON:
         PlaySE(SE_FAILURE);
         PrintMessage(MSG_LAST_POKE);
-        sStorage->state = MSTATE_WAIT_ERROR_MSG;
-        break;
-    case MSTATE_ERROR_HAS_MAIL:
-        PlaySE(SE_FAILURE);
-        PrintMessage(MSG_PLEASE_REMOVE_MAIL);
         sStorage->state = MSTATE_WAIT_ERROR_MSG;
         break;
     case MSTATE_WAIT_ERROR_MSG:
@@ -2653,10 +2628,6 @@ static void Task_OnSelectedMon(u8 taskId)
             {
                 sStorage->state = 3;
             }
-            else if (ItemIsMail(sStorage->displayMonItemId))
-            {
-                sStorage->state = 4;
-            }
             else
             {
                 PlaySE(SE_SELECT);
@@ -2673,10 +2644,6 @@ static void Task_OnSelectedMon(u8 taskId)
             {
                 sStorage->state = 5; // Cannot release an Egg.
             }
-            else if (ItemIsMail(sStorage->displayMonItemId))
-            {
-                sStorage->state = 4;
-            }
             else
             {
                 PlaySE(SE_SELECT);
@@ -2686,10 +2653,6 @@ static void Task_OnSelectedMon(u8 taskId)
         case MENU_SUMMARY:
             PlaySE(SE_SELECT);
             SetPokeStorageTask(Task_ShowMonSummary);
-            break;
-        case MENU_MARK:
-            PlaySE(SE_SELECT);
-            SetPokeStorageTask(Task_ShowMarkMenu);
             break;
         case MENU_TAKE:
             PlaySE(SE_SELECT);
@@ -2723,11 +2686,6 @@ static void Task_OnSelectedMon(u8 taskId)
     case 5:
         PlaySE(SE_FAILURE);
         PrintMessage(MSG_CANT_RELEASE_EGG);
-        sStorage->state = 6;
-        break;
-    case 4:
-        PlaySE(SE_FAILURE);
-        PrintMessage(MSG_PLEASE_REMOVE_MAIL);
         sStorage->state = 6;
         break;
     case 6:
@@ -3046,43 +3004,13 @@ static void Task_ReleaseMon(u8 taskId)
     }
 }
 
-static void Task_ShowMarkMenu(u8 taskId)
-{
-    switch (sStorage->state)
-    {
-    case 0:
-        PrintMessage(MSG_MARK_POKE);
-        sStorage->markMenu.markings = sStorage->displayMonMarkings;
-        OpenMonMarkingsMenu(sStorage->displayMonMarkings, 0xb0, 0x10);
-        sStorage->state++;
-        break;
-    case 1:
-        if (!HandleMonMarkingsMenuInput())
-        {
-            FreeMonMarkingsMenu();
-            ClearBottomWindow();
-            SetMonMarkings(sStorage->markMenu.markings);
-            RefreshDisplayMonData();
-            SetPokeStorageTask(Task_PokeStorageMain);
-        }
-        break;
-    }
-}
-
 static void Task_TakeItemForMoving(u8 taskId)
 {
     switch (sStorage->state)
     {
     case 0:
-        if (!ItemIsMail(sStorage->displayMonItemId))
-        {
-            ClearBottomWindow();
-            sStorage->state++;
-        }
-        else
-        {
-            SetPokeStorageTask(Task_PrintCantStoreMail);
-        }
+        ClearBottomWindow();
+        sStorage->state++;
         break;
     case 1:
         StartCursorAnim(CURSOR_ANIM_OPEN);
@@ -3197,15 +3125,8 @@ static void Task_SwitchSelectedItem(u8 taskId)
     switch (sStorage->state)
     {
     case 0:
-        if (!ItemIsMail(sStorage->displayMonItemId))
-        {
-            ClearBottomWindow();
-            sStorage->state++;
-        }
-        else
-        {
-            SetPokeStorageTask(Task_PrintCantStoreMail);
-        }
+        ClearBottomWindow();
+        sStorage->state++;
         break;
     case 1:
         StartCursorAnim(CURSOR_ANIM_OPEN);
@@ -3351,32 +3272,6 @@ static void Task_HandleMovingMonFromParty(u8 taskId)
             UpdatePartySlotColors();
             SetPokeStorageTask(Task_PokeStorageMain);
         }
-        break;
-    }
-}
-
-static void Task_PrintCantStoreMail(u8 taskId)
-{
-    switch (sStorage->state)
-    {
-    case 0:
-        PrintMessage(MSG_CANT_STORE_MAIL);
-        sStorage->state++;
-        break;
-    case 1:
-        if (!IsDma3ManagerBusyWithBgCopy())
-            sStorage->state++;
-        break;
-    case 2:
-        if (JOY_NEW(A_BUTTON | B_BUTTON | DPAD_ANY))
-        {
-            ClearBottomWindow();
-            sStorage->state++;
-        }
-        break;
-    case 3:
-        if (!IsDma3ManagerBusyWithBgCopy())
-            SetPokeStorageTask(Task_PokeStorageMain);
         break;
     }
 }
@@ -6807,22 +6702,6 @@ s16 CompactPartySlots(void)
     return retVal;
 }
 
-static void SetMonMarkings(u8 markings)
-{
-    sStorage->displayMonMarkings = markings;
-    if (sIsMonBeingMoved)
-    {
-        SetMonData(&sStorage->movingMon, MON_DATA_MARKINGS, &markings);
-    }
-    else
-    {
-        if (sCursorArea == CURSOR_AREA_IN_PARTY)
-            SetMonData(&gPlayerParty[sCursorPosition], MON_DATA_MARKINGS, &markings);
-        if (sCursorArea == CURSOR_AREA_IN_BOX)
-            SetCurrentBoxMonData(sCursorPosition, MON_DATA_MARKINGS, &markings);
-    }
-}
-
 static bool8 IsRemovingLastPartyMon(void)
 {
     if (sCursorArea == CURSOR_AREA_IN_PARTY && !sIsMonBeingMoved && CountPartyAliveNonEggMonsExcept(sCursorPosition) == 0)
@@ -6951,7 +6830,6 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             GetMonData(mon, MON_DATA_NICKNAME, sStorage->displayMonName);
             StringGet_Nickname(sStorage->displayMonName);
             sStorage->displayMonLevel = GetMonData(mon, MON_DATA_LEVEL);
-            sStorage->displayMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
             sStorage->displayMonPalette = GetMonFrontSpritePal(mon);
             gender = GetMonGender(mon);
@@ -6976,7 +6854,6 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             GetBoxMonData(boxMon, MON_DATA_NICKNAME, sStorage->displayMonName);
             StringGet_Nickname(sStorage->displayMonName);
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
-            sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
             sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, isShiny, sStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
@@ -7741,7 +7618,6 @@ static bool8 SetMenuTexts_Mon(void)
             SetMenuText(MENU_STORE);
     }
 
-    SetMenuText(MENU_MARK);
     SetMenuText(MENU_RELEASE);
     SetMenuText(MENU_CANCEL);
     return TRUE;
@@ -7763,11 +7639,8 @@ static bool8 SetMenuTexts_Item(void)
         }
         else
         {
-            if (!ItemIsMail(sStorage->displayMonItemId))
-            {
-                SetMenuText(MENU_TAKE);
-                SetMenuText(MENU_BAG);
-            }
+            SetMenuText(MENU_TAKE);
+            SetMenuText(MENU_BAG);
             SetMenuText(MENU_INFO);
         }
     }
@@ -7782,9 +7655,6 @@ static bool8 SetMenuTexts_Item(void)
         }
         else
         {
-            if (ItemIsMail(sStorage->displayMonItemId) == TRUE)
-                return FALSE;
-
             SetMenuText(MENU_SWITCH);
         }
     }
@@ -8015,7 +7885,6 @@ static const u8 *const sMenuTexts[] =
     [MENU_PLACE]      = gPCText_Place,
     [MENU_SUMMARY]    = gPCText_Summary,
     [MENU_RELEASE]    = gPCText_Release,
-    [MENU_MARK]       = gPCText_Mark,
     [MENU_JUMP]       = gPCText_Jump,
     [MENU_WALLPAPER]  = gPCText_Wallpaper,
     [MENU_NAME]       = gPCText_Name,

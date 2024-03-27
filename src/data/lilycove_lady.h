@@ -80,7 +80,6 @@ static const u16 sQuizLadyQuestion5[QUIZ_QUESTION_LEN] =
     EC_WORD_BREAK,
     EC_WORD_QUES,
     EC_WORD_EGG,
-    EC_WORD_MAIL,
     EC_WORD_PHONE
 };
 
@@ -269,9 +268,6 @@ static const u16 sQuizLadyQuizAnswers[] =
 
 static const u16 sQuizLadyPrizes[] =
 {
-    ITEM_GLITTER_MAIL,
-    ITEM_BEAD_MAIL,
-    ITEM_TROPIC_MAIL,
     ITEM_MAX_ETHER,
     ITEM_MAX_ETHER,
     ITEM_MAX_ETHER,

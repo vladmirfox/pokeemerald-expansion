@@ -797,8 +797,6 @@ void ZeroMonData(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_SPEED, &arg);
     SetMonData(mon, MON_DATA_SPATK, &arg);
     SetMonData(mon, MON_DATA_SPDEF, &arg);
-    arg = MAIL_NONE;
-    SetMonData(mon, MON_DATA_MAIL, &arg);
 }
 
 void ZeroPlayerPartyMons(void)
@@ -817,12 +815,9 @@ void ZeroEnemyPartyMons(void)
 
 void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
-    u32 mail;
     ZeroMonData(mon);
     CreateBoxMon(&mon->box, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
     SetMonData(mon, MON_DATA_LEVEL, &level);
-    mail = MAIL_NONE;
-    SetMonData(mon, MON_DATA_MAIL, &mail);
     CalculateMonStats(mon);
 }
 
@@ -1561,8 +1556,6 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     dest->status = GetBoxMonData(&dest->box, MON_DATA_STATUS, NULL);
     dest->hp = 0;
     dest->maxHP = 0;
-    value = MAIL_NONE;
-    SetMonData(dest, MON_DATA_MAIL, &value);
     value = GetBoxMonData(&dest->box, MON_DATA_HP_LOST);
     CalculateMonStats(dest);
     value = GetMonData(dest, MON_DATA_MAX_HP) - value;
@@ -2093,9 +2086,6 @@ u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data)
     case MON_DATA_SPDEF2:
         ret = mon->spDefense;
         break;
-    case MON_DATA_MAIL:
-        ret = mon->mail;
-        break;
     default:
         ret = GetBoxMonData(&mon->box, field, data);
         break;
@@ -2566,9 +2556,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             data[retVal] = EOS;
             break;
         }
-        case MON_DATA_MARKINGS:
-            retVal = boxMon->markings;
-            break;
         case MON_DATA_CHECKSUM:
             retVal = boxMon->checksum;
             break;
@@ -2650,9 +2637,6 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
         break;
     case MON_DATA_SPDEF:
         SET16(mon->spDefense);
-        break;
-    case MON_DATA_MAIL:
-        SET8(mon->mail);
         break;
     case MON_DATA_SPECIES_OR_EGG:
         break;
@@ -2987,9 +2971,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
                 boxMon->otName[i] = data[i];
             break;
         }
-        case MON_DATA_MARKINGS:
-            SET8(boxMon->markings);
-            break;
         case MON_DATA_CHECKSUM:
             SET16(boxMon->checksum);
             break;

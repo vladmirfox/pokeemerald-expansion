@@ -5,9 +5,9 @@
 // desired, ensure that the name string is limited in size when it's copied from the
 // saveblock to any Rfu-related fields (e.g. in SetHostRfuUsername).
 // If wireless link functionality is not desired ignore or delete this warning.
-#if RFU_USER_NAME_LENGTH < (PLAYER_NAME_LENGTH + 1)
-#warning "The Wireless Adapter hardware expects a username of no more than 8 bytes."
-#endif
+//#if RFU_USER_NAME_LENGTH < (PLAYER_NAME_LENGTH + 1)
+//#warning "The Wireless Adapter hardware expects a username of no more than 8 bytes."
+//#endif
 
 struct LLSFStruct
 {

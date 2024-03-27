@@ -5,7 +5,6 @@
 #define EASY_CHAT_TYPE_BATTLE_START            1
 #define EASY_CHAT_TYPE_BATTLE_WON              2
 #define EASY_CHAT_TYPE_BATTLE_LOST             3
-#define EASY_CHAT_TYPE_MAIL                    4
 #define EASY_CHAT_TYPE_INTERVIEW               5
 #define EASY_CHAT_TYPE_BARD_SONG               6
 #define EASY_CHAT_TYPE_FAN_CLUB                7
@@ -835,7 +834,6 @@
 #define EC_WORD_PARTY         ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 33)
 #define EC_WORD_STUDY         ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 34)
 #define EC_WORD_MACHINE       ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 35)
-#define EC_WORD_MAIL          ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 36)
 #define EC_WORD_MESSAGE       ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 37)
 #define EC_WORD_PROMISE       ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 38)
 #define EC_WORD_DREAM         ((EC_GROUP_LIFESTYLE << EC_MASK_BITS) | 39)

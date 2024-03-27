@@ -267,22 +267,6 @@
 #define ITEM_ARMORITE_ORE 197
 #define ITEM_DYNITE_ORE 198
 
-// Mail
-#define ITEM_ORANGE_MAIL 199
-#define ITEM_HARBOR_MAIL 200
-#define ITEM_GLITTER_MAIL 201
-#define ITEM_MECH_MAIL 202
-#define ITEM_WOOD_MAIL 203
-#define ITEM_WAVE_MAIL 204
-#define ITEM_BEAD_MAIL 205
-#define ITEM_SHADOW_MAIL 206
-#define ITEM_TROPIC_MAIL 207
-#define ITEM_DREAM_MAIL 208
-#define ITEM_FAB_MAIL 209
-#define ITEM_RETRO_MAIL 210
-
-#define FIRST_MAIL_INDEX ITEM_ORANGE_MAIL
-
 // Evolution Items
 #define ITEM_FIRE_STONE 211
 #define ITEM_WATER_STONE 212
@@ -1029,8 +1013,6 @@
 #define NUM_ROUTE_114_MAN_BERRIES_SKIPPED (FIRST_ROUTE_114_MAN_BERRY - FIRST_BERRY_INDEX)
 
 #define ITEM_TO_BERRY(itemId)(((itemId) - FIRST_BERRY_INDEX) + 1)
-#define ITEM_TO_MAIL(itemId)((itemId) - FIRST_MAIL_INDEX)
-#define MAIL_NONE 0xFF
 #define ITEM_TO_MULCH(itemId)(((itemId) - ITEM_GROWTH_MULCH) + 1)
 
 #define NUM_TECHNICAL_MACHINES 100
@@ -1060,7 +1042,6 @@
 #define EXP_30000 5
 
 // Item type IDs (used to determine the exit callback)
-#define ITEM_USE_MAIL             0
 #define ITEM_USE_PARTY_MENU       1
 #define ITEM_USE_FIELD            2
 #define ITEM_USE_PBLOCK_CASE      3

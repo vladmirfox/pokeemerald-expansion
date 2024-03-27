@@ -17,6 +17,7 @@
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
+#include "menu.h"
 #include "palette.h"
 #include "party_menu.h"
 #include "pokeball.h"
@@ -1757,7 +1758,7 @@ static void MoveSelectionDisplayMoveTypeSingles(u32 battler)
 
 static void MoveSelectionDisplayMoveType(u32 battlerAtk, u32 battlerDef)
 {
-    u8 *txtPtr;
+    //u8 *txtPtr;
     u8 type;
     u32 speciesId;
     struct Pokemon *mon;
@@ -1765,10 +1766,10 @@ static void MoveSelectionDisplayMoveType(u32 battlerAtk, u32 battlerDef)
     u16 move = moveInfo->moves[gMoveSelectionCursor[battlerAtk]];
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-    txtPtr = gDisplayedStringBattle;
-    *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
-    *(txtPtr)++ = EXT_CTRL_CODE_FONT;
-    *(txtPtr)++ = FONT_NORMAL;
+    //txtPtr = gDisplayedStringBattle;
+    //*(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
+    //*(txtPtr)++ = EXT_CTRL_CODE_FONT;
+    //*(txtPtr)++ = FONT_NORMAL;
 
     if (move == MOVE_IVY_CUDGEL)
     {
@@ -1792,17 +1793,21 @@ static void MoveSelectionDisplayMoveType(u32 battlerAtk, u32 battlerDef)
     else
         type = gMovesInfo[move].type;
 
-    StringCopy(txtPtr, gTypesInfo[type].name);
-    BattlePutTextOnWindow(gDisplayedStringBattle, TypeColor(move, type, battlerAtk, battlerDef));
+    //StringCopy(txtPtr, gTypesInfo[type].name);
+    //BattlePutTextOnWindow(gDisplayedStringBattle, TypeColor(move, type, battlerAtk, battlerDef));
 
-    u8 icon = GetBattleMoveCategory(move);
-    LoadBgTiles(0, gCategoryIconsElements1_Gfx + 0x80 * icon, 16*8, 0x40);
-    LoadPalette(gCategoryIconsElements1_Pal, 10 * 0x10, 0x20);
-    CopyToBgTilemapBufferRect_ChangePalette(0, gCategoryIconsElements1_Gfx + 0x80 * icon, 0, 0, 16, 16, 0x10);
-    CopyBgTilemapBufferToVram(0);
-    //BlitBitmapToWindow(B_WIN_MOVE_CAT, gCategoryIconsElements1_Gfx + 0x80 * icon, 0, 0, 16, 16);
-    //PutWindowTilemap(B_WIN_MOVE_CAT);
-    //CopyWindowToVram(B_WIN_MOVE_CAT, COPYWIN_FULL);
+    u8 icon = GetBattleMoveCategory(move) + MENU_TYPE_CAT_PHYSICAL;
+    ListMenuLoadStdPalAt(BG_PLTT_ID(10), icon);
+    FillWindowPixelRect(B_WIN_MOVE_CAT, PIXEL_FILL(0x1), 2, 0, 30, 16);
+    BlitMenuInfoIcon(B_WIN_MOVE_CAT, icon, 10, 3);
+    PutWindowTilemap(B_WIN_MOVE_CAT);
+    CopyWindowToVram(B_WIN_MOVE_CAT, COPYWIN_FULL);
+
+    ListMenuLoadStdPalAt(BG_PLTT_ID(9), type);
+    FillWindowPixelBuffer(B_WIN_MOVE_TYPE, PIXEL_FILL(0x1));
+    BlitMenuInfoIcon(B_WIN_MOVE_TYPE, type, 2, 3);
+    PutWindowTilemap(B_WIN_MOVE_TYPE);
+    CopyWindowToVram(B_WIN_MOVE_TYPE, COPYWIN_FULL);
 }
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)

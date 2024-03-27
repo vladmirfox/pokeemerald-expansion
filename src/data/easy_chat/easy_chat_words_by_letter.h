@@ -973,7 +973,6 @@ const u16 gEasyChatWordsByLetter_M[] = {
     EC_POKEMON(MAGNETON),
     EC_POKEMON_NATIONAL(MAGNETON),
     EC_MOVE2(MAGNITUDE),
-    EC_WORD_MAIL,
     EC_WORD_MAKE,
     EC_WORD_MAKING,
     EC_POKEMON(MAKUHITA),
@@ -2308,7 +2307,6 @@ const u16 gEasyChatWordsByLetter_UnusedJapaneseMu[] = {
 
 const u16 gEasyChatWordsByLetter_UnusedJapaneseMe[] = {
     EC_MOVE2(CALM_MIND),
-    EC_WORD_MAIL,
     EC_MOVE2(MEGA_DRAIN),
     EC_MOVE2(MEGA_KICK),
     EC_MOVE2(MEGA_PUNCH),

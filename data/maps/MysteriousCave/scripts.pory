@@ -101,8 +101,8 @@ script(local) RandomArceusStarter {
     if (!flag(FLAG_STARTER_GIVEN)) {
         call(RandomArceus)
 
-        givemon(SPECIES_SILVALLY, 1, ITEM_LEGEND_PLATE,,,,,,,,,,,,,,,,,,,,,,, VAR_TEMP_2)
-        msgbox("{PLAYER} recieved an Arceus holding a plate!")
+        givemon(SPECIES_ARCEUS, 1, ITEM_LEGEND_PLATE,,,,,,,,,,,,,,,,,,,,,,, VAR_TEMP_2)
+        msgbox(format("{PLAYER} recieved an Arceus holding a plate!"))
         bufferspeciesname(STR_VAR_1, SPECIES_ARCEUS)
         msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
         
