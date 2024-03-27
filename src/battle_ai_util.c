@@ -1121,7 +1121,7 @@ bool32 AI_IsBattlerGrounded(u32 battlerId)
 
     if (holdEffect == HOLD_EFFECT_IRON_BALL)
         return TRUE;
-    else if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    else if (gFieldStatuses & STATUS_FIELD_GRAVITY || gDisableStructs[battlerId].magnetRiseTimer != 0)
         return TRUE;
     else if (gStatuses3[battlerId] & STATUS3_ROOTED)
         return TRUE;
@@ -3785,4 +3785,32 @@ void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
         ADJUST_SCORE_PTR(DECENT_EFFECT);
     if (gStatuses3[battlerDef] & STATUS3_LEECHSEED)
         ADJUST_SCORE_PTR(-2);
+}
+
+void AdjustSubstituteScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
+{
+    if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE
+     || AI_DATA->abilities[battlerDef] == ABILITY_INFILTRATOR
+     || AI_DATA->hpPercents[battlerAtk] <= 25
+     || HasSubstituteIgnoringMove(battlerDef))
+    {
+        ADJUST_SCORE_PTR(BAD_MOVE);
+        return;
+    }
+
+    ADJUST_SCORE_PTR(GOOD_EFFECT);
+    if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
+    if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
+        ADJUST_SCORE_PTR(DECENT_EFFECT);
+    if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
+     || HasMoveEffect(battlerDef, EFFECT_TOXIC)
+     || HasMoveEffect(battlerDef, EFFECT_POISON)
+     || HasMoveEffect(battlerDef, EFFECT_PARALYZE)
+     || HasMoveEffect(battlerDef, EFFECT_WILL_O_WISP)
+     || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
+     || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
+        ADJUST_SCORE_PTR(GOOD_EFFECT);
+    if (!gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION && AI_DATA->hpPercents[battlerAtk] > 70))
+        ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
