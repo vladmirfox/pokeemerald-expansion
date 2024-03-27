@@ -4514,7 +4514,7 @@
     {
       "id": "LAYOUT_WINDSWEPT_ROUTE",
       "name": "WindsweptRoute_Layout",
-      "width": 60,
+      "width": 65,
       "height": 100,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
@@ -4614,7 +4614,7 @@
     {
       "id": "LAYOUT_WINDY_CAPE",
       "name": "WindyCape_Layout",
-      "width": 60,
+      "width": 80,
       "height": 40,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
