@@ -28,16 +28,21 @@ struct FacilityMon
 {
     u16 species;
     u16 moves[MAX_MON_MOVES];
-    u8 itemTableId;
-    u8 evSpread;
-    u8 nature;
+    u16 itemId;
+    const u8 *evSpread;
+    const u8 *ivs; // if not NULL, overrides default fixedIV values
+    u16 ability;
+    u8 ball;
+    u8 friendship;
+    u8 nature:5;
+    u8 gender:2;
+    u8 isShiny:1;
 };
 
 extern const u8 gTowerMaleFacilityClasses[30];
 extern const u8 gTowerMaleTrainerGfxIds[30];
 extern const u8 gTowerFemaleFacilityClasses[20];
 extern const u8 gTowerFemaleTrainerGfxIds[20];
-extern const u16 gBattleFrontierHeldItems[];
 extern const struct FacilityMon gBattleFrontierMons[];
 extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
 extern const struct FacilityMon gSlateportBattleTentMons[];
@@ -84,5 +89,6 @@ s32 GetHighestLevelInPlayerParty(void);
 u8 FacilityClassToGraphicsId(u8 facilityClass);
 bool32 ValidateBattleTowerRecord(u8 recordId); // unused
 void TrySetLinkBattleTowerEnemyPartyLevel(void);
+void CreateFacilityMon(const struct FacilityMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst);
 
 #endif //GUARD_BATTLE_TOWER_H
