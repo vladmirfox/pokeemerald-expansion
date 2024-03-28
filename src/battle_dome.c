@@ -107,7 +107,7 @@ enum {
 
 static u8 GetDomeTrainerMonIvs(u16);
 static void SwapDomeTrainers(int, int, u16 *);
-static void CalcDomeMonStats(const struct FacilityMon *fmon, int level, u8 ivs, int *stats);
+static void CalcDomeMonStats(const struct TrainerMon *fmon, int level, u8 ivs, int *stats);
 static void CreateDomeOpponentMons(u16);
 static int SelectOpponentMons_Good(u16, bool8);
 static int SelectOpponentMons_Bad(u16, bool8);
@@ -2000,7 +2000,7 @@ static void InitDomeTrainers(void)
                     if (alreadySelectedMonId == monId
                         || species[0] == gFacilityTrainerMons[monId].species
                         || species[1] == gFacilityTrainerMons[monId].species
-                        || gFacilityTrainerMons[alreadySelectedMonId].itemId == gFacilityTrainerMons[monId].itemId)
+                        || gFacilityTrainerMons[alreadySelectedMonId].heldItem == gFacilityTrainerMons[monId].heldItem)
                         break;
                 }
             } while (k != j);
@@ -2132,15 +2132,15 @@ static void InitDomeTrainers(void)
     stats[statIndex] = (u8) ModifyStatByNature(fmon->nature, stats[statIndex], statIndex);        \
 }
 
-static void CalcDomeMonStats(const struct FacilityMon *fmon, int level, u8 ivs, int *stats)
+static void CalcDomeMonStats(const struct TrainerMon *fmon, int level, u8 ivs, int *stats)
 {
     int evs[NUM_STATS];
     int i;
     
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (fmon->evSpread != NULL)
-            evs[i] = fmon->evSpread[i];
+        if (fmon->ev != NULL)
+            evs[i] = fmon->ev[i];
         else
             evs[i] = 0;
     }
@@ -4435,8 +4435,8 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
         {
             for (j = 0; j < NUM_STATS; j++)
             {
-                if (gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].evSpread != NULL)
-                    allocatedArray[j] = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].evSpread[j];
+                if (gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].ev != NULL)
+                    allocatedArray[j] = gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].ev[j];
                 else
                     allocatedArray[j] = 0;
             }
@@ -5761,7 +5761,7 @@ static void InitRandomTourneyTreeResults(void)
                     if (alreadySelectedMonId == monId
                         || species[0] == gFacilityTrainerMons[monId].species
                         || species[1] == gFacilityTrainerMons[monId].species
-                        || gFacilityTrainerMons[alreadySelectedMonId].itemId == gFacilityTrainerMons[monId].itemId)
+                        || gFacilityTrainerMons[alreadySelectedMonId].heldItem == gFacilityTrainerMons[monId].heldItem)
                         break;
                 }
             } while (k != j);

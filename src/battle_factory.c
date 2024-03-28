@@ -362,7 +362,7 @@ static void GenerateOpponentMons(void)
         // Ensure held items don't repeat on the opponent's team
         for (k = firstMonId; k < firstMonId + i; k++)
         {
-            if (heldItems[k] != ITEM_NONE && heldItems[k] == gFacilityTrainerMons[monId].itemId)
+            if (heldItems[k] != ITEM_NONE && heldItems[k] == gFacilityTrainerMons[monId].heldItem)
                 break;
         }
         if (k != firstMonId + i)
@@ -370,7 +370,7 @@ static void GenerateOpponentMons(void)
 
         // Successful selection
         species[i] = gFacilityTrainerMons[monId].species;
-        heldItems[i] = gFacilityTrainerMons[monId].itemId;
+        heldItems[i] = gFacilityTrainerMons[monId].heldItem;
         gFrontierTempParty[i] = monId;
         i++;
     }
@@ -396,7 +396,7 @@ static void SetRentalsToOpponentParty(void)
         gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE].ivs = GetBoxMonData(&gEnemyParty[i].box, MON_DATA_ATK_IV, NULL);
         gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE].personality = GetMonData(&gEnemyParty[i], MON_DATA_PERSONALITY, NULL);
         gSaveBlock2Ptr->frontier.rentalMons[i + FRONTIER_PARTY_SIZE].abilityNum = GetBoxMonData(&gEnemyParty[i].box, MON_DATA_ABILITY_NUM, NULL);
-        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gFacilityTrainerMons[gFrontierTempParty[i]].itemId);
+        SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gFacilityTrainerMons[gFrontierTempParty[i]].heldItem);
     }
 }
 
@@ -531,7 +531,7 @@ static void GenerateInitialRentalMons(void)
         // Cannot have two same held items.
         for (j = firstMonId; j < firstMonId + i; j++)
         {
-            if (heldItems[j] != ITEM_NONE && heldItems[j] == gFacilityTrainerMons[monId].itemId)
+            if (heldItems[j] != ITEM_NONE && heldItems[j] == gFacilityTrainerMons[monId].heldItem)
             {
                 if (gFacilityTrainerMons[monId].species == currSpecies)
                     currSpecies = SPECIES_NONE;
@@ -543,7 +543,7 @@ static void GenerateInitialRentalMons(void)
 
         gSaveBlock2Ptr->frontier.rentalMons[i].monId = monId;
         species[i] = gFacilityTrainerMons[monId].species;
-        heldItems[i] = gFacilityTrainerMons[monId].itemId;
+        heldItems[i] = gFacilityTrainerMons[monId].heldItem;
         monIds[i] = monId;
         i++;
     }
@@ -673,7 +673,7 @@ static void RestorePlayerPartyHeldItems(void)
     {
         SetMonData(&gPlayerParty[i],
                    MON_DATA_HELD_ITEM,
-                   &gFacilityTrainerMons[gSaveBlock2Ptr->frontier.rentalMons[i].monId].itemId);
+                   &gFacilityTrainerMons[gSaveBlock2Ptr->frontier.rentalMons[i].monId].heldItem);
     }
 }
 
@@ -749,14 +749,14 @@ void FillFactoryBrainParty(void)
 
         for (k = 0; k < i; k++)
         {
-            if (heldItems[k] != ITEM_NONE && heldItems[k] == gFacilityTrainerMons[monId].itemId)
+            if (heldItems[k] != ITEM_NONE && heldItems[k] == gFacilityTrainerMons[monId].heldItem)
                 break;
         }
         if (k != i)
             continue;
 
         species[i] = gFacilityTrainerMons[monId].species;
-        heldItems[i] = gFacilityTrainerMons[monId].itemId;
+        heldItems[i] = gFacilityTrainerMons[monId].heldItem;
         CreateFacilityMon(&gFacilityTrainerMons[monId],
                 monLevel, fixedIV, otId, FLAG_FRONTIER_MON_FACTORY,
                 &gEnemyParty[i]);

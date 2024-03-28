@@ -42,7 +42,7 @@
 
 // EWRAM vars.
 EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
-EWRAM_DATA const struct FacilityMon *gFacilityTrainerMons = NULL;
+EWRAM_DATA const struct TrainerMon *gFacilityTrainerMons = NULL;
 
 // IWRAM common
 u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE];
@@ -1560,7 +1560,7 @@ static void FillTentTrainerParty(u8 monsCount)
     FillTentTrainerParty_(gTrainerBattleOpponent_A, 0, monsCount);
 }
 
-void CreateFacilityMon(const struct FacilityMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst)
+void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32 otID, u32 flags, struct Pokemon *dst)
 {
     u8 ball = (fmon->ball == 0xFF) ? Random() % POKEBALL_COUNT : fmon->ball;
     u16 move;
@@ -1592,7 +1592,7 @@ void CreateFacilityMon(const struct FacilityMon *fmon, u16 level, u8 fixedIV, u3
     }
 
     SetMonData(dst, MON_DATA_FRIENDSHIP, &friendship);
-    SetMonData(dst, MON_DATA_HELD_ITEM, &fmon->itemId);
+    SetMonData(dst, MON_DATA_HELD_ITEM, &fmon->heldItem);
     
     // try to set ability. Otherwise, random of non-hidden as per vanilla
     if (fmon->ability != ABILITY_NONE)
@@ -1609,25 +1609,18 @@ void CreateFacilityMon(const struct FacilityMon *fmon, u16 level, u8 fixedIV, u3
         SetMonData(dst, MON_DATA_ABILITY_NUM, &ability);
     }
     
-    if (fmon->evSpread != NULL)
+    if (fmon->ev != NULL)
     {
-        SetMonData(dst, MON_DATA_HP_EV, &(fmon->evSpread[0]));
-        SetMonData(dst, MON_DATA_ATK_EV, &(fmon->evSpread[1]));
-        SetMonData(dst, MON_DATA_DEF_EV, &(fmon->evSpread[2]));
-        SetMonData(dst, MON_DATA_SPATK_EV, &(fmon->evSpread[3]));
-        SetMonData(dst, MON_DATA_SPDEF_EV, &(fmon->evSpread[4]));
-        SetMonData(dst, MON_DATA_SPEED_EV, &(fmon->evSpread[5]));
+        SetMonData(dst, MON_DATA_HP_EV, &(fmon->ev[0]));
+        SetMonData(dst, MON_DATA_ATK_EV, &(fmon->ev[1]));
+        SetMonData(dst, MON_DATA_DEF_EV, &(fmon->ev[2]));
+        SetMonData(dst, MON_DATA_SPATK_EV, &(fmon->ev[3]));
+        SetMonData(dst, MON_DATA_SPDEF_EV, &(fmon->ev[4]));
+        SetMonData(dst, MON_DATA_SPEED_EV, &(fmon->ev[5]));
     }
     
-    if (fmon->ivs != NULL)
-    {
-        SetMonData(dst, MON_DATA_HP_IV, &(fmon->ivs[0]));
-        SetMonData(dst, MON_DATA_ATK_IV, &(fmon->ivs[1]));
-        SetMonData(dst, MON_DATA_DEF_IV, &(fmon->ivs[2]));
-        SetMonData(dst, MON_DATA_SPATK_IV, &(fmon->ivs[3]));
-        SetMonData(dst, MON_DATA_SPDEF_IV, &(fmon->ivs[4]));
-        SetMonData(dst, MON_DATA_SPEED_IV, &(fmon->ivs[5]));
-    }
+    if (fmon->iv)
+        SetMonData(dst, MON_DATA_IVS, &(fmon->iv));
     
     if (fmon->isShiny)
     {
@@ -1719,7 +1712,7 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
         for (j = 0; j < i + firstMonId; j++)
         {
             if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) != ITEM_NONE
-             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) == gFacilityTrainerMons[monId].itemId)
+             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) == gFacilityTrainerMons[monId].heldItem)
                 break;
         }
         if (j != i + firstMonId)
@@ -2313,7 +2306,7 @@ static void LoadMultiPartnerCandidatesData(void)
             while (1)
             {
                 monId = GetRandomFrontierMonFromSet(trainerId);
-                if (j % 2 != 0 && gFacilityTrainerMons[gSaveBlock2Ptr->frontier.trainerIds[r10 - 1]].itemId == gFacilityTrainerMons[monId].itemId)
+                if (j % 2 != 0 && gFacilityTrainerMons[gSaveBlock2Ptr->frontier.trainerIds[r10 - 1]].heldItem == gFacilityTrainerMons[monId].heldItem)
                     continue;
 
                 for (k = 8; k < r10; k++)
@@ -3486,7 +3479,7 @@ static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
         for (j = 0; j < i + firstMonId; j++)
         {
             if (GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) != ITEM_NONE
-             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) == gFacilityTrainerMons[monId].itemId)
+             && GetMonData(&gEnemyParty[j], MON_DATA_HELD_ITEM, NULL) == gFacilityTrainerMons[monId].heldItem)
                 break;
         }
         if (j != i + firstMonId)
