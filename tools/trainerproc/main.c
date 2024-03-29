@@ -1417,6 +1417,9 @@ static const struct {
 {
     { "Calyrex-Ice", "CALYREX_ICE_RIDER" },
     { "Calyrex-Shadow", "CALYREX_SHADOW_RIDER" },
+    { "Tauros-Paldea-Aqua", "TAUROS_PALDEAN_AQUA_BREED" },
+    { "Tauros-Paldea-Blaze", "SPECIES_TAUROS_PALDEAN_BLAZE_BREED" },
+    { "Tauros-Paldea-Combat", "SPECIES_TAUROS_PALDEAN_BLAZE_BREED" },
     { NULL, NULL },
 };
 
