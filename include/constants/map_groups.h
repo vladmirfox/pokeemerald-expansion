@@ -75,6 +75,8 @@
 #define MAP_SUNRISE_VILLAGE_PLAYERS_HOUSE_BEDROOM (66 | (0 << 8))
 #define MAP_SILVERIDGE                            (67 | (0 << 8))
 #define MAP_WINDY_CAPE                            (68 | (0 << 8))
+#define MAP_WHITESLATE_ROUTE                      (69 | (0 << 8))
+#define MAP_YIFU_CITY                             (70 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))

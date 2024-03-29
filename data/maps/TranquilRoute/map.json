@@ -27,6 +27,11 @@
       "map": "MAP_CHII_TOWN",
       "offset": 28,
       "direction": "down"
+    },
+    {
+      "map": "MAP_WHITESLATE_ROUTE",
+      "offset": 44,
+      "direction": "left"
     }
   ],
   "object_events": [

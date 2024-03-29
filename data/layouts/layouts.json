@@ -4640,6 +4640,26 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/Silveridge_EldersHouse/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_EldersHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHITESLATE_ROUTE",
+      "name": "WhiteslateRoute_Layout",
+      "width": 48,
+      "height": 90,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Yifu",
+      "border_filepath": "data/layouts/WhiteslateRoute/border.bin",
+      "blockdata_filepath": "data/layouts/WhiteslateRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_YIFU_CITY",
+      "name": "YifuCity_Layout",
+      "width": 73,
+      "height": 67,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Yifu",
+      "border_filepath": "data/layouts/YifuCity/border.bin",
+      "blockdata_filepath": "data/layouts/YifuCity/map.bin"
     }
   ]
 }

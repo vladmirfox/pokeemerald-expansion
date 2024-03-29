@@ -1134,3 +1134,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Silveridge_SculptorsHouse/scripts.inc"
 
 	.include "data/maps/Silveridge_EldersHouse/scripts.inc"
+
+	.include "data/maps/WhiteslateRoute/scripts.inc"
+
+	.include "data/maps/YifuCity/scripts.inc"
