@@ -1410,9 +1410,29 @@ static bool is_utf8_character(struct String s, int *i, const unsigned char *utf8
     }
 }
 
+static const struct {
+    const char *literal;
+    const char *constant;
+} literal_species[] =
+{
+    { "Calyrex-Ice", "CALYREX_ICE_RIDER" },
+    { "Calyrex-Shadow", "CALYREX_SHADOW_RIDER" },
+    { NULL, NULL },
+};
+
 static void fprint_species(FILE *f, const char *prefix, struct String s, enum Gender *gender)
 {
     if (!is_constant(s, prefix)) fprintf(f, "%s_", prefix);
+
+    for (int i = 0; literal_species[i].literal; i++)
+    {
+        if (is_literal_string(s, literal_species[i].literal))
+        {
+            fprintf(f, "%s", literal_species[i].constant);
+            return;
+        }
+    }
+
     if (s.string_n == 0)
     {
         fprintf(f, "NONE");
