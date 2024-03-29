@@ -515,7 +515,8 @@ static bool match_human_identifier(struct Parser *p, struct Token *t)
     return true;
 }
 
-// Like 'match_human_identifier' but parses ':', for 'Type: Null'.
+// Like 'match_human_identifier' but parses ':', for 'Type: Null', among
+// other exceptions.
 __attribute__((warn_unused_result))
 static bool match_species_identifier(struct Parser *p, struct Token *t)
 {
@@ -534,6 +535,45 @@ static bool match_species_identifier(struct Parser *p, struct Token *t)
             break;
 
         if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9') || c == '_' || c == '-' || c == ' ' || c == ':' || c == '.' || c == '\'' || c >= 0x80)
+            ;
+        else
+            break;
+
+        if (!pop_char(&p_, &c))
+            assert(false);
+
+        if (c != ' ')
+            q = p_;
+    }
+
+    t->end = q.offset;
+    if (t->begin == t->end)
+        return false;
+
+    *p = q;
+    return true;
+}
+
+// Like 'match_human_identifier' but parses '10,000,000 Volt Thunderbolt'
+// among other exceptions.
+__attribute__((warn_unused_result))
+static bool match_move_identifier(struct Parser *p, struct Token *t)
+{
+    assert(p && t);
+    struct Parser p_ = *p, q = *p;
+    unsigned char c;
+
+    t->source = p->source;
+    t->location = p->location;
+    t->begin = p->offset;
+    t->end = p->offset;
+
+    for (;;)
+    {
+        if (!peek_char(&p_, &c))
+            break;
+
+        if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9') || c == '_' || c == '-' || c == ' ' || c == ',')
             ;
         else
             break;
@@ -718,7 +758,7 @@ static bool parse_pokemon_move(struct Parser *p, struct Token *move)
     if (!match_exact(&p_, "-"))
         return false;
     skip_whitespace(&p_);
-    if (!match_human_identifier(&p_, move))
+    if (!match_move_identifier(&p_, move))
         return set_parse_error(p, p_.location, "expected move");
     skip_whitespace(&p_);
     if (!match_eol(&p_))
