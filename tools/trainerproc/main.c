@@ -1504,7 +1504,7 @@ static void fprint_species(FILE *f, const char *prefix, struct String s, enum Ge
                 underscore = true;
             }
         }
-        if (ends_with(s, "-Alola"))
+        if (ends_with(s, "-Alola") || ends_with(s, "-Paldea"))
             fprintf(f, "N");
         else if (ends_with(s, "-Galar"))
             fprintf(f, "IAN");
