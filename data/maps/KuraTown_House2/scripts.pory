@@ -10,7 +10,7 @@ script KuraTown_House2_EventScript_Ashii {
 	// First encounter
 	if (var(VAR_QUEST_TAMA_ASHII_STATE) == 0) {
 		msgbox(format(
-			"*Sigh* Oh, Tama… Why must life be so complicated?"
+			"Sigh… Oh, Tama… Why must life be so complicated?"
 		))
 		closemessage
 		delay(30)

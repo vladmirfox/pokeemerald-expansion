@@ -4630,6 +4630,16 @@
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/Silveridge_SculptorsHouse/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_SculptorsHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVERIDGE_ELDERS_HOUSE",
+      "name": "Silveridge_EldersHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
+      "border_filepath": "data/layouts/Silveridge_EldersHouse/border.bin",
+      "blockdata_filepath": "data/layouts/Silveridge_EldersHouse/map.bin"
     }
   ]
 }

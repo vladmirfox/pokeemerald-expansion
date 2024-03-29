@@ -113,6 +113,13 @@
       "elevation": 0,
       "dest_map": "MAP_SILVERIDGE_SCULPTORS_HOUSE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
