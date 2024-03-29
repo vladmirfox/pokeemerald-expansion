@@ -3497,25 +3497,26 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
             || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_PSN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
-    if (AI_CanPoison(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove) && AI_DATA->hpPercents[battlerDef] > 20)
-    {
-        if (!HasDamagingMove(battlerDef))
-            ADJUST_SCORE_PTR(DECENT_EFFECT);
-
-        if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
-            ADJUST_SCORE_PTR(WEAK_EFFECT);    // stall tactic
-
-        if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
-          || HasMoveEffect(battlerAtk, EFFECT_VENOM_DRENCH)
-          || AI_DATA->abilities[battlerAtk] == ABILITY_MERCILESS)
-            ADJUST_SCORE_PTR(DECENT_EFFECT);
-        else
-            ADJUST_SCORE_PTR(WEAK_EFFECT);
-    }
-    else
+    if (!AI_CanPoison(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove)
+     || AI_DATA->hpPercents[battlerDef] <= 20
+     || AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_GUARD)
     {
         ADJUST_SCORE_PTR(BAD_MOVE);
+        return;
     }
+
+    if (!HasDamagingMove(battlerDef))
+        ADJUST_SCORE_PTR(DECENT_EFFECT);
+
+    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_STALL && HasMoveEffect(battlerAtk, EFFECT_PROTECT))
+        ADJUST_SCORE_PTR(WEAK_EFFECT);    // stall tactic
+
+    if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
+        || HasMoveEffect(battlerAtk, EFFECT_VENOM_DRENCH)
+        || AI_DATA->abilities[battlerAtk] == ABILITY_MERCILESS)
+        ADJUST_SCORE_PTR(DECENT_EFFECT);
+    else
+        ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
 
 void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
@@ -3524,23 +3525,20 @@ void IncreaseBurnScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
             || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_BRN || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_CURE_STATUS)
         return;
 
-    if (AI_CanBurn(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
-    {
-        ADJUST_SCORE_PTR(WEAK_EFFECT); // burning is good
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
-        {
-            if (CanTargetFaintAi(battlerDef, battlerAtk))
-                ADJUST_SCORE_PTR(DECENT_EFFECT); // burning the target to stay alive is cool
-        }
-
-        if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
-          || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN))
-            ADJUST_SCORE_PTR(WEAK_EFFECT);
-    }
-    else
+    if (!AI_CanBurn(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
+     || AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_GUARD)
     {
         ADJUST_SCORE_PTR(BAD_MOVE);
+        return;
     }
+
+    ADJUST_SCORE_PTR(WEAK_EFFECT); // burning is good
+    if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL) && CanTargetFaintAi(battlerDef, battlerAtk)) // Also need to check if move physical
+        ADJUST_SCORE_PTR(DECENT_EFFECT); // burning the target to stay alive is cool
+
+    if (HasMoveEffectANDArg(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN)
+        || HasMoveEffectANDArg(BATTLE_PARTNER(battlerAtk), EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_BURN))
+        ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
 
 void IncreaseParalyzeScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
