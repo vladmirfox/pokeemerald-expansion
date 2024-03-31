@@ -1417,6 +1417,8 @@ static const struct {
 {
     { "Calyrex-Ice", "CALYREX_ICE_RIDER" },
     { "Calyrex-Shadow", "CALYREX_SHADOW_RIDER" },
+    { "Indeedee-F", "INDEEDEE_FEMALE" },
+    { "Meowstic-F", "MEOWSTIC_FEMALE" },
     { "Tauros-Paldea-Aqua", "TAUROS_PALDEAN_AQUA_BREED" },
     { "Tauros-Paldea-Blaze", "SPECIES_TAUROS_PALDEAN_BLAZE_BREED" },
     { "Tauros-Paldea-Combat", "SPECIES_TAUROS_PALDEAN_COMBAT_BREED" },
@@ -1451,6 +1453,36 @@ static void fprint_species(FILE *f, const char *prefix, struct String s, enum Ge
             break;
         case GENDER_FEMALE:
             fprintf(f, "NIDORAN_F");
+            break;
+        }
+        *gender = GENDER_ANY;
+    }
+    else if (is_literal_string(s, "Indeedee"))
+    {
+        switch (*gender)
+        {
+        case GENDER_ANY:
+            break;
+        case GENDER_MALE:
+            fprintf(f, "INDEEDEE_MALE");
+            break;
+        case GENDER_FEMALE:
+            fprintf(f, "INDEEDEE_FEMALE");
+            break;
+        }
+        *gender = GENDER_ANY;
+    }
+    else if (is_literal_string(s, "Meowstic"))
+    {
+        switch (*gender)
+        {
+        case GENDER_ANY:
+            break;
+        case GENDER_MALE:
+            fprintf(f, "MEOWSTIC_MALE");
+            break;
+        case GENDER_FEMALE:
+            fprintf(f, "MEOWSTIC_FEMALE");
             break;
         }
         *gender = GENDER_ANY;
