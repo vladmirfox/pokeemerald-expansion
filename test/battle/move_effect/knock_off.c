@@ -54,9 +54,11 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
 
 SINGLE_BATTLE_TEST("Knock Off deals additional damage to opponents holding an item in Gen 6+", s16 damage)
 {
-    u16 item;
+    u16 item = 0;
+
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_LEFTOVERS; }
+
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(item); };
@@ -78,7 +80,6 @@ SINGLE_BATTLE_TEST("Knock Off deals additional damage to opponents holding an it
 
 SINGLE_BATTLE_TEST("Knock Off does not remove items through Substitute")
 {
-    u16 item;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); };
