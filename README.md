@@ -1,5 +1,7 @@
 # pokeemerald-expansion
 
+### Important: DO NOT use the "Download Zip" option if you wish to use any other feature branch or if you want to update your expansion version. Using this option will not download the commit history required to do either of those things. Please fork the repository instead and clone locally from there.
+
 ## What is pokeemerald-expansion?
 
 pokeemerald-expansion is a decomp hack base project based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. It's recommended that any new projects that plan on using it, to clone this repository instead of pret's vanilla repository, as we regurlarly incorporate pret's documentation changes. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
