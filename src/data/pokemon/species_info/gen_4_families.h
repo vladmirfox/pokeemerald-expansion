@@ -4595,7 +4595,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Uxie,
         .iconPalIndex = 0,
         FOOTPRINT(Uxie)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sUxieLevelUpLearnset,
         .teachableLearnset = sUxieTeachableLearnset,
     },
@@ -4659,7 +4659,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Mesprit,
         .iconPalIndex = 0,
         FOOTPRINT(Mesprit)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sMespritLevelUpLearnset,
         .teachableLearnset = sMespritTeachableLearnset,
     },
@@ -4722,7 +4722,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Azelf,
         .iconPalIndex = 0,
         FOOTPRINT(Azelf)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sAzelfLevelUpLearnset,
         .teachableLearnset = sAzelfTeachableLearnset,
     },
@@ -4785,7 +4785,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Dialga,
         .iconPalIndex = 2,
         FOOTPRINT(Dialga)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4840,7 +4840,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_DialgaOrigin,
         .iconPalIndex = 0,
         FOOTPRINT(Dialga)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4905,7 +4905,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Palkia,
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -4960,7 +4960,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_PalkiaOrigin,
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -5023,7 +5023,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Heatran,
         .iconPalIndex = 0,
         FOOTPRINT(Heatran)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sHeatranLevelUpLearnset,
         .teachableLearnset = sHeatranTeachableLearnset,
     },
@@ -5084,7 +5084,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Regigigas,
         .iconPalIndex = 0,
         FOOTPRINT(Regigigas)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sRegigigasLevelUpLearnset,
         .teachableLearnset = sRegigigasTeachableLearnset,
     },
@@ -5147,7 +5147,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_GiratinaAltered,
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5203,7 +5203,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_GiratinaOrigin,
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5267,7 +5267,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Cresselia,
         .iconPalIndex = 0,
         FOOTPRINT(Cresselia)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sCresseliaLevelUpLearnset,
         .teachableLearnset = sCresseliaTeachableLearnset,
     },

@@ -5903,7 +5903,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Raikou,
         .iconPalIndex = 2,
         FOOTPRINT(Raikou)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sRaikouLevelUpLearnset,
         .teachableLearnset = sRaikouTeachableLearnset,
     },
@@ -5969,7 +5969,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Entei,
         .iconPalIndex = 2,
         FOOTPRINT(Entei)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sEnteiLevelUpLearnset,
         .teachableLearnset = sEnteiTeachableLearnset,
     },
@@ -6035,7 +6035,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Suicune,
         .iconPalIndex = 2,
         FOOTPRINT(Suicune)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sSuicuneLevelUpLearnset,
         .teachableLearnset = sSuicuneTeachableLearnset,
     },
@@ -6324,7 +6324,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Lugia,
         .iconPalIndex = 0,
         FOOTPRINT(Lugia)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
     },
@@ -6388,7 +6388,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_HoOh,
         .iconPalIndex = 1,
         FOOTPRINT(HoOh)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sHoOhLevelUpLearnset,
         .teachableLearnset = sHoOhTeachableLearnset,
     },

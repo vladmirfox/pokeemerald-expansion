@@ -5608,7 +5608,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_ZacianHeroOfManyBattles,
         .iconPalIndex = 2,
         FOOTPRINT(Zacian)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sZacianLevelUpLearnset,
         .teachableLearnset = sZacianTeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
@@ -5663,7 +5663,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_ZacianCrownedSword,
         .iconPalIndex = 2,
         FOOTPRINT(Zacian)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sZacianLevelUpLearnset,
         .teachableLearnset = sZacianTeachableLearnset,
         .formSpeciesIdTable = sZacianFormSpeciesIdTable,
@@ -5720,7 +5720,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_ZamazentaHeroOfManyBattles,
         .iconPalIndex = 2,
         FOOTPRINT(Zamazenta)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sZamazentaLevelUpLearnset,
         .teachableLearnset = sZamazentaTeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
@@ -5775,7 +5775,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_ZamazentaCrownedShield,
         .iconPalIndex = 2,
         FOOTPRINT(Zamazenta)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sZamazentaLevelUpLearnset,
         .teachableLearnset = sZamazentaTeachableLearnset,
         .formSpeciesIdTable = sZamazentaFormSpeciesIdTable,
@@ -5833,7 +5833,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Eternatus,
         .iconPalIndex = 0,
         FOOTPRINT(Eternatus)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sEternatusLevelUpLearnset,
         .teachableLearnset = sEternatusTeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
@@ -5888,7 +5888,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_EternatusEternamax,
         .iconPalIndex = 0,
         FOOTPRINT(Eternatus)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sEternatusLevelUpLearnset,
         .teachableLearnset = sEternatusTeachableLearnset,
         .formSpeciesIdTable = sEternatusFormSpeciesIdTable,
@@ -5943,7 +5943,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Kubfu,
         .iconPalIndex = 1,
         FOOTPRINT(Kubfu)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sKubfuLevelUpLearnset,
         .teachableLearnset = sKubfuTeachableLearnset,
         .evolutions = EVOLUTION({EVO_DARK_SCROLL, 0, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE},
@@ -6000,7 +6000,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Urshifu,
         .iconPalIndex = 2,
         FOOTPRINT(Urshifu)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
         .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
@@ -6056,7 +6056,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_UrshifuSingleStrikeStyleGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Urshifu)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .isGigantamax = TRUE,
         .levelUpLearnset = sUrshifuSingleStrikeStyleLevelUpLearnset,
         .teachableLearnset = sUrshifuSingleStrikeStyleTeachableLearnset,
@@ -6112,7 +6112,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Urshifu,
         .iconPalIndex = 2,
         FOOTPRINT(Urshifu)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
         .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
         .formSpeciesIdTable = sUrshifuFormSpeciesIdTable,
@@ -6168,7 +6168,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_UrshifuRapidStrikeStyleGigantamax,
         .iconPalIndex = 0,
         FOOTPRINT(Urshifu)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .isGigantamax = TRUE,
         .levelUpLearnset = sUrshifuRapidStrikeStyleLevelUpLearnset,
         .teachableLearnset = sUrshifuRapidStrikeStyleTeachableLearnset,
@@ -6337,7 +6337,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Regieleki,
         .iconPalIndex = 0,
         FOOTPRINT(Regieleki)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sRegielekiLevelUpLearnset,
         .teachableLearnset = sRegielekiTeachableLearnset,
     },
@@ -6393,7 +6393,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Regidrago,
         .iconPalIndex = 0,
         FOOTPRINT(Regidrago)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sRegidragoLevelUpLearnset,
         .teachableLearnset = sRegidragoTeachableLearnset,
     },
@@ -6447,7 +6447,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Glastrier,
         .iconPalIndex = 0,
         FOOTPRINT(Glastrier)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sGlastrierLevelUpLearnset,
         .teachableLearnset = sGlastrierTeachableLearnset,
     },
@@ -6502,7 +6502,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Spectrier,
         .iconPalIndex = 0,
         FOOTPRINT(Spectrier)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sSpectrierLevelUpLearnset,
         .teachableLearnset = sSpectrierTeachableLearnset,
     },
@@ -6557,7 +6557,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_Calyrex,
         .iconPalIndex = 0,
         FOOTPRINT(Calyrex)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sCalyrexLevelUpLearnset,
         .teachableLearnset = sCalyrexTeachableLearnset,
         .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,
@@ -6612,7 +6612,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_CalyrexIceRider,
         .iconPalIndex = 0,
         FOOTPRINT(Calyrex)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .levelUpLearnset = sCalyrexIceRiderLevelUpLearnset,
         .teachableLearnset = sCalyrexIceRiderTeachableLearnset,
@@ -6667,7 +6667,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_CalyrexShadowRider,
         .iconPalIndex = 0,
         FOOTPRINT(Calyrex)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .levelUpLearnset = sCalyrexShadowRiderLevelUpLearnset,
         .teachableLearnset = sCalyrexShadowRiderTeachableLearnset,
@@ -6726,7 +6726,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_EnamorusIncarnate,
         .iconPalIndex = 1,
         //FOOTPRINT(EnamorusIncarnate)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sEnamorusLevelUpLearnset,
         .teachableLearnset = sEnamorusTeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,
@@ -6780,7 +6780,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconSprite = gMonIcon_EnamorusTherian,
         .iconPalIndex = 1,
         //FOOTPRINT(Enamorus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sEnamorusLevelUpLearnset,
         .teachableLearnset = sEnamorusTeachableLearnset,
         .formSpeciesIdTable = sEnamorusFormSpeciesIdTable,

@@ -9354,7 +9354,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Cobalion,
         .iconPalIndex = 0,
         FOOTPRINT(Cobalion)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sCobalionLevelUpLearnset,
         .teachableLearnset = sCobalionTeachableLearnset,
     },
@@ -9409,7 +9409,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Terrakion,
         .iconPalIndex = 2,
         FOOTPRINT(Terrakion)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sTerrakionLevelUpLearnset,
         .teachableLearnset = sTerrakionTeachableLearnset,
     },
@@ -9464,7 +9464,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Virizion,
         .iconPalIndex = 1,
         FOOTPRINT(Virizion)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sVirizionLevelUpLearnset,
         .teachableLearnset = sVirizionTeachableLearnset,
     },
@@ -9520,7 +9520,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_TornadusIncarnate,
         .iconPalIndex = 1,
         FOOTPRINT(Tornadus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sTornadusLevelUpLearnset,
         .teachableLearnset = sTornadusTeachableLearnset,
         .formSpeciesIdTable = sTornadusFormSpeciesIdTable,
@@ -9575,7 +9575,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_TornadusTherian,
         .iconPalIndex = 1,
         FOOTPRINT(Tornadus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sTornadusLevelUpLearnset,
         .teachableLearnset = sTornadusTeachableLearnset,
         .formSpeciesIdTable = sTornadusFormSpeciesIdTable,
@@ -9633,7 +9633,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_ThundurusIncarnate,
         .iconPalIndex = 0,
         FOOTPRINT(Thundurus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sThundurusLevelUpLearnset,
         .teachableLearnset = sThundurusTeachableLearnset,
         .formSpeciesIdTable = sThundurusFormSpeciesIdTable,
@@ -9689,7 +9689,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_ThundurusTherian,
         .iconPalIndex = 0,
         FOOTPRINT(Thundurus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sThundurusLevelUpLearnset,
         .teachableLearnset = sThundurusTeachableLearnset,
         .formSpeciesIdTable = sThundurusFormSpeciesIdTable,
@@ -9746,7 +9746,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Reshiram,
         .iconPalIndex = 0,
         FOOTPRINT(Reshiram)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sReshiramLevelUpLearnset,
         .teachableLearnset = sReshiramTeachableLearnset,
     },
@@ -9801,7 +9801,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Zekrom,
         .iconPalIndex = 2,
         FOOTPRINT(Zekrom)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sZekromLevelUpLearnset,
         .teachableLearnset = sZekromTeachableLearnset,
     },
@@ -9857,7 +9857,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_LandorusIncarnate,
         .iconPalIndex = 0,
         FOOTPRINT(Landorus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sLandorusLevelUpLearnset,
         .teachableLearnset = sLandorusTeachableLearnset,
         .formSpeciesIdTable = sLandorusFormSpeciesIdTable,
@@ -9912,7 +9912,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_LandorusTherian,
         .iconPalIndex = 0,
         FOOTPRINT(Landorus)
-        .isLegendary = TRUE,
+        .isSubLegendary = TRUE,
         .levelUpLearnset = sLandorusLevelUpLearnset,
         .teachableLearnset = sLandorusTeachableLearnset,
         .formSpeciesIdTable = sLandorusFormSpeciesIdTable,
@@ -9972,7 +9972,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_Kyurem,
         .iconPalIndex = 0,
         FOOTPRINT(Kyurem)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .levelUpLearnset = sKyuremLevelUpLearnset,
         .teachableLearnset = sKyuremTeachableLearnset,
         .formSpeciesIdTable = sKyuremFormSpeciesIdTable,
@@ -10034,7 +10034,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_KyuremWhite,
         .iconPalIndex = 0,
         FOOTPRINT(Kyurem)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .levelUpLearnset = sKyuremWhiteLevelUpLearnset,
         .teachableLearnset = sKyuremTeachableLearnset,
@@ -10096,7 +10096,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_KyuremBlack,
         .iconPalIndex = 0,
         FOOTPRINT(Kyurem)
-        .isLegendary = TRUE,
+        .isRestrictedLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .levelUpLearnset = sKyuremBlackLevelUpLearnset,
         .teachableLearnset = sKyuremTeachableLearnset,
