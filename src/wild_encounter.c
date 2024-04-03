@@ -67,7 +67,7 @@ EWRAM_DATA static u32 sFeebasRngValue = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 
-EWRAM_DATA u8 gChainFishingStreak = 0;
+EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
 EWRAM_DATA static u16 sLastFishingSpecies = 0;
 
 #include "data/wild_encounters.h"
@@ -882,24 +882,24 @@ static bool32 DoesSpeciesMatchLastFishingSpecies(u32 species)
     return (species == GetLastFishingSpecies());
 }
 
-static u32 GetCurrentFishingStreak(void)
+static u32 GetCurrentChainFishingDexnavStreak(void)
 {
-    return gChainFishingStreak;
+    return gChainFishingDexNavStreak;
 }
 
 static bool32 IsChainFishingStreakAtMax(void)
 {
-    return (GetCurrentFishingStreak() >= CHAIN_FISHING_LENGTH_MAX);
+    return (GetCurrentChainFishingDexnavStreak() >= FISHING_CHAIN_LENGTH_MAX);
 }
 
-static void IncrementChainFishingStreak(void)
+static void IncrementChainFishingDexnavStreak(void)
 {
-    gChainFishingStreak++;
+    gChainFishingDexNavStreak++;
 }
 
-void ResetChainFishingStreak(void)
+void ResetChainFishingDexnavStreak(void)
 {
-    gChainFishingStreak = 0;
+    gChainFishingDexNavStreak = 0;
 }
 
 bool32 IsCurrentEncounterFishing(void)
@@ -914,8 +914,8 @@ static void SetEncounterFishing(void)
 
 u32 CalculateChainFishingShinyRolls(void)
 {
-    DebugPrintf("Added Shiny Rolls %d",(1 + 2 * GetCurrentFishingStreak()));
-    return (1 + (2 * GetCurrentFishingStreak()));
+    DebugPrintf("Added Shiny Rolls %d",(1 + 2 * GetCurrentChainFishingDexnavStreak()));
+    return (1 + (2 * GetCurrentChainFishingDexnavStreak()));
 }
 
 static void SetLastFishingSpecies(u32 species)
@@ -928,7 +928,7 @@ static void HandleChainFishingStreak(u32 species)
     if (!DoesSpeciesMatchLastFishingSpecies(species))
     {
         DebugPrintf("no match");
-        ResetChainFishingStreak();
+        ResetChainFishingDexnavStreak();
         return;
     }
 
@@ -938,8 +938,8 @@ static void HandleChainFishingStreak(u32 species)
         return;
     }
 
-    IncrementChainFishingStreak();
-    DebugPrintf("Fishing Chain %d",GetCurrentFishingStreak());
+    IncrementChainFishingDexnavStreak();
+    DebugPrintf("Fishing Chain %d",GetCurrentChainFishingDexnavStreak());
 }
 
 static void UpdateChainFishingSpeciesAndStreak(u32 species)
