@@ -2119,9 +2119,6 @@ static u32 CalculateFishingBiteOdds(bool32 isStickyHold)
         odds -= FISHING_STICKY_BOOST;
 
     odds -= CalculateFishingProximityBoost(odds);
-
-    DebugPrintf("Must roll above %d to hook a mon",odds);
-
     return odds;
 }
 
@@ -2150,8 +2147,6 @@ static u32 CalculateFishingProximityBoost(u32 odds)
     numQualifyingTile = CountQualifyingTiles(surroundingTile, player, facingDirection, objectEvent, isTileLand);
 
     numQualifyingTile += CountLandTiles(isTileLand);
-
-    DebugPrintf("There are %d blocked sides", numQualifyingTile);
 
     return (numQualifyingTile == 3) ? odds : (numQualifyingTile * FISHING_PROXIMITY_BOOST);
 }
@@ -2187,51 +2182,18 @@ static u32 CountQualifyingTiles(s16 surroundingTile[][AXIS_COUNT], s16 player[],
     return numQualifyingTile;
 }
 
-static void PrintDirection(u32 direction)
-{
-    switch(direction)
-    {
-        case DIR_SOUTH:
-            DebugPrintf("south");
-            break;
-        case DIR_NORTH:
-            DebugPrintf("north");
-            break;
-        case DIR_WEST:
-            DebugPrintf("west");
-            break;
-        case DIR_EAST:
-            DebugPrintf("east");
-            break;
-    }
-}
-
 static bool32 CheckTileQualification(s16 tile[], s16 player[], u32 facingDirection, struct ObjectEvent* objectEvent, bool32 isTileLand[], u32 direction)
 {
     u32 collison = GetCollisionAtCoords(objectEvent, tile[AXIS_X], tile[AXIS_Y], facingDirection);
 
-    //PrintDirection(direction);
-
     if (IsPlayerHere(tile[AXIS_X], tile[AXIS_Y], player[AXIS_X], player[AXIS_Y]))
-    {
-        //DebugPrintf("player is here");
         return FALSE;
-    }
     else if (IsMetatileBlocking(tile[AXIS_X], tile[AXIS_Y], collison))
-    {
-        //DebugPrintf("tile is blocking");
         return TRUE;
-    }
     else if (MetatileBehavior_IsSurfableFishableWater(MapGridGetMetatileBehaviorAt(tile[AXIS_X], tile[AXIS_Y])))
-    {
-        //DebugPrintf("tile is surfable");
         return FALSE;
-    }
     else if (IsMetatileLand(tile[AXIS_X], tile[AXIS_Y], collison))
-    {
-        //DebugPrintf("tile is land");
         isTileLand[direction] = TRUE;
-    }
 
     return FALSE;
 }
