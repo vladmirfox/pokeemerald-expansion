@@ -24,14 +24,15 @@ void PrepareBattlerForTera(u32 battler)
     gBattleStruct->tera.isTerastallized[side] |= gBitTable[index];
     gBattleStruct->tera.alreadyTerastallized[battler] = TRUE;
 
-    // Remove Tera Orb charge.
-#if B_FLAG_TERA_ORB_CHARGE != 0    
-    if (side == B_SIDE_PLAYER
+    // Remove Tera Orb charge.    
+    if (B_FLAG_TERA_ORB_CHARGED != 0
+        && B_FLAG_TERA_ORB_NO_COST != 0
+        && !FlagGet(B_FLAG_TERA_ORB_NO_COST)
+        && side == B_SIDE_PLAYER
         && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !IsPartnerMonFromSameTrainer(battler)))
     {
-        FlagClear(B_FLAG_TERA_ORB_CHARGE);
+        FlagClear(B_FLAG_TERA_ORB_CHARGED);
     }
-#endif
 
     // Show indicator and do palette blend.
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], &party[index], HEALTHBOX_ALL);
@@ -45,11 +46,13 @@ bool32 CanTerastallize(u32 battler)
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Player has Tera Orb and has charge.
-#if B_FLAG_TERA_ORB_CHARGE != 0
-    if ((battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
-        && !(CheckBagHasItem(ITEM_TERA_ORB, 1) && FlagGet(B_FLAG_TERA_ORB_CHARGE)))
-#endif
-        // return FALSE;
+    if (B_FLAG_TERA_ORB_CHARGED != 0
+        && (battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
+        && !(CheckBagHasItem(ITEM_TERA_ORB, 1)
+        && FlagGet(B_FLAG_TERA_ORB_CHARGED)))
+    {
+        return FALSE;
+    }
 
     // Check if Trainer has already Terastallized.
     if (gBattleStruct->tera.alreadyTerastallized[battler])
@@ -85,25 +88,22 @@ u32 GetBattlerTeraType(u32 battler)
 // Returns whether a battler is terastallized.
 bool32 IsTerastallized(u32 battler)
 {
-    u32 side = GetBattlerSide(battler);
-    return gBattleStruct->tera.isTerastallized[side] & gBitTable[gBattlerPartyIndexes[battler]];
+    return gBattleStruct->tera.isTerastallized[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]];
 }
 
 
 // Uses up a type's Stellar boost.
 void ExpendTypeStellarBoost(u32 battler, u32 type)
 {
-    u32 side = GetBattlerSide(battler);
     if (type < 32) // avoid OOB access
-        gBattleStruct->tera.stellarBoostFlags[side] |= gBitTable[type];
+        gBattleStruct->tera.stellarBoostFlags[GetBattlerSide(battler)] |= gBitTable[type];
 }
 
 // Checks whether a type's Stellar boost has been expended.
 bool32 IsTypeStellarBoosted(u32 battler, u32 type)
 {
-    u32 side = GetBattlerSide(battler);
     if (type < 32) // avoid OOB access
-        return !(gBattleStruct->tera.stellarBoostFlags[side] & gBitTable[type]);
+        return !(gBattleStruct->tera.stellarBoostFlags[GetBattlerSide(battler)] & gBitTable[type]);
     else
         return FALSE;
 }
