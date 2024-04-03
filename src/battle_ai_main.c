@@ -394,6 +394,23 @@ static void SetBattlerAiData(u32 battler, struct AiLogicData *aiData)
     aiData->speedStats[battler] = GetBattlerTotalSpeedStatArgs(battler, ability, holdEffect);
 }
 
+static void SetBattlerAiGimmickData(u32 battler, struct AiLogicData *aiData)
+{
+    bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;
+    u16 trainerId = isSecondTrainer ? gTrainerBattleOpponent_B : gTrainerBattleOpponent_A;
+    const struct TrainerMon *party = GetTrainerPartyFromId(trainerId);
+    if (party != NULL)
+    {
+        aiData->shouldDynamax[battler] = CanDynamax(battler) && (party[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]].shouldDynamax);
+        aiData->shouldTerastal[battler] = CanTerastallize(battler) && (party[isSecondTrainer ? gBattlerPartyIndexes[battler] - MULTI_PARTY_SIZE : gBattlerPartyIndexes[battler]].shouldTerastal);
+    }
+    else
+    {
+        aiData->shouldDynamax[battler] = FALSE;
+        aiData->shouldTerastal[battler] = FALSE;
+    }
+}
+
 static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef, u32 move)
 {
     u32 accuracy;
@@ -463,6 +480,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
             continue;
 
         SetBattlerAiData(battlerAtk, aiData);
+        SetBattlerAiGimmickData(battlerAtk, aiData);
         SetBattlerAiMovesData(aiData, battlerAtk, battlersCount);
     }
 }

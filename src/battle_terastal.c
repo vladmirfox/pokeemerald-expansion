@@ -5,6 +5,7 @@
 #include "battle_interface.h"
 #include "battle_terastal.h"
 #include "event_data.h"
+#include "item.h"
 #include "palette.h"
 #include "pokemon.h"
 #include "sprite.h"
