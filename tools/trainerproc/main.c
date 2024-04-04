@@ -1419,6 +1419,7 @@ static const struct {
     { "Calyrex-Shadow", "CALYREX_SHADOW_RIDER" },
     { "Indeedee-F", "INDEEDEE_FEMALE" },
     { "Meowstic-F", "MEOWSTIC_FEMALE" },
+    { "Maushold-Four", "MOUSHOLD_FAMILY_OF_FOUR" },
     { "Tauros-Paldea-Aqua", "TAUROS_PALDEAN_AQUA_BREED" },
     { "Tauros-Paldea-Blaze", "SPECIES_TAUROS_PALDEAN_BLAZE_BREED" },
     { "Tauros-Paldea-Combat", "SPECIES_TAUROS_PALDEAN_COMBAT_BREED" },
