@@ -143,8 +143,6 @@ static u8 Fishing_EndNoMon(struct Task *);
 static void AlignFishingAnimationFrames(void);
 static bool32 DoesFishingMinigameAllowCancel(void);
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
-static bool32 Fishing_CheckForBiteWithStickyHold(void);
-static bool32 Fishing_CheckForBiteNoStickyHold(void);
 static bool32 Fishing_RollForBite(bool32);
 static u32 CalculateFishingBiteOdds(bool32);
 static u32 CalculateFishingProximityBoost(u32 odds);
@@ -1858,7 +1856,7 @@ static bool8 Fishing_ShowDots(struct Task *task)
 
 static bool8 Fishing_CheckForBite(struct Task *task)
 {
-    bool8 bite;
+    bool32 bite, firstMonHasSuctionOrSticky;
 
     AlignFishingAnimationFrames();
     task->tStep++;
@@ -1870,11 +1868,13 @@ static bool8 Fishing_CheckForBite(struct Task *task)
         return TRUE;
     }
 
-    if(Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold())
-        bite = Fishing_CheckForBiteWithStickyHold();
+    firstMonHasSuctionOrSticky = Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold();
+
+    if(firstMonHasSuctionOrSticky)
+        bite = Fishing_RollForBite(firstMonHasSuctionOrSticky);
 
     if (!bite)
-        bite = Fishing_CheckForBiteNoStickyHold();
+        bite = Fishing_RollForBite(FALSE);
 
     if (!bite)
         task->tStep = FISHING_NO_BITE;
@@ -2094,16 +2094,6 @@ static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void)
     ability = GetMonAbility(&gPlayerParty[0]);
 
     return (ability == ABILITY_SUCTION_CUPS || ability == ABILITY_STICKY_HOLD);
-}
-
-static bool32 Fishing_CheckForBiteWithStickyHold(void)
-{
-    return Fishing_RollForBite(TRUE);
-}
-
-static bool32 Fishing_CheckForBiteNoStickyHold(void)
-{
-    return Fishing_RollForBite(FALSE);
 }
 
 static bool32 Fishing_RollForBite(bool32 isStickyHold)
