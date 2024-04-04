@@ -2964,17 +2964,12 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
         while (gBattleStruct->wishPerishSongBattlerId < gBattlersCount)
         {
             battler = gBattleStruct->wishPerishSongBattlerId;
-            if (gAbsentBattlerFlags & gBitTable[battler])
-            {
-                gBattleStruct->wishPerishSongBattlerId++;
-                continue;
-            }
 
             gBattleStruct->wishPerishSongBattlerId++;
-            if (gWishFutureKnock.futureSightCounter[battler] != 0
-             && --gWishFutureKnock.futureSightCounter[battler] == 0
-             && gBattleMons[battler].hp != 0)
+            if (gWishFutureKnock.futureSightCounter[battler] != 0 && --gWishFutureKnock.futureSightCounter[battler] == 0)
             {
+                struct Pokemon *party;
+
                 if (gWishFutureKnock.futureSightMove[battler] == MOVE_FUTURE_SIGHT)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FUTURE_SIGHT;
                 else
@@ -2983,17 +2978,27 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gWishFutureKnock.futureSightMove[battler]);
 
                 gBattlerTarget = battler;
-                gBattlerAttacker = gWishFutureKnock.futureSightAttacker[battler];
+                gBattlerAttacker = gWishFutureKnock.futureSightBattlerIndex[battler];
                 gSpecialStatuses[gBattlerTarget].shellBellDmg = IGNORE_SHELL_BELL;
                 gCurrentMove = gWishFutureKnock.futureSightMove[battler];
-                SetTypeBeforeUsingMove(gCurrentMove, battler);
-                BattleScriptExecute(BattleScript_MonTookFutureAttack);
+
+                party = GetSideParty(GetBattlerSide(gBattlerAttacker));
+                if (&party[gWishFutureKnock.futureSightPartyIndex[gBattlerTarget]] != &party[gBattlerPartyIndexes[gBattlerAttacker]])
+                    gBattleStruct->partyMonFutureSightAttack = TRUE;
+                else
+                    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
+
+                if (gAbsentBattlerFlags & gBitTable[battler])
+                    BattleScriptExecute(BattleScript_FutureAttackFail);
+                else
+                    BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
                 if (gWishFutureKnock.futureSightCounter[battler] == 0
                  && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] == 0)
                 {
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_FUTUREATTACK;
                 }
+
                 return TRUE;
             }
         }
@@ -9783,6 +9788,45 @@ static inline s32 DoMoveDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef,
     s32 dmg;
     u32 userFinalAttack;
     u32 targetFinalDefense;
+
+    if (gBattleStruct->partyMonFutureSightAttack)
+    {
+        struct Pokemon *party = GetSideParty(GetBattlerSide(battlerAtk));
+        struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
+        u32 partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
+        u32 partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
+        gBattleMovePower = gMovesInfo[move].power;
+
+        if (IS_MOVE_PHYSICAL(move))
+            userFinalAttack = GetMonData(partyMon, MON_DATA_ATK, NULL);
+        else
+            userFinalAttack = GetMonData(partyMon, MON_DATA_SPATK, NULL);
+
+        targetFinalDefense = CalcDefenseStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags, ABILITY_NONE, abilityDef, holdEffectDef, weather);
+        dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, partyMonLevel, targetFinalDefense);
+
+        DAMAGE_APPLY_MODIFIER(GetCriticalModifier(isCrit));
+
+        if (randomFactor)
+        {
+            dmg *= 100 - RandomUniform(RNG_DAMAGE_MODIFIER, 0, 15);
+            dmg /= 100;
+        }
+
+        // Same type attack bonus
+        if (gSpeciesInfo[partyMonSpecies].types[0] == moveType || gSpeciesInfo[partyMonSpecies].types[1] == moveType)
+            DAMAGE_APPLY_MODIFIER(UQ_4_12(1.5));
+        else
+            DAMAGE_APPLY_MODIFIER(UQ_4_12(1.0));
+        DAMAGE_APPLY_MODIFIER(typeEffectivenessModifier);
+
+        if (dmg == 0)
+            dmg = 1;
+
+        gBattleStruct->partyMonFutureSightAttack = FALSE;
+
+        return dmg;
+    }
 
     if (fixedBasePower)
         gBattleMovePower = fixedBasePower;

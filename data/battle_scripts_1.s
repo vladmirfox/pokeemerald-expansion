@@ -6631,6 +6631,11 @@ BattleScript_FutureAttackMiss::
 	sethword gMoveResultFlags, 0
 	end2
 
+BattleScript_FutureAttackFail::
+	printstring STRINGID_FUTURESIGHTNOHIT
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
 BattleScript_NoMovesLeft::
 	printselectionstring STRINGID_PKMNHASNOMOVESLEFT
 	endselectionscript
