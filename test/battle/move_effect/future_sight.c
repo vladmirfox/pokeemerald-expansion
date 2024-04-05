@@ -4,9 +4,10 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_SEED_FLARE].power == gMovesInfo[MOVE_FUTURE_SIGHT].power);
+    ASSUME(gMovesInfo[MOVE_SEED_FLARE].category == gMovesInfo[MOVE_FUTURE_SIGHT].category);
 }
 
-SINGLE_BATTLE_TEST("Future Sight uses the Attack stat of the original user without modifiers")
+SINGLE_BATTLE_TEST("Future Sight uses Sp. Atk stat of the original user without modifiers")
 {
     u32 item;
     s16 seedFlareDmg;
@@ -36,7 +37,7 @@ SINGLE_BATTLE_TEST("Future Sight uses the Attack stat of the original user witho
     }
 }
 
-SINGLE_BATTLE_TEST("Future Sight is not boosted by Life Orb is original user is not on the field")
+SINGLE_BATTLE_TEST("Future Sight is not boosted by Life Orb is original user if not on the field")
 {
     s16 seedFlareDmg;
     s16 futureSightDmg;
@@ -63,7 +64,7 @@ SINGLE_BATTLE_TEST("Future Sight is not boosted by Life Orb is original user is 
     }
 }
 
-SINGLE_BATTLE_TEST("Future Sight receives from STAB party mon")
+SINGLE_BATTLE_TEST("Future Sight receives STAB from party mon")
 {
     s16 seedFlareDmg;
     s16 futureSightDmg;
