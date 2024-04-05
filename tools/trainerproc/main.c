@@ -1131,7 +1131,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
 
             // TODO: Continue if a Pokemon starts before the next section.
             // This is difficult to do, because 'Type: Null' is the name
-            // of a species, and so 'X: Y' is be parsed as a Pokemon
+            // of a species, and so 'X: Y' is being parsed as a Pokemon
             // header.
             return false;
         }
