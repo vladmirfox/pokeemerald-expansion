@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Future Sight uses the Attack stat of the original user witho
 
     GIVEN {
         PLAYER(SPECIES_PIKACHU) { Item(item); }
-        PLAYER(SPECIES_RAICHU);
+        PLAYER(SPECIES_RAICHU) { Item(item); }
         OPPONENT(SPECIES_REGICE);
     } WHEN {
         TURN { MOVE(player, MOVE_SEED_FLARE, WITH_RNG(RNG_SECONDARY_EFFECT, FALSE)); }
@@ -31,6 +31,33 @@ SINGLE_BATTLE_TEST("Future Sight uses the Attack stat of the original user witho
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FUTURE_SIGHT, player);
         MESSAGE("Foe Regice took the Future Sight attack!");
         HP_BAR(opponent, captureDamage: &futureSightDmg);
+    } THEN {
+        EXPECT_EQ(seedFlareDmg, futureSightDmg);
+    }
+}
+
+SINGLE_BATTLE_TEST("Future Sight is not boosted by Life Orb is original user is not on the field")
+{
+    s16 seedFlareDmg;
+    s16 futureSightDmg;
+
+    GIVEN {
+        PLAYER(SPECIES_PIKACHU);
+        PLAYER(SPECIES_RAICHU) { Item(ITEM_LIFE_ORB); }
+        OPPONENT(SPECIES_REGICE);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SEED_FLARE, WITH_RNG(RNG_SECONDARY_EFFECT, FALSE)); }
+        TURN { MOVE(player, MOVE_FUTURE_SIGHT); }
+        TURN { SWITCH(player, 1); }
+        TURN { }
+        TURN { }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SEED_FLARE, player);
+        HP_BAR(opponent, captureDamage: &seedFlareDmg);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FUTURE_SIGHT, player);
+        MESSAGE("Foe Regice took the Future Sight attack!");
+        HP_BAR(opponent, captureDamage: &futureSightDmg);
+        NOT MESSAGE("Raichu was hurt by its Life Orb!");
     } THEN {
         EXPECT_EQ(seedFlareDmg, futureSightDmg);
     }

@@ -9822,7 +9822,7 @@ static inline s32 DoMoveDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef,
 
         if (dmg == 0)
             dmg = 1;
-
+        gSpecialStatuses[battlerAtk].preventLifeOrbDamage = TRUE;
         gBattleStruct->partyMonFutureSightAttack = FALSE;
 
         return dmg;
