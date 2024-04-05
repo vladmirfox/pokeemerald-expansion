@@ -68,6 +68,12 @@ Silveridge_EventScript_SculptorsHouseSign::
 	return
 
 
+Silveridge_EventScript_EldersHouseSign::
+# 66 "data/maps/Silveridge/scripts.pory"
+	msgbox Silveridge_EventScript_EldersHouseSign_Text_0, MSGBOX_SIGN
+	return
+
+
 Silveridge_EventScript_LotOfRocks_Text_0:
 # 9 "data/maps/Silveridge/scripts.pory"
 	.string "We don't have a lot of natural\n"
@@ -129,3 +135,7 @@ Silveridge_EventScript_TownSculptureSignTBD_Text_0:
 Silveridge_EventScript_SculptorsHouseSign_Text_0:
 # 62 "data/maps/Silveridge/scripts.pory"
 	.string "The sculptor's atelier$"
+
+Silveridge_EventScript_EldersHouseSign_Text_0:
+# 66 "data/maps/Silveridge/scripts.pory"
+	.string "Elder Iwa's house$"

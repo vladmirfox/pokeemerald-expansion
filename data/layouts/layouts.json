@@ -664,8 +664,8 @@
     {
       "id": "LAYOUT_HOUSE4",
       "name": "House4_Layout",
-      "width": 10,
-      "height": 10,
+      "width": 8,
+      "height": 9,
       "primary_tileset": "gTileset_Building_Generic",
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/House4/border.bin",
@@ -744,10 +744,10 @@
     {
       "id": "LAYOUT_UNUSED_CONTEST_ROOM1",
       "name": "UnusedContestRoom1_Layout",
-      "width": 1,
-      "height": 1,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Contest",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/UnusedContestRoom1/border.bin",
       "blockdata_filepath": "data/layouts/UnusedContestRoom1/map.bin"
     },
@@ -3154,30 +3154,30 @@
     {
       "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP1",
       "name": "AquaHideout_UnusedRubyMap1_Layout",
-      "width": 28,
-      "height": 30,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/map.bin"
     },
     {
       "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2",
       "name": "AquaHideout_UnusedRubyMap2_Layout",
-      "width": 62,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin"
     },
     {
       "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3",
       "name": "AquaHideout_UnusedRubyMap3_Layout",
-      "width": 34,
-      "height": 24,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Facility",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/map.bin"
     },
@@ -4474,8 +4474,8 @@
     {
       "id": "LAYOUT_SAKU_TOWN",
       "name": "SakuTown_Layout",
-      "width": 56,
-      "height": 52,
+      "width": 50,
+      "height": 49,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
       "border_filepath": "data/layouts/SakuTown/border.bin",
@@ -4532,20 +4532,10 @@
       "blockdata_filepath": "data/layouts/SunriseVillage_PlayersHouse_Bedroom/map.bin"
     },
     {
-      "id": "LAYOUT_SAKU_TOWN_HOUSE1",
-      "name": "SakuTown_House1_Layout",
-      "width": 10,
-      "height": 8,
-      "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
-      "border_filepath": "data/layouts/SakuTown_House1/border.bin",
-      "blockdata_filepath": "data/layouts/SakuTown_House1/map.bin"
-    },
-    {
       "id": "LAYOUT_SUNRISE_VILLAGE_ELDERS_HOUSE",
       "name": "SunriseVillage_EldersHouse_Layout",
-      "width": 10,
-      "height": 14,
+      "width": 12,
+      "height": 9,
       "primary_tileset": "gTileset_Building_Generic",
       "secondary_tileset": "gTileset_House",
       "border_filepath": "data/layouts/SunriseVillage_EldersHouse/border.bin",
@@ -4600,16 +4590,6 @@
       "secondary_tileset": "gTileset_Silveridge",
       "border_filepath": "data/layouts/Silveridge/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge/map.bin"
-    },
-    {
-      "id": "LAYOUT_SILVERIDGE_HOUSE1",
-      "name": "Silveridge_House1_Layout",
-      "width": 10,
-      "height": 8,
-      "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
-      "border_filepath": "data/layouts/Silveridge_House1/border.bin",
-      "blockdata_filepath": "data/layouts/Silveridge_House1/map.bin"
     },
     {
       "id": "LAYOUT_WINDY_CAPE",
