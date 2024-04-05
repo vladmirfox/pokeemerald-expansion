@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Protosynthesis after harsh sunl
     }
 }
 
-SINGLE_BATTLE_TEST("Booster Energy activates Protosynthesis and increasaes highest stat")
+SINGLE_BATTLE_TEST("Booster Energy activates Protosynthesis and increases highest stat")
 {
     u32 attack, defense, speed, spAttack, spDefense;
 
@@ -98,7 +98,7 @@ SINGLE_BATTLE_TEST("Booster Energy activates Protosynthesis and increasaes highe
     }
 }
 
-SINGLE_BATTLE_TEST("Booster Energy activates Quark Drive and increasaes highest stat")
+SINGLE_BATTLE_TEST("Booster Energy activates Quark Drive and increases highest stat")
 {
     u32 attack, defense, speed, spAttack, spDefense;
 
@@ -130,7 +130,7 @@ SINGLE_BATTLE_TEST("Booster Energy activates Quark Drive and increasaes highest 
     }
 }
 
-SINGLE_BATTLE_TEST("Booster Energy increasaes special attack by 30% if it is the highest stat", s16 damage)
+SINGLE_BATTLE_TEST("Booster Energy increases special attack by 30% if it is the highest stat", s16 damage)
 {
     u32 species;
     u32 ability;
@@ -156,7 +156,7 @@ SINGLE_BATTLE_TEST("Booster Energy increasaes special attack by 30% if it is the
     }
 }
 
-SINGLE_BATTLE_TEST("Booster Energy increasaes special defense by 30% if it is the highest stat", s16 damage)
+SINGLE_BATTLE_TEST("Booster Energy increases special defense by 30% if it is the highest stat", s16 damage)
 {
     u32 species;
     u32 ability;
@@ -182,7 +182,7 @@ SINGLE_BATTLE_TEST("Booster Energy increasaes special defense by 30% if it is th
     }
 }
 
-SINGLE_BATTLE_TEST("Booster Energy can't be flinged if a Paradox species is involved")
+SINGLE_BATTLE_TEST("Booster Energy can't be flung if a Paradox species is involved")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_IRON_MOTH].isParadoxForm == TRUE);
