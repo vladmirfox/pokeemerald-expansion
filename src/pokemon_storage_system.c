@@ -52,9 +52,14 @@
 
 // PC main menu options
 enum {
+#if OW_PC_MOVE_ORDER >= GEN_4
+    OPTION_MOVE_MONS,
+#endif
     OPTION_WITHDRAW,
     OPTION_DEPOSIT,
+#if OW_PC_MOVE_ORDER < GEN_4
     OPTION_MOVE_MONS,
+#endif
     OPTION_MOVE_ITEMS,
     OPTION_EXIT,
     OPTIONS_COUNT
