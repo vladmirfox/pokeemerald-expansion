@@ -961,8 +961,11 @@
 #define SPECIES_OVERQWIL                                904
 #define SPECIES_ENAMORUS                                SPECIES_ENAMORUS_INCARNATE
 #define SPECIES_ENAMORUS_INCARNATE                      905
+#define SPECIES_KOTORA                                  906
+#define SPECIES_RAITORA                                 907
+#define SPECIES_GAOTORA                                 908
 
-#define FORMS_START SPECIES_ENAMORUS_INCARNATE
+#define FORMS_START SPECIES_GAOTORA
 
 // Megas
 #define SPECIES_VENUSAUR_MEGA                           FORMS_START + 1

@@ -321,6 +321,161 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     /* You may add any custom species below this point based on the following structure: */
 
+    [SPECIES_KOTORA] =
+    {
+        .baseHP        = 45,
+        .baseAttack    = 65,
+        .baseDefense   = 34,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 34,
+        .types = MON_TYPES(TYPE_ELECTRIC),
+        .catchRate = 235,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 53 : 60,
+        .evYield_Attack = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Kotora"),
+        .cryId = CRY_JOLTIK,
+        .natDexNum = NATIONAL_DEX_KOTORA,
+        .categoryName = _("Tiny Tiger"),
+        .height = 5,
+        .weight = 95,
+        .description = COMPOUND_STRING(
+            "TODO EVA\n"
+            "It rapidly contracts and relaxes its\n"
+            "muscles to generate electricity. Its\n"
+            "body shines if endangered. It flees\n"
+            "while the foe is momentarily blinded."),
+        .pokemonScale = 432,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Kotora, 48, 40),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = sAnims_Kotora,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Kotora, 64, 48),
+        .backPicYOffset = 15,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        PALETTES(Kotora),
+        ICON(Kotora, 0),
+        FOOTPRINT(Shinx)
+        FOLLOWER(Kotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Kotora),
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_RAITORA}),
+    },
+
+    [SPECIES_RAITORA] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 85,
+        .baseDefense   = 49,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 49,
+        .types = MON_TYPES(TYPE_ELECTRIC),
+        .catchRate = 120,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 127 : 117,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 100,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Raitora"),
+        .cryId = CRY_LUXIO,
+        .natDexNum = NATIONAL_DEX_RAITORA,
+        .categoryName = _("Static"),
+        .height = 9,
+        .weight = 305,
+        .description = COMPOUND_STRING(
+            "TODO EVA\n"
+            "Strong electricity courses through the\n"
+            "tips of its sharp claws. A light scratch\n"
+            "has enough amperage to cause fainting\n"
+            "in foes."),
+        .pokemonScale = 338,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Raitora, 48, 48),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Raitora,
+        .frontAnimId = ANIM_H_STRETCH,
+        BACK_PIC(Raitora, 64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        PALETTES(Raitora),
+        ICON(Raitora, 0),
+        FOOTPRINT(Luxio)
+        FOLLOWER(Raitora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Raitora),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GAOTORA}),
+    },
+
+    [SPECIES_GAOTORA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 120,
+        .baseDefense   = 79,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 79,
+        .types = MON_TYPES(TYPE_ELECTRIC),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 262,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 235,
+    #else
+        .expYield = 194,
+    #endif
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Gaotora"),
+        .cryId = CRY_LUXRAY,
+        .natDexNum = NATIONAL_DEX_GAOTORA,
+        .categoryName = _("Thunder"),
+        .height = 14,
+        .weight = 420,
+        .description = COMPOUND_STRING(
+            "TODO EVA\n"
+            "It has eyes which can see through\n"
+            "anything. Luxray's ability to see\n"
+            "through objects comes in handy when\n"
+            "it's scouting for danger."),
+        .pokemonScale = 265,
+        .pokemonOffset = 2,
+        .trainerScale = 262,
+        .trainerOffset = 0,
+        FRONT_PIC(Gaotora, 64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_Gaotora,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        BACK_PIC(Gaotora, 64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTES(Gaotora),
+        ICON(Gaotora, 0),
+        FOOTPRINT(Luxray)
+        FOLLOWER(Gaotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
+        LEARNSETS(Gaotora),
+    },
+
     /*
     [SPECIES_NONE] =
     {

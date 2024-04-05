@@ -17089,3 +17089,27 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
     const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+
+    const u32 gMonFrontPic_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/anim_front.4bpp.lz");
+    const u32 gMonBackPic_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/back.4bpp.lz");
+    const u8 gMonIcon_Kotora[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+    const u32 gMonPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/normal.gbapal.lz");
+    const u32 gMonShinyPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/shiny.gbapal.lz");
+
+    const u32 gMonFrontPic_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/anim_front.4bpp.lz");
+    const u32 gMonBackPic_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/back.4bpp.lz");
+    const u8 gMonIcon_Raitora[] = INCBIN_U8("graphics/pokemon/raitora/icon.4bpp");
+    const u32 gMonPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/normal.gbapal.lz");
+    const u32 gMonShinyPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/shiny.gbapal.lz");
+
+    const u32 gMonFrontPic_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/anim_front.4bpp.lz");
+    const u32 gMonBackPic_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/back.4bpp.lz");
+    const u8 gMonIcon_Gaotora[] = INCBIN_U8("graphics/pokemon/gaotora/icon.4bpp");
+    const u32 gMonPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/normal.gbapal.lz");
+    const u32 gMonShinyPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/shiny.gbapal.lz");
+
+    #if OW_FOLLOWERS_ENABLED
+        const u32 gObjectEventPic_Kotora[] = INCBIN_COMP("graphics/pokemon/kotora/follower.4bpp");
+        const u32 gObjectEventPic_Raitora[] = INCBIN_COMP("graphics/pokemon/raitora/follower.4bpp");
+        const u32 gObjectEventPic_Gaotora[] = INCBIN_COMP("graphics/pokemon/gaotora/follower.4bpp");
+    #endif //OW_FOLLOWERS_ENABLED
