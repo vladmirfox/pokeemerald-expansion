@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Booster Energy will activate Quark Drive after Electric Terr
         ABILITY_POPUP(opponent, ABILITY_ELECTRIC_SURGE);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Iron Moth's Booster Energy to activate Quark Drive!");
+            MESSAGE("Iron Moth used its Booster Energy to activate Quark Drive!");
             MESSAGE("Iron Moth's Sp. Atk was heightened!");
         }
         ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
