@@ -84,6 +84,7 @@ enum
     CANCELLER_IMPRISONED,
     CANCELLER_CONFUSED,
     CANCELLER_PARALYSED,
+    CANCELLER_DROWSY,
     CANCELLER_IN_LOVE,
     CANCELLER_BIDE,
     CANCELLER_THAW,
@@ -230,6 +231,7 @@ bool32 MoveHasAdditionalEffectSelfArg(u32 move, u32 moveEffect, u32 argument);
 bool32 MoveHasChargeTurnAdditionalEffect(u32 move);
 
 bool32 CanSleep(u32 battler);
+bool32 CanBeDrowsy(u32 battler);
 bool32 CanBePoisoned(u32 battlerAttacker, u32 battlerTarget);
 bool32 CanBeBurned(u32 battler);
 bool32 CanBeParalyzed(u32 battler);

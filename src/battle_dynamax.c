@@ -896,6 +896,14 @@ void BS_TrySetStatus1(void)
                 effect++;
             }
             break;
+        case STATUS1_DROWSY:
+            if (CanBeDrowsy(gBattlerTarget))
+            {
+                gBattleMons[gBattlerTarget].status1 |= STATUS1_DROWSY;
+                gBattleCommunication[MULTISTRING_CHOOSER] = 6;
+                effect++;
+            }
+            break;
         case STATUS1_SLEEP:
             if (CanSleep(gBattlerTarget))
             {

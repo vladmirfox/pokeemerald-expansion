@@ -504,6 +504,7 @@ BattleScript_AffectionBasedStatusHeal::
 	jumpifstatus BS_ATTACKER, STATUS1_BURN, BattleScript_AffectionBasedStatus_HealBurnString
 	jumpifstatus BS_ATTACKER, STATUS1_FREEZE, BattleScript_AffectionBasedStatus_HealFreezeString
 	jumpifstatus BS_ATTACKER, STATUS1_FROSTBITE, BattleScript_AffectionBasedStatus_HealFrostbiteString
+	jumpifstatus BS_ATTACKER, STATUS1_DROWSY, BattleScript_AffectionBasedStatus_HealDrowsyString
 	end2
 BattleScript_AffectionBasedStatus_HealPoisonString:
 	printstring STRINGID_ATTACKEREXPELLEDTHEPOISON
@@ -522,6 +523,9 @@ BattleScript_AffectionBasedStatus_HealFreezeString:
 	goto BattleScript_AffectionBasedStatusHeal_Continue
 BattleScript_AffectionBasedStatus_HealFrostbiteString:
 	printstring STRINGID_ATTACKERHEALEDITSFROSTBITE
+	goto BattleScript_AffectionBasedStatusHeal_Continue
+BattleScript_AffectionBasedStatus_HealDrowsyString:
+	printstring STRINGID_ATTACKERSHOOKITSELFAWAKE
 BattleScript_AffectionBasedStatusHeal_Continue:
 	waitmessage B_WAIT_TIME_LONG
 	clearstatus BS_ATTACKER
@@ -3049,6 +3053,7 @@ BattleScript_EffectDreamEater::
 	attackcanceler
 	jumpifsubstituteblocks BattleScript_DreamEaterNoEffect
 	jumpifstatus BS_TARGET, STATUS1_SLEEP, BattleScript_DreamEaterWorked
+	jumpifstatus BS_TARGET, STATUS1_DROWSY, BattleScript_DreamEaterWorked
 	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_DreamEaterWorked
 BattleScript_DreamEaterNoEffect:
 	attackstring
@@ -7259,6 +7264,13 @@ BattleScript_MoveUsedIsParalyzed::
 	cancelmultiturnmoves BS_ATTACKER
 	goto BattleScript_MoveEnd
 
+BattleScript_MoveUsedIsDrowsy::
+	printstring STRINGID_PKMNISTOODROWSY
+	waitmessage B_WAIT_TIME_LONG
+	statusanimation BS_ATTACKER
+	cancelmultiturnmoves BS_ATTACKER
+	goto BattleScript_MoveEnd
+
 BattleScript_PowderMoveNoEffect::
 	attackstring
 	ppreduce
@@ -7412,6 +7424,18 @@ BattleScript_TargetBurnHeal::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_TARGET
 	return
+
+BattleScript_TargetFoughtOffDrowsiness::
+	printstring STRINGID_PKMNFOUGHTOFFDROWSINESS
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_TARGET
+	return
+
+BattleScript_MoveEffectDrowsy::
+	statusanimation BS_EFFECT_BATTLER
+	printfromtable gGrewDrowsyStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_UpdateEffectStatusIconRet
 
 BattleScript_MoveEffectSleep::
 	statusanimation BS_EFFECT_BATTLER
@@ -8726,6 +8750,18 @@ BattleScript_BerryCureSlpEnd2::
 BattleScript_BerryCureSlpRet::
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
 	printstring STRINGID_PKMNSITEMWOKEIT
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_SCRIPTING
+	removeitem BS_SCRIPTING
+	return
+
+BattleScript_BerryCureDrsEnd2::
+	call BattleScript_BerryCureDrsRet
+	end2
+
+BattleScript_BerryCureDrsRet::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
+	printstring STRINGID_PKMNSITEMFOUGHTOFFDROWSINESS
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_SCRIPTING
 	removeitem BS_SCRIPTING
