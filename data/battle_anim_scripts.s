@@ -1032,7 +1032,7 @@ gBattleAnims_General::
 	.4byte General_WonderRoom               @ B_ANIM_WONDER_ROOM
 	.4byte General_MagicRoom                @ B_ANIM_MAGIC_ROOM
 	.4byte General_Tailwind                 @ B_ANIM_TAILLWIND
-    .4byte General_Fog                      @ B_ANIM_FOG_CONTINUES
+	.4byte General_Fog                      @ B_ANIM_FOG_CONTINUES
 
 	.align 2
 gBattleAnims_Special::
