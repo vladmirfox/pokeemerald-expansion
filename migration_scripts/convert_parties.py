@@ -28,20 +28,49 @@ moves_definition         = re.compile(r'\.moves = \{([^}]+)\}')
 move_definition          = re.compile(r'MOVE_(\w+)')
 nature_definition        = re.compile(r'\.nature = NATURE_(\w+)')
 
+# NOTE: These are just for aesthetics, the Pokemon would still compile
+# without them.
 species_replacements = {
-    "HO_OH": "Ho-Oh",
-    "PORYGON_Z": "Porygon-Z",
-    "TYPE_NULL": "Type: Null",
-    "JANGMO_O": "Jangmo-o",
-    "HAKAMO_O": "Hakamo-o",
-    "KOMMO_O": "Kommo-o",
-    "WO_CHIEN": "Wo-Chien",
     "CHIEN_PAO": "Chien-Pao",
-    "TING_LU": "Ting-Lu",
     "CHI_YU": "Chi-Yu",
+    "HAKAMO_O": "Hakamo-o",
+    "HO_OH": "Ho-Oh",
+    "JANGMO_O": "Jangmo-o",
+    "KOMMO_O": "Kommo-o",
+    "PORYGON_Z": "Porygon-Z",
+    "ROTOM_": "Rotom-",
+    "TING_LU": "Ting-Lu",
+    "TYPE_NULL": "Type: Null",
+    "WO_CHIEN": "Wo-Chien",
+
     "_ALOLAN": "-Alola",
+    "_AQUA_BREED": "-Aqua",
+    "_BATTLE_BOND": "-Bond",
+    "_BLAZE_BREED": "-Blaze",
+    "_CAP": "",
+    "_CLOAK": "",
+    "_COMBAT_BREED": "-Combat",
+    "_CROWED_SHIELD": "-Crowned",
+    "_CROWED_SWORD": "-Crowned",
+    "_DRIVE": "",
+    "_EAST_SEA": "-East",
+    "_FAMILY_OF_FOUR": "-Four",
+    "_FEMALE": "-F",
+    "_FLOWER": "",
     "_GALARIAN": "-Galar",
+    "_GIGANTAMAX": "-Gmax",
     "_HISUIAN": "-Hisui",
+    "_ICE_RIDER": "-Ice",
+    "_NOICE_FACE": "-Noice",
+    "_ORIGIN": "-Origin",
+    "_ORIGINAL_COLOR": "-Original",
+    "_PALDEAN": "-Paldea",
+    "_PLUMAGE": "",
+    "_POKE_BALL": "-Pokeball",
+    "_SHADOW_RIDER": "-Shadow",
+    "_STRIKE_STYLE": "-Style",
+    "_TOTEM": "-Totem",
+    "_ZEN_MODE": "-Zen",
 }
 
 pokemon_attribute_order = ['Level', 'Ability', 'IVs', 'EVs', 'Happiness', 'Shiny', 'Ball']

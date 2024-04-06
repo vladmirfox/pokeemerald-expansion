@@ -161,6 +161,14 @@ static bool ends_with(struct String s, const char *suffix)
     }
 }
 
+static struct String literal_string(const char *s)
+{
+    return (struct String) {
+        .string = (const unsigned char *)s,
+        .string_n = strlen(s),
+    };
+}
+
 struct Source
 {
     const char *path;
@@ -1000,6 +1008,69 @@ static bool parse_pragma(struct Parser *p, struct Parsed *parsed)
     return true;
 }
 
+// Species that are selected based on the explicit gender.
+// e.g. 'Nidoran (M)' becomes 'Nidoran-M'.
+static const struct {
+    const char *species;
+    const char *male_species;
+    const char *female_species;
+} gendered_species[] = {
+    { "Basculegion", "Basculegion-M", "Basculegion-F" },
+    { "Indeedee", "Indeedee-M", "Indeedee-F" },
+    { "Oinkologne", "Oinkologne-M", "Oinkologne-F" },
+    { "Meowstic", "Meowstic-M", "Meowstic-F" },
+    { "Nidoran", "Nidoran-M", "Nidoran-F" },
+    { NULL, NULL, NULL }
+};
+
+// Items that are selected based on the explicit form.
+// e.g. 'Arceus-Fire' becomes 'Arceus @ Flame Plate'.
+static const struct {
+    const char *form;
+    const char *species;
+    const char *item;
+} itemed_species[] = {
+    { "Arceus-Bug", "Arceus", "Insect Plate" },
+    { "Arceus-Dark", "Arceus", "Dread Plate" },
+    { "Arceus-Dragon", "Arceus", "Draco Plate" },
+    { "Arceus-Electric", "Arceus", "Zap Plate" },
+    { "Arceus-Fairy", "Arceus", "Pixie Plate" },
+    { "Arceus-Fighting", "Arceus", "Fist Plate" },
+    { "Arceus-Fire", "Arceus", "Flame Plate" },
+    { "Arceus-Flying", "Arceus", "Sky Plate" },
+    { "Arceus-Ghost", "Arceus", "Spooky Plate" },
+    { "Arceus-Grass", "Arceus", "Meadow Plate" },
+    { "Arceus-Ground", "Arceus", "Earth Plate" },
+    { "Arceus-Ice", "Arceus", "Icicle Plate" },
+    { "Arceus-Poison", "Arceus", "Toxic Plate" },
+    { "Arceus-Psychic", "Arceus", "Mind Plate" },
+    { "Arceus-Rock", "Arceus", "Stone Plate" },
+    { "Arceus-Steel", "Arceus", "Iron Plate" },
+    { "Arceus-Water", "Arceus", "Splash Plate" },
+    { "Genesect-Burn", "Genesect", "Burn Drive" },
+    { "Genesect-Chill", "Genesect", "Chill Drive" },
+    { "Genesect-Douse", "Genesect", "Douse Drive" },
+    { "Genesect-Shock", "Genesect", "Shock Drive" },
+    { "Silvally-Bug", "Silvally", "Bug Memory" },
+    { "Silvally-Dark", "Silvally", "Dark Memory" },
+    { "Silvally-Dragon", "Silvally", "Dragon Memory" },
+    { "Silvally-Electric", "Silvally", "Electric Memory" },
+    { "Silvally-Fairy", "Silvally", "Fairy Memory" },
+    { "Silvally-Fighting", "Silvally", "Fighting Memory" },
+    { "Silvally-Fire", "Silvally", "Fire Memory" },
+    { "Silvally-Flying", "Silvally", "Flying Memory" },
+    { "Silvally-Ghost", "Silvally", "Ghost Memory" },
+    { "Silvally-Grass", "Silvally", "Grass Memory" },
+    { "Silvally-Ground", "Silvally", "Ground Memory" },
+    { "Silvally-Ice", "Silvally", "Ice Memory" },
+    { "Silvally-Poison", "Silvally", "Poison Memory" },
+    { "Silvally-Psychic", "Silvally", "Psychic Memory" },
+    { "Silvally-Rock", "Silvally", "Rock Memory" },
+    { "Silvally-Steel", "Silvally", "Steel Memory" },
+    { "Silvally-Water", "Silvally", "Water Memory" },
+    { NULL, NULL, NULL }
+};
+
 static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct Trainer *trainer)
 {
     bool any_error = false;
@@ -1143,6 +1214,36 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             any_error = !show_parse_error(p);
         pokemon->item = token_string(&item);
         pokemon->header_line = species.location.line;
+
+        for (int i = 0; gendered_species[i].species; i++)
+        {
+            if (is_literal_string(pokemon->species, gendered_species[i].species))
+            {
+                switch (pokemon->gender)
+                {
+                case GENDER_ANY:
+                    break;
+                case GENDER_MALE:
+                    pokemon->species = literal_string(gendered_species[i].male_species);
+                    break;
+                case GENDER_FEMALE:
+                    pokemon->species = literal_string(gendered_species[i].female_species);
+                    break;
+                }
+                pokemon->gender = GENDER_ANY;
+                break;
+            }
+        }
+
+        for (int i = 0; itemed_species[i].species; i++)
+        {
+            if (is_literal_string(pokemon->species, itemed_species[i].form)
+             && is_empty_string(pokemon->item))
+            {
+                pokemon->species = literal_string(itemed_species[i].species);
+                pokemon->item = literal_string(itemed_species[i].item);
+            }
+        }
 
         // Parse Pokemon attributes.
         while (parse_attribute(p, &key, &value))
@@ -1410,83 +1511,13 @@ static bool is_utf8_character(struct String s, int *i, const unsigned char *utf8
     }
 }
 
-static const struct {
-    const char *literal;
-    const char *constant;
-} literal_species[] =
-{
-    { "Calyrex-Ice", "CALYREX_ICE_RIDER" },
-    { "Calyrex-Shadow", "CALYREX_SHADOW_RIDER" },
-    { "Indeedee-F", "INDEEDEE_FEMALE" },
-    { "Meowstic-F", "MEOWSTIC_FEMALE" },
-    { "Maushold-Four", "MOUSHOLD_FAMILY_OF_FOUR" },
-    { "Tauros-Paldea-Aqua", "TAUROS_PALDEAN_AQUA_BREED" },
-    { "Tauros-Paldea-Blaze", "TAUROS_PALDEAN_BLAZE_BREED" },
-    { "Tauros-Paldea-Combat", "TAUROS_PALDEAN_COMBAT_BREED" },
-    { NULL, NULL },
-};
-
-static void fprint_species(FILE *f, const char *prefix, struct String s, enum Gender *gender)
+static void fprint_species(FILE *f, const char *prefix, struct String s)
 {
     if (!is_constant(s, prefix)) fprintf(f, "%s_", prefix);
-
-    for (int i = 0; literal_species[i].literal; i++)
-    {
-        if (is_literal_string(s, literal_species[i].literal))
-        {
-            fprintf(f, "%s", literal_species[i].constant);
-            return;
-        }
-    }
 
     if (s.string_n == 0)
     {
         fprintf(f, "NONE");
-    }
-    else if (is_literal_string(s, "Nidoran"))
-    {
-        switch (*gender)
-        {
-        case GENDER_ANY:
-            break;
-        case GENDER_MALE:
-            fprintf(f, "NIDORAN_M");
-            break;
-        case GENDER_FEMALE:
-            fprintf(f, "NIDORAN_F");
-            break;
-        }
-        *gender = GENDER_ANY;
-    }
-    else if (is_literal_string(s, "Indeedee"))
-    {
-        switch (*gender)
-        {
-        case GENDER_ANY:
-            break;
-        case GENDER_MALE:
-            fprintf(f, "INDEEDEE_MALE");
-            break;
-        case GENDER_FEMALE:
-            fprintf(f, "INDEEDEE_FEMALE");
-            break;
-        }
-        *gender = GENDER_ANY;
-    }
-    else if (is_literal_string(s, "Meowstic"))
-    {
-        switch (*gender)
-        {
-        case GENDER_ANY:
-            break;
-        case GENDER_MALE:
-            fprintf(f, "MEOWSTIC_MALE");
-            break;
-        case GENDER_FEMALE:
-            fprintf(f, "MEOWSTIC_FEMALE");
-            break;
-        }
-        *gender = GENDER_ANY;
     }
     else
     {
@@ -1511,7 +1542,7 @@ static void fprint_species(FILE *f, const char *prefix, struct String s, enum Ge
                 underscore = false;
                 fputc(c - 'a' + 'A', f);
             }
-            else if (c == '\'')
+            else if (c == '\'' || c == '%')
             {
                 // Do nothing.
             }
@@ -1537,12 +1568,6 @@ static void fprint_species(FILE *f, const char *prefix, struct String s, enum Ge
                 underscore = true;
             }
         }
-        if (ends_with(s, "-Alola") || ends_with(s, "-Paldea"))
-            fprintf(f, "N");
-        else if (ends_with(s, "-Galar"))
-            fprintf(f, "IAN");
-        else if (ends_with(s, "-Hisui"))
-            fprintf(f, "AN");
     }
 }
 
@@ -1680,7 +1705,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
 
             fprintf(f, "#line %d\n", pokemon->header_line);
             fprintf(f, "            .species = ");
-            fprint_species(f, "SPECIES", pokemon->species, &pokemon->gender);
+            fprint_species(f, "SPECIES", pokemon->species);
             fprintf(f, ",\n");
 
             switch (pokemon->gender)
