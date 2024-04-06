@@ -14743,7 +14743,7 @@ bool32 DoesDisguiseBlockMove(u32 battler, u32 move)
 {
     if (!(gBattleMons[battler].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battler].species == SPECIES_MIMIKYU_TOTEM_DISGUISED)
         || gBattleMons[battler].status2 & STATUS2_TRANSFORMED
-        || (!gProtectStructs[gBattlerAttacker].confusionSelfDmg && (IS_MOVE_STATUS(move) || gHitMarker & HITMARKER_PASSIVE_DAMAGE))
+        || (!gProtectStructs[battler].confusionSelfDmg && (IS_MOVE_STATUS(move) || gHitMarker & HITMARKER_PASSIVE_DAMAGE))
         || gHitMarker & HITMARKER_IGNORE_DISGUISE
         || GetBattlerAbility(battler) != ABILITY_DISGUISE)
         return FALSE;
