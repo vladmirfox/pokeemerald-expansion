@@ -2387,7 +2387,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     else if (status & STATUS1_DROWSY)
     {
         statusGfxPtr = GetHealthboxElementGfxPtr(GetStatusIconForBattlerId(HEALTHBOX_GFX_STATUS_DRS_BATTLER0, battlerId));
-        statusPalId = PAL_STATUS_FRZ;
+        statusPalId = PAL_STATUS_SLP;
     }
     else if (status & STATUS1_PSN_ANY)
     {
