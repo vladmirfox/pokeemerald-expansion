@@ -582,7 +582,7 @@
       "blockdata_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLab/map.bin"
     },
     {
-      "id": "LAYOUT_HOUSE1",
+      "id": "LAYOUT_HOUSE_BEIGE_HEARTH",
       "name": "House1_Layout",
       "width": 10,
       "height": 8,
@@ -592,7 +592,7 @@
       "blockdata_filepath": "data/layouts/House1/map.bin"
     },
     {
-      "id": "LAYOUT_HOUSE2",
+      "id": "LAYOUT_HOUSE_GREEN_TABLE",
       "name": "House2_Layout",
       "width": 11,
       "height": 8,
@@ -632,7 +632,7 @@
       "blockdata_filepath": "data/layouts/Mart/map.bin"
     },
     {
-      "id": "LAYOUT_HOUSE3",
+      "id": "LAYOUT_HOUSE_HARDWOOD_HEARTH",
       "name": "House3_Layout",
       "width": 10,
       "height": 8,
@@ -662,7 +662,7 @@
       "blockdata_filepath": "data/layouts/DewfordTown_Hall/map.bin"
     },
     {
-      "id": "LAYOUT_HOUSE4",
+      "id": "LAYOUT_HOUSE_HARDWOOD_TATAMI_ZABUTON",
       "name": "House4_Layout",
       "width": 8,
       "height": 9,
@@ -742,7 +742,7 @@
       "blockdata_filepath": "data/layouts/LilycoveCity_House2/map.bin"
     },
     {
-      "id": "LAYOUT_UNUSED_CONTEST_ROOM1",
+      "id": "LAYOUT_HOUSE_BEIGE_TABLE",
       "name": "UnusedContestRoom1_Layout",
       "width": 10,
       "height": 8,
@@ -3152,7 +3152,7 @@
       "blockdata_filepath": "data/layouts/EverGrandeCity_Hall4/map.bin"
     },
     {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP1",
+      "id": "LAYOUT_HOUSE_GREEN_HEARTH",
       "name": "AquaHideout_UnusedRubyMap1_Layout",
       "width": 10,
       "height": 8,
@@ -3162,7 +3162,7 @@
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/map.bin"
     },
     {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2",
+      "id": "LAYOUT_HOUSE_HARDWOOD2_TABLE",
       "name": "AquaHideout_UnusedRubyMap2_Layout",
       "width": 10,
       "height": 8,
@@ -3172,7 +3172,7 @@
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin"
     },
     {
-      "id": "LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3",
+      "id": "LAYOUT_HOUSE_WHITE_STONE_HEARTH",
       "name": "AquaHideout_UnusedRubyMap3_Layout",
       "width": 10,
       "height": 8,

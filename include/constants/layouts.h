@@ -465,24 +465,24 @@
 #define LAYOUT_MART 63
 
 // Beige carpet, hearth
-#define LAYOUT_HOUSE1 59
+#define LAYOUT_HOUSE_BEIGE_HEARTH 59
 // Beige carpet, table
-#define LAYOUT_UNUSED_CONTEST_ROOM1 75
+#define LAYOUT_HOUSE_BEIGE_TABLE 75
 
 // Green carpet, table
-#define LAYOUT_HOUSE2 60
+#define LAYOUT_HOUSE_GREEN_TABLE 60
 // Green carpet, hearth
-#define LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP1 316
+#define LAYOUT_HOUSE_GREEN_HEARTH 316
 
 // Hardwood floors, hearth
-#define LAYOUT_HOUSE3 64
+#define LAYOUT_HOUSE_HARDWOOD_HEARTH 64
 // Hardwood floors around tatami, zabuton
-#define LAYOUT_HOUSE4 67
+#define LAYOUT_HOUSE_HARDWOOD_TATAMI_ZABUTON 67
 
 // Vanilla hardwood floors, table
-#define LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP2 317
+#define LAYOUT_HOUSE_HARDWOOD2_TABLE 317
 
 // White stone floors, hearth
-#define LAYOUT_AQUA_HIDEOUT_UNUSED_RUBY_MAP3 318
+#define LAYOUT_HOUSE_WHITE_STONE_HEARTH 318
 
 #endif // GUARD_CONSTANTS_LAYOUTS_H
