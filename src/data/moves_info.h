@@ -13687,7 +13687,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Freeze-Dry"),
         .description = COMPOUND_STRING(
             "Super effective on Water-\n"
+        #if B_USE_FROSTBITE == TRUE
+            "types. May cause frostbite."),
+        #else
             "types. May cause freezing."),
+        #endif
         .effect = EFFECT_FREEZE_DRY,
         .power = 70,
         .type = TYPE_ICE,
