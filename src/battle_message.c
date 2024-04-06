@@ -370,6 +370,8 @@ static const u8 sText_HailStopped[] = _("The hail stopped.");
 static const u8 sText_StartedSnow[] = _("It started to snow!");
 static const u8 sText_SnowContinues[] = _("Snow continues to fall.");
 static const u8 sText_SnowStopped[] = _("The snow stopped.");
+static const u8 sText_FogIsDeep[] = _("The fog is deep…");
+static const u8 sText_PkmnBlewAwayFog[] = _("{B_ATK_NAME_WITH_PREFIX} blew away\nthe deep fog!");
 static const u8 sText_FailedToSpitUp[] = _("But it failed to spit up\na thing!");
 static const u8 sText_FailedToSwallow[] = _("But it failed to swallow\na thing!");
 static const u8 sText_WindBecameHeatWave[] = _("The wind turned into a\nHEAT WAVE!");
@@ -1230,6 +1232,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_STARTEDSNOW - BATTLESTRINGS_TABLE_START] = sText_StartedSnow,
     [STRINGID_SNOWCONTINUES -BATTLESTRINGS_TABLE_START] = sText_SnowContinues,
     [STRINGID_SNOWSTOPPED - BATTLESTRINGS_TABLE_START] = sText_SnowStopped,
+    [STRINGID_FOGISDEEP - BATTLESTRINGS_TABLE_START] = sText_FogIsDeep,
+    [STRINGID_PKMNBLEWAWAYFOG - BATTLESTRINGS_TABLE_START] = sText_PkmnBlewAwayFog,
     [STRINGID_FAILEDTOSPITUP - BATTLESTRINGS_TABLE_START] = sText_FailedToSpitUp,
     [STRINGID_FAILEDTOSWALLOW - BATTLESTRINGS_TABLE_START] = sText_FailedToSwallow,
     [STRINGID_WINDBECAMEHEATWAVE - BATTLESTRINGS_TABLE_START] = sText_WindBecameHeatWave,
@@ -1925,10 +1929,10 @@ const u16 gWeatherStartsStringIds[] =
     [WEATHER_RAIN]               = STRINGID_ITISRAINING,
     [WEATHER_SNOW]               = (B_OVERWORLD_SNOW >= GEN_9 ? STRINGID_STARTEDSNOW : STRINGID_STARTEDHAIL),
     [WEATHER_RAIN_THUNDERSTORM]  = STRINGID_ITISRAINING,
-    [WEATHER_FOG_HORIZONTAL]     = STRINGID_ITISRAINING,
+    [WEATHER_FOG_HORIZONTAL]     = (B_OVERWORLD_FOG == GEN_4 ? STRINGID_FOGISDEEP : STRINGID_ITISRAINING),
     [WEATHER_VOLCANIC_ASH]       = STRINGID_ITISRAINING,
     [WEATHER_SANDSTORM]          = STRINGID_SANDSTORMISRAGING,
-    [WEATHER_FOG_DIAGONAL]       = STRINGID_ITISRAINING,
+    [WEATHER_FOG_DIAGONAL]       = (B_OVERWORLD_FOG == GEN_4 ? STRINGID_FOGISDEEP : STRINGID_ITISRAINING),
     [WEATHER_UNDERWATER]         = STRINGID_ITISRAINING,
     [WEATHER_SHADE]              = STRINGID_ITISRAINING,
     [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTSTRONG,
