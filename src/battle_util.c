@@ -2774,10 +2774,15 @@ u8 DoBattlerEndTurnEffects(void)
                     }
                     else
                     {
-                        if (B_SLEEP_TURNS >= GEN_5)
-                            gBattleMons[battler].status1 |= ((Random() % 3) + 2);
+                        if (B_USE_DROWSY)
+                            gBattleMons[battler].status1 |= STATUS1_DROWSY;
                         else
-                            gBattleMons[battler].status1 |= ((Random() % 4) + 3);
+                        {
+                            if (B_SLEEP_TURNS >= GEN_5)
+                                gBattleMons[battler].status1 |= ((Random() % 3) + 2);
+                            else
+                                gBattleMons[battler].status1 |= ((Random() % 4) + 3);
+                        }
 
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                         MarkBattlerForControllerExec(battler);
@@ -9563,6 +9568,9 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
     if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, battlerDef) && IS_MOVE_SPECIAL(move))
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
+
+    if (gBattleMons[battlerDef].status1 & STATUS1_DROWSY)
+        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.66)); //I believe this is correct
 
     return uq4_12_multiply_by_int_half_down(modifier, defStat);
 }

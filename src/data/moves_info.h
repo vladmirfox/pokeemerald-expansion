@@ -1231,7 +1231,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "A soothing song lulls the\n"
             "foe into a deep slumber."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 55,
@@ -1979,7 +1979,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Scatters a powder that may\n"
             "cause the foe to sleep."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 75,
@@ -2359,7 +2359,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "A hypnotizing move that\n"
             "may induce sleep."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 60,
@@ -3493,7 +3493,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Demands a kiss with a scary\n"
             "face that induces sleep."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 75,
@@ -3624,7 +3624,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Scatters a cloud of spores\n"
             "that always induce sleep."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -7778,7 +7778,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Lulls the foe into sleep\n"
             "with a pleasant melody."),
-        .effect = EFFECT_SLEEP,
+        .effect = B_USE_DROWSY == TRUE ? EFFECT_DROWSY : EFFECT_SLEEP,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 55,
@@ -8679,7 +8679,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = STATUS1_SLEEP,
+        .argument = (STATUS1_SLEEP | STATUS1_DROWSY),
         .makesContact = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_REMOVE_STATUS,
@@ -13048,7 +13048,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .argument = STATUS1_SLEEP,
+        .argument = (STATUS1_SLEEP | STATUS1_DROWSY),
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
         .metronomeBanned = TRUE,

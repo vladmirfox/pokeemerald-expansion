@@ -11170,12 +11170,24 @@ static void Cmd_trysetrest(void)
     }
     else
     {
-        if (gBattleMons[gBattlerTarget].status1 & ((u8)(~STATUS1_SLEEP)))
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST_STATUSED;
-        else
-            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST;
+        if (B_USE_DROWSY)
+        {
+            if (gBattleMons[gBattlerTarget].status1 & ((u8)(~STATUS1_DROWSY)))
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST_STATUSED;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST;
 
-        gBattleMons[gBattlerTarget].status1 = STATUS1_SLEEP_TURN(3);
+            gBattleMons[gBattlerTarget].status1 = STATUS1_DROWSY;
+        }
+        else
+        {
+            if (gBattleMons[gBattlerTarget].status1 & ((u8)(~STATUS1_SLEEP)))
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST_STATUSED;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST;
+
+            gBattleMons[gBattlerTarget].status1 = STATUS1_SLEEP_TURN(3);
+        }
         BtlController_EmitSetMonData(gBattlerTarget, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].status1), &gBattleMons[gBattlerTarget].status1);
         MarkBattlerForControllerExec(gBattlerTarget);
         gBattlescriptCurrInstr = cmd->nextInstr;

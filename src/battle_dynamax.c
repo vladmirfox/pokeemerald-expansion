@@ -501,7 +501,7 @@ static u32 GetMaxMoveStatusEffect(u16 move)
         }
         case MAX_EFFECT_EFFECT_SPORE_FOES:
         {
-            static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
+            static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, B_USE_DROWSY == TRUE ? STATUS1_DROWSY : STATUS1_SLEEP};
             return RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
         }
         // Status 2
