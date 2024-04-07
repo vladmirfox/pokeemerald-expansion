@@ -739,6 +739,7 @@ void CB2_InitBattle(void)
     AllocateBattleSpritesData();
     AllocateMonSpritesGfx();
     RecordedBattle_ClearFrontierPassFlag();
+    gBattlescriptCurrInstr = BattleScript_End;
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
@@ -4166,7 +4167,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     }
 
     if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_BEFORE_FIRST_TURN)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
 }
 
 static void HandleEndTurn_ContinueBattle(void)
@@ -4257,17 +4258,17 @@ void BattleTurnPassed(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_ARENA && gBattleStruct->arenaTurnCounter == 0)
         BattleScriptExecute(BattleScript_ArenaTurnBeginning);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_LAST_LOW_HP)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_LAST_HALF_HP)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_FIRST_CRITICAL_HIT)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_FIRST_SUPER_EFFECTIVE_HIT)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_FIRST_STAB_MOVE)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
     else if ((i = ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), TRAINER_SLIDE_PLAYER_MON_UNAFFECTED)))
-        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd2 : BattleScript_TrainerBSlideMsgEnd2);
+        BattleScriptExecute(i == 1 ? BattleScript_TrainerASlideMsgEnd : BattleScript_TrainerBSlideMsgEnd);
 }
 
 u8 IsRunningFromBattleImpossible(u32 battler)
@@ -5333,7 +5334,7 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 gBattleScripting.battler = gBattlerAttacker;
                 gBattleStruct->dynamax.toDynamax &= ~(gBitTable[gBattlerAttacker]);
                 PrepareBattlerForDynamax(gBattlerAttacker);
-                BattleScriptExecute(BattleScript_DynamaxBegins);
+                BattleScriptPushCursorAndCallback(BattleScript_DynamaxBegins);
                 return TRUE;
             }
             // Mega Evo Check
@@ -5344,9 +5345,9 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gBattlerAttacker]);
                 gLastUsedItem = gBattleMons[gBattlerAttacker].item;
                 if (GetBattleFormChangeTargetSpecies(gBattlerAttacker, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
-                    BattleScriptExecute(BattleScript_WishMegaEvolution);
+                    BattleScriptPushCursorAndCallback(BattleScript_WishMegaEvolution);
                 else
-                    BattleScriptExecute(BattleScript_MegaEvolution);
+                    BattleScriptPushCursorAndCallback(BattleScript_MegaEvolution);
                 return TRUE;
             }
             // Ultra Burst Check
@@ -5356,7 +5357,7 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 battler = gBattlerAttacker = order[i];
                 gBattleStruct->burst.toBurst &= ~(gBitTable[battler]);
                 gLastUsedItem = gBattleMons[battler].item;
-                BattleScriptExecute(BattleScript_UltraBurst);
+                BattleScriptPushCursorAndCallback(BattleScript_UltraBurst);
                 return TRUE;
             }
         }
@@ -5388,13 +5389,13 @@ static bool32 TryDoMoveEffectsBeforeMoves(void)
                 switch (gChosenMoveByBattler[gBattlerAttacker])
                 {
                 case MOVE_FOCUS_PUNCH:
-                    BattleScriptExecute(BattleScript_FocusPunchSetUp);
+                    BattleScriptPushCursorAndCallback(BattleScript_FocusPunchSetUp);
                     return TRUE;
                 case MOVE_BEAK_BLAST:
-                    BattleScriptExecute(BattleScript_BeakBlastSetUp);
+                    BattleScriptPushCursorAndCallback(BattleScript_BeakBlastSetUp);
                     return TRUE;
                 case MOVE_SHELL_TRAP:
-                    BattleScriptExecute(BattleScript_ShellTrapSetUp);
+                    BattleScriptPushCursorAndCallback(BattleScript_ShellTrapSetUp);
                     return TRUE;
                 }
             }
