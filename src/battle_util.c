@@ -5575,8 +5575,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_GULP_MISSILE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && IsBattlerAlive(battler))
+             && TARGET_TURN_DAMAGED)
+            //  && IsBattlerAlive(battler))
             {
                 // TODO: Convert this to a proper FORM_CHANGE type.
                 if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GORGING)
@@ -5716,7 +5716,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_GULP_MISSILE:
-            if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
+            if ((gBattleMons[gBattlerAttacker].species == SPECIES_CRAMORANT)
+             && ((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
              && TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT))
             {
                 BattleScriptPushCursor();
