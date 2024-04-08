@@ -858,9 +858,9 @@ if (I_VS_SEEKER_CHARGING != 0)
 	}
 	else
 	{
-    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
-     || gMapHeader.regionMapSectionId != sLastMapSectionId)
-        ShowMapNamePopup();
+		if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
+				|| gMapHeader.regionMapSectionId != sLastMapSectionId)
+			ShowMapNamePopup();
 	}
 }
 
