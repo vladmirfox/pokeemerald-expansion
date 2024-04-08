@@ -2063,28 +2063,20 @@ u8 DoFieldEndTurnEffects(void)
         case ENDTURN_FOG:
             if (gBattleWeather & B_WEATHER_FOG)
             {
-                gBattlescriptCurrInstr = BattleScript_FogContinues;
-                BattleScriptExecute(gBattlescriptCurrInstr);
-                effect++;
-
-                    if (!(gBattleWeather & B_WEATHER_SNOW_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+                if (!(gBattleWeather & B_WEATHER_FOG_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
                 {
-                    gBattleWeather &= ~B_WEATHER_SNOW_TEMPORARY;
-                    gBattlescriptCurrInstr = BattleScript_SandStormHailSnowEnds;
+                    gBattleWeather &= ~B_WEATHER_FOG_TEMPORARY;
+                    gBattlescriptCurrInstr = BattleScript_FogEnded;
                 }
                 else
                 {
-                    gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
+                    gBattlescriptCurrInstr = BattleScript_FogContinues;
                 }
 
-                gBattleScripting.animArg1 = B_ANIM_SNOW_CONTINUES;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SNOW;
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
             gBattleStruct->turnCountersTracker++;
-
-
             break;
         case ENDTURN_DAMAGE_NON_TYPES:
             while (gBattleStruct->turnSideTracker < 2)
