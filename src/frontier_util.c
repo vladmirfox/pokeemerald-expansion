@@ -623,6 +623,20 @@ static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
     [FRONTIER_FACILITY_PYRAMID] = {OBJ_EVENT_GFX_BRANDON, FALSE},
 };
 
+const u16 gFrontierBannedSpecies[] =
+{
+    SPECIES_MEW, SPECIES_MEWTWO,
+    SPECIES_HO_OH, SPECIES_LUGIA, SPECIES_CELEBI,
+    SPECIES_KYOGRE, SPECIES_GROUDON, SPECIES_RAYQUAZA, SPECIES_JIRACHI, SPECIES_DEOXYS,
+    SPECIES_DIALGA, SPECIES_PALKIA, SPECIES_GIRATINA, SPECIES_MANAPHY, SPECIES_PHIONE, SPECIES_DARKRAI, SPECIES_SHAYMIN, SPECIES_ARCEUS,
+    SPECIES_VICTINI, SPECIES_RESHIRAM, SPECIES_ZEKROM, SPECIES_KYUREM, SPECIES_KELDEO, SPECIES_MELOETTA, SPECIES_GENESECT,
+    SPECIES_XERNEAS, SPECIES_YVELTAL, SPECIES_ZYGARDE, SPECIES_DIANCIE, SPECIES_HOOPA, SPECIES_VOLCANION,
+    SPECIES_COSMOG, SPECIES_COSMOEM, SPECIES_SOLGALEO, SPECIES_LUNALA, SPECIES_NECROZMA, SPECIES_MAGEARNA, SPECIES_MARSHADOW, SPECIES_ZERAORA, SPECIES_MELTAN, SPECIES_MELMETAL,
+    SPECIES_ZACIAN, SPECIES_ZAMAZENTA, SPECIES_ETERNATUS, SPECIES_CALYREX, SPECIES_ZARUDE,
+    SPECIES_KORAIDON, SPECIES_MIRAIDON, SPECIES_TERAPAGOS, SPECIES_PECHARUNT,
+    0xFFFF
+};
+
 static const u8 *const sRecordsWindowChallengeTexts[][2] =
 {
     [RANKING_HALL_TOWER_SINGLES] = {gText_BattleTower2,  gText_FacilitySingle},
@@ -2001,26 +2015,17 @@ static void CheckPartyIneligibility(void)
     {
         s32 i;
         s32 caughtBannedMons = 0;
-        u16 species;
-
-        for (i = 0; i <= NATIONAL_DEX_COUNT; i++) // Loop to count the total number of caught banned species
+        s32 species = gFrontierBannedSpecies[0];
+        for (i = 0; species != 0xFFFF; i++, species = gFrontierBannedSpecies[i])
         {
-            species = NationalPokedexNumToSpecies(i);
-            if (gSpeciesInfo[species].isRestrictedLegendary || gSpeciesInfo[species].isMythical)
-            {
-                if (GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
-                    caughtBannedMons++;
-            }
+            if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT)) //TODO: Get rid off this, the next loop, and gFrontierBannedSpecies
+                caughtBannedMons++;
         }
         gStringVar1[0] = EOS;
         gSpecialVar_0x8004 = TRUE;
         count = 0;
-        for (i = 0; i <= NATIONAL_DEX_COUNT; i++) // Loop to actually display the banned species' names (needs total count from the above)
-        {
-            species = NationalPokedexNumToSpecies(i);
-            if (gSpeciesInfo[species].isRestrictedLegendary || gSpeciesInfo[species].isMythical)
-                count = AppendCaughtBannedMonSpeciesName(species, count, caughtBannedMons);
-        }
+        for (i = 0; gFrontierBannedSpecies[i] != 0xFFFF; i++)
+            count = AppendCaughtBannedMonSpeciesName(gFrontierBannedSpecies[i], count, caughtBannedMons);
 
         if (count == 0)
         {
