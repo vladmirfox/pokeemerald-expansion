@@ -2060,14 +2060,31 @@ u8 DoFieldEndTurnEffects(void)
             }
             gBattleStruct->turnCountersTracker++;
             break;
-        case ENDTURN_FOG: // Fog cannot be ended, unless Defog is used
+        case ENDTURN_FOG:
             if (gBattleWeather & B_WEATHER_FOG)
             {
                 gBattlescriptCurrInstr = BattleScript_FogContinues;
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
+
+                    if (!(gBattleWeather & B_WEATHER_SNOW_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+                {
+                    gBattleWeather &= ~B_WEATHER_SNOW_TEMPORARY;
+                    gBattlescriptCurrInstr = BattleScript_SandStormHailSnowEnds;
+                }
+                else
+                {
+                    gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
+                }
+
+                gBattleScripting.animArg1 = B_ANIM_SNOW_CONTINUES;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SNOW;
+                BattleScriptExecute(gBattlescriptCurrInstr);
+                effect++;
             }
             gBattleStruct->turnCountersTracker++;
+
+
             break;
         case ENDTURN_DAMAGE_NON_TYPES:
             while (gBattleStruct->turnSideTracker < 2)
