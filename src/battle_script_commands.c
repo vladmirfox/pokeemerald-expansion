@@ -1705,7 +1705,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         calc = (calc * 90) / 100;
 
     if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG)
-		calc = (calc * 60) / 100; // modified by 3/5
+        calc = (calc * 60) / 100; // modified by 3/5
 
     return calc;
 }
@@ -8397,7 +8397,7 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
         {
             gBattleWeather &= ~B_WEATHER_FOG;
             BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_FogEnded;
+            gBattlescriptCurrInstr = BattleScript_FogEnded_Ret;
             return TRUE;
         }
         if (B_DEFOG_CLEARS_TERRAIN >= GEN_8 && (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))

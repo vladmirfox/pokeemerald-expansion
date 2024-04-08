@@ -5956,10 +5956,14 @@ BattleScript_FogContinues::
 	call BattleScript_ActivateWeatherAbilities
 	end2
 
-BattleScript_FogEnded::
-	printstring STRINGID_PKMNBLEWAWAYFOG
+BattleScript_FogEnded_Ret::
+	printstring STRINGID_FOGLIFTED
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_ActivateWeatherAbilities
+	return
+
+BattleScript_FogEnded::
+	call BattleScript_FogEnded_Ret
 	end2
 
 BattleScript_OverworldStatusStarts::
