@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("Future Sight will miss timing if target faints before it is 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEMENTO, opponent);
         MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Future Sight did not hit because the target is fainted.");
         MESSAGE("2 sent out Wynaut!");
+        NOT MESSAGE("Foe Wynaut took the Future Sight attack!");
     }
 }

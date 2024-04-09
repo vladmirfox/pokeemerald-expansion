@@ -2966,7 +2966,10 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
             battler = gBattleStruct->wishPerishSongBattlerId;
 
             gBattleStruct->wishPerishSongBattlerId++;
-            if (gWishFutureKnock.futureSightCounter[battler] != 0 && --gWishFutureKnock.futureSightCounter[battler] == 0)
+
+            if (gWishFutureKnock.futureSightCounter[battler] != 0
+             && --gWishFutureKnock.futureSightCounter[battler] == 0
+             && !(gAbsentBattlerFlags & gBitTable[battler]))
             {
                 struct Pokemon *party;
 
@@ -2986,10 +2989,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
                 if (&party[gWishFutureKnock.futureSightPartyIndex[gBattlerTarget]] == &party[gBattlerPartyIndexes[gBattlerAttacker]])
                     SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
 
-                if (gAbsentBattlerFlags & gBitTable[battler])
-                    BattleScriptExecute(BattleScript_FutureAttackFail);
-                else
-                    BattleScriptExecute(BattleScript_MonTookFutureAttack);
+                BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
                 if (gWishFutureKnock.futureSightCounter[battler] == 0
                  && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] == 0)
@@ -9836,18 +9836,23 @@ static inline s32 DoMoveDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32
                             updateFlags, typeEffectivenessModifier, weather, holdEffectAtk, holdEffectDef, abilityAtk, abilityDef);
 }
 
-static inline s32 DoFutureSightAttackDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
-                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather,
-                            u32 holdEffectDef, u32 abilityDef)
+static inline s32 DoFutureSightAttackDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
+                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather)
 {
     s32 dmg;
-    u32 userFinalAttack;
-    u32 targetFinalDefense;
+    u32 holdEffectDef, abilityDef;
+    u32 userFinalAttack, targetFinalDefense;
+    u32 partyMonLevel, partyMonSpecies;
+
+    if (typeEffectivenessModifier == UQ_4_12(0.0))
+        return 0;
 
     struct Pokemon *party = GetSideParty(GetBattlerSide(battlerAtk));
     struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
-    u32 partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
-    u32 partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
+    holdEffectDef = GetBattlerHoldEffect(battlerDef, TRUE);
+    abilityDef = GetBattlerAbility(battlerDef);
+    partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
+    partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
     gBattleMovePower = gMovesInfo[move].power;
 
     if (IS_MOVE_PHYSICAL(move))
@@ -9880,22 +9885,6 @@ static inline s32 DoFutureSightAttackDamageCalcVars(u32 move, u32 battlerAtk, u3
 
     return dmg;
 }
-
-static inline s32 DoFutureSightAttackDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
-                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather)
-{
-    u32 holdEffectDef, abilityDef;
-
-    if (typeEffectivenessModifier == UQ_4_12(0.0))
-        return 0;
-
-    holdEffectDef = GetBattlerHoldEffect(battlerDef, TRUE);
-    abilityDef = GetBattlerAbility(battlerDef);
-
-    return DoFutureSightAttackDamageCalcVars(move, battlerAtk, battlerDef, moveType, isCrit, randomFactor,
-                            updateFlags, typeEffectivenessModifier, weather, holdEffectDef, abilityDef);
-}
-
 
 #undef DAMAGE_APPLY_MODIFIER
 
