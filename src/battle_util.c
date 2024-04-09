@@ -9836,23 +9836,18 @@ static inline s32 DoMoveDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32
                             updateFlags, typeEffectivenessModifier, weather, holdEffectAtk, holdEffectDef, abilityAtk, abilityDef);
 }
 
-static inline s32 DoFutureSightAttackDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
-                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather)
+static inline s32 DoFutureSightAttackDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
+                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather,
+                            u32 holdEffectDef, u32 abilityDef)
 {
     s32 dmg;
-    u32 holdEffectDef, abilityDef;
-    u32 userFinalAttack, targetFinalDefense;
-    u32 partyMonLevel, partyMonSpecies;
-
-    if (typeEffectivenessModifier == UQ_4_12(0.0))
-        return 0;
+    u32 userFinalAttack;
+    u32 targetFinalDefense;
 
     struct Pokemon *party = GetSideParty(GetBattlerSide(battlerAtk));
     struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
-    holdEffectDef = GetBattlerHoldEffect(battlerDef, TRUE);
-    abilityDef = GetBattlerAbility(battlerDef);
-    partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
-    partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
+    u32 partyMonLevel = GetMonData(partyMon, MON_DATA_LEVEL, NULL);
+    u32 partyMonSpecies = GetMonData(partyMon, MON_DATA_SPECIES, NULL);
     gBattleMovePower = gMovesInfo[move].power;
 
     if (IS_MOVE_PHYSICAL(move))
@@ -9884,6 +9879,21 @@ static inline s32 DoFutureSightAttackDamageCalc(u32 move, u32 battlerAtk, u32 ba
     gSpecialStatuses[battlerAtk].preventLifeOrbDamage = TRUE;
 
     return dmg;
+}
+
+static inline s32 DoFutureSightAttackDamageCalc(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType,
+                            bool32 isCrit, bool32 randomFactor, bool32 updateFlags, uq4_12_t typeEffectivenessModifier, u32 weather)
+{
+    u32 holdEffectDef, abilityDef;
+
+    if (typeEffectivenessModifier == UQ_4_12(0.0))
+        return 0;
+
+    holdEffectDef = GetBattlerHoldEffect(battlerDef, TRUE);
+    abilityDef = GetBattlerAbility(battlerDef);
+
+    return DoFutureSightAttackDamageCalcVars(move, battlerAtk, battlerDef, moveType, isCrit, randomFactor,
+                            updateFlags, typeEffectivenessModifier, weather, holdEffectDef, abilityDef);
 }
 
 #undef DAMAGE_APPLY_MODIFIER
