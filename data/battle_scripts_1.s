@@ -7055,11 +7055,7 @@ BattleScript_CudChewActivates::
 	pause B_WAIT_TIME_SHORTEST
 	call BattleScript_AbilityPopUp
 	setbyte sBERRY_OVERRIDE, 1 @ override the requirements for eating berries
-	consumeberry BS_TARGET, FALSE
-	orword gHitMarker, HITMARKER_IGNORE_BIDE | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
-	healthbarupdate BS_ATTACKER
-	datahpupdate BS_ATTACKER
-	setbyte sBERRY_OVERRIDE, 0
+	consumeberry BS_SCRIPTING, FALSE
 	end3
 
 BattleScript_TargetFormChangeNoPopup:
