@@ -7056,6 +7056,7 @@ BattleScript_CudChewActivates::
 	call BattleScript_AbilityPopUp
 	setbyte sBERRY_OVERRIDE, 1 @ override the requirements for eating berries
 	consumeberry BS_SCRIPTING, FALSE
+	setbyte sBERRY_OVERRIDE, 0
 	end3
 
 BattleScript_TargetFormChangeNoPopup:
