@@ -5,6 +5,11 @@ static const u16 sVenusaurFormSpeciesIdTable[] = {
     SPECIES_VENUSAUR_GIGANTAMAX,
     FORM_SPECIES_END,
 };
+static const u16 sVenusaurRegionalFormSpeciesIdTable[] = {
+    SPECIES_VENUSAUR_REGIONAL,
+    SPECIES_VENUSAUR_MEGA_REGIONAL,
+    FORM_SPECIES_END,
+};
 #endif //P_FAMILY_BULBASAUR
 
 #if P_FAMILY_CHARMANDER
@@ -15,6 +20,11 @@ static const u16 sCharizardFormSpeciesIdTable[] = {
     SPECIES_CHARIZARD_GIGANTAMAX,
     FORM_SPECIES_END,
 };
+static const u16 sCharizardRegionalFormSpeciesIdTable[] = {
+    SPECIES_CHARIZARD,
+    SPECIES_CHARIZARD_MEGA_REGIONAL,
+    FORM_SPECIES_END,
+};
 #endif //P_FAMILY_CHARMANDER
 
 #if P_FAMILY_SQUIRTLE
@@ -22,6 +32,11 @@ static const u16 sBlastoiseFormSpeciesIdTable[] = {
     SPECIES_BLASTOISE,
     SPECIES_BLASTOISE_MEGA,
     SPECIES_BLASTOISE_GIGANTAMAX,
+    FORM_SPECIES_END,
+};
+static const u16 sBlastoiseRegionalFormSpeciesIdTable[] = {
+    SPECIES_BLASTOISE,
+    SPECIES_BLASTOISE_MEGA_REGIONAL,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_SQUIRTLE

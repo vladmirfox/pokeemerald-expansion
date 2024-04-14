@@ -13054,3 +13054,119 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
     const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
 
+// Begin Magiya Custom Additions
+#if P_FAMILY_BULBASAUR
+    const u32 gMonFrontPic_Bulbasaur_Regional[] = INCBIN_U32("graphics/pokemon/bulbasaur/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Bulbasaur_Regional[] = INCBIN_U32("graphics/pokemon/bulbasaur/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Bulbasaur_Regional[] = INCBIN_U32("graphics/pokemon/bulbasaur/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Bulbasaur_Regional[] = INCBIN_U32("graphics/pokemon/bulbasaur/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Bulbasaur_Regional[] = INCBIN_U8("graphics/pokemon/bulbasaur/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Bulbasaur_Regional[] = INCBIN_U8("graphics/pokemon/bulbasaur/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Ivysaur_Regional[] = INCBIN_U32("graphics/pokemon/ivysaur/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Ivysaur_Regional[] = INCBIN_U32("graphics/pokemon/ivysaur/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Ivysaur_Regional[] = INCBIN_U32("graphics/pokemon/ivysaur/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Ivysaur_Regional[] = INCBIN_U32("graphics/pokemon/ivysaur/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Ivysaur_Regional[] = INCBIN_U8("graphics/pokemon/ivysaur/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Ivysaur_Regional[] = INCBIN_U8("graphics/pokemon/ivysaur/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Venusaur_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Venusaur_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Venusaur_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Venusaur_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Venusaur_Regional[] = INCBIN_U8("graphics/pokemon/venusaur/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Venusaur_Regional[] = INCBIN_U8("graphics/pokemon/venusaur/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_VenusaurF_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/anim_frontf.4bpp.lz");
+    const u32 gMonBackPic_VenusaurF_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/backf.4bpp.lz");
+
+#if P_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_VenusaurMega_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/mega/front.4bpp.lz");
+    const u32 gMonPalette_VenusaurMega_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/mega/normal.gbapal.lz");
+    const u32 gMonBackPic_VenusaurMega_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/mega/back.4bpp.lz");
+    const u32 gMonShinyPalette_VenusaurMega_Regional[] = INCBIN_U32("graphics/pokemon/venusaur/regional/mega/shiny.gbapal.lz");
+    const u8 gMonIcon_VenusaurMega_Regional[] = INCBIN_U8("graphics/pokemon/venusaur/regional/mega/icon.4bpp");
+#endif //P_MEGA_EVOLUTIONS
+#endif //P_FAMILY_BULBASAUR
+
+#if P_FAMILY_CHARMANDER
+    const u32 gMonFrontPic_Charmander_Regional[] = INCBIN_U32("graphics/pokemon/charmander/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Charmander_Regional[] = INCBIN_U32("graphics/pokemon/charmander/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Charmander_Regional[] = INCBIN_U32("graphics/pokemon/charmander/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Charmander_Regional[] = INCBIN_U32("graphics/pokemon/charmander/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Charmander_Regional[] = INCBIN_U8("graphics/pokemon/charmander/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Charmander_Regional[] = INCBIN_U8("graphics/pokemon/charmander/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Charmeleon_Regional[] = INCBIN_U32("graphics/pokemon/charmeleon/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Charmeleon_Regional[] = INCBIN_U32("graphics/pokemon/charmeleon/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Charmeleon_Regional[] = INCBIN_U32("graphics/pokemon/charmeleon/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Charmeleon_Regional[] = INCBIN_U32("graphics/pokemon/charmeleon/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Charmeleon_Regional[] = INCBIN_U8("graphics/pokemon/charmeleon/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Charmeleon_Regional[] = INCBIN_U8("graphics/pokemon/charmeleon/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Charizard_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Charizard_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Charizard_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Charizard_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Charizard_Regional[] = INCBIN_U8("graphics/pokemon/charizard/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Charizard_Regional[] = INCBIN_U8("graphics/pokemon/charizard/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+#if P_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_CharizardMega_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/mega/front.4bpp.lz");
+    const u32 gMonPalette_CharizardMega_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/mega/normal.gbapal.lz");
+    const u32 gMonBackPic_CharizardMega_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/mega/back.4bpp.lz");
+    const u32 gMonShinyPalette_CharizardMega_Regional[] = INCBIN_U32("graphics/pokemon/charizard/regional/mega/shiny.gbapal.lz");
+    const u8 gMonIcon_CharizardMega_Regional[] = INCBIN_U8("graphics/pokemon/charizard/regional/mega/icon.4bpp");
+#endif //P_MEGA_EVOLUTIONS
+#endif //P_FAMILY_CHARMANDER
+
+#if P_FAMILY_SQUIRTLE
+    const u32 gMonFrontPic_Squirtle_Regional[] = INCBIN_U32("graphics/pokemon/squirtle/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Squirtle_Regional[] = INCBIN_U32("graphics/pokemon/squirtle/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Squirtle_Regional[] = INCBIN_U32("graphics/pokemon/squirtle/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Squirtle_Regional[] = INCBIN_U32("graphics/pokemon/squirtle/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Squirtle_Regional[] = INCBIN_U8("graphics/pokemon/squirtle/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Squirtle_Regional[] = INCBIN_U8("graphics/pokemon/squirtle/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Wartortle_Regional[] = INCBIN_U32("graphics/pokemon/wartortle/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Wartortle_Regional[] = INCBIN_U32("graphics/pokemon/wartortle/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Wartortle_Regional[] = INCBIN_U32("graphics/pokemon/wartortle/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Wartortle_Regional[] = INCBIN_U32("graphics/pokemon/wartortle/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Wartortle_Regional[] = INCBIN_U8("graphics/pokemon/wartortle/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Wartortle_Regional[] = INCBIN_U8("graphics/pokemon/wartortle/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_Blastoise_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/anim_front.4bpp.lz");
+    const u32 gMonPalette_Blastoise_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/normal.gbapal.lz");
+    const u32 gMonBackPic_Blastoise_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/back.4bpp.lz");
+    const u32 gMonShinyPalette_Blastoise_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/shiny.gbapal.lz");
+    const u8 gMonIcon_Blastoise_Regional[] = INCBIN_U8("graphics/pokemon/blastoise/regional/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_Blastoise_Regional[] = INCBIN_U8("graphics/pokemon/blastoise/regional/footprint.1bpp");
+#endif //P_FOOTPRINTS
+
+#if P_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_BlastoiseMega_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/mega/front.4bpp.lz");
+    const u32 gMonPalette_BlastoiseMega_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/mega/normal.gbapal.lz");
+    const u32 gMonBackPic_BlastoiseMega_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/mega/back.4bpp.lz");
+    const u32 gMonShinyPalette_BlastoiseMega_Regional[] = INCBIN_U32("graphics/pokemon/blastoise/regional/mega/shiny.gbapal.lz");
+    const u8 gMonIcon_BlastoiseMega_Regional[] = INCBIN_U8("graphics/pokemon/blastoise/regional/mega/icon.4bpp");
+#endif //P_MEGA_EVOLUTIONS
+#endif //P_FAMILY_SQUIRTLE
+
+// End Magiya Custom Additions
