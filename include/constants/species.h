@@ -1630,7 +1630,6 @@
 #define SPECIES_MIMIKYU_TOTEM_BUSTED                    1523
 
 // Begin Magiya Custom Additions
-
 #define SPECIES_BULBASAUR_REGIONAL                      SPECIES_MIMIKYU_TOTEM_BUSTED + 1
 #define SPECIES_IVYSAUR_REGIONAL                        SPECIES_MIMIKYU_TOTEM_BUSTED + 2
 #define SPECIES_VENUSAUR_REGIONAL                       SPECIES_MIMIKYU_TOTEM_BUSTED + 3
@@ -1647,11 +1646,9 @@
 #define SPECIES_EXPLOUD_DAY                             SPECIES_MIMIKYU_TOTEM_BUSTED + 14
 #define SPECIES_EXPLOUD_NIGHT                           SPECIES_MIMIKYU_TOTEM_BUSTED + 15
 #define SPECIES_BOARMET                                 SPECIES_MIMIKYU_TOTEM_BUSTED + 16
-
-#define SPECIES_MAGIYAS                                 SPECIES_MIMIKYU_TOTEM_BUSTED + 1
 // End Magiya Custom Additions
 
-#define SPECIES_EGG                                     SPECIES_MAGIYAS
+#define SPECIES_EGG                                     SPECIES_BOARMET + 1
 
 #define NUM_SPECIES                                     SPECIES_EGG
 
