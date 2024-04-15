@@ -2171,7 +2171,7 @@ static const u16 sTerapagosFormSpeciesIdTable[] = {
     SPECIES_TERAPAGOS_TERASTAL,
 #if P_TERA_FORMS    
     SPECIES_TERAPAGOS_STELLAR,
-    FORM_SPECIES_END,
 #endif
+    FORM_SPECIES_END,
 };
 #endif //P_FAMILY_TERAPAGOS
