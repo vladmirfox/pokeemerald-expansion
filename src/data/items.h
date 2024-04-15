@@ -5365,8 +5365,9 @@ const struct Item gItemsInfo[] =
             "power of Normal\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_NORMAL,
     },
 
@@ -5381,8 +5382,9 @@ const struct Item gItemsInfo[] =
             "power of Fire\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_FIRE,
     },
 
@@ -5397,8 +5399,9 @@ const struct Item gItemsInfo[] =
             "power of Water\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_WATER,
     },
 
@@ -5413,8 +5416,9 @@ const struct Item gItemsInfo[] =
             "power of Electric\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_ELECTRIC,
     },
 
@@ -5429,8 +5433,9 @@ const struct Item gItemsInfo[] =
             "power of Grass\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_GRASS,
     },
 
@@ -5445,8 +5450,9 @@ const struct Item gItemsInfo[] =
             "power of Ice\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_ICE,
     },
 
@@ -5461,8 +5467,9 @@ const struct Item gItemsInfo[] =
             "power of Fighting\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_FIGHTING,
     },
 
@@ -5477,8 +5484,9 @@ const struct Item gItemsInfo[] =
             "power of Poison\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_POISON,
     },
 
@@ -5493,8 +5501,9 @@ const struct Item gItemsInfo[] =
             "power of Ground\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_GROUND,
     },
 
@@ -5509,8 +5518,9 @@ const struct Item gItemsInfo[] =
             "power of Flying\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_FLYING,
     },
 
@@ -5525,8 +5535,9 @@ const struct Item gItemsInfo[] =
             "power of Psychic\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_PSYCHIC,
     },
 
@@ -5541,8 +5552,9 @@ const struct Item gItemsInfo[] =
             "power of Bug\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_BUG,
     },
 
@@ -5557,8 +5569,9 @@ const struct Item gItemsInfo[] =
             "power of Rock\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_ROCK,
     },
 
@@ -5573,8 +5586,9 @@ const struct Item gItemsInfo[] =
             "power of Ghost\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_GHOST,
     },
 
@@ -5589,8 +5603,9 @@ const struct Item gItemsInfo[] =
             "power of Dragon\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_DRAGON,
     },
 
@@ -5605,8 +5620,9 @@ const struct Item gItemsInfo[] =
             "power of Dark\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_DARK,
     },
 
@@ -5621,8 +5637,9 @@ const struct Item gItemsInfo[] =
             "power of Steel\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_STEEL,
     },
 
@@ -5637,8 +5654,9 @@ const struct Item gItemsInfo[] =
             "power of Fairy\n"
             "Type moves."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .secondaryId = TYPE_FAIRY,
     },
 
@@ -7017,8 +7035,9 @@ const struct Item gItemsInfo[] =
             "inflicts a burn on\n"
             "holder in battle."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .flingPower = 30,
     },
 
@@ -7032,8 +7051,9 @@ const struct Item gItemsInfo[] =
             "badly poisons the\n"
             "holder in battle."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
         .flingPower = 30,
     },
 
