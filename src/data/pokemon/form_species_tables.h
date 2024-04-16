@@ -1910,3 +1910,15 @@ static const u16 sTerapagosFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_TERAPAGOS
+
+
+// Begin Magiya Custom Additions
+#if P_FAMILY_WHISMUR
+static const u16 sExploudFormSpeciesIdTable[] = {
+    SPECIES_EXPLOUD,
+    SPECIES_EXPLOUD_DAY,
+    SPECIES_EXPLOUD_NIGHT,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_WHISMUR
+// End Magiya Custom Additions

@@ -13169,4 +13169,19 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SQUIRTLE
 
+#if P_FAMILY_WHISMUR
+    // Day
+    const u32 gMonFrontPic_ExploudDay[] = INCBIN_U32("graphics/pokemon/exploud/day/anim_front.4bpp.lz");
+    const u32 gMonPalette_ExploudDay[] = INCBIN_U32("graphics/pokemon/exploud/day/normal.gbapal.lz");
+    const u32 gMonBackPic_ExploudDay[] = INCBIN_U32("graphics/pokemon/exploud/day/back.4bpp.lz");
+    const u32 gMonShinyPalette_ExploudDay[] = INCBIN_U32("graphics/pokemon/exploud/day/shiny.gbapal.lz");
+    const u8 gMonIcon_ExploudDay[] = INCBIN_U8("graphics/pokemon/exploud/day/icon.4bpp");
+    // Night
+    const u32 gMonFrontPic_ExploudNight[] = INCBIN_U32("graphics/pokemon/exploud/night/anim_front.4bpp.lz");
+    const u32 gMonPalette_ExploudNight[] = INCBIN_U32("graphics/pokemon/exploud/night/normal.gbapal.lz");
+    const u32 gMonBackPic_ExploudNight[] = INCBIN_U32("graphics/pokemon/exploud/night/back.4bpp.lz");
+    const u32 gMonShinyPalette_ExploudNight[] = INCBIN_U32("graphics/pokemon/exploud/night/shiny.gbapal.lz");
+    const u8 gMonIcon_ExploudNight[] = INCBIN_U8("graphics/pokemon/exploud/night/icon.4bpp");
+#endif //P_FAMILY_WHISMUR
+
 // End Magiya Custom Additions

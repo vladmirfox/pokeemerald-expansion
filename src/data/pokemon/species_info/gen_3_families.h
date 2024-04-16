@@ -3002,7 +3002,9 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Loudred)
         .levelUpLearnset = sLoudredLevelUpLearnset,
         .teachableLearnset = sLoudredTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_EXPLOUD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_EXPLOUD},
+                                {EVO_ITEM_DAY, ITEM_TOXIC_ORB, SPECIES_EXPLOUD_DAY},
+                                {EVO_ITEM_NIGHT, ITEM_TOXIC_ORB, SPECIES_EXPLOUD_NIGHT}),
     },
 
     [SPECIES_EXPLOUD] =
@@ -3063,6 +3065,129 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         FOOTPRINT(Exploud)
         .levelUpLearnset = sExploudLevelUpLearnset,
         .teachableLearnset = sExploudTeachableLearnset,
+        .formSpeciesIdTable = sExploudFormSpeciesIdTable,
+    },
+
+    [SPECIES_EXPLOUD_DAY] =
+    {
+        .baseHP        = 104,
+        .baseAttack    = 91,
+        .baseDefense   = 63,
+        .baseSpeed     = 68,
+        .baseSpAttack  = 91,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 73 : 63,
+        .types = MON_TYPES(TYPE_POISON, TYPE_FAIRY),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 245,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_7
+        .expYield = 221,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 216,
+    #else
+        .expYield = 184,
+    #endif
+        .evYield_HP = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_NONE, ABILITY_SCRAPPY },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Exploud"),
+        .cryId = CRY_EXPLOUD,
+        .natDexNum = NATIONAL_DEX_EXPLOUD,
+        .categoryName = _("Loud Noise"),
+        .height = 15,
+        .weight = 840,
+        .description = COMPOUND_STRING(
+            "It has sound-generating organs all over\n"
+            "its body. It communicates with others by\n"
+            "adjusting the tone and volume of the cries\n"
+            "it emits."),
+        .pokemonScale = 284,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_ExploudDay,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Exploud,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backPic = gMonBackPic_ExploudDay,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        .palette = gMonPalette_ExploudDay,
+        .shinyPalette = gMonShinyPalette_ExploudDay,
+        .iconSprite = gMonIcon_ExploudDay,
+        .iconPalIndex = 2,
+        FOOTPRINT(Exploud)
+        .levelUpLearnset = sExploudDayLevelUpLearnset,
+        .teachableLearnset = sExploudDayTeachableLearnset,
+        .formSpeciesIdTable = sExploudFormSpeciesIdTable,
+    },
+    
+    [SPECIES_EXPLOUD_NIGHT] =
+    {
+        .baseHP        = 104,
+        .baseAttack    = 91,
+        .baseDefense   = 63,
+        .baseSpeed     = 68,
+        .baseSpAttack  = 91,
+        .baseSpDefense = P_UPDATED_STATS >= GEN_6 ? 73 : 63,
+        .types = MON_TYPES(TYPE_POISON, TYPE_DARK),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 245,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_7
+        .expYield = 221,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 216,
+    #else
+        .expYield = 184,
+    #endif
+        .evYield_HP = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SOUNDPROOF, ABILITY_NONE, ABILITY_SCRAPPY },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Exploud"),
+        .cryId = CRY_EXPLOUD,
+        .natDexNum = NATIONAL_DEX_EXPLOUD,
+        .categoryName = _("Loud Noise"),
+        .height = 15,
+        .weight = 840,
+        .description = COMPOUND_STRING(
+            "It has sound-generating organs all over\n"
+            "its body. It communicates with others by\n"
+            "adjusting the tone and volume of the cries\n"
+            "it emits."),
+        .pokemonScale = 284,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_ExploudNight,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Exploud,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backPic = gMonBackPic_ExploudNight,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
+        .palette = gMonPalette_ExploudNight,
+        .shinyPalette = gMonShinyPalette_ExploudNight,
+        .iconSprite = gMonIcon_ExploudNight,
+        .iconPalIndex = 2,
+        FOOTPRINT(Exploud)
+        .levelUpLearnset = sExploudNightLevelUpLearnset,
+        .teachableLearnset = sExploudNightTeachableLearnset,
+        .formSpeciesIdTable = sExploudFormSpeciesIdTable,
     },
 #endif //P_FAMILY_WHISMUR
 
