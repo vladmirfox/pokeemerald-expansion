@@ -1643,12 +1643,15 @@
 #define SPECIES_BLASTOISE_REGIONAL                      SPECIES_MIMIKYU_TOTEM_BUSTED + 11
 #define SPECIES_BLASTOISE_MEGA_REGIONAL                 SPECIES_MIMIKYU_TOTEM_BUSTED + 12
 #define SPECIES_SENTRET_REGIONAL                        SPECIES_MIMIKYU_TOTEM_BUSTED + 13
-#define SPECIES_EXPLOUD_DAY                             SPECIES_MIMIKYU_TOTEM_BUSTED + 14
-#define SPECIES_EXPLOUD_NIGHT                           SPECIES_MIMIKYU_TOTEM_BUSTED + 15
-#define SPECIES_BOARMET                                 SPECIES_MIMIKYU_TOTEM_BUSTED + 16
+#define SPECIES_FURRET_REGIONAL                         SPECIES_MIMIKYU_TOTEM_BUSTED + 14
+#define SPECIES_FURRET_EVO                              SPECIES_MIMIKYU_TOTEM_BUSTED + 15
+#define SPECIES_EXPLOUD_DAY                             SPECIES_MIMIKYU_TOTEM_BUSTED + 16
+#define SPECIES_EXPLOUD_NIGHT                           SPECIES_MIMIKYU_TOTEM_BUSTED + 17
+#define SPECIES_BOARMET_MALE                            SPECIES_MIMIKYU_TOTEM_BUSTED + 18
+#define SPECIES_BOARMET_FEMALE                          SPECIES_MIMIKYU_TOTEM_BUSTED + 19
 // End Magiya Custom Additions
 
-#define SPECIES_EGG                                     SPECIES_BOARMET + 1
+#define SPECIES_EGG                                     SPECIES_BOARMET_FEMALE + 1
 
 #define NUM_SPECIES                                     SPECIES_EGG
 

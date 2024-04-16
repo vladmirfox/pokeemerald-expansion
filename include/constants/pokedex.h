@@ -1039,6 +1039,10 @@ enum {
     NATIONAL_DEX_IRON_CROWN,
     NATIONAL_DEX_TERAPAGOS,
     NATIONAL_DEX_PECHARUNT,
+// Begin Magiya Custom Additions
+    NATIONAL_DEX_FURRET_EVO,
+    NATIONAL_DEX_BOARMET,
+// End Magiya Custom Additions
 };
 
 #define KANTO_DEX_COUNT     NATIONAL_DEX_MEW

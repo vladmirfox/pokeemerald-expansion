@@ -21,7 +21,7 @@ static const u16 sCharizardFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 static const u16 sCharizardRegionalFormSpeciesIdTable[] = {
-    SPECIES_CHARIZARD,
+    SPECIES_CHARIZARD_REGIONAL,
     SPECIES_CHARIZARD_MEGA_REGIONAL,
     FORM_SPECIES_END,
 };
@@ -35,7 +35,7 @@ static const u16 sBlastoiseFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 static const u16 sBlastoiseRegionalFormSpeciesIdTable[] = {
-    SPECIES_BLASTOISE,
+    SPECIES_BLASTOISE_REGIONAL,
     SPECIES_BLASTOISE_MEGA_REGIONAL,
     FORM_SPECIES_END,
 };
@@ -1845,6 +1845,12 @@ static const u16 sEnamorusFormSpeciesIdTable[] = {
 static const u16 sOinkologneFormSpeciesIdTable[] = {
     SPECIES_OINKOLOGNE_MALE,
     SPECIES_OINKOLOGNE_FEMALE,
+    FORM_SPECIES_END,
+};
+
+static const u16 sBoarmetFormSpeciesIdTable[] = {
+    SPECIES_BOARMET_MALE,
+    SPECIES_BOARMET_FEMALE,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_LECHONK
