@@ -350,6 +350,9 @@ enum {
     EFFECT_DRAGON_CHEER,
     EFFECT_LAST_RESPECTS,
     EFFECT_TIDY_UP,
+// Begin Magiya Custom Additions
+    EFFECT_MELTDOWN,
+// End Magiya Custom Additions
     NUM_BATTLE_MOVE_EFFECTS,
 };
 

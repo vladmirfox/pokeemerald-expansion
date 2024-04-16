@@ -1011,12 +1011,21 @@
 #define MOVE_G_MAX_ONE_BLOW     (FIRST_MAX_MOVE + 50)
 #define MOVE_G_MAX_RAPID_FLOW   (FIRST_MAX_MOVE + 51)
 
-#define FIRST_MAX_MOVE        MOVES_COUNT_Z
-#define LAST_MAX_MOVE         MOVE_G_MAX_RAPID_FLOW
+#define FIRST_MAX_MOVE          MOVES_COUNT_Z
+#define LAST_MAX_MOVE           MOVE_G_MAX_RAPID_FLOW
 
-#define MOVES_COUNT_DYNAMAX       (LAST_MAX_MOVE + 1)
+#define MOVES_COUNT_DYNAMAX     (LAST_MAX_MOVE + 1)
 
-#define MOVES_COUNT_ALL         MOVES_COUNT_DYNAMAX
+// Begin Magiya Custom Additions
+#define MOVE_MELTDOWN           (FIRST_MAGI_MOVE + 1)
+
+#define FIRST_MAGI_MOVE         MOVES_COUNT_DYNAMAX
+#define LAST_MAGI_MOVE          MOVE_MELTDOWN
+
+#define MOVES_COUNT_MAGI       (LAST_MAGI_MOVE + 1)
+// End Magiya Custom Additions
+
+#define MOVES_COUNT_ALL         MOVES_COUNT_MAGI
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

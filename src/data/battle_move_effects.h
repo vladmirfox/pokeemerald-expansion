@@ -2230,4 +2230,11 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
     },
+// Begin Magiya Custom Additions
+    [EFFECT_MELTDOWN] =
+    {
+        .battleScript = BattleScript_EffectMeltdown,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+// End Magiya Custom Additions
 };

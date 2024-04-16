@@ -2493,3 +2493,7 @@
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
 	.endm
+
+	.macro meltdowncheck
+		various BS_ATTACKER, VARIOUS_MELTDOWN_CHECK
+		.endm

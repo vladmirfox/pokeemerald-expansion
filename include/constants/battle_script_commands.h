@@ -238,6 +238,9 @@
 #define VARIOUS_STORE_HEALING_WISH                   146
 #define VARIOUS_HIT_SWITCH_TARGET_FAILED             147
 #define VARIOUS_TRY_REVIVAL_BLESSING                 148
+// Begin Magiya Custom Additions
+#define VARIOUS_MELTDOWN_CHECK                       149
+// End Magiya Custom Additions
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
