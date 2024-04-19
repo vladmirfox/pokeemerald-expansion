@@ -80,7 +80,7 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
     if (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
-    // Double Battles still need switch in ai logic
+    // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         return FALSE;
 
