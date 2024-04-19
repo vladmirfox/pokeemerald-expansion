@@ -117,7 +117,7 @@
 #define TRAINER_VALERIE_3                   111
 #define TRAINER_VALERIE_4                   112
 #define TRAINER_VALERIE_5                   113
-#define TRAINER_HANA                     114
+#define TRAINER_HIINA                       114
 #define TRAINER_DAPHNE                      115
 #define TRAINER_GRUNT_SPACE_CENTER_2        116
 #define TRAINER_CINDY_2                     117
@@ -269,7 +269,7 @@
 #define TRAINER_GLACIA                      263
 #define TRAINER_DRAKE                       264
 #define TRAINER_ROXANNE_1                   265
-#define TRAINER_BRAWLY_1                    266
+#define TRAINER_HANA_1                      266
 #define TRAINER_WATTSON_1                   267
 #define TRAINER_FLANNERY_1                  268
 #define TRAINER_NORMAN_1                    269

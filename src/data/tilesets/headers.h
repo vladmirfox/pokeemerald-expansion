@@ -946,3 +946,14 @@ const struct Tileset gTileset_Yifu =
     .metatileAttributes = gMetatileAttributes_Yifu,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_DojoKura =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DojoKura,
+    .palettes = gTilesetPalettes_DojoKura,
+    .metatiles = gMetatiles_DojoKura,
+    .metatileAttributes = gMetatileAttributes_DojoKura,
+    .callback = NULL,
+};

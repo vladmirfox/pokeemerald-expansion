@@ -20,7 +20,7 @@ TranquilRoute_EventScript_Takeshi::
 
 TranquilRoute_EventScript_Hana::
 # 30 "data/maps/TranquilRoute/scripts.pory"
-	trainerbattle_single TRAINER_HANA, TranquilRoute_EventScript_Hana_Text_0, TranquilRoute_EventScript_Hana_Text_1
+	trainerbattle_single TRAINER_HIINA, TranquilRoute_EventScript_Hana_Text_0, TranquilRoute_EventScript_Hana_Text_1
 # 35 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Hana_Text_2, MSGBOX_AUTOCLOSE
 	end
@@ -199,9 +199,9 @@ TranquilRoute_EventScript_Kenji_Text_1:
 
 TranquilRoute_EventScript_Kenji_Text_2:
 # 46 "data/maps/TranquilRoute/scripts.pory"
-	.string "Hana is the best subject I could dream\n"
+	.string "Hiina is the best subject I could dream\n"
 	.string "of.\p"
-	.string "Hey, please don't tell her I said that.$"
+	.string "…Hey, please don't tell her I said that.$"
 
 TranquilRoute_EventScript_MysteriousSamurai_Text_0:
 # 56 "data/maps/TranquilRoute/scripts.pory"

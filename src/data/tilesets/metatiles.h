@@ -241,3 +241,6 @@ const u16 gMetatileAttributes_Refuge[] = INCBIN_U16("data/tilesets/secondary/ref
 
 const u16 gMetatiles_Yifu[] = INCBIN_U16("data/tilesets/secondary/yifu/metatiles.bin");
 const u16 gMetatileAttributes_Yifu[] = INCBIN_U16("data/tilesets/secondary/yifu/metatile_attributes.bin");
+
+const u16 gMetatiles_DojoKura[] = INCBIN_U16("data/tilesets/secondary/dojo_kura/metatiles.bin");
+const u16 gMetatileAttributes_DojoKura[] = INCBIN_U16("data/tilesets/secondary/dojo_kura/metatile_attributes.bin");

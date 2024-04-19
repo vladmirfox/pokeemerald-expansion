@@ -4454,7 +4454,7 @@
     {
       "id": "LAYOUT_TRANQUIL_ROUTE",
       "name": "TranquilRoute_Layout",
-      "width": 70,
+      "width": 63,
       "height": 80,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SunriseVillage",
@@ -4640,6 +4640,16 @@
       "secondary_tileset": "gTileset_Yifu",
       "border_filepath": "data/layouts/YifuCity/border.bin",
       "blockdata_filepath": "data/layouts/YifuCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_KURA_TOWN_DOJO",
+      "name": "KuraTown_Dojo_Layout",
+      "width": 11,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_DojoKura",
+      "border_filepath": "data/layouts/KuraTown_Dojo/border.bin",
+      "blockdata_filepath": "data/layouts/KuraTown_Dojo/map.bin"
     }
   ]
 }

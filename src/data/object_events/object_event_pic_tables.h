@@ -113,6 +113,10 @@ static const struct SpriteFrameImage sPicTable_Farmer[] = {
     overworld_ascending_frames(gObjectEventPic_Farmer, 4, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_BattleGirl[] = {
+    overworld_ascending_frames(gObjectEventPic_BattleGirl, 4, 4),
+};
+
 static const struct SpriteFrameImage sPicTable_AromaLady[] = {
     overworld_ascending_frames(gObjectEventPic_AromaLady, 4, 4),
 };
@@ -322,10 +326,6 @@ static const struct SpriteFrameImage sPicTable_UnusedSquirtleDoll[] = {
     obj_frame_tiles(gObjectEventPic_UnusedSquirtleDoll),
 };
 
-static const struct SpriteFrameImage sPicTable_UnusedWooperDoll[] = {
-    obj_frame_tiles(gObjectEventPic_UnusedWooperDoll),
-};
-
 static const struct SpriteFrameImage sPicTable_UnusedPikachuDoll[] = {
     obj_frame_tiles(gObjectEventPic_UnusedPikachuDoll),
 };
@@ -338,8 +338,12 @@ static const struct SpriteFrameImage sPicTable_CuttableTree[] = {
     overworld_ascending_frames(gObjectEventPic_CuttableTree, 2, 2),
 };
 
+static const struct SpriteFrameImage sPicTable_CuttableTreeKuraDojo[] = {
+    overworld_ascending_frames(gObjectEventPic_CuttableTreeKuraDojo, 2, 2),
+};
+
 static const struct SpriteFrameImage sPicTable_MartEmployee[] = {
-    overworld_ascending_frames(gObjectEventPic_MartEmployee, 2, 4),
+    overworld_ascending_frames(gObjectEventPic_MartEmployee, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_RooftopSaleWoman[] = {
@@ -549,16 +553,8 @@ static const struct SpriteFrameImage sPicTable_Roxanne[] = {
     overworld_frame(gObjectEventPic_Roxanne, 2, 4, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_Brawly[] = {
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Brawly, 2, 4, 2),
+static const struct SpriteFrameImage sPicTable_Hana[] = {
+    overworld_ascending_frames(gObjectEventPic_Hana, 4, 4)
 };
 
 static const struct SpriteFrameImage sPicTable_Wattson[] = {

@@ -625,6 +625,7 @@
 // gMapGroup_IndoorKura
 #define MAP_KURA_TOWN_HOUSE1 (0 | (36 << 8))
 #define MAP_KURA_TOWN_HOUSE2 (1 | (36 << 8))
+#define MAP_KURA_TOWN_DOJO   (2 | (36 << 8))
 
 // gMapGroup_IndoorChii
 #define MAP_CHII_TOWN_HOUSE1         (0 | (37 << 8))

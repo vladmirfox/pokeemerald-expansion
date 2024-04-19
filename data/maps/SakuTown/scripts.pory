@@ -1,8 +1,20 @@
 const LOCALID_KARATEKA = 6
 const LOCALID_GUARD = 8
 
+
+
 mapscripts SakuTown_MapScripts {
-	
+	// Once reunited, the guards from the two villages play a board game together
+	MAP_SCRIPT_ON_LOAD {
+		if (flag(FLAG_SAKU_KURA_REUNITED)) {
+			setmetatile(19, 3, METATILE_SakuKura_BoardGame, TRUE)
+		}
+	}
+	MAP_SCRIPT_ON_TRANSITION {
+		if (flag(FLAG_SAKU_KURA_REUNITED)) {
+			setobjectmovementtype(LOCALID_GUARD, MOVEMENT_TYPE_FACE_RIGHT)
+		}
+	}
 }
 
 script SakuTown_EventScript_Farmer {
@@ -39,7 +51,7 @@ script SakuTown_EventScript_Karateka {
 	msgbox(format(
 		"I let the Pokémon League borrow my super-strong Pokémon to help build the new Pokémon refuges throughout the region.\p"
 	))
-	applymovement(LOCALID_KARATEKA, Common_Movement_FaceRight)
+	applymovement(LOCALID_KARATEKA, Common_Movement_FaceUp)
 	waitmovement(0)
 	delay(30)
 	msgbox(format(
@@ -50,10 +62,24 @@ script SakuTown_EventScript_Karateka {
 
 script SakuTown_EventScript_Guard {
 	lock
-	faceplayer
+	if (flag(FLAG_SAKU_KURA_REUNITED)) {
+		msgbox(format(
+			"Damn, where did that Mareep come from?!"
+		))
+	} else {
+		faceplayer
+		msgbox(format(
+			"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
+			"They don't even have a Pokémon refuge!"
+		))
+	}
+	release
+}
+
+script SakuTown_EventScript_KuraGuard {
+	lock
 	msgbox(format(
-		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
-		"They don't even have a Pokémon refuge!"
+		"Hah, got two of your Tauros in my herd!"
 	))
 	release
 }
@@ -111,6 +137,14 @@ script SakuTown_EventScript_TrainerTips2 {
 
 script SakuTown_EventScript_FloristSign {
 	msgbox(format("Humble Blossom\nBonsai & flower shop"), MSGBOX_SIGN)
+}
+
+script SakuTown_EventScript_BoardGame {
+	lock
+	if (flag(FLAG_SAKU_KURA_REUNITED)) {
+		msgbox(format("They're playing Herd the Tauros, a popular board game!"), MSGBOX_DEFAULT)
+	}
+	release
 }
 
 script SakuTown_EventScript_Mart {

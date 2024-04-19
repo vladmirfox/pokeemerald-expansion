@@ -1138,3 +1138,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/WhiteslateRoute/scripts.inc"
 
 	.include "data/maps/YifuCity/scripts.inc"
+
+	.include "data/maps/KuraTown_Dojo/scripts.inc"

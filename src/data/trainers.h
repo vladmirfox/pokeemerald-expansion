@@ -1368,16 +1368,16 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Valerie5),
     },
 
-    [TRAINER_HANA] =
+    [TRAINER_HIINA] =
     {
         .trainerClass = TRAINER_CLASS_AROMA_LADY,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_AROMA_LADY,
-        .trainerName = _("HANA"),
+        .trainerName = _("Hiina"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = TRAINER_PARTY(sParty_Hana1),
+        .party = TRAINER_PARTY(sParty_Hiina1),
     },
 
     [TRAINER_DAPHNE] =
@@ -3200,16 +3200,16 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Roxanne1),
     },
 
-    [TRAINER_BRAWLY_1] =
+    [TRAINER_HANA_1] =
     {
         .trainerClass = TRAINER_CLASS_LEADER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
-        .trainerName = _("BRAWLY"),
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_HANA,
+        .trainerName = _("Hana"),
         .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
-        .party = TRAINER_PARTY(sParty_Brawly1),
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_PREFER_STRONGEST_MOVE | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES,
+        .party = TRAINER_PARTY(sParty_Hana1),
     },
 
     [TRAINER_WATTSON_1] =
@@ -9303,7 +9303,7 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
+        .trainerPic = TRAINER_PIC_LEADER_HANA,
         .trainerName = _("BRAWLY"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -9315,7 +9315,7 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
+        .trainerPic = TRAINER_PIC_LEADER_HANA,
         .trainerName = _("BRAWLY"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -9327,7 +9327,7 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
+        .trainerPic = TRAINER_PIC_LEADER_HANA,
         .trainerName = _("BRAWLY"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,
@@ -9339,7 +9339,7 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
+        .trainerPic = TRAINER_PIC_LEADER_HANA,
         .trainerName = _("BRAWLY"),
         .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_NONE},
         .doubleBattle = TRUE,

@@ -1309,6 +1309,14 @@ bool8 MetatileBehavior_IsPokeCenterBookShelf(u8 metatileBehavior)
         return FALSE;
 }
 
+bool8 MetatileBehavior_IsKuraDojoTree(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_KURA_DOJO_TREE)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsVase(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_VASE)

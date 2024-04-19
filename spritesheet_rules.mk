@@ -4,10 +4,10 @@ FLDEFFGFXDIR := graphics/field_effects/pics
 MISCGFXDIR := graphics/misc
 
 $(OBJEVENTGFXDIR)/people/brendan/walking.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/brendan/running.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/brendan/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -66,8 +66,8 @@ $(OBJEVENTGFXDIR)/people/frontier_brains/tucker.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 
-$(OBJEVENTGFXDIR)/people/gym_leaders/brawly.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+$(OBJEVENTGFXDIR)/people/gym_leaders/hana.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/gym_leaders/flannery.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
@@ -98,7 +98,7 @@ $(OBJEVENTGFXDIR)/people/may/walking.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/may/running.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/may/field_move.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
@@ -166,6 +166,9 @@ $(OBJEVENTGFXDIR)/people/black_belt.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/boy_1.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/farmer.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/boy_2.4bpp: %.4bpp: %.png
@@ -271,7 +274,7 @@ $(OBJEVENTGFXDIR)/people/maniac.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/mart_employee.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -mwidth 2 -mheight 4
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/people/mauville_old_man_1.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4

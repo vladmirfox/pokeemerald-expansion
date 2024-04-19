@@ -478,6 +478,9 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Farmer,                OBJ_EVENT_PAL_TAG_FARMER},
     {gObjectEventPal_BugCatcher,            OBJ_EVENT_PAL_TAG_BUG_CATCHER},
     {gObjectEventPal_Boy1,                  OBJ_EVENT_PAL_TAG_BOY_1},
+    {gObjectEventPal_MartEmployee,          OBJ_EVENT_PAL_TAG_MART_EMPLOYEE},
+    {gObjectEventPal_BattleGirl,            OBJ_EVENT_PAL_TAG_BATTLE_GIRL},
+    {gObjectEventPal_Hana,                  OBJ_EVENT_PAL_TAG_HANA},
     {gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
     {gObjectEventPal_BrendanReflection,     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},
     {gObjectEventPal_BridgeReflection,      OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
@@ -505,6 +508,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
+    {gObjectEventPal_CuttableTreeKuraDojo,  OBJ_EVENT_PAL_TAG_CUTTABLE_TREE_KURA_DOJO},
 #if OW_MON_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},

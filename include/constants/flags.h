@@ -42,7 +42,8 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
+// True if the Kura dojo is closed
+#define FLAG_KURA_DOJO_CLOSED 0x20
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
 #define FLAG_UNUSED_0x022    0x22 // Unused Flag
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
@@ -89,7 +90,8 @@
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
+// True if the tree blocking the path to Silver Tunnel has been cut
+#define FLAG_CUT_TREE_SILVER_TUNNEL 0x4F
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -97,8 +99,8 @@
 #define FLAG_RESCUED_BIRCH                       0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS           0x53
 
-#define FLAG_UNUSED_0x054                    0x54  // Unused Flag
-#define FLAG_UNUSED_0x055                    0x55  // Unused Flag
+#define FLAG_SAKU_KURA_RIVALS                0x54
+#define FLAG_SAKU_KURA_REUNITED              0x55
 
 #define FLAG_HIDE_CONTEST_POKE_BALL          0x56  // Always set after new game, object it hides is added directly
 #define FLAG_MET_RIVAL_MOM                   0x57
@@ -182,7 +184,7 @@
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
 #define FLAG_RECEIVED_TM_ROCK_TOMB           0xA5
-#define FLAG_RECEIVED_TM_BULK_UP             0xA6
+#define FLAG_RECEIVED_TM_BULLDOZE             0xA6
 #define FLAG_RECEIVED_TM_SHOCK_WAVE          0xA7
 #define FLAG_RECEIVED_TM_OVERHEAT            0xA8
 #define FLAG_RECEIVED_TM_FACADE              0xA9
@@ -441,7 +443,7 @@
 #define FLAG_REMATCH_KIRA_AND_DAN            0x19C
 #define FLAG_REMATCH_WALLY                   0x19D
 #define FLAG_REMATCH_ROXANNE                 0x19E
-#define FLAG_REMATCH_BRAWLY                  0x19F
+#define FLAG_REMATCH_HANA                    0x19F
 #define FLAG_REMATCH_WATTSON                 0x1A0
 #define FLAG_REMATCH_FLANNERY                0x1A1
 #define FLAG_REMATCH_NORMAN                  0x1A2
@@ -497,7 +499,7 @@
 #define FLAG_SCOTT_GIVES_BATTLE_POINTS       0x1D1
 #define FLAG_COLLECTED_ALL_GOLD_SYMBOLS      0x1D2
 #define FLAG_ENABLE_ROXANNE_MATCH_CALL       0x1D3
-#define FLAG_ENABLE_BRAWLY_MATCH_CALL        0x1D4
+#define FLAG_ENABLE_HANA_MATCH_CALL          0x1D4
 #define FLAG_ENABLE_WATTSON_MATCH_CALL       0x1D5
 #define FLAG_ENABLE_FLANNERY_MATCH_CALL      0x1D6
 #define FLAG_ENABLE_WINONA_MATCH_CALL        0x1D7

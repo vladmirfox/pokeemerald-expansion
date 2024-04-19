@@ -77,8 +77,9 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Noland;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lucy;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedNatuDoll;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Farmer;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BattleGirl;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedSquirtleDoll;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedWooperDoll;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CuttableTreeKuraDojo;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedPikachuDoll;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedPorygon2Doll;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CuttableTree;
@@ -125,7 +126,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Phoebe;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Glacia;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Drake;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Roxanne;
-extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brawly;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Hana;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wattson;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Flannery;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Norman;
@@ -273,6 +274,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_MAN_1] =                    &gObjectEventGraphicsInfo_Man1,
     [OBJ_EVENT_GFX_WOMAN_2] =                  &gObjectEventGraphicsInfo_Woman2,
     [OBJ_EVENT_GFX_AROMA_LADY] =               &gObjectEventGraphicsInfo_AromaLady,
+    [OBJ_EVENT_GFX_BATTLE_GIRL] =              &gObjectEventGraphicsInfo_BattleGirl,
     [OBJ_EVENT_GFX_EXPERT_M] =                 &gObjectEventGraphicsInfo_ExpertM,
     [OBJ_EVENT_GFX_EXPERT_F] =                 &gObjectEventGraphicsInfo_ExpertF,
     [OBJ_EVENT_GFX_MAN_2] =                    &gObjectEventGraphicsInfo_Man2,
@@ -329,8 +331,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_NOLAND] =                   &gObjectEventGraphicsInfo_Noland,
     [OBJ_EVENT_GFX_LUCY] =                     &gObjectEventGraphicsInfo_Lucy,
     [OBJ_EVENT_GFX_FARMER] =                   &gObjectEventGraphicsInfo_Farmer,
-    [OBJ_EVENT_GFX_UNUSED_SQUIRTLE_DOLL] =     &gObjectEventGraphicsInfo_UnusedSquirtleDoll,
-    [OBJ_EVENT_GFX_UNUSED_WOOPER_DOLL] =       &gObjectEventGraphicsInfo_UnusedWooperDoll,
+    [OBJ_EVENT_GFX_CUTTABLE_TREE_KURA_DOJO] =  &gObjectEventGraphicsInfo_CuttableTreeKuraDojo,
     [OBJ_EVENT_GFX_UNUSED_PIKACHU_DOLL] =      &gObjectEventGraphicsInfo_UnusedPikachuDoll,
     [OBJ_EVENT_GFX_UNUSED_PORYGON2_DOLL] =     &gObjectEventGraphicsInfo_UnusedPorygon2Doll,
     [OBJ_EVENT_GFX_CUTTABLE_TREE] =            &gObjectEventGraphicsInfo_CuttableTree,
@@ -377,7 +378,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_GLACIA] =                   &gObjectEventGraphicsInfo_Glacia,
     [OBJ_EVENT_GFX_DRAKE] =                    &gObjectEventGraphicsInfo_Drake,
     [OBJ_EVENT_GFX_ROXANNE] =                  &gObjectEventGraphicsInfo_Roxanne,
-    [OBJ_EVENT_GFX_BRAWLY] =                   &gObjectEventGraphicsInfo_Brawly,
+    [OBJ_EVENT_GFX_HANA] =                     &gObjectEventGraphicsInfo_Hana,
     [OBJ_EVENT_GFX_WATTSON] =                  &gObjectEventGraphicsInfo_Wattson,
     [OBJ_EVENT_GFX_FLANNERY] =                 &gObjectEventGraphicsInfo_Flannery,
     [OBJ_EVENT_GFX_NORMAN] =                   &gObjectEventGraphicsInfo_Norman,

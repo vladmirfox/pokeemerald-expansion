@@ -28,7 +28,7 @@ script TranquilRoute_EventScript_Takeshi {
 
 script TranquilRoute_EventScript_Hana {
 	trainerbattle_single(
-		TRAINER_HANA,
+		TRAINER_HIINA,
 		format("Ugh, how can Kenji paint a portrait of me if people keep walking between us?"),
 		format("Great, now my hair is all messed up.")
 	)
@@ -43,8 +43,8 @@ script TranquilRoute_EventScript_Kenji {
 		format("Such beauty! What an artistic fight this was!")
 	)
 	msgbox(format(
-		"Hana is the best subject I could dream of.\p"
-		"Hey, please don't tell her I said that."
+		"Hiina is the best subject I could dream of.\p"
+		"…Hey, please don't tell her I said that."
 	), MSGBOX_AUTOCLOSE)
 	end
 }

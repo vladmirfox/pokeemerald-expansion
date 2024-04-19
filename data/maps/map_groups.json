@@ -658,7 +658,8 @@
   ],
   "gMapGroup_IndoorKura": [
     "KuraTown_House1",
-    "KuraTown_House2"
+    "KuraTown_House2",
+    "KuraTown_Dojo"
   ],
   "gMapGroup_IndoorChii": [
     "ChiiTown_House1",
