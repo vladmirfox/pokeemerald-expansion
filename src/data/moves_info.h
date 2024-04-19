@@ -21071,4 +21071,101 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .argument = MAX_EFFECT_BYPASS_PROTECT, //EFFECT TODO
     },
 
+    [MOVE_SLEDGE_CLAW] =
+    {
+        .name = COMPOUND_STRING("Sledge Claw"),
+        .description = COMPOUND_STRING(
+            "Super effective on Rock-\n"
+        .effect = EFFECT_SLEDGE_CLAW,
+        .power = 95,
+        .type = TYPE_BUG,
+        .accuracy = 95,
+        .pp = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+        }),
+        .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
+    },
+
+    [MOVE_FLAME_FEAST] =
+    {
+        .name = COMPOUND_STRING("Flame Feast"),
+        .description = COMPOUND_STRING(
+            "Super effective on Fire-\n"
+        .effect = EFFECT_FLAME_FEAST,
+        .power = 80,
+        .type = TYPE_BUG,
+        .accuracy = 100,
+        .pp = 20,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+        }),
+        .contestEffect = CONTEST_EFFECT_STARTLE_MONS_SAME_TYPE_APPEAL,
+        .contestCategory = CONTEST_CATEGORY_BEAUTY,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
+    },
+    [MOVE_RUTHLESS_HORNS] =
+    {
+        .name = COMPOUND_STRING("Ruthless Horns"),
+        .description = sWringOutDescription,
+        .effect = EFFECT_VARY_POWER_BASED_ON_HP,
+        .power = 1,
+        .type = TYPE_POISON,
+        .accuracy = 100,
+        .pp = 5,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_POISON,
+            .chance = 50,
+        }),
+        .argument = 130,
+        .makesContact = TRUE,
+        .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_FRONT_MON,
+        .contestCategory = CONTEST_CATEGORY_TOUGH,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {0}
+    },
+
+    [MOVE_STAR_DUSTING] =
+    {
+        .name = COMPOUND_STRING("Star Dusting"),
+        .description = COMPOUND_STRING(
+            "Increases allies' critical hit\n"
+            "ratio, especially if Dragons."),
+        .effect = EFFECT_DRAGON_CHEER,
+        .power = 0,
+        .type = TYPE_BUG,
+        .accuracy = 0,
+        .pp = 15,
+        .target = MOVE_TARGET_USER | MOVE_TARGET_ALLY,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_STATUS,
+        .ignoresSubstitute = TRUE,
+    },
+    [MOVE_WEB_GARROTE] =
+    {
+        .name = COMPOUND_STRING("Web Garrote"),
+        .description = COMPOUND_STRING(
+            "Double power if used first."),
+        .effect = EFFECT_WEB_GARROTE,
+        .power = 70,
+        .type = TYPE_BUG,
+        .accuracy = 100,
+        .pp = 15,
+        .target = MOVE_TARGET_SELECTED
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        
+    },
+
 };
