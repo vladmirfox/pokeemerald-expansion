@@ -32,11 +32,11 @@
 #define BEST_DAMAGE_MOVE     1  // Move with the most amount of hits with the best accuracy/effect
 #define POWERFUL_STATUS_MOVE 10 // Moves with this score will be chosen over a move that faints target
 
-// Temporary scores that are added together to determine a final score at the at of AI_CalcMoveScore
-#define WEAK_EFFECT      1
-#define DECENT_EFFECT    2
-#define GOOD_EFFECT      4
-#define BEST_EFFECT      6
+// Temporary scores that are added together to determine a final score at the end of AI_CalcMoveScore
+#define WEAK_EFFECT       1
+#define DECENT_EFFECT     2
+#define GOOD_EFFECT       4
+#define BEST_EFFECT       6
 
 #define BAD_MOVE         -10
 #define INVALID_MOVE     -50

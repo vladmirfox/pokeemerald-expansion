@@ -434,6 +434,10 @@ bool32 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument))
             return TRUE;
         break;
+    case EFFECT_FUTURE_SIGHT:
+        if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_FUTUREATTACK
+         || gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_FUTUREATTACK)
+            return TRUE;
     }
 
     return FALSE;
