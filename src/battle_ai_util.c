@@ -438,6 +438,10 @@ bool32 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_FUTUREATTACK
          || gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_FUTUREATTACK)
             return TRUE;
+    case EFFECT_EXPLOSION:
+        if ((IsAbilityOnField(ABILITY_DAMP) && !DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move))
+         || CountUsablePartyMons(battlerAtk) == 0)
+            return TRUE;
     }
 
     return FALSE;
