@@ -8692,6 +8692,11 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
             && (B_PAYBACK_SWITCH_BOOST < GEN_5 || gDisableStructs[battlerDef].isFirstTurn != 2))
             basePower *= 2;
         break;
+    case EFFECT_WEB_GARROTE:
+        if (GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef)
+            && (B_PAYBACK_SWITCH_BOOST < GEN_5 || gDisableStructs[battlerDef].isFirstTurn != 2))
+            basePower *= 2;
+        break;
     case EFFECT_BOLT_BEAK:
         if (GetBattlerTurnOrderNum(battlerAtk) < GetBattlerTurnOrderNum(battlerDef)
             || gDisableStructs[battlerDef].isFirstTurn == 2)
@@ -9992,6 +9997,10 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     if (moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(battlerDef) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
     if (moveType == TYPE_FIRE && gDisableStructs[battlerDef].tarShot)
+        mod = UQ_4_12(2.0);
+    if (gMovesInfo[move].effect == EFFECT_SLEDGE_CLAW && defType == TYPE_ROCK)
+        mod = UQ_4_12(2.0);
+    if (gMovesInfo[move].effect == EFFECT_FLAME_FEAST && defType == TYPE_FIRE)
         mod = UQ_4_12(2.0);
 
     // B_WEATHER_STRONG_WINDS weakens Super Effective moves against Flying-type Pokémon

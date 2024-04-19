@@ -2751,5 +2751,11 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .description = COMPOUND_STRING("Boost allies if KO'd"),
         .aiRating = 5,
     },
+        [ABILITY_INSECTIVORE] =
+    {
+        .name = _("Insectivore"),
+        .description = COMPOUND_STRING("Strong against Bugs."),
+        .aiRating = 5,
+    },
 
 };
