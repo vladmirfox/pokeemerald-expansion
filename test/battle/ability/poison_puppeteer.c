@@ -17,9 +17,7 @@ SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a dam
         ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_STING, player);
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-
         STATUS_ICON(opponent, poison: TRUE);
-
         ABILITY_POPUP(player, ABILITY_POISON_PUPPETEER);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
         MESSAGE("Foe Wobbuffet became confused!");
