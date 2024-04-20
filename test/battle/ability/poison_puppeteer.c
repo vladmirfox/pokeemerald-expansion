@@ -17,25 +17,35 @@ SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a dam
         ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_STING, player);
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+
         STATUS_ICON(opponent, poison: TRUE);
+
         ABILITY_POPUP(player, ABILITY_POISON_PUPPETEER);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
         MESSAGE("Foe Wobbuffet became confused!");
     }
 }
 
-SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a status move")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned by a status move")
 {
+    u32 move;
+
+    PARAMETRIZE { move = MOVE_POISON_POWDER; }
+    PARAMETRIZE { move = MOVE_TOXIC; }
+
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
         PLAYER(SPECIES_PECHARUNT) { Ability(ABILITY_POISON_PUPPETEER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_POISON_POWDER); }
+        TURN { MOVE(player, move); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_POWDER, player);
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        STATUS_ICON(opponent, poison: TRUE);
+        if (move == MOVE_POISON_POWDER)
+            STATUS_ICON(opponent, poison: TRUE);
+        else
+            STATUS_ICON(opponent, badPoison: TRUE);
         ABILITY_POPUP(player, ABILITY_POISON_PUPPETEER);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
         MESSAGE("Foe Wobbuffet became confused!");

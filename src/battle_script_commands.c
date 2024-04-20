@@ -6306,6 +6306,7 @@ static void Cmd_moveend(void)
             gBattleStruct->swapDamageCategory = FALSE;
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
+            gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
