@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a sta
 SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes induced")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_TOXIC_SPIKES].effect == MOVE_TOXIC_SPIKES)
+        ASSUME(gMovesInfo[MOVE_TOXIC_SPIKES].effect == EFFECT_TOXIC_SPIKES);
         PLAYER(SPECIES_PECHARUNT) { Ability(ABILITY_POISON_PUPPETEER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
