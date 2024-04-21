@@ -4609,7 +4609,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_TERAFORM_ZERO:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone
+                && gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_ActivateTeraformZero);
@@ -4802,9 +4803,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_TERA_SHIFT:
-                if (!gSpecialStatuses[battler].switchInAbilityDone &&
-                     gBattleMons[gBattlerAttacker].species == SPECIES_TERAPAGOS_NORMAL &&
-                     TryBattleFormChange(battler, FORM_CHANGE_BATTLE_SWITCH))
+                if (!gSpecialStatuses[battler].switchInAbilityDone
+                     && gBattleMons[battler].species == SPECIES_TERAPAGOS_NORMAL
+                     && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_SWITCH))
                 {
                     gBattlerAttacker = battler;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TERA_SHIFT;

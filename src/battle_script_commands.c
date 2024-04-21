@@ -10226,12 +10226,6 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;   // can heal
         return;
     }
-    case VARIOUS_REMOVE_WEATHER:
-    {
-        VARIOUS_ARGS();
-        RemoveAllWeather();
-        break;
-    }
     case VARIOUS_REMOVE_TERRAIN:
     {
         VARIOUS_ARGS();
@@ -16884,4 +16878,11 @@ void BS_TryGulpMissile(void)
         gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_RemoveWeather(void)
+{
+    NATIVE_ARGS();
+    RemoveAllWeather();
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
