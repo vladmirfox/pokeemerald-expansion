@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_QUASH].effect == EFFECT_QUASH);
 }
 
-DOUBLE_BATTLE_TEST("Quash affect target will move last in the priority bracket")
+DOUBLE_BATTLE_TEST("Quash-affected target will move last in the priority bracket")
 {
     GIVEN {
         PLAYER(SPECIES_VOLBEAT) { Speed(10); Ability(ABILITY_PRANKSTER); }
