@@ -23,7 +23,7 @@ DOUBLE_BATTLE_TEST("Quash-affected target will move last in the priority bracket
     }
 }
 
-DOUBLE_BATTLE_TEST("Quash is not affect by dynamic speed")
+DOUBLE_BATTLE_TEST("Quash is not affected by dynamic speed")
 {
     GIVEN {
         ASSUME(B_RECALC_TURN_AFTER_ACTIONS >= GEN_8);
