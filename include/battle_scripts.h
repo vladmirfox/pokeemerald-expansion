@@ -506,7 +506,6 @@ extern const u8 BattleScript_AromaVeilProtectsRet[];
 extern const u8 BattleScript_BoosterEnergyEnd2[];
 extern const u8 BattleScript_TeraShellDistortingTypeMatchups[];
 
-
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
 extern const u8 BattleScript_ZMoveActivateStatus[];

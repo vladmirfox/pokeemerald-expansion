@@ -10100,7 +10100,6 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
     if (gBattleStruct->distortedTypeMatchups & gBitTable[battlerDef])
     {
         mod = UQ_4_12(0.5);
-        gBattleStruct->distortedTypeMatchups &= ~(gBitTable[battlerDef]);
         if (recordAbilities)
             RecordAbilityBattle(battlerDef, GetBattlerAbility(battlerDef));
     }

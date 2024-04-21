@@ -4218,6 +4218,7 @@ void BattleTurnPassed(void)
     if (HandleFaintedMonActions())
         return;
     gBattleStruct->faintedActionsState = 0;
+    gBattleStruct->distortedTypeMatchups = 0;
 
     TurnValuesCleanUp(FALSE);
     gHitMarker &= ~HITMARKER_NO_ATTACKSTRING;
