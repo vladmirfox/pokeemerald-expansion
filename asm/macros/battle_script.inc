@@ -2133,6 +2133,10 @@
 	.4byte \failInstr
 	.endm
 
+	.macro removeweather
+	various BS_ATTACKER, VARIOUS_REMOVE_WEATHER
+	.endm
+
 	.macro removeterrain
 	various BS_ATTACKER, VARIOUS_REMOVE_TERRAIN
 	.endm
