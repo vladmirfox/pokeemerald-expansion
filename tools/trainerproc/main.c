@@ -143,6 +143,12 @@ static bool is_literal_string(struct String s1, const char *s2)
     }
 }
 
+static bool starts_with(struct String s, const char *prefix)
+{
+    int n = strlen(prefix);
+    return strncmp((const char *)s.string, prefix, n) == 0;
+}
+
 static bool ends_with(struct String s, const char *suffix)
 {
     int n = strlen(suffix);
@@ -1614,7 +1620,10 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         {
             fprintf(f, "#line %d\n", trainer->pic_line);
             fprintf(f, "        .trainerPic = ");
-            fprint_constant(f, "TRAINER_PIC", trainer->pic);
+            if (starts_with(trainer->id, "PARTNER_"))
+                fprint_constant(f, "TRAINER_BACK_PIC", trainer->pic);
+            else
+                fprint_constant(f, "TRAINER_PIC", trainer->pic);
             fprintf(f, ",\n");
         }
 
