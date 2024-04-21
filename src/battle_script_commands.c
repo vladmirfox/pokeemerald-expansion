@@ -15992,7 +15992,9 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
 
         value *= sExperienceScalingFactors[(faintedLevel * 2) + 10];
         value /= sExperienceScalingFactors[faintedLevel + expGetterLevel + 10];
-        *expAmount = value + 1;
+
+        if (!EXP_CAP_HARD || *expAmount != 0) // Edge case for hard level caps. Prevents mons from getting 1 exp
+            *expAmount = value + 1;
     }
 }
 
