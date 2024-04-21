@@ -187,7 +187,6 @@ trainer_pic_definition             = re.compile(r'\.trainerPic = TRAINER_BACK_PI
 trainer_name_definition            = re.compile(r'\.trainerName = _\("([^"]*)"\)')
 trainer_items_definition           = re.compile(r'\.items = \{([^}]*)\}')
 trainer_item_definition            = re.compile(r'ITEM_(\w+)')
-trainer_double_battle_definition   = re.compile(r'\.doubleBattle = (\w+)')
 trainer_ai_flags_definition        = re.compile(r'\.aiFlags = (.*)')
 trainer_ai_flag_definition         = re.compile(r'AI_FLAG_(\w+)')
 trainer_party_definition           = re.compile(r'\.party = TRAINER_PARTY\((\w+)\)')
@@ -211,7 +210,6 @@ class Trainer:
         self.pic = None
         self.name = None
         self.items = []
-        self.double_battle = None
         self.ai_flags = None
         self.mugshot = None
         self.starting_status = None
@@ -250,14 +248,6 @@ def convert_trainers(in_path, in_h, parties, out_party):
             elif m := trainer_items_definition.search(line):
                 [items] = m.groups()
                 trainer.items = " / ".join(item.replace("_", " ").title() for item in trainer_item_definition.findall(items) if item != "NONE")
-            elif m := trainer_double_battle_definition.search(line):
-                [double_battle] = m.groups()
-                if double_battle == 'TRUE':
-                    trainer.double_battle = "Yes"
-                elif double_battle == 'FALSE':
-                    trainer.double_battle = "No"
-                else:
-                    raise Exception(f"unknown doubleBattle: '{double_battle}'")
             elif m := trainer_ai_flags_definition.search(line):
                 [ai_flags] = m.groups()
                 trainer.ai_flags = " / ".join(ai_flag.replace("_", " ").title() for ai_flag in trainer_ai_flag_definition.findall(ai_flags))
@@ -285,7 +275,6 @@ def convert_trainers(in_path, in_h, parties, out_party):
                 out_party.write(f"Music: {trainer.encounter_music}\n")
                 if trainer.items:
                     out_party.write(f"Items: {trainer.items}\n")
-                out_party.write(f"Double Battle: {trainer.double_battle}\n")
                 if trainer.ai_flags:
                     out_party.write(f"AI: {trainer.ai_flags}\n")
                 if trainer.mugshot:
