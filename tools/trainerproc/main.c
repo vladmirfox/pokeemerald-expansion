@@ -1194,7 +1194,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
         while (match_empty_line(p)) {}
         if (!parse_pokemon_header(p, &nickname, &species, &gender, &item))
         {
-            if (i > 0 || is_literal_string(trainer->id, "TRAINER_NONE"))
+            if (i > 0 || ends_with(trainer->id, "_NONE"))
                 break;
             if (!p->error)
                 set_parse_error(p, p->location, "expected nickname or species");
