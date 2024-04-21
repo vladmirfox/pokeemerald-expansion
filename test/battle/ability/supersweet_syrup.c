@@ -46,7 +46,7 @@ DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in ba
     }
 }
 
-SINGLE_BATTLE_TEST("Supersweet Syrum can not further lower opponents evasion if it is at minimum stages")
+SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if it is at minimum stages")
 {
     GIVEN {
         PLAYER(SPECIES_ODDISH);
