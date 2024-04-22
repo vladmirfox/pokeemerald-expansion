@@ -24,25 +24,22 @@ SINGLE_BATTLE_TEST("Tera Blast changes from Normal-type to the user's Tera Type"
 SINGLE_BATTLE_TEST("Tera Blast becomes a physical move if the user is Terastallized and has a higher Attack stat", s16 damage)
 {
     bool32 tera;
-    // Wobbuffet has equal defenses and Machamp has higher Attack than Sp. Attack.
-    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].baseSpDefense == gSpeciesInfo[SPECIES_WOBBUFFET].baseDefense);
-    ASSUME(gSpeciesInfo[SPECIES_MACHAMP].baseAttack > gSpeciesInfo[SPECIES_MACHAMP].baseSpAttack);
-
     PARAMETRIZE { tera = FALSE; }
     PARAMETRIZE { tera = TRUE; }
     GIVEN {
-        PLAYER(SPECIES_MACHAMP) { TeraType(TYPE_NORMAL); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); Attack(100); SpAttack(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Defense(200); SpDefense(200); }
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST, tera: tera); }
     } SCENE {
-        MESSAGE("Machamp used Tera Blast!");
+        MESSAGE("Wobbuffet used Tera Blast!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TERA_BLAST, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        // Since Wobbuffett has equal defenses, Tera Blast should do more damage than just the
-        // newly gained STAB boost.
-        EXPECT_GE(results[1].damage, results[0].damage * 1.50);
+        // Since Wobbuffett has equal defenses, Tera Blast should do 1.5x more damage
+        // from gaining STAB and an additional 2.0x damage from using its highest
+        // attacking stat.
+        EXPECT_MUL_EQ(results[0].damage, UQ_4_12(3.0), results[1].damage);
     }
 }
 
