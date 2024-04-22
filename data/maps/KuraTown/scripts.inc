@@ -119,5 +119,5 @@ KuraTown_EventScript_DirectionsSign_Text_0:
 KuraTown_EventScript_GymSign_Text_0:
 # 72 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village Pokémon Dojo\n"
-	.string "Leader: Hana\n"
+	.string "Leader: Hana\p"
 	.string "“Strong as a maple rooted in wisdom.”$"

@@ -5,8 +5,8 @@ mapscripts KuraTown_Dojo_MapScripts {
 script KuraTown_Dojo_EventScript_Takao {
 	trainerbattle_single(
 		TRAINER_TAKAO,
-		"Ho ho ho… It seems you took a wrong turn…",
-		"Very impressive skills!"
+		format("Ho ho ho… It seems you have taken a wrong turn…"),
+		format("Very impressive skills!")
 	)
 	msgbox(
 		format("Not all paths lead to the master."),
@@ -18,8 +18,8 @@ script KuraTown_Dojo_EventScript_Takao {
 script KuraTown_Dojo_EventScript_Jocelyn {
 	trainerbattle_single(
 		TRAINER_JOCELYN,
-		"Is the maze giving you trouble?",
-		"At least I didn't give you any trouble…"
+		format("Is the maze giving you trouble?"),
+		format("At least I didn't give you any trouble…")
 	)
 	msgbox(format(
 		"You're wondering why you can't just cut down all the trees?\p"
@@ -31,8 +31,8 @@ script KuraTown_Dojo_EventScript_Jocelyn {
 script KuraTown_Dojo_EventScript_Laura {
 	trainerbattle_single(
 		TRAINER_LAURA,
-		"No! Don't cut down that tree! It's my favorite tree!",
-		"Sniffle…"
+		format("No! Don't cut down that tree! It's my favorite tree!"),
+		format("Sniffle…")
 	)
 	msgbox(format("It's okay, go ahead. They're all my favorite tree anyway."), MSGBOX_AUTOCLOSE)
 	end
@@ -41,8 +41,8 @@ script KuraTown_Dojo_EventScript_Laura {
 script KuraTown_Dojo_EventScript_Brenden {
 	trainerbattle_single(
 		TRAINER_BRENDEN,
-		"Take a deep breath! The air is so rich and flowery here!",
-		"A-tchoo!"
+		format("Take a deep breath! The air is so rich and flowery here!"),
+		format("A-tchoo!")
 	)
 	msgbox(format("Sniff… By zeazonal allergiez are agdig up agaid…"), MSGBOX_AUTOCLOSE)
 	end
@@ -51,8 +51,8 @@ script KuraTown_Dojo_EventScript_Brenden {
 script KuraTown_Dojo_EventScript_Cristian {
 	trainerbattle_single(
 		TRAINER_CRISTIAN,
-		"Did you know any tree can be bonsaified by pruning its leaves regularly?",
-		"You're not here because you're particularly interested in bonsai, are you?"
+		format("Did you know any tree can be bonsaified by pruning its leaves regularly?"),
+		format("You're not here because you're particularly interested in bonsai, are you?")
 	)
 	msgbox(format("I feel bad sometimes, not letting the tree grow like it wants."), MSGBOX_AUTOCLOSE)
 	end
@@ -61,8 +61,8 @@ script KuraTown_Dojo_EventScript_Cristian {
 script KuraTown_Dojo_EventScript_Lilith {
 	trainerbattle_single(
 		TRAINER_LILITH,
-		"Hana may look delicate, but she's actually way tougher than you!",
-		"Stop it! I'm a delicate flower!"
+		format("Hana may look delicate, but she's actually way tougher than you!"),
+		format("Stop it! I'm a delicate flower!")
 	)
 	if (flag(FLAG_BADGE02_GET)) {
 		msgbox(format(
@@ -79,11 +79,11 @@ script KuraTown_Dojo_EventScript_Hana {
 	trainerbattle_single(
 		TRAINER_HANA_1,
 		// TODO different dialogue if you already met
-		"Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
+		format("Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
 		"Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With the Dojo, I can do both!\p"
 		"A Pokémon battle can be graceful like a budding flower and strong like a windswept pine tree, all at once.\p"
-		"I want you to show me all the grace and strength you are capable of!",
-		"Amazing!",
+		"I want you to show me all the grace and strength you are capable of!"),
+		format("Amazing!"),
 		KuraTown_Dojo_EventScript_HanaDefeated,
 		NO_MUSIC
 	)
@@ -149,6 +149,7 @@ script KuraTown_Dojo_EventScript_GiveBulldoze {
 
 script KuraTown_Dojo_EventScript_Advice {
 	lock
+	faceplayer
 	if (flag(FLAG_BADGE02_GET)) {
 		msgbox(format(
 			"That was a beautiful fight! You're going to blossom into an excellent Pokémon wielder, I can just feel it!"
@@ -158,7 +159,8 @@ script KuraTown_Dojo_EventScript_Advice {
 			"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
 			"Lady Hana, the Dojo master, is an expert in all things bonsai. She designed this place and grew these trees, of course!\p"
 			"She tends to favor ground-type moves, but she's got other tricks up her sleeve, too. Be on your guard!\p"
-			"Now, pay attention: only some of these pretty trees can be cut down. Figure out which, and you'll reach the master!"
+			"Now, pay attention: only some of these pretty trees can be cut down.\p"
+			"Figure out which, and you'll reach the master!"
 		))
 	}
 	release
@@ -183,7 +185,11 @@ script KuraTown_Dojo_EventScript_KuraDojoTree_CanCut {
 	lock
 	msgbox("…Oh? This tree can be cut down!", MSGBOX_DEFAULT)
 	closemessage
-	dofieldeffect(FLDEFF_USE_CUT_ON_TREE)
+	playse(SE_M_CUT)
+	applymovement(VAR_LAST_TALKED, Movement_CutTreeDown)
+	waitse
+	waitmovement(0)
+	removeobject(VAR_LAST_TALKED)
 	release
 }
 

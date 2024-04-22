@@ -24,11 +24,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Takao",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
+      "graphics_id": "OBJ_EVENT_GFX_GARDENER",
       "x": 2,
       "y": 13,
       "elevation": 0,
@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Laura",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_1"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_2"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_3"
     },
     {
@@ -89,7 +89,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_7"
     },
     {
@@ -102,7 +102,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_8"
     },
     {
@@ -115,11 +115,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Brenden",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
+      "graphics_id": "OBJ_EVENT_GFX_GARDENER",
       "x": 9,
       "y": 6,
       "elevation": 0,
@@ -128,7 +128,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Lilith",
       "flag": "0"
     },
     {
@@ -141,7 +141,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Cristian",
       "flag": "0"
     },
     {
@@ -167,7 +167,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_4"
     },
     {
@@ -180,7 +180,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Hana",
       "flag": "0"
     },
     {
@@ -193,7 +193,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_5"
     },
     {
@@ -206,7 +206,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_6"
     },
     {
@@ -219,7 +219,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
-      "script": "NULL",
+      "script": "KuraTown_Dojo_EventScript_Jocelyn",
       "flag": "0"
     },
     {
@@ -232,12 +232,25 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_CutTree",
+      "script": "KuraTown_Dojo_EventScript_KuraDojoTree_CanCut",
       "flag": "FLAG_TEMP_9"
     }
   ],
   "warp_events": [
-
+    {
+      "x": 4,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_KURA_TOWN",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 5,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_KURA_TOWN",
+      "dest_warp_id": "2"
+    }
   ],
   "coord_events": [
 

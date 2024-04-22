@@ -118,61 +118,72 @@ KuraTown_Dojo_EventScript_Advice::
 # 151 "data/maps/KuraTown_Dojo/scripts.pory"
 	lock
 # 152 "data/maps/KuraTown_Dojo/scripts.pory"
+	faceplayer
+# 153 "data/maps/KuraTown_Dojo/scripts.pory"
 	goto_if_set FLAG_BADGE02_GET, KuraTown_Dojo_EventScript_Advice_2
-# 157 "data/maps/KuraTown_Dojo/scripts.pory"
+# 158 "data/maps/KuraTown_Dojo/scripts.pory"
 	msgbox KuraTown_Dojo_EventScript_Advice_Text_1
 KuraTown_Dojo_EventScript_Advice_1:
-# 164 "data/maps/KuraTown_Dojo/scripts.pory"
+# 166 "data/maps/KuraTown_Dojo/scripts.pory"
 	release
 	return
 
 KuraTown_Dojo_EventScript_Advice_2:
-# 153 "data/maps/KuraTown_Dojo/scripts.pory"
+# 154 "data/maps/KuraTown_Dojo/scripts.pory"
 	msgbox KuraTown_Dojo_EventScript_Advice_Text_0
 	goto KuraTown_Dojo_EventScript_Advice_1
 
 
 KuraTown_Dojo_EventScript_DojoStatue::
-# 168 "data/maps/KuraTown_Dojo/scripts.pory"
+# 170 "data/maps/KuraTown_Dojo/scripts.pory"
 	lockall
-# 169 "data/maps/KuraTown_Dojo/scripts.pory"
+# 171 "data/maps/KuraTown_Dojo/scripts.pory"
 	goto_if_set FLAG_BADGE02_GET, KuraTown_Dojo_EventScript_DojoStatue_2
-# 177 "data/maps/KuraTown_Dojo/scripts.pory"
+# 179 "data/maps/KuraTown_Dojo/scripts.pory"
 	msgbox KuraTown_Dojo_EventScript_DojoStatue_Text_1, MSGBOX_DEFAULT
 KuraTown_Dojo_EventScript_DojoStatue_1:
-# 179 "data/maps/KuraTown_Dojo/scripts.pory"
+# 181 "data/maps/KuraTown_Dojo/scripts.pory"
 	releaseall
 	return
 
 KuraTown_Dojo_EventScript_DojoStatue_2:
-# 170 "data/maps/KuraTown_Dojo/scripts.pory"
+# 172 "data/maps/KuraTown_Dojo/scripts.pory"
 	msgbox KuraTown_Dojo_EventScript_DojoStatue_Text_0, MSGBOX_DEFAULT
 	goto KuraTown_Dojo_EventScript_DojoStatue_1
 
 
 KuraTown_Dojo_EventScript_KuraDojoTree_CanCut::
-# 183 "data/maps/KuraTown_Dojo/scripts.pory"
-	lock
-# 184 "data/maps/KuraTown_Dojo/scripts.pory"
-	msgbox KuraTown_Dojo_EventScript_KuraDojoTree_CanCut_Text_0, MSGBOX_DEFAULT
 # 185 "data/maps/KuraTown_Dojo/scripts.pory"
-	closemessage
+	lock
 # 186 "data/maps/KuraTown_Dojo/scripts.pory"
-	dofieldeffect FLDEFF_USE_CUT_ON_TREE
+	msgbox KuraTown_Dojo_EventScript_KuraDojoTree_CanCut_Text_0, MSGBOX_DEFAULT
 # 187 "data/maps/KuraTown_Dojo/scripts.pory"
+	closemessage
+# 188 "data/maps/KuraTown_Dojo/scripts.pory"
+	playse SE_M_CUT
+# 189 "data/maps/KuraTown_Dojo/scripts.pory"
+	applymovement VAR_LAST_TALKED, Movement_CutTreeDown
+# 190 "data/maps/KuraTown_Dojo/scripts.pory"
+	waitse
+# 191 "data/maps/KuraTown_Dojo/scripts.pory"
+	waitmovement 0
+# 192 "data/maps/KuraTown_Dojo/scripts.pory"
+	removeobject VAR_LAST_TALKED
+# 193 "data/maps/KuraTown_Dojo/scripts.pory"
 	release
 	return
 
 
 KuraTown_Dojo_EventScript_KuraDojoTree_CantCut::
-# 191 "data/maps/KuraTown_Dojo/scripts.pory"
+# 197 "data/maps/KuraTown_Dojo/scripts.pory"
 	msgbox KuraTown_Dojo_EventScript_KuraDojoTree_CantCut_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_Dojo_EventScript_Takao_Text_0:
 # 8 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Ho ho ho… It seems you took a wrong turn…$"
+	.string "Ho ho ho… It seems you have taken a\n"
+	.string "wrong turn…$"
 
 KuraTown_Dojo_EventScript_Takao_Text_1:
 # 9 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -198,7 +209,8 @@ KuraTown_Dojo_EventScript_Jocelyn_Text_2:
 
 KuraTown_Dojo_EventScript_Laura_Text_0:
 # 34 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "No! Don't cut down that tree! It's my favorite tree!$"
+	.string "No! Don't cut down that tree! It's my\n"
+	.string "favorite tree!$"
 
 KuraTown_Dojo_EventScript_Laura_Text_1:
 # 35 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -211,7 +223,8 @@ KuraTown_Dojo_EventScript_Laura_Text_2:
 
 KuraTown_Dojo_EventScript_Brenden_Text_0:
 # 44 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Take a deep breath! The air is so rich and flowery here!$"
+	.string "Take a deep breath! The air is so rich\n"
+	.string "and flowery here!$"
 
 KuraTown_Dojo_EventScript_Brenden_Text_1:
 # 45 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -224,11 +237,14 @@ KuraTown_Dojo_EventScript_Brenden_Text_2:
 
 KuraTown_Dojo_EventScript_Cristian_Text_0:
 # 54 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Did you know any tree can be bonsaified by pruning its leaves regularly?$"
+	.string "Did you know any tree can be bonsaified\n"
+	.string "by pruning its leaves regularly?$"
 
 KuraTown_Dojo_EventScript_Cristian_Text_1:
 # 55 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "You're not here because you're particularly interested in bonsai, are you?$"
+	.string "You're not here because you're\n"
+	.string "particularly interested in bonsai, are\l"
+	.string "you?$"
 
 KuraTown_Dojo_EventScript_Cristian_Text_2:
 # 57 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -237,7 +253,8 @@ KuraTown_Dojo_EventScript_Cristian_Text_2:
 
 KuraTown_Dojo_EventScript_Lilith_Text_0:
 # 64 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Hana may look delicate, but she's actually way tougher than you!$"
+	.string "Hana may look delicate, but she's\n"
+	.string "actually way tougher than you!$"
 
 KuraTown_Dojo_EventScript_Lilith_Text_1:
 # 65 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -256,10 +273,16 @@ KuraTown_Dojo_EventScript_Lilith_Text_3:
 
 KuraTown_Dojo_EventScript_Hana_Text_0:
 # 82 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
-	.string "Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With the Dojo, I can do both!\p"
-	.string "A Pokémon battle can be graceful like a budding flower and strong like a windswept pine tree, all at once.\p"
-	.string "I want you to show me all the grace and strength you are capable of!$"
+	.string "Welcome to my humble Dojo. I am Hana.\n"
+	.string "Did you enjoy my little maze?\p"
+	.string "Tending to my bonsai and fighting\n"
+	.string "alongside my Pokémon are my favorite\l"
+	.string "pastimes. With the Dojo, I can do both!\p"
+	.string "A Pokémon battle can be graceful like a\n"
+	.string "budding flower and strong like a\l"
+	.string "windswept pine tree, all at once.\p"
+	.string "I want you to show me all the grace and\n"
+	.string "strength you are capable of!$"
 
 KuraTown_Dojo_EventScript_Hana_Text_1:
 # 86 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -294,13 +317,13 @@ KuraTown_Dojo_EventScript_GiveBulldoze_Text_0:
 	.string "$"
 
 KuraTown_Dojo_EventScript_Advice_Text_0:
-# 154 "data/maps/KuraTown_Dojo/scripts.pory"
+# 155 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "That was a beautiful fight! You're going\n"
 	.string "to blossom into an excellent Pokémon\l"
 	.string "wielder, I can just feel it!$"
 
 KuraTown_Dojo_EventScript_Advice_Text_1:
-# 158 "data/maps/KuraTown_Dojo/scripts.pory"
+# 159 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Hello, young challenger, and welcome to\n"
 	.string "the official Dojo of Kura Village!\p"
 	.string "Lady Hana, the Dojo master, is an expert\n"
@@ -310,23 +333,24 @@ KuraTown_Dojo_EventScript_Advice_Text_1:
 	.string "but she's got other tricks up her\l"
 	.string "sleeve, too. Be on your guard!\p"
 	.string "Now, pay attention: only some of these\n"
-	.string "pretty trees can be cut down. Figure\l"
-	.string "out which, and you'll reach the master!$"
+	.string "pretty trees can be cut down.\p"
+	.string "Figure out which, and you'll reach the\n"
+	.string "master!$"
 
 KuraTown_Dojo_EventScript_DojoStatue_Text_0:
-# 171 "data/maps/KuraTown_Dojo/scripts.pory"
+# 173 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Dojo of Kura Village\p"
 	.string "Certified wielders:\n"
 	.string "{PLAYER}$"
 
 KuraTown_Dojo_EventScript_DojoStatue_Text_1:
-# 177 "data/maps/KuraTown_Dojo/scripts.pory"
+# 179 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Dojo of Kura Village$"
 
 KuraTown_Dojo_EventScript_KuraDojoTree_CanCut_Text_0:
-# 184 "data/maps/KuraTown_Dojo/scripts.pory"
+# 186 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "…Oh? This tree can be cut down!$"
 
 KuraTown_Dojo_EventScript_KuraDojoTree_CantCut_Text_0:
-# 191 "data/maps/KuraTown_Dojo/scripts.pory"
+# 197 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "A gorgeous and well-nurtured tree.$"

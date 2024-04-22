@@ -3514,7 +3514,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_VICTOR] =
     {
-        .trainerClass = TRAINER_CLASS_WINSTRATE,
+        .trainerClass = TRAINER_CLASS_GARDENER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_TWINS,
         .trainerPic = TRAINER_PIC_POKEFAN_M,
         .trainerName = _("VICTOR"),
@@ -3598,7 +3598,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_VICTORIA] =
     {
-        .trainerClass = TRAINER_CLASS_WINSTRATE,
+        .trainerClass = TRAINER_CLASS_GARDENER,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_TWINS,
         .trainerPic = TRAINER_PIC_POKEFAN_F,
         .trainerName = _("VICTORIA"),
@@ -3754,7 +3754,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_VICKY] =
     {
-        .trainerClass = TRAINER_CLASS_WINSTRATE,
+        .trainerClass = TRAINER_CLASS_GARDENER,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_EXPERT_F,
         .trainerName = _("VICKY"),
@@ -7284,7 +7284,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_VIVI] =
     {
-        .trainerClass = TRAINER_CLASS_WINSTRATE,
+        .trainerClass = TRAINER_CLASS_GARDENER,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_LASS,
         .trainerName = _("VIVI"),

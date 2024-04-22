@@ -17,7 +17,7 @@
 #define OBJ_EVENT_GFX_BOY_3                       13
 #define OBJ_EVENT_GFX_GIRL_3                      14
 #define OBJ_EVENT_GFX_RICH_BOY                    15
-#define OBJ_EVENT_GFX_WOMAN_1                     16
+#define OBJ_EVENT_GFX_GARDENER                     16
 #define OBJ_EVENT_GFX_FAT_MAN                     17
 #define OBJ_EVENT_GFX_POKEFAN_F                   18
 #define OBJ_EVENT_GFX_MAN_1                       19
@@ -390,8 +390,9 @@
 #define OBJ_EVENT_PAL_TAG_BUG_CATCHER             0x112E
 #define OBJ_EVENT_PAL_TAG_BOY_1                   0x112F
 #define OBJ_EVENT_PAL_TAG_MART_EMPLOYEE           0x1130
-#define OBJ_EVENT_PAL_TAG_BATTLE_GIRL        0x1131
+#define OBJ_EVENT_PAL_TAG_BATTLE_GIRL             0x1131
 #define OBJ_EVENT_PAL_TAG_HANA                    0x1132
+#define OBJ_EVENT_PAL_TAG_GARDENER                0x1133
 
 #if OW_MON_POKEBALLS
 // Vanilla
