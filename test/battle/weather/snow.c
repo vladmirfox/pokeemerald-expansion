@@ -27,3 +27,25 @@ SINGLE_BATTLE_TEST("Snow multiplies the defense of Ice-types by 1.5x", s16 damag
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
+
+SINGLE_BATTLE_TEST("Snowscape fails if Desolate Land is active")
+{
+    u32 item;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_RED_ORB; }
+
+    GIVEN {
+        PLAYER(SPECIES_GROUDON) { Item(item); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SNOWSCAPE); }
+    } SCENE {
+        if (item == ITEM_RED_ORB) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SNOWSCAPE, opponent);
+        } else {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SNOWSCAPE, opponent);
+        }
+    }
+}
