@@ -1226,12 +1226,12 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
 
 bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef)
 {
-    if (!(gBattleStruct->distortedTypeMatchups & gBitTable[battlerDef]) &&
-        GetBattlerAbility(battlerDef) == ABILITY_TERA_SHELL &&
-        gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL &&
-        !IS_MOVE_STATUS(move) &&
-        !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
-        !(gBattleMons[battlerDef].hp < gBattleMons[battlerDef].maxHP))
+    if (!(gBattleStruct->distortedTypeMatchups & gBitTable[battlerDef])
+     && GetBattlerAbility(battlerDef) == ABILITY_TERA_SHELL
+     && gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL
+     && !IS_MOVE_STATUS(move)
+     && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+     && !(gBattleMons[battlerDef].hp < gBattleMons[battlerDef].maxHP))
         return TRUE;
     else
         return FALSE;
