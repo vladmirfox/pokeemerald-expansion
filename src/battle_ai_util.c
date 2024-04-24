@@ -470,7 +470,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     // Temporarily enable other gimmicks for damage calcs if planned
     if (AI_DATA->shouldDynamax[battlerAtk])
     {
-        toggledTera = TRUE;
+        toggledDynamax = TRUE;
         gBattleStruct->dynamax.dynamaxed[battlerAtk] = TRUE;
     }
     if (AI_DATA->shouldTerastal[battlerAtk])
