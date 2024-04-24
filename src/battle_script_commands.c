@@ -11084,6 +11084,7 @@ static void Cmd_setfieldweather(void)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_FAILED;
+        gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
 
