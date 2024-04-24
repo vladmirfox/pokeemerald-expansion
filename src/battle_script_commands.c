@@ -1232,7 +1232,7 @@ bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef)
      && gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL
      && !IS_MOVE_STATUS(move)
      && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-     && !(gBattleMons[battlerDef].hp < gBattleMons[battlerDef].maxHP))
+     && gBattleMons[battlerDef].hp == gBattleMons[battlerDef].maxHP)
         return TRUE;
     else
         return FALSE;
