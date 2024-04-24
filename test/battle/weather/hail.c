@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("Hail damage does not affect Ice-type Pokémon")
     }
 }
 
-SINGLE_BATTLE_TEST("Hail fails if Desolate Land is active")
+SINGLE_BATTLE_TEST("Hail fails if Desolate Land or Primordial Sea are active")
 {
     u32 species;
     u32 item;
