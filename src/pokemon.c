@@ -1020,14 +1020,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
-    if (gSpeciesInfo[species].forceTeraType)
-    {
+    if (gSpeciesInfo[species].forceTeraType != TYPE_NONE)
         SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &(gSpeciesInfo[species].forceTeraType));
-    }
     else
-    {
         SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, ((personality & 0x1) == 0 ? &(gSpeciesInfo[species].types[0]) : &(gSpeciesInfo[species].types[1])));
-    }
 
     GiveBoxMonInitialMoveset(boxMon);
 }
@@ -1578,11 +1574,6 @@ void CalculateMonStats(struct Pokemon *mon)
     }
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
-
-    if (gSpeciesInfo[species].forceTeraType) // only change tera type here if the tera type is forced, otherwise it can stay the same
-    {
-        SetMonData(mon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].forceTeraType);
-    }
 }
 
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
@@ -6282,6 +6273,9 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
             }
         }
     }
+
+    if (gSpeciesInfo[targetSpecies].forceTeraType != TYPE_NONE) // Doing this here seems to cover all cases
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[targetSpecies].forceTeraType);
 
     return targetSpecies;
 }
