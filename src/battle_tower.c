@@ -1643,7 +1643,8 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
     if (fmon->teraType)
     {
         u32 data = fmon->teraType;
-        SetMonData(dst, MON_DATA_TERA_TYPE, &data);
+        if (gSpeciesInfo[fmon->species].forceTeraType == TYPE_NONE)
+            SetMonData(dst, MON_DATA_TERA_TYPE, &data);
     }
 
 

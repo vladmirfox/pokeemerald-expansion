@@ -2330,7 +2330,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             if (partyData[i].teraType > 0)
             {
                 u32 data = partyData[i].teraType;
-                SetMonData(&party[i], MON_DATA_TERA_TYPE, &data);
+                if (gSpeciesInfo[partyData[i].species].forceTeraType == TYPE_NONE)
+                    SetMonData(&party[i], MON_DATA_TERA_TYPE, &data);
             }
             CalculateMonStats(&party[i]);
 
