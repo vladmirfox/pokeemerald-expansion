@@ -1637,11 +1637,10 @@
 	callnative BS_TryQuash
 	.4byte \failInstr
 	.endm
-	
+
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
-
 
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req

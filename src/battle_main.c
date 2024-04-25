@@ -4231,7 +4231,6 @@ void BattleTurnPassed(void)
     if (HandleFaintedMonActions())
         return;
     gBattleStruct->faintedActionsState = 0;
-    gBattleStruct->distortedTypeMatchups = 0;
 
     TurnValuesCleanUp(FALSE);
     gHitMarker &= ~HITMARKER_NO_ATTACKSTRING;
@@ -5342,7 +5341,7 @@ static void PopulateArrayWithBattlers(u8 *battlers)
 static bool32 TryDoGimmicksBeforeMoves(void)
 {
     if (!(gHitMarker & HITMARKER_RUN)
-        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst 
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst
             || gBattleStruct->dynamax.toDynamax || gBattleStruct->tera.toTera))
     {
         u32 i, battler;

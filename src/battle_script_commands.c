@@ -6338,6 +6338,7 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = 0;
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
+            gBattleStruct->distortedTypeMatchups = 0;
             // clear attacker z move data
             gBattleStruct->zmove.active = FALSE;
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
