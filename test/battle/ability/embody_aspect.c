@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Embody Aspect raises a stat depending on the users form by o
             MESSAGE("Foe Ogerpon's Embody Aspect raised its Defense!");
     } THEN {
         if (ability == ABILITY_EMBODY_ASPECT_TEAL_MASK)
-            EXPECT_EQ(opponent->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(opponent->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
         else if (ability == ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK)
             EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
         else if (ability == ABILITY_EMBODY_ASPECT_WELLSPRING_MASK)
