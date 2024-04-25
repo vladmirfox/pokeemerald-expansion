@@ -4734,21 +4734,21 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
-        case ABILITY_EMBODY_ASPECT_TEAL:
-        case ABILITY_EMBODY_ASPECT_HEARTHFLAME:
-        case ABILITY_EMBODY_ASPECT_WELLSPRING:
-        case ABILITY_EMBODY_ASPECT_CORNERSTONE:
+        case ABILITY_EMBODY_ASPECT_TEAL_MASK:
+        case ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK:
+        case ABILITY_EMBODY_ASPECT_WELLSPRING_MASK:
+        case ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
-                u32 stat = STAT_SPATK;
+                u32 stat = STAT_SPEED;
 
-                if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_TEAL)
-                    stat = STAT_SPATK;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_HEARTHFLAME)
+                if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_TEAL_MASK)
+                    stat = STAT_SPEED;
+                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK)
                     stat = STAT_ATK;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_WELLSPRING)
+                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_WELLSPRING_MASK)
                     stat = STAT_SPDEF;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_CORNERSTONE)
+                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK)
                     stat = STAT_DEF;
 
                 if (CompareStat(battler, stat, MAX_STAT_STAGE, CMP_EQUAL))
