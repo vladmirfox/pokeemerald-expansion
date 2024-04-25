@@ -1020,6 +1020,15 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
+    if (gSpeciesInfo[species].forceTeraType)
+    {
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &(gSpeciesInfo[species].forceTeraType));
+    }
+    else
+    {
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, ((personality & 0x1) == 0 ? &(gSpeciesInfo[species].types[0]) : &(gSpeciesInfo[species].types[1])));
+    }
+
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -1569,6 +1578,11 @@ void CalculateMonStats(struct Pokemon *mon)
     }
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
+
+    if (gSpeciesInfo[species].forceTeraType) // only change tera type here if the tera type is forced, otherwise it can stay the same
+    {
+        SetMonData(mon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].forceTeraType);
+    }
 }
 
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
@@ -2538,22 +2552,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             break;
         case MON_DATA_TERA_TYPE:
         {
-            if (substruct0->teraType == 0)
-            {
-                if (gSpeciesInfo[substruct0->species].forceTeraType)
-                {
-                    retVal = gSpeciesInfo[substruct0->species].forceTeraType;
-                }
-                else
-                {
-                    const u8 *types = gSpeciesInfo[substruct0->species].types;
-                    retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
-                }
-            }
-            else
-            {
-                retVal = substruct0->teraType - 1;
-            }
+            retVal = substruct0->teraType - 1;
             break;
         }
         case MON_DATA_EVOLUTION_TRACKER:
