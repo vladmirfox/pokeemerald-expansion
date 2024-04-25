@@ -1726,7 +1726,7 @@ void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon) //Credit: Asparagu
                 alreadyKnown = TRUE;
                 break;
             }
-    
+
         if (!alreadyKnown)
         {
             if (addedMoves < MAX_MON_MOVES)
@@ -2540,8 +2540,15 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         {
             if (substruct0->teraType == 0)
             {
-                const u8 *types = gSpeciesInfo[substruct0->species].types;
-                retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
+                if (gSpeciesInfo[substruct0->species].forceTeraType)
+                {
+                    retVal = gSpeciesInfo[substruct0->species].forceTeraType;
+                }
+                else
+                {
+                    const u8 *types = gSpeciesInfo[substruct0->species].types;
+                    retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
+                }
             }
             else
             {

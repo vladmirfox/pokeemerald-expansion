@@ -5335,7 +5335,7 @@ static void PopulateArrayWithBattlers(u8 *battlers)
 static bool32 TryDoGimmicksBeforeMoves(void)
 {
     if (!(gHitMarker & HITMARKER_RUN)
-        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst 
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst
             || gBattleStruct->dynamax.toDynamax || gBattleStruct->tera.toTera))
     {
         u32 i, battler;
@@ -5353,7 +5353,10 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 gBattleStruct->tera.toTera &= ~(gBitTable[gBattlerAttacker]);
                 PrepareBattlerForTera(gBattlerAttacker);
                 PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(gBattlerAttacker));
-                BattleScriptExecute(BattleScript_Terastallization);
+                if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
+                    BattleScriptExecute(BattleScript_TeraFormChange);
+                else
+                    BattleScriptExecute(BattleScript_Terastallization);
                 return TRUE;
             }
             // Dynamax Check
