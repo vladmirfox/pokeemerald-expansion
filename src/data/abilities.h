@@ -33,7 +33,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_BATTLE_ARMOR] =
     {
         .name = _("Battle Armor"),
-        .description = COMPOUND_STRING("Blocks critical hits."),
+        .description = COMPOUND_STRING("Blocks crits, rocks, steel."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -575,7 +575,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] =
     {
         .name = _("Shell Armor"),
-        .description = COMPOUND_STRING("Blocks critical hits."),
+        .description = COMPOUND_STRING("Blocks crits, rocks, steel."),
         .aiRating = 2,
         .breakable = TRUE,
     },
@@ -1253,7 +1253,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_FLOWER_VEIL] =
     {
         .name = _("Flower Veil"),
-        .description = COMPOUND_STRING("Protects Grass-types."),
+        .description = COMPOUND_STRING("Protects Allies."),
         .aiRating = 0,
     },
 

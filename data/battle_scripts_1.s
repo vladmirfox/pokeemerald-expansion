@@ -7270,6 +7270,7 @@ BattleScript_PowderMoveNoEffect::
 	pause B_WAIT_TIME_SHORT
 	jumpiftype BS_TARGET, TYPE_GRASS, BattleScript_PowderMoveNoEffectPrint
 	jumpifability BS_TARGET, ABILITY_OVERCOAT, BattleScript_PowderMoveNoEffectOvercoat
+	jumpifability BS_TARGET, ABILITY_SHIELD_DUST, BattleScript_PowderMoveNoEffectOvercoat
 	printstring STRINGID_SAFETYGOGGLESPROTECTED
 	goto BattleScript_PowderMoveNoEffectWaitMsg
 BattleScript_PowderMoveNoEffectOvercoat:
@@ -7698,6 +7699,16 @@ BattleScript_SolarPowerActivates::
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_SOLARPOWERHPDROP
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+	end3
+
+BattleScript_ShowdownModeActivates::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	call BattleScript_AbilityPopUp
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_SHOWDOWNMODEHPDROP
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
 	end3
@@ -8504,6 +8515,12 @@ BattleScript_ImposterActivates::
 	playmoveanimation BS_ATTACKER, MOVE_TRANSFORM
 	waitanimation
 	printstring STRINGID_IMPOSTERTRANSFORM
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_ShortFuseActivates::
+	call BattleScript_AbilityPopUp
+	seteffectprimary MOVE_EFFECT_RAGE
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
