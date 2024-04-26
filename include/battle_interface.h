@@ -48,6 +48,7 @@ enum
 #define TAG_HEALTHBAR_PAL               TAG_HEALTHBAR_PLAYER1_TILE
 #define TAG_HEALTHBOX_PAL               TAG_HEALTHBOX_PLAYER1_TILE
 
+#define TAG_GIMMICK_TRIGGER_TILE        0xD777
 #define TAG_MEGA_TRIGGER_TILE           0xD777
 #define TAG_MEGA_INDICATOR_TILE         0xD778
 #define TAG_ALPHA_INDICATOR_TILE        0xD779
@@ -79,6 +80,7 @@ enum
 #define TAG_STELLAR_INDICATOR_TILE      0xD792
 #define TAG_TERA_TRIGGER_TILE           0xD793
 
+#define TAG_GIMMICK_TRIGGER_PAL         0xD777
 #define TAG_MEGA_TRIGGER_PAL            0xD777
 #define TAG_MEGA_INDICATOR_PAL          0xD778
 #define TAG_MISC_INDICATOR_PAL          0xD779 // Alpha, Omega, and Dynamax indicators use the same palette as each of them only uses 4 different colors.
@@ -116,16 +118,6 @@ void InitBattlerHealthboxCoords(u8 battler);
 void GetBattlerHealthboxCoords(u8 battler, s16 *x, s16 *y);
 void UpdateHpTextInHealthbox(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp, s16 maxHp);
 void SwapHpBarsWithHpText(void);
-void ChangeMegaTriggerSprite(u8 spriteId, u8 animId);
-void CreateMegaTriggerSprite(u8 battlerId, u8 palId);
-bool32 IsMegaTriggerSpriteActive(void);
-void HideMegaTriggerSprite(void);
-void DestroyMegaTriggerSprite(void);
-void ChangeBurstTriggerSprite(u8 spriteId, u8 animId);
-void CreateBurstTriggerSprite(u8 battlerId, u8 palId);
-bool32 IsBurstTriggerSpriteActive(void);
-void HideBurstTriggerSprite(void);
-void DestroyBurstTriggerSprite(void);
 void MegaIndicator_LoadSpritesGfx(void);
 void MegaIndicator_SetVisibilities(u32 healthboxId, bool32 invisible);
 u8 CreatePartyStatusSummarySprites(u8 battler, struct HpAndStatus *partyInfo, bool8 skipPlayer, bool8 isBattleStart);
@@ -136,7 +128,6 @@ u8 GetScaledHPFraction(s16 hp, s16 maxhp, u8 scale);
 u8 GetHPBarLevel(s16 hp, s16 maxhp);
 void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle);
 void DestroyAbilityPopUp(u8 battlerId);
-void HideTriggerSprites(void);
 bool32 CanThrowLastUsedBall(void);
 void TryHideLastUsedBall(void);
 void TryRestoreLastUsedBall(void);

@@ -431,7 +431,7 @@ bool32 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
             return TRUE;
         break;
     case EFFECT_LOW_KICK:
-        if (IsDynamaxed(battlerDef))
+        if (GetActiveGimmick(battlerDef) == GIMMICK_DYNAMAX)
             return TRUE;
         break;
     case EFFECT_FAIL_IF_NOT_ARG_TYPE:
@@ -448,8 +448,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     s32 dmg, moveType;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
-    bool32 toggledDynamax = FALSE;
-    bool32 toggledTera = FALSE;
+    bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
 
     SetBattlerData(battlerAtk);
@@ -468,15 +467,10 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
         move = GetNaturePowerMove();
 
     // Temporarily enable other gimmicks for damage calcs if planned
-    if (AI_DATA->shouldDynamax[battlerAtk])
+    if (gBattleStruct->gimmick.usableGimmick[battlerAtk] && GetActiveGimmick(battlerAtk) == GIMMICK_NONE)
     {
-        toggledDynamax = TRUE;
-        gBattleStruct->dynamax.dynamaxed[battlerAtk] = TRUE;
-    }
-    if (AI_DATA->shouldTerastal[battlerAtk])
-    {
-        toggledTera = TRUE;
-        gBattleStruct->tera.isTerastallized[GetBattlerSide(battlerAtk)] |= gBitTable[gBattlerPartyIndexes[battlerAtk]];
+        toggledGimmick = TRUE;
+        SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
     gBattleStruct->dynamicMoveType = 0;
@@ -596,10 +590,8 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     gBattleStruct->swapDamageCategory = FALSE;
     gBattleStruct->zmove.active = FALSE;
     gBattleStruct->zmove.baseMoves[battlerAtk] = MOVE_NONE;
-    if (toggledDynamax)
-        gBattleStruct->dynamax.dynamaxed[battlerAtk] = FALSE;
-    if (toggledTera)
-        gBattleStruct->tera.isTerastallized[GetBattlerSide(battlerAtk)] &= ~(gBitTable[gBattlerPartyIndexes[battlerAtk]]);
+    if (toggledGimmick)
+        SetActiveGimmick(battlerAtk, GIMMICK_NONE);
 
     return dmg;
 }

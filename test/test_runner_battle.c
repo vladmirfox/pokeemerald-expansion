@@ -2068,16 +2068,28 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
     }
 
     if (ctx->explicitMegaEvolve && ctx->megaEvolve)
-        *moveSlot |= RET_MEGA_EVOLUTION;
+    {
+        DATA.chosenGimmick[battlerId] = GIMMICK_MEGA;
+        *moveSlot |= RET_GIMMICK;
+    }
 
     if (ctx->explicitUltraBurst && ctx->ultraBurst)
-        *moveSlot |= RET_ULTRA_BURST;
+    {
+        DATA.chosenGimmick[battlerId] = GIMMICK_ULTRA_BURST;
+        *moveSlot |= RET_GIMMICK;
+    }
 
     if (ctx->explicitDynamax && ctx->dynamax)
-        *moveSlot |= RET_DYNAMAX;
+    {
+        DATA.chosenGimmick[battlerId] = GIMMICK_DYNAMAX;
+        *moveSlot |= RET_GIMMICK;
+    }
     
     if (ctx->explicitTera && ctx->tera)
-        *moveSlot |= RET_TERASTAL;
+    {
+        DATA.chosenGimmick[battlerId] = GIMMICK_TERA;
+        *moveSlot |= RET_GIMMICK;
+    }
 }
 
 void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
@@ -2639,6 +2651,11 @@ void ValidateFinally(u32 sourceLine)
 u32 TestRunner_Battle_GetForcedAbility(u32 side, u32 partyIndex)
 {
     return DATA.forcedAbilities[side][partyIndex];
+}
+
+u32 TestRunner_Battle_GetChosenGimmick(u32 battler)
+{
+    return DATA.chosenGimmick[battler];
 }
 
 // TODO: Consider storing the last successful i and searching from i+1

@@ -24,7 +24,7 @@ BattleScript_Terastallization::
 	@ TODO: no string prints in S/V, but right now this helps with clarity
 	printstring STRINGID_PKMNTERASTALLIZEDINTO
 	@ TODO: replace this animation
-	playanimation BS_ATTACKER, B_ANIM_TOTEM_FLARE
+	playanimation BS_SCRIPTING, B_ANIM_TOTEM_FLARE
 	waitanimation
 	end3
 
@@ -7001,13 +7001,13 @@ BattleScript_MegaEvolution::
 BattleScript_MegaEvolutionAfterString:
 	waitmessage B_WAIT_TIME_LONG
 	setbyte gIsCriticalHit, 0
-	handlemegaevo BS_ATTACKER, 0
-	playanimation BS_ATTACKER, B_ANIM_MEGA_EVOLUTION
+	handlemegaevo BS_SCRIPTING, 0
+	playanimation BS_SCRIPTING, B_ANIM_MEGA_EVOLUTION
 	waitanimation
-	handlemegaevo BS_ATTACKER, 1
+	handlemegaevo BS_SCRIPTING, 1
 	printstring STRINGID_MEGAEVOEVOLVED
 	waitmessage B_WAIT_TIME_LONG
-	switchinabilities BS_ATTACKER
+	switchinabilities BS_SCRIPTING
 	end3
 
 BattleScript_WishMegaEvolution::
@@ -7044,13 +7044,13 @@ BattleScript_UltraBurst::
 	printstring STRINGID_ULTRABURSTREACTING
 	waitmessage B_WAIT_TIME_LONG
 	setbyte gIsCriticalHit, 0
-	handleultraburst BS_ATTACKER, 0
-	playanimation BS_ATTACKER, B_ANIM_ULTRA_BURST
+	handleultraburst BS_SCRIPTING, 0
+	playanimation BS_SCRIPTING, B_ANIM_ULTRA_BURST
 	waitanimation
-	handleultraburst BS_ATTACKER, 1
+	handleultraburst BS_SCRIPTING, 1
 	printstring STRINGID_ULTRABURSTCOMPLETED
 	waitmessage B_WAIT_TIME_LONG
-	switchinabilities BS_ATTACKER
+	switchinabilities BS_SCRIPTING
 	end3
 
 BattleScript_GulpMissileFormChange::
