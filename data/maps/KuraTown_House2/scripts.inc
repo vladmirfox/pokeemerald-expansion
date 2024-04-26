@@ -6,10 +6,10 @@ KuraTown_House2_EventScript_Ashii::
 # 8 "data/maps/KuraTown_House2/scripts.pory"
 	lock
 # 11 "data/maps/KuraTown_House2/scripts.pory"
-	compare VAR_QUEST_TAMA_ASHII_STATE, 0
+	compare VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 0
 	goto_if_eq KuraTown_House2_EventScript_Ashii_2
 # 50 "data/maps/KuraTown_House2/scripts.pory"
-	compare VAR_QUEST_TAMA_ASHII_STATE, 1
+	compare VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 1
 	goto_if_eq KuraTown_House2_EventScript_Ashii_3
 KuraTown_House2_EventScript_Ashii_1:
 # 59 "data/maps/KuraTown_House2/scripts.pory"
@@ -60,7 +60,7 @@ KuraTown_House2_EventScript_Ashii_2:
 # 47 "data/maps/KuraTown_House2/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 48 "data/maps/KuraTown_House2/scripts.pory"
-	setvar VAR_QUEST_TAMA_ASHII_STATE, 1
+	setvar VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 1
 	goto KuraTown_House2_EventScript_Ashii_1
 
 KuraTown_House2_EventScript_Ashii_3:

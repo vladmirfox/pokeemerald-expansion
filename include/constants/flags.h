@@ -44,8 +44,10 @@
 
 // True if the Kura dojo is closed
 #define FLAG_KURA_DOJO_CLOSED 0x20
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
+// True if the Espeon from Saku village has left the lady's house
+#define FLAG_SAKU_KURA_HIDE_ESPEON_LADYS_HOUSE 0x21
+// True if the Espeon from Saku village has left its master's house
+#define FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME 0x22
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
@@ -652,7 +654,7 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_BIGSIS_OUT   0x264  // True if bigsis is not home
+#define FLAG_HIDE_BIGSIS_HOME   0x264  // True if bigsis is not home
 #define FLAG_HIDE_SUNRISE_BEACH_RIVAL 0x265 // True if talked to rival on the beach in intro sequence
 #define FLAG_RECEIVED_STARTER  0x266 // True if player has received their starter
 #define FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS  0x267 // True if all the Sunrise Village NPC's should be removed from their usual spot

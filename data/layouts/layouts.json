@@ -583,21 +583,21 @@
     },
     {
       "id": "LAYOUT_HOUSE_BEIGE_HEARTH",
-      "name": "House1_Layout",
+      "name": "House_BeigeHearth_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseBeige",
       "border_filepath": "data/layouts/House1/border.bin",
       "blockdata_filepath": "data/layouts/House1/map.bin"
     },
     {
       "id": "LAYOUT_HOUSE_GREEN_TABLE",
-      "name": "House2_Layout",
+      "name": "House_GreenTable_Layout",
       "width": 11,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseGreen",
       "border_filepath": "data/layouts/House2/border.bin",
       "blockdata_filepath": "data/layouts/House2/map.bin"
     },
@@ -633,7 +633,7 @@
     },
     {
       "id": "LAYOUT_HOUSE_HARDWOOD_HEARTH",
-      "name": "House3_Layout",
+      "name": "House_HardwoodHearth_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
@@ -663,7 +663,7 @@
     },
     {
       "id": "LAYOUT_HOUSE_HARDWOOD_TATAMI_ZABUTON",
-      "name": "House4_Layout",
+      "name": "House_HardwoodTatamiZabuton_Layout",
       "width": 8,
       "height": 9,
       "primary_tileset": "gTileset_Building_Generic",
@@ -743,7 +743,7 @@
     },
     {
       "id": "LAYOUT_HOUSE_BEIGE_TABLE",
-      "name": "UnusedContestRoom1_Layout",
+      "name": "House_BeigeTable_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
@@ -3153,17 +3153,17 @@
     },
     {
       "id": "LAYOUT_HOUSE_GREEN_HEARTH",
-      "name": "AquaHideout_UnusedRubyMap1_Layout",
+      "name": "House_GreenHearth_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseGreen",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap1/map.bin"
     },
     {
       "id": "LAYOUT_HOUSE_HARDWOOD2_TABLE",
-      "name": "AquaHideout_UnusedRubyMap2_Layout",
+      "name": "House_HardwoodTable_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
@@ -3173,11 +3173,11 @@
     },
     {
       "id": "LAYOUT_HOUSE_WHITE_STONE_HEARTH",
-      "name": "AquaHideout_UnusedRubyMap3_Layout",
+      "name": "House_WhiteStoneHearth_Layout",
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseStone",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap3/map.bin"
     },
@@ -4467,7 +4467,7 @@
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseBeige",
       "border_filepath": "data/layouts/SunriseVillage_PlayersHouse_LR/border.bin",
       "blockdata_filepath": "data/layouts/SunriseVillage_PlayersHouse_LR/map.bin"
     },
@@ -4527,7 +4527,7 @@
       "width": 9,
       "height": 7,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseBeige",
       "border_filepath": "data/layouts/SunriseVillage_PlayersHouse_Bedroom/border.bin",
       "blockdata_filepath": "data/layouts/SunriseVillage_PlayersHouse_Bedroom/map.bin"
     },

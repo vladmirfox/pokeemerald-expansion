@@ -58,20 +58,31 @@ KuraTown_EventScript_Guard::
 	return
 
 
+SakuTown_EventScript_ClosedGymDoor::
+# 63 "data/maps/KuraTown/scripts.pory"
+	goto_if_set FLAG_KURA_DOJO_CLOSED, SakuTown_EventScript_ClosedGymDoor_1
+	return
+
+SakuTown_EventScript_ClosedGymDoor_1:
+# 64 "data/maps/KuraTown/scripts.pory"
+	msgbox SakuTown_EventScript_ClosedGymDoor_Text_0, MSGBOX_SIGN
+	return
+
+
 KuraTown_EventScript_TownSign::
-# 62 "data/maps/KuraTown/scripts.pory"
+# 72 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_DirectionsSign::
-# 66 "data/maps/KuraTown/scripts.pory"
+# 76 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_DirectionsSign_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_GymSign::
-# 70 "data/maps/KuraTown/scripts.pory"
+# 80 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_GymSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -105,19 +116,24 @@ KuraTown_EventScript_Guard_Text_0:
 	.string "So of course we're not gonna let any of\n"
 	.string "them in ours! Hah!$"
 
+SakuTown_EventScript_ClosedGymDoor_Text_0:
+# 65 "data/maps/KuraTown/scripts.pory"
+	.string "“BE BACK SOON\n"
+	.string "- Hana”$"
+
 KuraTown_EventScript_TownSign_Text_0:
-# 62 "data/maps/KuraTown/scripts.pory"
+# 72 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village\n"
 	.string "“A village where the mountains meet the\l"
 	.string "woods.”$"
 
 KuraTown_EventScript_DirectionsSign_Text_0:
-# 66 "data/maps/KuraTown/scripts.pory"
+# 76 "data/maps/KuraTown/scripts.pory"
 	.string "{UP_ARROW} Silver Tunnel\n"
 	.string "This way for Silveridge$"
 
 KuraTown_EventScript_GymSign_Text_0:
-# 72 "data/maps/KuraTown/scripts.pory"
+# 82 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village Pokémon Dojo\n"
 	.string "Leader: Hana\p"
 	.string "“Strong as a maple rooted in wisdom.”$"

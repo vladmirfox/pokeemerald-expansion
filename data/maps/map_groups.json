@@ -138,7 +138,8 @@
     "DewfordTown_Gym",
     "DewfordTown_Hall",
     "DewfordTown_House2",
-    "SakuTown_House1"
+    "SakuTown_House1",
+    "SakuTown_House2"
   ],
   "gMapGroup_IndoorLavaridge": [
     "LavaridgeTown_HerbShop",
@@ -147,7 +148,8 @@
     "LavaridgeTown_House",
     "LavaridgeTown_Mart",
     "LavaridgeTown_PokemonCenter_1F",
-    "LavaridgeTown_PokemonCenter_2F"
+    "LavaridgeTown_PokemonCenter_2F",
+    "KuraTown_House3"
   ],
   "gMapGroup_IndoorFallarbor": [
     "FallarborTown_Mart",

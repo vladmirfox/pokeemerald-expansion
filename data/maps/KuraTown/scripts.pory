@@ -58,6 +58,16 @@ script KuraTown_EventScript_Guard {
 	release
 }
 
+script SakuTown_EventScript_ClosedGymDoor {
+	// Barricading dojo
+	if (flag(FLAG_KURA_DOJO_CLOSED)) {
+		msgbox(format(
+			"“BE BACK SOON\n"
+			"- Hana”"
+		), MSGBOX_SIGN)
+	}
+}
+
 script KuraTown_EventScript_TownSign {
 	msgbox(format("Kura Village\n“A village where the mountains meet the woods.”"), MSGBOX_SIGN)
 }
@@ -77,3 +87,4 @@ script KuraTown_EventScript_GymSign {
 	)
 }
 
+ 

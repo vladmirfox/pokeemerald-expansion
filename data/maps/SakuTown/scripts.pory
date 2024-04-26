@@ -9,6 +9,9 @@ mapscripts SakuTown_MapScripts {
 		if (flag(FLAG_SAKU_KURA_REUNITED)) {
 			setmetatile(19, 3, METATILE_SakuKura_BoardGame, TRUE)
 		}
+		else {
+			setflag(FLAG_SAKU_KURA_RIVALS)
+		}
 	}
 	MAP_SCRIPT_ON_TRANSITION {
 		if (flag(FLAG_SAKU_KURA_REUNITED)) {
@@ -49,14 +52,14 @@ script SakuTown_EventScript_Karateka {
 	lock
 	faceplayer
 	msgbox(format(
-		"I let the Pokémon League borrow my super-strong Pokémon to help build the new Pokémon refuges throughout the region.\p"
+		"I let the Pokémon League borrow my super-strong Pokémon to help build the new Pokémon refuges throughout the region."
 	))
 	applymovement(LOCALID_KARATEKA, Common_Movement_FaceUp)
 	waitmovement(0)
-	delay(30)
 	msgbox(format(
-		"Come on, Mama, Kuku! Daddy loves you!!\p"
+		"Come on, Mama, Kuku! Daddy loves you!!"
 	))
+	closemessage
 	release
 }
 
@@ -86,12 +89,12 @@ script SakuTown_EventScript_KuraGuard {
 
 script SakuTown_EventScript_GuardSeesYou {
 	lock
+	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
+	waitmovement(LOCALID_GUARD)
 	msgbox(format("Hey!"))
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
-	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
-	waitmovement(LOCALID_GUARD)
 
 	if (flag(FLAG_TEMP_1)) {
 		msgbox(format(
@@ -116,11 +119,15 @@ script SakuTown_EventScript_GuardSeesYou {
 }
 
 script SakuTown_EventScript_NorthOfGuard {
+	lockall
 	setflag(FLAG_TEMP_1)
+	releaseall
 }
 
 script SakuTown_EventScript_SouthOfGuard {
+	lockall
 	clearflag(FLAG_TEMP_1)
+	releaseall
 }
 
 script SakuTown_EventScript_TownSign {
@@ -132,7 +139,7 @@ script SakuTown_EventScript_TrainerTips {
 }
 
 script SakuTown_EventScript_TrainerTips2 {
-	msgbox(format("Did you know? The folk from Kura Village are a bunch of mean jerks!"), MSGBOX_SIGN)
+	msgbox(format("Did you know? The folks from Kura Village are a bunch of mean jerks!"), MSGBOX_SIGN)
 }
 
 script SakuTown_EventScript_FloristSign {
@@ -140,11 +147,12 @@ script SakuTown_EventScript_FloristSign {
 }
 
 script SakuTown_EventScript_BoardGame {
-	lock
 	if (flag(FLAG_SAKU_KURA_REUNITED)) {
-		msgbox(format("They're playing Herd the Tauros, a popular board game!"), MSGBOX_DEFAULT)
+		lock
+		msgbox(format("They're playing Tauros Herder, a popular board game!"), MSGBOX_DEFAULT)
+		closemessage
+		release
 	}
-	release
 }
 
 script SakuTown_EventScript_Mart {
