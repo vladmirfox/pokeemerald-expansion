@@ -63,13 +63,13 @@ void ActivateDynamax(u32 battler);
 u16 GetNonDynamaxHP(u32 battler);
 u16 GetNonDynamaxMaxHP(u32 battler);
 void UndoDynamax(u32 battler);
-bool32 IsMoveBlockedByMaxGuard(u16 move);
-bool32 IsMoveBlockedByDynamax(u16 move);
+bool32 IsMoveBlockedByMaxGuard(u32 move);
+bool32 IsMoveBlockedByDynamax(u32 move);
 
-bool32 ShouldUseMaxMove(u16 battler, u16 baseMove);
-u16 GetMaxMove(u16 battler, u16 baseMove);
-u8 GetMaxMovePower(u16 move);
-bool32 IsMaxMove(u16 move);
+bool32 ShouldUseMaxMove(u32 battler, u32 baseMove);
+u16 GetMaxMove(u32 battler, u32 baseMove);
+u8 GetMaxMovePower(u32 move);
+bool32 IsMaxMove(u32 move);
 void ChooseDamageNonTypesString(u8 type);
 
 void BS_UpdateDynamax(void);

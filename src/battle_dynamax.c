@@ -23,7 +23,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-static u8 GetMaxPowerTier(u16 move);
+static u8 GetMaxPowerTier(u32 move);
 
 struct GMaxMove
 {
@@ -77,10 +77,8 @@ bool32 CanDynamax(u32 battler)
     u16 holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item);
 
     // Check if Dynamax battle flag is set. This needs to be defined in include/config/battle.h
-    // #if B_FLAG_DYNAMAX_BATTLE != 0
-    // if (!FlagGet(B_FLAG_DYNAMAX_BATTLE))
-    // #endif
-    //     return FALSE;
+    if (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE)))
+        return FALSE;
 
 
     // Check if Player has a Dynamax Band.
@@ -215,7 +213,7 @@ void UndoDynamax(u32 battler)
 }
 
 // Certain moves are blocked by Max Guard that normally ignore protection.
-bool32 IsMoveBlockedByMaxGuard(u16 move)
+bool32 IsMoveBlockedByMaxGuard(u32 move)
 {
     switch (move)
     {
@@ -234,7 +232,7 @@ bool32 IsMoveBlockedByMaxGuard(u16 move)
 }
 
 // Weight-based moves (and some other moves in Raids) are blocked by Dynamax.
-bool32 IsMoveBlockedByDynamax(u16 move)
+bool32 IsMoveBlockedByDynamax(u32 move)
 {
     // TODO: Certain moves are banned in raids.
     switch (gMovesInfo[move].effect)
@@ -247,7 +245,7 @@ bool32 IsMoveBlockedByDynamax(u16 move)
 }
 
 // Returns whether a move should be converted into a Max Move.
-bool32 ShouldUseMaxMove(u16 battler, u16 baseMove)
+bool32 ShouldUseMaxMove(u32 battler, u32 baseMove)
 {
     // TODO: Raid bosses do not always use Max Moves.
     // if (IsRaidBoss(battler))
@@ -255,12 +253,12 @@ bool32 ShouldUseMaxMove(u16 battler, u16 baseMove)
     return GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX);
 }
 
-static u16 GetTypeBasedMaxMove(u16 battler, u16 type)
+static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 {
     // Gigantamax check
     u32 i;
-    u16 species = gBattleMons[battler].species;
-    u16 targetSpecies = SPECIES_NONE;
+    u32 species = gBattleMons[battler].species;
+    u32 targetSpecies = SPECIES_NONE;
 
     if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
@@ -284,9 +282,9 @@ static u16 GetTypeBasedMaxMove(u16 battler, u16 type)
 }
 
 // Returns the appropriate Max Move or G-Max Move for a battler to use.
-u16 GetMaxMove(u16 battler, u16 baseMove)
+u16 GetMaxMove(u32 battler, u32 baseMove)
 {
-    u16 move = baseMove;
+    u32 move = baseMove;
     if (baseMove == MOVE_NONE) // for move display
     {
         return MOVE_NONE;
@@ -327,7 +325,7 @@ enum
 };
 
 // Gets the base power of a Max Move.
-u8 GetMaxMovePower(u16 move)
+u8 GetMaxMovePower(u32 move)
 {
     u8 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
@@ -378,7 +376,7 @@ u8 GetMaxMovePower(u16 move)
     }
 }
 
-static u8 GetMaxPowerTier(u16 move)
+static u8 GetMaxPowerTier(u32 move)
 {
     if (gMovesInfo[move].strikeCount >= 2 && gMovesInfo[move].strikeCount <= 5)
     {
@@ -454,7 +452,7 @@ static u8 GetMaxPowerTier(u16 move)
 }
 
 // Returns whether a move is a Max Move or not.
-bool32 IsMaxMove(u16 move)
+bool32 IsMaxMove(u32 move)
 {
     return move >= FIRST_MAX_MOVE && move <= LAST_MAX_MOVE;
 }
@@ -480,7 +478,7 @@ void ChooseDamageNonTypesString(u8 type)
 }
 
 // Returns the status effect that should be applied by a G-Max Move.
-static u32 GetMaxMoveStatusEffect(u16 move)
+static u32 GetMaxMoveStatusEffect(u32 move)
 {
     u8 maxEffect = gMovesInfo[move].argument;
     switch (maxEffect)
@@ -519,7 +517,7 @@ static u32 GetMaxMoveStatusEffect(u16 move)
 void BS_UpdateDynamax(void)
 {
     NATIVE_ARGS();
-    u16 battler = gBattleScripting.battler;
+    u32 battler = gBattleScripting.battler;
     struct Pokemon *mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
 
     if (!IsGigantamaxed(battler)) // RecalcBattlerStats will get called on form change.
