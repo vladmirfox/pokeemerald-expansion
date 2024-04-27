@@ -146,6 +146,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SakuTown_EventScript_KuraGuard",
       "flag": "FLAG_SAKU_KURA_RIVALS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 37,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -190,48 +203,12 @@
     },
     {
       "type": "trigger",
-      "x": 16,
-      "y": 2,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_NorthOfGuard"
-    },
-    {
-      "type": "trigger",
       "x": 17,
-      "y": 2,
+      "y": 3,
       "elevation": 0,
       "var": "VAR_SAKU_KURA_VILLAGES_STATE",
       "var_value": "0",
-      "script": "SakuTown_EventScript_NorthOfGuard"
-    },
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 4,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_SouthOfGuard"
-    },
-    {
-      "type": "trigger",
-      "x": 16,
-      "y": 4,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_SouthOfGuard"
-    },
-    {
-      "type": "trigger",
-      "x": 17,
-      "y": 4,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_SouthOfGuard"
+      "script": "SakuTown_EventScript_GuardSeesYou"
     },
     {
       "type": "trigger",
@@ -239,7 +216,16 @@
       "y": 3,
       "elevation": 0,
       "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
+      "var_value": "1",
+      "script": "SakuTown_EventScript_GuardSeesYou"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "1",
       "script": "SakuTown_EventScript_GuardSeesYou"
     }
   ],

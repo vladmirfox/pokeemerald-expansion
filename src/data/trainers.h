@@ -6433,7 +6433,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_RIVAL_SUNRISE_TRAPINCH] =
     {
         .trainerClass = TRAINER_CLASS_RIVAL,
-        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_MAY,
         .trainerName = _("{B_RIVAL_NAME}"),
         .items = {},
@@ -7210,7 +7210,7 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_BrendanRustboroTorchic),
     },
 
-    [TRAINER_MAY_RUSTBORO_MUDKIP] =
+    [TRAINER_RIVAL_SAKU_SPHEAL] =
     {
         .trainerClass = TRAINER_CLASS_RIVAL,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
@@ -9227,7 +9227,7 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Cristin1),
     },
 
-    [TRAINER_MAY_RUSTBORO_TREECKO] =
+    [TRAINER_RIVAL_SAKU_ARON] =
     {
         .trainerClass = TRAINER_CLASS_RIVAL,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
@@ -9239,7 +9239,7 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_RivalSakuAron),
     },
 
-    [TRAINER_MAY_RUSTBORO_TORCHIC] =
+    [TRAINER_RIVAL_SAKU_TRAPINCH] =
     {
         .trainerClass = TRAINER_CLASS_RIVAL,
         .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,

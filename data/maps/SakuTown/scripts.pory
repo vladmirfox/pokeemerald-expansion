@@ -1,23 +1,81 @@
 const LOCALID_KARATEKA = 6
 const LOCALID_GUARD = 8
-
-
+const LOCALID_RIVAL = 10
 
 mapscripts SakuTown_MapScripts {
-	// Once reunited, the guards from the two villages play a board game together
-	MAP_SCRIPT_ON_LOAD {
-		if (flag(FLAG_SAKU_KURA_REUNITED)) {
-			setmetatile(19, 3, METATILE_SakuKura_BoardGame, TRUE)
-		}
-		else {
-			setflag(FLAG_SAKU_KURA_RIVALS)
-		}
-	}
 	MAP_SCRIPT_ON_TRANSITION {
+		call(Common_EventScript_SetupRivalGfxId)
+		// Rival challenges you outside the Pokécenter
+		if (var(VAR_RIVAL_ENCOUNTER_STATE) == 1) {
+			clearflag(FLAG_HIDE_RIVAL_SAKU)
+		}
+
 		if (flag(FLAG_SAKU_KURA_REUNITED)) {
+			// Once reunited, the guards from the two villages play a board game together
+			setmetatile(19, 3, METATILE_SakuKura_BoardGame, TRUE)
 			setobjectmovementtype(LOCALID_GUARD, MOVEMENT_TYPE_FACE_RIGHT)
 		}
 	}
+	MAP_SCRIPT_ON_FRAME_TABLE [
+		VAR_RIVAL_ENCOUNTER_STATE, 1: SakuTown_EventScript_Rival
+	]
+}
+
+// Rival encounter
+script SakuTown_EventScript_Rival {
+	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkFastUp)
+	playse(SE_PIN)
+	applymovement(LOCALID_RIVAL, Common_Movement_ExclamationMark)
+	delay(48)
+
+	msgbox(format(
+		"Excuse me-\p"
+		"… …\p"
+		"Hey! {PLAYER}!! I was wondering if you'd already reached Saku Village by now.\p"
+		"Have you caught any Pokémon on your way here?\p"
+		"Me? Oh, I can show you my Pokémon alright!"
+	))
+
+	switch(var(VAR_STARTER_MON)) {
+		case SPECIES_ARON:
+			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_ARON, SakuTown_Text_RivalDefeat)
+			break
+		case SPECIES_SPHEAL:
+			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_SPHEAL, SakuTown_Text_RivalDefeat)
+			break
+		case SPECIES_TRAPINCH:
+			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_TRAPINCH, SakuTown_Text_RivalDefeat)
+			break
+	}
+
+	msgbox(format(
+		"Okay, I… I didn't think you'd go that hard, honestly! Hahaha…\p"
+		"Clearly I underestimated you. That's alright. I won't make that mistake next time!\p"
+		"I can see your Pokémon are really growing to like you, it's great!\p"
+		"Well, it was good to see you. Until next time then.\p"
+		"I bet you I'll get to Silveridge first!"
+	))
+	closemessage
+
+	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkAway)
+	waitmovement(0)
+
+	removeobject(LOCALID_RIVAL)
+	setflag(FLAG_HIDE_RIVAL_SAKU)
+
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 2)
+}
+
+text SakuTown_Text_RivalDefeat {
+	format("Oh, wow, okay.")
+}
+
+movement SakuTown_Movement_WalkFastUp {
+	walk_fast_up
+}
+
+movement SakuTown_Movement_WalkAway {
+	walk_fast_down * 6
 }
 
 script SakuTown_EventScript_Farmer {
@@ -89,6 +147,21 @@ script SakuTown_EventScript_KuraGuard {
 
 script SakuTown_EventScript_GuardSeesYou {
 	lock
+
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
+
+	// First time going to Kura
+	if (var(VAR_SAKU_KURA_VILLAGES_STATE) == 0) {
+		call(SakuTown_EventScript_GuardStopsYou)
+		// First time coming down from Kura
+	} elif (var(VAR_SAKU_KURA_VILLAGES_STATE) == 1 && var(VAR_RESULT) == DIR_SOUTH) {
+		call(SakuTown_EventScript_GuardStopsYou)
+	}
+
+	release
+}
+
+script SakuTown_EventScript_GuardStopsYou {
 	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
 	waitmovement(LOCALID_GUARD)
 	msgbox(format("Hey!"))
@@ -96,14 +169,14 @@ script SakuTown_EventScript_GuardSeesYou {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 
-	if (flag(FLAG_TEMP_1)) {
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
+	if (var(VAR_RESULT) == DIR_SOUTH) {
 		msgbox(format(
 			"Are you trying to sneak in from Kura Village?\p"
-			"…Oh, you're that traveler from before. Come on in, then.\p"
+			"…Oh, you're that traveler from before. You can go throught.\p"
 			"How was it? Awful, right? Welcome back to Saku Village!"
 		))
-	}
-	elif (!flag(FLAG_TEMP_1)) {
+	} else {
 		msgbox(format(
 			"Are you trying to sneak into Kura Village?\p"
 			"…Oh, you're just a traveler. Nevermind then, you can go through.\p"
@@ -113,21 +186,7 @@ script SakuTown_EventScript_GuardSeesYou {
 
 	applymovement(LOCALID_GUARD, Common_Movement_FaceDown)
 
-	setvar(VAR_SAKU_KURA_VILLAGES_STATE, 1)
-
-	release
-}
-
-script SakuTown_EventScript_NorthOfGuard {
-	lockall
-	setflag(FLAG_TEMP_1)
-	releaseall
-}
-
-script SakuTown_EventScript_SouthOfGuard {
-	lockall
-	clearflag(FLAG_TEMP_1)
-	releaseall
+	setvar(VAR_SAKU_KURA_VILLAGES_STATE, var(VAR_SAKU_KURA_VILLAGES_STATE) + 1)
 }
 
 script SakuTown_EventScript_TownSign {

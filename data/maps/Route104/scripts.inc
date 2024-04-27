@@ -163,19 +163,19 @@ Route104_EventScript_RestoreMusic::
 	return
 
 Route104_EventScript_BattleMayTreecko::
-	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, Route104_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_RIVAL_SAKU_ARON, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
 
 Route104_EventScript_BattleMayTorchic::
-	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, Route104_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_RIVAL_SAKU_TRAPINCH, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
 
 Route104_EventScript_BattleMayMudkip::
-	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, Route104_Text_MayDefeat
+	trainerbattle_no_intro TRAINER_RIVAL_SAKU_SPHEAL, Route104_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
 	goto Route104_EventScript_MayDefeated
 	end
