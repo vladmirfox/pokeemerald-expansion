@@ -3144,6 +3144,8 @@ static const u8 *BattleStringGetOpponentNameByTrainerId(u16 trainerId, u8 *text,
     {
         GetEreaderTrainerName(text);
         toCpy = text;
+        if (toCpy[0] == B_BUFF_PLACEHOLDER_BEGIN && toCpy[1] == B_TXT_RIVAL_NAME)
+            toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
     }
     else
     {
@@ -3594,8 +3596,22 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = gTrainerClasses[GetFrontierOpponentClass(gPartnerTrainerId)].name;
                 break;
             case B_TXT_PARTNER_NAME:
-                toCpy = BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
                 break;
+#ifdef BATTLE_ENGINE
+                if (gPartnerSpriteId == TRAINER_BACK_PIC_BRENDAN || gPartnerSpriteId == TRAINER_BACK_PIC_MAY)
+                {
+                    toCpy = gSaveBlock2Ptr->rivalName;
+                }
+                else
+                {
+                    toCpy = BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
+                }
+#else
+                toCpy = gTrainers[TRAINER_RIVAL_SUNRISE_TRAPINCH].trainerName;
+#endif
+                break;
+            case B_TXT_RIVAL_NAME:
+                toCpy = gSaveBlock2Ptr->rivalName;
             case B_TXT_ATK_TRAINER_NAME:
                 toCpy = BattleStringGetTrainerName(text, multiplayerId, gBattlerAttacker);
                 break;

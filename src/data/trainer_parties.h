@@ -6540,10 +6540,10 @@ static const struct TrainerMon sParty_BrendanRoute119Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute103Mudkip[] = {
+static const struct TrainerMon sParty_RivalSunriseSpheal[] = {
     {
     .lvl = 5,
-    .species = SPECIES_TREECKO,
+    .species = SPECIES_ARON,
     }
 };
 
@@ -6583,10 +6583,10 @@ static const struct TrainerMon sParty_MayRoute119Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute103Treecko[] = {
+static const struct TrainerMon sParty_RivalSunriseAron[] = {
     {
     .lvl = 5,
-    .species = SPECIES_TORCHIC,
+    .species = SPECIES_TRAPINCH,
     }
 };
 
@@ -6626,10 +6626,10 @@ static const struct TrainerMon sParty_MayRoute119Treecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute103Torchic[] = {
+static const struct TrainerMon sParty_RivalSunriseTrapinch[] = {
     {
     .lvl = 5,
-    .species = SPECIES_MUDKIP,
+    .species = SPECIES_SPHEAL,
     }
 };
 
@@ -7522,16 +7522,16 @@ static const struct TrainerMon sParty_BrendanRustboroTorchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRustboroMudkip[] = {
+static const struct TrainerMon sParty_RivalSakuSpheal[] = {
     {
     .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
-    .species = SPECIES_WINGULL,
+    .lvl = 14,
+    .species = SPECIES_KOTORA,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
-    .lvl = 15,
-    .species = SPECIES_TREECKO,
+    .lvl = 16,
+    .species = SPECIES_ARON,
     }
 };
 
@@ -9648,29 +9648,29 @@ static const struct TrainerMon sParty_Cristin1[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRustboroTreecko[] = {
+static const struct TrainerMon sParty_RivalSakuAron[] = {
     {
     .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
-    .species = SPECIES_LOTAD,
+    .lvl = 14,
+    .species = SPECIES_GROWLITHE,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
-    .lvl = 15,
-    .species = SPECIES_TORCHIC,
+    .lvl = 16,
+    .species = SPECIES_TRAPINCH,
     }
 };
 
-static const struct TrainerMon sParty_MayRustboroTorchic[] = {
+static const struct TrainerMon sParty_RivalSakuTrapinch[] = {
     {
     .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
-    .species = SPECIES_TORKOAL,
+    .lvl = 14,
+    .species = SPECIES_NUMEL,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
-    .lvl = 15,
-    .species = SPECIES_MUDKIP,
+    .lvl = 16,
+    .species = SPECIES_SPHEAL,
     }
 };
 

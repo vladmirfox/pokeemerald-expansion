@@ -264,12 +264,6 @@ SakuTown_House2_Movement_EspeonWalksUpSouth:
 	jump_in_place_up
 	step_end
 
-Carrotttt::
-# 193 "data/maps/SakuTown_House2/scripts.pory"
-	msgbox Carrotttt_Text_0
-	return
-
-
 SakuTown_House2_EventScript_EspeonsMaster_Text_0:
 # 16 "data/maps/SakuTown_House2/scripts.pory"
 	.string "I hope Eevee comes home soon…$"
@@ -309,8 +303,7 @@ SakuTown_House2_EventScript_Reunited_Text_2:
 # 128 "data/maps/SakuTown_House2/scripts.pory"
 	.string "You say it was a woman from Kura Village\n"
 	.string "that found him?\p"
-	.string "You mean… She took such good care of\n"
-	.string "him that he evolved?\p"
+	.string "She took such good care of him!\p"
 	.string "His fur is so shiny and well-groomed,\n"
 	.string "too…\p"
 	.string "… …\p"
@@ -334,11 +327,7 @@ SakuTown_House2_EventScript_Sister_Text_0:
 
 SakuTown_House2_EventScript_Sister_Text_1:
 # 166 "data/maps/SakuTown_House2/scripts.pory"
-	.string "Thank you for your kindness! T's nice to\n"
-	.string "see my brother smiling again.\p"
+	.string "Thank you for your kindness! It's nice\n"
+	.string "to see my brother smiling again.\p"
 	.string "I wish I could thank whoever took such\n"
 	.string "good care of Eevee, too!$"
-
-Carrotttt_Text_0:
-# 193 "data/maps/SakuTown_House2/scripts.pory"
-	.string "Are you proud of yourselves?$"
