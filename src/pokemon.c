@@ -1710,6 +1710,7 @@ void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon) //Credit: Asparagu
                 alreadyKnown = TRUE;
                 break;
             }
+        }
 
         if (!alreadyKnown)
         {

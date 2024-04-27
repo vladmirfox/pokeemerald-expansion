@@ -4282,12 +4282,6 @@ static void Cmd_getexp(void)
         {
             gBattleScripting.getexpState = 6; // goto last case
         }
-        else if (EXP_CAP_HARD && GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == GetCurrentLevelCap())
-        {
-            gBattleScripting.getexpState = 6; // goto last case
-            if (B_MAX_LEVEL_EV_GAINS >= GEN_5)
-                MonGainEVs(&gPlayerParty[*expMonId], gBattleMons[gBattlerFainted].species);
-        }
         else
         {
             gBattleScripting.getexpState++;
@@ -4429,7 +4423,8 @@ static void Cmd_getexp(void)
                             gBattleMoveDamage = gExperienceTables[growthRate][GetCurrentLevelCap()];
                     }
 
-                    ApplyExperienceMultipliers(&gBattleMoveDamage, *expMonId, gBattlerFainted);
+                    if (!EXP_CAP_HARD || gBattleMoveDamage != 0) // Edge case for hard level caps. Prevents mons from getting 1 exp
+                        ApplyExperienceMultipliers(&gBattleMoveDamage, *expMonId, gBattlerFainted);
 
                     if (IsTradedMon(&gPlayerParty[*expMonId]))
                     {
