@@ -1243,8 +1243,8 @@ bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef)
      && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
      && gBattleMons[battlerDef].hp == gBattleMons[battlerDef].maxHP)
         return TRUE;
-    else
-        return FALSE;
+
+    return FALSE;
 }
 
 bool32 IsMoveNotAllowedInSkyBattles(u32 move)
@@ -6338,7 +6338,6 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = 0;
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
-            gBattleStruct->distortedTypeMatchups = 0;
             // clear attacker z move data
             gBattleStruct->zmove.active = FALSE;
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
@@ -6349,6 +6348,7 @@ static void Cmd_moveend(void)
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
+            gBattleStruct->distortedTypeMatchups = 0;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -16907,5 +16907,5 @@ void BS_RemoveWeather(void)
 {
     NATIVE_ARGS();
     RemoveAllWeather();
-	gBattlescriptCurrInstr = cmd->nextInstr;
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

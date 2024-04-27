@@ -29,5 +29,7 @@ SINGLE_BATTLE_TEST("Tera Shift can't be suppressed by Neutralizing Gas")
         ABILITY_POPUP(player, ABILITY_TERA_SHIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Terapagos transformed!");
-    } THEN { EXPECT_EQ(player->species, SPECIES_TERAPAGOS_TERASTAL); }
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_TERAPAGOS_TERASTAL);
+    }
 }

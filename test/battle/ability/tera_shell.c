@@ -78,7 +78,7 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn 
     }
 }
 
-DOUBLE_BATTLE_TEST("Tera Shell only makes the hit against Terapagos from a multi-target move not very effective")
+DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
