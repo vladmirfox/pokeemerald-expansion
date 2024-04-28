@@ -286,7 +286,16 @@ static const s32 sExperienceScalingFactors[] =
 
 static const u16 sTrappingMoves[NUM_TRAPPING_MOVES] =
 {
-    MOVE_BIND, MOVE_WRAP, MOVE_FIRE_SPIN, MOVE_CLAMP, MOVE_WHIRLPOOL, MOVE_SAND_TOMB, MOVE_MAGMA_STORM, MOVE_INFESTATION, MOVE_SNAP_TRAP,
+    MOVE_BIND,
+    MOVE_WRAP,
+    MOVE_FIRE_SPIN,
+    MOVE_CLAMP,
+    MOVE_WHIRLPOOL,
+    MOVE_SAND_TOMB,
+    MOVE_MAGMA_STORM,
+    MOVE_INFESTATION,
+    MOVE_SNAP_TRAP,
+    MOVE_THUNDER_CAGE
 };
 
 static const u16 sBadgeFlags[8] = {
@@ -321,6 +330,7 @@ static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
+static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
 static bool8 CanAbilityPreventStatLoss(u16 abilityDef, bool8 isIntimidate);
 static bool8 CanBurnHitThaw(u16 move);
@@ -1224,6 +1234,19 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
+bool32 ShouldTeraShellDistortTypeMatchups(u32 move, u32 battlerDef)
+{
+    if (!(gBattleStruct->distortedTypeMatchups & gBitTable[battlerDef])
+     && GetBattlerAbility(battlerDef) == ABILITY_TERA_SHELL
+     && gBattleMons[battlerDef].species == SPECIES_TERAPAGOS_TERASTAL
+     && !IS_MOVE_STATUS(move)
+     && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+     && gBattleMons[battlerDef].hp == gBattleMons[battlerDef].maxHP)
+        return TRUE;
+
+    return FALSE;
+}
+
 bool32 IsMoveNotAllowedInSkyBattles(u32 move)
 {
     return ((gBattleStruct->isSkyBattle) && (gMovesInfo[gCurrentMove].skyBattleBanned));
@@ -1850,6 +1873,14 @@ static void Cmd_ppreduce(void)
 
     gHitMarker &= ~HITMARKER_NO_PPDEDUCT;
     gBattlescriptCurrInstr = cmd->nextInstr;
+
+    if (ShouldTeraShellDistortTypeMatchups(gCurrentMove, gBattlerTarget))
+    {
+        gBattleStruct->distortedTypeMatchups |= gBitTable[gBattlerTarget];
+        gBattlerAbility = gBattlerTarget;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_TeraShellDistortingTypeMatchups;
+    }
 }
 
 // The chance is 1/N for each stage.
@@ -6317,6 +6348,7 @@ static void Cmd_moveend(void)
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
+            gBattleStruct->distortedTypeMatchups = 0;
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -8388,6 +8420,30 @@ bool32 CanUseLastResort(u8 battler)
     return (knownMovesCount >= 2 && usedMovesCount >= knownMovesCount - 1);
 }
 
+static void RemoveAllWeather(void)
+{
+    gWishFutureKnock.weatherDuration = 0;
+
+    if (gBattleWeather & B_WEATHER_RAIN)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_RAIN;
+    else if(gBattleWeather & B_WEATHER_SANDSTORM)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SANDSTORM;
+    else if(gBattleWeather & B_WEATHER_SUN)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SUN;
+    else if(gBattleWeather & B_WEATHER_HAIL)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_HAIL;
+    else if(gBattleWeather & B_WEATHER_STRONG_WINDS)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_STRONG_WINDS;
+    else if(gBattleWeather & B_WEATHER_SNOW)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_SNOW;
+    else if(gBattleWeather & B_WEATHER_FOG)
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_FOG;
+    else
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_END_COUNT;  // failsafe
+
+    gBattleWeather = 0;    // remove the weather
+}
+
 static void RemoveAllTerrains(void)
 {
     gFieldTimers.terrainTimer = 0;
@@ -9588,20 +9644,6 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gLastUsedAbility = gBattleMons[battler].ability;
         break;
-    }
-    case VARIOUS_TRY_QUASH:
-    {
-        VARIOUS_ARGS(const u8 *failInstr);
-        if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)) // It's true if foe is faster, has a bigger priority, or switches
-        {
-            gBattlescriptCurrInstr = cmd->failInstr; // This replaces the current battlescript with the "fail" script.
-        }
-        else // If the condition is not true, it means we are faster than the foe, so we can set the quash bit
-        {
-            gProtectStructs[gBattlerTarget].quash = TRUE;
-            gBattlescriptCurrInstr = cmd->nextInstr; // and then we proceed with the rest of our battlescript
-        }
-        return;
     }
     case VARIOUS_INVERT_STAT_STAGES:
     {
@@ -16740,7 +16782,8 @@ void BS_AllySwitchFailChance(void)
 void BS_SetPhotonGeyserCategory(void)
 {
     NATIVE_ARGS();
-    if (!(gMovesInfo[gCurrentMove].effect == EFFECT_TERA_BLAST && !IsTerastallized(gBattlerAttacker)))
+    if (!(gMovesInfo[gCurrentMove].effect == EFFECT_TERA_BLAST && !IsTerastallized(gBattlerAttacker))
+     && !(gMovesInfo[gCurrentMove].effect == EFFECT_TERA_STARSTORM && gBattleMons[gBattlerAttacker].species != SPECIES_TERAPAGOS_STELLAR))
         gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -16827,4 +16870,43 @@ void BS_TryGulpMissile(void)
         gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryQuash(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 i;
+
+    // It's true if foe is faster, has a bigger priority, or switches
+    if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+        return;
+    }
+
+    // If the above condition is not true, it means we are faster than the foe, so we can set the quash bit
+    gProtectStructs[gBattlerTarget].quash = TRUE;
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        gBattlerByTurnOrder[i] = i;
+    }
+    for (i = 0; i < gBattlersCount - 1; i++)
+    {
+        s32 j;
+        for (j = i + 1; j < gBattlersCount; j++)
+        {
+            if (!gProtectStructs[i].quash
+             && !gProtectStructs[j].quash
+             && GetWhichBattlerFaster(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE) == -1)
+                SwapTurnOrder(i, j);
+        }
+    }
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_RemoveWeather(void)
+{
+    NATIVE_ARGS();
+    RemoveAllWeather();
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
