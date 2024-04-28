@@ -48,7 +48,8 @@
 #define FLAG_SAKU_KURA_HIDE_ESPEON_LADYS_HOUSE 0x21
 // True if the Espeon from Saku village has left its master's house
 #define FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME 0x22
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
+// True to hide the rival in Saku village
+#define FLAG_HIDE_RIVAL_SAKU 0x23
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag

@@ -80,15 +80,17 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		message(format("{PLAYER} received the Pokémon {STR_VAR_1}!"))
 		waitmessage
 		waitfanfare
-		setvar(VAR_STARTER_MON, var(VAR_TEMP_1))
 
 		switch(var(VAR_TEMP_1)) {
 			case SPECIES_SPHEAL:
+				setvar(VAR_STARTER_MON, SPECIES_SPHEAL)
 				removeobject(LOCALID_BALL_SPHEAL)	
 			case SPECIES_ARON:
 				removeobject(LOCALID_BALL_ARON)	
+				setvar(VAR_STARTER_MON, SPECIES_ARON)
 			case SPECIES_TRAPINCH:
 				removeobject(LOCALID_BALL_TRAPINCH)	
+				setvar(VAR_STARTER_MON, SPECIES_TRAPINCH)
 		}
 
 		msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)

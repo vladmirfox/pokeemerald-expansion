@@ -23,6 +23,8 @@ mapscripts SakuTown_MapScripts {
 
 // Rival encounter
 script SakuTown_EventScript_Rival {
+	lock
+
 	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkFastUp)
 	playse(SE_PIN)
 	applymovement(LOCALID_RIVAL, Common_Movement_ExclamationMark)
@@ -36,6 +38,62 @@ script SakuTown_EventScript_Rival {
 		"Me? Oh, I can show you my Pokémon alright!"
 	))
 
+	call(SakuTown_EventScript_RivalFight)
+
+	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkAway)
+	waitmovement(0)
+
+	removeobject(LOCALID_RIVAL)
+	setflag(FLAG_HIDE_RIVAL_SAKU)
+
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 2)
+
+	release
+}
+
+// Backup rival encounter in case you missed him at the Pokécenter
+script SakuTown_EventScript_RivalAtSakuWall {
+	lock
+	msgbox(format("Wait up, {PLAYER}!"), MSGBOX_AUTOCLOSE)
+
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+	getplayerxy(VAR_TEMP_2, VAR_TEMP_3)
+
+	addobject(LOCALID_RIVAL)
+	if (var(VAR_TEMP_2) == 16) {
+		setobjectxy(LOCALID_RIVAL, 16, 10)
+	} else {
+		setobjectxy(LOCALID_RIVAL, 17, 10)
+	}
+	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkUp)
+	waitmovement(0)
+
+	msgbox(format(
+		"I was wondering if you'd already reached Saku Village by now. Looks like we almost missed each other!\p"
+		"Have you caught any Pokémon on your way here?\p"
+		"Me? Oh, I can show you my Pokémon alright!"
+	))
+
+	call(SakuTown_EventScript_RivalFight)
+
+	// Left
+	if (var(VAR_TEMP_2) == 16) {
+		applymovement(LOCALID_RIVAL, SakuTown_Movement_GoToKuraFromRight)
+		// Right
+	} else {
+		applymovement(LOCALID_RIVAL, SakuTown_Movement_GoToKuraFromLeft)
+	}
+	waitmovement(0)
+
+	removeobject(LOCALID_RIVAL)
+	setflag(FLAG_HIDE_RIVAL_SAKU)
+
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 2)
+
+	release
+}
+
+script SakuTown_EventScript_RivalFight {
 	switch(var(VAR_STARTER_MON)) {
 		case SPECIES_ARON:
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_ARON, SakuTown_Text_RivalDefeat)
@@ -52,22 +110,31 @@ script SakuTown_EventScript_Rival {
 		"Okay, I… I didn't think you'd go that hard, honestly! Hahaha…\p"
 		"Clearly I underestimated you. That's alright. I won't make that mistake next time!\p"
 		"I can see your Pokémon are really growing to like you, it's great!\p"
+		"You definitely stand a chance against the Dojo that's in the next village.\p"
+		"Me? Actually, I just fought the Dojo's master and gotten a token from her!\p"
+		"You'll have to hurry up if you wanna catch up!\p"
 		"Well, it was good to see you. Until next time then.\p"
 		"I bet you I'll get to Silveridge first!"
 	))
 	closemessage
-
-	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkAway)
-	waitmovement(0)
-
-	removeobject(LOCALID_RIVAL)
-	setflag(FLAG_HIDE_RIVAL_SAKU)
-
-	setvar(VAR_RIVAL_ENCOUNTER_STATE, 2)
 }
 
 text SakuTown_Text_RivalDefeat {
 	format("Oh, wow, okay.")
+}
+
+movement SakuTown_Movement_GoToKuraFromLeft {
+	walk_left
+	walk_up * 5
+}
+
+movement SakuTown_Movement_GoToKuraFromRight {
+	walk_right
+	walk_up * 5
+}
+
+movement SakuTown_Movement_WalkUp {
+	walk_up * 5
 }
 
 movement SakuTown_Movement_WalkFastUp {
@@ -162,6 +229,7 @@ script SakuTown_EventScript_GuardSeesYou {
 }
 
 script SakuTown_EventScript_GuardStopsYou {
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
 	waitmovement(LOCALID_GUARD)
 	msgbox(format("Hey!"))
@@ -169,11 +237,10 @@ script SakuTown_EventScript_GuardStopsYou {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 
-	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	if (var(VAR_RESULT) == DIR_SOUTH) {
 		msgbox(format(
 			"Are you trying to sneak in from Kura Village?\p"
-			"…Oh, you're that traveler from before. You can go throught.\p"
+			"…Oh, you're that traveler from before. You can go through.\p"
 			"How was it? Awful, right? Welcome back to Saku Village!"
 		))
 	} else {
@@ -186,7 +253,7 @@ script SakuTown_EventScript_GuardStopsYou {
 
 	applymovement(LOCALID_GUARD, Common_Movement_FaceDown)
 
-	setvar(VAR_SAKU_KURA_VILLAGES_STATE, var(VAR_SAKU_KURA_VILLAGES_STATE) + 1)
+	addvar(VAR_SAKU_KURA_VILLAGES_STATE, 1)
 }
 
 script SakuTown_EventScript_TownSign {

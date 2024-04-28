@@ -149,7 +149,7 @@
 #define VAR_ROUTE133_STATE                               0x4080 // Unused Var
 // 0: Never fought him past the lvl5 elder's lab fight
 // 1: Entered the Saku Pokécenter
-// 2: Fought him outside the Saku Pokécenter
+// 2: Fought him in Saku Village
 #define VAR_RIVAL_ENCOUNTER_STATE                        0x4081
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY                  0x4082
 #define VAR_UNUSED_0x4083                                0x4083 // Unused Var
