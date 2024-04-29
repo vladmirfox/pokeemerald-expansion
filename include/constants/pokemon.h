@@ -3,16 +3,16 @@
 
 // Pokémon types
 #define TYPE_NONE             255
-#define TYPE_NORMAL           0
-#define TYPE_FIGHTING         1
-#define TYPE_FLYING           2
-#define TYPE_POISON           3
-#define TYPE_GROUND           4
-#define TYPE_ROCK             5
-#define TYPE_BUG              6
-#define TYPE_GHOST            7
-#define TYPE_STEEL            8
-#define TYPE_MYSTERY          9
+#define TYPE_MYSTERY          0
+#define TYPE_NORMAL           1
+#define TYPE_FIGHTING         2
+#define TYPE_FLYING           3
+#define TYPE_POISON           4
+#define TYPE_GROUND           5
+#define TYPE_ROCK             6
+#define TYPE_BUG              7
+#define TYPE_GHOST            8
+#define TYPE_STEEL            9
 #define TYPE_FIRE             10
 #define TYPE_WATER            11
 #define TYPE_GRASS            12
