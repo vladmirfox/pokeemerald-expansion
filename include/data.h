@@ -108,7 +108,8 @@ struct TypeInfo
     u8 generic[17];
     u8 palette;
     u16 zMove;
-    u16 maxMove;
+    u16 maxMove:14;
+    u16 damageCategory:2; // Used for B_PHYSICAL_SPECIAL_SPLIT <= GEN_3
     //u16 enhanceItem;
     //u16 berry;
     //u16 gem;
