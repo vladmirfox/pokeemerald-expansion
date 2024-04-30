@@ -1979,9 +1979,36 @@ static void Cmd_damagecalc(void)
     CMD_ARGS();
 
     u8 moveType;
+    u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
+
+    if (gBattleStruct->calculatedDamageDone)
+    {
+        gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        return;
+    }
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+    if (IsDoubleBattle() && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
+    {
+        u32 battler;
+
+        // Calc damage in double battles simultaneously to avoid stat change increases during move execution (e.g. Moxie)
+        for (battler = 0; battler < gBattlersCount; battler++)
+        {
+            if (!IsBattlerAlive(battler) || battler == gBattlerAttacker)
+                continue;
+
+            gBattleStruct->calculatedDamage[battler] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, battler, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+        }
+        gBattleStruct->calculatedDamageDone = TRUE;
+    }
+    else
+    {
+        gBattleStruct->calculatedDamage[gBattlerTarget] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+    }
+
+    gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

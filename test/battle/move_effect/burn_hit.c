@@ -130,3 +130,35 @@ SINGLE_BATTLE_TEST("Scald shouldn't burn a Water-type Pokémon")
         #endif
     }
 }
+
+DOUBLE_BATTLE_TEST("t1")
+{
+    GIVEN {
+        PLAYER(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { HP(147); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(150); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_PRECIPICE_BLADES); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PRECIPICE_BLADES);
+        HP_BAR(opponentLeft);
+        MESSAGE("Foe Wobbuffet fainted!");
+        HP_BAR(opponentRight);
+        NOT MESSAGE("Foe Wobbuffet fainted!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("t2")
+{
+    GIVEN {
+        PLAYER(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_CHIKORITA);
+        OPPONENT(SPECIES_CHIKORITA);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_PRECIPICE_BLADES); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PRECIPICE_BLADES);
+    }
+}
