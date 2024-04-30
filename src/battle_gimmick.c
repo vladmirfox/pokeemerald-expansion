@@ -20,7 +20,7 @@ static void SpriteCb_GimmickTrigger(struct Sprite *sprite);
 void AssignUsableGimmicks(void)
 {
     u32 battler, gimmick;
-    #ifdef TESTING
+    #if TESTING
     for (battler = 0; battler < gBattlersCount; ++battler)
     {
         gimmick = TestRunner_Battle_GetChosenGimmick(battler);
@@ -54,7 +54,7 @@ bool32 CanActivateGimmick(u32 battler, enum Gimmick gimmick)
 // Returns whether the player has a gimmick selected while in the move selection menu.
 bool32 IsGimmickSelected(u32 battler, enum Gimmick gimmick)
 {
-    #ifdef TESTING
+    #if TESTING
     return (GetActiveGimmick(battler) == GIMMICK_NONE
             && !HasTrainerUsedGimmick(battler, gimmick)
             && (gBattleStruct->gimmick.toActivate & gBitTable[battler])
