@@ -438,8 +438,11 @@ bool32 IsDamageMoveUsable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument))
             return TRUE;
         break;
+    case EFFECT_HIT_SET_REMOVE_TERRAIN:
+	if (!(gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN)))
+	    return TRUE;
+	break;
     }
-
     return FALSE;
 }
 
