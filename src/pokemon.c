@@ -3489,6 +3489,7 @@ static u8 GetXItemStage(u16 itemId)
     return ItemId_GetHoldEffectParam(itemId);
 }
 
+/*
 static bool8 TryActivateAbilityUrge(u16 battler)
 {
     u16 ability = gBattleMons[battler].ability;
@@ -3535,7 +3536,7 @@ static bool8 TryActivateHeldItemEffect(u16 battler)
     gBattleScripting.overrideActivationRequirements = FALSE;
     return FALSE;
 }
-
+*/
 
 // Returns TRUE if the item has no effect on the Pokémon, FALSE otherwise
 bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, bool8 usedByAI)
@@ -3556,8 +3557,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     u8 effectFlags;
     s8 evChange;
     u16 evCount;
-    u8 xItemStages;
-    u8 critStage;
+    //u8 xItemStages;
+    //u8 critStage;
 
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
