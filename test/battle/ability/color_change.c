@@ -113,7 +113,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom 
 
 SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is hit by a forseen attack under the effect of Electrify")
 {
-    KNOWN_FAILING;
+    KNOWN_FAILING; // #4471.
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BLASTOISE) { Ability(ABILITY_COLOR_CHANGE); }
