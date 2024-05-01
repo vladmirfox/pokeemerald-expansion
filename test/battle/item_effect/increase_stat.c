@@ -273,9 +273,9 @@ SINGLE_BATTLE_TEST("X Accuracy sharply raises battler's Accuracy stat")
         ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_3].battleUsage == EFFECT_ITEM_INCREASE_STAT);
         ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_6].battleUsage == EFFECT_ITEM_INCREASE_STAT);
         ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_1].holdEffectParam == STAT_STAGE_1);
-        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_2].holdEffectParam == STAT_STAGE_1);
-        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_3].holdEffectParam == STAT_STAGE_1);
-        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_6].holdEffectParam == STAT_STAGE_1);
+        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_2].holdEffectParam == STAT_STAGE_2);
+        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_3].holdEffectParam == STAT_STAGE_3);
+        ASSUME(gItemsInfo[ITEM_WONDER_LAUNCHER_X_ACCURACY_6].holdEffectParam == STAT_STAGE_6);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
