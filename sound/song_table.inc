@@ -38,6 +38,7 @@ gSongTable::
 	song se_bike_hop, 1, 1
 	song se_switch, 1, 1
 	song se_click, 1, 1
+	song se_fu_zaku, 1, 1
 	song se_contest_condition_lose, 1, 1
 	song se_lavaridge_fall_warp, 1, 1
 	song se_ice_stairs, 1, 1
@@ -261,6 +262,8 @@ gSongTable::
 	song se_rg_help_close, 1, 1
 	song se_rg_help_error, 1, 1
 	song se_rg_deoxys_move, 1, 1
+	song se_rg_poke_jump_success, 1, 1
+	song se_rg_poke_jump_failure, 1, 1
 	song se_pokenav_call, 1, 1
 	song se_pokenav_hang_up, 1, 1
 	song se_arena_timeup1, 1, 1
@@ -268,6 +271,86 @@ gSongTable::
 	song se_pike_curtain_close, 1, 1
 	song se_pike_curtain_open, 1, 1
 	song se_sudowoodo_shake, 1, 1
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
+	song dummy_song_header, 0, 0
 	song mus_littleroot_test, 0, 0
 	song mus_gsc_route38, 0, 0
 	song mus_caught, 0, 0
@@ -440,6 +523,7 @@ gSongTable::
 	song mus_rg_silph, 0, 0
 	song mus_rg_fuchsia, 0, 0
 	song mus_rg_celadon, 0, 0
+	song mus_rg_victory_trainer, 0, 0
 	song mus_rg_victory_wild, 0, 0
 	song mus_rg_victory_gym_leader, 0, 0
 	song mus_rg_vermillion, 0, 0
@@ -527,3 +611,7 @@ gSongTable::
 	song ph_nurse_blend, 2, 2
 	song ph_nurse_held, 2, 2
 	song ph_nurse_solo, 2, 2
+
+	.align 2
+dummy_song_header:
+	.byte 0, 0, 0, 0

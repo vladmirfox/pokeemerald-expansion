@@ -1,5 +1,5 @@
 	.align 2
-voicegroup_rg_credits_drums::
+voicegroup_drums_rg_credits::
 	voice_programmable_wave_alt 60, 0, ProgrammableWaveData_1, 0, 7, 15, 2
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0
 	voice_square_1 60, 0, 0, 2, 0, 0, 15, 0

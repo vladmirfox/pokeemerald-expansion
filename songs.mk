@@ -331,7 +331,7 @@ $(MID_SUBDIR)/mus_b_pyramid_top.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_b_pyramid_top -V077
 
 $(MID_SUBDIR)/mus_ever_grande.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G068 -V086
+	$(MID) $< $@ -E -R$(STD_REVERB) -G_ever_grande -V086
 
 $(MID_SUBDIR)/mus_rayquaza_appears.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_rayquaza_appears -V090
@@ -358,7 +358,7 @@ $(MID_SUBDIR)/mus_rg_encounter_deoxys.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_encounter_deoxys -V079
 
 $(MID_SUBDIR)/mus_rg_credits.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G149 -V090
+	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_credits -V090
 
 $(MID_SUBDIR)/mus_rg_encounter_gym_leader.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_encounter_boy -V090
@@ -391,7 +391,7 @@ $(MID_SUBDIR)/mus_rg_heal.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_heal -V090
 
 $(MID_SUBDIR)/mus_rg_oak_lab.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G160 -V075
+	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_oak_lab -V075
 
 $(MID_SUBDIR)/mus_rg_berry_pick.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_rg_game_corner -V090
