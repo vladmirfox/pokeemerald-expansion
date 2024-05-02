@@ -1516,15 +1516,16 @@ static void Cmd_unused5(void)
     }
 }
 
-static bool8 JumpIfMoveAffectedByProtect(u32 move, u32 battler)
+static bool8 JumpIfMoveAffectedByProtect(u32 move, u32 battler, u32 shouldJump)
 {
     bool8 affected = FALSE;
     if (IsBattlerProtected(battler, move))
     {
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
-        JumpIfMoveFailed(7, move);
+        gBattleStruct->resultFlags[battler] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MISS_TYPE] = B_MSG_PROTECTED;
         affected = TRUE;
+        if (shouldJump)
+            JumpIfMoveFailed(7, move);
     }
     return affected;
 }
@@ -1572,7 +1573,7 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
     || ((gStatuses3[battler] & STATUS3_UNDERGROUND) && !gMovesInfo[move].damagesUnderground)
     || ((gStatuses3[battler] & STATUS3_UNDERWATER) && !gMovesInfo[move].damagesUnderwater))
     {
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
+        gBattleStruct->resultFlags[battler] |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
@@ -1734,21 +1735,19 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
-void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
+void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
 {
-    u32 type, accuracy;
-    u32 abilityDef = GetBattlerAbility(battlerDef);
+    u32 accuracy;
 
-    GET_MOVE_TYPE(move, type);
-    if (JumpIfMoveAffectedByProtect(move, battlerDef) || AccuracyCalcHelper(move, battlerDef))
+    if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE) || AccuracyCalcHelper(move, battlerDef))
         return;
 
     accuracy = GetTotalAccuracy(
-        gBattlerAttacker,
+        battlerAtk,
         battlerDef,
         move,
         abilityAtk,
-        abilityDef,
+        GetBattlerAbility(battlerDef),
         holdEffectAtk,
         GetBattlerHoldEffect(battlerDef, TRUE)
     );
@@ -1762,7 +1761,7 @@ void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTarget
         gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
         if (gMovesInfo[move].power)
         {
-            CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, battlerDef, abilityDef, TRUE);
+            CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), TRUE);
         }
     }
 }
@@ -1771,10 +1770,13 @@ static void Cmd_accuracycheck(void)
 {
     CMD_ARGS(const u8 *failInstr, u16 move);
 
-    u32 moveTarget;
+    u32 type, moveTarget;
     u32 abilityAtk;
     u32 holdEffectAtk;
     u32 move = cmd->move;
+
+    if (move == ACC_CURR_MOVE)
+        move = gCurrentMove;
 
     if (gBattleStruct->calculatedSpreadMoveAccuracy)
     {
@@ -1792,16 +1794,13 @@ static void Cmd_accuracycheck(void)
     abilityAtk = GetBattlerAbility(gBattlerAttacker);
     holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
-    if (move == ACC_CURR_MOVE)
-        move = gCurrentMove;
-
     if (move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
         if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else if (gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE))
             gBattlescriptCurrInstr = cmd->failInstr;
-        else if (!JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget))
+        else if (!JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget, TRUE))
             gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_2ND_HIT
@@ -1814,6 +1813,7 @@ static void Cmd_accuracycheck(void)
     }
     else
     {
+        GET_MOVE_TYPE(move, type);
 		bool32 calcSpreadMove = IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget) && !IS_MOVE_STATUS(move);
 
         if (calcSpreadMove)
@@ -1823,36 +1823,42 @@ static void Cmd_accuracycheck(void)
             {
                 if (gBattlerAttacker == battlerDef
                  || !IsBattlerAlive(battlerDef)
-                 || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH)))
+                 || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH))
+                 || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                     continue;
 
                 FinalAccuracyCheck(
                     gBattlerAttacker,
                     battlerDef,
                     move,
+                    type,
                     moveTarget,
                     abilityAtk,
                     holdEffectAtk
                 );
             }
             // if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
-                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
+                gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
         }
         else
         {
-            FinalAccuracyCheck(
-                gBattlerAttacker,
-                gBattlerTarget,
-                move,
-                moveTarget,
-                abilityAtk,
-                holdEffectAtk
-            );
+            if (gBattleStruct->noResultString[gBattlerTarget] && gBattleStruct->noResultString[gBattlerTarget] != DO_ACCURACY_CHECK)
+            {
+                FinalAccuracyCheck(
+                    gBattlerAttacker,
+                    gBattlerTarget,
+                    move,
+                    type,
+                    moveTarget,
+                    abilityAtk,
+                    holdEffectAtk
+                );
+            }
         }
-
-        gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
+        gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
         JumpIfMoveFailed(7, move);
     }
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_attackstring(void)
@@ -2044,13 +2050,17 @@ static void Cmd_damagecalc(void)
     GET_MOVE_TYPE(gCurrentMove, moveType);
     if (IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget))
     {
-        u32 battler;
-        for (battler = 0; battler < gBattlersCount; battler++)
+        u32 battlerDef;
+        for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
-            if (!IsBattlerAlive(battler) || battler == gBattlerAttacker)
+            if (!IsBattlerAlive(battlerDef)
+             || battlerDef == gBattlerAttacker
+             || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH))
+             || gBattleStruct->noResultString[battlerDef]
+             || gBattleStruct->resultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT)
                 continue;
 
-            gBattleStruct->calculatedDamage[battler] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, battler, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+            gBattleStruct->calculatedDamage[battlerDef] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, battlerDef, moveType, 0, gIsCriticalHit, TRUE, TRUE);
         }
         gBattleStruct->calculatedDamageDone = TRUE;
     }
@@ -2064,6 +2074,7 @@ static void Cmd_damagecalc(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+// TODO: Adjust type calc
 static void Cmd_typecalc(void)
 {
     CMD_ARGS();
@@ -7669,13 +7680,12 @@ static void Cmd_hitanimation(void)
 {
     CMD_ARGS(u8 battler);
 
-    if (gBattleStruct->numSpreadTargets == 1)
+    if (gBattleStruct->numSpreadTargets < 2)
     {
         u32 battler = GetBattlerForBattleScript(cmd->battler);
 
         if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         {
-
         }
         else if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE)
               || !(DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove))
@@ -11751,7 +11761,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             return STAT_CHANGE_DIDNT_WORK;
         }
         else if (gCurrentMove != MOVE_CURSE
-                 && notProtectAffected != TRUE && JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget))
+                 && notProtectAffected != TRUE && JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget, TRUE))
         {
             gBattlescriptCurrInstr = BattleScript_ButItFailed;
             return STAT_CHANGE_DIDNT_WORK;

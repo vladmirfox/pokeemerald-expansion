@@ -3649,7 +3649,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 break;
             }
 
-            const u8* backupScript = gBattlescriptCurrInstr; //Script can get overwritten by ability blocking
+            // const u8* backupScript = gBattlescriptCurrInstr; //Script can get overwritten by ability blocking
             u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
 
             if (IS_SPREAD_MOVE(moveTarget))
@@ -3664,6 +3664,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                      || gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].twoTurnEffect)
                     {
                         gBattleStruct->resultFlags[battlerDef] = MOVE_RESULT_NO_EFFECT;
+                        gBattleStruct->noResultString[battlerDef] = TRUE;
                         continue;
                     }
 
@@ -3672,13 +3673,17 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                      || (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_PSYCHIC_TERRAIN) && GetMovePriority(gBattlerAttacker, gCurrentMove) > 0))
                     {
                         gBattleStruct->resultFlags[battlerDef] = 0;
+                        gBattleStruct->noResultString[battlerDef] = TRUE;
                     }
                     else if (AbilityBattleEffects(ABILITYEFFECT_ABSORBING, battlerDef, 0, 0, gCurrentMove))
                     {
                         gBattleStruct->resultFlags[battlerDef] = 0;
+                        gBattleStruct->noResultString[battlerDef] = DO_ACCURACY_CHECK;
                     }
                     else
+                    {
                         CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+                    }
                 }
                 if (moveTarget == MOVE_TARGET_BOTH)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
@@ -3686,7 +3691,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
 
             }
-            gBattlescriptCurrInstr = backupScript; //Restore original script
+            // gBattlescriptCurrInstr = backupScript; //Restore original script
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:

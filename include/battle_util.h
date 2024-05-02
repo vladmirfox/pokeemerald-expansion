@@ -61,9 +61,6 @@
 #define IS_WHOLE_SIDE_ALIVE(battler)    ((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define IS_ALIVE_AND_PRESENT(battler)   (IsBattlerAlive(battler) && IsBattlerSpritePresent(battler))
 
-#define RECORD_ABILTIES TRUE
-#define DO_NOT_RECORD_ABILTIES FALSE
-
 // for Natural Gift and Fling
 struct TypePower
 {

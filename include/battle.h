@@ -718,12 +718,6 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
-    u32 resultFlags[MAX_BATTLERS_COUNT];
-    s32 calculatedDamage[MAX_BATTLERS_COUNT];
-    u8 calculatedSpreadMoveAccuracy:1;
-    u8 calculatedDamageDone:1;
-    u8 numSpreadTargets:2;
-    u8 doneDoublesSpreadHit:1;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
     u8 terrainDone:1;
@@ -823,6 +817,15 @@ struct BattleStruct
     u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 boosterEnergyActivates;
     u8 distortedTypeMatchups;
+
+    // Simultaneous hp reduction for spread moves
+    s32 calculatedDamage[MAX_BATTLERS_COUNT];
+    u32 resultFlags[MAX_BATTLERS_COUNT];
+	u8 noResultString[MAX_BATTLERS_COUNT];
+    u8 calculatedSpreadMoveAccuracy:1;
+    u8 calculatedDamageDone:1;
+    u8 numSpreadTargets:2;
+    u8 doneDoublesSpreadHit:1;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
@@ -891,6 +894,8 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 
 #define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
 #define SET_STATCHANGER2(dst, statId, stage, goesDown)(dst = (statId) + ((stage) << 3) + (goesDown << 7))
+
+#define DO_ACCURACY_CHECK 2 // Don't skip the accuracy check before the move might be absorbed
 
 // NOTE: The members of this struct have hard-coded offsets
 //       in include/constants/battle_script_commands.h
