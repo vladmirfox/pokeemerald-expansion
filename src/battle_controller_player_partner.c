@@ -369,8 +369,8 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
                 gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
         }
 
-        if (ShouldUseZMove(battler, gBattlerTarget, moveInfo->moves[chosenMoveId]))
-            QueueZMove(battler, moveInfo->moves[chosenMoveId]);
+        // if (ShouldUseZMove(battler, gBattlerTarget, moveInfo->moves[chosenMoveId]))
+        //     QueueZMove(battler, moveInfo->moves[chosenMoveId]);
 
         // If opponent can and should use a gimmick (considering trainer data), do it
         if (gBattleStruct->gimmick.usableGimmick[battler] != GIMMICK_NONE)

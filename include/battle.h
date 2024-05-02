@@ -562,21 +562,11 @@ struct Illusion
 
 struct ZMoveData
 {
-    u8 viable:1;    // current move can become a z move
+    u8 viable:1;   // current move can become a z move
     u8 viewing:1;  // if player is viewing the z move name instead of regular moves
-    u8 active:1;   // is z move being used this turn
-    u8 zStatusActive:1;
-    u8 healReplacement:1;
-    u8 activeCategory:2;  // active z move category
-    u8 zUnused:1;
-    u8 triggerSpriteId;
+    u8 healReplacement:6;
     u8 possibleZMoves[MAX_BATTLERS_COUNT];
-    u16 chosenZMove;  // z move of move cursor is on
-    u8 effect;
-    u8 used[MAX_BATTLERS_COUNT];   //one per bank for multi-battles
-    u16 toBeUsed[MAX_BATTLERS_COUNT];  // z moves per battler to be used
     u16 baseMoves[MAX_BATTLERS_COUNT];
-    u8 categories[MAX_BATTLERS_COUNT];
 };
 
 struct DynamaxData

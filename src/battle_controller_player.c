@@ -690,9 +690,6 @@ static void HandleInputChooseMove(u32 battler)
 
         if (gBattleStruct->zmove.viewing)
         {
-            u16 chosenMove = moveInfo->moves[gMoveSelectionCursor[battler]];
-
-            QueueZMove(battler, chosenMove);
             gBattleStruct->zmove.viewing = FALSE;
             if (gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].category != DAMAGE_CATEGORY_STATUS)
                 moveTarget = MOVE_TARGET_SELECTED;  //damaging z moves always have selected target
@@ -878,26 +875,25 @@ static void HandleInputChooseMove(u32 battler)
             ChangeGimmickTriggerSprite(gBattleStruct->gimmick.triggerSpriteId, gBattleStruct->gimmick.playerSelect);
             PlaySE(SE_SELECT);
         }
-        // else if (gBattleStruct->zmove.viable)
-        // {
-        //     // show z move name / info
-        //     //TODO: brighten z move symbol
-        //     PlaySE(SE_SELECT);
-        //     if (!gBattleStruct->zmove.viewing)
-        //         MoveSelectionDisplayZMove(gBattleStruct->zmove.chosenZMove, battler);
-        //     else
-        //         ReloadMoveNames(battler);
-        // }
     }
 }
 
 static void ReloadMoveNames(u32 battler)
 {
-    MoveSelectionDestroyCursorAt(battler);
-    MoveSelectionDisplayMoveNames(battler);
-    MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
-    MoveSelectionDisplayPpNumber(battler);
-    MoveSelectionDisplayMoveType(battler);
+    if (gBattleStruct->zmove.viable && !gBattleStruct->zmove.viewing)
+    {
+        struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+        MoveSelectionDisplayZMove(GetUsableZMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]]), battler);
+    }
+    else
+    {
+        gBattleStruct->zmove.viewing = FALSE;
+        MoveSelectionDestroyCursorAt(battler);
+        MoveSelectionDisplayMoveNames(battler);
+        MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
+        MoveSelectionDisplayPpNumber(battler);
+        MoveSelectionDisplayMoveType(battler);
+    }
 }
 
 static u32 UNUSED HandleMoveInputUnused(u32 battler)
@@ -1050,7 +1046,7 @@ static void HandleMoveSwitching(u32 battler)
         MoveSelectionDisplayPpString(battler);
         MoveSelectionDisplayPpNumber(battler);
         MoveSelectionDisplayMoveType(battler);
-        GetUsableZMoves(battler, moveInfo->moves);
+        AssignUsableZMoves(battler, moveInfo->moves);
     }
     else if (JOY_NEW(B_BUTTON | SELECT_BUTTON))
     {
@@ -2022,18 +2018,19 @@ static void PlayerHandleChooseMove(u32 battler)
     }
     else
     {
-        // struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
+        struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
         InitMoveSelectionsVarsAndStrings(battler);
         gBattleStruct->gimmick.playerSelect = FALSE;
 
+        AssignUsableZMoves(battler, moveInfo->moves);
+        gBattleStruct->zmove.viable = (gBattleStruct->zmove.possibleZMoves[battler] & gBitTable[gMoveSelectionCursor[battler]]) != 0;
+
         if (!IsGimmickTriggerSpriteActive())
             gBattleStruct->gimmick.triggerSpriteId = 0xFF;
-        CreateGimmickTriggerSprite(battler);
+        if (!(gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_Z_MOVE && !gBattleStruct->zmove.viable))
+            CreateGimmickTriggerSprite(battler);
 
-        // GetUsableZMoves(battler, moveInfo->moves);
-        // gBattleStruct->zmove.viable = IsZMoveUsable(battler, gMoveSelectionCursor[battler]);
-        // CreateZMoveTriggerSprite(battler, gBattleStruct->zmove.viable);
         gBattlerControllerFuncs[battler] = HandleChooseMoveAfterDma3;
     }
 }

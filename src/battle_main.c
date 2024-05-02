@@ -13,6 +13,8 @@
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "battle_util.h"
+#include "battle_z_move.h"
+#include "battle_gimmick.h"
 #include "berry.h"
 #include "bg.h"
 #include "data.h"
@@ -3685,10 +3687,6 @@ const u8* FaintClearSetData(u32 battler)
         }
     }
 
-    // Clear Z-Move data
-    gBattleStruct->zmove.active = FALSE;
-    gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
-    gBattleStruct->zmove.effect = EFFECT_HIT;
     return result;
 }
 
@@ -4615,7 +4613,6 @@ static void HandleTurnActionSelectionState(void)
 
                     gBattleStruct->gimmick.toActivate &= ~(gBitTable[BATTLE_PARTNER(GetBattlerPosition(battler))]);
                     gBattleStruct->dynamax.usingMaxMove[BATTLE_PARTNER(GetBattlerPosition(battler))] = FALSE;
-                    gBattleStruct->zmove.toBeUsed[BATTLE_PARTNER(GetBattlerPosition(battler))] = MOVE_NONE;
                     BtlController_EmitEndBounceEffect(battler, BUFFER_A);
                     MarkBattlerForControllerExec(battler);
                     return;
@@ -5037,8 +5034,8 @@ s8 GetMovePriority(u32 battler, u16 move)
     s8 priority;
     u16 ability = GetBattlerAbility(battler);
 
-    if (gBattleStruct->zmove.toBeUsed[battler] && gMovesInfo[move].power != 0)
-        move = gBattleStruct->zmove.toBeUsed[battler];
+    if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE && gMovesInfo[move].power != 0)
+        move = GetUsableZMove(battler, move);
 
     priority = gMovesInfo[move].priority;
 

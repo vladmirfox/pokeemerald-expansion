@@ -1292,7 +1292,7 @@ static void Cmd_attackcanceler(void)
     && GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
-    && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
+    && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE)
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondState = PARENTAL_BOND_1ST_HIT;
         gMultiHitCounter = 2;
@@ -1398,7 +1398,7 @@ static void Cmd_attackcanceler(void)
     }
 
     // Z-moves and Max Moves bypass protection, but deal reduced damage (factored in AccumulateOtherModifiers)
-    if ((gBattleStruct->zmove.active || IsMaxMove(gCurrentMove))
+    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove))
          && IS_BATTLER_PROTECTED(gBattlerTarget))
     {
         BattleScriptPush(cmd->nextInstr);
@@ -1547,7 +1547,7 @@ static bool32 AccuracyCalcHelper(u16 move)
         return TRUE;
     }
 
-    if (gBattleStruct->zmove.active && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
+    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -6316,16 +6316,14 @@ static void Cmd_moveend(void)
             gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = 0;
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
             gBattleScripting.moveEffect = 0;
-            // clear attacker z move data
-            gBattleStruct->zmove.active = FALSE;
-            gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
-            gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleStruct->hitSwitchTargetFailed = FALSE;
             gBattleStruct->isAtkCancelerForCalledMove = FALSE;
             gBattleStruct->swapDamageCategory = FALSE;
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
+            if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
+                SetActiveGimmick(gBattlerAttacker, GIMMICK_NONE);
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -11028,10 +11026,10 @@ static void SetMoveForMirrorMove(u32 move)
 {
     gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
     // Edge case, we used Z Mirror Move, got the stat boost and now need to use the Z-move
-    if (gBattleStruct->zmove.toBeUsed[gBattlerAttacker] && !IS_MOVE_STATUS(move))
+    if (GetActiveGimmick(gBattlerAttacker) && !IS_MOVE_STATUS(move))
     {
-        gCurrentMove = gBattleStruct->zmove.chosenZMove = GetTypeBasedZMove(move, gBattlerAttacker);
-        QueueZMove(gBattlerAttacker, move);
+        gBattleStruct->zmove.baseMoves[gBattlerAttacker] = move;
+        gCurrentMove = GetTypeBasedZMove(move, gBattlerAttacker);
     }
     else
     {

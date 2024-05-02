@@ -454,27 +454,25 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
 
-    // Temporarily enable Z-Moves for damage calcs
-    if (considerZPower && IsViableZMove(battlerAtk, move))
-    {
-        gBattleStruct->zmove.baseMoves[battlerAtk] = move;
-        gBattleStruct->zmove.active = TRUE;
-    }
-    else if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
+    if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
         gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
 
     if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();
 
-    // Temporarily enable other gimmicks for damage calcs if planned
-    if (gBattleStruct->gimmick.usableGimmick[battlerAtk] && GetActiveGimmick(battlerAtk) == GIMMICK_NONE)
+    // Temporarily enable gimmicks for damage calcs if planned
+    if (gBattleStruct->gimmick.usableGimmick[battlerAtk] && GetActiveGimmick(battlerAtk) == GIMMICK_NONE
+        && !(gBattleStruct->gimmick.usableGimmick[battlerAtk] == GIMMICK_Z_MOVE && !considerZPower))
     {
+        // Set Z-Move variables if needed
+        if (gBattleStruct->gimmick.usableGimmick[battlerAtk] == GIMMICK_Z_MOVE && IsViableZMove(battlerAtk, move))
+            gBattleStruct->zmove.baseMoves[battlerAtk] = move;
+
         toggledGimmick = TRUE;
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
     gBattleStruct->dynamicMoveType = 0;
-
 
     SetTypeBeforeUsingMove(move, battlerAtk);
     GET_MOVE_TYPE(move, moveType);
@@ -523,7 +521,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             dmg = LowestRollDmg(normalDmg);
         }
 
-        if (!gBattleStruct->zmove.active)
+        if (GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
         {
             // Handle dynamic move damage
             switch (gMovesInfo[move].effect)
@@ -587,8 +585,8 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     // convert multiper to AI_EFFECTIVENESS_xX
     *typeEffectiveness = AI_GetEffectiveness(effectivenessMultiplier);
 
+    // Undo temporary settings
     gBattleStruct->swapDamageCategory = FALSE;
-    gBattleStruct->zmove.active = FALSE;
     gBattleStruct->zmove.baseMoves[battlerAtk] = MOVE_NONE;
     if (toggledGimmick)
         SetActiveGimmick(battlerAtk, GIMMICK_NONE);
@@ -3633,7 +3631,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
     // simple logic. just upgrades chosen move to z move if possible, unless regular move would kill opponent
     if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && battlerDef == BATTLE_PARTNER(battlerAtk))
         return FALSE; //don't use z move on partner
-    if (gBattleStruct->zmove.used[battlerAtk])
+    if (HasTrainerUsedGimmick(battlerAtk, GIMMICK_Z_MOVE))
         return FALSE;   //cant use z move twice
 
     if (IsViableZMove(battlerAtk, chosenMove))
@@ -3645,11 +3643,6 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
             return FALSE; // Don't waste a Z-Move busting disguise
         if (gBattleMons[battlerDef].ability == ABILITY_ICE_FACE && gBattleMons[battlerDef].species == SPECIES_EISCUE_ICE_FACE && IS_MOVE_PHYSICAL(chosenMove))
             return FALSE; // Don't waste a Z-Move busting Ice Face
-
-        if (IS_MOVE_STATUS(chosenMove) && !IS_MOVE_STATUS(gBattleStruct->zmove.chosenZMove))
-            return FALSE;
-        else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(gBattleStruct->zmove.chosenZMove))
-            return FALSE;
 
         if (!IS_MOVE_STATUS(chosenMove) && AI_CalcDamageSaveBattlers(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE) >= gBattleMons[battlerDef].hp)
             return FALSE;   // don't waste damaging z move if can otherwise faint target

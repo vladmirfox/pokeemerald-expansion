@@ -59,6 +59,18 @@ static const struct SpritePalette sSpritePalette_MegaTrigger =
     sMegaTriggerPal, TAG_GIMMICK_TRIGGER_TILE
 };
 
+// Z-Move trigger data
+static const u8 ALIGNED(4) sZMoveTriggerGfx[] = INCBIN_U8("graphics/battle_interface/z_move_trigger.4bpp");
+static const u16 sZMoveTriggerPal[] = INCBIN_U16("graphics/battle_interface/z_move_trigger.gbapal");
+
+static const struct SpriteSheet sSpriteSheet_ZMoveTrigger = {
+    sZMoveTriggerGfx, sizeof(sZMoveTriggerGfx), TAG_GIMMICK_TRIGGER_TILE
+};
+
+static const struct SpritePalette sSpritePalette_ZMoveTrigger = {
+    sZMoveTriggerPal, TAG_GIMMICK_TRIGGER_PAL
+};
+
 // Ultra Burst trigger data
 static const u8 ALIGNED(4) sBurstTriggerGfx[] = INCBIN_U8("graphics/battle_interface/burst_trigger.4bpp");
 static const u16 sBurstTriggerPal[] = INCBIN_U16("graphics/battle_interface/burst_trigger.gbapal");
@@ -114,10 +126,11 @@ const struct GimmickInfo gGimmicksInfo[GIMMICKS_COUNT] =
     },
     [GIMMICK_Z_MOVE] = 
     {
-        .triggerSheet = &sSpriteSheet_DynamaxTrigger,
-        .triggerPal = &sSpritePalette_DynamaxTrigger,
+        .triggerSheet = &sSpriteSheet_ZMoveTrigger,
+        .triggerPal = &sSpritePalette_ZMoveTrigger,
         .triggerTemplate = &sSpriteTemplate_GimmickTrigger,
-        .CanActivate = NULL,
+        .CanActivate = CanUseZMove,
+        .ActivateGimmick = ActivateZMove,
     },
     [GIMMICK_ULTRA_BURST] = 
     {
