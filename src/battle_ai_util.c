@@ -457,9 +457,6 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
         gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
 
-    if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
-        move = GetNaturePowerMove();
-
     // Temporarily enable gimmicks for damage calcs if planned
     if (gBattleStruct->gimmick.usableGimmick[battlerAtk] && GetActiveGimmick(battlerAtk) == GIMMICK_NONE
         && !(gBattleStruct->gimmick.usableGimmick[battlerAtk] == GIMMICK_Z_MOVE && !considerZPower))
@@ -471,6 +468,9 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
         toggledGimmick = TRUE;
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
+
+    if (gMovesInfo[move].effect == EFFECT_NATURE_POWER && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)
+        move = GetNaturePowerMove(gBattlerAttacker);
 
     gBattleStruct->dynamicMoveType = 0;
 

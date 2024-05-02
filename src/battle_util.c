@@ -186,12 +186,6 @@ void HandleAction_UseMove(void)
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
     }
 
-    // check z move used
-    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gCurrentMove) && !IsZMove(gCurrentMove))
-    {
-        gCurrentMove = GetUsableZMove(gBattlerAttacker, gCurrentMove);
-    }
-
     if (gBattleMons[gBattlerAttacker].hp != 0)
     {
         if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
@@ -204,11 +198,18 @@ void HandleAction_UseMove(void)
     SetTypeBeforeUsingMove(gChosenMove, gBattlerAttacker);
     GET_MOVE_TYPE(gChosenMove, moveType);
 
+    // check Z-Move used
+    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gCurrentMove) && !IsZMove(gCurrentMove))
+    {
+        gBattleStruct->categoryOverride = gMovesInfo[gCurrentMove].category;
+        gCurrentMove = gChosenMove = GetUsableZMove(gBattlerAttacker, gCurrentMove);
+    }
+
     // check max move used
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
     {
         gCurrentMove = gChosenMove = GetMaxMove(gBattlerAttacker, gCurrentMove);
-        gBattleStruct->dynamax.activeCategory = gBattleStruct->dynamax.categories[gBattlerAttacker];
+        gBattleStruct->categoryOverride = gMovesInfo[gCurrentMove].category;
     }
 
     moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -10828,9 +10829,9 @@ bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, u32 battler)
 
 u8 GetBattleMoveCategory(u32 moveId)
 {
-    if (gBattleStruct != NULL && IsMaxMove(moveId)) // TODO: Might be buggy depending on when this is called.
-        return gBattleStruct->dynamax.activeCategory;
-    if (gBattleStruct != NULL && gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+    if (gBattleStruct != NULL && (IsZMove(moveId) || IsMaxMove(moveId))) // TODO: Might be buggy depending on when this is called.
+        return gBattleStruct->categoryOverride;
+    if (gBattleStruct != NULL && gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky, Tera Blast
         return DAMAGE_CATEGORY_PHYSICAL;
     if (B_PHYSICAL_SPECIAL_SPLIT >= GEN_4)
         return gMovesInfo[moveId].category;

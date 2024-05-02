@@ -6533,6 +6533,9 @@ BattleScript_PerishSongCountGoesDown::
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
+BattleScript_AllStatsUpZMove::
+	printfromtable gZEffectStringIds
+	waitmessage B_WAIT_TIME_LONG
 BattleScript_AllStatsUp::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_AllStatsUpAtk
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_DEF, MAX_STAT_STAGE, BattleScript_AllStatsUpAtk

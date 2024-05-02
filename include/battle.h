@@ -572,9 +572,7 @@ struct ZMoveData
 struct DynamaxData
 {
     u8 dynamaxTurns[MAX_BATTLERS_COUNT];
-    u8 activeCategory;
-    u8 categories[MAX_BATTLERS_COUNT];
-    u16 baseMove[MAX_BATTLERS_COUNT]; // base move of Max Move
+    u16 baseMoves[MAX_BATTLERS_COUNT]; // base move of Max Move
     u16 lastUsedBaseMove;
     u16 levelUpHP;
 };
@@ -786,6 +784,7 @@ struct BattleStruct
     u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 boosterEnergyActivates;
     u8 distortedTypeMatchups;
+    u8 categoryOverride; // for Z-Moves and Max Moves
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,

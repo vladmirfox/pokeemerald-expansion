@@ -48,7 +48,6 @@
 static u16 GetSignatureZMove(u16 move, u16 species, u16 item);
 static void ZMoveSelectionDisplayPpNumber(u32 battler);
 static void ZMoveSelectionDisplayPower(u16 move, u16 zMove);
-static bool32 AreStatsMaxed(u8 battler, u8 n);
 static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler);
 
 // Const Data
@@ -250,6 +249,10 @@ u32 GetTypeBasedZMove(u32 move, u32 battler)
 
     if (moveType >= NUMBER_OF_MON_TYPES)
         moveType = TYPE_MYSTERY;
+
+    // Z-Weather Ball changes types, however Revelation Dance, -ate ability affected moves, and Hidden Power do not
+    if (gBattleStruct->dynamicMoveType && gMovesInfo[move].effect == EFFECT_WEATHER_BALL)
+        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
 
     // Get Z-Move from type
     if (gTypesInfo[moveType].zMove == MOVE_NONE) // failsafe
@@ -460,22 +463,27 @@ void SetZEffect(void)
         gBattlescriptCurrInstr = BattleScript_ZEffectPrintString;
         break;
     case Z_EFFECT_ALL_STATS_UP_1:
-        if (!AreStatsMaxed(gBattlerAttacker, STAT_SPDEF))
+    {
+        bool32 canBoost = FALSE;
+        for (i = STAT_ATK; i < NUM_STATS; i++) // Doesn't increase Acc or Evsn
         {
-            for (i = 0; i < STAT_ACC - 1; i++) // Doesn't increase Acc or Evsn
+            if (STAT_STAGE(gBattlerAttacker, i) < 12)
             {
-                if (gBattleMons[gBattlerAttacker].statStages[i] < 12)
-                    ++gBattleMons[gBattlerAttacker].statStages[i];
+                canBoost = TRUE;
             }
+        }
+        if (canBoost)
+        {
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_Z_ALL_STATS_UP;
             BattleScriptPush(gBattlescriptCurrInstr + Z_EFFECT_BS_LENGTH);
-            gBattlescriptCurrInstr = BattleScript_ZEffectPrintString;
+            gBattlescriptCurrInstr = BattleScript_AllStatsUpZMove;
         }
         else
         {
             gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
         }
         break;
+    }
     case Z_EFFECT_BOOST_CRITS:
         if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY_ANY))
         {
@@ -534,17 +542,6 @@ void SetZEffect(void)
         gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
         break;
     }
-}
-
-static bool32 AreStatsMaxed(u8 battler, u8 n)
-{
-    u32 i;
-    for (i = STAT_ATK; i <= n; i++)
-    {
-        if (STAT_STAGE(battler, i) < MAX_STAT_STAGE)
-            return FALSE;
-    }
-    return TRUE;
 }
 
 u32 GetZMovePower(u32 move)

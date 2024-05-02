@@ -291,12 +291,10 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
     else if (gBattleStruct->dynamicMoveType)
     {
         move = GetTypeBasedMaxMove(battler, gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK);
-        gBattleStruct->dynamax.categories[battler] = gMovesInfo[baseMove].category;
     }
     else
     {
         move = GetTypeBasedMaxMove(battler, gMovesInfo[baseMove].type);
-        gBattleStruct->dynamax.categories[battler] = gMovesInfo[baseMove].category;
     }
 
     return move;
