@@ -87,6 +87,24 @@ static const struct ListMenuTemplate sDaycareListMenuLevelTemplate =
     .cursorKind = CURSOR_BLACK_ARROW
 };
 
+static const struct {
+  u16 currSpecies;
+  u16 item;
+  u16 babySpecies;
+} sIncenseBabyTable[] =
+{
+    // Regular offspring,   Item,              Incense Offspring
+    { SPECIES_WOBBUFFET,    ITEM_LAX_INCENSE,  SPECIES_WYNAUT },
+    { SPECIES_MARILL,       ITEM_SEA_INCENSE,  SPECIES_AZURILL },
+    { SPECIES_SNORLAX,      ITEM_FULL_INCENSE, SPECIES_MUNCHLAX },
+    { SPECIES_CHANSEY,      ITEM_LUCK_INCENSE, SPECIES_HAPPINY },
+    { SPECIES_MR_MIME,      ITEM_ODD_INCENSE,  SPECIES_MIME_JR },
+    { SPECIES_CHIMECHO,     ITEM_PURE_INCENSE, SPECIES_CHINGLING },
+    { SPECIES_SUDOWOODO,    ITEM_ROCK_INCENSE, SPECIES_BONSLY },
+    { SPECIES_ROSELIA,      ITEM_ROSE_INCENSE, SPECIES_BUDEW },
+    { SPECIES_MANTINE,      ITEM_WAVE_INCENSE, SPECIES_MANTYKE },
+};
+
 static const u8 *const sCompatibilityMessages[] =
 {
     gDaycareText_GetAlongVeryWell,
@@ -175,18 +193,27 @@ static void TransferEggMoves(void)
 {
     u32 i, j, k, l;
     u16 numEggMoves;
-    struct Pokemon mon;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
         u16 moveLearnerSpecies = GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SPECIES);
+        u16 eggSpecies = GetEggSpecies(moveLearnerSpecies);
 
         if (!GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SANITY_HAS_SPECIES))
             continue;
 
-        BoxMonToMon(&gSaveBlock1Ptr->daycare.mons[i].mon, &mon);
+        // Make sure Snorlax gets Snorlax's egg moves instead of Munchlax's
+        if (eggSpecies != moveLearnerSpecies)
+        {
+            for (j = 0; j < sizeof(sIncenseBabyTable) / sizeof(sIncenseBabyTable[0]); j++)
+                {
+                    if (sIncenseBabyTable[i].babySpecies == eggSpecies)
+                        eggSpecies = sIncenseBabyTable[i].currSpecies;
+                }
+        }
+
         ClearHatchedEggMoves();
-        numEggMoves = GetEggMovesSpecies(GetEggSpecies(moveLearnerSpecies), sHatchedEggEggMoves);
+        numEggMoves = GetEggMovesSpecies(eggSpecies, sHatchedEggEggMoves);
         for (j = 0; j < numEggMoves; j++)
         {
             // Go through other Daycare mons
@@ -958,25 +985,6 @@ void RejectEggFromDayCare(void)
 {
     RemoveEggFromDayCare(&gSaveBlock1Ptr->daycare);
 }
-
-
-static const struct {
-  u16 currSpecies;
-  u16 item;
-  u16 babySpecies;
-} sIncenseBabyTable[] =
-{
-    // Regular offspring,   Item,              Incense Offspring
-    { SPECIES_WOBBUFFET,    ITEM_LAX_INCENSE,  SPECIES_WYNAUT },
-    { SPECIES_MARILL,       ITEM_SEA_INCENSE,  SPECIES_AZURILL },
-    { SPECIES_SNORLAX,      ITEM_FULL_INCENSE, SPECIES_MUNCHLAX },
-    { SPECIES_CHANSEY,      ITEM_LUCK_INCENSE, SPECIES_HAPPINY },
-    { SPECIES_MR_MIME,      ITEM_ODD_INCENSE,  SPECIES_MIME_JR },
-    { SPECIES_CHIMECHO,     ITEM_PURE_INCENSE, SPECIES_CHINGLING },
-    { SPECIES_SUDOWOODO,    ITEM_ROCK_INCENSE, SPECIES_BONSLY },
-    { SPECIES_ROSELIA,      ITEM_ROSE_INCENSE, SPECIES_BUDEW },
-    { SPECIES_MANTINE,      ITEM_WAVE_INCENSE, SPECIES_MANTYKE },
-};
 
 #if P_INCENSE_BREEDING < GEN_9
 static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare)
