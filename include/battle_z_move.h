@@ -19,7 +19,7 @@ u32 GetUsableZMove(u32 battler, u32 move);
 void ActivateZMove(u32 battler);
 bool32 IsViableZMove(u32 battler, u32 move);
 bool32 TryChangeZTrigger(u32 battler, u32 moveIndex);
-u32 GetTypeBasedZMove(u32 move, u32 battler);
+u32 GetTypeBasedZMove(u32 move);
 bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler);
 void SetZEffect(void);
 void AssignUsableZMoves(u32 battler, u16 *moves);

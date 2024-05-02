@@ -9666,7 +9666,7 @@ static void Cmd_various(void)
             if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(move))
             {
                 gBattleStruct->zmove.baseMoves[gBattlerAttacker] = move;
-                gCalledMove = GetTypeBasedZMove(move, gBattlerAttacker);
+                gCalledMove = GetTypeBasedZMove(move);
             }
             else
             {
@@ -11085,7 +11085,7 @@ static void SetMoveForMirrorMove(u32 move)
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(move))
     {
         gBattleStruct->zmove.baseMoves[gBattlerAttacker] = move;
-        gCurrentMove = GetTypeBasedZMove(move, gBattlerAttacker);
+        gCurrentMove = GetTypeBasedZMove(move);
     }
     else
     {
@@ -13040,7 +13040,7 @@ static void Cmd_trychoosesleeptalkmove(void)
         if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gBattleMons[gBattlerAttacker].moves[movePosition]))
         {
             gBattleStruct->zmove.baseMoves[gBattlerAttacker] = gBattleMons[gBattlerAttacker].moves[movePosition];
-            gCalledMove = GetTypeBasedZMove(gBattleMons[gBattlerAttacker].moves[movePosition], gBattlerAttacker);
+            gCalledMove = GetTypeBasedZMove(gBattleMons[gBattlerAttacker].moves[movePosition]);
         }
         else
         {
@@ -13987,7 +13987,7 @@ u32 GetNaturePowerMove(u32 battler)
     if (GetActiveGimmick(battler) == GIMMICK_Z_MOVE)
     {
         gBattleStruct->zmove.baseMoves[gBattlerAttacker] = move;
-        move = GetTypeBasedZMove(move, gBattlerAttacker);
+        move = GetTypeBasedZMove(move);
     }
 
     return move;
@@ -16715,7 +16715,7 @@ void BS_TryCopycat(void)
         if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gLastUsedMove))
         {
             gBattleStruct->zmove.baseMoves[gBattlerAttacker] = gLastUsedMove;
-            gCalledMove = GetTypeBasedZMove(gLastUsedMove, gBattlerAttacker);
+            gCalledMove = GetTypeBasedZMove(gLastUsedMove);
         }
         else if (IsMaxMove(gLastUsedMove))
         {

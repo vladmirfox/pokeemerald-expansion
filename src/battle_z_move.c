@@ -154,7 +154,7 @@ u32 GetUsableZMove(u32 battler, u32 move)
             return zMove;  // Signature z move exists
 
         if (move != MOVE_NONE && zMove != MOVE_Z_STATUS && gMovesInfo[move].type == ItemId_GetSecondaryId(item))
-            return GetTypeBasedZMove(move, battler);
+            return GetTypeBasedZMove(move);
     }
 
     return MOVE_NONE;
@@ -243,7 +243,7 @@ static u16 GetSignatureZMove(u16 move, u16 species, u16 item)
     return MOVE_NONE;
 }
 
-u32 GetTypeBasedZMove(u32 move, u32 battler)
+u32 GetTypeBasedZMove(u32 move)
 {
     u32 moveType = gMovesInfo[move].type;
 
