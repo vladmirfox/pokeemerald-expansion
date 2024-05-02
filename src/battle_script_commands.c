@@ -1797,7 +1797,10 @@ static void Cmd_accuracycheck(void)
                 gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
 
             if (gMovesInfo[move].power)
+            {
                 CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, gBattlerTarget, abilityDef, TRUE);
+                gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
+            }
         }
         JumpIfMoveFailed(7, move);
     }
@@ -1984,6 +1987,7 @@ static void Cmd_damagecalc(void)
     if (gBattleStruct->calculatedDamageDone)
     {
         gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
+        gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
@@ -1992,8 +1996,6 @@ static void Cmd_damagecalc(void)
     if (IsDoubleBattle() && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
     {
         u32 battler;
-
-        // Calc damage in double battles simultaneously to avoid stat change increases during move execution (e.g. Moxie)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             if (!IsBattlerAlive(battler) || battler == gBattlerAttacker)
@@ -2009,6 +2011,7 @@ static void Cmd_damagecalc(void)
     }
 
     gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
+    gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -2020,6 +2023,7 @@ static void Cmd_typecalc(void)
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
     CalcTypeEffectivenessMultiplier(gCurrentMove, moveType, gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget), TRUE);
+    gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

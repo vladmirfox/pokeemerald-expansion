@@ -3394,6 +3394,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                         gBattleCommunication[MULTISTRING_CHOOSER] = TRUE;
                         gBattlerTarget = gBattlerAttacker;
                         gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+                        gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
                         gProtectStructs[gBattlerAttacker].confusionSelfDmg = TRUE;
                         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     }
@@ -3639,6 +3640,53 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             {
                 gMultiHitCounter = 0;
             }
+            gBattleStruct->atkCancellerTracker++;
+            break;
+		case CANCELLER_MULTI_TARGET_MOVES:
+            if (!IsDoubleBattle())
+            {
+                gBattleStruct->atkCancellerTracker++;
+                break;
+            }
+
+            const u8* backupScript = gBattlescriptCurrInstr; //Script can get overwritten by ability blocking
+            u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
+
+            if (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+            {
+                u32 battlerDef;
+                for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+                {
+                    if (gBattlerAttacker == battlerDef
+                     || !IsBattlerAlive(battlerDef)
+                     || (moveTarget == MOVE_TARGET_BOTH && gBattlerAttacker == BATTLE_PARTNER(battlerDef))
+                     || IsBattlerProtected(battlerDef, gCurrentMove)
+                     || gBattleMoveEffects[gMovesInfo[gCurrentMove].effect].twoTurnEffect)
+                    {
+                        gBattleStruct->resultFlags[battlerDef] = MOVE_RESULT_NO_EFFECT;
+                        continue;
+                    }
+
+                    // ||  AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK_PARTNER, PARTNER(i), 0, 0, 0)
+                    if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, battlerDef, 0, 0, 0)
+                     || (IsBattlerTerrainAffected(gBattlerAttacker, STATUS_FIELD_PSYCHIC_TERRAIN) && GetMovePriority(gBattlerAttacker, gCurrentMove) > 0))
+                    {
+                        gBattleStruct->resultFlags[battlerDef] = 0;
+                    }
+                    else if (AbilityBattleEffects(ABILITYEFFECT_ABSORBING, battlerDef, 0, 0, gCurrentMove))
+                    {
+                        gBattleStruct->resultFlags[battlerDef] = 0;
+                    }
+                    else
+                        CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+                }
+                if (moveTarget == MOVE_TARGET_BOTH)
+                    gBattleStruct->spreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
+                else
+                    gBattleStruct->spreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
+
+            }
+            gBattlescriptCurrInstr = backupScript; //Restore original script
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:
@@ -8249,6 +8297,7 @@ u8 IsMonDisobedient(void)
         if (calc < obedienceLevel)
         {
             gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+            gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
             gBattlerTarget = gBattlerAttacker;
             gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
             gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -10152,26 +10201,26 @@ static inline void TryNoticeIllusionInTypeEffectiveness(u32 move, u32 moveType, 
         RecordAbilityBattle(battlerDef, ABILITY_ILLUSION);
 }
 
-static void UpdateMoveResultFlags(uq4_12_t modifier)
+static void UpdateMoveResultFlags(uq4_12_t modifier, u32 battler)
 {
     if (modifier == UQ_4_12(0.0))
     {
-        gMoveResultFlags |= MOVE_RESULT_DOESNT_AFFECT_FOE;
-        gMoveResultFlags &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_SUPER_EFFECTIVE);
+        gBattleStruct->resultFlags[battler] |= MOVE_RESULT_DOESNT_AFFECT_FOE;
+        gBattleStruct->resultFlags[battler] &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_SUPER_EFFECTIVE);
     }
     else if (modifier == UQ_4_12(1.0))
     {
-        gMoveResultFlags &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
+        gBattleStruct->resultFlags[battler] &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
     else if (modifier > UQ_4_12(1.0))
     {
-        gMoveResultFlags |= MOVE_RESULT_SUPER_EFFECTIVE;
-        gMoveResultFlags &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
+        gBattleStruct->resultFlags[battler] |= MOVE_RESULT_SUPER_EFFECTIVE;
+        gBattleStruct->resultFlags[battler] &= ~(MOVE_RESULT_NOT_VERY_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
     else //if (modifier < UQ_4_12(1.0))
     {
-        gMoveResultFlags |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
-        gMoveResultFlags &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
+        gBattleStruct->resultFlags[battler] |= MOVE_RESULT_NOT_VERY_EFFECTIVE;
+        gBattleStruct->resultFlags[battler] &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_DOESNT_AFFECT_FOE);
     }
 }
 
@@ -10201,7 +10250,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         if (recordAbilities && defAbility == ABILITY_LEVITATE)
         {
             gLastUsedAbility = ABILITY_LEVITATE;
-            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gBattleStruct->resultFlags[battlerDef] |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
@@ -10227,7 +10276,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         if (recordAbilities)
         {
             gLastUsedAbility = gBattleMons[battlerDef].ability;
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
+            gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_MISSED;
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
@@ -10253,7 +10302,7 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
     }
 
     if (recordAbilities)
-        UpdateMoveResultFlags(modifier);
+        UpdateMoveResultFlags(modifier, battlerDef);
     return modifier;
 }
 
@@ -10274,7 +10323,7 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 a
             modifier = UQ_4_12(0.0);
     }
 
-    UpdateMoveResultFlags(modifier);
+    UpdateMoveResultFlags(modifier, speciesDef);
     return modifier;
 }
 

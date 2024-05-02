@@ -718,8 +718,10 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
+    u32 resultFlags[MAX_BATTLERS_COUNT];
     s32 calculatedDamage[MAX_BATTLERS_COUNT];
     u8 calculatedDamageDone:1;
+    u8 spreadTargets:2;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
     u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
