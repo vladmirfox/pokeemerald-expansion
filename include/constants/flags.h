@@ -50,7 +50,8 @@
 #define FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME 0x22
 // True to hide the rival in Saku village
 #define FLAG_HIDE_RIVAL_SAKU 0x23
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
+// True if the owner of the bonsai shop is not at the shop
+#define FLAG_HIDE_BONSAI_SHOP_OWNER 0x24
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
@@ -123,7 +124,7 @@
 #define FLAG_MOSSDEEP_GYM_SWITCH_2           0x65 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_3           0x66 //
 #define FLAG_MOSSDEEP_GYM_SWITCH_4           0x67 //
-#define FLAG_TALKED_TO_BONSAI_SHOP_ASSISTANT 0x68
+#define FLAG_TALKED_TO_BONSAI_SHOP_ASSISTANT 0x68 // TODO EVA: UNUSED
 #define FLAG_OCEANIC_MUSEUM_MET_REPORTER     0x69
 #define FLAG_RECEIVED_HM_STRENGTH            0x6A
 #define FLAG_RECEIVED_HM_ROCK_SMASH          0x6B
@@ -171,7 +172,7 @@
 #define FLAG_MR_BRINEY_SAILING_INTRO         0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
-#define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
+#define FLAG_RECEIVED_TM_ACROBATICS          0x96
 #define FLAG_RECEIVED_CASTFORM               0x97
 #define FLAG_RECEIVED_SUPER_ROD              0x98
 #define FLAG_RUSTBORO_NPC_TRADE_COMPLETED    0x99

@@ -4547,7 +4547,7 @@
       "width": 8,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseHardwood2",
       "border_filepath": "data/layouts/SunriseVillage_EldersHouse_PrivateQuarters/border.bin",
       "blockdata_filepath": "data/layouts/SunriseVillage_EldersHouse_PrivateQuarters/map.bin"
     },
@@ -4557,7 +4557,7 @@
       "width": 11,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseBeige",
       "border_filepath": "data/layouts/SunriseVillage_RivalsHouse/border.bin",
       "blockdata_filepath": "data/layouts/SunriseVillage_RivalsHouse/map.bin"
     },
@@ -4574,10 +4574,10 @@
     {
       "id": "LAYOUT_SAKU_TOWN_BONSAI_SHOP",
       "name": "SakuTown_BonsaiShop_Layout",
-      "width": 10,
-      "height": 8,
+      "width": 12,
+      "height": 9,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseGreen",
       "border_filepath": "data/layouts/SakuTown_BonsaiShop/border.bin",
       "blockdata_filepath": "data/layouts/SakuTown_BonsaiShop/map.bin"
     },

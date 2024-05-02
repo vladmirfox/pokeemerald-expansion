@@ -164,7 +164,7 @@
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RATTATA)",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MUNCHLAX)",
       "x": 8,
       "y": 14,
       "elevation": 3,

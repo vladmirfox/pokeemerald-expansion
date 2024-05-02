@@ -615,6 +615,12 @@ bool8 ScrCmd_incrementgamestat(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_getgamestat(struct ScriptContext *ctx)
+{
+    gSpecialVar_Result = GetGameStat(ctx);
+    return FALSE;
+}
+
 bool8 ScrCmd_animateflash(struct ScriptContext *ctx)
 {
     AnimateFlash(ScriptReadByte(ctx));

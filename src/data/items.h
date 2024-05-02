@@ -9981,7 +9981,7 @@ const struct Item gItemsInfo[] =
         .price = 3000,
         .description = COMPOUND_STRING(
             "The user tramples its\n"
-            "target into the ground."
+            "target into the ground.\n"
             "Also lowers Speed."
         ),
         .importance = I_REUSABLE_TMS,
@@ -9991,16 +9991,20 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_BULLDOZE,
     },
 
-    [ITEM_TM52] =
+    [ITEM_TM_ACROBATICS] =
     {
         .name = _("TM52"),
         .price = 3000,
-        .description = sQuestionMarksDesc, // Todo
+        .description = COMPOUND_STRING(
+            "This attack inflicts\n"
+            "massive damage if the user\n"
+            "isn't holding an item."
+        ),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_NONE, // Todo
+        .secondaryId = MOVE_ACROBATICS,
     },
 
     [ITEM_TM53] =
