@@ -203,16 +203,16 @@ static void TransferEggMoves(void)
             continue;
 
         // Make sure Snorlax gets Snorlax's egg moves instead of Munchlax's
-        if (eggSpecies != moveLearnerSpecies)
+        if (eggSpecies != moveLearnerSpecies && P_INCENSE_BREEDING < GEN_9)
         {
             for (j = 0; j < ARRAY_COUNT(sIncenseBabyTable); j++)
+            {
+                if (sIncenseBabyTable[j].babySpecies == eggSpecies)
                 {
-                    if (sIncenseBabyTable[j].babySpecies == eggSpecies)
-                    {
-                        eggSpecies = sIncenseBabyTable[j].currSpecies;
-                        break;
-                    }
+                    eggSpecies = sIncenseBabyTable[j].currSpecies;
+                    break;
                 }
+            }
         }
 
         ClearHatchedEggMoves();
