@@ -723,9 +723,9 @@ struct BattleStruct
     u8 calculatedSpreadMoveAccuracy:1;
     u8 calculatedDamageDone:1;
     u8 numSpreadTargets:2;
+    u8 doneDoublesSpreadHit:1;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
-    u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
     u8 terrainDone:1;
     u8 startingStatus; // status to apply at battle start. defined in constants/battle.h
     u8 startingStatusTimer;
@@ -775,10 +775,11 @@ struct BattleStruct
     u16 changedSpecies[NUM_BATTLE_SIDES][PARTY_SIZE]; // For forms when multiple mons can change into the same pokemon.
     u8 quickClawBattlerId;
     struct LostItem itemLost[PARTY_SIZE];  // Player's team that had items consumed or stolen (two bytes per party member)
+    u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
     u8 forcedSwitch:4; // For each battler
     u8 blunderPolicy:1; // should blunder policy activate
     u8 swapDamageCategory:1; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-    u8 additionalEffectsCounter:4; // A counter for the additionalEffects applied by the current move in Cmd_setadditionaleffects
+    u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
@@ -844,9 +845,8 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
 #define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
-#define IS_SPREAD_MOVE(moveTarget)(moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
-
 #define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
+#define IS_SPREAD_MOVE(moveTarget)(moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0) || (gBattleStruct->enduredDamage & gBitTable[gBattlerTarget]))

@@ -3679,8 +3679,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     }
                     else
                         CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
-
-                    DebugPrintf("CANCELLER_MULTI_TARGET_MOVES: [1]");
                 }
                 if (moveTarget == MOVE_TARGET_BOTH)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
@@ -3688,7 +3686,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
 
             }
-            DebugPrintf("CANCELLER_MULTI_TARGET_MOVES: [2]");
             gBattlescriptCurrInstr = backupScript; //Restore original script
             gBattleStruct->atkCancellerTracker++;
             break;
