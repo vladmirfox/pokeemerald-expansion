@@ -617,7 +617,8 @@ bool8 ScrCmd_incrementgamestat(struct ScriptContext *ctx)
 
 bool8 ScrCmd_getgamestat(struct ScriptContext *ctx)
 {
-    gSpecialVar_Result = GetGameStat(ctx);
+    // TODO EVA
+    // gSpecialVar_Result = GetGameStat(ctx);
     return FALSE;
 }
 
