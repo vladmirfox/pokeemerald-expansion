@@ -1759,12 +1759,7 @@ void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTarget
         if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
             gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
 
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
-            (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
-            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_ATK;
-        else
-            gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
-
+        gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
         if (gMovesInfo[move].power)
         {
             CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, battlerDef, abilityDef, TRUE);
@@ -1776,10 +1771,27 @@ static void Cmd_accuracycheck(void)
 {
     CMD_ARGS(const u8 *failInstr, u16 move);
 
+    u32 moveTarget;
+    u32 abilityAtk;
+    u32 holdEffectAtk;
     u32 move = cmd->move;
-    u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
-    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+
+    if (gBattleStruct->calculatedSpreadMoveAccuracy)
+    {
+        DebugPrintf("Cmd_accuracycheck: [3]");
+        gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
+        // if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
+        // else
+        // {
+        //     // TODO: Handle string
+        // }
+        JumpIfMoveFailed(7, move);
+        return;
+    }
+
+    moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
+    abilityAtk = GetBattlerAbility(gBattlerAttacker);
+    holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
@@ -1805,21 +1817,15 @@ static void Cmd_accuracycheck(void)
     {
 		bool32 calcSpreadMove = IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget) && !IS_MOVE_STATUS(move);
 
-        if (gBattleStruct->calculatedSpreadMoveAccuracy)
-        {
-            if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
-                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
-            else
-            {
-                // TODO: Handle string printing at the same time
-            }
-        }
-        else if (calcSpreadMove)
+        if (calcSpreadMove)
         {
             u32 battlerDef;
             for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
             {
-                // TODO: Add Logic to continue
+                if (gBattlerAttacker == battlerDef
+                 || !IsBattlerAlive(battlerDef)
+                 || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH)))
+                    continue;
 
                 FinalAccuracyCheck(
                     gBattlerAttacker,
@@ -1830,8 +1836,9 @@ static void Cmd_accuracycheck(void)
                     holdEffectAtk
                 );
             }
-            if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
+            // if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
                 gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
+                DebugPrintf("Cmd_accuracycheck: [1]");
         }
         else
         {
@@ -1843,6 +1850,7 @@ static void Cmd_accuracycheck(void)
                 abilityAtk,
                 holdEffectAtk
             );
+            DebugPrintf("Cmd_accuracycheck: [2]");
         }
 
         gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
@@ -2037,7 +2045,7 @@ static void Cmd_damagecalc(void)
     }
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    if (IsDoubleBattle() && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
+    if (IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget))
     {
         u32 battler;
         for (battler = 0; battler < gBattlersCount; battler++)
@@ -3300,8 +3308,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
                     // For a move that hits multiple targets (i.e. Make it Rain)
                     // we only want to print the message on the final hit
-                    if (!((moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
-                        && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
+                    if (!(IS_SPREAD_MOVE(moveTarget) && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT))
                     {
                         BattleScriptPush(gBattlescriptCurrInstr + 1);
                         gBattlescriptCurrInstr = BattleScript_MoveEffectPayDay;
@@ -3934,8 +3941,8 @@ static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additional
     // Self-targeting move effects only apply after the last mon has been hit
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
     if (additionalEffect->self
-      && (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
-      && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT)
+     && IS_SPREAD_MOVE(moveTarget)
+     && GetNextTarget(moveTarget, TRUE) != MAX_BATTLERS_COUNT)
         return FALSE;
 
     // Certain move effects only apply if the target raised stats this turn (e.g. Burning Jealousy)

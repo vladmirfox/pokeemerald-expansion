@@ -3652,7 +3652,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             const u8* backupScript = gBattlescriptCurrInstr; //Script can get overwritten by ability blocking
             u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
 
-            if (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+            if (IS_SPREAD_MOVE(moveTarget))
             {
                 u32 battlerDef;
                 for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
@@ -3679,6 +3679,8 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     }
                     else
                         CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+
+                    DebugPrintf("CANCELLER_MULTI_TARGET_MOVES: [1]");
                 }
                 if (moveTarget == MOVE_TARGET_BOTH)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
@@ -3686,6 +3688,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
 
             }
+            DebugPrintf("CANCELLER_MULTI_TARGET_MOVES: [2]");
             gBattlescriptCurrInstr = backupScript; //Restore original script
             gBattleStruct->atkCancellerTracker++;
             break;
