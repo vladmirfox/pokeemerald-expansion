@@ -244,15 +244,6 @@ bool32 IsMoveBlockedByDynamax(u32 move)
     return FALSE;
 }
 
-// Returns whether a move should be converted into a Max Move.
-bool32 ShouldUseMaxMove(u32 battler, u32 baseMove)
-{
-    // TODO: Raid bosses do not always use Max Moves.
-    // if (IsRaidBoss(battler))
-    //   return !IsRaidBossUsingRegularMove(battler, baseMove);
-    return GetActiveGimmick(battler) == GIMMICK_DYNAMAX || IsGimmickSelected(battler, GIMMICK_DYNAMAX);
-}
-
 static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
 {
     // Gigantamax check

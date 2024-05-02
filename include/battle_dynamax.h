@@ -66,7 +66,6 @@ void UndoDynamax(u32 battler);
 bool32 IsMoveBlockedByMaxGuard(u32 move);
 bool32 IsMoveBlockedByDynamax(u32 move);
 
-bool32 ShouldUseMaxMove(u32 battler, u32 baseMove);
 u16 GetMaxMove(u32 battler, u32 baseMove);
 u8 GetMaxMovePower(u32 move);
 bool32 IsMaxMove(u32 move);

@@ -572,7 +572,6 @@ struct ZMoveData
 struct DynamaxData
 {
     u8 dynamaxTurns[MAX_BATTLERS_COUNT];
-    u8 usingMaxMove[MAX_BATTLERS_COUNT];
     u8 activeCategory;
     u8 categories[MAX_BATTLERS_COUNT];
     u16 baseMove[MAX_BATTLERS_COUNT]; // base move of Max Move
