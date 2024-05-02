@@ -53,7 +53,7 @@ SakuTown_BonsaiShop_EventScript_Painting::
 	return
 
 
-SakuTown_EventScript_BonsaiShop_LittleSister::
+SakuTown_BonsaiShop_EventScript_LittleSister::
 # 52 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	lock
 # 53 "data/maps/SakuTown_BonsaiShop/scripts.pory"
@@ -61,67 +61,67 @@ SakuTown_EventScript_BonsaiShop_LittleSister::
 # 55 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	getgamestat GAME_STAT_PLANTED_BERRIES
 # 57 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	goto_if_set FLAG_RECEIVED_TM_ACROBATICS, SakuTown_EventScript_BonsaiShop_LittleSister_2
+	goto_if_set FLAG_RECEIVED_TM_ACROBATICS, SakuTown_BonsaiShop_EventScript_LittleSister_2
 # 63 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	special GetPlayerMrMrsString
 # 64 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_1
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_1
 # 68 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	compare VAR_RESULT, 10
-	goto_if_lt SakuTown_EventScript_BonsaiShop_LittleSister_5
+	goto_if_lt SakuTown_BonsaiShop_EventScript_LittleSister_5
 # 75 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	compare VAR_RESULT, 20
-	goto_if_lt SakuTown_EventScript_BonsaiShop_LittleSister_6
+	goto_if_lt SakuTown_BonsaiShop_EventScript_LittleSister_6
 # 82 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	compare VAR_RESULT, 30
-	goto_if_lt SakuTown_EventScript_BonsaiShop_LittleSister_7
+	goto_if_lt SakuTown_BonsaiShop_EventScript_LittleSister_7
 # 91 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	compare VAR_RESULT, 40
-	goto_if_lt SakuTown_EventScript_BonsaiShop_LittleSister_8
+	goto_if_lt SakuTown_BonsaiShop_EventScript_LittleSister_8
 # 99 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	compare VAR_RESULT, 40
-	goto_if_ge SakuTown_EventScript_BonsaiShop_LittleSister_9
-SakuTown_EventScript_BonsaiShop_LittleSister_1:
+	goto_if_ge SakuTown_BonsaiShop_EventScript_LittleSister_9
+SakuTown_BonsaiShop_EventScript_LittleSister_1:
 # 124 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
-SakuTown_EventScript_BonsaiShop_LittleSister_2:
+SakuTown_BonsaiShop_EventScript_LittleSister_2:
 # 58 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_0
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_0
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
-SakuTown_EventScript_BonsaiShop_LittleSister_5:
+SakuTown_BonsaiShop_EventScript_LittleSister_5:
 # 69 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_2
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_2
 # 74 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
-SakuTown_EventScript_BonsaiShop_LittleSister_6:
+SakuTown_BonsaiShop_EventScript_LittleSister_6:
 # 76 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_3
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_3
 # 81 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
-SakuTown_EventScript_BonsaiShop_LittleSister_7:
+SakuTown_BonsaiShop_EventScript_LittleSister_7:
 # 83 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_4
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_4
 # 90 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
-SakuTown_EventScript_BonsaiShop_LittleSister_8:
+SakuTown_BonsaiShop_EventScript_LittleSister_8:
 # 92 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_5
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_5
 # 98 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
-SakuTown_EventScript_BonsaiShop_LittleSister_9:
+SakuTown_BonsaiShop_EventScript_LittleSister_9:
 # 100 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_6
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_6
 # 107 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
 # 109 "data/maps/SakuTown_BonsaiShop/scripts.pory"
@@ -129,12 +129,12 @@ SakuTown_EventScript_BonsaiShop_LittleSister_9:
 # 110 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_BagIsFull
 # 111 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	msgbox SakuTown_EventScript_BonsaiShop_LittleSister_Text_7
+	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_7
 # 119 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
 # 120 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	setflag FLAG_RECEIVED_TM_ACROBATICS
-	goto SakuTown_EventScript_BonsaiShop_LittleSister_1
+	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
 
 SakuTown_BonsaiShop_EventScript_Assistant::
@@ -279,18 +279,18 @@ SakuTown_BonsaiShop_EventScript_Painting_Text_0:
 # 47 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "A dainty painting of a flower.$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_0:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_0:
 # 59 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "What's up, berry master?\p"
 	.string "$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_1:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_1:
 # 65 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hi there {STR_VAR_1} Grownup! Have\n"
 	.string "you planted many berries on your\l"
 	.string "travels?$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_2:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_2:
 # 70 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
 	.string "Your face still has “berry amateur”\n"
@@ -298,14 +298,14 @@ SakuTown_EventScript_BonsaiShop_LittleSister_Text_2:
 	.string "Come back when you're less of an\n"
 	.string "embarrassment.$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_3:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_3:
 # 77 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
 	.string "I'd say it's less terrible than before.\p"
 	.string "Still not great though. You need to\n"
 	.string "plant way more berries.$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_4:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_4:
 # 84 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
 	.string "Hey, I'm actually impressed at the berry\n"
@@ -313,7 +313,7 @@ SakuTown_EventScript_BonsaiShop_LittleSister_Text_4:
 	.string "… … Kidding!\p"
 	.string "You're getting better at it though.$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_5:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_5:
 # 93 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
 	.string "I'd say you're almost there…\p"
@@ -322,7 +322,7 @@ SakuTown_EventScript_BonsaiShop_LittleSister_Text_5:
 	.string "“actually good” at berries.\p"
 	.string "So, you know, keep it up, or whatever.$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_6:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_6:
 # 101 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
 	.string "Oh?\p"
@@ -332,7 +332,7 @@ SakuTown_EventScript_BonsaiShop_LittleSister_Text_6:
 	.string "earned my respect.\p"
 	.string "Take this!$"
 
-SakuTown_EventScript_BonsaiShop_LittleSister_Text_7:
+SakuTown_BonsaiShop_EventScript_LittleSister_Text_7:
 # 113 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "This scroll contains the move\n"
 	.string "Acrobatics.\p"

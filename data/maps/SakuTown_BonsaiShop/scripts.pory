@@ -48,7 +48,7 @@ script SakuTown_BonsaiShop_EventScript_Painting {
 	), MSGBOX_AUTOCLOSE)
 }
 
-script SakuTown_EventScript_BonsaiShop_LittleSister {
+script SakuTown_BonsaiShop_EventScript_LittleSister {
 	lock
 	faceplayer
 

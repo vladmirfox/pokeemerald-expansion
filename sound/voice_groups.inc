@@ -34,7 +34,7 @@
 .include "sound/voicegroups/voicegroup_drums_route110.inc"
 .include "sound/voicegroups/voicegroup_fortree.inc"
 .include "sound/voicegroups/voicegroup_birch_lab.inc"
-.include "sound/voicegroups/voicegroup_voicegroup_littleroot_test.inc"
+.include "sound/voicegroups/voicegroup_littleroot_test.inc"
 .include "sound/voicegroups/voicegroup_b_tower_rs.inc"
 .include "sound/voicegroups/voicegroup_encounter_swimmer.inc"
 .include "sound/voicegroups/voicegroup_cave_of_origin.inc"
