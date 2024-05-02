@@ -216,7 +216,7 @@ static void TransferEggMoves(void)
         }
 
         ClearHatchedEggMoves();
-        numEggMoves = GetEggMovesSpecies(eggSpecies, sHatchedEggEggMoves);
+        numEggMoves = GetEggMovesBySpecies(eggSpecies, sHatchedEggEggMoves);
         for (j = 0; j < numEggMoves; j++)
         {
             // Go through other Daycare mons
@@ -805,7 +805,7 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
     return numEggMoves;
 }
 
-u8 GetEggMovesSpecies(u16 species, u16 *eggMoves)
+u8 GetEggMovesBySpecies(u16 species, u16 *eggMoves)
 {
     u16 eggMoveIdx;
     u16 numEggMoves;
