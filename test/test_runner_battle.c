@@ -2067,27 +2067,9 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
         INVALID("No move or moveSlot");
     }
 
-    if (ctx->explicitMegaEvolve && ctx->megaEvolve)
+    if (ctx->explicitGimmick && ctx->gimmick != GIMMICK_NONE)
     {
-        DATA.chosenGimmick[battlerId] = GIMMICK_MEGA;
-        *moveSlot |= RET_GIMMICK;
-    }
-
-    if (ctx->explicitUltraBurst && ctx->ultraBurst)
-    {
-        DATA.chosenGimmick[battlerId] = GIMMICK_ULTRA_BURST;
-        *moveSlot |= RET_GIMMICK;
-    }
-
-    if (ctx->explicitDynamax && ctx->dynamax)
-    {
-        DATA.chosenGimmick[battlerId] = GIMMICK_DYNAMAX;
-        *moveSlot |= RET_GIMMICK;
-    }
-    
-    if (ctx->explicitTera && ctx->tera)
-    {
-        DATA.chosenGimmick[battlerId] = GIMMICK_TERA;
+        DATA.chosenGimmick[battlerId] = ctx->gimmick;
         *moveSlot |= RET_GIMMICK;
     }
 }
