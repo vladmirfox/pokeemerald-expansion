@@ -720,8 +720,9 @@ struct BattleStruct
     u8 wishPerishSongBattlerId;
     u32 resultFlags[MAX_BATTLERS_COUNT];
     s32 calculatedDamage[MAX_BATTLERS_COUNT];
+    u8 calculatedSpreadMoveAccuracy:1;
     u8 calculatedDamageDone:1;
-    u8 spreadTargets:2;
+    u8 numSpreadTargets:2;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
     u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
@@ -843,6 +844,7 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
 #define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
+#define IS_SPREAD_MOVE(moveTarget)(moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY)
 
 #define IS_MOVE_RECOIL(move)(gMovesInfo[move].recoil > 0 || gMovesInfo[move].effect == EFFECT_RECOIL_IF_MISS)
 

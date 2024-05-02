@@ -3681,9 +3681,9 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                         CalcTypeEffectivenessMultiplier(gCurrentMove, gMovesInfo[gCurrentMove].type, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
                 }
                 if (moveTarget == MOVE_TARGET_BOTH)
-                    gBattleStruct->spreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
+                    gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_SIDE, gBattlerAttacker);
                 else
-                    gBattleStruct->spreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
+                    gBattleStruct->numSpreadTargets = CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_BATTLER, gBattlerAttacker);
 
             }
             gBattlescriptCurrInstr = backupScript; //Restore original script

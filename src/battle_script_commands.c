@@ -1516,10 +1516,10 @@ static void Cmd_unused5(void)
     }
 }
 
-static bool8 JumpIfMoveAffectedByProtect(u16 move)
+static bool8 JumpIfMoveAffectedByProtect(u32 move, u32 battler)
 {
     bool8 affected = FALSE;
-    if (IsBattlerProtected(gBattlerTarget, move))
+    if (IsBattlerProtected(battler, move))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
@@ -1529,48 +1529,48 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
     return affected;
 }
 
-static bool32 AccuracyCalcHelper(u16 move)
+static bool32 AccuracyCalcHelper(u32 move, u32 battler)
 {
-    if ((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+    if ((gStatuses3[battler] & STATUS3_ALWAYS_HITS && gDisableStructs[battler].battlerWithSureHit == gBattlerAttacker)
      || (B_TOXIC_NEVER_MISS >= GEN_6 && gMovesInfo[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
-     || gStatuses4[gBattlerTarget] & STATUS4_GLAIVE_RUSH)
+     || gStatuses4[battler] & STATUS4_GLAIVE_RUSH)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
     // If the attacker has the ability No Guard and they aren't targeting a Pokemon involved in a Sky Drop with the move Sky Drop, move hits.
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[battler] == 0xFF))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
     // If the target has the ability No Guard and they aren't involved in a Sky Drop or the current move isn't Sky Drop, move hits.
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
+    else if (GetBattlerAbility(battler) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[battler] == 0xFF))
     {
         if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
+            RecordAbilityBattle(battler, ABILITY_NO_GUARD);
         return TRUE;
     }
     // If the target is under the effects of Telekinesis, and the move isn't a OH-KO move, move hits.
-    else if (gStatuses3[gBattlerTarget] & STATUS3_TELEKINESIS
-             && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
+    else if (gStatuses3[battler] & STATUS3_TELEKINESIS
+             && !(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
              && gMovesInfo[move].effect != EFFECT_OHKO)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
-    if (gBattleStruct->zmove.active && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
+    if (gBattleStruct->zmove.active && !(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE))
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
-    if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
-    || ((gStatuses3[gBattlerTarget] & STATUS3_ON_AIR) && !(gMovesInfo[move].damagesAirborne || gMovesInfo[move].damagesAirborneDoubleDamage))
-    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND) && !gMovesInfo[move].damagesUnderground)
-    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER) && !gMovesInfo[move].damagesUnderwater))
+    if ((gStatuses3[battler] & STATUS3_PHANTOM_FORCE)
+    || ((gStatuses3[battler] & STATUS3_ON_AIR) && !(gMovesInfo[move].damagesAirborne || gMovesInfo[move].damagesAirborneDoubleDamage))
+    || ((gStatuses3[battler] & STATUS3_UNDERGROUND) && !gMovesInfo[move].damagesUnderground)
+    || ((gStatuses3[battler] & STATUS3_UNDERWATER) && !gMovesInfo[move].damagesUnderwater))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
@@ -1580,7 +1580,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     if (WEATHER_HAS_EFFECT)
     {
         if ((gMovesInfo[move].effect == EFFECT_THUNDER || gMovesInfo[move].effect == EFFECT_RAIN_ALWAYS_HIT)
-            && IsBattlerWeatherAffected(gBattlerTarget, B_WEATHER_RAIN))
+            && IsBattlerWeatherAffected(battler, B_WEATHER_RAIN))
         {
             // thunder/hurricane/genie moves ignore acc checks in rain unless target is holding utility umbrella
             JumpIfMoveFailed(7, move);
@@ -1595,7 +1595,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     }
 
     if (B_MINIMIZE_DMG_ACC >= GEN_6
-     && (gStatuses3[gBattlerTarget] & STATUS3_MINIMIZED)
+     && (gStatuses3[battler] & STATUS3_MINIMIZED)
      && gMovesInfo[move].minimizeDoubleDamage)
     {
         JumpIfMoveFailed(7, move);
@@ -1734,14 +1734,51 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
+void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
+{
+    u32 type, accuracy;
+    u32 abilityDef = GetBattlerAbility(battlerDef);
+
+    GET_MOVE_TYPE(move, type);
+    if (JumpIfMoveAffectedByProtect(move, battlerDef) || AccuracyCalcHelper(move, battlerDef))
+        return;
+
+    accuracy = GetTotalAccuracy(
+        gBattlerAttacker,
+        battlerDef,
+        move,
+        abilityAtk,
+        abilityDef,
+        holdEffectAtk,
+        GetBattlerHoldEffect(battlerDef, TRUE)
+    );
+
+    if (!RandomPercentage(RNG_ACCURACY, accuracy))
+    {
+        gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_MISSED;
+        if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
+            gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
+
+        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
+            (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_ATK;
+        else
+            gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
+
+        if (gMovesInfo[move].power)
+        {
+            CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, battlerDef, abilityDef, TRUE);
+        }
+    }
+}
+
 static void Cmd_accuracycheck(void)
 {
     CMD_ARGS(const u8 *failInstr, u16 move);
 
-    u32 type, move = cmd->move;
+    u32 move = cmd->move;
     u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
 
     if (move == ACC_CURR_MOVE)
@@ -1753,7 +1790,7 @@ static void Cmd_accuracycheck(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else if (gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE))
             gBattlescriptCurrInstr = cmd->failInstr;
-        else if (!JumpIfMoveAffectedByProtect(gCurrentMove))
+        else if (!JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget))
             gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_2ND_HIT
@@ -1766,42 +1803,49 @@ static void Cmd_accuracycheck(void)
     }
     else
     {
-        u32 accuracy;
+		bool32 calcSpreadMove = IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget) && !IS_MOVE_STATUS(move);
 
-        GET_MOVE_TYPE(move, type);
-        if (JumpIfMoveAffectedByProtect(move))
-            return;
-        if (AccuracyCalcHelper(move))
-            return;
-
-        accuracy = GetTotalAccuracy(
-            gBattlerAttacker,
-            gBattlerTarget,
-            move,
-            abilityAtk,
-            abilityDef,
-            holdEffectAtk,
-            GetBattlerHoldEffect(gBattlerTarget, TRUE)
-        );
-
-        if (!RandomPercentage(RNG_ACCURACY, accuracy))
+        if (gBattleStruct->calculatedSpreadMoveAccuracy)
         {
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
-            if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
-                gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
-
-            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
-                (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
-                gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_ATK;
+            if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
+                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
             else
-                gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
-
-            if (gMovesInfo[move].power)
             {
-                CalcTypeEffectivenessMultiplier(move, type, gBattlerAttacker, gBattlerTarget, abilityDef, TRUE);
-                gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
+                // TODO: Handle string printing at the same time
             }
         }
+        else if (calcSpreadMove)
+        {
+            u32 battlerDef;
+            for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+            {
+                // TODO: Add Logic to continue
+
+                FinalAccuracyCheck(
+                    gBattlerAttacker,
+                    battlerDef,
+                    move,
+                    moveTarget,
+                    abilityAtk,
+                    holdEffectAtk
+                );
+            }
+            if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
+                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
+        }
+        else
+        {
+            FinalAccuracyCheck(
+                gBattlerAttacker,
+                gBattlerTarget,
+                move,
+                moveTarget,
+                abilityAtk,
+                holdEffectAtk
+            );
+        }
+
+        gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
         JumpIfMoveFailed(7, move);
     }
 }
@@ -11640,7 +11684,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             return STAT_CHANGE_DIDNT_WORK;
         }
         else if (gCurrentMove != MOVE_CURSE
-                 && notProtectAffected != TRUE && JumpIfMoveAffectedByProtect(gCurrentMove))
+                 && notProtectAffected != TRUE && JumpIfMoveAffectedByProtect(gCurrentMove, gBattlerTarget))
         {
             gBattlescriptCurrInstr = BattleScript_ButItFailed;
             return STAT_CHANGE_DIDNT_WORK;
