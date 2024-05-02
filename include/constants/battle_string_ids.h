@@ -697,25 +697,36 @@
 #define STRINGID_THESWAMPDISAPPEARED                  695
 #define STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE        696
 #define STRINGID_HOSPITALITYRESTORATION               697
-#define STRINGID_ELECTROSHOCKCHARGING                 698
+#define STRINGID_ELECTROSHOTCHARGING                  698
 #define STRINGID_ITEMWASUSEDUP                        699
 #define STRINGID_ATTACKERLOSTITSTYPE                  700
 #define STRINGID_SHEDITSTAIL                          701
-#define STRINGID_SUPERSWEETAROMAWAFTS                 702
-#define STRINGID_SHADOWPKMNNOTICE                     703
-#define STRINGID_TRAINERCALLTOMON                     704
-#define STRINGID_PKMNSTOREDEXP                        705
-#define STRINGID_PKMNHEARTGAUGEUPDATE                 706
-#define STRINGID_STARTEDSHADOW_SKY                    707
-#define STRINGID_SHADOW_SKYCONTINUES                  708
-#define STRINGID_SHADOW_SKYSTOPPED                    709
-#define STRINGID_SHADOW_SKYDAMAGE                     710
-#define STRINGID_REVERSEMODE_ENTER                    711
-#define STRINGID_REVERSEMODE_DAMAGE                   712
-#define STRINGID_REVERSEMODE_CALLED                   713
-#define STRINGID_GOTCHAPKMNCAUGHTTRAINER              714
+#define STRINGID_CLOAKEDINAHARSHLIGHT                 702
+#define STRINGID_SUPERSWEETAROMAWAFTS                 703
+#define STRINGID_DIMENSIONSWERETWISTED                704
+#define STRINGID_BIZARREARENACREATED                  705
+#define STRINGID_BIZARREAREACREATED                   706
+#define STRINGID_TIDYINGUPCOMPLETE                    707
+#define STRINGID_PKMNTERASTALLIZEDINTO                708
+#define STRINGID_BOOSTERENERGYACTIVATES               709
+#define STRINGID_FOGCREPTUP                           710
+#define STRINGID_FOGISDEEP                            711
+#define STRINGID_FOGLIFTED                            712
+#define STRINGID_PKMNMADESHELLGLEAM                   713
+#define STRINGID_SHADOWPKMNNOTICE                     714
+#define STRINGID_TRAINERCALLTOMON                     715
+#define STRINGID_PKMNSTOREDEXP                        716
+#define STRINGID_PKMNHEARTGAUGEUPDATE                 717
+#define STRINGID_STARTEDSHADOW_SKY                    718
+#define STRINGID_SHADOW_SKYCONTINUES                  719
+#define STRINGID_SHADOW_SKYSTOPPED                    720
+#define STRINGID_SHADOW_SKYDAMAGE                     721
+#define STRINGID_REVERSEMODE_ENTER                    722
+#define STRINGID_REVERSEMODE_DAMAGE                   723
+#define STRINGID_REVERSEMODE_CALLED                   724
+#define STRINGID_GOTCHAPKMNCAUGHTTRAINER              725
 
-#define BATTLESTRINGS_COUNT                           715
+#define BATTLESTRINGS_COUNT                           726
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -759,22 +770,6 @@
 #define B_MSG_LEECH_SEED_DRAIN 3
 #define B_MSG_LEECH_SEED_OOZE  4
 
-// gFirstTurnOfTwoStringIds
-#define B_MSG_TURN1_RAZOR_WIND     0
-#define B_MSG_TURN1_SOLAR_BEAM     1
-#define B_MSG_TURN1_SKULL_BASH     2
-#define B_MSG_TURN1_SKY_ATTACK     3
-#define B_MSG_TURN1_FLY            4
-#define B_MSG_TURN1_DIG            5
-#define B_MSG_TURN1_DIVE           6
-#define B_MSG_TURN1_BOUNCE         7
-#define B_MSG_TURN1_PHANTOM_FORCE  8
-#define B_MSG_TURN1_GEOMANCY       9
-#define B_MSG_TURN1_FREEZE_SHOCK   10
-#define B_MSG_TURN1_SKY_DROP       11
-#define B_MSG_TURN1_METEOR_BEAM    12
-#define B_MSG_TURN1_ELECTRO_SHOCK  13
-
 // gMoveWeatherChangeStringIds
 #define B_MSG_STARTED_RAIN      0
 #define B_MSG_STARTED_DOWNPOUR  1
@@ -783,7 +778,19 @@
 #define B_MSG_STARTED_SUNLIGHT  4
 #define B_MSG_STARTED_HAIL      5
 #define B_MSG_STARTED_SNOW      6
-#define B_MSG_STARTED_SHADOW_SKY 7
+#define B_MSG_STARTED_FOG       7
+#define B_MSG_STARTED_SHADOW_SKY 8
+
+// gWeatherEndsStringIds
+#define B_MSG_WEATHER_END_RAIN         0
+#define B_MSG_WEATHER_END_SANDSTORM    1
+#define B_MSG_WEATHER_END_SUN          2
+#define B_MSG_WEATHER_END_HAIL         3
+#define B_MSG_WEATHER_END_STRONG_WINDS 4
+#define B_MSG_WEATHER_END_SNOW         5
+#define B_MSG_WEATHER_END_FOG          6
+#define B_MSG_WEATHER_END_SHADOW_SKY   7
+#define B_MSG_WEATHER_END_COUNT        8
 
 // gRainContinuesStringIds
 #define B_MSG_RAIN_CONTINUES     0
@@ -995,6 +1002,19 @@
 #define B_MSG_TERRAIN_END_PSYCHIC   6
 #define B_MSG_TERRAIN_END_GRASSY    7
 #define B_MSG_TERRAIN_COUNT         8
+
+// gStartingStatusStringIds
+#define B_MSG_TERRAIN_SET_MISTY     0
+#define B_MSG_TERRAIN_SET_ELECTRIC  1
+#define B_MSG_TERRAIN_SET_PSYCHIC   2
+#define B_MSG_TERRAIN_SET_GRASSY    3
+#define B_MSG_SET_TRICK_ROOM        4
+#define B_MSG_SET_MAGIC_ROOM        5
+#define B_MSG_SET_WONDER_ROOM       6
+#define B_MSG_SET_TAILWIND_PLAYER   7
+#define B_MSG_SET_TAILWIND_OPPONENT 8
+#define B_MSG_STARTING_STATUS_COUNT 9
+
 
 // gWrappedStringIds
 #define B_MSG_WRAPPED_BIND         0

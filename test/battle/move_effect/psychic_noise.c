@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(MoveHasMoveEffect(MOVE_PSYCHIC_NOISE, MOVE_EFFECT_PSYCHIC_NOISE));
+    ASSUME(MoveHasAdditionalEffect(MOVE_PSYCHIC_NOISE, MOVE_EFFECT_PSYCHIC_NOISE));
     ASSUME(gMovesInfo[MOVE_RECOVER].effect == EFFECT_RESTORE_HP);
 }
 
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Psychic Noise is blocked by Soundproof")
         TURN { MOVE(player, MOVE_PSYCHIC_NOISE); MOVE(opponent, MOVE_RECOVER); }
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_SOUNDPROOF);
-        MESSAGE("Foe Voltorb's Soundproof blocks PsychicNoise!");
+        MESSAGE("Foe Voltorb's Soundproof blocks Psychic Noise!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RECOVER, opponent);
     }
 }
