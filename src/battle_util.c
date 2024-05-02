@@ -205,7 +205,7 @@ void HandleAction_UseMove(void)
     GET_MOVE_TYPE(gChosenMove, moveType);
 
     // check max move used
-    if (GetActiveGImmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
+    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
     {
         gCurrentMove = gChosenMove = GetMaxMove(gBattlerAttacker, gCurrentMove);
         gBattleStruct->dynamax.activeCategory = gBattleStruct->dynamax.categories[gBattlerAttacker];

@@ -216,7 +216,7 @@ void AssignUsableZMoves(u32 battler, u16 *moves)
     }
 }
 
-bool32 TryChangeZIndicator(u32 battler, u32 moveIndex)
+bool32 TryChangeZTrigger(u32 battler, u32 moveIndex)
 {
     bool32 viableZMove = (gBattleStruct->zmove.possibleZMoves[battler] & gBitTable[moveIndex]) != 0;
     DebugPrintf("%d: %d", moveIndex, viableZMove);
@@ -413,7 +413,7 @@ static void ZMoveSelectionDisplayPpNumber(u32 battler)
 
 static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
 {
-    u8 *txtPtr;
+    u8 *txtPtr, *end;
     u8 zMoveType;
 
     GET_MOVE_TYPE(zMove, zMoveType);
@@ -423,7 +423,8 @@ static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-    StringCopy(txtPtr, gTypesInfo[zMoveType].name);
+    end = StringCopy(txtPtr, gTypesInfo[zMoveType].name);
+    PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
 
