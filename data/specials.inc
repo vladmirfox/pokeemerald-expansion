@@ -160,6 +160,7 @@ gSpecials::
 	def_special PetalburgGymUnlockRoomDoors
 	def_special GetPlayerTrainerIdOnesDigit
 	def_special GetPlayerBigGuyGirlString
+	def_special GetPlayerBoyGirlString
 	def_special GetRivalSonDaughterString
 	def_special GetPlayerBroSisString
 	def_special GetPlayerMrMrsString
