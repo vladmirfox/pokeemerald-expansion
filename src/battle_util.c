@@ -8275,6 +8275,13 @@ u32 GetBattlerHoldEffectIgnoreAbility(u32 battler, bool32 checkNegating)
 
 u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 checkAbility)
 {
+    if (TESTING)
+    {
+        struct Pokemon *mon = GetBattlerParty(battler);
+        u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        return ItemId_GetHoldEffect(item);
+    }
+
     if (checkNegating)
     {
         if (gStatuses3[battler] & STATUS3_EMBARGO)
@@ -10389,12 +10396,11 @@ bool32 DoesSpeciesUseHoldItemToChangeForm(u16 species, u16 heldItemId)
 
 bool32 CanMegaEvolve(u32 battler)
 {
-    u32 itemId, holdEffect;
-    struct Pokemon *mon;
+    u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Player has a Mega Ring.
     if ((GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT))
-     && !CheckBagHasItem(ITEM_MEGA_RING, 1))
+         && !CheckBagHasItem(ITEM_MEGA_RING, 1) && !TESTING)
         return FALSE;
 
     // Check if Trainer has already Mega Evolved.
@@ -10409,36 +10415,17 @@ bool32 CanMegaEvolve(u32 battler)
     if (gStatuses3[battler] & STATUS3_SKY_DROPPED)
         return FALSE;
 
-    // Gets battler data.
-    if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
-        mon = &gEnemyParty[gBattlerPartyIndexes[battler]];
-    else
-        mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
-
-    itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
-
-    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
-        holdEffect = gEnigmaBerries[battler].holdEffect;
-    else
-        holdEffect = ItemId_GetHoldEffect(itemId);
-
     // Check if battler is holding a Z-Crystal.
     if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
         return FALSE;
 
-    // Check if there is an entry in the form change table for regular Mega Evolution.
-    if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM) != SPECIES_NONE)
-    {
-        // Can Mega Evolve via Mega Stone.
-        if (holdEffect == HOLD_EFFECT_MEGA_STONE)
-            return TRUE;
-    }
+    // Check if there is an entry in the form change table for regular Mega Evolution and battler is holding Mega Stone.
+    if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM) != SPECIES_NONE && holdEffect == HOLD_EFFECT_MEGA_STONE)
+        return TRUE;
 
     // Check if there is an entry in the form change table for Wish Mega Evolution.
     if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
-    {
         return TRUE;
-    }
 
     // No checks passed, the mon CAN'T mega evolve.
     return FALSE;
@@ -10446,12 +10433,11 @@ bool32 CanMegaEvolve(u32 battler)
 
 bool32 CanUltraBurst(u32 battler)
 {
-    u32 itemId, holdEffect;
-    struct Pokemon *mon;
+    u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Player has a Z-Ring
     if ((GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT))
-     && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
+         && !CheckBagHasItem(ITEM_Z_POWER_RING, 1) && !TESTING)
         return FALSE;
 
     // Check if Trainer has already Ultra Bursted.
@@ -10466,26 +10452,9 @@ bool32 CanUltraBurst(u32 battler)
     if (gStatuses3[battler] & STATUS3_SKY_DROPPED)
         return FALSE;
 
-    // Gets mon data.
-    if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
-        mon = &gEnemyParty[gBattlerPartyIndexes[battler]];
-    else
-        mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
-
-    itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
-
-    // Check if there is an entry in the form change table for Ultra Burst.
-    if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_ULTRA_BURST) != SPECIES_NONE)
-    {
-        if (itemId == ITEM_ENIGMA_BERRY_E_READER)
-            holdEffect = gEnigmaBerries[battler].holdEffect;
-        else
-            holdEffect = ItemId_GetHoldEffect(itemId);
-
-        // Can Ultra Burst via Z Crystal.
-        if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
-            return TRUE;
-    }
+    // Check if there is an entry in the form change table for Ultra Burst and battler is holding a Z-Crystal.
+    if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_ULTRA_BURST) != SPECIES_NONE && holdEffect == HOLD_EFFECT_Z_CRYSTAL)
+        return TRUE;
 
     // No checks passed, the mon CAN'T ultra burst.
     return FALSE;
@@ -10829,10 +10798,10 @@ bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, u32 battler)
 
 u8 GetBattleMoveCategory(u32 moveId)
 {
-    if (gBattleStruct != NULL && (IsZMove(moveId) || IsMaxMove(moveId))) // TODO: Might be buggy depending on when this is called.
-        return gBattleStruct->categoryOverride;
     if (gBattleStruct != NULL && gBattleStruct->swapDamageCategory) // Photon Geyser, Shell Side Arm, Light That Burns the Sky, Tera Blast
         return DAMAGE_CATEGORY_PHYSICAL;
+    if (gBattleStruct != NULL && (IsZMove(moveId) || IsMaxMove(moveId))) // TODO: Might be buggy depending on when this is called.
+        return gBattleStruct->categoryOverride;
     if (B_PHYSICAL_SPECIAL_SPLIT >= GEN_4)
         return gMovesInfo[moveId].category;
 

@@ -2076,9 +2076,12 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
         INVALID_IF(ctx->gimmick == GIMMICK_MEGA && ItemId_GetHoldEffect(item) != HOLD_EFFECT_MEGA_STONE, "Cannot Mega Evolve without a Mega Stone");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetHoldEffect(item) != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
-        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type && GetSignatureZMove(*moveId, species, item) == MOVE_NONE, "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), ItemId_GetName(item));
-    
-        DATA.chosenGimmick[battlerId] = ctx->gimmick;
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type
+                   && GetSignatureZMove(*moveId, species, item) == MOVE_NONE
+                   && *moveId != MOVE_PHOTON_GEYSER, // exception because test won't recognize Ultra Necrozma pre-Burst
+                   "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), ItemId_GetName(item));
+
+        DATA.chosenGimmick[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]] = ctx->gimmick;
         *moveSlot |= RET_GIMMICK;    
     }
 }
@@ -2644,9 +2647,9 @@ u32 TestRunner_Battle_GetForcedAbility(u32 side, u32 partyIndex)
     return DATA.forcedAbilities[side][partyIndex];
 }
 
-u32 TestRunner_Battle_GetChosenGimmick(u32 battler)
+u32 TestRunner_Battle_GetChosenGimmick(u32 side, u32 partyIndex)
 {
-    return DATA.chosenGimmick[battler];
+    return DATA.chosenGimmick[side][partyIndex];
 }
 
 // TODO: Consider storing the last successful i and searching from i+1

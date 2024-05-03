@@ -393,3 +393,27 @@ DOUBLE_BATTLE_TEST("(Z-MOVE) Dancer does not use a Z-Move if the battler has use
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FIERY_DANCE, playerLeft);
     }
 }
+
+// Signature Z-Moves
+SINGLE_BATTLE_TEST("(Z-MOVE) Light That Burns the Sky uses the battler's highest attacking stat", s16 damage)
+{
+    bool32 useSwordsDance;
+    PARAMETRIZE { useSwordsDance = FALSE; }
+    PARAMETRIZE { useSwordsDance = TRUE; }
+    GIVEN {
+        PLAYER(SPECIES_NECROZMA_DUSK_MANE) { Item(ITEM_ULTRANECROZIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1000); MaxHP(1000); }; // hits hard lol
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_ULTRA_BURST); }
+        if (useSwordsDance)
+            TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+        TURN { MOVE(player, MOVE_PHOTON_GEYSER, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, player); // implicitly testing double gimmicks :^)
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_LIGHT_THAT_BURNS_THE_SKY, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, UQ_4_12(2.0), results[1].damage);
+    }
+}

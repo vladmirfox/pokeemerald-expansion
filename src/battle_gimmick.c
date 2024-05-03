@@ -6,6 +6,7 @@
 #include "battle_gimmick.h"
 #include "battle_z_move.h"
 #include "battle_setup.h"
+#include "battle_util.h"
 #include "item.h"
 #include "palette.h"
 #include "pokemon.h"
@@ -21,16 +22,6 @@ static void SpriteCb_GimmickTrigger(struct Sprite *sprite);
 void AssignUsableGimmicks(void)
 {
     u32 battler, gimmick;
-    #if TESTING
-    for (battler = 0; battler < gBattlersCount; ++battler)
-    {
-        gimmick = TestRunner_Battle_GetChosenGimmick(battler);
-        if (GetActiveGimmick(battler) == GIMMICK_NONE)
-            gBattleStruct->gimmick.usableGimmick[battler] = gimmick;
-        else
-            gBattleStruct->gimmick.usableGimmick[battler] = GIMMICK_NONE;
-    }
-    #else
     for (battler = 0; battler < gBattlersCount; ++battler)
     {
         gBattleStruct->gimmick.usableGimmick[battler] = GIMMICK_NONE;
@@ -43,7 +34,6 @@ void AssignUsableGimmicks(void)
             }
         }
     }
-    #endif
 }
 
 // Returns whether a battler is able to use a gimmick. Checks consumption and gimmick specific functions.
@@ -56,10 +46,8 @@ bool32 CanActivateGimmick(u32 battler, enum Gimmick gimmick)
 bool32 IsGimmickSelected(u32 battler, enum Gimmick gimmick)
 {
     #if TESTING
-    return (GetActiveGimmick(battler) == GIMMICK_NONE
-            && !HasTrainerUsedGimmick(battler, gimmick)
-            && (gBattleStruct->gimmick.toActivate & gBitTable[battler])
-            && gBattleStruct->gimmick.usableGimmick[battler] == gimmick);
+    // There's no player select in tests, but some gimmicks need to test choice before they are fully activated.
+    return (gBattleStruct->gimmick.toActivate & gBitTable[battler]) && gBattleStruct->gimmick.usableGimmick[battler] == gimmick;
     #else
     return gBattleStruct->gimmick.usableGimmick[battler] == gimmick && gBattleStruct->gimmick.playerSelect;
     #endif
@@ -80,10 +68,10 @@ enum Gimmick GetActiveGimmick(u32 battler)
 // Returns whether a trainer mon is intended to use an unrestrictive gimmick via .useGimmick (i.e Tera).
 bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
 {
-    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-    {
+    if (TESTING)
+        return gimmick == TestRunner_Battle_GetChosenGimmick(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
+    else if (GetBattlerSide(battler) == B_SIDE_PLAYER)
         return TRUE; // the player can do whatever they want
-    }
     else
     {
         bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;

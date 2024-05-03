@@ -74,16 +74,15 @@ static const struct GMaxMove sGMaxMoveTable[] =
 bool32 CanDynamax(u32 battler)
 {
     u16 species = gBattleMons[battler].species;
-    u16 holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item);
+    u16 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Dynamax battle flag is set. This needs to be defined in include/config/battle.h
-    if (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE)))
+    if ((B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE))) && !TESTING)
         return FALSE;
-
 
     // Check if Player has a Dynamax Band.
     if ((GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT))
-          && !CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
+          && !CheckBagHasItem(ITEM_DYNAMAX_BAND, 1) && !TESTING)
         return FALSE;
 
     // Check if species isn't allowed to Dynamax.

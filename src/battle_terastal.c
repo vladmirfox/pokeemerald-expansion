@@ -56,34 +56,27 @@ bool32 CanTerastallize(u32 battler)
     if (B_FLAG_TERA_ORB_CHARGED != 0
         && (battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
         && !(CheckBagHasItem(ITEM_TERA_ORB, 1)
-        && FlagGet(B_FLAG_TERA_ORB_CHARGED)))
+        && FlagGet(B_FLAG_TERA_ORB_CHARGED))
+        && !TESTING)
     {
         return FALSE;
     }
 
     // Check if Trainer has already Terastallized.
     if (HasTrainerUsedGimmick(battler, GIMMICK_TERA))
-    {
         return FALSE;
-    }
 
     // Check if AI battler is intended to Terastallize.
     if (!ShouldTrainerBattlerUseGimmick(battler, GIMMICK_TERA))
-    {
         return FALSE;
-    }
 
     // Check if battler has another gimmick active.
     if (GetActiveGimmick(battler) != GIMMICK_NONE)
-    {
         return FALSE;
-    }
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
     if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)
-    {
         return FALSE;
-    }
 
     // Every check passed!
     return TRUE;
