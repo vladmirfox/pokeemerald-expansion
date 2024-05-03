@@ -1993,19 +1993,36 @@ static void CheckPartyIneligibility(void)
 
     if (numEligibleMons < toChoose)
     {
-        s32 i;
+        s32 i, j;
+        s32 baseSpecies = 0;
         s32 totalCaughtBanned = 0;
-        s32 caughtBanned[50] = {0};
+        s32 caughtBanned[100] = {0};
 
-        for (i = 0; i <= NATIONAL_DEX_COUNT; i++)
+        for (i = 0; i < NUM_SPECIES; i++)
         {
-            s32 species = NationalPokedexNumToSpecies(i);
-            if (gSpeciesInfo[species].isRestrictedLegendary || gSpeciesInfo[species].isMythical)
+            if (totalCaughtBanned >= ARRAY_COUNT(caughtBanned))
+                break;
+            baseSpecies = GET_BASE_SPECIES_ID(i);
+            if (gSpeciesInfo[baseSpecies].isRestrictedLegendary || gSpeciesInfo[baseSpecies].isMythical)
             {
-                if (GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
+                if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(baseSpecies), FLAG_GET_CAUGHT))
                 {
-                    caughtBanned[totalCaughtBanned] = species;
-                    totalCaughtBanned++;
+                    bool32 alreadyInList = FALSE;
+                    for (j = 0; j < ARRAY_COUNT(caughtBanned); j++)
+                    {
+                        if (caughtBanned[j] == SPECIES_NONE)
+                            break;
+                        if (caughtBanned[j] == baseSpecies)
+                        {
+                            alreadyInList = TRUE;
+                            break;
+                        }
+                    }
+                    if (!alreadyInList)
+                    {
+                        caughtBanned[totalCaughtBanned] = baseSpecies;
+                        totalCaughtBanned++;
+                    }
                 }
             }
         }
