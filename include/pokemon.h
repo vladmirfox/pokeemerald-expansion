@@ -500,6 +500,7 @@ struct MoveInfo
     u32 forcePressure:1;
     u32 cantUseTwice:1;
     u32 beamMove:1;
+    u32 piercingMove:1;
 
     // Ban flags
     u32 gravityBanned:1;

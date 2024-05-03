@@ -8397,6 +8397,12 @@ BattleScript_ScriptingAbilityStatRaise::
 	copybyte gBattlerAttacker, sSAVED_DMG
 	return
 
+BattleScript_InspireActivates::
+	call BattleScript_AbilityPopUp
+	setstatchanger STAT_ATK, 1, FALSE
+	setstatchanger STAT_SPATK, 1, FALSE
+	return
+
 BattleScript_WeakArmorActivates::
 	call BattleScript_AbilityPopUp
 	setstatchanger STAT_DEF, 1, TRUE

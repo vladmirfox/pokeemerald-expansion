@@ -7925,6 +7925,12 @@ static void Cmd_setgravity(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+    if (gBattlerAbility == ABILITY_TRAP_MASTER)
+    {
+        gFieldStatuses |= STATUS_FIELD_GRAVITY;
+        gFieldTimers.gravityTimer = 8;
+        gBattlescriptCurrInstr = cmd->nextInstr;        
+    }
     else
     {
         gFieldStatuses |= STATUS_FIELD_GRAVITY;
@@ -8929,6 +8935,12 @@ static void Cmd_various(void)
         if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        if (gBattlerAbility == ABILITY_TRAP_MASTER)
+        {
+            gFieldStatuses |= STATUS_FIELD_FAIRY_LOCK;
+            gFieldTimers.fairyLockTimer = 4;
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else
         {
@@ -12636,7 +12648,15 @@ static void Cmd_setsubstitute(void)
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_SUBSTITUTE;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_WRAPPED;
-        gDisableStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage;
+        if (gBattlerAbility == ABILITY_PUPPET_MASTER)
+        {
+            gDisableStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage * 2;
+        }
+        else
+        {
+            gDisableStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage;
+        }
+        
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_SUBSTITUTE;
         gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE;
     }
@@ -13292,8 +13312,17 @@ static void Cmd_trysetspikes(void)
     else
     {
         gSideStatuses[targetSide] |= SIDE_STATUS_SPIKES;
+        if (gBattlerAbility == ABILITY_TRAP_MASTER && gSideTimers[targetSide].spikesAmount < 2)
+        {
+        gSideTimers[targetSide].spikesAmount++;
         gSideTimers[targetSide].spikesAmount++;
         gBattlescriptCurrInstr = cmd->nextInstr;
+        }
+        else
+        {
+        gSideTimers[targetSide].spikesAmount++;
+        gBattlescriptCurrInstr = cmd->nextInstr;  
+        }
     }
 }
 
@@ -14295,9 +14324,19 @@ static void Cmd_settoxicspikes(void)
     }
     else
     {
+        if (gBattlerAbility == ABILITY_TRAP_MASTER && gSideTimers[targetSide].toxicSpikesAmount == 0)
+        {
+        gSideTimers[targetSide].toxicSpikesAmount++;
+        gSideTimers[targetSide].toxicSpikesAmount++;
+        gSideStatuses[targetSide] |= SIDE_STATUS_TOXIC_SPIKES;
+        gBattlescriptCurrInstr = cmd->nextInstr;   
+        }
+        else
+        {
         gSideTimers[targetSide].toxicSpikesAmount++;
         gSideStatuses[targetSide] |= SIDE_STATUS_TOXIC_SPIKES;
         gBattlescriptCurrInstr = cmd->nextInstr;
+        }
     }
 }
 
@@ -14372,9 +14411,14 @@ static void HandleRoomMove(u32 statusFlag, u8 *timer, u8 stringId)
     }
     else
     {
-        gFieldStatuses |= statusFlag;
+        if (gBattlerAbility == ABILITY_TRAP_MASTER)
+        {gFieldStatuses |= statusFlag;
+        *timer = 8;
+        gBattleCommunication[MULTISTRING_CHOOSER] = stringId;}
+        else
+        {gFieldStatuses |= statusFlag;
         *timer = 5;
-        gBattleCommunication[MULTISTRING_CHOOSER] = stringId;
+        gBattleCommunication[MULTISTRING_CHOOSER] = stringId;}
     }
 }
 
@@ -14492,9 +14536,18 @@ static void Cmd_setstealthrock(void)
     }
     else
     {
+        if (gBattlerAbility == ABILITY_TRAP_MASTER)
+        {
+        gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
+        gSideTimers[targetSide].stealthRockAmount = 2;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+        }
+        else
+        {
         gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
         gSideTimers[targetSide].stealthRockAmount = 1;
         gBattlescriptCurrInstr = cmd->nextInstr;
+        }
     }
 }
 
@@ -14763,7 +14816,9 @@ static void Cmd_settypebasedhalvers(void)
             if (!(gFieldStatuses & STATUS_FIELD_MUDSPORT))
             {
                 gFieldStatuses |= STATUS_FIELD_MUDSPORT;
-                gFieldTimers.mudSportTimer = 5;
+                if (gBattlerAbility == ABILITY_TRAP_MASTER)
+                {gFieldTimers.waterSportTimer = 8;}
+                else {gFieldTimers.waterSportTimer = 5;}
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_ELECTRIC;
                 worked = TRUE;
             }
@@ -14785,7 +14840,9 @@ static void Cmd_settypebasedhalvers(void)
             if (!(gFieldStatuses & STATUS_FIELD_WATERSPORT))
             {
                 gFieldStatuses |= STATUS_FIELD_WATERSPORT;
-                gFieldTimers.waterSportTimer = 5;
+                if (gBattlerAbility == ABILITY_TRAP_MASTER)
+                {gFieldTimers.waterSportTimer = 8;}
+                else {gFieldTimers.waterSportTimer = 5;}
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_FIRE;
                 worked = TRUE;
             }
@@ -16686,13 +16743,13 @@ void BS_SetPledgeStatus(void)
         switch (cmd->sideStatus)
         {
         case SIDE_STATUS_RAINBOW:
-            gSideTimers[side].rainbowTimer = 4;
+            gSideTimers[side].rainbowTimer = 6;
             break;
         case SIDE_STATUS_SEA_OF_FIRE:
-            gSideTimers[side].seaOfFireTimer = 4;
+            gSideTimers[side].seaOfFireTimer = 6;
             break;
         case SIDE_STATUS_SWAMP:
-            gSideTimers[side].swampTimer = 4;
+            gSideTimers[side].swampTimer = 6;
         }
 
         gBattlescriptCurrInstr = cmd->nextInstr;
