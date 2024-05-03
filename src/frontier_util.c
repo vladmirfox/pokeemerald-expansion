@@ -1993,10 +1993,10 @@ static void CheckPartyIneligibility(void)
 
     if (numEligibleMons < toChoose)
     {
-        s32 i;
-        s32 baseSpecies = 0;
-        s32 totalCaughtBanned = 0;
-        s32 caughtBanned[100] = {0};
+        u32 i;
+        u32 baseSpecies = 0;
+        u32 totalCaughtBanned = 0;
+        u32 caughtBanned[100] = {0};
 
         for (i = 0; i < NUM_SPECIES; i++)
         {
