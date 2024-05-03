@@ -37,9 +37,15 @@ script SakuTown_BonsaiShop_EventScript_FlowerBasket {
 }
 
 script SakuTown_BonsaiShop_EventScript_WateringCan {
-	msgbox(format(
-		"A cute Wailmer-shaped watering can. You have one exactly like it!"
-	), MSGBOX_AUTOCLOSE)
+	if (flag(FLAG_RECEIVED_WAILMER_PAIL)) {
+		msgbox(format(
+			"A cute Wailmer-shaped watering can. You have one exactly like it!"
+		), MSGBOX_AUTOCLOSE)
+	} else {
+		msgbox(format(
+			"A cute Wailmer-shaped watering can."
+		), MSGBOX_AUTOCLOSE)
+	}
 }
 
 script SakuTown_BonsaiShop_EventScript_Painting {
@@ -56,7 +62,8 @@ script SakuTown_BonsaiShop_EventScript_LittleSister {
 
 	if (flag(FLAG_RECEIVED_TM_ACROBATICS)) {
 		msgbox(format(
-			"What's up, berry master?\p"
+			"What's up, berry master?"
+			// "What's up, berry master?\p"
 			// "Didja know you've planted {VAR_RESULT} berries so far?"
 		))
 	} else {
@@ -220,7 +227,7 @@ script SakuTown_BonsaiShop_EventScript_Owner {
 			))
 		}
 	} else {
-		special(GetPlayerBroSisString)
+		special(GetPlayerBoyGirlString)
 		msgbox(format(
 				"Hello, young {STR_VAR_1}. Can I interest you in a little greenery?\p"
 				"Hmm… It looks like you wouldn't have anywhere to put bonsai. Come back when you do."
