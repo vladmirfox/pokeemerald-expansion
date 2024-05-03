@@ -3,6 +3,8 @@
 #include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
+#include "battle_gimmick.h"
+#include "battle_z_move.h"
 #include "characters.h"
 #include "event_data.h"
 #include "fieldmap.h"
@@ -2069,8 +2071,15 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
 
     if (ctx->explicitGimmick && ctx->gimmick != GIMMICK_NONE)
     {
+        // Do some very simple screening for bad usage.
+        u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        u32 species = GetMonData(mon, MON_DATA_SPECIES);
+        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && ItemId_GetHoldEffect(item) != HOLD_EFFECT_MEGA_STONE, "Cannot Mega Evolve without a Mega Stone");
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetHoldEffect(item) != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type && GetSignatureZMove(*moveId, species, item) == MOVE_NONE, "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), ItemId_GetName(item));
+    
         DATA.chosenGimmick[battlerId] = ctx->gimmick;
-        *moveSlot |= RET_GIMMICK;
+        *moveSlot |= RET_GIMMICK;    
     }
 }
 

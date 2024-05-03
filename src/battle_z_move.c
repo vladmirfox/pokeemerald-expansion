@@ -45,7 +45,6 @@
 #define STAT_STAGE(battler, stat) (gBattleMons[battler].statStages[stat - 1])
 
 // Function Declarations
-static u16 GetSignatureZMove(u16 move, u16 species, u16 item);
 static void ZMoveSelectionDisplayPpNumber(u32 battler);
 static void ZMoveSelectionDisplayPower(u16 move, u16 zMove);
 static void ZMoveSelectionDisplayMoveType(u16 zMove, u32 battler);
@@ -229,7 +228,7 @@ bool32 TryChangeZTrigger(u32 battler, u32 moveIndex)
     return viableZMove;
 }
 
-static u16 GetSignatureZMove(u16 move, u16 species, u16 item)
+u32 GetSignatureZMove(u32 move, u32 species, u32 item)
 {
     u32 i;
 
