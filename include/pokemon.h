@@ -422,8 +422,7 @@ struct SpeciesInfo /*0x8C*/
             u8 padding3:2;
  /* 0x79 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
- /* 0x7A */ u32 isRestrictedLegendary:1;
-            u32 isSubLegendary:1;
+ /* 0x7A */ u32 isLegendary:1;
             u32 isMythical:1;
             u32 isUltraBeast:1;
             u32 isParadox:1;
@@ -439,7 +438,8 @@ struct SpeciesInfo /*0x8C*/
             u32 cannotBeTraded:1;
             u32 allPerfectIVs:1;
             u32 dexForceRequired:1; // This species will be taken into account for Pokédex ratings even if they have the "isMythical" flag set.
-            u32 tmIlliterate:1; // This species will be unable to learn the universal moves.
+            u32 tmIlliterate:1;     // This species will be unable to learn the universal moves.
+            u32 isFrontierBanned:1; // This species is not allowed to participate in Battle Frontier facilities.
             u32 padding4:14;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *levelUpLearnset;

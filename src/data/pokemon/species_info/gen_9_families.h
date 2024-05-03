@@ -5376,7 +5376,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_WoChien,
         .iconPalIndex = 1,
         //FOOTPRINT(WoChien)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sWoChienLevelUpLearnset,
         .teachableLearnset = sWoChienTeachableLearnset,
     },
@@ -5431,7 +5431,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_ChienPao,
         .iconPalIndex = 0,
         //FOOTPRINT(ChienPao)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sChienPaoLevelUpLearnset,
         .teachableLearnset = sChienPaoTeachableLearnset,
     },
@@ -5486,7 +5486,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_TingLu,
         .iconPalIndex = 0,
         //FOOTPRINT(TingLu)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sTingLuLevelUpLearnset,
         .teachableLearnset = sTingLuTeachableLearnset,
     },
@@ -5542,7 +5542,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_ChiYu,
         .iconPalIndex = 0,
         //FOOTPRINT(ChiYu)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sChiYuLevelUpLearnset,
         .teachableLearnset = sChiYuTeachableLearnset,
     },
@@ -5707,7 +5707,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_Koraidon,
         .iconPalIndex = 0,
         //FOOTPRINT(Koraidon)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sKoraidonLevelUpLearnset,
         .teachableLearnset = sKoraidonTeachableLearnset,
     },
@@ -5762,7 +5763,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_Miraidon,
         .iconPalIndex = 2,
         //FOOTPRINT(Miraidon)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMiraidonLevelUpLearnset,
         .teachableLearnset = sMiraidonTeachableLearnset,
     },
@@ -6139,7 +6141,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_Okidogi,
         .iconPalIndex = 1,
         //FOOTPRINT(Okidogi)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sOkidogiLevelUpLearnset,
         .teachableLearnset = sOkidogiTeachableLearnset,
     },
@@ -6194,7 +6196,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_Munkidori,
         .iconPalIndex = 0,
         //FOOTPRINT(Munkidori)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sMunkidoriLevelUpLearnset,
         .teachableLearnset = sMunkidoriTeachableLearnset,
     },
@@ -6249,7 +6251,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_Fezandipiti,
         .iconPalIndex = 0,
         //FOOTPRINT(Fezandipiti)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sFezandipitiLevelUpLearnset,
         .teachableLearnset = sFezandipitiTeachableLearnset,
     },
@@ -6304,7 +6306,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .teachableLearnset = sOgerponTeachableLearnset,                                 \
         .formSpeciesIdTable = sOgerponFormSpeciesIdTable,                               \
         .formChangeTable = sOgerponFormChangeTable,                                     \
-        .isSubLegendary = TRUE,                                                         \
+        .isLegendary = TRUE,                                                            \
     }
 
     [SPECIES_OGERPON_TEAL_MASK]             = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_DEFIANT,                   BODY_COLOR_GREEN, 1),
@@ -6588,7 +6590,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_TerapagosNormal,
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6644,7 +6647,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_TerapagosTerastal,
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6699,7 +6703,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_TerapagosStellar,
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6757,6 +6762,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Pecharunt)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPecharuntLevelUpLearnset,
         .teachableLearnset = sPecharuntTeachableLearnset,
     },
