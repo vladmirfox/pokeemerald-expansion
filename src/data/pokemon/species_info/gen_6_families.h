@@ -4676,7 +4676,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_XerneasNeutral,
         .iconPalIndex = 0,
         FOOTPRINT(Xerneas)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sXerneasLevelUpLearnset,
         .teachableLearnset = sXerneasTeachableLearnset,
         .formSpeciesIdTable = sXerneasFormSpeciesIdTable,
@@ -4727,7 +4728,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_XerneasActive,
         .iconPalIndex = 0,
         FOOTPRINT(Xerneas)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sXerneasLevelUpLearnset,
         .teachableLearnset = sXerneasTeachableLearnset,
         .formSpeciesIdTable = sXerneasFormSpeciesIdTable,
@@ -4785,7 +4787,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_Yveltal,
         .iconPalIndex = 0,
         FOOTPRINT(Yveltal)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sYveltalLevelUpLearnset,
         .teachableLearnset = sYveltalTeachableLearnset,
     },
@@ -4837,7 +4840,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_Zygarde50,
         .iconPalIndex = 1,
         FOOTPRINT(Zygarde)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
         .teachableLearnset = sZygardeTeachableLearnset,
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
@@ -4888,7 +4892,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_Zygarde50,
         .iconPalIndex = 1,
         FOOTPRINT(Zygarde)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
         .teachableLearnset = sZygardeTeachableLearnset,
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
@@ -4939,7 +4944,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_Zygarde10,
         .iconPalIndex = 1,
         FOOTPRINT(Zygarde)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
         .teachableLearnset = sZygardeTeachableLearnset,
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
@@ -4991,7 +4997,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_Zygarde10,
         .iconPalIndex = 1,
         FOOTPRINT(Zygarde)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
         .teachableLearnset = sZygardeTeachableLearnset,
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
@@ -5047,7 +5054,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconSprite = gMonIcon_ZygardeComplete,
         .iconPalIndex = 1,
         FOOTPRINT(Zygarde)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sZygardeLevelUpLearnset,
         .teachableLearnset = sZygardeTeachableLearnset,
         .formSpeciesIdTable = sZygardeFormSpeciesIdTable,
@@ -5106,6 +5114,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 1,
         FOOTPRINT(Diancie)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDiancieLevelUpLearnset,
         .teachableLearnset = sDiancieTeachableLearnset,
         .formSpeciesIdTable = sDiancieFormSpeciesIdTable,
@@ -5164,6 +5173,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Diancie)
         .isMythical = TRUE,
         .isMegaEvolution = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDiancieLevelUpLearnset,
         .teachableLearnset = sDiancieTeachableLearnset,
         .formSpeciesIdTable = sDiancieFormSpeciesIdTable,
@@ -5223,6 +5233,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 0,
         FOOTPRINT(Hoopa)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sHoopaConfinedLevelUpLearnset,
         .teachableLearnset = sHoopaConfinedTeachableLearnset,
         .formSpeciesIdTable = sHoopaFormSpeciesIdTable,
@@ -5279,6 +5290,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 0,
         FOOTPRINT(Hoopa)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sHoopaUnboundLevelUpLearnset,
         .teachableLearnset = sHoopaUnboundTeachableLearnset,
         .formSpeciesIdTable = sHoopaFormSpeciesIdTable,
@@ -5336,6 +5348,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 0,
         FOOTPRINT(Volcanion)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sVolcanionLevelUpLearnset,
         .teachableLearnset = sVolcanionTeachableLearnset,
     },

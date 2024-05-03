@@ -4595,7 +4595,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Uxie,
         .iconPalIndex = 0,
         FOOTPRINT(Uxie)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sUxieLevelUpLearnset,
         .teachableLearnset = sUxieTeachableLearnset,
     },
@@ -4659,7 +4659,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Mesprit,
         .iconPalIndex = 0,
         FOOTPRINT(Mesprit)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sMespritLevelUpLearnset,
         .teachableLearnset = sMespritTeachableLearnset,
     },
@@ -4722,7 +4722,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Azelf,
         .iconPalIndex = 0,
         FOOTPRINT(Azelf)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sAzelfLevelUpLearnset,
         .teachableLearnset = sAzelfTeachableLearnset,
     },
@@ -4785,7 +4785,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Dialga,
         .iconPalIndex = 2,
         FOOTPRINT(Dialga)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4840,7 +4841,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_DialgaOrigin,
         .iconPalIndex = 0,
         FOOTPRINT(Dialga)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDialgaLevelUpLearnset,
         .teachableLearnset = sDialgaTeachableLearnset,
         .formSpeciesIdTable = sDialgaFormSpeciesIdTable,
@@ -4905,7 +4907,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Palkia,
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -4960,7 +4963,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_PalkiaOrigin,
         .iconPalIndex = 2,
         FOOTPRINT(Palkia)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPalkiaLevelUpLearnset,
         .teachableLearnset = sPalkiaTeachableLearnset,
         .formSpeciesIdTable = sPalkiaFormSpeciesIdTable,
@@ -5023,7 +5027,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Heatran,
         .iconPalIndex = 0,
         FOOTPRINT(Heatran)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sHeatranLevelUpLearnset,
         .teachableLearnset = sHeatranTeachableLearnset,
     },
@@ -5084,7 +5088,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Regigigas,
         .iconPalIndex = 0,
         FOOTPRINT(Regigigas)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sRegigigasLevelUpLearnset,
         .teachableLearnset = sRegigigasTeachableLearnset,
     },
@@ -5147,7 +5151,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_GiratinaAltered,
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5203,7 +5208,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_GiratinaOrigin,
         .iconPalIndex = 0,
         FOOTPRINT(Giratina)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sGiratinaLevelUpLearnset,
         .teachableLearnset = sGiratinaTeachableLearnset,
         .formSpeciesIdTable = sGiratinaFormSpeciesIdTable,
@@ -5267,7 +5273,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconSprite = gMonIcon_Cresselia,
         .iconPalIndex = 0,
         FOOTPRINT(Cresselia)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sCresseliaLevelUpLearnset,
         .teachableLearnset = sCresseliaTeachableLearnset,
     },
@@ -5330,6 +5336,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Phione)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPhioneLevelUpLearnset,
         .teachableLearnset = sPhioneTeachableLearnset,
     },
@@ -5390,6 +5397,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Manaphy)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sManaphyLevelUpLearnset,
         .teachableLearnset = sManaphyTeachableLearnset,
     },
@@ -5453,6 +5461,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 0,
         FOOTPRINT(Darkrai)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sDarkraiLevelUpLearnset,
         .teachableLearnset = sDarkraiTeachableLearnset,
     },
@@ -5518,6 +5527,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 1,
         FOOTPRINT(Shaymin)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sShayminLandLevelUpLearnset,
         .teachableLearnset = sShayminLandTeachableLearnset,
         .formSpeciesIdTable = sShayminFormSpeciesIdTable,
@@ -5580,6 +5590,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .iconPalIndex = 1,
         FOOTPRINT(Shaymin)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sShayminSkyLevelUpLearnset,
         .teachableLearnset = sShayminSkyTeachableLearnset,
         .formSpeciesIdTable = sShayminFormSpeciesIdTable,
@@ -5653,6 +5664,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .formSpeciesIdTable = sArceusFormSpeciesIdTable,                \
         .formChangeTable = sArceusFormChangeTable,                      \
         .isMythical = TRUE,                                             \
+        .isFrontierBanned = TRUE,                                       \
     }
 
     [SPECIES_ARCEUS_NORMAL]   = ARCEUS_SPECIES_INFO(TYPE_NORMAL,   Normal,   1),

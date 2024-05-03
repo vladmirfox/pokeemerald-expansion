@@ -1907,7 +1907,7 @@ static void AppendIfValid(u16 species, u16 heldItem, u16 hp, u8 lvlMode, u8 monL
 
     if (species == SPECIES_EGG || species == SPECIES_NONE)
         return;
-    if (gSpeciesInfo[species].isRestrictedLegendary || gSpeciesInfo[species].isMythical)
+    if (gSpeciesInfo[species].isFrontierBanned || gSpeciesInfo[species].isMythical)
         return;
     if (lvlMode == FRONTIER_LVL_50 && monLevel > FRONTIER_MAX_LEVEL_50)
         return;
@@ -2005,7 +2005,7 @@ static void CheckPartyIneligibility(void)
             baseSpecies = GET_BASE_SPECIES_ID(i);
             if (baseSpecies == i)
             {
-                if (gSpeciesInfo[baseSpecies].isRestrictedLegendary || gSpeciesInfo[baseSpecies].isMythical)
+                if (gSpeciesInfo[baseSpecies].isFrontierBanned || gSpeciesInfo[baseSpecies].isMythical)
                 {
                     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(baseSpecies), FLAG_GET_CAUGHT))
                     {

@@ -5903,7 +5903,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Raikou,
         .iconPalIndex = 2,
         FOOTPRINT(Raikou)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sRaikouLevelUpLearnset,
         .teachableLearnset = sRaikouTeachableLearnset,
     },
@@ -5969,7 +5969,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Entei,
         .iconPalIndex = 2,
         FOOTPRINT(Entei)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sEnteiLevelUpLearnset,
         .teachableLearnset = sEnteiTeachableLearnset,
     },
@@ -6035,7 +6035,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Suicune,
         .iconPalIndex = 2,
         FOOTPRINT(Suicune)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sSuicuneLevelUpLearnset,
         .teachableLearnset = sSuicuneTeachableLearnset,
     },
@@ -6324,7 +6324,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Lugia,
         .iconPalIndex = 0,
         FOOTPRINT(Lugia)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
     },
@@ -6388,7 +6389,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_HoOh,
         .iconPalIndex = 1,
         FOOTPRINT(HoOh)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sHoOhLevelUpLearnset,
         .teachableLearnset = sHoOhTeachableLearnset,
     },
@@ -6453,6 +6455,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconPalIndex = 1,
         FOOTPRINT(Celebi)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sCelebiLevelUpLearnset,
         .teachableLearnset = sCelebiTeachableLearnset,
     },

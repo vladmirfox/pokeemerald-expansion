@@ -14928,7 +14928,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Articuno,
         .iconPalIndex = 2,
         FOOTPRINT(Articuno)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sArticunoLevelUpLearnset,
         .teachableLearnset = sArticunoTeachableLearnset,
         .formSpeciesIdTable = sArticunoFormSpeciesIdTable,
@@ -14984,7 +14984,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_ArticunoGalarian,
         .iconPalIndex = 2,
         FOOTPRINT(Articuno)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .isGalarianForm = TRUE,
         .levelUpLearnset = sArticunoGalarianLevelUpLearnset,
         .teachableLearnset = sArticunoGalarianTeachableLearnset,
@@ -15053,7 +15053,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Zapdos,
         .iconPalIndex = 0,
         FOOTPRINT(Zapdos)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sZapdosLevelUpLearnset,
         .teachableLearnset = sZapdosTeachableLearnset,
         .formSpeciesIdTable = sZapdosFormSpeciesIdTable,
@@ -15108,7 +15108,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_ZapdosGalarian,
         .iconPalIndex = 0,
         FOOTPRINT(Zapdos)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .isGalarianForm = TRUE,
         .levelUpLearnset = sZapdosGalarianLevelUpLearnset,
         .teachableLearnset = sZapdosGalarianTeachableLearnset,
@@ -15172,7 +15172,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Moltres,
         .iconPalIndex = 0,
         FOOTPRINT(Moltres)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .levelUpLearnset = sMoltresLevelUpLearnset,
         .teachableLearnset = sMoltresTeachableLearnset,
         .formSpeciesIdTable = sMoltresFormSpeciesIdTable,
@@ -15227,7 +15227,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_MoltresGalarian,
         .iconPalIndex = 0,
         FOOTPRINT(Moltres)
-        .isSubLegendary = TRUE,
+        .isLegendary = TRUE,
         .isGalarianForm = TRUE,
         .levelUpLearnset = sMoltresGalarianLevelUpLearnset,
         .teachableLearnset = sMoltresGalarianTeachableLearnset,
@@ -15460,7 +15460,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_Mewtwo,
         .iconPalIndex = 2,
         FOOTPRINT(Mewtwo)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMewtwoLevelUpLearnset,
         .teachableLearnset = sMewtwoTeachableLearnset,
         .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
@@ -15516,8 +15517,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_MewtwoMegaX,
         .iconPalIndex = 2,
         FOOTPRINT(Mewtwo)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
         .isMegaEvolution = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMewtwoLevelUpLearnset,
         .teachableLearnset = sMewtwoTeachableLearnset,
         .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
@@ -15573,8 +15575,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconSprite = gMonIcon_MewtwoMegaY,
         .iconPalIndex = 2,
         FOOTPRINT(Mewtwo)
-        .isRestrictedLegendary = TRUE,
+        .isLegendary = TRUE,
         .isMegaEvolution = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMewtwoLevelUpLearnset,
         .teachableLearnset = sMewtwoTeachableLearnset,
         .formSpeciesIdTable = sMewtwoFormSpeciesIdTable,
@@ -15642,6 +15645,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .iconPalIndex = 0,
         FOOTPRINT(Mew)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMewLevelUpLearnset,
         .teachableLearnset = sMewTeachableLearnset,
     },
