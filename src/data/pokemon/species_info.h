@@ -18,7 +18,15 @@
 #define COMP OW_GFX_COMPRESS
 
 #if OW_FOLLOWERS_ENABLED
-#define FOLLOWER(name, _size, shadow, _tracks)                                              \
+#if OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#define FOLLOWER_PAL(...)                                   \
+    .followerPalette = DEFAULT(NULL, __VA_ARGS__),          \
+    .followerShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
+#else
+#define FOLLOWER_PAL(...)
+#endif
+
+#define FOLLOWER(name, _size, shadow, _tracks, ...)                                         \
 .followerData = {                                                                           \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
@@ -36,9 +44,10 @@
     .anims = sAnimTable_Following,                                                          \
     .images = sPicTable_##name,                                                             \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
-},
+},                                                                                          \
+    FOLLOWER_PAL(__VA_ARGS__)
 #else
-#define FOLLOWER(name, _size, shadow, _tracks)
+#define FOLLOWER(name, _size, shadow, _tracks, ...)
 #endif
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
@@ -89,6 +98,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_CircledQuestionMark,
         .iconSprite = gMonIcon_QuestionMark,
         .iconPalIndex = 0,
+    #if OW_FOLLOWERS_ENABLED
+        .followerData = {TAG_NONE, OBJ_EVENT_PAL_TAG_SUBSTITUTE, OBJ_EVENT_PAL_TAG_NONE, 512, 32, 32, 2, SHADOW_SIZE_M, FALSE, COMP, TRACKS_FOOT, &gObjectEventBaseOam_32x32, sOamTables_32x32, sAnimTable_Following, sPicTable_Substitute, gDummySpriteAffineAnimTable},
+    #endif
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
     },
@@ -342,15 +354,4 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .allPerfectIVs = TRUE,
     },
     */
-};
-
-// Standalone follower palettes
-// If not NULL, entries here override the front-sprite-based pals
-// used by OBJ_EVENT_PAL_TAG_DYNAMIC
-// Palette data may be compressed, or not
-const void* const gFollowerPalettes[NUM_SPECIES][2] =
-{
-    // Must have at least one entry, or ARRAY_COUNT comparison fails
-    // (SPECIES_NONE does not use OBJ_EVENT_PAL_TAG_DYNAMIC anyway)
-    [SPECIES_NONE] = {gMonPalette_CircledQuestionMark, gMonShinyPalette_CircledQuestionMark},
 };
