@@ -5242,6 +5242,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_INSPIRE:
+            if (gBattleMons[gBattlerTarget].hp == 0)
+            && IsBattlerAlive(battlerDefAlly)
+            && (CompareStat(battlerDefAlly, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(battlerDefAlly, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_InspireActivates;
+                effect++;
+            }
+            break;
         case ABILITY_WEAK_ARMOR:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
@@ -9013,6 +9023,18 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case ABILITY_ROCKY_PAYLOAD:
         if (moveType == TYPE_ROCK)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_GRASSY_CLOAK:
+        if (moveType == TYPE_GRASS)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_SANDY_CLOAK:
+        if (moveType == TYPE_GROUND)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
+    case ABILITY_TRASHY_CLOAK:
+        if (moveType == TYPE_STEEL)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_PROTOSYNTHESIS:
