@@ -741,11 +741,12 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
 {
     u16 numEggMoves;
     u16 species;
+    const u16 *eggMoveLearnset;
     u32 i;
 
     numEggMoves = 0;
     species = GetMonData(pokemon, MON_DATA_SPECIES);
-    const u16 *eggMoveLearnset = GetSpeciesEggMoves(species);
+    eggMoveLearnset = GetSpeciesEggMoves(species);
 
     for (i = 0; eggMoveLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
@@ -759,10 +760,11 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
 u8 GetEggMovesSpecies(u16 species, u16 *eggMoves)
 {
     u16 numEggMoves;
+    const u16 *eggMoveLearnset;
     u32 i;
 
     numEggMoves = 0;
-    const u16 *eggMoveLearnset = GetSpeciesEggMoves(species);
+    eggMoveLearnset = GetSpeciesEggMoves(species);
 
     for (i = 0; eggMoveLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
