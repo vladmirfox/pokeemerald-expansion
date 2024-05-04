@@ -4432,7 +4432,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_GreatTusk,
         .iconPalIndex = 0,
         //FOOTPRINT(GreatTusk)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sGreatTuskLevelUpLearnset,
         .teachableLearnset = sGreatTuskTeachableLearnset,
     },
@@ -4487,7 +4487,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_ScreamTail,
         .iconPalIndex = 0,
         //FOOTPRINT(ScreamTail)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sScreamTailLevelUpLearnset,
         .teachableLearnset = sScreamTailTeachableLearnset,
     },
@@ -4542,7 +4542,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_BruteBonnet,
         .iconPalIndex = 1,
         //FOOTPRINT(BruteBonnet)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sBruteBonnetLevelUpLearnset,
         .teachableLearnset = sBruteBonnetTeachableLearnset,
     },
@@ -4600,7 +4600,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_FlutterMane,
         .iconPalIndex = 2,
         //FOOTPRINT(FlutterMane)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sFlutterManeLevelUpLearnset,
         .teachableLearnset = sFlutterManeTeachableLearnset,
     },
@@ -4654,7 +4654,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_SlitherWing,
         .iconPalIndex = 1,
         //FOOTPRINT(SlitherWing)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sSlitherWingLevelUpLearnset,
         .teachableLearnset = sSlitherWingTeachableLearnset,
     },
@@ -4709,7 +4709,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_SandyShocks,
         .iconPalIndex = 0,
         //FOOTPRINT(SandyShocks)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sSandyShocksLevelUpLearnset,
         .teachableLearnset = sSandyShocksTeachableLearnset,
     },
@@ -4764,7 +4764,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronTreads,
         .iconPalIndex = 1,
         //FOOTPRINT(IronTreads)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronTreadsLevelUpLearnset,
         .teachableLearnset = sIronTreadsTeachableLearnset,
     },
@@ -4819,7 +4819,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronBundle,
         .iconPalIndex = 0,
         //FOOTPRINT(IronBundle)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronBundleLevelUpLearnset,
         .teachableLearnset = sIronBundleTeachableLearnset,
     },
@@ -4874,7 +4874,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronHands,
         .iconPalIndex = 0,
         //FOOTPRINT(IronHands)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronHandsLevelUpLearnset,
         .teachableLearnset = sIronHandsTeachableLearnset,
     },
@@ -4930,7 +4930,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronJugulis,
         .iconPalIndex = 0,
         //FOOTPRINT(IronJugulis)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronJugulisLevelUpLearnset,
         .teachableLearnset = sIronJugulisTeachableLearnset,
     },
@@ -4986,7 +4986,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronMoth,
         .iconPalIndex = 3,
         //FOOTPRINT(IronMoth)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronMothLevelUpLearnset,
         .teachableLearnset = sIronMothTeachableLearnset,
     },
@@ -5041,7 +5041,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronThorns,
         .iconPalIndex = 1,
         //FOOTPRINT(IronThorns)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronThornsLevelUpLearnset,
         .teachableLearnset = sIronThornsTeachableLearnset,
     },
@@ -5641,7 +5641,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_RoaringMoon,
         .iconPalIndex = 0,
         //FOOTPRINT(RoaringMoon)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sRoaringMoonLevelUpLearnset,
         .teachableLearnset = sRoaringMoonTeachableLearnset,
     },
@@ -5695,7 +5695,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronValiant,
         .iconPalIndex = 1,
         //FOOTPRINT(IronValiant)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronValiantLevelUpLearnset,
         .teachableLearnset = sIronValiantTeachableLearnset,
     },
@@ -5751,6 +5751,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Koraidon)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sKoraidonLevelUpLearnset,
         .teachableLearnset = sKoraidonTeachableLearnset,
     },
@@ -5806,6 +5807,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 2,
         //FOOTPRINT(Miraidon)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sMiraidonLevelUpLearnset,
         .teachableLearnset = sMiraidonTeachableLearnset,
     },
@@ -5859,7 +5861,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_WalkingWake,
         .iconPalIndex = 2,
         //FOOTPRINT(WalkingWake)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sWalkingWakeLevelUpLearnset,
         .teachableLearnset = sWalkingWakeTeachableLearnset,
     },
@@ -5913,7 +5915,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronLeaves,
         .iconPalIndex = 1,
         //FOOTPRINT(IronLeaves)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronLeavesLevelUpLearnset,
         .teachableLearnset = sIronLeavesTeachableLearnset,
     },
@@ -6355,10 +6357,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     [SPECIES_OGERPON_HEARTHFLAME_MASK]      = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_MOLD_BREAKER,              BODY_COLOR_RED,   0),
     [SPECIES_OGERPON_CORNERSTONE_MASK]      = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_STURDY,                    BODY_COLOR_GRAY,  0),
 #if P_TERA_FORMS
-    [SPECIES_OGERPON_TEAL_MASK_TERA]        = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL,        BODY_COLOR_GREEN, 1),
-    [SPECIES_OGERPON_WELLSPRING_MASK_TERA]  = OGERPON_SPECIES_INFO(WellspringMask,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING,  BODY_COLOR_BLUE,  0),
-    [SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME, BODY_COLOR_RED,   0),
-    [SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE, BODY_COLOR_GRAY,  0),
+    [SPECIES_OGERPON_TEAL_MASK_TERA]        = OGERPON_SPECIES_INFO(TealMask,        TYPE_GRASS, ABILITY_EMBODY_ASPECT_TEAL_MASK,        BODY_COLOR_GREEN, 1),
+    [SPECIES_OGERPON_WELLSPRING_MASK_TERA]  = OGERPON_SPECIES_INFO(WellspringMask,  TYPE_WATER, ABILITY_EMBODY_ASPECT_WELLSPRING_MASK,  BODY_COLOR_BLUE,  0),
+    [SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK, BODY_COLOR_RED,   0),
+    [SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK, BODY_COLOR_GRAY,  0),
 #endif //P_TERA_FORMS
 
 #endif //P_FAMILY_OGERPON
@@ -6412,7 +6414,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_GougingFire,
         .iconPalIndex = 5,
         //FOOTPRINT(GougingFire)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sGougingFireLevelUpLearnset,
         .teachableLearnset = sGougingFireTeachableLearnset,
     },
@@ -6467,7 +6469,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_RagingBolt,
         .iconPalIndex = 2,
         //FOOTPRINT(RagingBolt)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sRagingBoltLevelUpLearnset,
         .teachableLearnset = sRagingBoltTeachableLearnset,
     },
@@ -6521,7 +6523,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronBoulder,
         .iconPalIndex = 5,
         //FOOTPRINT(IronBoulder)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronBoulderLevelUpLearnset,
         .teachableLearnset = sIronBoulderTeachableLearnset,
     },
@@ -6576,7 +6578,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconSprite = gMonIcon_IronCrown,
         .iconPalIndex = 3,
         //FOOTPRINT(IronCrown)
-        .isParadoxForm = TRUE,
+        .isParadox = TRUE,
         .levelUpLearnset = sIronCrownLevelUpLearnset,
         .teachableLearnset = sIronCrownTeachableLearnset,
     },
@@ -6632,6 +6634,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6688,6 +6691,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6743,6 +6747,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Terapagos)
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sTerapagosLevelUpLearnset,
         .teachableLearnset = sTerapagosTeachableLearnset,
         .formSpeciesIdTable = sTerapagosFormSpeciesIdTable,
@@ -6800,6 +6805,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .iconPalIndex = 0,
         //FOOTPRINT(Pecharunt)
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
         .levelUpLearnset = sPecharuntLevelUpLearnset,
         .teachableLearnset = sPecharuntTeachableLearnset,
     },
