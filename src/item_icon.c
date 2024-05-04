@@ -171,8 +171,7 @@ const void *GetItemIconPicOrPalette(u16 itemId, u8 which)
             return gTypesInfo[gMovesInfo[gItemsInfo[itemId].secondaryId].type].paletteTMHM;
         if (itemId < ITEM_TM01 + NUM_TECHNICAL_MACHINES)
             return gItemIcon_TM;
-        else
-            return gItemIcon_HM;
+        return gItemIcon_HM;
     }
     return gItemIconTable[itemId][which];
 }
