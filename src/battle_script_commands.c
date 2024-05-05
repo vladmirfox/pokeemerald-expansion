@@ -16864,38 +16864,39 @@ void BS_TryGulpMissile(void)
 void BS_TryActivateGulpMissile(void)
 {
     NATIVE_ARGS();
-    
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE)
+
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE
+        && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+        && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+        && TARGET_TURN_DAMAGED
+        && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
     {
-        if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-            && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-            && TARGET_TURN_DAMAGED
-            && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
+        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
         {
-            if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
-            {
-                gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
-                if (gBattleMoveDamage == 0)
-                    gBattleMoveDamage = 1;
-            }
-            
-            BattleScriptPushCursor();                                                            
-            switch(gBattleMons[gBattlerTarget].species)
-            {
-                case SPECIES_CRAMORANT_GORGING:             
-                    TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
-                    gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
-                    break;
-                case SPECIES_CRAMORANT_GULPING: 
-                default:           
-                    TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
-                    gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
-                    break;
-            }           
-    }
+            gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+            if (gBattleMoveDamage == 0)
+                gBattleMoveDamage = 1;
+        }
+        
+        BattleScriptPushCursor();                                                            
+        switch(gBattleMons[gBattlerTarget].species)
+        {
+            case SPECIES_CRAMORANT_GORGING:             
+                TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
+                gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
+                break;
+            case SPECIES_CRAMORANT_GULPING: 
+            default:           
+                TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
+                gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
+                break;
+        } 
+    }          
     else
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
+
 }
 
 void BS_TryQuash(void)
