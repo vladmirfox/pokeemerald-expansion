@@ -7956,7 +7956,7 @@ BattleScript_QuarkDriveActivates::
 
 BattleScript_RuinAbilityActivates::
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_ABILITYWEAKENEDFSURROUNDINGMONSSTAT
+	printstring STRINGID_ABILITYWEAKENEDSURROUNDINGMONSSTAT
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
