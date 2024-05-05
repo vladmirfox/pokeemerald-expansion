@@ -1,5 +1,9 @@
-// TODO EVA put all this in trainers.h
-
+static const struct TrainerMon sParty_Sawyer1[] = {
+    {
+    .lvl = 21,
+    .species = SPECIES_GEODUDE,
+    }
+};
 
 static const struct TrainerMon sParty_GruntAquaHideout1[] = {
     {

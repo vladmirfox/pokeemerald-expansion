@@ -1375,12 +1375,7 @@
 #define SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL           1287
 #define SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL           1288
 
-// Tokuan forms
-#define SPECIES_SEWADDLE_TOKUAN                         FORMS_START + 384
-#define SPECIES_SWADLOON_TOKUAN                         FORMS_START + 385
-#define SPECIES_LEAVANNY_TOKUAN                         FORMS_START + 386
-
-#define GEN9_START                                      SPECIES_LEAVANNY_TOKUAN
+#define GEN9_START                                      SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL
 
 #define SPECIES_SPRIGATITO                              1289
 #define SPECIES_FLORAGATO                               1290
@@ -1637,7 +1632,11 @@
 #define SPECIES_RAITORA                                 1525
 #define SPECIES_GAOTORA                                 1526
 
-#define SPECIES_EGG SPECIES_GAOTORA + 1
+#define SPECIES_SEWADDLE_TOKUAN 1527
+#define SPECIES_SWADLOON_TOKUAN 1528
+#define SPECIES_LEAVANNY_TOKUAN 1529
+
+#define SPECIES_EGG SPECIES_LEAVANNY_TOKUAN + 1
 
 #define NUM_SPECIES SPECIES_EGG
 

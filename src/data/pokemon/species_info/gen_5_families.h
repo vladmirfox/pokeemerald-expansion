@@ -2891,18 +2891,23 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FRONT_PIC(SewaddleTokuan, 40, 40),
+        .frontPic = gMonFrontPic_SewaddleTokuan,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Sewaddle,
         .frontAnimId = ANIM_CIRCLE_INTO_BG,
-        BACK_PIC(SewaddleTokuan, 40, 48),
+        .backPic = gMonBackPic_SewaddleTokuan,
+        .backPicSize = MON_COORDS_SIZE(40, 48),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        PALETTES(SewaddleTokuan),
-        ICON(SewaddleTokuan, 1),
+        .palette = gMonPalette_SewaddleTokuan,
+        .shinyPalette = gMonShinyPalette_SewaddleTokuan,
+        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_SewaddleTokuan,
         FOOTPRINT(Sewaddle)
         FOLLOWER(SewaddleTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
-        LEARNSETS(Sewaddle),
+        .levelUpLearnset = sSewaddleLevelUpLearnset,
+        .teachableLearnset = sSewaddleTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SWADLOON}),
     },
 
@@ -2941,19 +2946,25 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .pokemonOffset = 15,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FRONT_PIC(SwadloonTokuan, 56, 48),
+
+        .frontPic = gMonFrontPic_SwadloonTokuan,
+        .frontPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Swadloon,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
-        BACK_PIC(SwadloonTokuan, 48, 48),
+        .backPic = gMonBackPic_SwadloonTokuan,
+        .backPicSize = MON_COORDS_SIZE(48, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        PALETTES(SwadloonTokuan),
-        ICON(SwadloonTokuan, 1),
+        .palette = gMonPalette_SwadloonTokuan,
+        .shinyPalette = gMonShinyPalette_SwadloonTokuan,
+        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_SwadloonTokuan,
         FOOTPRINT(Swadloon)
         FOLLOWER(SwadloonTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
-        LEARNSETS(Swadloon),
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LEAVANNY}),
+        .levelUpLearnset = sSwadloonLevelUpLearnset,
+        .teachableLearnset = sSwadloonTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LEAVANNY})
     },
 
     [SPECIES_LEAVANNY_TOKUAN] =
@@ -2998,18 +3009,24 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .pokemonOffset = 3,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FRONT_PIC(LeavannyTokuan, 48, 64),
+
+        .frontPic = gMonFrontPic_LeavannyTokuan,
+        .frontPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Leavanny,
         .frontAnimId = ANIM_GROW_VIBRATE,
-        BACK_PIC(LeavannyTokuan, 56, 64),
+        .backPic = gMonBackPic_LeavannyTokuan,
+        .backPicSize = MON_COORDS_SIZE(56, 64),
         .backPicYOffset = 0,
         .backAnimId = BACK_ANIM_GROW_STUTTER,
-        PALETTES(LeavannyTokuan),
-        ICON(LeavannyTokuan, 1),
+        .palette = gMonPalette_LeavannyTokuan,
+        .shinyPalette = gMonShinyPalette_LeavannyTokuan,
+        .iconPalIndex = 1,
+        .iconSprite = gMonIcon_LeavannyTokuan,
         FOOTPRINT(Leavanny)
         FOLLOWER(LeavannyTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT)
-        LEARNSETS(Leavanny),
+        .levelUpLearnset = sLeavannyLevelUpLearnset,
+        .teachableLearnset = sLeavannyTeachableLearnset
     },
 #endif //P_TOKUAN_FORMS
 #endif //P_FAMILY_SEWADDLE
