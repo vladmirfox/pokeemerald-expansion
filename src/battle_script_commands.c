@@ -16865,11 +16865,11 @@ void BS_TryActivateGulpMissile(void)
 {
     NATIVE_ARGS();
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE
-        && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
         && TARGET_TURN_DAMAGED
-        && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
+        && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT
+        && GetBattlerAbility(gBattlerTarget) == ABILITY_GULP_MISSILE)
     {
         if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
         {
