@@ -439,7 +439,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
             return TRUE;
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
-        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && (gMovesInfo[move].argument == ARG_TRY_REMOVE_TERRAIN_HIT || gMovesInfo[move].argument == ARG_TRY_REMOVE_TERRAIN_FAIL))
+        if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && gMovesInfo[move].argument == ARG_TRY_REMOVE_TERRAIN_FAIL)
             return TRUE;
         break;
     }
