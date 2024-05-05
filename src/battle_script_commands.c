@@ -8969,6 +8969,41 @@ static void Cmd_various(void)
         }
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_GULP_MISSILE: 
+    {
+        VARIOUS_ARGS();
+
+        u16 battlerAbility = GetBattlerAbility(battler);
+        if (battlerAbility == ABILITY_GULP_MISSILE){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
+            {
+                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                {
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                }
+                 
+                BattleScriptPushCursor();
+                                                              
+                switch(gBattleMons[gBattlerTarget].species){
+                    case SPECIES_CRAMORANT_GORGING:             
+                        TryBattleFormChange(battler, FORM_CHANGE_END_MOVE);
+                        gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; break;
+                    case SPECIES_CRAMORANT_GULPING: default:           
+                        TryBattleFormChange(battler, FORM_CHANGE_END_MOVE);
+                        gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; break;
+                }
+                gLastUsedAbility = battlerAbility;
+                return;
+            }
+        }
+
+        break;
+    }
     case VARIOUS_SET_SPRITEIGNORE0HP:
     {
         VARIOUS_ARGS(bool8 ignore0HP);

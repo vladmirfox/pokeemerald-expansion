@@ -120,4 +120,8 @@
 // param1: status
 #define FORM_CHANGE_STATUS                      20
 
+// Form change that activates after move is used.
+//Only used for activating gulp missile
+#define FORM_CHANGE_END_MOVE                     21
+
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H
