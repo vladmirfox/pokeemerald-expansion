@@ -16860,7 +16860,6 @@ void BS_TryGulpMissile(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-
 void BS_TryActivateGulpMissile(void)
 {
     NATIVE_ARGS();
