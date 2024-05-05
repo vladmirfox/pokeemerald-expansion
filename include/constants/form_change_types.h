@@ -122,6 +122,6 @@
 
 // Form change that activates after move is used.
 //Only used for activating gulp missile
-#define FORM_CHANGE_END_MOVE                     21
+#define FORM_CHANGE_HIT_BY_MOVE                     21
 
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H

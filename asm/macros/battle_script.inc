@@ -1635,7 +1635,11 @@
 	.macro trygulpmissile
 	callnative BS_TryGulpMissile
 	.endm
-
+	
+	.macro tryactivategulpmissile
+	callnative BS_TryActivateGulpMissile
+	.endm
+	
 	.macro tryquash failInstr:req
 	callnative BS_TryQuash
 	.4byte \failInstr
@@ -1782,11 +1786,7 @@
 	.macro restorepp battler:req
 	various \battler, VARIOUS_RESTORE_PP
 	.endm
-	
-	.macro tryactivategulpmissile battler:req
-	various \battler, VARIOUS_TRY_ACTIVATE_GULP_MISSILE
-	.endm
-	
+
 	.macro tryactivatemoxie battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_MOXIE
 	.endm

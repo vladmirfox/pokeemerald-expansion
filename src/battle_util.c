@@ -5586,7 +5586,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && IsBattlerAlive(battler)
              && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
             {
-                   
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                     {
                         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
@@ -5596,15 +5595,18 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                   
                     BattleScriptPushCursor();
                     
-                    switch(gBattleMons[gBattlerTarget].species){
+                    switch(gBattleMons[gBattlerTarget].species)
+                    {
                         case SPECIES_CRAMORANT_GORGING:             
-                            TryBattleFormChange(battler, FORM_CHANGE_END_MOVE);                                        
-                            gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; break;
-                        case SPECIES_CRAMORANT_GULPING: default:           
-                            TryBattleFormChange(battler, FORM_CHANGE_END_MOVE);                                            
-                            gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; break;
+                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);                                        
+                            gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
+                            break;
+                        case SPECIES_CRAMORANT_GULPING: 
+                        default:           
+                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);                                            
+                            gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
+                            break;
                     }
-                   
                     effect++;                
             }
             break;
@@ -10474,7 +10476,7 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
                     }
                     break;
                 case FORM_CHANGE_BATTLE_TURN_END:
-                case FORM_CHANGE_END_MOVE:
+                case FORM_CHANGE_HIT_BY_MOVE:
                     if (formChanges[i].param1 == GetBattlerAbility(battler))
                         targetSpecies = formChanges[i].targetSpecies;
                     break;
