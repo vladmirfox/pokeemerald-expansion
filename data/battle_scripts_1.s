@@ -25,7 +25,7 @@ BattleScript_Terastallization::
 	printstring STRINGID_PKMNSTORINGENERGY
 	playanimation BS_ATTACKER, B_ANIM_TERA_CHARGE
 	waitanimation
-	applyterastallization BS_ATTACKER
+	applyterastallization
 	playanimation BS_ATTACKER, B_ANIM_TERA_ACTIVATE
 	waitanimation
 	printstring STRINGID_PKMNTERASTALLIZEDINTO

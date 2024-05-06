@@ -1642,9 +1642,8 @@
 	callnative BS_RemoveWeather
 	.endm
 	
-	.macro applyterastallization battler:req
+	.macro applyterastallization
 	callnative BS_ApplyTerastallization
-	.byte \battler
 	.endm
 
 @ various command changed to more readable macros
