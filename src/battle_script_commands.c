@@ -16887,10 +16887,10 @@ void BS_TryActivateGulpMissile(void)
             case SPECIES_CRAMORANT_GULPING: 
             default:
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
-                gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
+                gBattlescriptCurrInstr = BattleScript_GulpMissileGulping;
                 break;
-        } 
-    }          
+        }
+    }
     else
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
