@@ -3421,10 +3421,11 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_STEAL_ITEM:
                 {
-                    if (!CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item))
+                    if (!CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
+                        || gBattleMons[gBattlerAttacker].item != ITEM_NONE
+                        || gBattleMons[gBattlerTarget].item == ITEM_NONE)
                     {
                         gBattlescriptCurrInstr++;
-                        break;
                     }
                     else if (gBattleMons[gBattlerTarget].item
                         && GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD)
@@ -3434,12 +3435,6 @@ void SetMoveEffect(bool32 primary, bool32 certain)
 
                         gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
                         RecordAbilityBattle(gBattlerTarget, gLastUsedAbility);
-                    }
-                    else if (gBattleMons[gBattlerAttacker].item != ITEM_NONE
-                        || gBattleMons[gBattlerTarget].item == ITEM_ENIGMA_BERRY_E_READER
-                        || gBattleMons[gBattlerTarget].item == ITEM_NONE)
-                    {
-                        gBattlescriptCurrInstr++;
                     }
                     else
                     {
