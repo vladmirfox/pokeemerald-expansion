@@ -16896,26 +16896,22 @@ void BS_TryActivateGulpMissile(void)
             if (gBattleMoveDamage == 0)
                 gBattleMoveDamage = 1;
         }
-        
-        BattleScriptPushCursor();
+
         switch(gBattleMons[gBattlerTarget].species)
         {
             case SPECIES_CRAMORANT_GORGING:
+                BattleScriptPushCursor();
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
-                gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
-                break;
-            case SPECIES_CRAMORANT_GULPING: 
-            default:
+                gBattlescriptCurrInstr = BattleScript_GulpMissileGorging;
+                return;
+            case SPECIES_CRAMORANT_GULPING:
+                BattleScriptPushCursor();
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
                 gBattlescriptCurrInstr = BattleScript_GulpMissileGulping;
-                break;
+                return;
         }
     }
-    else
-    {
-        gBattlescriptCurrInstr = cmd->nextInstr;
-    }
-
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_TryQuash(void)

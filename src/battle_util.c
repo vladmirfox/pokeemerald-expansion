@@ -5586,28 +5586,28 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && IsBattlerAlive(battler)
              && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT)
             {
-                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
-                    {
-                        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
-                        if (gBattleMoveDamage == 0)
-                            gBattleMoveDamage = 1;
-                    }
-                  
-                    BattleScriptPushCursor();
-                    
-                    switch(gBattleMons[gBattlerTarget].species)
-                    {
-                        case SPECIES_CRAMORANT_GORGING:
-                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
-                            gBattlescriptCurrInstr = BattleScript_GulpMissileGorging;
-                            break;
-                        case SPECIES_CRAMORANT_GULPING: 
-                        default:
-                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
-                            gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
-                            break;
-                    }
-                    effect++;                
+                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                {
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                }
+
+                switch(gBattleMons[gBattlerTarget].species)
+                {
+                    case SPECIES_CRAMORANT_GORGING:
+                        TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_GulpMissileGorging;
+                        effect++;
+                        break;
+                    case SPECIES_CRAMORANT_GULPING:
+                        TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_GulpMissileGulping;
+                        effect++;
+                        break;
+                }
             }
             break;
         case ABILITY_SEED_SOWER:
