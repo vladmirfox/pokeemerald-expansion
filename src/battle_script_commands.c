@@ -16877,15 +16877,15 @@ void BS_TryActivateGulpMissile(void)
                 gBattleMoveDamage = 1;
         }
         
-        BattleScriptPushCursor();                                                            
+        BattleScriptPushCursor();
         switch(gBattleMons[gBattlerTarget].species)
         {
-            case SPECIES_CRAMORANT_GORGING:             
+            case SPECIES_CRAMORANT_GORGING:
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
                 gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
                 break;
             case SPECIES_CRAMORANT_GULPING: 
-            default:           
+            default:
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_HIT_BY_MOVE);
                 gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
                 break;
