@@ -3551,6 +3551,20 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             }
             gBattleStruct->atkCancellerTracker++;
             break;
+		case CANCELLER_EXPLODING_DAMP:
+            {
+                u32 dampBattler = IsAbilityOnField(ABILITY_DAMP);
+                if (dampBattler && (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION
+                 || (gMovesInfo[gCurrentMove].effect == EFFECT_MAX_HP_50_RECOIL && gMovesInfo[gCurrentMove].argument == MOVE_MIND_BLOWN)))
+                {
+                    gBattleScripting.battler = dampBattler - 1;
+                    gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
+                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                    effect = 1;
+                }
+                gBattleStruct->atkCancellerTracker++;
+                break;
+            }
         case CANCELLER_MULTIHIT_MOVES:
             if (gMovesInfo[gCurrentMove].effect == EFFECT_MULTI_HIT)
             {

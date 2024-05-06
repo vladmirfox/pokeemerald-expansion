@@ -719,7 +719,6 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 
     switch (gMovesInfo[move].effect)
     {
-    case EFFECT_MIND_BLOWN:
     case EFFECT_MAX_HP_50_RECOIL:
         return TRUE;
     case EFFECT_RECOIL_IF_MISS:
