@@ -5597,12 +5597,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     
                     switch(gBattleMons[gBattlerTarget].species)
                     {
-                        case SPECIES_CRAMORANT_GORGING:             
-                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);                                        
-                            gBattlescriptCurrInstr = BattleScript_GulpMissileGorging; 
+                        case SPECIES_CRAMORANT_GORGING:
+                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
+                            gBattlescriptCurrInstr = BattleScript_GulpMissileGorging;
                             break;
                         case SPECIES_CRAMORANT_GULPING: 
-                        default:           
+                        default:
                             TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
                             gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
                             break;
