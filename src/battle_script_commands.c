@@ -16842,8 +16842,6 @@ void BS_TryUpdateRecoilTracker(void)
         case MON_FEMALE:
             TryUpdateEvolutionTracker(EVO_LEVEL_RECOIL_DAMAGE_FEMALE, gBattleMoveDamage, MOVE_NONE);
             break;
-        case MON_GENDERLESS:
-            break;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
