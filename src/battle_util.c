@@ -5603,7 +5603,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                             break;
                         case SPECIES_CRAMORANT_GULPING: 
                         default:           
-                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);                                            
+                            TryBattleFormChange(battler, FORM_CHANGE_HIT_BY_MOVE);
                             gBattlescriptCurrInstr = BattleScript_GulpMissileGulping; 
                             break;
                     }
