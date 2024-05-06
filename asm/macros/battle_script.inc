@@ -1641,6 +1641,11 @@
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
+	
+	.macro applyterastallization battler:req
+	callnative BS_ApplyTerastallization
+	.byte \battler
+	.endm
 
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
@@ -2275,10 +2280,6 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
-	.endm
-
-	.macro applyterastallization battler:req
-	various \battler, VARIOUS_APPLY_TERASTALLIZATION
 	.endm
 
 @ helpful macros

@@ -10814,13 +10814,6 @@ static void Cmd_various(void)
         AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battler, 0, 0, 0);
         return;
     }
-    case VARIOUS_APPLY_TERASTALLIZATION:
-    {
-        VARIOUS_ARGS();
-        gBattlescriptCurrInstr = cmd->nextInstr;
-        ApplyBattlerVisualsForTeraAnim(battler);
-        return;
-    }
     case VARIOUS_STORE_HEALING_WISH:
     {
         VARIOUS_ARGS();
@@ -16917,5 +16910,14 @@ void BS_RemoveWeather(void)
 {
     NATIVE_ARGS();
     RemoveAllWeather();
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_ApplyTerastallization(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u8 battler = GetBattlerForBattleScript(cmd->battler);
+    ApplyBattlerVisualsForTeraAnim(battler);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
