@@ -241,13 +241,7 @@ bool32 IsMoveBlockedByMaxGuard(u16 move)
 bool32 IsMoveBlockedByDynamax(u16 move)
 {
     // TODO: Certain moves are banned in raids.
-    switch (gMovesInfo[move].effect)
-    {
-        case EFFECT_HEAT_CRASH:
-        case EFFECT_LOW_KICK:
-            return TRUE;
-    }
-    return FALSE;
+    return gMovesInfo[move].doesntAffectDynamax;
 }
 
 // Returns whether a move should be converted into a Max Move.
