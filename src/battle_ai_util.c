@@ -366,6 +366,15 @@ static inline s32 LowestRollDmg(s32 dmg)
     return dmg;
 }
 
+static inline bool32 IsSuperEffectiveAgainstPartner(u32 battlerAtkPartner)
+{
+    return (IsBattlerAlive(battlerAtkPartner) && IsBattlerGrounded(battlerAtkPartner)
+         && (IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_FIRE)
+          || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_ELECTRIC)
+          || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_POISON)
+          || IS_BATTLER_OF_TYPE(battlerAtkPartner, TYPE_ROCK)));
+}
+
 bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
 {
     s32 moveType;
@@ -440,6 +449,11 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
         if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && gMovesInfo[move].argument == ARG_TRY_REMOVE_TERRAIN_FAIL)
+            return TRUE;
+        break;
+    case EFFECT_EARTHQUAKE:
+    case EFFECT_MAGNITUDE:
+        if (IsSuperEffectiveAgainstPartner(BATTLE_PARTNER(battlerAtk)))
             return TRUE;
         break;
     }
