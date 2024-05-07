@@ -6445,10 +6445,16 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
 
     if (sPokedexView->sEvoScreenData.isMega)
         return 0;
-    if (evolutions == NULL)
-        return 0;
 
     StringCopy(gStringVar1, GetSpeciesName(species));
+
+    //If there are no evolutions print text and return
+    if (evolutions == NULL)
+    {
+        StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
+        PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*depth_i);
+        return 0;
+    }
 
     if (species == SPECIES_EEVEE)
         isEevee = TRUE;
@@ -6461,13 +6467,6 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     }
     gTasks[taskId].data[3] = times;
     sPokedexView->sEvoScreenData.numAllEvolutions += times;
-
-    //If there are no evolutions print text
-    if (times == 0 && depth == 0)
-    {
-        StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
-        PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*depth_i);
-    }
 
     //If there are evolutions find out which and print them 1 by 1
     for (i = 0; i < times; i++)
