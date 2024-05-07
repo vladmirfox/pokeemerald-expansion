@@ -6451,8 +6451,11 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
     //If there are no evolutions print text and return
     if (evolutions == NULL)
     {
-        StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
-        PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*depth_i);
+        if (depth == 0)
+        {
+            StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
+            PrintInfoScreenTextSmall(gStringVar4, base_x-7-7, base_y + base_y_offset*depth_i);
+        }
         return 0;
     }
 
