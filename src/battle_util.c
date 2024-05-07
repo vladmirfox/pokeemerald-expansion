@@ -7954,7 +7954,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
             }
             break;
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
-            if (IsBattlerAlive(battler) && battlerAbility != ABILITY_MAGIC_GUARD)
+            if (battlerAbility != ABILITY_MAGIC_GUARD)
             {
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
                 if (gBattleMoveDamage == 0)
