@@ -434,6 +434,46 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (IsDynamaxed(battlerDef))
             return TRUE;
         break;
+    case EFFECT_HEAT_CRASH:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_OHKO:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_DESTINY_BOND:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_SKILL_SWAP:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_ENTRAINMENT:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_ROAR:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_DISABLE:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_ENCORE:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_TORMENT:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
+    case EFFECT_INSTRUCT:
+        if (IsDynamaxed(battlerDef))
+            return TRUE;
+        break;
     case EFFECT_FAIL_IF_NOT_ARG_TYPE:
         if (!IS_BATTLER_OF_TYPE(battlerAtk, gMovesInfo[move].argument))
             return TRUE;
