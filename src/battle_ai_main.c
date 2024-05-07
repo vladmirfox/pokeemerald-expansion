@@ -1401,7 +1401,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_ROAR:
             if (CountUsablePartyMons(battlerDef) == 0)
                 ADJUST_SCORE(-10);
-            else if (aiData->abilities[battlerDef] == ABILITY_SUCTION_CUPS || IsDynamaxed(battlerDef)))
+            else if (aiData->abilities[battlerDef] == ABILITY_SUCTION_CUPS || IsDynamaxed(battlerDef))
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_TOXIC_THREAD:
@@ -2461,7 +2461,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     ADJUST_SCORE(-10);
                 }
 	        else if (IsDynamaxed(battlerDef))
+		{
 		    ADJUST_SCORE(-10);
+		}
                 else if (isDoubleBattle)
                 {
                     if (!IS_TARGETING_PARTNER(battlerAtk, battlerDef))
