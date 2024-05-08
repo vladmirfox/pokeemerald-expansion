@@ -298,7 +298,7 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 #if B_EXPANDED_TYPE_NAMES == TRUE
 #define HANDLE_EXPANDED_TYPE_NAME(_name, ...) _(DEFAULT(_name, __VA_ARGS__))
 #else
-#define HANDLE_EXPANDED_TYPE_NAME(_name) _(_name)
+#define HANDLE_EXPANDED_TYPE_NAME(_name, ...) _(_name)
 #endif
 
 // .generic is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
@@ -319,6 +319,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_BREAKNECK_BLITZ,
         .maxMove = MOVE_MAX_STRIKE,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_NormalTMHM,
         //.enhanceItem = ITEM_SILK_SCARF,
         //.berry = ITEM_CHILAN_BERRY,
         //.gem = ITEM_NORMAL_GEM,
@@ -334,6 +335,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_ALL_OUT_PUMMELING,
         .maxMove = MOVE_MAX_KNUCKLE,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_FightingTMHM,
         //.enhanceItem = ITEM_BLACK_BELT,
         //.berry = ITEM_CHOPLE_BERRY,
         //.gem = ITEM_FIGHTING_GEM,
@@ -351,6 +353,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_SUPERSONIC_SKYSTRIKE,
         .maxMove = MOVE_MAX_AIRSTREAM,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_FlyingTMHM,
         //.enhanceItem = ITEM_SHARP_BEAK,
         //.berry = ITEM_COBA_BERRY,
         //.gem = ITEM_FLYING_GEM,
@@ -368,6 +371,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_ACID_DOWNPOUR,
         .maxMove = MOVE_MAX_OOZE,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_PoisonTMHM,
         //.enhanceItem = ITEM_POISON_BARB,
         //.berry = ITEM_KEBIA_BERRY,
         //.gem = ITEM_POISON_GEM,
@@ -385,6 +389,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_TECTONIC_RAGE,
         .maxMove = MOVE_MAX_QUAKE,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_GroundTMHM,
         //.enhanceItem = ITEM_SOFT_SAND,
         //.berry = ITEM_SHUCA_BERRY,
         //.gem = ITEM_GROUND_GEM,
@@ -402,6 +407,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_CONTINENTAL_CRUSH,
         .maxMove = MOVE_MAX_ROCKFALL,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_RockTMHM,
         //.enhanceItem = ITEM_HARD_STONE,
         //.berry = ITEM_CHARTI_BERRY,
         //.gem = ITEM_ROCK_GEM,
@@ -419,6 +425,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_SAVAGE_SPIN_OUT,
         .maxMove = MOVE_MAX_FLUTTERBY,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_BugTMHM,
         //.enhanceItem = ITEM_SILVER_POWDER,
         //.berry = ITEM_TANGA_BERRY,
         //.gem = ITEM_BUG_GEM,
@@ -436,6 +443,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_NEVER_ENDING_NIGHTMARE,
         .maxMove = MOVE_MAX_PHANTASM,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_GhostTMHM,
         //.enhanceItem = ITEM_SPELL_TAG,
         //.berry = ITEM_KASIB_BERRY,
         //.gem = ITEM_GHOST_GEM,
@@ -453,6 +461,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_CORKSCREW_CRASH,
         .maxMove = MOVE_MAX_STEELSPIKE,
         .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
+        .paletteTMHM = gItemIconPalette_SteelTMHM,
         //.enhanceItem = ITEM_METAL_COAT,
         //.berry = ITEM_BABIRI_BERRY,
         //.gem = ITEM_STEEL_GEM,
@@ -470,6 +479,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_INFERNO_OVERDRIVE,
         .maxMove = MOVE_MAX_FLARE,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_FireTMHM,
         //.enhanceItem = ITEM_CHARCOAL,
         //.berry = ITEM_OCCA_BERRY,
         //.gem = ITEM_FIRE_GEM,
@@ -487,6 +497,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_HYDRO_VORTEX,
         .maxMove = MOVE_MAX_GEYSER,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_WaterTMHM,
         //.enhanceItem = ITEM_MYSTIC_WATER,
         //.berry = ITEM_PASSHO_BERRY,
         //.gem = ITEM_WATER_GEM,
@@ -504,6 +515,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_BLOOM_DOOM,
         .maxMove = MOVE_MAX_OVERGROWTH,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_GrassTMHM,
         //.enhanceItem = ITEM_MIRACLE_SEED,
         //.berry = ITEM_RINDO_BERRY,
         //.gem = ITEM_GRASS_GEM,
@@ -521,6 +533,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_GIGAVOLT_HAVOC,
         .maxMove = MOVE_MAX_LIGHTNING,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_ElectricTMHM,
         //.enhanceItem = ITEM_MAGNET,
         //.berry = ITEM_WACAN_BERRY,
         //.gem = ITEM_ELECTRIC_GEM,
@@ -538,6 +551,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_SHATTERED_PSYCHE,
         .maxMove = MOVE_MAX_MINDSTORM,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_PsychicTMHM,
         //.enhanceItem = ITEM_TWISTED_SPOON,
         //.berry = ITEM_PAYAPA_BERRY,
         //.gem = ITEM_PSYCHIC_GEM,
@@ -555,6 +569,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_SUBZERO_SLAMMER,
         .maxMove = MOVE_MAX_HAILSTORM,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_IceTMHM,
         //.enhanceItem = ITEM_NEVER_MELT_ICE,
         //.berry = ITEM_YACHE_BERRY,
         //.gem = ITEM_ICE_GEM,
@@ -572,6 +587,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_DEVASTATING_DRAKE,
         .maxMove = MOVE_MAX_WYRMWIND,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_DragonTMHM,
         //.enhanceItem = ITEM_DRAGON_FANG,
         //.berry = ITEM_HABAN_BERRY,
         //.gem = ITEM_DRAGON_GEM,
@@ -589,6 +605,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_BLACK_HOLE_ECLIPSE,
         .maxMove = MOVE_MAX_DARKNESS,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_DarkTMHM,
         //.enhanceItem = ITEM_BLACK_GLASSES,
         //.berry = ITEM_COLBUR_BERRY,
         //.gem = ITEM_DARK_GEM,
@@ -606,6 +623,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .zMove = MOVE_TWINKLE_TACKLE,
         .maxMove = MOVE_MAX_STARFALL,
         .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .paletteTMHM = gItemIconPalette_FairyTMHM,
         //.enhanceItem = ITEM_FAIRY_FEATHER,
         //.berry = ITEM_ROSELI_BERRY,
         //.gem = ITEM_FAIRY_GEM,
@@ -622,6 +640,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .palette = 15,
         .zMove = MOVE_BREAKNECK_BLITZ,
         .maxMove = MOVE_MAX_STRIKE,
+        .paletteTMHM = gItemIconPalette_NormalTMHM, // failsafe
         // .teraShard = ITEM_STELLAR_TERA_SHARD,
     },
 };
@@ -3536,6 +3555,7 @@ void SwitchInClearSetData(u32 battler)
     // Reset damage to prevent things like red card activating if the switched-in mon is holding it
     gSpecialStatuses[battler].physicalDmg = 0;
     gSpecialStatuses[battler].specialDmg = 0;
+    gBattleStruct->enduredDamage &= ~gBitTable[battler];
 
     // Reset G-Max Chi Strike boosts.
     gBattleStruct->bonusCritStages[battler] = 0;
@@ -3618,7 +3638,6 @@ const u8* FaintClearSetData(u32 battler)
     gProtectStructs[battler].flinchImmobility = FALSE;
     gProtectStructs[battler].notFirstStrike = FALSE;
     gProtectStructs[battler].usedHealBlockedMove = FALSE;
-    gProtectStructs[battler].usesBouncedMove = FALSE;
     gProtectStructs[battler].usedGravityPreventedMove = FALSE;
     gProtectStructs[battler].usedThroatChopPreventedMove = FALSE;
     gProtectStructs[battler].statRaised = FALSE;
@@ -4072,7 +4091,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         {
             struct Pokemon *party = GetBattlerParty(i);
             struct Pokemon *mon = &party[gBattlerPartyIndexes[i]];
-            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
+            if (!IsBattlerAlive(i) || gBattleMons[i].species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
                 gAbsentBattlerFlags |= gBitTable[i];
         }
     }

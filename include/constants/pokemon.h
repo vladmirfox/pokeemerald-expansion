@@ -2,6 +2,7 @@
 #define GUARD_CONSTANTS_POKEMON_H
 
 // Pokémon types
+#define TYPE_NONE             255
 #define TYPE_MYSTERY          0
 #define TYPE_NORMAL           1
 #define TYPE_FIGHTING         2

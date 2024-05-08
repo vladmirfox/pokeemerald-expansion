@@ -110,6 +110,7 @@ struct TypeInfo
     u16 zMove;
     u16 maxMove:14;
     u16 damageCategory:2; // Used for B_PHYSICAL_SPECIAL_SPLIT <= GEN_3
+    const u32 *const paletteTMHM;
     //u16 enhanceItem;
     //u16 berry;
     //u16 gem;
