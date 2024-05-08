@@ -304,12 +304,12 @@ static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
 // .generic is large enough that the text for TYPE_ELECTRIC will exceed TEXT_BUFF_ARRAY_COUNT.
 const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
 {
-    [TYPE_MYSTERY] =
+    [TYPE_NONE] =
     {
-        .name = _("???"),
-        .generic = _("a ??? move"),
-        .palette = 15,
-        .damageCategory = DAMAGE_CATEGORY_SPECIAL,
+        .name = _("None"),
+        .generic = _("a move"),
+        .palette = 15, // Uses TYPE_MYSTERY's icon
+        .damageCategory = DAMAGE_CATEGORY_PHYSICAL,
     },
     [TYPE_NORMAL] =
     {
@@ -470,6 +470,13 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.memory = ITEM_STEEL_MEMORY,
         //.teraShard = ITEM_STEEL_TERA_SHARD,
         //.arceusForm = SPECIES_ARCEUS_STEEL,
+    },
+    [TYPE_MYSTERY] =
+    {
+        .name = _("???"),
+        .generic = _("a ??? move"),
+        .palette = 15,
+        .damageCategory = DAMAGE_CATEGORY_SPECIAL,
     },
     [TYPE_FIRE] =
     {
@@ -6049,9 +6056,11 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
                      | ((gBattleMons[battlerAtk].spAttackIV & 1) << 4)
                      | ((gBattleMons[battlerAtk].spDefenseIV & 1) << 5);
 
-        // Subtract 4 instead of 1 below because 3 types are excluded (TYPE_NORMAL and TYPE_MYSTERY and TYPE_FAIRY)
-        // The final + 2 skips past TYPE_MYSTERY and Normal.
-        gBattleStruct->dynamicMoveType = ((NUMBER_OF_MON_TYPES - 4) * typeBits) / 63 + 2;
+        // Subtract 6 instead of 1 below because 5 types are excluded (TYPE_NONE, TYPE_NORMAL, TYPE_MYSTERY, TYPE_FAIRY and TYPE_STELLAR)
+        // The final + 2 skips past TYPE_NONE and Normal.
+        gBattleStruct->dynamicMoveType = ((NUMBER_OF_MON_TYPES - 6) * typeBits) / 63 + 2;
+        if (gBattleStruct->dynamicMoveType >= TYPE_MYSTERY)
+            gBattleStruct->dynamicMoveType++;
         gBattleStruct->dynamicMoveType |= F_DYNAMIC_TYPE_IGNORE_PHYSICALITY | F_DYNAMIC_TYPE_SET;
     }
     else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM && holdEffect == gMovesInfo[move].argument)

@@ -1389,7 +1389,7 @@ static const struct SearchOptionText sDexSearchColorOptions[] =
 
 static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES] = // + 2 for "None" and terminator, - 2 for Mystery and Stellar
 {
-    {gText_DexEmptyString, gText_DexSearchTypeNone},
+    {gText_DexEmptyString, gTypesInfo[TYPE_NONE].name},
     {gText_DexEmptyString, gTypesInfo[TYPE_NORMAL].name},
     {gText_DexEmptyString, gTypesInfo[TYPE_FIGHTING].name},
     {gText_DexEmptyString, gTypesInfo[TYPE_FLYING].name},
@@ -1424,7 +1424,7 @@ static const u8 sOrderOptions[] =
 
 static const u8 sDexSearchTypeIds[NUMBER_OF_MON_TYPES] =
 {
-    TYPE_MYSTERY,
+    TYPE_NONE,
     TYPE_NORMAL,
     TYPE_FIGHTING,
     TYPE_FLYING,
@@ -4943,15 +4943,15 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
     }
 
     // Search by type
-    if (type1 != TYPE_MYSTERY || type2 != TYPE_MYSTERY)
+    if (type1 != TYPE_NONE || type2 != TYPE_NONE)
     {
-        if (type1 == TYPE_MYSTERY)
+        if (type1 == TYPE_NONE)
         {
             type1 = type2;
-            type2 = TYPE_MYSTERY;
+            type2 = TYPE_NONE;
         }
 
-        if (type2 == TYPE_MYSTERY)
+        if (type2 == TYPE_NONE)
         {
             for (i = 0, resultsCount = 0; i < sPokedexView->pokemonListCount; i++)
             {

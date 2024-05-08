@@ -815,8 +815,8 @@ static const struct OamData sOamData_MoveTypes =
     .paletteNum = 0,
     .affineParam = 0,
 };
-static const union AnimCmd sSpriteAnim_TypeMystery[] = {
-    ANIMCMD_FRAME(TYPE_MYSTERY * 8, 0, FALSE, FALSE),
+static const union AnimCmd sSpriteAnim_TypeNone[] = {
+    ANIMCMD_FRAME(TYPE_NONE * 8, 0, FALSE, FALSE),
     ANIMCMD_END
 };
 static const union AnimCmd sSpriteAnim_TypeNormal[] = {
@@ -853,6 +853,10 @@ static const union AnimCmd sSpriteAnim_TypeGhost[] = {
 };
 static const union AnimCmd sSpriteAnim_TypeSteel[] = {
     ANIMCMD_FRAME(TYPE_STEEL * 8, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeMystery[] = {
+    ANIMCMD_FRAME(TYPE_MYSTERY * 8, 0, FALSE, FALSE),
     ANIMCMD_END
 };
 static const union AnimCmd sSpriteAnim_TypeFire[] = {
@@ -916,7 +920,7 @@ static const union AnimCmd sSpriteAnim_CategoryTough[] = {
     ANIMCMD_END
 };
 static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES + CONTEST_CATEGORIES_COUNT] = {
-    [TYPE_MYSTERY] = sSpriteAnim_TypeMystery,
+    [TYPE_NONE] = sSpriteAnim_TypeNone,
     [TYPE_NORMAL] = sSpriteAnim_TypeNormal,
     [TYPE_FIGHTING] = sSpriteAnim_TypeFighting,
     [TYPE_FLYING] = sSpriteAnim_TypeFlying,
@@ -926,6 +930,7 @@ static const union AnimCmd *const sSpriteAnimTable_MoveTypes[NUMBER_OF_MON_TYPES
     [TYPE_BUG] = sSpriteAnim_TypeBug,
     [TYPE_GHOST] = sSpriteAnim_TypeGhost,
     [TYPE_STEEL] = sSpriteAnim_TypeSteel,
+    [TYPE_MYSTERY] = sSpriteAnim_TypeMystery,
     [TYPE_FIRE] = sSpriteAnim_TypeFire,
     [TYPE_WATER] = sSpriteAnim_TypeWater,
     [TYPE_GRASS] = sSpriteAnim_TypeGrass,

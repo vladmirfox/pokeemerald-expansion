@@ -170,7 +170,7 @@ uq4_12_t GetTeraMultiplier(u32 battler, u32 type)
 
 // Most values pulled from the Tera type icon palette.
 const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
-    [TYPE_MYSTERY] = RGB_WHITE,
+    [TYPE_NONE] = RGB_WHITE,
     [TYPE_NORMAL] = RGB_WHITE, // custom
     [TYPE_FIGHTING] = RGB(26, 8, 14),
     [TYPE_FLYING] = RGB(31, 26, 7),
@@ -180,6 +180,7 @@ const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
     [TYPE_BUG] = RGB(18, 24, 6),
     [TYPE_GHOST] = RGB(12, 10, 16),
     [TYPE_STEEL] = RGB(19, 19, 20),
+    [TYPE_MYSTERY] = RGB_WHITE,
     [TYPE_FIRE] = RGB(31, 20, 11),
     [TYPE_WATER] = RGB(10, 18, 27),
     [TYPE_GRASS] = RGB(12, 24, 11),
@@ -635,7 +636,7 @@ static const struct SpriteTemplate sSpriteTemplate_StellarIndicator =
 
 static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES + 1] =
 {
-    {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE}, // TYPE_MYSTERY
+    {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE}, // TYPE_NONE
     {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE},
     {sFightingIndicatorGfx, sizeof(sFightingIndicatorGfx), TAG_FIGHTING_INDICATOR_TILE},
     {sFlyingIndicatorGfx, sizeof(sFlyingIndicatorGfx), TAG_FLYING_INDICATOR_TILE},
@@ -645,6 +646,7 @@ static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES +
     {sBugIndicatorGfx, sizeof(sBugIndicatorGfx), TAG_BUG_INDICATOR_TILE},
     {sGhostIndicatorGfx, sizeof(sGhostIndicatorGfx), TAG_GHOST_INDICATOR_TILE},
     {sSteelIndicatorGfx, sizeof(sSteelIndicatorGfx), TAG_STEEL_INDICATOR_TILE},
+    {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE}, // TYPE_MYSTERY
     {sFireIndicatorGfx, sizeof(sFireIndicatorGfx), TAG_FIRE_INDICATOR_TILE},
     {sWaterIndicatorGfx, sizeof(sWaterIndicatorGfx), TAG_WATER_INDICATOR_TILE},
     {sGrassIndicatorGfx, sizeof(sGrassIndicatorGfx), TAG_GRASS_INDICATOR_TILE},
@@ -660,7 +662,7 @@ static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES +
 
 static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_OF_MON_TYPES] =
 {
-    [TYPE_MYSTERY] = &sSpriteTemplate_NormalIndicator, // just in case
+    [TYPE_NONE] = &sSpriteTemplate_NormalIndicator, // just in case
     [TYPE_NORMAL] = &sSpriteTemplate_NormalIndicator,
     [TYPE_FIGHTING] = &sSpriteTemplate_FightingIndicator,
     [TYPE_FLYING] = &sSpriteTemplate_FlyingIndicator,
@@ -670,6 +672,7 @@ static const struct SpriteTemplate * const sTeraIndicatorSpriteTemplates[NUMBER_
     [TYPE_BUG] = &sSpriteTemplate_BugIndicator,
     [TYPE_GHOST] = &sSpriteTemplate_GhostIndicator,
     [TYPE_STEEL] = &sSpriteTemplate_SteelIndicator,
+    [TYPE_MYSTERY] = &sSpriteTemplate_NormalIndicator, // just in case
     [TYPE_FIRE] = &sSpriteTemplate_FireIndicator,
     [TYPE_WATER] = &sSpriteTemplate_WaterIndicator,
     [TYPE_GRASS] = &sSpriteTemplate_GrassIndicator,

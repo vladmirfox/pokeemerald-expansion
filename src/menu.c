@@ -112,7 +112,7 @@ static const u8 sTextColors[] = { TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_C
 static const struct MenuInfoIcon sMenuInfoIcons[] =
 {   // { width, height, offset }
     { 12, 12, 0x00 },  // Unused
-    [TYPE_MYSTERY + 1]  = { 32, 12, 0xA4 },
+    [TYPE_NONE + 1]     = { 32, 12, 0xA4 }, // Copy of TYPE_MYSTERY's
     [TYPE_NORMAL + 1]   = { 32, 12, 0x20 },
     [TYPE_FIGHTING + 1] = { 32, 12, 0x64 },
     [TYPE_FLYING + 1]   = { 32, 12, 0x60 },
@@ -122,6 +122,7 @@ static const struct MenuInfoIcon sMenuInfoIcons[] =
     [TYPE_BUG + 1]      = { 32, 12, 0x6C },
     [TYPE_GHOST + 1]    = { 32, 12, 0x68 },
     [TYPE_STEEL + 1]    = { 32, 12, 0x88 },
+    [TYPE_MYSTERY + 1]  = { 32, 12, 0xA4 },
     [TYPE_FIRE + 1]     = { 32, 12, 0x24 },
     [TYPE_WATER + 1]    = { 32, 12, 0x28 },
     [TYPE_GRASS + 1]    = { 32, 12, 0x2C },

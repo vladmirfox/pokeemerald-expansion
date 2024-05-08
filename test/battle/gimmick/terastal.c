@@ -765,7 +765,7 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-
 SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly")
 {
     u32 type;
-    PARAMETRIZE { type = TYPE_MYSTERY; }
+    PARAMETRIZE { type = TYPE_NONE; }
     PARAMETRIZE { type = TYPE_NORMAL; }
     PARAMETRIZE { type = TYPE_FIGHTING; }
     PARAMETRIZE { type = TYPE_FLYING; }
@@ -775,6 +775,7 @@ SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly")
     PARAMETRIZE { type = TYPE_BUG; }
     PARAMETRIZE { type = TYPE_GHOST; }
     PARAMETRIZE { type = TYPE_STEEL; }
+    PARAMETRIZE { type = TYPE_MYSTERY; }
     PARAMETRIZE { type = TYPE_FIRE; }
     PARAMETRIZE { type = TYPE_WATER; }
     PARAMETRIZE { type = TYPE_GRASS; }
