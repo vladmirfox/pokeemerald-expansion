@@ -10259,8 +10259,8 @@ static uq4_12_t GetInverseTypeMultiplier(uq4_12_t multiplier)
 uq4_12_t GetTypeModifier(u32 atkType, u32 defType)
 {
     if (B_FLAG_INVERSE_BATTLE != 0 && FlagGet(B_FLAG_INVERSE_BATTLE))
-        return GetInverseTypeMultiplier(sTypeEffectivenessTable[atkType][defType]);
-    return sTypeEffectivenessTable[atkType][defType];
+        return GetInverseTypeMultiplier(gTypeEffectivenessTable[atkType][defType]);
+    return gTypeEffectivenessTable[atkType][defType];
 }
 
 s32 GetStealthHazardDamageByTypesAndHP(u8 hazardType, u8 type1, u8 type2, u32 maxHp)
