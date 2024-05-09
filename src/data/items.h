@@ -3682,7 +3682,7 @@ const struct Item gItemsInfo[] =
         .name = _("Dubious Disc"),
         .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
         .description = COMPOUND_STRING(
-            "A transparent device\n"
+            "A clear device\n"
             "overflowing with\n"
             "dubious data."),
         .pocket = POCKET_ITEMS,
