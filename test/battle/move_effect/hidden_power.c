@@ -82,7 +82,6 @@ SINGLE_BATTLE_TEST("Hidden Power's type is determined by IVs")
     }
 
     GIVEN {
-        ASSUME(gTypesInfo[type].isHiddenPowerType == hidden);
         if (hidden) {
             ASSUME(gTypeEffectivenessTable[type][foeType] == UQ_4_12(0.5));                 // Foe's Type resists
             ASSUME(gSpeciesInfo[foeSpecies].types[0] == gSpeciesInfo[foeSpecies].types[1]); // Foe's pure type
