@@ -3875,18 +3875,18 @@ static void Task_LoadInfoScreen(u8 taskId)
         gMain.state++;
         break;
     case 6:
-        {
-            u32 preservedPalettes = 0;
+    {
+        u32 preservedPalettes = 0;
 
-            if (gTasks[taskId].tBgLoaded)
-                preservedPalettes = 0x14; // each bit represents a palette index
-            if (gTasks[taskId].tMonSpriteDone)
-                preservedPalettes |= (1 << (gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum + 16));
-            BeginNormalPaletteFade(~preservedPalettes, 0, 16, 0, RGB_BLACK);
-            SetVBlankCallback(gPokedexVBlankCB);
-            gMain.state++;
-        }
+        if (gTasks[taskId].tBgLoaded)
+            preservedPalettes = 0x14; // each bit represents a palette index
+        if (gTasks[taskId].tMonSpriteDone)
+            preservedPalettes |= (1 << (gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum + 16));
+        BeginNormalPaletteFade(~preservedPalettes, 0, 16, 0, RGB_BLACK);
+        SetVBlankCallback(gPokedexVBlankCB);
+        gMain.state++;
         break;
+    }
     case 7:
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -4952,7 +4952,7 @@ static void Task_LoadStatsScreen(u8 taskId)
         gMain.state++;
         break;
     case 7:
-        {
+    {
         u32 preservedPalettes = 0;
 
         if (gTasks[taskId].data[2] != 0)
@@ -4962,8 +4962,8 @@ static void Task_LoadStatsScreen(u8 taskId)
         BeginNormalPaletteFade(~preservedPalettes, 0, 16, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
         gMain.state++;
-        }
         break;
+    }
     case 8:
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -6099,7 +6099,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         gMain.state++;
         break;
     case 5:
-        {
+    {
         u32 preservedPalettes = 0;
 
         if (gTasks[taskId].data[2] != 0)
@@ -6109,8 +6109,8 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         BeginNormalPaletteFade(~preservedPalettes, 0, 16, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
         gMain.state++;
-        }
         break;
+    }
     case 6:
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -6796,7 +6796,7 @@ static void Task_LoadFormsScreen(u8 taskId)
         gMain.state++;
         break;
     case 5:
-        {
+    {
         u32 preservedPalettes = 0;
 
         if (gTasks[taskId].data[2] != 0)
@@ -6806,8 +6806,8 @@ static void Task_LoadFormsScreen(u8 taskId)
         BeginNormalPaletteFade(~preservedPalettes, 0, 16, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
         gMain.state++;
-        }
         break;
+    }
     case 6:
         SetGpuReg(REG_OFFSET_BLDCNT, 0);
         SetGpuReg(REG_OFFSET_BLDALPHA, 0);
@@ -7086,7 +7086,7 @@ static void Task_LoadCryScreen(u8 taskId)
         gMain.state++;
         break;
     case 6:
-        {
+    {
             struct CryScreenWindow waveformWindow;
 
             waveformWindow.unk0 = 0x4020;
@@ -7099,10 +7099,10 @@ static void Task_LoadCryScreen(u8 taskId)
                 gMain.state++;
                 gDexCryScreenState = 0;
             }
-        }
         break;
+    }
     case 7:
-        {
+    {
             struct CryScreenWindow cryMeter;
 
             cryMeter.paletteNo = 9;
@@ -7116,8 +7116,8 @@ static void Task_LoadCryScreen(u8 taskId)
             CopyBgTilemapBufferToVram(1);
             CopyBgTilemapBufferToVram(2);
             CopyBgTilemapBufferToVram(3);
-        }
         break;
+    }
     case 8:
         BeginNormalPaletteFade(PALETTES_ALL & ~(0x14), 0, 0x10, 0, RGB_BLACK);
         SetVBlankCallback(gPokedexVBlankCB);
@@ -7256,15 +7256,15 @@ static void Task_LoadSizeScreen(u8 taskId)
         gMain.state++;
         break;
     case 3:
-        {
-            u8 string[64];
+    {
+        u8 string[64];
 
-            StringCopy(string, gText_SizeComparedTo);
-            StringAppend(string, gSaveBlock2Ptr->playerName);
-            PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, 0xF0), 0x79);
-            gMain.state++;
-        }
+        StringCopy(string, gText_SizeComparedTo);
+        StringAppend(string, gSaveBlock2Ptr->playerName);
+        PrintInfoScreenText(string, GetStringCenterAlignXOffset(FONT_NORMAL, string, 0xF0), 0x79);
+        gMain.state++;
         break;
+    }
     case 4:
         ResetPaletteFade();
         gMain.state++;
