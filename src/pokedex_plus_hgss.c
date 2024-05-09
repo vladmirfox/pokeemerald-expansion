@@ -6079,6 +6079,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         gMain.state++;
         break;
     case 4:
+    {
         u32 alreadyPrintedIcons[MAX_EVOLUTION_ICONS] = {0};
         u32 depth = sPokedexView->numPreEvolutions;
         u32 iconDepth = depth;
@@ -6098,6 +6099,7 @@ static void Task_LoadEvolutionScreen(u8 taskId)
         }
         gMain.state++;
         break;
+    }
     case 5:
     {
         u32 preservedPalettes = 0;
