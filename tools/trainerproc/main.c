@@ -1452,7 +1452,11 @@ static void parse(struct Parser *p, struct Parsed *parsed)
 
 static void fprint_string(FILE *f, struct String s)
 {
-    fprintf(f, "%.*s", s.string_n, s.string);
+    // Using 'fwrite' instead of 'fprintf' because of #4531.
+    // It seems that for some machines, 'fprintf' emits Unicode escapes
+    // rather than emits the UTF-8 bytes directly. I suspect this is a
+    // locale issue that could be fixed another way.
+    fwrite(s.string, sizeof(*s.string), s.string_n, f);
 }
 
 static void fprint_bool(FILE *f, bool b)
