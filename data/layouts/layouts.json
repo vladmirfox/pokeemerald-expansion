@@ -3167,7 +3167,7 @@
       "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseHardwood2",
       "border_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/border.bin",
       "blockdata_filepath": "data/layouts/AquaHideout_UnusedRubyMap2/map.bin"
     },

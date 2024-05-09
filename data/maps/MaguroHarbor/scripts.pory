@@ -1,0 +1,50 @@
+mapscripts MaguroHarbor_MapScripts {
+	
+}
+
+script MaguroHarbor_EventScript_TownSign {
+	msgbox(format("Maguro Harbor\n“A town that lives hand in hand with the sea.”"), MSGBOX_SIGN)
+}
+
+script MaguroHarbor_EventScript_FishcakeSalesman {
+	lock
+	faceplayer
+	msgbox(format(
+		"Hello dear, want to try a fishcake?\p"
+		"They're the town's specialty!"
+	), MSGBOX_DEFAULT)
+	// TODO EVA fishcakes
+	closemessage
+	release
+}
+
+script MaguroHarbor_EventScript_FishPokemonSalesman {
+	lock
+	faceplayer
+	msgbox(format(
+		"Fresh fish! Come get yer fish!"
+	), MSGBOX_DEFAULT)
+	// TODO EVA fish mons
+	closemessage
+	release
+}
+
+script MaguroHarbor_EventScript_Mart {
+	lock
+	faceplayer
+	message(gText_HowMayIServeYou)
+	waitmessage
+	pokemart(MaguroHarbor_Mart)
+	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+	release
+}
+
+mart MaguroHarbor_Mart {
+	ITEM_POKE_BALL
+	ITEM_BERRY_JUICE
+	ITEM_PARALYZE_HEAL
+	ITEM_ANTIDOTE
+	ITEM_AWAKENING
+	ITEM_ESCAPE_ROPE
+	ITEM_REPEL
+}

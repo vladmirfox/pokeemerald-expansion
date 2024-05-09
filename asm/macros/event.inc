@@ -2197,3 +2197,10 @@
 	.byte \type
 	.2byte \slot
 	.endm
+
+	@ Writes the dex description of the given Pokemon species to the specified buffer.
+	.macro bufferspeciesdexdesc stringVarId:req, species:req
+	.byte 0xe7
+	stringvar \stringVarId
+	.2byte \species
+	.endm

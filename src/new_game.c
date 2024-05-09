@@ -132,7 +132,8 @@ static void WarpToStartPositionInPlayersBedroom(void)
     // SetWarpDestination(MAP_GROUP(CHII_TOWN), MAP_NUM(CHII_TOWN), WARP_ID_NONE, 19, 15);
     // SetWarpDestination(MAP_GROUP(SUNRISE_VILLAGE), MAP_NUM(SUNRISE_VILLAGE), WARP_ID_NONE, 5, 19);
     // SetWarpDestination(MAP_GROUP(KURA_TOWN), MAP_NUM(KURA_TOWN), WARP_ID_NONE, 5, 19);
-    SetWarpDestination(MAP_GROUP(SAKU_TOWN), MAP_NUM(SAKU_TOWN), WARP_ID_NONE, 24, 21);
+    // SetWarpDestination(MAP_GROUP(SAKU_TOWN), MAP_NUM(SAKU_TOWN), WARP_ID_NONE, 24, 21);
+    SetWarpDestination(MAP_GROUP(MAGURO_HARBOR), MAP_NUM(MAGURO_HARBOR), WARP_ID_NONE, 24, 21);
     WarpIntoMap();
 }
 

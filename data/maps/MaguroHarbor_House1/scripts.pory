@@ -1,0 +1,23 @@
+mapscripts MaguroHarbor_House1_MapScripts {
+	
+}
+
+script MaguroHarbor_House1_EventScript_PokedexRiddler {
+	lock
+	faceplayer
+
+	// TODO EVA random dex entry
+	// random(10)
+	bufferspeciesdexdesc(STR_VAR_2, SPECIES_GROWLITHE)
+
+	msgbox(format(
+		"I know a lot about Pokémon. And I mean a LOT.\p"
+		"If you prove that you know as much as I do, I'll give you a little something.\p"
+		"Can you guess which Pokémon I'm talking about?\p"
+		"Here goes…\p"
+		"{STR_VAR_2}\p"
+		"So?"
+	))
+
+	release
+}

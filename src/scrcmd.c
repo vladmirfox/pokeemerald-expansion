@@ -1704,6 +1704,35 @@ bool8 ScrCmd_bufferspeciesname(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_bufferspeciesdexdesc(struct ScriptContext *ctx)
+{
+    // u32 stringVarIndex = ScriptReadByte(ctx);
+    // u16 species = VarGet(ScriptReadHalfword(ctx)) & ((1 << 10) - 1); // ignore possible shiny / form bits
+
+    // u32 desc = GetSpeciesPokedexDescription(species);
+
+//     u32 i;
+//     s32 limit = strlen(desc);
+//     for (i = 0; i < limit; i++)
+//     {
+//         if(desc[i] == CHAR_NEWLINE) {
+//             desc[i] == " ";
+//         }
+//         // dest[i] = desc[i];
+
+// // TODO EVA fuck this shit
+//     if (dest[i] == EOS)
+//         return &dest[i];
+//     }
+
+//     dest[i] = EOS;
+//     return &dest[i];
+
+// TODO EVA doesn't work pointer bullshit
+    // StringCopy(sScriptStringVars[stringVarIndex], desc);
+    return FALSE;
+}
+
 bool8 ScrCmd_bufferleadmonspeciesname(struct ScriptContext *ctx)
 {
     u8 stringVarIndex = ScriptReadByte(ctx);
