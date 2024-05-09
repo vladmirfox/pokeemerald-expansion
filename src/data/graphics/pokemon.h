@@ -8452,7 +8452,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u8 gMonFootprint_Keldeo[] = INCBIN_U8("graphics/pokemon/keldeo/footprint.1bpp");
 #endif //P_FOOTPRINTS
 
-    const u32 gMonFrontPic_KeldeoResolute[] = INCBIN_U32("graphics/pokemon/keldeo/resolute/front.4bpp.lz");
+    const u32 gMonFrontPic_KeldeoResolute[] = INCBIN_U32("graphics/pokemon/keldeo/resolute/anim_front.4bpp.lz");
     const u32 gMonPalette_KeldeoResolute[] = INCBIN_U32("graphics/pokemon/keldeo/resolute/normal.gbapal.lz");
     const u32 gMonBackPic_KeldeoResolute[] = INCBIN_U32("graphics/pokemon/keldeo/resolute/back.4bpp.lz");
     const u32 gMonShinyPalette_KeldeoResolute[] = INCBIN_U32("graphics/pokemon/keldeo/resolute/shiny.gbapal.lz");
