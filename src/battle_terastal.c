@@ -722,8 +722,8 @@ void TeraIndicator_SetVisibilities(u32 healthboxId, bool32 invisible)
 {
     u8 spriteId = TeraIndicator_GetSpriteId(healthboxId);
     u32 battler = gSprites[healthboxId].hMain_Battler;
-	
-	if (GetSafariZoneFlag())
+
+    if (GetSafariZoneFlag())
         return;
 
     if (invisible == TRUE)
