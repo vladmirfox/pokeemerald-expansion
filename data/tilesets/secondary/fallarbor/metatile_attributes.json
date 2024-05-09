@@ -1,0 +1,3316 @@
+{
+  "numMetatiles": 512,
+  "attributeSizeInBits": 16,
+  "attributeMasks": {
+    "behavior": "0x000000ff",
+    "terrainType": "0x00000000",
+    "encounterType": "0x00000000",
+    "layerType": "0x0000f000",
+    "unused": "0x00000f00"
+  },
+  "metatileAttributes": [
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 146,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 36,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 147,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 2,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 63,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 62,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 63,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 62,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 96,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 12,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 105,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 101,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 101,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 21,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 21,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 105,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 59,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 63,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 62,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 57,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 56,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 96,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 0,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 105,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    },
+    {
+      "attributes": {
+        "behavior": 0,
+        "encounterType": 0,
+        "layerType": 1,
+        "terrainType": 0,
+        "unused": 0
+      }
+    }
+  ]
+}
