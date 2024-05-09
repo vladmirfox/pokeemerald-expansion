@@ -351,48 +351,19 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
     return (usable == 0);
 }
 
-static inline bool32 SpreadDamageMoveDamagesPartner(u32 battlerAtk, u32 move, u32 moveType)
+// To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
+s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower)
 {
-    u32 battlerPartnerAbility;
-    u32 battlerPartner = BATTLE_PARTNER(battlerAtk);
+    SaveBattlerData(battlerAtk);
+    SaveBattlerData(battlerDef);
+    return AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA));
+}
 
-    if (!IsBattlerAlive(battlerPartner))
-        return FALSE;
-
-    battlerPartnerAbility = GetBattlerAbility(battlerPartner);
-    switch (moveType)
-    {
-    case TYPE_NORMAL:
-        if (IS_BATTLER_OF_TYPE(battlerPartner, TYPE_GHOST))
-            return FALSE;
-        break;
-    case TYPE_GROUND:
-        if (!IsBattlerGrounded(battlerPartner))
-            return FALSE;
-        break;
-    case TYPE_POISON:
-        if (IS_BATTLER_OF_TYPE(battlerPartner, TYPE_STEEL))
-            return FALSE;
-        break;
-    case TYPE_FIRE:
-        if (battlerPartnerAbility == ABILITY_FLASH_FIRE)
-            return FALSE;
-        break;
-    case TYPE_WATER:
-        if (battlerPartnerAbility == ABILITY_DRY_SKIN || battlerPartnerAbility == ABILITY_WATER_ABSORB)
-            return FALSE;
-        break;
-    case TYPE_GRASS:
-        if (battlerPartnerAbility == ABILITY_SAP_SIPPER)
-            return FALSE;
-        break;
-    case TYPE_ELECTRIC:
-        if (battlerPartnerAbility == ABILITY_LIGHTNING_ROD || battlerPartnerAbility == ABILITY_VOLT_ABSORB)
-            return FALSE;
-        break;
-    }
-
-    return TRUE;
+static inline s32 LowestRollDmg(s32 dmg)
+{
+    dmg *= 100 - 15;
+    dmg /= 100;
+    return dmg;
 }
 
 bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
@@ -406,6 +377,11 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         battlerDefAbility = ABILITY_NONE;
     else
         battlerDefAbility = aiData->abilities[battlerDef];
+
+    // Battler doesn't see partners Ability for some reason.
+    // This is a small hack to avoid the issue but should be investigated
+    if (battlerDef == BATTLE_PARTNER(battlerAtk))
+        battlerDefAbility = GetBattlerAbility(battlerDef);
 
     switch (battlerDefAbility)
     {
@@ -471,26 +447,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         break;
     }
 
-    // Should be the last thing that is checked to avoid skipping player mons
-    if (gMovesInfo[move].target == MOVE_TARGET_FOES_AND_ALLY)
-        return SpreadDamageMoveDamagesPartner(battlerAtk, move, moveType);
-
     return FALSE;
-}
-
-// To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
-s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower)
-{
-    SaveBattlerData(battlerAtk);
-    SaveBattlerData(battlerDef);
-    return AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA));
-}
-
-static inline s32 LowestRollDmg(s32 dmg)
-{
-    dmg *= 100 - 15;
-    dmg /= 100;
-    return dmg;
 }
 
 s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather)
