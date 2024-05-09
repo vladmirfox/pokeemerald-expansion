@@ -4,7 +4,6 @@
 void PrepareBattlerForTera(u32 battler);
 void ApplyBattlerVisualsForTeraAnim(u32 battler);
 bool32 CanTerastallize(u32 battler);
-u32 GetTeraType(struct Pokemon *mon);
 u32 GetBattlerTeraType(u32 battler);
 bool32 IsTerastallized(u32 battler);
 void ExpendTypeStellarBoost(u32 battler, u32 type);

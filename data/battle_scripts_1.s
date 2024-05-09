@@ -34,16 +34,17 @@ BattleScript_Terastallization::
 
 BattleScript_TeraFormChange::
 	@ TODO: no string prints in S/V, but right now this helps with clarity
-	printstring STRINGID_PKMNTERASTALLIZEDINTO
-	@ TODO: replace this animation
-	playanimation BS_ATTACKER, B_ANIM_TOTEM_FLARE
-	waitanimation
+	printstring STRINGID_PKMNSTORINGENERGY
 	handleformchange BS_ATTACKER, 0
 	handleformchange BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_FORM_CHANGE
+	playanimation BS_ATTACKER, B_ANIM_TERA_CHARGE
 	waitanimation
-	copybyte sBATTLER, gBattlerAttacker
+	applyterastallization
+	playanimation BS_ATTACKER, B_ANIM_TERA_ACTIVATE
+	waitanimation
 	handleformchange BS_ATTACKER, 2
+	printstring STRINGID_PKMNTERASTALLIZEDINTO
+	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
 	end3
 

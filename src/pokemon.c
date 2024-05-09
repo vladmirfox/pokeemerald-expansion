@@ -1020,11 +1020,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
-    if (gSpeciesInfo[species].forceTeraType != TYPE_NONE)
-        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &(gSpeciesInfo[species].forceTeraType));
-    else
-        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, ((personality & 0x1) == 0 ? &(gSpeciesInfo[species].types[0]) : &(gSpeciesInfo[species].types[1])));
-
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -2522,10 +2517,16 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = substruct3->gigantamaxFactor;
             break;
         case MON_DATA_TERA_TYPE:
-        {
-            retVal = substruct0->teraType - 1;
+            if (gSpeciesInfo[substruct0->species].forceTeraType)
+                retVal = gSpeciesInfo[substruct0->species].forceTeraType;
+            else if (substruct0->teraType == 0) // Tera Type hasn't been modified so we can just use the personality
+            {
+                const u8 *types = gSpeciesInfo[substruct0->species].types;
+                retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
+            }
+            else
+                retVal = substruct0->teraType - 1;
             break;
-        }
         case MON_DATA_EVOLUTION_TRACKER:
             evoTracker.asField.a = substruct1->evolutionTracker1;
             evoTracker.asField.b = substruct1->evolutionTracker2;
@@ -6271,9 +6272,6 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
             }
         }
     }
-
-    if (gSpeciesInfo[targetSpecies].forceTeraType != TYPE_NONE) // Doing this here seems to cover all cases
-        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[targetSpecies].forceTeraType);
 
     return targetSpecies;
 }
