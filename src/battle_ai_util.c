@@ -3777,8 +3777,7 @@ bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, st
             return FALSE;
     }
 
-    return (AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, TRUE)
-         && ((HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL) && preventsStatLoss)
-          || (HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL) && partnerAbility == ABILITY_DEFIANT)
-          || (HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_SPECIAL) && partnerAbility == ABILITY_COMPETITIVE)));
+    return (preventsStatLoss
+         && AI_STRIKES_FIRST(battlerAtk, battlerAtkPartner, TRUE)
+         && HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL));
 }
