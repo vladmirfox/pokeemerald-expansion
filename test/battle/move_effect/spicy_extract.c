@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Spicy Extract raises target's Attack by 2 stages and lowers 
     }
 }
 
-SINGLE_BATTLE_TEST("Spicy Extract is prevented by target's ability if it's Atk stat is maxed out")
+SINGLE_BATTLE_TEST("[1]Spicy Extract is prevented by target's ability if it's Atk stat is maxed out")
 {
     u16 ability;
 
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Spicy Extract is prevented by target's ability if it's Atk s
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         if (ability == ABILITY_CLEAR_BODY) {
             ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
             MESSAGE("Foe Beldum's Clear Body prevents stat loss!");
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("Spicy Extract Defense loss is prevented by Big Pecks")
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Pidgey's Attack sharply rose!");
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Spicy Extract bypasses accuracy checks")
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         NOT MESSAGE("Wobbuffet's attack missed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("Spicy Extract will fail if target is in a semi-invulnerabili
     } SCENE {
         MESSAGE("Foe Wobbuffet used Dive!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DIVE, opponent);
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
         MESSAGE("Wobbuffet's attack missed!");
     }
@@ -126,7 +126,7 @@ SINGLE_BATTLE_TEST("Spicy Extract stat changes will be inverted by Contrary")
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
@@ -148,7 +148,7 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
-        MESSAGE("Wobbuffet used SpicyExtract!");
+        MESSAGE("Wobbuffet used Spicy Extract!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
@@ -163,25 +163,70 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
     }
 }
 
-AI_DOUBLE_BATTLE_TEST("Spicy Extract partner will raise Atk for partner if conditions are right")
+AI_DOUBLE_BATTLE_TEST("Spicy Extract user will use it if partner holds Clear Amulet and a physical move")
 {
-    u32 speedPlayer;
+    u32 move;
 
-    PARAMETRIZE { speedPlayer = 10; }
-    PARAMETRIZE { speedPlayer = 30; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SWIFT;}
 
+    AI_LOG;
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(speedPlayer); }
-        PLAYER(SPECIES_WOBBUFFET) { Speed(speedPlayer); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Moves(MOVE_TACKLE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Item(ITEM_CLEAR_AMULET); Moves(move); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(40); Moves(MOVE_TACKLE, MOVE_SPICY_EXTRACT); }
     } WHEN {
         TURN {
-            if (speedPlayer == 10)
+            if (move == MOVE_TACKLE)
                 EXPECT_MOVE(opponentRight, MOVE_SPICY_EXTRACT);
             else
                 EXPECT_MOVE(opponentRight, MOVE_TACKLE);
+        }
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("Spicy Extract user will use it if partner has the Defiant and a physical move")
+{
+    u32 move;
+
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SWIFT;}
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_MANKEY) { Speed(20); Ability(ABILITY_DEFIANT); Moves(move); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(40); Moves(MOVE_TACKLE, MOVE_SPICY_EXTRACT); }
+    } WHEN {
+        TURN {
+            if (move == MOVE_TACKLE)
+                EXPECT_MOVE(opponentRight, MOVE_SPICY_EXTRACT);
+            else
+                EXPECT_MOVE(opponentRight, MOVE_TACKLE);
+        }
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("Spicy Extract user will not choose the move if it does not benefit partner")
+{
+    u32 species;
+    u32 ability;
+
+    PARAMETRIZE { species = SPECIES_GHOLDENGO; ability = ABILITY_GOOD_AS_GOLD; }
+    PARAMETRIZE { species = SPECIES_SNIVY; ability = ABILITY_CONTRARY; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(species) { Speed(20); Ability(ability); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(40); Moves(MOVE_TACKLE, MOVE_SPICY_EXTRACT); }
+    } WHEN {
+        TURN {
+            EXPECT_MOVE(opponentRight, MOVE_TACKLE);
         }
     }
 }
