@@ -1,4 +1,4 @@
-@ Note: data/scripts/berry_blender.inc is for the same map, so shares local IDs
+@ Note: data/hoenn/scripts/berry_blender.inc is for the same map, so shares local IDs
 .set LOCALID_RECEPTIONIST, 1
 .set LOCALID_LINK_RECEPTIONIST, 2
 .set LOCALID_ARTIST, 4
@@ -9,7 +9,7 @@ LilycoveCity_ContestLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LilycoveCity_ContestLobby_OnFrame
 	.byte 0
 
-@ Some scripts for this room are split into data/scripts/contest_hall and data/scripts/berry_blender
+@ Some scripts for this room are split into data/hoenn/scripts/contest_hall and data/hoenn/scripts/berry_blender
 
 LilycoveCity_ContestLobby_OnTransition:
 	call LilycoveCity_ContestLobby_EventScript_TryShowContestReporter

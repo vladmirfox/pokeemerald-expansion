@@ -22,7 +22,7 @@ SecretBase_Text_ClumpUseSecretPower:
 SecretBase_Text_DiscoveredSmallEntrance:
 	.string "Discovered a small entrance!$"
 
-	.include "data/text/secret_base_trainers.inc"
+	.include "data/hoenn/text/secret_base_trainers.inc"
 
 SecretBase_EventScript_CheckEntrance::
 	special GetSecretBaseTypeInFrontOfPlayer
@@ -661,7 +661,7 @@ SecretBase_EventScript_LostSecretBaseBattle::
 	special LostSecretBaseBattle
 	return
 
-	.include "data/scripts/secret_power_tm.inc"
+	.include "data/hoenn/scripts/secret_power_tm.inc"
 
 SecretBase_EventScript_DollInteract::
 	special CheckInteractedWithFriendsDollDecor

@@ -1,4 +1,4 @@
-TILESETGFXDIR := data/tilesets
+TILESETGFXDIR := data/hoenn/tilesets
 FONTGFXDIR := graphics/fonts
 INTERFACEGFXDIR := graphics/interface
 BTLANMSPRGFXDIR := graphics/battle_anims/sprites

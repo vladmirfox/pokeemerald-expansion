@@ -11,8 +11,8 @@
 
 	.section .rodata
 
-	.include "data/layouts/layouts.inc"
-	.include "data/layouts/layouts_table.inc"
-	.include "data/maps/headers.inc"
-	.include "data/maps/groups.inc"
-	.include "data/maps/connections.inc"
+	.include "data/hoenn/layouts/layouts.inc"
+	.include "data/hoenn/layouts/layouts_table.inc"
+	.include "data/hoenn/maps/headers.inc"
+	.include "data/hoenn/maps/groups.inc"
+	.include "data/hoenn/maps/connections.inc"

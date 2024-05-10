@@ -113,7 +113,7 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
 
     text << mapName << ":\n"
          << "\t.4byte " << json_to_string(layout, "name") << "\n";
@@ -169,7 +169,7 @@ string generate_map_connections_text(Json map_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
 
     text << mapName << "_MapConnectionsList:\n";
 
@@ -195,7 +195,7 @@ string generate_map_events_text(Json map_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
 
     string objects_label, warps_label, coords_label, bgs_label;
 
@@ -363,7 +363,7 @@ void process_map(string map_filepath, string layouts_filepath) {
 string generate_groups_text(Json groups_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
 
     for (auto &key : groups_data["group_order"].array_items()) {
         string group = json_to_string(key);
@@ -404,10 +404,10 @@ string generate_connections_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
 
     for (Json map_name : map_names)
-        text << "\t.include \"data/maps/" << json_to_string(map_name) << "/connections.inc\"\n";
+        text << "\t.include \"data/hoenn/maps/" << json_to_string(map_name) << "/connections.inc\"\n";
 
     return text.str();
 }
@@ -421,10 +421,10 @@ string generate_headers_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
 
     for (string map_name : map_names)
-        text << "\t.include \"data/maps/" << map_name << "/header.inc\"\n";
+        text << "\t.include \"data/hoenn/maps/" << map_name << "/header.inc\"\n";
 
     return text.str();
 }
@@ -438,10 +438,10 @@ string generate_events_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
 
     for (string map_name : map_names)
-        text << "\t.include \"data/maps/" << map_name << "/events.inc\"\n";
+        text << "\t.include \"data/hoenn/maps/" << map_name << "/events.inc\"\n";
 
     return text.str();
 }
@@ -456,7 +456,7 @@ string generate_map_constants_text(string groups_filepath, Json groups_data) {
     text << "#ifndef GUARD_CONSTANTS_MAP_GROUPS_H\n"
          << "#define GUARD_CONSTANTS_MAP_GROUPS_H\n\n";
 
-    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n//\n\n";
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n//\n\n";
 
     int group_num = 0;
     vector<int> map_count_vec; //DEBUG
@@ -533,7 +533,7 @@ void process_groups(string groups_filepath) {
 string generate_layout_headers_text(Json layouts_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n@\n\n";
 
     for (auto &layout : layouts_data["layouts"].array_items()) {
         if (layout == Json::object()) continue;
@@ -566,7 +566,7 @@ string generate_layout_headers_text(Json layouts_data) {
 string generate_layouts_table_text(Json layouts_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n@\n\n";
 
     text << "\t.align 2\n"
          << json_to_string(layouts_data, "layouts_table_label") << "::\n";
@@ -586,7 +586,7 @@ string generate_layouts_constants_text(Json layouts_data) {
     text << "#ifndef GUARD_CONSTANTS_LAYOUTS_H\n"
          << "#define GUARD_CONSTANTS_LAYOUTS_H\n\n";
 
-    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n//\n\n";
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n//\n\n";
 
     int i = 1;
     for (auto &layout : layouts_data["layouts"].array_items()) {

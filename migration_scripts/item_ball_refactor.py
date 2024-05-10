@@ -8,10 +8,10 @@ if not os.path.exists("Makefile"):
     quit()
 
 # scan incs
-incs_to_check =    glob.glob('./data/scripts/*.inc') # all .incs in the script folder
-incs_to_check +=   glob.glob('./data/maps/*/scripts.inc') # all map scripts
-pories_to_check =  glob.glob('./data/scripts/*.pory') ## all .porys in the script folder
-pories_to_check += glob.glob('./data/maps/*/scripts.pory') # all map scripts
+incs_to_check =    glob.glob('./data/hoenn/scripts/*.inc') # all .incs in the script folder
+incs_to_check +=   glob.glob('./data/hoenn/maps/*/scripts.inc') # all map scripts
+pories_to_check =  glob.glob('./data/hoenn/scripts/*.pory') ## all .porys in the script folder
+pories_to_check += glob.glob('./data/hoenn/maps/*/scripts.pory') # all map scripts
 
 array = []
 array_pories = []
@@ -37,7 +37,7 @@ for x in array:
         dict[x[0]] = x[1]
 
 # apply changes to inc files
-for map in glob.glob('./data/maps/*/map.json'):
+for map in glob.glob('./data/hoenn/maps/*/map.json'):
     with open(map, "r") as f2:
         data = json.load(f2)
     if not 'object_events' in data:
@@ -51,7 +51,7 @@ for map in glob.glob('./data/maps/*/map.json'):
 
 # do another map search to find out which finditem scripts would somehow be still in use
 still_in_use = []
-for map in glob.glob('./data/maps/*/map.json'):
+for map in glob.glob('./data/hoenn/maps/*/map.json'):
     with open(map, "r") as f2:
         data = json.load(f2)
     if not 'object_events' in data:

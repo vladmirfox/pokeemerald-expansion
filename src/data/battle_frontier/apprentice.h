@@ -1,4 +1,4 @@
-// data/text/apprentice.inc
+// data/hoenn/text/apprentice.inc
 extern const u8 gText_ApprenticePleaseTeach0[];
 extern const u8 gText_ApprenticePleaseTeach1[];
 extern const u8 gText_ApprenticePleaseTeach2[];

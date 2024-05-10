@@ -24,7 +24,7 @@ python3 migration_scripts/*.py ; #run the migration script
 
 Modifies all item ball scripts defined using to original Game Freak method to the new refactored method.
 
-#### [data/scripts/item_ball_scripts.inc](../data/scripts/item_ball_scripts.inc)
+#### [data/hoenn/scripts/item_ball_scripts.inc](../data/hoenn/scripts/item_ball_scripts.inc)
 ```diff
 - Route102_EventScript_ItemPotion::
 -	finditem ITEM_POTION
@@ -34,7 +34,7 @@ Modifies all item ball scripts defined using to original Game Freak method to th
 	end
 ```
 
-#### [data/maps/Route102/map.json](../data/maps/Route102/map.json)
+#### [data/hoenn/maps/Route102/map.json](../data/hoenn/maps/Route102/map.json)
 ```diff
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",

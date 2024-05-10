@@ -1,7 +1,7 @@
 # Map JSON data
 
-MAPS_DIR = $(DATA_ASM_SUBDIR)/maps
-LAYOUTS_DIR = $(DATA_ASM_SUBDIR)/layouts
+MAPS_DIR = $(DATA_ASM_SUBDIR)/hoenn/maps
+LAYOUTS_DIR = $(DATA_ASM_SUBDIR)/hoenn/layouts
 
 MAP_DIRS := $(dir $(wildcard $(MAPS_DIR)/*/map.json))
 MAP_CONNECTIONS := $(patsubst $(MAPS_DIR)/%/,$(MAPS_DIR)/%/connections.inc,$(MAP_DIRS))

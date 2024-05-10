@@ -18,8 +18,8 @@ tm_moves = []
 tutor_moves = []
 
 # scan incs
-incs_to_check =  glob.glob('./data/scripts/*.inc') # all .incs in the script folder
-incs_to_check += glob.glob('./data/maps/*/scripts.inc') # all map scripts
+incs_to_check =  glob.glob('./data/hoenn/scripts/*.inc') # all .incs in the script folder
+incs_to_check += glob.glob('./data/hoenn/maps/*/scripts.inc') # all map scripts
 
 if len(incs_to_check) == 0: # disabled if no jsons present
     quit()

@@ -522,7 +522,7 @@ SECTIONS {
         src/new_game.o(.rodata);
         src/overworld.o(.rodata);
         src/tilesets.o(.rodata);
-        data/maps.o(.rodata);
+        data/hoenn/maps.o(.rodata);
         src/fieldmap.o(.rodata);
         src/metatile_behavior.o(.rodata);
         src/field_door.o(.rodata);
