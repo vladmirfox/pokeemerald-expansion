@@ -1,6 +1,6 @@
-mapscripts NewProfessor_MapScripts {}
+mapscripts LittlerootTown_NewHouse_MapScripts {}
  
-script NewProfessor_EventScript_Pokeball{
+script LittlerootTown_NewHouse_EventScript_Pokeball{
  
     lockall
     showmonpic(SPECIES_APPLIN, 10,3)
