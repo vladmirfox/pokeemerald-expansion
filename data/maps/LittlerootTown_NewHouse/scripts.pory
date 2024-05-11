@@ -81,10 +81,10 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_Two{
 script LittlerootTown_NewHouse_EventScript_Pokeball_Three{
  
     lockall
-    showmonpic(SPECIES_APPLIN, 10,3)
+    showmonpic(SPECIES_TRAPINCH, 10,3)
     msgbox("Do you want to choose Trapinch?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_APPLIN, 50, ITEM_MASTER_BALL)
+        givemon(SPECIES_TRAPINCH, 50, ITEM_MASTER_BALL)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Trapinch")
