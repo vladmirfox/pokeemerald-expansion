@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_NewHouse_EventScript_Pokeball_One",
+      "script": "LittlerootTown_NewHouse_EventScript_Pokeball_Two",
       "flag": "FLAG_UNUSED_0x494"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_NewHouse_EventScript_Pokeball_One",
+      "script": "LittlerootTown_NewHouse_EventScript_Pokeball_Three",
       "flag": "FLAG_UNUSED_0x495"
     }
   ],
