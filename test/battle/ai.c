@@ -835,7 +835,7 @@ AI_SINGLE_BATTLE_TEST("AI will choose Scratch over Power-up Punch with Contrary"
 {
     u32 ability;
 
-    PARAMETRIZE {ability = ABILITY_ILLUMINATE; }
+    PARAMETRIZE {ability = ABILITY_SUCTION_CUPS; }
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SCRATCH].power == 40);
@@ -861,7 +861,7 @@ AI_SINGLE_BATTLE_TEST("AI will choose Superpower over Outrage with Contrary")
 {
     u32 ability;
 
-    PARAMETRIZE {ability = ABILITY_ILLUMINATE; }
+    PARAMETRIZE {ability = ABILITY_SUCTION_CUPS; }
     PARAMETRIZE {ability = ABILITY_CONTRARY; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SUPERPOWER].power == 120);
