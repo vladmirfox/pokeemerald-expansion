@@ -153,6 +153,13 @@
       "elevation": 0,
       "dest_map": "MAP_LITTLEROOT_TOWN_NEW_HOUSE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 36,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN_SAFARI_ZONE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

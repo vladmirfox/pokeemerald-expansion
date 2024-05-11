@@ -17,6 +17,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_One{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Applin")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x493)
             call(NicknamePartyMon)
         }
@@ -24,6 +26,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_One{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Applin")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x493)
             call(NicknameBoxMon)
         }
@@ -53,6 +57,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_Two{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Horsea")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x494)
             call(NicknamePartyMon)
         }
@@ -60,6 +66,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_Two{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Horsea")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x494)
             call(NicknameBoxMon)
         }
@@ -89,6 +97,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_Three{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Trapinch")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x495)
             call(NicknamePartyMon)
         }
@@ -96,6 +106,8 @@ script LittlerootTown_NewHouse_EventScript_Pokeball_Three{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Trapinch")
             removeobject(1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_SYS_POKEMON_GET)
             setflag(FLAG_UNUSED_0x495)
             call(NicknameBoxMon)
         }

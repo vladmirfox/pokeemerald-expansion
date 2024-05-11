@@ -1074,3 +1074,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/LittlerootTown_NewHouse/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SafariZone/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SafariZone_Desert/scripts.inc"
