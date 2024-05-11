@@ -5836,7 +5836,7 @@ static void TryEvolvePokemon(void)
             u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i, NULL);
             sTriedEvolving |= gBitTable[i];
 
-            if (species == SPECIES_NONE && gLeveledUpInBattle & gBitTable[i])
+            if (species == SPECIES_NONE && (gLeveledUpInBattle & gBitTable[i]))
             { 
                 gLeveledUpInBattle &= ~(gBitTable[i]);
                 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_NORMAL, gLeveledUpInBattle, NULL);
