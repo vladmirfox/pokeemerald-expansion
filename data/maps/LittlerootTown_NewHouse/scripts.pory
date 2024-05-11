@@ -1,100 +1,30 @@
 mapscripts LittlerootTown_NewHouse_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION: LittlerootTown_EventScript_NewHouse_BallDefault
+    MAP_SCRIPT_ON_TRANSITION: NewProfessor_EventScript_BallDefault
 }
  
-script LittlerootTown_EventScript_NewHouse_BallDefault{
+script NewProfessor_EventScript_BallDefault{
     setvar(VAR_UNUSED_0x40F7, 0)
 }
+
+script LittlerootTown_NewHouse_EventScript_Pokeball_One{
  
-script LittlerootTown_EventScript_NewHouse_Birch{
     lockall
-    faceplayer
-    if(!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))){
-        msgbox("Hello, would you like to see more?", MSGBOX_YESNO)
-        if(var(VAR_RESULT) == YES){
-            if(var(VAR_UNUSED_0x40F7) != 2){
-                addvar(VAR_UNUSED_0x40F7, 1)
-            }
-            else{
-                setvar(VAR_UNUSED_0x40F7, 0)
-            }
-            msgbox("Choose your Pokemon wisely")
-        }
-        else{
-            msgbox("Choose your Pokemon wisely")
-        }
-    }
-    else{
-        msgbox("Take care of your Pokemon")
-    }
-    waitmessage
-    releaseall
-    end
-}
- 
-script LittlerootTown_EventScript_NewHouse_PokeballOne{
-    lockall
-    if(!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))){
-        if(var(VAR_UNUSED_0x40F7) == 0){
-            call(NewProfessor_EventScript_Applin)
-        }
-    }
-    else{
-        msgbox("Don't Take Another")
-    }
-    waitmessage
-    releaseall
-    end
-}
- 
-script LittlerootTown_EventScript_NewHouse_PokeballTwo{
-    lockall
-    if(!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))){
-        if(var(VAR_UNUSED_0x40F7) == 0){
-            call(NewProfessor_EventScript_Trapinch)
-        }
-    }
-    else{
-        msgbox("Don't Take Another")
-    }
-    waitmessage
-    releaseall
-    end
-}
- 
-script LittlerootTown_EventScript_NewHouse_PokeballThree{
-    lockall
-    if(!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))){
-        if(var(VAR_UNUSED_0x40F7) == 0){
-            call(NewProfessor_EventScript_Horsea)
-        }
-    }
-    else{
-        msgbox("Don't Take Another")
-    }
-    waitmessage
-    releaseall
-    end
-}
- 
- 
-script LittlerootTown_EventScript_NewHouse_EventScript_Applin{
     showmonpic(SPECIES_APPLIN, 10,3)
     msgbox("Do you want to choose Applin?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_MUDKIP, 50, ITEM_MASTER_BALL)
+        givemon(SPECIES_APPLIN, 50, ITEM_MASTER_BALL)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Applin")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x493)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Applin")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            setflag(FLAG_UNUSED_0x493)
             call(NicknameBoxMon)
         }
         else{
@@ -106,42 +36,16 @@ script LittlerootTown_EventScript_NewHouse_EventScript_Applin{
         hidemonpic
         msgbox(NewProfessor_NotChosen)
     }
+    waitmessage
+    releaseall
+    end
  
 }
+
+script LittlerootTown_NewHouse_EventScript_Pokeball_Two{
  
-script LittlerootTown_EventScript_NewHouse_Trapinch{
-    showmonpic(SPECIES_TRAPINCH, 10,3)
-    msgbox("Do you want to choose Trapinch?", MSGBOX_YESNO)
-    if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_TOTODILE, 50, ITEM_MASTER_BALL)
-        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
-            playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Recieved Trapinch")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x022)
-            call(NicknamePartyMon)
-        }
-        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
-            playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Recieved Trapinch")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x022)
-            call(NicknameBoxMon)
-        }
-        else{
-            hidemonpic
-            msgbox("No More Room")
-        }
-    }
-    else{
-        hidemonpic
-        msgbox(NewProfessor_NotChosen)
-    }
- 
-}
- 
-script LittlerootTown_EventScript_NewHouse_Horsea{
-    showmonpic(SPECIES_Horsea, 10,3)
+    lockall
+    showmonpic(SPECIES_HORSEA, 10,3)
     msgbox("Do you want to choose Horsea?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
         givemon(SPECIES_HORSEA, 50, ITEM_MASTER_BALL)
@@ -149,14 +53,14 @@ script LittlerootTown_EventScript_NewHouse_Horsea{
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Horsea")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x023)
+            setflag(FLAG_UNUSED_0x494)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Horsea")
             removeobject(1)
-            setflag(FLAG_UNUSED_0x023)
+            setflag(FLAG_UNUSED_0x494)
             call(NicknameBoxMon)
         }
         else{
@@ -168,11 +72,51 @@ script LittlerootTown_EventScript_NewHouse_Horsea{
         hidemonpic
         msgbox(NewProfessor_NotChosen)
     }
+    waitmessage
+    releaseall
+    end
  
 }
+
+script LittlerootTown_NewHouse_EventScript_Pokeball_Three{
  
+    lockall
+    showmonpic(SPECIES_APPLIN, 10,3)
+    msgbox("Do you want to choose Trapinch?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_APPLIN, 50, ITEM_MASTER_BALL)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Trapinch")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x495)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Trapinch")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x495)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox(NewProfessor_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+ 
+}
+
 script NicknamePartyMon{
-    msgbox("Give a nickname?", MSGBOX_YESNO)
+ 
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
     hidemonpic
     if(var(VAR_RESULT) == YES){
         call(Common_EventScript_GetGiftMonPartySlot)
@@ -183,12 +127,14 @@ script NicknamePartyMon{
 }
  
 script NicknameBoxMon{
-    msgbox("Give a nickname?", MSGBOX_YESNO)
+ 
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
     hidemonpic
     if(var(VAR_RESULT) == YES){
         call(Common_EventScript_NameReceivedBoxMon)
     }
-    msgbox("Transferred to PC")
+    call(Common_EventScript_TransferredToPC)
+ 
 }
  
 text NewProfessor_NotChosen{
