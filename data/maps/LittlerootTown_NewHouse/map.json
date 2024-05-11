@@ -15,7 +15,7 @@
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJECT_EVENT_GFX_SPECIES(SPECIES_APPLIN)",
       "x": 11,
       "y": 4,
       "elevation": 0,
@@ -24,11 +24,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_NewHouse_EventScript_Pokeball",
-      "flag": "FLAG_UNUSED_0x493"
+      "script": "LittlerootTown_EventScript_NewHouse_PokeballOne",
+      "flag": "FLAG_UNUSED_0x020"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJECT_EVENT_GFX_SPECIES(SPECIES_HORSEA)",
       "x": 11,
       "y": 6,
       "elevation": 0,
@@ -37,11 +37,11 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "LittlerootTown_EventScript_NewHouse_PokeballTwo",
+      "flag": "FLAG_UNUSED_0x021"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJECT_EVENT_GFX_SPECIES(SPECIES_TRAPINCH)",
       "x": 11,
       "y": 8,
       "elevation": 0,
@@ -50,7 +50,20 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "LittlerootTown_EventScript_NewHouse_PokeballThree",
+      "flag": "FLAG_UNUSED_0x022"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LittlerootTown_EventScript_NewHouse_Birch",
       "flag": "0"
     }
   ],
