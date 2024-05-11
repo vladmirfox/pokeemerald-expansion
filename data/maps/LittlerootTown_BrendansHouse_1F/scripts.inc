@@ -416,10 +416,6 @@ PlayersHouse_1F_Text_DadShouldStayLonger:
 	.string "while, but all he talks about is POKéMON.\p"
 	.string "He should relax and stay a little longer.$"
 
-PlayersHouse_1F_Text_NuzlockeIsOver:
-	.string "Also, you completed the Nuzlocke\n"
-	.string "challenge. It's over. Congrats!$"
-
 PlayersHouse_1F_Text_IsThatABreakingStory:
 	.string "MOM: Is that a breaking news story?$"
 

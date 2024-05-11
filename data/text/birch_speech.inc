@@ -35,10 +35,6 @@ gText_Birch_BoyOrGirl::
 	.string "Are you a boy?\n"
 	.string "Or are you a girl?$"
 
-gText_Birch_Nuzlocke::
-	.string "Will you be performing the\n"
-	.string "Nuzlocke challenge?$"
-
 gText_Birch_WhatsYourName::
 	.string "All right.\n"
 	.string "What's your name?$"
