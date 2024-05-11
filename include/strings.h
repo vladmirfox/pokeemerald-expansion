@@ -342,6 +342,7 @@ extern const u8 gText_ThisIsAPokemon[];
 extern const u8 gText_Birch_MainSpeech[];
 extern const u8 gText_Birch_AndYouAre[];
 extern const u8 gText_Birch_BoyOrGirl[];
+extern const u8 gText_Birch_Nuzlocke[];
 extern const u8 gText_Birch_WhatsYourName[];
 extern const u8 gText_Birch_SoItsPlayer[];
 extern const u8 gText_Birch_YourePlayer[];
@@ -945,6 +946,8 @@ extern const u8 gText_LureEffectsLingered[];
 extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
 extern const u8 gText_BoxFull[];
+extern const u8 gText_BallsCannotBeUsedNuz[];
+extern const u8 gText_WontHaveEffectNuzlocke[];
 extern const u8 gText_WontHaveEffect[];
 extern const u8 gText_NextFusionMon[];
 
