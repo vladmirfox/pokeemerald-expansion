@@ -849,7 +849,7 @@ AI_SINGLE_BATTLE_TEST("AI will choose Scratch over Power-up Punch with Contrary"
         OPPONENT(SPECIES_MALAMAR) { Ability(ability); Moves(MOVE_SCRATCH, MOVE_POWER_UP_PUNCH); }
     } WHEN {
         TURN {
-            if (ability == ABILITY_ILLUMINATE)
+            if (ability != ABILITY_CONTRARY)
                 EXPECT_MOVE(opponent, MOVE_POWER_UP_PUNCH);
             else
                 EXPECT_MOVE(opponent, MOVE_SCRATCH);
@@ -875,7 +875,7 @@ AI_SINGLE_BATTLE_TEST("AI will choose Superpower over Outrage with Contrary")
         OPPONENT(SPECIES_MALAMAR) { Ability(ability); Moves(MOVE_OUTRAGE, MOVE_SUPERPOWER); }
     } WHEN {
         TURN {
-            if (ability == ABILITY_ILLUMINATE)
+            if (ability != ABILITY_CONTRARY)
                 EXPECT_MOVE(opponent, MOVE_OUTRAGE);
             else
                 EXPECT_MOVE(opponent, MOVE_SUPERPOWER);
