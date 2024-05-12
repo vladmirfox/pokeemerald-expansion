@@ -1632,7 +1632,11 @@
 	.macro trygulpmissile
 	callnative BS_TryGulpMissile
 	.endm
-
+	
+	.macro tryactivategulpmissile
+	callnative BS_TryActivateGulpMissile
+	.endm
+	
 	.macro tryquash failInstr:req
 	callnative BS_TryQuash
 	.4byte \failInstr
@@ -1640,6 +1644,10 @@
 
 	.macro removeweather
 	callnative BS_RemoveWeather
+	.endm
+	
+	.macro applyterastallization
+	callnative BS_ApplyTerastallization
 	.endm
 
 @ various command changed to more readable macros

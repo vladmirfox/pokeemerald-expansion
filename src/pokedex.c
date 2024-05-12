@@ -1387,7 +1387,7 @@ static const struct SearchOptionText sDexSearchColorOptions[] =
     {},
 };
 
-static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES + 1] = // + 2 for "None" and terminator, - 1 for Mystery
+static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES - 1] = // + 2 for "None" and terminator, - 3 for Mystery, Stellar and Shadow
 {
     {gText_DexEmptyString, gText_DexSearchTypeNone},
     {gText_DexEmptyString, gTypesInfo[TYPE_NORMAL].name},
@@ -1408,8 +1408,6 @@ static const struct SearchOptionText sDexSearchTypeOptions[NUMBER_OF_MON_TYPES +
     {gText_DexEmptyString, gTypesInfo[TYPE_DRAGON].name},
     {gText_DexEmptyString, gTypesInfo[TYPE_DARK].name},
     {gText_DexEmptyString, gTypesInfo[TYPE_FAIRY].name},
-    {gText_DexEmptyString, gTypesInfo[TYPE_STELLAR].name},
-    {gText_DexEmptyString, gTypesInfo[TYPE_SHADOW].name},
     {},
 };
 
@@ -1445,8 +1443,6 @@ static const u8 sDexSearchTypeIds[NUMBER_OF_MON_TYPES] =
     TYPE_DRAGON,
     TYPE_DARK,
     TYPE_FAIRY,
-    TYPE_STELLAR,
-    TYPE_SHADOW,
 };
 
 // Number pairs are the task data for tracking the cursor pos and scroll offset of each option list
