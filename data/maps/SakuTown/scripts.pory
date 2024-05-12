@@ -111,7 +111,7 @@ script SakuTown_EventScript_RivalFight {
 		"Clearly I underestimated you. That's alright. I won't make that mistake next time!\p"
 		"I can see your Pokémon are really growing to like you, it's great!\p"
 		"You definitely stand a chance against the Dojo that's in the next village.\p"
-		"Me? Actually, I just fought the Dojo's master and gotten a token from her!\p"
+		"Me? Actually, I just fought the Dojo's master and got a token from her!\p"
 		"You'll have to hurry up if you wanna catch up!\p"
 		"Well, it was good to see you. Until next time then.\p"
 		"I bet you I'll get to Silveridge first!"
@@ -197,8 +197,7 @@ script SakuTown_EventScript_Guard {
 	} else {
 		faceplayer
 		msgbox(format(
-			"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
-			"They don't even have a Pokémon refuge!"
+			"One can never be too careful. The whole village's safety rests on my shoulder."
 		))
 	}
 	release

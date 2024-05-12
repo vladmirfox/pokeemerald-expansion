@@ -52,6 +52,7 @@ script TranquilRoute_EventScript_Kenji {
 // Evil team member
 script TranquilRoute_EventScript_MysteriousSamurai {
 	lock
+	// TODO EVA
 	msgbox(format(
 		"So you are one of those new Pokémon trainers, right?\p"
 		"You say Pokémon have been restless, lately?\p"

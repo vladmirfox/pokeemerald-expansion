@@ -3088,14 +3088,14 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_TAKAO ===
 Name: TAKAO
-Class: Black Belt
-Pic: Black Belt
+Class: Expert
+Pic: Expert M
 Gender: Male
 Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Machop
+Budew
 Level: 13
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -7764,8 +7764,8 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
-Level: 13
+Diglett
+Level: 15
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_LAURA ===
@@ -10917,11 +10917,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Setup First Turn
 
 Kotora
-Level: 14
+Level: 12
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Aron
-Level: 16
+Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
@@ -11190,7 +11190,7 @@ Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sewaddle Tokuan
-Level: 3
+Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KAWASE ===
@@ -14045,11 +14045,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Growlithe
-Level: 14
+Level: 12
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Trapinch
-Level: 16
+Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_RIVAL_SAKU_TRAPINCH ===
@@ -14062,11 +14062,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Numel
-Level: 14
+Level: 12
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Spheal
-Level: 16
+Level: 15
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_ROXANNE_2 ===

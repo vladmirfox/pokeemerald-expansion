@@ -41,7 +41,7 @@ GinkoWoods_EventScript_TrainerTips1::
 
 
 GinkoWoods_EventScript_TrainerTips2::
-# 46 "data/maps/GinkoWoods/scripts.pory"
+# 47 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
@@ -79,8 +79,9 @@ GinkoWoods_EventScript_OldMan_Text_0:
 	.string "These woods are fascinating.\p"
 	.string "There seem to be a lot of yellow\n"
 	.string "Pokémon here.\p"
-	.string "Perhaps they can hide from predators\n"
-	.string "thanks to the color of these trees.$"
+	.string "Perhaps because they can hide from\n"
+	.string "predators thanks to the color of these\l"
+	.string "trees.$"
 
 GinkoWoods_EventScript_TrainerTips1_Text_0:
 # 42 "data/maps/GinkoWoods/scripts.pory"
@@ -88,6 +89,6 @@ GinkoWoods_EventScript_TrainerTips1_Text_0:
 	.string "forest's thick canopy. Look around!$"
 
 GinkoWoods_EventScript_TrainerTips2_Text_0:
-# 46 "data/maps/GinkoWoods/scripts.pory"
+# 47 "data/maps/GinkoWoods/scripts.pory"
 	.string "You can sort the contents of your bag\n"
 	.string "by pressing START.$"

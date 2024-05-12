@@ -155,13 +155,31 @@ script KuraTown_Dojo_EventScript_Advice {
 			"That was a beautiful fight! You're going to blossom into an excellent Pokémon wielder, I can just feel it!"
 		))
 	} else {
-		msgbox(format(
-			"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
-			"Lady Hana, the Dojo master, is an expert in all things bonsai. She designed this place and grew these trees, of course!\p"
-			"She tends to favor ground-type moves, but she's got other tricks up her sleeve, too. Be on your guard!\p"
-			"Now, pay attention: only some of these pretty trees can be cut down.\p"
-			"Figure out which, and you'll reach the master!"
-		))
+		if (flag(FLAG_RECEIVED_HM_CUT) && flag(FLAG_BADGE01_GET)) {
+			msgbox(format(
+				"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
+				"Lady Hana, the Dojo master, is an expert in all things bonsai. She designed this place and grew these trees, of course!\p"
+				"She tends to favor ground-type moves, but she's got other tricks up her sleeve, too. Be on your guard!\p"
+				"Now, pay attention: only some of these pretty trees can be cut down.\p"
+				"Figure out which, and you'll reach the master!"
+			))
+		} else {
+			if (flag(FLAG_BADGE01_GET)) {
+				msgbox(format(
+					"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
+					"All the trees are blocking your way, aren't they?\p"
+					"You should come back once you've figured out a way to cut them!"
+				))
+			} else {
+				msgbox(format(
+					"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
+					"All the trees are blocking your way, aren't they?\p"
+					"You should come back once you've figured out a way to cut them!\p"
+					"If you're itching for a challenge, why not try your skills at the Dojo in Maguro Harbor first?\p"
+					"It's not very far east from here!"
+				))
+			}
+		}
 	}
 	release
 }

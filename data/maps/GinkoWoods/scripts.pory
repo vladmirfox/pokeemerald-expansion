@@ -33,15 +33,22 @@ script GinkoWoods_EventScript_Eiji {
 script GinkoWoods_EventScript_OldMan {
 	lock
 	faceplayer
-	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps they can hide from predators thanks to the color of these trees."))
+	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps because they can hide from predators thanks to the color of these trees."))
 	release
 	end
 }
 
 script GinkoWoods_EventScript_TrainerTips1 {
-    msgbox(format("Some items can be hidden under the forest's thick canopy. Look around!"), MSGBOX_SIGN)
+    msgbox(format(
+		"Did you know?\p"
+		"Some items can be hidden under the forest's thick canopy. Look around!"
+	), MSGBOX_SIGN)
 }
 
 script GinkoWoods_EventScript_TrainerTips2 {
-    msgbox(format("You can sort the contents of your bag by pressing START."), MSGBOX_SIGN)
+	// TODO EVA implement feature
+    msgbox(format(
+		"Did you know?\p"
+		"You can sort the contents of your bag by pressing START."
+	), MSGBOX_SIGN)
 }
