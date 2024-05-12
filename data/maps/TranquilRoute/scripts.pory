@@ -166,8 +166,16 @@ script TranquilRoute_TrainerTips2 {
 }
 
 script TranquilRoute_DirectionSign {
-	msgbox(format(
-		"{UP_ARROW} Saku Village"
-		"{LEFT_ARROW} Whiteslate route"
-	), MSGBOX_SIGN)
+	if (flag(FLAG_SAKU_KURA_REUNITED)) {
+		msgbox(format(
+			"{LEFT_ARROW} Whiteslate route\n"
+			"{UP_ARROW} Sakura Village\p"
+			"It looks like the sign has been written over recently…"
+		), MSGBOX_SIGN)
+	} else {
+		msgbox(format(
+			"{LEFT_ARROW} Whiteslate route\"
+			"{UP_ARROW} Saku and Kura Villages"
+		), MSGBOX_SIGN)
+	}
 }

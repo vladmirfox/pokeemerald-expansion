@@ -1226,7 +1226,7 @@
 #define FLAG_ITEM_GINKO_WOODS_PARALYZE_HEAL                         0x493
 #define FLAG_ITEM_GINKO_WOODS_POTION                                0x494
 #define FLAG_ITEM_GINKO_WOODS_POTION_2                              0x495
-#define FLAG_ITEM_TRANQUIL_ROUTE_POKEBALL                           0x496
+#define FLAG_ITEM_TRANQUIL_ROUTE_GREAT_BALL                          0x496
 
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag

@@ -21,19 +21,6 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 21,
-      "y": 16,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_LEFT_AND_RIGHT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
-      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 7,
       "y": 14,
@@ -47,37 +34,11 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
-      "x": 20,
-      "y": 14,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
-      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_FARMER",
       "x": 20,
       "y": 15,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
-      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 19,
-      "y": 15,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 2,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -125,6 +86,32 @@
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
+      "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
+      "x": 19,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_Event_GuardForest",
+      "flag": "FLAG_RECEIVED_STARTER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "x": 13,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_Event_LittleGirl",
+      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
+    },
+    {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
       "x": 12,
       "y": 18,
@@ -136,19 +123,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SunriseVillage_Event_Boy",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-      "x": 19,
-      "y": 7,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_GuardForest",
-      "flag": "FLAG_RECEIVED_STARTER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(CORSOLA)",
@@ -164,6 +138,45 @@
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "x": 20,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_Event_Boy",
+      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 21,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_Event_Boy",
+      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 19,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_Event_Boy",
+      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
+    },
+    {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(MUNCHLAX)",
       "x": 8,
       "y": 14,
@@ -175,19 +188,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SunriseVillage_Event_Kecleon",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
-      "x": 13,
-      "y": 15,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_LittleGirl",
-      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(KOTORA)",

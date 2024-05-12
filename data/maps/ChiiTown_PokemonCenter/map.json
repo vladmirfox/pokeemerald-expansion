@@ -42,8 +42,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FARMER",
-      "x": 2,
-      "y": 4,
+      "x": 9,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -110,24 +110,7 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 5,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "ChiiTown_PokemonCenter_EventScript_SetFlagBottom"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 4,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "ChiiTown_PokemonCenter_EventScript_SetFlagRight"
-    }
+
   ],
   "bg_events": [
 

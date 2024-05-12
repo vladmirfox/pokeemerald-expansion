@@ -75,45 +75,29 @@ script ChiiTown_PokemonCenter_EventScript_RefugePresentation {
 		"Oh, sorry, I'll get out of your hair now. Talk to the nurse whenever you want her to heal your Pokémon!"
 	))
 	closemessage
-	if (flag(FLAG_TEMP_1)) {
-		applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
-	}
-	else {
-		applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom)
+
+	switch(var(VAR_FACING)) {
+		case DIR_NORTH:
+			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom)
+		case DIR_WEST:
+		case DIR_EAST:
+			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
 	}
 	waitmovement(0)
+	removeobject(LOCALID_MAN)
 	playse(SE_EXIT)
 	waitse
-	removeobject(LOCALID_MAN)
 
 	setflag(FLAG_POKEMON_REFUGE_PRESENTATION)
 	release
 	end
 }
 
-script ChiiTown_PokemonCenter_EventScript_SetFlagRight {
-	setflag(FLAG_TEMP_1)
-}
-
-script ChiiTown_PokemonCenter_EventScript_SetFlagBottom {
-	clearflag(FLAG_TEMP_1)
-}
-
 movement ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom {
 	walk_right
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
+	walk_down * 6
 }
 
 movement ChiiTown_PokemonCenter_Movement_Leave {
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
+	walk_down * 6
 }
