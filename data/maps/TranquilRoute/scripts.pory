@@ -174,7 +174,7 @@ script TranquilRoute_DirectionSign {
 		), MSGBOX_SIGN)
 	} else {
 		msgbox(format(
-			"{LEFT_ARROW} Whiteslate route\"
+			"{LEFT_ARROW} Whiteslate route\n"
 			"{UP_ARROW} Saku and Kura Villages"
 		), MSGBOX_SIGN)
 	}
