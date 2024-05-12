@@ -1121,9 +1121,6 @@ u32 AI_GetBattlerAbility(u32 battler)
      && GetBattlerHoldEffectIgnoreAbility(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD)
         return ABILITY_NONE;
 
-    if (IsMyceliumMightOnField())
-        return ABILITY_NONE;
-
     return gBattleMons[battler].ability;
 }
 
