@@ -5596,7 +5596,8 @@ static void Cmd_moveend(void)
                 gBattlescriptCurrInstr = BattleScript_FaintAttackerForExplosion;
                 effect = TRUE;
             }
-            else if (gMovesInfo[gCurrentMove].effect == EFFECT_MAX_HP_50_RECOIL
+            else if ((gMovesInfo[gCurrentMove].effect == EFFECT_MAX_HP_50_RECOIL
+                   || gMovesInfo[gCurrentMove].effect == EFFECT_MIND_BLOWN)
                   && IsBattlerAlive(gBattlerAttacker)
                   && !(gMoveResultFlags & MOVE_RESULT_FAILED)
                   && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)

@@ -3555,7 +3555,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             {
                 u32 dampBattler = IsAbilityOnField(ABILITY_DAMP);
                 if (dampBattler && (gMovesInfo[gCurrentMove].effect == EFFECT_EXPLOSION
-                 || (gMovesInfo[gCurrentMove].effect == EFFECT_MAX_HP_50_RECOIL && gMovesInfo[gCurrentMove].argument == MOVE_MIND_BLOWN)))
+                                 || gMovesInfo[gCurrentMove].effect == EFFECT_MIND_BLOWN))
                 {
                     gBattleScripting.battler = dampBattler - 1;
                     gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;

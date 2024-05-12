@@ -16055,7 +16055,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "It explodes the user's head\n"
             "to damage everything around."),
-        .effect = EFFECT_MAX_HP_50_RECOIL,
+        .effect = EFFECT_MIND_BLOWN,
         .power = 150,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -16063,7 +16063,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_FOES_AND_ALLY,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .argument = MOVE_MIND_BLOWN,
         .metronomeBanned = TRUE,
         .contestEffect = CONTEST_EFFECT_USER_MORE_EASILY_STARTLED,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
