@@ -50,12 +50,9 @@ SINGLE_BATTLE_TEST("Wake-Up Slap get incread power vs. sleeping targets")
         TURN { MOVE(player, MOVE_WAKE_UP_SLAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, player);
-        if (status1 == STATUS1_SLEEP)
-        {
+        if (status1 == STATUS1_SLEEP) {
             MESSAGE("Foe Lotad fainted!");
-        }
-        else
-        {
+        } else {
             NOT MESSAGE("Foe Lotad fainted!");
             MESSAGE("Foe Lotad used Celebrate!");
         }
