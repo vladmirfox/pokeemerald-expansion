@@ -5658,8 +5658,8 @@ static void Cmd_moveend(void)
                 break;
             case MOVE_EFFECT_SMACK_DOWN:
                 if (!IsBattlerGrounded(gBattlerTarget)
-                        && IsBattlerAlive(gBattlerTarget)
-                        && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+                 && IsBattlerAlive(gBattlerTarget)
+                 && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
                 {
                     gStatuses3[gBattlerTarget] |= STATUS3_SMACKED_DOWN;
                     gStatuses3[gBattlerTarget] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
