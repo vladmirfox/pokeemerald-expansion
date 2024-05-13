@@ -362,78 +362,103 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
     [NATURE_HARDY] = {
         .name = COMPOUND_STRING("Hardy"),
+        .backAnim = 0,
     },
     [NATURE_LONELY] = {
         .name = COMPOUND_STRING("Lonely"),
+        .backAnim = 2,
     },
     [NATURE_BRAVE] = {
         .name = COMPOUND_STRING("Brave"),
+        .backAnim = 0,
     },
     [NATURE_ADAMANT] = {
         .name = COMPOUND_STRING("Adamant"),
+        .backAnim = 0,
     },
     [NATURE_NAUGHTY] = {
         .name = COMPOUND_STRING("Naughty"),
+        .backAnim = 0,
     },
     [NATURE_BOLD] = {
         .name = COMPOUND_STRING("Bold"),
+        .backAnim = 1,
     },
     [NATURE_DOCILE] = {
         .name = COMPOUND_STRING("Docile"),
+        .backAnim = 1,
     },
     [NATURE_RELAXED] = {
         .name = COMPOUND_STRING("Relaxed"),
+        .backAnim = 1,
     },
     [NATURE_IMPISH] = {
         .name = COMPOUND_STRING("Impish"),
+        .backAnim = 0,
     },
     [NATURE_LAX] = {
         .name = COMPOUND_STRING("Lax"),
+        .backAnim = 1,
     },
     [NATURE_TIMID] = {
         .name = COMPOUND_STRING("Timid"),
+        .backAnim = 2,
     },
     [NATURE_HASTY] = {
         .name = COMPOUND_STRING("Hasty"),
+        .backAnim = 0,
     },
     [NATURE_SERIOUS] = {
         .name = COMPOUND_STRING("Serious"),
+        .backAnim = 1,
     },
     [NATURE_JOLLY] = {
         .name = COMPOUND_STRING("Jolly"),
+        .backAnim = 0,
     },
     [NATURE_NAIVE] = {
         .name = COMPOUND_STRING("Naive"),
+        .backAnim = 0,
     },
     [NATURE_MODEST] = {
         .name = COMPOUND_STRING("Modest"),
+        .backAnim = 2,
     },
     [NATURE_MILD] = {
         .name = COMPOUND_STRING("Mild"),
+        .backAnim = 2,
     },
     [NATURE_QUIET] = {
         .name = COMPOUND_STRING("Quiet"),
+        .backAnim = 2,
     },
     [NATURE_BASHFUL] = {
         .name = COMPOUND_STRING("Bashful"),
+        .backAnim = 2,
     },
     [NATURE_RASH] = {
         .name = COMPOUND_STRING("Rash"),
+        .backAnim = 1,
     },
     [NATURE_CALM] = {
         .name = COMPOUND_STRING("Calm"),
+        .backAnim = 1,
     },
     [NATURE_GENTLE] = {
         .name = COMPOUND_STRING("Gentle"),
+        .backAnim = 2,
     },
     [NATURE_SASSY] = {
         .name = COMPOUND_STRING("Sassy"),
+        .backAnim = 1,
     },
     [NATURE_CAREFUL] = {
         .name = COMPOUND_STRING("Careful"),
+        .backAnim = 2,
     },
     [NATURE_QUIRKY] = {
         .name = COMPOUND_STRING("Quirky"),
+        .backAnim = 1,
     },
 };
 

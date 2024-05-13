@@ -561,6 +561,7 @@ struct Ability
 struct NatureInfo
 {
     const u8 *name;
+    u8 backAnim;
 };
 
 #define SPINDA_SPOT_WIDTH 16
