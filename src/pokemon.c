@@ -358,33 +358,83 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
     {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_3.1bpp")}
 };
 
-const u8 *const gNatureNamePointers[NUM_NATURES] =
+const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
-    [NATURE_HARDY] = COMPOUND_STRING("Hardy"),
-    [NATURE_LONELY] = COMPOUND_STRING("Lonely"),
-    [NATURE_BRAVE] = COMPOUND_STRING("Brave"),
-    [NATURE_ADAMANT] = COMPOUND_STRING("Adamant"),
-    [NATURE_NAUGHTY] = COMPOUND_STRING("Naughty"),
-    [NATURE_BOLD] = COMPOUND_STRING("Bold"),
-    [NATURE_DOCILE] = COMPOUND_STRING("Docile"),
-    [NATURE_RELAXED] = COMPOUND_STRING("Relaxed"),
-    [NATURE_IMPISH] = COMPOUND_STRING("Impish"),
-    [NATURE_LAX] = COMPOUND_STRING("Lax"),
-    [NATURE_TIMID] = COMPOUND_STRING("Timid"),
-    [NATURE_HASTY] = COMPOUND_STRING("Hasty"),
-    [NATURE_SERIOUS] = COMPOUND_STRING("Serious"),
-    [NATURE_JOLLY] = COMPOUND_STRING("Jolly"),
-    [NATURE_NAIVE] = COMPOUND_STRING("Naive"),
-    [NATURE_MODEST] = COMPOUND_STRING("Modest"),
-    [NATURE_MILD] = COMPOUND_STRING("Mild"),
-    [NATURE_QUIET] = COMPOUND_STRING("Quiet"),
-    [NATURE_BASHFUL] = COMPOUND_STRING("Bashful"),
-    [NATURE_RASH] = COMPOUND_STRING("Rash"),
-    [NATURE_CALM] = COMPOUND_STRING("Calm"),
-    [NATURE_GENTLE] = COMPOUND_STRING("Gentle"),
-    [NATURE_SASSY] = COMPOUND_STRING("Sassy"),
-    [NATURE_CAREFUL] = COMPOUND_STRING("Careful"),
-    [NATURE_QUIRKY] = COMPOUND_STRING("Quirky"),
+    [NATURE_HARDY] = {
+        .name = COMPOUND_STRING("Hardy"),
+    },
+    [NATURE_LONELY] = {
+        .name = COMPOUND_STRING("Lonely"),
+    },
+    [NATURE_BRAVE] = {
+        .name = COMPOUND_STRING("Brave"),
+    },
+    [NATURE_ADAMANT] = {
+        .name = COMPOUND_STRING("Adamant"),
+    },
+    [NATURE_NAUGHTY] = {
+        .name = COMPOUND_STRING("Naughty"),
+    },
+    [NATURE_BOLD] = {
+        .name = COMPOUND_STRING("Bold"),
+    },
+    [NATURE_DOCILE] = {
+        .name = COMPOUND_STRING("Docile"),
+    },
+    [NATURE_RELAXED] = {
+        .name = COMPOUND_STRING("Relaxed"),
+    },
+    [NATURE_IMPISH] = {
+        .name = COMPOUND_STRING("Impish"),
+    },
+    [NATURE_LAX] = {
+        .name = COMPOUND_STRING("Lax"),
+    },
+    [NATURE_TIMID] = {
+        .name = COMPOUND_STRING("Timid"),
+    },
+    [NATURE_HASTY] = {
+        .name = COMPOUND_STRING("Hasty"),
+    },
+    [NATURE_SERIOUS] = {
+        .name = COMPOUND_STRING("Serious"),
+    },
+    [NATURE_JOLLY] = {
+        .name = COMPOUND_STRING("Jolly"),
+    },
+    [NATURE_NAIVE] = {
+        .name = COMPOUND_STRING("Naive"),
+    },
+    [NATURE_MODEST] = {
+        .name = COMPOUND_STRING("Modest"),
+    },
+    [NATURE_MILD] = {
+        .name = COMPOUND_STRING("Mild"),
+    },
+    [NATURE_QUIET] = {
+        .name = COMPOUND_STRING("Quiet"),
+    },
+    [NATURE_BASHFUL] = {
+        .name = COMPOUND_STRING("Bashful"),
+    },
+    [NATURE_RASH] = {
+        .name = COMPOUND_STRING("Rash"),
+    },
+    [NATURE_CALM] = {
+        .name = COMPOUND_STRING("Calm"),
+    },
+    [NATURE_GENTLE] = {
+        .name = COMPOUND_STRING("Gentle"),
+    },
+    [NATURE_SASSY] = {
+        .name = COMPOUND_STRING("Sassy"),
+    },
+    [NATURE_CAREFUL] = {
+        .name = COMPOUND_STRING("Careful"),
+    },
+    [NATURE_QUIRKY] = {
+        .name = COMPOUND_STRING("Quirky"),
+    },
 };
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
