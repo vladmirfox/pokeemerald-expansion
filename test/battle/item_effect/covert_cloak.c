@@ -133,13 +133,10 @@ DOUBLE_BATTLE_TEST("Covert Cloak does or does not block Sparkling Aria depending
         TURN { MOVE(playerRight, moveToUse, target: opponentRight); MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
-        if (moveToUse == MOVE_TACKLE)
-        {
+        if (moveToUse == MOVE_TACKLE) {
             MESSAGE("Foe Wobbuffet's burn was healed.");
             STATUS_ICON(opponentLeft, none: TRUE);
-        }
-        else
-        {
+        } else {
             NONE_OF {
                 MESSAGE("Foe Wobbuffet's burn was healed.");
                 STATUS_ICON(opponentLeft, none: TRUE);
