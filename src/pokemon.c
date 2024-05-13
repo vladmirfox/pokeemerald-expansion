@@ -362,102 +362,127 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
     [NATURE_HARDY] = {
         .name = COMPOUND_STRING("Hardy"),
+        .pokeBlockAnim = {ANIM_HARDY, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_LONELY] = {
         .name = COMPOUND_STRING("Lonely"),
+        .pokeBlockAnim = {ANIM_LONELY, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_BRAVE] = {
         .name = COMPOUND_STRING("Brave"),
+        .pokeBlockAnim = {ANIM_BRAVE, AFFINE_TURN_UP},
         .backAnim = 0,
     },
     [NATURE_ADAMANT] = {
         .name = COMPOUND_STRING("Adamant"),
+        .pokeBlockAnim = {ANIM_ADAMANT, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_NAUGHTY] = {
         .name = COMPOUND_STRING("Naughty"),
+        .pokeBlockAnim = {ANIM_NAUGHTY, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_BOLD] = {
         .name = COMPOUND_STRING("Bold"),
+        .pokeBlockAnim = {ANIM_BOLD, AFFINE_NONE},
         .backAnim = 1,
     },
     [NATURE_DOCILE] = {
         .name = COMPOUND_STRING("Docile"),
+        .pokeBlockAnim = {ANIM_DOCILE, AFFINE_NONE},
         .backAnim = 1,
     },
     [NATURE_RELAXED] = {
         .name = COMPOUND_STRING("Relaxed"),
+        .pokeBlockAnim = {ANIM_RELAXED, AFFINE_TURN_UP_AND_DOWN},
         .backAnim = 1,
     },
     [NATURE_IMPISH] = {
         .name = COMPOUND_STRING("Impish"),
+        .pokeBlockAnim = {ANIM_IMPISH, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_LAX] = {
         .name = COMPOUND_STRING("Lax"),
+        .pokeBlockAnim = {ANIM_LAX, AFFINE_NONE},
         .backAnim = 1,
     },
     [NATURE_TIMID] = {
         .name = COMPOUND_STRING("Timid"),
+        .pokeBlockAnim = {ANIM_TIMID, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_HASTY] = {
         .name = COMPOUND_STRING("Hasty"),
+        .pokeBlockAnim = {ANIM_HASTY, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_SERIOUS] = {
         .name = COMPOUND_STRING("Serious"),
+        .pokeBlockAnim = {ANIM_SERIOUS, AFFINE_TURN_DOWN},
         .backAnim = 1,
     },
     [NATURE_JOLLY] = {
         .name = COMPOUND_STRING("Jolly"),
+        .pokeBlockAnim = {ANIM_JOLLY, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_NAIVE] = {
         .name = COMPOUND_STRING("Naive"),
+        .pokeBlockAnim = {ANIM_NAIVE, AFFINE_NONE},
         .backAnim = 0,
     },
     [NATURE_MODEST] = {
         .name = COMPOUND_STRING("Modest"),
+        .pokeBlockAnim = {ANIM_MODEST, AFFINE_TURN_DOWN_SLOW},
         .backAnim = 2,
     },
     [NATURE_MILD] = {
         .name = COMPOUND_STRING("Mild"),
+        .pokeBlockAnim = {ANIM_MILD, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_QUIET] = {
         .name = COMPOUND_STRING("Quiet"),
+        .pokeBlockAnim = {ANIM_QUIET, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_BASHFUL] = {
         .name = COMPOUND_STRING("Bashful"),
+        .pokeBlockAnim = {ANIM_BASHFUL, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_RASH] = {
         .name = COMPOUND_STRING("Rash"),
+        .pokeBlockAnim = {ANIM_RASH, AFFINE_NONE},
         .backAnim = 1,
     },
     [NATURE_CALM] = {
         .name = COMPOUND_STRING("Calm"),
+        .pokeBlockAnim = {ANIM_CALM, AFFINE_NONE},
         .backAnim = 1,
     },
     [NATURE_GENTLE] = {
         .name = COMPOUND_STRING("Gentle"),
+        .pokeBlockAnim = {ANIM_GENTLE, AFFINE_TURN_DOWN_SLIGHT},
         .backAnim = 2,
     },
     [NATURE_SASSY] = {
         .name = COMPOUND_STRING("Sassy"),
+        .pokeBlockAnim = {ANIM_SASSY, AFFINE_TURN_UP_HIGH},
         .backAnim = 1,
     },
     [NATURE_CAREFUL] = {
         .name = COMPOUND_STRING("Careful"),
+        .pokeBlockAnim = {ANIM_CAREFUL, AFFINE_NONE},
         .backAnim = 2,
     },
     [NATURE_QUIRKY] = {
         .name = COMPOUND_STRING("Quirky"),
+        .pokeBlockAnim = {ANIM_QUIRKY, AFFINE_NONE},
         .backAnim = 1,
     },
 };
