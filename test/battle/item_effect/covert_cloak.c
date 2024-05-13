@@ -106,8 +106,7 @@ SINGLE_BATTLE_TEST("Covert Cloak does not block self-targeting effects, primary 
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
-        switch (move)
-        {
+        switch (move) {
             case MOVE_POWER_UP_PUNCH:
             case MOVE_RAPID_SPIN:
             case MOVE_LEAF_STORM:
