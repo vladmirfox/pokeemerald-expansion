@@ -37,3 +37,27 @@ SINGLE_BATTLE_TEST("Wake-Up Slap does not cure paralyzed pokemons behind substit
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Wake-Up Slap get incread power vs. sleeping targets")
+{
+    u32 status1;
+    PARAMETRIZE { status1 = STATUS1_SLEEP; }
+    PARAMETRIZE { status1 = STATUS1_NONE; }
+    GIVEN {
+        PLAYER(SPECIES_CROBAT);
+        OPPONENT(SPECIES_LOTAD) { Status1(status1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WAKE_UP_SLAP); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, player);
+        if (status1 == STATUS1_SLEEP)
+        {
+            MESSAGE("Foe Lotad fainted!");
+        }
+        else
+        {
+            NOT MESSAGE("Foe Lotad fainted!");
+            MESSAGE("Foe Lotad used Celebrate!");
+        }
+    }
+}

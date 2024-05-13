@@ -5397,6 +5397,7 @@ static void Cmd_moveend(void)
     u16 *choicedMoveAtk = NULL;
     u32 endMode, endState;
     u32 originallyUsedMove;
+    u8 currBattler, liveBattlerCount;
 
     if (gChosenMove == MOVE_UNAVAILABLE)
         originallyUsedMove = MOVE_NONE;
@@ -5690,8 +5691,8 @@ static void Cmd_moveend(void)
                         // Checks to see if Sparkling Aria should cure a Shield Dust pokemon
                         if (gBattleMons[gBattlerTarget].ability == ABILITY_SHIELD_DUST || gBattleMons[gBattlerTarget].item == ITEM_COVERT_CLOAK)
                         {
-                            u8 liveBattlerCount = 0;
-                            for (u8 currBattler = 0; currBattler < gBattlersCount; currBattler++)
+                            liveBattlerCount = 0;
+                            for (currBattler = 0; currBattler < gBattlersCount; currBattler++)
                             {
                                 if (gBattleMons[currBattler].hp != 0)
                                 {
@@ -5701,12 +5702,8 @@ static void Cmd_moveend(void)
                             if (liveBattlerCount > 2)
                             {
                                 gBattlescriptCurrInstr = BattleScript_TargetBurnHeal;
-                                break;
                             }
-                            else
-                            {
-                                break;
-                            }
+                            break;
                         }
                         else
                         {

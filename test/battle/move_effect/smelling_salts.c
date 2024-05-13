@@ -37,3 +37,27 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Smelling Salts get incread power vs. paralyzed targets")
+{
+    u32 status1;
+    PARAMETRIZE { status1 = STATUS1_PARALYSIS; }
+    PARAMETRIZE { status1 = STATUS1_NONE; }
+    GIVEN {
+        PLAYER(SPECIES_CROBAT);
+        OPPONENT(SPECIES_LOTAD) { Status1(status1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SMELLING_SALTS); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SMELLING_SALTS, player);
+        if (status1 == STATUS1_PARALYSIS)
+        {
+            MESSAGE("Foe Lotad fainted!");
+        }
+        else
+        {
+            NOT MESSAGE("Foe Lotad fainted!");
+            MESSAGE("Foe Lotad used Celebrate!");
+        }
+    }
+}
