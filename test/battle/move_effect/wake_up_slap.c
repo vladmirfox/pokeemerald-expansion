@@ -20,8 +20,7 @@ SINGLE_BATTLE_TEST("Wake-Up Slap does not cure paralyzed pokemons behind substit
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_WAKE_UP_SLAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, player);
-        if (ability == ABILITY_INNER_FOCUS)
-        {
+        if (ability == ABILITY_INNER_FOCUS) {
             MESSAGE("The SUBSTITUTE took damage for Foe Seismitoad!");
             NONE_OF
             {
@@ -29,9 +28,7 @@ SINGLE_BATTLE_TEST("Wake-Up Slap does not cure paralyzed pokemons behind substit
                 MESSAGE("Foe Seismitoad woke up!");
                 STATUS_ICON(opponent, none: TRUE);
             }
-        }
-        else
-        {
+        } else {
             MESSAGE("Foe Seismitoad woke up!");
             STATUS_ICON(opponent, none: TRUE);
         }
