@@ -32,8 +32,8 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
         }
         else
         {
-                MESSAGE("Foe Seismitoad was healed of paralysis!");
-                STATUS_ICON(opponent, none: TRUE);
+            MESSAGE("Foe Seismitoad was healed of paralysis!");
+            STATUS_ICON(opponent, none: TRUE);
         }
     }
 }
