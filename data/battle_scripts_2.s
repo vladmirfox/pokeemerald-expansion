@@ -1,5 +1,6 @@
 #include "config/battle.h"
 #include "constants/battle.h"
+#include "constants/pokemon.h"
 #include "constants/battle_script_commands.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_string_ids.h"
@@ -25,10 +26,6 @@ gBattlescriptsForUsingItem::
 	.4byte BattleScript_ItemRestoreHP                @ EFFECT_ITEM_REVIVE
 	.4byte BattleScript_ItemRestorePP                @ EFFECT_ITEM_RESTORE_PP
 	.4byte BattleScript_ItemIncreaseAllStats         @ EFFECT_ITEM_INCREASE_ALL_STATS
-	.4byte BattleScript_ItemActivateAbility          @ EFFECT_ITEM_ACTIVATE_ABILITY
-	.4byte BattleScript_ItemResetStatStages          @ EFFECT_ITEM_RESET_STAT_STAGES
-	.4byte BattleScript_ItemActivateHeldItem         @ EFFECT_ITEM_ACTIVATE_HELD_ITEM
-	.4byte BattleScript_ItemDropHeldItem             @ EFFECT_ITEM_DROP_HELD_ITEM
 	.4byte BattleScript_ItemActivateAbility          @ EFFECT_ITEM_ACTIVATE_ABILITY
 	.4byte BattleScript_ItemResetStatStages          @ EFFECT_ITEM_RESET_STAT_STAGES
 	.4byte BattleScript_ItemActivateHeldItem         @ EFFECT_ITEM_ACTIVATE_HELD_ITEM
@@ -278,6 +275,21 @@ BattleScript_ItemActivateAbility::
 
 BattleScript_ItemResetStatStages::
 	call BattleScript_UseItemMessage
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_HP, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_ATK, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_DEF, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_SPEED, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_SPATK, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_SPDEF, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_ACC, 	 DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	jumpifstat BS_ATTACKER, CMP_NOT_EQUAL, STAT_EVASION, DEFAULT_STAT_STAGE, BattleScript_ItemDoResetStatStages
+	goto BattleScript_ButItFailed
+
+BattleScript_ItemDoResetStatStages::
+	playmoveanimation BS_ATTACKER, MOVE_HAZE
+	printstring STRINGID_STATCHANGESGONE
+	waitmessage B_WAIT_TIME_LONG
+	itemresetstatstages BS_ATTACKER
 	end
 
 BattleScript_ItemActivateHeldItem::
