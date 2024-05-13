@@ -61,8 +61,7 @@ SINGLE_BATTLE_TEST("Covert Cloak does not block primary effects")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
-        switch (move)
-        {
+        switch (move) {
             case MOVE_INFESTATION:
                 MESSAGE("Foe Skarmory has been afflicted with an infestation by Wobbuffet!");
                 break;
