@@ -358,132 +358,217 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
     {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_3.1bpp")}
 };
 
+// In Battle Palace, moves are chosen based on the pokemons nature rather than by the player
+// Moves are grouped into "Attack", "Defense", or "Support" (see PALACE_MOVE_GROUP_*)
+// Each nature has a certain percent chance of selecting a move from a particular group
+// and a separate percent chance for each group when at or below 50% HP
+// The table below doesn't list percentages for Support because you can subtract the other two
+// Support percentages are listed in comments off to the side instead
+#define PALACE_STYLE(atk, def, atkLow, defLow) {atk, atk + def, atkLow, atkLow + defLow}
+
+// The below data for smokescreen starts and ends with some data that belongs to battle_gfx_sfx_util.c
+
 const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
     [NATURE_HARDY] = {
         .name = COMPOUND_STRING("Hardy"),
         .pokeBlockAnim = {ANIM_HARDY, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(61, 7, 61, 7), //32% support >= 50% HP, 32% support < 50% HP
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_LONELY] = {
         .name = COMPOUND_STRING("Lonely"),
         .pokeBlockAnim = {ANIM_LONELY, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(20, 25, 84, 8), //55%,  8%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_BRAVE] = {
         .name = COMPOUND_STRING("Brave"),
         .pokeBlockAnim = {ANIM_BRAVE, AFFINE_TURN_UP},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(70, 15, 32, 60), //15%, 8%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_ADAMANT] = {
         .name = COMPOUND_STRING("Adamant"),
         .pokeBlockAnim = {ANIM_ADAMANT, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(38, 31, 70, 15), //31%, 15%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_NAUGHTY] = {
         .name = COMPOUND_STRING("Naughty"),
         .pokeBlockAnim = {ANIM_NAUGHTY, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(20, 70, 70, 22), //10%, 8%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_BOLD] = {
         .name = COMPOUND_STRING("Bold"),
         .pokeBlockAnim = {ANIM_BOLD, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(30, 20, 32, 58), //50%, 10%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_DOCILE] = {
         .name = COMPOUND_STRING("Docile"),
         .pokeBlockAnim = {ANIM_DOCILE, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
     },
     [NATURE_RELAXED] = {
         .name = COMPOUND_STRING("Relaxed"),
         .pokeBlockAnim = {ANIM_RELAXED, AFFINE_TURN_UP_AND_DOWN},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(25, 15, 75, 15), //60%, 10%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_IMPISH] = {
         .name = COMPOUND_STRING("Impish"),
         .pokeBlockAnim = {ANIM_IMPISH, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(69, 6, 28, 55), //25%, 17%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_LAX] = {
         .name = COMPOUND_STRING("Lax"),
         .pokeBlockAnim = {ANIM_LAX, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(35, 10, 29, 6), //55%, 65%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_TIMID] = {
         .name = COMPOUND_STRING("Timid"),
         .pokeBlockAnim = {ANIM_TIMID, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(62, 10, 30, 20), //28%, 50%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_HASTY] = {
         .name = COMPOUND_STRING("Hasty"),
         .pokeBlockAnim = {ANIM_HASTY, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(58, 37, 88, 6), //5%, 6%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_SERIOUS] = {
         .name = COMPOUND_STRING("Serious"),
         .pokeBlockAnim = {ANIM_SERIOUS, AFFINE_TURN_DOWN},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(34, 11, 29, 11), //55%, 60%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_JOLLY] = {
         .name = COMPOUND_STRING("Jolly"),
         .pokeBlockAnim = {ANIM_JOLLY, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(35, 5, 35, 60), //60%, 5%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_NAIVE] = {
         .name = COMPOUND_STRING("Naive"),
         .pokeBlockAnim = {ANIM_NAIVE, AFFINE_NONE},
         .backAnim = 0,
+        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
     },
     [NATURE_MODEST] = {
         .name = COMPOUND_STRING("Modest"),
         .pokeBlockAnim = {ANIM_MODEST, AFFINE_TURN_DOWN_SLOW},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(35, 45, 34, 60), //20%, 6%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_MILD] = {
         .name = COMPOUND_STRING("Mild"),
         .pokeBlockAnim = {ANIM_MILD, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(44, 50, 34, 6), //6%, 60%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_QUIET] = {
         .name = COMPOUND_STRING("Quiet"),
         .pokeBlockAnim = {ANIM_QUIET, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_BASHFUL] = {
         .name = COMPOUND_STRING("Bashful"),
         .pokeBlockAnim = {ANIM_BASHFUL, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(30, 58, 30, 58), //12%, 12%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_RASH] = {
         .name = COMPOUND_STRING("Rash"),
         .pokeBlockAnim = {ANIM_RASH, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(30, 13, 27, 6), //57%, 67%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_CALM] = {
         .name = COMPOUND_STRING("Calm"),
         .pokeBlockAnim = {ANIM_CALM, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(40, 50, 25, 62), //10%, 13%
+        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_GENTLE] = {
         .name = COMPOUND_STRING("Gentle"),
         .pokeBlockAnim = {ANIM_GENTLE, AFFINE_TURN_DOWN_SLIGHT},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(18, 70, 90, 5), //12%, 5%
+        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
     [NATURE_SASSY] = {
         .name = COMPOUND_STRING("Sassy"),
         .pokeBlockAnim = {ANIM_SASSY, AFFINE_TURN_UP_HIGH},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(88, 6, 22, 20), //6%, 58%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_CAREFUL] = {
         .name = COMPOUND_STRING("Careful"),
         .pokeBlockAnim = {ANIM_CAREFUL, AFFINE_NONE},
         .backAnim = 2,
+        .battlePalacePercents = PALACE_STYLE(42, 50, 42, 5), //8%, 53%
+        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
+        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
     [NATURE_QUIRKY] = {
         .name = COMPOUND_STRING("Quirky"),
         .pokeBlockAnim = {ANIM_QUIRKY, AFFINE_NONE},
         .backAnim = 1,
+        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
+        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
+        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
 };
 

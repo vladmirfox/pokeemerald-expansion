@@ -600,11 +600,19 @@ enum {
 #define ANIM_CAREFUL (ANIM_SASSY + 1)
 #define ANIM_QUIRKY  (ANIM_CAREFUL + 5)
 
+// In palace double battles, Pokémon have a target preference depending on nature
+#define PALACE_TARGET_STRONGER 0
+#define PALACE_TARGET_WEAKER   1
+#define PALACE_TARGET_RANDOM   2
+
 struct NatureInfo
 {
     const u8 *name;
     u8 backAnim;
     u8 pokeBlockAnim[2];
+    u8 battlePalacePercents[4];
+    u8 battlePalaceFlavorText;
+    u8 battlePalaceSmokescreen;
 };
 
 #define SPINDA_SPOT_WIDTH 16
