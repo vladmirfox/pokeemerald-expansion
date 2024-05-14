@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
     }
 }
 
-SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit twice 35% of the time")
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit twice 35% of the time")
 {
     PASSES_RANDOMLY(35, 100, RNG_HITS);
 
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit twice 35% of t
     }
 }
 
-SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit thrice 35% of the time")
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit thrice 35% of the time")
 {
     PASSES_RANDOMLY(35, 100, RNG_HITS);
 
@@ -184,7 +184,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit thrice 35% of 
     }
 }
 
-SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit four times 15% of the time")
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit four times 15% of the time")
 {
     PASSES_RANDOMLY(15, 100, RNG_HITS);
 
@@ -212,7 +212,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit four times 15%
     }
 }
 
-SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit five times 15% of the time")
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit five times 15% of the time")
 {
     PASSES_RANDOMLY(15, 100, RNG_HITS);
 
