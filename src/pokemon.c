@@ -372,8 +372,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
     [NATURE_HARDY] = {
         .name = COMPOUND_STRING("Hardy"),
-        .statUp = STAT_HP,
-        .statDown = STAT_HP,
+        .statUp = STAT_ATK,
+        .statDown = STAT_ATK,
         .backAnim = 0,
         .pokeBlockAnim = {ANIM_HARDY, AFFINE_NONE},
         .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlHardy,
@@ -438,8 +438,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_DOCILE] = {
         .name = COMPOUND_STRING("Docile"),
-        .statUp = STAT_HP,
-        .statDown = STAT_HP,
+        .statUp = STAT_DEF,
+        .statDown = STAT_DEF,
         .backAnim = 1,
         .pokeBlockAnim = {ANIM_DOCILE, AFFINE_NONE},
         .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
@@ -504,8 +504,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_SERIOUS] = {
         .name = COMPOUND_STRING("Serious"),
-        .statUp = STAT_HP,
-        .statDown = STAT_HP,
+        .statUp = STAT_SPEED,
+        .statDown = STAT_SPEED,
         .backAnim = 1,
         .pokeBlockAnim = {ANIM_SERIOUS, AFFINE_TURN_DOWN},
         .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlSerious,
@@ -570,8 +570,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_BASHFUL] = {
         .name = COMPOUND_STRING("Bashful"),
-        .statUp = STAT_HP,
-        .statDown = STAT_HP,
+        .statUp = STAT_SPATK,
+        .statDown = STAT_SPATK,
         .backAnim = 2,
         .pokeBlockAnim = {ANIM_BASHFUL, AFFINE_NONE},
         .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlBashful,
@@ -636,8 +636,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
     },
     [NATURE_QUIRKY] = {
         .name = COMPOUND_STRING("Quirky"),
-        .statUp = STAT_HP,
-        .statDown = STAT_HP,
+        .statUp = STAT_SPDEF,
+        .statDown = STAT_SPDEF,
         .backAnim = 1,
         .pokeBlockAnim = {ANIM_QUIRKY, AFFINE_NONE},
         .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
@@ -5047,7 +5047,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
 u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 {
     // Don't modify HP, Accuracy, or Evasion by nature
-    if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS)
+    if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS || gNaturesInfo[nature].statUp == gNaturesInfo[nature].statDown)
         return stat;
     else if (statIndex == gNaturesInfo[nature].statUp)
         return stat * 110 / 100;
