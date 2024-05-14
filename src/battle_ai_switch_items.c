@@ -1561,7 +1561,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
 
         // If mon is still alive, apply weather impact first, as it might KO the mon before it can heal with its item (order is weather -> item -> status)
         if (currentHP != 0)
-            currentHP = currentHP + weatherImpact;
+            currentHP = currentHP - weatherImpact;
 
         // Check if we're at a single use healing item threshold
         if (AI_DATA->switchinCandidate.battleMon.ability != ABILITY_KLUTZ && usedSingleUseHealingItem == FALSE
