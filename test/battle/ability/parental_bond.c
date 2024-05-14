@@ -150,6 +150,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit twice 35% of t
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 2 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
     THEN {
         EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
@@ -176,6 +177,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit thrice 35% of 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 3 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
     THEN {
         EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
@@ -203,6 +205,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit four times 15%
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 4 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
     THEN {
         EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
@@ -227,7 +230,9 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit five times 15%
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 5 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
     }
     THEN {
         EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
