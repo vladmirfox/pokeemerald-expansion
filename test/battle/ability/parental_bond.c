@@ -142,11 +142,17 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit twice 35% of t
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
     } SCENE {
+        MESSAGE("Kangaskhan's Kangaskhanite is reacting to 1's Mega Ring!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
+        MESSAGE("Kangaskhan has Mega Evolved into Mega Kangaskhan!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 2 time(s)!");
+    }
+    THEN {
+        EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
     }
 }
 
@@ -161,12 +167,18 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit thrice 35% of 
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
     } SCENE {
+        MESSAGE("Kangaskhan's Kangaskhanite is reacting to 1's Mega Ring!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
+        MESSAGE("Kangaskhan has Mega Evolved into Mega Kangaskhan!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 3 time(s)!");
+    }
+    THEN {
+        EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
     }
 }
 
@@ -181,13 +193,19 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit four times 15%
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
     } SCENE {
+        MESSAGE("Kangaskhan's Kangaskhanite is reacting to 1's Mega Ring!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
+        MESSAGE("Kangaskhan has Mega Evolved into Mega Kangaskhan!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 4 time(s)!");
+    }
+    THEN {
+        EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
     }
 }
 
@@ -202,7 +220,7 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit five times 15%
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+        TURN { MOVE(player, MOVE_COMET_PUNCH, megaEvolve: TRUE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
@@ -210,6 +228,9 @@ SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit five times 15%
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
         MESSAGE("Hit 5 time(s)!");
+    }
+    THEN {
+        EXPECT_EQ(player->species, SPECIES_KANGASKHAN_MEGA);
     }
 }
 
