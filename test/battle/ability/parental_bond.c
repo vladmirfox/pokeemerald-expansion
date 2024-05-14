@@ -131,6 +131,88 @@ SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod
     }
 }
 
+SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit twice 35% of the time")
+{
+    PASSES_RANDOMLY(35, 100, RNG_HITS);
+
+    GIVEN {
+        ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("Hit 2 time(s)!");
+    }
+}
+
+SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit thrice 35% of the time")
+{
+    PASSES_RANDOMLY(35, 100, RNG_HITS);
+
+    GIVEN {
+        ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("Hit 3 time(s)!");
+    }
+}
+
+SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit four times 15% of the time")
+{
+    PASSES_RANDOMLY(15, 100, RNG_HITS);
+
+    GIVEN {
+        ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("Hit 4 time(s)!");
+    }
+}
+
+SINGLE_BATTLE_TEST("With Parental Bond, multi hit moves still hit five times 15% of the time")
+{
+    PASSES_RANDOMLY(15, 100, RNG_HITS);
+
+    GIVEN {
+        ASSUME(B_MULTI_HIT_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].category != DAMAGE_CATEGORY_STATUS);
+        ASSUME(gMovesInfo[MOVE_COMET_PUNCH].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("Hit 5 time(s)!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Parental Bond tests");
 
 // Temporary TODO: Convert Bulbapedia description into tests.
