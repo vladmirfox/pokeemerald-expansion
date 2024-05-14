@@ -608,6 +608,8 @@ enum {
 struct NatureInfo
 {
     const u8 *name;
+    u8 statUp;
+    u8 statDown;
     u8 backAnim;
     u8 pokeBlockAnim[2];
     u8 battlePalacePercents[4];
@@ -681,7 +683,6 @@ extern const u8 gPPUpAddValues[];
 extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
-extern const s8 gNatureStatTable[][5];
 extern const u32 sExpCandyExperienceTable[];
 extern const struct Ability gAbilitiesInfo[];
 extern const struct NatureInfo gNaturesInfo[];
