@@ -457,7 +457,7 @@ static const u8 sText_SpAttack[] = _("Sp. Atk");
 static const u8 sText_SpDefense[] = _("Sp. Def");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
-static const u8 sText_ItemDrop[] = _("{B_ATK_NAME_WITH_PREFIX} lost it's {B_LAST_ITEM}!");
+static const u8 sText_ItemDrop[] = _("{B_ATK_NAME_WITH_PREFIX} lost it's held item!");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {

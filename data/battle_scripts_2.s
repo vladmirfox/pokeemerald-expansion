@@ -298,4 +298,9 @@ BattleScript_ItemActivateHeldItem::
 
 BattleScript_ItemDropHeldItem::
 	call BattleScript_UseItemMessage
+	jumpifcantloseitem BS_ATTACKER BattleScript_ButItFailed
+	playmoveanimation BS_ATTACKER MOVE_KNOCK_OFF
+	printstring STRINGID_ITEMDROP
+	waitmessage B_WAIT_TIME_LONG
+	removeitem BS_ATTACKER
 	end
