@@ -10112,15 +10112,3 @@ BattleScript_EffectSnow::
 	call BattleScript_CheckPrimalWeather
 	setfieldweather ENUM_WEATHER_SNOW
 	goto BattleScript_MoveWeatherChange
-
-BattleScript_ItemDrop::
-	playanimation BS_SCRIPTING, B_ANIM_ITEM_KNOCKOFF
-	printstring STRINGID_ITEMDROP
-	waitmessage B_WAIT_TIME_LONG
-	end
-
-BattleScript_ResetStats::
-	playmoveanimation BS_SCRIPTING MOVE_HAZE
-	printstring STRINGID_STATCHANGESGONE
-	waitmessage B_WAIT_TIME_LONG
-	end2

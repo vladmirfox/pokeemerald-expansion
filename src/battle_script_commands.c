@@ -16941,3 +16941,13 @@ void BS_ItemIncreaseCrit(void)
     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
+
+void BS_ItemResetStatStages(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u8 battlerId = GetBattlerForBattleScript(cmd->battler);
+    TryResetBattlerStatChanges(battlerId);
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}

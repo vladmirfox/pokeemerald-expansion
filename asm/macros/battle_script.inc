@@ -1409,6 +1409,11 @@
 	callnative BS_ItemIncreaseStat
 	.endm
 
+	.macro itemresetstatstages battler:req
+	callnative BS_ItemResetStatStages
+	.byte \battler
+	.endm
+
 	.macro itemrestorepp
 	callnative BS_ItemRestorePP
 	.endm
