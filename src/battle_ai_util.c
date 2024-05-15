@@ -3284,11 +3284,20 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     s32 dmg;
     u8 effectiveness;
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
-    if(isPartyMonAttacker)
+    
+    if (isPartyMonAttacker)
+    {
         gBattleMons[battlerAtk] = switchinCandidate;
+        SetBattlerData(battlerDef); // set known opposing battler data
+    }
     else
+    {
         gBattleMons[battlerDef] = switchinCandidate;
+        SetBattlerData(battlerAtk); // set known opposing battler data
+    }
+    
     dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA));
+    // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg;
 }
