@@ -28,6 +28,7 @@ enum {
     MON_DATA_HP_LOST,
     MON_DATA_ENCRYPT_SEPARATOR,
     MON_DATA_NICKNAME,
+    MON_DATA_NICKNAME10,
     MON_DATA_SPECIES,
     MON_DATA_HELD_ITEM,
     MON_DATA_MOVE1,
@@ -389,9 +390,9 @@ struct SpeciesInfo /*0x8C*/
  /* 0x38 */ u16 trainerScale;
  /* 0x3A */ u16 trainerOffset;
  /* 0x3C */ const u8 *description;
- /* 0x40 */ u8 bodyColor : 7;
+ /* 0x40 */ u8 bodyColor:7;
             // Graphical Data
-            u8 noFlip : 1;
+            u8 noFlip:1;
  /* 0x41 */ u8 frontAnimDelay;
  /* 0x42 */ u8 frontAnimId;
  /* 0x43 */ u8 backAnimId;
@@ -424,7 +425,8 @@ struct SpeciesInfo /*0x8C*/
  /* 0x7A */ u32 isLegendary:1;
             u32 isMythical:1;
             u32 isUltraBeast:1;
-            u32 isParadoxForm:1;
+            u32 isParadox:1;
+            u32 isTotem:1;
             u32 isMegaEvolution:1;
             u32 isPrimalReversion:1;
             u32 isUltraBurst:1;
@@ -436,8 +438,9 @@ struct SpeciesInfo /*0x8C*/
             u32 cannotBeTraded:1;
             u32 allPerfectIVs:1;
             u32 dexForceRequired:1; // This species will be taken into account for Pokédex ratings even if they have the "isMythical" flag set.
-            u32 tmIlliterate:1; // This species will be unable to learn the universal moves.
-            u32 padding4:16;
+            u32 tmIlliterate:1;     // This species will be unable to learn the universal moves.
+            u32 isFrontierBanned:1; // This species is not allowed to participate in Battle Frontier facilities.
+            u32 padding4:14;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
  /* 0x84 */ const u16 *teachableLearnset;
@@ -451,44 +454,41 @@ struct MoveInfo
     const u8 *name;
     const u8 *description;
     u16 effect;
-    u8 power;
-    u8 type:5;
-    u8 category:3;
-
+    u16 type:5;
+    u16 category:2;
+    u16 power:9; // up to 511
     u16 accuracy:7;
-    u16 recoil:7;
-    u16 criticalHitStage:2;
-    u8 padding:6; // coming soon...
-    u8 numAdditionalEffects:2; // limited to 3 - don't want to get too crazy
+    u16 target:9;
     u8 pp;
-
-    u16 target;
-    s8 priority;
     union {
         u8 effect;
         u8 powerOverride;
     } zMove;
+
+    s32 priority:4;
+    u32 recoil:7;
+    u32 strikeCount:4; // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
+    u32 criticalHitStage:2;
+    u32 alwaysCriticalHit:1;
+    u32 numAdditionalEffects:2; // limited to 3 - don't want to get too crazy
+    // 12 bits left to complete this word - continues into flags
 
     // Flags
     u32 makesContact:1;
     u32 ignoresProtect:1;
     u32 magicCoatAffected:1;
     u32 snatchAffected:1;
-    u32 mirrorMoveBanned:1;
     u32 ignoresKingsRock:1;
-    u32 alwaysCriticalHit:1;
-    u32 twoTurnMove:1;
     u32 punchingMove:1;
-    u32 sheerForceBoost:1;
     u32 bitingMove:1;
     u32 pulseMove:1;
     u32 soundMove:1;
     u32 ballisticMove:1;
-    u32 protectionMove:1;
     u32 powderMove:1;
     u32 danceMove:1;
     u32 windMove:1;
-    u32 slicingMove:1;
+    u32 slicingMove:1; // end of word
+    u32 healingMove:1;
     u32 minimizeDoubleDamage:1;
     u32 ignoresTargetAbility:1;
     u32 ignoresTargetDefenseEvasionStages:1;
@@ -499,11 +499,12 @@ struct MoveInfo
     u32 ignoreTypeIfFlyingAndUngrounded:1;
     u32 thawsUser:1;
     u32 ignoresSubstitute:1;
-    u32 strikeCount:4;  // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
     u32 forcePressure:1;
     u32 cantUseTwice:1;
+
+    // Ban flags
     u32 gravityBanned:1;
-    u32 healingMove:1;
+    u32 mirrorMoveBanned:1;
     u32 meFirstBanned:1;
     u32 mimicBanned:1;
     u32 metronomeBanned:1;
@@ -516,7 +517,7 @@ struct MoveInfo
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
 
-    u32 argument; // also coming soon
+    u32 argument;
 
     // primary/secondary effects
     const struct AdditionalEffect *additionalEffects;
@@ -531,13 +532,16 @@ struct MoveInfo
 #define EFFECTS_ARR(...) (const struct AdditionalEffect[]) {__VA_ARGS__}
 #define ADDITIONAL_EFFECTS(...) EFFECTS_ARR( __VA_ARGS__ ), .numAdditionalEffects = ARRAY_COUNT(EFFECTS_ARR( __VA_ARGS__ ))
 
+// Just a hack to make a move boosted by Sheer Force despite having no secondary effects affected
+#define SHEER_FORCE_HACK { .moveEffect = 0, .chance = 100, }
+
 struct AdditionalEffect
 {
+    u16 moveEffect;
     u8 self:1;
     u8 onlyIfTargetRaisedStats:1;
     u8 onChargeTurnOnly:1;
     u8 chance; // 0% = effect certain, primary effect
-    u16 moveEffect;
 };
 
 struct Ability
@@ -655,8 +659,6 @@ void SetMonMoveSlot(struct Pokemon *mon, u16 move, u8 slot);
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, u16 move, u8 slot);
 void GiveMonInitialMoveset(struct Pokemon *mon);
 void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
-void GiveMonInitialMoveset_Fast(struct Pokemon *mon);
-void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon);
 u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove);
 void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move);
 void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
@@ -777,8 +779,6 @@ u8 GetOpposingLinkMultiBattlerId(bool8 rightSide, u8 multiplayerId);
 u16 FacilityClassToPicIndex(u16 facilityClass);
 u16 PlayerGenderToFrontTrainerPicId(u8 playerGender);
 void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality);
-const u8 *GetTrainerClassNameFromId(u16 trainerId);
-const u8 *GetTrainerNameFromId(u16 trainerId);
 bool8 HasTwoFramesAnimation(u16 species);
 struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode);
 void DestroyMonSpritesGfxManager(u8 managerId);
