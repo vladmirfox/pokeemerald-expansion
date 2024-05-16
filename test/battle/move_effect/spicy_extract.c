@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Spicy Extract raises target's Attack by 2 stages and lowers 
     }
 }
 
-SINGLE_BATTLE_TEST("[1]Spicy Extract is prevented by target's ability if it's Atk stat is maxed out")
+SINGLE_BATTLE_TEST("Spicy Extract is prevented by target's ability if it's Attack stat is maxed out")
 {
     u16 ability;
 
