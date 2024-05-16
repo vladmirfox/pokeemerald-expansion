@@ -271,6 +271,7 @@ BattleScript_TrainerBSlideMsgEnd2::
 
 BattleScript_ItemActivateAbility::
 	call BattleScript_UseItemMessage
+	switchinabilities BS_ATTACKER
 	end
 
 BattleScript_ItemResetStatStages::
