@@ -2,6 +2,7 @@
 #define GUARD_BATTLE_TERASTAL_H
 
 void ActivateTera(u32 battler);
+void ApplyBattlerVisualsForTeraAnim(u32 battler);
 bool32 CanTerastallize(u32 battler);
 u32 GetBattlerTeraType(u32 battler);
 void ExpendTypeStellarBoost(u32 battler, u32 type);
