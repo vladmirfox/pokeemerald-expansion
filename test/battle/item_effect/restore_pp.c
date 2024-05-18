@@ -67,7 +67,8 @@ SINGLE_BATTLE_TEST("Max Elixir restores the PP of all of a battler's moves fully
 
 TO_DO_BATTLE_TEST("Ether won't work if the selected move has all its PP")
 
-SINGLE_BATTLE_TEST("Elixir can be used if at least one move is missing PP in any slot") // As it works right now, this test can't test what it's suppossed to, since the relevant check doesn't run in the testing system.
+TO_DO_BATTLE_TEST("Elixir can be used if at least one move is missing PP in any slot") // The test system can't currently test this, in a test the item is used without running useability checks
+/*
 {
     u8 move1PP;
     u8 move2PP;
@@ -91,3 +92,4 @@ SINGLE_BATTLE_TEST("Elixir can be used if at least one move is missing PP in any
         EXPECT_EQ(player->pp[3], 10);
     }
 }
+*/
