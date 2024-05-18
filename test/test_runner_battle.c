@@ -2063,17 +2063,20 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
 
     if (ctx->explicitGimmick && ctx->gimmick != GIMMICK_NONE)
     {
-        // Do some very simple screening for bad usage.
+        // Screen for bad item usage as the usual checks do not function before the battle begins.
         u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        u32 holdEffect = ItemId_GetHoldEffect(item);
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
-        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && ItemId_GetHoldEffect(item) != HOLD_EFFECT_MEGA_STONE, "Cannot Mega Evolve without a Mega Stone");
-        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetHoldEffect(item) != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
+        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE, "Cannot Mega Evolve without a Mega Stone");
+        INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && holdEffect != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type
                    && GetSignatureZMove(*moveId, species, item) == MOVE_NONE
                    && *moveId != MOVE_PHOTON_GEYSER, // exception because test won't recognize Ultra Necrozma pre-Burst
                    "Cannot turn %S into a Z-Move with %S", GetMoveName(ctx->move), ItemId_GetName(item));
+        INVALID_IF(ctx->gimmick != GIMMICK_MEGA && holdEffect == HOLD_EFFECT_MEGA_STONE, "Cannot use another gimmick while holding a Mega Stone");
+        INVALID_IF(ctx->gimmick != GIMMICK_Z_MOVE && ctx->gimmick != GIMMICK_ULTRA_BURST && holdEffect == HOLD_EFFECT_Z_CRYSTAL, "Cannot use another gimmick while holding a Z-Crystal");
 
-        DATA.chosenGimmick[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]] = ctx->gimmick;
+        DATA.chosenGimmick[GetBattlerSide(battlerId)][DATA.currentMonIndexes[battlerId]] = ctx->gimmick;
         *moveSlot |= RET_GIMMICK;    
     }
 }

@@ -45,12 +45,11 @@ bool32 CanActivateGimmick(u32 battler, enum Gimmick gimmick)
 // Returns whether the player has a gimmick selected while in the move selection menu.
 bool32 IsGimmickSelected(u32 battler, enum Gimmick gimmick)
 {
-    #if TESTING
     // There's no player select in tests, but some gimmicks need to test choice before they are fully activated.
-    return (gBattleStruct->gimmick.toActivate & gBitTable[battler]) && gBattleStruct->gimmick.usableGimmick[battler] == gimmick;
-    #else
-    return gBattleStruct->gimmick.usableGimmick[battler] == gimmick && gBattleStruct->gimmick.playerSelect;
-    #endif
+    if (TESTING)
+        return (gBattleStruct->gimmick.toActivate & gBitTable[battler]) && gBattleStruct->gimmick.usableGimmick[battler] == gimmick;
+    else
+        return gBattleStruct->gimmick.usableGimmick[battler] == gimmick && gBattleStruct->gimmick.playerSelect;
 }
 
 // Sets a battler as having a gimmick active using their party index.
@@ -68,10 +67,18 @@ enum Gimmick GetActiveGimmick(u32 battler)
 // Returns whether a trainer mon is intended to use an unrestrictive gimmick via .useGimmick (i.e Tera).
 bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
 {
+    // There are no trainer party settings in battles, but the AI needs to know which gimmick to use.
     if (TESTING)
+    {
         return gimmick == TestRunner_Battle_GetChosenGimmick(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
-    else if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-        return TRUE; // the player can do whatever they want
+    }
+    // The player can bypass these checks because they can choose through the controller.
+    else if (GetBattlerSide(battler) == B_SIDE_PLAYER
+             && !((gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
+    {
+        return TRUE;
+    }
+    // Check the trainer party data to see if a gimmick is intended.
     else
     {
         bool32 isSecondTrainer = (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT) && (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT;

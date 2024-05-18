@@ -208,8 +208,8 @@ void HandleAction_UseMove(void)
     // check max move used
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
     {
-        gCurrentMove = gChosenMove = GetMaxMove(gBattlerAttacker, gCurrentMove);
         gBattleStruct->categoryOverride = gMovesInfo[gCurrentMove].category;
+        gCurrentMove = gChosenMove = GetMaxMove(gBattlerAttacker, gCurrentMove);
     }
 
     moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
@@ -8289,13 +8289,6 @@ u32 GetBattlerHoldEffectIgnoreAbility(u32 battler, bool32 checkNegating)
 
 u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 checkAbility)
 {
-    if (TESTING)
-    {
-        struct Pokemon *mon = GetBattlerParty(battler);
-        u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
-        return ItemId_GetHoldEffect(item);
-    }
-
     if (checkNegating)
     {
         if (gStatuses3[battler] & STATUS3_EMBARGO)

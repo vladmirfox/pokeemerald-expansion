@@ -104,7 +104,7 @@ bool32 CanDynamax(u32 battler)
         return FALSE;
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)
+    if ((holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE) && !TESTING)
         return FALSE;
 
     // TODO: Cannot Dynamax in a Max Raid if you don't have Dynamax Energy.

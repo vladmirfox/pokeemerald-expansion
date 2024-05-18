@@ -552,10 +552,11 @@ static void OpponentHandleChooseMove(u32 battler)
                         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                             gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
                     }
-
                     // If opponent can and should use a gimmick (considering trainer data), do it
                     if (gBattleStruct->gimmick.usableGimmick[battler] != GIMMICK_NONE)
+                    {
                         BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (RET_GIMMICK) | (gBattlerTarget << 8));
+                    }
                     else
                         BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
                 }
