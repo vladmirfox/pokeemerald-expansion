@@ -2067,7 +2067,7 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
         u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
         u32 holdEffect = ItemId_GetHoldEffect(item);
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
-        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE, "Cannot Mega Evolve without a Mega Stone");
+        INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && holdEffect != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type
                    && GetSignatureZMove(*moveId, species, item) == MOVE_NONE
