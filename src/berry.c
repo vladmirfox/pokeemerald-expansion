@@ -76,6 +76,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FIRE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 20,
     },
 
     [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] =
@@ -101,6 +103,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_WATER,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 20,
     },
 
     [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX] =
@@ -126,6 +130,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ELECTRIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 20,
     },
 
     [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX] =
@@ -151,6 +157,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GRASS,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 20,
     },
 
     [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -176,6 +184,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ICE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 20,
     },
 
     [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX] =
@@ -201,6 +211,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FIGHTING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 30,
     },
 
     [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX] =
@@ -226,6 +238,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_POISON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 30,
     },
 
     [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] =
@@ -251,6 +265,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GROUND,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 30,
     },
 
     [ITEM_LUM_BERRY - FIRST_BERRY_INDEX] =
@@ -276,6 +292,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FLYING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 30,
     },
 
     [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] =
@@ -301,6 +319,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_PSYCHIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 50,
+        .berryCrushPowder = 30,
     },
 
     [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX] =
@@ -326,6 +346,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_BUG,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 60,
+        .berryCrushPowder = 50,
     },
 
     [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX] =
@@ -351,6 +373,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ROCK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 60,
+        .berryCrushPowder = 50,
     },
 
     [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX] =
@@ -376,6 +400,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GHOST,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 60,
+        .berryCrushPowder = 50,
     },
 
     [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX] =
@@ -401,6 +427,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_DRAGON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 60,
+        .berryCrushPowder = 50,
     },
 
     [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -426,6 +454,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_DARK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 60,
+        .berryCrushPowder = 50,
     },
 
     [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX] =
@@ -451,6 +481,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_STEEL,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .berryCrushDifficulty = 80,
+        .berryCrushPowder = 70,
     },
 
     [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX] =
@@ -476,6 +508,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FIRE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 80,
+        .berryCrushPowder = 70,
     },
 
     [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX] =
@@ -501,6 +535,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_WATER,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 80,
+        .berryCrushPowder = 70,
     },
 
     [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -526,6 +562,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ELECTRIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 80,
+        .berryCrushPowder = 70,
     },
 
     [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX] =
@@ -551,6 +589,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GRASS,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 80,
+        .berryCrushPowder = 70,
     },
 
     [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX] =
@@ -576,6 +616,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ICE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 100,
+        .berryCrushPowder = 100,
     },
 
     [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] =
@@ -601,6 +643,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FIGHTING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 100,
+        .berryCrushPowder = 100,
     },
 
     [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] =
@@ -626,6 +670,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_POISON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 100,
+        .berryCrushPowder = 100,
     },
 
     [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] =
@@ -651,6 +697,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GROUND,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 100,
+        .berryCrushPowder = 100,
     },
 
     [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX] =
@@ -676,6 +724,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FLYING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 100,
+        .berryCrushPowder = 100,
     },
 
     [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] =
@@ -701,6 +751,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_PSYCHIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 130,
+        .berryCrushPowder = 150,
     },
 
     [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX] =
@@ -726,6 +778,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_BUG,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 130,
+        .berryCrushPowder = 150,
     },
 
     [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] =
@@ -751,6 +805,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ROCK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 130,
+        .berryCrushPowder = 150,
     },
 
     [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] =
@@ -776,6 +832,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_GHOST,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 130,
+        .berryCrushPowder = 150,
     },
 
     [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -801,6 +859,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_DRAGON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 130,
+        .berryCrushPowder = 150,
     },
 
     [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] =
@@ -826,6 +886,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_DARK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 160,
+        .berryCrushPowder = 250,
     },
 
     [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] =
@@ -851,6 +913,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_STEEL,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
+        .berryCrushDifficulty = 160,
+        .berryCrushPowder = 250,
     },
 
     [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -876,6 +940,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_FIRE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 160,
+        .berryCrushPowder = 250,
     },
 
     [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX] =
@@ -901,6 +967,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_WATER,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 160,
+        .berryCrushPowder = 250,
     },
 
     [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX] =
@@ -926,6 +994,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 6,
         .naturalGiftType = TYPE_ELECTRIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 160,
+        .berryCrushPowder = 250,
     },
 
     [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
@@ -1401,6 +1471,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_GRASS,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 180,
+        .berryCrushPowder = 500,
     },
 
     [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] =
@@ -1426,6 +1498,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_ICE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 180,
+        .berryCrushPowder = 500,
     },
 
     [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX] =
@@ -1451,6 +1525,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_FIGHTING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 180,
+        .berryCrushPowder = 500,
     },
 
     [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] =
@@ -1476,6 +1552,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_POISON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 180,
+        .berryCrushPowder = 500,
     },
 
     [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] =
@@ -1501,6 +1579,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_GROUND,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 180,
+        .berryCrushPowder = 500,
     },
 
     [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] =
@@ -1526,6 +1606,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 1,
         .naturalGiftType = TYPE_FLYING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 200,
+        .berryCrushPowder = 750,
     },
 
     [ITEM_STARF_BERRY - FIRST_BERRY_INDEX] =
@@ -1551,6 +1633,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 1,
         .naturalGiftType = TYPE_PSYCHIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .berryCrushDifficulty = 200,
+        .berryCrushPowder = 750,
     },
 
     [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] =
@@ -1749,53 +1833,9 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
+        .berryCrushDifficulty = 150,
+        .berryCrushPowder = 200,
     },
-};
-
-const struct BerryCrushBerryData gBerryCrush_BerryData[] = {
-    [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  20},
-    [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  20},
-    [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  20},
-    [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  20},
-    [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  20},
-    [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  50, .powder =  30},
-    [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
-    [ITEM_LUM_BERRY - FIRST_BERRY_INDEX]             = {.difficulty =  50, .powder =  30},
-    [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
-    [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  60, .powder =  50},
-    [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  60, .powder =  50},
-    [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  60, .powder =  50},
-    [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  60, .powder =  50},
-    [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  50},
-    [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  80, .powder =  70},
-    [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  80, .powder =  70},
-    [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  80, .powder =  70},
-    [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  80, .powder =  70},
-    [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  80, .powder =  70},
-    [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 100, .powder = 100},
-    [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 100, .powder = 100},
-    [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 100, .powder = 100},
-    [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 100, .powder = 100},
-    [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 100, .powder = 100},
-    [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 130, .powder = 150},
-    [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 150},
-    [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 130, .powder = 150},
-    [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 130, .powder = 150},
-    [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 150},
-    [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 160, .powder = 250},
-    [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 160, .powder = 250},
-    [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 160, .powder = 250},
-    [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 160, .powder = 250},
-    [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 160, .powder = 250},
-    [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
-    [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
-    [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 180, .powder = 500},
-    [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
-    [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
-    [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 200, .powder = 750},
-    [ITEM_STARF_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 200, .powder = 750},
-    [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] = {.difficulty = 150, .powder = 200}
 };
 
 const struct BerryTree gBlankBerryTree = {};

@@ -27,6 +27,8 @@ struct Berry
     u8 drainRate;
     u8 naturalGiftType;
     u8 naturalGiftPower;
+    u8 berryCrushDifficulty; // The number of A presses required to crush it
+    u16 berryCrushPowder;
 };
 
 // with no const fields
@@ -54,6 +56,8 @@ struct Berry2
     u8 drainRate;
     u8 naturalGiftType;
     u8 naturalGiftPower;
+    u8 berryCrushDifficulty; // The number of A presses required to crush it
+    u16 berryCrushPowder;
 };
 
 struct EnigmaBerry
