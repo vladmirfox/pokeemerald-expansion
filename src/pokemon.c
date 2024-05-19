@@ -370,7 +370,8 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
 
 const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 {
-    [NATURE_HARDY] = {
+    [NATURE_HARDY] =
+    {
         .name = COMPOUND_STRING("Hardy"),
         .statUp = STAT_ATK,
         .statDown = STAT_ATK,
@@ -381,7 +382,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_LONELY] = {
+    [NATURE_LONELY] =
+    {
         .name = COMPOUND_STRING("Lonely"),
         .statUp = STAT_ATK,
         .statDown = STAT_DEF,
@@ -392,7 +394,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_BRAVE] = {
+    [NATURE_BRAVE] =
+    {
         .name = COMPOUND_STRING("Brave"),
         .statUp = STAT_ATK,
         .statDown = STAT_SPEED,
@@ -403,7 +406,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_ADAMANT] = {
+    [NATURE_ADAMANT] =
+    {
         .name = COMPOUND_STRING("Adamant"),
         .statUp = STAT_ATK,
         .statDown = STAT_SPATK,
@@ -414,7 +418,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_NAUGHTY] = {
+    [NATURE_NAUGHTY] =
+    {
         .name = COMPOUND_STRING("Naughty"),
         .statUp = STAT_ATK,
         .statDown = STAT_SPDEF,
@@ -425,7 +430,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_BOLD] = {
+    [NATURE_BOLD] =
+    {
         .name = COMPOUND_STRING("Bold"),
         .statUp = STAT_DEF,
         .statDown = STAT_ATK,
@@ -436,7 +442,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_DOCILE] = {
+    [NATURE_DOCILE] =
+    {
         .name = COMPOUND_STRING("Docile"),
         .statUp = STAT_DEF,
         .statDown = STAT_DEF,
@@ -447,7 +454,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
     },
-    [NATURE_RELAXED] = {
+    [NATURE_RELAXED] =
+    {
         .name = COMPOUND_STRING("Relaxed"),
         .statUp = STAT_DEF,
         .statDown = STAT_SPEED,
@@ -458,7 +466,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_IMPISH] = {
+    [NATURE_IMPISH] =
+    {
         .name = COMPOUND_STRING("Impish"),
         .statUp = STAT_DEF,
         .statDown = STAT_SPATK,
@@ -469,7 +478,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_LAX] = {
+    [NATURE_LAX] =
+    {
         .name = COMPOUND_STRING("Lax"),
         .statUp = STAT_DEF,
         .statDown = STAT_SPDEF,
@@ -480,7 +490,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_TIMID] = {
+    [NATURE_TIMID] =
+    {
         .name = COMPOUND_STRING("Timid"),
         .statUp = STAT_SPEED,
         .statDown = STAT_ATK,
@@ -491,7 +502,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_HASTY] = {
+    [NATURE_HASTY] =
+    {
         .name = COMPOUND_STRING("Hasty"),
         .statUp = STAT_SPEED,
         .statDown = STAT_DEF,
@@ -502,7 +514,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_SERIOUS] = {
+    [NATURE_SERIOUS] =
+    {
         .name = COMPOUND_STRING("Serious"),
         .statUp = STAT_SPEED,
         .statDown = STAT_SPEED,
@@ -513,7 +526,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_JOLLY] = {
+    [NATURE_JOLLY] =
+    {
         .name = COMPOUND_STRING("Jolly"),
         .statUp = STAT_SPEED,
         .statDown = STAT_SPATK,
@@ -524,7 +538,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_NAIVE] = {
+    [NATURE_NAIVE] =
+    {
         .name = COMPOUND_STRING("Naive"),
         .statUp = STAT_SPEED,
         .statDown = STAT_SPDEF,
@@ -535,7 +550,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
     },
-    [NATURE_MODEST] = {
+    [NATURE_MODEST] =
+    {
         .name = COMPOUND_STRING("Modest"),
         .statUp = STAT_SPATK,
         .statDown = STAT_ATK,
@@ -546,7 +562,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_MILD] = {
+    [NATURE_MILD] =
+    {
         .name = COMPOUND_STRING("Mild"),
         .statUp = STAT_SPATK,
         .statDown = STAT_DEF,
@@ -557,7 +574,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_QUIET] = {
+    [NATURE_QUIET] =
+    {
         .name = COMPOUND_STRING("Quiet"),
         .statUp = STAT_SPATK,
         .statDown = STAT_SPEED,
@@ -568,7 +586,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_BASHFUL] = {
+    [NATURE_BASHFUL] =
+    {
         .name = COMPOUND_STRING("Bashful"),
         .statUp = STAT_SPATK,
         .statDown = STAT_SPATK,
@@ -579,7 +598,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_RASH] = {
+    [NATURE_RASH] =
+    {
         .name = COMPOUND_STRING("Rash"),
         .statUp = STAT_SPATK,
         .statDown = STAT_SPDEF,
@@ -590,7 +610,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_CALM] = {
+    [NATURE_CALM] =
+    {
         .name = COMPOUND_STRING("Calm"),
         .statUp = STAT_SPDEF,
         .statDown = STAT_ATK,
@@ -601,7 +622,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_GENTLE] = {
+    [NATURE_GENTLE] =
+    {
         .name = COMPOUND_STRING("Gentle"),
         .statUp = STAT_SPDEF,
         .statDown = STAT_DEF,
@@ -612,7 +634,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
         .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
     },
-    [NATURE_SASSY] = {
+    [NATURE_SASSY] =
+    {
         .name = COMPOUND_STRING("Sassy"),
         .statDown = STAT_SPDEF,
         .statUp = STAT_SPEED,
@@ -623,7 +646,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_CAREFUL] = {
+    [NATURE_CAREFUL] =
+    {
         .name = COMPOUND_STRING("Careful"),
         .statUp = STAT_SPDEF,
         .statDown = STAT_SPATK,
@@ -634,7 +658,8 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
         .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
         .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
     },
-    [NATURE_QUIRKY] = {
+    [NATURE_QUIRKY] =
+    {
         .name = COMPOUND_STRING("Quirky"),
         .statUp = STAT_SPDEF,
         .statDown = STAT_SPDEF,
