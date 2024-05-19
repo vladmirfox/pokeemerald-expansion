@@ -10864,10 +10864,8 @@ void TryRestoreHeldItems(void)
             lostItem = gBattleStruct->itemLost[i].originalItem;
 
             // Check if the lost item should be restored
-            bool shouldRestore = (lostItem != ITEM_NONE || (B_PREVENT_TRAINER_ITEM_LOSS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER))
-                && ItemId_GetPocket(lostItem) != POCKET_BERRIES;
-
-            if (shouldRestore)
+            if ((lostItem != ITEM_NONE || (B_PREVENT_TRAINER_ITEM_LOSS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                && ItemId_GetPocket(lostItem) != POCKET_BERRIES)
             {
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);
             }
