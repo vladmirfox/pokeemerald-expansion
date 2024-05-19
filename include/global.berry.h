@@ -25,10 +25,10 @@ struct Berry
     u8 sour;
     u8 smoothness;
     u8 drainRate;
-    u8 naturalGiftType;
-    u8 naturalGiftPower;
     u8 berryCrushDifficulty; // The number of A presses required to crush it
     u16 berryCrushPowder;
+    u8 naturalGiftType;
+    u8 naturalGiftPower;
     const u32 *itemMenuTiles;
     const u32 *itemMenuPalette;
     const struct SpriteFrameImage *berryTreePicTable;
@@ -58,10 +58,10 @@ struct Berry2
     u8 sour;
     u8 smoothness;
     u8 drainRate;
-    u8 naturalGiftType;
-    u8 naturalGiftPower;
     u8 berryCrushDifficulty; // The number of A presses required to crush it
     u16 berryCrushPowder;
+    u8 naturalGiftType;
+    u8 naturalGiftPower;
     const u32 *itemMenuTiles;
     const u32 *itemMenuPalette;
     const struct SpriteFrameImage *berryTreePicTable;
