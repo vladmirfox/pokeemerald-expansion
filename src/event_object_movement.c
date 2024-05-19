@@ -1895,8 +1895,8 @@ static void SetBerryTreeGraphics(struct ObjectEvent *objectEvent, struct Sprite 
             berryId = 0;
 
         ObjectEventSetGraphicsId(objectEvent, gBerryTreeObjectEventGraphicsIdTable[berryStage]);
-        sprite->images = gBerryTreePicTablePointers[berryId];
-        sprite->oam.paletteNum = gBerryTreePaletteSlotTablePointers[berryId][berryStage];
+        sprite->images = gBerries[berryId].berryTreePicTable;
+        sprite->oam.paletteNum = gBerries[berryId].berryTreePalette[berryStage];
         StartSpriteAnim(sprite, berryStage);
     }
 }

@@ -31,6 +31,8 @@ struct Berry
     u16 berryCrushPowder;
     const u32 *itemMenuTiles;
     const u32 *itemMenuPalette;
+    const struct SpriteFrameImage *berryTreePicTable;
+    const u8 *berryTreePalette;
 };
 
 // with no const fields
@@ -62,6 +64,8 @@ struct Berry2
     u16 berryCrushPowder;
     const u32 *itemMenuTiles;
     const u32 *itemMenuPalette;
+    const struct SpriteFrameImage *berryTreePicTable;
+    const u8 *berryTreePalette;
 };
 
 struct EnigmaBerry
