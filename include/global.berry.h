@@ -25,6 +25,8 @@ struct Berry
     u8 sour;
     u8 smoothness;
     u8 drainRate;
+    u8 naturalGiftType;
+    u8 naturalGiftPower;
 };
 
 // with no const fields
@@ -50,6 +52,8 @@ struct Berry2
     u8 sour;
     u8 smoothness;
     u8 drainRate;
+    u8 naturalGiftType;
+    u8 naturalGiftPower;
 };
 
 struct EnigmaBerry

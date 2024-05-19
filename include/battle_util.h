@@ -61,14 +61,6 @@
 #define IS_WHOLE_SIDE_ALIVE(battler)    ((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define IS_ALIVE_AND_PRESENT(battler)   (IsBattlerAlive(battler) && IsBattlerSpritePresent(battler))
 
-// for Natural Gift and Fling
-struct TypePower
-{
-    u8 type;
-    u8 power;
-    u16 effect;
-};
-
 enum
 {
     CANCELLER_FLAGS,
@@ -98,8 +90,6 @@ enum
     CANCELLER_PSYCHIC_TERRAIN,
     CANCELLER_END2,
 };
-
-extern const struct TypePower gNaturalGiftTable[];
 
 void HandleAction_ThrowBall(void);
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move);
