@@ -10855,16 +10855,17 @@ void TryRestoreHeldItems(void)
 {
     u32 i;
     u16 lostItem = ITEM_NONE;
+    bool32 returnNPCItems = B_RETURN_STOLEN_NPC_ITEMS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER;
     
     for (i = 0; i < PARTY_SIZE; i++)
     {
         // Check if held items should be restored after battle based on generation
-        if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || gBattleStruct->itemLost[i].stolen)
+        if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || gBattleStruct->itemLost[i].stolen || returnNPCItems)
         {
             lostItem = gBattleStruct->itemLost[i].originalItem;
 
             // Check if the lost item should be restored
-            if ((lostItem != ITEM_NONE || (B_NO_TRAINER_ITEM_STEALING >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+            if ((lostItem != ITEM_NONE || returnNPCItems)
                 && ItemId_GetPocket(lostItem) != POCKET_BERRIES)
             {
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);
