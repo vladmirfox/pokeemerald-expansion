@@ -17,5 +17,5 @@
 
 	.section .rodata
 
-	.include "data/hoenn/maps/events.inc"
+	.include "data/events.inc"
 

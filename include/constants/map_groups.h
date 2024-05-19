@@ -2,7 +2,7 @@
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
 //
-// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json
 //
 
 // gMapGroup_TownsAndRoutes

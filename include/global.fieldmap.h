@@ -15,7 +15,7 @@
 
 // Masks/shifts for metatile attributes
 // Metatile attributes consist of an 8 bit behavior value, 4 unused bits, and a 4 bit layer type value
-// This is the data stored in each data/hoenn/tilesets/*/*/*/metatile_attributes.bin file
+// This is the data stored in each data/tilesets/*/*/*/metatile_attributes.bin file
 #define METATILE_ATTR_BEHAVIOR_MASK 0x00FF // Bits 0-7
 #define METATILE_ATTR_LAYER_MASK    0xF000 // Bits 12-15
 #define METATILE_ATTR_LAYER_SHIFT   12

@@ -31,6 +31,13 @@ using json11::Json;
 
 string version;
 
+namespace {
+    string replaceFileExtension(const string& path, const string& extension) {
+        size_t lastdot = path.find_last_of(".");
+        return path.substr(0, lastdot) + "." + extension; 
+    }
+}
+
 string read_text_file(string filepath) {
     ifstream in_file(filepath);
 
@@ -113,7 +120,7 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/" << mapName << "/map.json\n@\n\n";
 
     text << mapName << ":\n"
          << "\t.4byte " << json_to_string(layout, "name") << "\n";
@@ -169,7 +176,7 @@ string generate_map_connections_text(Json map_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/" << mapName << "/map.json\n@\n\n";
 
     text << mapName << "_MapConnectionsList:\n";
 
@@ -195,7 +202,7 @@ string generate_map_events_text(Json map_data) {
 
     string mapName = json_to_string(map_data, "name");
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/" << mapName << "/map.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/" << mapName << "/map.json\n@\n\n";
 
     string objects_label, warps_label, coords_label, bgs_label;
 
@@ -363,7 +370,7 @@ void process_map(string map_filepath, string layouts_filepath) {
 string generate_groups_text(Json groups_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json\n@\n\n";
 
     for (auto &key : groups_data["group_order"].array_items()) {
         string group = json_to_string(key);
@@ -404,9 +411,9 @@ string generate_connections_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json\n@\n\n";
 
-    for (Json map_name : map_names)
+    for (Json map_name : map_names) // TODO(@traeighsea): Should identify the correct region
         text << "\t.include \"data/hoenn/maps/" << json_to_string(map_name) << "/connections.inc\"\n";
 
     return text.str();
@@ -421,9 +428,9 @@ string generate_headers_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json\n@\n\n";
 
-    for (string map_name : map_names)
+    for (string map_name : map_names) // TODO(@traeighsea): Should identify the correct region
         text << "\t.include \"data/hoenn/maps/" << map_name << "/header.inc\"\n";
 
     return text.str();
@@ -438,9 +445,9 @@ string generate_events_text(Json groups_data) {
 
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json\n@\n\n";
 
-    for (string map_name : map_names)
+    for (string map_name : map_names) // TODO(@traeighsea): Should identify the correct region
         text << "\t.include \"data/hoenn/maps/" << map_name << "/events.inc\"\n";
 
     return text.str();
@@ -456,7 +463,7 @@ string generate_map_constants_text(string groups_filepath, Json groups_data) {
     text << "#ifndef GUARD_CONSTANTS_MAP_GROUPS_H\n"
          << "#define GUARD_CONSTANTS_MAP_GROUPS_H\n\n";
 
-    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/maps/map_groups.json\n//\n\n";
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/maps/map_groups.json\n//\n\n";
 
     int group_num = 0;
     vector<int> map_count_vec; //DEBUG
@@ -470,7 +477,8 @@ string generate_map_constants_text(string groups_filepath, Json groups_data) {
         int map_count = 0; //DEBUG
 
         for (auto &map_name : groups_data[groupName].array_items()) {
-            string map_filepath = file_dir + json_to_string(map_name) + dir_separator + "map.json";
+            // TODO(@traeighsea): Use the region name
+            string map_filepath = file_dir + "hoenn" + dir_separator + "maps" + dir_separator + json_to_string(map_name) + dir_separator + "map.json";
             string err_str;
             Json map_data = Json::parse(read_text_file(map_filepath), err_str);
             if (map_data == Json())
@@ -502,7 +510,8 @@ string generate_map_constants_text(string groups_filepath, Json groups_data) {
         mapCountText << map_count_vec[i] << ", ";            //DEBUG
     }                                                        //DEBUG
     mapCountText << "0};\n";                                 //DEBUG
-    write_text_file(file_dir + ".." + s + ".." + s + "src" + s + "data" + s + "map_group_count.h", mapCountText.str());
+    // TODO(@traeighsea): pls don't use ../ to go to the correct directory...
+    write_text_file(file_dir + ".." + s + "src" + s + "data" + s + "map_group_count.h", mapCountText.str());
 
     return text.str();
 }
@@ -527,13 +536,14 @@ void process_groups(string groups_filepath) {
     write_text_file(file_dir + "connections.inc", connections_text);
     write_text_file(file_dir + "headers.inc", headers_text);
     write_text_file(file_dir + "events.inc", events_text);
-    write_text_file(file_dir + ".." + s + ".." + s + "include" + s + "constants" + s + "map_groups.h", map_header_text);
+    // TODO(@traeighsea): pls don't use ../ to go to the correct directory...
+    write_text_file(file_dir + ".." + s + "include" + s + "constants" + s + "map_groups.h", map_header_text);
 }
 
 string generate_layout_headers_text(Json layouts_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/layouts/layouts.json\n@\n\n";
 
     for (auto &layout : layouts_data["layouts"].array_items()) {
         if (layout == Json::object()) continue;
@@ -541,9 +551,9 @@ string generate_layout_headers_text(Json layouts_data) {
         string border_label = layoutName + "_Border";
         string blockdata_label = layoutName + "_Blockdata";
         text << border_label << "::\n"
-             << "\t.incbin \"" << json_to_string(layout, "border_filepath") << "\"\n\n"
+             << "\t.incbin \"" << replaceFileExtension(json_to_string(layout, "border_filepath"), "bin") << "\"\n\n"
              << blockdata_label << "::\n"
-             << "\t.incbin \"" << json_to_string(layout, "blockdata_filepath") << "\"\n\n"
+             << "\t.incbin \"" << replaceFileExtension(json_to_string(layout, "blockdata_filepath"), "bin") << "\"\n\n"
              << "\t.align 2\n"
              << layoutName << "::\n"
              << "\t.4byte " << json_to_string(layout, "width") << "\n"
@@ -566,7 +576,7 @@ string generate_layout_headers_text(Json layouts_data) {
 string generate_layouts_table_text(Json layouts_data) {
     ostringstream text;
 
-    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n@\n\n";
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/layouts/layouts.json\n@\n\n";
 
     text << "\t.align 2\n"
          << json_to_string(layouts_data, "layouts_table_label") << "::\n";
@@ -586,7 +596,7 @@ string generate_layouts_constants_text(Json layouts_data) {
     text << "#ifndef GUARD_CONSTANTS_LAYOUTS_H\n"
          << "#define GUARD_CONSTANTS_LAYOUTS_H\n\n";
 
-    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json\n//\n\n";
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/layouts/layouts.json\n//\n\n";
 
     int i = 1;
     for (auto &layout : layouts_data["layouts"].array_items()) {
@@ -616,7 +626,8 @@ void process_layouts(string layouts_filepath) {
 
     write_text_file(file_dir + "layouts.inc", layout_headers_text);
     write_text_file(file_dir + "layouts_table.inc", layouts_table_text);
-    write_text_file(file_dir + ".." + s + ".." + s + "include" + s + "constants" + s + "layouts.h", layouts_constants_text);
+    // TODO(@traeighsea): pls don't use ../ to go to the correct directory...
+    write_text_file(file_dir + ".." + s + "include" + s + "constants" + s + "layouts.h", layouts_constants_text);
 }
 
 int main(int argc, char *argv[]) {

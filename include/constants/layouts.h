@@ -2,7 +2,7 @@
 #define GUARD_CONSTANTS_LAYOUTS_H
 
 //
-// DO NOT MODIFY THIS FILE! It is auto-generated from data/hoenn/layouts/layouts.json
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/<region>/layouts/layouts.json
 //
 
 #define LAYOUT_PETALBURG_CITY 1

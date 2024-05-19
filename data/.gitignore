@@ -1,0 +1,10 @@
+layouts.inc
+layouts_table.inc
+connections.inc
+events.inc
+groups.inc
+headers.inc
+header.inc
+/layouts.json
+/map_groups.json
+/wild_encounters.json

@@ -1,31 +1,57 @@
 # Map JSON data
+MAPS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/maps)
+LAYOUTS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts)
 
-MAPS_DIR = $(DATA_ASM_SUBDIR)/hoenn/maps
-LAYOUTS_DIR = $(DATA_ASM_SUBDIR)/hoenn/layouts
-
+#MAP_DIRS := $(foreach region,$(REGIONS),$(dir $(wildcard $(DATA_ASM_SUBDIR)/$(region)/*/map.json)))
 MAP_DIRS := $(dir $(wildcard $(MAPS_DIR)/*/map.json))
-MAP_CONNECTIONS := $(patsubst $(MAPS_DIR)/%/,$(MAPS_DIR)/%/connections.inc,$(MAP_DIRS))
-MAP_EVENTS := $(patsubst $(MAPS_DIR)/%/,$(MAPS_DIR)/%/events.inc,$(MAP_DIRS))
-MAP_HEADERS := $(patsubst $(MAPS_DIR)/%/,$(MAPS_DIR)/%/header.inc,$(MAP_DIRS))
+MAP_JSONS := $(patsubst %,%map.json,$(MAP_DIRS))
+MAP_CONNECTIONS := $(patsubst %,%connections.inc,$(MAP_DIRS))
+MAP_EVENTS := $(patsubst %,%events.inc,$(MAP_DIRS))
+MAP_HEADERS := $(patsubst %,%header.inc,$(MAP_DIRS))
 
-$(DATA_ASM_BUILDDIR)/maps.o: $(DATA_ASM_SUBDIR)/maps.s $(LAYOUTS_DIR)/layouts.inc $(LAYOUTS_DIR)/layouts_table.inc $(MAPS_DIR)/headers.inc $(MAPS_DIR)/groups.inc $(MAPS_DIR)/connections.inc $(MAP_CONNECTIONS) $(MAP_HEADERS)
+$(DATA_ASM_BUILDDIR)/maps.o: $(DATA_ASM_SUBDIR)/maps.s $(DATA_ASM_SUBDIR)/layouts.inc $(DATA_ASM_SUBDIR)/layouts_table.inc $(DATA_ASM_SUBDIR)/headers.inc $(DATA_ASM_SUBDIR)/groups.inc $(DATA_ASM_SUBDIR)/connections.inc $(MAP_CONNECTIONS) $(MAP_HEADERS)
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
-$(DATA_ASM_BUILDDIR)/map_events.o: $(DATA_ASM_SUBDIR)/map_events.s $(MAPS_DIR)/events.inc $(MAP_EVENTS)
+
+$(DATA_ASM_BUILDDIR)/map_events.o: $(DATA_ASM_SUBDIR)/map_events.s $(DATA_ASM_SUBDIR)/events.inc $(MAP_EVENTS)
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
 
-$(MAPS_DIR)/%/header.inc: $(MAPS_DIR)/%/map.json
-	$(MAPJSON) map emerald $< $(LAYOUTS_DIR)/layouts.json
-$(MAPS_DIR)/%/events.inc: $(MAPS_DIR)/%/header.inc ;
-$(MAPS_DIR)/%/connections.inc: $(MAPS_DIR)/%/events.inc ;
+region_temp := hoenn
+# TODO(@traeighsea): Compile all data/<region>/layouts.json files to a single master list in data/layouts.json
+$(DATA_ASM_SUBDIR)/layouts.json: $(DATA_ASM_SUBDIR)/$(region_temp)/layouts.json
+	echo $<
+	echo $@
+	cp $< $@
 
-$(MAPS_DIR)/groups.inc: $(MAPS_DIR)/map_groups.json
+# TODO(@traeighsea): Compile all data/<region>/map.json files to a single master list in data/map.json
+$(DATA_ASM_SUBDIR)/map.json: $(DATA_ASM_SUBDIR)/$(region_temp)/map.json
+	echo $<
+	echo $@
+	cp $< $@
+
+# TODO(@traeighsea): Compile all data/<region>/map_groups.json files to a single master list in data/map_groups.json
+$(DATA_ASM_SUBDIR)/map_groups.json: $(DATA_ASM_SUBDIR)/$(region_temp)/map_groups.json
+	echo $<
+	echo $@
+	cp $< $@
+
+$(filter %/header.inc,$(MAP_HEADERS)): %/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json
+%/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json 
+	$(MAPJSON) map emerald $< $(DATA_ASM_SUBDIR)/layouts.json
+
+$(filter %/events.inc,$(MAP_EVENTS)): %/events.inc: %/header.inc
+%/events.inc: %/header.inc ;
+
+$(filter %/connections.inc,$(MAP_CONNECTIONS)): %/connections.inc: %/events.inc
+%/connections.inc: %/events.inc ;
+
+$(DATA_ASM_SUBDIR)/groups.inc: $(DATA_ASM_SUBDIR)/map_groups.json
 	$(MAPJSON) groups emerald $<
-$(MAPS_DIR)/connections.inc: $(MAPS_DIR)/groups.inc ;
-$(MAPS_DIR)/events.inc: $(MAPS_DIR)/connections.inc ;
-$(MAPS_DIR)/headers.inc: $(MAPS_DIR)/events.inc ;
-include/constants/map_groups.h: $(MAPS_DIR)/headers.inc ;
+$(DATA_ASM_SUBDIR)/connections.inc: $(DATA_ASM_SUBDIR)/groups.inc ;
+$(DATA_ASM_SUBDIR)/events.inc: $(DATA_ASM_SUBDIR)/connections.inc ;
+$(DATA_ASM_SUBDIR)/headers.inc: $(DATA_ASM_SUBDIR)/events.inc ;
+include/constants/map_groups.h: $(DATA_ASM_SUBDIR)/headers.inc ;
 
-$(LAYOUTS_DIR)/layouts.inc: $(LAYOUTS_DIR)/layouts.json
+$(DATA_ASM_SUBDIR)/layouts.inc: $(DATA_ASM_SUBDIR)/layouts.json
 	$(MAPJSON) layouts emerald $<
-$(LAYOUTS_DIR)/layouts_table.inc: $(LAYOUTS_DIR)/layouts.inc ;
-include/constants/layouts.h: $(LAYOUTS_DIR)/layouts_table.inc ;
+$(DATA_ASM_SUBDIR)/layouts_table.inc: $(DATA_ASM_SUBDIR)/layouts.inc ;
+include/constants/layouts.h: $(DATA_ASM_SUBDIR)/layouts_table.inc ;
