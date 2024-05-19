@@ -10855,14 +10855,22 @@ void TryRestoreHeldItems(void)
 {
     u32 i;
     u16 lostItem = ITEM_NONE;
-
+    
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        // Check if held items should be restored after battle based on generation
         if (B_RESTORE_HELD_BATTLE_ITEMS >= GEN_9 || gBattleStruct->itemLost[i].stolen)
         {
             lostItem = gBattleStruct->itemLost[i].originalItem;
-            if (lostItem != ITEM_NONE && ItemId_GetPocket(lostItem) != POCKET_BERRIES)
-                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);  // Restore stolen non-berry items
+
+            // Check if the lost item should be restored
+            bool shouldRestore = (lostItem != ITEM_NONE || (B_PREVENT_TRAINER_ITEM_LOSS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                && ItemId_GetPocket(lostItem) != POCKET_BERRIES;
+
+            if (shouldRestore)
+            {
+                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);
+            }
         }
     }
 }
