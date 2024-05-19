@@ -29,6 +29,8 @@ struct Berry
     u8 naturalGiftPower;
     u8 berryCrushDifficulty; // The number of A presses required to crush it
     u16 berryCrushPowder;
+    const u32 *itemMenuTiles;
+    const u32 *itemMenuPalette;
 };
 
 // with no const fields
@@ -58,6 +60,8 @@ struct Berry2
     u8 naturalGiftPower;
     u8 berryCrushDifficulty; // The number of A presses required to crush it
     u16 berryCrushPowder;
+    const u32 *itemMenuTiles;
+    const u32 *itemMenuPalette;
 };
 
 struct EnigmaBerry

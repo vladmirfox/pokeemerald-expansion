@@ -5,6 +5,7 @@
 #include "event_scripts.h"
 #include "field_control_avatar.h"
 #include "fieldmap.h"
+#include "graphics.h"
 #include "item.h"
 #include "item_menu.h"
 #include "main.h"
@@ -78,6 +79,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 20,
+        .itemMenuTiles = gBerryPic_Cheri,
+        .itemMenuPalette = gBerryPalette_Cheri,
     },
 
     [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] =
@@ -105,6 +108,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 20,
+        .itemMenuTiles = gBerryPic_Chesto,
+        .itemMenuPalette = gBerryPalette_Chesto,
     },
 
     [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX] =
@@ -132,6 +137,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 20,
+        .itemMenuTiles = gBerryPic_Pecha,
+        .itemMenuPalette = gBerryPalette_Pecha,
     },
 
     [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX] =
@@ -159,6 +166,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 20,
+        .itemMenuTiles = gBerryPic_Rawst,
+        .itemMenuPalette = gBerryPalette_Rawst,
     },
 
     [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -186,6 +195,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 20,
+        .itemMenuTiles = gBerryPic_Aspear,
+        .itemMenuPalette = gBerryPalette_Aspear,
     },
 
     [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX] =
@@ -213,6 +224,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 30,
+        .itemMenuTiles = gBerryPic_Leppa,
+        .itemMenuPalette = gBerryPalette_Leppa,
     },
 
     [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX] =
@@ -240,6 +253,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 30,
+        .itemMenuTiles = gBerryPic_Oran,
+        .itemMenuPalette = gBerryPalette_Oran,
     },
 
     [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] =
@@ -267,6 +282,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 30,
+        .itemMenuTiles = gBerryPic_Persim,
+        .itemMenuPalette = gBerryPalette_Persim,
     },
 
     [ITEM_LUM_BERRY - FIRST_BERRY_INDEX] =
@@ -294,6 +311,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 30,
+        .itemMenuTiles = gBerryPic_Lum,
+        .itemMenuPalette = gBerryPalette_Lum,
     },
 
     [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] =
@@ -321,6 +340,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 50,
         .berryCrushPowder = 30,
+        .itemMenuTiles = gBerryPic_Sitrus,
+        .itemMenuPalette = gBerryPalette_Sitrus,
     },
 
     [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX] =
@@ -348,6 +369,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 60,
         .berryCrushPowder = 50,
+        .itemMenuTiles = gBerryPic_Figy,
+        .itemMenuPalette = gBerryPalette_Figy,
     },
 
     [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX] =
@@ -375,6 +398,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 60,
         .berryCrushPowder = 50,
+        .itemMenuTiles = gBerryPic_Wiki,
+        .itemMenuPalette = gBerryPalette_Wiki,
     },
 
     [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX] =
@@ -402,6 +427,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 60,
         .berryCrushPowder = 50,
+        .itemMenuTiles = gBerryPic_Mago,
+        .itemMenuPalette = gBerryPalette_Mago,
     },
 
     [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX] =
@@ -429,6 +456,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 60,
         .berryCrushPowder = 50,
+        .itemMenuTiles = gBerryPic_Aguav,
+        .itemMenuPalette = gBerryPalette_Aguav,
     },
 
     [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -456,6 +485,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 60,
         .berryCrushPowder = 50,
+        .itemMenuTiles = gBerryPic_Iapapa,
+        .itemMenuPalette = gBerryPalette_Iapapa,
     },
 
     [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX] =
@@ -483,6 +514,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
         .berryCrushDifficulty = 80,
         .berryCrushPowder = 70,
+        .itemMenuTiles = gBerryPic_Razz,
+        .itemMenuPalette = gBerryPalette_Razz,
     },
 
     [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX] =
@@ -510,6 +543,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 80,
         .berryCrushPowder = 70,
+        .itemMenuTiles = gBerryPic_Bluk,
+        .itemMenuPalette = gBerryPalette_Bluk,
     },
 
     [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX] =
@@ -537,6 +572,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 80,
         .berryCrushPowder = 70,
+        .itemMenuTiles = gBerryPic_Nanab,
+        .itemMenuPalette = gBerryPalette_Nanab,
     },
 
     [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -564,6 +601,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 80,
         .berryCrushPowder = 70,
+        .itemMenuTiles = gBerryPic_Wepear,
+        .itemMenuPalette = gBerryPalette_Wepear,
     },
 
     [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX] =
@@ -591,6 +630,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 80,
         .berryCrushPowder = 70,
+        .itemMenuTiles = gBerryPic_Pinap,
+        .itemMenuPalette = gBerryPalette_Pinap,
     },
 
     [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX] =
@@ -618,6 +659,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 100,
         .berryCrushPowder = 100,
+        .itemMenuTiles = gBerryPic_Pomeg,
+        .itemMenuPalette = gBerryPalette_Pomeg,
     },
 
     [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] =
@@ -645,6 +688,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 100,
         .berryCrushPowder = 100,
+        .itemMenuTiles = gBerryPic_Kelpsy,
+        .itemMenuPalette = gBerryPalette_Kelpsy,
     },
 
     [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] =
@@ -672,6 +717,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 100,
         .berryCrushPowder = 100,
+        .itemMenuTiles = gBerryPic_Qualot,
+        .itemMenuPalette = gBerryPalette_Qualot,
     },
 
     [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] =
@@ -699,6 +746,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 100,
         .berryCrushPowder = 100,
+        .itemMenuTiles = gBerryPic_Hondew,
+        .itemMenuPalette = gBerryPalette_Hondew,
     },
 
     [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX] =
@@ -726,6 +775,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 100,
         .berryCrushPowder = 100,
+        .itemMenuTiles = gBerryPic_Grepa,
+        .itemMenuPalette = gBerryPalette_Grepa,
     },
 
     [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] =
@@ -753,6 +804,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 130,
         .berryCrushPowder = 150,
+        .itemMenuTiles = gBerryPic_Tamato,
+        .itemMenuPalette = gBerryPalette_Tamato,
     },
 
     [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX] =
@@ -780,6 +833,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 130,
         .berryCrushPowder = 150,
+        .itemMenuTiles = gBerryPic_Cornn,
+        .itemMenuPalette = gBerryPalette_Cornn,
     },
 
     [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] =
@@ -807,6 +862,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 130,
         .berryCrushPowder = 150,
+        .itemMenuTiles = gBerryPic_Magost,
+        .itemMenuPalette = gBerryPalette_Magost,
     },
 
     [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] =
@@ -834,6 +891,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 130,
         .berryCrushPowder = 150,
+        .itemMenuTiles = gBerryPic_Rabuta,
+        .itemMenuPalette = gBerryPalette_Rabuta,
     },
 
     [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -861,6 +920,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 130,
         .berryCrushPowder = 150,
+        .itemMenuTiles = gBerryPic_Nomel,
+        .itemMenuPalette = gBerryPalette_Nomel,
     },
 
     [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] =
@@ -888,6 +949,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
+        .itemMenuTiles = gBerryPic_Spelon,
+        .itemMenuPalette = gBerryPalette_Spelon,
     },
 
     [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] =
@@ -915,6 +978,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 90 : 70,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
+        .itemMenuTiles = gBerryPic_Pamtre,
+        .itemMenuPalette = gBerryPalette_Pamtre,
     },
 
     [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -942,6 +1007,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
+        .itemMenuTiles = gBerryPic_Watmel,
+        .itemMenuPalette = gBerryPalette_Watmel,
     },
 
     [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX] =
@@ -969,6 +1036,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
+        .itemMenuTiles = gBerryPic_Durin,
+        .itemMenuPalette = gBerryPalette_Durin,
     },
 
     [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX] =
@@ -996,6 +1065,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
+        .itemMenuTiles = gBerryPic_Belue,
+        .itemMenuPalette = gBerryPalette_Belue,
     },
 
     [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
@@ -1021,6 +1092,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_NORMAL,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Chilan,
+        .itemMenuPalette = gBerryPalette_Chilan,
     },
 
     [ITEM_OCCA_BERRY - FIRST_BERRY_INDEX] =
@@ -1046,6 +1119,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_FIRE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Occa,
+        .itemMenuPalette = gBerryPalette_Occa,
     },
 
     [ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX] =
@@ -1071,6 +1146,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_WATER,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Passho,
+        .itemMenuPalette = gBerryPalette_Passho,
     },
 
     [ITEM_WACAN_BERRY - FIRST_BERRY_INDEX] =
@@ -1096,6 +1173,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_ELECTRIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Wacan,
+        .itemMenuPalette = gBerryPalette_Wacan,
     },
 
     [ITEM_RINDO_BERRY - FIRST_BERRY_INDEX] =
@@ -1121,6 +1200,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_GRASS,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Rindo,
+        .itemMenuPalette = gBerryPalette_Rindo,
     },
 
     [ITEM_YACHE_BERRY - FIRST_BERRY_INDEX] =
@@ -1146,6 +1227,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_ICE,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Yache,
+        .itemMenuPalette = gBerryPalette_Yache,
     },
 
     [ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX] =
@@ -1171,6 +1254,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_FIGHTING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Chople,
+        .itemMenuPalette = gBerryPalette_Chople,
     },
 
     [ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX] =
@@ -1196,6 +1281,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_POISON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Kebia,
+        .itemMenuPalette = gBerryPalette_Kebia,
     },
 
     [ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX] =
@@ -1221,6 +1308,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_GROUND,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Shuca,
+        .itemMenuPalette = gBerryPalette_Shuca,
     },
 
     [ITEM_COBA_BERRY - FIRST_BERRY_INDEX] =
@@ -1246,6 +1335,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_FLYING,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Coba,
+        .itemMenuPalette = gBerryPalette_Coba,
     },
 
     [ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -1271,6 +1362,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_PSYCHIC,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Payapa,
+        .itemMenuPalette = gBerryPalette_Payapa,
     },
 
     [ITEM_TANGA_BERRY - FIRST_BERRY_INDEX] =
@@ -1296,6 +1389,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_BUG,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Tanga,
+        .itemMenuPalette = gBerryPalette_Tanga,
     },
 
     [ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX] =
@@ -1321,6 +1416,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_ROCK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Charti,
+        .itemMenuPalette = gBerryPalette_Charti,
     },
 
     [ITEM_KASIB_BERRY - FIRST_BERRY_INDEX] =
@@ -1346,6 +1443,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_GHOST,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Kasib,
+        .itemMenuPalette = gBerryPalette_Kasib,
     },
 
     [ITEM_HABAN_BERRY - FIRST_BERRY_INDEX] =
@@ -1371,6 +1470,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_DRAGON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Haban,
+        .itemMenuPalette = gBerryPalette_Haban,
     },
 
     [ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX] =
@@ -1396,6 +1497,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_DARK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Colbur,
+        .itemMenuPalette = gBerryPalette_Colbur,
     },
 
     [ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX] =
@@ -1421,6 +1524,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_STEEL,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 60,
+        .itemMenuTiles = gBerryPic_Babiri,
+        .itemMenuPalette = gBerryPalette_Babiri,
     },
 
     [ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX] =
@@ -1446,6 +1551,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 4,
         .naturalGiftType = TYPE_FAIRY,
         .naturalGiftPower = 80,
+        .itemMenuTiles = gBerryPic_Roseli,
+        .itemMenuPalette = gBerryPalette_Roseli,
     },
 
     [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX] =
@@ -1473,6 +1580,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 180,
         .berryCrushPowder = 500,
+        .itemMenuTiles = gBerryPic_Liechi,
+        .itemMenuPalette = gBerryPalette_Liechi,
     },
 
     [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] =
@@ -1500,6 +1609,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 180,
         .berryCrushPowder = 500,
+        .itemMenuTiles = gBerryPic_Ganlon,
+        .itemMenuPalette = gBerryPalette_Ganlon,
     },
 
     [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX] =
@@ -1527,6 +1638,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 180,
         .berryCrushPowder = 500,
+        .itemMenuTiles = gBerryPic_Salac,
+        .itemMenuPalette = gBerryPalette_Salac,
     },
 
     [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] =
@@ -1554,6 +1667,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 180,
         .berryCrushPowder = 500,
+        .itemMenuTiles = gBerryPic_Petaya,
+        .itemMenuPalette = gBerryPalette_Petaya,
     },
 
     [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] =
@@ -1581,6 +1696,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 180,
         .berryCrushPowder = 500,
+        .itemMenuTiles = gBerryPic_Apicot,
+        .itemMenuPalette = gBerryPalette_Apicot,
     },
 
     [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] =
@@ -1608,6 +1725,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 200,
         .berryCrushPowder = 750,
+        .itemMenuTiles = gBerryPic_Lansat,
+        .itemMenuPalette = gBerryPalette_Lansat,
     },
 
     [ITEM_STARF_BERRY - FIRST_BERRY_INDEX] =
@@ -1635,6 +1754,8 @@ const struct Berry gBerries[] =
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
         .berryCrushDifficulty = 200,
         .berryCrushPowder = 750,
+        .itemMenuTiles = gBerryPic_Starf,
+        .itemMenuPalette = gBerryPalette_Starf,
     },
 
     [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] =
@@ -1660,6 +1781,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .naturalGiftType = TYPE_BUG,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .itemMenuTiles = gBerryPic_Enigma,
+        .itemMenuPalette = gBerryPalette_Enigma,
     },
 
     [ITEM_MICLE_BERRY - FIRST_BERRY_INDEX] =
@@ -1685,6 +1808,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .naturalGiftType = TYPE_ROCK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .itemMenuTiles = gBerryPic_Micle,
+        .itemMenuPalette = gBerryPalette_Micle,
     },
 
     [ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX] =
@@ -1710,6 +1835,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .naturalGiftType = TYPE_GHOST,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .itemMenuTiles = gBerryPic_Custap,
+        .itemMenuPalette = gBerryPalette_Custap,
     },
 
     [ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX] =
@@ -1735,6 +1862,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .naturalGiftType = TYPE_DRAGON,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .itemMenuTiles = gBerryPic_Jaboca,
+        .itemMenuPalette = gBerryPalette_Jaboca,
     },
 
     [ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX] =
@@ -1760,6 +1889,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .naturalGiftType = TYPE_DARK,
         .naturalGiftPower = B_UPDATED_MOVE_DATA >= GEN_6 ? 100 : 80,
+        .itemMenuTiles = gBerryPic_Rowap,
+        .itemMenuPalette = gBerryPalette_Rowap,
     },
 
     [ITEM_KEE_BERRY - FIRST_BERRY_INDEX] =
@@ -1785,6 +1916,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_FAIRY,
         .naturalGiftPower = 100,
+        .itemMenuTiles = gBerryPic_Kee,
+        .itemMenuPalette = gBerryPalette_Kee,
     },
 
     [ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX] =
@@ -1810,6 +1943,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 2,
         .naturalGiftType = TYPE_DARK,
         .naturalGiftPower = 100,
+        .itemMenuTiles = gBerryPic_Maranga,
+        .itemMenuPalette = gBerryPalette_Maranga,
     },
 
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] =
@@ -1835,6 +1970,8 @@ const struct Berry gBerries[] =
         .pestsBonus = 0,
         .berryCrushDifficulty = 150,
         .berryCrushPowder = 200,
+        .itemMenuTiles = gBerryPic_Enigma,
+        .itemMenuPalette = gBerryPalette_Enigma,
     },
 };
 
