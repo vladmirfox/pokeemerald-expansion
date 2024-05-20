@@ -577,12 +577,6 @@ struct DynamaxData
     u16 levelUpHP;
 };
 
-struct TeraData
-{
-    u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
-    u8 indicatorSpriteId[MAX_BATTLERS_COUNT];
-};
-
 struct BattleGimmickData
 {
     u8 usableGimmick[MAX_BATTLERS_COUNT];                // first usable gimmick that can be selected for each battler
@@ -714,7 +708,6 @@ struct BattleStruct
     bool8 throwingPokeBall;
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
-    struct TeraData tera;
     struct BattleGimmickData gimmick;
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
@@ -787,6 +780,7 @@ struct BattleStruct
     u8 boosterEnergyActivates;
     u8 distortedTypeMatchups;
     u8 categoryOverride; // for Z-Moves and Max Moves
+    u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
