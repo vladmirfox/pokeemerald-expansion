@@ -11,14 +11,4 @@ uq4_12_t GetTeraMultiplier(u32 battler, u32 type);
 
 u16 GetTeraTypeRGB(u32 type);
 
-void TeraIndicator_LoadSpriteGfx(void);
-bool32 TeraIndicator_ShouldBeInvisible(u32 battler);
-u8 TeraIndicator_GetSpriteId(u32 healthboxSpriteId);
-void TeraIndicator_SetVisibilities(u32 healthboxId, bool32 invisible);
-void TeraIndicator_UpdateOamPriorities(u32 healthboxId, u32 oamPriority);
-void TeraIndicator_UpdateLevel(u32 healthboxId, u32 level);
-void TeraIndicator_CreateSprite(u32 battler, u32 healthboxSpriteId);
-void TeraIndicator_DestroySprite(u32 healthboxSpriteId);
-void TeraIndicator_UpdateType(u32 battler, u32 healthboxSpriteId);
-
 #endif

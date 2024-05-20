@@ -109,8 +109,6 @@ void InitBattlerHealthboxCoords(u8 battler);
 void GetBattlerHealthboxCoords(u8 battler, s16 *x, s16 *y);
 void UpdateHpTextInHealthbox(u32 healthboxSpriteId, u32 maxOrCurrent, s16 currHp, s16 maxHp);
 void SwapHpBarsWithHpText(void);
-void MegaIndicator_LoadSpritesGfx(void);
-void MegaIndicator_SetVisibilities(u32 healthboxId, bool32 invisible);
 u8 CreatePartyStatusSummarySprites(u8 battler, struct HpAndStatus *partyInfo, bool8 skipPlayer, bool8 isBattleStart);
 void Task_HidePartyStatusSummary(u8 taskId);
 void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elementId);

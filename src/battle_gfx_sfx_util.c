@@ -706,8 +706,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
-            MegaIndicator_LoadSpritesGfx();
-            TeraIndicator_LoadSpriteGfx();
+            LoadIndicatorSpritesGfx();
         }
         else if (!IsDoubleBattle())
         {

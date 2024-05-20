@@ -17,6 +17,8 @@ struct GimmickInfo
     const struct SpritePalette * triggerPal;        // trigger gfx data
     const struct SpriteSheet * triggerSheet;
     const struct SpriteTemplate * triggerTemplate;
+    const struct SpritePalette * indicatorPal;      // indicator gfx data
+    const struct SpriteSheet * indicatorSheet;
     bool32 (*CanActivate)(u32 battler);
     void (*ActivateGimmick)(u32 battler);
 };
@@ -35,6 +37,15 @@ void CreateGimmickTriggerSprite(u32 battler);
 bool32 IsGimmickTriggerSpriteActive(void);
 void HideGimmickTriggerSprite(void);
 void DestroyGimmickTriggerSprite(void);
+
+void LoadIndicatorSpritesGfx(void);
+u32 GetIndicatorTileTag(u32 battler);
+u32 GetIndicatorPalTag(u32 battler);
+void UpdateIndicatorVisibilityAndType(u32 healthboxId, bool32 invisible);
+void UpdateIndicatorOamPriority(u32 healthboxId, u32 oamPriority);
+void UpdateIndicatorLevelData(u32 healthboxId, u32 level);
+void CreateIndicatorSprite(u32 battler);
+void DestroyIndicatorSprite(u32 healthboxId);
 
 extern const struct GimmickInfo gGimmicksInfo[];
 

@@ -14,8 +14,6 @@
 #include "util.h"
 #include "test_runner.h"
 
-static void SpriteCb_GimmickTrigger(struct Sprite *sprite);
-
 #include "data/gimmicks.h"
 
 // Populates gBattleStruct->gimmick.usableGimmick for each battler.
@@ -246,3 +244,154 @@ static void SpriteCb_GimmickTrigger(struct Sprite *sprite)
         sprite->y2 = gSprites[gHealthboxSpriteIds[sprite->tBattler]].y2 - yDiff;
     }
 }
+
+#undef tBattler
+#undef tHide
+
+// for sprite data fields
+#define tBattler        data[0]
+#define tPosX           data[2]
+#define tLevelXDelta    data[3] // X position depends whether level has 3, 2 or 1 digit
+
+// data fields for healthboxMain
+// oam.affineParam holds healthboxRight spriteId
+#define hMain_Battler               data[6]
+
+void LoadIndicatorSpritesGfx(void)
+{
+    u32 gimmick;
+    for (gimmick = 0; gimmick < GIMMICKS_COUNT; ++gimmick)
+    {
+        if (gimmick == GIMMICK_TERA) // special case
+        {
+            LoadSpriteSheets(sTeraIndicatorSpriteSheets);
+        }
+        else if (gGimmicksInfo[gimmick].indicatorSheet != NULL)
+        {
+            LoadSpriteSheet(gGimmicksInfo[gimmick].indicatorSheet);
+        }
+        if (gGimmicksInfo[gimmick].indicatorPal != NULL)
+        {
+            LoadSpritePalette(gGimmicksInfo[gimmick].indicatorPal);
+        }
+    }
+    // Primal reversion graphics aren't loaded as part of gimmick data
+    LoadSpriteSheet(&sSpriteSheet_AlphaIndicator);
+    LoadSpriteSheet(&sSpriteSheet_OmegaIndicator);
+}
+
+static void SpriteCb_GimmickIndicator(struct Sprite *sprite)
+{
+    u32 battler = sprite->tBattler;
+
+    sprite->x = gSprites[gHealthboxSpriteIds[battler]].x + sprite->tPosX + sprite->tLevelXDelta;
+    sprite->x2 = gSprites[gHealthboxSpriteIds[battler]].x2;
+    sprite->y2 = gSprites[gHealthboxSpriteIds[battler]].y2;
+}
+
+static inline u32 GetIndicatorSpriteId(u32 healthboxId)
+{
+    return gBattleStruct->gimmick.indicatorSpriteId[gSprites[healthboxId].hMain_Battler];
+}
+
+u32 GetIndicatorTileTag(u32 battler)
+{
+    u32 gimmick = GetActiveGimmick(battler);
+    
+    if (IsBattlerPrimalReverted(battler))
+    {
+        if (gBattleMons[battler].species == SPECIES_GROUDON_PRIMAL)
+            return TAG_OMEGA_INDICATOR_TILE;
+        else
+            return TAG_ALPHA_INDICATOR_TILE;
+    }
+    else if (gimmick == GIMMICK_TERA) // special case
+    {
+        return sTeraIndicatorSpriteSheets[GetBattlerTeraType(battler)].tag;
+    }
+    else if (gGimmicksInfo[gimmick].indicatorSheet != NULL)
+    {
+        return gGimmicksInfo[gimmick].indicatorSheet->tag;
+    }
+    else
+    {
+        return TAG_NONE;
+    }
+}
+
+u32 GetIndicatorPalTag(u32 battler)
+{
+    u32 gimmick = GetActiveGimmick(battler);
+    if (IsBattlerPrimalReverted(battler))
+    {
+        return TAG_MISC_INDICATOR_PAL;
+    }
+    else if (gGimmicksInfo[gimmick].indicatorPal != NULL)
+    {
+        return gGimmicksInfo[gimmick].indicatorPal->tag;
+    }
+    else
+    {
+        return TAG_NONE;
+    }
+}
+
+void UpdateIndicatorVisibilityAndType(u32 healthboxId, bool32 invisible)
+{
+    u32 battler = gSprites[healthboxId].hMain_Battler;
+    u32 tileTag = GetIndicatorTileTag(battler);
+    u32 palTag = GetIndicatorPalTag(battler);
+    struct Sprite *sprite = &gSprites[GetIndicatorSpriteId(healthboxId)];
+
+    if (tileTag != TAG_NONE && palTag != TAG_NONE)
+    {
+        sprite->oam.tileNum = GetSpriteTileStartByTag(tileTag);
+        sprite->oam.paletteNum = IndexOfSpritePaletteTag(palTag);
+        sprite->invisible = invisible;
+    }
+    else // in case of error
+    {
+        sprite->invisible = TRUE;
+    }
+}
+
+void UpdateIndicatorOamPriority(u32 healthboxId, u32 oamPriority)
+{
+    gSprites[GetIndicatorSpriteId(healthboxId)].oam.priority = oamPriority;
+}
+
+void UpdateIndicatorLevelData(u32 healthboxId, u32 level)
+{
+    s32 xDelta = 0;
+
+    if (level >= 100)
+        xDelta -= 4;
+    else if (level < 10)
+        xDelta += 5;
+
+    gSprites[GetIndicatorSpriteId(healthboxId)].tLevelXDelta = xDelta;
+}
+
+void CreateIndicatorSprite(u32 battler)
+{
+    u32 position, spriteId;
+    s16 xHealthbox = 0, x = 0, y = 0;
+
+    position = GetBattlerPosition(battler);
+    GetBattlerHealthboxCoords(battler, &xHealthbox, &y);
+
+    x = sIndicatorPositions[position][0];
+    y += sIndicatorPositions[position][1];
+
+    spriteId = CreateSpriteAtEnd(&sSpriteTemplate_GimmickIndicator, 0, y, 0);
+    gBattleStruct->gimmick.indicatorSpriteId[battler] = spriteId;
+    gSprites[spriteId].tBattler = battler;
+    gSprites[spriteId].tPosX = x;
+    gSprites[spriteId].invisible = FALSE;
+}
+
+#undef tBattler
+#undef tPosX
+#undef tLevelXDelta
+
+#undef hMain_Battler

@@ -128,7 +128,7 @@ bool32 CanUseZMove(u32 battler)
         return FALSE;
 
     // Check if battler has another gimmick active.
-    if (GetActiveGimmick(battler) != GIMMICK_NONE)
+    if (GetActiveGimmick(battler) != GIMMICK_NONE && GetActiveGimmick(battler) != GIMMICK_ULTRA_BURST)
         return FALSE;
 
     // Check if battler isn't holding a Z-Crystal.
@@ -215,7 +215,7 @@ void AssignUsableZMoves(u32 battler, u16 *moves)
 bool32 TryChangeZTrigger(u32 battler, u32 moveIndex)
 {
     bool32 viableZMove = (gBattleStruct->zmove.possibleZMoves[battler] & gBitTable[moveIndex]) != 0;
-    DebugPrintf("%d: %d", moveIndex, viableZMove);
+
     if (gBattleStruct->zmove.viable && !viableZMove)
         HideGimmickTriggerSprite();   // Was a viable z move, now is not -> slide out
     else if (!gBattleStruct->zmove.viable && viableZMove)
