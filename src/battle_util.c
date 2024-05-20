@@ -10988,7 +10988,7 @@ void SortBattlersBySpeed(u8 *battlers, bool32 slowToFast)
     }
 }
 
-#define RETURN_NPC_ITEMS B_RETURN_STOLEN_NPC_ITEMS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER
+#define RETURN_NPC_ITEMS (B_RETURN_STOLEN_NPC_ITEMS >= GEN_5 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 
 void TryRestoreHeldItems(void)
 {
