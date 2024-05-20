@@ -401,12 +401,12 @@ void Overworld_ResetStateAfterDigEscRope(void)
 #if B_RESET_FLAGS_VARS_AFTER_WHITEOUT  == TRUE
 void Overworld_ResetBattleFlagsAndVars(void)
 {
-    #if B_VAR_TERRAIN != 0
-        VarSet(B_VAR_TERRAIN, 0);
+    #if B_VAR_STARTING_STATUS != 0
+        VarSet(B_VAR_STARTING_STATUS, 0);
     #endif
 
-    #if B_VAR_TERRAIN_TIMER != 0
-        VarSet(B_VAR_TERRAIN_TIMER, 0);
+    #if B_VAR_STARTING_STATUS_TIMER != 0
+        VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
     #endif
 
     #if B_VAR_WILD_AI_FLAGS != 0
@@ -851,9 +851,17 @@ if (I_VS_SEEKER_CHARGING != 0)
     ResetFieldTasksArgs();
     RunOnResumeMapScript();
 
-    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
-     || gMapHeader.regionMapSectionId != sLastMapSectionId)
-        ShowMapNamePopup();
+    if (OW_HIDE_REPEAT_MAP_POPUP)
+    {
+        if (gMapHeader.regionMapSectionId != sLastMapSectionId)
+            ShowMapNamePopup();
+    }
+    else
+    {
+        if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER
+         || gMapHeader.regionMapSectionId != sLastMapSectionId)
+            ShowMapNamePopup();
+    }
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -3088,7 +3096,7 @@ static void SetPlayerFacingDirection(u8 linkPlayerId, u8 facing)
     {
         if (facing > FACING_FORCED_RIGHT)
         {
-            objEvent->triggerGroundEffectsOnMove = 1;
+            objEvent->triggerGroundEffectsOnMove = TRUE;
         }
         else
         {
@@ -3237,7 +3245,7 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
         sprite = &gSprites[objEvent->spriteId];
         sprite->coordOffsetEnabled = TRUE;
         sprite->data[0] = linkPlayerId;
-        objEvent->triggerGroundEffectsOnMove = 0;
+        objEvent->triggerGroundEffectsOnMove = FALSE;
     }
 }
 
