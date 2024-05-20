@@ -508,7 +508,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are not affected by Choice items
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); }
-        TURN { MOVE(player, MOVE_ARM_THRUST, gimmick: GIMMICK_DYNAMAX); }
+        TURN { MOVE(player, MOVE_ARM_THRUST); }
     } SCENE {
         MESSAGE("Wobbuffet used Max Strike!");
         HP_BAR(opponent, captureDamage: &results[i].damage);

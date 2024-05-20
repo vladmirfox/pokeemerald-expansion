@@ -2063,10 +2063,12 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
 
     if (ctx->explicitGimmick && ctx->gimmick != GIMMICK_NONE)
     {
-        // Screen for bad item usage as the usual checks do not function before the battle begins.
         u32 item = GetMonData(mon, MON_DATA_HELD_ITEM);
         u32 holdEffect = ItemId_GetHoldEffect(item);
         u32 species = GetMonData(mon, MON_DATA_SPECIES);
+        u32 side = GetBattlerSide(battlerId);
+
+        // Check invalid item usage.
         INVALID_IF(ctx->gimmick == GIMMICK_MEGA && holdEffect != HOLD_EFFECT_MEGA_STONE && species != SPECIES_RAYQUAZA, "Cannot Mega Evolve without a Mega Stone");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && holdEffect != HOLD_EFFECT_Z_CRYSTAL, "Cannot use a Z-Move without a Z-Crystal");
         INVALID_IF(ctx->gimmick == GIMMICK_Z_MOVE && ItemId_GetSecondaryId(item) != gMovesInfo[*moveId].type
@@ -2076,7 +2078,12 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
         INVALID_IF(ctx->gimmick != GIMMICK_MEGA && holdEffect == HOLD_EFFECT_MEGA_STONE, "Cannot use another gimmick while holding a Mega Stone");
         INVALID_IF(ctx->gimmick != GIMMICK_Z_MOVE && ctx->gimmick != GIMMICK_ULTRA_BURST && holdEffect == HOLD_EFFECT_Z_CRYSTAL, "Cannot use another gimmick while holding a Z-Crystal");
 
-        DATA.chosenGimmick[GetBattlerSide(battlerId)][DATA.currentMonIndexes[battlerId]] = ctx->gimmick;
+        // Check multiple gimmick use.
+        INVALID_IF(DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] != GIMMICK_NONE
+                   && !(DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] == GIMMICK_ULTRA_BURST
+                   && ctx->gimmick == GIMMICK_Z_MOVE), "Cannot use multiple gimmicks on the same battler");
+
+        DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] = ctx->gimmick;
         *moveSlot |= RET_GIMMICK;    
     }
 }
