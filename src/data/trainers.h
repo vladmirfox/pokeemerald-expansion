@@ -14748,8 +14748,6 @@ F_TRAINER_FEMALE |
 #line 5877
             .species = SPECIES_POOCHYENA,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 5877
-            .heldItem = ITEM_NORMALIUM_Z,
 #line 5879
             .iv = TRAINER_PARTY_IVS(0, 0, 0, 0, 0, 0),
 #line 5878
