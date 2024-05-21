@@ -5,12 +5,10 @@ include regions_config.mk
 
 # TODO(@traeighsea): Convert data/<region>/layout/(maps|border).json to data/<region>layout/(maps|border).bin in this step
 
-# TODO(@traeighsea): Compile all data/<region>/wild_encounters.json files to a single master list in data/wild_encounters.json
-region_temp := hoenn
-$(DATA_SRC_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/$(region_temp)/wild_encounters.json
-	@cp $< $@
-$(DATA_SRC_SUBDIR)/wild_encounters.json.txt: $(DATA_ASM_SUBDIR)/$(region_temp)/wild_encounters.json.txt
-	@cp $< $@
+REGION_WILD_ENCOUNTERS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/wild_encounters.json)
+
+$(DATA_ASM_SUBDIR)/wild_encounters.json: $(REGION_WILD_ENCOUNTERS)
+	$(JSONAMAL) $(DATA_ASM_SUBDIR)/wild_encounters.json $(REGION_WILD_ENCOUNTERS)
 
 AUTO_GEN_TARGETS += $(DATA_SRC_SUBDIR)/wild_encounters.h
 $(DATA_SRC_SUBDIR)/wild_encounters.h: $(DATA_ASM_SUBDIR)/wild_encounters.json $(DATA_ASM_SUBDIR)/wild_encounters.json.txt

@@ -2,12 +2,14 @@
 MAPS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/maps)
 LAYOUTS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts)
 
-#MAP_DIRS := $(foreach region,$(REGIONS),$(dir $(wildcard $(DATA_ASM_SUBDIR)/$(region)/*/map.json)))
 MAP_DIRS := $(dir $(wildcard $(MAPS_DIR)/*/map.json))
 MAP_JSONS := $(patsubst %,%map.json,$(MAP_DIRS))
 MAP_CONNECTIONS := $(patsubst %,%connections.inc,$(MAP_DIRS))
 MAP_EVENTS := $(patsubst %,%events.inc,$(MAP_DIRS))
 MAP_HEADERS := $(patsubst %,%header.inc,$(MAP_DIRS))
+
+REGION_LAYOUTS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts.json)
+REGION_MAP_GROUPS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/map_groups.json)
 
 $(DATA_ASM_BUILDDIR)/maps.o: $(DATA_ASM_SUBDIR)/maps.s $(DATA_ASM_SUBDIR)/layouts.inc $(DATA_ASM_SUBDIR)/layouts_table.inc $(DATA_ASM_SUBDIR)/headers.inc $(DATA_ASM_SUBDIR)/groups.inc $(DATA_ASM_SUBDIR)/connections.inc $(MAP_CONNECTIONS) $(MAP_HEADERS)
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
@@ -15,24 +17,11 @@ $(DATA_ASM_BUILDDIR)/maps.o: $(DATA_ASM_SUBDIR)/maps.s $(DATA_ASM_SUBDIR)/layout
 $(DATA_ASM_BUILDDIR)/map_events.o: $(DATA_ASM_SUBDIR)/map_events.s $(DATA_ASM_SUBDIR)/events.inc $(MAP_EVENTS)
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
 
-region_temp := hoenn
-# TODO(@traeighsea): Compile all data/<region>/layouts.json files to a single master list in data/layouts.json
-$(DATA_ASM_SUBDIR)/layouts.json: $(DATA_ASM_SUBDIR)/$(region_temp)/layouts.json
-	echo $<
-	echo $@
-	cp $< $@
+$(DATA_ASM_SUBDIR)/layouts.json: $(REGION_LAYOUTS)
+	$(JSONAMAL) $(DATA_ASM_SUBDIR)/layouts.json $(REGION_LAYOUTS)
 
-# TODO(@traeighsea): Compile all data/<region>/map.json files to a single master list in data/map.json
-$(DATA_ASM_SUBDIR)/map.json: $(DATA_ASM_SUBDIR)/$(region_temp)/map.json
-	echo $<
-	echo $@
-	cp $< $@
-
-# TODO(@traeighsea): Compile all data/<region>/map_groups.json files to a single master list in data/map_groups.json
-$(DATA_ASM_SUBDIR)/map_groups.json: $(DATA_ASM_SUBDIR)/$(region_temp)/map_groups.json
-	echo $<
-	echo $@
-	cp $< $@
+$(DATA_ASM_SUBDIR)/map_groups.json: $(REGION_MAP_GROUPS)
+	$(JSONAMAL) $(DATA_ASM_SUBDIR)/map_groups.json $(REGION_MAP_GROUPS)
 
 $(filter %/header.inc,$(MAP_HEADERS)): %/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json
 %/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json 
