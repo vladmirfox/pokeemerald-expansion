@@ -4667,7 +4667,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     consumeItem = TRUE;
                 }
                 break;
-            case EVO_LEVEL_MOVE_TWENTY_TIMES:
+            case EVO_USE_MOVE_TWENTY_TIMES:
                 if (evolutionTracker >= 20)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;

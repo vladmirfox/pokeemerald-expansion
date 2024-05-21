@@ -6290,7 +6290,7 @@ static void Cmd_moveend(void)
         case MOVEEND_SET_EVOLUTION_TRACKER:
             // If the Pokémon needs to keep track of move usage for its evolutions, do it
             if (originallyUsedMove != MOVE_NONE)
-                TryUpdateEvolutionTracker(EVO_LEVEL_MOVE_TWENTY_TIMES, 1, originallyUsedMove);
+                TryUpdateEvolutionTracker(EVO_USE_MOVE_TWENTY_TIMES, 1, originallyUsedMove);
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
@@ -16782,7 +16782,7 @@ static void TryUpdateEvolutionTracker(u32 evolutionMethod, u32 upAmount, u16 use
                 // Reset progress if you faint for the recoil method.
                 switch (evolutionMethod)
                 {
-                    case EVO_LEVEL_MOVE_TWENTY_TIMES:
+                    case EVO_USE_MOVE_TWENTY_TIMES:
                         if (evolutions[i].param == usedMove)
                             SetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_EVOLUTION_TRACKER, &val);
                         break;
