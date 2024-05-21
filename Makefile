@@ -166,6 +166,7 @@ RAMSCRGEN := tools/ramscrgen/ramscrgen$(EXE)
 FIX := tools/gbafix/gbafix$(EXE)
 MAPJSON := tools/mapjson/mapjson$(EXE)
 JSONPROC := tools/jsonproc/jsonproc$(EXE)
+JSONAMAL := tools/jsonamal/jsonamal$(EXE)
 PATCHELF := tools/patchelf/patchelf$(EXE)
 ROMTEST ?= $(shell { command -v mgba-rom-test || command -v tools/mgba/mgba-rom-test$(EXE); } 2>/dev/null)
 ROMTESTHYDRA := tools/mgba-rom-test-hydra/mgba-rom-test-hydra$(EXE)
@@ -173,7 +174,7 @@ ROMTESTHYDRA := tools/mgba-rom-test-hydra/mgba-rom-test-hydra$(EXE)
 PERL := perl
 
 # Inclusive list. If you don't want a tool to be built, don't add it here.
-TOOLDIRS := tools/aif2pcm tools/bin2c tools/gbafix tools/gbagfx tools/jsonproc tools/mapjson tools/mid2agb tools/preproc tools/ramscrgen tools/rsfont tools/scaninc
+TOOLDIRS := tools/aif2pcm tools/bin2c tools/gbafix tools/gbagfx tools/jsonproc tools/jsonamal tools/mapjson tools/mid2agb tools/preproc tools/ramscrgen tools/rsfont tools/scaninc
 CHECKTOOLDIRS = tools/patchelf tools/mgba-rom-test-hydra
 TOOLBASE = $(TOOLDIRS:tools/%=%)
 TOOLS = $(foreach tool,$(TOOLBASE),tools/$(tool)/$(tool)$(EXE))
@@ -298,8 +299,9 @@ clean-maps:
 	rm -f $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/maps/groups.inc)
 	rm -f $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/maps/headers.inc)
 
-	@$(foreach region,$(REGIONS),$(find $(DATA_ASM_SUBDIR)/$(region)/maps \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} + ))
+	@$(find $(DATA_ASM_SUBDIR) \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} + )
 
+	rm -f $(DATA_ASM_SUBDIR)/layouts.json $(DATA_ASM_SUBDIR)/map_groups.json $(DATA_ASM_SUBDIR)/wild_encounters.json
 	rm -f $(DATA_ASM_SUBDIR)/layouts.inc $(DATA_ASM_SUBDIR)/layouts_table.inc
 	rm -f $(DATA_ASM_SUBDIR)/connections.inc $(DATA_ASM_SUBDIR)/events.inc $(DATA_ASM_SUBDIR)/groups.inc $(DATA_ASM_SUBDIR)/headers.inc
 	find $(DATA_ASM_SUBDIR) \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +
