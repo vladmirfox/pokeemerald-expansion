@@ -245,8 +245,8 @@ static const u8 sText_EVO_ITEM_NIGHT[] = _("{STR_VAR_2} is used, night");
 static const u8 sText_EVO_ITEM_DAY[] = _("{STR_VAR_2} is used, day");
 static const u8 sText_EVO_ITEM_HOLD[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}");
 static const u8 sText_EVO_USE_MOVE_TWENTY_TIMES[] = _("{LV}{UP_ARROW} after 20x {STR_VAR_2}");
-static const u8 sText_EVO_LEVEL_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, male");
-static const u8 sText_EVO_LEVEL_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, female");
+static const u8 sText_EVO_RECOIL_DAMAGE_MALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, male");
+static const u8 sText_EVO_RECOIL_DAMAGE_FEMALE[] = _("{LV}{UP_ARROW} with {STR_VAR_2} recoil, female");
 static const u8 sText_EVO_LEVEL_ITEM_COUNT_999[] = _("{LV}{UP_ARROW} with 999 {STR_VAR_2} in bag");
 static const u8 sText_EVO_UNKNOWN[] = _("Method unknown");
 static const u8 sText_EVO_NONE[] = _("{STR_VAR_1} has no evolution.");
@@ -6654,13 +6654,13 @@ static u8 PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 depth,
             StringCopy(gStringVar2, GetMoveName(evolutions[i].param));
             StringExpandPlaceholders(gStringVar4, sText_EVO_USE_MOVE_TWENTY_TIMES );
             break;
-        case EVO_LEVEL_RECOIL_DAMAGE_MALE:
+        case EVO_RECOIL_DAMAGE_MALE:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_RECOIL_DAMAGE_MALE);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_RECOIL_DAMAGE_MALE);
             break;
-        case EVO_LEVEL_RECOIL_DAMAGE_FEMALE:
+        case EVO_RECOIL_DAMAGE_FEMALE:
             ConvertIntToDecimalStringN(gStringVar2, evolutions[i].param, STR_CONV_MODE_LEADING_ZEROS, 3);
-            StringExpandPlaceholders(gStringVar4, sText_EVO_LEVEL_RECOIL_DAMAGE_FEMALE);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_RECOIL_DAMAGE_FEMALE);
             break;
         case EVO_LEVEL_ITEM_COUNT_999:
             item = evolutions[i].param;
