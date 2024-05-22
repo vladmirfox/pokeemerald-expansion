@@ -16462,9 +16462,7 @@ void BS_TrySetOctolock(void)
 void BS_SetGlaiveRush(void)
 {
     NATIVE_ARGS();
-
     gStatuses4[gBattlerAttacker] |= STATUS4_GLAIVE_RUSH;
-
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
