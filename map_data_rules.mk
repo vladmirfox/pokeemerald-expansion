@@ -7,6 +7,7 @@ MAP_JSONS := $(patsubst %,%map.json,$(MAP_DIRS))
 MAP_CONNECTIONS := $(patsubst %,%connections.inc,$(MAP_DIRS))
 MAP_EVENTS := $(patsubst %,%events.inc,$(MAP_DIRS))
 MAP_HEADERS := $(patsubst %,%header.inc,$(MAP_DIRS))
+MAP_WILD_ENCOUNTERS := $(wildcard $(MAPS_DIR)/*/wild_encounters.json)
 
 REGION_LAYOUTS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts.json)
 REGION_MAP_GROUPS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/map_groups.json)
@@ -18,10 +19,10 @@ $(DATA_ASM_BUILDDIR)/map_events.o: $(DATA_ASM_SUBDIR)/map_events.s $(DATA_ASM_SU
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
 
 $(DATA_ASM_SUBDIR)/layouts.json: $(REGION_LAYOUTS)
-	$(JSONAMAL) $(DATA_ASM_SUBDIR)/layouts.json $(REGION_LAYOUTS)
+	$(JSONAMAL) simple $(DATA_ASM_SUBDIR)/layouts.json $(REGION_LAYOUTS)
 
 $(DATA_ASM_SUBDIR)/map_groups.json: $(REGION_MAP_GROUPS)
-	$(JSONAMAL) $(DATA_ASM_SUBDIR)/map_groups.json $(REGION_MAP_GROUPS)
+	$(JSONAMAL) simple $(DATA_ASM_SUBDIR)/map_groups.json $(REGION_MAP_GROUPS)
 
 $(filter %/header.inc,$(MAP_HEADERS)): %/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json
 %/header.inc: %/map.json $(DATA_ASM_SUBDIR)/layouts.json 
@@ -44,3 +45,11 @@ $(DATA_ASM_SUBDIR)/layouts.inc: $(DATA_ASM_SUBDIR)/layouts.json
 	$(MAPJSON) layouts emerald $<
 $(DATA_ASM_SUBDIR)/layouts_table.inc: $(DATA_ASM_SUBDIR)/layouts.inc ;
 include/constants/layouts.h: $(DATA_ASM_SUBDIR)/layouts_table.inc ;
+
+$(DATA_ASM_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/wild_encounters_header.json
+	$(JSONAMAL) encounters $(DATA_ASM_SUBDIR)/wild_encounters.json $(DATA_ASM_SUBDIR)/wild_encounters_header.json $(MAP_WILD_ENCOUNTERS)
+
+# This is a migration script you can run to go from a single list to wild encounters per map dir
+.PHONY: run-separate-wild-encounters
+run-separate-wild-encounters: data/wild_encounters.json $(MAP_JSONS)
+	$(SEPARATE_WILD_ENCOUNTERS) data/wild_encounters.json $(MAP_JSONS)
