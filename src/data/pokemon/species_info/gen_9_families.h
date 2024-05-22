@@ -51,7 +51,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Sprigatito,
         .iconSprite = gMonIcon_Sprigatito,
         .iconPalIndex = 1,
-        //FOOTPRINT(Sprigatito)
+        FOOTPRINT(Sprigatito)
         .levelUpLearnset = sSprigatitoLevelUpLearnset,
         .teachableLearnset = sSprigatitoTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLORAGATO}),
@@ -104,7 +104,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Floragato,
         .iconSprite = gMonIcon_Floragato,
         .iconPalIndex = 1,
-        //FOOTPRINT(Floragato)
+        FOOTPRINT(Floragato)
         .levelUpLearnset = sFloragatoLevelUpLearnset,
         .teachableLearnset = sFloragatoTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_MEOWSCARADA}),
@@ -157,7 +157,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Meowscarada,
         .iconSprite = gMonIcon_Meowscarada,
         .iconPalIndex = 1,
-        //FOOTPRINT(Meowscarada)
+        FOOTPRINT(Meowscarada)
         .levelUpLearnset = sMeowscaradaLevelUpLearnset,
         .teachableLearnset = sMeowscaradaTeachableLearnset,
     },
@@ -211,7 +211,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Fuecoco,
         .iconSprite = gMonIcon_Fuecoco,
         .iconPalIndex = 2,
-        //FOOTPRINT(Fuecoco)
+        FOOTPRINT(Fuecoco)
         .levelUpLearnset = sFuecocoLevelUpLearnset,
         .teachableLearnset = sFuecocoTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CROCALOR}),
@@ -264,7 +264,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Crocalor,
         .iconSprite = gMonIcon_Crocalor,
         .iconPalIndex = 0,
-        //FOOTPRINT(Crocalor)
+        FOOTPRINT(Crocalor)
         .levelUpLearnset = sCrocalorLevelUpLearnset,
         .teachableLearnset = sCrocalorTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SKELEDIRGE}),
@@ -317,7 +317,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Skeledirge,
         .iconSprite = gMonIcon_Skeledirge,
         .iconPalIndex = 0,
-        //FOOTPRINT(Skeledirge)
+        FOOTPRINT(Skeledirge)
         .levelUpLearnset = sSkeledirgeLevelUpLearnset,
         .teachableLearnset = sSkeledirgeTeachableLearnset,
     },
@@ -371,7 +371,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Quaxly,
         .iconSprite = gMonIcon_Quaxly,
         .iconPalIndex = 0,
-        //FOOTPRINT(Quaxly)
+        FOOTPRINT(Quaxly)
         .levelUpLearnset = sQuaxlyLevelUpLearnset,
         .teachableLearnset = sQuaxlyTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_QUAXWELL}),
@@ -424,7 +424,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Quaxwell,
         .iconSprite = gMonIcon_Quaxwell,
         .iconPalIndex = 0,
-        //FOOTPRINT(Quaxwell)
+        FOOTPRINT(Quaxwell)
         .levelUpLearnset = sQuaxwellLevelUpLearnset,
         .teachableLearnset = sQuaxwellTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_QUAQUAVAL}),
@@ -477,7 +477,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .shinyPalette = gMonShinyPalette_Quaquaval,
         .iconSprite = gMonIcon_Quaquaval,
         .iconPalIndex = 0,
-        //FOOTPRINT(Quaquaval)
+        FOOTPRINT(Quaquaval)
         .levelUpLearnset = sQuaquavalLevelUpLearnset,
         .teachableLearnset = sQuaquavalTeachableLearnset,
     },
