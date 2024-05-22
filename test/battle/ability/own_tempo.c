@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Own Tempo prevents Intimidate but no other stat down changes
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCARY_FACE, player);
         NONE_OF {
             ABILITY_POPUP(opponent, ABILITY_OWN_TEMPO);
-            MESSAGE("Foe Slowpoke's Own Tempo prevents prevents stat loss!");
+            MESSAGE("Foe Slowpoke's Own Tempo prevents stat loss!");
         }
     }
 }
