@@ -26,6 +26,9 @@ script SakuTown_EventScript_Rival {
 	lock
 
 	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkFastUp)
+	waitmovement(0)
+	playse(SE_WALL_HIT)
+	waitse
 	playse(SE_PIN)
 	applymovement(LOCALID_RIVAL, Common_Movement_ExclamationMark)
 	delay(48)
@@ -97,13 +100,10 @@ script SakuTown_EventScript_RivalFight {
 	switch(var(VAR_STARTER_MON)) {
 		case SPECIES_ARON:
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_ARON, SakuTown_Text_RivalDefeat)
-			break
 		case SPECIES_SPHEAL:
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_SPHEAL, SakuTown_Text_RivalDefeat)
-			break
 		case SPECIES_TRAPINCH:
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_TRAPINCH, SakuTown_Text_RivalDefeat)
-			break
 	}
 
 	msgbox(format(

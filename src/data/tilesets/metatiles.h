@@ -256,3 +256,6 @@ const u16 gMetatileAttributes_HouseHardwood2[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_HouseStone[] = INCBIN_U16("data/tilesets/secondary/house_stone/metatiles.bin");
 const u16 gMetatileAttributes_HouseStone[] = INCBIN_U16("data/tilesets/secondary/house_stone/metatile_attributes.bin");
+
+const u16 gMetatiles_Soulkeep[] = INCBIN_U16("data/tilesets/secondary/soulkeep/metatiles.bin");
+const u16 gMetatileAttributes_Soulkeep[] = INCBIN_U16("data/tilesets/secondary/soulkeep/metatile_attributes.bin");

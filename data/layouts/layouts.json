@@ -4624,7 +4624,7 @@
     {
       "id": "LAYOUT_WHITESLATE_ROUTE",
       "name": "WhiteslateRoute_Layout",
-      "width": 48,
+      "width": 45,
       "height": 90,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Yifu",
@@ -4650,6 +4650,26 @@
       "secondary_tileset": "gTileset_DojoKura",
       "border_filepath": "data/layouts/KuraTown_Dojo/border.bin",
       "blockdata_filepath": "data/layouts/KuraTown_Dojo/map.bin"
+    },
+    {
+      "id": "LAYOUT_BELVEDERE_ROUTE",
+      "name": "BelvedereRoute_Layout",
+      "width": 31,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Silveridge",
+      "border_filepath": "data/layouts/BelvedereRoute/border.bin",
+      "blockdata_filepath": "data/layouts/BelvedereRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOULKEEP",
+      "name": "Soulkeep_Layout",
+      "width": 40,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Soulkeep",
+      "border_filepath": "data/layouts/Soulkeep/border.bin",
+      "blockdata_filepath": "data/layouts/Soulkeep/map.bin"
     }
   ]
 }

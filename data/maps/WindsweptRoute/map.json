@@ -27,6 +27,11 @@
       "map": "MAP_WINDY_CAPE",
       "offset": 2,
       "direction": "up"
+    },
+    {
+      "map": "MAP_BELVEDERE_ROUTE",
+      "offset": -3,
+      "direction": "left"
     }
   ],
   "object_events": [

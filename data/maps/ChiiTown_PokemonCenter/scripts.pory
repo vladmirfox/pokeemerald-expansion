@@ -80,6 +80,7 @@ script ChiiTown_PokemonCenter_EventScript_RefugePresentation {
 		case DIR_NORTH:
 			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom)
 		case DIR_WEST:
+			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
 		case DIR_EAST:
 			applymovement(LOCALID_MAN, ChiiTown_PokemonCenter_Movement_Leave)
 	}

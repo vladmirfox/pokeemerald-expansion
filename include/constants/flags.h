@@ -52,11 +52,11 @@
 #define FLAG_HIDE_RIVAL_SAKU 0x23
 // True if the owner of the bonsai shop is not at the shop
 #define FLAG_HIDE_BONSAI_SHOP_OWNER 0x24
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
+#define FLAG_HIDE_LOST_MAREEP_1 0x25
+#define FLAG_HIDE_LOST_MAREEP_2 0x26
+#define FLAG_HIDE_LOST_MAREEP_3 0x27
+#define FLAG_HIDE_LOST_MAREEP_4 0x28
+#define FLAG_HIDE_LOST_MAREEP_5 0x29
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag

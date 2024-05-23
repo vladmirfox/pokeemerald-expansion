@@ -1938,3 +1938,22 @@ const u16 gTilesetPalettes_HouseStone[][16] =
 };
 
 const u32 gTilesetTiles_HouseStone[] = INCBIN_U32("data/tilesets/secondary/house_stone/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Soulkeep[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/soulkeep/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Soulkeep[] = INCBIN_U32("data/tilesets/secondary/soulkeep/tiles.4bpp.lz");

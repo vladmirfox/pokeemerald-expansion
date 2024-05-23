@@ -77,6 +77,8 @@
 #define MAP_WINDY_CAPE                            (68 | (0 << 8))
 #define MAP_WHITESLATE_ROUTE                      (69 | (0 << 8))
 #define MAP_YIFU_CITY                             (70 | (0 << 8))
+#define MAP_BELVEDERE_ROUTE                       (71 | (0 << 8))
+#define MAP_SOULKEEP                              (72 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
