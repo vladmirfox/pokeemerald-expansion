@@ -42,3 +42,4 @@ src/data/map_group_count.h
 compile_commands.json
 .cache
 .clangd
+*.dSYM
