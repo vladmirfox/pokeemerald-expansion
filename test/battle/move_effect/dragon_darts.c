@@ -4,7 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
-    ASSUME(gSpeciesInfo[SPECIES_CLEFAIRY].types[0] == TYPE_FAIRY || gSpeciesInfo[SPECIES_CLEFAIRY].types[1] == TYPE_FAIRY)
+    ASSUME(gSpeciesInfo[SPECIES_CLEFAIRY].types[0] == TYPE_FAIRY || gSpeciesInfo[SPECIES_CLEFAIRY].types[1] == TYPE_FAIRY);
 }
 
 SINGLE_BATTLE_TEST("Dragon Darts strikes twice")
@@ -188,7 +188,7 @@ DOUBLE_BATTLE_TEST("Dragon Darts strikes right ally twice if one strike misses")
     }
 }
 
-// DOUBLE_BATTLE_TEST("Flash Fire test")
+// DOUBLE_BATTLE_TEST("Fire Dragon Darts")
 // {
 //     s16 damage[2];
 
