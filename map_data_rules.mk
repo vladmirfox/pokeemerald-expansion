@@ -2,12 +2,12 @@
 MAPS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/maps)
 LAYOUTS_DIR := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts)
 
-MAP_DIRS := $(dir $(wildcard $(MAPS_DIR)/*/map.json))
+MAP_DIRS := $(dir $(foreach maps_dir,$(MAPS_DIR),$(wildcard $(maps_dir)/*/map.json)))
 MAP_JSONS := $(patsubst %,%map.json,$(MAP_DIRS))
 MAP_CONNECTIONS := $(patsubst %,%connections.inc,$(MAP_DIRS))
 MAP_EVENTS := $(patsubst %,%events.inc,$(MAP_DIRS))
 MAP_HEADERS := $(patsubst %,%header.inc,$(MAP_DIRS))
-MAP_WILD_ENCOUNTERS := $(wildcard $(MAPS_DIR)/*/wild_encounters.json)
+MAP_WILD_ENCOUNTERS := $(foreach maps_dir,$(MAPS_DIR),$(wildcard $(maps_dir)/*/wild_encounters.json))
 
 REGION_LAYOUTS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts.json)
 REGION_MAP_GROUPS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/map_groups.json)
@@ -51,5 +51,5 @@ $(DATA_ASM_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/wild_encounters_comm
 
 # This is a migration script you can run to go from a single list to wild encounters per map dir
 .PHONY: run-separate-wild-encounters
-run-separate-wild-encounters: data/wild_encounters.json $(MAP_JSONS)
+run-separate-wild-encounters:
 	$(SEPARATE_WILD_ENCOUNTERS) data/wild_encounters.json $(MAP_JSONS)
