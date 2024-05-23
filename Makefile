@@ -302,7 +302,7 @@ clean-maps:
 
 	@$(find $(DATA_ASM_SUBDIR) \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} + )
 
-	rm -f $(DATA_ASM_SUBDIR)/layouts.json $(DATA_ASM_SUBDIR)/map_groups.json $(DATA_ASM_SUBDIR)/wild_encounters.json
+	rm -f $(DATA_ASM_SUBDIR)/layouts.json $(DATA_ASM_SUBDIR)/map_groups.json $(DATA_ASM_SUBDIR)/wild_encounters_common.json $(DATA_ASM_SUBDIR)/wild_encounters.json
 	rm -f $(DATA_ASM_SUBDIR)/layouts.inc $(DATA_ASM_SUBDIR)/layouts_table.inc
 	rm -f $(DATA_ASM_SUBDIR)/connections.inc $(DATA_ASM_SUBDIR)/events.inc $(DATA_ASM_SUBDIR)/groups.inc $(DATA_ASM_SUBDIR)/headers.inc
 	find $(DATA_ASM_SUBDIR) \( -iname 'connections.inc' -o -iname 'events.inc' -o -iname 'header.inc' \) -exec rm {} +

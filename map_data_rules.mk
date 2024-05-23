@@ -11,6 +11,7 @@ MAP_WILD_ENCOUNTERS := $(foreach maps_dir,$(MAPS_DIR),$(wildcard $(maps_dir)/*/w
 
 REGION_LAYOUTS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/layouts.json)
 REGION_MAP_GROUPS := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/map_groups.json)
+REGION_WILD_ENCOUNTERS_COMMON := $(foreach region,$(REGIONS),$(DATA_ASM_SUBDIR)/$(region)/wild_encounters_common.json)
 
 $(DATA_ASM_BUILDDIR)/maps.o: $(DATA_ASM_SUBDIR)/maps.s $(DATA_ASM_SUBDIR)/layouts.inc $(DATA_ASM_SUBDIR)/layouts_table.inc $(DATA_ASM_SUBDIR)/headers.inc $(DATA_ASM_SUBDIR)/groups.inc $(DATA_ASM_SUBDIR)/connections.inc $(MAP_CONNECTIONS) $(MAP_HEADERS)
 	$(PREPROC) $< charmap.txt | $(CPP) -I include - | $(AS) $(ASFLAGS) -o $@
@@ -45,6 +46,9 @@ $(DATA_ASM_SUBDIR)/layouts.inc: $(DATA_ASM_SUBDIR)/layouts.json
 	$(MAPJSON) layouts emerald $<
 $(DATA_ASM_SUBDIR)/layouts_table.inc: $(DATA_ASM_SUBDIR)/layouts.inc ;
 include/constants/layouts.h: $(DATA_ASM_SUBDIR)/layouts_table.inc ;
+
+$(DATA_ASM_SUBDIR)/wild_encounters_common.json: $(REGION_WILD_ENCOUNTERS_COMMON)
+	$(JSONAMAL) encounters $(DATA_ASM_SUBDIR)/wild_encounters_common.json $(REGION_WILD_ENCOUNTERS_COMMON)
 
 $(DATA_ASM_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/wild_encounters_common.json
 	$(JSONAMAL) encounters $(DATA_ASM_SUBDIR)/wild_encounters.json $(DATA_ASM_SUBDIR)/wild_encounters_common.json $(MAP_WILD_ENCOUNTERS)
