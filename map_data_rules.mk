@@ -46,8 +46,8 @@ $(DATA_ASM_SUBDIR)/layouts.inc: $(DATA_ASM_SUBDIR)/layouts.json
 $(DATA_ASM_SUBDIR)/layouts_table.inc: $(DATA_ASM_SUBDIR)/layouts.inc ;
 include/constants/layouts.h: $(DATA_ASM_SUBDIR)/layouts_table.inc ;
 
-$(DATA_ASM_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/wild_encounters_header.json
-	$(JSONAMAL) encounters $(DATA_ASM_SUBDIR)/wild_encounters.json $(DATA_ASM_SUBDIR)/wild_encounters_header.json $(MAP_WILD_ENCOUNTERS)
+$(DATA_ASM_SUBDIR)/wild_encounters.json: $(DATA_ASM_SUBDIR)/wild_encounters_common.json
+	$(JSONAMAL) encounters $(DATA_ASM_SUBDIR)/wild_encounters.json $(DATA_ASM_SUBDIR)/wild_encounters_common.json $(MAP_WILD_ENCOUNTERS)
 
 # This is a migration script you can run to go from a single list to wild encounters per map dir
 .PHONY: run-separate-wild-encounters
