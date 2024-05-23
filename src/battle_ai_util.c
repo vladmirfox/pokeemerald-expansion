@@ -546,7 +546,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             // With critChance getting closer to 1, dmg gets closer to critDmg.
             if (dmgRoll == DMG_ROLL_AVERAGE)
                 dmg = AverageRollDmg((critDmg + normalDmg * (critChance - 1)) / (critChance));
-            else if (dmgRoll == DMG_ROLL_HIGH)
+            else if (dmgRoll == DMG_ROLL_HIGHEST)
                 dmg = HighestRollDmg((critDmg + normalDmg * (critChance - 1)) / (critChance));
             else
                 dmg = LowestRollDmg((critDmg + normalDmg * (critChance - 1)) / (critChance)); // Default to lowest roll
@@ -555,7 +555,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
         {
             if (dmgRoll == DMG_ROLL_AVERAGE)
                 dmg = AverageRollDmg(normalDmg);
-            else if (dmgRoll == DMG_ROLL_HIGH)
+            else if (dmgRoll == DMG_ROLL_HIGHEST)
                 dmg = HighestRollDmg(normalDmg);
             else
                 dmg = LowestRollDmg(normalDmg); // Default to lowest roll
