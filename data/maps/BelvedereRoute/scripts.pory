@@ -37,27 +37,30 @@ script BelvedereRoute_EventScript_FindMareep {
 	faceplayer
 	playmoncry(SPECIES_MAREEP, CRY_MODE_NORMAL)
 	msgbox(format("Bêêêêêh!"), MSGBOX_AUTOCLOSE)
-	// TODO EVA fade to black
-	removeobject(var(VAR_LAST_TALKED))
-	// TODO EVA fade from black
-	switch(var(VAR_LAST_TALKED)) {
-		case 1:
-			setflag(FLAG_HIDE_LOST_MAREEP_1)
-			addobject(LOCALID_MAREEP_1_IN_RANCH)
-		case 2:
-			setflag(FLAG_HIDE_LOST_MAREEP_2)
-			addobject(LOCALID_MAREEP_2_IN_RANCH)
-		case 3:
-			setflag(FLAG_HIDE_LOST_MAREEP_3)
-			addobject(LOCALID_MAREEP_3_IN_RANCH)
-		case 4:
-			setflag(FLAG_HIDE_LOST_MAREEP_4)
-			addobject(LOCALID_MAREEP_4_IN_RANCH)
-		case 5:
-			setflag(FLAG_HIDE_LOST_MAREEP_5)
-			addobject(LOCALID_MAREEP_5_IN_RANCH)
+	if (var(VAR_QUEST_MAREEP_STATE) > 0) {
+		// TODO EVA fade to black
+		removeobject(var(VAR_LAST_TALKED))
+		// TODO EVA fade from black
+		switch(var(VAR_LAST_TALKED)) {
+			case 1:
+				setflag(FLAG_HIDE_LOST_MAREEP_1)
+				addobject(LOCALID_MAREEP_1_IN_RANCH)
+			case 2:
+				setflag(FLAG_HIDE_LOST_MAREEP_2)
+				addobject(LOCALID_MAREEP_2_IN_RANCH)
+			case 3:
+				setflag(FLAG_HIDE_LOST_MAREEP_3)
+				addobject(LOCALID_MAREEP_3_IN_RANCH)
+			case 4:
+				setflag(FLAG_HIDE_LOST_MAREEP_4)
+				addobject(LOCALID_MAREEP_4_IN_RANCH)
+			case 5:
+				setflag(FLAG_HIDE_LOST_MAREEP_5)
+				addobject(LOCALID_MAREEP_5_IN_RANCH)
+		}
+		addvar(VAR_QUEST_MAREEP_STATE, 1)
 	}
-	addvar(VAR_QUEST_MAREEP_STATE, 1)
+	
 	release
 }
 
@@ -68,7 +71,7 @@ script BelvedereRoute_EventScript_Rancher {
 		case 0:
 			msgbox(format(
 				"Hey, you didn't happen to see a Mareep on your way here, did you?"
-				"I'm desperate… My Mareep escaped my ranch!\p"
+				"I'm desperate… All my Mareep escaped my ranch!\p"
 				"You look like you're at least a semi-capable person…\p"
 				"Would you mind helping me get them back?"
 			), MSGBOX_YESNO)
@@ -95,8 +98,8 @@ script BelvedereRoute_EventScript_Rancher {
 			), MSGBOX_AUTOCLOSE)
 		case 2:
 			msgbox(format(
-					"I'm still missing four Mareep!"
-				), MSGBOX_AUTOCLOSE)
+				"I'm still missing four Mareep!"
+			), MSGBOX_AUTOCLOSE)
 		case 3:
 			msgbox(format(
 				"I'm still missing three Mareep!"
