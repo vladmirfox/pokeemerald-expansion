@@ -381,7 +381,7 @@ static inline s32 HighestRollDmg(s32 dmg)
 
 static inline s32 AverageRollDmg(s32 dmg)
 {
-    dmg = (HighestRollDmg(dmg) * 100 + LowestRollDmg(dmg) * 100) / 2;
+    dmg = ((HighestRollDmg(dmg) + LowestRollDmg(dmg)) * 100) / 2;
     dmg /= 100;
     return dmg;
 }
