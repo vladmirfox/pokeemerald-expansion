@@ -1266,7 +1266,7 @@ bool32 IsBelchPreventingMove(u32 battler, u32 move)
 {
     if (gMovesInfo[move].effect != EFFECT_BELCH)
         return FALSE;
- 
+
     return !(gBattleStruct->ateBerry[battler & BIT_SIDE] & gBitTable[gBattlerPartyIndexes[battler]]);
 }
 
