@@ -12773,7 +12773,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_WoChien[] = INCBIN_U32("graphics/pokemon/wo_chien/shiny.gbapal.lz");
     const u8 gMonIcon_WoChien[] = INCBIN_U8("graphics/pokemon/wo_chien/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_WoChien[] = INCBIN_U8("graphics/pokemon/wo_chien/footprint.1bpp");
+    const u8 gMonFootprint_WoChien[] = INCBIN_U8("graphics/pokemon/wo_chien/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_WO_CHIEN
 
@@ -12784,7 +12784,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_ChienPao[] = INCBIN_U32("graphics/pokemon/chien_pao/shiny.gbapal.lz");
     const u8 gMonIcon_ChienPao[] = INCBIN_U8("graphics/pokemon/chien_pao/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_ChienPao[] = INCBIN_U8("graphics/pokemon/chien_pao/footprint.1bpp");
+    const u8 gMonFootprint_ChienPao[] = INCBIN_U8("graphics/pokemon/chien_pao/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_CHIEN_PAO
 
@@ -12795,7 +12795,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_TingLu[] = INCBIN_U32("graphics/pokemon/ting_lu/shiny.gbapal.lz");
     const u8 gMonIcon_TingLu[] = INCBIN_U8("graphics/pokemon/ting_lu/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_TingLu[] = INCBIN_U8("graphics/pokemon/ting_lu/footprint.1bpp");
+    const u8 gMonFootprint_TingLu[] = INCBIN_U8("graphics/pokemon/ting_lu/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_TING_LU
 
@@ -12806,7 +12806,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_ChiYu[] = INCBIN_U32("graphics/pokemon/chi_yu/shiny.gbapal.lz");
     const u8 gMonIcon_ChiYu[] = INCBIN_U8("graphics/pokemon/chi_yu/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_ChiYu[] = INCBIN_U8("graphics/pokemon/chi_yu/footprint.1bpp");
+    const u8 gMonFootprint_ChiYu[] = INCBIN_U8("graphics/pokemon/chi_yu/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_CHI_YU
 
@@ -12839,7 +12839,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Koraidon[] = INCBIN_U32("graphics/pokemon/koraidon/shiny.gbapal.lz");
     const u8 gMonIcon_Koraidon[] = INCBIN_U8("graphics/pokemon/koraidon/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Koraidon[] = INCBIN_U8("graphics/pokemon/koraidon/footprint.1bpp");
+    const u8 gMonFootprint_Koraidon[] = INCBIN_U8("graphics/pokemon/koraidon/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_KORAIDON
 
@@ -12850,7 +12850,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Miraidon[] = INCBIN_U32("graphics/pokemon/miraidon/shiny.gbapal.lz");
     const u8 gMonIcon_Miraidon[] = INCBIN_U8("graphics/pokemon/miraidon/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Miraidon[] = INCBIN_U8("graphics/pokemon/miraidon/footprint.1bpp");
+    const u8 gMonFootprint_Miraidon[] = INCBIN_U8("graphics/pokemon/miraidon/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_MIRAIDON
 
@@ -12903,7 +12903,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Okidogi[] = INCBIN_U32("graphics/pokemon/okidogi/shiny.gbapal.lz");
     const u8 gMonIcon_Okidogi[] = INCBIN_U8("graphics/pokemon/okidogi/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Okidogi[] = INCBIN_U8("graphics/pokemon/okidogi/footprint.1bpp");
+    const u8 gMonFootprint_Okidogi[] = INCBIN_U8("graphics/pokemon/okidogi/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_OKIDOGI
 
@@ -12914,7 +12914,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Munkidori[] = INCBIN_U32("graphics/pokemon/munkidori/shiny.gbapal.lz");
     const u8 gMonIcon_Munkidori[] = INCBIN_U8("graphics/pokemon/munkidori/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Munkidori[] = INCBIN_U8("graphics/pokemon/munkidori/footprint.1bpp");
+    const u8 gMonFootprint_Munkidori[] = INCBIN_U8("graphics/pokemon/munkidori/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_MUNKIDORI
 
@@ -12925,7 +12925,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Fezandipiti[] = INCBIN_U32("graphics/pokemon/fezandipiti/shiny.gbapal.lz");
     const u8 gMonIcon_Fezandipiti[] = INCBIN_U8("graphics/pokemon/fezandipiti/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Fezandipiti[] = INCBIN_U8("graphics/pokemon/fezandipiti/footprint.1bpp");
+    const u8 gMonFootprint_Fezandipiti[] = INCBIN_U8("graphics/pokemon/fezandipiti/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_FEZANDIPITI
 
@@ -12936,7 +12936,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_OgerponTealMask[] = INCBIN_U32("graphics/pokemon/ogerpon/shiny.gbapal.lz");
     const u8 gMonIcon_OgerponTealMask[] = INCBIN_U8("graphics/pokemon/ogerpon/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Ogerpon[] = INCBIN_U8("graphics/pokemon/ogerpon/footprint.1bpp");
+    const u8 gMonFootprint_Ogerpon[] = INCBIN_U8("graphics/pokemon/ogerpon/footprint.1bpp");
 #endif //P_FOOTPRINTS
 
     const u32 gMonFrontPic_OgerponWellspringMask[] = INCBIN_U32("graphics/pokemon/ogerpon/wellspring/front.4bpp.lz");
@@ -13029,7 +13029,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     // const u32 gMonShinyPalette_TerapagosNormal[] = INCBIN_U32("graphics/pokemon/terapagos/shiny.gbapal.lz");
     const u8 gMonIcon_TerapagosNormal[] = INCBIN_U8("graphics/pokemon/terapagos/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Terapagos[] = INCBIN_U8("graphics/pokemon/terapagos/footprint.1bpp");
+    const u8 gMonFootprint_TerapagosNormal[] = INCBIN_U8("graphics/pokemon/terapagos/footprint.1bpp");
 #endif //P_FOOTPRINTS
 
     // const u32 gMonFrontPic_TerapagosTerastal[] = INCBIN_U32("graphics/pokemon/terapagos/terastal/front.4bpp.lz");
@@ -13037,12 +13037,18 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     // const u32 gMonBackPic_TerapagosTerastal[] = INCBIN_U32("graphics/pokemon/terapagos/terastal/back.4bpp.lz");
     // const u32 gMonShinyPalette_TerapagosTerastal[] = INCBIN_U32("graphics/pokemon/terapagos/terastal/shiny.gbapal.lz");
     const u8 gMonIcon_TerapagosTerastal[] = INCBIN_U8("graphics/pokemon/terapagos/terastal/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_TerapagosTerastal[] = INCBIN_U8("graphics/pokemon/terapagos/terastal/footprint.1bpp");
+#endif //P_FOOTPRINTS
 
     // const u32 gMonFrontPic_TerapagosStellar[] = INCBIN_U32("graphics/pokemon/terapagos/stellar/front.4bpp.lz");
     // const u32 gMonPalette_TerapagosStellar[] = INCBIN_U32("graphics/pokemon/terapagos/stellar/normal.gbapal.lz");
     // const u32 gMonBackPic_TerapagosStellar[] = INCBIN_U32("graphics/pokemon/terapagos/stellar/back.4bpp.lz");
     // const u32 gMonShinyPalette_TerapagosStellar[] = INCBIN_U32("graphics/pokemon/terapagos/stellar/shiny.gbapal.lz");
     const u8 gMonIcon_TerapagosStellar[] = INCBIN_U8("graphics/pokemon/terapagos/stellar/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_TerapagosStellar[] = INCBIN_U8("graphics/pokemon/terapagos/stellar/footprint.1bpp");
+#endif //P_FOOTPRINTS
 #endif //P_FAMILY_TERAPAGOS
 
 #if P_FAMILY_PECHARUNT
@@ -13052,7 +13058,7 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Pecharunt[] = INCBIN_U32("graphics/pokemon/pecharunt/shiny.gbapal.lz");
     const u8 gMonIcon_Pecharunt[] = INCBIN_U8("graphics/pokemon/pecharunt/icon.4bpp");
 #if P_FOOTPRINTS
-    // const u8 gMonFootprint_Pecharunt[] = INCBIN_U8("graphics/pokemon/pecharunt/footprint.1bpp");
+    const u8 gMonFootprint_Pecharunt[] = INCBIN_U8("graphics/pokemon/pecharunt/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #endif //P_FAMILY_PECHARUNT
 
