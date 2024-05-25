@@ -154,17 +154,19 @@ SINGLE_BATTLE_TEST("Future Sight will miss timing if target faints by residual d
     }
 }
 
-SINGLE_BATTLE_TEST("Future Sight and Focus Sash")
+SINGLE_BATTLE_TEST("Future Sight breaks Focus Sash and doesn't make the holder endure another move")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Level(1); Item(ITEM_FOCUS_SASH); }
+        OPPONENT(SPECIES_PIDGEY) { Level(1); Item(ITEM_FOCUS_SASH); }
     } WHEN {
         TURN { MOVE(player, MOVE_FUTURE_SIGHT); }
         TURN { }
         TURN { }
-        TURN { MOVE(player, MOVE_PSYCHIC); MOVE(opponent, MOVE_QUICK_ATTACK); }
-        TURN { MOVE(player, MOVE_ICICLE_SPEAR); }
         TURN { MOVE(player, MOVE_PSYCHIC); }
+    } SCENE {
+        MESSAGE("Foe Pidgey hung on using its Focus Sash!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC, player);
+        MESSAGE("Foe Pidgey fainted!");
     }
 }
