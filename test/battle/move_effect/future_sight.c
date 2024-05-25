@@ -153,3 +153,18 @@ SINGLE_BATTLE_TEST("Future Sight will miss timing if target faints by residual d
         NOT MESSAGE("Foe Wynaut took the Future Sight attack!");
     }
 }
+
+SINGLE_BATTLE_TEST("Future Sight and Focus Sash")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Level(1); Item(ITEM_FOCUS_SASH); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FUTURE_SIGHT); }
+        TURN { }
+        TURN { }
+        TURN { MOVE(player, MOVE_PSYCHIC); MOVE(opponent, MOVE_QUICK_ATTACK); }
+        TURN { MOVE(player, MOVE_ICICLE_SPEAR); }
+        TURN { MOVE(player, MOVE_PSYCHIC); }
+    }
+}
