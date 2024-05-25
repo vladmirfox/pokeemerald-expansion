@@ -2161,7 +2161,7 @@ static void Cmd_createdragondartsprite(void)
     subpriority = GetSubpriorityForMoveAnim(argVar);
     
 
-    if (gBattleMons[gBattleAnimAttacker].species == SPECIES_DRAGAPULT){
+    if (GetMonData(&party[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES) == SPECIES_DRAGAPULT){
         template.tileTag = ANIM_TAG_DREEPY;
         if (IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]) == TRUE) {
             template.paletteTag = ANIM_TAG_DREEPY_SHINY;
@@ -2169,7 +2169,7 @@ static void Cmd_createdragondartsprite(void)
             template.paletteTag = ANIM_TAG_DREEPY;
         }
         template.oam = &gOamData_AffineOff_ObjNormal_32x32;
-        if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT) {
+        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT) {
             template.anims = gAnims_DreepyMissileOpponent;
         } else {
             template.anims = gAnims_DreepyMissilePlayer;
@@ -2178,7 +2178,7 @@ static void Cmd_createdragondartsprite(void)
         template.tileTag = ANIM_TAG_AIR_WAVE;
         template.paletteTag = ANIM_TAG_DREEPY;
         template.oam = &gOamData_AffineOff_ObjNormal_32x16;
-        if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT) {
+        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT) {
             template.anims = gAnims_DreepyMissileOpponentNotDrag;
         } else {
             template.anims = gAnims_DreepyMissilePlayer;
