@@ -554,7 +554,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             case EFFECT_MULTI_HIT:
                 if (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
                     dmg *= 3;
-                if (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK)
+                else if (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK)
                     dmg *= 5;
                 else if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_LOADED_DICE)
                     dmg *= 4;
