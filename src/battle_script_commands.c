@@ -8406,7 +8406,7 @@ static bool32 HasAttackerFaintedTarget(void)
         && gBattleStruct->moveTarget[gBattlerAttacker] == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
         && gCurrentTurnActionNumber == GetBattlerTurnOrderNum(gBattlerAttacker)
-        && (gChosenMove == gChosenMoveByBattler[gBattlerAttacker] || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos]))
+        && (gChosenMove == gChosenMoveByBattler[gBattlerAttacker] || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos] || gChosenMove == GetMaxMove(gBattlerAttacker, gChosenMoveByBattler[gBattlerAttacker])))
         return TRUE;
     else
         return FALSE;
@@ -9486,6 +9486,7 @@ static void Cmd_various(void)
     case VARIOUS_TRY_ACTIVATE_BEAST_BOOST:
     {
         VARIOUS_ARGS();
+
         i = GetHighestStatId(battler);
         if (GetBattlerAbility(battler) == ABILITY_BEAST_BOOST
             && HasAttackerFaintedTarget()
