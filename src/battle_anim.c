@@ -2149,9 +2149,9 @@ static void Cmd_createdragondartsprite(void)
 
     argVar = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-
     argsCount = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
+
     for (i = 0; i < argsCount; i++)
     {
         gBattleAnimArgs[i] = T1_READ_16(sBattleAnimScriptPtr);
@@ -2159,31 +2159,31 @@ static void Cmd_createdragondartsprite(void)
     }
 
     subpriority = GetSubpriorityForMoveAnim(argVar);
-    
 
-    if (GetMonData(&party[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES) == SPECIES_DRAGAPULT){
+    if (GetMonData(&party[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES) == SPECIES_DRAGAPULT)
+    {
         template.tileTag = ANIM_TAG_DREEPY;
-        if (IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]) == TRUE) {
+        if (IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]) == TRUE)
             template.paletteTag = ANIM_TAG_DREEPY_SHINY;
-        } else {
+        else
             template.paletteTag = ANIM_TAG_DREEPY;
-        }
         template.oam = &gOamData_AffineOff_ObjNormal_32x32;
-        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT) {
+        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT)
             template.anims = gAnims_DreepyMissileOpponent;
-        } else {
+        else
             template.anims = gAnims_DreepyMissilePlayer;
-        }
-    } else {
+    }
+    else
+    {
         template.tileTag = ANIM_TAG_AIR_WAVE;
         template.paletteTag = ANIM_TAG_DREEPY;
         template.oam = &gOamData_AffineOff_ObjNormal_32x16;
-        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT) {
+        if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT)
             template.anims = gAnims_DreepyMissileOpponentNotDrag;
-        } else {
+        else
             template.anims = gAnims_DreepyMissilePlayer;
-        }
     }
+
     template.images = NULL;
     template.affineAnims = gDummySpriteAffineAnimTable;
     template.callback = AnimShadowBall;
@@ -2192,7 +2192,5 @@ static void Cmd_createdragondartsprite(void)
         GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2),
         GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET),
         subpriority) != MAX_SPRITES) // Don't increment the task count if the sprite couldn't be created(i.e. there are too many created sprites atm).
-     {
          gAnimVisualTaskCount++;
-     }
 }
