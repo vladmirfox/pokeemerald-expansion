@@ -5856,7 +5856,7 @@ static void PrintStatsScreen_Left(u8 taskId)
                 StringCopy(gStringVar2, sText_Stats_eggGroup_NO_EGGS_DISCOVERED);
                 break;
             default:
-                StringCopy(gStringVar1, sText_Stats_eggGroup_UNKNOWN);
+                StringCopy(gStringVar2, sText_Stats_eggGroup_UNKNOWN);
                 break;
             }
             StringExpandPlaceholders(gStringVar3, sText_Stats_eggGroup_Groups);
