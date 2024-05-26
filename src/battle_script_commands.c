@@ -2096,9 +2096,9 @@ static void Cmd_adjustdamage(void)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
-        if (gSpecialStatuses[gBattlerTarget].focusSashed) {
-            gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
-        }
+        gSpecialStatuses[gBattlerTarget].focusBanded = FALSE;
+        gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
+        
     }
     else if (gSpecialStatuses[gBattlerTarget].sturdied)
     {
@@ -3215,7 +3215,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 {
                     gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
                     gBattlescriptCurrInstr++;
-                } else {
+                } 
+                else 
+                {
                     gBattlescriptCurrInstr++;
                 }
                 break;
