@@ -3215,7 +3215,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 {
                     gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
                     gBattlescriptCurrInstr++;
-                } else {
+                } 
+                else 
+                {
                     gBattlescriptCurrInstr++;
                 }
                 break;
