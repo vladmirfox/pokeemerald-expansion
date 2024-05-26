@@ -5,6 +5,8 @@ ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_SEED_FLARE].power == gMovesInfo[MOVE_FUTURE_SIGHT].power);
     ASSUME(gMovesInfo[MOVE_SEED_FLARE].category == gMovesInfo[MOVE_FUTURE_SIGHT].category);
+    ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].effect == EFFECT_FUTURE_SIGHT);
+    ASSUME(gMovesInfo[MOVE_FUTURE_SIGHT].power > 0);
 }
 
 SINGLE_BATTLE_TEST("Future Sight uses Sp. Atk stat of the original user without modifiers")
@@ -156,6 +158,8 @@ SINGLE_BATTLE_TEST("Future Sight will miss timing if target faints by residual d
 
 SINGLE_BATTLE_TEST("Future Sight breaks Focus Sash and doesn't make the holder endure another move")
 {
+    ASSUME(gMovesInfo[MOVE_PSYCHIC].power > 0);
+    ASSUME(gItemsInfo[ITEM_FOCUS_SASH].holdEffect == HOLD_EFFECT_FOCUS_SASH);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_PIDGEY) { Level(1); Item(ITEM_FOCUS_SASH); }
