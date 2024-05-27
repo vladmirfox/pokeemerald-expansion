@@ -172,6 +172,13 @@ TranquilRoute_TrainerTips2::
 
 TranquilRoute_DirectionSign::
 # 169 "data/maps/TranquilRoute/scripts.pory"
+	goto_if_set FLAG_SAKU_KURA_REUNITED, TranquilRoute_DirectionSign_1
+# 176 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_DirectionSign_Text_1, MSGBOX_SIGN
+	return
+
+TranquilRoute_DirectionSign_1:
+# 170 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_DirectionSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -305,5 +312,13 @@ TranquilRoute_TrainerTips2_Text_0:
 	.string "SELECT button from your bag.$"
 
 TranquilRoute_DirectionSign_Text_0:
-# 170 "data/maps/TranquilRoute/scripts.pory"
-	.string "{UP_ARROW} Saku Village {LEFT_ARROW} Whiteslate route$"
+# 171 "data/maps/TranquilRoute/scripts.pory"
+	.string "{LEFT_ARROW} Whiteslate route\n"
+	.string "{UP_ARROW} Sakura Village\p"
+	.string "It looks like the sign has been written\n"
+	.string "over recently…$"
+
+TranquilRoute_DirectionSign_Text_1:
+# 177 "data/maps/TranquilRoute/scripts.pory"
+	.string "{LEFT_ARROW} Whiteslate route\n"
+	.string "{UP_ARROW} Saku and Kura Villages$"

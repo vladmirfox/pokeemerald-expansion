@@ -95,6 +95,8 @@ SakuTown_BonsaiShop_EventScript_LittleSister_1:
 
 SakuTown_BonsaiShop_EventScript_LittleSister_2:
 # 64 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	buffernumberstring STR_VAR_2, VAR_RESULT
+# 65 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_LittleSister_Text_0
 	goto SakuTown_BonsaiShop_EventScript_LittleSister_1
 
@@ -291,8 +293,10 @@ SakuTown_BonsaiShop_EventScript_Painting_Text_0:
 	.string "A dainty painting of a flower.$"
 
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_0:
-# 65 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "What's up, berry master?$"
+# 66 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	.string "What's up, berry master?\p"
+	.string "Didja know you've planted\n"
+	.string "{STR_VAR_2} berries so far?$"
 
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_1:
 # 72 "data/maps/SakuTown_BonsaiShop/scripts.pory"

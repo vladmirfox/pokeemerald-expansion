@@ -41,7 +41,7 @@ GinkoWoods_EventScript_TrainerTips1::
 
 
 GinkoWoods_EventScript_TrainerTips2::
-# 47 "data/maps/GinkoWoods/scripts.pory"
+# 50 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
@@ -84,11 +84,13 @@ GinkoWoods_EventScript_OldMan_Text_0:
 	.string "trees.$"
 
 GinkoWoods_EventScript_TrainerTips1_Text_0:
-# 42 "data/maps/GinkoWoods/scripts.pory"
+# 43 "data/maps/GinkoWoods/scripts.pory"
+	.string "Did you know?\p"
 	.string "Some items can be hidden under the\n"
 	.string "forest's thick canopy. Look around!$"
 
 GinkoWoods_EventScript_TrainerTips2_Text_0:
-# 47 "data/maps/GinkoWoods/scripts.pory"
+# 51 "data/maps/GinkoWoods/scripts.pory"
+	.string "Did you know?\p"
 	.string "You can sort the contents of your bag\n"
 	.string "by pressing START.$"

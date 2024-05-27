@@ -61,7 +61,7 @@ script SakuTown_BonsaiShop_EventScript_LittleSister {
 	getgamestat(GAME_STAT_PLANTED_BERRIES)
 
 	if (flag(FLAG_RECEIVED_TM_ACROBATICS)) {
-		buffernumberstring(var(STR_VAR_2), var(VAR_RESULT))
+		buffernumberstring(STR_VAR_2, VAR_RESULT)
 		msgbox(format(
 			"What's up, berry master?\p"
 			"Didja know you've planted {STR_VAR_2} berries so far?"

@@ -10,7 +10,7 @@ const LOCALID_MAREEP_4_IN_RANCH = 9
 const LOCALID_MAREEP_5_IN_RANCH = 10
 
 mapscripts BelvedereRoute_MapScripts {
-	ON_WARP_INTO_MAP_TABLE [
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
 		VAR_TEMP_0, 0 {
 			// Hiding the Mareep inside the ranch fence if they've not yet been found
 			if (!flag(FLAG_HIDE_LOST_MAREEP_1)) {
@@ -39,7 +39,7 @@ script BelvedereRoute_EventScript_FindMareep {
 	msgbox(format("Bêêêêêh!"), MSGBOX_AUTOCLOSE)
 	if (var(VAR_QUEST_MAREEP_STATE) > 0) {
 		// TODO EVA fade to black
-		removeobject(var(VAR_LAST_TALKED))
+		removeobject(VAR_LAST_TALKED)
 		// TODO EVA fade from black
 		switch(var(VAR_LAST_TALKED)) {
 			case 1:

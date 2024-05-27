@@ -120,33 +120,33 @@ SakuTown_House2_EventScript_Reunited::
 	case DIR_WEST, SakuTown_House2_EventScript_Reunited_3
 # 94 "data/maps/SakuTown_House2/scripts.pory"
 	case DIR_NORTH, SakuTown_House2_EventScript_Reunited_4
-# 95 "data/maps/SakuTown_House2/scripts.pory"
-	case DIR_SOUTH, SakuTown_House2_EventScript_Reunited_4
+# 99 "data/maps/SakuTown_House2/scripts.pory"
+	case DIR_SOUTH, SakuTown_House2_EventScript_Reunited_5
 SakuTown_House2_EventScript_Reunited_1:
-# 102 "data/maps/SakuTown_House2/scripts.pory"
+# 106 "data/maps/SakuTown_House2/scripts.pory"
 	delay 40
-# 104 "data/maps/SakuTown_House2/scripts.pory"
+# 108 "data/maps/SakuTown_House2/scripts.pory"
 	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
-# 105 "data/maps/SakuTown_House2/scripts.pory"
+# 109 "data/maps/SakuTown_House2/scripts.pory"
 	waitmoncry
-# 107 "data/maps/SakuTown_House2/scripts.pory"
+# 111 "data/maps/SakuTown_House2/scripts.pory"
 	msgbox SakuTown_House2_EventScript_Reunited_Text_1
-# 112 "data/maps/SakuTown_House2/scripts.pory"
+# 116 "data/maps/SakuTown_House2/scripts.pory"
 	closemessage
-# 114 "data/maps/SakuTown_House2/scripts.pory"
-	switch VAR_FACING
-# 115 "data/maps/SakuTown_House2/scripts.pory"
-	case DIR_WEST, SakuTown_House2_EventScript_Reunited_7
 # 118 "data/maps/SakuTown_House2/scripts.pory"
-	case DIR_NORTH, SakuTown_House2_EventScript_Reunited_8
-# 121 "data/maps/SakuTown_House2/scripts.pory"
-	case DIR_SOUTH, SakuTown_House2_EventScript_Reunited_9
-SakuTown_House2_EventScript_Reunited_5:
+	switch VAR_FACING
+# 119 "data/maps/SakuTown_House2/scripts.pory"
+	case DIR_WEST, SakuTown_House2_EventScript_Reunited_8
+# 122 "data/maps/SakuTown_House2/scripts.pory"
+	case DIR_NORTH, SakuTown_House2_EventScript_Reunited_9
 # 125 "data/maps/SakuTown_House2/scripts.pory"
+	case DIR_SOUTH, SakuTown_House2_EventScript_Reunited_10
+SakuTown_House2_EventScript_Reunited_6:
+# 129 "data/maps/SakuTown_House2/scripts.pory"
 	delay 30
-# 127 "data/maps/SakuTown_House2/scripts.pory"
+# 131 "data/maps/SakuTown_House2/scripts.pory"
 	msgbox SakuTown_House2_EventScript_Reunited_Text_2
-# 139 "data/maps/SakuTown_House2/scripts.pory"
+# 143 "data/maps/SakuTown_House2/scripts.pory"
 	giveitem ITEM_THUNDER_STONE
 	return
 
@@ -156,111 +156,122 @@ SakuTown_House2_EventScript_Reunited_3:
 	goto SakuTown_House2_EventScript_Reunited_1
 
 SakuTown_House2_EventScript_Reunited_4:
-# 96 "data/maps/SakuTown_House2/scripts.pory"
+# 95 "data/maps/SakuTown_House2/scripts.pory"
 	applymovement 2, SakuTown_House2_Movement_EspeonWalksUpEast
-# 97 "data/maps/SakuTown_House2/scripts.pory"
+# 96 "data/maps/SakuTown_House2/scripts.pory"
 	turnobject 1, DIR_EAST
-# 98 "data/maps/SakuTown_House2/scripts.pory"
+# 97 "data/maps/SakuTown_House2/scripts.pory"
 	turnobject 3, DIR_WEST
-# 99 "data/maps/SakuTown_House2/scripts.pory"
+# 98 "data/maps/SakuTown_House2/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
 	goto SakuTown_House2_EventScript_Reunited_1
 
-SakuTown_House2_EventScript_Reunited_7:
-# 116 "data/maps/SakuTown_House2/scripts.pory"
+SakuTown_House2_EventScript_Reunited_5:
+# 100 "data/maps/SakuTown_House2/scripts.pory"
+	applymovement 2, SakuTown_House2_Movement_EspeonWalksUpEast
+# 101 "data/maps/SakuTown_House2/scripts.pory"
 	turnobject 1, DIR_EAST
-# 117 "data/maps/SakuTown_House2/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
-	goto SakuTown_House2_EventScript_Reunited_5
+# 102 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject 3, DIR_WEST
+# 103 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+	goto SakuTown_House2_EventScript_Reunited_1
 
 SakuTown_House2_EventScript_Reunited_8:
-# 119 "data/maps/SakuTown_House2/scripts.pory"
-	turnobject 1, DIR_SOUTH
 # 120 "data/maps/SakuTown_House2/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	goto SakuTown_House2_EventScript_Reunited_5
+	turnobject 1, DIR_EAST
+# 121 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	goto SakuTown_House2_EventScript_Reunited_6
 
 SakuTown_House2_EventScript_Reunited_9:
-# 122 "data/maps/SakuTown_House2/scripts.pory"
-	turnobject 1, DIR_NORTH
 # 123 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject 1, DIR_SOUTH
+# 124 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	goto SakuTown_House2_EventScript_Reunited_6
+
+SakuTown_House2_EventScript_Reunited_10:
+# 126 "data/maps/SakuTown_House2/scripts.pory"
+	turnobject 1, DIR_NORTH
+# 127 "data/maps/SakuTown_House2/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
-	goto SakuTown_House2_EventScript_Reunited_5
+	goto SakuTown_House2_EventScript_Reunited_6
 
 
 SakuTown_House2_EventScript_Espeon::
-# 144 "data/maps/SakuTown_House2/scripts.pory"
+# 148 "data/maps/SakuTown_House2/scripts.pory"
 	lock
-# 145 "data/maps/SakuTown_House2/scripts.pory"
+# 149 "data/maps/SakuTown_House2/scripts.pory"
 	faceplayer
-# 146 "data/maps/SakuTown_House2/scripts.pory"
-	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
-# 147 "data/maps/SakuTown_House2/scripts.pory"
-	msgbox SakuTown_House2_EventScript_Espeon_Text_0
 # 150 "data/maps/SakuTown_House2/scripts.pory"
-	waitmoncry
+	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
 # 151 "data/maps/SakuTown_House2/scripts.pory"
+	msgbox SakuTown_House2_EventScript_Espeon_Text_0
+# 154 "data/maps/SakuTown_House2/scripts.pory"
+	waitmoncry
+# 155 "data/maps/SakuTown_House2/scripts.pory"
 	closemessage
-# 152 "data/maps/SakuTown_House2/scripts.pory"
+# 156 "data/maps/SakuTown_House2/scripts.pory"
 	release
 	return
 
 
 SakuTown_House2_EventScript_Sister::
-# 157 "data/maps/SakuTown_House2/scripts.pory"
+# 161 "data/maps/SakuTown_House2/scripts.pory"
 	lock
-# 158 "data/maps/SakuTown_House2/scripts.pory"
+# 162 "data/maps/SakuTown_House2/scripts.pory"
 	faceplayer
-# 159 "data/maps/SakuTown_House2/scripts.pory"
+# 163 "data/maps/SakuTown_House2/scripts.pory"
 	goto_if_set FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME, SakuTown_House2_EventScript_Sister_2
-# 165 "data/maps/SakuTown_House2/scripts.pory"
+# 169 "data/maps/SakuTown_House2/scripts.pory"
 	msgbox SakuTown_House2_EventScript_Sister_Text_1
 SakuTown_House2_EventScript_Sister_1:
-# 170 "data/maps/SakuTown_House2/scripts.pory"
+# 174 "data/maps/SakuTown_House2/scripts.pory"
 	closemessage
-# 171 "data/maps/SakuTown_House2/scripts.pory"
+# 175 "data/maps/SakuTown_House2/scripts.pory"
 	applymovement 3, Common_Movement_FaceOriginalDirection
-# 172 "data/maps/SakuTown_House2/scripts.pory"
+# 176 "data/maps/SakuTown_House2/scripts.pory"
 	release
 	return
 
 SakuTown_House2_EventScript_Sister_2:
-# 160 "data/maps/SakuTown_House2/scripts.pory"
+# 164 "data/maps/SakuTown_House2/scripts.pory"
 	msgbox SakuTown_House2_EventScript_Sister_Text_0
 	goto SakuTown_House2_EventScript_Sister_1
 
 
-# 176 "data/maps/SakuTown_House2/scripts.pory"
-SakuTown_House2_Movement_EspeonWalksUpEast:
-# 177 "data/maps/SakuTown_House2/scripts.pory"
-	walk_fast_up
-# 178 "data/maps/SakuTown_House2/scripts.pory"
-	walk_fast_right
-# 178 "data/maps/SakuTown_House2/scripts.pory"
-	walk_fast_right
-# 179 "data/maps/SakuTown_House2/scripts.pory"
-	walk_fast_up
-# 179 "data/maps/SakuTown_House2/scripts.pory"
-	walk_fast_up
 # 180 "data/maps/SakuTown_House2/scripts.pory"
+SakuTown_House2_Movement_EspeonWalksUpEast:
+# 181 "data/maps/SakuTown_House2/scripts.pory"
+	walk_fast_up
+# 182 "data/maps/SakuTown_House2/scripts.pory"
+	walk_fast_right
+# 182 "data/maps/SakuTown_House2/scripts.pory"
+	walk_fast_right
+# 183 "data/maps/SakuTown_House2/scripts.pory"
+	walk_fast_up
+# 183 "data/maps/SakuTown_House2/scripts.pory"
+	walk_fast_up
+# 184 "data/maps/SakuTown_House2/scripts.pory"
 	face_left
-# 181 "data/maps/SakuTown_House2/scripts.pory"
+# 185 "data/maps/SakuTown_House2/scripts.pory"
 	jump_in_place_left
-# 181 "data/maps/SakuTown_House2/scripts.pory"
+# 185 "data/maps/SakuTown_House2/scripts.pory"
 	jump_in_place_left
 	step_end
 
-# 185 "data/maps/SakuTown_House2/scripts.pory"
+# 189 "data/maps/SakuTown_House2/scripts.pory"
 SakuTown_House2_Movement_EspeonWalksUpSouth:
-# 186 "data/maps/SakuTown_House2/scripts.pory"
+# 190 "data/maps/SakuTown_House2/scripts.pory"
 	walk_fast_up
-# 187 "data/maps/SakuTown_House2/scripts.pory"
+# 191 "data/maps/SakuTown_House2/scripts.pory"
 	walk_fast_right
-# 188 "data/maps/SakuTown_House2/scripts.pory"
+# 192 "data/maps/SakuTown_House2/scripts.pory"
 	walk_fast_up
-# 189 "data/maps/SakuTown_House2/scripts.pory"
+# 193 "data/maps/SakuTown_House2/scripts.pory"
 	jump_in_place_up
-# 189 "data/maps/SakuTown_House2/scripts.pory"
+# 193 "data/maps/SakuTown_House2/scripts.pory"
 	jump_in_place_up
 	step_end
 
@@ -293,14 +304,14 @@ SakuTown_House2_EventScript_Reunited_Text_0:
 	.string "Is… Is that Eevee?$"
 
 SakuTown_House2_EventScript_Reunited_Text_1:
-# 108 "data/maps/SakuTown_House2/scripts.pory"
+# 112 "data/maps/SakuTown_House2/scripts.pory"
 	.string "It's you! It's really you! Oh, Eevee, I've\n"
 	.string "missed you so much!\p"
 	.string "… …\p"
 	.string "Wait, you look a little different…$"
 
 SakuTown_House2_EventScript_Reunited_Text_2:
-# 128 "data/maps/SakuTown_House2/scripts.pory"
+# 132 "data/maps/SakuTown_House2/scripts.pory"
 	.string "You say it was a woman from Kura Village\n"
 	.string "that found him?\p"
 	.string "She took such good care of him!\p"
@@ -315,18 +326,18 @@ SakuTown_House2_EventScript_Reunited_Text_2:
 	.string "Please take this.$"
 
 SakuTown_House2_EventScript_Espeon_Text_0:
-# 148 "data/maps/SakuTown_House2/scripts.pory"
+# 152 "data/maps/SakuTown_House2/scripts.pory"
 	.string "Eeeoon!$"
 
 SakuTown_House2_EventScript_Sister_Text_0:
-# 161 "data/maps/SakuTown_House2/scripts.pory"
+# 165 "data/maps/SakuTown_House2/scripts.pory"
 	.string "My brother's been feeling really down\n"
 	.string "lately.\p"
 	.string "His precious Pokémon disappeared\n"
 	.string "during the big storm we had a while ago.$"
 
 SakuTown_House2_EventScript_Sister_Text_1:
-# 166 "data/maps/SakuTown_House2/scripts.pory"
+# 170 "data/maps/SakuTown_House2/scripts.pory"
 	.string "Thank you for your kindness! It's nice\n"
 	.string "to see my brother smiling again.\p"
 	.string "I wish I could thank whoever took such\n"
