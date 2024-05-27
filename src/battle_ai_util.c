@@ -934,7 +934,6 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
         return AI_IS_SLOWER;
 }
 
-
 // Check if target has means to faint ai mon.
 bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
 {
