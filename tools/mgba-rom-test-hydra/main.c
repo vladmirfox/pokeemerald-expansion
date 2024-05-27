@@ -607,7 +607,7 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "  - \e[31mand %d more...\e[0m\n", fails - MAX_SUMMARY_TESTS_TO_LIST);
                     break;
                 }
-                fprintf(stdout, "  - \e[31m%s\e[0m. %s\n", failedTestNames[i], failedTestFilenameLine[i]);
+                fprintf(stdout, "  - \e[31m%s\e[0m - %s.\n", failedTestFilenameLine[i], failedTestNames[i]);
             }
         }
         if (knownFailsPassing > 0)
