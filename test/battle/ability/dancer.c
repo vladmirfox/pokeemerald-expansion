@@ -114,10 +114,12 @@ DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
         ABILITY_POPUP(playerLeft, ABILITY_DANCER);
         MESSAGE("Wobbuffet flinched!");
         NONE_OF {
+            MESSAGE("Wobbuffet used Dragon Dance!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         }
         ABILITY_POPUP(opponentLeft, ABILITY_DANCER);
+        MESSAGE("Foe Oricorio used Dragon Dance!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     }
