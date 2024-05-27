@@ -8,6 +8,7 @@
  *
  * COMMANDS
  * N: Sets the test name to the remainder of the line.
+ * L: Sets the filename to the remainder of the line.
  * R: Sets the result to the remainder of the line, and flushes any
  *    output buffered since the previous R.
  * P/K/F/A: Sets the result to the remaining of the line, flushes any
@@ -46,6 +47,7 @@ struct Runner
     int outfd;
     char rom_path[FILENAME_MAX];
     char test_name[256];
+    char filename_line[256];
     size_t input_buffer_size;
     size_t input_buffer_capacity;
     char *input_buffer;
@@ -60,6 +62,7 @@ struct Runner
     int fails;
     int results;
     char failedTestNames[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
+    char failedTestFilenameLine[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
     char knownFailingPassedTestNames[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
 };
 
@@ -102,6 +105,16 @@ static void handle_read(int i, struct Runner *runner)
                     strncpy(runner->test_name, soc, eol - soc - 1);
                     runner->test_name[eol - soc - 1] = '\0';
                     break;
+                case 'L':
+                    soc += 2;
+                    if (sizeof(runner->filename_line) <= eol - soc - 1)
+                    {
+                        fprintf(stderr, "filename_line too long\n");
+                        exit(2);
+                    }
+                    strncpy(runner->filename_line, soc, eol - soc - 1);
+                    runner->filename_line[eol - soc - 1] = '\0';
+                    break;
 
                 case 'P':
                     runner->passes++;
@@ -122,7 +135,10 @@ static void handle_read(int i, struct Runner *runner)
                     goto add_to_results;
                 case 'F':
                     if (runner->fails < MAX_SUMMARY_TESTS_TO_LIST)
+                    {
                         strcpy(runner->failedTestNames[runner->fails], runner->test_name);
+                        strcpy(runner->failedTestFilenameLine[runner->fails], runner->filename_line);
+                    }
                     runner->fails++;
 add_to_results:
                     runner->results++;
@@ -533,6 +549,8 @@ int main(int argc, char *argv[])
     int results = 0;
 
     char failedTestNames[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
+    char failedTestFilenameLine[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
+
     char knownFailingPassedTestNames[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
 
     for (int i = 0; i < nrunners; i++)
@@ -560,7 +578,10 @@ int main(int argc, char *argv[])
         for (int j = 0; j < runners[i].fails; j++)
         {
             if (j < MAX_SUMMARY_TESTS_TO_LIST)
+            {
                 strcpy(failedTestNames[fails], runners[i].failedTestNames[j]);
+                strcpy(failedTestFilenameLine[fails], runners[i].failedTestFilenameLine[j]);
+            }
             fails++;
         }
         results += runners[i].results;
@@ -586,7 +607,7 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "  - \e[31mand %d more...\e[0m\n", fails - MAX_SUMMARY_TESTS_TO_LIST);
                     break;
                 }
-                fprintf(stdout, "  - \e[31m%s\e[0m.\n", failedTestNames[i]);
+                fprintf(stdout, "  - \e[31m%s\e[0m. %s\n", failedTestNames[i], failedTestFilenameLine[i]);
             }
         }
         if (knownFailsPassing > 0)
