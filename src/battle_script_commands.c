@@ -6260,7 +6260,16 @@ static void Cmd_moveend(void)
             if (gMovesInfo[gCurrentMove].danceMove)
             {
                 u8 battler, nextDancer = 0;
+                bool8 turnOnHitmarker = FALSE;
 
+                for (battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
+                    if (gSpecialStatuses[battler].dancerUsedMove)
+                    {
+                        // in case a battler fails to act on a Dancer proc
+                        turnOnHitmarker = TRUE;
+                        break;
+                    }
+                
                 if (!(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker]
                     || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove
                         && gBattleStruct->bouncedMoveIsUsed)))
@@ -6276,6 +6285,8 @@ static void Cmd_moveend(void)
                     {
                         if (GetBattlerAbility(battler) == ABILITY_DANCER && !gSpecialStatuses[battler].dancerUsedMove)
                         {
+                            if (turnOnHitmarker)
+                                gHitMarker |= HITMARKER_ATTACKSTRING_PRINTED;
                             if (!nextDancer || (gBattleMons[battler].speed < gBattleMons[nextDancer & 0x3].speed))
                                 nextDancer = battler | 0x4;
                         }
