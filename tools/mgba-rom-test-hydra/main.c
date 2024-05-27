@@ -587,7 +587,7 @@ int main(int argc, char *argv[])
         results += runners[i].results;
     }
 
-    qsort(failedTestNames, min(fails, MAX_SUMMARY_TESTS_TO_LIST), sizeof(char) * MAX_TEST_LIST_BUFFER_LENGTH, compare_strings);
+    //qsort(failedTestNames, min(fails, MAX_SUMMARY_TESTS_TO_LIST), sizeof(char) * MAX_TEST_LIST_BUFFER_LENGTH, compare_strings);
     qsort(knownFailingPassedTestNames, min(fails, MAX_SUMMARY_TESTS_TO_LIST), sizeof(char) * MAX_TEST_LIST_BUFFER_LENGTH, compare_strings);
 
     if (results == 0)
