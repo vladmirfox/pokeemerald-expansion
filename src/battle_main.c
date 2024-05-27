@@ -6000,8 +6000,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
     u32 ateType;
     u32 moveEffect = gMovesInfo[move].effect;
 
-    if (gMovesInfo[move].type != TYPE_NORMAL
-     || moveEffect == EFFECT_HIDDEN_POWER
+    if (moveEffect == EFFECT_HIDDEN_POWER
      || moveEffect == EFFECT_WEATHER_BALL
      || moveEffect == EFFECT_CHANGE_TYPE_ON_ITEM
      || moveEffect == EFFECT_NATURAL_GIFT
@@ -6143,7 +6142,7 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     }
 
     attackerAbility = GetBattlerAbility(battlerAtk);
-    if (TrySetAteType(move, battlerAtk, attackerAbility))
+    if (gMovesInfo[move].type == TYPE_NORMAL && TrySetAteType(move, battlerAtk, attackerAbility))
     {
         if (!IsDynamaxed(battlerAtk))
             gBattleStruct->ateBoost[battlerAtk] = 1;
