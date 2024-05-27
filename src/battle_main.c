@@ -6124,6 +6124,9 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
         case ABILITY_GALVANIZE:
             ateType = TYPE_ELECTRIC;
             break;
+        default:
+            ateType = TYPE_MYSTERY;
+            break;
         }
 
         if (ateType != TYPE_MYSTERY)
@@ -6131,9 +6134,11 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
             gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
             if (!IsDynamaxed(battlerAtk))
                 gBattleStruct->ateBoost[battlerAtk] = 1;
+            return;
         }
     }
-    else if (gMovesInfo[move].type != TYPE_NORMAL
+
+    if (gMovesInfo[move].type != TYPE_NORMAL
           && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
           && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
           && attackerAbility == ABILITY_NORMALIZE)
