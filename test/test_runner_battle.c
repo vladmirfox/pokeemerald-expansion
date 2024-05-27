@@ -1418,7 +1418,7 @@ static void CB2_BattleTest_NextTrial(void)
         if (abs(STATE->observedRatio - STATE->expectedRatio) <= Q_4_12(0.02))
             gTestRunnerState.result = TEST_RESULT_PASS;
         else
-            Test_ExitWithResult(TEST_RESULT_FAIL, ":LExpected %q passes/successes, observed %q", STATE->expectedRatio, STATE->observedRatio);
+            Test_ExitWithResult(TEST_RESULT_FAIL, ":L%s:%d: Expected %q passes/successes, observed %q", gTestRunnerState.test->filename, SourceLine(0), STATE->expectedRatio, STATE->observedRatio);
     }
 }
 
