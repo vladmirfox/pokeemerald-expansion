@@ -82,6 +82,7 @@ DOUBLE_BATTLE_TEST("Dancer triggers from slowest to fastest")
 SINGLE_BATTLE_TEST("Dancer doesn't trigger if the original user flinches")
 {
     GIVEN {
+        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_DANCER); }
@@ -100,6 +101,7 @@ SINGLE_BATTLE_TEST("Dancer doesn't trigger if the original user flinches")
 DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
 {
     GIVEN {
+        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         ASSUME(gMovesInfo[MOVE_DRAGON_DANCE].danceMove == TRUE);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_DANCER); Speed(10); }
         PLAYER(SPECIES_WYNAUT) { Speed(5); }

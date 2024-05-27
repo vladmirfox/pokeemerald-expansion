@@ -6259,16 +6259,18 @@ static void Cmd_moveend(void)
         case MOVEEND_DANCER: // Special case because it's so annoying
             if (gMovesInfo[gCurrentMove].danceMove)
             {
-                u8 battler, nextDancer = 0;
-                bool8 turnOnHitmarker = FALSE;
+                u32 battler, nextDancer = 0;
+                bool32 turnOnHitmarker = FALSE;
 
                 for (battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
+                {
                     if (gSpecialStatuses[battler].dancerUsedMove)
                     {
-                        // in case a battler fails to act on a Dancer proc
+                        // in case a battler fails to act on a Dancer-called move
                         turnOnHitmarker = TRUE;
                         break;
                     }
+                }
                 
                 if (!(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker]
                     || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove
