@@ -5995,6 +5995,50 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
+bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
+{
+    u32 ateType;
+    u32 moveEffect = gMovesInfo[move].effect;
+
+    if (gMovesInfo[move].type != TYPE_NORMAL
+     || moveEffect == EFFECT_HIDDEN_POWER
+     || moveEffect == EFFECT_WEATHER_BALL
+     || moveEffect == EFFECT_CHANGE_TYPE_ON_ITEM
+     || moveEffect == EFFECT_NATURAL_GIFT
+     || (moveEffect == EFFECT_TERA_BLAST && IsTerastallized(battlerAtk))
+     || (moveEffect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR))
+        return FALSE;
+
+    ateType = TYPE_MYSTERY; // Should be eventually replaced with TYPE_NONE
+
+    switch (attackerAbility)
+    {
+    case ABILITY_PIXILATE:
+        ateType = TYPE_FAIRY;
+        break;
+    case ABILITY_REFRIGERATE:
+        ateType = TYPE_ICE;
+        break;
+    case ABILITY_AERILATE:
+        ateType = TYPE_FLYING;
+        break;
+    case ABILITY_GALVANIZE:
+        ateType = TYPE_ELECTRIC;
+        break;
+    default:
+        ateType = TYPE_MYSTERY;
+        break;
+    }
+
+    if (ateType != TYPE_MYSTERY)
+    {
+        gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 {
     u32 moveType, ateType, attackerAbility;
@@ -6099,46 +6143,12 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     }
 
     attackerAbility = GetBattlerAbility(battlerAtk);
-
-    if (gMovesInfo[move].type == TYPE_NORMAL
-     && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
-     && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
-     && gMovesInfo[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
-     && gMovesInfo[move].effect != EFFECT_NATURAL_GIFT
-     && !(gMovesInfo[move].effect == EFFECT_TERA_BLAST && IsTerastallized(battlerAtk))
-     && !(gMovesInfo[move].effect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR))
+    if (TrySetAteType(move, battlerAtk, attackerAbility))
     {
-        ateType = TYPE_MYSTERY; // Should be eventually replaced with TYPE_NONE
-
-        switch (attackerAbility)
-        {
-        case ABILITY_PIXILATE:
-            ateType = TYPE_FAIRY;
-            break;
-        case ABILITY_REFRIGERATE:
-            ateType = TYPE_ICE;
-            break;
-        case ABILITY_AERILATE:
-            ateType = TYPE_FLYING;
-            break;
-        case ABILITY_GALVANIZE:
-            ateType = TYPE_ELECTRIC;
-            break;
-        default:
-            ateType = TYPE_MYSTERY;
-            break;
-        }
-
-        if (ateType != TYPE_MYSTERY)
-        {
-            gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
-            if (!IsDynamaxed(battlerAtk))
-                gBattleStruct->ateBoost[battlerAtk] = 1;
-            return;
-        }
+        if (!IsDynamaxed(battlerAtk))
+            gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-
-    if (gMovesInfo[move].type != TYPE_NORMAL
+    else if (gMovesInfo[move].type != TYPE_NORMAL
           && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
           && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
           && attackerAbility == ABILITY_NORMALIZE)
