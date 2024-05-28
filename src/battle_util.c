@@ -5208,9 +5208,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
                     else
                         gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
                     gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
-                    effect = 3;
                 }
                 else
                 {
@@ -5219,7 +5217,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
                     else
                         gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
-
                 }
             }
 
@@ -11032,7 +11029,6 @@ void TryRestoreHeldItems(void)
             // Check if the lost item should be restored
             if ((lostItem != ITEM_NONE || returnNPCItems) && ItemId_GetPocket(lostItem) != POCKET_BERRIES)
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &lostItem);
-
         }
     }
 }
