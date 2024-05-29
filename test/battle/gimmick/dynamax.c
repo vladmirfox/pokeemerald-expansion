@@ -1480,7 +1480,8 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Moxie clones can be triggered by Max Moves faintin
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_WATERFALL, dynamax: TRUE); SEND_OUT(opponent, 1); }
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_WATERFALL, gimmick: GIMMICK_DYNAMAX);
+               SEND_OUT(opponent, 1); }
     } SCENE {
         MESSAGE("Foe Wobbuffet fainted!");
         ABILITY_POPUP(player, ABILITY_MOXIE);
