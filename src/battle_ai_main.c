@@ -1434,8 +1434,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_MIRROR_COAT:
             if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
                 ADJUST_SCORE(-1);
-            if (predictedMove == MOVE_NONE || GetBattleMoveCategory(predictedMove) == DAMAGE_CATEGORY_STATUS
-              || DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), predictedMove))
+            if ((predictedMove == MOVE_NONE || GetBattleMoveCategory(predictedMove) == DAMAGE_CATEGORY_STATUS
+              || DoesSubstituteBlockMove(battlerAtk, BATTLE_PARTNER(battlerDef), predictedMove)) 
+              && !(predictedMove == MOVE_NONE && (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY))) // Let Risky AI predict blindly based on stats
                 ADJUST_SCORE(-10);
             break;
 
@@ -3126,6 +3127,8 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     s32 noOfHits[MAX_MON_MOVES];
     s32 score = 0;
     s32 leastHits = 1000;
+    s32 damage[MAX_MON_MOVES];
+    u32 bestDamage = 0;
     u16 *moves = GetMovesArray(battlerAtk);
     bool8 isTwoTurnNotSemiInvulnerableMove[MAX_MON_MOVES];
 
@@ -3133,16 +3136,23 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     {
         if (moves[i] != MOVE_NONE && gMovesInfo[moves[i]].power)
         {
+
+            damage[i] = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
             noOfHits[i] = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, i);
             if (ShouldUseSpreadDamageMove(battlerAtk,moves[i], i, noOfHits[i]))
             {
                 noOfHits[i] = -1;
+                damage[i] = -1;
                 viableMoveScores[i] = 0;
                 isTwoTurnNotSemiInvulnerableMove[i] = FALSE;
             }
             else if (noOfHits[i] < leastHits && noOfHits[i] != 0)
             {
                 leastHits = noOfHits[i];
+            }
+            if (damage[i] > bestDamage && damage[i] != 0)
+            {
+                bestDamage = damage[i];
             }
             viableMoveScores[i] = AI_SCORE_DEFAULT;
             isTwoTurnNotSemiInvulnerableMove[i] = IsTwoTurnNotSemiInvulnerableMove(battlerAtk, moves[i]);
@@ -3165,13 +3175,66 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     // 4. Better effect
 
     // Current move requires the least hits to KO. Compare with other moves.
-    if (leastHits == noOfHits[currId])
+    if (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && leastHits == noOfHits[currId])
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             if (i == currId)
                 continue;
             if (noOfHits[currId] == noOfHits[i])
+            {
+                multipleBestMoves = TRUE;
+                // We need to make sure it's the current move which is objectively better.
+                if (isTwoTurnNotSemiInvulnerableMove[i] && !isTwoTurnNotSemiInvulnerableMove[currId])
+                    viableMoveScores[i] -= 3;
+                else if (!isTwoTurnNotSemiInvulnerableMove[i] && isTwoTurnNotSemiInvulnerableMove[currId])
+                    viableMoveScores[currId] -= 3;
+
+                switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
+                {
+                case 1:
+                    viableMoveScores[i] -= 2;
+                    break;
+                case -1:
+                    viableMoveScores[currId] -= 2;
+                    break;
+                }
+                switch (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]))
+                {
+                case 1:
+                    viableMoveScores[i] -= 1;
+                    break;
+                case -1:
+                    viableMoveScores[currId] -= 1;
+                    break;
+                }
+            }
+        }
+        // Turns out the current move deals the most dmg compared to the other 3.
+        if (!multipleBestMoves)
+            ADJUST_SCORE(BEST_DAMAGE_MOVE);
+        else
+        {
+            bestViableMoveScore = 0;
+            for (i = 0; i < MAX_MON_MOVES; i++)
+            {
+                if (viableMoveScores[i] > bestViableMoveScore)
+                    bestViableMoveScore = viableMoveScores[i];
+            }
+            // Unless a better move was found increase score of current move
+            if (viableMoveScores[currId] == bestViableMoveScore)
+                ADJUST_SCORE(BEST_DAMAGE_MOVE);
+        }
+    }
+
+    // Compare damage rather than hits to KO for AI_FLAG_RISKY   
+    if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && bestDamage == damage[currId])
+    {
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (i == currId)
+                continue;
+            if (damage[currId] == damage[i])
             {
                 multipleBestMoves = TRUE;
                 // We need to make sure it's the current move which is objectively better.
@@ -4888,27 +4951,36 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     if (gMovesInfo[move].criticalHitStage > 0)
         ADJUST_SCORE(DECENT_EFFECT);
 
+    // +3 Score
     switch (gMovesInfo[move].effect)
     {
-    case EFFECT_SLEEP:
-    case EFFECT_EXPLOSION:
-    case EFFECT_MIRROR_MOVE:
-    case EFFECT_OHKO:
-    case EFFECT_CONFUSE:
-    case EFFECT_METRONOME:
-    case EFFECT_PSYWAVE:
     case EFFECT_COUNTER:
-    case EFFECT_DESTINY_BOND:
-    case EFFECT_SWAGGER:
-    case EFFECT_ATTRACT:
-    case EFFECT_PRESENT:
-    case EFFECT_BELLY_DRUM:
+        if (gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack + 10)
+            ADJUST_SCORE(MODERATE_EFFECT);
+        break;
     case EFFECT_MIRROR_COAT:
-    case EFFECT_FOCUS_PUNCH:
+        if (gSpeciesInfo[gBattleMons[battlerDef].species].baseSpAttack >= gSpeciesInfo[gBattleMons[battlerDef].species].baseAttack + 10)
+            ADJUST_SCORE(MODERATE_EFFECT);
+        break;
+    case EFFECT_EXPLOSION:
+        ADJUST_SCORE(MODERATE_EFFECT);
+        break;
+
+    // +2 Score
     case EFFECT_REVENGE:
-    case EFFECT_FILLET_AWAY:
-        if (Random() & 1)
+        if (gSpeciesInfo[gBattleMons[battlerDef].species].baseSpeed >= gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed + 10)
             ADJUST_SCORE(DECENT_EFFECT);
+        break;
+    case EFFECT_BELLY_DRUM:
+        if (gBattleMons[battlerAtk].hp >= gBattleMons[battlerAtk].maxHP * 90 / 100)
+            ADJUST_SCORE(DECENT_EFFECT);
+        break;
+    case EFFECT_MAX_HP_50_RECOIL:
+    case EFFECT_SWAGGER:
+    case EFFECT_FLATTER:
+    case EFFECT_ATTRACT:
+    case EFFECT_OHKO:
+        ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_HIT:
     {
