@@ -17027,3 +17027,12 @@ void BS_ApplyTerastallization(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+void BS_DamageToQuarterTargetHP(void)
+{
+    NATIVE_ARGS();
+    gBattleMoveDamage = (3 * GetNonDynamaxHP(gBattlerTarget)) / 4;
+    if (gBattleMoveDamage == 0)
+        gBattleMoveDamage = 1;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}

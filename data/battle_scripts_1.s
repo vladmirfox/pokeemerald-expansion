@@ -20,6 +20,16 @@
 
 	.section script_data, "aw", %progbits
 
+BattleScript_DamageToQuarterTargetHP::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	typecalc
+	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
+	damagetoquartertargethp
+	goto BattleScript_HitFromAtkAnimation
+
 BattleScript_Terastallization::
 	@ TODO: no string prints in S/V, but right now this helps with clarity
 	printstring STRINGID_PKMNSTORINGENERGY

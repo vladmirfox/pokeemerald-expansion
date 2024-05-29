@@ -417,3 +417,141 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Light That Burns the Sky uses the battler's highest
         EXPECT_MUL_EQ(results[0].damage, UQ_4_12(2.0), results[1].damage);
     }
 }
+
+SINGLE_BATTLE_TEST("(Z-MOVE) 10,000,000 Volt Thunderbolt has an increased critical hit ratio")
+{
+    PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
+    GIVEN {
+        ASSUME(B_CRIT_CHANCE >= GEN_6);
+        ASSUME(gMovesInfo[MOVE_10_000_000_VOLT_THUNDERBOLT].criticalHitStage == 2);
+        PLAYER(SPECIES_PIKACHU_PARTNER_CAP) { Item(ITEM_PIKASHUNIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDERBOLT, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_10_000_000_VOLT_THUNDERBOLT, player);
+        MESSAGE("A critical hit!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Stoked Sparksurfer paralyzes the target")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_STOKED_SPARKSURFER].additionalEffects[0].moveEffect == MOVE_EFFECT_PARALYSIS);
+        PLAYER(SPECIES_RAICHU_ALOLA) { Item(ITEM_ALORAICHIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDERBOLT, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STOKED_SPARKSURFER, player);
+        STATUS_ICON(opponent, STATUS1_PARALYSIS);
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Extreme Evoboost boosts all the user's stats by two stages")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_EXTREME_EVOBOOST].effect == EFFECT_EXTREME_EVOBOOST);
+        PLAYER(SPECIES_EEVEE) { Item(ITEM_EEVIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_LAST_RESORT, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXTREME_EVOBOOST, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Genesis Supernova sets up psychic terrain")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_GENESIS_SUPERNOVA].effect == EFFECT_HIT_SET_REMOVE_TERRAIN);
+        PLAYER(SPECIES_MEW) { Item(ITEM_MEWNIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_PSYCHIC, gimmick: GIMMICK_Z_MOVE); }
+        TURN { MOVE(player, MOVE_QUICK_ATTACK); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GENESIS_SUPERNOVA, player);
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player); }
+        MESSAGE("Mew cannot use Quick Attack!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Splintered Stormshards removes terrain")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPLINTERED_STORMSHARDS].effect == EFFECT_HIT_SET_REMOVE_TERRAIN);
+        PLAYER(SPECIES_LYCANROC_DUSK) { Item(ITEM_LYCANIUM_Z); }
+        OPPONENT(SPECIES_TAPU_LELE) { Ability(ABILITY_PSYCHIC_SURGE); HP(1000); MaxHP(1000); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STONE_EDGE, gimmick: GIMMICK_Z_MOVE); }
+        TURN { MOVE(player, MOVE_QUICK_ATTACK); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLINTERED_STORMSHARDS, player);
+        MESSAGE("The weirdness disappeared from the battlefield.");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
+        HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Clangorous Soulblaze boosts all the user's stats by one stage")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_CLANGOROUS_SOULBLAZE].additionalEffects[0].moveEffect == MOVE_EFFECT_ALL_STATS_UP);
+        PLAYER(SPECIES_KOMMO_O) { Item(ITEM_KOMMONIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CLANGING_SCALES, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CLANGOROUS_SOULBLAZE, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Guardian of Alola deals 75\% of the target's current HP")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_GUARDIAN_OF_ALOLA].effect == EFFECT_GUARDIAN_OF_ALOLA);
+        PLAYER(SPECIES_TAPU_FINI) { Item(ITEM_TAPUNIUM_Z); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_NATURES_MADNESS, gimmick: GIMMICK_Z_MOVE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GUARDIAN_OF_ALOLA, player);
+    } THEN {
+        EXPECT_MUL_EQ(opponent->maxHP, UQ_4_12(0.25), opponent->hp);
+    }
+}
+
+SINGLE_BATTLE_TEST("(Z-MOVE) Searing Sunraze Smash ignores the target's abilities")
+{
+    GIVEN {
+        PLAYER(SPECIES_SOLGALEO) { Item(ITEM_SOLGANIUM_Z); }
+        OPPONENT(SPECIES_LAPRAS) { Ability(ABILITY_BATTLE_ARMOR); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUNSTEEL_STRIKE, gimmick: GIMMICK_Z_MOVE, criticalHit: TRUE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SEARING_SUNRAZE_SMASH, player);
+        HP_BAR(opponent);
+        MESSAGE("A critical hit!");
+    } 
+}
