@@ -9562,19 +9562,19 @@ BattleScript_RedCardIngrain:
 	printstring STRINGID_PKMNANCHOREDITSELF
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
-	swapattackerwithtarget
+	restoretarget
 	return
 BattleScript_RedCardSuctionCups:
 	printstring STRINGID_PKMNANCHORSITSELFWITH
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
-	swapattackerwithtarget
+	restoretarget
 	return
 BattleScript_RedCardDynamaxed:
 	printstring STRINGID_MOVEBLOCKEDBYDYNAMAX
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING
-	swapattackerwithtarget
+	restoretarget
 	return
 
 BattleScript_EjectButtonActivates::

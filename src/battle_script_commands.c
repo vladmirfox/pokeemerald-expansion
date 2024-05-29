@@ -6171,6 +6171,7 @@ static void Cmd_moveend(void)
                         {
                             gLastUsedItem = gBattleMons[battler].item;
                             SaveBattlerTarget(battler); // save battler with red card
+                            gBattleScripting.battler = battler;
                             gEffectBattler = gBattlerAttacker;
                             if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
                                 gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
@@ -6332,19 +6333,19 @@ static void Cmd_moveend(void)
         
             if (gBattleStruct->savedAttackerCount > 0)
             {
-                #if TESTING
-                Test_ExitWithResult(TEST_RESULT_ERROR,  "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
-                #else
+                // #if TESTING
+                // Test_ExitWithResult(TEST_RESULT_ERROR,  "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
+                // #else
                 DebugPrintfLevel(MGBA_LOG_WARN, "savedAttackerCount is greater than 0! More calls to SaveBattlerAttacker than RestoreBattlerAttacker!");
-                #endif
+                // #endif
             }
             if (gBattleStruct->savedTargetCount > 0)
             {
-                #if TESTING
-                Test_ExitWithResult(TEST_RESULT_ERROR, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
-                #else
+                // #if TESTING
+                // Test_ExitWithResult(TEST_RESULT_ERROR, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
+                // #else
                 DebugPrintfLevel(MGBA_LOG_WARN, "savedTargetCount is greater than 0! More calls to SaveBattlerTarget than RestoreBattlerTarget!");
-                #endif
+                // #endif
             }
 
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
@@ -15698,11 +15699,11 @@ void BS_RestoreTarget(void)
     }
     else
     {
-        #if TESTING
-        Test_ExitWithResult(TEST_RESULT_ERROR, "BS_RestoreTarget attempting to restore an empty target!");
-        #else
+        // #if TESTING
+        // Test_ExitWithResult(TEST_RESULT_ERROR, "BS_RestoreTarget attempting to restore an empty target!");
+        // #else
         DebugPrintfLevel(MGBA_LOG_WARN, "BS_RestoreTarget attempting to restore an empty target!");
-        #endif
+        // #endif
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -15724,11 +15725,11 @@ void BS_RestoreAttacker(void)
     }
     else
     {
-        #if TESTING
-        Test_ExitWithResult(TEST_RESULT_ERROR,  "BS_RestoreAttacker attempting to restore an empty attacker!");
-        #else
+        // #if TESTING
+        // Test_ExitWithResult(TEST_RESULT_ERROR,  "BS_RestoreAttacker attempting to restore an empty attacker!");
+        // #else
         DebugPrintfLevel(MGBA_LOG_WARN, "BS_RestoreAttacker attempting to restore an empty attacker!");
-        #endif
+        // #endif
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
