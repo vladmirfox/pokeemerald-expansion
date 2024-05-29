@@ -372,6 +372,14 @@ void UpdateIndicatorLevelData(u32 healthboxId, u32 level)
     gSprites[GetIndicatorSpriteId(healthboxId)].tLevelXDelta = xDelta;
 }
 
+static const s8 sIndicatorPositions[][2] =
+{
+    [B_POSITION_PLAYER_LEFT] = {53, -9},
+    [B_POSITION_OPPONENT_LEFT] = {44, -9},
+    [B_POSITION_PLAYER_RIGHT] = {52, -9},
+    [B_POSITION_OPPONENT_RIGHT] = {44, -9},
+};
+
 void CreateIndicatorSprite(u32 battler)
 {
     u32 position, spriteId;
