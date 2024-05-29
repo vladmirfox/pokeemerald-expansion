@@ -3128,8 +3128,6 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     s32 noOfHits[MAX_MON_MOVES];
     s32 score = 0;
     s32 leastHits = 1000;
-    s32 damage[MAX_MON_MOVES];
-    u32 bestDamage = 0;
     u16 *moves = GetMovesArray(battlerAtk);
     bool8 isTwoTurnNotSemiInvulnerableMove[MAX_MON_MOVES];
 
@@ -3137,23 +3135,16 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     {
         if (moves[i] != MOVE_NONE && gMovesInfo[moves[i]].power)
         {
-
-            damage[i] = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
             noOfHits[i] = GetNoOfHitsToKOBattler(battlerAtk, battlerDef, i);
             if (ShouldUseSpreadDamageMove(battlerAtk,moves[i], i, noOfHits[i]))
             {
                 noOfHits[i] = -1;
-                damage[i] = -1;
                 viableMoveScores[i] = 0;
                 isTwoTurnNotSemiInvulnerableMove[i] = FALSE;
             }
             else if (noOfHits[i] < leastHits && noOfHits[i] != 0)
             {
                 leastHits = noOfHits[i];
-            }
-            if (damage[i] > bestDamage && damage[i] != 0)
-            {
-                bestDamage = damage[i];
             }
             viableMoveScores[i] = AI_SCORE_DEFAULT;
             isTwoTurnNotSemiInvulnerableMove[i] = IsTwoTurnNotSemiInvulnerableMove(battlerAtk, moves[i]);
@@ -3176,66 +3167,13 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
     // 4. Better effect
 
     // Current move requires the least hits to KO. Compare with other moves.
-    if (!(AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && leastHits == noOfHits[currId])
+    if (leastHits == noOfHits[currId])
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             if (i == currId)
                 continue;
             if (noOfHits[currId] == noOfHits[i])
-            {
-                multipleBestMoves = TRUE;
-                // We need to make sure it's the current move which is objectively better.
-                if (isTwoTurnNotSemiInvulnerableMove[i] && !isTwoTurnNotSemiInvulnerableMove[currId])
-                    viableMoveScores[i] -= 3;
-                else if (!isTwoTurnNotSemiInvulnerableMove[i] && isTwoTurnNotSemiInvulnerableMove[currId])
-                    viableMoveScores[currId] -= 3;
-
-                switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
-                {
-                case 1:
-                    viableMoveScores[i] -= 2;
-                    break;
-                case -1:
-                    viableMoveScores[currId] -= 2;
-                    break;
-                }
-                switch (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]))
-                {
-                case 1:
-                    viableMoveScores[i] -= 1;
-                    break;
-                case -1:
-                    viableMoveScores[currId] -= 1;
-                    break;
-                }
-            }
-        }
-        // Turns out the current move deals the most dmg compared to the other 3.
-        if (!multipleBestMoves)
-            ADJUST_SCORE(BEST_DAMAGE_MOVE);
-        else
-        {
-            bestViableMoveScore = 0;
-            for (i = 0; i < MAX_MON_MOVES; i++)
-            {
-                if (viableMoveScores[i] > bestViableMoveScore)
-                    bestViableMoveScore = viableMoveScores[i];
-            }
-            // Unless a better move was found increase score of current move
-            if (viableMoveScores[currId] == bestViableMoveScore)
-                ADJUST_SCORE(BEST_DAMAGE_MOVE);
-        }
-    }
-
-    // Compare damage rather than hits to KO for AI_FLAG_RISKY   
-    if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && bestDamage == damage[currId])
-    {
-        for (i = 0; i < MAX_MON_MOVES; i++)
-        {
-            if (i == currId)
-                continue;
-            if (damage[currId] == damage[i])
             {
                 multipleBestMoves = TRUE;
                 // We need to make sure it's the current move which is objectively better.
@@ -4806,7 +4744,12 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex) == 0)
             ADJUST_SCORE(-20);
         else
-            score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
+        {
+            if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && GetBestDmgMoveFromBattler(battlerAtk, battlerDef) == move)
+                score += 1;
+            else
+                score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
+        }
     }
 
     score += AI_CalcMoveEffectScore(battlerAtk, battlerDef, move);
