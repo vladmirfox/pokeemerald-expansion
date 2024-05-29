@@ -4977,6 +4977,7 @@ static s32 AI_Risky(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             ADJUST_SCORE(AVERAGE_RISKY_EFFECT);
         break;
     case EFFECT_MAX_HP_50_RECOIL:
+    case EFFECT_MIND_BLOWN:
     case EFFECT_SWAGGER:
     case EFFECT_FLATTER:
     case EFFECT_ATTRACT:
