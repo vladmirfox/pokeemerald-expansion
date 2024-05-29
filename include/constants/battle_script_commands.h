@@ -6,10 +6,10 @@
 #define sBIDE_DMG                    (gBattleScripting + 0x04) // bideDmg
 #define sMULTIHIT_STRING             (gBattleScripting + 0x08) // multihitString
 #define sEXP_CATCH                   (gBattleScripting + 0x0E) // expOnCatch
-#define sTWOTURN_STRINGID            (gBattleScripting + 0x0F) // twoTurnsMoveStringId
+#define sUNUSED                      (gBattleScripting + 0x0F) // unused
 #define sB_ANIM_ARG1                 (gBattleScripting + 0x10) // animArg1
 #define sB_ANIM_ARG2                 (gBattleScripting + 0x11) // animArg2
-#define sTRIPLE_KICK_POWER           (gBattleScripting + 0x12) // tripleKickPower
+#define sSAVED_STRINID               (gBattleScripting + 0x12) // savedStringId
 #define sMOVEEND_STATE               (gBattleScripting + 0x14) // moveendState
 #define sSAVED_STAT_CHANGER          (gBattleScripting + 0x15) // savedStatChanger
 #define sSHIFT_SWITCHED              (gBattleScripting + 0x16) // shiftSwitched
@@ -129,114 +129,112 @@
 #define VARIOUS_SET_SIMPLE_BEAM                      37
 #define VARIOUS_TRY_ENTRAINMENT                      38
 #define VARIOUS_SET_LAST_USED_ABILITY                39
-#define VARIOUS_TRY_QUASH                            40
-#define VARIOUS_INVERT_STAT_STAGES                   41
-#define VARIOUS_TRY_ME_FIRST                         42
-#define VARIOUS_JUMP_IF_BATTLE_END                   43
-#define VARIOUS_TRY_ELECTRIFY                        44
-#define VARIOUS_TRY_REFLECT_TYPE                     45
-#define VARIOUS_TRY_SOAK                             46
-#define VARIOUS_HANDLE_MEGA_EVO                      47
-#define VARIOUS_TRY_LAST_RESORT                      48
-#define VARIOUS_SET_ARG_TO_BATTLE_DAMAGE             49
-#define VARIOUS_TRY_HIT_SWITCH_TARGET                50
-#define VARIOUS_TRY_AUTOTOMIZE                       51
-#define VARIOUS_ABILITY_POPUP                        52
-#define VARIOUS_JUMP_IF_TARGET_ALLY                  53
-#define VARIOUS_TRY_SYNCHRONOISE                     54
-#define VARIOUS_PSYCHO_SHIFT                         55
-#define VARIOUS_CURE_STATUS                          56
-#define VARIOUS_POWER_TRICK                          57
-#define VARIOUS_AFTER_YOU                            58
-#define VARIOUS_BESTOW                               59
-#define VARIOUS_JUMP_IF_NOT_GROUNDED                 60
-#define VARIOUS_HANDLE_TRAINER_SLIDE_MSG             61
-#define VARIOUS_TRY_TRAINER_SLIDE_MSG_FIRST_OFF      62
-#define VARIOUS_TRY_TRAINER_SLIDE_MSG_LAST_ON        63
-#define VARIOUS_SET_AURORA_VEIL                      64
-#define VARIOUS_TRY_THIRD_TYPE                       65
-#define VARIOUS_ACUPRESSURE                          66
-#define VARIOUS_SET_POWDER                           67
-#define VARIOUS_SPECTRAL_THIEF                       68
-#define VARIOUS_GRAVITY_ON_AIRBORNE_MONS             69
-#define VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS        70
-#define VARIOUS_JUMP_IF_ROAR_FAILS                   71
-#define VARIOUS_TRY_INSTRUCT                         72
-#define VARIOUS_JUMP_IF_NOT_BERRY                    73
-#define VARIOUS_TRACE_ABILITY                        74
-#define VARIOUS_UPDATE_NICK                          75
-#define VARIOUS_TRY_ILLUSION_OFF                     76
-#define VARIOUS_SET_SPRITEIGNORE0HP                  77
-#define VARIOUS_HANDLE_FORM_CHANGE                   78
-#define VARIOUS_GET_STAT_VALUE                       79
-#define VARIOUS_JUMP_IF_FULL_HP                      80
-#define VARIOUS_LOSE_TYPE                            81
-#define VARIOUS_TRY_ACTIVATE_SOULHEART               82
-#define VARIOUS_TRY_ACTIVATE_RECEIVER                83
-#define VARIOUS_TRY_ACTIVATE_BEAST_BOOST             84
-#define VARIOUS_TRY_FRISK                            85
-#define VARIOUS_JUMP_IF_SHIELDS_DOWN_PROTECTED       86
-#define VARIOUS_TRY_FAIRY_LOCK                       87
-#define VARIOUS_JUMP_IF_NO_ALLY                      88
-#define VARIOUS_POISON_TYPE_IMMUNITY                 89
-#define VARIOUS_JUMP_IF_NO_HOLD_EFFECT               90
-#define VARIOUS_INFATUATE_WITH_BATTLER               91
-#define VARIOUS_SET_LAST_USED_ITEM                   92
-#define VARIOUS_PARALYZE_TYPE_IMMUNITY               93
-#define VARIOUS_JUMP_IF_ABSENT                       94
-#define VARIOUS_DESTROY_ABILITY_POPUP                95
-#define VARIOUS_TOTEM_BOOST                          96
-#define VARIOUS_TRY_ACTIVATE_GRIM_NEIGH              97
-#define VARIOUS_MOVEEND_ITEM_EFFECTS                 98
-#define VARIOUS_TERRAIN_SEED                         99
-#define VARIOUS_MAKE_INVISIBLE                       100
-#define VARIOUS_ROOM_SERVICE                         101
-#define VARIOUS_EERIE_SPELL_PP_REDUCE                102
-#define VARIOUS_JUMP_IF_TEAM_HEALTHY                 103
-#define VARIOUS_TRY_HEAL_QUARTER_HP                  104
-#define VARIOUS_REMOVE_TERRAIN                       105
-#define VARIOUS_JUMP_IF_PRANKSTER_BLOCKED            106
-#define VARIOUS_TRY_TO_CLEAR_PRIMAL_WEATHER          107
-#define VARIOUS_GET_ROTOTILLER_TARGETS               108
-#define VARIOUS_JUMP_IF_NOT_ROTOTILLER_AFFECTED      109
-#define VARIOUS_TRY_ACTIVATE_BATTLE_BOND             110
-#define VARIOUS_CONSUME_BERRY                        111
-#define VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL        112
-#define VARIOUS_JUMP_IF_SPECIES                      113
-#define VARIOUS_UPDATE_ABILITY_POPUP                 114
-#define VARIOUS_JUMP_IF_WEATHER_AFFECTED             115
-#define VARIOUS_JUMP_IF_LEAF_GUARD_PROTECTED         116
-#define VARIOUS_SET_ATTACKER_STICKY_WEB_USER         117
-#define VARIOUS_SHELL_SIDE_ARM_CHECK                 118
-#define VARIOUS_TRY_NO_RETREAT                       119
-#define VARIOUS_TRY_TAR_SHOT                         120
-#define VARIOUS_CAN_TAR_SHOT_WORK                    121
-#define VARIOUS_CHECK_POLTERGEIST                    122
-#define VARIOUS_CUT_1_3_HP_RAISE_STATS               123
-#define VARIOUS_TRY_END_NEUTRALIZING_GAS             124
-#define VARIOUS_JUMP_IF_UNDER_200                    125
-#define VARIOUS_SET_SKY_DROP                         126
-#define VARIOUS_CLEAR_SKY_DROP                       127
-#define VARIOUS_SKY_DROP_YAWN                        128
-#define VARIOUS_JUMP_IF_HOLD_EFFECT                  129
-#define VARIOUS_CURE_CERTAIN_STATUSES                130
-#define VARIOUS_TRY_RESET_NEGATIVE_STAT_STAGES       131
-#define VARIOUS_JUMP_IF_LAST_USED_ITEM_BERRY         132
-#define VARIOUS_JUMP_IF_LAST_USED_ITEM_HOLD_EFFECT   133
-#define VARIOUS_SAVE_BATTLER_ITEM                    134
-#define VARIOUS_RESTORE_BATTLER_ITEM                 135
-#define VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM       136
-#define VARIOUS_SET_BEAK_BLAST                       137
-#define VARIOUS_SWAP_SIDE_STATUSES                   138
-#define VARIOUS_SWAP_STATS                           139
-#define VARIOUS_TEATIME_INVUL                        140
-#define VARIOUS_TEATIME_TARGETS                      141
-#define VARIOUS_TRY_WIND_RIDER_POWER                 142
-#define VARIOUS_ACTIVATE_WEATHER_CHANGE_ABILITIES    143
-#define VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES    144
-#define VARIOUS_STORE_HEALING_WISH                   145
-#define VARIOUS_HIT_SWITCH_TARGET_FAILED             146
-#define VARIOUS_TRY_REVIVAL_BLESSING                 147
+#define VARIOUS_INVERT_STAT_STAGES                   40
+#define VARIOUS_TRY_ME_FIRST                         41
+#define VARIOUS_JUMP_IF_BATTLE_END                   42
+#define VARIOUS_TRY_ELECTRIFY                        43
+#define VARIOUS_TRY_REFLECT_TYPE                     44
+#define VARIOUS_TRY_SOAK                             45
+#define VARIOUS_HANDLE_MEGA_EVO                      46
+#define VARIOUS_TRY_LAST_RESORT                      47
+#define VARIOUS_SET_ARG_TO_BATTLE_DAMAGE             48
+#define VARIOUS_TRY_HIT_SWITCH_TARGET                49
+#define VARIOUS_TRY_AUTOTOMIZE                       50
+#define VARIOUS_ABILITY_POPUP                        51
+#define VARIOUS_JUMP_IF_TARGET_ALLY                  52
+#define VARIOUS_TRY_SYNCHRONOISE                     53
+#define VARIOUS_PSYCHO_SHIFT                         54
+#define VARIOUS_CURE_STATUS                          55
+#define VARIOUS_POWER_TRICK                          56
+#define VARIOUS_AFTER_YOU                            57
+#define VARIOUS_BESTOW                               58
+#define VARIOUS_JUMP_IF_NOT_GROUNDED                 59
+#define VARIOUS_HANDLE_TRAINER_SLIDE_MSG             60
+#define VARIOUS_TRY_TRAINER_SLIDE_MSG_FIRST_OFF      61
+#define VARIOUS_TRY_TRAINER_SLIDE_MSG_LAST_ON        62
+#define VARIOUS_SET_AURORA_VEIL                      63
+#define VARIOUS_TRY_THIRD_TYPE                       64
+#define VARIOUS_ACUPRESSURE                          65
+#define VARIOUS_SET_POWDER                           66
+#define VARIOUS_SPECTRAL_THIEF                       67
+#define VARIOUS_GRAVITY_ON_AIRBORNE_MONS             68
+#define VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS        69
+#define VARIOUS_JUMP_IF_ROAR_FAILS                   70
+#define VARIOUS_TRY_INSTRUCT                         71
+#define VARIOUS_JUMP_IF_NOT_BERRY                    72
+#define VARIOUS_TRACE_ABILITY                        73
+#define VARIOUS_UPDATE_NICK                          74
+#define VARIOUS_TRY_ILLUSION_OFF                     75
+#define VARIOUS_SET_SPRITEIGNORE0HP                  76
+#define VARIOUS_HANDLE_FORM_CHANGE                   77
+#define VARIOUS_GET_STAT_VALUE                       78
+#define VARIOUS_JUMP_IF_FULL_HP                      79
+#define VARIOUS_LOSE_TYPE                            80
+#define VARIOUS_TRY_ACTIVATE_SOULHEART               81
+#define VARIOUS_TRY_ACTIVATE_RECEIVER                82
+#define VARIOUS_TRY_ACTIVATE_BEAST_BOOST             83
+#define VARIOUS_TRY_FRISK                            84
+#define VARIOUS_JUMP_IF_SHIELDS_DOWN_PROTECTED       85
+#define VARIOUS_TRY_FAIRY_LOCK                       86
+#define VARIOUS_JUMP_IF_NO_ALLY                      87
+#define VARIOUS_POISON_TYPE_IMMUNITY                 88
+#define VARIOUS_JUMP_IF_HOLD_EFFECT                  89
+#define VARIOUS_INFATUATE_WITH_BATTLER               90
+#define VARIOUS_SET_LAST_USED_ITEM                   91
+#define VARIOUS_PARALYZE_TYPE_IMMUNITY               92
+#define VARIOUS_JUMP_IF_ABSENT                       93
+#define VARIOUS_DESTROY_ABILITY_POPUP                94
+#define VARIOUS_TOTEM_BOOST                          95
+#define VARIOUS_TRY_ACTIVATE_GRIM_NEIGH              96
+#define VARIOUS_MOVEEND_ITEM_EFFECTS                 97
+#define VARIOUS_TERRAIN_SEED                         98
+#define VARIOUS_MAKE_INVISIBLE                       99
+#define VARIOUS_ROOM_SERVICE                         100
+#define VARIOUS_EERIE_SPELL_PP_REDUCE                101
+#define VARIOUS_JUMP_IF_TEAM_HEALTHY                 102
+#define VARIOUS_TRY_HEAL_QUARTER_HP                  103
+#define VARIOUS_REMOVE_TERRAIN                       104
+#define VARIOUS_JUMP_IF_PRANKSTER_BLOCKED            105
+#define VARIOUS_TRY_TO_CLEAR_PRIMAL_WEATHER          106
+#define VARIOUS_GET_ROTOTILLER_TARGETS               107
+#define VARIOUS_JUMP_IF_NOT_ROTOTILLER_AFFECTED      108
+#define VARIOUS_TRY_ACTIVATE_BATTLE_BOND             109
+#define VARIOUS_CONSUME_BERRY                        110
+#define VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL        111
+#define VARIOUS_JUMP_IF_SPECIES                      112
+#define VARIOUS_UPDATE_ABILITY_POPUP                 113
+#define VARIOUS_JUMP_IF_WEATHER_AFFECTED             114
+#define VARIOUS_JUMP_IF_LEAF_GUARD_PROTECTED         115
+#define VARIOUS_SET_ATTACKER_STICKY_WEB_USER         116
+#define VARIOUS_SHELL_SIDE_ARM_CHECK                 117
+#define VARIOUS_TRY_NO_RETREAT                       118
+#define VARIOUS_TRY_TAR_SHOT                         119
+#define VARIOUS_CAN_TAR_SHOT_WORK                    120
+#define VARIOUS_CHECK_POLTERGEIST                    121
+#define VARIOUS_CUT_1_3_HP_RAISE_STATS               122
+#define VARIOUS_TRY_END_NEUTRALIZING_GAS             123
+#define VARIOUS_JUMP_IF_UNDER_200                    124
+#define VARIOUS_SET_SKY_DROP                         125
+#define VARIOUS_CLEAR_SKY_DROP                       126
+#define VARIOUS_SKY_DROP_YAWN                        127
+#define VARIOUS_CURE_CERTAIN_STATUSES                128
+#define VARIOUS_TRY_RESET_NEGATIVE_STAT_STAGES       129
+#define VARIOUS_JUMP_IF_LAST_USED_ITEM_BERRY         130
+#define VARIOUS_JUMP_IF_LAST_USED_ITEM_HOLD_EFFECT   131
+#define VARIOUS_SAVE_BATTLER_ITEM                    132
+#define VARIOUS_RESTORE_BATTLER_ITEM                 133
+#define VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM       134
+#define VARIOUS_SET_BEAK_BLAST                       135
+#define VARIOUS_SWAP_SIDE_STATUSES                   136
+#define VARIOUS_SWAP_STATS                           137
+#define VARIOUS_TEATIME_INVUL                        138
+#define VARIOUS_TEATIME_TARGETS                      139
+#define VARIOUS_TRY_WIND_RIDER_POWER                 140
+#define VARIOUS_ACTIVATE_WEATHER_CHANGE_ABILITIES    141
+#define VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES    142
+#define VARIOUS_STORE_HEALING_WISH                   143
+#define VARIOUS_HIT_SWITCH_TARGET_FAILED             144
+#define VARIOUS_TRY_REVIVAL_BLESSING                 145
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -246,8 +244,7 @@
 #define DMG_FULL_ATTACKER_HP       4
 #define DMG_CURR_ATTACKER_HP       5
 #define DMG_BIG_ROOT               6
-#define DMG_1_2_ATTACKER_HP        7
-#define DMG_RECOIL_FROM_IMMUNE     8 // Used to calculate recoil for the Gen 4 version of Jump Kick
+#define DMG_RECOIL_FROM_IMMUNE     7 // Used to calculate recoil for the Gen 4 version of Jump Kick
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)
@@ -303,9 +300,9 @@
 #define MOVEEND_DEFROST                           23
 #define MOVEEND_RECOIL                            24
 #define MOVEEND_MAGICIAN                          25    // Occurs after final multi-hit strike, and after other items/abilities would activate
-#define MOVEEND_EJECT_BUTTON                      26
-#define MOVEEND_RED_CARD                          27
-#define MOVEEND_EJECT_PACK                        28
+#define MOVEEND_EJECT_ITEMS                       26
+#define MOVEEND_WHITE_HERB                        27
+#define MOVEEND_RED_CARD                          28
 #define MOVEEND_LIFEORB_SHELLBELL                 29    // Includes shell bell, throat spray, etc
 #define MOVEEND_CHANGED_ITEMS                     30
 #define MOVEEND_PICKPOCKET                        31
