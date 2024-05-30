@@ -202,7 +202,7 @@ static void TransferEggMoves(void)
         if (!GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_SANITY_HAS_SPECIES))
             continue;
 
-        // Make sure Snorlax gets Snorlax's egg moves instead of Munchlax's
+        // Prevent non-baby species from learning incense baby egg moves
         if (eggSpecies != moveLearnerSpecies && P_INCENSE_BREEDING < GEN_9)
         {
             for (j = 0; j < ARRAY_COUNT(sIncenseBabyTable); j++)
