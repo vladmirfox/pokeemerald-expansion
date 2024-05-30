@@ -900,8 +900,7 @@ static void HandleInputChooseMove(u32 battler)
             gBattlerControllerFuncs[battler] = HandleMoveSwitching;
         }
     }
-    
-    if (sDescriptionSubmenu)
+    else if (sDescriptionSubmenu)
     {
         if (JOY_NEW(L_BUTTON) || JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         {
