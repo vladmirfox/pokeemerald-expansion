@@ -201,8 +201,8 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
             if (hasStatusMove)
                 return FALSE;
 
-            // 50% chance to stay in regardless
-            if (Random() % 2 == 0)
+            // Chance to stay in varies based on trainer class
+            if (Random() % 100 < gTrainerClasses[GetTrainerClassFromId(gTrainerBattleOpponent_A)].switchChance)
                 return FALSE;
 
             // Switch mon out

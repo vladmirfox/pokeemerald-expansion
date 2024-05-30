@@ -633,6 +633,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         .name = _(trainerName),                         \
         .money = DEFAULT(5, __VA_ARGS__),               \
         .ball = DEFAULT_2(ITEM_POKE_BALL, __VA_ARGS__), \
+        .switchChance = DEFAULT_3(50, __VA_ARGS__),     \
     }
 
 const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
