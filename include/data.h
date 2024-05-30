@@ -100,7 +100,7 @@ struct TrainerClass
     u8 name[13];
     u8 money;
     u16 ball;
-    u32 switchChance; // 0 - 100, percantage change to switch out if switching out is considered optimal
+    u32 switchChance; // 0 - 100, percantage chance to switch out if switching out is considered optimal
 };
 
 struct TypeInfo
