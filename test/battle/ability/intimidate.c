@@ -210,3 +210,21 @@ SINGLE_BATTLE_TEST("Intimidate can not further lower opponents Atk stat if it is
         EXPECT_EQ(player->statStages[STAT_ATK], MIN_STAT_STAGE);
     }
 }
+
+SINGLE_BATTLE_TEST("[1]Intimidate activates when it's no longer effected by Neutralizing Gas")
+{
+    GIVEN {
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
+    } WHEN {
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing Gas filled the area!");
+        MESSAGE("Weezing, that's enough! Come back!");
+        MESSAGE("The effects of Neutralizing Gas wore off!");
+        ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
+        MESSAGE("Go! Wobbuffet!");
+    }
+}

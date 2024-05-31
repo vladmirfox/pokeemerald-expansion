@@ -1637,11 +1637,11 @@
 	.macro trygulpmissile
 	callnative BS_TryGulpMissile
 	.endm
-	
+
 	.macro tryactivategulpmissile
 	callnative BS_TryActivateGulpMissile
 	.endm
-	
+
 	.macro tryquash failInstr:req
 	callnative BS_TryQuash
 	.4byte \failInstr
@@ -1775,6 +1775,14 @@
 
 	.macro restoretarget
 	various BS_TARGET, VARIOUS_RESTORE_TARGET
+	.endm
+
+	.macro saveattacker
+	various BS_TARGET, VARIOUS_SAVE_ATTACKER
+	.endm
+
+	.macro restoreattacker
+	various BS_TARGET, VARIOUS_RESTORE_ATTACKER
 	.endm
 
 	.macro instanthpdrop battler:req

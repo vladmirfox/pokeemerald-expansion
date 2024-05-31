@@ -2098,7 +2098,7 @@ static void Cmd_adjustdamage(void)
         gLastUsedItem = gBattleMons[gBattlerTarget].item;
         gSpecialStatuses[gBattlerTarget].focusBanded = FALSE;
         gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
-        
+
     }
     else if (gSpecialStatuses[gBattlerTarget].sturdied)
     {
@@ -3217,8 +3217,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 {
                     gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
                     gBattlescriptCurrInstr++;
-                } 
-                else 
+                }
+                else
                 {
                     gBattlescriptCurrInstr++;
                 }
@@ -6271,7 +6271,7 @@ static void Cmd_moveend(void)
                         break;
                     }
                 }
-                
+
                 if (!(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker]
                     || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove
                         && gBattleStruct->bouncedMoveIsUsed)))
@@ -9400,6 +9400,18 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gBattlerTarget = gBattleStruct->savedBattlerTarget;
+        break;
+    }
+    case VARIOUS_SAVE_ATTACKER:
+    {
+        VARIOUS_ARGS();
+        gBattleStruct->savedBattlerAttacker = gBattlerAttacker;
+        break;
+    }
+    case VARIOUS_RESTORE_ATTACKER:
+    {
+        VARIOUS_ARGS();
+        gBattlerAttacker = gBattleStruct->savedBattlerAttacker;
         break;
     }
     case VARIOUS_INSTANT_HP_DROP:
