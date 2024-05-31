@@ -28,9 +28,9 @@ All of the Windows instructions assume that the default drive is C:\\. If this d
 
 ## Windows 10/11 (WSL1)
 WSL1 is the preferred terminal to build **pokeemerald Expansion**. The following instructions will explain how to install WSL1 (referred to interchangeably as WSL).
-- If WSL (Debian or Ubuntu) is **not installed**, then go to [Installing WSL1](#Installing-WSL1).
-- Otherwise, if WSL is installed, but it **hasn't previously been set up for another decompilation project**, then go to [Setting up WSL1](#Setting-up-WSL1).
-- Otherwise, **open WSL** and go to [Choosing where to store pokeemerald Expansion (WSL1)](#Choosing-where-to-store-pokeemerald-expansion-WSL1).
+- If WSL (Debian or Ubuntu) is **not installed**, then go to [Installing WSL1](#installing-wsl1).
+- Otherwise, if WSL is installed, but it **hasn't previously been set up for another decompilation project**, then go to [Setting up WSL1](#setting-up-wsl1).
+- Otherwise, **open WSL** and go to [Choosing where to store pokeemerald Expansion (WSL1)](#choosing-where-to-store-pokeemerald-expansion-wsl1).
 
 ### Installing WSL1
 1. Open [Windows Powershell **as Administrator**](https://i.imgur.com/QKmVbP9.png), and run the following command (Right Click or Shift+Insert is paste in the Powershell).
@@ -529,7 +529,7 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
     >   sudo mount -t drvfs C: /mnt/c -o metadata,noatime
     >   cd <folder where pokeemerald-expansion is to be stored>
     >   ```
-    >   Where *\<folder where pokeemerald-expansion is to be stored>* is the path of the folder [where you chose to store pokeemerald Expansion](#Choosing-where-to-store-pokeemerald-expansion-WSL1). Then run the `git clone` command again.
+    >   Where *\<folder where pokeemerald-expansion is to be stored>* is the path of the folder [where you chose to store pokeemerald Expansion](#choosing-where-to-store-pokeemerald-expansion-wsl1). Then run the `git clone` command again.
     </details>
     
 Now you're ready to build pokeemerald Expansion.
