@@ -2334,6 +2334,7 @@ static void UpdateMonData(struct BattleDebugMenu *data)
                 mon = &gEnemyParty[gBattlerPartyIndexes[i]];
 
             SetMonData(mon, MON_DATA_HELD_ITEM, &battleMon->item);
+            SetMonData(mon, MON_DATA_STATUS, &battleMon->status1);
             SetMonData(mon, MON_DATA_HP, &battleMon->hp);
             SetMonData(mon, MON_DATA_MAX_HP, &battleMon->maxHP);
             for (j = 0; j < 4; j++)
