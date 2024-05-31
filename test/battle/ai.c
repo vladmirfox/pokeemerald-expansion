@@ -985,6 +985,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: AI will switch in trapping mon
     PARAMETRIZE { aiSmartMonChoicesFlag = 0; } // No trapping behaviour
     PARAMETRIZE { aiSmartMonChoicesFlag = AI_FLAG_SMART_MON_CHOICES; } // Traps with mid battle switches
     GIVEN{
+        ASSUME(gSpeciesInfo[SPECIES_MAWILE].types[0] == TYPE_STEEL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSmartMonChoicesFlag);
         PLAYER(SPECIES_MAWILE) { Speed(2); Moves(MOVE_PROTECT, MOVE_TACKLE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
@@ -1005,6 +1006,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use trapping behaviour if player only has 1 mon 
     PARAMETRIZE { aiSmartMonChoicesFlag = 0; } // No trapping behaviour
     PARAMETRIZE { aiSmartMonChoicesFlag = AI_FLAG_SMART_MON_CHOICES; } // Traps with mid battle switches
     GIVEN{
+        ASSUME(gSpeciesInfo[SPECIES_MAWILE].types[0] == TYPE_STEEL);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSmartMonChoicesFlag);
         PLAYER(SPECIES_MAWILE) { Speed(2); Moves(MOVE_PROTECT, MOVE_TACKLE); }
         OPPONENT(SPECIES_SNORLAX) { Speed(3); Moves(MOVE_SELF_DESTRUCT); }
