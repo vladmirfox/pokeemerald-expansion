@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_TACKLE].power > 0);
 }
 
-SINGLE_BATTLE_TEST("Galvnaize can not turn certain moves into electric type")
+SINGLE_BATTLE_TEST("Galvanize can not turn certain moves into Electric type moves")
 {
     u32 move;
 
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Galvnaize can not turn certain moves into electric type")
     }
 }
 
-SINGLE_BATTLE_TEST("Galvnaize turns a normal type move into Electric")
+SINGLE_BATTLE_TEST("Galvanize turns a normal type move into Electric")
 {
     GIVEN {
         PLAYER(SPECIES_KRABBY);
