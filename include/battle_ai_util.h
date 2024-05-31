@@ -6,7 +6,7 @@
 // Roll boundaries used by AI when scoring. Doesn't affect actual damage dealt.
 #define MAX_ROLL_PERCENTAGE DMG_ROLL_PERCENT_HI
 #define MIN_ROLL_PERCENTAGE DMG_ROLL_PERCENT_LO
-#define DMG_ROLL_PERCENTAGE (MAX_ROLL_PERCENTAGE - 7) // Controls the damage roll the AI sees. By default the 9th roll is seen
+#define DMG_ROLL_PERCENTAGE (MAX_ROLL_PERCENTAGE - 7) // Controls the damage roll the AI sees for the default roll. By default the 9th roll is seen
 
 enum
 {
