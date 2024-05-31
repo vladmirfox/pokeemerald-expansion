@@ -12488,7 +12488,7 @@
               {
                 "min_level": 13,
                 "max_level": 19,
-                "species": "SPECIES_NICKIT"
+                "species": "SPECIES_THIEVUL"
               },
               {
                 "min_level": 5,
@@ -12498,7 +12498,7 @@
               {
                 "min_level": 18,
                 "max_level": 21,
-                "species": "SPECIES_SEEDOT"
+                "species": "SPECIES_NUZLEAF"
               },
               {
                 "min_level": 14,
@@ -12523,7 +12523,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_NUZLEAF"
+                "species": "SPECIES_SEEDOT"
               },
               {
                 "min_level": 5,
