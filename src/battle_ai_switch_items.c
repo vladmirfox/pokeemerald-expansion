@@ -1928,12 +1928,11 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 if (CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler))
                 {
                     hitsToKOPlayer = GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler);
-                    // Good grief clean up the 1v1 check and outspeed check
                     if (CountUsablePartyMons(opposingBattler) > 0
-                        && (((hitsToKOAI > hitsToKOPlayer && isSwitchAfterKO) // If can 1v1 after a KO
-                        || (hitsToKOAI == hitsToKOPlayer && isSwitchAfterKO && (aiMonSpeed > playerMonSpeed || aiMovePriority > 0)))
-                        || ((hitsToKOAI > hitsToKOPlayer + 1 && !isSwitchAfterKO) // If can 1v1 after mid battle
-                        || (hitsToKOAI == hitsToKOPlayer + 1 && !isSwitchAfterKO && (aiMonSpeed > playerMonSpeed || aiMovePriority > 0)))))
+                    && (((hitsToKOAI > hitsToKOPlayer && isSwitchAfterKO) // If can 1v1 after a KO
+                    || (hitsToKOAI == hitsToKOPlayer && isSwitchAfterKO && (aiMonSpeed > playerMonSpeed || aiMovePriority > 0)))
+                    || ((hitsToKOAI > hitsToKOPlayer + 1 && !isSwitchAfterKO) // If can 1v1 after mid battle
+                    || (hitsToKOAI == hitsToKOPlayer + 1 && !isSwitchAfterKO && (aiMonSpeed > playerMonSpeed || aiMovePriority > 0)))))
                         trapperId = i;
                 }
             }
@@ -1948,28 +1947,20 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         // Return Trapper > GetBestMonRevengeKiller >  GetBestMonTypeMatchup > GetBestMonBatonPass > GetBestMonDmg
         if (trapperId != PARTY_SIZE)
             return trapperId;
-
         else if (revengeKillerId != PARTY_SIZE)
             return revengeKillerId;
-
         else if (slowRevengeKillerId != PARTY_SIZE)
             return slowRevengeKillerId;
-
         else if (fastThreatenId != PARTY_SIZE)
             return fastThreatenId;
-
         else if (slowThreatenId != PARTY_SIZE)
             return slowThreatenId;
-
         else if (typeMatchupEffectiveId != PARTY_SIZE)
             return typeMatchupEffectiveId;
-
         else if (typeMatchupId != PARTY_SIZE)
             return typeMatchupId;
-
         else if (batonPassId != PARTY_SIZE)
             return batonPassId;
-
         else if (damageMonId != PARTY_SIZE)
             return damageMonId;
     }
@@ -1978,16 +1969,12 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         // Return Trapper > GetBestMonTypeMatchup > GetBestMonDefensive > GetBestMonBatonPass
         if (trapperId != PARTY_SIZE)
             return trapperId;
-
-        if (typeMatchupEffectiveId != PARTY_SIZE)
+        else if (typeMatchupEffectiveId != PARTY_SIZE)
             return typeMatchupEffectiveId;
-
         else if (typeMatchupId != PARTY_SIZE)
             return typeMatchupId;
-
         else if (defensiveMonId != PARTY_SIZE)
             return defensiveMonId;
-
         else if (batonPassId != PARTY_SIZE)
             return batonPassId;
 
