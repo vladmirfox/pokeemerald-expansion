@@ -43,3 +43,5 @@ SINGLE_BATTLE_TEST("Freeze is thawed by user's Flame Wheel")
         MESSAGE("Wobbuffet used Flame Wheel!");
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Freeze");

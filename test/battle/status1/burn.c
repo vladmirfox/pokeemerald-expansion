@@ -35,3 +35,5 @@ SINGLE_BATTLE_TEST("Burn reduces Attack by 50%", s16 damage)
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Burn");

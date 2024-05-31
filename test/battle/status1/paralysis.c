@@ -42,3 +42,5 @@ SINGLE_BATTLE_TEST("Paralysis has a 25% chance of skipping the turn")
         MESSAGE("Wobbuffet is paralyzed! It can't move!");
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Paralysis");

@@ -95,3 +95,5 @@ SINGLE_BATTLE_TEST("Frostbite is healed when the user uses a thawing move")
         }
    }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Frostbite");

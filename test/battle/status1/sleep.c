@@ -21,3 +21,5 @@ SINGLE_BATTLE_TEST("Sleep prevents the battler from using a move")
         MESSAGE("Wobbuffet used Celebrate!");
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Sleep");

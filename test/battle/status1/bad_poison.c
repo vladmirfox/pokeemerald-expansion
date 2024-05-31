@@ -39,3 +39,5 @@ SINGLE_BATTLE_TEST("Bad poison cumulative damage resets on switch")
             HP_BAR(player, damage: maxHP / 16 * (j + 1));
     }
 }
+
+TO_DO_BATTLE_TEST("Baton Pass does not pass Bad poison");
