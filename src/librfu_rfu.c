@@ -757,14 +757,12 @@ void rfu_REQ_pollConnectParent(void)
     STWI_send_CP_PollingREQ();
 }
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 static void rfu_CB_pollConnectParent(u8 reqCommand, u16 reqResult)
 {
     u16 id;
     u8 slot;
     u8 bm_slot_flag, i;
-    struct RfuTgtData *target_p;
+    struct RfuTgtData *target_p = NULL;
     struct RfuTgtData target_local;
 
     if (reqResult == 0)
@@ -810,7 +808,6 @@ static void rfu_CB_pollConnectParent(u8 reqCommand, u16 reqResult)
     }
     rfu_STC_REQ_callback(reqCommand, reqResult);
 }
-#pragma GCC diagnostic pop
 
 u16 rfu_getConnectParentStatus(u8 *status, u8 *connectSlotNo)
 {
