@@ -5998,18 +5998,25 @@ void RunBattleScriptCommands(void)
 bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
 {
     u32 ateType;
-    u32 moveEffect = gMovesInfo[move].effect;
 
-    if (moveEffect == EFFECT_HIDDEN_POWER
-     || moveEffect == EFFECT_WEATHER_BALL
-     || moveEffect == EFFECT_CHANGE_TYPE_ON_ITEM
-     || moveEffect == EFFECT_NATURAL_GIFT
-     || (moveEffect == EFFECT_TERA_BLAST && IsTerastallized(battlerAtk))
-     || (moveEffect == EFFECT_TERA_STARSTORM && gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR))
+    switch (gMovesInfo[move].effect)
+    {
+    case EFFECT_TERA_BLAST:
+        if (IsTerastallized(battlerAtk))
+            return FALSE;
+        break;
+    case EFFECT_TERA_STARSTORM:
+        if (gBattleMons[battlerAtk].species == SPECIES_TERAPAGOS_STELLAR)
+            return FALSE;
+        break;
+    case EFFECT_HIDDEN_POWER:
+    case EFFECT_WEATHER_BALL:
+    case EFFECT_CHANGE_TYPE_ON_ITEM:
+    case EFFECT_NATURAL_GIFT:
         return FALSE;
+    }
 
-    ateType = TYPE_MYSTERY; // Should be eventually replaced with TYPE_NONE
-
+    ateType = TYPE_NONE;
     switch (attackerAbility)
     {
     case ABILITY_PIXILATE:
@@ -6029,7 +6036,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
         break;
     }
 
-    if (ateType != TYPE_MYSTERY)
+    if (ateType != TYPE_NONE)
     {
         gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
         return TRUE;
