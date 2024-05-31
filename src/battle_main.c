@@ -6032,7 +6032,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
         ateType = TYPE_ELECTRIC;
         break;
     default:
-        ateType = TYPE_MYSTERY;
+        ateType = TYPE_NONE;
         break;
     }
 
