@@ -211,7 +211,7 @@ SINGLE_BATTLE_TEST("Intimidate can not further lower opponents Atk stat if it is
     }
 }
 
-SINGLE_BATTLE_TEST("[1]Intimidate activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Intimidate activates when it's no longer affected by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
