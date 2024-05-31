@@ -135,11 +135,6 @@ LIB := $(LIBPATH) -lgcc -lc -L../../libagbsyscall -lagbsyscall
 else
 CC1              = $(shell $(PATH_MODERNCC) --print-prog-name=cc1) -quiet
 override CFLAGS += -mthumb -mthumb-interwork -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init
-ifeq ($(DEBUG),1)
-override CFLAGS += -O0 -g
-else
-override CFLAGS += -O2
-endif
 ifeq ($(ANALYZE),1)
 override CFLAGS += -fanalyzer
 endif
@@ -153,6 +148,21 @@ ROM := $(MODERN_ROM_NAME)
 OBJ_DIR := $(MODERN_OBJ_DIR_NAME)
 LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libnosys.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libc.a))"
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
+endif
+
+ifneq ($(NOOPT),1)
+ifeq ($(DEBUG),1)
+ifeq ($(MODERN),1)
+override CFLAGS += -Og
+else
+override CFLAGS += -O1
+endif
+else
+override CFLAGS += -O2
+endif
+endif
+ifeq ($(DEBUG),1)
+override CFLAGS += -g
 endif
 
 ifeq ($(TESTELF),$(MAKECMDGOALS))
@@ -396,10 +406,6 @@ endif
 
 ifeq ($(DINFO),1)
 override CFLAGS += -g
-endif
-
-ifeq ($(NOOPT),1)
-override CFLAGS := $(subst -O2,-O0,$(CFLAGS))
 endif
 
 ifeq ($(DPRINT),1)
