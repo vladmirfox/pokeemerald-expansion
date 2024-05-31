@@ -169,6 +169,10 @@ ifneq ($(MODERN),1)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
 endif
 
+ifeq ($(DEBUG),1)
+CPPFLAGS += -DDEBUG_TARGET
+endif
+
 SHA1 := $(shell { command -v sha1sum || command -v shasum; } 2>/dev/null) -c
 GFX := tools/gbagfx/gbagfx$(EXE)
 AIF := tools/aif2pcm/aif2pcm$(EXE)
@@ -384,6 +388,10 @@ endif
 
 ifeq ($(NOOPT),1)
 override CFLAGS := $(subst -O2,-O0,$(CFLAGS))
+endif
+
+ifeq ($(DPRINT),1)
+override CPPFLAGS += -DDEBUG_TARGET
 endif
 
 # The dep rules have to be explicit or else missing files won't be reported.
