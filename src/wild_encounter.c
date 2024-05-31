@@ -23,6 +23,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "rtc.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -379,6 +380,33 @@ static u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            RtcCalcLocalTime();
+            if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(ALTERING_CAVE) &&
+                gSaveBlock1Ptr->location.mapNum != MAP_NUM(ALTERING_CAVE))
+            {
+                if (gLocalTime.hours >= 6 && gLocalTime.hours <= 8)
+                {
+                    i += 0; // Morning
+                }
+                else if (gLocalTime.hours >= 9 && gLocalTime.hours <= 17 &&
+                         gWildMonHeaders[i + 1].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+                         gWildMonHeaders[i + 1].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 1; // Day
+                }
+                else if (gLocalTime.hours >= 18 && gLocalTime.hours <= 20 &&
+                         gWildMonHeaders[i + 2].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+                         gWildMonHeaders[i + 2].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 2; // Evening
+                }
+                else if (gWildMonHeaders[i + 3].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
+                         gWildMonHeaders[i + 3].mapNum == gSaveBlock1Ptr->location.mapNum)
+                {
+                    i += 3; // Night
+                }
+            }
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
             {
