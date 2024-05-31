@@ -30,7 +30,6 @@
 
 extern const u16 gMovesWithQuietBGM[];
 extern const u8 *const gBattleAnims_General[];
-extern const u8 *const gBattleAnims_Moves[];
 extern const u8 *const gBattleAnims_Special[];
 extern const u8 *const gBattleAnims_StatusConditions[];
 
@@ -232,7 +231,6 @@ static void Nop(void)
 void LaunchBattleAnimation(u32 animType, u32 animId)
 {
     s32 i;
-    const u8 *const *animsTable;
 
     if (gTestRunnerEnabled)
     {
@@ -245,23 +243,6 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
             gAnimScriptActive = FALSE;
             return;
         }
-    }
-
-    switch (animType)
-    {
-    case ANIM_TYPE_GENERAL:
-    default:
-        animsTable = gBattleAnims_General;
-        break;
-    case ANIM_TYPE_MOVE:
-        animsTable = gBattleAnims_Moves;
-        break;
-    case ANIM_TYPE_STATUS:
-        animsTable = gBattleAnims_StatusConditions;
-        break;
-    case ANIM_TYPE_SPECIAL:
-        animsTable = gBattleAnims_Special;
-        break;
     }
 
     sAnimHideHpBoxes = !(animType == ANIM_TYPE_MOVE && animId == MOVE_TRANSFORM);
@@ -319,7 +300,23 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
 
     sMonAnimTaskIdArray[0] = TASK_NONE;
     sMonAnimTaskIdArray[1] = TASK_NONE;
-    sBattleAnimScriptPtr = animsTable[animId];
+
+    switch (animType)
+    {
+    case ANIM_TYPE_GENERAL:
+    default:
+        sBattleAnimScriptPtr = gBattleAnims_General[animId];
+        break;
+    case ANIM_TYPE_MOVE:
+        sBattleAnimScriptPtr = gMovesInfo[animId].battleAnimScript;
+        break;
+    case ANIM_TYPE_STATUS:
+        sBattleAnimScriptPtr = gBattleAnims_StatusConditions[animId];
+        break;
+    case ANIM_TYPE_SPECIAL:
+        sBattleAnimScriptPtr = gBattleAnims_Special[animId];
+        break;
+    }
     gAnimScriptActive = TRUE;
     sAnimFramesToWait = 0;
     gAnimScriptCallback = RunAnimScriptCommand;
