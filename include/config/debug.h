@@ -14,6 +14,7 @@
 // Pokémon Debug
 #define DEBUG_POKEMON_SPRITE_VISUALIZER FALSE   // Enables a debug menu for Pokémon sprites and icons, accessed by pressing Select in the summary screen.
 
+// Automatically enable all debug menus if building with debug target
 #ifdef DEBUG_TARGET
 #undef DEBUG_OVERWORLD_MENU
 #define DEBUG_OVERWORLD_MENU            TRUE
