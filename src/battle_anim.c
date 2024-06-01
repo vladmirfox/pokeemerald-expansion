@@ -308,7 +308,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
         sBattleAnimScriptPtr = gBattleAnims_General[animId];
         break;
     case ANIM_TYPE_MOVE:
-        sBattleAnimScriptPtr = gMovesInfo[animId].battleAnimScript;
+        sBattleAnimScriptPtr = GetMoveAnimationScript(animId);
         break;
     case ANIM_TYPE_STATUS:
         sBattleAnimScriptPtr = gBattleAnims_StatusConditions[animId];

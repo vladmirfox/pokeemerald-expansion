@@ -52,3 +52,13 @@ output_file_bas.writelines(battle_anim_lines)
 output_file_bas.writelines('\n#endif // GUARD_BATTLE_ANIM_SCRIPTS_H\n')
 output_file_bas.close()
 
+b_anim_scripts_s = open('./data/battle_anim_scripts.s', 'r')
+lines = b_anim_scripts_s.read()
+b_anim_scripts_s.close()
+
+lines = re.sub(r'(Move_[A-Za-z0-9_]*)([:]+)', r'\1::', lines)
+
+b_anim_scripts_s = open('./data/battle_anim_scripts.s', 'w')
+b_anim_scripts_s.write(lines)
+b_anim_scripts_s.close()
+
