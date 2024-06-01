@@ -1158,7 +1158,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Terror traps both opponents")
     }
 }
 
-TO_DO_BATTLE_TEST("Baton Pass passes G-Max Terror's escape prevention effect");
+TO_DO_BATTLE_TEST("(DYNAMAX) Baton Pass passes G-Max Terror's escape prevention effect");
 
 DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Meltdown torments both opponents for 3 turns")
 {
@@ -1393,7 +1393,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Chi Strike boosts allies' crit chance")
     }
 }
 
-TO_DO_BATTLE_TEST("Baton Pass doesn't pass G-Max Chi Strike's effect");
+TO_DO_BATTLE_TEST("(DYNAMAX) Baton Pass doesn't pass G-Max Chi Strike's effect");
 
 DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Depletion takes away 2 PP from the target's last move")
 {
