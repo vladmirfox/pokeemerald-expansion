@@ -16,5 +16,3 @@ SINGLE_BATTLE_TEST("Poison deals 1/8th damage per turn")
             HP_BAR(player, damage: maxHP / 8);
     }
 }
-
-TO_DO_BATTLE_TEST("Baton Pass does not pass Poison");
