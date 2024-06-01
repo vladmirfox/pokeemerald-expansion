@@ -41,6 +41,8 @@ for line in lines:
 
     moves_info_lines.append(line)
 
+moves_info_lines.insert(1, '#include "battle_anim_scripts.h"\n')
+
 output_file_mi = open('./src/data/moves_info.h', 'w')
 output_file_mi.writelines(moves_info_lines)
 output_file_mi.close()
