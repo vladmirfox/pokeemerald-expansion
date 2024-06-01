@@ -2778,7 +2778,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
             }
             else
-                retVal = substruct0->teraType - 1;
+                retVal = substruct0->teraType;
             break;
         case MON_DATA_EVOLUTION_TRACKER:
             evoTracker.asField.a = substruct1->evolutionTracker1;
@@ -3205,7 +3205,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
             u32 teraType;
             SET8(teraType);
-            substruct0->teraType = 1 + teraType;
+            substruct0->teraType = teraType;
             break;
         }
         case MON_DATA_EVOLUTION_TRACKER:
