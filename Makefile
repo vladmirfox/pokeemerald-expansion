@@ -94,12 +94,15 @@ SYM = $(ROM:.gba=.sym)
 TEST_OBJ_DIR_NAME_MODERN := build/modern-test
 TEST_OBJ_DIR_NAME_AGBCC := build/test
 
+DEBUG_OBJ_DIR_NAME_MODERN := build/modern-debug
+DEBUG_OBJ_DIR_NAME_AGBCC := build/debug
+
 ifeq ($(MODERN),0)
 TEST_OBJ_DIR_NAME := $(TEST_OBJ_DIR_NAME_AGBCC)
-DEBUG_OBJ_DIR_NAME := build/debug
+DEBUG_OBJ_DIR_NAME := $(DEBUG_OBJ_DIR_NAME_AGBCC)
 else
 TEST_OBJ_DIR_NAME := $(TEST_OBJ_DIR_NAME_MODERN)
-DEBUG_OBJ_DIR_NAME := build/modern-debug
+DEBUG_OBJ_DIR_NAME := $(DEBUG_OBJ_DIR_NAME_MODERN)
 endif
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
@@ -150,19 +153,14 @@ LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a)
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
 endif
 
-ifneq ($(NOOPT),1)
 ifeq ($(DEBUG),1)
 ifeq ($(MODERN),1)
-override CFLAGS += -Og
+override CFLAGS += -Og -g
 else
-override CFLAGS += -O1
+override CFLAGS += -O1 -g
 endif
 else
 override CFLAGS += -O2
-endif
-endif
-ifeq ($(DEBUG),1)
-override CFLAGS += -g
 endif
 
 ifeq ($(TESTELF),$(MAKECMDGOALS))
@@ -348,7 +346,8 @@ tidycheck:
 
 
 tidydebug:
-	rm -rf $(DEBUG_OBJ_DIR_NAME)
+	rm -rf $(DEBUG_OBJ_DIR_NAME_MODERN)
+	rm -rf $(DEBUG_OBJ_DIR_NAME_AGBCC)
 
 ifneq ($(MODERN),0)
 $(C_BUILDDIR)/berry_crush.o: override CFLAGS += -Wno-address-of-packed-member
@@ -406,6 +405,11 @@ endif
 
 ifeq ($(DINFO),1)
 override CFLAGS += -g
+endif
+
+ifeq ($(NOOPT),1)
+override CFLAGS := $(filter-out -O1 -Og -O2,$(CFLAGS))
+override CFLAGS += -O0
 endif
 
 ifeq ($(DPRINT),1)
