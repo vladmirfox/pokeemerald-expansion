@@ -64,3 +64,28 @@ b_anim_scripts_s = open('./data/battle_anim_scripts.s', 'w')
 b_anim_scripts_s.write(lines)
 b_anim_scripts_s.close()
 
+
+pokemon_h = open('./include/pokemon.h', 'r')
+lines = pokemon_h.readlines()
+pokemon_h.close()
+
+pokemon_h_lines = []
+isMoveInfo = False
+bracketCount = 0
+for line in lines:
+    if re.search(r'struct MoveInfo\n', line):
+        isMoveInfo = True
+
+    if isMoveInfo and re.search(r'\{', line):
+        bracketCount = bracketCount + 1
+
+    if isMoveInfo and re.search(r'\}', line):
+        if (bracketCount == 1):
+            pokemon_h_lines.append(4 * ' ' + 'const u8 *battleAnimScript;\n')
+            isMoveInfo = False
+        bracketCount = bracketCount - 1
+    pokemon_h_lines.append(line)
+
+pokemon_h = open('./include/pokemon.h', 'w')
+pokemon_h.writelines(pokemon_h_lines)
+pokemon_h.close()
