@@ -72,20 +72,17 @@ SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural 
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {
-        if (move == MOVE_NATURAL_GIFT) {
             MESSAGE("Wobbuffet used Celebrate!");
+        if (move == MOVE_NATURAL_GIFT) {
             MESSAGE("Foe Talonflame used Natural Gift!");
         }
         else if (move == MOVE_JUDGMENT) {
-            MESSAGE("Wobbuffet used Celebrate!");
             MESSAGE("Foe Talonflame used Judgment!");
         }
         else if (move == MOVE_HIDDEN_POWER) {
-            MESSAGE("Wobbuffet used Celebrate!");
             MESSAGE("Foe Talonflame used Hidden Power!");
         }
         else {
-            MESSAGE("Wobbuffet used Celebrate!");
             MESSAGE("Foe Talonflame used Tera Blast!");
         }
     }
