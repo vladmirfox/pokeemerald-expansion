@@ -32,4 +32,25 @@ SINGLE_BATTLE_TEST("Hurricane bypasses accuracy checks in Rain")
         NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
     }
 }
-TO_DO_BATTLE_TEST("Hurricane Veil can hit airborne targets") // Fly, Bounce, Sky Drop
+
+SINGLE_BATTLE_TEST("Hurricane can hit airborne targets")
+{
+    u16 move;
+    PARAMETRIZE{ move = MOVE_FLY; }
+    PARAMETRIZE{ move = MOVE_BOUNCE; }
+    PARAMETRIZE{ move = MOVE_SKY_DROP; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
+        ASSUME(UNCOMPRESS_BITS(HIHALF(gMovesInfo[MOVE_FLY].argument)) == STATUS3_ON_AIR);
+        ASSUME(gMovesInfo[MOVE_BOUNCE].effect == EFFECT_SEMI_INVULNERABLE);
+        ASSUME(UNCOMPRESS_BITS(HIHALF(gMovesInfo[MOVE_BOUNCE].argument)) == STATUS3_ON_AIR);
+        ASSUME(gMovesInfo[MOVE_SKY_DROP].effect == EFFECT_SKY_DROP);
+        ASSUME(UNCOMPRESS_BITS(HIHALF(gMovesInfo[MOVE_SKY_DROP].argument)) == STATUS3_ON_AIR);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(move); }
+    } WHEN {
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_HURRICANE); }
+    } SCENE {
+        NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
+    }
+}

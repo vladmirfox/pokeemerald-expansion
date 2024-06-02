@@ -123,6 +123,68 @@ SINGLE_BATTLE_TEST("If a Poison- or Steel-type Pokémon with Corrosion poisons a
     }
 }
 
-TO_DO_BATTLE_TEST("Corrosion cannot bypass moves or Abilities that prevent poisoning, such as Safeguard or Immunity");
-TO_DO_BATTLE_TEST("If the Pokémon with this Ability uses Magic Coat to reflect a status move that inflicts poison, the reflected move will be able to poison Poison- or Steel-type Pokémon.");
-TO_DO_BATTLE_TEST("Moves used by a Pokémon with Corrosion that are reflected by Magic Coat or Magic Bounce do not retain the ability to poison Poison- or Steel-type Pokémon.")
+SINGLE_BATTLE_TEST("Corrosion cannot bypass moves that prevent poisoning such as Safeguard")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SAFEGUARD); MOVE(player, MOVE_TOXIC); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, player);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+            STATUS_ICON(opponent, badPoison: TRUE);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Corrosion cannot bypass abilities that prevent poisoning such as Immunity")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_SNORLAX) { Ability(ABILITY_IMMUNITY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TOXIC); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, player);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+            STATUS_ICON(opponent, badPoison: TRUE);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("If the Pokémon with this Ability uses Magic Coat to reflect a status move that inflicts poison, the reflected move will be able to poison Poison- or Steel-type Pokémon.")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
+        ASSUME(gMovesInfo[MOVE_MAGIC_COAT].effect == EFFECT_MAGIC_COAT);
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_BELDUM);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, MOVE_TOXIC); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+        STATUS_ICON(opponent, badPoison: TRUE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Moves used by a Pokémon with Corrosion that are reflected by Magic Coat or Magic Bounce do not retain the ability to poison Poison- or Steel-type Pokémon.")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
+        ASSUME(gMovesInfo[MOVE_MAGIC_COAT].effect == EFFECT_MAGIC_COAT);
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_MAGIC_COAT); MOVE(player, MOVE_TOXIC); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
+            STATUS_ICON(player, badPoison: TRUE);
+        }
+    }
+}
