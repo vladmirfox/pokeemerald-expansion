@@ -13,7 +13,9 @@ URL_RE = re.compile(
 )
 PROTOCOL_RE = re.compile(r"^(?i:ftp|https?)://")
 
-def handle_match(m):
+ANCHOR_RE = re.compile(r"(\]\((?:[^)#]+\.md)?#)([^)]+\))")
+
+def handle_url(m):
     code = m.group(1)
     if code:
         return code
@@ -22,6 +24,11 @@ def handle_match(m):
         href = "http://%s" % href
     return f'<{href}>'
 
+def handle_anchor(m):
+    page = m.group(1)
+    anchor = m.group(2)
+    return page + anchor.lower()
+
 def proc_items(items):
     for item in items:
         if 'Chapter' in item:
@@ -29,7 +36,8 @@ def proc_items(items):
             s = s.replace('](README.md)', '](./)')
             s = s.replace('](/INSTALL.md', '](INSTALL.md')
             s = s.replace('](docs/', '](')
-            item['Chapter']['content'] = URL_RE.sub(handle_match, s)
+            item['Chapter']['content'] = URL_RE.sub(handle_url, s)
+            item['Chapter']['content'] = ANCHOR_RE.sub(handle_anchor, s)
             proc_items(item['Chapter']['sub_items'])
 
 if __name__ == '__main__':
