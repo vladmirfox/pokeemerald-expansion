@@ -1,2 +1,31 @@
 mapscripts SunriseVillage_House1_MapScripts {
 }
+
+script SunriseVillage_House1_EventScript_Kirlia {
+    msgbox(format("…"), MSGBOX_NPC)
+}
+
+script SunriseVillage_House1_EventScript_OldWoman {
+    msgbox(format("Kirlia here is quite the silent type. I'm fine with that."), MSGBOX_NPC)
+}
+
+script SunriseVillage_House1_EventScript_OldMan {
+    msgbox(format("My granddaughter's Pokémon has already scratched all the furniture…"), MSGBOX_NPC)
+}
+
+script SunriseVillage_House1_EventScript_LittleGirl {
+    msgbox(format("Ahhh I'm so happy!! Look how cute my Zigzagoon is!!!"), MSGBOX_NPC)
+}
+
+script SunriseVillage_House1_EventScript_Zigzagoon {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
+    msgbox(format(
+        "Rawr!"
+    ), MSGBOX_AUTOCLOSE)
+    waitmoncry
+    release
+    end
+}

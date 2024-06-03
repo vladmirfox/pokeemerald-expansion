@@ -121,6 +121,13 @@
       "elevation": 0,
       "dest_map": "MAP_CHII_TOWN_POKEMON_CENTER",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_CHII_TOWN_HOUSE2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

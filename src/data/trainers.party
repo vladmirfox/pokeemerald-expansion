@@ -4757,23 +4757,23 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability / Prefer Strongest Move / Smart Switching / Smart Mon Choices
 
 Diglett
-Level: 17
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Dig
 - Thief
 - Swagger
 - Protect
 
-Wooper
-Level: 16
+Sudowoodo @ Soft Sand
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Copycat
+- Rock Throw
 - Mud Slap
-- Rock Tomb
-- Water Pulse
-- Facade
+- Sandstorm
 
 Grotle @ Sitrus Berry
-Level: 19
+Level: 18
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Bulldoze
 - Leech Seed
@@ -9590,7 +9590,37 @@ Marshtomp
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_MAY_ROUTE_103_MUDKIP ===
+=== TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH ===
+Name: {B_RIVAL_NAME}
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Spheal
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Pound
+- Growl
+
+=== TRAINER_RIVAL_FIRST_BATTLE_ARON ===
+Name: {B_RIVAL_NAME}
+Class: Rival
+Pic: May
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move / Try To Faint / Check Viability
+
+Trapinch
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Growl
+
+=== TRAINER_RIVAL_FIRST_BATTLE_SPHEAL ===
 Name: {B_RIVAL_NAME}
 Class: Rival
 Pic: May
@@ -9602,6 +9632,8 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Aron
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Harden
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: {B_RIVAL_NAME}
@@ -9645,19 +9677,6 @@ Grovyle
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-=== TRAINER_MAY_ROUTE_103_TREECKO ===
-Name: {B_RIVAL_NAME}
-Class: Rival
-Pic: May
-Gender: Female
-Music: Female
-Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
-
-Trapinch
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: {B_RIVAL_NAME}
 Class: Rival
@@ -9699,19 +9718,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Combusken
 Level: 31
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-
-=== TRAINER_RIVAL_SUNRISE_TRAPINCH ===
-Name: {B_RIVAL_NAME}
-Class: Rival
-Pic: May
-Gender: Male
-Music: Female
-Double Battle: No
-AI: Check Bad Move / Try To Faint / Check Viability
-
-Spheal
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: {B_RIVAL_NAME}

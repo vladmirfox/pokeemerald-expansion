@@ -31,7 +31,8 @@ Text_ClayPot:
 	.string "{PLAYER} suddenly feels an urge to\nbreak it.$"
 
 Text_Furnace:
-	.string "The fire dances in the furnace.$"
+	.string "The fire dances in the furnace.\p"
+	.string "…Hey, there's a Slugma in here!$"
 
 Text_EmptyBasket:
 	.string "A woven basket.$"

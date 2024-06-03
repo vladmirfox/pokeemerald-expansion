@@ -252,6 +252,9 @@
 #define METATILE_House_Door_IndoorSlidingLeft   0x208
 #define METATILE_House_Door_IndoorSlidingRight  0x209
 
+// gTileset_HouseBeige
+#define METATILE_HouseBeige_Scroll  0x217
+
 // gTileset_InsideOfTruck
 #define METATILE_InsideOfTruck_DoorClosedFloor_Bottom  0x21D
 #define METATILE_InsideOfTruck_DoorClosedFloor_Mid     0x215

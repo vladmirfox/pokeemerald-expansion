@@ -2,11 +2,26 @@ const LOCALID_FATGUY = 3
 
 mapscripts SunriseVillage_MapScripts {
     MAP_SCRIPT_ON_LOAD {
-        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 6) {
-            setflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
-        }
-        else {
-            clearflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
+        // Random birds on roofs
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_3)
+        setflag(FLAG_TEMP_4)
+
+        gettime
+        if (var(VAR_0x8000) >= 5 && var(VAR_0x8000) <= 17) {
+            random(4)
+            switch(var(VAR_RESULT)) {
+                case 0:
+                    clearflag(FLAG_TEMP_1)
+                case 1:
+                    clearflag(FLAG_TEMP_2)
+                case 2:
+                    clearflag(FLAG_TEMP_4)
+                case 3:
+                    clearflag(FLAG_TEMP_1)
+                    clearflag(FLAG_TEMP_3)
+            }
         }
     }
 }
@@ -16,18 +31,18 @@ script SunriseVillage_Event_FatGuy {
     lock
     faceplayer
 
-    if (flag(FLAG_RECEIVED_STARTER)) {
+    if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
             "My new Pokémon is so cute, I don't feel like leaving it in its Pokéball!"
-        ))
+        ), MSGBOX_AUTOCLOSE)
         applymovement(LOCALID_FATGUY, Common_Movement_FaceOriginalDirection)
     }
     else {
         msgbox(format(
-            "Someone managed to fit entire POKéMON"
+            "Someone managed to fit entire Pokémon"
             "inside these tiny balls.\p"
             "The power of science is staggering!"
-        ))
+        ), MSGBOX_AUTOCLOSE)
     }
     release
     end
@@ -38,24 +53,32 @@ script SunriseVillage_Event_GuardForest {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
-        msgbox(format(
-            "Oh, I see you received a POKéMON!\p"
-            "You'll probably be able to manage the woods on your own, then.\p"
-            "Be careful!"
-        ))
+        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+            msgbox(format(
+                "Oh, I see you received a Pokémon!\p"
+                "You'll probably be able to manage the woods on your own, then.\p"
+                "Be careful!"
+            ), MSGBOX_AUTOCLOSE)
+        } else {
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+            msgbox(format(
+                "Hey, a friend of yours was looking for you."
+            ), MSGBOX_AUTOCLOSE)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
+            waitmovement(0)
+        }
     }
     else {
         msgbox(format(
         "Stop right there!"
-        ))
-        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
-        waitmovement(0)
+        ), MSGBOX_AUTOCLOSE)
+        turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
         msgbox(format(
             "Wild POKéMON have been lashing out recently.\p"
             "I know you're used to walking around on your own, but the woods have become a dangerous place lately!\p"
             "I wouldn't go alone if I were you.\p"
             "Or, you know, if I were me."
-        ))
+        ), MSGBOX_AUTOCLOSE)
         applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
         waitmovement(0)
     }
@@ -63,89 +86,125 @@ script SunriseVillage_Event_GuardForest {
     end
 }
 
-// Little running girl
-script SunriseVillage_Event_LittleGirl {
-    lockall
+script SunriseVillage_Event_GuardForest_Interact {
+    lock
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
-        msgbox(format(
-            "I'm so happy I'm so happy I'm so happy!!!\p"
-            "LOOK AT IT, IT'S ADORABLE!!!!"
-        ))
+        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+            msgbox(format(
+                "Oh, I see you received a Pokémon!\p"
+                "You'll probably be able to manage the woods on your own, then.\p"
+                "Be careful!"
+            ), MSGBOX_AUTOCLOSE)
+        } else {
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+            msgbox(format(
+                "Hey, a friend of yours was looking for you."
+            ), MSGBOX_AUTOCLOSE)
+        }
     }
     else {
         msgbox(format(
-            "I can't wait I can't wait I can't wait!!!\p"
-            "AHHHHH I CAN'T WAIT!!!!"
-        ))
+            "Wild POKéMON have been lashing out recently.\p"
+            "I know you're used to walking around on your own, but the woods have become a dangerous place lately!\p"
+            "I wouldn't go alone if I were you.\p"
+            "Or, you know, if I were me."
+        ), MSGBOX_AUTOCLOSE)
     }
-    releaseall
+    release
     end
+}
+
+// Little running girl
+script SunriseVillage_Event_LittleGirl {
+    msgbox(format(
+        "I can't wait I can't wait I can't wait!!!\p"
+        "AHHHHH I CAN'T WAIT!!!!"
+    ), MSGBOX_NPC)
 }
 
 // Boy
 script SunriseVillage_Event_Boy {
     lockall
     faceplayer
-    if (flag(FLAG_RECEIVED_STARTER)) {
-        bufferspeciesname(STR_VAR_1, SPECIES_AZURILL)
+    if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
-            "My {STR_VAR_1} is the strongest of all! See how fierce it looks?"
-        ))
+            "My Happiny is the strongest of all! See how fierce it looks?"
+        ), MSGBOX_AUTOCLOSE)
     }
     else {
         msgbox(format(
             "Hey {PLAYER}{KUN}!\p"
             "So, d'you think we'll get to choose the one we want?"
-        ))
+        ), MSGBOX_AUTOCLOSE)
     }
+    releaseall
+    end
+}
+
+// Woman
+script SunriseVillage_Event_Woman {
+    lockall
+    faceplayer
+    msgbox(format(
+        "I can see the Pokéballs from here… I've never seen so many in my life!"
+    ), MSGBOX_AUTOCLOSE)
+    releaseall
+    end
+}
+
+// Farmer
+script SunriseVillage_Event_Farmer {
+    lockall
+    faceplayer
+    msgbox(format(
+        "I've been waiting for hours!"
+    ), MSGBOX_AUTOCLOSE)
+    releaseall
+    end
+}
+
+// Old man
+script SunriseVillage_Event_OldMan {
+    lockall
+    faceplayer
+    msgbox(format(
+        "The distribution is about to start."
+    ), MSGBOX_AUTOCLOSE)
     releaseall
     end
 }
 
 // Old woman
 script SunriseVillage_Event_OldWoman {
-    lockall
-    faceplayer
-    if (flag(FLAG_RECEIVED_STARTER)) {
-        bufferspeciesname(STR_VAR_1, SPECIES_KIRLIA)
-        msgbox(format(
-            "{STR_VAR_1} here is the silent type.\p"
-            "I'm okay with that."
-        ))
-    }
-    else {
-        msgbox(format(
-            "I'm tired of waiting!\p"
-        ))
-    }
-    releaseall
-    end
+    msgbox(format(
+        "I'm tired of waiting!"
+    ), MSGBOX_NPC)
 }
 
-// Azurill
-script SunriseVillage_Event_Azurill {
+// Happiny
+script SunriseVillage_Event_Happiny {
     lock
     faceplayer
     waitse
-    playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
+    playmoncry(SPECIES_HAPPINY, CRY_MODE_NORMAL)
     msgbox(format(
-        "Azuazu!"
-    ))
+        "Happi!"
+    ), MSGBOX_AUTOCLOSE)
     waitmoncry
     release
     end
 }
 
-// Kecleon
-script SunriseVillage_Event_Kecleon {
+// Munchlax
+script SunriseVillage_Event_Munchlax {
     lock
     faceplayer
     waitse
-    playmoncry(SPECIES_KECLEON, CRY_MODE_NORMAL)
+    playmoncry(SPECIES_MUNCHLAX, CRY_MODE_NORMAL)
     msgbox(format(
-        "Kleeeeh!"
-    ))
+        "Munch munch munch…"
+    ), MSGBOX_AUTOCLOSE)
     waitmoncry
     release
     end
@@ -157,7 +216,7 @@ script SunriseVillage_Event_Kirlia {
     faceplayer
     msgbox(format(
         "…"
-    ))
+    ), MSGBOX_AUTOCLOSE)
     release
     end
 }
@@ -173,7 +232,7 @@ script SunriseVillage_Event_TestGyarados {
 }
 
 script SunriseVillage_Event_TownSign {
-    msgbox(format("Sunrise Village\n“A village bathing in sunshine.”"), MSGBOX_SIGN)
+    msgbox(format("Sunrise Village\n“A village bathing in soft light.”"), MSGBOX_SIGN)
 }
 
 script SunriseVillage_Event_PlayersHouseSign {

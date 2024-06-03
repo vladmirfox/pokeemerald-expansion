@@ -19,16 +19,20 @@ SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling::
 # 11 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	lock
 # 12 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
-# 16 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+# 13 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0, MSGBOX_AUTOCLOSE
 # 17 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+# 18 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
+# 19 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0:
-# 13 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+# 14 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "{PLAYER}! {PLAYER}! Are you still\n"
 	.string "sleeping?\p"
 	.string "Get up and get ready!$"

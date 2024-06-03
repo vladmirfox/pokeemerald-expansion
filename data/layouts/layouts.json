@@ -4670,6 +4670,16 @@
       "secondary_tileset": "gTileset_Soulkeep",
       "border_filepath": "data/layouts/Soulkeep/border.bin",
       "blockdata_filepath": "data/layouts/Soulkeep/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHII_TOWN_HOUSE2",
+      "name": "ChiiTown_House2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_HouseBeige",
+      "border_filepath": "data/layouts/ChiiTown_House2/border.bin",
+      "blockdata_filepath": "data/layouts/ChiiTown_House2/map.bin"
     }
   ]
 }

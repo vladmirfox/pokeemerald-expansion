@@ -9,11 +9,13 @@ mapscripts SunriseVillage_PlayersHouse_Bedroom_MapScripts {
 // Big Sis calls player when he gets out of bed
 script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
     lock
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	msgbox(format(
 		"{PLAYER}! {PLAYER}! Are you still sleeping?\p"
 		"Get up and get ready!"
-	))
+	), MSGBOX_AUTOCLOSE)
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 2)
+	setflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
     release
     end
 }

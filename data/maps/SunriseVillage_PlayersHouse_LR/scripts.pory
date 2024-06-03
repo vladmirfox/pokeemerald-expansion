@@ -1,82 +1,123 @@
+const LOCALID_BIGSIS = 1
+const LOCALID_RIVALS_NOTE = 2
+
 mapscripts SunriseVillage_PlayersHouse_LR_MapScripts {
+	MAP_SCRIPT_ON_LOAD {
+		// Put rival's note on the table
+		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 4) {
+			setmetatile(4, 4, METATILE_HouseBeige_Scroll, TRUE)
+		} else {
+			removeobject(LOCALID_RIVALS_NOTE)
+		}
+	}
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SUNRISE_VILLAGE_INTRO_STATE, 2: SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi
+    ]	
 }
 
 script SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi {
     lock
 	playse(SE_PIN)
-	applymovement(1, Common_Movement_ExclamationMark)
+	applymovement(LOCALID_BIGSIS, Common_Movement_ExclamationMark)
 	waitmovement(0)
-	applymovement(1, Common_Movement_Delay48)
+	applymovement(LOCALID_BIGSIS, Common_Movement_Delay48)
 	waitmovement(0)
+	turnobject(LOCALID_BIGSIS, DIR_EAST)
 	msgbox(format(
-		"Oh, hi {PLAYER}{KUN}, you're up! Ready for the big event?\p"
+		"Oh, {PLAYER}{KUN}, you're up! Ready for the big event?\p"
 		"Are you excited? I sure hope you are, because I'm VERY EXCITED!\p"
-		"I have to head out, but I'll meet you there, okay?\p"
+		"I have to head out! Don't be late!\p"
 		"Oh, by the way, your friend {RIVAL} left you a note.\p"
 		"Make sure you read it!"
 	))
 	closemessage
-	setflag(FLAG_HIDE_BIGSIS_HOME)
-	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 3)
-	applymovement(1, SunriseVillage_PlayersHouse_LR_Movement_BigSisExits)
+	applymovement(LOCALID_BIGSIS, SunriseVillage_PlayersHouse_LR_Movement_BigSisExits)
 	waitmovement(0)
 	playse(SE_EXIT)
 	waitse
-	removeobject(1)
+	removeobject(LOCALID_BIGSIS)
+	
+	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 3)
+	setflag(FLAG_HIDE_BIGSIS_HOME)
+
     release
     end
 }
 
 movement SunriseVillage_PlayersHouse_LR_Movement_BigSisExits {
-	walk_down
-	walk_down
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_in_place_faster_down
+	walk_down * 2
+	walk_right
+	walk_down * 2
 	step_end
 }
 
 script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 	lock
 	faceplayer
-	special(GetPlayerBroSisString)
-	msgbox(format(
-		"Hey {STR_VAR_1}."
-	))
+	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) <= 4) {
+		msgbox(format(
+			"What are you still doing here? You're late for the distribution!\p"
+			"Go to Kaba's house right now!"
+		), MSGBOX_AUTOCLOSE)
+	} elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) <= 6) {
+		special(GetPlayerBroSisString)
+		msgbox(format(
+			"Hey {STR_VAR_1}! See how cute my new Pokémon is?\p"
+			"By the way, I heard {RIVAL} was waiting for you at Elder Kaba's house. You should probably go see him."
+		), MSGBOX_AUTOCLOSE)
+	} elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
+		special(GetPlayerBroSisString)
+		bufferspeciesname(STR_VAR_2, VAR_STARTER_MON)
+		msgbox(format(
+			"{STR_VAR_1}! See how cute my new Pokémon is?\p"
+			"Oh, who is that lovely little thing with you?\p"
+			"{STR_VAR_2}, huh?\p"
+			"Looks like it already likes you a lot! You're going to make a great wielder, I know it!\p"
+			"… … … … … …\n… … … … … …\p"
+			"So you're going on a journey…\p"
+			"That's great! I'm proud of you, {PLAYER}.\p"
+			"Come say hi sometimes, will you?\p"
+			"Oh, and rest here a while before you go! Your Pok {STR_VAR_2} looks tired."
+		), MSGBOX_AUTOCLOSE)
+		call(Common_EventScript_OutOfCenterPartyHeal)
+		msgbox(format(
+			"Alrighty! You all set? Have a safe journey!"
+		), MSGBOX_AUTOCLOSE)
+
+		setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 8)
+
+		// Default
+	} else {
+		special(GetPlayerBroSisString)
+		msgbox(format(
+			"Hey {PLAYER}! How's it going?\p"
+			"Here, rest for a bit."
+		), MSGBOX_AUTOCLOSE)
+		call(Common_EventScript_OutOfCenterPartyHeal)
+		msgbox(format(
+			"See you around, {STR_VAR_1}."
+		), MSGBOX_AUTOCLOSE)
+	}
 	release
 }
 
-script SunriseVillage_PlayersHouse_LR_EventScript_ReadRivalsNote {
-    lock
-	msgbox(format(
-			"“Hey {PLAYER}{KUN},\p"
-			"“I'm going down to the beach before the giveaway, meet me there if you wanna hang out.\p"
-			"“-{RIVAL}”"
-		))
-    release
-    end
+script SunriseVillage_PlayersHouse_LR_EventScript_Eevee {
+	lock
+	faceplayer
+	waitse
+	playmoncry(SPECIES_EEVEE, CRY_MODE_NORMAL)
+	msgbox(format("Eee!"))
+	waitmoncry
+	release
 }
 
-script SunriseVillage_PlayersHouse_LR_EventScript_RunningShoesBox {
+script SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote {
     lock
 	msgbox(format(
-			"A parcel with a note on it.\p"
-			"“Dear {PLAYER},\p"
-			"“Here are the SWIFT GETA shoes you have ordered.\p"
-			"“Press B to run and fly like the wind!”"
+			"“Hey {PLAYER}{KUN},\n"
+			"I'm going down to the beach before the giveaway, meet me there if you wanna hang out.\p"
+			"-{RIVAL}”"
 		))
-	playfanfare(MUS_OBTAIN_ITEM)
-	message(format("{PLAYER} switched shoes with the SWIFT GETA."))
-	waitfanfare
-	removeobject(2)
-	setflag(FLAG_RECEIVED_RUNNING_SHOES)
-	setflag(FLAG_SYS_B_DASH)
-	closemessage
-	delay(30)
     release
     end
 }

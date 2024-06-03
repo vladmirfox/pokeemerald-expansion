@@ -43,12 +43,12 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
+      "script": "SunriseVillage_Event_Farmer",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 23,
+      "x": 22,
       "y": 14,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -56,7 +56,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
+      "script": "SunriseVillage_Event_Woman",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -95,7 +95,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_GuardForest",
+      "script": "SunriseVillage_Event_GuardForest_Interact",
       "flag": "FLAG_RECEIVED_STARTER"
     },
     {
@@ -116,7 +116,7 @@
       "x": 12,
       "y": 18,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 2,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -125,8 +125,8 @@
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CORSOLA)",
-      "x": 13,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HAPPINY)",
+      "x": 11,
       "y": 18,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -134,7 +134,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Azurill",
+      "script": "SunriseVillage_Event_Happiny",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
@@ -147,20 +147,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
-      "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 21,
-      "y": 16,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_LEFT_AND_RIGHT",
-      "movement_range_x": 2,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Boy",
+      "script": "SunriseVillage_Event_OldMan",
       "flag": "FLAG_HIDE_SUNRISE_BEACH_RIVAL"
     },
     {
@@ -186,21 +173,73 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_Kecleon",
+      "script": "SunriseVillage_Event_Munchlax",
       "flag": "FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(KOTORA)",
-      "x": 5,
-      "y": 17,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAILLOW)",
+      "x": 19,
+      "y": 11,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 4,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_Event_TestGyarados",
-      "flag": "0"
+      "script": "NULL",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAILLOW)",
+      "x": 21,
+      "y": 11,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAILLOW)",
+      "x": 13,
+      "y": 9,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAILLOW)",
+      "x": 19,
+      "y": 19,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAILLOW)",
+      "x": 14,
+      "y": 22,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_4"
     }
   ],
   "warp_events": [
@@ -289,6 +328,42 @@
       "elevation": 0,
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "5",
+      "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "3",
+      "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "3",
+      "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "6",
+      "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "6",
       "script": "SunriseVillage_Event_GuardForest"
     }
   ],

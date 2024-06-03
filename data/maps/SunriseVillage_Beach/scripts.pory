@@ -1,30 +1,46 @@
 mapscripts SunriseVillage_Beach_MapScripts {
-
+	MAP_SCRIPT_ON_TRANSITION {
+		if (!flag(FLAG_HIDE_SUNRISE_BEACH_RIVAL)) {
+			call(Common_EventScript_SetupRivalGfxId)
+		}
+	}
 }
 
 const LOCALID_RIVAL = 1
 
 script SunriseVillage_Beach_EventScript_RivalSpeech {
     lock
-	faceplayer
 	playse(SE_PIN)
 	applymovement(LOCALID_RIVAL, Common_Movement_ExclamationMark)
 	waitmovement(0)
 	applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
 	waitmovement(0)
+	faceplayer
 	msgbox(format(
 		"{PLAYER}{KUN}! Ya made it!\p"
 		"Come on, sit down next to me!"
 	))
-	// TODO EVA make player move next to rival
 	closemessage
 
+	// Player sits next to rival
+	switch(var(VAR_FACING)) {
+		case DIR_SOUTH:
+			applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_GoNextToRivalFromTop)
+		case DIR_NORTH:
+			applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_GoNextToRivalFromBottom)
+		case DIR_WEST:
+			applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_GoNextToRivalFromRight)
+		case DIR_EAST:
+			applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_GoNextToRivalFromLeft)
+	}
+	waitmovement(0)
+	turnobject(LOCALID_RIVAL, DIR_WEST)
+	applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
+	waitmovement(0)
+
 	msgbox(format(
-		"Remember when we were little and we"
-		"used to fight each other to be the"
-		"first to sit on this bench?\p"
-		"Good times. Even though you always won,"
-		"hehe.\p"
+		"Remember when we were little and we used to fight each other to be the first to sit on this bench?\p"
+		"You always won!\p"
 		"…"
 	))
 	closemessage
@@ -34,38 +50,48 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 
 	msgbox(format(
 		"Hey, look!\p"
-		"You can see YIFU CITY very clearly"
-		"today, it's gorgeous!\p"
+		"You can see Yifu City very clearly today, it's gorgeous!\p"
 		"…\p"
-		"I guess I'm feeling a little nervous"
-		"about all this.\p"
-		"The POKéMON getting restless in the"
-		"GINKO WOODS…\p"
-		"Having my own POKéMON to care for…\p"
-		"It feels like everything's about to"
-		"change, though I'm not sure how yet."
+		"I guess I'm feeling a little nervous about all this.\p"
+		"The Pokémon getting restless in the Ginko Woods…\p"
+		"Having my own Pokémon to care for…\p"
+		"It feels like everything's about to change, though I'm not sure how yet."
 	))
 	closemessage
 
 	applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
 	waitmovement(0)
 
+	// They face each other
+	turnobject(LOCALID_RIVAL, DIR_NORTH)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+
 	msgbox(format(
-		"Look at me rambling! I'm sure"
-		"everything is going to be just fine.\p"
-		"Are you excited to become a POKéMON"
-		"trainer?\p"
-		"Come on, it's almost time! Let's go to"
-		"Elder KABA's house!\p"
-		"Race ya there!!"
-	))
-	closemessage
+		"Look at me rambling! I'm sure everything is going to be just fine.\p"
+		"Are you excited to become a Pokémon wielder?"
+	), MSGBOX_YESNO)
+
+	if (var(VAR_RESULT) == YES) {
+		msgbox(format(
+			"That's the spirit! Let's become the best wielders ever!\p"
+			"Come on, the distribution's already started! Let's go to Elder Kaba's house!\p"
+			"Race ya there!!"
+		), MSGBOX_AUTOCLOSE)
+	} elif(var(VAR_RESULT) == NO  || var(VAR_RESULT) == MULTI_B_PRESSED) {
+		msgbox(format(
+			"Don't be silly! I know you'll become super strong in no time!\p"
+			"Come on, the distribution's already started! Let's go to Elder Kaba's house!\p"
+			"Race ya there!!"
+		), MSGBOX_AUTOCLOSE)
+	}
 
 	// Rival runs towards the village
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalRaces)
 	waitmovement(0)
 
 	setflag(FLAG_HIDE_SUNRISE_BEACH_RIVAL)
+	clearflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
+	clearflag(FLAG_HIDE_BIGSIS_HOME)
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 4)
 
 	removeobject(LOCALID_RIVAL)
@@ -73,26 +99,59 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
     end
 }
 
+// Corsola
+script SunriseVillage_Beach_EventScript_Corsola {
+	lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_CORSOLA, CRY_MODE_NORMAL)
+    msgbox(format(
+        "Krr!"
+    ), MSGBOX_AUTOCLOSE)
+    waitmoncry
+    release
+    end
+}
+
+script SunriseVillage_Beach_EventScript_Corsola2 {
+	lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_CORSOLA, CRY_MODE_WEAK)
+    msgbox(format(
+        "Laaa!"
+    ), MSGBOX_AUTOCLOSE)
+    waitmoncry
+    release
+    end
+}
+
+movement SunriseVillage_Beach_Movement_GoNextToRivalFromLeft {
+	walk_up
+	walk_right
+	face_left
+	step_end
+}
+
+movement SunriseVillage_Beach_Movement_GoNextToRivalFromTop {
+	face_left
+	step_end
+}
+
+movement SunriseVillage_Beach_Movement_GoNextToRivalFromRight {
+	walk_up
+	walk_left
+	step_end
+}
+
+movement SunriseVillage_Beach_Movement_GoNextToRivalFromBottom {
+	walk_right
+	walk_up * 2
+	walk_left
+	step_end
+}
+
 movement SunriseVillage_Beach_Movement_RivalRaces {
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_up
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
+	walk_fast_right * 9
 	step_end
 }

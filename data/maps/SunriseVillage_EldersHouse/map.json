@@ -24,7 +24,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "SunriseVillage_EldersHouse_Event_Elder",
       "flag": "0"
     },
     {
@@ -37,8 +37,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "SunriseVillage_EldersHouse_Event_Rival",
+      "flag": "FLAG_RECEIVED_STARTER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -82,14 +82,14 @@
   ],
   "warp_events": [
     {
-      "x": 3,
+      "x": 5,
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_SUNRISE_VILLAGE_ELDERS_HOUSE_PRIVATE_QUARTERS",
       "dest_warp_id": "0"
     },
     {
-      "x": 4,
+      "x": 6,
       "y": 1,
       "elevation": 0,
       "dest_map": "MAP_SUNRISE_VILLAGE_ELDERS_HOUSE_PRIVATE_QUARTERS",

@@ -33,7 +33,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "1",
+      "script": "SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "1",
+      "script": "SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling"
+    }
   ],
   "bg_events": [
 

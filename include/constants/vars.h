@@ -182,6 +182,8 @@
 //    getting their Pokémon
 // 5: Listened to Elder's speech, Pokémon not chosen yet
 // 6: Got Pokémon and Pokédex
+// 7: Battled rival with your brand new Pokémon
+// 8: Talked to your sister with your new Pokémon
 #define VAR_SUNRISE_VILLAGE_INTRO_STATE                  0x4091
 #define VAR_LITTLEROOT_INTRO_STATE                       0x4092
 #define VAR_MAUVILLE_GYM_STATE                           0x4093

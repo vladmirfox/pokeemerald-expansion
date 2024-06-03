@@ -89,6 +89,10 @@ Common_Movement_Delay32:
 	delay_16
 	step_end
 
+Common_Movement_Delay16:
+	delay_16
+	step_end
+
 Common_Movement_WalkUp:
 	walk_up
 	step_end

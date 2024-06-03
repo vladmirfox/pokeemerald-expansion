@@ -14,4 +14,7 @@ enum {
 
 void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback);
 
+// TODO EVA for tests only
+void NameRival(void);
+
 #endif // GUARD_NAMING_SCREEN_H

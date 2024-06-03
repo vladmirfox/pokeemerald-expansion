@@ -1,0 +1,16 @@
+mapscripts SunriseVillage_EldersHouse_PrivateQuarters_MapScripts {
+	
+}
+
+script SunriseVillage_EldersHouse_PrivateQuarters_EventScript_Meowth {
+	lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_MEOWTH, CRY_MODE_NORMAL)
+    msgbox(format(
+        "Fss!"
+    ), MSGBOX_AUTOCLOSE)
+    waitmoncry
+    release
+    end
+}
