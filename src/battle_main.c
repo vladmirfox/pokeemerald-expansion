@@ -3255,17 +3255,6 @@ void SwitchInClearSetData(u32 battler)
     // Clear selected party ID so Revival Blessing doesn't get confused.
     gSelectedMonPartyId = PARTY_SIZE;
 
-    // Allow for illegal abilities within tests.
-    #if TESTING
-    if (gTestRunnerEnabled)
-    {
-        u32 side = GetBattlerSide(battler);
-        u32 partyIndex = gBattlerPartyIndexes[battler];
-        if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-            gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
-    }
-    #endif // TESTING
-
     Ai_UpdateSwitchInData(battler);
 }
 
@@ -3421,7 +3410,7 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
     // Clear Dynamax data
-    UndoDynamax(battler);	
+    UndoDynamax(battler);
 
     return result;
 }
@@ -3785,20 +3774,6 @@ static void TryDoEventsBeforeFirstTurn(void)
                 gAbsentBattlerFlags |= gBitTable[i];
         }
     }
-
-    // Allow for illegal abilities within tests.
-    #if TESTING
-    if (gTestRunnerEnabled && gBattleStruct->switchInAbilitiesCounter == 0)
-    {
-        for (i = 0; i < gBattlersCount; ++i)
-        {
-            u32 side = GetBattlerSide(i);
-            u32 partyIndex = gBattlerPartyIndexes[i];
-            if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
-                gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
-        }
-    }
-    #endif // TESTING
 
     if (gBattleStruct->switchInAbilitiesCounter == 0)
     {
@@ -5598,7 +5573,7 @@ static void TryEvolvePokemon(void)
             sTriedEvolving |= gBitTable[i];
 
             if (species == SPECIES_NONE && (gLeveledUpInBattle & gBitTable[i]))
-            { 
+            {
                 gLeveledUpInBattle &= ~(gBitTable[i]);
                 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_NORMAL, gLeveledUpInBattle, NULL);
             }
