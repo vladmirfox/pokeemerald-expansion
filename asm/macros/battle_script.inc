@@ -710,8 +710,9 @@
 	.byte 0x7c
 	.endm
 
-	.macro setrain
+	.macro setfieldweather weather:req
 	.byte 0x7d
+	.byte \weather
 	.endm
 
 	.macro setreflect
@@ -833,7 +834,7 @@
 	.byte 0x94
 	.endm
 
-	.macro setsandstorm
+	.macro unused_95
 	.byte 0x95
 	.endm
 
@@ -1006,7 +1007,7 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro setsunny
+	.macro unused_bb
 	.byte 0xbb
 	.endm
 
@@ -1081,7 +1082,7 @@
 	.byte 0xc7
 	.endm
 
-	.macro sethail
+	.macro unused_c8
 	.byte 0xc8
 	.endm
 
@@ -1351,6 +1352,22 @@
 	.endm
 
 @ callnative macros
+	.macro savetarget
+	callnative BS_SaveTarget
+	.endm
+
+	.macro restoretarget
+	callnative BS_RestoreTarget
+	.endm
+	
+	.macro saveattacker
+	callnative BS_SaveAttacker
+	.endm
+	
+	.macro restoreattacker
+	callnative BS_RestoreAttacker
+	.endm
+	
 	.macro metalburstdamagecalculator failInstr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \failInstr
@@ -1409,10 +1426,6 @@
 
 	.macro tryrevertweatherform
 	callnative BS_TryRevertWeatherForm
-	.endm
-
-	.macro setsnow
-	callnative BS_SetSnow
 	.endm
 
 	.macro applysaltcure battler:req
@@ -1647,6 +1660,14 @@
 	.4byte \failInstr
 	.endm
 
+	.macro removeweather
+	callnative BS_RemoveWeather
+	.endm
+	
+	.macro applyterastallization
+	callnative BS_ApplyTerastallization
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
@@ -1767,14 +1788,6 @@
 
 	.macro switchinabilities battler:req
 	various \battler, VARIOUS_SWITCHIN_ABILITIES
-	.endm
-
-	.macro savetarget
-	various BS_TARGET, VARIOUS_SAVE_TARGET
-	.endm
-
-	.macro restoretarget
-	various BS_TARGET, VARIOUS_RESTORE_TARGET
 	.endm
 
 	.macro instanthpdrop battler:req
