@@ -515,9 +515,7 @@ static void CB2_InitBattleInternal(void)
     gBattle_BG3_X = 0;
     gBattle_BG3_Y = 0;
 
-#if DEBUG_OVERWORLD_MENU == TRUE
-    if (!gIsDebugBattle)
-#endif
+    if ((DEBUG_OVERWORLD_MENU && !gIsDebugBattle) || !DEBUG_OVERWORLD_MENU)
     {
         gBattleTerrain = BattleSetup_GetTerrainId();
     }
@@ -550,9 +548,7 @@ static void CB2_InitBattleInternal(void)
     else
         SetMainCallback2(CB2_HandleStartBattle);
 
-#if DEBUG_OVERWORLD_MENU == TRUE
-    if (!gIsDebugBattle)
-#endif
+    if ((DEBUG_OVERWORLD_MENU && !gIsDebugBattle) || !DEBUG_OVERWORLD_MENU)
     {
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
         {
