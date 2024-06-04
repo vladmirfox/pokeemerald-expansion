@@ -119,13 +119,10 @@ SINGLE_BATTLE_TEST("If a Poison- or Steel-type Pokémon with Corrosion poisons a
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        if (move == MOVE_TOXIC){
+        if (move == MOVE_TOXIC)
             STATUS_ICON(opponent, badPoison: TRUE);
-        }
-        else {
+        else
             STATUS_ICON(opponent, poison: TRUE);
-        }
-        
         NONE_OF {
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
             STATUS_ICON(player, badPoison: TRUE);
@@ -193,9 +190,8 @@ SINGLE_BATTLE_TEST("Corrosion allows the Pokémon with the ability to poison a S
         TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
-        if (move == MOVE_TOXIC){
+        if (move == MOVE_TOXIC)
             STATUS_ICON(opponent, badPoison: TRUE);
-        }
         else
             STATUS_ICON(opponent, poison: TRUE);
     }
@@ -217,9 +213,8 @@ SINGLE_BATTLE_TEST("Corrosion's effect is lost if the move used by the Pokémon 
     } SCENE {
         NONE_OF {
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
-        if (move == MOVE_TOXIC){
+        if (move == MOVE_TOXIC)
             STATUS_ICON(opponent, badPoison: TRUE);
-        }
         else
             STATUS_ICON(opponent, poison: TRUE);
         }
