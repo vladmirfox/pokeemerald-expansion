@@ -36,9 +36,9 @@ SINGLE_BATTLE_TEST("Hurricane bypasses accuracy checks in Rain")
 SINGLE_BATTLE_TEST("Hurricane can hit airborne targets")
 {
     u16 move;
-    PARAMETRIZE{ move = MOVE_FLY; }
-    PARAMETRIZE{ move = MOVE_BOUNCE; }
-    PARAMETRIZE{ move = MOVE_SKY_DROP; }
+    PARAMETRIZE { move = MOVE_FLY; }
+    PARAMETRIZE { move = MOVE_BOUNCE; }
+    PARAMETRIZE { move = MOVE_SKY_DROP; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
         ASSUME(UNCOMPRESS_BITS(HIHALF(gMovesInfo[MOVE_FLY].argument)) == STATUS3_ON_AIR);
