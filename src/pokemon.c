@@ -6814,8 +6814,8 @@ void HealBoxPokemon(struct BoxPokemon *boxMon)
 u16 GetCryIdBySpecies(u16 species)
 {
     species = SanitizeSpeciesId(species);
-    if (gSpeciesInfo[species].cryId >= CRY_COUNT)
-        return 0;
+    if (gSpeciesInfo[species].cryId >= CRY_COUNT || P_CRIES_ENABLED == FALSE)
+        return CRY_NONE;
     return gSpeciesInfo[species].cryId;
 }
 
