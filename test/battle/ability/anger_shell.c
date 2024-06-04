@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd
     u16 maxHp = 500;
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].power != 0);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move")
     u16 maxHp = 500;
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DOUBLE_SLAP].effect == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_SKILL_LINK); } // Always hits 5 times.
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
