@@ -39,7 +39,6 @@
 
 #include "constants/items.h"
 
-#if DEBUG_POKEMON_MENU == TRUE
 extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
@@ -1728,5 +1727,3 @@ static void Exit_Debug_Pokemon(u8 taskId)
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
     }
 }
-
-#endif
