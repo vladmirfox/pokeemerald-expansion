@@ -46,7 +46,6 @@ SINGLE_BATTLE_TEST("Thrash confuses the user after it finishes")
 SINGLE_BATTLE_TEST("Thrash does not confuse the user if it is canceled on turn 1 of 3")
 {
     GIVEN {
-        ASSUME(B_RAMPAGE_CANCELLING >= GEN_5);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -61,7 +60,6 @@ SINGLE_BATTLE_TEST("Thrash does not confuse the user if it is canceled on turn 1
 SINGLE_BATTLE_TEST("Thrash does not confuse the user if it is canceled on turn 2 of 3")
 {
     GIVEN {
-        ASSUME(B_RAMPAGE_CANCELLING >= GEN_5);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
