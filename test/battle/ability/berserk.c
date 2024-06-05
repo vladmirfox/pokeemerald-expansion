@@ -63,8 +63,7 @@ SINGLE_BATTLE_TEST("Berserk activates after all hits from a multi-hit move")
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
     } SCENE {
-        for (j = 0; j < 4; j++)
-        {
+        for (j = 0; j < 4; j++) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
             NOT ABILITY_POPUP(player, ABILITY_BERSERK);
         }
