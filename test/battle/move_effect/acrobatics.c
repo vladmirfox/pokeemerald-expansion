@@ -40,6 +40,9 @@ SINGLE_BATTLE_TEST("Acrobatics still doubles in power when Flying Gem is consume
     } SCENE {
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.3), (results[1].damage));
+        if (I_GEM_BOOST_POWER >= GEN_6)
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.3), (results[1].damage));
+        else
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), (results[1].damage));
     }
 }
