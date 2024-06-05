@@ -26,7 +26,7 @@ void ActivateTera(u32 battler)
     SetActiveGimmick(battler, GIMMICK_TERA);
     SetGimmickAsActivated(battler, GIMMICK_TERA);
 
-    // Remove Tera Orb charge.    
+    // Remove Tera Orb charge.
     if (B_FLAG_TERA_ORB_CHARGED != 0
         && (B_FLAG_TERA_ORB_NO_COST == 0 || !FlagGet(B_FLAG_TERA_ORB_NO_COST))
         && side == B_SIDE_PLAYER
@@ -37,7 +37,10 @@ void ActivateTera(u32 battler)
     
     // Execute battle script.
     PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(battler));
-    BattleScriptExecute(BattleScript_Terastallization);
+    if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
+        BattleScriptExecute(BattleScript_TeraFormChange);
+    else
+        BattleScriptExecute(BattleScript_Terastallization);
 }
 
 // Applies palette blend and enables UI indicator after animation has played
@@ -93,8 +96,7 @@ bool32 CanTerastallize(u32 battler)
 // Returns a battler's Tera type.
 u32 GetBattlerTeraType(u32 battler)
 {
-    struct Pokemon *mon = &GetBattlerParty(battler)[gBattlerPartyIndexes[battler]];
-    return GetMonData(mon, MON_DATA_TERA_TYPE);
+    return GetMonData(&GetBattlerParty(battler)[gBattlerPartyIndexes[battler]], MON_DATA_TERA_TYPE);
 }
 
 // Uses up a type's Stellar boost.
@@ -123,7 +125,7 @@ uq4_12_t GetTeraMultiplier(u32 battler, u32 type)
     // Safety check.
     if (GetActiveGimmick(battler) != GIMMICK_TERA)
         return UQ_4_12(1.0);
-    
+
     // Stellar-type checks.
     if (teraType == TYPE_STELLAR)
     {
@@ -164,31 +166,7 @@ uq4_12_t GetTeraMultiplier(u32 battler, u32 type)
     }
 }
 
-// Most values pulled from the Tera type icon palette.
-const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
-    [TYPE_NORMAL] = RGB_WHITE, // custom
-    [TYPE_FIGHTING] = RGB(26, 8, 14),
-    [TYPE_FLYING] = RGB(31, 26, 7),
-    [TYPE_POISON] = RGB(26, 10, 25), // custom
-    [TYPE_GROUND] = RGB(25, 23, 18),
-    [TYPE_ROCK] = RGB(18, 16, 8), // custom
-    [TYPE_BUG] = RGB(18, 24, 6),
-    [TYPE_GHOST] = RGB(12, 10, 16),
-    [TYPE_STEEL] = RGB(19, 19, 20),
-    [TYPE_MYSTERY] = RGB_WHITE,
-    [TYPE_FIRE] = RGB(31, 20, 11),
-    [TYPE_WATER] = RGB(10, 18, 27),
-    [TYPE_GRASS] = RGB(12, 24, 11),
-    [TYPE_ELECTRIC] = RGB(30, 26, 7),
-    [TYPE_PSYCHIC] = RGB(31, 14, 15),
-    [TYPE_ICE] = RGB(14, 26, 25),
-    [TYPE_DRAGON] = RGB(10, 18, 27),
-    [TYPE_DARK] = RGB(6, 5, 8),
-    [TYPE_FAIRY] = RGB(31, 15, 21),
-    [TYPE_STELLAR] = RGB(10, 18, 27),
-};
-
 u16 GetTeraTypeRGB(u32 type)
 {
-    return sTeraTypeRGBValues[type];
+    return gTypesInfo[type].teraTypeRGBValue;
 }
