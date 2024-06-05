@@ -144,8 +144,8 @@ Based off RHH's pokeemerald-expansion v1.8.0 https://github.com/rh-hideout/pokee
     - [Followers & Expanded IDs](https://github.com/aarant/pokeemerald/tree/followers-expanded-id) by @aarant
         - May be disabled.
         - Includes Pokémon followers like in HGSS, including interactions.
-        - Expands the amount of possible object event IDs beyond 255.
-        - Includes an implementation of dynamic overworld palettes (DOWP).
+        - ***Expands the amount of possible object event IDs beyond 255.***
+        - ***Includes an implementation of dynamic overworld palettes (DOWP).***
         - **Additional features**:
             - *Pokémon overworld sprites up to Generation 8.*
 - ***Other features***

@@ -202,7 +202,7 @@ Converts trainer data (for `convert_trainer_parties.py`) and partner data (for `
 * Filepaths [`migration_scripts/1.9/egg_move_refactor.py`](1.9/egg_move_refactor.py)
 * Introduced in [Egg Move Refactor #4534](https://github.com/rh-hideout/pokeemerald-expansion/pull/4534)
 
-Updates egg moves to the refactored format. Only necessary if new species have been added.
+Updates egg moves to the refactored format. Only necessary if new species have been added or if egg moves of an existing species was altered.
 
 #### [src/data/pokemon/egg_moves.h](..src/data/pokemon/egg_moves.h)
 ```diff
@@ -294,7 +294,7 @@ Updates egg moves to the refactored format. Only necessary if new species have b
         FOOTPRINT(Bulbasaur)
         .levelUpLearnset = sBulbasaurLevelUpLearnset,
         .teachableLearnset = sBulbasaurTeachableLearnset,
-+        .eggMoveLearnset = sBulbasaurEggMoveLearnset,
++       .eggMoveLearnset = sBulbasaurEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_IVYSAUR}),
     },
 ```
