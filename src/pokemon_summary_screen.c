@@ -1640,7 +1640,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             BeginCloseSummaryScreen(taskId);
         }
-        else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle && DEBUG_POKEMON_SPRITE_VISUALIZER)
+        else if (DEBUG_POKEMON_SPRITE_VISUALIZER && JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
             sMonSummaryScreen->callback = CB2_Pokemon_Sprite_Visualizer;
             StopPokemonAnimations();
