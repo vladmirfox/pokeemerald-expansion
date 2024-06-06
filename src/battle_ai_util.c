@@ -2954,25 +2954,42 @@ bool32 IsWakeupTurn(u32 battler)
 bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
 {
     struct Pokemon *party;
-    u32 i;
+    u32 i, battlerOnField1, battlerOnField2;
 
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         party = gPlayerParty;
     else
         party = gEnemyParty;
 
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battlerId)))];
+        // Check partner's status
+        if ((GetMonData(&party[battlerOnField2], MON_DATA_STATUS) != STATUS1_NONE)
+         && (GetBattlerAbility(battlerOnField2) != ABILITY_SOUNDPROOF
+         || B_HEAL_BELL_SOUNDPROOF == GEN_5 || !checkSoundproof))
+            return TRUE;
+    }
+    else // In singles there's only one battlerId by side.
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[battlerId];
+    }
+
+    // Check attacker's status
+    if ((GetMonData(&party[battlerOnField1], MON_DATA_STATUS) != STATUS1_NONE)
+     && (GetBattlerAbility(battlerOnField1) != ABILITY_SOUNDPROOF || !checkSoundproof
+     || B_HEAL_BELL_SOUNDPROOF == GEN_5 || B_HEAL_BELL_SOUNDPROOF >= GEN_9))
+        return TRUE;
+
+    // Check inactive party mons' status
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (B_HEAL_BELL_SOUNDPROOF == GEN_5 || (i == gBattlerPartyIndexes[battlerId] && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
-            checkSoundproof = FALSE;
-        else if (B_HEAL_BELL_SOUNDPROOF > GEN_5 && B_HEAL_BELL_SOUNDPROOF < GEN_9
-              && (i != gBattlerPartyIndexes[battlerId] && i != gBattlerPartyIndexes[BATTLE_PARTNER(battlerId)]))
-            checkSoundproof = FALSE;
-
-        if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
-            continue;
-
-        if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
+        if ((!checkSoundproof || B_HEAL_BELL_SOUNDPROOF >= GEN_5
+         || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
+         && i != battlerOnField1 && i != battlerOnField2
+         && GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
             return TRUE;
     }
 

@@ -191,3 +191,24 @@ AI_SINGLE_BATTLE_TEST("AI chooses moves with secondary effect that have a 100% c
             TURN { EXPECT_MOVES(opponent, MOVE_OCTAZOOKA); }
     }
 }
+
+AI_SINGLE_BATTLE_TEST("AI chooses moves that cure inactive party members")
+{
+    u32 status;
+
+    PARAMETRIZE { status = STATUS1_NONE; }
+    PARAMETRIZE { status = STATUS1_TOXIC_POISON; }
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_REGIROCK) { Moves(MOVE_BODY_PRESS, MOVE_HEAL_BELL); }
+        OPPONENT(SPECIES_REGICE) { Status1(status); }
+    } WHEN {
+        if (status == STATUS1_NONE)
+            TURN { EXPECT_MOVE(opponent, MOVE_BODY_PRESS); }
+        else
+            TURN { EXPECT_MOVE(opponent, MOVE_HEAL_BELL, target: opponent); }
+    }
+}

@@ -13222,13 +13222,16 @@ static void Cmd_healpartystatus(void)
                  || (i == gBattlerPartyIndexes[gBattlerAttacker] && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
                     ability = ABILITY_NONE;
                 else if (B_HEAL_BELL_SOUNDPROOF > GEN_5
-                         && (i != gBattlerPartyIndexes[gBattlerAttacker] && i != gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)]))
+                      && i != gBattlerPartyIndexes[gBattlerAttacker]
+                      && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+                      && gBattlerPartyIndexes[battler] == i
+                      && !(gAbsentBattlerFlags & gBitTable[battler])))
                     ability = ABILITY_NONE;
                 else if (gBattlerPartyIndexes[gBattlerAttacker] == i)
                     ability = GetBattlerAbility(gBattlerAttacker);
                 else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-                         && gBattlerPartyIndexes[battler] == i
-                         && !(gAbsentBattlerFlags & gBitTable[battler]))
+                      && gBattlerPartyIndexes[battler] == i
+                      && !(gAbsentBattlerFlags & gBitTable[battler]))
                     ability = GetBattlerAbility(battler);
                 else
                     ability = GetAbilityBySpecies(species, abilityNum);
