@@ -201,15 +201,12 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     if (input->pressedSelectButton && UseRegisteredKeyItemOnField() == TRUE)
         return TRUE;
 
-    if(DEBUG_OVERWORLD_MENU && !DEBUG_OVERWORLD_IN_MENU)
+    if(input->input_field_1_2 && DEBUG_OVERWORLD_MENU && !DEBUG_OVERWORLD_IN_MENU)
     {
-        if (input->input_field_1_2)
-        {
-            PlaySE(SE_WIN_OPEN);
-            FreezeObjectEvents();
-            Debug_ShowMainMenu();
-            return TRUE;
-        }
+        PlaySE(SE_WIN_OPEN);
+        FreezeObjectEvents();
+        Debug_ShowMainMenu();
+        return TRUE;
     }
 
     return FALSE;
