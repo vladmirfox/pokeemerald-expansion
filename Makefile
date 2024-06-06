@@ -44,7 +44,7 @@ MODERN       ?= 1
 TEST         ?= 0
 ANALYZE      ?= 0
 UNUSED_ERROR ?= 0
-DEBUG		 ?= 0
+DEBUG        ?= 0
 
 ifeq (agbcc,$(MAKECMDGOALS))
   MODERN := 0
