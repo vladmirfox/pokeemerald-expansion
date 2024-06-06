@@ -326,7 +326,7 @@
  * The inference process is naive, if your test contains anything that
  * modifies the speed of a battler you should specify them explicitly.
  *
- * MOVE(battler, move | moveSlot:, [megaEvolve:], [hit:], [criticalHit:], [target:], [allowed:], [WITH_RNG(tag, value])
+ * MOVE(battler, move | moveSlot:, [gimmick:], [hit:], [criticalHit:], [target:], [allowed:], [WITH_RNG(tag, value])
  * Used when the battler chooses Fight. Either the move ID or move slot
  * must be specified. gimmick: GIMMICK_MEGA causes the battler to Mega 
  * Evolve if able, hit: FALSE causes the move to miss, criticalHit: TRUE
