@@ -148,6 +148,7 @@ Based off RHH's pokeemerald-expansion v1.8.0 https://github.com/rh-hideout/pokee
         - ***Includes an implementation of dynamic overworld palettes (DOWP).***
         - **Additional features**:
             - *Pokémon overworld sprites up to Generation 8.*
+            - *Integration with our Pokémon Sprite Visualizer, allowing users to browse through the follower sprites alongside battle sprites.*
 - ***Other features***
     - Pressing B while holding a Pokémon drops them like in modern games (configurable).
     - Running indoors (configurable).
