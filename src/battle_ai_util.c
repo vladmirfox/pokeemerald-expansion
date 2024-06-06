@@ -2963,6 +2963,12 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        if (B_HEAL_BELL_SOUNDPROOF == GEN_5 || (i == gBattlerPartyIndexes[battlerId] && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
+            checkSoundproof = FALSE;
+        else if (B_HEAL_BELL_SOUNDPROOF > GEN_5 && B_HEAL_BELL_SOUNDPROOF < GEN_9
+              && (i != gBattlerPartyIndexes[battlerId] && i != gBattlerPartyIndexes[BATTLE_PARTNER(battlerId)]))
+            checkSoundproof = FALSE;
+
         if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
             continue;
 

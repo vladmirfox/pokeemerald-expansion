@@ -13178,7 +13178,8 @@ static void Cmd_healpartystatus(void)
 
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_BELL;
 
-        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF)
+        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF
+         || B_HEAL_BELL_SOUNDPROOF == GEN_5 || B_HEAL_BELL_SOUNDPROOF >= GEN_9)
         {
             gBattleMons[gBattlerAttacker].status1 = 0;
             gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
@@ -13194,7 +13195,7 @@ static void Cmd_healpartystatus(void)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[battler]))
         {
-            if (GetBattlerAbility(battler) != ABILITY_SOUNDPROOF)
+            if (GetBattlerAbility(battler) != ABILITY_SOUNDPROOF || B_HEAL_BELL_SOUNDPROOF == GEN_5)
             {
                 gBattleMons[battler].status1 = 0;
                 gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
@@ -13217,7 +13218,13 @@ static void Cmd_healpartystatus(void)
             {
                 u16 ability;
 
-                if (gBattlerPartyIndexes[gBattlerAttacker] == i)
+                if (B_HEAL_BELL_SOUNDPROOF == GEN_5
+                 || (i == gBattlerPartyIndexes[gBattlerAttacker] && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
+                    ability = ABILITY_NONE;
+                else if (B_HEAL_BELL_SOUNDPROOF > GEN_5
+                         && (i != gBattlerPartyIndexes[gBattlerAttacker] && i != gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)]))
+                    ability = ABILITY_NONE;
+                else if (gBattlerPartyIndexes[gBattlerAttacker] == i)
                     ability = GetBattlerAbility(gBattlerAttacker);
                 else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                          && gBattlerPartyIndexes[battler] == i
