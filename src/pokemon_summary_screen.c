@@ -1640,7 +1640,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             BeginCloseSummaryScreen(taskId);
         }
-        else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle && DEBUG_POKEMON_MENU)
+        else if (DEBUG_POKEMON_MENU && JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
             sMonSummaryScreen->callback = CB2_Debug_Pokemon;
             StopPokemonAnimations();
