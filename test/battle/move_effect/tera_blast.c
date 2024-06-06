@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Tera Blast has correct effectiveness for every Tera Type")
         PLAYER(SPECIES_WOBBUFFET) { TeraType(type); }
         OPPONENT(species);
     } WHEN {
-        TURN { MOVE(player, MOVE_TERA_BLAST, tera: TRUE); }
+        TURN { MOVE(player, MOVE_TERA_BLAST, gimmick: GIMMICK_TERA); }
     } SCENE {
         if (species == SPECIES_GASTLY && type == TYPE_NORMAL)
             MESSAGE("It doesn't affect Foe Gastly…");
