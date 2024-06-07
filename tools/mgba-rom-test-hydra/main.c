@@ -596,10 +596,9 @@ int main(int argc, char *argv[])
     }
     else
     {
-        fprintf(stdout, "\n");
         if (fails > 0)
         {
-            fprintf(stdout, "- Tests \e[31mFAILED\e[0m :       %d    Add TESTS='X' to run tests with the defined prefix.\n", fails);
+            fprintf(stdout, "\n  \e[31mFAILED\e[0m tests:\n");
             for (int i = 0; i < fails; i++)
             {
                 if (i >= MAX_SUMMARY_TESTS_TO_LIST)
@@ -610,28 +609,33 @@ int main(int argc, char *argv[])
                 fprintf(stdout, "  - \e[31m%s\e[0m - %s.\n", failedTestFilenameLine[i], failedTestNames[i]);
             }
         }
+        
         if (knownFailsPassing > 0)
         {
-            fprintf(stdout, "- \e[31mKNOWN_FAILING_PASSED\e[0m: %d   \e[31mPlease remove KNOWN_FAILING if these tests intentionally PASS\e[0m\n", knownFailsPassing);
+            fprintf(stdout, "\n  \e[33mKNOWN_FAILING\e[0m tests \e[32mPASSING\e[0m:\n");
             for (int i = 0; i < knownFailsPassing; i++)
             {
                 if (i >= MAX_SUMMARY_TESTS_TO_LIST)
                 {
-                    fprintf(stdout, "  - \e[31mand %d more...\e[0m\n", knownFailsPassing - MAX_SUMMARY_TESTS_TO_LIST);
+                    fprintf(stdout, "\n  - \e[32mand %d more...\e[0m\n", knownFailsPassing - MAX_SUMMARY_TESTS_TO_LIST);
                     break;
                 }
-                fprintf(stdout, "  - \e[31m%s\e[0m.\n", knownFailingPassedTestNames[i]);
+                fprintf(stdout, "  - \e[32m%s\e[0m.\n", knownFailingPassedTestNames[i]);
             }
         }
-        fprintf(stdout, "- Tests \e[32mPASSED\e[0m:         %d\n", passes);
-        if (knownFails > 0)
-            fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m:  %d\n", knownFails);
-        if (todos > 0)
-            fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:          %d\n", todos);
-        if (assumptionFails > 0)
-            fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:   %d\n", assumptionFails);
 
-        fprintf(stdout, "- Tests \e[34mTOTAL\e[0m:          %d\n", results);
+        fprintf(stdout, "\n- Tests \e[34mTOTAL\e[0m:           %d\n", results);
+        if (fails > 0)
+            fprintf(stdout, "- Tests \e[31mFAILED\e[0m :         %d    Add TESTS='X' to run tests with the defined prefix.\n", fails);
+        if (knownFails > 0)
+            fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m:   %d\n", knownFails);
+        if (assumptionFails > 0)
+            fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:    %d\n", assumptionFails);
+        if (todos > 0)
+            fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:           %d\n", todos);
+        if (knownFailsPassing > 0)
+            fprintf(stdout, "- \e[32mKNOWN_FAILING_PASSING\e[0m: %d   \e[33mPlease remove KNOWN_FAILING if these tests intentionally PASS\e[0m\n", knownFailsPassing);
+        fprintf(stdout, "- Tests \e[32mPASSED\e[0m:          %d\n", passes);
     }
     fprintf(stdout, "\n");
 
