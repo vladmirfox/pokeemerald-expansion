@@ -48,6 +48,7 @@
 #define P_TM_LITERACY               GEN_LATEST  // Since Gen 6, TM illiterate Pokémon can learn TMs that teach moves that are in their level-up learnsets.
 #define P_EGG_CYCLE_LENGTH          GEN_LATEST  // Since Gen 8, egg cycles take half as many steps as before.
 #define P_TWO_FRAME_FRONT_SPRITES   TRUE        // In Pokémon Emerald, Pokémon front sprites always consist of two frames. This config can revert it to only use the first frame, as is the case in the other Gen 3 games.
+#define P_ONLY_OBTAINABLE_SHINIES   FALSE       // If TRUE, Pokémon encountered when FLAG_ADVENTURE_STARTED is not set OR in the Battle Pyramid won't be shiny.
 
 // Learnset helper toggles
 #define P_LEARNSET_HELPER_TEACHABLE TRUE        // If TRUE, teachable_learnsets.h will be populated by tools/learnset_helpers/teachable.py using the included JSON files based on available TMs and tutors.
