@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Refrigerate turns a normal type move into Ice")
         PLAYER(SPECIES_MEGANIUM);
         OPPONENT(SPECIES_AMAURA) { Ability(ABILITY_REFRIGERATE); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE, gimmick: GIMMICK_MEGA); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);

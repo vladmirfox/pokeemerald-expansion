@@ -5670,7 +5670,7 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
         break;
     }
 
-    if (ateType != TYPE_NONE)
+    if (ateType != TYPE_NONE && GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
     {
         gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_SET;
         return TRUE;
@@ -5785,15 +5785,15 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
     attackerAbility = GetBattlerAbility(battlerAtk);
     if (gMovesInfo[move].type == TYPE_NORMAL
         && TrySetAteType(move, battlerAtk, attackerAbility)
-        && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX
-        && GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
+        && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)
     {
             gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gMovesInfo[move].type != TYPE_NORMAL
           && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
           && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
-          && attackerAbility == ABILITY_NORMALIZE)
+          && attackerAbility == ABILITY_NORMALIZE
+          && GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_SET;
         if (GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)
