@@ -1,3 +1,21 @@
+/*
+Trainer and their parties defined with Competetive Syntax
+Compatible with Pokemon Showdown exports.
+
+This file is processed with a custom preprocessor.
+#defines can be used and will be expanded during the make process
+#define TRICKMON 0 Spe would expand all cases of TRICKMON to 0 Spe,
+thus giving all Pokemon with IVs set to TRICKMON have 31/31/31/31/31/0 IVs
+*/
+
+/*
+Comments can be added as C comment blocks
+// cannot be used as comments
+*/
+
+/*Comments can also be on a single line*/
+
+
 === TRAINER_NONE ===
 Name:
 Class: Pkmn Trainer 1
