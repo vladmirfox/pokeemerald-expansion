@@ -13214,24 +13214,19 @@ static void Cmd_healpartystatus(void)
             u16 species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
             u8 abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
 
-            if (species != SPECIES_NONE && species != SPECIES_EGG)
+            if (species != SPECIES_NONE && species != SPECIES_EGG && GetMonData(&party[i], MON_DATA_HP) > 0)
             {
                 u16 ability;
+                bool32 isAttacker = gBattlerPartyIndexes[gBattlerAttacker] == i;
+                bool32 isDoublesPartner = gBattleTypeFlags & BATTLE_TYPE_DOUBLE && gBattlerPartyIndexes[battler] == i && !(gAbsentBattlerFlags & gBitTable[battler]);
 
-                if (B_HEAL_BELL_SOUNDPROOF == GEN_5
-                 || (i == gBattlerPartyIndexes[gBattlerAttacker] && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
+                if (B_HEAL_BELL_SOUNDPROOF == GEN_5 || (isAttacker && B_HEAL_BELL_SOUNDPROOF >= GEN_9))
                     ability = ABILITY_NONE;
-                else if (B_HEAL_BELL_SOUNDPROOF > GEN_5
-                      && i != gBattlerPartyIndexes[gBattlerAttacker]
-                      && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-                      && gBattlerPartyIndexes[battler] == i
-                      && !(gAbsentBattlerFlags & gBitTable[battler])))
+                else if (B_HEAL_BELL_SOUNDPROOF > GEN_5 && !isAttacker && !isDoublesPartner)
                     ability = ABILITY_NONE;
-                else if (gBattlerPartyIndexes[gBattlerAttacker] == i)
+                else if (isAttacker)
                     ability = GetBattlerAbility(gBattlerAttacker);
-                else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-                      && gBattlerPartyIndexes[battler] == i
-                      && !(gAbsentBattlerFlags & gBitTable[battler]))
+                else if (isDoublesPartner)
                     ability = GetBattlerAbility(battler);
                 else
                     ability = GetAbilityBySpecies(species, abilityNum);

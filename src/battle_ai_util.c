@@ -2966,9 +2966,8 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
         battlerOnField1 = gBattlerPartyIndexes[battlerId];
         battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battlerId)))];
         // Check partner's status
-        if ((GetMonData(&party[battlerOnField2], MON_DATA_STATUS) != STATUS1_NONE)
-         && (GetBattlerAbility(battlerOnField2) != ABILITY_SOUNDPROOF
-         || B_HEAL_BELL_SOUNDPROOF == GEN_5 || !checkSoundproof))
+        if ((B_HEAL_BELL_SOUNDPROOF == GEN_5 || AI_DATA->abilities[battlerOnField2] != ABILITY_SOUNDPROOF || !checkSoundproof)
+         && GetMonData(&party[battlerOnField2], MON_DATA_STATUS) != STATUS1_NONE)
             return TRUE;
     }
     else // In singles there's only one battlerId by side.
@@ -2978,18 +2977,19 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
     }
 
     // Check attacker's status
-    if ((GetMonData(&party[battlerOnField1], MON_DATA_STATUS) != STATUS1_NONE)
-     && (GetBattlerAbility(battlerOnField1) != ABILITY_SOUNDPROOF || !checkSoundproof
-     || B_HEAL_BELL_SOUNDPROOF == GEN_5 || B_HEAL_BELL_SOUNDPROOF >= GEN_9))
+    if ((B_HEAL_BELL_SOUNDPROOF == GEN_5 || B_HEAL_BELL_SOUNDPROOF >= GEN_9
+      || AI_DATA->abilities[battlerOnField1] != ABILITY_SOUNDPROOF || !checkSoundproof)
+     && GetMonData(&party[battlerOnField1], MON_DATA_STATUS) != STATUS1_NONE)
         return TRUE;
 
     // Check inactive party mons' status
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if ((!checkSoundproof || B_HEAL_BELL_SOUNDPROOF >= GEN_5
-         || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
-         && i != battlerOnField1 && i != battlerOnField2
-         && GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
+        if (i == battlerOnField1 || i == battlerOnField2)
+            continue;
+        if (B_HEAL_BELL_SOUNDPROOF < GEN_5 && checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
+            continue;
+        if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
             return TRUE;
     }
 
@@ -3271,7 +3271,7 @@ bool32 ShouldUseWishAromatherapy(u32 battlerAtk, u32 battlerDef, u32 move)
 
             if (GetMonData(&party[i], MON_DATA_STATUS, NULL) != STATUS1_NONE)
             {
-                if (move != MOVE_HEAL_BELL || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
+                if (B_HEAL_BELL_SOUNDPROOF >= GEN_5 || move != MOVE_HEAL_BELL || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
                     hasStatus = TRUE;
             }
         }

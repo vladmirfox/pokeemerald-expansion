@@ -192,23 +192,50 @@ AI_SINGLE_BATTLE_TEST("AI chooses moves with secondary effect that have a 100% c
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI chooses moves that cure inactive party members")
+AI_DOUBLE_BATTLE_TEST("AI chooses moves that cure self or partner")
 {
-    u32 status;
+    u32 status1_0, status1_1, partnerAbility;
 
-    PARAMETRIZE { status = STATUS1_NONE; }
-    PARAMETRIZE { status = STATUS1_TOXIC_POISON; }
+    PARAMETRIZE { status1_0 = STATUS1_NONE; status1_1 = STATUS1_NONE; partnerAbility = ABILITY_SCRAPPY; }
+    PARAMETRIZE { status1_0 = STATUS1_TOXIC_POISON; status1_1 = STATUS1_NONE; partnerAbility = ABILITY_SCRAPPY; }
+    PARAMETRIZE { status1_0 = STATUS1_NONE; status1_1 = STATUS1_PARALYSIS; partnerAbility = ABILITY_SCRAPPY; }
+    PARAMETRIZE { status1_0 = STATUS1_NONE; status1_1 = STATUS1_PARALYSIS; partnerAbility = ABILITY_SOUNDPROOF; }
 
     GIVEN {
         ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+        ASSUME(B_HEAL_BELL_SOUNDPROOF >= GEN_9);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_REGIROCK) { Moves(MOVE_ROCK_SLIDE, MOVE_HEAL_BELL, MOVE_ACID); Status1(status1_0); }
+        OPPONENT(SPECIES_EXPLOUD) { Status1(status1_1); Ability(partnerAbility); }
+    } WHEN {
+        if (status1_0 != STATUS1_NONE || (status1_1 != STATUS1_NONE && partnerAbility != ABILITY_SOUNDPROOF))
+            TURN { EXPECT_MOVE(opponentLeft, MOVE_HEAL_BELL); }
+        else
+            TURN { EXPECT_MOVE(opponentLeft, MOVE_ROCK_SLIDE); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI chooses moves that cure inactive party members")
+{
+    u32 status, ability;
+
+    PARAMETRIZE { status = STATUS1_TOXIC_POISON; ability = ABILITY_SCRAPPY; }
+    PARAMETRIZE { status = STATUS1_NONE; ability = ABILITY_SCRAPPY; }
+    PARAMETRIZE { status = STATUS1_TOXIC_POISON; ability = ABILITY_SOUNDPROOF; }
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+        ASSUME(B_HEAL_BELL_SOUNDPROOF >= GEN_5);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_REGIROCK) { Moves(MOVE_BODY_PRESS, MOVE_HEAL_BELL); }
-        OPPONENT(SPECIES_REGICE) { Status1(status); }
+        OPPONENT(SPECIES_EXPLOUD) { Status1(status); Ability(ability); }
     } WHEN {
         if (status == STATUS1_NONE)
             TURN { EXPECT_MOVE(opponent, MOVE_BODY_PRESS); }
         else
-            TURN { EXPECT_MOVE(opponent, MOVE_HEAL_BELL, target: opponent); }
+            TURN { EXPECT_MOVE(opponent, MOVE_HEAL_BELL); }
     }
 }
