@@ -203,7 +203,7 @@ static void TransferEggMoves(void)
             continue;
 
         // Prevent non-baby species from learning incense baby egg moves
-        if (eggSpecies != moveLearnerSpecies && P_INCENSE_BREEDING < GEN_9)
+        if (P_INCENSE_BREEDING < GEN_9 && eggSpecies != moveLearnerSpecies)
         {
             for (j = 0; j < ARRAY_COUNT(sIncenseBabyTable); j++)
             {
