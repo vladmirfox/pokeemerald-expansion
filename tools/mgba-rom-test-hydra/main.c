@@ -570,7 +570,7 @@ int main(int argc, char *argv[])
         for (int j = 0; j < runners[i].knownFailsPassing; j++)
         {
             if (j < MAX_SUMMARY_TESTS_TO_LIST)
-                strcpy(knownFailingPassedTestNames[fails], runners[i].knownFailingPassedTestNames[j]);
+                strcpy(knownFailingPassedTestNames[knownFailsPassing], runners[i].knownFailingPassedTestNames[j]);
             knownFailsPassing++;
         }
         todos += runners[i].todos;
