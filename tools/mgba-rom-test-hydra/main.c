@@ -64,6 +64,7 @@ struct Runner
     char failed_TestNames[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
     char failed_TestFilenameLine[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
     char knownFailingPassed_TestNames[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
+    char knownFailingPassed_FilenameLine[MAX_SUMMARY_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
     char assumeFailed_TestNames[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
     char assumeFailed_FilenameLine[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
 };
@@ -126,7 +127,10 @@ static void handle_read(int i, struct Runner *runner)
                     goto add_to_results;
                 case 'U':
                     if (runner->knownFailsPassing < MAX_SUMMARY_TESTS_TO_LIST)
+                    {
                         strcpy(runner->knownFailingPassed_TestNames[runner->knownFailsPassing], runner->test_name);
+                        strcpy(runner->knownFailingPassed_FilenameLine[runner->knownFailsPassing], runner->filename_line);
+                    }
                     runner->knownFailsPassing++;
                     goto add_to_results;
                 case 'T':
@@ -559,6 +563,7 @@ int main(int argc, char *argv[])
     char failed_TestFilenameLine[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
 
     char knownFailingPassed_TestNames[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
+    char knownFailingPassed_FilenameLine[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
 
     char assumeFailed_TestNames[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
     char assumeFailed_FilenameLine[MAX_SUMMARY_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
@@ -580,7 +585,10 @@ int main(int argc, char *argv[])
         for (int j = 0; j < runners[i].knownFailsPassing; j++)
         {
             if (j < MAX_SUMMARY_TESTS_TO_LIST)
+            {
                 strcpy(knownFailingPassed_TestNames[knownFailsPassing], runners[i].knownFailingPassed_TestNames[j]);
+                strcpy(knownFailingPassed_FilenameLine[knownFailsPassing], runners[i].knownFailingPassed_FilenameLine[j]);
+            }
             knownFailsPassing++;
         }
         todos += runners[i].todos;
@@ -649,7 +657,7 @@ int main(int argc, char *argv[])
                     fprintf(stdout, "  - \e[32mand %d more...\e[0m\n", knownFailsPassing - MAX_SUMMARY_TESTS_TO_LIST);
                     break;
                 }
-                fprintf(stdout, "  - \e[32m%s\e[0m.\n", knownFailingPassed_TestNames[i]);
+                fprintf(stdout, "  - \e[32m%s\e[0m - %s.\n", knownFailingPassed_FilenameLine[i], knownFailingPassed_TestNames[i]);
             }
         }
 
