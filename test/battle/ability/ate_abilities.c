@@ -64,7 +64,6 @@ SINGLE_BATTLE_TEST("Refrigerate turns a normal type move into Ice")
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         MESSAGE("It's super effective!");
     }
