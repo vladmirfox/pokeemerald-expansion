@@ -661,7 +661,6 @@ int main(int argc, char *argv[])
             }
         }
 
-        fprintf(stdout, "\n- Tests \e[34mTOTAL\e[0m:           %d\n", results);
         if (fails > 0)
             fprintf(stdout, "- Tests \e[31mFAILED\e[0m :         %d    Add TESTS='X' to run tests with the defined prefix.\n", fails);
         if (knownFails > 0)
@@ -673,6 +672,7 @@ int main(int argc, char *argv[])
         if (knownFailsPassing > 0)
             fprintf(stdout, "- \e[32mKNOWN_FAILING_PASSING\e[0m: %d   \e[33mPlease remove KNOWN_FAILING if these tests intentionally PASS\e[0m\n", knownFailsPassing);
         fprintf(stdout, "- Tests \e[32mPASSED\e[0m:          %d\n", passes);
+        fprintf(stdout, "\n- Tests \e[34mTOTAL\e[0m:           %d\n", results);
     }
     fprintf(stdout, "\n");
 
