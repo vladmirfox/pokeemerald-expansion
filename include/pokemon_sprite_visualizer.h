@@ -1,7 +1,7 @@
-#ifndef GUARD_POKEMON_DEBUG_H
-#define GUARD_POKEMON_DEBUG_H
+#ifndef GUARD_POKEMON_SPRITE_VISUALIZER_H
+#define GUARD_POKEMON_SPRITE_VISUALIZER_H
 
-#include "constants/pokemon_debug.h"
+#include "constants/pokemon_sprite_visualizer.h"
 
 //Structs
 struct PokemonDebugModifyArrows
@@ -71,4 +71,4 @@ struct PokemonDebugMenu
 void CB2_Debug_Pokemon(void);
 
 
-#endif // GUARD_POKEMON_DEBUG_H
+#endif // GUARD_POKEMON_SPRITE_VISUALIZER_H

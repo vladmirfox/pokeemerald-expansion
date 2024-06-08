@@ -25,7 +25,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "pokemon_animation.h"
-#include "pokemon_debug.h"
+#include "pokemon_sprite_visualizer.h"
 #include "pokemon_icon.h"
 #include "reset_rtc_screen.h"
 #include "scanline_effect.h"
@@ -41,7 +41,7 @@
 #include "constants/items.h"
 #include "constants/event_objects.h"
 
-#if DEBUG_POKEMON_MENU == TRUE
+#if DEBUG_POKEMON_SPRITE_VISUALIZER == TRUE
 extern const struct BattleBackground sBattleTerrainTable[];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
