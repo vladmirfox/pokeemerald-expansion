@@ -4,7 +4,7 @@
 #include "constants/pokemon_sprite_visualizer.h"
 
 //Structs
-struct PokemonDebugModifyArrows
+struct PokemonSpriteVisualizerModifyArrows
 {
     u8 arrowSpriteId[2];
     u16 minValue;
@@ -43,7 +43,7 @@ struct PokemonSpriteOffsets
     s8 offset_front_elevation;
 };
 
-struct PokemonDebugMenu
+struct PokemonSpriteVisualizer
 {
     u16 currentmonId;
     u8 currentmonWindowId;
@@ -55,7 +55,7 @@ struct PokemonDebugMenu
     u8 frontShadowSpriteId;
     bool8 isShiny;
     bool8 isFemale;
-    struct PokemonDebugModifyArrows modifyArrows;
+    struct PokemonSpriteVisualizerModifyArrows modifyArrows;
     struct PokemonDebugOptionArrows optionArrows;
     struct PokemonDebugYPosModifiyArrows yPosModifyArrows;
     struct PokemonSpriteConstValues constSpriteValues;
@@ -68,7 +68,7 @@ struct PokemonDebugMenu
     u8 submenuYpos[3];
 };
 
-void CB2_Debug_Pokemon(void);
+void CB2_Pokemon_Sprite_Visualizer(void);
 
 
 #endif // GUARD_POKEMON_SPRITE_VISUALIZER_H
