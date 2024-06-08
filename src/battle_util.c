@@ -6177,7 +6177,7 @@ bool32 IsNeutralizingGasOnField(void)
 bool32 IsMoldBreakerTypeAbility(u32 ability)
 {
     return (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TERAVOLT || ability == ABILITY_TURBOBLAZE
-        || (ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
+        || (ability == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
 }
 
 u32 GetBattlerAbility(u32 battler)
