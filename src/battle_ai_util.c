@@ -496,11 +496,11 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
 {
     s32 dmg, moveType;
     uq4_12_t effectivenessMultiplier;
-    gBattleStruct->aiCalcInProgress = TRUE;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledDynamax = FALSE;
     bool32 toggledTera = FALSE;
     struct AiLogicData *aiData = AI_DATA;
+    gBattleStruct->aiCalcInProgress = TRUE;
 
     // Temporarily enable Z-Moves for damage calcs
     if (considerZPower && IsViableZMove(battlerAtk, move))
