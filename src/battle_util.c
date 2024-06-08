@@ -3580,7 +3580,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_MULTIHIT_MOVES:
             if (gMovesInfo[gCurrentMove].effect == EFFECT_MULTI_HIT)
             {
-                u16 ability = gBattleMons[gBattlerAttacker].ability;
+                u32 ability = GetBattlerAbility(gBattlerAttacker);
 
                 if (ability == ABILITY_SKILL_LINK)
                 {
