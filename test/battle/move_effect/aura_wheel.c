@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(MoveHasMoveEffectSelf(MOVE_AURA_WHEEL, MOVE_EFFECT_SPD_PLUS_1) == TRUE);
-    ASSUME(gBattleMoves[MOVE_AURA_WHEEL].effect == EFFECT_AURA_WHEEL);
+    ASSUME(MoveHasAdditionalEffectSelf(MOVE_AURA_WHEEL, MOVE_EFFECT_SPD_PLUS_1) == TRUE);
+    ASSUME(gMovesInfo[MOVE_AURA_WHEEL].effect == EFFECT_AURA_WHEEL);
 }
 
 SINGLE_BATTLE_TEST("Aura Wheel raises Speed; fails if the user is not Morpeko")
@@ -49,3 +49,5 @@ SINGLE_BATTLE_TEST("Aura Wheel changes type depending on Morpeko's form")
         MESSAGE("It's super effective!");
     }
 }
+
+TO_DO_BATTLE_TEST("Aura Wheel can be used by Pokémon transformed into Morpeko");

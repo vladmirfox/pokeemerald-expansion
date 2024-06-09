@@ -1681,6 +1681,9 @@ extern const u32 gItemIconPalette_DragonTeraShard[];
 extern const u32 gItemIconPalette_SteelTeraShard[];
 extern const u32 gItemIconPalette_FairyTeraShard[];
 
+extern const u32 gItemIcon_StellarTeraShard[];
+extern const u32 gItemIconPalette_StellarTeraShard[];
+
 extern const u32 gItemIcon_AdamantCrystal[];
 extern const u32 gItemIconPalette_AdamantCrystal[];
 extern const u32 gItemIcon_GriseousCore[];
@@ -1715,6 +1718,12 @@ extern const u32 gItemIcon_FineRemedy[];
 extern const u32 gItemIconPalette_FineRemedy[];
 extern const u32 gItemIcon_SuperbRemedy[];
 extern const u32 gItemIconPalette_SuperbRemedy[];
+extern const u32 gItemIcon_AuxBottle[];
+extern const u32 gItemIconPalette_AuxEvasion[];
+extern const u32 gItemIconPalette_AuxGuard[];
+extern const u32 gItemIconPalette_AuxPower[];
+extern const u32 gItemIcon_AuxPowerguard[];
+extern const u32 gItemIconPalette_AuxPowerguard[];
 extern const u32 gItemIcon_ChoiceDumpling[];
 extern const u32 gItemIconPalette_ChoiceDumpling[];
 extern const u32 gItemIcon_JubilifeMuffin[];
@@ -1974,6 +1983,8 @@ extern const u32 gSummaryMoveSelect_Gfx[];
 extern const u32 gSummaryMoveSelect_Pal[];
 extern const u32 gStatusGfx_Icons[];
 extern const u32 gStatusPal_Icons[];
+extern const u16 gCategoryIcons_Pal[];
+extern const u32 gCategoryIcons_Gfx[];
 
 extern const u32 gShopMenu_Gfx[];
 extern const u32 gShopMenu_Tilemap[];
@@ -2692,6 +2703,10 @@ extern const u32 gBattleAnimSpriteGfx_Punishment[];
 extern const u32 gBattleAnimSpritePal_Punishment[];
 extern const u32 gBattleAnimSpriteGfx_QuickGuard[];
 extern const u32 gBattleAnimSpritePal_QuickGuard[];
+extern const u32 gBattleAnimSpriteGfx_TeraCrystal[];
+extern const u32 gBattleAnimSpritePal_TeraCrystal[];
+extern const u32 gBattleAnimSpriteGfx_TeraShatter[];
+extern const u32 gBattleAnimSpritePal_TeraShatter[];
 
 // New Battle Anim Particles
 extern const u32 gBattleAnimSpriteGfx_AlphaStone[];
@@ -2739,6 +2754,8 @@ extern const u32 gBattleAnimSpriteGfx_DragonPulseRing[];
 extern const u32 gBattleAnimSpritePal_DragonPulseRing[];
 extern const u32 gBattleAnimSpriteGfx_DreepyMissile[];
 extern const u32 gBattleAnimSpritePal_DreepyMissile[];
+extern const u32 gBattleAnimSpriteGfx_DreepyMissileShiny[];
+extern const u32 gBattleAnimSpritePal_DreepyMissileShiny[];
 extern const u32 gBattleAnimSpriteGfx_Drill[];
 extern const u32 gBattleAnimSpritePal_Drill[];
 extern const u32 gBattleAnimSpriteGfx_NewEmbers[];
