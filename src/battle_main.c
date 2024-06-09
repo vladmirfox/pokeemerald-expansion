@@ -3677,8 +3677,8 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
     // Clear Dynamax data
-    UndoDynamax(battler);	
-	
+    UndoDynamax(battler);
+
     return result;
 }
 
@@ -4163,6 +4163,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));  // erase all totem boosts just to be safe
 
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
+    SetShellSideArmCategory();
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
     {
@@ -4255,6 +4256,7 @@ void BattleTurnPassed(void)
     *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
+    SetShellSideArmCategory();
     gBattleMainFunc = HandleTurnActionSelectionState;
 
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -5835,7 +5837,7 @@ static void TryEvolvePokemon(void)
             sTriedEvolving |= gBitTable[i];
 
             if (species == SPECIES_NONE && (gLeveledUpInBattle & gBitTable[i]))
-            { 
+            {
                 gLeveledUpInBattle &= ~(gBitTable[i]);
                 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_NORMAL, gLeveledUpInBattle, NULL);
             }

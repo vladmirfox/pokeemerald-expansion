@@ -469,6 +469,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
 
+
     if (considerZPower && IsViableZMove(battlerAtk, move))
     {
         //temporarily enable z moves for damage calcs
@@ -477,8 +478,9 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     }
     else if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
         gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
-
-    if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
+    else if (gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] && gMovesInfo[move].effect == EFFECT_SHELL_SIDE_ARM)
+        gBattleStruct->swapDamageCategory = TRUE;
+    else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();
 
     gBattleStruct->dynamicMoveType = 0;
