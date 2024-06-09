@@ -2199,7 +2199,7 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
             speciesTag = speciesTag - SPECIES_SHINY_TAG;
 
         speciesTag = SanitizeSpeciesId(speciesTag);
-        if (P_TWO_FRAME_FRONT_SPRITES && gSpeciesInfo[speciesTag].frontAnimFrames != NULL)
+        if (gSpeciesInfo[speciesTag].frontAnimFrames != NULL)
             gMultiuseSpriteTemplate.anims = gSpeciesInfo[speciesTag].frontAnimFrames;
         else
             gMultiuseSpriteTemplate.anims = gSpeciesInfo[SPECIES_NONE].frontAnimFrames;
@@ -6220,7 +6220,7 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return species != SPECIES_UNOWN;
+    return P_TWO_FRAME_FRONT_SPRITES && species != SPECIES_UNOWN;
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
