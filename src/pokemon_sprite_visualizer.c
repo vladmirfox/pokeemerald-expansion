@@ -403,11 +403,11 @@ static void SetUpModifyArrows(struct PokemonSpriteVisualizer *data);
 static void UpdateBattlerValue(struct PokemonSpriteVisualizer *data);
 static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits);
 static bool32 TryMoveDigit(struct PokemonSpriteVisualizerModifyArrows *modArrows, bool32 moveUp);
-static void CB2_Pokemon_Sprite_Visualizer_Runner(void);
-static void ResetBGs_Pokemon_Sprite_Visualizer(u16);
-static void Handle_Input_Pokemon_Sprite_Visualizer(u8);
+static void CB2_PokemonSpriteVisualizerRunner(void);
+static void ResetBGs_PokemonSpriteVisualizer(u16);
+static void HandleInput_PokemonSpriteVisualizer(u8);
 static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data);
-static void Exit_Pokemon_Sprite_Visualizer(u8);
+static void Exit_PokemonSpriteVisualizer(u8);
 
 //Text handling functions
 static void UNUSED PadString(const u8 *src, u8 *dst)
@@ -1079,7 +1079,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
         default:
             SetVBlankCallback(NULL);
             FreeMonSpritesGfx();
-            ResetBGs_Pokemon_Sprite_Visualizer(0);
+            ResetBGs_PokemonSpriteVisualizer(0);
             DmaFillLarge16(3, 0, (u8 *)VRAM, VRAM_SIZE, 0x1000)
             DmaClear32(3, OAM, OAM_SIZE);
             DmaClear16(3, PLTT, PLTT_SIZE);
@@ -1119,7 +1119,7 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             ShowBg(3);
 
             //input task handler
-            taskId = CreateTask(Handle_Input_Pokemon_Sprite_Visualizer, 0);
+            taskId = CreateTask(HandleInput_PokemonSpriteVisualizer, 0);
 
             data = AllocZeroed(sizeof(struct PokemonSpriteVisualizer));
             SetStructPtr(taskId, data);
@@ -1153,17 +1153,17 @@ void CB2_Pokemon_Sprite_Visualizer(void)
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 4);
             SetMultiuseSpriteTemplateToPokemon(species, 2);
             offset_y = gSpeciesInfo[species].backPicYOffset;
-            data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, PSV_MON_BACK_X, PSV_MON_BACK_Y + offset_y, 0);
+            data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, VISUALIZER_MON_BACK_X, VISUALIZER_MON_BACK_Y + offset_y, 0);
             gSprites[data->backspriteId].oam.paletteNum = 4;
             gSprites[data->backspriteId].callback = SpriteCallbackDummy;
             gSprites[data->backspriteId].oam.priority = 0;
 
             //Icon Sprite
-            data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, PSV_ICON_X, PSV_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+            data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             gSprites[data->iconspriteId].oam.priority = 0;
 
             //Follower Sprite
-            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, PSV_FOLLOWER_X, PSV_FOLLOWER_Y, 0);
+            data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species, SpriteCB_Follower, VISUALIZER_FOLLOWER_X, VISUALIZER_FOLLOWER_Y, 0);
             gSprites[data->followerspriteId].oam.priority = 0;
             gSprites[data->followerspriteId].anims = sAnims_Follower;
 
@@ -1194,13 +1194,13 @@ void CB2_Pokemon_Sprite_Visualizer(void)
         case 4:
             EnableInterrupts(1);
             SetVBlankCallback(VBlankCB);
-            SetMainCallback2(CB2_Pokemon_Sprite_Visualizer_Runner);
+            SetMainCallback2(CB2_PokemonSpriteVisualizerRunner);
             m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 0x80);
             break;
     }
 }
 
-static void CB2_Pokemon_Sprite_Visualizer_Runner(void)
+static void CB2_PokemonSpriteVisualizerRunner(void)
 {
     RunTasks();
     AnimateSprites();
@@ -1208,7 +1208,7 @@ static void CB2_Pokemon_Sprite_Visualizer_Runner(void)
     UpdatePaletteFade();
 }
 
-static void ResetBGs_Pokemon_Sprite_Visualizer(u16 a)
+static void ResetBGs_PokemonSpriteVisualizer(u16 a)
 {
     if (!(a & DISPCNT_BG0_ON))
     {
@@ -1251,7 +1251,7 @@ static void ApplyOffsetSpriteValues(struct PokemonSpriteVisualizer *data)
 {
     u16 species = data->currentmonId;
     //Back
-    gSprites[data->backspriteId].y = PSV_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + data->offsetsSpriteValues.offset_back_picCoords;
+    gSprites[data->backspriteId].y = VISUALIZER_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + data->offsetsSpriteValues.offset_back_picCoords;
     //Front
     gSprites[data->frontspriteId].y = GetBattlerSpriteFinal_YCustom(species, data->offsetsSpriteValues.offset_front_picCoords, data->offsetsSpriteValues.offset_front_elevation);
 
@@ -1374,7 +1374,7 @@ static void UpdateSubmenuTwoOptionValue(u8 taskId, bool8 increment)
                 offset -= 1;
         }
         data->offsetsSpriteValues.offset_back_picCoords = offset;
-        gSprites[data->backspriteId].y = PSV_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + offset;
+        gSprites[data->backspriteId].y = VISUALIZER_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + offset;
         break;
     case 1: //Front picCoords
         offset = data->offsetsSpriteValues.offset_front_picCoords;
@@ -1445,7 +1445,7 @@ static void Task_AnimateAfterDelay(u8 taskId)
     }
 }
 
-static void Handle_Input_Pokemon_Sprite_Visualizer(u8 taskId)
+static void HandleInput_PokemonSpriteVisualizer(u8 taskId)
 {
     struct PokemonSpriteVisualizer *data = GetStructPtr(taskId);
     struct Sprite *Frontsprite = &gSprites[data->frontspriteId];
@@ -1508,7 +1508,7 @@ static void Handle_Input_Pokemon_Sprite_Visualizer(u8 taskId)
         else if (JOY_NEW(B_BUTTON))
         {
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
-            gTasks[taskId].func = Exit_Pokemon_Sprite_Visualizer;
+            gTasks[taskId].func = Exit_PokemonSpriteVisualizer;
             PlaySE(SE_PC_OFF);
         }
         else if (JOY_NEW(DPAD_DOWN))
@@ -1709,20 +1709,20 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 5);
     SetMultiuseSpriteTemplateToPokemon(species, 2);
     offset_y = gSpeciesInfo[species].backPicYOffset;
-    data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, PSV_MON_BACK_X, PSV_MON_BACK_Y + offset_y, 0);
+    data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, VISUALIZER_MON_BACK_X, VISUALIZER_MON_BACK_Y + offset_y, 0);
     gSprites[data->backspriteId].oam.paletteNum = 5;
     gSprites[data->backspriteId].callback = SpriteCallbackDummy;
     gSprites[data->backspriteId].oam.priority = 0;
 
     //Icon Sprite
-    data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, PSV_ICON_X, PSV_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
+    data->iconspriteId = CreateMonIcon(species, SpriteCB_MonIcon, VISUALIZER_ICON_X, VISUALIZER_ICON_Y, 4, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     gSprites[data->iconspriteId].oam.priority = 0;
 
     //Follower Sprite
     data->followerspriteId = CreateObjectGraphicsSprite(OBJ_EVENT_GFX_MON_BASE + species + (data->isShiny ? SPECIES_SHINY_TAG : 0),
                                                         SpriteCB_Follower,
-                                                        PSV_FOLLOWER_X,
-                                                        PSV_FOLLOWER_Y,
+                                                        VISUALIZER_FOLLOWER_X,
+                                                        VISUALIZER_FOLLOWER_Y,
                                                         0);
     gSprites[data->followerspriteId].oam.priority = 0;
     gSprites[data->followerspriteId].anims = sAnims_Follower;
@@ -1751,7 +1751,7 @@ static void ReloadPokemonSprites(struct PokemonSpriteVisualizer *data)
     CopyWindowToVram(WIN_FOOTPRINT, COPYWIN_GFX);
 }
 
-static void Exit_Pokemon_Sprite_Visualizer(u8 taskId)
+static void Exit_PokemonSpriteVisualizer(u8 taskId)
 {
     if (!gPaletteFade.active)
     {

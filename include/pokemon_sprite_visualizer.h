@@ -17,13 +17,13 @@ struct PokemonSpriteVisualizerModifyArrows
     u8 typeOfVal;
 };
 
-struct PokemonDebugOptionArrows
+struct PokemonSpriteVisualizerOptionArrows
 {
     u8 arrowSpriteId[1];
     u8 currentDigit;
 };
 
-struct PokemonDebugYPosModifiyArrows
+struct PokemonSpriteVisualizerYPosModifiyArrows
 {
     u8 arrowSpriteId[1];
     u8 currentDigit;
@@ -56,8 +56,8 @@ struct PokemonSpriteVisualizer
     bool8 isShiny;
     bool8 isFemale;
     struct PokemonSpriteVisualizerModifyArrows modifyArrows;
-    struct PokemonDebugOptionArrows optionArrows;
-    struct PokemonDebugYPosModifiyArrows yPosModifyArrows;
+    struct PokemonSpriteVisualizerOptionArrows optionArrows;
+    struct PokemonSpriteVisualizerYPosModifiyArrows yPosModifyArrows;
     struct PokemonSpriteConstValues constSpriteValues;
     struct PokemonSpriteOffsets offsetsSpriteValues;
     u8 animIdBack;
