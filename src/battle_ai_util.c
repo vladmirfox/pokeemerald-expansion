@@ -535,7 +535,7 @@ void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 ba
 
     if (gMovesInfo[move].power && !isDamageMoveUnusable)
     {
-        s32 critChanceIndex, normalDmg, fixedBasePower, n;
+        s32 critChanceIndex, fixedBasePower, n;
 
         ProteanTryChangeType(battlerAtk, aiData->abilities[battlerAtk], move, moveType);
         // Certain moves like Rollout calculate damage based on values which change during the move execution, but before calling dmg calc.
@@ -552,37 +552,39 @@ void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 ba
             fixedBasePower = 0;
             break;
         }
-        normalDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                             effectivenessMultiplier, weather, FALSE,
-                                             aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                             aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
         critChanceIndex = CalcCritChanceStageArgs(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         if (critChanceIndex > 1) // Consider crit damage only if a move has at least +2 crit chance
         {
+            s32 nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
+                                                    effectivenessMultiplier, weather, FALSE,
+                                                    aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                    aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
             s32 critDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                             effectivenessMultiplier, weather, TRUE,
-                                             aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                             aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                 effectivenessMultiplier, weather, TRUE,
+                                                 aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                 aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+
             u32 critOdds = GetCritHitOdds(critChanceIndex);
             // With critOdds getting closer to 1, dmg gets closer to critDmg.
             if (dmgRoll == DMG_ROLL_DEFAULT)
-                dmg = DmgRoll((critDmg + normalDmg * (critOdds - 1)) / (critOdds));
+                dmg = DmgRoll((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds));
             else if (dmgRoll == DMG_ROLL_HIGHEST)
-                dmg = HighestRollDmg((critDmg + normalDmg * (critOdds - 1)) / (critOdds));
+                dmg = HighestRollDmg((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds));
             else
-                dmg = LowestRollDmg((critDmg + normalDmg * (critOdds - 1)) / (critOdds)); // Default to lowest roll
+                dmg = LowestRollDmg((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds)); // Default to lowest roll
             if (critOdds == 1)
                 minDmg = LowestRollDmg(critDmg);
             else
-                minDmg = LowestRollDmg(normalDmg);
+                minDmg = LowestRollDmg(nonCritDmg);
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
             s32 critDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                             effectivenessMultiplier, weather, TRUE,
-                                             aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                             aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                 effectivenessMultiplier, weather, TRUE,
+                                                 aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                 aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+
             if (dmgRoll == DMG_ROLL_DEFAULT)
                 dmg = DmgRoll(critDmg);
             else if (dmgRoll == DMG_ROLL_HIGHEST)
@@ -593,13 +595,17 @@ void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 ba
         }
         else
         {
+            s32 nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
+                                                    effectivenessMultiplier, weather, FALSE,
+                                                    aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                    aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
             if (dmgRoll == DMG_ROLL_DEFAULT)
-                dmg = DmgRoll(normalDmg);
+                dmg = DmgRoll(nonCritDmg);
             else if (dmgRoll == DMG_ROLL_HIGHEST)
-                dmg = HighestRollDmg(normalDmg);
+                dmg = HighestRollDmg(nonCritDmg);
             else
-                dmg = LowestRollDmg(normalDmg); // Default to lowest roll
-            minDmg = LowestRollDmg(normalDmg);
+                dmg = LowestRollDmg(nonCritDmg); // Default to lowest roll
+            minDmg = LowestRollDmg(nonCritDmg);
         }
 
         if (!gBattleStruct->zmove.active)
