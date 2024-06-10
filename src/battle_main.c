@@ -2915,6 +2915,37 @@ void SpriteCB_PlayerMonFromBall(struct Sprite *sprite)
         BattleAnimateBackSprite(sprite, sprite->sSpeciesId);
 }
 
+void SpriteCB_PlayerMonSlideIn(struct Sprite *sprite)
+{
+    if (sprite->data[3] == 0)
+    {
+        PlaySE(SE_BALL_TRAY_ENTER);
+        sprite->data[3]++;
+    }
+    else if (sprite->data[3] == 1)
+    {
+        if (sprite->animEnded)
+            return;
+        sprite->data[4] = sprite->x;
+        sprite->x = -33;
+        sprite->invisible = FALSE;
+        sprite->data[3]++;
+    }
+    else if (sprite->data[3] < 27)
+    {
+        sprite->x += 4;
+        sprite->data[3]++;
+    }
+    else
+    {
+        sprite->data[3] = 0;
+        sprite->x = sprite->data[4];
+        sprite->data[4] = 0;
+        sprite->callback = SpriteCB_PlayerMonFromBall;
+        PlayCry_ByMode(sprite->sSpeciesId, -25, CRY_MODE_NORMAL);
+    }
+}
+
 static void SpriteCB_TrainerThrowObject_Main(struct Sprite *sprite)
 {
     AnimSetCenterToCornerVecX(sprite);
@@ -3390,8 +3421,8 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
     // Clear Dynamax data
-    UndoDynamax(battler);
-    
+    UndoDynamax(battler);	
+
     return result;
 }
 
@@ -5055,7 +5086,10 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 gBattleStruct->tera.toTera &= ~(gBitTable[gBattlerAttacker]);
                 PrepareBattlerForTera(gBattlerAttacker);
                 PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetBattlerTeraType(gBattlerAttacker));
-                BattleScriptExecute(BattleScript_Terastallization);
+                if (TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_TERASTALLIZATION))
+                    BattleScriptExecute(BattleScript_TeraFormChange);
+                else
+                    BattleScriptExecute(BattleScript_Terastallization);
                 return TRUE;
             }
             // Dynamax Check
