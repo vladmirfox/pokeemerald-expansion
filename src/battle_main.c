@@ -5784,8 +5784,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 
     attackerAbility = GetBattlerAbility(battlerAtk);
     if (gMovesInfo[move].type == TYPE_NORMAL
-        && TrySetAteType(move, battlerAtk, attackerAbility)
-        && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)
+     && TrySetAteType(move, battlerAtk, attackerAbility)
+     && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)
     {
             gBattleStruct->ateBoost[battlerAtk] = 1;
     }

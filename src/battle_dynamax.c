@@ -77,12 +77,13 @@ bool32 CanDynamax(u32 battler)
     u16 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Dynamax battle flag is set. This needs to be defined in include/config/battle.h
-    if ((B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE))) && !TESTING)
+    if (!TESTING && (B_FLAG_DYNAMAX_BATTLE == 0 || (B_FLAG_DYNAMAX_BATTLE != 0 && !FlagGet(B_FLAG_DYNAMAX_BATTLE))))
         return FALSE;
 
     // Check if Player has a Dynamax Band.
-    if ((GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT))
-          && !CheckBagHasItem(ITEM_DYNAMAX_BAND, 1) && !TESTING)
+    if (!TESTING && (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT
+        || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT))
+         && !CheckBagHasItem(ITEM_DYNAMAX_BAND, 1))
         return FALSE;
 
     // Check if species isn't allowed to Dynamax.
@@ -104,7 +105,7 @@ bool32 CanDynamax(u32 battler)
         return FALSE;
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if ((holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE) && !TESTING)
+    if (!TESTING && (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE))  // tests make this check already
         return FALSE;
 
     // TODO: Cannot Dynamax in a Max Raid if you don't have Dynamax Energy.

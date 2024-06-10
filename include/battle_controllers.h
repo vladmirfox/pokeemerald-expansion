@@ -98,7 +98,7 @@ enum {
 
 // Special return values in gBattleBufferB from Battle Controller functions.
 #define RET_VALUE_LEVELED_UP   11
-#define RET_GIMMICK        (1 << 7)
+#define RET_GIMMICK            (1 << 7)
 
 struct UnusedControllerStruct
 {

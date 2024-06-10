@@ -23,7 +23,8 @@ static const struct SpritePalette sSpritePalette_BurstTrigger = {sBurstTriggerPa
 static const struct SpritePalette sSpritePalette_DynamaxTrigger = {sDynamaxTriggerPal, TAG_GIMMICK_TRIGGER_PAL};
 static const struct SpritePalette sSpritePalette_TeraTrigger = {sTeraTriggerPal, TAG_GIMMICK_TRIGGER_TILE};
 
-static const struct OamData sOamData_GimmickTrigger = {
+static const struct OamData sOamData_GimmickTrigger =
+{
     .y = 0,
     .affineMode = 0,
     .objMode = 0,

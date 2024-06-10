@@ -2126,7 +2126,7 @@ void MoveGetIdAndSlot(s32 battlerId, struct MoveContext *ctx, u32 *moveId, u32 *
                    && ctx->gimmick == GIMMICK_Z_MOVE), "Cannot use multiple gimmicks on the same battler");
 
         DATA.chosenGimmick[side][DATA.currentMonIndexes[battlerId]] = ctx->gimmick;
-        *moveSlot |= RET_GIMMICK;    
+        *moveSlot |= RET_GIMMICK;
     }
 }
 

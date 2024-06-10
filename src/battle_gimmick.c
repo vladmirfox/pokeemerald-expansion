@@ -72,7 +72,7 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
     }
     // The player can bypass these checks because they can choose through the controller.
     else if (GetBattlerSide(battler) == B_SIDE_PLAYER
-             && !((gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
+         && !((gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))
     {
         return TRUE;
     }
@@ -100,9 +100,7 @@ bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
     }
     // Otherwise, return whether current battler has used gimmick.
     else
-    {
         return gBattleStruct->gimmick.activated[battler][gimmick];
-    }
 }
 
 // Sets a gimmick as used by a trainer with checks for Multi Battles.
@@ -137,28 +135,26 @@ void CreateGimmickTriggerSprite(u32 battler)
 
     // Exit if there shouldn't be a sprite produced.
     if (GetBattlerSide(battler) == B_SIDE_OPPONENT
-        || gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_NONE
-        || gimmick->triggerSheet == NULL)
+     || gBattleStruct->gimmick.usableGimmick[battler] == GIMMICK_NONE
+     || gimmick->triggerSheet == NULL)
     {
         return;
     }
 
     LoadSpritePalette(gimmick->triggerPal);
     if (GetSpriteTileStartByTag(TAG_GIMMICK_TRIGGER_TILE) == 0xFFFF)
-    {
         LoadSpriteSheet(gimmick->triggerSheet);
-    }
 
     if (gBattleStruct->gimmick.triggerSpriteId == 0xFF)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             gBattleStruct->gimmick.triggerSpriteId = CreateSprite(gimmick->triggerTemplate,
-                                                             gSprites[gHealthboxSpriteIds[battler]].x - DOUBLES_GIMMICK_TRIGGER_POS_X_SLIDE,
-                                                             gSprites[gHealthboxSpriteIds[battler]].y - DOUBLES_GIMMICK_TRIGGER_POS_Y_DIFF, 0);
+                                                                  gSprites[gHealthboxSpriteIds[battler]].x - DOUBLES_GIMMICK_TRIGGER_POS_X_SLIDE,
+                                                                  gSprites[gHealthboxSpriteIds[battler]].y - DOUBLES_GIMMICK_TRIGGER_POS_Y_DIFF, 0);
         else
             gBattleStruct->gimmick.triggerSpriteId = CreateSprite(gimmick->triggerTemplate,
-                                                             gSprites[gHealthboxSpriteIds[battler]].x - SINGLES_GIMMICK_TRIGGER_POS_X_SLIDE,
-                                                             gSprites[gHealthboxSpriteIds[battler]].y - SINGLES_GIMMICK_TRIGGER_POS_Y_DIFF, 0);
+                                                                  gSprites[gHealthboxSpriteIds[battler]].x - SINGLES_GIMMICK_TRIGGER_POS_X_SLIDE,
+                                                                  gSprites[gHealthboxSpriteIds[battler]].y - SINGLES_GIMMICK_TRIGGER_POS_Y_DIFF, 0);
     }
 
     gSprites[gBattleStruct->gimmick.triggerSpriteId].tBattler = battler;
@@ -263,17 +259,12 @@ void LoadIndicatorSpritesGfx(void)
     for (gimmick = 0; gimmick < GIMMICKS_COUNT; ++gimmick)
     {
         if (gimmick == GIMMICK_TERA) // special case
-        {
             LoadSpriteSheets(sTeraIndicatorSpriteSheets);
-        }
         else if (gGimmicksInfo[gimmick].indicatorSheet != NULL)
-        {
             LoadSpriteSheet(gGimmicksInfo[gimmick].indicatorSheet);
-        }
+
         if (gGimmicksInfo[gimmick].indicatorPal != NULL)
-        {
             LoadSpritePalette(gGimmicksInfo[gimmick].indicatorPal);
-        }
     }
     // Primal reversion graphics aren't loaded as part of gimmick data
     LoadSpriteSheet(&sSpriteSheet_AlphaIndicator);
@@ -323,17 +314,11 @@ u32 GetIndicatorPalTag(u32 battler)
 {
     u32 gimmick = GetActiveGimmick(battler);
     if (IsBattlerPrimalReverted(battler))
-    {
         return TAG_MISC_INDICATOR_PAL;
-    }
     else if (gGimmicksInfo[gimmick].indicatorPal != NULL)
-    {
         return gGimmicksInfo[gimmick].indicatorPal->tag;
-    }
     else
-    {
         return TAG_NONE;
-    }
 }
 
 void UpdateIndicatorVisibilityAndType(u32 healthboxId, bool32 invisible)

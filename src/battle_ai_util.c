@@ -3745,20 +3745,20 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
     if (IsViableZMove(battlerAtk, chosenMove))
     {
         u8 effectiveness;
-        u32 zmove = GetUsableZMove(battlerAtk, chosenMove);
+        u32 zMove = GetUsableZMove(battlerAtk, chosenMove);
 
         if (gBattleMons[battlerDef].ability == ABILITY_DISGUISE
-            && !gMovesInfo[zmove].ignoresTargetAbility
+            && !gMovesInfo[zMove].ignoresTargetAbility
             && (gBattleMons[battlerDef].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battlerDef].species == SPECIES_MIMIKYU_TOTEM_DISGUISED))
             return FALSE; // Don't waste a Z-Move busting disguise
         if (gBattleMons[battlerDef].ability == ABILITY_ICE_FACE
-            && !gMovesInfo[zmove].ignoresTargetAbility
+            && !gMovesInfo[zMove].ignoresTargetAbility
             && gBattleMons[battlerDef].species == SPECIES_EISCUE_ICE_FACE && IS_MOVE_PHYSICAL(chosenMove))
             return FALSE; // Don't waste a Z-Move busting Ice Face
 
-        if (IS_MOVE_STATUS(chosenMove) && !IS_MOVE_STATUS(zmove))
+        if (IS_MOVE_STATUS(chosenMove) && !IS_MOVE_STATUS(zMove))
             return FALSE;
-        else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(zmove))
+        else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(zMove))
             return FALSE;
 
         if (!IS_MOVE_STATUS(chosenMove) && AI_CalcDamageSaveBattlers(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT) >= gBattleMons[battlerDef].hp)

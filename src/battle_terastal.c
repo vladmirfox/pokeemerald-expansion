@@ -64,13 +64,14 @@ bool32 CanTerastallize(u32 battler)
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Player has Tera Orb and has charge.
-    if ((!CheckBagHasItem(ITEM_TERA_ORB, 1)
-        || !((B_FLAG_TERA_ORB_NO_COST != 0 && FlagGet(B_FLAG_TERA_ORB_NO_COST))
-        || (B_FLAG_TERA_ORB_CHARGED != 0 && FlagGet(B_FLAG_TERA_ORB_CHARGED)
-        && ((battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT))))))
-        && !TESTING)
+    if (!TESTING && !(B_FLAG_TERA_ORB_NO_COST != 0 && FlagGet(B_FLAG_TERA_ORB_NO_COST))
+        && (battler == B_POSITION_PLAYER_LEFT
+        || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT)))
     {
-        return FALSE;
+        if (!CheckBagHasItem(ITEM_TERA_ORB, 1))
+            return FALSE;
+        if (B_FLAG_TERA_ORB_CHARGED != 0 && !FlagGet(B_FLAG_TERA_ORB_CHARGED))
+            return FALSE;
     }
 
     // Check if Trainer has already Terastallized.
@@ -86,7 +87,7 @@ bool32 CanTerastallize(u32 battler)
         return FALSE;
 
     // Check if battler is holding a Z-Crystal or Mega Stone.
-    if ((holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE) && !TESTING)
+    if (!TESTING && (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)) // tests make this check already
         return FALSE;
 
     // Every check passed!
