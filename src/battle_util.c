@@ -11397,10 +11397,14 @@ void SetShellSideArmCategory(void)
     for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {
         attackerAtkStat = gBattleMons[battlerAtk].attack;
-        attackerSpAtkStat = gBattleMons[battlerAtk].spAttack;
         statStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
         attackerAtkStat *= gStatStageRatios[statStage][0];
         attackerAtkStat /= gStatStageRatios[statStage][1];
+
+        attackerSpAtkStat = gBattleMons[battlerAtk].spAttack;
+        statStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        attackerSpAtkStat *= gStatStageRatios[statStage][0];
+        attackerSpAtkStat /= gStatStageRatios[statStage][1];
 
         for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
@@ -11414,10 +11418,6 @@ void SetShellSideArmCategory(void)
             targetDefStat /= gStatStageRatios[statStage][1];
 
             physical = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * gMovesInfo[MOVE_SHELL_SIDE_ARM].power * attackerAtkStat) / targetDefStat) / 50);
-
-            statStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
-            attackerSpAtkStat *= gStatStageRatios[statStage][0];
-            attackerSpAtkStat /= gStatStageRatios[statStage][1];
 
             statStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
             targetSpDefStat *= gStatStageRatios[statStage][0];
