@@ -1,11 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-    ASSUME(gMovesInfo[MOVE_SHELL_SIDE_ARM].effect == EFFECT_SHELL_SIDE_ARM);
-}
-
 SINGLE_BATTLE_TEST("Shell Side Arm can be countered if it is physical")
 {
     GIVEN {
