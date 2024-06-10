@@ -6395,8 +6395,6 @@ static void Cmd_moveend(void)
             gBattleStruct->hitSwitchTargetFailed = FALSE;
             gBattleStruct->isAtkCancelerForCalledMove = FALSE;
             gBattleStruct->swapDamageCategory = FALSE;
-            for (i = 0; i < gBattlersCount; i++)
-                gBattleStruct->shellSideArmCategory[gBattlerAttacker][i] = FALSE;
             gBattleStruct->bouncedMoveIsUsed = FALSE;
             gBattleStruct->enduredDamage = 0;
             gBattleStruct->additionalEffectsCounter = 0;
