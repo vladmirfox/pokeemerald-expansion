@@ -100,7 +100,9 @@ bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
     }
     // Otherwise, return whether current battler has used gimmick.
     else
+    {
         return gBattleStruct->gimmick.activated[battler][gimmick];
+    }
 }
 
 // Sets a gimmick as used by a trainer with checks for Multi Battles.
