@@ -33,6 +33,7 @@
     return FALSE
 
 static u32 AI_GetEffectiveness(uq4_12_t multiplier);
+u32 AI_GetBattlerAbility(u32);
 
 // Functions
 bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move)
@@ -413,7 +414,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     // Battler doesn't see partners Ability for some reason.
     // This is a small hack to avoid the issue but should be investigated
     if (battlerDef == BATTLE_PARTNER(battlerAtk))
-        battlerDefAbility = GetBattlerAbility(battlerDef);
+        battlerDefAbility = AI_GetBattlerAbility(battlerDef);
 
     switch (battlerDefAbility)
     {
@@ -498,6 +499,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
+    gBattleStruct->aiCalcInProgress = TRUE;
 
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
@@ -646,6 +648,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     *typeEffectiveness = AI_GetEffectiveness(effectivenessMultiplier);
 
     // Undo temporary settings
+    gBattleStruct->aiCalcInProgress = FALSE;
     gBattleStruct->swapDamageCategory = FALSE;
     gBattleStruct->zmove.baseMoves[battlerAtk] = MOVE_NONE;
     if (toggledGimmick)
@@ -2948,18 +2951,41 @@ bool32 IsWakeupTurn(u32 battler)
 bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
 {
     struct Pokemon *party;
-    u32 i;
+    u32 i, battlerOnField1, battlerOnField2;
 
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         party = gPlayerParty;
     else
         party = gEnemyParty;
 
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battlerId)))];
+        // Check partner's status
+        if ((B_HEAL_BELL_SOUNDPROOF == GEN_5 || AI_DATA->abilities[BATTLE_PARTNER(battlerId)] != ABILITY_SOUNDPROOF || !checkSoundproof)
+         && GetMonData(&party[battlerOnField2], MON_DATA_STATUS) != STATUS1_NONE)
+            return TRUE;
+    }
+    else // In singles there's only one battlerId by side.
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[battlerId];
+    }
+
+    // Check attacker's status
+    if ((B_HEAL_BELL_SOUNDPROOF == GEN_5 || B_HEAL_BELL_SOUNDPROOF >= GEN_9
+      || AI_DATA->abilities[battlerId] != ABILITY_SOUNDPROOF || !checkSoundproof)
+     && GetMonData(&party[battlerOnField1], MON_DATA_STATUS) != STATUS1_NONE)
+        return TRUE;
+
+    // Check inactive party mons' status
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
+        if (i == battlerOnField1 || i == battlerOnField2)
             continue;
-
+        if (B_HEAL_BELL_SOUNDPROOF < GEN_5 && checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
+            continue;
         if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
             return TRUE;
     }
@@ -3213,7 +3239,7 @@ bool32 ShouldUseWishAromatherapy(u32 battlerAtk, u32 battlerDef, u32 move)
     u32 i;
     s32 firstId, lastId;
     struct Pokemon* party;
-    bool32 hasStatus = FALSE;
+    bool32 hasStatus = AnyPartyMemberStatused(battlerAtk, gMovesInfo[move].soundMove);
     bool32 needHealing = FALSE;
 
     GetAIPartyIndexes(battlerAtk, &firstId, &lastId);
@@ -3238,12 +3264,6 @@ bool32 ShouldUseWishAromatherapy(u32 battlerAtk, u32 battlerDef, u32 move)
               && i >= firstId && i < lastId) // Can only switch to mon on your team
             {
                 needHealing = TRUE;
-            }
-
-            if (GetMonData(&party[i], MON_DATA_STATUS, NULL) != STATUS1_NONE)
-            {
-                if (move != MOVE_HEAL_BELL || GetMonAbility(&party[i]) != ABILITY_SOUNDPROOF)
-                    hasStatus = TRUE;
             }
         }
     }
