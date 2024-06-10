@@ -11412,13 +11412,13 @@ void SetShellSideArmCategory(void)
                 continue;
 
             targetDefStat = gBattleMons[battlerDef].defense;
-            targetSpDefStat = gBattleMons[battlerDef].spDefense;
             statStage = gBattleMons[battlerDef].statStages[STAT_DEF];
             targetDefStat *= gStatStageRatios[statStage][0];
             targetDefStat /= gStatStageRatios[statStage][1];
 
             physical = ((((2 * gBattleMons[battlerAtk].level / 5 + 2) * gMovesInfo[MOVE_SHELL_SIDE_ARM].power * attackerAtkStat) / targetDefStat) / 50);
 
+            targetSpDefStat = gBattleMons[battlerDef].spDefense;
             statStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
             targetSpDefStat *= gStatStageRatios[statStage][0];
             targetSpDefStat /= gStatStageRatios[statStage][1];
