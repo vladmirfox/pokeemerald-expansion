@@ -998,8 +998,8 @@
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
 	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
 	callnative ScrCmd_createmon
-    .byte 0
-    .byte 6    @ PARTY_SIZE - assign to first empty slot
+	.byte 0
+	.byte 6	@ PARTY_SIZE - assign to first empty slot
 	.set givemon_flags, 0
 	.2byte \species
 	.2byte \level
@@ -1053,13 +1053,13 @@
 	.ifnb \ggMaxFactor; .2byte \ggMaxFactor; .endif
 	.ifnb \teraType; .2byte \teraType; .endif
 	.endm
-    
-    @ creates a mon for a given party and slot
-    @ otherwise 
-    .macro createmon side:req, slot:req, species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
+
+	@ creates a mon for a given party and slot
+	@ otherwise 
+	.macro createmon side:req, slot:req, species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
 	callnative ScrCmd_createmon
-    .byte \side     @ 0 - player, 1 - opponent
-    .byte \slot     @ 0-5
+	.byte \side	 @ 0 - player, 1 - opponent
+	.byte \slot	 @ 0-5
 	.set givemon_flags, 0
 	.2byte \species
 	.2byte \level
@@ -1113,7 +1113,6 @@
 	.ifnb \ggMaxFactor; .2byte \ggMaxFactor; .endif
 	.ifnb \teraType; .2byte \teraType; .endif
 	.endm
-    
 
 	@ Gives the player an Egg of the specified species.
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
@@ -2297,8 +2296,8 @@
 	.byte \targetId
 	.endm
     
-    @ set the wild double battle flag
-    @ can be used in conjunection with createmon to set up a wild battle with 2 player mons vs. 1 enemy mon
-    .macro setwilddoubleflag
-    callnative ScriptSetDoubleBattleFlag
-    .endm
+	@ set the wild double battle flag
+	@ can be used in conjunection with createmon to set up a wild battle with 2 player mons vs. 1 enemy mon
+	.macro setwilddoubleflag
+	callnative ScriptSetDoubleBattleFlag
+	.endm

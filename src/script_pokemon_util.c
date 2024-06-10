@@ -412,13 +412,16 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
     SetMonData(&mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(&mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
 
-    if (slot < PARTY_SIZE) {
+    if (slot < PARTY_SIZE)
+    {
         if (side == 0)
             CopyMon(&gPlayerParty[slot], &mon, sizeof(struct Pokemon));
         else
             CopyMon(&gEnemyParty[slot], &mon, sizeof(struct Pokemon));
         sentToPc = MON_GIVEN_TO_PARTY;
-    } else {
+    }
+    else
+    {
         // find empty party slot to decide whether the Pokémon goes to the Player's party or the storage system.
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -437,18 +440,14 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, u
         }
     }
 
-    if (side == 0) {
+    if (side == 0)
+    {
         // set pokédex flags
         nationalDexNum = SpeciesToNationalPokedexNum(species);
-        switch (sentToPc)
+        if (sentToPc != MON_CANT_GIVE)
         {
-        case MON_GIVEN_TO_PARTY:
-        case MON_GIVEN_TO_PC:
             GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
             GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
-            break;
-        case MON_CANT_GIVE:
-            break;
         }
     }
 
@@ -505,7 +504,7 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
     u8 evs[NUM_STATS]        = {hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv};
     u8 ivs[NUM_STATS]        = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[MAX_MON_MOVES] = {move1, move2, move3, move4};
-    
+
     gSpecialVar_Result = ScriptGiveMonParameterized(side, slot, species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, isShiny, ggMaxFactor, teraType);
 }
 
