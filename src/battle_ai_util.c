@@ -365,15 +365,17 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
 }
 
 // To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
-void AI_CalcDamageSaveBattlers(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 dmgRoll)
+struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 dmgRoll)
 {
+    struct SimulatedDamage dmg;
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
-    AI_CalcDamage(damage, minDamage, move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), dmgRoll);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), dmgRoll);
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
+    return dmg;
 }
 
 static inline s32 LowestRollDmg(s32 dmg)
@@ -490,8 +492,9 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     return FALSE;
 }
 
-void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, u32 dmgRoll)
+struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, u32 dmgRoll)
 {
+    struct SimulatedDamage simDamage;
     s32 dmg, minDmg, moveType;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
@@ -706,8 +709,10 @@ void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 ba
     if (toggledTera)
         gBattleStruct->tera.isTerastallized[GetBattlerSide(battlerAtk)] &= ~(gBitTable[gBattlerPartyIndexes[battlerAtk]]);
 
-    *damage = dmg;
-    *minDamage = minDmg;
+    simDamage.expected = dmg;
+    simDamage.minimum = minDmg;
+
+    return simDamage;
 }
 
 bool32 AI_IsDamagedByRecoil(u32 battler)
@@ -964,12 +969,12 @@ u32 GetNoOfHitsToKOBattlerDmg(u32 dmg, u32 battlerDef)
 
 u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
 {
-    return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex], battlerDef);
+    return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex].expected, battlerDef);
 }
 
 u32 GetCurrDamageHpPercent(u32 battlerAtk, u32 battlerDef)
 {
-    int bestDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
+    int bestDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex].expected;
 
     return (bestDmg * 100) / gBattleMons[battlerDef].maxHP;
 }
@@ -1060,7 +1065,7 @@ bool32 CanTargetFaintAi(u32 battlerDef, u32 battlerAtk)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & gBitTable[i])
-            && AI_DATA->simulatedDmg[battlerDef][battlerAtk][i] >= gBattleMons[battlerAtk].hp)
+            && AI_DATA->simulatedDmg[battlerDef][battlerAtk][i].expected >= gBattleMons[battlerAtk].hp)
         {
             return TRUE;
         }
@@ -1098,9 +1103,9 @@ u32 GetBestDmgMoveFromBattler(u32 battlerAtk, u32 battlerDef)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & gBitTable[i])
-            && bestDmg < AI_DATA->simulatedDmg[battlerAtk][battlerDef][i])
+            && bestDmg < AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected)
         {
-            bestDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
+            bestDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected;
             move = moves[i];
         }
     }
@@ -1120,7 +1125,7 @@ bool32 CanAIFaintTarget(u32 battlerAtk, u32 battlerDef, u32 numHits)
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(moveLimitations & gBitTable[i]))
         {
             // Use the pre-calculated value in simulatedDmg instead of re-calculating it
-            dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
+            dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected;
 
             if (numHits)
                 dmg *= numHits;
@@ -1138,7 +1143,7 @@ bool32 CanTargetMoveFaintAi(u32 move, u32 battlerDef, u32 battlerAtk, u32 nHits)
     u32 indexSlot = GetMoveSlot(GetMovesArray(battlerDef), move);
     if (indexSlot < MAX_MON_MOVES)
     {
-        if (GetNoOfHitsToKO(AI_DATA->simulatedDmg[battlerDef][battlerAtk][indexSlot], gBattleMons[battlerAtk].hp) <= nHits)
+        if (GetNoOfHitsToKO(AI_DATA->simulatedDmg[battlerDef][battlerAtk][indexSlot].expected, gBattleMons[battlerAtk].hp) <= nHits)
             return TRUE;
     }
     return FALSE;
@@ -1158,7 +1163,7 @@ bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dm
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
+        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i].expected;
         if (dmgMod)
             dmg *= dmgMod;
 
@@ -1849,9 +1854,9 @@ bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index, u32 nu
     s32 dmg;
 
     if (numHits)
-        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index] * numHits;
+        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index].expected * numHits;
     else
-        dmg = AI_DATA->simulatedDmgMin[battlerAtk][battlerDef][index];
+        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index].minimum;
 
     if (gBattleMons[battlerDef].hp <= dmg)
         return TRUE;
@@ -3115,7 +3120,7 @@ bool32 ShouldRecover(u32 battlerAtk, u32 battlerDef, u32 move, u32 healPercent)
     if (move == 0xFFFF || AI_IsFaster(battlerAtk, battlerDef, move))
     {
         // using item or user going first
-        s32 damage = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
+        s32 damage = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex].expected;
         s32 healAmount = (healPercent * damage) / 100;
         if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
             healAmount = 0;
@@ -3369,7 +3374,7 @@ void FreeRestoreBattleMons(struct BattlePokemon *savedBattleMons)
 // party logic
 s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, bool32 isPartyMonAttacker, u32 dmgRoll)
 {
-    s32 dmg, minDmg;
+    struct SimulatedDamage dmg;
     u8 effectiveness;
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
 
@@ -3388,10 +3393,10 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
-    AI_CalcDamage(&dmg, &minDmg, move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), dmgRoll);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), dmgRoll);
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
-    return dmg;
+    return dmg.expected;
 }
 
 s32 CountUsablePartyMons(u32 battlerId)
@@ -3820,7 +3825,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
     if (IsViableZMove(battlerAtk, chosenMove))
     {
         u8 effectiveness;
-        s32 dmg, minDmg;
+        struct SimulatedDamage dmg;
 
         if (gBattleMons[battlerDef].ability == ABILITY_DISGUISE
             && (gBattleMons[battlerDef].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battlerDef].species == SPECIES_MIMIKYU_TOTEM_DISGUISED))
@@ -3833,9 +3838,9 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
         else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(gBattleStruct->zmove.chosenZMove))
             return FALSE;
 
-        AI_CalcDamageSaveBattlers(&dmg, &minDmg, chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT);
+        dmg = AI_CalcDamageSaveBattlers(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT);
 
-        if (!IS_MOVE_STATUS(chosenMove) && minDmg >= gBattleMons[battlerDef].hp)
+        if (!IS_MOVE_STATUS(chosenMove) && dmg.minimum >= gBattleMons[battlerDef].hp)
             return FALSE;   // don't waste damaging z move if can otherwise faint target
 
         return TRUE;
