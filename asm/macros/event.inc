@@ -989,7 +989,7 @@
 	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, ggMaxFactor, teraType
 	callnative ScrCmd_createmon
     .byte 0
-    .byte PARTY_SIZE    @ assign to first empty slot
+    .byte 6    @ PARTY_SIZE - assign to first empty slot
 	.set givemon_flags, 0
 	.2byte \species
 	.2byte \level
