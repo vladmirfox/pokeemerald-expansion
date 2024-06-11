@@ -1084,6 +1084,8 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 // does NOT include ability suppression checks
 s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
 {
+    u8 validAbilitySlots[ABILITIES_COUNT];
+    u8 i, numValidAbilities = 0;
     u32 knownAbility = GetBattlerAbility(battlerId);
 
     // We've had ability overwritten by e.g. Worry Seed. It is not part of AI_PARTY in case of switching
@@ -1105,17 +1107,12 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
     if (knownAbility == ABILITY_SHADOW_TAG || knownAbility == ABILITY_MAGNET_PULL || knownAbility == ABILITY_ARENA_TRAP)
         return knownAbility;
 
-    // Else, guess the ability
-    if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[0] != ABILITY_NONE)
-    {
-        u32 abilityGuess = ABILITY_NONE;
-        while (abilityGuess == ABILITY_NONE)
-        {
-            abilityGuess = gSpeciesInfo[gBattleMons[battlerId].species].abilities[RandomUniform(RNG_AI_ABILITY, 0, 2)];
-        }
+    for (i = 0; i < NUM_ABILITY_SLOTS; i++)
+        if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
+            validAbilitySlots[numValidAbilities++] = i;
 
-        return abilityGuess;
-    }
+    if (numValidAbilities > 0)
+        return gSpeciesInfo[gBattleMons[battlerId].species].abilities[validAbilitySlots[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)]];
 
     return ABILITY_NONE; // Unknown.
 }
