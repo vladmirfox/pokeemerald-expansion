@@ -1084,7 +1084,7 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 // does NOT include ability suppression checks
 s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
 {
-    u8 validAbilitySlots[ABILITIES_COUNT];
+    u32 validAbilities[NUM_ABILITY_SLOTS];
     u8 i, numValidAbilities = 0;
     u32 knownAbility = GetBattlerAbility(battlerId);
 
@@ -1109,10 +1109,10 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
 
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
         if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
-            validAbilitySlots[numValidAbilities++] = i;
+            validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
 
     if (numValidAbilities > 0)
-        return gSpeciesInfo[gBattleMons[battlerId].species].abilities[validAbilitySlots[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)]];
+        return validAbilities[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)];
 
     return ABILITY_NONE; // Unknown.
 }
