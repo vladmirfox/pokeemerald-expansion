@@ -4687,6 +4687,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             case EVO_OVERWORLD_STEPS:
                 if (evolutionTracker >= evolutions[i].param)
                     targetSpecies = evolutions[i].targetSpecies;
+                break;
             }
         }
         break;
