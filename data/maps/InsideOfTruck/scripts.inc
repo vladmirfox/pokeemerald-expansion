@@ -48,8 +48,12 @@ InsideOfTruck_EventScript_SetIntroFlagsFemale::
 	end
 
 InsideOfTruck_EventScript_MovingBox::
-	msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
-	end
+	@msgbox InsideOfTruck_Text_BoxPrintedWithMonLogo, MSGBOX_SIGN
+	
+    giveitem ITEM_POTION, 1
+    giveitem ITEM_RED_SHARD, 10
+    
+    end
 
 InsideOfTruck_Text_BoxPrintedWithMonLogo:
 	.string "The box is printed with a POKéMON logo.\p"

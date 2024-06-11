@@ -81,6 +81,14 @@ u32 ItemId_GetFlingPower(u32 itemId);
 u32 GetItemStatus1Mask(u16 itemId);
 u32 GetItemStatus2Mask(u16 itemId);
 
+// Item Description Headers
+enum ItemObtainFlags
+{
+    FLAG_GET_ITEM_OBTAINED,
+    FLAG_SET_ITEM_OBTAINED,
+};
+bool8 GetSetItemObtained(u16 item, u8 caseId);
+
 /* Expands to:
  * enum
  * {
