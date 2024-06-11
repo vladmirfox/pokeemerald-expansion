@@ -365,14 +365,14 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
 }
 
 // To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
-struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 dmgRoll)
+struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, enum DamageRollType rollType)
 {
     struct SimulatedDamage dmg;
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
-    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), dmgRoll);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), rollType);
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
     return dmg;
@@ -492,7 +492,17 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     return FALSE;
 }
 
-struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, u32 dmgRoll)
+static inline s32 GetDamageByRollType(s32 dmg, enum DamageRollType rollType)
+{
+    if (rollType == DMG_ROLL_LOWEST)
+        return LowestRollDmg(dmg);
+    else if (rollType == DMG_ROLL_HIGHEST)
+        return HighestRollDmg(dmg);
+    else
+        return DmgRoll(dmg);
+}
+
+struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, enum DamageRollType rollType)
 {
     struct SimulatedDamage simDamage;
     s32 dmg, minDmg, moveType;
@@ -570,12 +580,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
             u32 critOdds = GetCritHitOdds(critChanceIndex);
             // With critOdds getting closer to 1, dmg gets closer to critDmg.
-            if (dmgRoll == DMG_ROLL_DEFAULT)
-                dmg = DmgRoll((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds));
-            else if (dmgRoll == DMG_ROLL_HIGHEST)
-                dmg = HighestRollDmg((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds));
-            else
-                dmg = LowestRollDmg((critDmg + nonCritDmg * (critOdds - 1)) / (critOdds)); // Default to lowest roll
+            dmg = GetDamageByRollType((critDmg + nonCritDmg * (critOdds - 1)) / critOdds, rollType);
             if (critOdds == 1)
                 minDmg = LowestRollDmg(critDmg);
             else
@@ -588,12 +593,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                                                  aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                  aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-            if (dmgRoll == DMG_ROLL_DEFAULT)
-                dmg = DmgRoll(critDmg);
-            else if (dmgRoll == DMG_ROLL_HIGHEST)
-                dmg = HighestRollDmg(critDmg);
-            else
-                dmg = LowestRollDmg(critDmg);
+            dmg = GetDamageByRollType(critDmg, rollType);
             minDmg = LowestRollDmg(critDmg);
         }
         else
@@ -602,12 +602,8 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                                                     effectivenessMultiplier, weather, FALSE,
                                                     aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                     aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-            if (dmgRoll == DMG_ROLL_DEFAULT)
-                dmg = DmgRoll(nonCritDmg);
-            else if (dmgRoll == DMG_ROLL_HIGHEST)
-                dmg = HighestRollDmg(nonCritDmg);
-            else
-                dmg = LowestRollDmg(nonCritDmg); // Default to lowest roll
+
+            dmg = GetDamageByRollType(nonCritDmg, rollType);
             minDmg = LowestRollDmg(nonCritDmg);
         }
 
@@ -3372,7 +3368,7 @@ void FreeRestoreBattleMons(struct BattlePokemon *savedBattleMons)
 }
 
 // party logic
-s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, bool32 isPartyMonAttacker, u32 dmgRoll)
+s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, bool32 isPartyMonAttacker, enum DamageRollType rollType)
 {
     struct SimulatedDamage dmg;
     u8 effectiveness;
@@ -3393,7 +3389,7 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
-    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), dmgRoll);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), rollType);
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg.expected;
