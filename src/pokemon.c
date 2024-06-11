@@ -4684,6 +4684,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_FEMALE)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
+            case EVO_OVERWORLD_STEPS:
+                if (evolutionTracker >= evolutions[i].param)
+                    targetSpecies = evolutions[i].targetSpecies;
             }
         }
         break;
