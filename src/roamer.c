@@ -62,7 +62,7 @@ static const u8 sRoamerLocations[][6] =
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
 
-void ClearRoamerData(void)
+void DeactivateAllRoamers(void)
 {
     u32 i;
 
@@ -70,23 +70,36 @@ void ClearRoamerData(void)
         SetRoamerInactive(i);
 }
 
-void ClearRoamerLocationData(void)
+static void ClearRoamerLocationHistory(u8 roamerIndex)
 {
-    u32 i, j;
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sLocationHistory[roamerIndex]); i++)
+    {
+        sLocationHistory[roamerIndex][i][MAP_GRP] = 0;
+        sLocationHistory[roamerIndex][i][MAP_NUM] = 0;
+    }
+}
+
+void MoveAllRoamersToOtherLocationSets(void)
+{
+    u32 i;
+
 	for (i = 0; i < ROAMER_COUNT; i++)
-	{
-		for (j = 0; j < ARRAY_COUNT(sLocationHistory); j++)
-		{
-			sLocationHistory[i][j][MAP_GRP] = 0;
-			sLocationHistory[i][j][MAP_NUM] = 0;
-		}
-		sRoamerLocation[i][MAP_GRP] = 0;
-		sRoamerLocation[i][MAP_NUM] = 0;
-	}
+        RoamerMoveToOtherLocationSet(i);
+}
+
+void MoveAllRoamers(void)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+        RoamerMove(i);
 }
 
 static void CreateInitialRoamerMon(u8 index, u16 species, u8 level)
 {
+    ClearRoamerLocationHistory(index);
     CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER(index)->ivs = GetMonData(&gEnemyParty[0], MON_DATA_IVS);
     ROAMER(index)->personality = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY);
@@ -104,16 +117,40 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level)
     sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
 }
 
+static u8 GetFirstInactiveRoamerIndex(void)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        if (!ROAMER(i)->active)
+            return i;
+    }
+    return ROAMER_COUNT;
+}
+
+bool8 TryAddRoamer(u16 species, u8 level)
+{
+    u8 index = GetFirstInactiveRoamerIndex();
+
+    if (index < ROAMER_COUNT)
+    {
+        // Create the roamer and stop searching
+        CreateInitialRoamerMon(index, species, level);
+        return TRUE;
+    }
+
+    // Maximum active roamers found: do nothing and let the calling function know
+    return FALSE;
+}
+
 // gSpecialVar_0x8004 here corresponds to the options in the multichoice MULTI_TV_LATI (0 for 'Red', 1 for 'Blue')
 void InitRoamer(void)
 {
-    ClearRoamerData();
-    ClearRoamerLocationData();
-
     if (gSpecialVar_0x8004 == 0) // Red
-        CreateInitialRoamerMon(0, SPECIES_LATIAS, 40);
+        TryAddRoamer(SPECIES_LATIAS, 40);
     else
-        CreateInitialRoamerMon(0, SPECIES_LATIOS, 40);
+        TryAddRoamer(SPECIES_LATIOS, 40);
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -144,7 +181,7 @@ void RoamerMoveToOtherLocationSet(u8 roamerIndex)
 
     // Choose a location set that starts with a map
     // different from the roamer's current map
-    while (1)
+    do
     {
         mapNum = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
         if (sRoamerLocation[roamerIndex][MAP_NUM] != mapNum)
@@ -152,7 +189,8 @@ void RoamerMoveToOtherLocationSet(u8 roamerIndex)
             sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
             return;
         }
-    }
+    } while (sRoamerLocation[roamerIndex][MAP_NUM] == mapNum);
+    sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
 }
 
 void RoamerMove(u8 roamerIndex)
@@ -174,17 +212,15 @@ void RoamerMove(u8 roamerIndex)
             if (sRoamerLocation[roamerIndex][MAP_NUM] == sRoamerLocations[locSet][0])
             {
                 u8 mapNum;
-                while (1)
+                // Choose a new map (excluding the first) within this set
+                // Also exclude a map if the roamer was there 2 moves ago
+                do
                 {
-                    // Choose a new map (excluding the first) within this set
-                    // Also exclude a map if the roamer was there 2 moves ago
                     mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
-                    if (!(sLocationHistory[roamerIndex][2][MAP_GRP] == ROAMER_MAP_GROUP
-                       && sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
-                     && mapNum != MAP_NUM(UNDEFINED))
-                        break;
-                }
-                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                } while ((sLocationHistory[roamerIndex][2][MAP_GRP] == ROAMER_MAP_GROUP
+						&& sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
+						|| mapNum == MAP_NUM(UNDEFINED));
+				sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
                 return;
             }
             locSet++;
