@@ -1111,7 +1111,7 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
         u32 abilityGuess = ABILITY_NONE;
         while (abilityGuess == ABILITY_NONE)
         {
-            abilityGuess = gSpeciesInfo[gBattleMons[battlerId].species].abilities[RandomUniform(RNG_AI_ABILITY, 0, 2) % NUM_ABILITY_SLOTS];
+            abilityGuess = gSpeciesInfo[gBattleMons[battlerId].species].abilities[RandomUniform(RNG_AI_ABILITY, 0, 2)];
         }
 
         return abilityGuess;
