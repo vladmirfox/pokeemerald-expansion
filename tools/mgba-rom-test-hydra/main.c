@@ -36,7 +36,7 @@
 #define min(a, b) ((a) < (b) ? (a) : (b))
 
 #define MAX_PROCESSES               32 // See also test/test.h
-#define MAX_SUMMARY_TESTS_TO_LIST   2
+#define MAX_SUMMARY_TESTS_TO_LIST   50
 #define MAX_TEST_LIST_BUFFER_LENGTH 256
 
 #define ARRAY_COUNT(arr) (sizeof((arr)) / sizeof((arr)[0]))
