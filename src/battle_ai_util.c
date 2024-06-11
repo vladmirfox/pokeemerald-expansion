@@ -365,17 +365,15 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
 }
 
 // To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
-s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 dmgRoll)
+void AI_CalcDamageSaveBattlers(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 dmgRoll)
 {
-    s32 dmg = 0;
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
-    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), dmgRoll);
+    AI_CalcDamage(damage, minDamage, move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), dmgRoll);
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
-    return dmg;
 }
 
 static inline s32 LowestRollDmg(s32 dmg)
@@ -492,9 +490,9 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     return FALSE;
 }
 
-s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, u32 dmgRoll)
+void AI_CalcDamage(s32 *damage, s32 *minDamage, u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, u32 dmgRoll)
 {
-    s32 dmg, moveType;
+    s32 dmg, minDmg, moveType;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledDynamax = FALSE;
@@ -574,6 +572,10 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                 dmg = HighestRollDmg((critDmg + normalDmg * (critOdds - 1)) / (critOdds));
             else
                 dmg = LowestRollDmg((critDmg + normalDmg * (critOdds - 1)) / (critOdds)); // Default to lowest roll
+            if (critOdds == 1)
+                minDmg = LowestRollDmg(critDmg);
+            else
+                minDmg = LowestRollDmg(normalDmg);
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
@@ -586,7 +588,8 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             else if (dmgRoll == DMG_ROLL_HIGHEST)
                 dmg = HighestRollDmg(critDmg);
             else
-                dmg = LowestRollDmg(critDmg); // Default to lowest roll
+                dmg = LowestRollDmg(critDmg);
+            minDmg = LowestRollDmg(critDmg);
         }
         else
         {
@@ -596,6 +599,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                 dmg = HighestRollDmg(normalDmg);
             else
                 dmg = LowestRollDmg(normalDmg); // Default to lowest roll
+            minDmg = LowestRollDmg(normalDmg);
         }
 
         if (!gBattleStruct->zmove.active)
@@ -604,33 +608,49 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
             switch (gMovesInfo[move].effect)
             {
             case EFFECT_LEVEL_DAMAGE:
+                dmg = minDmg = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                break;
             case EFFECT_PSYWAVE:
                 dmg = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                minDmg = dmg / 2;
                 break;
             case EFFECT_FIXED_DAMAGE_ARG:
-                dmg = gMovesInfo[move].argument * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                dmg = minDmg = gMovesInfo[move].argument * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
                 break;
             case EFFECT_MULTI_HIT:
                 if (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
+                {
                     dmg *= 3;
+                    minDmg *= 3;
+                }
                 else if (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK)
+                {
                     dmg *= 5;
+                    minDmg *= 5;
+                }
                 else if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_LOADED_DICE)
-                    dmg *= 4;
+                {
+                    dmg *= 9;
+                    dmg /= 2;
+                    minDmg *= 4;
+                }
                 else
+                {
                     dmg *= 3;
+                    minDmg *= 2;
+                }
                 break;
             case EFFECT_ENDEAVOR:
                 // If target has less HP than user, Endeavor does no damage
-                dmg = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
+                dmg = minDmg = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
                 break;
             case EFFECT_SUPER_FANG:
-                dmg = (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
+                dmg = minDmg = (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
                     ? max(2, gBattleMons[battlerDef].hp * 3 / 4)
                     : max(1, gBattleMons[battlerDef].hp / 2));
                 break;
             case EFFECT_FINAL_GAMBIT:
-                dmg = gBattleMons[battlerAtk].hp;
+                dmg = minDmg = gBattleMons[battlerAtk].hp;
                 break;
             case EFFECT_BEAT_UP:
                 if (B_BEAT_UP >= GEN_5)
@@ -643,6 +663,7 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                     {
                         dmg += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
                     }
+                    minDmg = dmg;
                     gBattleStruct->beatUpSlot = 0;
                 }
                 break;
@@ -650,15 +671,21 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
 
             // Handle other multi-strike moves
             if (gMovesInfo[move].strikeCount > 1 && gMovesInfo[move].effect != EFFECT_TRIPLE_KICK)
+            {
                 dmg *= gMovesInfo[move].strikeCount;
+                minDmg *= gMovesInfo[move].strikeCount;
+            }
 
             if (dmg == 0)
                 dmg = 1;
+            if (minDmg == 0)
+                minDmg = 1;
         }
     }
     else
     {
         dmg = 0;
+        minDmg = 0;
     }
 
     // convert multiper to AI_EFFECTIVENESS_xX
@@ -673,7 +700,8 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     if (toggledTera)
         gBattleStruct->tera.isTerastallized[GetBattlerSide(battlerAtk)] &= ~(gBitTable[gBattlerPartyIndexes[battlerAtk]]);
 
-    return dmg;
+    *damage = dmg;
+    *minDamage = minDmg;
 }
 
 bool32 AI_IsDamagedByRecoil(u32 battler)
@@ -1812,10 +1840,12 @@ bool32 ShouldLowerEvasion(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 bool32 CanIndexMoveFaintTarget(u32 battlerAtk, u32 battlerDef, u32 index, u32 numHits)
 {
-    s32 dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index];
+    s32 dmg;
 
     if (numHits)
-        dmg *= numHits;
+        dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][index] * numHits;
+    else
+        dmg = AI_DATA->simulatedDmgMin[battlerAtk][battlerDef][index];
 
     if (gBattleMons[battlerDef].hp <= dmg)
         return TRUE;
@@ -3333,7 +3363,7 @@ void FreeRestoreBattleMons(struct BattlePokemon *savedBattleMons)
 // party logic
 s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, bool32 isPartyMonAttacker, u32 dmgRoll)
 {
-    s32 dmg;
+    s32 dmg, minDmg;
     u8 effectiveness;
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
 
@@ -3352,7 +3382,7 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
-    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), dmgRoll);
+    AI_CalcDamage(&dmg, &minDmg, move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), dmgRoll);
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg;
@@ -3784,6 +3814,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
     if (IsViableZMove(battlerAtk, chosenMove))
     {
         u8 effectiveness;
+        s32 dmg, minDmg;
 
         if (gBattleMons[battlerDef].ability == ABILITY_DISGUISE
             && (gBattleMons[battlerDef].species == SPECIES_MIMIKYU_DISGUISED || gBattleMons[battlerDef].species == SPECIES_MIMIKYU_TOTEM_DISGUISED))
@@ -3796,7 +3827,9 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
         else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(gBattleStruct->zmove.chosenZMove))
             return FALSE;
 
-        if (!IS_MOVE_STATUS(chosenMove) && AI_CalcDamageSaveBattlers(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT) >= gBattleMons[battlerDef].hp)
+        AI_CalcDamageSaveBattlers(&dmg, &minDmg, chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT);
+
+        if (!IS_MOVE_STATUS(chosenMove) && minDmg >= gBattleMons[battlerDef].hp)
             return FALSE;   // don't waste damaging z move if can otherwise faint target
 
         return TRUE;

@@ -450,7 +450,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
         SetBattlerData(battlerDef);
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            s32 dmg = 0;
+            s32 dmg = 0, minDmg = 0;
             u8 effectiveness = AI_EFFECTIVENESS_x0;
             u32 move = moves[i];
 
@@ -460,14 +460,15 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
              && !(aiData->moveLimitations[battlerAtk] & gBitTable[i]))
             {
                 if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
-                    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_HIGHEST);
+                    AI_CalcDamage(&dmg, &minDmg, move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_HIGHEST);
                 else if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_CONSERVATIVE)
-                    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_LOWEST);
+                    AI_CalcDamage(&dmg, &minDmg, move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_LOWEST);
                 else
-                    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_DEFAULT);
+                    AI_CalcDamage(&dmg, &minDmg, move, battlerAtk, battlerDef, &effectiveness, TRUE, weather, DMG_ROLL_DEFAULT);
                 aiData->moveAccuracy[battlerAtk][battlerDef][i] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
             }
             aiData->simulatedDmg[battlerAtk][battlerDef][i] = dmg;
+            aiData->simulatedDmgMin[battlerAtk][battlerDef][i] = minDmg;
             aiData->effectiveness[battlerAtk][battlerDef][i] = effectiveness;
         }
         RestoreBattlerData(battlerDef);

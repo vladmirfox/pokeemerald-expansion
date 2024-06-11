@@ -714,3 +714,21 @@ AI_SINGLE_BATTLE_TEST("AI calculates guaranteed criticals and detects critical i
             TURN { EXPECT_MOVE(opponent, MOVE_STORM_THROW); }
     }
 }
+
+AI_SINGLE_BATTLE_TEST("AI uses a guaranteed KO move instead of a 50% KO high crit move")
+{
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
+        ASSUME(gMovesInfo[MOVE_SLASH].power == 70);
+        ASSUME(gMovesInfo[MOVE_STRENGTH].power == 80);
+        ASSUME(gMovesInfo[MOVE_SLASH].type == gMovesInfo[MOVE_STRENGTH].type);
+        ASSUME(gMovesInfo[MOVE_SLASH].category == gMovesInfo[MOVE_STRENGTH].category);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(225); }
+        OPPONENT(SPECIES_ABSOL) { Ability(ABILITY_SUPER_LUCK); Moves(MOVE_SLASH, MOVE_STRENGTH); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_SLASH); }
+        TURN { EXPECT_MOVE(opponent, MOVE_STRENGTH); }
+    }
+}
