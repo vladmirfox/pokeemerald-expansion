@@ -1878,7 +1878,7 @@ struct ObjectEvent *GetFollowerObject(void)
 static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, u8 form)
 {
     const struct ObjectEventGraphicsInfo *graphicsInfo = NULL;
-#if OW_FOLLOWERS_ENABLED
+#if OW_POKEMON_OBJECT_EVENTS
     switch (species)
     {
     case SPECIES_UNOWN: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
@@ -1894,7 +1894,7 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
         return &gSpeciesInfo[SPECIES_NONE].followerData;
     else if (graphicsInfo->tileTag != TAG_NONE && species >= NUM_SPECIES)
         return &gSpeciesInfo[SPECIES_NONE].followerData;
-#endif
+#endif // OW_POKEMON_OBJECT_EVENTS
     return graphicsInfo;
 }
 
@@ -1903,7 +1903,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 {
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
-#if OW_FOLLOWERS_ENABLED == TRUE && OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_FOLLOWERS_SHARE_PALETTE == FALSE
     if ((shiny && gSpeciesInfo[species].followerPalette)
     || (!shiny && gSpeciesInfo[species].followerShinyPalette))
     {
@@ -1928,7 +1928,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
         paletteNum = LoadSpritePalette(&spritePalette);
     }
     else
-#endif //OW_FOLLOWERS_SHARE_PALETTE
+#endif //OW_POKEMON_OBJECT_EVENTS == TRUE && OW_FOLLOWERS_SHARE_PALETTE == FALSE
     {
         // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
         // so that palette tags do not overlap
@@ -2075,7 +2075,8 @@ void UpdateFollowingPokemon(void)
     // 1. GetFollowerInfo returns FALSE
     // 2. Map is indoors and gfx is larger than 32x32
     // 3. flag is set
-    if (OW_FOLLOWERS_ENABLED == FALSE
+    if (OW_POKEMON_OBJECT_EVENTS == FALSE
+     || OW_FOLLOWERS_ENABLED == FALSE
      || !GetFollowerInfo(&species, &form, &shiny)
      || (gMapHeader.mapType == MAP_TYPE_INDOOR && SpeciesToGraphicsInfo(species, 0)->oam->size > ST_OAM_SIZE_2)
      || FlagGet(FLAG_TEMP_HIDE_FOLLOWER))
