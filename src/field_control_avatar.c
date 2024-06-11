@@ -678,7 +678,6 @@ static void UpdateLetsGoEvolutionTracker(void)
         // We only have 10 bits to use
         count = min(1023, GetMonData(followingMon, MON_DATA_EVOLUTION_TRACKER) + 1);
         SetMonData(followingMon, MON_DATA_EVOLUTION_TRACKER, &count);
-        DebugPrintf("updated overworld steps to %d", count);
         return;
     }
 }
