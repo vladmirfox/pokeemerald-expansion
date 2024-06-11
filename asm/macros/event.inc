@@ -2236,7 +2236,7 @@
     
 	@ ============================ @
 	@ ITEM DESCRIPTION HEADER MACROS
-    @ Used with OW_SHOW_ITEM_DESCRIPTIONS config
+	@ Used with OW_SHOW_ITEM_DESCRIPTIONS config
 	.macro showitemdescription
 	callnative ScriptShowItemDescription
 	.byte 0

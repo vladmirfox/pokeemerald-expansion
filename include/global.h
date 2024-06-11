@@ -172,7 +172,7 @@ struct UCoords32
 
 struct SaveBlock3
 {
-#if OW_SHOW_ITEM_DESCRIPTIONS == TRUE
+#if OW_SHOW_ITEM_DESCRIPTIONS == 1
     /*0x000*/ u8 itemFlags[ITEM_FLAGS_COUNT];
 #endif
 };
