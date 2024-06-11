@@ -70,7 +70,7 @@ void DeactivateAllRoamers(void)
         SetRoamerInactive(i);
 }
 
-static void ClearRoamerLocationHistory(u8 roamerIndex)
+static void ClearRoamerLocationHistory(u32 roamerIndex)
 {
     u32 i;
 
@@ -170,7 +170,7 @@ void UpdateLocationHistoryForRoamer(void)
     }
 }
 
-void RoamerMoveToOtherLocationSet(u8 roamerIndex)
+void RoamerMoveToOtherLocationSet(u32 roamerIndex)
 {
     u8 mapNum = 0;
 
@@ -193,7 +193,7 @@ void RoamerMoveToOtherLocationSet(u8 roamerIndex)
     sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
 }
 
-void RoamerMove(u8 roamerIndex)
+void RoamerMove(u32 roamerIndex)
 {
     u8 locSet = 0;
 
@@ -228,7 +228,7 @@ void RoamerMove(u8 roamerIndex)
     }
 }
 
-bool8 IsRoamerAt(u8 roamerIndex, u8 mapGroup, u8 mapNum)
+bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
 {
     if (ROAMER(roamerIndex)->active && mapGroup == sRoamerLocation[roamerIndex][MAP_GRP] && mapNum == sRoamerLocation[roamerIndex][MAP_NUM])
         return TRUE;
@@ -236,13 +236,13 @@ bool8 IsRoamerAt(u8 roamerIndex, u8 mapGroup, u8 mapNum)
         return FALSE;
 }
 
-void CreateRoamerMonInstance(u8 roamerIndex)
+void CreateRoamerMonInstance(u32 roamerIndex)
 {
     u32 status;
     struct Pokemon *mon = &gEnemyParty[0];
     ZeroEnemyPartyMons();
     CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, ROAMER(roamerIndex)->level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
-    // The roamer's status field is u8, but SetMonData expects status to be u32, so will set the roamer's status
+    // The roamer's status field is u16, but SetMonData expects status to be u32, so will set the roamer's status
     // using the status field and the following 3 bytes (cool, beauty, and cute).
 #ifdef BUGFIX
     status = ROAMER(roamerIndex)->status;
@@ -282,12 +282,12 @@ void UpdateRoamerHPStatus(struct Pokemon *mon)
     RoamerMoveToOtherLocationSet(gEncounteredRoamerIndex);
 }
 
-void SetRoamerInactive(u8 roamerIndex)
+void SetRoamerInactive(u32 roamerIndex)
 {
     ROAMER(roamerIndex)->active = FALSE;
 }
 
-void GetRoamerLocation(u8 roamerIndex, u8 *mapGroup, u8 *mapNum)
+void GetRoamerLocation(u32 roamerIndex, u8 *mapGroup, u8 *mapNum)
 {
     *mapGroup = sRoamerLocation[roamerIndex][MAP_GRP];
     *mapNum = sRoamerLocation[roamerIndex][MAP_NUM];
