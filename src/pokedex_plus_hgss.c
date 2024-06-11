@@ -6632,7 +6632,7 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, u16 species, u8 dept
             item = evolutions[i].param;
             CopyItemName(item, gStringVar2);
             StringCopy(gStringVar3, GetSpeciesName(species));
-            StringExpandPlaceholders(gStringVar4, sText_EVO_ITEM_COUNT_999);
+            StringExpandPlaceholders(gStringVar4, sText_EVO_DEFEAT_WITH_ITEM);
             break;
         default:
             StringExpandPlaceholders(gStringVar4, sText_EVO_UNKNOWN);
