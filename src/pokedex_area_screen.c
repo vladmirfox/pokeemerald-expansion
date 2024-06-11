@@ -304,17 +304,17 @@ static void FindMapsWithMon(u16 species)
 
     // Add roamers to the area map
     for (i = 0; i < ROAMER_COUNT; i++)
+    {
+        roamer = &gSaveBlock1Ptr->roamer[i];
+        if (species == roamer->species && roamer->active)
         {
-            roamer = &gSaveBlock1Ptr->roamer[i];
-            if (species == roamer->species && roamer->active)
-            {
-                // This is a roamer's species, show where this roamer is currently
-                struct OverworldArea *roamerLocation = &sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas];
-                GetRoamerLocation(i, &roamerLocation->mapGroup, &roamerLocation->mapNum);
-                roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
-                sPokedexAreaScreen->numOverworldAreas++;
-            }
+            // This is a roamer's species, show where this roamer is currently
+            struct OverworldArea *roamerLocation = &sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas];
+            GetRoamerLocation(i, &roamerLocation->mapGroup, &roamerLocation->mapNum);
+            roamerLocation->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(roamerLocation->mapGroup, roamerLocation->mapNum)->regionMapSectionId;
+            sPokedexAreaScreen->numOverworldAreas++;
         }
+    }
 }
 
 static void SetAreaHasMon(u16 mapGroup, u16 mapNum)

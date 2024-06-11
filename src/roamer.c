@@ -85,7 +85,7 @@ void MoveAllRoamersToOtherLocationSets(void)
 {
     u32 i;
 
-	for (i = 0; i < ROAMER_COUNT; i++)
+    for (i = 0; i < ROAMER_COUNT; i++)
         RoamerMoveToOtherLocationSet(i);
 }
 
@@ -218,9 +218,9 @@ void RoamerMove(u8 roamerIndex)
                 {
                     mapNum = sRoamerLocations[locSet][(Random() % (NUM_LOCATIONS_PER_SET - 1)) + 1];
                 } while ((sLocationHistory[roamerIndex][2][MAP_GRP] == ROAMER_MAP_GROUP
-						&& sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
-						|| mapNum == MAP_NUM(UNDEFINED));
-				sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
+                        && sLocationHistory[roamerIndex][2][MAP_NUM] == mapNum)
+                        || mapNum == MAP_NUM(UNDEFINED));
+                sRoamerLocation[roamerIndex][MAP_NUM] = mapNum;
                 return;
             }
             locSet++;
