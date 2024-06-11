@@ -505,7 +505,7 @@ static inline s32 GetDamageByRollType(s32 dmg, enum DamageRollType rollType)
 struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, enum DamageRollType rollType)
 {
     struct SimulatedDamage simDamage;
-    s32 dmg, minDmg, moveType;
+    s32 moveType;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledDynamax = FALSE;
@@ -580,11 +580,11 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
             u32 critOdds = GetCritHitOdds(critChanceIndex);
             // With critOdds getting closer to 1, dmg gets closer to critDmg.
-            dmg = GetDamageByRollType((critDmg + nonCritDmg * (critOdds - 1)) / critOdds, rollType);
+            simDamage.expected = GetDamageByRollType((critDmg + nonCritDmg * (critOdds - 1)) / critOdds, rollType);
             if (critOdds == 1)
-                minDmg = LowestRollDmg(critDmg);
+                simDamage.minimum = LowestRollDmg(critDmg);
             else
-                minDmg = LowestRollDmg(nonCritDmg);
+                simDamage.minimum = LowestRollDmg(nonCritDmg);
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
@@ -593,8 +593,8 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                                                  aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                  aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-            dmg = GetDamageByRollType(critDmg, rollType);
-            minDmg = LowestRollDmg(critDmg);
+            simDamage.expected = GetDamageByRollType(critDmg, rollType);
+            simDamage.minimum = LowestRollDmg(critDmg);
         }
         else
         {
@@ -603,8 +603,8 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                                                     aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                     aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
-            dmg = GetDamageByRollType(nonCritDmg, rollType);
-            minDmg = LowestRollDmg(nonCritDmg);
+            simDamage.expected = GetDamageByRollType(nonCritDmg, rollType);
+            simDamage.minimum = LowestRollDmg(nonCritDmg);
         }
 
         if (!gBattleStruct->zmove.active)
@@ -613,49 +613,49 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
             switch (gMovesInfo[move].effect)
             {
             case EFFECT_LEVEL_DAMAGE:
-                dmg = minDmg = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                simDamage.expected = simDamage.minimum = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
                 break;
             case EFFECT_PSYWAVE:
-                dmg = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
-                minDmg = dmg / 2;
+                simDamage.expected = gBattleMons[battlerAtk].level * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                simDamage.minimum = simDamage.expected / 2;
                 break;
             case EFFECT_FIXED_DAMAGE_ARG:
-                dmg = minDmg = gMovesInfo[move].argument * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                simDamage.expected = simDamage.minimum = gMovesInfo[move].argument * (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
                 break;
             case EFFECT_MULTI_HIT:
                 if (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH)
                 {
-                    dmg *= 3;
-                    minDmg *= 3;
+                    simDamage.expected *= 3;
+                    simDamage.minimum *= 3;
                 }
                 else if (aiData->abilities[battlerAtk] == ABILITY_SKILL_LINK)
                 {
-                    dmg *= 5;
-                    minDmg *= 5;
+                    simDamage.expected *= 5;
+                    simDamage.minimum *= 5;
                 }
                 else if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_LOADED_DICE)
                 {
-                    dmg *= 9;
-                    dmg /= 2;
-                    minDmg *= 4;
+                    simDamage.expected *= 9;
+                    simDamage.expected /= 2;
+                    simDamage.minimum *= 4;
                 }
                 else
                 {
-                    dmg *= 3;
-                    minDmg *= 2;
+                    simDamage.expected *= 3;
+                    simDamage.minimum *= 2;
                 }
                 break;
             case EFFECT_ENDEAVOR:
                 // If target has less HP than user, Endeavor does no damage
-                dmg = minDmg = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
+                simDamage.expected = simDamage.minimum = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
                 break;
             case EFFECT_SUPER_FANG:
-                dmg = minDmg = (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
+                simDamage.expected = simDamage.minimum = (aiData->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
                     ? max(2, gBattleMons[battlerDef].hp * 3 / 4)
                     : max(1, gBattleMons[battlerDef].hp / 2));
                 break;
             case EFFECT_FINAL_GAMBIT:
-                dmg = minDmg = gBattleMons[battlerAtk].hp;
+                simDamage.expected = simDamage.minimum = gBattleMons[battlerAtk].hp;
                 break;
             case EFFECT_BEAT_UP:
                 if (B_BEAT_UP >= GEN_5)
@@ -663,12 +663,12 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                     u32 partyCount = CalculatePartyCount(GetBattlerParty(battlerAtk));
                     u32 i;
                     gBattleStruct->beatUpSlot = 0;
-                    dmg = 0;
+                    simDamage.expected = 0;
                     for (i = 0; i < partyCount; i++)
                     {
-                        dmg += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
+                        simDamage.expected += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
                     }
-                    minDmg = dmg;
+                    simDamage.minimum = simDamage.expected;
                     gBattleStruct->beatUpSlot = 0;
                 }
                 break;
@@ -677,20 +677,20 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
             // Handle other multi-strike moves
             if (gMovesInfo[move].strikeCount > 1 && gMovesInfo[move].effect != EFFECT_TRIPLE_KICK)
             {
-                dmg *= gMovesInfo[move].strikeCount;
-                minDmg *= gMovesInfo[move].strikeCount;
+                simDamage.expected *= gMovesInfo[move].strikeCount;
+                simDamage.minimum *= gMovesInfo[move].strikeCount;
             }
 
-            if (dmg == 0)
-                dmg = 1;
-            if (minDmg == 0)
-                minDmg = 1;
+            if (simDamage.expected == 0)
+                simDamage.expected = 1;
+            if (simDamage.minimum == 0)
+                simDamage.minimum = 1;
         }
     }
     else
     {
-        dmg = 0;
-        minDmg = 0;
+        simDamage.expected = 0;
+        simDamage.minimum = 0;
     }
 
     // convert multiper to AI_EFFECTIVENESS_xX
@@ -704,9 +704,6 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         gBattleStruct->dynamax.dynamaxed[battlerAtk] = FALSE;
     if (toggledTera)
         gBattleStruct->tera.isTerastallized[GetBattlerSide(battlerAtk)] &= ~(gBitTable[gBattlerPartyIndexes[battlerAtk]]);
-
-    simDamage.expected = dmg;
-    simDamage.minimum = minDmg;
 
     return simDamage;
 }
