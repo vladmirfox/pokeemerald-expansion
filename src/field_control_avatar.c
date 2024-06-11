@@ -571,7 +571,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
     {
     #if OW_POISON_DAMAGE < GEN_5
-        if (OW_POISON_DAMAGE < GEN_5 && UpdatePoisonStepCounter() == TRUE)
+        if (UpdatePoisonStepCounter() == TRUE)
         {
             ScriptContext_SetupScript(EventScript_FieldPoison);
             return TRUE;
