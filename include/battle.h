@@ -780,7 +780,7 @@ struct BattleStruct
     u8 quickClawRandom[MAX_BATTLERS_COUNT];
     u8 quickDrawRandom[MAX_BATTLERS_COUNT];
     u8 shellSideArmCategory[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT];
-    u8 speedTieBreaks; // A bit per pair of battlers.
+    u8 speedTieBreaks; // MAX_BATTLERS_COUNT! values, determines all speed tie-breaks.
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
