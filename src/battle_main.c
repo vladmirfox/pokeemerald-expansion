@@ -4058,6 +4058,8 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     if (gBattleStruct->switchInAbilitiesCounter == 0)
     {
+        gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, (1 << 6) - 1);
+
         for (i = 0; i < gBattlersCount; i++)
             gBattlerByTurnOrder[i] = i;
         for (i = 0; i < gBattlersCount - 1; i++)
@@ -4202,6 +4204,8 @@ static void HandleEndTurn_ContinueBattle(void)
 void BattleTurnPassed(void)
 {
     s32 i;
+
+    gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, (1 << 6) - 1);
 
     TurnValuesCleanUp(TRUE);
     if (gBattleOutcome == 0)
@@ -5097,9 +5101,10 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
             strikesFirst = 1;
         else
         {
-            if (speedBattler1 == speedBattler2 && Random() & 1)
+            if (speedBattler1 == speedBattler2)
             {
-                strikesFirst = 0; // same speeds, same priorities
+                // same speeds, same priorities
+                strikesFirst = 0;
             }
             else if (speedBattler1 < speedBattler2)
             {
@@ -5130,7 +5135,7 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
     return strikesFirst;
 }
 
-s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
+s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 {
     s32 priority1 = 0, priority2 = 0;
     u32 ability1 = GetBattlerAbility(battler1);
@@ -5148,8 +5153,36 @@ s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
             priority2 = GetChosenMovePriority(battler2);
     }
 
-    return GetWhichBattlerFasterArgs(battler1, battler2, ignoreChosenMoves, ability1, ability2,
-                                     holdEffectBattler1, holdEffectBattler2, speedBattler1, speedBattler2, priority1, priority2);
+    return GetWhichBattlerFasterArgs(
+        battler1, battler2,
+        ignoreChosenMoves,
+        ability1, ability2,
+        holdEffectBattler1, holdEffectBattler2,
+        speedBattler1, speedBattler2,
+        priority1, priority2
+    );
+}
+
+static const u8 sSpeedTieBits[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT] =
+{
+    [0] = { [1] = 0, [2] = 1, [3] = 2 },
+    [1] = { [2] = 3, [3] = 4 },
+    [2] = { [3] = 5 },
+};
+
+s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
+{
+    s32 strikesFirst = GetWhichBattlerFasterOrTies(battler1, battler2, ignoreChosenMoves);
+
+    if (strikesFirst == 0)
+    {
+        if (battler1 < battler2)
+            strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler1][battler2])) ? -1 : 1;
+        else
+            strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler2][battler1])) ? 1 : -1;
+    }
+
+    return strikesFirst;
 }
 
 static void SetActionsAndBattlersTurnOrder(void)
