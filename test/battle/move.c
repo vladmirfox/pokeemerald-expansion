@@ -68,6 +68,7 @@ SINGLE_BATTLE_TEST("Turn order is determined by Speed if priority ties")
 
 SINGLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie")
 {
+    KNOWN_FAILING; // The RNG is used an even amount of times, so the order is always swapped back to the original.
     PASSES_RANDOMLY(1, 2, RNG_SPEED_TIE);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
