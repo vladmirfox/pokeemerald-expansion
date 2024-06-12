@@ -18,13 +18,13 @@
 #define COMP OW_GFX_COMPRESS
 
 #if OW_POKEMON_OBJECT_EVENTS
-#if OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 #define FOLLOWER_PAL(...)                                   \
     .followerPalette = DEFAULT(NULL, __VA_ARGS__),          \
     .followerShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
 #else
 #define FOLLOWER_PAL(...)
-#endif //OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
 #define FOLLOWER(picTable, _size, shadow, _tracks, ...)                                     \
 .followerData = {                                                                           \

@@ -506,7 +506,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
     {gObjectEventPal_RubySapphireBrendan,   OBJ_EVENT_PAL_TAG_RS_BRENDAN},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
-#if OW_MON_POKEBALLS
+#if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
     {gObjectEventPal_UltraBall,             OBJ_EVENT_PAL_TAG_BALL_ULTRA},
     {gObjectEventPal_GreatBall,             OBJ_EVENT_PAL_TAG_BALL_GREAT},
@@ -537,7 +537,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     #ifdef ITEM_STRANGE_BALL
     {gObjectEventPal_StrangeBall,           OBJ_EVENT_PAL_TAG_BALL_STRANGE},
     #endif //ITEM_STRANGE_BALL
-#endif //OW_MON_POKEBALLS
+#endif //OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_Substitute,            OBJ_EVENT_PAL_TAG_SUBSTITUTE},
     {gObjectEventPaletteEmotes,             OBJ_EVENT_PAL_TAG_EMOTES},
 #ifdef BUGFIX
@@ -1903,7 +1903,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
 {
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
-#if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     if ((shiny && gSpeciesInfo[species].followerPalette)
     || (!shiny && gSpeciesInfo[species].followerShinyPalette))
     {
@@ -1928,7 +1928,7 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
         paletteNum = LoadSpritePalette(&spritePalette);
     }
     else
-#endif //OW_POKEMON_OBJECT_EVENTS == TRUE && OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#endif //OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     {
         // Note that the shiny palette tag is `species + SPECIES_SHINY_TAG`, which must be increased with more pokemon
         // so that palette tags do not overlap
@@ -5342,7 +5342,7 @@ bool8 MovementType_FollowPlayer_Moving(struct ObjectEvent *objectEvent, struct S
     else if (objectEvent->movementActionId < MOVEMENT_ACTION_EXIT_POKEBALL)
     {
         UpdateFollowerTransformEffect(objectEvent, sprite);
-        if (OW_MON_BOBBING == TRUE && (sprite->data[5] & 7) == 2)
+        if (OW_FOLLOWERS_BOBBING == TRUE && (sprite->data[5] & 7) == 2)
             sprite->y2 ^= -1;
     }
     return FALSE;
@@ -5363,7 +5363,7 @@ bool8 FollowablePlayerMovement_Idle(struct ObjectEvent *objectEvent, struct Spri
         // finish movement action
         objectEvent->singleMovementActive = 0;
     }
-    else if (OW_MON_BOBBING == TRUE && (sprite->data[3] & 7) == 2)
+    else if (OW_FOLLOWERS_BOBBING == TRUE && (sprite->data[3] & 7) == 2)
     {
         sprite->y2 ^= -1;
     }
@@ -5407,7 +5407,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
         ObjectEventSetSingleMovement(objectEvent, sprite, MOVEMENT_ACTION_EXIT_POKEBALL);
         objectEvent->singleMovementActive = 1;
         sprite->sTypeFuncId = 2;
-        if (OW_MON_BOBBING == TRUE)
+        if (OW_FOLLOWERS_BOBBING == TRUE)
             sprite->y2 = 0;
         return TRUE;
     }
@@ -5447,7 +5447,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
         else
         {
             objectEvent->movementActionId = GetWalkNormalMovementAction(direction);
-            if (OW_MON_BOBBING == TRUE)
+            if (OW_FOLLOWERS_BOBBING == TRUE)
                 sprite->y2 = -1;
         }
     }
@@ -5471,7 +5471,7 @@ bool8 FollowablePlayerMovement_Step(struct ObjectEvent *objectEvent, struct Spri
     else
     {
         ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkNormalMovementAction(direction));
-        if (OW_MON_BOBBING == TRUE)
+        if (OW_FOLLOWERS_BOBBING == TRUE)
             sprite->y2 = -1;
     }
     #endif
@@ -7034,7 +7034,7 @@ static u8 LoadFillColorPalette(u16 color, u16 paletteTag, struct Sprite *sprite)
 
 static void ObjectEventSetPokeballGfx(struct ObjectEvent *objEvent)
 {
-    #if OW_MON_POKEBALLS
+    #if OW_FOLLOWERS_POKEBALLS
     u32 ball = BALL_POKE;
     if (objEvent->localId == OBJ_EVENT_ID_FOLLOWER)
     {
@@ -7052,7 +7052,7 @@ static void ObjectEventSetPokeballGfx(struct ObjectEvent *objEvent)
             return;
         }
     }
-    #endif
+    #endif //OW_FOLLOWERS_POKEBALLS
     ObjectEventSetGraphicsId(objEvent, OBJ_EVENT_GFX_POKE_BALL);
 }
 
