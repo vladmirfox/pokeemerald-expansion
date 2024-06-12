@@ -451,10 +451,10 @@ struct SpeciesInfo /*0x8C*/
  /* 0x84 */ const u16 *formSpeciesIdTable;
  /* 0x84 */ const struct FormChange *formChangeTable;
 #if OW_POKEMON_OBJECT_EVENTS
-            struct ObjectEventGraphicsInfo followerData;
+            struct ObjectEventGraphicsInfo overworldData;
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-            const void* followerPalette;
-            const void* followerShinyPalette;
+            const void* overworldPalette;
+            const void* overworldShinyPalette;
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 };

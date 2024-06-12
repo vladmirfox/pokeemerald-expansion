@@ -1883,17 +1883,17 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
     {
     case SPECIES_UNOWN: // Letters >A are defined as species >= NUM_SPECIES, so are not contiguous with A
         form %= NUM_UNOWN_FORMS;
-        graphicsInfo = &gSpeciesInfo[form ? SPECIES_UNOWN_B + form - 1 : species].followerData;
+        graphicsInfo = &gSpeciesInfo[form ? SPECIES_UNOWN_B + form - 1 : species].overworldData;
         break;
     default:
-        graphicsInfo = &gSpeciesInfo[species].followerData;
+        graphicsInfo = &gSpeciesInfo[species].overworldData;
         break;
     }
     // Try to avoid OOB or undefined access
     if (graphicsInfo->tileTag == 0 && species < NUM_SPECIES)
-        return &gSpeciesInfo[SPECIES_NONE].followerData;
+        return &gSpeciesInfo[SPECIES_NONE].overworldData;
     else if (graphicsInfo->tileTag != TAG_NONE && species >= NUM_SPECIES)
-        return &gSpeciesInfo[SPECIES_NONE].followerData;
+        return &gSpeciesInfo[SPECIES_NONE].overworldData;
 #endif // OW_POKEMON_OBJECT_EVENTS
     return graphicsInfo;
 }
@@ -1904,8 +1904,8 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
     u32 paletteNum;
     // Use standalone palette, unless entry is OOB or NULL (fallback to front-sprite-based)
 #if OW_POKEMON_OBJECT_EVENTS == TRUE && OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    if ((shiny && gSpeciesInfo[species].followerPalette)
-    || (!shiny && gSpeciesInfo[species].followerShinyPalette))
+    if ((shiny && gSpeciesInfo[species].overworldPalette)
+    || (!shiny && gSpeciesInfo[species].overworldShinyPalette))
     {
         struct SpritePalette spritePalette;
         u16 palTag = shiny ? (species + SPECIES_SHINY_TAG + OBJ_EVENT_PAL_TAG_DYNAMIC) : (species + OBJ_EVENT_PAL_TAG_DYNAMIC);
@@ -1914,9 +1914,9 @@ static u8 LoadDynamicFollowerPalette(u16 species, u8 form, bool32 shiny)
             return paletteNum;
         spritePalette.tag = palTag;
         if (shiny)
-            spritePalette.data = gSpeciesInfo[species].followerShinyPalette;
+            spritePalette.data = gSpeciesInfo[species].overworldShinyPalette;
         else
-            spritePalette.data = gSpeciesInfo[species].followerPalette;
+            spritePalette.data = gSpeciesInfo[species].overworldPalette;
         
         // Check if pal data must be decompressed
         if (IsLZ77Data(spritePalette.data, PLTT_SIZE_4BPP, PLTT_SIZE_4BPP))

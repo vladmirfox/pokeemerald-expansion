@@ -19,15 +19,15 @@
 
 #if OW_POKEMON_OBJECT_EVENTS
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-#define FOLLOWER_PAL(...)                                   \
-    .followerPalette = DEFAULT(NULL, __VA_ARGS__),          \
-    .followerShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
+#define OVERWORLD_PAL(...)                                  \
+    .overworldPalette = DEFAULT(NULL, __VA_ARGS__),         \
+    .overworldShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
 #else
-#define FOLLOWER_PAL(...)
+#define OVERWORLD_PAL(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define FOLLOWER(picTable, _size, shadow, _tracks, ...)                                     \
-.followerData = {                                                                           \
+#define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
+.overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
@@ -45,9 +45,9 @@
     .images = picTable,                                                                     \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
-    FOLLOWER_PAL(__VA_ARGS__)
+    OVERWORLD_PAL(__VA_ARGS__)
 #else
-#define FOLLOWER(picTable, _size, shadow, _tracks, ...)
+#define OVERWORLD(picTable, _size, shadow, _tracks, ...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
@@ -100,7 +100,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         FOOTPRINT(QuestionMark)
     #if OW_POKEMON_OBJECT_EVENTS
-        .followerData = {TAG_NONE, OBJ_EVENT_PAL_TAG_SUBSTITUTE, OBJ_EVENT_PAL_TAG_NONE, 512, 32, 32, 2, SHADOW_SIZE_M, FALSE, COMP, TRACKS_FOOT, &gObjectEventBaseOam_32x32, sOamTables_32x32, sAnimTable_Following, sPicTable_Substitute, gDummySpriteAffineAnimTable},
+        .overworldData = {TAG_NONE, OBJ_EVENT_PAL_TAG_SUBSTITUTE, OBJ_EVENT_PAL_TAG_NONE, 512, 32, 32, 2, SHADOW_SIZE_M, FALSE, COMP, TRACKS_FOOT, &gObjectEventBaseOam_32x32, sOamTables_32x32, sAnimTable_Following, sPicTable_Substitute, gDummySpriteAffineAnimTable},
     #endif
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
