@@ -117,6 +117,7 @@ static void SpriteCB_UnusedBattleInit(struct Sprite *sprite);
 static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite);
 static u32 Crc32B (const u8 *data, u32 size);
 static u32 GeneratePartyHash(const struct Trainer *trainer, u32 i);
+static s32 Factorial(s32);
 
 EWRAM_DATA u16 gBattle_BG0_X = 0;
 EWRAM_DATA u16 gBattle_BG0_Y = 0;
@@ -4058,7 +4059,7 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     if (gBattleStruct->switchInAbilitiesCounter == 0)
     {
-        gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, (1 << 6) - 1);
+        gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, Factorial(MAX_BATTLERS_COUNT) - 1);
 
         for (i = 0; i < gBattlersCount; i++)
             gBattlerByTurnOrder[i] = i;
@@ -4205,7 +4206,7 @@ void BattleTurnPassed(void)
 {
     s32 i;
 
-    gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, (1 << 6) - 1);
+    gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, Factorial(MAX_BATTLERS_COUNT) - 1);
 
     TurnValuesCleanUp(TRUE);
     if (gBattleOutcome == 0)
@@ -5163,27 +5164,34 @@ s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenM
     );
 }
 
-// Assign a bit to each pair of battlers where battler1 <= battler2.
-// If battler2 < battler1, then invert the bit.
-static const u8 sSpeedTieBits[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT] =
+u32 GetBattlerOrder(u32 battler)
 {
-    [0] = { [1] = 0, [2] = 1, [3] = 2 },
-    [1] = { [2] = 3, [3] = 4 },
-    [2] = { [3] = 5 },
-};
+    u32 i;
+    u32 div = MAX_BATTLERS_COUNT;
+    u32 n = gBattleStruct->speedTieBreaks;
+    for (i = 0; i < battler; i++)
+    {
+        n /= div;
+        div--;
+    }
+    if (div > 0)
+        return n % div;
+    else
+        return n;
+}
 
 s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 {
     s32 strikesFirst = GetWhichBattlerFasterOrTies(battler1, battler2, ignoreChosenMoves);
-
     if (strikesFirst == 0)
     {
-        if (battler1 <= battler2)
-            strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler1][battler2])) ? -1 : 1;
+        s32 order1 = GetBattlerOrder(battler1);
+        s32 order2 = GetBattlerOrder(battler2);
+        if (order1 < order2)
+            strikesFirst = 1;
         else
-            strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler2][battler1])) ? 1 : -1;
+            strikesFirst = -1;
     }
-
     return strikesFirst;
 }
 
@@ -6120,4 +6128,12 @@ bool32 IsWildMonSmart(void)
 #else
     return FALSE;
 #endif
+}
+
+static s32 Factorial(s32 n)
+{
+    s32 f = 1, i;
+    for (i = 2; i <= n; i++)
+        f *= i;
+    return f;
 }
