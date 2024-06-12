@@ -1108,8 +1108,10 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
         return knownAbility;
 
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
+    {
         if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
             validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
+    }
 
     if (numValidAbilities > 0)
         return validAbilities[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)];
