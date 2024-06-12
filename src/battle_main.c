@@ -5164,29 +5164,44 @@ s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenM
     );
 }
 
-u32 GetBattlerOrder(u32 battler)
+// 24 == MAX_BATTLERS_COUNT!.
+// These are the possible orders if all the battlers speed tie. An order
+// is chosen at the start of the turn.
+static const u8 sBattlerOrders[24][4] =
 {
-    u32 i;
-    u32 div = MAX_BATTLERS_COUNT;
-    u32 n = gBattleStruct->speedTieBreaks;
-    for (i = 0; i < battler; i++)
-    {
-        n /= div;
-        div--;
-    }
-    if (div > 0)
-        return n % div;
-    else
-        return n;
-}
+    { 0, 1, 2, 3 },
+    { 0, 1, 3, 2 },
+    { 0, 2, 1, 3 },
+    { 0, 2, 3, 1 },
+    { 0, 3, 1, 2 },
+    { 0, 3, 2, 1 },
+    { 1, 0, 2, 3 },
+    { 1, 0, 3, 2 },
+    { 1, 2, 0, 3 },
+    { 1, 2, 3, 0 },
+    { 1, 3, 0, 2 },
+    { 1, 3, 2, 0 },
+    { 2, 0, 1, 3 },
+    { 2, 0, 3, 1 },
+    { 2, 1, 0, 3 },
+    { 2, 1, 3, 0 },
+    { 2, 3, 0, 1 },
+    { 2, 3, 1, 0 },
+    { 3, 0, 1, 2 },
+    { 3, 0, 2, 1 },
+    { 3, 1, 0, 2 },
+    { 3, 1, 2, 0 },
+    { 3, 2, 0, 1 },
+    { 3, 2, 1, 0 },
+};
 
 s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 {
     s32 strikesFirst = GetWhichBattlerFasterOrTies(battler1, battler2, ignoreChosenMoves);
     if (strikesFirst == 0)
     {
-        s32 order1 = GetBattlerOrder(battler1);
-        s32 order2 = GetBattlerOrder(battler2);
+        s32 order1 = sBattlerOrders[gBattleStruct->speedTieBreaks][battler1];
+        s32 order2 = sBattlerOrders[gBattleStruct->speedTieBreaks][battler2];
         if (order1 < order2)
             strikesFirst = 1;
         else
