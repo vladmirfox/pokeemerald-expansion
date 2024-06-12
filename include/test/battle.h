@@ -695,6 +695,7 @@ struct BattleTestData
 struct BattleTestRunnerState
 {
     u8 battlersCount;
+    bool8 forceMoveAnim;
     u16 parametersCount; // Valid only in BattleTest_Setup.
     u16 parameters;
     u16 runParameter;
