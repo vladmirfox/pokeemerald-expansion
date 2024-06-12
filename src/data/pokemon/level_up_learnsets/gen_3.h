@@ -6278,7 +6278,6 @@ static const struct LevelUpMove sMawileLevelUpLearnset[] = {
 static const struct LevelUpMove sAronLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 4, MOVE_HARDEN),
-    LEVEL_UP_MOVE( 7, MOVE_MUD_SLAP),
     LEVEL_UP_MOVE(11, MOVE_METAL_CLAW),
     LEVEL_UP_MOVE(14, MOVE_HEADBUTT),
     LEVEL_UP_MOVE(17, MOVE_IRON_DEFENSE),

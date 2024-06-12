@@ -1,0 +1,29 @@
+mapscripts WhiteslateRoute_MapScripts {
+	
+}
+
+script WhiteslateRoute_EventScript_Shuckle {
+	lock
+	faceplayer
+	waitse
+	playmoncry(SPECIES_SHUCKLE, CRY_MODE_NORMAL)
+	msgbox(format(
+		"Cklckl!"
+	))
+	waitmoncry
+	closemessage
+
+	// Gives you berry juice everyday
+	if (!flag(FLAG_DAILY_SHUCKLE_BERRY_JUICE)) {
+		applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
+		waitmovement(0)
+		msgbox(format(
+			"…Oh? Shuckle is giving you something."
+		), MSGBOX_AUTOCLOSE)
+
+		giveitem(ITEM_BERRY_JUICE)
+
+		setflag(FLAG_DAILY_SHUCKLE_BERRY_JUICE)
+	}
+	release
+}

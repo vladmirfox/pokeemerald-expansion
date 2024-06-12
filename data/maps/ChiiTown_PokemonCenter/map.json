@@ -28,7 +28,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_FARMER",
       "x": 6,
       "y": 4,
       "elevation": 0,
@@ -41,9 +41,9 @@
       "flag": "FLAG_POKEMON_REFUGE_PRESENTATION"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_FARMER",
-      "x": 9,
-      "y": 9,
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 8,
+      "y": 7,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -64,14 +64,14 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "ChiiTown_PokemonCenter_EventScript_WhereShamisen",
-      "flag": "0"
+      "flag": "FLAG_TEMP_1"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FARMER",
-      "x": 3,
-      "y": 10,
+      "x": 4,
+      "y": 9,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -81,10 +81,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SNORUNT)",
-      "x": 2,
+      "x": 4,
       "y": 10,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",

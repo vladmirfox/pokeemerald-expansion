@@ -19,25 +19,28 @@ script SunriseVillage_RivalsHouse_EventScript_Woman {
 }
 
 script SunriseVillage_RivalsHouse_EventScript_Man {
+	lock
+	faceplayer
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		msgbox(format(
 			"Hello, {PLAYER}. How is your adventure going?\p"
 			"Make sure you come back to see your sister sometimes, I'm sure she misses you."
-		), MSGBOX_NPC)
+		), MSGBOX_AUTOCLOSE)
 	} else {
 		msgbox(format(
 			"Hi, {PLAYER}!"
 		), MSGBOX_AUTOCLOSE)
 	}
+	release
 }
 
-script SunriseVillage_House1_EventScript_Meowth {
+script SunriseVillage_RivalsHouse_EventScript_Meowth {
     msgbox(format(
         "Purrr…"
     ), MSGBOX_NPC)
 }
 
-script SunriseVillage_House1_EventScript_Meowth2 {
+script SunriseVillage_RivalsHouse_EventScript_Meowth2 {
     lock
     faceplayer
     waitse

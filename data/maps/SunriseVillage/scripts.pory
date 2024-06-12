@@ -53,16 +53,25 @@ script SunriseVillage_Event_GuardForest {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
-        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
             msgbox(format(
                 "Oh, I see you received a Pokémon!\p"
                 "You'll probably be able to manage the woods on your own, then.\p"
                 "Be careful!"
             ), MSGBOX_AUTOCLOSE)
+        } elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+            msgbox(format(
+                "Hey, kid, heard you were going off on an adventure!\p"
+                "Did you say bye to your sister?\p"
+                "No? Thought so. Go see her before you run off, you ungrateful sibling!"
+            ), MSGBOX_AUTOCLOSE)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
+            waitmovement(0)
         } else {
             turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
             msgbox(format(
-                "Hey, a friend of yours was looking for you."
+                "Hey, kid, a friend of yours was looking for you."
             ), MSGBOX_AUTOCLOSE)
             applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
             waitmovement(0)
@@ -70,7 +79,7 @@ script SunriseVillage_Event_GuardForest {
     }
     else {
         msgbox(format(
-        "Stop right there!"
+        "Stop right there, kid!"
         ), MSGBOX_AUTOCLOSE)
         turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
         msgbox(format(
@@ -90,16 +99,21 @@ script SunriseVillage_Event_GuardForest_Interact {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_STARTER)) {
-        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+        if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
             msgbox(format(
                 "Oh, I see you received a Pokémon!\p"
                 "You'll probably be able to manage the woods on your own, then.\p"
                 "Be careful!"
             ), MSGBOX_AUTOCLOSE)
-        } else {
-            turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        } elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
             msgbox(format(
-                "Hey, a friend of yours was looking for you."
+                "Hey, kid, heard you were going off on an adventure!\p"
+                "Did you say bye to your sister?\p"
+                "No? Thought so. Go see her before you run off, you ungrateful sibling!"
+            ), MSGBOX_AUTOCLOSE)
+        } else {
+            msgbox(format(
+                "Hey, kid, a friend of yours was looking for you."
             ), MSGBOX_AUTOCLOSE)
         }
     }

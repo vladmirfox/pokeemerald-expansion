@@ -573,8 +573,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/level_up_learnsets/gen_1.h" // Yellow
 #endif
 
-#include "data/pokemon/level_up_learnsets/toku.h"
-
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"

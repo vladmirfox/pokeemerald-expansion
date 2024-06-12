@@ -14,7 +14,7 @@ script GinkoWoods_EventScript_Toshio {
 	// setvar VAR_0x8004, TRAINER_CALVIN_1
 	// specialvar VAR_RESULT, IsTrainerRegistered
 	// goto_if_eq VAR_RESULT, FALSE, Route102_EventScript_CalvinTryRegister
-	msgbox(format("Real trainers fight when they spot each other!\pAt least that's what my dad told me…"))
+	msgbox(format("Real wielders fight when they spot each other!\pAt least that's what my dad told me…"))
 	release
 	end
 }

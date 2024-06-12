@@ -1,5 +1,16 @@
 mapscripts KuraTown_Dojo_MapScripts {
-	
+	MAP_SCRIPT_ON_TRANSITION {
+		// All the trees are cut from the start if the player has already beaten the dojo
+		if (flag(FLAG_BADGE02_GET)) {
+			clearflag(FLAG_TEMP_1)
+			clearflag(FLAG_TEMP_2)
+			clearflag(FLAG_TEMP_3)
+			clearflag(FLAG_TEMP_5)
+			clearflag(FLAG_TEMP_6)
+			clearflag(FLAG_TEMP_8)
+			clearflag(FLAG_TEMP_9)
+		}
+	}
 }
 
 script KuraTown_Dojo_EventScript_Takao {
@@ -61,7 +72,7 @@ script KuraTown_Dojo_EventScript_Cristian {
 script KuraTown_Dojo_EventScript_Lilith {
 	trainerbattle_single(
 		TRAINER_LILITH,
-		format("Hana may look delicate, but she's actually way tougher than you!"),
+		format("Hana may look frail, but she's actually way tougher than you!"),
 		format("Stop it! I'm a delicate flower!")
 	)
 	if (flag(FLAG_BADGE02_GET)) {
@@ -79,11 +90,13 @@ script KuraTown_Dojo_EventScript_Hana {
 	trainerbattle_single(
 		TRAINER_HANA_1,
 		// TODO different dialogue if you already met
-		format("Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
-		"Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With the Dojo, I can do both!\p"
-		"A Pokémon battle can be graceful like a budding flower and strong like a windswept pine tree, all at once.\p"
-		"I want you to show me all the grace and strength you are capable of!"),
-		format("Amazing!"),
+		format(
+			"Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
+			"Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With the Dojo, I can do both!\p"
+			"A Pokémon battle can be graceful like a budding flower, strong like the deepest roots, powerful like a windswept pine tree, all at once.\p"
+			"I want you to show me all the grace, strength and power you are capable of!"
+		),
+		format("Amazing."),
 		KuraTown_Dojo_EventScript_HanaDefeated,
 		NO_MUSIC
 	)
@@ -94,7 +107,7 @@ script KuraTown_Dojo_EventScript_Hana {
 	} else {
 		msgbox(
 			format(
-				"The slow-growing trees become the sturdiest. Take your time on your journey, {PLAYER}."
+				"The slow-growing tree becomes the sturdiest. Take your time on your journey, {PLAYER}."
 			),
 			MSGBOX_DEFAULT
 		)
@@ -173,7 +186,7 @@ script KuraTown_Dojo_EventScript_Advice {
 			} else {
 				msgbox(format(
 					"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
-					"All the trees are blocking your way, aren't they?\p"
+					"All these trees are blocking your way, aren't they?\p"
 					"You should come back once you've figured out a way to cut them!\p"
 					"If you're itching for a challenge, why not try your skills at the Dojo in Maguro Harbor first?\p"
 					"It's not very far east from here!"
@@ -190,11 +203,17 @@ script KuraTown_Dojo_EventScript_DojoStatue {
 		msgbox(
 			"Dojo of Kura Village\p"
 			"Certified wielders:\n"
+			"{RIVAL},"
 			"{PLAYER}",
-			MSGBOX_DEFAULT
+			MSGBOX_SIGN
 		)
 	} else {
-		msgbox("Dojo of Kura Village", MSGBOX_DEFAULT)
+		msgbox(
+			"Dojo of Kura Village\p"
+			"Certified wielders:\n"
+			"{RIVAL}",
+			MSGBOX_SIGN
+		)
 	}
 	releaseall
 }

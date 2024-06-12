@@ -40,130 +40,128 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi::
 # 25 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	turnobject 1, DIR_EAST
 # 26 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	waitmovement 0
-# 27 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi_Text_0
-# 34 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 33 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	closemessage
-# 35 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 34 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	applymovement 1, SunriseVillage_PlayersHouse_LR_Movement_BigSisExits
-# 36 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 35 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	waitmovement 0
-# 37 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 36 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	playse SE_EXIT
-# 38 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 37 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	waitse
-# 39 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 38 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	removeobject 1
-# 41 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 40 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 3
-# 42 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 41 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	setflag FLAG_HIDE_BIGSIS_HOME
-# 44 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 43 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	end
 
 
-# 48 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 47 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 SunriseVillage_PlayersHouse_LR_Movement_BigSisExits:
-# 49 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 48 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+	walk_down
+# 48 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	walk_down
 # 49 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+	walk_right
+# 50 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	walk_down
 # 50 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	walk_right
-# 51 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	walk_down
 # 51 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	walk_down
-# 52 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	step_end
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis::
-# 56 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 55 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	lock
-# 57 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 56 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	faceplayer
-# 58 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 57 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 4
 	goto_if_le SunriseVillage_PlayersHouse_LR_EventScript_BigSis_2
-# 63 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
+# 62 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 6
 	goto_if_le SunriseVillage_PlayersHouse_LR_EventScript_BigSis_3
-# 69 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 68 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
 	goto_if_eq SunriseVillage_PlayersHouse_LR_EventScript_BigSis_4
-# 92 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 91 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	special GetPlayerBroSisString
-# 93 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 92 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_4, MSGBOX_AUTOCLOSE
-# 97 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 96 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	call Common_EventScript_OutOfCenterPartyHeal
-# 98 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 97 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_5, MSGBOX_AUTOCLOSE
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_1:
-# 102 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 101 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	return
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_2:
-# 59 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 58 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_0, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_PlayersHouse_LR_EventScript_BigSis_1
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_3:
-# 64 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 63 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	special GetPlayerBroSisString
-# 65 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 64 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_1, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_PlayersHouse_LR_EventScript_BigSis_1
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_4:
-# 70 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 69 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	special GetPlayerBroSisString
-# 71 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 70 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	bufferspeciesname STR_VAR_2, VAR_STARTER_MON
-# 72 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 71 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_2, MSGBOX_AUTOCLOSE
-# 83 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 82 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	call Common_EventScript_OutOfCenterPartyHeal
-# 84 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 83 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_3, MSGBOX_AUTOCLOSE
-# 88 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 87 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 8
 	goto SunriseVillage_PlayersHouse_LR_EventScript_BigSis_1
 
 
 SunriseVillage_PlayersHouse_LR_EventScript_Eevee::
-# 106 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 105 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	lock
-# 107 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 106 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	faceplayer
-# 108 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 107 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	waitse
-# 109 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 108 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
-# 110 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 109 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_0
-# 111 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 110 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	waitmoncry
-# 112 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 111 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	return
 
 
 SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote::
-# 116 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 115 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	lock
-# 117 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 116 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote_Text_0
-# 122 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 121 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi_Text_0:
-# 28 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 27 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Oh, {PLAYER}{KUN}, you're up! Ready for the\n"
 	.string "big event?\p"
 	.string "Are you excited? I sure hope you are,\n"
@@ -174,13 +172,13 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi_Text_0:
 	.string "Make sure you read it!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_0:
-# 60 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 59 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "What are you still doing here? You're\n"
 	.string "late for the distribution!\p"
 	.string "Go to Kaba's house right now!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_1:
-# 66 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 65 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Hey {STR_VAR_1}! See how cute my\n"
 	.string "new Pokémon is?\p"
 	.string "By the way, I heard {RIVAL} was\n"
@@ -188,12 +186,12 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_1:
 	.string "You should probably go see him.$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_2:
-# 73 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	.string "{STR_VAR_1}! See how cute my new\n"
-	.string "Pokémon is?\p"
+# 72 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+	.string "Hey {STR_VAR_1}! See how cute my\n"
+	.string "new Pokémon is?\p"
 	.string "Oh, who is that lovely little thing with\n"
 	.string "you?\p"
-	.string "{STR_VAR_2}, huh?\p"
+	.string "So you got a {STR_VAR_2}, huh?\p"
 	.string "Looks like it already likes you a lot!\n"
 	.string "You're going to make a great wielder, I\l"
 	.string "know it!\p"
@@ -204,28 +202,28 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_2:
 	.string "{PLAYER}.\p"
 	.string "Come say hi sometimes, will you?\p"
 	.string "Oh, and rest here a while before you go!\n"
-	.string "Your Pok {STR_VAR_2} looks tired.$"
+	.string "Your {STR_VAR_2} looks tired.$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_3:
-# 85 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 84 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Alrighty! You all set? Have a safe\n"
 	.string "journey!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_4:
-# 94 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 93 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Hey {PLAYER}! How's it going?\p"
 	.string "Here, rest for a bit.$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_5:
-# 99 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 98 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "See you around, {STR_VAR_1}.$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_0:
-# 110 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 109 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Eee!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote_Text_0:
-# 118 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 117 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "“Hey {PLAYER}{KUN},\n"
 	.string "I'm going down to the beach before the\l"
 	.string "giveaway, meet me there if you wanna\l"

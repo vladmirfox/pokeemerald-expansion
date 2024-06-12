@@ -4,7 +4,16 @@ const LOCALID_MAN = 2
 mapscripts ChiiTown_PokemonCenter_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
 		setrespawn(HEAL_LOCATION_CHII_TOWN)
-		end
+		gettime
+		// Daytime
+		if (var(VAR_0x8000) >= 5 && var(VAR_0x8000) <= 17) {
+			// Fat guy is there
+			clearflag(FLAG_TEMP_1)
+			// Nighttime
+		} else {
+			// Fat guy is gone
+			setflag(FLAG_TEMP_1)
+		}
 	}
 }
 
@@ -18,7 +27,6 @@ script ChiiTown_PokemonCenter_EventScript_Nurse {
 }
 
 script ChiiTown_PokemonCenter_EventScript_WhereShamisen {
-	// TODO EVA Remove this guy at night or when you've talked to him once
 	lock
 	faceplayer
 	msgbox(format(
@@ -70,7 +78,7 @@ script ChiiTown_PokemonCenter_EventScript_RefugePresentation {
 	faceplayer
 	msgbox(format(
 		"Isn't it amazing? This is one of the many brand-new Pokémon refuges that the Pokémon league council has decided to build in towns across all Toku!\p"
-		"With traveling alone becoming more dangerous, many people have chosen to train a Pokémon of their own for protection.\p"
+		"With traveling alone becoming more dangerous, many people are now training a Pokémon of their own for protection.\p"
 		"Towns were starting to be in dire need of proper healing and rest spots for Pokémon.\p"
 		"Oh, sorry, I'll get out of your hair now. Talk to the nurse whenever you want her to heal your Pokémon!"
 	))

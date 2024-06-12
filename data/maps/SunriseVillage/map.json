@@ -365,6 +365,24 @@
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "6",
       "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "7",
+      "script": "SunriseVillage_Event_GuardForest"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "7",
+      "script": "SunriseVillage_Event_GuardForest"
     }
   ],
   "bg_events": [

@@ -1,9 +1,18 @@
 mapscripts SunriseVillage_PlayersHouse_Bedroom_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
 		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 1) {
+			setrespawn(HEAL_LOCATION_SUNRISE_VILLAGE)
 			setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 1)
 		}
 	}
+}
+
+script SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll {
+	lock
+	msgbox(format(
+		"A very fluffy Wooloo doll. It's made of real Wooloo wool!"
+	), MSGBOX_AUTOCLOSE)
+	release
 }
 
 // Big Sis calls player when he gets out of bed

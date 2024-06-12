@@ -44,7 +44,7 @@ script TranquilRoute_EventScript_Kenji {
 	)
 	msgbox(format(
 		"Hiina is the best subject I could dream of.\p"
-		"…Hey, please don't tell her I said that."
+		"…Hey, uh, please don't tell her I said that."
 	), MSGBOX_AUTOCLOSE)
 	end
 }
@@ -54,7 +54,7 @@ script TranquilRoute_EventScript_MysteriousSamurai {
 	lock
 	// TODO EVA
 	msgbox(format(
-		"So you are one of those new Pokémon trainers, right?\p"
+		"So you are one of those new Pokémon wielders, right?\p"
 		"You say Pokémon have been restless, lately?\p"
 		"Interesting.\p"
 		"I have the feeling we're going to meet again soon.\p"
@@ -71,17 +71,25 @@ script TranquilRoute_EventScript_MysteriousSamurai {
 }
 
 movement TranquilRoute_Movement_MysteriousSamuraiWalksAway {
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
+	walk_right * 6
 }
 
 script TranquilRoute_EventScript_Girl {
 	lock
 	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_AUTOCLOSE)
+	release
+	end
+}
+
+script TranquilRoute_EventScript_Shellos {
+	lock
+	faceplayer
+	playmoncry(SPECIES_SHELLOS, CRY_MODE_NORMAL)
+	msgbox(format(
+		"Clelel!"
+	))
+	waitmoncry
+	closemessage
 	release
 	end
 }

@@ -56,7 +56,7 @@ GinkoWoods_EventScript_Toshio_Text_1:
 
 GinkoWoods_EventScript_Toshio_Text_2:
 # 17 "data/maps/GinkoWoods/scripts.pory"
-	.string "Real trainers fight when they spot each\n"
+	.string "Real wielders fight when they spot each\n"
 	.string "other!\p"
 	.string "At least that's what my dad told me…$"
 

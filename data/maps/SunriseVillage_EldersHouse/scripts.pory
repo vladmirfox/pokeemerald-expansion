@@ -67,8 +67,6 @@ script SunriseVillage_EldersHouse_Event_Rival {
 script SunriseVillage_EldersHouse_Event_Elder {
 	lock
 	faceplayer
-	buffernumberstring(STR_VAR_3, VAR_SUNRISE_VILLAGE_INTRO_STATE)
-	msgbox(format("var={STR_VAR_3}"), MSGBOX_AUTOCLOSE)
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		// TODO EVA dex evaluation, letter delivery, etc
 		msgbox(format("How is your Pokémon research going?"), MSGBOX_AUTOCLOSE)
@@ -91,7 +89,7 @@ movement SunriseVillage_EldersHouse_Movement_PlayerWalkUpToElder {
 
 movement SunriseVillage_EldersHouse_Movement_ElderTurnsToThink {
 	face_up
-	delay_16 * 6
+	delay_16 * 4
 	face_down
 	step_end
 }
@@ -176,6 +174,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	setflag(FLAG_RECEIVED_STARTER)
 	setflag(FLAG_SYS_POKEMON_GET)
 
+	turnobject(LOCALID_RIVAL, DIR_NORTH)
+
 	// Put the player back in their initial spot
 	switch(var(VAR_STARTER_MON)) {
 		case SPECIES_SPHEAL:
@@ -235,12 +235,12 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	}
 
 	// Elder gives Pokédex
-	// msgbox(format(
-	// 	"Elder Kaba: Now that you have your own Pokémon, you two are officially Pokémon wielders!\p"
-	// 	"The more Pokémon wielders there are, the deeper our understanding of Pokémon will be.\p"
-	// 	"We need to study these creatures from up close to find the root of this issue.\p"
-	// 	"Actually, there's something I wanted to ask you."
-	// ), MSGBOX_AUTOCLOSE)
+	msgbox(format(
+		"Elder Kaba: Now that you have your own Pokémon, you two are officially Pokémon wielders!\p"
+		"The more Pokémon wielders there are, the deeper our understanding of Pokémon will be.\p"
+		"We need to study these creatures from up close to find the root of this issue.\p"
+		"Actually, there's something I wanted to ask you."
+	), MSGBOX_AUTOCLOSE)
 
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderGivesDex)
 	waitmovement(0)
@@ -257,14 +257,14 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		"{RIVAL}: What's this? A book?"
 	), MSGBOX_AUTOCLOSE)
 
-	// msgbox(format(
-	// 	"Elder Kaba: I call this the “Pokédex”. It is an encyclopedia containing vital information about Pokémon from the whole region!\p"
-	// 	"Except it's, well, empty. That's where you come in!\p"
-	// 	"Explore Toku and fill the pages of this Pokédex with your findings!\p"
-	// 	"You can start by going all the way to Silveridge, north of here in the mountains.\p"
-	// 	"Another Elder lives there and, hopefully, has more information as to why the Pokémon are lashing out.\p"
-	// 	"Could you deliver him this letter?"
-	// ), MSGBOX_AUTOCLOSE)
+	msgbox(format(
+		"Elder Kaba: I call this the “Pokédex”. It is an encyclopedia containing vital information about Pokémon from the whole region!\p"
+		"Except it's, well, empty. That's where you come in!\p"
+		"Explore Toku and fill the pages of this Pokédex with your findings!\p"
+		"You can start by going all the way to Silveridge, north of here in the mountains.\p"
+		"Another Elder lives there and, hopefully, has more information as to why the Pokémon are lashing out.\p"
+		"Could you deliver him this letter?"
+	), MSGBOX_AUTOCLOSE)
 
 	playfanfare(MUS_OBTAIN_ITEM)
 	// TODO EVA giveitem letter
@@ -309,19 +309,19 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 }
 
 script SunriseVillage_EldersHouse_EventScript_RivalBattle {
-	// switch(var(VAR_STARTER_MON)) {
-	// 	case SPECIES_SPHEAL:
-	// 		trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("I lost!"))
-	// 	case SPECIES_ARON:
-	// 		trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("I lost!"))
-	// 	case SPECIES_TRAPINCH:
-	// 		trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("I lost!"))
-	// }
+	switch(var(VAR_STARTER_MON)) {
+		case SPECIES_SPHEAL:
+			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("I lost!"))
+		case SPECIES_ARON:
+			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("I lost!"))
+		case SPECIES_TRAPINCH:
+			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("I lost!"))
+	}
 
 	msgbox(format(
-		// "Whew! That was so stressful!\p"
-		// "I went easy on you this time, but next time… You'll see!\p"
-		// "Well, I'm going off now. Don't dilly-dally, or you'll never catch up!\p"
+		"Whew! That was so stressful!\p"
+		"I went easy on you this time, but next time… You'll see!\p"
+		"Well, I'm going off now. Don't dilly-dally, or you'll never catch up!\p"
 		"See ya, {PLAYER}."
 	), MSGBOX_AUTOCLOSE)
 
@@ -343,17 +343,7 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 	waitse
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay16)
 
-	msgbox(format(
-		"Setting var to 7"
-	), MSGBOX_AUTOCLOSE)
-
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 7)
-
-	buffernumberstring(STR_VAR_3, VAR_SUNRISE_VILLAGE_INTRO_STATE)
-
-	msgbox(format(
-		"var={STR_VAR_3}"
-	), MSGBOX_AUTOCLOSE)
 
 	releaseall
 }
@@ -372,8 +362,9 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromSpheal {
 }
 
 movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToTrapinch {
-	walk_right
 	walk_up
+	walk_right
+	face_up
 	delay_16
 	step_end
 }
@@ -438,9 +429,8 @@ movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsLeft {
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingSphealFromTop {
-	walk_right * 2
 	walk_down * 2
-	walk_left * 3
+	walk_left
 	walk_down
 	face_up
 	step_end
@@ -454,9 +444,7 @@ movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingSphealFro
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingAronFromTop {
-	walk_left * 2
 	walk_down * 3
-	walk_right * 2
 	face_up
 	step_end
 }
