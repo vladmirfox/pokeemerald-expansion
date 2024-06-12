@@ -16948,7 +16948,6 @@ void BS_TryUpdateLeadersCrestTracker(void)
 {
     NATIVE_ARGS();
     TryUpdateEvolutionTracker(EVO_DEFEAT_WITH_ITEM, 1, MOVE_NONE);
-
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
