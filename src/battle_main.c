@@ -3677,8 +3677,8 @@ const u8* FaintClearSetData(u32 battler)
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
     // Clear Dynamax data
-    UndoDynamax(battler);	
-	
+    UndoDynamax(battler);
+
     return result;
 }
 
@@ -5835,7 +5835,7 @@ static void TryEvolvePokemon(void)
             sTriedEvolving |= gBitTable[i];
 
             if (species == SPECIES_NONE && (gLeveledUpInBattle & gBitTable[i]))
-            { 
+            {
                 gLeveledUpInBattle &= ~(gBitTable[i]);
                 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_ONLY, gLeveledUpInBattle, NULL);
             }
