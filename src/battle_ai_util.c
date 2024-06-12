@@ -477,8 +477,9 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
     }
     else if (gMovesInfo[move].effect == EFFECT_PHOTON_GEYSER)
         gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(gBattlerAttacker) == DAMAGE_CATEGORY_PHYSICAL);
-
-    if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
+    else if (move == MOVE_SHELL_SIDE_ARM && gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] == DAMAGE_CATEGORY_SPECIAL)
+        gBattleStruct->swapDamageCategory = TRUE;
+    else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove();
 
     gBattleStruct->dynamicMoveType = 0;
@@ -819,17 +820,18 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
 {
     bool32 effect1, effect2;
-    s32 defAbility = AI_DATA->abilities[battlerDef];
+    u32 defAbility = AI_DATA->abilities[battlerDef];
+    u32 atkAbility = AI_DATA->abilities[battlerAtk];
 
     // Check if physical moves hurt.
-    if (AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_PROTECTIVE_PADS
+    if (AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_PROTECTIVE_PADS && atkAbility != ABILITY_LONG_REACH
         && (AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_ROCKY_HELMET
         || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN))
     {
-        if (IS_MOVE_PHYSICAL(move1) && !IS_MOVE_PHYSICAL(move2))
+        if (gMovesInfo[move1].makesContact && !gMovesInfo[move2].makesContact)
+            return -1;
+        if (gMovesInfo[move2].makesContact && !gMovesInfo[move1].makesContact)
             return 1;
-        if (IS_MOVE_PHYSICAL(move2) && !IS_MOVE_PHYSICAL(move1))
-            return 0;
     }
 
     // Check additional effects.

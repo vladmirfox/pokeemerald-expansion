@@ -1015,3 +1015,27 @@ AI_DOUBLE_BATTLE_TEST("AI recognizes Volt Absorb received from Trace")
         EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_RIGHT] == ABILITY_VOLT_ABSORB);
     }
 }
+
+AI_SINGLE_BATTLE_TEST("AI avoids contact moves against rocky helmet")
+{
+    u32 item;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_ROCKY_HELMET; }
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].makesContact);
+        ASSUME(!gMovesInfo[MOVE_LEAFAGE].makesContact);
+        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].power == gMovesInfo[MOVE_LEAFAGE].power);
+        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].type == gMovesInfo[MOVE_LEAFAGE].type);
+        ASSUME(gMovesInfo[MOVE_BRANCH_POKE].category == gMovesInfo[MOVE_LEAFAGE].category);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_BRANCH_POKE, MOVE_LEAFAGE); }
+    } WHEN {
+        if (item == ITEM_ROCKY_HELMET)
+            TURN { EXPECT_MOVE(opponent, MOVE_LEAFAGE); }
+        else
+            TURN { EXPECT_MOVES(opponent, MOVE_LEAFAGE, MOVE_BRANCH_POKE); }
+    }
+}
