@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Move Animation Test: Smack Down works when used 15 times in a row")
 {
     u16 j, nTurns = 15;
-    gBattleTestRunnerState->forceMoveAnim = TRUE;
+    FORCE_MOVE_ANIM(TRUE);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -20,6 +20,6 @@ SINGLE_BATTLE_TEST("Move Animation Test: Smack Down works when used 15 times in 
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SMACK_DOWN, player);
         }
     } THEN {
-        gBattleTestRunnerState->forceMoveAnim = FALSE;
+        FORCE_MOVE_ANIM(FALSE);
     }
 }
