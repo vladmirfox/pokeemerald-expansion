@@ -80,6 +80,34 @@ SINGLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie"
     }
 }
 
+DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie")
+{
+    struct BattlePokemon *fastest = NULL;
+    PARAMETRIZE { fastest = playerLeft; }
+    PARAMETRIZE { fastest = playerRight; }
+    PARAMETRIZE { fastest = opponentLeft; }
+    PARAMETRIZE { fastest = opponentRight; }
+
+    PASSES_RANDOMLY(1, 4, RNG_SPEED_TIE);
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_WYNAUT) { Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPLASH); MOVE(playerRight, MOVE_SPLASH); MOVE(opponentLeft, MOVE_SPLASH); MOVE(opponentRight, MOVE_SPLASH); }
+    } SCENE {
+        NONE_OF {
+            if (fastest != playerLeft) ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, playerLeft);
+            if (fastest != playerRight) ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, playerRight);
+            if (fastest != opponentLeft) ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponentLeft);
+            if (fastest != opponentRight) ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponentRight);
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, fastest);
+    }
+}
+
 SINGLE_BATTLE_TEST("Critical hits occur at a 1/24 rate")
 {
     ASSUME(B_CRIT_CHANCE >= GEN_7);

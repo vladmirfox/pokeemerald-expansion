@@ -5163,6 +5163,8 @@ s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenM
     );
 }
 
+// Assign a bit to each pair of battlers where battler1 <= battler2.
+// If battler2 < battler1, then invert the bit.
 static const u8 sSpeedTieBits[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT] =
 {
     [0] = { [1] = 0, [2] = 1, [3] = 2 },
@@ -5176,7 +5178,7 @@ s32 GetWhichBattlerFaster(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 
     if (strikesFirst == 0)
     {
-        if (battler1 < battler2)
+        if (battler1 <= battler2)
             strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler1][battler2])) ? -1 : 1;
         else
             strikesFirst = (gBattleStruct->speedTieBreaks & (1 << sSpeedTieBits[battler2][battler1])) ? 1 : -1;
