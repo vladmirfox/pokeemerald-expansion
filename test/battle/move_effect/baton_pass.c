@@ -1,9 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-#include "global.h"
-#include "test/battle.h"
-
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
