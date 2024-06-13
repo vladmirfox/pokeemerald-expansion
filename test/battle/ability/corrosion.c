@@ -189,6 +189,8 @@ SINGLE_BATTLE_TEST("Corrosion allows the Pokémon with the ability to poison a S
     } WHEN {
         TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, move); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
+        ANIMATION(ANIM_TYPE_MOVE, move, player); // Bounced by Magic Coat
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         if (move == MOVE_TOXIC)
             STATUS_ICON(opponent, badPoison: TRUE);
@@ -211,7 +213,10 @@ SINGLE_BATTLE_TEST("Corrosion's effect is lost if the move used by the Pokémon 
     } WHEN {
         TURN { MOVE(opponent, MOVE_MAGIC_COAT); MOVE(player, move); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, opponent);
         NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, move, player);
+            ANIMATION(ANIM_TYPE_MOVE, move, opponent);
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
         if (move == MOVE_TOXIC)
             STATUS_ICON(opponent, badPoison: TRUE);

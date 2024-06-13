@@ -51,6 +51,8 @@ SINGLE_BATTLE_TEST("Hurricane can hit airborne targets")
     } WHEN {
         TURN { MOVE(opponent, move); MOVE(player, MOVE_HURRICANE); }
     } SCENE {
+        // ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        // ANIMATION(ANIM_TYPE_MOVE, MOVE_HURRICANE, player);
         NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
     }
 }
