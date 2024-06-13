@@ -2383,8 +2383,8 @@ u32 GetMonData2(struct Pokemon *mon, s32 field)
 struct EvolutionTrackerBitfield
 {
     u16 a: 5;
-    u16 b: 4;
-    u16 unused: 7;
+    u16 b: 5;
+    u16 unused: 6;
 };
 
 union EvolutionTracker
@@ -4684,6 +4684,14 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_FEMALE)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
+            case EVO_DEFEAT_WITH_ITEM:
+                if (evolutionTracker >= 3)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
+            case EVO_OVERWORLD_STEPS:
+                if (evolutionTracker >= evolutions[i].param)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
             }
         }
         break;
@@ -6220,7 +6228,7 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return species != SPECIES_UNOWN;
+    return P_TWO_FRAME_FRONT_SPRITES && species != SPECIES_UNOWN;
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
