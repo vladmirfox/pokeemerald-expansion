@@ -2891,20 +2891,6 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_PLUS(DECENT_EFFECT);
                 }
                 break;
-            case ABILITY_DEFIANT:
-                if (IsStatLoweringEffect(effect)
-                    && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK))
-                {
-                    RETURN_SCORE_PLUS(WEAK_EFFECT);
-                }
-                break;
-            case ABILITY_COMPETITIVE:
-                if (IsStatLoweringEffect(effect)
-                    && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_SPATK))
-                {
-                    RETURN_SCORE_PLUS(WEAK_EFFECT);
-                }
-                break;
             }
         } // ability checks
 
