@@ -55,7 +55,7 @@ script Silveridge_EventScript_TownSign {
 }
 
 script Silveridge_EventScript_TownSculptureSignTBD {
-	msgbox(format("“{FIXED_CASE}TO BE DETERMINED{UNFIX_CASE}”\nA beautiful statue by {FIXED_CASE}PLACEHOLDER{UNFIX_CASE}"), MSGBOX_SIGN)
+	msgbox(format("“TO BE DETERMINED”\nA beautiful statue by PLACEHOLDER"), MSGBOX_SIGN)
 }
 
 script Silveridge_EventScript_SculptorsHouseSign {

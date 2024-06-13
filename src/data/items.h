@@ -12938,8 +12938,8 @@ const struct Item gItemsInfo[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .iconPic = gItemIcon_RainbowPass,
-        .iconPalette = gItemIconPalette_RainbowPass,
+        .iconPic = gItemIcon_SilkScarf,
+        .iconPalette = gItemIconPalette_SilkScarf,
     },
 
     [ITEM_TEA] =

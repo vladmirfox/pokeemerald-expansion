@@ -255,8 +255,8 @@ ChiiTown_House1_EventScript_GrowlitheGrrr_Text_0:
 
 ChiiTown_House1_EventScript_GrowlitheBarks_Text_0:
 # 62 "data/maps/ChiiTown_House1/scripts.pory"
-	.string "{FIXED_CASE}BARK!\p"
-	.string "BARKBARKBARKBARKBARK!{UNFIX_CASE}$"
+	.string "BARK!\p"
+	.string "BARKBARKBARKBARKBARK!$"
 
 ChiiTown_House1_EventScript_GrowlitheBarks_Text_1:
 # 69 "data/maps/ChiiTown_House1/scripts.pory"

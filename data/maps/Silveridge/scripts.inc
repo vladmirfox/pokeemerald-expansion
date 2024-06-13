@@ -129,8 +129,8 @@ Silveridge_EventScript_TownSign_Text_0:
 
 Silveridge_EventScript_TownSculptureSignTBD_Text_0:
 # 58 "data/maps/Silveridge/scripts.pory"
-	.string "“{FIXED_CASE}TO BE DETERMINED{UNFIX_CASE}”\n"
-	.string "A beautiful statue by {FIXED_CASE}PLACEHOLDER{UNFIX_CASE}$"
+	.string "“TO BE DETERMINED”\n"
+	.string "A beautiful statue by PLACEHOLDER$"
 
 Silveridge_EventScript_SculptorsHouseSign_Text_0:
 # 62 "data/maps/Silveridge/scripts.pory"

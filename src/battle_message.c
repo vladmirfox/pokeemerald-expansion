@@ -3614,14 +3614,15 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
             case B_TXT_PARTNER_NAME:
                 break;
 #ifdef BATTLE_ENGINE
-                if (gPartnerSpriteId == TRAINER_BACK_PIC_BRENDAN || gPartnerSpriteId == TRAINER_BACK_PIC_MAY)
-                {
-                    toCpy = gSaveBlock2Ptr->rivalName;
-                }
-                else
-                {
+                // TODO EVA this doesn't work anymore because of a recent expansion update that removed gPartnerSpriteId. Try using gPartnerTrainerId == TRAINER_PARTNER(...)
+                // if (gPartnerSpriteId == TRAINER_BACK_PIC_BRENDAN || gPartnerSpriteId == TRAINER_BACK_PIC_MAY)
+                // {
+                //     toCpy = gSaveBlock2Ptr->rivalName;
+                // }
+                // else
+                // {
                     toCpy = BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
-                }
+                // }
 #else
                 toCpy = gTrainers[TRAINER_RIVAL_SUNRISE_TRAPINCH].trainerName;
 #endif
