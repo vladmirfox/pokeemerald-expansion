@@ -64,12 +64,13 @@ bool32 CanTerastallize(u32 battler)
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
     // Check if Player has Tera Orb and has charge.
-    if (!TESTING && !(B_FLAG_TERA_ORB_NO_COST != 0 && FlagGet(B_FLAG_TERA_ORB_NO_COST))
-        && (battler == B_POSITION_PLAYER_LEFT
-        || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT)))
+    if (!TESTING && !CheckBagHasItem(ITEM_TERA_ORB, 1))
+        return FALSE;
+
+    if (!TESTING 
+     && !(B_FLAG_TERA_ORB_NO_COST != 0 && FlagGet(B_FLAG_TERA_ORB_NO_COST))
+     && (battler == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battler == B_POSITION_PLAYER_RIGHT)))
     {
-        if (!CheckBagHasItem(ITEM_TERA_ORB, 1))
-            return FALSE;
         if (B_FLAG_TERA_ORB_CHARGED != 0 && !FlagGet(B_FLAG_TERA_ORB_CHARGED))
             return FALSE;
     }
