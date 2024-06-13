@@ -1881,7 +1881,10 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 if (damageDealt > playerMonHP)
                 {
                     // If AI mon is faster and doesn't die to hazards
-                    if ((aiMonSpeed > playerMonSpeed || aiMovePriority > 0) && AI_DATA->switchinCandidate.battleMon.hp > GetSwitchinHazardsDamage(battler, &AI_DATA->switchinCandidate.battleMon))
+                    if ((((aiMonSpeed > playerMonSpeed && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)) || aiMovePriority > 0) // Outspeed if not Trick Room
+                        || ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room
+                        && (aiMonSpeed < playerMonSpeed || (gItemsInfo[AI_DATA->switchinCandidate.battleMon.item].holdEffect == HOLD_EFFECT_ROOM_SERVICE && aiMonSpeed * 0.67 < playerMonSpeed)))) // Trick Room speeds
+                        && AI_DATA->switchinCandidate.battleMon.hp > GetSwitchinHazardsDamage(battler, &AI_DATA->switchinCandidate.battleMon)) // Hazards
                     {
                         // We have a revenge killer
                         revengeKillerId = i;
@@ -1903,7 +1906,9 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 if (damageDealt > playerMonHP / 2)
                 {
                     // If AI mon is faster
-                    if (aiMonSpeed > playerMonSpeed || aiMovePriority > 0)
+                    if (((aiMonSpeed > playerMonSpeed && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)) || aiMovePriority > 0) // Outspeed if not Trick Room
+                        || (((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) && gFieldTimers.trickRoomTimer > 1) // Trick Room has at least 2 turns left
+                        && (aiMonSpeed < playerMonSpeed || (gItemsInfo[AI_DATA->switchinCandidate.battleMon.item].holdEffect == HOLD_EFFECT_ROOM_SERVICE && aiMonSpeed * 0.67 < playerMonSpeed)))) // Trick Room speeds
                     {
                         // If AI mon can't be OHKO'd
                         if (hitsToKOAI > hitsToKOAIThreshold)
