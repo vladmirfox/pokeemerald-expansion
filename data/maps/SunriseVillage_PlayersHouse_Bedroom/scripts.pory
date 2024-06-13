@@ -1,7 +1,7 @@
 mapscripts SunriseVillage_PlayersHouse_Bedroom_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
 		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 1) {
-			setrespawn(HEAL_LOCATION_SUNRISE_VILLAGE)
+			// setrespawn(HEAL_LOCATION_SUNRISE_VILLAGE)
 			setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 1)
 		}
 	}
@@ -12,6 +12,17 @@ script SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll {
 	msgbox(format(
 		"A very fluffy Wooloo doll. It's made of real Wooloo wool!"
 	), MSGBOX_AUTOCLOSE)
+	release
+}
+
+script SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT {
+	lock
+	setvar(VAR_0x8000, MUGSHOT_AO)
+	callnative(DrawMugshot)
+	msgbox(format(
+		"What up dumdum?"
+	), MSGBOX_AUTOCLOSE)
+	callnative(ClearMugshot)
 	release
 }
 

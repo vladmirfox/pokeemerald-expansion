@@ -4670,6 +4670,16 @@
       "secondary_tileset": "gTileset_Soulkeep",
       "border_filepath": "data/layouts/Soulkeep/border.bin",
       "blockdata_filepath": "data/layouts/Soulkeep/map.bin"
+    },
+    {
+      "id": "LAYOUT_MAGURO_HARBOR_DOJO",
+      "name": "MaguroHarbor_Dojo_Layout",
+      "width": 12,
+      "height": 20,
+      "primary_tileset": "gTileset_Building_Generic",
+      "secondary_tileset": "gTileset_DojoMaguro",
+      "border_filepath": "data/layouts/MaguroHarbor_Dojo/border.bin",
+      "blockdata_filepath": "data/layouts/MaguroHarbor_Dojo/map.bin"
     }
   ]
 }

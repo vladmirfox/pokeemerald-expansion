@@ -82,6 +82,20 @@ script SunriseVillage_EldersHouse_Event_Elder {
 	release
 }
 
+script SunriseVillage_EldersHouse_EventScript_TryToLeave {
+	lock
+	msgbox(format(
+		"Elder Kaba: Where do you think you're going?"
+	), MSGBOX_AUTOCLOSE)
+	applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_EldersHouse_Movement_PlayerGetAwayFromExit)
+	release
+}
+
+movement SunriseVillage_EldersHouse_Movement_PlayerGetAwayFromExit {
+	walk_up
+	step_end
+}
+
 movement SunriseVillage_EldersHouse_Movement_PlayerWalkUpToElder {
 	walk_up * 2
 	step_end

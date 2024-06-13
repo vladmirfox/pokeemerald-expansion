@@ -108,8 +108,8 @@ KuraTown_EventScript_SingingFarmer_Text_0:
 
 KuraTown_EventScript_Guard_Text_0:
 # 52 "data/maps/KuraTown/scripts.pory"
-	.string "Hello, young traveler. Hope you didn't\n"
-	.string "have too much trouble passing the gate.\p"
+	.string "Hello, traveler. Hope you didn't have\n"
+	.string "too much trouble passing the gate.\p"
 	.string "That Saku Village guard is such a jerk,\n"
 	.string "he won't let anyone from our village\l"
 	.string "cross to theirs.\p"

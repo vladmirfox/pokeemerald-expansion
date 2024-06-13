@@ -6,196 +6,214 @@ ChiiTown_PokemonCenter_MapScripts::
 ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 # 6 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	setrespawn HEAL_LOCATION_CHII_TOWN
-	end
+# 7 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	gettime
+# 9 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	compare VAR_0x8000, 5
+	goto_if_ge ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
+ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_2:
+# 15 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	setflag FLAG_TEMP_1
+	return
+
+ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+# 11 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	clearflag FLAG_TEMP_1
+	return
+
+ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
+# 9 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	compare VAR_0x8000, 17
+	goto_if_le ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	goto ChiiTown_PokemonCenter_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
 
 
 ChiiTown_PokemonCenter_EventScript_Nurse::
-# 12 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 21 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	setvar VAR_0x800B, 1
-# 13 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 22 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	call Common_EventScript_PkmnCenterNurse
-# 14 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 23 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	waitmessage
-# 15 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 24 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	waitbuttonpress
-# 16 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 25 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 
 ChiiTown_PokemonCenter_EventScript_WhereShamisen::
-# 22 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 30 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	lock
-# 23 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 31 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	faceplayer
-# 24 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 32 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	msgbox ChiiTown_PokemonCenter_EventScript_WhereShamisen_Text_0
-# 27 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 35 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	closemessage
-# 28 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 36 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 
 ChiiTown_PokemonCenter_EventScript_IveComeALongWay::
-# 33 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 41 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	lock
-# 34 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 42 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	faceplayer
-# 35 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 43 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	msgbox ChiiTown_PokemonCenter_EventScript_IveComeALongWay_Text_0
-# 39 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 47 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	closemessage
-# 40 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 48 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 
 ChiiTown_PokemonCenter_EventScript_Snorunt::
-# 45 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	lock
-# 46 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	faceplayer
-# 47 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	playmoncry SPECIES_SNORUNT, CRY_MODE_NORMAL
-# 48 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	msgbox ChiiTown_PokemonCenter_EventScript_Snorunt_Text_0
-# 51 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	waitmoncry
-# 52 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	closemessage
 # 53 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	lock
+# 54 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	faceplayer
+# 55 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	playmoncry SPECIES_SNORUNT, CRY_MODE_NORMAL
+# 56 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	msgbox ChiiTown_PokemonCenter_EventScript_Snorunt_Text_0
+# 59 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	waitmoncry
+# 60 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	closemessage
+# 61 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 
 ChiiTown_PokemonCenter_EventScript_NeedMarket::
-# 58 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 66 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	lock
-# 59 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 67 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	faceplayer
-# 60 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 68 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	msgbox ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_0
-# 63 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 71 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	closemessage
-# 64 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 72 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation::
-# 69 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	lock
-# 70 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	faceplayer
-# 71 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	msgbox ChiiTown_PokemonCenter_EventScript_RefugePresentation_Text_0
 # 77 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	closemessage
+	lock
+# 78 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	faceplayer
 # 79 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	msgbox ChiiTown_PokemonCenter_EventScript_RefugePresentation_Text_0
+# 85 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	closemessage
+# 87 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	switch VAR_FACING
-# 80 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 88 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	case DIR_NORTH, ChiiTown_PokemonCenter_EventScript_RefugePresentation_3
-# 82 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 90 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	case DIR_WEST, ChiiTown_PokemonCenter_EventScript_RefugePresentation_4
-# 84 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 92 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	case DIR_EAST, ChiiTown_PokemonCenter_EventScript_RefugePresentation_5
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_1:
-# 87 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 95 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	waitmovement 0
-# 88 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 96 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	removeobject 2
-# 89 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 97 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	playse SE_EXIT
-# 90 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 98 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	waitse
-# 92 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 100 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	setflag FLAG_POKEMON_REFUGE_PRESENTATION
-# 93 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 101 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	release
 	end
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_3:
-# 81 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 89 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	applymovement 2, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_4:
-# 83 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 91 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	applymovement 2, ChiiTown_PokemonCenter_Movement_Leave
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_5:
-# 85 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 93 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	applymovement 2, ChiiTown_PokemonCenter_Movement_Leave
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 
-# 97 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 105 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom:
-# 98 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 106 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_right
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 107 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
 	step_end
 
-# 102 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 110 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 ChiiTown_PokemonCenter_Movement_Leave:
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
-# 103 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 111 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
 	step_end
 
 ChiiTown_PokemonCenter_EventScript_WhereShamisen_Text_0:
-# 25 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 33 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Where's that cute shamisen player that\n"
 	.string "was here last night?$"
 
 ChiiTown_PokemonCenter_EventScript_IveComeALongWay_Text_0:
-# 36 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 44 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "I'm so glad I found this refuge. I've\n"
 	.string "come a long way and my feet hurt.\p"
 	.string "My Pokémon and I can rest for a while.$"
 
 ChiiTown_PokemonCenter_EventScript_Snorunt_Text_0:
-# 49 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 57 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Glaglaglaglagla!$"
 
 ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_0:
-# 61 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 69 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Berries, potions… Oh, right, I should get\n"
 	.string "a few more Pokéballs from the town\l"
 	.string "market!$"
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_Text_0:
-# 72 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+# 80 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Isn't it amazing? This is one of the\n"
 	.string "many brand-new Pokémon refuges that\l"
 	.string "the Pokémon league council has decided\l"
 	.string "to build in towns across all Toku!\p"
 	.string "With traveling alone becoming more\n"
-	.string "dangerous, many people have chosen to\l"
-	.string "train a Pokémon of their own for\l"
-	.string "protection.\p"
+	.string "dangerous, many people are now training\l"
+	.string "a Pokémon of their own for protection.\p"
 	.string "Towns were starting to be in dire need\n"
 	.string "of proper healing and rest spots for\l"
 	.string "Pokémon.\p"

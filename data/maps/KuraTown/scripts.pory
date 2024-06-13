@@ -49,7 +49,7 @@ script KuraTown_EventScript_Guard {
 	faceplayer
 	msgbox(
 		format(
-			"Hello, young traveler. Hope you didn't have too much trouble passing the gate.\p"
+			"Hello, traveler. Hope you didn't have too much trouble passing the gate.\p"
 			"That Saku Village guard is such a jerk, he won't let anyone from our village cross to theirs.\p"
 			"So of course we're not gonna let any of them in ours! Hah!"
 		),

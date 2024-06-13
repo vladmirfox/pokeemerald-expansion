@@ -93,32 +93,35 @@ SunriseVillage_Event_GuardForest::
 	faceplayer
 # 55 "data/maps/SunriseVillage/scripts.pory"
 	goto_if_set FLAG_RECEIVED_STARTER, SunriseVillage_Event_GuardForest_2
-# 72 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_GuardForest_Text_2, MSGBOX_AUTOCLOSE
-# 75 "data/maps/SunriseVillage/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-# 76 "data/maps/SunriseVillage/scripts.pory"
+# 81 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_GuardForest_Text_3, MSGBOX_AUTOCLOSE
-# 82 "data/maps/SunriseVillage/scripts.pory"
+# 84 "data/maps/SunriseVillage/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+# 85 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_4, MSGBOX_AUTOCLOSE
+# 91 "data/maps/SunriseVillage/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
-# 83 "data/maps/SunriseVillage/scripts.pory"
+# 92 "data/maps/SunriseVillage/scripts.pory"
 	waitmovement 0
 SunriseVillage_Event_GuardForest_1:
-# 85 "data/maps/SunriseVillage/scripts.pory"
+# 94 "data/maps/SunriseVillage/scripts.pory"
 	release
 	end
 
 SunriseVillage_Event_GuardForest_2:
 # 56 "data/maps/SunriseVillage/scripts.pory"
-	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
+	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 8
 	goto_if_ge SunriseVillage_Event_GuardForest_5
-# 63 "data/maps/SunriseVillage/scripts.pory"
+# 62 "data/maps/SunriseVillage/scripts.pory"
+	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
+	goto_if_eq SunriseVillage_Event_GuardForest_6
+# 72 "data/maps/SunriseVillage/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-# 64 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_GuardForest_Text_1, MSGBOX_AUTOCLOSE
-# 67 "data/maps/SunriseVillage/scripts.pory"
+# 73 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_2, MSGBOX_AUTOCLOSE
+# 76 "data/maps/SunriseVillage/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
-# 68 "data/maps/SunriseVillage/scripts.pory"
+# 77 "data/maps/SunriseVillage/scripts.pory"
 	waitmovement 0
 	goto SunriseVillage_Event_GuardForest_1
 
@@ -127,125 +130,124 @@ SunriseVillage_Event_GuardForest_5:
 	msgbox SunriseVillage_Event_GuardForest_Text_0, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_Event_GuardForest_1
 
+SunriseVillage_Event_GuardForest_6:
+# 63 "data/maps/SunriseVillage/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
+# 64 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_1, MSGBOX_AUTOCLOSE
+# 69 "data/maps/SunriseVillage/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown
+# 70 "data/maps/SunriseVillage/scripts.pory"
+	waitmovement 0
+	goto SunriseVillage_Event_GuardForest_1
+
 
 SunriseVillage_Event_GuardForest_Interact::
-# 90 "data/maps/SunriseVillage/scripts.pory"
+# 99 "data/maps/SunriseVillage/scripts.pory"
 	lock
-# 91 "data/maps/SunriseVillage/scripts.pory"
+# 100 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
-# 92 "data/maps/SunriseVillage/scripts.pory"
+# 101 "data/maps/SunriseVillage/scripts.pory"
 	goto_if_set FLAG_RECEIVED_STARTER, SunriseVillage_Event_GuardForest_Interact_2
-# 107 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_GuardForest_Text_3, MSGBOX_AUTOCLOSE
+# 121 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_4, MSGBOX_AUTOCLOSE
 SunriseVillage_Event_GuardForest_Interact_1:
-# 114 "data/maps/SunriseVillage/scripts.pory"
+# 128 "data/maps/SunriseVillage/scripts.pory"
 	release
 	end
 
 SunriseVillage_Event_GuardForest_Interact_2:
-# 93 "data/maps/SunriseVillage/scripts.pory"
-	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
+# 102 "data/maps/SunriseVillage/scripts.pory"
+	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 8
 	goto_if_ge SunriseVillage_Event_GuardForest_Interact_5
-# 100 "data/maps/SunriseVillage/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_EAST
-# 101 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_GuardForest_Text_1, MSGBOX_AUTOCLOSE
+# 108 "data/maps/SunriseVillage/scripts.pory"
+	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
+	goto_if_eq SunriseVillage_Event_GuardForest_Interact_6
+# 115 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_2, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_Event_GuardForest_Interact_1
 
 SunriseVillage_Event_GuardForest_Interact_5:
-# 94 "data/maps/SunriseVillage/scripts.pory"
+# 103 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_GuardForest_Text_0, MSGBOX_AUTOCLOSE
+	goto SunriseVillage_Event_GuardForest_Interact_1
+
+SunriseVillage_Event_GuardForest_Interact_6:
+# 109 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_GuardForest_Text_1, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_Event_GuardForest_Interact_1
 
 
 SunriseVillage_Event_LittleGirl::
-# 120 "data/maps/SunriseVillage/scripts.pory"
+# 134 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_LittleGirl_Text_0, MSGBOX_NPC
 	return
 
 
 SunriseVillage_Event_Boy::
-# 128 "data/maps/SunriseVillage/scripts.pory"
+# 142 "data/maps/SunriseVillage/scripts.pory"
 	lockall
-# 129 "data/maps/SunriseVillage/scripts.pory"
+# 143 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
-# 130 "data/maps/SunriseVillage/scripts.pory"
+# 144 "data/maps/SunriseVillage/scripts.pory"
 	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 4
 	goto_if_ge SunriseVillage_Event_Boy_2
-# 136 "data/maps/SunriseVillage/scripts.pory"
+# 150 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_Boy_Text_1, MSGBOX_AUTOCLOSE
 SunriseVillage_Event_Boy_1:
-# 141 "data/maps/SunriseVillage/scripts.pory"
+# 155 "data/maps/SunriseVillage/scripts.pory"
 	releaseall
 	end
 
 SunriseVillage_Event_Boy_2:
-# 131 "data/maps/SunriseVillage/scripts.pory"
+# 145 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_Boy_Text_0, MSGBOX_AUTOCLOSE
 	goto SunriseVillage_Event_Boy_1
 
 
 SunriseVillage_Event_Woman::
-# 147 "data/maps/SunriseVillage/scripts.pory"
+# 161 "data/maps/SunriseVillage/scripts.pory"
 	lockall
-# 148 "data/maps/SunriseVillage/scripts.pory"
+# 162 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
-# 149 "data/maps/SunriseVillage/scripts.pory"
+# 163 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_Woman_Text_0, MSGBOX_AUTOCLOSE
-# 152 "data/maps/SunriseVillage/scripts.pory"
+# 166 "data/maps/SunriseVillage/scripts.pory"
 	releaseall
 	end
 
 
 SunriseVillage_Event_Farmer::
-# 158 "data/maps/SunriseVillage/scripts.pory"
+# 172 "data/maps/SunriseVillage/scripts.pory"
 	lockall
-# 159 "data/maps/SunriseVillage/scripts.pory"
+# 173 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
-# 160 "data/maps/SunriseVillage/scripts.pory"
+# 174 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_Farmer_Text_0, MSGBOX_AUTOCLOSE
-# 163 "data/maps/SunriseVillage/scripts.pory"
+# 177 "data/maps/SunriseVillage/scripts.pory"
 	releaseall
 	end
 
 
 SunriseVillage_Event_OldMan::
-# 169 "data/maps/SunriseVillage/scripts.pory"
+# 183 "data/maps/SunriseVillage/scripts.pory"
 	lockall
-# 170 "data/maps/SunriseVillage/scripts.pory"
+# 184 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
-# 171 "data/maps/SunriseVillage/scripts.pory"
+# 185 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_OldMan_Text_0, MSGBOX_AUTOCLOSE
-# 174 "data/maps/SunriseVillage/scripts.pory"
+# 188 "data/maps/SunriseVillage/scripts.pory"
 	releaseall
 	end
 
 
 SunriseVillage_Event_OldWoman::
-# 180 "data/maps/SunriseVillage/scripts.pory"
+# 194 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_OldWoman_Text_0, MSGBOX_NPC
 	return
 
 
 SunriseVillage_Event_Happiny::
-# 187 "data/maps/SunriseVillage/scripts.pory"
-	lock
-# 188 "data/maps/SunriseVillage/scripts.pory"
-	faceplayer
-# 189 "data/maps/SunriseVillage/scripts.pory"
-	waitse
-# 190 "data/maps/SunriseVillage/scripts.pory"
-	playmoncry SPECIES_HAPPINY, CRY_MODE_NORMAL
-# 191 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_Happiny_Text_0, MSGBOX_AUTOCLOSE
-# 194 "data/maps/SunriseVillage/scripts.pory"
-	waitmoncry
-# 195 "data/maps/SunriseVillage/scripts.pory"
-	release
-	end
-
-
-SunriseVillage_Event_Munchlax::
 # 201 "data/maps/SunriseVillage/scripts.pory"
 	lock
 # 202 "data/maps/SunriseVillage/scripts.pory"
@@ -253,9 +255,9 @@ SunriseVillage_Event_Munchlax::
 # 203 "data/maps/SunriseVillage/scripts.pory"
 	waitse
 # 204 "data/maps/SunriseVillage/scripts.pory"
-	playmoncry SPECIES_MUNCHLAX, CRY_MODE_NORMAL
+	playmoncry SPECIES_HAPPINY, CRY_MODE_NORMAL
 # 205 "data/maps/SunriseVillage/scripts.pory"
-	msgbox SunriseVillage_Event_Munchlax_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_Event_Happiny_Text_0, MSGBOX_AUTOCLOSE
 # 208 "data/maps/SunriseVillage/scripts.pory"
 	waitmoncry
 # 209 "data/maps/SunriseVillage/scripts.pory"
@@ -263,52 +265,70 @@ SunriseVillage_Event_Munchlax::
 	end
 
 
-SunriseVillage_Event_Kirlia::
+SunriseVillage_Event_Munchlax::
 # 215 "data/maps/SunriseVillage/scripts.pory"
 	lock
 # 216 "data/maps/SunriseVillage/scripts.pory"
 	faceplayer
 # 217 "data/maps/SunriseVillage/scripts.pory"
+	waitse
+# 218 "data/maps/SunriseVillage/scripts.pory"
+	playmoncry SPECIES_MUNCHLAX, CRY_MODE_NORMAL
+# 219 "data/maps/SunriseVillage/scripts.pory"
+	msgbox SunriseVillage_Event_Munchlax_Text_0, MSGBOX_AUTOCLOSE
+# 222 "data/maps/SunriseVillage/scripts.pory"
+	waitmoncry
+# 223 "data/maps/SunriseVillage/scripts.pory"
+	release
+	end
+
+
+SunriseVillage_Event_Kirlia::
+# 229 "data/maps/SunriseVillage/scripts.pory"
+	lock
+# 230 "data/maps/SunriseVillage/scripts.pory"
+	faceplayer
+# 231 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_Kirlia_Text_0, MSGBOX_AUTOCLOSE
-# 220 "data/maps/SunriseVillage/scripts.pory"
+# 234 "data/maps/SunriseVillage/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_Event_TestGyarados::
-# 226 "data/maps/SunriseVillage/scripts.pory"
+# 240 "data/maps/SunriseVillage/scripts.pory"
 	lock
-# 227 "data/maps/SunriseVillage/scripts.pory"
+# 241 "data/maps/SunriseVillage/scripts.pory"
 	givemon SPECIES_SPHEAL, 100
-# 228 "data/maps/SunriseVillage/scripts.pory"
+# 242 "data/maps/SunriseVillage/scripts.pory"
 	setwildbattle SPECIES_KOTORA, 5
-# 229 "data/maps/SunriseVillage/scripts.pory"
+# 243 "data/maps/SunriseVillage/scripts.pory"
 	dowildbattle
-# 230 "data/maps/SunriseVillage/scripts.pory"
+# 244 "data/maps/SunriseVillage/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_Event_TownSign::
-# 235 "data/maps/SunriseVillage/scripts.pory"
+# 249 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_PlayersHouseSign::
-# 239 "data/maps/SunriseVillage/scripts.pory"
+# 253 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_PlayersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_RivalsHouseSign::
-# 243 "data/maps/SunriseVillage/scripts.pory"
+# 257 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_RivalsHouseSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SunriseVillage_Event_EldersHouseSign::
-# 247 "data/maps/SunriseVillage/scripts.pory"
+# 261 "data/maps/SunriseVillage/scripts.pory"
 	msgbox SunriseVillage_Event_EldersHouseSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -333,15 +353,23 @@ SunriseVillage_Event_GuardForest_Text_0:
 
 SunriseVillage_Event_GuardForest_Text_1:
 # 65 "data/maps/SunriseVillage/scripts.pory"
-	.string "Hey, a friend of yours was looking for\n"
-	.string "you.$"
+	.string "Hey, kid, heard you were going off on an\n"
+	.string "adventure!\p"
+	.string "Did you say bye to your sister?\p"
+	.string "No? Thought so. Go see her before you\n"
+	.string "run off, you ungrateful sibling!$"
 
 SunriseVillage_Event_GuardForest_Text_2:
-# 73 "data/maps/SunriseVillage/scripts.pory"
-	.string "Stop right there!$"
+# 74 "data/maps/SunriseVillage/scripts.pory"
+	.string "Hey, kid, a friend of yours was looking\n"
+	.string "for you.$"
 
 SunriseVillage_Event_GuardForest_Text_3:
-# 77 "data/maps/SunriseVillage/scripts.pory"
+# 82 "data/maps/SunriseVillage/scripts.pory"
+	.string "Stop right there, kid!$"
+
+SunriseVillage_Event_GuardForest_Text_4:
+# 86 "data/maps/SunriseVillage/scripts.pory"
 	.string "Wild POKéMON have been lashing out\n"
 	.string "recently.\p"
 	.string "I know you're used to walking around on\n"
@@ -351,63 +379,63 @@ SunriseVillage_Event_GuardForest_Text_3:
 	.string "Or, you know, if I were me.$"
 
 SunriseVillage_Event_LittleGirl_Text_0:
-# 121 "data/maps/SunriseVillage/scripts.pory"
+# 135 "data/maps/SunriseVillage/scripts.pory"
 	.string "I can't wait I can't wait I can't wait!!!\p"
 	.string "AHHHHH I CAN'T WAIT!!!!$"
 
 SunriseVillage_Event_Boy_Text_0:
-# 132 "data/maps/SunriseVillage/scripts.pory"
+# 146 "data/maps/SunriseVillage/scripts.pory"
 	.string "My Happiny is the strongest of all! See\n"
 	.string "how fierce it looks?$"
 
 SunriseVillage_Event_Boy_Text_1:
-# 137 "data/maps/SunriseVillage/scripts.pory"
+# 151 "data/maps/SunriseVillage/scripts.pory"
 	.string "Hey {PLAYER}{KUN}!\p"
 	.string "So, d'you think we'll get to choose the\n"
 	.string "one we want?$"
 
 SunriseVillage_Event_Woman_Text_0:
-# 150 "data/maps/SunriseVillage/scripts.pory"
+# 164 "data/maps/SunriseVillage/scripts.pory"
 	.string "I can see the Pokéballs from here… I've\n"
 	.string "never seen so many in my life!$"
 
 SunriseVillage_Event_Farmer_Text_0:
-# 161 "data/maps/SunriseVillage/scripts.pory"
+# 175 "data/maps/SunriseVillage/scripts.pory"
 	.string "I've been waiting for hours!$"
 
 SunriseVillage_Event_OldMan_Text_0:
-# 172 "data/maps/SunriseVillage/scripts.pory"
+# 186 "data/maps/SunriseVillage/scripts.pory"
 	.string "The distribution is about to start.$"
 
 SunriseVillage_Event_OldWoman_Text_0:
-# 181 "data/maps/SunriseVillage/scripts.pory"
+# 195 "data/maps/SunriseVillage/scripts.pory"
 	.string "I'm tired of waiting!$"
 
 SunriseVillage_Event_Happiny_Text_0:
-# 192 "data/maps/SunriseVillage/scripts.pory"
+# 206 "data/maps/SunriseVillage/scripts.pory"
 	.string "Happi!$"
 
 SunriseVillage_Event_Munchlax_Text_0:
-# 206 "data/maps/SunriseVillage/scripts.pory"
+# 220 "data/maps/SunriseVillage/scripts.pory"
 	.string "Munch munch munch…$"
 
 SunriseVillage_Event_Kirlia_Text_0:
-# 218 "data/maps/SunriseVillage/scripts.pory"
+# 232 "data/maps/SunriseVillage/scripts.pory"
 	.string "…$"
 
 SunriseVillage_Event_TownSign_Text_0:
-# 235 "data/maps/SunriseVillage/scripts.pory"
+# 249 "data/maps/SunriseVillage/scripts.pory"
 	.string "Sunrise Village\n"
 	.string "“A village bathing in soft light.”$"
 
 SunriseVillage_Event_PlayersHouseSign_Text_0:
-# 239 "data/maps/SunriseVillage/scripts.pory"
+# 253 "data/maps/SunriseVillage/scripts.pory"
 	.string "{PLAYER}'s house$"
 
 SunriseVillage_Event_RivalsHouseSign_Text_0:
-# 243 "data/maps/SunriseVillage/scripts.pory"
+# 257 "data/maps/SunriseVillage/scripts.pory"
 	.string "{RIVAL}'s house$"
 
 SunriseVillage_Event_EldersHouseSign_Text_0:
-# 247 "data/maps/SunriseVillage/scripts.pory"
+# 261 "data/maps/SunriseVillage/scripts.pory"
 	.string "Elder Kaba's house$"

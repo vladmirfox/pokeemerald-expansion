@@ -286,7 +286,6 @@ EventScript_ResetAllMapFlags::
 	@ CUSTOM FLAGS
 	setflag FLAG_SAKU_KURA_RIVALS
 	setflag FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME
-	setflag FLAG_KURA_DOJO_CLOSED
 	setflag FLAG_HIDE_RIVAL_SAKU
 
 	call EventScript_ResetAllBerries

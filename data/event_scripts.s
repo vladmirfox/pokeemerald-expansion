@@ -1154,3 +1154,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Soulkeep/scripts.inc"
 
 	.include "data/maps/ChiiTown_House2/scripts.inc"
+
+	.include "data/maps/MaguroHarbor_Dojo/scripts.inc"

@@ -130,7 +130,6 @@ script KuraTown_Dojo_EventScript_HanaDefeated {
 		),
 		MSGBOX_DEFAULT
 	)
-	setflag(FLAG_DEFEATED_DEWFORD_GYM)
 	setflag(FLAG_BADGE02_GET)
 	setvar(VAR_0x8008, 2)
 	call(Common_EventScript_SetGymTrainers)
@@ -180,7 +179,7 @@ script KuraTown_Dojo_EventScript_Advice {
 			if (flag(FLAG_BADGE01_GET)) {
 				msgbox(format(
 					"Hello, young challenger, and welcome to the official Dojo of Kura Village!\p"
-					"All the trees are blocking your way, aren't they?\p"
+					"All these trees are blocking your way, aren't they?\p"
 					"You should come back once you've figured out a way to cut them!"
 				))
 			} else {
@@ -220,13 +219,17 @@ script KuraTown_Dojo_EventScript_DojoStatue {
 
 script KuraTown_Dojo_EventScript_KuraDojoTree_CanCut {
 	lock
-	msgbox("…Oh? This tree can be cut down!", MSGBOX_DEFAULT)
-	closemessage
-	playse(SE_M_CUT)
-	applymovement(VAR_LAST_TALKED, Movement_CutTreeDown)
-	waitse
-	waitmovement(0)
-	removeobject(VAR_LAST_TALKED)
+	if (flag(FLAG_RECEIVED_HM_CUT) && flag(FLAG_BADGE01_GET)) {
+		msgbox("…Oh? This tree can be cut down!", MSGBOX_DEFAULT)
+		closemessage
+		playse(SE_M_CUT)
+		applymovement(VAR_LAST_TALKED, Movement_CutTreeDown)
+		waitse
+		waitmovement(0)
+		removeobject(VAR_LAST_TALKED)
+	} else {
+		call(KuraTown_Dojo_EventScript_KuraDojoTree_CantCut)
+	}
 	release
 }
 

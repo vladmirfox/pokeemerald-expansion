@@ -1012,3 +1012,14 @@ const struct Tileset gTileset_Soulkeep =
     .metatileAttributes = gMetatileAttributes_Soulkeep,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_DojoMaguro =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_DojoMaguro,
+    .palettes = gTilesetPalettes_DojoMaguro,
+    .metatiles = gMetatiles_DojoMaguro,
+    .metatileAttributes = gMetatileAttributes_DojoMaguro,
+    .callback = NULL,
+};

@@ -27,7 +27,7 @@ static const u16 sMugshotPal_Ao[] = INCBIN_U16("graphics/mugshots/ao.gbapal");
 static const struct Mugshot sMugshots[] = {
     // ADD YOUR MUGSHOTS HERE
     // TODO EVA change XY
-    [MUGSHOT_AO] = {.x = 0, .y = 0, .width = 64, .height = 64, .image = sMugshotImg_Ao, .palette = sMugshotPal_Ao},
+    [MUGSHOT_AO] = {.x = 20, .y = 4, .width = 80, .height = 80, .image = sMugshotImg_Ao, .palette = sMugshotPal_Ao},
 };
 
 

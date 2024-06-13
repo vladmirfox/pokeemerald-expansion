@@ -259,3 +259,6 @@ const u16 gMetatileAttributes_HouseStone[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_Soulkeep[] = INCBIN_U16("data/tilesets/secondary/soulkeep/metatiles.bin");
 const u16 gMetatileAttributes_Soulkeep[] = INCBIN_U16("data/tilesets/secondary/soulkeep/metatile_attributes.bin");
+
+const u16 gMetatiles_DojoMaguro[] = INCBIN_U16("data/tilesets/secondary/dojo_maguro/metatiles.bin");
+const u16 gMetatileAttributes_DojoMaguro[] = INCBIN_U16("data/tilesets/secondary/dojo_maguro/metatile_attributes.bin");

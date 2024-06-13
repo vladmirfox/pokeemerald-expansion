@@ -111,7 +111,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "5",
+      "script": "SunriseVillage_EldersHouse_EventScript_TryToLeave"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "5",
+      "script": "SunriseVillage_EldersHouse_EventScript_TryToLeave"
+    }
   ],
   "bg_events": [
 
