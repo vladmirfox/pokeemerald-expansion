@@ -5,17 +5,6 @@
 #include "constants/trainers.h"
 
 #define SPECIES_SHINY_TAG 5000
-#define N_FOLLOWER_HAPPY_MESSAGES 31
-#define N_FOLLOWER_NEUTRAL_MESSAGES 14
-#define N_FOLLOWER_SAD_MESSAGES 3
-#define N_FOLLOWER_UPSET_MESSAGES 3
-#define N_FOLLOWER_ANGRY_MESSAGES 5
-#define N_FOLLOWER_PENSIVE_MESSAGES 20
-#define N_FOLLOWER_LOVE_MESSAGES 10
-#define N_FOLLOWER_SURPRISE_MESSAGES 20
-#define N_FOLLOWER_CURIOUS_MESSAGES 7
-#define N_FOLLOWER_MUSIC_MESSAGES 14
-#define N_FOLLOWER_POISONED_MESSAGES 1
 
 #define MAX_TRAINER_ITEMS 4
 
@@ -120,6 +109,9 @@ struct TypeInfo
     u8 palette;
     u16 zMove;
     u16 maxMove;
+    u16 teraTypeRGBValue;    // Most values pulled from the Tera type icon palette.
+    u16 damageCategory:2;    // Used for B_PHYSICAL_SPECIAL_SPLIT <= GEN_3
+    u16 padding:14;
     const u32 *const paletteTMHM;
     //u16 enhanceItem;
     //u16 berry;
@@ -131,15 +123,16 @@ struct TypeInfo
     //u16 arceusForm;
 };
 
-struct FollowerMsgInfo {
+struct FollowerMsgInfo
+{
     const u8 *text;
     const u8 *script;
 };
 
 struct FollowerMessagePool
 {
-    const struct FollowerMsgInfo * messages;
-    const u8 * script;
+    const struct FollowerMsgInfo *messages;
+    const u8 *script;
     u16 length;
 };
 
