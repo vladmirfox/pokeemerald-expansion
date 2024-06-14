@@ -350,7 +350,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
-struct SpeciesInfo /*0x8C*/
+struct SpeciesInfo /*0xBE*/
 {
  /* 0x00 */ u8 baseHP;
  /* 0x01 */ u8 baseAttack;
@@ -444,17 +444,17 @@ struct SpeciesInfo /*0x8C*/
             u32 isFrontierBanned:1; // This species is not allowed to participate in Battle Frontier facilities.
             u32 padding4:14;
             // Move Data
- /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
- /* 0x84 */ const u16 *teachableLearnset;
-            const u16 *eggMoveLearnset;
- /* 0x88 */ const struct Evolution *evolutions;
- /* 0x84 */ const u16 *formSpeciesIdTable;
- /* 0x84 */ const struct FormChange *formChangeTable;
+ /* 0x7E */ const struct LevelUpMove *levelUpLearnset;
+ /* 0x82 */ const u16 *teachableLearnset;
+ /* 0x86 */ const u16 *eggMoveLearnset;
+ /* 0x8A */ const struct Evolution *evolutions;
+ /* 0x8E */ const u16 *formSpeciesIdTable;
+ /* 0x92 */ const struct FormChange *formChangeTable;
 #if OW_FOLLOWERS_ENABLED
-            struct ObjectEventGraphicsInfo followerData;
+ /* 0xB2 */ struct ObjectEventGraphicsInfo followerData;
 #if OW_FOLLOWERS_SHARE_PALETTE == FALSE
-            const void* followerPalette;
-            const void* followerShinyPalette;
+ /* 0xB6 */ const void* followerPalette;
+ /* 0xBA */ const void* followerShinyPalette;
 #endif //OW_FOLLOWERS_SHARE_PALETTE
 #endif //OW_FOLLOWERS_ENABLED
 };
