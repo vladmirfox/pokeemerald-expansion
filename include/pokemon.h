@@ -349,7 +349,7 @@ struct Evolution
     u16 targetSpecies;
 };
 
-struct SpeciesInfo /*0xBE*/
+struct SpeciesInfo /*0xBC*/
 {
  /* 0x00 */ u8 baseHP;
  /* 0x01 */ u8 baseAttack;
@@ -443,17 +443,17 @@ struct SpeciesInfo /*0xBE*/
             u32 isFrontierBanned:1; // This species is not allowed to participate in Battle Frontier facilities.
             u32 padding4:14;
             // Move Data
- /* 0x7E */ const struct LevelUpMove *levelUpLearnset;
- /* 0x82 */ const u16 *teachableLearnset;
- /* 0x86 */ const u16 *eggMoveLearnset;
- /* 0x8A */ const struct Evolution *evolutions;
- /* 0x8E */ const u16 *formSpeciesIdTable;
- /* 0x92 */ const struct FormChange *formChangeTable;
+ /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
+ /* 0x84 */ const u16 *teachableLearnset;
+ /* 0x88 */ const u16 *eggMoveLearnset;
+ /* 0x8C */ const struct Evolution *evolutions;
+ /* 0x90 */ const u16 *formSpeciesIdTable;
+ /* 0x94 */ const struct FormChange *formChangeTable;
 #if OW_POKEMON_OBJECT_EVENTS
- /* 0xB2 */ struct ObjectEventGraphicsInfo followerData;
+ /* 0xB4 */ struct ObjectEventGraphicsInfo followerData;
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
- /* 0xB6 */ const void* followerPalette;
- /* 0xBA */ const void* followerShinyPalette;
+ /* 0xB8 */ const void* followerPalette;
+ /* 0xBC */ const void* followerShinyPalette;
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 };
