@@ -138,8 +138,7 @@ struct PokemonSubstruct1
     u16 move1:11; // 2047 moves.
     u16 evolutionTracker1:5;
     u16 move2:11; // 2047 moves.
-    u16 evolutionTracker2:4;
-    u16 unused_02:1;
+    u16 evolutionTracker2:5;
     u16 move3:11; // 2047 moves.
     u16 unused_04:5;
     u16 move4:11; // 2047 moves.
@@ -450,13 +449,13 @@ struct SpeciesInfo /*0xBE*/
  /* 0x8A */ const struct Evolution *evolutions;
  /* 0x8E */ const u16 *formSpeciesIdTable;
  /* 0x92 */ const struct FormChange *formChangeTable;
-#if OW_FOLLOWERS_ENABLED
+#if OW_POKEMON_OBJECT_EVENTS
  /* 0xB2 */ struct ObjectEventGraphicsInfo followerData;
-#if OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
  /* 0xB6 */ const void* followerPalette;
  /* 0xBA */ const void* followerShinyPalette;
-#endif //OW_FOLLOWERS_SHARE_PALETTE
-#endif //OW_FOLLOWERS_ENABLED
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
 };
 
 struct MoveInfo
