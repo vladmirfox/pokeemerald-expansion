@@ -107,19 +107,6 @@ SINGLE_BATTLE_TEST("Encore has no effect if no previous move")
     }
 }
 
-SINGLE_BATTLE_TEST("Encore has no effect if no previous move")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_ENCORE); MOVE(player, MOVE_CELEBRATE); }
-    } SCENE {
-        MESSAGE("Foe Wobbuffet used Encore!");
-        MESSAGE("But it failed!");
-    }
-}
-
 SINGLE_BATTLE_TEST("Encore overrides the chosen move if it occurs first")
 {
     GIVEN {
