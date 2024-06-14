@@ -176,7 +176,7 @@ ChiiTown_EventScript_Kecleon_Text_0:
 
 ChiiTown_EventScript_PlantingFlowers_Text_0:
 # 55 "data/maps/ChiiTown/scripts.pory"
-	.string "I'm planting flowers so that the\n"
+	.string "I'm planting flowers so that the wild\n"
 	.string "Pokémon become happy again!$"
 
 ChiiTown_EventScript_Mart_Text_0:

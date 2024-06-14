@@ -8,11 +8,11 @@ KuraTown_House1_OldWoman::
 # 7 "data/maps/KuraTown_House1/scripts.pory"
 	faceplayer
 # 8 "data/maps/KuraTown_House1/scripts.pory"
-	msgbox KuraTown_House1_OldWoman_Text_0
+	msgbox KuraTown_House1_OldWoman_Text_0, MSGBOX_AUTOCLOSE
 # 11 "data/maps/KuraTown_House1/scripts.pory"
 	call Common_EventScript_OutOfCenterPartyHeal
 # 12 "data/maps/KuraTown_House1/scripts.pory"
-	msgbox KuraTown_House1_OldWoman_Text_1
+	msgbox KuraTown_House1_OldWoman_Text_1, MSGBOX_AUTOCLOSE
 # 15 "data/maps/KuraTown_House1/scripts.pory"
 	release
 	return
@@ -20,30 +20,24 @@ KuraTown_House1_OldWoman::
 
 KuraTown_House1_OldWomansSon::
 # 19 "data/maps/KuraTown_House1/scripts.pory"
-	lock
-# 20 "data/maps/KuraTown_House1/scripts.pory"
-	faceplayer
-# 21 "data/maps/KuraTown_House1/scripts.pory"
-	msgbox KuraTown_House1_OldWomansSon_Text_0
-# 26 "data/maps/KuraTown_House1/scripts.pory"
-	release
+	msgbox KuraTown_House1_OldWomansSon_Text_0, MSGBOX_NPC
 	return
 
 
 KuraTown_House1_Growlithe::
-# 30 "data/maps/KuraTown_House1/scripts.pory"
+# 27 "data/maps/KuraTown_House1/scripts.pory"
 	lock
-# 31 "data/maps/KuraTown_House1/scripts.pory"
+# 28 "data/maps/KuraTown_House1/scripts.pory"
 	faceplayer
-# 32 "data/maps/KuraTown_House1/scripts.pory"
+# 29 "data/maps/KuraTown_House1/scripts.pory"
 	waitse
-# 33 "data/maps/KuraTown_House1/scripts.pory"
+# 30 "data/maps/KuraTown_House1/scripts.pory"
 	playmoncry SPECIES_GROWLITHE, CRY_MODE_NORMAL
-# 34 "data/maps/KuraTown_House1/scripts.pory"
+# 31 "data/maps/KuraTown_House1/scripts.pory"
 	msgbox KuraTown_House1_Growlithe_Text_0
-# 37 "data/maps/KuraTown_House1/scripts.pory"
+# 34 "data/maps/KuraTown_House1/scripts.pory"
 	waitmoncry
-# 38 "data/maps/KuraTown_House1/scripts.pory"
+# 35 "data/maps/KuraTown_House1/scripts.pory"
 	release
 	return
 
@@ -58,7 +52,7 @@ KuraTown_House1_OldWoman_Text_1:
 	.string "I wish you strength on your journey.$"
 
 KuraTown_House1_OldWomansSon_Text_0:
-# 22 "data/maps/KuraTown_House1/scripts.pory"
+# 20 "data/maps/KuraTown_House1/scripts.pory"
 	.string "The Pokémon league organization didn't\n"
 	.string "see fit to build a Pokémon refuge in our\l"
 	.string "village, but those jerks over at Saku\l"
@@ -68,5 +62,5 @@ KuraTown_House1_OldWomansSon_Text_0:
 	.string "It's not fair!$"
 
 KuraTown_House1_Growlithe_Text_0:
-# 35 "data/maps/KuraTown_House1/scripts.pory"
+# 32 "data/maps/KuraTown_House1/scripts.pory"
 	.string "Wah!$"

@@ -7,23 +7,20 @@ script KuraTown_House1_OldWoman {
 	faceplayer
 	msgbox(format(
 		"You look like you're tired, young one. Please rest a while."
-	))
+	), MSGBOX_AUTOCLOSE)
 	call(Common_EventScript_OutOfCenterPartyHeal)
 	msgbox(format(
 		"I wish you strength on your journey."
-	))
+	), MSGBOX_AUTOCLOSE)
 	release
 }
 
 script KuraTown_House1_OldWomansSon {
-	lock
-	faceplayer
 	msgbox(format(
 		"The Pokémon league organization didn't see fit to build a Pokémon refuge in our village, but those jerks over at Saku Village won't let us use theirs.\p"
 		"So my mother has to work hard to heal all the villager's Pokémon.\p"
 		"It's not fair!"
-	))
-	release
+	), MSGBOX_NPC)
 }
 
 script KuraTown_House1_Growlithe {

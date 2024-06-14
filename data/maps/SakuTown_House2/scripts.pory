@@ -80,6 +80,7 @@ script SakuTown_House2_EventScript_Reunited {
 	playse(SE_PIN)
 	applymovement(LOCALID_ESPEONS_MASTER, Common_Movement_ExclamationMark)
 	applymovement(LOCALID_SISTER, Common_Movement_ExclamationMark)
+	waitmovement(0)
 	delay(48)
 
 	msgbox(format(

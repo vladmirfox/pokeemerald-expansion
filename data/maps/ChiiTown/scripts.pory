@@ -52,7 +52,7 @@ script ChiiTown_EventScript_Kecleon {
 
 script ChiiTown_EventScript_PlantingFlowers {
 	msgbox(format(
-		"I'm planting flowers so that the Pokémon become happy again!"
+		"I'm planting flowers so that the wild Pokémon become happy again!"
 	), MSGBOX_NPC)
 }
 

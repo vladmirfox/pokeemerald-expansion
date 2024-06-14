@@ -49,7 +49,8 @@ script SakuTown_EventScript_RivalAtSakuWall {
 	}
 
 	msgbox(format(
-		"Okay, I… I didn't think you'd go that hard, honestly! Hahaha…\p"
+		"Okay, I… I didn't think you'd go that hard, honestly!\p"
+		"Hahaha…\p"
 		"Clearly I underestimated you. That's alright. I won't make that mistake next time!\p"
 		"I can see your Pokémon are really growing to like you, it's great!\p"
 		"You definitely stand a chance against the Dojo that's in the next village.\p"
@@ -72,8 +73,17 @@ script SakuTown_EventScript_RivalAtSakuWall {
 	removeobject(LOCALID_RIVAL)
 	setflag(FLAG_HIDE_RIVAL_SAKU)
 
-	setvar(VAR_RIVAL_ENCOUNTER_STATE, 2)
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 1)
 
+	release
+}
+
+script blabla {
+	lock
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 0)
+	gettime
+	buffernumberstring(STR_VAR_1, VAR_0x8000)
+	msgbox("{STR_VAR_1}", MSGBOX_AUTOCLOSE)
 	release
 }
 
@@ -82,13 +92,13 @@ text SakuTown_Text_RivalDefeat {
 }
 
 movement SakuTown_Movement_GoToKuraFromLeft {
-	walk_left
-	walk_up * 5
+	walk_faster_left
+	walk_faster_up * 5
 }
 
 movement SakuTown_Movement_GoToKuraFromRight {
-	walk_right
-	walk_up * 5
+	walk_faster_right
+	walk_faster_up * 5
 }
 
 movement SakuTown_Movement_WalkUp {
@@ -187,7 +197,7 @@ script SakuTown_EventScript_GuardSeesYou {
 
 script SakuTown_EventScript_GuardStopsYou {
 	specialvar(VAR_RESULT, GetPlayerFacingDirection)
-	applymovement(LOCALID_GUARD, Common_Movement_FaceLeft)
+	applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(LOCALID_GUARD)
 	msgbox(format("Hey!"))
 	closemessage

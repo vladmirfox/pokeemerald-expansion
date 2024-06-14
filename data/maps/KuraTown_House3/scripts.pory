@@ -72,6 +72,10 @@ script KuraTown_House3_EventScript_Lady {
 
 script KuraTown_House3_EventScript_EspeonGoesHome {
 		faceplayer
+		playse(SE_PIN)
+		applymovement(LOCALID_LADY, Common_Movement_ExclamationMark)
+		waitmovement(0)
+		delay(48)
 		msgbox(format(
 			"What? You're saying its master is waiting for him in Saku Village?\p"
 			"… …\p"

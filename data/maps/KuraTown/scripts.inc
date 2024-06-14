@@ -113,8 +113,8 @@ KuraTown_EventScript_Guard_Text_0:
 	.string "That Saku Village guard is such a jerk,\n"
 	.string "he won't let anyone from our village\l"
 	.string "cross to theirs.\p"
-	.string "So of course we're not gonna let any of\n"
-	.string "them in ours! Hah!$"
+	.string "So of course we're not gonna let anyone\n"
+	.string "from theirs in ours! Hah!$"
 
 SakuTown_EventScript_ClosedGymDoor_Text_0:
 # 65 "data/maps/KuraTown/scripts.pory"

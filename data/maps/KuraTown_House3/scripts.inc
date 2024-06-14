@@ -105,73 +105,81 @@ KuraTown_House3_EventScript_EspeonGoesHome::
 # 74 "data/maps/KuraTown_House3/scripts.pory"
 	faceplayer
 # 75 "data/maps/KuraTown_House3/scripts.pory"
-	msgbox KuraTown_House3_EventScript_EspeonGoesHome_Text_0
-# 81 "data/maps/KuraTown_House3/scripts.pory"
-	closemessage
-# 83 "data/maps/KuraTown_House3/scripts.pory"
-	applymovement 1, Common_Movement_FaceLeft
-# 84 "data/maps/KuraTown_House3/scripts.pory"
-	applymovement 2, Common_Movement_FaceRight
-# 86 "data/maps/KuraTown_House3/scripts.pory"
+	playse SE_PIN
+# 76 "data/maps/KuraTown_House3/scripts.pory"
+	applymovement 1, Common_Movement_ExclamationMark
+# 77 "data/maps/KuraTown_House3/scripts.pory"
 	waitmovement 0
+# 78 "data/maps/KuraTown_House3/scripts.pory"
+	delay 48
+# 79 "data/maps/KuraTown_House3/scripts.pory"
+	msgbox KuraTown_House3_EventScript_EspeonGoesHome_Text_0
+# 85 "data/maps/KuraTown_House3/scripts.pory"
+	closemessage
 # 87 "data/maps/KuraTown_House3/scripts.pory"
-	msgbox KuraTown_House3_EventScript_EspeonGoesHome_Text_1
+	applymovement 1, Common_Movement_FaceLeft
+# 88 "data/maps/KuraTown_House3/scripts.pory"
+	applymovement 2, Common_Movement_FaceRight
 # 90 "data/maps/KuraTown_House3/scripts.pory"
-	closemessage
-# 92 "data/maps/KuraTown_House3/scripts.pory"
-	applymovement 2, JumpInJoy
-# 93 "data/maps/KuraTown_House3/scripts.pory"
-	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
+	waitmovement 0
+# 91 "data/maps/KuraTown_House3/scripts.pory"
+	msgbox KuraTown_House3_EventScript_EspeonGoesHome_Text_1
 # 94 "data/maps/KuraTown_House3/scripts.pory"
-	waitmoncry
-# 95 "data/maps/KuraTown_House3/scripts.pory"
-	delay 40
-# 97 "data/maps/KuraTown_House3/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 98 "data/maps/KuraTown_House3/scripts.pory"
-	removeobject 2
-# 99 "data/maps/KuraTown_House3/scripts.pory"
-	delay 60
-# 100 "data/maps/KuraTown_House3/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 101 "data/maps/KuraTown_House3/scripts.pory"
-	delay 40
-# 103 "data/maps/KuraTown_House3/scripts.pory"
-	msgbox KuraTown_House3_EventScript_Lady_Text_3
-# 106 "data/maps/KuraTown_House3/scripts.pory"
 	closemessage
-# 108 "data/maps/KuraTown_House3/scripts.pory"
+# 96 "data/maps/KuraTown_House3/scripts.pory"
+	applymovement 2, JumpInJoy
+# 97 "data/maps/KuraTown_House3/scripts.pory"
+	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
+# 98 "data/maps/KuraTown_House3/scripts.pory"
+	waitmoncry
+# 99 "data/maps/KuraTown_House3/scripts.pory"
+	delay 40
+# 101 "data/maps/KuraTown_House3/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 102 "data/maps/KuraTown_House3/scripts.pory"
+	removeobject 2
+# 103 "data/maps/KuraTown_House3/scripts.pory"
+	delay 60
+# 104 "data/maps/KuraTown_House3/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 105 "data/maps/KuraTown_House3/scripts.pory"
+	delay 40
+# 107 "data/maps/KuraTown_House3/scripts.pory"
+	msgbox KuraTown_House3_EventScript_Lady_Text_3
+# 110 "data/maps/KuraTown_House3/scripts.pory"
+	closemessage
+# 112 "data/maps/KuraTown_House3/scripts.pory"
 	setvar VAR_SAKU_KURA_QUEST_ESPEON_STATE, 4
-# 109 "data/maps/KuraTown_House3/scripts.pory"
+# 113 "data/maps/KuraTown_House3/scripts.pory"
 	setflag FLAG_SAKU_KURA_HIDE_ESPEON_LADYS_HOUSE
 	return
 
 
 KuraTown_House3_EventScript_Espeon::
-# 114 "data/maps/KuraTown_House3/scripts.pory"
+# 118 "data/maps/KuraTown_House3/scripts.pory"
 	lock
-# 115 "data/maps/KuraTown_House3/scripts.pory"
+# 119 "data/maps/KuraTown_House3/scripts.pory"
 	faceplayer
-# 116 "data/maps/KuraTown_House3/scripts.pory"
-	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
-# 117 "data/maps/KuraTown_House3/scripts.pory"
-	msgbox KuraTown_House3_EventScript_Espeon_Text_0
 # 120 "data/maps/KuraTown_House3/scripts.pory"
-	waitmoncry
+	playmoncry SPECIES_ESPEON, CRY_MODE_NORMAL
 # 121 "data/maps/KuraTown_House3/scripts.pory"
+	msgbox KuraTown_House3_EventScript_Espeon_Text_0
+# 124 "data/maps/KuraTown_House3/scripts.pory"
+	waitmoncry
+# 125 "data/maps/KuraTown_House3/scripts.pory"
 	closemessage
-# 122 "data/maps/KuraTown_House3/scripts.pory"
-	delay 30
-# 123 "data/maps/KuraTown_House3/scripts.pory"
-	msgbox KuraTown_House3_EventScript_Espeon_Text_1
 # 126 "data/maps/KuraTown_House3/scripts.pory"
+	delay 30
+# 127 "data/maps/KuraTown_House3/scripts.pory"
+	msgbox KuraTown_House3_EventScript_Espeon_Text_1
+# 130 "data/maps/KuraTown_House3/scripts.pory"
 	release
 	return
 
 
-# 129 "data/maps/KuraTown_House3/scripts.pory"
+# 133 "data/maps/KuraTown_House3/scripts.pory"
 JumpInJoy:
-# 130 "data/maps/KuraTown_House3/scripts.pory"
+# 134 "data/maps/KuraTown_House3/scripts.pory"
 	jump_in_place_right
 	step_end
 
@@ -208,7 +216,7 @@ KuraTown_House3_EventScript_Lady_Text_4:
 	.string "Oh, how delightful!$"
 
 KuraTown_House3_EventScript_EspeonGoesHome_Text_0:
-# 76 "data/maps/KuraTown_House3/scripts.pory"
+# 80 "data/maps/KuraTown_House3/scripts.pory"
 	.string "What? You're saying its master is\n"
 	.string "waiting for him in Saku Village?\p"
 	.string "… …\p"
@@ -219,13 +227,13 @@ KuraTown_House3_EventScript_EspeonGoesHome_Text_0:
 	.string "this kitten here.$"
 
 KuraTown_House3_EventScript_EspeonGoesHome_Text_1:
-# 88 "data/maps/KuraTown_House3/scripts.pory"
+# 92 "data/maps/KuraTown_House3/scripts.pory"
 	.string "Good news, sweetie! You're going home!$"
 
 KuraTown_House3_EventScript_Espeon_Text_0:
-# 118 "data/maps/KuraTown_House3/scripts.pory"
+# 122 "data/maps/KuraTown_House3/scripts.pory"
 	.string "Speeee!$"
 
 KuraTown_House3_EventScript_Espeon_Text_1:
-# 124 "data/maps/KuraTown_House3/scripts.pory"
+# 128 "data/maps/KuraTown_House3/scripts.pory"
 	.string "It looks happy and serene.$"
