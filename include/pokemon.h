@@ -450,10 +450,10 @@ struct SpeciesInfo /*0xBC*/
  /* 0x90 */ const u16 *formSpeciesIdTable;
  /* 0x94 */ const struct FormChange *formChangeTable;
 #if OW_POKEMON_OBJECT_EVENTS
- /* 0xB4 */ struct ObjectEventGraphicsInfo followerData;
+ /* 0xB4 */ struct ObjectEventGraphicsInfo overworldData;
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
- /* 0xB8 */ const void* followerPalette;
- /* 0xBC */ const void* followerShinyPalette;
+ /* 0xB8 */ const void* overworldPalette;
+ /* 0xBC */ const void* overworldShinyPalette;
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 };
