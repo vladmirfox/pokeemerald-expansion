@@ -32,10 +32,12 @@ If a field is not specified, it will use it's default value.
 
 Required fields for Pokemon
     - Species (Either as SPECIES_ABRA or Abra)
-      This line also specifies Gender, Nickname and Held item
+      This line also specifies Gender, Nickname and Held item.
       Alfred (Abra) (M) @ Eviolite
       Roberta (SPECIES_ABRA) (F) @ ITEM_CHOICE_SPECS
-      Both lines are valid, gender (M) or (F) must be capital letters
+      Both lines are valid, gender (M) or (F) must be capital letters.
+      Nickname length is limited to 10 characters using standard letters.
+      With narrow font it's increased to 12, longer strings will be silently shortened.
       
 Optional fields for Pokemon
     - Level (Number between 1 and 100, defaults to 100)
