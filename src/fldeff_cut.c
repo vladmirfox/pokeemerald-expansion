@@ -360,7 +360,9 @@ static void SetCutGrassMetatile(s16 x, s16 y)
     case METATILE_Fortree_LongGrass_Root:
     case METATILE_General_LongGrass:
     case METATILE_General_TallGrass:
-        MapGridSetMetatileIdAt(x, y, METATILE_General_Grass);
+    // TODO EVA do the rest of this crap
+    case METATILE_PorytilesPrimaryTutorial_TallGrass:
+        MapGridSetMetatileIdAt(x, y, METATILE_PorytilesPrimaryTutorial_Grass);
         break;
     case METATILE_General_TallGrass_TreeLeft:
         MapGridSetMetatileIdAt(x, y, METATILE_General_Grass_TreeLeft);

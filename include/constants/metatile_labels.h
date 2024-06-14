@@ -437,6 +437,12 @@
 #define METATILE_PokemonCenter_Floor_ShadowTop           0x21E
 #define METATILE_PokemonCenter_Floor_ShadowTop_Alt       0x2DC
 
+// gTileset_PorytilesPrimaryTutorial
+#define METATILE_PorytilesPrimaryTutorial_Grass      0x000
+#define METATILE_PorytilesPrimaryTutorial_Grass2     0x001
+#define METATILE_PorytilesPrimaryTutorial_Grass3     0x002
+#define METATILE_PorytilesPrimaryTutorial_TallGrass  0x008
+
 // gTileset_Rustboro
 #define METATILE_Rustboro_Door_Gray  0x21F
 #define METATILE_Rustboro_Door_Tan   0x22F
