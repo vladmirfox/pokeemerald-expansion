@@ -3,7 +3,89 @@ const LOCALID_MYSTERIOUS_SAMURAI = 9
 
 
 mapscripts TranquilRoute_MapScripts {
+	// uhh idk if this is the right script to use (on load vs on transition or whatever)
+	// but it works for walking in and out of the house!
+	MAP_SCRIPT_ON_LOAD: TranquilRoute_CheckCutGrass
+	
+}
 
+script TranquilRoute_CheckCutGrass{
+	call_if_set(FLAG_COMPLETED_CUT_QUEST, TranquilRoute_EventScript_CutGrass)
+	end
+}
+
+// i just set them all to METATILE_PorytilesPrimaryTutorial_Grass2
+// probably do METATILE_PorytilesPrimaryTutorial_Grass or METATILE_PorytilesPrimaryTutorial_Grass3
+// or maybe even some flowers as your artist's eye desires
+script TranquilRoute_EventScript_CutGrass {
+	// there is probably a smarter way to do this but here we are
+	// set all the tiles that were cut to just be normal grass
+	setmetatile(47, 31, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(48, 30, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(46, 29, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 29, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(46, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(46, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(47, 26, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 26, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(47, 25, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(47, 24, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(46, 23, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 23, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	
+	setmetatile(41, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+
+	setmetatile(40, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(41, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(45, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+
+	setmetatile(41, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(44, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(45, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+
+	setmetatile(40, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(44, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(45, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(49, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+
+	setmetatile(41, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(44, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(45, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	return
 }
 
 script TranquilRoute_EventScript_Chikao {
