@@ -34,8 +34,7 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 			applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_GoNextToRivalFromLeft)
 	}
 	waitmovement(0)
-	turnobject(LOCALID_RIVAL, DIR_WEST)
-	applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
+	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSitsOnBench)
 	waitmovement(0)
 
 	msgbox(format(
@@ -63,7 +62,7 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	waitmovement(0)
 
 	// They face each other
-	turnobject(LOCALID_RIVAL, DIR_NORTH)
+	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 
 	msgbox(format(
@@ -73,17 +72,21 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 
 	if (var(VAR_RESULT) == YES) {
 		msgbox(format(
-			"That's the spirit! Let's become the best wielders ever!\p"
-			"Come on, the distribution's already started! Let's go to Elder Kaba's house!\p"
-			"Race ya there!!"
+			"That's the spirit! Let's become the best wielders ever!"
 		), MSGBOX_AUTOCLOSE)
 	} elif(var(VAR_RESULT) == NO  || var(VAR_RESULT) == MULTI_B_PRESSED) {
 		msgbox(format(
-			"Don't be silly! I know you'll become super strong in no time!\p"
-			"Come on, the distribution's already started! Let's go to Elder Kaba's house!\p"
-			"Race ya there!!"
+			"Don't be silly, you dumdum! I know you'll become super strong in no time!"
 		), MSGBOX_AUTOCLOSE)
 	}
+
+	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSeesDistribution)
+	waitmovement(0)
+
+	msgbox(format(
+		"Oh Shuckles, the distribution's already started! Let's go to Elder Kaba's house!\p"
+		"Race ya there!!"
+	), MSGBOX_AUTOCLOSE)
 
 	// Rival runs towards the village
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalRaces)
@@ -126,15 +129,21 @@ script SunriseVillage_Beach_EventScript_Corsola2 {
     end
 }
 
+movement SunriseVillage_Beach_Movement_RivalSitsOnBench {
+	walk_in_place_faster_left
+	delay_16 * 5
+	step_end
+}
+
 movement SunriseVillage_Beach_Movement_GoNextToRivalFromLeft {
 	walk_up
 	walk_right
-	face_left
+	walk_in_place_faster_left
 	step_end
 }
 
 movement SunriseVillage_Beach_Movement_GoNextToRivalFromTop {
-	face_left
+	walk_in_place_faster_left
 	step_end
 }
 
@@ -148,6 +157,15 @@ movement SunriseVillage_Beach_Movement_GoNextToRivalFromBottom {
 	walk_right
 	walk_up * 2
 	walk_left
+	step_end
+}
+
+movement SunriseVillage_Beach_Movement_RivalSeesDistribution {
+	face_right
+	delay_16
+	delay_16
+	delay_16
+	face_player
 	step_end
 }
 

@@ -151,7 +151,7 @@ script TranquilRoute_EventScript_Mareep {
 
 script TranquilRoute_EventScript_Mareep2 {
 	lock
-	playmoncry(SPECIES_MAREEP, CRY_MODE_NORMAL)
+	playmoncry(SPECIES_MAREEP, CRY_MODE_WEAK)
 	msgbox(format("Baaaaah…"), MSGBOX_AUTOCLOSE)
 	waitmoncry
 	release
@@ -160,7 +160,7 @@ script TranquilRoute_EventScript_Mareep2 {
 script TranquilRoute_TrainerTips1 {
 	msgbox(format(
 		"Did you know?\p"
-		"Some Pokémon only come out at night.\p"
+		"Some Pokémon only come out in the morning, in the evening, or at night.\p"
 		"Visit the same spot at different times of day to have a chance of seeing rare Pokémon!"
 	), MSGBOX_SIGN)
 }

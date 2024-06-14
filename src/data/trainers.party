@@ -2048,7 +2048,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Vulpix
-Level: 6
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAPHNE ===
@@ -5874,7 +5874,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Nidoran F
-Level: 5
+Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TAKESHI ===
@@ -5886,12 +5886,8 @@ Music: Suspicious
 Double Battle: No
 AI: Check Bad Move / Try To Faint
 
-Seedot
-Level: 6
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 Nickit
-Level: 7
+Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOSH ===
@@ -10923,11 +10919,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Setup First Turn
 
 Kotora
-Level: 12
+Level: 6
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Aron
-Level: 15
+Level: 9
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
@@ -10984,11 +10980,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Sewaddle Tokuan
-Level: 4
+Level: 3
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Lotad
-Level: 5
+Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HALEY_1 ===
@@ -11188,15 +11184,15 @@ Double Battle: No
 AI: Check Bad Move
 
 Taillow
-Level: 5
+Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Joltik
-Level: 4
+Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sewaddle Tokuan
-Level: 4
+Level: 2
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KAWASE ===
@@ -12895,11 +12891,11 @@ Double Battle: No
 AI: Check Bad Move
 
 Smeargle
-Level: 7
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Inkay
-Level: 6
+Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HAILEY ===
@@ -14051,11 +14047,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Growlithe
-Level: 12
+Level: 6
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Trapinch
-Level: 15
+Level: 9
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_RIVAL_SAKU_TRAPINCH ===
@@ -14068,11 +14064,11 @@ Double Battle: No
 AI: Check Bad Move / Try To Faint / Check Viability
 
 Numel
-Level: 12
+Level: 6
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Spheal
-Level: 15
+Level: 9
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_ROXANNE_2 ===

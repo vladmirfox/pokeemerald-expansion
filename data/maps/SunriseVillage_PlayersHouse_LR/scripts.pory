@@ -23,6 +23,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi {
 	applymovement(LOCALID_BIGSIS, Common_Movement_Delay48)
 	waitmovement(0)
 	turnobject(LOCALID_BIGSIS, DIR_EAST)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
 
 	special(GetPlayerBrotherSisterString)
 	msgbox(format(
@@ -34,6 +35,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi {
 	))
 	closemessage
 	applymovement(LOCALID_BIGSIS, SunriseVillage_PlayersHouse_LR_Movement_BigSisExits)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	waitmovement(0)
 	playse(SE_EXIT)
 	waitse
@@ -73,7 +75,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 		msgbox(format(
 			"Hey little {STR_VAR_1}! See how cute my new Pokémon is?\p"
 			"Oh, who is that lovely little thing with you?\p"
-			"So you got a {STR_VAR_2}, huh?\p"
+			"{STR_VAR_2}, huh?\p"
 			"Looks like it already likes you a lot! You're going to make a great wielder, I know it!\p"
 			"… … … … … …\n… … … … … …\p"
 			"So you're going on a journey…\p"
@@ -83,6 +85,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 
 		giveitem(ITEM_POKE_BALL, 5)
 
+		bufferspeciesname(STR_VAR_2, VAR_STARTER_MON)
 		msgbox(format(
 			"Oh, and rest here a while before you go! Your {STR_VAR_2} looks tired."
 		))

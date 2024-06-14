@@ -4445,7 +4445,7 @@
       "id": "LAYOUT_CHII_TOWN",
       "name": "ChiiTown_Layout",
       "width": 38,
-      "height": 30,
+      "height": 31,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SunriseVillage",
       "border_filepath": "data/layouts/ChiiTown/border.bin",

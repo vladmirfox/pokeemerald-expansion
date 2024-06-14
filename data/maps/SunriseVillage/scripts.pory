@@ -1,4 +1,5 @@
 const LOCALID_FATGUY = 3
+const LOCALID_GUARD = 6
 
 mapscripts SunriseVillage_MapScripts {
     MAP_SCRIPT_ON_LOAD {
@@ -51,7 +52,7 @@ script SunriseVillage_Event_FatGuy {
 // Man guarding the forest while you have no Pokémon
 script SunriseVillage_Event_GuardForest {
     lock
-    faceplayer
+    applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)
     if (flag(FLAG_RECEIVED_STARTER)) {
         if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
             msgbox(format(
@@ -120,9 +121,7 @@ script SunriseVillage_Event_GuardForest_Interact {
     else {
         msgbox(format(
             "Wild POKéMON have been lashing out recently.\p"
-            "I know you're used to walking around on your own, but the woods have become a dangerous place lately!\p"
-            "I wouldn't go alone if I were you.\p"
-            "Or, you know, if I were me."
+            "Even the Ginko woods have become a dangerous place lately!"
         ), MSGBOX_AUTOCLOSE)
     }
     release
@@ -159,7 +158,6 @@ script SunriseVillage_Event_Boy {
 // Woman
 script SunriseVillage_Event_Woman {
     lockall
-    faceplayer
     msgbox(format(
         "I can see the Pokéballs from here… I've never seen so many in my life!"
     ), MSGBOX_AUTOCLOSE)

@@ -166,7 +166,7 @@ TranquilRoute_EventScript_Mareep2::
 # 153 "data/maps/TranquilRoute/scripts.pory"
 	lock
 # 154 "data/maps/TranquilRoute/scripts.pory"
-	playmoncry SPECIES_MAREEP, CRY_MODE_NORMAL
+	playmoncry SPECIES_MAREEP, CRY_MODE_WEAK
 # 155 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Mareep2_Text_0, MSGBOX_AUTOCLOSE
 # 156 "data/maps/TranquilRoute/scripts.pory"
@@ -323,7 +323,8 @@ TranquilRoute_EventScript_Mareep2_Text_0:
 TranquilRoute_TrainerTips1_Text_0:
 # 162 "data/maps/TranquilRoute/scripts.pory"
 	.string "Did you know?\p"
-	.string "Some Pokémon only come out at night.\p"
+	.string "Some Pokémon only come out in the\n"
+	.string "morning, in the evening, or at night.\p"
 	.string "Visit the same spot at different times\n"
 	.string "of day to have a chance of seeing rare\l"
 	.string "Pokémon!$"

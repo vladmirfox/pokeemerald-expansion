@@ -25,20 +25,20 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"I always have to run after you two! Now stay still for a minute and listen closely!\p"
 		"As you have heard, the woods, and even the roads, are no longer safe.\p"
 		"We don't yet know the reason, but the wild Pokémon that usually hide in the tall grass and live peacefully alongside men have started behaving aggressively.\p"
-		"There are reports of travelers being attacked from several nearby villages. This is all very worrying…\p"
+		"There are reports of travelers being attacked from several nearby villages. This is all very worrying…"
 	), MSGBOX_AUTOCLOSE)
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderTurnsToThink)
 	waitmovement(0)
 	msgbox(format(
 		"Which is why the Toku council has decided that, for the time being, the best way to handle this is to use the Pokémon themselves as a means of protection!\p"
 		"There were very few experienced Pokémon wielders in Toku until now. This is about to change.\p"
-		"People will more and more fight alongside their very own Pokémon.\p"
+		"More and more, people will be fighting alongside their own companion.\p"
 		"With a domesticated Pokémon by your side, you'll be able to defend yourselves even when you're on your own.\p"
 		"Without further ado, please choose one of the three creatures in the Pokéballs behind me!"
 	), MSGBOX_AUTOCLOSE)
 
 	// Rival is nice and lets you pick first
-	applymovement(LOCALID_RIVAL, Common_Movement_FacePlayer)
+	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(0)
 	msgbox(format("{RIVAL}: C'mon {PLAYER}, pick yours, quick quick!"), MSGBOX_AUTOCLOSE)
 	turnobject(LOCALID_RIVAL, DIR_NORTH)
@@ -60,6 +60,7 @@ script SunriseVillage_EldersHouse_Event_Rival {
 		goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
 	} else {
 		msgbox(format("What are you waiting for? Choose one already!"), MSGBOX_AUTOCLOSE)
+		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 	}
 	release
 }
@@ -87,7 +88,8 @@ script SunriseVillage_EldersHouse_EventScript_TryToLeave {
 	msgbox(format(
 		"Elder Kaba: Where do you think you're going?"
 	), MSGBOX_AUTOCLOSE)
-	applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_EldersHouse_Movement_PlayerGetAwayFromExit)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp)
+	waitmovement(0)
 	release
 }
 
@@ -102,9 +104,10 @@ movement SunriseVillage_EldersHouse_Movement_PlayerWalkUpToElder {
 }
 
 movement SunriseVillage_EldersHouse_Movement_ElderTurnsToThink {
-	face_up
+	walk_in_place_faster_up
 	delay_16 * 4
-	face_down
+	walk_in_place_faster_down
+	delay_16 * 2
 	step_end
 }
 
@@ -177,8 +180,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		}
 
 		msgbox(gText_NicknameThisPokemon, MSGBOX_YESNO)
-		call(Common_EventScript_GetGiftMonPartySlot)
 		if (var(VAR_RESULT) == YES){
+			call(Common_EventScript_GetGiftMonPartySlot)
 			call(Common_EventScript_NameReceivedPartyMon)
 		}
 		closemessage
@@ -221,6 +224,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 
+	turnobject(LOCALID_ELDER, DIR_SOUTH)
+
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
 
 	// Rival walks up to his Pokémon
@@ -251,7 +256,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	// Elder gives Pokédex
 	msgbox(format(
 		"Elder Kaba: Now that you have your own Pokémon, you two are officially Pokémon wielders!\p"
-		"The more Pokémon wielders there are, the deeper our understanding of Pokémon will be.\p"
+		"The more wielders there are, the deeper our understanding of Pokémon will be.\p"
 		"We need to study these creatures from up close to find the root of this issue.\p"
 		"Actually, there's something I wanted to ask you."
 	), MSGBOX_AUTOCLOSE)
@@ -267,6 +272,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
 	closemessage
 
+	delay(20)
+
 	msgbox(format(
 		"{RIVAL}: What's this? A book?"
 	), MSGBOX_AUTOCLOSE)
@@ -274,7 +281,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	msgbox(format(
 		"Elder Kaba: I call this the “Pokédex”. It is an encyclopedia containing vital information about Pokémon from the whole region!\p"
 		"Except it's, well, empty. That's where you come in!\p"
-		"Explore Toku and fill the pages of this Pokédex with your findings!\p"
+		"Explore Toku and fill its pages with your findings!\p"
 		"You can start by going all the way to Silveridge, north of here in the mountains.\p"
 		"Another Elder lives there and, hopefully, has more information as to why the Pokémon are lashing out.\p"
 		"Could you deliver him this letter?"
@@ -287,15 +294,15 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	closemessage
 
 	msgbox(format("{RIVAL}: Understood, Grandma Kaba! We're going adventuring!"), MSGBOX_AUTOCLOSE)
-	turnobject(LOCALID_RIVAL, DIR_WEST)
+	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	msgbox(format("{PLAYER}, are you ready?"), MSGBOX_YESNO)
 	if (var(VAR_RESULT) == YES) {
 		msgbox(format(
-				"That's what I'm talking about!"
+				"That's what I'm talking about!\p"
 			))
 	} else {
-		turnobject(LOCALID_RIVAL, DIR_NORTH)
+		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 
 		checkplayergender
 		if (var(VAR_RESULT) == MALE) {
@@ -308,7 +315,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 			), MSGBOX_AUTOCLOSE)
 		}
 
-		turnobject(LOCALID_RIVAL, DIR_WEST)
+		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	}
 
 	msgbox(format(
@@ -350,8 +357,8 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsLeft)
 	}
 
-	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	waitmovement(LOCALID_RIVAL)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	removeobject(LOCALID_RIVAL)
 	playse(SE_DOOR)
 	waitse
@@ -370,7 +377,7 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToSpheal {
 
 movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromSpheal {
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	delay_16
 	step_end
 }
@@ -378,7 +385,7 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromSpheal {
 movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToTrapinch {
 	walk_up
 	walk_right
-	face_up
+	walk_in_place_faster_up
 	delay_16
 	step_end
 }
@@ -386,7 +393,7 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToTrapinch {
 movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromTrapinch {
 	walk_left
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	delay_16
 	step_end
 }
@@ -395,7 +402,7 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromTrapinch {
 movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToAron {
 	walk_up
 	walk_left
-	face_up
+	walk_in_place_faster_up
 	delay_16
 	step_end
 }
@@ -403,17 +410,17 @@ movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToAron {
 movement SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromAron {
 	walk_right
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	delay_16
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_ElderGivesDex {
 	walk_right * 2
-	face_down
+	walk_in_place_faster_down
 	delay_16
 	walk_left
-	face_down
+	walk_in_place_faster_down
 	delay_16
 	step_end
 }
@@ -446,26 +453,26 @@ movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingSphealFro
 	walk_down * 2
 	walk_left
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingSphealFromBottom {
 	walk_left
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingAronFromTop {
 	walk_down * 3
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingAronFromBottom {
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
@@ -473,30 +480,30 @@ movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingAronFromL
 	walk_left
 	walk_down * 2
 	walk_right * 2
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingTrapinchFromTop {
 	walk_right
 	walk_down * 2
-	walk_left * 3
+	walk_left * 2
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingTrapinchFromBottom {
-	walk_left
+	walk_left * 2
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }
 
 movement SunriseVillage_EldersHouse_Movement_PlayerGoesBackAfterPickingTrapinchFromRight {
 	walk_down
-	walk_left * 3
+	walk_left * 2
 	walk_down
-	face_up
+	walk_in_place_faster_up
 	step_end
 }

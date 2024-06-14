@@ -174,11 +174,13 @@ SakuTown_BonsaiShop_EventScript_Assistant::
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 201 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Assistant_Text_6
+# 206 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	setflag FLAG_RECEIVED_WAILMER_PAIL
 SakuTown_BonsaiShop_EventScript_Assistant_8:
-# 207 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 208 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	setvar VAR_BONSAI_SHOP_STATE, 1
 SakuTown_BonsaiShop_EventScript_Assistant_1:
-# 210 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 211 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
@@ -219,44 +221,44 @@ SakuTown_BonsaiShop_EventScript_Assistant_9:
 
 
 SakuTown_BonsaiShop_EventScript_Owner::
-# 214 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	lock
 # 215 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	faceplayer
+	lock
 # 216 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	faceplayer
+# 217 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	goto_if_set FLAG_BADGE02_GET, SakuTown_BonsaiShop_EventScript_Owner_2
-# 230 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	special GetPlayerBoyGirlString
 # 231 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	special GetPlayerBoyGirlString
+# 232 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_2
 SakuTown_BonsaiShop_EventScript_Owner_1:
-# 236 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 237 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
 SakuTown_BonsaiShop_EventScript_Owner_2:
-# 218 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 219 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	goto_if_set FLAG_RECEIVED_SECRET_POWER, SakuTown_BonsaiShop_EventScript_Owner_5
-# 224 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 225 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_1
 	goto SakuTown_BonsaiShop_EventScript_Owner_1
 
 SakuTown_BonsaiShop_EventScript_Owner_5:
-# 219 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 220 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_0
 	goto SakuTown_BonsaiShop_EventScript_Owner_1
 
 
 SakuTown_EventScript_Man::
-# 240 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	lock
 # 241 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	faceplayer
+	lock
 # 242 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	faceplayer
+# 243 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_EventScript_Man_Text_0
-# 247 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	closemessage
 # 248 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	closemessage
+# 249 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
@@ -418,12 +420,12 @@ SakuTown_BonsaiShop_EventScript_Assistant_Text_6:
 	.string "Have fun gardening!$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_0:
-# 220 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 221 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, {PLAYER}. Can I interest you in\n"
 	.string "a little greenery?$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_1:
-# 225 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 226 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, {PLAYER}. Can I interest you in\n"
 	.string "a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
@@ -431,7 +433,7 @@ SakuTown_BonsaiShop_EventScript_Owner_Text_1:
 	.string "you do.$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_2:
-# 232 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 233 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, young {STR_VAR_1}. Can I\n"
 	.string "interest you in a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
@@ -439,7 +441,7 @@ SakuTown_BonsaiShop_EventScript_Owner_Text_2:
 	.string "you do.$"
 
 SakuTown_EventScript_Man_Text_0:
-# 243 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 244 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "I'm choosing flowers for my wife.\p"
 	.string "I, uh… I didn't realize there'd be so\n"
 	.string "many different types.\p"

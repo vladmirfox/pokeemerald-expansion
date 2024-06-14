@@ -21,7 +21,7 @@ SakuTown_PokemonCenter_EventScript_Nurse::
 # 12 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	setvar VAR_0x800B, LOCALID_NURSE
 # 13 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	call Common_EventScript_PkmnCenterNurse
+	call Common_EventScript_PkmnCenterNurse_CutTheBullshit
 # 14 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	waitmessage
 # 15 "data/maps/SakuTown_PokemonCenter/scripts.pory"

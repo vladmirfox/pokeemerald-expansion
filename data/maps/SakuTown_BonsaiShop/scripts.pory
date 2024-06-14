@@ -203,6 +203,7 @@ script SakuTown_BonsaiShop_EventScript_Assistant {
 				"Don't worry about it, I have a spare one.\p"
 				"Have fun gardening!"
 			))
+			setflag(FLAG_RECEIVED_WAILMER_PAIL)
 		}
 		setvar(VAR_BONSAI_SHOP_STATE, 1)
 	}

@@ -19,7 +19,7 @@ mapscripts ChiiTown_PokemonCenter_MapScripts {
 
 script ChiiTown_PokemonCenter_EventScript_Nurse {
 	setvar(VAR_0x800B, LOCALID_NURSE)
-	call(Common_EventScript_PkmnCenterNurse)
+	call(Common_EventScript_PkmnCenterNurse_CutTheBullshit)
 	waitmessage
 	waitbuttonpress
 	release

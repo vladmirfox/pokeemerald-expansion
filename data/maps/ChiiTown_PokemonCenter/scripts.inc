@@ -32,7 +32,7 @@ ChiiTown_PokemonCenter_EventScript_Nurse::
 # 21 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	setvar VAR_0x800B, 1
 # 22 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	call Common_EventScript_PkmnCenterNurse
+	call Common_EventScript_PkmnCenterNurse_CutTheBullshit
 # 23 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	waitmessage
 # 24 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
