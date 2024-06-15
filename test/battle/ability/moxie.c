@@ -24,6 +24,7 @@ DOUBLE_BATTLE_TEST("Moxie raises Attack by one stage after directly causing a Po
                 MESSAGE("Foe Abra fainted!");
             }
             ABILITY_POPUP(playerLeft, ABILITY_MOXIE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
             MESSAGE("Salamence's Moxie raised its Attack!");
         }
     } THEN {
@@ -33,8 +34,6 @@ DOUBLE_BATTLE_TEST("Moxie raises Attack by one stage after directly causing a Po
 
 DOUBLE_BATTLE_TEST("Moxie does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
 {
-    ASSUME(gMovesInfo[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
-
     GIVEN {
         PLAYER(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); }
         PLAYER(SPECIES_SNORUNT) { HP(1); Status1(STATUS1_POISON); }
@@ -55,10 +54,38 @@ DOUBLE_BATTLE_TEST("Moxie does not trigger if Pokemon faint to indirect damage o
             }
             NONE_OF {
                 ABILITY_POPUP(playerLeft, ABILITY_MOXIE);
+                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
                 MESSAGE("Salamence's Moxie raised its Attack!");
             }
         }
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Moxie does not trigger when already at maximum Attack stage")
+{
+    ASSUME(gMovesInfo[MOVE_BELLY_DRUM].effect == EFFECT_BELLY_DRUM);
+
+    GIVEN {
+        PLAYER(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); }
+        OPPONENT(SPECIES_SNORUNT) { HP(1); }
+        OPPONENT(SPECIES_SNORUNT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BELLY_DRUM); }
+        TURN { MOVE(player, MOVE_QUICK_ATTACK); SEND_OUT(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Salamence cut its own HP and maximized ATTACK!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
+        MESSAGE("Foe Snorunt fainted!");
+        NONE_OF {    
+            ABILITY_POPUP(player, ABILITY_MOXIE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Salamence's Moxie raised its Attack!");
+        }
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], MAX_STAT_STAGE);
     }
 }
