@@ -11431,6 +11431,8 @@ void SetShellSideArmCategory(void)
 
             if (((physical > special) || (physical == special && RandomPercentage(RNG_SHELL_SIDE_ARM, 50))))
                 gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] = DAMAGE_CATEGORY_PHYSICAL;
+            else
+                gBattleStruct->shellSideArmCategory[battlerAtk][battlerDef] = DAMAGE_CATEGORY_SPECIAL;
         }
     }
 }
