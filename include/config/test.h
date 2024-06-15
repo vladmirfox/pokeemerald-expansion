@@ -779,6 +779,7 @@
 #define P_FAMILY_HOOPA                   TRUE
 #undef P_FAMILY_VOLCANION
 #define P_FAMILY_VOLCANION               TRUE
+
 #undef P_FAMILY_ROWLET
 #define P_FAMILY_ROWLET                  TRUE
 #undef P_FAMILY_LITTEN
