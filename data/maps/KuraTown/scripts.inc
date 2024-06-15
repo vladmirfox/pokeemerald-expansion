@@ -21,68 +21,70 @@ KuraTown_EventScript_DojoChallenger::
 	faceplayer
 # 13 "data/maps/KuraTown/scripts.pory"
 	goto_if_set FLAG_KURA_DOJO_CLOSED, KuraTown_EventScript_DojoChallenger_2
-# 23 "data/maps/KuraTown/scripts.pory"
-	msgbox KuraTown_EventScript_DojoChallenger_Text_1, MSGBOX_DEFAULT
+# 22 "data/maps/KuraTown/scripts.pory"
+	msgbox KuraTown_EventScript_DojoChallenger_Text_1
 KuraTown_EventScript_DojoChallenger_1:
-# 32 "data/maps/KuraTown/scripts.pory"
+# 30 "data/maps/KuraTown/scripts.pory"
+	closemessage
+# 31 "data/maps/KuraTown/scripts.pory"
 	release
 	return
 
 KuraTown_EventScript_DojoChallenger_2:
 # 14 "data/maps/KuraTown/scripts.pory"
-	msgbox KuraTown_EventScript_DojoChallenger_Text_0, MSGBOX_DEFAULT
+	msgbox KuraTown_EventScript_DojoChallenger_Text_0
 	goto KuraTown_EventScript_DojoChallenger_1
 
 
 KuraTown_EventScript_SingingFarmer::
-# 36 "data/maps/KuraTown/scripts.pory"
+# 35 "data/maps/KuraTown/scripts.pory"
 	lock
-# 37 "data/maps/KuraTown/scripts.pory"
+# 36 "data/maps/KuraTown/scripts.pory"
 	faceplayer
-# 38 "data/maps/KuraTown/scripts.pory"
+# 37 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_SingingFarmer_Text_0, MSGBOX_DEFAULT
-# 44 "data/maps/KuraTown/scripts.pory"
+# 43 "data/maps/KuraTown/scripts.pory"
 	release
 	return
 
 
 KuraTown_EventScript_Guard::
-# 48 "data/maps/KuraTown/scripts.pory"
+# 47 "data/maps/KuraTown/scripts.pory"
 	lock
-# 49 "data/maps/KuraTown/scripts.pory"
+# 48 "data/maps/KuraTown/scripts.pory"
 	faceplayer
-# 50 "data/maps/KuraTown/scripts.pory"
+# 49 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_Guard_Text_0, MSGBOX_DEFAULT
-# 58 "data/maps/KuraTown/scripts.pory"
+# 57 "data/maps/KuraTown/scripts.pory"
 	release
 	return
 
 
 SakuTown_EventScript_ClosedGymDoor::
-# 63 "data/maps/KuraTown/scripts.pory"
+# 62 "data/maps/KuraTown/scripts.pory"
 	goto_if_set FLAG_KURA_DOJO_CLOSED, SakuTown_EventScript_ClosedGymDoor_1
 	return
 
 SakuTown_EventScript_ClosedGymDoor_1:
-# 64 "data/maps/KuraTown/scripts.pory"
+# 63 "data/maps/KuraTown/scripts.pory"
 	msgbox SakuTown_EventScript_ClosedGymDoor_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_TownSign::
-# 72 "data/maps/KuraTown/scripts.pory"
+# 71 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_DirectionsSign::
-# 76 "data/maps/KuraTown/scripts.pory"
+# 75 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_DirectionsSign_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_GymSign::
-# 80 "data/maps/KuraTown/scripts.pory"
+# 79 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_GymSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -95,19 +97,19 @@ KuraTown_EventScript_DojoChallenger_Text_0:
 	.string "Could it be that she is scared of me?$"
 
 KuraTown_EventScript_DojoChallenger_Text_1:
-# 25 "data/maps/KuraTown/scripts.pory"
+# 24 "data/maps/KuraTown/scripts.pory"
 	.string "The dojo is open! I can finally defeat\n"
 	.string "its leader in a fiery battle!\p"
 	.string "…Hm? When, you ask? In… In a minute…\p"
 	.string "No, go right ahead, I'm just… preparing…$"
 
 KuraTown_EventScript_SingingFarmer_Text_0:
-# 40 "data/maps/KuraTown/scripts.pory"
+# 39 "data/maps/KuraTown/scripts.pory"
 	.string "Doo doo… Just waterin' the crops… Yeah,\n"
 	.string "waterin' the crops… Doo doo doo…$"
 
 KuraTown_EventScript_Guard_Text_0:
-# 52 "data/maps/KuraTown/scripts.pory"
+# 51 "data/maps/KuraTown/scripts.pory"
 	.string "Hello, traveler. Hope you didn't have\n"
 	.string "too much trouble passing the gate.\p"
 	.string "That Saku Village guard is such a jerk,\n"
@@ -117,23 +119,23 @@ KuraTown_EventScript_Guard_Text_0:
 	.string "from theirs in ours! Hah!$"
 
 SakuTown_EventScript_ClosedGymDoor_Text_0:
-# 65 "data/maps/KuraTown/scripts.pory"
+# 64 "data/maps/KuraTown/scripts.pory"
 	.string "“BE BACK SOON\n"
 	.string "- Hana”$"
 
 KuraTown_EventScript_TownSign_Text_0:
-# 72 "data/maps/KuraTown/scripts.pory"
+# 71 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village\n"
 	.string "“A village where the mountains meet the\l"
 	.string "woods.”$"
 
 KuraTown_EventScript_DirectionsSign_Text_0:
-# 76 "data/maps/KuraTown/scripts.pory"
+# 75 "data/maps/KuraTown/scripts.pory"
 	.string "{UP_ARROW} Silver Tunnel\n"
 	.string "This way for Silveridge$"
 
 KuraTown_EventScript_GymSign_Text_0:
-# 82 "data/maps/KuraTown/scripts.pory"
+# 81 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village Pokémon Dojo\n"
 	.string "Leader: Hana\p"
 	.string "“Strong as a maple rooted in wisdom.”$"

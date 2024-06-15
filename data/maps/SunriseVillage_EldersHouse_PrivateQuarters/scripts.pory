@@ -9,7 +9,7 @@ script SunriseVillage_EldersHouse_PrivateQuarters_EventScript_Meowth {
     playmoncry(SPECIES_MEOWTH, CRY_MODE_NORMAL)
     msgbox(format(
         "Fss!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end

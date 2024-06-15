@@ -139,6 +139,7 @@ script SakuTown_House2_EventScript_Reunited {
 		"Anyway, thank you so much for helping me out. I'm so grateful.\p"
 		"Please take this."
 	))
+	closemessage
 
 	// TODO EVA Decide on the reward
 	giveitem(ITEM_THUNDER_STONE)

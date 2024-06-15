@@ -24,7 +24,7 @@ script SunriseVillage_House1_EventScript_Zigzagoon {
     playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
     msgbox(format(
         "Rawr!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end

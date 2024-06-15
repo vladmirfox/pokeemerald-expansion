@@ -11,7 +11,7 @@ script SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll {
 	lock
 	msgbox(format(
 		"A very fluffy Wooloo doll. It's made of real Wooloo wool!"
-	), MSGBOX_AUTOCLOSE)
+	))
 	release
 }
 
@@ -21,7 +21,8 @@ script SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT {
 	callnative(DrawMugshot)
 	msgbox(format(
 		"What up dumdum?"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 	callnative(ClearMugshot)
 	release
 }
@@ -33,7 +34,8 @@ script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
 	msgbox(format(
 		"{PLAYER}! {PLAYER}! Are you still sleeping?\p"
 		"Get up and get ready!"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 2)
 	setflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
     release

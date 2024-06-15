@@ -19,7 +19,7 @@ SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll::
 # 11 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	lock
 # 12 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll_Text_0
 # 15 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	release
 	return
@@ -33,26 +33,30 @@ SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT::
 # 21 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	callnative DrawMugshot
 # 22 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT_Text_0
 # 25 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	callnative ClearMugshot
+	closemessage
 # 26 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	callnative ClearMugshot
+# 27 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	release
 	return
 
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling::
-# 31 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	lock
 # 32 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	lock
 # 33 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0, MSGBOX_AUTOCLOSE
-# 37 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+# 34 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
 # 38 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	setflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
+	closemessage
 # 39 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+# 40 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
+# 41 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	release
 	end
 
@@ -67,7 +71,7 @@ SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT_Text_0:
 	.string "What up dumdum?$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0:
-# 34 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+# 35 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "{PLAYER}! {PLAYER}! Are you still\n"
 	.string "sleeping?\p"
 	.string "Get up and get ready!$"

@@ -12,20 +12,26 @@ Silveridge_EldersHouse_EventScript_Elder::
 # 11 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne Silveridge_EldersHouse_EventScript_Elder_2
-# 17 "data/maps/Silveridge_EldersHouse/scripts.pory"
+# 18 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	msgbox Silveridge_EldersHouse_EventScript_Elder_Text_1
 # 26 "data/maps/Silveridge_EldersHouse/scripts.pory"
+	closemessage
+# 28 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	giveitem ITEM_SKY_PLATE
-# 27 "data/maps/Silveridge_EldersHouse/scripts.pory"
+# 29 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	msgbox Silveridge_EldersHouse_EventScript_Elder_Text_2
+# 34 "data/maps/Silveridge_EldersHouse/scripts.pory"
+	closemessage
 Silveridge_EldersHouse_EventScript_Elder_1:
-# 33 "data/maps/Silveridge_EldersHouse/scripts.pory"
+# 36 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	release
 	return
 
 Silveridge_EldersHouse_EventScript_Elder_2:
 # 12 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	msgbox Silveridge_EldersHouse_EventScript_Elder_Text_0
+# 15 "data/maps/Silveridge_EldersHouse/scripts.pory"
+	closemessage
 	goto Silveridge_EldersHouse_EventScript_Elder_1
 
 
@@ -34,7 +40,7 @@ Silveridge_EldersHouse_EventScript_Elder_Text_0:
 	.string "Go forth, my child.$"
 
 Silveridge_EldersHouse_EventScript_Elder_Text_1:
-# 18 "data/maps/Silveridge_EldersHouse/scripts.pory"
+# 19 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	.string "Hello, child. I am Iwa, the elder of\n"
 	.string "Silveridge. What brings you to me?\p"
 	.string "……………\p"
@@ -51,7 +57,7 @@ Silveridge_EldersHouse_EventScript_Elder_Text_1:
 	.string "posession.$"
 
 Silveridge_EldersHouse_EventScript_Elder_Text_2:
-# 28 "data/maps/Silveridge_EldersHouse/scripts.pory"
+# 30 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	.string "This is a copy of one of the very\n"
 	.string "ancient Tablets of Power. It is said\l"
 	.string "that to possess all the Tablets of\l"

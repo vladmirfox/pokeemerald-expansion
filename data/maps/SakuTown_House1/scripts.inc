@@ -8,6 +8,8 @@ SakuTown_House1_EventScript_Tama::
 # 8 "data/maps/SakuTown_House1/scripts.pory"
 	msgbox SakuTown_House1_EventScript_Tama_Text_0
 # 9 "data/maps/SakuTown_House1/scripts.pory"
+	closemessage
+# 10 "data/maps/SakuTown_House1/scripts.pory"
 	release
 	return
 

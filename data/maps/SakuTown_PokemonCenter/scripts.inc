@@ -29,6 +29,8 @@ SakuTown_PokemonCenter_EventScript_Traveler::
 # 18 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	msgbox SakuTown_PokemonCenter_EventScript_Traveler_Text_0
 # 23 "data/maps/SakuTown_PokemonCenter/scripts.pory"
+	closemessage
+# 24 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	release
 	end
 

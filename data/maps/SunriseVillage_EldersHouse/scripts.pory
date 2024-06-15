@@ -26,7 +26,8 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"As you have heard, the woods, and even the roads, are no longer safe.\p"
 		"We don't yet know the reason, but the wild Pokémon that usually hide in the tall grass and live peacefully alongside men have started behaving aggressively.\p"
 		"There are reports of travelers being attacked from several nearby villages. This is all very worrying…"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderTurnsToThink)
 	waitmovement(0)
 	msgbox(format(
@@ -35,12 +36,14 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"More and more, people will be fighting alongside their own companion.\p"
 		"With a domesticated Pokémon by your side, you'll be able to defend yourselves even when you're on your own.\p"
 		"Without further ado, please choose one of the three creatures in the Pokéballs behind me!"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	// Rival is nice and lets you pick first
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(0)
-	msgbox(format("{RIVAL}: C'mon {PLAYER}, pick yours, quick quick!"), MSGBOX_AUTOCLOSE)
+	msgbox(format("{RIVAL}: C'mon {PLAYER}, pick yours, quick quick!"))
+	closemessage
 	turnobject(LOCALID_RIVAL, DIR_NORTH)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 
@@ -55,11 +58,13 @@ script SunriseVillage_EldersHouse_Event_Rival {
 		msgbox(format(
 			"You alright?\p"
 			"C'mon, let's fight again, and give it your all this time!"
-		), MSGBOX_AUTOCLOSE)
+		))
+		closemessage
 		// Battle!
 		goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
 	} else {
-		msgbox(format("What are you waiting for? Choose one already!"), MSGBOX_AUTOCLOSE)
+		msgbox(format("What are you waiting for? Choose one already!"))
+		closemessage
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 	}
 	release
@@ -70,14 +75,17 @@ script SunriseVillage_EldersHouse_Event_Elder {
 	faceplayer
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		// TODO EVA dex evaluation, letter delivery, etc
-		msgbox(format("How is your Pokémon research going?"), MSGBOX_AUTOCLOSE)
+		msgbox(format("How is your Pokémon research going?"))
+		closemessage
 	} else {
 		// Player has yet to pick a Pokémon
 		if (!flag(FLAG_RECEIVED_STARTER)) {
-			msgbox(format("Choose your new partner wisely. No takebacks."), MSGBOX_AUTOCLOSE)
+			msgbox(format("Choose your new partner wisely. No takebacks."))
+			closemessage
 			// Player has lost their first battle and has to do it again
 		} else {
-			msgbox(format("You're free to battle here, but please don't break anything…"), MSGBOX_AUTOCLOSE)
+			msgbox(format("You're free to battle here, but please don't break anything…"))
+			closemessage
 		}
 	}
 	release
@@ -87,7 +95,8 @@ script SunriseVillage_EldersHouse_EventScript_TryToLeave {
 	lock
 	msgbox(format(
 		"Elder Kaba: Where do you think you're going?"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp)
 	waitmovement(0)
 	release
@@ -137,6 +146,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		msgbox(format(
 			"You already got a Pokémon. Better leave this one here."
 		))
+		closemessage
 		return
 	}
 	showmonpic(VAR_TEMP_1, 10, 3)
@@ -152,6 +162,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	if (var(VAR_RESULT) == NO || var(VAR_RESULT) == MULTI_B_PRESSED) {
 		hidemonpic
 		msgbox(format("Elder Kaba: Take the time you need."))
+		closemessage
 		return
 	} elif (var(VAR_RESULT) == YES) {
 		switch(var(VAR_TEMP_1)) {
@@ -229,7 +240,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
 
 	// Rival walks up to his Pokémon
-	msgbox(format("{RIVAL}: Alright, I'm taking this one!"), MSGBOX_AUTOCLOSE)
+	msgbox(format("{RIVAL}: Alright, I'm taking this one!"))
 	closemessage
 
 	switch(var(VAR_STARTER_MON)) {
@@ -259,7 +270,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		"The more wielders there are, the deeper our understanding of Pokémon will be.\p"
 		"We need to study these creatures from up close to find the root of this issue.\p"
 		"Actually, there's something I wanted to ask you."
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderGivesDex)
 	waitmovement(0)
@@ -276,7 +288,10 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	msgbox(format(
 		"{RIVAL}: What's this? A book?"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
+
+	delay(20)
 
 	msgbox(format(
 		"Elder Kaba: I call this the “Pokédex”. It is an encyclopedia containing vital information about Pokémon from the whole region!\p"
@@ -285,7 +300,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		"You can start by going all the way to Silveridge, north of here in the mountains.\p"
 		"Another Elder lives there and, hopefully, has more information as to why the Pokémon are lashing out.\p"
 		"Could you deliver him this letter?"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	playfanfare(MUS_OBTAIN_ITEM)
 	// TODO EVA giveitem letter
@@ -293,7 +309,9 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	waitfanfare
 	closemessage
 
-	msgbox(format("{RIVAL}: Understood, Grandma Kaba! We're going adventuring!"), MSGBOX_AUTOCLOSE)
+	msgbox(format("{RIVAL}: Understood, Grandma Kaba! We're going adventuring!"))
+	closemessage
+
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	msgbox(format("{PLAYER}, are you ready?"), MSGBOX_YESNO)
@@ -301,6 +319,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		msgbox(format(
 				"That's what I'm talking about!\p"
 			))
+			closemessage
 	} else {
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 
@@ -308,11 +327,13 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		if (var(VAR_RESULT) == MALE) {
 			msgbox(format(
 				"Don't listen to him! He's so ready!"
-			), MSGBOX_AUTOCLOSE)
+			))
+			closemessage
 		} else {
 			msgbox(format(
 				"Don't listen to her! She's so ready!"
-			), MSGBOX_AUTOCLOSE)
+			))
+			closemessage
 		}
 
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
@@ -321,7 +342,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	msgbox(format(
 		"{PLAYER}! Let's see what our brand-new Pokémon are capable of!\p"
 		"I request an official Pokémon wielder battle!"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 6)
 
@@ -344,7 +366,8 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 		"I went easy on you this time, but next time… You'll see!\p"
 		"Well, I'm going off now. Don't dilly-dally, or you'll never catch up!\p"
 		"See ya, {PLAYER}."
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	switch(var(VAR_FACING)) {
 		case DIR_SOUTH:

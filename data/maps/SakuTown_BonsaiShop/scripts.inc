@@ -227,38 +227,44 @@ SakuTown_BonsaiShop_EventScript_Owner::
 	faceplayer
 # 217 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	goto_if_set FLAG_BADGE02_GET, SakuTown_BonsaiShop_EventScript_Owner_2
-# 231 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 233 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	special GetPlayerBoyGirlString
-# 232 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 234 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_2
+# 238 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	closemessage
 SakuTown_BonsaiShop_EventScript_Owner_1:
-# 237 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 240 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
 SakuTown_BonsaiShop_EventScript_Owner_2:
 # 219 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	goto_if_set FLAG_RECEIVED_SECRET_POWER, SakuTown_BonsaiShop_EventScript_Owner_5
-# 225 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 226 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_1
+# 230 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	closemessage
 	goto SakuTown_BonsaiShop_EventScript_Owner_1
 
 SakuTown_BonsaiShop_EventScript_Owner_5:
 # 220 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_BonsaiShop_EventScript_Owner_Text_0
+# 223 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+	closemessage
 	goto SakuTown_BonsaiShop_EventScript_Owner_1
 
 
 SakuTown_EventScript_Man::
-# 241 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 244 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	lock
-# 242 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 245 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	faceplayer
-# 243 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 246 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	msgbox SakuTown_EventScript_Man_Text_0
-# 248 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 251 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	closemessage
-# 249 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 252 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	release
 	return
 
@@ -425,7 +431,7 @@ SakuTown_BonsaiShop_EventScript_Owner_Text_0:
 	.string "a little greenery?$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_1:
-# 226 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 227 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, {PLAYER}. Can I interest you in\n"
 	.string "a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
@@ -433,7 +439,7 @@ SakuTown_BonsaiShop_EventScript_Owner_Text_1:
 	.string "you do.$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_2:
-# 233 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 235 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, young {STR_VAR_1}. Can I\n"
 	.string "interest you in a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
@@ -441,7 +447,7 @@ SakuTown_BonsaiShop_EventScript_Owner_Text_2:
 	.string "you do.$"
 
 SakuTown_EventScript_Man_Text_0:
-# 244 "data/maps/SakuTown_BonsaiShop/scripts.pory"
+# 247 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "I'm choosing flowers for my wife.\p"
 	.string "I, uh… I didn't realize there'd be so\n"
 	.string "many different types.\p"

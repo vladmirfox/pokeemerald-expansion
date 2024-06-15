@@ -1,37 +1,47 @@
+const FLAG_TAILLOW_1 = FLAG_TEMP_1
+const FLAG_TAILLOW_2 = FLAG_TEMP_2
+const FLAG_FLETCHLING_1 = FLAG_TEMP_3
+const FLAG_FLETCHLING_2 = FLAG_TEMP_4
+const VAR_HOUR_OF_DAY = VAR_0x8000
+
 mapscripts ChiiTown_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
-        // Random birds on roofs
-		// Taillow
-        setflag(FLAG_TEMP_1)
-        setflag(FLAG_TEMP_2)
-		// Fletchling
-        setflag(FLAG_TEMP_3)
-        setflag(FLAG_TEMP_4)
-
-        gettime
-		// Morning
-        if (var(VAR_0x8000) >= 5 && var(VAR_0x8000) <= 8) {
-            random(2)
-            switch(var(VAR_RESULT)) {
-                case 0:
-                    clearflag(FLAG_TEMP_1)
-                case 1:
-                    clearflag(FLAG_TEMP_2)
-            }
-			// Day
-        } elif (var(VAR_0x8000) >= 9 && var(VAR_0x8000) <= 17) {
-            random(2)
-            switch(var(VAR_RESULT)) {
-                case 0:
-                    clearflag(FLAG_TEMP_3)
-                case 1:
-                    clearflag(FLAG_TEMP_4)
-            }
-        }
+        call(ChiiTown_EventScript_SpawnBirds)
     }
 	MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 2: ChiiTown_EventScript_SetTrespassVar
     ]
+}
+
+script ChiiTown_EventScript_SpawnBirds {
+	// Random birds on roofs
+	// Taillow
+	setflag(FLAG_TAILLOW_1)
+	setflag(FLAG_TAILLOW_2)
+	// Fletchling
+	setflag(FLAG_FLETCHLING_1)
+	setflag(FLAG_FLETCHLING_2)
+
+	gettime
+	// Morning
+	if (var(VAR_HOUR_OF_DAY) >= 5 && var(VAR_HOUR_OF_DAY) <= 8) {
+		random(2)
+		switch(var(VAR_RESULT)) {
+			case 0:
+				clearflag(FLAG_TAILLOW_1)
+			case 1:
+				clearflag(FLAG_TAILLOW_2)
+		}
+		// Day
+	} elif (var(VAR_HOUR_OF_DAY) >= 9 && var(VAR_HOUR_OF_DAY) <= 17) {
+		random(2)
+		switch(var(VAR_RESULT)) {
+			case 0:
+				clearflag(FLAG_FLETCHLING_1)
+			case 1:
+				clearflag(FLAG_FLETCHLING_2)
+		}
+	}
 }
 
 script ChiiTown_EventScript_Shopper {

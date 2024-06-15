@@ -6,301 +6,309 @@ Common_EventScript_PkmnCenterNurse_CutTheBullshit::
 # 4 "data/scripts/pkmn_center_nurse.pory"
 	setvar VAR_0x8004, 0
 # 5 "data/scripts/pkmn_center_nurse.pory"
-	msgbox Common_EventScript_PkmnCenterNurse_CutTheBullshit_Text_0, MSGBOX_AUTOCLOSE
+	msgbox Common_EventScript_PkmnCenterNurse_CutTheBullshit_Text_0
 # 6 "data/scripts/pkmn_center_nurse.pory"
+	closemessage
+# 7 "data/scripts/pkmn_center_nurse.pory"
 	goto EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit
+# 8 "data/scripts/pkmn_center_nurse.pory"
+	release
 	end
 
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit::
-# 11 "data/scripts/pkmn_center_nurse.pory"
-	incrementgamestat GAME_STAT_USED_POKECENTER
-# 12 "data/scripts/pkmn_center_nurse.pory"
-	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
 # 13 "data/scripts/pkmn_center_nurse.pory"
+	incrementgamestat GAME_STAT_USED_POKECENTER
+# 14 "data/scripts/pkmn_center_nurse.pory"
+	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
+# 15 "data/scripts/pkmn_center_nurse.pory"
 	goto_if_unset FLAG_POKERUS_EXPLAINED, EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_2
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_1:
-# 17 "data/scripts/pkmn_center_nurse.pory"
-	msgbox EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_0, MSGBOX_AUTOCLOSE
+# 19 "data/scripts/pkmn_center_nurse.pory"
+	msgbox EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_0
 # 20 "data/scripts/pkmn_center_nurse.pory"
-	msgbox EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_1, MSGBOX_AUTOCLOSE
+	closemessage
+# 23 "data/scripts/pkmn_center_nurse.pory"
+	msgbox EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_1
+# 24 "data/scripts/pkmn_center_nurse.pory"
+	closemessage
 	end
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_2:
-# 14 "data/scripts/pkmn_center_nurse.pory"
+# 16 "data/scripts/pkmn_center_nurse.pory"
 	call EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit
 	goto EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_1
 
 
 EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit::
-# 26 "data/scripts/pkmn_center_nurse.pory"
+# 30 "data/scripts/pkmn_center_nurse.pory"
 	specialvar VAR_RESULT, IsPokerusInParty
-# 27 "data/scripts/pkmn_center_nurse.pory"
+# 31 "data/scripts/pkmn_center_nurse.pory"
 	compare VAR_RESULT, TRUE
 	goto_if_eq EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit_1
 	return
 
 EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit_1:
-# 28 "data/scripts/pkmn_center_nurse.pory"
+# 32 "data/scripts/pkmn_center_nurse.pory"
 	message EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit_Text_0
-# 34 "data/scripts/pkmn_center_nurse.pory"
+# 38 "data/scripts/pkmn_center_nurse.pory"
 	setflag FLAG_POKERUS_EXPLAINED
 	return
 
 
-# 38 "data/scripts/pkmn_center_nurse.pory"
-Common_EventScript_PkmnCenterNurse::
-# 39 "data/scripts/pkmn_center_nurse.pory"
-	lock
-# 40 "data/scripts/pkmn_center_nurse.pory"
-	faceplayer
-# 41 "data/scripts/pkmn_center_nurse.pory"
-	setvar VAR_0x8004, 0
 # 42 "data/scripts/pkmn_center_nurse.pory"
-	specialvar VAR_RESULT, CountPlayerTrainerStars
+Common_EventScript_PkmnCenterNurse::
 # 43 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, 4, EventScript_PkmnCenterNurse_GoldCard
+	lock
 # 44 "data/scripts/pkmn_center_nurse.pory"
-	msgbox gText_WouldYouLikeToRestYourPkmn, MSGBOX_YESNO
+	faceplayer
 # 45 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_HealPkmn
+	setvar VAR_0x8004, 0
 # 46 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, NO, EventScript_PkmnCenterNurse_Goodbye
+	specialvar VAR_RESULT, CountPlayerTrainerStars
 # 47 "data/scripts/pkmn_center_nurse.pory"
-	end
+	goto_if_eq VAR_RESULT, 4, EventScript_PkmnCenterNurse_GoldCard
 # 48 "data/scripts/pkmn_center_nurse.pory"
-
+	msgbox gText_WouldYouLikeToRestYourPkmn, MSGBOX_YESNO
 # 49 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_Goodbye::
+	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_HealPkmn
 # 50 "data/scripts/pkmn_center_nurse.pory"
-	message gText_WeHopeToSeeYouAgain
+	goto_if_eq VAR_RESULT, NO, EventScript_PkmnCenterNurse_Goodbye
 # 51 "data/scripts/pkmn_center_nurse.pory"
-	return
+	end
 # 52 "data/scripts/pkmn_center_nurse.pory"
 
 # 53 "data/scripts/pkmn_center_nurse.pory"
-@ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
+EventScript_PkmnCenterNurse_Goodbye::
 # 54 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_HealPkmn::
+	message gText_WeHopeToSeeYouAgain
 # 55 "data/scripts/pkmn_center_nurse.pory"
-	incrementgamestat GAME_STAT_USED_POKECENTER
-# 56 "data/scripts/pkmn_center_nurse.pory"
-	call_if_eq VAR_0x8004, 0, EventScript_PkmnCenterNurse_IllTakeYourPkmn
-# 57 "data/scripts/pkmn_center_nurse.pory"
-	call_if_eq VAR_0x8004, 1, EventScript_PkmnCenterNurse_IllTakeYourPkmn2
-# 58 "data/scripts/pkmn_center_nurse.pory"
-	waitmessage
-# 59 "data/scripts/pkmn_center_nurse.pory"
-	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
-# 60 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_unset FLAG_POKERUS_EXPLAINED, EventScript_PkmnCenterNurse_CheckPokerus
-# 61 "data/scripts/pkmn_center_nurse.pory"
-	goto EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
-# 62 "data/scripts/pkmn_center_nurse.pory"
-	end
-# 63 "data/scripts/pkmn_center_nurse.pory"
-
-# 64 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_IllTakeYourPkmn::
-# 65 "data/scripts/pkmn_center_nurse.pory"
-	message gText_IllTakeYourPkmn
-# 66 "data/scripts/pkmn_center_nurse.pory"
 	return
+# 56 "data/scripts/pkmn_center_nurse.pory"
+
+# 57 "data/scripts/pkmn_center_nurse.pory"
+@ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
+# 58 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_HealPkmn::
+# 59 "data/scripts/pkmn_center_nurse.pory"
+	incrementgamestat GAME_STAT_USED_POKECENTER
+# 60 "data/scripts/pkmn_center_nurse.pory"
+	call_if_eq VAR_0x8004, 0, EventScript_PkmnCenterNurse_IllTakeYourPkmn
+# 61 "data/scripts/pkmn_center_nurse.pory"
+	call_if_eq VAR_0x8004, 1, EventScript_PkmnCenterNurse_IllTakeYourPkmn2
+# 62 "data/scripts/pkmn_center_nurse.pory"
+	waitmessage
+# 63 "data/scripts/pkmn_center_nurse.pory"
+	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
+# 64 "data/scripts/pkmn_center_nurse.pory"
+	goto_if_unset FLAG_POKERUS_EXPLAINED, EventScript_PkmnCenterNurse_CheckPokerus
+# 65 "data/scripts/pkmn_center_nurse.pory"
+	goto EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+# 66 "data/scripts/pkmn_center_nurse.pory"
+	end
 # 67 "data/scripts/pkmn_center_nurse.pory"
 
 # 68 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
+EventScript_PkmnCenterNurse_IllTakeYourPkmn::
 # 69 "data/scripts/pkmn_center_nurse.pory"
-	message gText_IllTakeYourPkmn2
+	message gText_IllTakeYourPkmn
 # 70 "data/scripts/pkmn_center_nurse.pory"
 	return
 # 71 "data/scripts/pkmn_center_nurse.pory"
 
 # 72 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_TakeAndHealPkmn::
+EventScript_PkmnCenterNurse_IllTakeYourPkmn2::
 # 73 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn @ Changed from Common_Movement_WalkInPlaceFasterLeft to force the follower to enter their Poké Ball
+	message gText_IllTakeYourPkmn2
 # 74 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
+	return
 # 75 "data/scripts/pkmn_center_nurse.pory"
-	dofieldeffect FLDEFF_POKECENTER_HEAL
+
 # 76 "data/scripts/pkmn_center_nurse.pory"
-	waitfieldeffect FLDEFF_POKECENTER_HEAL
+EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 # 77 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Common_Movement_WalkInPlaceFasterDown
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Turn @ Changed from Common_Movement_WalkInPlaceFasterLeft to force the follower to enter their Poké Ball
 # 78 "data/scripts/pkmn_center_nurse.pory"
 	waitmovement 0
 # 79 "data/scripts/pkmn_center_nurse.pory"
-	special HealPlayerParty
+	dofieldeffect FLDEFF_POKECENTER_HEAL
 # 80 "data/scripts/pkmn_center_nurse.pory"
-	callnative UpdateFollowingPokemon
+	waitfieldeffect FLDEFF_POKECENTER_HEAL
 # 81 "data/scripts/pkmn_center_nurse.pory"
-	return
+	applymovement VAR_0x800B, Common_Movement_WalkInPlaceFasterDown
 # 82 "data/scripts/pkmn_center_nurse.pory"
-
+	waitmovement 0
 # 83 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom::
+	special HealPlayerParty
 # 84 "data/scripts/pkmn_center_nurse.pory"
-	specialvar VAR_RESULT, PlayerNotAtTrainerHillEntrance
+	callnative UpdateFollowingPokemon
 # 85 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, 0, EventScript_PkmnCenterNurse_ReturnPkmn
+	return
 # 86 "data/scripts/pkmn_center_nurse.pory"
-	specialvar VAR_RESULT, BufferUnionRoomPlayerName
+
 # 87 "data/scripts/pkmn_center_nurse.pory"
-	copyvar VAR_0x8008, VAR_RESULT
+EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom::
 # 88 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_0x8008, 0, EventScript_PkmnCenterNurse_ReturnPkmn
+	specialvar VAR_RESULT, PlayerNotAtTrainerHillEntrance
 # 89 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_0x8008, 1, EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
+	goto_if_eq VAR_RESULT, 0, EventScript_PkmnCenterNurse_ReturnPkmn
 # 90 "data/scripts/pkmn_center_nurse.pory"
-	end
+	specialvar VAR_RESULT, BufferUnionRoomPlayerName
 # 91 "data/scripts/pkmn_center_nurse.pory"
-
+	copyvar VAR_0x8008, VAR_RESULT
 # 92 "data/scripts/pkmn_center_nurse.pory"
-@ VAR_0x8004 is 1 when player has Gold Card
+	goto_if_eq VAR_0x8008, 0, EventScript_PkmnCenterNurse_ReturnPkmn
 # 93 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_ReturnPkmn::
+	goto_if_eq VAR_0x8008, 1, EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom
 # 94 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_0x8004, 1, EventScript_PkmnCenterNurse_ReturnPkmn2
+	end
 # 95 "data/scripts/pkmn_center_nurse.pory"
-	message gText_RestoredPkmnToFullHealth
+
 # 96 "data/scripts/pkmn_center_nurse.pory"
-	waitmessage
+@ VAR_0x8004 is 1 when player has Gold Card
 # 97 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
+EventScript_PkmnCenterNurse_ReturnPkmn::
 # 98 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
+	goto_if_eq VAR_0x8004, 1, EventScript_PkmnCenterNurse_ReturnPkmn2
 # 99 "data/scripts/pkmn_center_nurse.pory"
-	message gText_WeHopeToSeeYouAgain
+	message gText_RestoredPkmnToFullHealth
 # 100 "data/scripts/pkmn_center_nurse.pory"
-	return
+	waitmessage
 # 101 "data/scripts/pkmn_center_nurse.pory"
-
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
 # 102 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_ReturnPkmn2::
+	waitmovement 0
 # 103 "data/scripts/pkmn_center_nurse.pory"
-	message gText_ThankYouForWaiting
-# 104 "data/scripts/pkmn_center_nurse.pory"
-	waitmessage
-# 105 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
-# 106 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
-# 107 "data/scripts/pkmn_center_nurse.pory"
-	message gText_WeHopeToSeeYouAgain2
-# 108 "data/scripts/pkmn_center_nurse.pory"
-	return
-# 109 "data/scripts/pkmn_center_nurse.pory"
-
-# 110 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom::
-# 111 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, EventScript_PkmnCenterNurse_ReturnPkmn
-# 112 "data/scripts/pkmn_center_nurse.pory"
-	msgbox gText_RestoredPkmnToFullHealth, MSGBOX_DEFAULT
-# 113 "data/scripts/pkmn_center_nurse.pory"
-	setflag FLAG_NURSE_UNION_ROOM_REMINDER
-# 114 "data/scripts/pkmn_center_nurse.pory"
-	message CableClub_Text_PlayerIsWaiting
-# 115 "data/scripts/pkmn_center_nurse.pory"
-	waitmessage
-# 116 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
-# 117 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
-# 118 "data/scripts/pkmn_center_nurse.pory"
 	message gText_WeHopeToSeeYouAgain
+# 104 "data/scripts/pkmn_center_nurse.pory"
+	return
+# 105 "data/scripts/pkmn_center_nurse.pory"
+
+# 106 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_ReturnPkmn2::
+# 107 "data/scripts/pkmn_center_nurse.pory"
+	message gText_ThankYouForWaiting
+# 108 "data/scripts/pkmn_center_nurse.pory"
+	waitmessage
+# 109 "data/scripts/pkmn_center_nurse.pory"
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
+# 110 "data/scripts/pkmn_center_nurse.pory"
+	waitmovement 0
+# 111 "data/scripts/pkmn_center_nurse.pory"
+	message gText_WeHopeToSeeYouAgain2
+# 112 "data/scripts/pkmn_center_nurse.pory"
+	return
+# 113 "data/scripts/pkmn_center_nurse.pory"
+
+# 114 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_PlayerWaitingInUnionRoom::
+# 115 "data/scripts/pkmn_center_nurse.pory"
+	goto_if_set FLAG_NURSE_UNION_ROOM_REMINDER, EventScript_PkmnCenterNurse_ReturnPkmn
+# 116 "data/scripts/pkmn_center_nurse.pory"
+	msgbox gText_RestoredPkmnToFullHealth, MSGBOX_DEFAULT
+# 117 "data/scripts/pkmn_center_nurse.pory"
+	setflag FLAG_NURSE_UNION_ROOM_REMINDER
+# 118 "data/scripts/pkmn_center_nurse.pory"
+	message CableClub_Text_PlayerIsWaiting
 # 119 "data/scripts/pkmn_center_nurse.pory"
-	return
+	waitmessage
 # 120 "data/scripts/pkmn_center_nurse.pory"
-
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
 # 121 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_CheckPokerus::
+	waitmovement 0
 # 122 "data/scripts/pkmn_center_nurse.pory"
-	specialvar VAR_RESULT, IsPokerusInParty
+	message gText_WeHopeToSeeYouAgain
 # 123 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, TRUE, EventScript_PkmnCenterNurse_ExplainPokerus
+	return
 # 124 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
+
 # 125 "data/scripts/pkmn_center_nurse.pory"
-	end
+EventScript_PkmnCenterNurse_CheckPokerus::
 # 126 "data/scripts/pkmn_center_nurse.pory"
-
+	specialvar VAR_RESULT, IsPokerusInParty
 # 127 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_ExplainPokerus::
+	goto_if_eq VAR_RESULT, TRUE, EventScript_PkmnCenterNurse_ExplainPokerus
 # 128 "data/scripts/pkmn_center_nurse.pory"
-	message gText_PokerusExplanation
+	goto_if_eq VAR_RESULT, FALSE, EventScript_PkmnCenterNurse_CheckTrainerHillAndUnionRoom
 # 129 "data/scripts/pkmn_center_nurse.pory"
-	setflag FLAG_POKERUS_EXPLAINED
-# 130 "data/scripts/pkmn_center_nurse.pory"
-	return
-# 131 "data/scripts/pkmn_center_nurse.pory"
-
-# 132 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_GoldCard::
-# 133 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD, EventScript_PkmnCenterNurse_AskForUsual
-# 134 "data/scripts/pkmn_center_nurse.pory"
-	setflag FLAG_NURSE_MENTIONS_GOLD_CARD
-# 135 "data/scripts/pkmn_center_nurse.pory"
-	msgbox gText_WelcomeCutShort, MSGBOX_DEFAULT
-# 136 "data/scripts/pkmn_center_nurse.pory"
-	playse SE_PIN
-# 137 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Common_Movement_ExclamationMark
-# 138 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
-# 139 "data/scripts/pkmn_center_nurse.pory"
-	applymovement VAR_0x800B, Common_Movement_Delay48
-# 140 "data/scripts/pkmn_center_nurse.pory"
-	waitmovement 0
-# 141 "data/scripts/pkmn_center_nurse.pory"
-	msgbox gText_NoticesGoldCard, MSGBOX_YESNO
-# 142 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
-# 143 "data/scripts/pkmn_center_nurse.pory"
-	message gText_WeHopeToSeeYouAgain2
-# 144 "data/scripts/pkmn_center_nurse.pory"
-	return
-# 145 "data/scripts/pkmn_center_nurse.pory"
-
-# 146 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_AskForUsual::
-# 147 "data/scripts/pkmn_center_nurse.pory"
-	msgbox gText_YouWantTheUsual, MSGBOX_YESNO
-# 148 "data/scripts/pkmn_center_nurse.pory"
-	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
-# 149 "data/scripts/pkmn_center_nurse.pory"
-	message gText_WeHopeToSeeYouAgain2
-# 150 "data/scripts/pkmn_center_nurse.pory"
-	return
-# 151 "data/scripts/pkmn_center_nurse.pory"
-
-# 152 "data/scripts/pkmn_center_nurse.pory"
-EventScript_PkmnCenterNurse_GoldCardHealPkmn::
-# 153 "data/scripts/pkmn_center_nurse.pory"
-	setvar VAR_0x8004, 1
-# 154 "data/scripts/pkmn_center_nurse.pory"
-	goto EventScript_PkmnCenterNurse_HealPkmn
-# 155 "data/scripts/pkmn_center_nurse.pory"
 	end
+# 130 "data/scripts/pkmn_center_nurse.pory"
+
+# 131 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_ExplainPokerus::
+# 132 "data/scripts/pkmn_center_nurse.pory"
+	message gText_PokerusExplanation
+# 133 "data/scripts/pkmn_center_nurse.pory"
+	setflag FLAG_POKERUS_EXPLAINED
+# 134 "data/scripts/pkmn_center_nurse.pory"
+	return
+# 135 "data/scripts/pkmn_center_nurse.pory"
+
+# 136 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_GoldCard::
+# 137 "data/scripts/pkmn_center_nurse.pory"
+	goto_if_set FLAG_NURSE_MENTIONS_GOLD_CARD, EventScript_PkmnCenterNurse_AskForUsual
+# 138 "data/scripts/pkmn_center_nurse.pory"
+	setflag FLAG_NURSE_MENTIONS_GOLD_CARD
+# 139 "data/scripts/pkmn_center_nurse.pory"
+	msgbox gText_WelcomeCutShort, MSGBOX_DEFAULT
+# 140 "data/scripts/pkmn_center_nurse.pory"
+	playse SE_PIN
+# 141 "data/scripts/pkmn_center_nurse.pory"
+	applymovement VAR_0x800B, Common_Movement_ExclamationMark
+# 142 "data/scripts/pkmn_center_nurse.pory"
+	waitmovement 0
+# 143 "data/scripts/pkmn_center_nurse.pory"
+	applymovement VAR_0x800B, Common_Movement_Delay48
+# 144 "data/scripts/pkmn_center_nurse.pory"
+	waitmovement 0
+# 145 "data/scripts/pkmn_center_nurse.pory"
+	msgbox gText_NoticesGoldCard, MSGBOX_YESNO
+# 146 "data/scripts/pkmn_center_nurse.pory"
+	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
+# 147 "data/scripts/pkmn_center_nurse.pory"
+	message gText_WeHopeToSeeYouAgain2
+# 148 "data/scripts/pkmn_center_nurse.pory"
+	return
+# 149 "data/scripts/pkmn_center_nurse.pory"
+
+# 150 "data/scripts/pkmn_center_nurse.pory"
+EventScript_PkmnCenterNurse_AskForUsual::
+# 151 "data/scripts/pkmn_center_nurse.pory"
+	msgbox gText_YouWantTheUsual, MSGBOX_YESNO
+# 152 "data/scripts/pkmn_center_nurse.pory"
+	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
+# 153 "data/scripts/pkmn_center_nurse.pory"
+	message gText_WeHopeToSeeYouAgain2
+# 154 "data/scripts/pkmn_center_nurse.pory"
+	return
+# 155 "data/scripts/pkmn_center_nurse.pory"
+
 # 156 "data/scripts/pkmn_center_nurse.pory"
-
+EventScript_PkmnCenterNurse_GoldCardHealPkmn::
 # 157 "data/scripts/pkmn_center_nurse.pory"
-Movement_PkmnCenterNurse_Bow:
+	setvar VAR_0x8004, 1
 # 158 "data/scripts/pkmn_center_nurse.pory"
-	nurse_joy_bow
+	goto EventScript_PkmnCenterNurse_HealPkmn
 # 159 "data/scripts/pkmn_center_nurse.pory"
-	delay_4
+	end
 # 160 "data/scripts/pkmn_center_nurse.pory"
-	step_end
-# 161 "data/scripts/pkmn_center_nurse.pory"
 
+# 161 "data/scripts/pkmn_center_nurse.pory"
+Movement_PkmnCenterNurse_Bow:
 # 162 "data/scripts/pkmn_center_nurse.pory"
-Movement_PkmnCenterNurse_Turn:
+	nurse_joy_bow
 # 163 "data/scripts/pkmn_center_nurse.pory"
-	walk_in_place_faster_left
+	delay_4
 # 164 "data/scripts/pkmn_center_nurse.pory"
+	step_end
+# 165 "data/scripts/pkmn_center_nurse.pory"
+
+# 166 "data/scripts/pkmn_center_nurse.pory"
+Movement_PkmnCenterNurse_Turn:
+# 167 "data/scripts/pkmn_center_nurse.pory"
+	walk_in_place_faster_left
+# 168 "data/scripts/pkmn_center_nurse.pory"
 	step_end
 
 Common_EventScript_PkmnCenterNurse_CutTheBullshit_Text_0:
@@ -309,15 +317,15 @@ Common_EventScript_PkmnCenterNurse_CutTheBullshit_Text_0:
 	.string "Let me heal your Pokémon.$"
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_0:
-# 17 "data/scripts/pkmn_center_nurse.pory"
+# 19 "data/scripts/pkmn_center_nurse.pory"
 	.string "Your Pokémon are all healed and rested.$"
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_1:
-# 20 "data/scripts/pkmn_center_nurse.pory"
+# 23 "data/scripts/pkmn_center_nurse.pory"
 	.string "Please come again!$"
 
 EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit_Text_0:
-# 29 "data/scripts/pkmn_center_nurse.pory"
+# 33 "data/scripts/pkmn_center_nurse.pory"
 	.string "Um, excuse me…\p"
 	.string "I think your Pokémon is under some sort\n"
 	.string "of spell.\p"

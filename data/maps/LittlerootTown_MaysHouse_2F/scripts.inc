@@ -8,21 +8,23 @@ LittlerootTown_MaysHouse_2F_BigSisCalling::
 # 12 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	msgbox LittlerootTown_MaysHouse_2F_BigSisCalling_Text_0
 # 16 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+	closemessage
 # 17 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+# 18 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	release
 	end
 
 
-# 21 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-LittlerootTown_MaysHouse_2F_Movement_PlayerGetOutOfBed:
 # 22 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	delay_8
+LittlerootTown_MaysHouse_2F_Movement_PlayerGetOutOfBed:
 # 23 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	face_left
+	delay_8
 # 24 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
-	delay_16
+	face_left
 # 25 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
+	delay_16
+# 26 "data/maps/LittlerootTown_MaysHouse_2F/scripts.pory"
 	jump_left
 	step_end
 

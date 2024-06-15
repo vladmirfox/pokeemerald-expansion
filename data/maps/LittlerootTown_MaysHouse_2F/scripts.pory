@@ -13,6 +13,7 @@ script LittlerootTown_MaysHouse_2F_BigSisCalling {
 		"{PLAYER}! {PLAYER}! Are you still sleeping?\p"
 		"Get up and get ready!"
 	))
+	closemessage
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 2)
     release
     end

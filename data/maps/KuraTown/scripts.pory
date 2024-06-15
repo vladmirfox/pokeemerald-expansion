@@ -16,8 +16,7 @@ script KuraTown_EventScript_DojoChallenger {
 				"It seems the dojo is closed again…\p"
 				"Gah, when will I get a chance to crush Hana in a fiery battle?\p"
 				"Could it be that she is scared of me?"
-			),
-			MSGBOX_DEFAULT
+			)
 		)
 	} else {
 		msgbox(
@@ -25,10 +24,10 @@ script KuraTown_EventScript_DojoChallenger {
 				"The dojo is open! I can finally defeat its leader in a fiery battle!\p"
 				"…Hm? When, you ask? In… In a minute…\p"
 				"No, go right ahead, I'm just… preparing…"
-			),
-			MSGBOX_DEFAULT
+			)
 		)
 	}
+	closemessage
 	release
 }
 

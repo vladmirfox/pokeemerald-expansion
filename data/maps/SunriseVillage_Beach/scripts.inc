@@ -75,34 +75,36 @@ SunriseVillage_Beach_EventScript_RivalSpeech_1:
 # 73 "data/maps/SunriseVillage_Beach/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq SunriseVillage_Beach_EventScript_RivalSpeech_8
-# 77 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 78 "data/maps/SunriseVillage_Beach/scripts.pory"
 	compare VAR_RESULT, NO
 	goto_if_eq SunriseVillage_Beach_EventScript_RivalSpeech_9
-# 77 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 78 "data/maps/SunriseVillage_Beach/scripts.pory"
 	compare VAR_RESULT, MULTI_B_PRESSED
 	goto_if_eq SunriseVillage_Beach_EventScript_RivalSpeech_9
 SunriseVillage_Beach_EventScript_RivalSpeech_7:
-# 83 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 85 "data/maps/SunriseVillage_Beach/scripts.pory"
 	applymovement 1, SunriseVillage_Beach_Movement_RivalSeesDistribution
-# 84 "data/maps/SunriseVillage_Beach/scripts.pory"
-	waitmovement 0
 # 86 "data/maps/SunriseVillage_Beach/scripts.pory"
-	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_6, MSGBOX_AUTOCLOSE
-# 92 "data/maps/SunriseVillage_Beach/scripts.pory"
-	applymovement 1, SunriseVillage_Beach_Movement_RivalRaces
-# 93 "data/maps/SunriseVillage_Beach/scripts.pory"
 	waitmovement 0
+# 88 "data/maps/SunriseVillage_Beach/scripts.pory"
+	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_6
+# 92 "data/maps/SunriseVillage_Beach/scripts.pory"
+	closemessage
 # 95 "data/maps/SunriseVillage_Beach/scripts.pory"
-	setflag FLAG_HIDE_SUNRISE_BEACH_RIVAL
+	applymovement 1, SunriseVillage_Beach_Movement_RivalRaces
 # 96 "data/maps/SunriseVillage_Beach/scripts.pory"
-	clearflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
-# 97 "data/maps/SunriseVillage_Beach/scripts.pory"
-	clearflag FLAG_HIDE_BIGSIS_HOME
+	waitmovement 0
 # 98 "data/maps/SunriseVillage_Beach/scripts.pory"
-	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 4
+	setflag FLAG_HIDE_SUNRISE_BEACH_RIVAL
+# 99 "data/maps/SunriseVillage_Beach/scripts.pory"
+	clearflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
 # 100 "data/maps/SunriseVillage_Beach/scripts.pory"
-	removeobject 1
+	clearflag FLAG_HIDE_BIGSIS_HOME
 # 101 "data/maps/SunriseVillage_Beach/scripts.pory"
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 4
+# 103 "data/maps/SunriseVillage_Beach/scripts.pory"
+	removeobject 1
+# 104 "data/maps/SunriseVillage_Beach/scripts.pory"
 	release
 	end
 
@@ -128,144 +130,148 @@ SunriseVillage_Beach_EventScript_RivalSpeech_6:
 
 SunriseVillage_Beach_EventScript_RivalSpeech_8:
 # 74 "data/maps/SunriseVillage_Beach/scripts.pory"
-	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_4, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_4
+# 77 "data/maps/SunriseVillage_Beach/scripts.pory"
+	closemessage
 	goto SunriseVillage_Beach_EventScript_RivalSpeech_7
 
 SunriseVillage_Beach_EventScript_RivalSpeech_9:
-# 78 "data/maps/SunriseVillage_Beach/scripts.pory"
-	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_5, MSGBOX_AUTOCLOSE
+# 79 "data/maps/SunriseVillage_Beach/scripts.pory"
+	msgbox SunriseVillage_Beach_EventScript_RivalSpeech_Text_5
+# 82 "data/maps/SunriseVillage_Beach/scripts.pory"
+	closemessage
 	goto SunriseVillage_Beach_EventScript_RivalSpeech_7
 
 
 SunriseVillage_Beach_EventScript_Corsola::
-# 107 "data/maps/SunriseVillage_Beach/scripts.pory"
-	lock
-# 108 "data/maps/SunriseVillage_Beach/scripts.pory"
-	faceplayer
-# 109 "data/maps/SunriseVillage_Beach/scripts.pory"
-	waitse
 # 110 "data/maps/SunriseVillage_Beach/scripts.pory"
-	playmoncry SPECIES_CORSOLA, CRY_MODE_NORMAL
+	lock
 # 111 "data/maps/SunriseVillage_Beach/scripts.pory"
-	msgbox SunriseVillage_Beach_EventScript_Corsola_Text_0, MSGBOX_AUTOCLOSE
+	faceplayer
+# 112 "data/maps/SunriseVillage_Beach/scripts.pory"
+	waitse
+# 113 "data/maps/SunriseVillage_Beach/scripts.pory"
+	playmoncry SPECIES_CORSOLA, CRY_MODE_NORMAL
 # 114 "data/maps/SunriseVillage_Beach/scripts.pory"
+	msgbox SunriseVillage_Beach_EventScript_Corsola_Text_0
+# 117 "data/maps/SunriseVillage_Beach/scripts.pory"
 	waitmoncry
-# 115 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 118 "data/maps/SunriseVillage_Beach/scripts.pory"
 	release
 	end
 
 
 SunriseVillage_Beach_EventScript_Corsola2::
-# 120 "data/maps/SunriseVillage_Beach/scripts.pory"
-	lock
-# 121 "data/maps/SunriseVillage_Beach/scripts.pory"
-	faceplayer
-# 122 "data/maps/SunriseVillage_Beach/scripts.pory"
-	waitse
 # 123 "data/maps/SunriseVillage_Beach/scripts.pory"
-	playmoncry SPECIES_CORSOLA, CRY_MODE_WEAK
+	lock
 # 124 "data/maps/SunriseVillage_Beach/scripts.pory"
-	msgbox SunriseVillage_Beach_EventScript_Corsola2_Text_0, MSGBOX_AUTOCLOSE
+	faceplayer
+# 125 "data/maps/SunriseVillage_Beach/scripts.pory"
+	waitse
+# 126 "data/maps/SunriseVillage_Beach/scripts.pory"
+	playmoncry SPECIES_CORSOLA, CRY_MODE_WEAK
 # 127 "data/maps/SunriseVillage_Beach/scripts.pory"
+	msgbox SunriseVillage_Beach_EventScript_Corsola2_Text_0
+# 130 "data/maps/SunriseVillage_Beach/scripts.pory"
 	waitmoncry
-# 128 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 131 "data/maps/SunriseVillage_Beach/scripts.pory"
 	release
 	end
 
 
-# 132 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_RivalSitsOnBench:
-# 133 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_in_place_faster_left
-# 134 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 134 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 134 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 134 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 134 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
 # 135 "data/maps/SunriseVillage_Beach/scripts.pory"
-	step_end
-
+SunriseVillage_Beach_Movement_RivalSitsOnBench:
+# 136 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_in_place_faster_left
+# 137 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 137 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 137 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 137 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 137 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
 # 138 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_GoNextToRivalFromLeft:
-# 139 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_up
-# 140 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_right
+	step_end
+
 # 141 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_in_place_faster_left
+SunriseVillage_Beach_Movement_GoNextToRivalFromLeft:
 # 142 "data/maps/SunriseVillage_Beach/scripts.pory"
-	step_end
-
-# 145 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_GoNextToRivalFromTop:
-# 146 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_in_place_faster_left
-# 147 "data/maps/SunriseVillage_Beach/scripts.pory"
-	step_end
-
-# 150 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_GoNextToRivalFromRight:
-# 151 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_up
-# 152 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_left
-# 153 "data/maps/SunriseVillage_Beach/scripts.pory"
-	step_end
-
-# 156 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_GoNextToRivalFromBottom:
-# 157 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 143 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_right
-# 158 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 144 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_in_place_faster_left
+# 145 "data/maps/SunriseVillage_Beach/scripts.pory"
+	step_end
+
+# 148 "data/maps/SunriseVillage_Beach/scripts.pory"
+SunriseVillage_Beach_Movement_GoNextToRivalFromTop:
+# 149 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_in_place_faster_left
+# 150 "data/maps/SunriseVillage_Beach/scripts.pory"
+	step_end
+
+# 153 "data/maps/SunriseVillage_Beach/scripts.pory"
+SunriseVillage_Beach_Movement_GoNextToRivalFromRight:
+# 154 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_up
-# 158 "data/maps/SunriseVillage_Beach/scripts.pory"
-	walk_up
-# 159 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 155 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_left
+# 156 "data/maps/SunriseVillage_Beach/scripts.pory"
+	step_end
+
+# 159 "data/maps/SunriseVillage_Beach/scripts.pory"
+SunriseVillage_Beach_Movement_GoNextToRivalFromBottom:
 # 160 "data/maps/SunriseVillage_Beach/scripts.pory"
-	step_end
-
+	walk_right
+# 161 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_up
+# 161 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_up
+# 162 "data/maps/SunriseVillage_Beach/scripts.pory"
+	walk_left
 # 163 "data/maps/SunriseVillage_Beach/scripts.pory"
-SunriseVillage_Beach_Movement_RivalSeesDistribution:
-# 164 "data/maps/SunriseVillage_Beach/scripts.pory"
-	face_right
-# 165 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 166 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 167 "data/maps/SunriseVillage_Beach/scripts.pory"
-	delay_16
-# 168 "data/maps/SunriseVillage_Beach/scripts.pory"
-	face_player
-# 169 "data/maps/SunriseVillage_Beach/scripts.pory"
 	step_end
 
+# 166 "data/maps/SunriseVillage_Beach/scripts.pory"
+SunriseVillage_Beach_Movement_RivalSeesDistribution:
+# 167 "data/maps/SunriseVillage_Beach/scripts.pory"
+	face_right
+# 168 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 169 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 170 "data/maps/SunriseVillage_Beach/scripts.pory"
+	delay_16
+# 171 "data/maps/SunriseVillage_Beach/scripts.pory"
+	face_player
 # 172 "data/maps/SunriseVillage_Beach/scripts.pory"
+	step_end
+
+# 175 "data/maps/SunriseVillage_Beach/scripts.pory"
 SunriseVillage_Beach_Movement_RivalRaces:
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 173 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 176 "data/maps/SunriseVillage_Beach/scripts.pory"
 	walk_fast_right
-# 174 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 177 "data/maps/SunriseVillage_Beach/scripts.pory"
 	step_end
 
 SunriseVillage_Beach_EventScript_RivalSpeech_Text_0:
@@ -308,20 +314,20 @@ SunriseVillage_Beach_EventScript_RivalSpeech_Text_4:
 	.string "best wielders ever!$"
 
 SunriseVillage_Beach_EventScript_RivalSpeech_Text_5:
-# 79 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 80 "data/maps/SunriseVillage_Beach/scripts.pory"
 	.string "Don't be silly, you dumdum! I know you'll\n"
 	.string "become super strong in no time!$"
 
 SunriseVillage_Beach_EventScript_RivalSpeech_Text_6:
-# 87 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 89 "data/maps/SunriseVillage_Beach/scripts.pory"
 	.string "Oh Shuckles, the distribution's already\n"
 	.string "started! Let's go to Elder Kaba's house!\p"
 	.string "Race ya there!!$"
 
 SunriseVillage_Beach_EventScript_Corsola_Text_0:
-# 112 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 115 "data/maps/SunriseVillage_Beach/scripts.pory"
 	.string "Krr!$"
 
 SunriseVillage_Beach_EventScript_Corsola2_Text_0:
-# 125 "data/maps/SunriseVillage_Beach/scripts.pory"
+# 128 "data/maps/SunriseVillage_Beach/scripts.pory"
 	.string "Laaa!$"

@@ -12,6 +12,7 @@ script Silveridge_EldersHouse_EventScript_Elder {
 		 msgbox(format(
 			"Go forth, my child."
 		))
+		closemessage
 	}
 	else {
 		msgbox(format(
@@ -22,6 +23,7 @@ script Silveridge_EldersHouse_EventScript_Elder {
 			"Perhaps you've seen or heard about bigger, stronger Pokémon that have gone mad; we call them the TODO EVA. They are very difficult to stop.\p"
 			"That is, unless you have this in your posession."
 		))
+		closemessage
 		// TODO EVA tablets
 		giveitem(ITEM_SKY_PLATE)
 		msgbox(format(
@@ -29,6 +31,7 @@ script Silveridge_EldersHouse_EventScript_Elder {
 			"I am entrusting this one to you. It should grant you enough power to be able to battle a TODO EVA.\p"
 			"I am convinced that by gathering these Tablets of Power, we will find the answer to why the Pokémon are attacking us.\p"
 		))
+		closemessage
 	}
 	release
 }

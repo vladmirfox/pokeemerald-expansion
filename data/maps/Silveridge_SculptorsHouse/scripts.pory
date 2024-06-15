@@ -31,6 +31,7 @@ script Silveridge_House1_EventScript_Sculptor {
 		"To satisfy this need, I must lay my eyes on a XXX.\p"
 		"I see that you are a trainer. Please bring me a XXX to help me achieve my magnum opus."
 	))
+	closemessage
 
 	release
 }

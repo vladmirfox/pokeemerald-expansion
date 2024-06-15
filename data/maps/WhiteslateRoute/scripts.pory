@@ -19,7 +19,8 @@ script WhiteslateRoute_EventScript_Shuckle {
 		waitmovement(0)
 		msgbox(format(
 			"…Oh? Shuckle is giving you something."
-		), MSGBOX_AUTOCLOSE)
+		))
+		closemessage
 
 		giveitem(ITEM_BERRY_JUICE)
 

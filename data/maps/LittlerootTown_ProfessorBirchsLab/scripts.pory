@@ -28,6 +28,7 @@ script LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene {
 	applymovement(LOCALID_RIVAL, Common_Movement_FacePlayer)
 	waitmovement(0)
 	msgbox(format("{RIVAL}: C'mon {PLAYER}, pick yours!"))
+	closemessage
 	applymovement(LOCALID_RIVAL, Common_Movement_FaceUp)
 	waitmovement(0)
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 5)
@@ -67,6 +68,7 @@ script LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter {
 		msgbox(format(
 			"You already got a Pokémon. Better leave this one here."
 		))
+		closemessage
 		return
 	}
 	showmonpic(VAR_TEMP_1, 10, 3)

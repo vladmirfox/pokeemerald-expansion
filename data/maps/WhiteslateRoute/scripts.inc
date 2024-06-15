@@ -20,7 +20,7 @@ WhiteslateRoute_EventScript_Shuckle::
 # 17 "data/maps/WhiteslateRoute/scripts.pory"
 	goto_if_unset FLAG_DAILY_SHUCKLE_BERRY_JUICE, WhiteslateRoute_EventScript_Shuckle_2
 WhiteslateRoute_EventScript_Shuckle_1:
-# 28 "data/maps/WhiteslateRoute/scripts.pory"
+# 29 "data/maps/WhiteslateRoute/scripts.pory"
 	release
 	return
 
@@ -30,10 +30,12 @@ WhiteslateRoute_EventScript_Shuckle_2:
 # 19 "data/maps/WhiteslateRoute/scripts.pory"
 	waitmovement 0
 # 20 "data/maps/WhiteslateRoute/scripts.pory"
-	msgbox WhiteslateRoute_EventScript_Shuckle_Text_1, MSGBOX_AUTOCLOSE
-# 24 "data/maps/WhiteslateRoute/scripts.pory"
+	msgbox WhiteslateRoute_EventScript_Shuckle_Text_1
+# 23 "data/maps/WhiteslateRoute/scripts.pory"
+	closemessage
+# 25 "data/maps/WhiteslateRoute/scripts.pory"
 	giveitem ITEM_BERRY_JUICE
-# 26 "data/maps/WhiteslateRoute/scripts.pory"
+# 27 "data/maps/WhiteslateRoute/scripts.pory"
 	setflag FLAG_DAILY_SHUCKLE_BERRY_JUICE
 	goto WhiteslateRoute_EventScript_Shuckle_1
 

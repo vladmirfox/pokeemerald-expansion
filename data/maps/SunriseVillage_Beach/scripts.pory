@@ -73,11 +73,13 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	if (var(VAR_RESULT) == YES) {
 		msgbox(format(
 			"That's the spirit! Let's become the best wielders ever!"
-		), MSGBOX_AUTOCLOSE)
+		))
+		closemessage
 	} elif(var(VAR_RESULT) == NO  || var(VAR_RESULT) == MULTI_B_PRESSED) {
 		msgbox(format(
 			"Don't be silly, you dumdum! I know you'll become super strong in no time!"
-		), MSGBOX_AUTOCLOSE)
+		))
+		closemessage
 	}
 
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSeesDistribution)
@@ -86,7 +88,8 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	msgbox(format(
 		"Oh Shuckles, the distribution's already started! Let's go to Elder Kaba's house!\p"
 		"Race ya there!!"
-	), MSGBOX_AUTOCLOSE)
+	))
+	closemessage
 
 	// Rival runs towards the village
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalRaces)
@@ -110,7 +113,7 @@ script SunriseVillage_Beach_EventScript_Corsola {
     playmoncry(SPECIES_CORSOLA, CRY_MODE_NORMAL)
     msgbox(format(
         "Krr!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end
@@ -123,7 +126,7 @@ script SunriseVillage_Beach_EventScript_Corsola2 {
     playmoncry(SPECIES_CORSOLA, CRY_MODE_WEAK)
     msgbox(format(
         "Laaa!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end

@@ -20,6 +20,7 @@ script SakuTown_PokemonCenter_EventScript_Traveler {
 		"As you can see, it's still being built. Watch out for the falling bricks, ha ha, just kidding!\p"
 		"Seriously though, do watch out. We're held responsible if anything happens to you."
 	))
+	closemessage
 	release
 	end
 }

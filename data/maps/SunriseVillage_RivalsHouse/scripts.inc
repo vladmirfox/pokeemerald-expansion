@@ -11,7 +11,7 @@ SunriseVillage_RivalsHouse_EventScript_Woman::
 	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
 	goto_if_ge SunriseVillage_RivalsHouse_EventScript_Woman_2
 # 14 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
-	msgbox SunriseVillage_RivalsHouse_EventScript_Woman_Text_1, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_RivalsHouse_EventScript_Woman_Text_1
 SunriseVillage_RivalsHouse_EventScript_Woman_1:
 # 18 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
 	release
@@ -19,7 +19,7 @@ SunriseVillage_RivalsHouse_EventScript_Woman_1:
 
 SunriseVillage_RivalsHouse_EventScript_Woman_2:
 # 9 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
-	msgbox SunriseVillage_RivalsHouse_EventScript_Woman_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_RivalsHouse_EventScript_Woman_Text_0
 	goto SunriseVillage_RivalsHouse_EventScript_Woman_1
 
 
@@ -32,7 +32,7 @@ SunriseVillage_RivalsHouse_EventScript_Man::
 	compare VAR_SUNRISE_VILLAGE_INTRO_STATE, 7
 	goto_if_ge SunriseVillage_RivalsHouse_EventScript_Man_2
 # 30 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
-	msgbox SunriseVillage_RivalsHouse_EventScript_Man_Text_1, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_RivalsHouse_EventScript_Man_Text_1
 SunriseVillage_RivalsHouse_EventScript_Man_1:
 # 34 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
 	release
@@ -40,7 +40,7 @@ SunriseVillage_RivalsHouse_EventScript_Man_1:
 
 SunriseVillage_RivalsHouse_EventScript_Man_2:
 # 25 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
-	msgbox SunriseVillage_RivalsHouse_EventScript_Man_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_RivalsHouse_EventScript_Man_Text_0
 	goto SunriseVillage_RivalsHouse_EventScript_Man_1
 
 
@@ -60,7 +60,7 @@ SunriseVillage_RivalsHouse_EventScript_Meowth2::
 # 47 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
 	playmoncry SPECIES_MEOWTH, CRY_MODE_NORMAL
 # 48 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
-	msgbox SunriseVillage_RivalsHouse_EventScript_Meowth2_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_RivalsHouse_EventScript_Meowth2_Text_0
 # 51 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"
 	waitmoncry
 # 52 "data/maps/SunriseVillage_RivalsHouse/scripts.pory"

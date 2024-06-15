@@ -36,7 +36,7 @@ SunriseVillage_House1_EventScript_Zigzagoon::
 # 24 "data/maps/SunriseVillage_House1/scripts.pory"
 	playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
 # 25 "data/maps/SunriseVillage_House1/scripts.pory"
-	msgbox SunriseVillage_House1_EventScript_Zigzagoon_Text_0, MSGBOX_AUTOCLOSE
+	msgbox SunriseVillage_House1_EventScript_Zigzagoon_Text_0
 # 28 "data/maps/SunriseVillage_House1/scripts.pory"
 	waitmoncry
 # 29 "data/maps/SunriseVillage_House1/scripts.pory"

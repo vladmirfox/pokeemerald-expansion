@@ -11,7 +11,9 @@ MaguroHarbor_House1_EventScript_PokedexRiddler::
 	bufferspeciesdexdesc STR_VAR_2, SPECIES_GROWLITHE
 # 13 "data/maps/MaguroHarbor_House1/scripts.pory"
 	msgbox MaguroHarbor_House1_EventScript_PokedexRiddler_Text_0
-# 22 "data/maps/MaguroHarbor_House1/scripts.pory"
+# 21 "data/maps/MaguroHarbor_House1/scripts.pory"
+	closemessage
+# 23 "data/maps/MaguroHarbor_House1/scripts.pory"
 	release
 	return
 

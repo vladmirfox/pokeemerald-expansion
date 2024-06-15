@@ -36,7 +36,8 @@ script BelvedereRoute_EventScript_FindMareep {
 	lock
 	faceplayer
 	playmoncry(SPECIES_MAREEP, CRY_MODE_NORMAL)
-	msgbox(format("Bêêêêêh!"), MSGBOX_AUTOCLOSE)
+	msgbox(format("Bêêêêêh!"))
+	closemessage
 	if (var(VAR_QUEST_MAREEP_STATE) > 0) {
 		// TODO EVA fade to black
 		removeobject(VAR_LAST_TALKED)
@@ -81,43 +82,46 @@ script BelvedereRoute_EventScript_Rancher {
 						"Thank you so much!\p"
 						"There are five Mareep in total.\p"
 						"Hopefully they should all be not too far from the ranch…"
-					), MSGBOX_AUTOCLOSE)
+					))
+					closemessage
 					addvar(VAR_QUEST_MAREEP_STATE, 1)
 				case NO:
 					msgbox(format(
 						"Now that's not very nice…"
-					), MSGBOX_AUTOCLOSE)
+					))
+					closemessage
 				case MULTI_B_PRESSED:
 					msgbox(format(
 						"Now that's not very nice…"
-					), MSGBOX_AUTOCLOSE)
+					))
+					closemessage
 			}
 		case 1:
 			msgbox(format(
 				"I'm still missing five Mareep!"
-			), MSGBOX_AUTOCLOSE)
+			))
 		case 2:
 			msgbox(format(
 				"I'm still missing four Mareep!"
-			), MSGBOX_AUTOCLOSE)
+			))
 		case 3:
 			msgbox(format(
 				"I'm still missing three Mareep!"
-			), MSGBOX_AUTOCLOSE)
+			))
 		case 4:
 			msgbox(format(
 				"I'm still missing two Mareep!"
-			), MSGBOX_AUTOCLOSE)
+			))
 		case 5:
 			msgbox(format(
 				"I'm still missing one Mareep!"
-			), MSGBOX_AUTOCLOSE)
+			))
 		case 6:
 			msgbox(format(
 				"Finally, my herd is back together again!\p"
 				"I'm so glad. Thank you, sincerely.\p"
 				"Here's a small token of my appreciation."
-			), MSGBOX_AUTOCLOSE)
+			))
 
 			// TODO EVA give wool
 
@@ -132,5 +136,5 @@ script BelvedereRoute_EventScript_Wool {
 	// TODO EVA wool thing
 	msgbox(format(
 		"If you bring me enough wool, I'll knit you a nice warm cloak."
-	), MSGBOX_AUTOCLOSE)
+	), MSGBOX_NPC)
 }

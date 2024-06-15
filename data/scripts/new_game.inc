@@ -287,7 +287,7 @@ EventScript_ResetAllMapFlags::
 	setflag FLAG_SAKU_KURA_RIVALS
 	setflag FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME
 	setflag FLAG_HIDE_RIVAL_SAKU
-	clearflag FLAG_COMPLETED_CUT_QUEST
+	clearflag FLAG_CUT_QUEST_CUT_ALL_GRASS
 
 	call EventScript_ResetAllBerries
 	end

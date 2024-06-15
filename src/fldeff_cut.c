@@ -349,11 +349,11 @@ bool8 FldEff_CutGrass(void)
         gSprites[sCutGrassSpriteArrayPtr[i]].data[2] = 32 * i;
     }
 
-    if(!FlagGet(FLAG_COMPLETED_CUT_QUEST) && gMapHeader.regionMapSectionId == MAPSEC_TRANQUIL_ROUTE)
+    if(!FlagGet(FLAG_CUT_QUEST_CUT_ALL_GRASS) && gMapHeader.regionMapSectionId == MAPSEC_TRANQUIL_ROUTE)
     {
         if(IsCutQuestComplete())
         {
-            FlagSet(FLAG_COMPLETED_CUT_QUEST);
+            FlagSet(FLAG_CUT_QUEST_CUT_ALL_GRASS);
         }   
     }
 

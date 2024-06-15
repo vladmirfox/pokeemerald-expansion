@@ -18,6 +18,7 @@ script MaguroHarbor_House1_EventScript_PokedexRiddler {
 		"{STR_VAR_2}\p"
 		"So?"
 	))
+	closemessage
 
 	release
 }

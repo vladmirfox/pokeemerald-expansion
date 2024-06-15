@@ -1,90 +1,189 @@
 const LOCALID_BERRYWOMAN = 5
 const LOCALID_MYSTERIOUS_SAMURAI = 9
-
+const LOCALID_CUT_MASTER = 22
+const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
+const VAR_DO_CUT_MASTER_CUTSCENE = VAR_TEMP_0
+const VAR_HOUR_OF_DAY = VAR_0x8000
+const FLAG_HIDE_FLETCHLING = FLAG_TEMP_2
 
 mapscripts TranquilRoute_MapScripts {
-	// uhh idk if this is the right script to use (on load vs on transition or whatever)
-	// but it works for walking in and out of the house!
-	MAP_SCRIPT_ON_LOAD: TranquilRoute_CheckCutGrass
-	
+	MAP_SCRIPT_ON_LOAD {
+		call(TranquilRoute_EventScript_CheckCutGrass)
+		call(TranquilRoute_EventScript_SpawnBirds)
+	}
+	MAP_SCRIPT_ON_TRANSITION: TranquilRoute_EventScript_SetupCutGrassCutscene
+	MAP_SCRIPT_ON_FRAME_TABLE [
+		VAR_DO_CUT_MASTER_CUTSCENE, 1: TranquilRoute_EventScript_GrassCutscene
+	]
 }
 
-script TranquilRoute_CheckCutGrass{
-	call_if_set(FLAG_COMPLETED_CUT_QUEST, TranquilRoute_EventScript_CutGrass)
-	end
+script TranquilRoute_EventScript_SpawnBirds {
+	// Random birds on roofs
+	// Fletchling
+	setflag(FLAG_HIDE_FLETCHLING)
+
+	gettime
+	// Day
+	if (var(VAR_HOUR_OF_DAY) >= 9 && var(VAR_HOUR_OF_DAY) <= 17) {
+		clearflag(FLAG_HIDE_FLETCHLING)
+	}
 }
 
-// i just set them all to METATILE_PorytilesPrimaryTutorial_Grass2
-// probably do METATILE_PorytilesPrimaryTutorial_Grass or METATILE_PorytilesPrimaryTutorial_Grass3
-// or maybe even some flowers as your artist's eye desires
+// Cut grass cutscene
+script TranquilRoute_EventScript_GrassCutscene {
+	lock
+	// They walk to the center of the garden
+	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterGoesSeeGarden)
+	applymovement(OBJ_EVENT_ID_PLAYER, TranquilRoute_PlayerGoesSeeGarden)
+	waitmovement(LOCALID_CUT_MASTER)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	delay(24)
+
+	msgbox(format(
+		"… … … … … …\n… … … … … …"
+	))
+	closemessage
+
+	delay(16)
+
+	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterWalkLeft)
+	waitmovement(0)
+	delay(24)
+	msgbox(format(
+		"Was it always this big?"
+	))
+	closemessage
+
+	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterWalkRight)
+	waitmovement(0)
+	delay(24)
+	delay(24)
+	msgbox(format(
+		"It doesn't even look like the same garden…"
+	))
+	closemessage
+
+	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterWalkBackToPlayer)
+	waitmovement(0)
+	delay(48)
+	msgbox(format(
+		"I cannot thank you enough for this.\p"
+		"I shall tend to my garden again, thanks to you."
+	))
+	closemessage
+
+	// TODO reward
+
+	setflag(FLAG_CUT_QUEST_COMPLETED)
+	setvar(VAR_DO_CUT_MASTER_CUTSCENE, 0)
+
+	release
+}
+
+script TranquilRoute_EventScript_SetupCutGrassCutscene {
+	// The cut master is only out once the cut grass quest is completed, and only during the day
+	if (!flag(FLAG_CUT_QUEST_COMPLETED)) {
+		if (flag(FLAG_CUT_QUEST_CUT_ALL_GRASS)) {
+			// If the player has just exited the cut master's house after having cut all the grass,
+			// get ready for cutscene
+			getplayerxy(VAR_TEMP_2, VAR_TEMP_3)
+			if (var(VAR_TEMP_2) == 53 && var(VAR_TEMP_3) == 33) {
+				setobjectmovementtype(LOCALID_CUT_MASTER, MOVEMENT_TYPE_FACE_LEFT)
+				setobjectxyperm(LOCALID_CUT_MASTER, 52, 33)
+				setvar(VAR_DO_CUT_MASTER_CUTSCENE, 1)
+			}
+		} else {
+			setflag(FLAG_HIDE_CUT_MASTER)
+		}
+	} else {
+		gettime
+		if (var(VAR_HOUR_OF_DAY) < 7 || var(VAR_HOUR_OF_DAY) > 19) {
+			setflag(FLAG_HIDE_CUT_MASTER)
+		}
+	}
+}
+
+// Cut master
+script TranquilRoute_EventScript_CutMaster{
+	msgbox(format(
+		"I'm enjoying tending my garden again.\p"
+		"I like watching it slowly blossom into something beautiful."
+	), MSGBOX_NPC)
+}
+
+script TranquilRoute_EventScript_CheckCutGrass{
+	call_if_set(FLAG_CUT_QUEST_CUT_ALL_GRASS, TranquilRoute_EventScript_CutGrass)
+}
+
 script TranquilRoute_EventScript_CutGrass {
 	// there is probably a smarter way to do this but here we are
 	// set all the tiles that were cut to just be normal grass
 	setmetatile(47, 31, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
 	
-	setmetatile(48, 30, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 30, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	
 	setmetatile(46, 29, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(47, 29, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 29, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 	
 	setmetatile(46, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(47, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 28, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 28, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
+	setmetatile(48, 28, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	
-	setmetatile(46, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 27, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(47, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 27, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 27, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 	
 	setmetatile(47, 26, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 26, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 26, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	
-	setmetatile(47, 25, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 25, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	
 	setmetatile(47, 24, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
 	
-	setmetatile(46, 23, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(47, 23, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 23, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(47, 23, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 	
 	setmetatile(41, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(42, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 22, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(46, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(47, 22, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 22, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 
-	setmetatile(40, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(40, 21, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(41, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(42, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(43, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(45, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(42, 21, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
+	setmetatile(43, 21, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(45, 21, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 	setmetatile(46, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
 	setmetatile(47, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 21, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 21, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 
-	setmetatile(41, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(41, 20, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(42, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(43, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(44, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 20, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(44, 20, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 	setmetatile(45, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(46, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(46, 20, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(47, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 20, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 20, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 
-	setmetatile(40, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(42, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(43, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(40, 19, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(42, 19, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
+	setmetatile(43, 19, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(44, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(45, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(45, 19, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(46, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
 	setmetatile(47, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(49, 19, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(48, 19, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(49, 19, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
 
 	setmetatile(41, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(43, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(44, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(45, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(43, 18, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
+	setmetatile(44, 18, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
+	setmetatile(45, 18, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	setmetatile(46, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(47, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
-	setmetatile(48, 18, METATILE_PorytilesPrimaryTutorial_Grass2, FALSE)
+	setmetatile(47, 18, METATILE_PorytilesPrimaryTutorial_Grass3, FALSE)
+	setmetatile(48, 18, METATILE_PorytilesPrimaryTutorial_Grass, FALSE)
 	return
 }
 
@@ -157,10 +256,7 @@ movement TranquilRoute_Movement_MysteriousSamuraiWalksAway {
 }
 
 script TranquilRoute_EventScript_Girl {
-	lock
-	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_AUTOCLOSE)
-	release
-	end
+	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_NPC)
 }
 
 script TranquilRoute_EventScript_Shellos {
@@ -182,6 +278,7 @@ script TranquilRoute_EventScript_BerryWoman {
 	// TODO EVA add speech bubble with  little musical notes
 	if (flag(FLAG_RECEIVED_WAILMER_PAIL)) {
 		msgbox(format("Enjoy gardening!"))
+		closemessage
 	}
 	else {
 		msgbox(format("Hi, young one! See this?"))
@@ -216,6 +313,7 @@ script TranquilRoute_EventScript_BerryWoman {
 			"Don't worry about it, I have a spare one.\p"
 			"Have fun gardening!"
 		))
+		closemessage
 
 		setflag(FLAG_RECEIVED_WAILMER_PAIL)
 	}
@@ -226,7 +324,7 @@ script TranquilRoute_EventScript_BerryWoman {
 script TranquilRoute_EventScript_Mareep {
 	lock
 	playmoncry(SPECIES_MAREEP, CRY_MODE_NORMAL)
-	msgbox(format("Beeeeeh…"), MSGBOX_AUTOCLOSE)
+	msgbox(format("Beeeeeh…"))
 	waitmoncry
 	release
 }
@@ -234,7 +332,7 @@ script TranquilRoute_EventScript_Mareep {
 script TranquilRoute_EventScript_Mareep2 {
 	lock
 	playmoncry(SPECIES_MAREEP, CRY_MODE_WEAK)
-	msgbox(format("Baaaaah…"), MSGBOX_AUTOCLOSE)
+	msgbox(format("Baaaaah…"))
 	waitmoncry
 	release
 }
@@ -268,4 +366,28 @@ script TranquilRoute_DirectionSign {
 			"{UP_ARROW} Saku and Kura Villages"
 		), MSGBOX_SIGN)
 	}
+}
+
+movement TranquilRoute_CutMasterGoesSeeGarden {
+	walk_left * 5
+	walk_up * 3
+	face_up
+}
+
+movement TranquilRoute_PlayerGoesSeeGarden {
+	walk_left * 6
+	walk_up * 2
+}
+
+movement TranquilRoute_CutMasterWalkLeft {
+	walk_left * 2
+}
+
+movement TranquilRoute_CutMasterWalkRight {
+	walk_right * 3
+}
+
+movement TranquilRoute_CutMasterWalkBackToPlayer {
+	walk_left
+	walk_in_place_faster_down
 }

@@ -2,8 +2,10 @@ script Common_EventScript_PkmnCenterNurse_CutTheBullshit {
 	lock
 	faceplayer
 	setvar(VAR_0x8004, 0)
-	msgbox(format("Welcome to the refuge!\pLet me heal your Pokémon."), MSGBOX_AUTOCLOSE)
+	msgbox(format("Welcome to the refuge!\pLet me heal your Pokémon."))
+	closemessage
 	goto(EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit)
+	release
 	end
 }
 
@@ -14,10 +16,12 @@ script EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit {
 		call(EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit)
 	}
 	
-	msgbox(format("Your Pokémon are all healed and rested."), MSGBOX_AUTOCLOSE)
+	msgbox(format("Your Pokémon are all healed and rested."))
+	closemessage
 	// applymovement(VAR_0x800B, Movement_PkmnCenterNurse_Bow)
 	// waitmovement(0)
-	msgbox(format("Please come again!"), MSGBOX_AUTOCLOSE)
+	msgbox(format("Please come again!"))
+	closemessage
 
 	end
 }

@@ -42,6 +42,7 @@ script KuraTown_House2_EventScript_Ashii {
 			"The guard won't let anyone from Kura Village enter Saku Village. But you should be fine!\p"
 			"Please, go to Saku Village and give him this. He'll know it's from me."
 		))
+		closemessage
 
 		giveitem(ITEM_ASHIIS_SCARF)
 		goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
@@ -54,6 +55,7 @@ script KuraTown_House2_EventScript_Ashii {
 			"The guard won't let anyone from Kura Village enter Saku Village. But you should be fine!\p"
 			"Please, go to Saku Village and give him this. He'll know it's from me."
 		))
+		closemessage
 	}
 
 	release

@@ -9,11 +9,11 @@ script SunriseVillage_RivalsHouse_EventScript_Woman {
 		msgbox(format(
 			"The house feels a little empty now that {RIVAL} has left home.\p"
 			"I'm glad for our Pokémon and the companionship they provide us."
-		), MSGBOX_AUTOCLOSE)
+		))
 	} else {
 		msgbox(format(
 			"Hello, {PLAYER}! How are you doing? Off to some trouble with {RIVAL}, I bet?"
-		), MSGBOX_AUTOCLOSE)
+		))
 	}
 	release
 }
@@ -25,11 +25,11 @@ script SunriseVillage_RivalsHouse_EventScript_Man {
 		msgbox(format(
 			"Hello, {PLAYER}. How is your adventure going?\p"
 			"Make sure you come back to see your sister sometimes, I'm sure she misses you."
-		), MSGBOX_AUTOCLOSE)
+		))
 	} else {
 		msgbox(format(
 			"Hi, {PLAYER}!"
-		), MSGBOX_AUTOCLOSE)
+		))
 	}
 	release
 }
@@ -47,7 +47,7 @@ script SunriseVillage_RivalsHouse_EventScript_Meowth2 {
     playmoncry(SPECIES_MEOWTH, CRY_MODE_NORMAL)
     msgbox(format(
         "Meow!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end

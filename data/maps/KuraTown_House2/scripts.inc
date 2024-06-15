@@ -8,11 +8,11 @@ KuraTown_House2_EventScript_Ashii::
 # 11 "data/maps/KuraTown_House2/scripts.pory"
 	compare VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 0
 	goto_if_eq KuraTown_House2_EventScript_Ashii_2
-# 50 "data/maps/KuraTown_House2/scripts.pory"
+# 51 "data/maps/KuraTown_House2/scripts.pory"
 	compare VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 1
 	goto_if_eq KuraTown_House2_EventScript_Ashii_3
 KuraTown_House2_EventScript_Ashii_1:
-# 59 "data/maps/KuraTown_House2/scripts.pory"
+# 61 "data/maps/KuraTown_House2/scripts.pory"
 	release
 	return
 
@@ -55,19 +55,23 @@ KuraTown_House2_EventScript_Ashii_2:
 	waitmovement 0
 # 40 "data/maps/KuraTown_House2/scripts.pory"
 	msgbox KuraTown_House2_EventScript_Ashii_Text_2
-# 46 "data/maps/KuraTown_House2/scripts.pory"
-	giveitem ITEM_ASHIIS_SCARF
+# 45 "data/maps/KuraTown_House2/scripts.pory"
+	closemessage
 # 47 "data/maps/KuraTown_House2/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	giveitem ITEM_ASHIIS_SCARF
 # 48 "data/maps/KuraTown_House2/scripts.pory"
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+# 49 "data/maps/KuraTown_House2/scripts.pory"
 	setvar VAR_SAKU_KURA_QUEST_TAMA_ASHII_STATE, 1
 	goto KuraTown_House2_EventScript_Ashii_1
 
 KuraTown_House2_EventScript_Ashii_3:
-# 51 "data/maps/KuraTown_House2/scripts.pory"
-	faceplayer
 # 52 "data/maps/KuraTown_House2/scripts.pory"
+	faceplayer
+# 53 "data/maps/KuraTown_House2/scripts.pory"
 	msgbox KuraTown_House2_EventScript_Ashii_Text_2
+# 58 "data/maps/KuraTown_House2/scripts.pory"
+	closemessage
 	goto KuraTown_House2_EventScript_Ashii_1
 
 

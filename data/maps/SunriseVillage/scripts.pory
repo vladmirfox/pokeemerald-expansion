@@ -35,7 +35,8 @@ script SunriseVillage_Event_FatGuy {
     if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
             "My new Pokémon is so cute, I don't feel like leaving it in its Pokéball!"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
         applymovement(LOCALID_FATGUY, Common_Movement_FaceOriginalDirection)
     }
     else {
@@ -43,7 +44,8 @@ script SunriseVillage_Event_FatGuy {
             "Someone managed to fit entire Pokémon"
             "inside these tiny balls.\p"
             "The power of science is staggering!"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
     }
     release
     end
@@ -59,21 +61,24 @@ script SunriseVillage_Event_GuardForest {
                 "Oh, I see you received a Pokémon!\p"
                 "You'll probably be able to manage the woods on your own, then.\p"
                 "Be careful!"
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
         } elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
             turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
             msgbox(format(
                 "Hey, kid, heard you were going off on an adventure!\p"
                 "Did you say bye to your sister?\p"
                 "No? Thought so. Go see her before you run off, you ungrateful sibling!"
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
             applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
             waitmovement(0)
         } else {
             turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
             msgbox(format(
                 "Hey, kid, a friend of yours was looking for you."
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
             applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
             waitmovement(0)
         }
@@ -81,14 +86,16 @@ script SunriseVillage_Event_GuardForest {
     else {
         msgbox(format(
         "Stop right there, kid!"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
         turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
         msgbox(format(
             "Wild POKéMON have been lashing out recently.\p"
             "I know you're used to walking around on your own, but the woods have become a dangerous place lately!\p"
             "I wouldn't go alone if I were you.\p"
             "Or, you know, if I were me."
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
         applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
         waitmovement(0)
     }
@@ -105,24 +112,28 @@ script SunriseVillage_Event_GuardForest_Interact {
                 "Oh, I see you received a Pokémon!\p"
                 "You'll probably be able to manage the woods on your own, then.\p"
                 "Be careful!"
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
         } elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
             msgbox(format(
                 "Hey, kid, heard you were going off on an adventure!\p"
                 "Did you say bye to your sister?\p"
                 "No? Thought so. Go see her before you run off, you ungrateful sibling!"
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
         } else {
             msgbox(format(
                 "Hey, kid, a friend of yours was looking for you."
-            ), MSGBOX_AUTOCLOSE)
+            ))
+            closemessage
         }
     }
     else {
         msgbox(format(
             "Wild POKéMON have been lashing out recently.\p"
             "Even the Ginko woods have become a dangerous place lately!"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
     }
     release
     end
@@ -143,13 +154,15 @@ script SunriseVillage_Event_Boy {
     if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
             "My Happiny is the strongest of all! See how fierce it looks?"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
     }
     else {
         msgbox(format(
             "Hey {PLAYER}{KUN}!\p"
             "So, d'you think we'll get to choose the one we want?"
-        ), MSGBOX_AUTOCLOSE)
+        ))
+        closemessage
     }
     releaseall
     end
@@ -160,7 +173,7 @@ script SunriseVillage_Event_Woman {
     lockall
     msgbox(format(
         "I can see the Pokéballs from here… I've never seen so many in my life!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     releaseall
     end
 }
@@ -171,7 +184,7 @@ script SunriseVillage_Event_Farmer {
     faceplayer
     msgbox(format(
         "I've been waiting for hours!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     releaseall
     end
 }
@@ -182,7 +195,7 @@ script SunriseVillage_Event_OldMan {
     faceplayer
     msgbox(format(
         "The distribution is about to start."
-    ), MSGBOX_AUTOCLOSE)
+    ))
     releaseall
     end
 }
@@ -202,7 +215,7 @@ script SunriseVillage_Event_Happiny {
     playmoncry(SPECIES_HAPPINY, CRY_MODE_NORMAL)
     msgbox(format(
         "Happi!"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end
@@ -216,7 +229,7 @@ script SunriseVillage_Event_Munchlax {
     playmoncry(SPECIES_MUNCHLAX, CRY_MODE_NORMAL)
     msgbox(format(
         "Munch munch munch…"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     waitmoncry
     release
     end
@@ -228,7 +241,7 @@ script SunriseVillage_Event_Kirlia {
     faceplayer
     msgbox(format(
         "…"
-    ), MSGBOX_AUTOCLOSE)
+    ))
     release
     end
 }

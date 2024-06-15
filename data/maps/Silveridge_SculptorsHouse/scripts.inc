@@ -31,7 +31,9 @@ Silveridge_House1_EventScript_Sculptor::
 	waitmovement 0
 # 26 "data/maps/Silveridge_SculptorsHouse/scripts.pory"
 	msgbox Silveridge_House1_EventScript_Sculptor_Text_1
-# 35 "data/maps/Silveridge_SculptorsHouse/scripts.pory"
+# 34 "data/maps/Silveridge_SculptorsHouse/scripts.pory"
+	closemessage
+# 36 "data/maps/Silveridge_SculptorsHouse/scripts.pory"
 	release
 	return
 

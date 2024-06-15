@@ -1,30 +1,84 @@
+const LOCALID_CUTMASTER = 1
+const VAR_HOUR_OF_DAY = VAR_0x8000
+const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
+
 mapscripts TranquilRoute_CutHouse_MapScripts {
-	
+	MAP_SCRIPT_ON_LOAD: TranquilRoute_CutHouse_EventScript_CheckCutGrassQuestComplete
+	MAP_SCRIPT_ON_TRANSITION {
+		if (flag(FLAG_CUT_QUEST_COMPLETED)) {
+			gettime
+			if (var(VAR_HOUR_OF_DAY) >= 7 && var(VAR_HOUR_OF_DAY) <= 19) {
+				setflag(FLAG_HIDE_CUT_MASTER)
+			}
+		}
+	}
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TEMP_0, 1: TranquilRoute_CutHouse_EventScript_CutGrassCutscene
+    ]
+}
+
+script TranquilRoute_CutHouse_EventScript_CheckCutGrassQuestComplete {
+	if (flag(FLAG_CUT_QUEST_CUT_ALL_GRASS) && !flag(FLAG_CUT_QUEST_COMPLETED)) {
+		setvar(VAR_TEMP_0, 1)
+	}
+}
+
+script TranquilRoute_CutHouse_EventScript_CutGrassCutscene {
+	lock
+	setvar(VAR_TEMP_0, 0)
+	playse(SE_PIN)
+	applymovement(LOCALID_CUTMASTER, TranquilRoute_CutHouse_Movement_CutMasterSurprise)
+	waitmovement(0)
+	delay(48)
+
+	msgbox(format(
+		"You actually cut ALL the tall grass?\p"
+		"Wait, let us go outside. I want to see it for myself."
+	))
+	closemessage
+
+	delay(48)
+
+	warp(MAP_TRANQUIL_ROUTE, 53, 33)
+	release
+}
+
+movement TranquilRoute_CutHouse_Movement_CutMasterSurprise {
+	face_down
+	emote_exclamation_mark
+	delay_16 * 3
 }
 
 script TranquilRoute_CutHouse_EventScript_CutMaster {
 	lock
 	faceplayer
-	//TODO whatever you wanna do here
-	if(flag(FLAG_COMPLETED_CUT_QUEST)){
-		msgbox(format(
-			"you actually cut all that grass\n"
-			"absolute psycho"
-		))
-	}
+
+	// Cut already received
 	if(flag(FLAG_RECEIVED_HM_CUT)) {
-		msgbox(format(
-			"Are you finding the Cut technique useful?\p"
-			"No, I still haven't trimmed my garden. I really should get to it…"
-		))
+			// Home for the night
+			if(flag(FLAG_CUT_QUEST_CUT_ALL_GRASS)){
+				msgbox(format(
+					"The sun is setting on another day.\p"
+					"Life is good."
+				))
+				closemessage
+			} else {
+				// Cut grass quest todo
+				msgbox(format(
+					"Are you finding the Cut technique useful?\p"
+					"No, I still haven't trimmed my garden. I really should get to it…"
+				))
+				closemessage
+			}
 	}
+	// First time
 	else {
 		msgbox(format(
-		"Hello, there. I don't get many visitors, so sit down, have some tea!\p"
-		"What? The weeds are growing all over the place in my garden?\p"
-		"Ho ho ho…\p"
-		"You're right, I have been neglecting it lately. You see, my old back isn't as strong as it used to be.\p"
-		"Here, your Pokémon can trim them using this."
+			"Hello, there. I don't get many visitors, so sit down, have some tea!\p"
+			"What? My garden is overrun by weeds?\p"
+			"Ho ho ho…\p"
+			"You're right, I have been neglecting it lately. You see, my old back isn't as strong as it used to be.\p"
+			"Here, your Pokémon can trim them using this."
 		))
 		closemessage
 
@@ -33,9 +87,11 @@ script TranquilRoute_CutHouse_EventScript_CutMaster {
 		msgbox(format(
 			"This scroll contains an ancient technique created by the most talented samurai. Pokémon can learn that technique too.\p"
 			"If you have a Pokémon capable of learning this move, it will be able to cut tall grass as well as little trees that block your path.\p"
-			"In fact, now that you have read the scroll, you don't even need to teach them the actual move!"
+			"In fact, now that you have read the scroll, you don't even need to teach them the actual move!\p"
+			"Don't ask me how this works, it just does!\p"
 			"Oh, you will need at least one official dojo badge to be able to cut trees and grass, though."
 		))
+		closemessage
 	}
 
 	release

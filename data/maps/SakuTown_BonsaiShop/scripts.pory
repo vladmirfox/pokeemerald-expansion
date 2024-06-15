@@ -220,19 +220,22 @@ script SakuTown_BonsaiShop_EventScript_Owner {
 			msgbox(format(
 				"Hello, {PLAYER}. Can I interest you in a little greenery?"
 			))
+			closemessage
 			// TODO EVA sell secret base stuff
 		} else {
 			msgbox(format(
 				"Hello, {PLAYER}. Can I interest you in a little greenery?\p"
 				"Hmm… It looks like you wouldn't have anywhere to put bonsai. Come back when you do."
 			))
+			closemessage
 		}
 	} else {
 		special(GetPlayerBoyGirlString)
 		msgbox(format(
-				"Hello, young {STR_VAR_1}. Can I interest you in a little greenery?\p"
-				"Hmm… It looks like you wouldn't have anywhere to put bonsai. Come back when you do."
-			))
+			"Hello, young {STR_VAR_1}. Can I interest you in a little greenery?\p"
+			"Hmm… It looks like you wouldn't have anywhere to put bonsai. Come back when you do."
+		))
+		closemessage
 	}
 	release
 }
