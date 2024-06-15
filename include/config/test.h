@@ -984,6 +984,7 @@
 #define P_FAMILY_CALYREX                 TRUE
 #undef P_FAMILY_ENAMORUS
 #define P_FAMILY_ENAMORUS                TRUE
+
 #undef P_FAMILY_SPRIGATITO
 #define P_FAMILY_SPRIGATITO              TRUE
 #undef P_FAMILY_FUECOCO
