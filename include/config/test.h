@@ -704,6 +704,7 @@
 #define P_FAMILY_MELOETTA                TRUE
 #undef P_FAMILY_GENESECT
 #define P_FAMILY_GENESECT                TRUE
+
 #undef P_FAMILY_CHESPIN
 #define P_FAMILY_CHESPIN                 TRUE
 #undef P_FAMILY_FENNEKIN
