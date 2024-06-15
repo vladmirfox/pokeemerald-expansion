@@ -451,6 +451,7 @@
 #define P_FAMILY_JIRACHI                 TRUE
 #undef P_FAMILY_DEOXYS
 #define P_FAMILY_DEOXYS                  TRUE
+
 #undef P_FAMILY_TURTWIG
 #define P_FAMILY_TURTWIG                 TRUE
 #undef P_FAMILY_CHIMCHAR
