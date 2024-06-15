@@ -306,6 +306,7 @@
 #define P_FAMILY_HO_OH                   TRUE
 #undef P_FAMILY_CELEBI
 #define P_FAMILY_CELEBI                  TRUE
+
 #undef P_FAMILY_TREECKO
 #define P_FAMILY_TREECKO                 TRUE
 #undef P_FAMILY_TORCHIC
