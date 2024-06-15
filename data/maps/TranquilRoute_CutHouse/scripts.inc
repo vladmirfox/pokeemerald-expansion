@@ -8,19 +8,22 @@ TranquilRoute_CutHouse_EventScript_CutMaster::
 # 7 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	faceplayer
 # 9 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	goto_if_set FLAG_RECEIVED_HM_CUT, TranquilRoute_CutHouse_EventScript_CutMaster_2
-# 16 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_1
-# 23 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	closemessage
-# 25 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	giveitem ITEM_HM_CUT
-# 26 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	setflag FLAG_RECEIVED_HM_CUT
-# 27 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_2
+	goto_if_set FLAG_COMPLETED_CUT_QUEST, TranquilRoute_CutHouse_EventScript_CutMaster_2
 TranquilRoute_CutHouse_EventScript_CutMaster_1:
-# 35 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+# 15 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	goto_if_set FLAG_RECEIVED_HM_CUT, TranquilRoute_CutHouse_EventScript_CutMaster_5
+# 22 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_2
+# 29 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	closemessage
+# 31 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	giveitem ITEM_HM_CUT
+# 32 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	setflag FLAG_RECEIVED_HM_CUT
+# 33 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_3
+TranquilRoute_CutHouse_EventScript_CutMaster_4:
+# 41 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	release
 	return
 
@@ -29,16 +32,26 @@ TranquilRoute_CutHouse_EventScript_CutMaster_2:
 	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_0
 	goto TranquilRoute_CutHouse_EventScript_CutMaster_1
 
+TranquilRoute_CutHouse_EventScript_CutMaster_5:
+# 16 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_CutMaster_Text_1
+	goto TranquilRoute_CutHouse_EventScript_CutMaster_4
+
 
 TranquilRoute_CutHouse_EventScript_CutMaster_Text_0:
 # 11 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "you actually cut all that grass\n"
+	.string "absolute psycho$"
+
+TranquilRoute_CutHouse_EventScript_CutMaster_Text_1:
+# 17 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "Are you finding the Cut technique\n"
 	.string "useful?\p"
 	.string "No, I still haven't trimmed my garden. I\n"
 	.string "really should get to it…$"
 
-TranquilRoute_CutHouse_EventScript_CutMaster_Text_1:
-# 17 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+TranquilRoute_CutHouse_EventScript_CutMaster_Text_2:
+# 23 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "Hello, there. I don't get many visitors,\n"
 	.string "so sit down, have some tea!\p"
 	.string "What? The weeds are growing all over\n"
@@ -50,8 +63,8 @@ TranquilRoute_CutHouse_EventScript_CutMaster_Text_1:
 	.string "Here, your Pokémon can trim them using\n"
 	.string "this.$"
 
-TranquilRoute_CutHouse_EventScript_CutMaster_Text_2:
-# 28 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+TranquilRoute_CutHouse_EventScript_CutMaster_Text_3:
+# 34 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "This scroll contains an ancient\n"
 	.string "technique created by the most talented\l"
 	.string "samurai. Pokémon can learn that\l"

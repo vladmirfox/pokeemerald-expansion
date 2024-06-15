@@ -5,8 +5,14 @@ mapscripts TranquilRoute_CutHouse_MapScripts {
 script TranquilRoute_CutHouse_EventScript_CutMaster {
 	lock
 	faceplayer
-	// TODO EVA Sidequest
-	if (flag(FLAG_RECEIVED_HM_CUT)) {
+	//TODO whatever you wanna do here
+	if(flag(FLAG_COMPLETED_CUT_QUEST)){
+		msgbox(format(
+			"you actually cut all that grass\n"
+			"absolute psycho"
+		))
+	}
+	if(flag(FLAG_RECEIVED_HM_CUT)) {
 		msgbox(format(
 			"Are you finding the Cut technique useful?\p"
 			"No, I still haven't trimmed my garden. I really should get to it…"

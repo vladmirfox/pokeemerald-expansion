@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -57,6 +58,7 @@ static void CutGrassSpriteCallback1(struct Sprite *);
 static void CutGrassSpriteCallback2(struct Sprite *);
 static void CutGrassSpriteCallbackEnd(struct Sprite *);
 static void HandleLongGrassOnHyper(u8, s16, s16);
+static bool8 IsCutQuestComplete(void);
 
 // IWRAM variables
 static u8 sCutSquareSide;
@@ -347,6 +349,14 @@ bool8 FldEff_CutGrass(void)
         gSprites[sCutGrassSpriteArrayPtr[i]].data[2] = 32 * i;
     }
 
+    if(!FlagGet(FLAG_COMPLETED_CUT_QUEST) && gMapHeader.regionMapSectionId == MAPSEC_TRANQUIL_ROUTE)
+    {
+        if(IsCutQuestComplete())
+        {
+            FlagSet(FLAG_COMPLETED_CUT_QUEST);
+        }   
+    }
+
     return FALSE;
 }
 
@@ -391,6 +401,39 @@ static void SetCutGrassMetatile(s16 x, s16 y)
         MapGridSetMetatileIdAt(x, y, METATILE_General_Grass_TreeUp);
         break;
     }
+}
+
+// iterate over defined grid to check for wildencounter tiles
+// to see if the player has cut all the grass!
+static bool8 IsCutQuestComplete(void)
+{
+    // grid is a rectangle from [46, 24] to [57, 39]
+    // or in simpler terms a 12 x 16 rectangle
+    s16 startX = 46;
+    s16 endX = 57;
+    s16 startY = 24;
+    s16 endY = 39;
+    s16 x = 0;
+    s16 y = 0;
+    u8 tileBehaviour;
+
+    // loop through every tile in area and evaluate
+    for(x = startX; x <= endX; x++)
+    {
+        for(y = startY; y <= endY; y++)
+        {
+            tileBehaviour = MapGridGetMetatileBehaviorAt(x, y);
+            if (MetatileBehavior_IsLandWildEncounter(tileBehaviour))
+            {
+                // we've found a tile with a wild encounter, which means 
+                // the player hasnt completed the quest!
+                return FALSE;
+            }
+        }
+    }
+    
+    // we iterated over the entire grid and didnt find any wildencounter tiles
+    return TRUE;
 }
 
 enum
