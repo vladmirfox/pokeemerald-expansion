@@ -36,8 +36,6 @@
 #define P_COSPLAY_PIKACHU_FORMS          TRUE
 #undef P_CAP_PIKACHU_FORMS
 #define P_CAP_PIKACHU_FORMS              TRUE
-#undef P_CROSS_GENERATION_EVOS
-#define P_CROSS_GENERATION_EVOS          TRUE
 #undef P_GEN_2_CROSS_EVOS
 #define P_GEN_2_CROSS_EVOS               TRUE
 #undef P_GEN_3_CROSS_EVOS
