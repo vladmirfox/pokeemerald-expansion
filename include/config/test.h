@@ -203,6 +203,7 @@
 #define P_FAMILY_MEWTWO                  TRUE
 #undef P_FAMILY_MEW
 #define P_FAMILY_MEW                     TRUE
+
 #undef P_FAMILY_CHIKORITA
 #define P_FAMILY_CHIKORITA               TRUE
 #undef P_FAMILY_CYNDAQUIL
