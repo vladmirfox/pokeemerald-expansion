@@ -22,8 +22,6 @@
 #define P_TERA_FORMS                     TRUE
 #undef P_FUSION_FORMS
 #define P_FUSION_FORMS                   TRUE
-#undef P_REGIONAL_FORMS
-#define P_REGIONAL_FORMS                 TRUE
 #undef P_ALOLAN_FORMS
 #define P_ALOLAN_FORMS                   TRUE
 #undef P_GALARIAN_FORMS
