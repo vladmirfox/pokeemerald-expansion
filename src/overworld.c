@@ -449,7 +449,7 @@ static void UpdateMiscOverworldStates(void)
     ChooseAmbientCrySpecies();
     ResetCyclingRoadChallengeData();
     UpdateLocationHistoryForRoamer();
-    MoveAllRoamersToOtherLocationSets();
+    RoamerMoveToOtherLocationSet();
 }
 
 void ResetGameStats(void)
@@ -847,7 +847,7 @@ if (I_VS_SEEKER_CHARGING != 0)
 
     InitSecondaryTilesetAnimation();
     UpdateLocationHistoryForRoamer();
-    MoveAllRoamers();
+    RoamerMove();
     DoCurrentWeather();
     ResetFieldTasksArgs();
     RunOnResumeMapScript();
@@ -906,7 +906,7 @@ if (I_VS_SEEKER_CHARGING != 0)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();
-    MoveAllRoamersToOtherLocationSets();
+    RoamerMoveToOtherLocationSet();
     if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
         InitBattlePyramidMap(FALSE);
     else if (InTrainerHill())
