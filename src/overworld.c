@@ -3290,7 +3290,7 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
 
 bool8 GetSetItemObtained(u16 item, u8 caseId)
 {    
-#if OW_SHOW_ITEM_DESCRIPTIONS == 1
+#if OW_SHOW_ITEM_DESCRIPTIONS == OW_ITEM_DESCRIPTIONS_FIRST_TIME
     u8 index = item / 8;
     u8 bit = item % 8;
     u8 mask = 1 << bit;
@@ -3306,7 +3306,7 @@ bool8 GetSetItemObtained(u16 item, u8 caseId)
     return FALSE;
 }
 
-#if OW_SHOW_ITEM_DESCRIPTIONS > 0
+#if OW_SHOW_ITEM_DESCRIPTIONS != OW_ITEM_DESCRIPTIONS_OFF
 
 EWRAM_DATA static u8 sHeaderBoxWindowId = 0;
 EWRAM_DATA u8 sItemIconSpriteId = 0;
