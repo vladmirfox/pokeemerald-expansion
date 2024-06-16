@@ -8,7 +8,7 @@ mapscripts SakuTown_MapScripts {
 
 		if (flag(FLAG_SAKU_KURA_REUNITED)) {
 			// Once reunited, the guards from the two villages play a board game together
-			setmetatile(19, 3, METATILE_SakuKura_BoardGame, TRUE)
+			setmetatile(19, 2, METATILE_SakuKura_BoardGame, TRUE)
 			setobjectmovementtype(LOCALID_GUARD, MOVEMENT_TYPE_FACE_RIGHT)
 		}
 	}
@@ -170,9 +170,12 @@ script SakuTown_EventScript_Guard {
 	} else {
 		faceplayer
 		msgbox(format(
-			"One can never be too careful. The whole village's safety rests on my shoulder."
+			"One can never be too careful.\p"
+			"The safety of the whole village rests on my shoulders."
 		))
 		closemessage
+		applymovement(LOCALID_GUARD, Common_Movement_FaceOriginalDirection)
+		waitmovement(0)
 	}
 	release
 }
@@ -195,11 +198,16 @@ script SakuTown_EventScript_GuardSeesYou {
 	if (var(VAR_SAKU_KURA_VILLAGES_STATE) == 0) {
 		call(SakuTown_EventScript_GuardStopsYou)
 		// First time coming down from Kura
-	} elif (var(VAR_SAKU_KURA_VILLAGES_STATE) == 1 && var(VAR_RESULT) == DIR_SOUTH) {
+	} elif (var(VAR_SAKU_KURA_VILLAGES_STATE) == 2 && var(VAR_RESULT) == DIR_SOUTH) {
 		call(SakuTown_EventScript_GuardStopsYou)
 	}
 
 	release
+}
+
+script TESTEVA {
+	setvar(VAR_SAKU_KURA_VILLAGES_STATE, 0)
+	setvar(VAR_RIVAL_ENCOUNTER_STATE, 1)
 }
 
 script SakuTown_EventScript_GuardStopsYou {
@@ -210,6 +218,7 @@ script SakuTown_EventScript_GuardStopsYou {
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
+	delay(20)
 
 	if (var(VAR_RESULT) == DIR_SOUTH) {
 		msgbox(format(
@@ -218,6 +227,7 @@ script SakuTown_EventScript_GuardStopsYou {
 			"How was it? Awful, right? Welcome back to Saku Village!"
 		))
 		closemessage
+		setvar(VAR_SAKU_KURA_VILLAGES_STATE, 3)
 	} else {
 		msgbox(format(
 			"Are you trying to sneak into Kura Village?\p"
@@ -225,11 +235,11 @@ script SakuTown_EventScript_GuardStopsYou {
 			"Though I wouldn't recommend visiting the next village, there's really nothing interesting there."
 		))
 		closemessage
+		setvar(VAR_SAKU_KURA_VILLAGES_STATE, 1)
 	}
 
 	applymovement(LOCALID_GUARD, Common_Movement_FaceDown)
 
-	addvar(VAR_SAKU_KURA_VILLAGES_STATE, 1)
 }
 
 script SakuTown_EventScript_TownSign {

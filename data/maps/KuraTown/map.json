@@ -45,10 +45,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FARMER",
-      "x": 17,
-      "y": 27,
+      "x": 15,
+      "y": 29,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 3,
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -98,10 +98,68 @@
       "elevation": 0,
       "dest_map": "MAP_KURA_TOWN_HOUSE3",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAKU_TOWN",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 17,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SAKU_TOWN",
+      "dest_warp_id": "5"
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 29,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "2",
+      "script": "KuraTown_EventScript_GuardStopsYou"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 29,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "2",
+      "script": "KuraTown_EventScript_GuardStopsYou"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 30,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "2",
+      "script": "KuraTown_EventScript_GuardStopsYou"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 30,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "2",
+      "script": "KuraTown_EventScript_GuardStopsYou"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 29,
+      "elevation": 0,
+      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
+      "var_value": "2",
+      "script": "KuraTown_EventScript_GuardStopsYou"
+    }
   ],
   "bg_events": [
     {

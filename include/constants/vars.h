@@ -204,7 +204,9 @@
 #define VAR_MOSSDEEP_SPACE_CENTER_STATE                  0x409F
 #define VAR_SLATEPORT_HARBOR_STATE                       0x40A0
 // 0: The two villages hate each other
-// 1: Player has gone to Kura and back
+// 1: Player has been spotted by the Saku guard
+// 2: Player has been spotted by the Kura guard
+// 3: Player has come back from Kura and has been stopped by Saku guard again
 #define VAR_SAKU_KURA_VILLAGES_STATE                     0x40A1
 // 0: Quest hasn't started
 // 1: Talked to lady but not to Espeon's master
