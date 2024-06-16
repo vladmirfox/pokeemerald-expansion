@@ -9,6 +9,12 @@
 #define NDEBUG
 
 #ifdef DEBUG_TARGET
+#ifndef DEBUG_PRINT
+#define DEBUG_PRINT
+#endif
+#endif
+
+#ifdef DEBUG_PRINT
 #undef NDEBUG
 #endif
 

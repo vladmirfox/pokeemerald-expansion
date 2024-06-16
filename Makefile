@@ -413,7 +413,7 @@ override CFLAGS += -O0
 endif
 
 ifeq ($(DPRINT),1)
-override CPPFLAGS += -DDEBUG_TARGET
+override CPPFLAGS += -DDEBUG_PRINT
 endif
 
 # The dep rules have to be explicit or else missing files won't be reported.
