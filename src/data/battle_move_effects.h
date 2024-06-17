@@ -1234,12 +1234,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_BULLDOZE] =
-    {
-        .battleScript = BattleScript_EffectHit,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_FOUL_PLAY] =
     {
         .battleScript = BattleScript_EffectHit,
@@ -1772,12 +1766,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_MIND_BLOWN] =
-    {
-        .battleScript = BattleScript_EffectMindBlown,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_PURIFY] =
     {
         .battleScript = BattleScript_EffectPurify,
@@ -1952,12 +1940,6 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleTvScore = 0, // TODO: Assign points
     },
 
-    [EFFECT_SHELL_SIDE_ARM] =
-    {
-        .battleScript = BattleScript_EffectShellSideArm,
-        .battleTvScore = 0, // TODO: Assign points
-    },
-
     [EFFECT_TERRAIN_PULSE] =
     {
         .battleScript = BattleScript_EffectHit,
@@ -2035,7 +2017,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
 
     [EFFECT_MAX_HP_50_RECOIL] =
     {
-        .battleScript = BattleScript_EffectMaxHp50Recoil,
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_MIND_BLOWN] =
+    {
+        .battleScript = BattleScript_EffectHit,
         .battleTvScore = 0, // TODO: Assign points
     },
 
@@ -2235,5 +2223,30 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectTidyUp,
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
+    },
+
+    [EFFECT_SPICY_EXTRACT] =
+    {
+        .battleScript = BattleScript_EffectSpicyExtract,
+        .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE,
+    },
+
+    [EFFECT_TERA_BLAST] =
+    {
+        .battleScript = BattleScript_EffectPhotonGeyser,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_TERA_STARSTORM] =
+    {
+        .battleScript = BattleScript_EffectPhotonGeyser,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_DRAGON_DARTS] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
     },
 };

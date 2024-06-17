@@ -188,7 +188,9 @@ enum RandomTag
     RNG_QUICK_CLAW,
     RNG_TRACE,
     RNG_FICKLE_BEAM,
-    RNG_DROWSY,
+    RNG_AI_ABILITY,
+    RNG_SHELL_SIDE_ARM,
+	RNG_DROWSY,
 };
 
 #define RandomWeighted(tag, ...) \
@@ -233,5 +235,7 @@ u32 RandomUniformDefault(enum RandomTag, u32 lo, u32 hi);
 u32 RandomUniformExceptDefault(enum RandomTag, u32 lo, u32 hi, bool32 (*reject)(u32));
 u32 RandomWeightedArrayDefault(enum RandomTag, u32 sum, u32 n, const u8 *weights);
 const void *RandomElementArrayDefault(enum RandomTag, const void *array, size_t size, size_t count);
+
+u8 RandomWeightedIndex(u8 *weights, u8 length);
 
 #endif // GUARD_RANDOM_H
