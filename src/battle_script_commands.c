@@ -3584,9 +3584,9 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             case MOVE_EFFECT_SPECTRAL_THIEF:
                 if (!NoAliveMonsForEitherParty())
                 {
+                    bool32 contrary = (GetBattlerAbility(gBattlerAttacker) == ABILITY_CONTRARY);
                     gBattleStruct->stolenStats[0] = 0; // Stats to steal.
                     gBattleScripting.animArg1 = 0;
-                    bool32 contrary = (GetBattlerAbility(gBattlerAttacker) == ABILITY_CONTRARY);
                     for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
                     {
                         if (gBattleMons[gBattlerTarget].statStages[i] > DEFAULT_STAT_STAGE && gBattleMons[gBattlerAttacker].statStages[i] != MAX_STAT_STAGE)
