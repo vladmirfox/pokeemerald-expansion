@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Effect Spore causes poison 9% of the time")
 {
     PASSES_RANDOMLY(9, 100, RNG_EFFECT_SPORE);
     GIVEN {
-        ASSUME(B_EFFECT_SPORE_CHANCES >= GEN_5);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
@@ -55,7 +55,7 @@ SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time")
 {
     PASSES_RANDOMLY(10, 100, RNG_EFFECT_SPORE);
     GIVEN {
-        ASSUME(B_EFFECT_SPORE_CHANCES >= GEN_5);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time")
 {
     PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
     GIVEN {
-        ASSUME(B_EFFECT_SPORE_CHANCES >= GEN_5);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
