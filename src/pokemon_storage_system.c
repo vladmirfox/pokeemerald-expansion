@@ -673,7 +673,7 @@ static void PlaceMon(void);
 static void RefreshDisplayMon(void);
 static void SetMovingMonData(u8, u8);
 static void SetPlacedMonData(u8, u8);
-static void PurgeMonOrBoxMon(u8, u8);
+static void PurgeMonOrBoxMon(u8 boxId, u8 position, bool8 release);
 static void SetShiftedMonData(u8, u8);
 static bool8 TryStorePartyMonInBox(u8);
 static void ResetSelectionAfterDeposit(void);
@@ -6416,7 +6416,7 @@ static void SetMovingMonData(u8 boxId, u8 position)
     else
         BoxMonAtToMon(boxId, position, &sStorage->movingMon);
 
-    PurgeMonOrBoxMon(boxId, position);
+    PurgeMonOrBoxMon(boxId, position, FALSE);
     sMovingMonOrigBoxId = boxId;
     sMovingMonOrigBoxPos = position;
 }
@@ -6432,19 +6432,19 @@ static void SetPlacedMonData(u8 boxId, u8 position)
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
 }
 
-static void PurgeMonOrBoxMon(u8 boxId, u8 position)
+static void PurgeMonOrBoxMon(u8 boxId, u8 position, bool8 release)
 {
     u16 item = ITEM_NONE;
 
     if (boxId == TOTAL_BOXES_COUNT)
     {
-        if (OW_PC_RELEASE_ITEM >= GEN_8)
+        if (OW_PC_RELEASE_ITEM >= GEN_8 && release)
             item = GetMonData(&gPlayerParty[position], MON_DATA_HELD_ITEM);
         ZeroMonData(&gPlayerParty[position]);
     }
     else
     {
-        if (OW_PC_RELEASE_ITEM >= GEN_8)
+        if (OW_PC_RELEASE_ITEM >= GEN_8 && release)
             item = GetBoxMonDataAt(boxId, position, MON_DATA_HELD_ITEM);
         ZeroBoxMonAt(boxId, position);
     }
@@ -6543,7 +6543,7 @@ static void ReleaseMon(void)
         else
             boxId = StorageGetCurrentBox();
 
-        PurgeMonOrBoxMon(boxId, sCursorPosition);
+        PurgeMonOrBoxMon(boxId, sCursorPosition, TRUE);
     }
     TryRefreshDisplayMon();
 }
