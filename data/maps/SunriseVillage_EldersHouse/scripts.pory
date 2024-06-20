@@ -22,7 +22,7 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 
 	// Elder speaks
 	msgbox(format(
-		"Elder Kaba: {PLAYER}, {RIVAL}. You are late. Why am I surprised?\p"
+		"Elder Kaba: {PLAYER}, {RIVAL}.\nYou are late. Why am I surprised?\p"
 		"I always have to run after you two! Now stay still for a minute and listen closely!\p"
 		"As you have heard, the woods, and even the roads, are no longer safe.\p"
 		"We don't yet know the reason, but the wild Pokémon that usually hide in the tall grass and live peacefully alongside men have started behaving aggressively.\p"

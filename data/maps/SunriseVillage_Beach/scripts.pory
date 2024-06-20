@@ -68,19 +68,36 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	msgbox(format(
 		"Look at me rambling! I'm sure everything is going to be just fine.\p"
 		"Are you excited to become a Pokémon wielder?"
-	), MSGBOX_YESNO)
+	))
 
-	if (var(VAR_RESULT) == YES) {
-		msgbox(format(
-			"That's the spirit! Let's become the best wielders ever!"
-		))
-		closemessage
-	} elif(var(VAR_RESULT) == NO  || var(VAR_RESULT) == MULTI_B_PRESSED) {
-		msgbox(format(
-			"Don't be silly, you dumdum! I know you'll become super strong in no time!"
-		))
-		closemessage
+	dynmultichoice(
+		16,
+		6,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"I'm thrilled!",
+		"I'm terrified!",
+		"It's whatever."
+	)
+
+	switch (var(VAR_RESULT)) {
+		case 0:
+			msgbox(format(
+				"That's the spirit! Let's become the best wielders ever!"
+			))
+		case 1:
+			msgbox(format(
+				"Don't be silly, you dumdum! I know you'll become super strong in no time!"
+			))
+		case 2:
+			msgbox(format(
+				"Oh come on, I know you're just pretending not to be excited!\p"
+				"This is going to be fun, so cheer up!"
+			))
 	}
+	closemessage
 
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSeesDistribution)
 	waitmovement(0)
