@@ -1427,6 +1427,12 @@ void Task_HandleChooseMonInput(u8 taskId)
         case L_BUTTON:
             DestroyTask(taskId);
             break;
+        case SELECT_BUTTON:
+            gPartyMenu.slotId = *slotPtr;
+            gPartyMenu.slotId2 = 0;
+            gPartyMenu.action = PARTY_ACTION_SWITCH;
+            HandleChooseMonSelection(taskId, slotPtr);
+            break;
         }
     }
 }
@@ -1686,6 +1692,15 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
             return L_BUTTON;
         }
         return A_BUTTON; // L is allowed to act as the A Button while CursorCb_Switch is active.
+    }
+
+    if (JOY_NEW(SELECT_BUTTON) && CalculatePlayerPartyCount() >= 2 && gPartyMenu.action == PARTY_ACTION_CHOOSE_MON)
+    {
+        if (gPartyMenu.menuType != PARTY_MENU_TYPE_FIELD)
+            return 0;
+        if (*slotPtr == PARTY_SIZE + 1 || *slotPtr == 0)
+            return 0;
+        return SELECT_BUTTON;
     }
 
     if (movementDir)
