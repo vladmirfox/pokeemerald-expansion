@@ -65,7 +65,7 @@
 #define OBJ_EVENT_GFX_BERRY_TREE_EARLY_STAGES     61
 #define OBJ_EVENT_GFX_BERRY_TREE_LATE_STAGES      62
 #define OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE           63
-#define OBJ_EVENT_GFX_PROF_BIRCH                  64
+#define OBJ_EVENT_GFX_KABA                        64
 #define OBJ_EVENT_GFX_MAN_4                       65
 #define OBJ_EVENT_GFX_MAN_5                       66
 #define OBJ_EVENT_GFX_REPORTER_M                  67
@@ -388,6 +388,7 @@
 #define OBJ_EVENT_PAL_TAG_BATTLE_GIRL             0x1131
 #define OBJ_EVENT_PAL_TAG_HANA                    0x1132
 #define OBJ_EVENT_PAL_TAG_GARDENER                0x1133
+#define OBJ_EVENT_PAL_TAG_KABA                    0x1134
 
 #if OW_MON_POKEBALLS
 // Vanilla
