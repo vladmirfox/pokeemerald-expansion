@@ -226,11 +226,11 @@
 #define OBJ_EVENT_GFX_GROUDON_SIDE               222
 #define OBJ_EVENT_GFX_MYSTERY_GIFT_MAN           223
 #define OBJ_EVENT_GFX_TRICK_HOUSE_STATUE         224
-#define OBJ_EVENT_GFX_KIRLIA                     225
-#define OBJ_EVENT_GFX_DUSCLOPS                   226
+#define OBJ_EVENT_GFX_SHAMISEN_BLUE              225
+#define OBJ_EVENT_GFX_SHAMISEN_GREEN             226
+#define OBJ_EVENT_GFX_SHAMISEN_RED               229
 #define OBJ_EVENT_GFX_UNION_ROOM_NURSE           227
 #define OBJ_EVENT_GFX_SUDOWOODO                  228
-#define OBJ_EVENT_GFX_MEW                        229
 #define OBJ_EVENT_GFX_RED                        230
 #define OBJ_EVENT_GFX_LEAF                       231
 #define OBJ_EVENT_GFX_DEOXYS                     232
@@ -375,7 +375,7 @@
 #define OBJ_EVENT_PAL_TAG_DYNAMIC                 0x1124
 #define OBJ_EVENT_PAL_TAG_AROMA_LADY              0x1125
 #define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
-#define OBJ_EVENT_PAL_TAG_OLD_WOMAN               0x1127
+#define OBJ_EVENT_PAL_TAG_OLD_WOMAN               0x1127 // UNUSED
 #define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
@@ -389,6 +389,10 @@
 #define OBJ_EVENT_PAL_TAG_HANA                    0x1132
 #define OBJ_EVENT_PAL_TAG_GARDENER                0x1133
 #define OBJ_EVENT_PAL_TAG_KABA                    0x1134
+#define OBJ_EVENT_PAL_TAG_SHAMISEN_BLUE           0x1135
+#define OBJ_EVENT_PAL_TAG_SHAMISEN_GREEN          0x1136
+#define OBJ_EVENT_PAL_TAG_SHAMISEN_RED            0x1137
+#define OBJ_EVENT_PAL_TAG_LASS                    0x1138
 
 #if OW_MON_POKEBALLS
 // Vanilla

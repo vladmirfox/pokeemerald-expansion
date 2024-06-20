@@ -338,8 +338,7 @@ SunriseVillage_Beach_EventScript_RivalSpeech_Text_9:
 # 96 "data/maps/SunriseVillage_Beach/scripts.pory"
 	.string "Oh come on, I know you're just\n"
 	.string "pretending not to be excited!\p"
-	.string "This is going to be an awesome\n"
-	.string "adventure!$"
+	.string "This is going to be fun, so cheer up!$"
 
 SunriseVillage_Beach_EventScript_RivalSpeech_Text_10:
 # 106 "data/maps/SunriseVillage_Beach/scripts.pory"

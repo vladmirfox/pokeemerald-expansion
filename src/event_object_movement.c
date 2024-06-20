@@ -480,8 +480,12 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
     {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
     {gObjectEventPal_AromaLady,             OBJ_EVENT_PAL_TAG_AROMA_LADY},
+    {gObjectEventPal_Shamisen_Blue,         OBJ_EVENT_PAL_TAG_SHAMISEN_BLUE},
+    {gObjectEventPal_Shamisen_Green,        OBJ_EVENT_PAL_TAG_SHAMISEN_GREEN},
+    {gObjectEventPal_Shamisen_Red,          OBJ_EVENT_PAL_TAG_SHAMISEN_RED},
+    // Reusing trainer palette for ow
+    {gObjectEventPal_Lass,                  OBJ_EVENT_PAL_TAG_LASS},
     {gObjectEventPal_OldMan,                OBJ_EVENT_PAL_TAG_OLD_MAN},
-    {gObjectEventPal_OldWoman,              OBJ_EVENT_PAL_TAG_OLD_WOMAN},
     {gObjectEventPal_LittleGirl,            OBJ_EVENT_PAL_TAG_LITTLE_GIRL},
     {gObjectEventPal_FatMan,                OBJ_EVENT_PAL_TAG_FAT_MAN},
     {gObjectEventPal_Artist,                OBJ_EVENT_PAL_TAG_ARTIST},
