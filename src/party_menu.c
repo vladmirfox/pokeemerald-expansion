@@ -1424,7 +1424,7 @@ void Task_HandleChooseMonInput(u8 taskId)
                 MoveCursorToConfirm();
             }
             break;
-        case L_BUTTON:
+        case R_BUTTON:
             DestroyTask(taskId);
             break;
         case SELECT_BUTTON:
@@ -1680,7 +1680,7 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
     if (JOY_NEW(START_BUTTON))
         return START_BUTTON;
 
-    if (JOY_NEW(L_BUTTON) && CalculatePlayerPartyCount() >= 2 && !IsInvalidPartyMenuActionType(gPartyMenu.action))
+    if (JOY_NEW(R_BUTTON) && CalculatePlayerPartyCount() >= 2 && !IsInvalidPartyMenuActionType(gPartyMenu.action))
     {
         if (gPartyMenu.menuType != PARTY_MENU_TYPE_FIELD)
             return 0;
@@ -1689,9 +1689,9 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
         if (gPartyMenu.action != PARTY_ACTION_SWITCH)
         {
             CreateTask(CursorCb_Switch, 1);
-            return L_BUTTON;
+            return R_BUTTON;
         }
-        return A_BUTTON; // L is allowed to act as the A Button while CursorCb_Switch is active.
+        return A_BUTTON; // R is allowed to act as the A Button while CursorCb_Switch is active.
     }
 
     if (JOY_NEW(SELECT_BUTTON) && CalculatePlayerPartyCount() >= 2 && gPartyMenu.action == PARTY_ACTION_CHOOSE_MON)
