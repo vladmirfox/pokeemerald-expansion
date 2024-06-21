@@ -195,7 +195,7 @@ static const struct BgTemplate sTrainerCardBgTemplates[4] =
     {
         .bg = 0,
         .charBaseIndex = 0,
-        .mapBaseIndex = 27,
+        .mapBaseIndex = 26,
         .screenSize = 2,
         .paletteMode = 0,
         .priority = 2,
