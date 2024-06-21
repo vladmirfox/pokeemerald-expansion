@@ -4633,7 +4633,7 @@ bool32 NoAliveMonsForEitherParty(void)
     return (NoAliveMonsForPlayer() || NoAliveMonsForOpponent());
 }
 
-// For battles that aren't BATTLE_TYPE_LINK or BATTLE_TYPE_RECORDED_LINK or double trainer battles(with a config ON), the only thing this
+// For battles that aren't BATTLE_TYPE_LINK or BATTLE_TYPE_RECORDED_LINK or double trainer battles, the only thing this
 // command does is check whether the player has won/lost by totaling each team's HP. It then
 // sets gBattleOutcome accordingly, if necessary.
 static void Cmd_checkteamslost(void)
@@ -4656,7 +4656,7 @@ static void Cmd_checkteamslost(void)
     // In non-multi battles, jump to pointer if 1 spot is missing on both sides
     if (gBattleOutcome == 0
         && (((gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)))
-              ||  ((B_FAIR_MULTI_SWITCH_IN_DOUBLES) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+              ||  (((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
             )
         )
     {
