@@ -349,8 +349,14 @@ script TranquilRoute_TrainerTips1 {
 script TranquilRoute_TrainerTips2 {
 	msgbox(format(
 		"Did you know?\p"
-		"Several items can be assigned to the SELECT button from your bag."
+		"You can swap the Pokémon in your party using {R_BUTTON}.\p"
+		"Set the lead Pokémon with {SELECT_BUTTON}."
 	), MSGBOX_SIGN)
+	// TODO EVA save that for when the player actually has several items to assign
+	// msgbox(format(
+	// 	"Did you know?\p"
+	// 	"Several items can be assigned to {SELECT_BUTTON} from your bag."
+	// ), MSGBOX_SIGN)
 }
 
 script TranquilRoute_DirectionSign {

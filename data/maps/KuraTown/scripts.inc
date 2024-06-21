@@ -129,14 +129,20 @@ KuraTown_EventScript_TownSign::
 	return
 
 
-KuraTown_EventScript_DirectionsSign::
+KuraTown_EventScript_TrainerTips::
 # 111 "data/maps/KuraTown/scripts.pory"
+	msgbox KuraTown_EventScript_TrainerTips_Text_0, MSGBOX_SIGN
+	return
+
+
+KuraTown_EventScript_DirectionsSign::
+# 115 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_DirectionsSign_Text_0, MSGBOX_SIGN
 	return
 
 
 KuraTown_EventScript_GymSign::
-# 115 "data/maps/KuraTown/scripts.pory"
+# 119 "data/maps/KuraTown/scripts.pory"
 	msgbox KuraTown_EventScript_GymSign_Text_0, MSGBOX_SIGN
 	return
 
@@ -203,13 +209,18 @@ KuraTown_EventScript_TownSign_Text_0:
 	.string "“A village where the mountains meet the\l"
 	.string "woods.”$"
 
-KuraTown_EventScript_DirectionsSign_Text_0:
+KuraTown_EventScript_TrainerTips_Text_0:
 # 111 "data/maps/KuraTown/scripts.pory"
+	.string "Did you know? The people from Saku\n"
+	.string "Village eat children!$"
+
+KuraTown_EventScript_DirectionsSign_Text_0:
+# 115 "data/maps/KuraTown/scripts.pory"
 	.string "{UP_ARROW} Silver Tunnel\n"
 	.string "This way for Silveridge$"
 
 KuraTown_EventScript_GymSign_Text_0:
-# 117 "data/maps/KuraTown/scripts.pory"
+# 121 "data/maps/KuraTown/scripts.pory"
 	.string "Kura Village Pokémon Dojo\n"
 	.string "Leader: Hana\p"
 	.string "“Strong as a maple rooted in wisdom.”$"

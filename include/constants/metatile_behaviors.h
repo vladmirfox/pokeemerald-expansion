@@ -76,8 +76,8 @@
 #define MB_TRICK_HOUSE_PUZZLE_8_FLOOR 0x48
 #define MB_CHEST_OPEN 0x49
 #define MB_CHEST_CLOSED 0x4A
-#define MB_UNUSED_4B 0x4B
-#define MB_UNUSED_4C 0x4C
+#define MB_SCROLL    0x4B
+#define MB_HEARTH    0x4C
 #define MB_UNUSED_4D 0x4D
 #define MB_UNUSED_4E 0x4E
 #define MB_UNUSED_4F 0x4F

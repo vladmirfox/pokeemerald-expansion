@@ -46,4 +46,7 @@ Text_Bonsai:
 	
 Text_Uumegiri:
 	.string "Those uumegiri look delicious!$"
+	
+Text_Teacup:
+	.string "A cup of fragrant green tea.$"
 

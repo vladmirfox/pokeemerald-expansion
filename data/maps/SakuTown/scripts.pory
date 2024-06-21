@@ -247,11 +247,11 @@ script SakuTown_EventScript_TownSign {
 }
 
 script SakuTown_EventScript_TrainerTips {
-	msgbox(format("Did you know? Saku Village is in all ways superior to Kura Village!"), MSGBOX_SIGN)
+	msgbox(format("Did you know?\pSaku Village is in all ways superior to Kura Village!"), MSGBOX_SIGN)
 }
 
 script SakuTown_EventScript_TrainerTips2 {
-	msgbox(format("Did you know? The folks from Kura Village are a bunch of mean jerks!"), MSGBOX_SIGN)
+	msgbox(format("Did you know?\pThe folks from Kura Village are a bunch of mean jerks!"), MSGBOX_SIGN)
 }
 
 script SakuTown_EventScript_FloristSign {

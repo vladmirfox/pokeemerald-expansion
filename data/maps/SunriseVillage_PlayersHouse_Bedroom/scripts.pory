@@ -32,10 +32,50 @@ script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
     lock
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	msgbox(format(
-		"{PLAYER}! {PLAYER}! Are you still sleeping?\p"
-		"Get up and get ready!"
+		"{PLAYER}! {PLAYER}! Are you still sleeping?"
 	))
+	
+	dynmultichoice(
+		16,
+		6,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"Not anymore!",
+		"I'm coming!",
+		"…"
+	)
+
+	if (var(VAR_RESULT) == 0) {
+		msgbox(format(
+				"Very funny! Now get up and get ready!"
+			))
+	} else {
+		msgbox(format(
+				"… … … … … …\p"
+				"…{PLAYER}? Are you up?"
+			))
+
+		dynmultichoice(
+			16,
+			8,
+			TRUE,
+			10,
+			0,
+			DYN_MULTICHOICE_CB_NONE,
+			"COMIIIIING!!",
+			"COMIIIIIIIIIIING!!!"
+		)
+
+		msgbox(format(
+			"No need to yell, I can hear you just fine!\p"
+			"Now get up and get ready!"
+		))
+	}
+
 	closemessage
+
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 2)
 	setflag(FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS)
     release
