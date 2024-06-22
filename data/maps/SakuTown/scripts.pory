@@ -17,6 +17,7 @@ mapscripts SakuTown_MapScripts {
 // Rival encounter right before the Saku wall
 script SakuTown_EventScript_RivalAtSakuWall {
 	lock
+	speakername("???")
 	msgbox(format("Wait up, {PLAYER}!"))
 	closemessage
 
@@ -33,6 +34,7 @@ script SakuTown_EventScript_RivalAtSakuWall {
 	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkUp)
 	waitmovement(0)
 
+	speakername("{RIVAL}")
 	msgbox(format(
 		"I was wondering if you'd already reached Saku Village by now. Looks like we almost missed each other!\p"
 		"Have you caught any Pokémon on your way here?\p"
@@ -49,6 +51,7 @@ script SakuTown_EventScript_RivalAtSakuWall {
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_TRAPINCH, SakuTown_Text_RivalDefeat)
 	}
 
+	speakername("{RIVAL}")
 	msgbox(format(
 		"Okay, I… I didn't think you'd go that hard, honestly!\p"
 		"Hahaha…\p"
@@ -119,6 +122,7 @@ movement SakuTown_Movement_WalkAway {
 script SakuTown_EventScript_Farmer {
 	lock
 	faceplayer
+	speakername("Farmer")
 	msgbox(format(
 		"We're cultivatin' Ryss berries. Saku Village exports its berries to many towns."
 	))
@@ -127,6 +131,7 @@ script SakuTown_EventScript_Farmer {
 
 script SakuTown_EventScript_Farmer2 {
 	lock
+	speakername("Farmer")
 	msgbox(format(
 		"Whew…\p"
 		"Working in the fields sure is tiring…"
@@ -137,6 +142,7 @@ script SakuTown_EventScript_Farmer2 {
 script SakuTown_EventScript_Woman {
 	lock
 	faceplayer
+	speakername("Woman")
 	msgbox(format(
 		"Those thugs in Kura Village may have their own dojo, but their town is nothing but an ugly pile of rocks!\p"
 		"They don't even have a Pokémon refuge!"
@@ -147,12 +153,14 @@ script SakuTown_EventScript_Woman {
 script SakuTown_EventScript_Karateka {
 	lock
 	faceplayer
+	speakername("Man")
 	msgbox(format(
 		"I let the Pokémon League borrow my super-strong Pokémon to help build the new Pokémon refuges throughout the region."
 	))
 	closemessage
 	applymovement(LOCALID_KARATEKA, Common_Movement_FaceUp)
 	waitmovement(0)
+	speakername("Man")
 	msgbox(format(
 		"Come on, Mama, Kuku! Daddy loves you!!"
 	))
@@ -163,12 +171,14 @@ script SakuTown_EventScript_Karateka {
 script SakuTown_EventScript_Guard {
 	lock
 	if (flag(FLAG_SAKU_KURA_REUNITED)) {
+		speakername("Guard")
 		msgbox(format(
 			"Damn, where did that Mareep come from?!"
 		))
 		closemessage
 	} else {
 		faceplayer
+		speakername("Guard")
 		msgbox(format(
 			"One can never be too careful.\p"
 			"The safety of the whole village rests on my shoulders."
@@ -182,6 +192,7 @@ script SakuTown_EventScript_Guard {
 
 script SakuTown_EventScript_KuraGuard {
 	lock
+	speakername("Guard")
 	msgbox(format(
 		"Hah, got two of your Tauros in my herd!"
 	))
@@ -214,6 +225,7 @@ script SakuTown_EventScript_GuardStopsYou {
 	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(LOCALID_GUARD)
+	speakername("Guard")
 	msgbox(format("Hey!"))
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
@@ -221,6 +233,7 @@ script SakuTown_EventScript_GuardStopsYou {
 	delay(20)
 
 	if (var(VAR_RESULT) == DIR_SOUTH) {
+		speakername("Guard")
 		msgbox(format(
 			"Are you trying to sneak in from Kura Village?\p"
 			"…Oh, you're that traveler from before. You can go through.\p"
@@ -229,6 +242,7 @@ script SakuTown_EventScript_GuardStopsYou {
 		closemessage
 		setvar(VAR_SAKU_KURA_VILLAGES_STATE, 3)
 	} else {
+		speakername("Guard")
 		msgbox(format(
 			"Are you trying to sneak into Kura Village?\p"
 			"…Oh, you're just a traveler. Nevermind then, you can go through.\p"
@@ -270,9 +284,11 @@ script SakuTown_EventScript_BoardGame {
 script SakuTown_EventScript_Mart {
 	lock
 	faceplayer
+	speakername("Saleswoman")
 	message(gText_HowMayIServeYou)
 	waitmessage
 	pokemart(SakuTown_Mart)
+	speakername("Saleswoman")
 	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
 	release
 }
@@ -292,6 +308,7 @@ script SakuTown_EventScript_Makuhita {
 	faceplayer
 	waitse
 	playmoncry(SPECIES_MAKUHITA, CRY_MODE_NORMAL)
+	speakername("Makuhita")
 	msgbox(format("Kuhi!"))
 	waitmoncry
 	release

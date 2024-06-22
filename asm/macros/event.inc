@@ -2045,6 +2045,12 @@
 	special CreateEnemyEventMon
 	.endm
 
+	@ Creates a Pokémon with the modernFatefulEncounter bit set for an encounter
+	.macro ismonseen species:req
+	setvar VAR_0x8004, \species
+	special IsMonSeen
+	.endm
+
 	@ Set up a totem boost for the next battle.
 	@ 'battler' is the position of the mon you want to gain a boost. see B_POSITION_xx in include/constants/battle.h.
 	@ The rest of the arguments are the stat change values to each stat.

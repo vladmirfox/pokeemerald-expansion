@@ -45,6 +45,7 @@ script ChiiTown_EventScript_SpawnBirds {
 }
 
 script ChiiTown_EventScript_Shopper {
+	speakername("Woman")
 	msgbox(format(
 		"The lady who keeps the town's market has started selling Pokémon medicine and Pokéballs!"
 	), MSGBOX_NPC)
@@ -54,6 +55,12 @@ script ChiiTown_EventScript_Kecleon {
 	lock
 	faceplayer
 	playmoncry(SPECIES_KECLEON, CRY_MODE_NORMAL)
+	ismonseen(SPECIES_KECLEON)
+    if (var(VAR_RESULT)) {
+        speakername("Kecleon")
+    } else {
+        speakername("Weird lizard")
+    }
 	msgbox(format("Kleeeeh!"))
 	waitmoncry
 	closemessage
@@ -61,6 +68,7 @@ script ChiiTown_EventScript_Kecleon {
 }
 
 script ChiiTown_EventScript_PlantingFlowers {
+	speakername("Little girl")
 	msgbox(format(
 		"I'm planting flowers so that the wild Pokémon become happy again!"
 	), MSGBOX_NPC)
@@ -69,9 +77,11 @@ script ChiiTown_EventScript_PlantingFlowers {
 script ChiiTown_EventScript_Mart {
 	lock
 	faceplayer
+	speakername("Saleswoman")
 	message(format("Welcome to Chii Town's market! How may I help you?"))
 	waitmessage
 	pokemart(ChiiTown_Mart)
+	speakername("Saleswoman")
 	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
 	release
 }

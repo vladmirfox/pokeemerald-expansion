@@ -49,32 +49,48 @@ SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling::
 # 33 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
 # 34 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
-# 38 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	dynmultichoice 16, 6, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_1, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_2, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_3
-# 50 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	speakername SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
+# 35 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_1
+# 39 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	dynmultichoice 16, 6, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_2, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_3, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_4
+# 51 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	closemessage
+# 53 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	speakername SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
+# 55 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_eq SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_2
-# 55 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_5
-# 60 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	dynmultichoice 16, 8, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_6, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_7
-# 71 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_8
-SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_1:
-# 77 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	closemessage
+# 61 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	delay 48
+# 63 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_6
+# 68 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	dynmultichoice 16, 8, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_7, SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_8
 # 79 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
-# 80 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	setflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
+	closemessage
 # 81 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	delay 30
+# 83 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	speakername SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0
+# 84 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_9
+SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_1:
+# 90 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	closemessage
+# 92 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 2
+# 93 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	setflag FLAG_HIDE_SUNRISE_VILLAGE_STANDARD_NPC_POSITIONS
+# 94 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	release
 	end
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_2:
-# 51 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_4
+# 56 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	delay 30
+# 57 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	msgbox SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_5
 	goto SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_1
 
 
@@ -88,41 +104,45 @@ SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT_Text_0:
 	.string "What up dumdum?$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0:
-# 35 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	.string "{PLAYER}! {PLAYER}! Are you still\n"
-	.string "sleeping?$"
+# 34 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	.string "Big sis$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_1:
-# 45 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	.string "Not anymore!$"
+# 36 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	.string "{PLAYER}! {PLAYER}! Are you still\n"
+	.string "{PK}sleeping?$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_2:
 # 46 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	.string "I'm coming!$"
+	.string "Not anymore!$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_3:
 # 47 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	.string "…$"
+	.string "I'm coming!$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_4:
-# 52 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
-	.string "Very funny! Now get up and get ready!$"
+# 48 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	.string "…$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_5:
-# 56 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+# 58 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+	.string "Very funny! Now get up and get ready!$"
+
+SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_6:
+# 64 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "… … … … … …\p"
 	.string "…{PLAYER}? Are you up?$"
 
-SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_6:
-# 67 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_7:
+# 75 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "COMIIIIING!!$"
 
-SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_7:
-# 68 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_8:
+# 76 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "COMIIIIIIIIIIING!!!$"
 
-SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_8:
-# 72 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
+SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_9:
+# 85 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "No need to yell, I can hear you just\n"
 	.string "fine!\p"
 	.string "Now get up and get ready!$"

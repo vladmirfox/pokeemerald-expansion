@@ -40,6 +40,7 @@ script TranquilRoute_EventScript_GrassCutscene {
 
 	delay(24)
 
+	speakername("Cut master")
 	msgbox(format(
 		"… … … … … …\n… … … … … …"
 	))
@@ -50,6 +51,7 @@ script TranquilRoute_EventScript_GrassCutscene {
 	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterWalkLeft)
 	waitmovement(0)
 	delay(24)
+	speakername("Cut master")
 	msgbox(format(
 		"Was it always this big?"
 	))
@@ -59,6 +61,7 @@ script TranquilRoute_EventScript_GrassCutscene {
 	waitmovement(0)
 	delay(24)
 	delay(24)
+	speakername("Cut master")
 	msgbox(format(
 		"It doesn't even look like the same garden…"
 	))
@@ -67,6 +70,7 @@ script TranquilRoute_EventScript_GrassCutscene {
 	applymovement(LOCALID_CUT_MASTER, TranquilRoute_CutMasterWalkBackToPlayer)
 	waitmovement(0)
 	delay(48)
+	speakername("Cut master")
 	msgbox(format(
 		"I cannot thank you enough for this.\p"
 		"I shall tend to my garden again, thanks to you."
@@ -106,6 +110,7 @@ script TranquilRoute_EventScript_SetupCutGrassCutscene {
 
 // Cut master
 script TranquilRoute_EventScript_CutMaster{
+	speakername("Cut master")
 	msgbox(format(
 		"I'm enjoying tending my garden again.\p"
 		"I like watching it slowly blossom into something beautiful."
@@ -193,6 +198,7 @@ script TranquilRoute_EventScript_Chikao {
 		format("I've been studying Pokémon at school! I can't lose!"),
 		format("I should have listened in class…")
 	)
+	speakername("Chikao")
 	msgbox("Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh… It's too complicated to explain.", MSGBOX_AUTOCLOSE)
 	end
 }
@@ -203,6 +209,7 @@ script TranquilRoute_EventScript_Takeshi {
 		format("Stay right there! I'll defeat you with my ninja skills!"),
 		format("I had the sun in my eyes!")
 	)
+	speakername("Takeshi")
 	msgbox(format("I must hone my ninja skills!"), MSGBOX_AUTOCLOSE)
 	end
 }
@@ -213,6 +220,7 @@ script TranquilRoute_EventScript_Hana {
 		format("Ugh, how can Kenji paint a portrait of me if people keep walking between us?"),
 		format("Great, now my hair is all messed up.")
 	)
+	speakername("Hiina")
 	msgbox(format("Kenji really is an amazing artist. I feel very lucky."), MSGBOX_AUTOCLOSE)
 	end
 }
@@ -223,6 +231,7 @@ script TranquilRoute_EventScript_Kenji {
 		format("You're interrupting my creative flow!!"),
 		format("Such beauty! What an artistic fight this was!")
 	)
+	speakername("Kenji")
 	msgbox(format(
 		"Hiina is the best subject I could dream of.\p"
 		"…Hey, uh, please don't tell her I said that."
@@ -234,6 +243,7 @@ script TranquilRoute_EventScript_Kenji {
 script TranquilRoute_EventScript_MysteriousSamurai {
 	lock
 	// TODO EVA
+	speakername("Mystery man")
 	msgbox(format(
 		"So you are one of those new Pokémon wielders, right?\p"
 		"You say Pokémon have been restless, lately?\p"
@@ -256,13 +266,24 @@ movement TranquilRoute_Movement_MysteriousSamuraiWalksAway {
 }
 
 script TranquilRoute_EventScript_Girl {
+	speakername("Girl")
 	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_NPC)
+}
+
+script TranquilRoute_EventScript_WhiteslateRoadblockGuard {
+	speakername("Man")
+	msgbox(format("Sorry, you can't go through."), MSGBOX_NPC)
 }
 
 script TranquilRoute_EventScript_Shellos {
 	lock
 	faceplayer
 	playmoncry(SPECIES_SHELLOS, CRY_MODE_NORMAL)
+    if (var(VAR_RESULT)) {
+        speakername("Shellos")
+    } else {
+        speakername("Slug")
+    }
 	msgbox(format(
 		"Clelel!"
 	))
@@ -277,10 +298,12 @@ script TranquilRoute_EventScript_BerryWoman {
 	faceplayer
 	// TODO EVA add speech bubble with  little musical notes
 	if (flag(FLAG_RECEIVED_WAILMER_PAIL)) {
+		speakername("Woman")
 		msgbox(format("Enjoy gardening!"))
 		closemessage
 	}
 	else {
+		speakername("Woman")
 		msgbox(format("Hi, young one! See this?"))
 		closemessage
 		applymovement(LOCALID_BERRYWOMAN, Common_Movement_FaceRight)
@@ -288,6 +311,7 @@ script TranquilRoute_EventScript_BerryWoman {
 		delay(48)
 		applymovement(LOCALID_BERRYWOMAN, Common_Movement_FacePlayer)
 		waitmovement(0)
+		speakername("Woman")
 		msgbox(format(
 			"You can plant berries in the ground in fertile spots like this.\p"
 			"The seeds will eventually grow into a healthy berry tree, ready to be harvested!\p"
@@ -299,6 +323,7 @@ script TranquilRoute_EventScript_BerryWoman {
 		giveitem(ITEM_ORAN_BERRY, 3)
 		goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
 
+		speakername("Woman")
 		msgbox(format(
 			"Oh, right, I was almost forgetting!\p"
 			"You must remember to water them regularly, or they won't grow!\p"
@@ -308,6 +333,7 @@ script TranquilRoute_EventScript_BerryWoman {
 		giveitem(ITEM_WAILMER_PAIL)
 		goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
 
+		speakername("Woman")
 		msgbox(format(
 			"Isn't it cute? It's friend-shaped!\p"
 			"Don't worry about it, I have a spare one.\p"
@@ -324,6 +350,12 @@ script TranquilRoute_EventScript_BerryWoman {
 script TranquilRoute_EventScript_Mareep {
 	lock
 	playmoncry(SPECIES_MAREEP, CRY_MODE_NORMAL)
+	ismonseen(SPECIES_MAREEP)
+	if (var(VAR_RESULT)) {
+        speakername("Mareep")
+    } else {
+        speakername("Static sheep")
+    }
 	msgbox(format("Beeeeeh…"))
 	waitmoncry
 	release
@@ -332,6 +364,12 @@ script TranquilRoute_EventScript_Mareep {
 script TranquilRoute_EventScript_Mareep2 {
 	lock
 	playmoncry(SPECIES_MAREEP, CRY_MODE_WEAK)
+	ismonseen(SPECIES_MAREEP)
+    if (var(VAR_RESULT)) {
+        speakername("Mareep")
+    } else {
+        speakername("Static sheep")
+    }
 	msgbox(format("Baaaaah…"))
 	waitmoncry
 	release

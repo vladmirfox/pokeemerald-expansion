@@ -4506,6 +4506,15 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
     return retVal;
 }
 
+void IsMonSeen(void)
+{
+    s32 species = gSpecialVar_0x8004;
+    if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
+
 u16 GetNationalPokedexCount(u8 caseID)
 {
     u16 count = 0;

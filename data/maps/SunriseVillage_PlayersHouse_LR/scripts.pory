@@ -26,6 +26,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi {
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
 
 	special(GetPlayerBrotherSisterString)
+	speakername("Big sis")
 	msgbox(format(
 		"Oh, {PLAYER}, you're up! Ready for the big event?\p"
 		"Are you excited? I sure hope you are, because I'm VERY EXCITED!\p"
@@ -58,6 +59,7 @@ movement SunriseVillage_PlayersHouse_LR_Movement_BigSisExits {
 script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 	lock
 	faceplayer
+	speakername("Big sis")
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) <= 4) {
 		msgbox(format(
 			"What are you still doing here? You're late for the distribution!\p"
@@ -89,6 +91,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 		giveitem(ITEM_POKE_BALL, 5)
 
 		bufferspeciesname(STR_VAR_2, VAR_STARTER_MON)
+		speakername("Big sis")
 		msgbox(format(
 			"Oh, and rest here a while before you go! Your {STR_VAR_2} looks tired."
 		))
@@ -97,6 +100,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 		call(Common_EventScript_OutOfCenterPartyHeal)
 
 		special(GetPlayerBrotherSisterString)
+		speakername("Big sis")
 		msgbox(format(
 			"Alrighty! You all set? Have a safe journey, little {STR_VAR_1}.\p"
 			"Come say hi sometimes though, will you?"
@@ -114,6 +118,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 		))
 		closemessage
 		call(Common_EventScript_OutOfCenterPartyHeal)
+		speakername("Big sis")
 		msgbox(format(
 			"See you around, little {STR_VAR_1}."
 		))
@@ -127,6 +132,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_Eevee {
 	faceplayer
 	waitse
 	playmoncry(SPECIES_EEVEE, CRY_MODE_NORMAL)
+	speakername("Eevee")
 	msgbox(format("Eee!"))
 	waitmoncry
 	release

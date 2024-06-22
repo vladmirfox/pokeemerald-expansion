@@ -9,10 +9,24 @@ mapscripts ChiiTown_PokemonCenter_MapScripts {
 		if (var(VAR_0x8000) >= 5 && var(VAR_0x8000) <= 17) {
 			// Fat guy is there
 			clearflag(FLAG_TEMP_1)
+			// Shamisen player is gone
+			setflag(FLAG_TEMP_2)
 			// Nighttime
 		} else {
 			// Fat guy is gone
 			setflag(FLAG_TEMP_1)
+			// Shamisen player is there
+			clearflag(FLAG_TEMP_2)
+			random(3)
+			// TODO EVA Set a var so that it's not reset if the player exits and reenters
+			switch(var(VAR_RESULT)) {
+			case 0:
+				setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SHAMISEN_RED)
+			case 1:
+				setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SHAMISEN_BLUE)
+			case 2:
+				setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SHAMISEN_GREEN)
+			}
 		}
 	}
 }
@@ -26,13 +40,29 @@ script ChiiTown_PokemonCenter_EventScript_Nurse {
 	end
 }
 
+script ChiiTown_PokemonCenter_EventScript_Shamisen {
+	lock
+	faceplayer
+	speakername("Blind singer")
+	msgbox(format(
+		"Good evening."
+	))
+	closemessage
+	release
+	end
+}
+
 script ChiiTown_PokemonCenter_EventScript_WhereShamisen {
 	lock
 	faceplayer
+	speakername("Weird man")
 	msgbox(format(
 		"Where's that cute shamisen player that was here last night?"
 	))
 	closemessage
+	gettime
+	buffernumberstring(STR_VAR_1, VAR_0x8000)
+	msgbox("{STR_VAR_1}")
 	release
 	end
 }
@@ -40,6 +70,7 @@ script ChiiTown_PokemonCenter_EventScript_WhereShamisen {
 script ChiiTown_PokemonCenter_EventScript_IveComeALongWay {
 	lock
 	faceplayer
+	speakername("Traveler")
 	msgbox(format(
 		"I'm so glad I found this refuge. I've come a long way and my feet hurt.\p"
 		"My Pokémon and I can rest for a while."
@@ -53,6 +84,12 @@ script ChiiTown_PokemonCenter_EventScript_Snorunt {
 	lock
 	faceplayer
 	playmoncry(SPECIES_SNORUNT, CRY_MODE_NORMAL)
+	ismonseen(SPECIES_SNORUNT)
+    if (var(VAR_RESULT)) {
+        speakername("Snorunt")
+    } else {
+        speakername("Cold pyramid")
+    }
 	msgbox(format(
 		"Glaglaglaglagla!"
 	))
@@ -65,6 +102,7 @@ script ChiiTown_PokemonCenter_EventScript_Snorunt {
 script ChiiTown_PokemonCenter_EventScript_NeedMarket {
 	lock
 	faceplayer
+	speakername("Woman")
 	msgbox(format(
 		"Berries, potions… Oh, right, I should get a few more Pokéballs from the town market!"
 	))
@@ -76,6 +114,7 @@ script ChiiTown_PokemonCenter_EventScript_NeedMarket {
 script ChiiTown_PokemonCenter_EventScript_RefugePresentation {
 	lock
 	faceplayer
+	speakername("Talkative man")
 	msgbox(format(
 		"Isn't it amazing? This is one of the many brand-new Pokémon refuges that the Pokémon league council has decided to build in towns across all Toku!\p"
 		"With traveling alone becoming more dangerous, many people are now training a Pokémon of their own for protection.\p"

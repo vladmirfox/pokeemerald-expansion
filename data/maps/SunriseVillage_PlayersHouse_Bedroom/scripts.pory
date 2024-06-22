@@ -31,8 +31,9 @@ script SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT {
 script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
     lock
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+	speakername("Big sis")
 	msgbox(format(
-		"{PLAYER}! {PLAYER}! Are you still sleeping?"
+		"{PLAYER}! {PLAYER}! Are you still {PK}sleeping?"
 	))
 	
 	dynmultichoice(
@@ -47,11 +48,18 @@ script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
 		"…"
 	)
 
+	closemessage
+
+	speakername("Big sis")
+
 	if (var(VAR_RESULT) == 0) {
+		delay(30)
 		msgbox(format(
 				"Very funny! Now get up and get ready!"
 			))
 	} else {
+		delay(48)
+
 		msgbox(format(
 				"… … … … … …\p"
 				"…{PLAYER}? Are you up?"
@@ -68,6 +76,11 @@ script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
 			"COMIIIIIIIIIIING!!!"
 		)
 
+		closemessage
+
+		delay(30)
+
+		speakername("Big sis")
 		msgbox(format(
 			"No need to yell, I can hear you just fine!\p"
 			"Now get up and get ready!"

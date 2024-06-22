@@ -14,6 +14,7 @@ script GinkoWoods_EventScript_Toshio {
 	// setvar VAR_0x8004, TRAINER_CALVIN_1
 	// specialvar VAR_RESULT, IsTrainerRegistered
 	// goto_if_eq VAR_RESULT, FALSE, Route102_EventScript_CalvinTryRegister
+	speakername("Toshio")
 	msgbox(format("Real wielders fight when they spot each other!\pAt least that's what my dad told me…"))
 	release
 	end
@@ -25,6 +26,7 @@ script GinkoWoods_EventScript_Eiji {
 		format("With the help of my brand-new Pokémon, I'm catching all sort of bugs!"),
 		format("My bugs!")
 	)
+	speakername("Eiji")
 	msgbox(format("I asked Elder Kaba for a bird Pokémon, because they're strong against bugs!"))
 	release
 	end
@@ -33,6 +35,7 @@ script GinkoWoods_EventScript_Eiji {
 script GinkoWoods_EventScript_OldMan {
 	lock
 	faceplayer
+	speakername("Old man")
 	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps because they can hide from predators thanks to the color of these trees."))
 	release
 	end

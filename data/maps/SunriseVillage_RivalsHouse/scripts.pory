@@ -5,6 +5,7 @@ mapscripts SunriseVillage_RivalsHouse_MapScripts {
 script SunriseVillage_RivalsHouse_EventScript_Woman {
 	lock
 	faceplayer
+	speakername("{RIVAL}'s mom")
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		msgbox(format(
 			"The house feels a little empty now that {RIVAL} has left home.\p"
@@ -21,6 +22,7 @@ script SunriseVillage_RivalsHouse_EventScript_Woman {
 script SunriseVillage_RivalsHouse_EventScript_Man {
 	lock
 	faceplayer
+	speakername("{RIVAL}'s dad")
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		msgbox(format(
 			"Hello, {PLAYER}. How is your adventure going?\p"
@@ -35,6 +37,7 @@ script SunriseVillage_RivalsHouse_EventScript_Man {
 }
 
 script SunriseVillage_RivalsHouse_EventScript_Meowth {
+	speakername("Meowth")
     msgbox(format(
         "Purrr…"
     ), MSGBOX_NPC)
@@ -45,6 +48,7 @@ script SunriseVillage_RivalsHouse_EventScript_Meowth2 {
     faceplayer
     waitse
     playmoncry(SPECIES_MEOWTH, CRY_MODE_NORMAL)
+	speakername("Meowth")
     msgbox(format(
         "Meow!"
     ))

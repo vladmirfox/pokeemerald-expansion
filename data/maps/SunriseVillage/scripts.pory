@@ -32,6 +32,7 @@ script SunriseVillage_Event_FatGuy {
     lock
     faceplayer
 
+    speakername("Neighbour")
     if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
             "My new Pokémon is so cute, I don't feel like leaving it in its Pokéball!"
@@ -56,6 +57,7 @@ script SunriseVillage_Event_GuardForest {
     lock
     applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)
     if (flag(FLAG_RECEIVED_STARTER)) {
+        speakername("Neighbour")
         if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
             msgbox(format(
                 "Oh, I see you received a Pokémon!\p"
@@ -84,11 +86,13 @@ script SunriseVillage_Event_GuardForest {
         }
     }
     else {
+        speakername("Neighbour")
         msgbox(format(
         "Stop right there, kid!"
         ))
         closemessage
         turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+        speakername("Neighbour")
         msgbox(format(
             "Wild POKéMON have been lashing out recently.\p"
             "I know you're used to walking around on your own, but the woods have become a dangerous place lately!\p"
@@ -106,6 +110,7 @@ script SunriseVillage_Event_GuardForest {
 script SunriseVillage_Event_GuardForest_Interact {
     lock
     faceplayer
+    speakername("Neighbour")
     if (flag(FLAG_RECEIVED_STARTER)) {
         if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
             msgbox(format(
@@ -141,6 +146,7 @@ script SunriseVillage_Event_GuardForest_Interact {
 
 // Little running girl
 script SunriseVillage_Event_LittleGirl {
+    speakername("Little girl")
     msgbox(format(
         "I can't wait I can't wait I can't wait!!!\p"
         "AHHHHH I CAN'T WAIT!!!!"
@@ -151,6 +157,7 @@ script SunriseVillage_Event_LittleGirl {
 script SunriseVillage_Event_Boy {
     lockall
     faceplayer
+    speakername("Kid")
     if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 4) {
         msgbox(format(
             "My Happiny is the strongest of all! See how fierce it looks?"
@@ -171,6 +178,7 @@ script SunriseVillage_Event_Boy {
 // Woman
 script SunriseVillage_Event_Woman {
     lockall
+    speakername("Neighbour")
     msgbox(format(
         "I can see the Pokéballs from here… I've never seen so many in my life!"
     ))
@@ -182,6 +190,7 @@ script SunriseVillage_Event_Woman {
 script SunriseVillage_Event_Farmer {
     lockall
     faceplayer
+    speakername("Neighbour")
     msgbox(format(
         "I've been waiting for hours!"
     ))
@@ -193,6 +202,7 @@ script SunriseVillage_Event_Farmer {
 script SunriseVillage_Event_OldMan {
     lockall
     faceplayer
+    speakername("Neighbour")
     msgbox(format(
         "The distribution is about to start."
     ))
@@ -202,6 +212,7 @@ script SunriseVillage_Event_OldMan {
 
 // Old woman
 script SunriseVillage_Event_OldWoman {
+    speakername("Neighbour")
     msgbox(format(
         "I'm tired of waiting!"
     ), MSGBOX_NPC)
@@ -211,11 +222,16 @@ script SunriseVillage_Event_OldWoman {
 script SunriseVillage_Event_Happiny {
     lock
     faceplayer
-    waitse
-    playmoncry(SPECIES_HAPPINY, CRY_MODE_NORMAL)
+    ismonseen(SPECIES_HAPPINY)
+    if (var(VAR_RESULT)) {
+        speakername("Happiny")
+    } else {
+        speakername("Noisy egg")
+    }
     msgbox(format(
         "Happi!"
     ))
+    playmoncry(SPECIES_HAPPINY, CRY_MODE_NORMAL)
     waitmoncry
     release
     end
@@ -227,6 +243,12 @@ script SunriseVillage_Event_Munchlax {
     faceplayer
     waitse
     playmoncry(SPECIES_MUNCHLAX, CRY_MODE_NORMAL)
+    ismonseen(SPECIES_MUNCHLAX)
+    if (var(VAR_RESULT)) {
+        speakername("Munchlax")
+    } else {
+        speakername("Big nom")
+    }
     msgbox(format(
         "Munch munch munch…"
     ))
@@ -239,6 +261,12 @@ script SunriseVillage_Event_Munchlax {
 script SunriseVillage_Event_Kirlia {
     lock
     faceplayer
+    ismonseen(SPECIES_MUNCHLAX)
+    if (var(VAR_RESULT)) {
+        speakername("Kirlia")
+    } else {
+        speakername("Posh dancer")
+    }
     msgbox(format(
         "…"
     ))

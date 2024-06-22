@@ -17,6 +17,7 @@ script ChiiTown_House1_EventScript_OldManTrespassing {
 	waitmovement(0)
 	applymovement(LOCALID_OLD_MAN, Common_Movement_Delay48)
 	waitmovement(0)
+	speakername("Old man")
 	msgbox(format(
 		"Do you often barge into people's houses uninvited without even taking off your shoes?\p"
 		"Want to break a couple of pots while you're at it?\p"
@@ -28,7 +29,7 @@ script ChiiTown_House1_EventScript_OldManTrespassing {
 	waitmovement(0)
 	setvar(VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 2)
 	warp(MAP_CHII_TOWN, 24, 21)
-	release
+	waitstate
 }
 
 script ChiiTown_House1_EventScript_GrowlitheGrrr {
@@ -37,6 +38,7 @@ script ChiiTown_House1_EventScript_GrowlitheGrrr {
 	waitmovement(0)
 	applymovement(LOCALID_GROWLITHE, Common_Movement_Delay48)
 	waitmovement(0)
+	speakername("Growlithe")
 	msgbox(format("Grrrrrrr…"))
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, ChiiTown_House1_Movement_PlayerStepsAwayFromGrowlithe)
@@ -60,6 +62,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp)
 	waitmovement(0)
 	playmoncry(SPECIES_GROWLITHE, CRY_MODE_NORMAL)
+	speakername("Growlithe")
 	msgbox(format("BARK!\pBARKBARKBARKBARKBARK!"))
 	waitmoncry
 	closemessage
@@ -68,6 +71,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	waitmovement(0)
 	applymovement(LOCALID_GROWLITHE, Common_Movement_FaceRight)
 	waitmovement(0)
+	speakername("Mean old man")
 	msgbox(format("Good girl, Growlithe, good girl."))
 	closemessage
 
@@ -77,6 +81,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 	waitmovement(0)
 	applymovement(LOCALID_OLD_MAN, Common_Movement_Delay48)
 	waitmovement(0)
+	speakername("Mean old man")
 	msgbox(format("She keeps intruders out."))
 	closemessage
 
@@ -88,7 +93,7 @@ script ChiiTown_House1_EventScript_GrowlitheBarks {
 
 	setvar(VAR_CHII_TOWN_OLD_MAN_TRESPASS_STATE, 2)
 	warp(MAP_CHII_TOWN, 24, 21)
-	release
+	waitstate
 }
 
 script ChiiTown_House1_EventScript_Cheater {
@@ -96,6 +101,7 @@ script ChiiTown_House1_EventScript_Cheater {
 	faceplayer
 	setwildbattle(SPECIES_ELECTRODE, 100)
 	waitse
+	speakername("Voice of God")
 	msgbox("Cheater!")
 	playmoncry(SPECIES_ELECTRODE, CRY_MODE_ENCOUNTER)
 	delay(40)
