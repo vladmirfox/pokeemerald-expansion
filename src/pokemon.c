@@ -6894,29 +6894,30 @@ void UpdateDaysPassedSinceFormChange(u16 days)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         struct Pokemon *mon = &gPlayerParty[i];
+        u8 daysSinceFormChange;
 
-        if (GetMonData(mon, MON_DATA_SPECIES, 0))
+        if (!GetMonData(mon, MON_DATA_SPECIES, 0))
+            continue;
+
+        daysSinceFormChange = GetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, 0);
+        if (daysSinceFormChange == 0)
+            continue;
+
+        if (daysSinceFormChange > days)
+            daysSinceFormChange -= days;
+        else
+            daysSinceFormChange = 0;
+
+        SetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, &daysSinceFormChange);
+
+        if (daysSinceFormChange == 0)
         {
-            u8 daysSinceFormChange = GetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, 0);
-            if (daysSinceFormChange > 0)
+            u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_DAYS_PASSED, 0);
+            
+            if (targetSpecies != SPECIES_NONE)
             {
-                if (daysSinceFormChange > days)
-                    daysSinceFormChange -= days;
-                else
-                    daysSinceFormChange = 0;
-
-                SetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, &daysSinceFormChange);
-
-                if (daysSinceFormChange == 0)
-                {
-                    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_DAYS_PASSED, 0);
-                    
-                    if (targetSpecies != SPECIES_NONE)
-                    {
-                        SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
-                        CalculateMonStats(mon);
-                    }
-                }
+                SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+                CalculateMonStats(mon);
             }
         }
     }
