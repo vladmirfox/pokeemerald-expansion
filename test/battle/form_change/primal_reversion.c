@@ -227,9 +227,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens immediately if it was brought in by
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
+        MESSAGE("2 sent out Wynaut!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
-        MESSAGE("2 sent out Wynaut!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }

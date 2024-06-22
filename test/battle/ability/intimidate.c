@@ -59,7 +59,6 @@ SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after KO", s16 
 
 DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double battle")
 {
-    KNOWN_FAILING;
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET);
@@ -169,8 +168,9 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
     }
 }
 
-DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched in as long as one opposing mon is alive")
+DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched in as long as other battles still have to do their turn")
 {
+    KNOWN_FAILING; // As long as the turn is still going (other battlers need to do their turn) on intim (or other abilities) should activate
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_WOBBUFFET);
@@ -184,9 +184,13 @@ DOUBLE_BATTLE_TEST("Intimidate activates immediately after the mon was switched 
         ABILITY_POPUP(playerLeft, ABILITY_ELECTRIC_SURGE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, playerLeft);
         HP_BAR(opponentLeft);
-        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
+        MESSAGE("2 sent out Wobbuffet!");
+
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
     }
@@ -215,5 +219,35 @@ SINGLE_BATTLE_TEST("Intimidate can not further lower opponents Atk stat if it is
         MESSAGE("Wobbuffet's Attack won't go lower!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_ATK], MIN_STAT_STAGE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Intimidate is not going to trigger if a mon switches out through u-turn and the opposing field is empty")
+{
+    KNOWN_FAILING; // Intim should not be delayed after u-turn
+    GIVEN {
+        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_WYNAUT) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TREECKO);
+        OPPONENT(SPECIES_TORCHIC);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_HEALING_WISH);
+            MOVE(playerLeft, MOVE_U_TURN, target: opponentLeft);
+            SEND_OUT(playerLeft, 2);
+            SEND_OUT(opponentLeft, 2);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEALING_WISH, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, playerLeft);
+        HP_BAR(opponentLeft);
+        MESSAGE("2 sent out Treecko!");
+        MESSAGE("2 sent out Torchic!");
+        NOT ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
     }
 }

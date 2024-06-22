@@ -3069,7 +3069,7 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
     return FALSE;
 }
 
-#define FAINTED_ACTIONS_MAX_CASE 7
+#define FAINTED_ACTIONS_MAX_CASE 8
 
 bool32 HandleFaintedMonActions(void)
 {
@@ -3153,7 +3153,19 @@ bool32 HandleFaintedMonActions(void)
             else
                 gBattleStruct->faintedActionsState = 4;
             break;
-        case 6:
+        case 6: // All battlers switch-in abilities happen here to prevent them happening against an empty field.
+            for (i = 0; i < gBattlersCount; i++)
+            {
+                if (gBattleStruct->switchInAbilityPostponed & gBitTable[i])
+                {
+                    if (DoSwitchInAbilitiesItems(i))
+                        return TRUE;
+                    gBattleStruct->switchInAbilityPostponed &= ~(gBitTable[i]);
+                }
+            }
+            gBattleStruct->faintedActionsState++;
+            break;
+        case 7:
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, 0, TRUE))
                 return TRUE;
             gBattleStruct->faintedActionsState++;

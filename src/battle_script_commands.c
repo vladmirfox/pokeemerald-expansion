@@ -7139,13 +7139,35 @@ static void SetDmgHazardsBattlescript(u8 battler, u8 multistringId)
         gBattlescriptCurrInstr = BattleScript_DmgHazardsOnFaintedBattler;
 }
 
-bool32 DoSwitchInAbilities(u32 battler)
+bool32 DoSwitchInAbilitiesItems(u32 battlerId)
 {
-    return (TryPrimalReversion(battler)
-         || AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0)
-         || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0))
-         || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battler, 0, 0, 0))
-         || AbilityBattleEffects(ABILITYEFFECT_TRACE2, 0, 0, 0, 0));
+    return (TryPrimalReversion(battlerId)
+         || AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0)
+         || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battlerId, 0, 0, 0))
+         || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battlerId, 0, 0, 0))
+         || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battlerId, FALSE)
+         || AbilityBattleEffects(ABILITYEFFECT_TRACE2, 0, 0, 0, 0)
+         || AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battlerId, 0, 0, 0));
+}
+
+bool32 ShouldPostponeSwitchInAbilities(u32 battlerId)
+{
+    bool32 aliveOpposing1 = IsBattlerAlive(BATTLE_OPPOSITE(battlerId));
+    bool32 aliveOpposing2 = IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battlerId)));
+    // No pokemon on opposing side - postpone.
+    if (!aliveOpposing1 && !aliveOpposing2)
+        return TRUE;
+
+    // Checks for double battle, so abilities like Intimidate wait until all battlers are switched-in before activating.
+    if (IsDoubleBattle())
+    {
+        if (aliveOpposing1 && !aliveOpposing2 && !HasNoMonsToSwitch(BATTLE_OPPOSITE(battlerId), PARTY_SIZE, PARTY_SIZE))
+            return TRUE;
+        if (!aliveOpposing1 && aliveOpposing2 && !HasNoMonsToSwitch(BATTLE_PARTNER(BATTLE_OPPOSITE(battlerId)), PARTY_SIZE, PARTY_SIZE))
+            return TRUE;
+    }
+
+    return FALSE;
 }
 
 static void Cmd_switchineffects(void)
@@ -7294,10 +7316,21 @@ static void Cmd_switchineffects(void)
 
         gDisableStructs[battler].truantSwitchInHack = 0;
 
-        if (DoSwitchInAbilities(battler) || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
-            return;
-        else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0))
-            return;
+        // Don't activate switch-in abilities if the opposing field is empty.
+        // This could happen when a mon uses explosion and causes everyone to faint.
+        if (ShouldPostponeSwitchInAbilities(battler) || gBattleStruct->switchInAbilityPostponed)
+        {
+            gBattleStruct->switchInAbilityPostponed |= gBitTable[battler];
+
+            // Held Items trigger right away
+            if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battler, FALSE))
+                return;
+        }
+        else
+        {
+            if (DoSwitchInAbilitiesItems(battler))
+                return;
+        }
 
         gDisableStructs[battler].stickyWebDone = FALSE;
         gDisableStructs[battler].spikesDone = FALSE;
