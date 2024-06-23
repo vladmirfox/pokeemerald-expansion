@@ -59,7 +59,7 @@
 #define FLAG_HIDE_LOST_MAREEP_5 0x29
 #define FLAG_CUT_QUEST_CUT_ALL_GRASS    0x2A
 #define FLAG_CUT_QUEST_COMPLETED        0x2B
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
+#define FLAG_PC_EXPLAINED    0x2C
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag

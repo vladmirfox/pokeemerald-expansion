@@ -11,6 +11,7 @@ mapscripts ChiiTown_PokemonCenter_MapScripts {
 			clearflag(FLAG_TEMP_1)
 			// Shamisen player is gone
 			setflag(FLAG_TEMP_2)
+
 			// Nighttime
 		} else {
 			// Fat guy is gone
@@ -31,6 +32,14 @@ mapscripts ChiiTown_PokemonCenter_MapScripts {
 	}
 }
 
+script ChiiTown_PokemonCenter_EventScript_PcGuy {
+	lock
+	faceplayer
+	call(Common_EventScript_PcGuy)
+	release
+	end
+}
+
 script ChiiTown_PokemonCenter_EventScript_Nurse {
 	setvar(VAR_0x800B, LOCALID_NURSE)
 	call(Common_EventScript_PkmnCenterNurse_CutTheBullshit)
@@ -43,9 +52,54 @@ script ChiiTown_PokemonCenter_EventScript_Nurse {
 script ChiiTown_PokemonCenter_EventScript_Shamisen {
 	lock
 	faceplayer
+	// TODO EVA battle shamisen player!
 	speakername("Blind singer")
 	msgbox(format(
-		"Good evening."
+		"Good evening.\p"
+		"We blind shamisen players sing to survive.\p"
+		"These Pokémon refuges give us a safe place to spend the night."
+	))
+	closemessage
+	release
+	end
+}
+
+script ChiiTown_PokemonCenter_EventScript_ShamisenFan {
+	lock
+	faceplayer
+	speakername("Shamisen fan")
+	msgbox(format(
+		"Such a beautiful voice…\p"
+		"Such sorrowful notes…\p"
+		"Such ethereal beauty…\p"
+		"I could listen to her forever…\p"
+		"Even though she can't see me, I sure hope she'll notice me one day…"
+	))
+	closemessage
+	release
+	end
+}
+
+script ChiiTown_PokemonCenter_EventScript_Boy {
+	lock
+	faceplayer
+	speakername("Little boy")
+	msgbox(format(
+		"I'm here with my mama!\p"
+		"The music lady's nice!"
+	))
+	closemessage
+	release
+	end
+}
+
+script ChiiTown_PokemonCenter_EventScript_Mom {
+	lock
+	faceplayer
+	speakername("Woman")
+	msgbox(format(
+		"Traveling shamisen players take shelter in Pokémon refuges when the night falls.\p"
+		"Their singing makes for such a cosy atmosphere!"
 	))
 	closemessage
 	release
@@ -60,9 +114,6 @@ script ChiiTown_PokemonCenter_EventScript_WhereShamisen {
 		"Where's that cute shamisen player that was here last night?"
 	))
 	closemessage
-	gettime
-	buffernumberstring(STR_VAR_1, VAR_0x8000)
-	msgbox("{STR_VAR_1}")
 	release
 	end
 }

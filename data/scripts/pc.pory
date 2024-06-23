@@ -1,0 +1,121 @@
+script Common_EventScript_PcGuy {
+	if (flag(FLAG_PC_EXPLAINED)) {
+		msgbox(format(
+			"Need me to carry some Pokémon around for you? Sure thing!"
+		))
+	} else {
+		msgbox(format(
+			"Hey there, Pokémon wielder!\p"
+			"Have you ever thought, “Darn, I wish I could catch this seventh Pokémon, but I only have room for six?”\p"
+			"Today's your lucky day!\p"
+			"I've been appointed by the Toku council to store wielders' Pokémon for them while they travel around.\p"
+			"We bring your Pokémon to a ranch where they live happily while waiting for you to get them back!\p"
+			"So if you ever want to store or retrieve your Pokémon, come talk to me!"
+		))
+	}
+	call(EventScript_AccessPokemonStorage)
+	special(ShowPokemonStorageSystemPC)
+	waitstate
+	if (flag(FLAG_PC_EXPLAINED)) {
+		msgbox(format(
+			"Pant… pant… Thanks for using our Pokémon storage!"
+		))
+	} else {
+		// TODO EVA finish this
+		msgbox(format(
+			"Oh, you want to store these Pokémon?\p"
+			"Alright, I'll just carry them over to the ranch!\p"
+			"Just a minute!"
+		))
+
+		fadescreen(FADE_TO_BLACK)
+		delay(120)
+		fadescreen(FADE_FROM_BLACK)
+
+		msgbox(format(
+			"PANT… PANT…\p"
+			"Your… pant… Pokémon… pant… are all set!\p"
+			"Whew, the ranch is a little far from here! Pant…\p"
+			"Come… pant… Come again!"
+		))
+
+		setflag(FLAG_PC_EXPLAINED)
+	}
+	end
+}
+
+raw `EventScript_PC::
+	lockall
+	setvar VAR_0x8004, PC_LOCATION_OTHER
+	special DoPCTurnOnEffect
+	playse SE_PC_ON
+	msgbox Text_BootUpPC, MSGBOX_DEFAULT
+	goto EventScript_PCMainMenu
+	end
+
+EventScript_PCMainMenu::
+	message gText_WhichPCShouldBeAccessed
+	waitmessage
+	special ScriptMenu_CreatePCMultichoice
+	waitstate
+	goto EventScript_AccessPC
+	end
+
+EventScript_AccessPC::
+	switch VAR_RESULT
+	case 0, EventScript_AccessPokemonStorage
+	case 1, EventScript_AccessPlayersPC
+	case 2, EventScript_AccessHallOfFame
+	case 3, EventScript_TurnOffPC
+	case MULTI_B_PRESSED, EventScript_TurnOffPC
+	end
+
+EventScript_AccessPlayersPC::
+	playse SE_PC_LOGIN
+	msgbox gText_AccessedPlayersPC, MSGBOX_DEFAULT
+	special PlayerPC
+	waitstate
+	goto EventScript_PCMainMenu
+	end
+
+EventScript_AccessPokemonStorage::
+	playse SE_PC_LOGIN
+	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
+	call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC
+	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
+	special ShowPokemonStorageSystemPC
+	waitstate
+	goto EventScript_PCMainMenu
+	end
+
+EventScript_AccessSomeonesPC::
+	msgbox gText_AccessedSomeonesPC, MSGBOX_DEFAULT
+	return
+
+EventScript_AccessLanettesPC::
+	msgbox gText_AccessedLanettesPC, MSGBOX_DEFAULT
+	return
+
+EventScript_TurnOffPC::
+	setvar VAR_0x8004, PC_LOCATION_OTHER
+	playse SE_PC_OFF
+	special DoPCTurnOffEffect
+	releaseall
+	end
+
+EventScript_AccessHallOfFame::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_TurnOffPC
+	playse SE_PC_LOGIN
+	special AccessHallOfFamePC
+	waitstate
+	goto EventScript_AccessPC
+	end
+
+EventScript_AccessPokemonBoxLink::
+	playse SE_PC_LOGIN
+	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
+	special ShowPokemonStorageSystemPC
+	waitstate
+	goto EventScript_TurnOffPC
+	end
+`

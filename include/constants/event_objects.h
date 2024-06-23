@@ -81,7 +81,7 @@
 #define OBJ_EVENT_GFX_FARMER                      77
 #define OBJ_EVENT_GFX_BATTLE_GIRL                 78
 #define OBJ_EVENT_GFX_CUTTABLE_TREE_KURA_DOJO     79
-#define OBJ_EVENT_GFX_UNUSED_PIKACHU_DOLL         80
+#define OBJ_EVENT_GFX_TRAVELER                    80
 #define OBJ_EVENT_GFX_UNUSED_PORYGON2_DOLL        81
 #define OBJ_EVENT_GFX_CUTTABLE_TREE               82
 #define OBJ_EVENT_GFX_MART_EMPLOYEE               83
@@ -394,6 +394,8 @@
 #define OBJ_EVENT_PAL_TAG_SHAMISEN_RED            0x1137
 #define OBJ_EVENT_PAL_TAG_LASS                    0x1138
 #define OBJ_EVENT_PAL_TAG_COOK                    0x1139
+#define OBJ_EVENT_PAL_TAG_NURSE                   0x113A
+#define OBJ_EVENT_PAL_TAG_TRAVELER                0x113B
 
 #if OW_MON_POKEBALLS
 // Vanilla
