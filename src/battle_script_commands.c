@@ -7371,8 +7371,6 @@ static void Cmd_switchineffects(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         break;
     }
-
-
 }
 
 static void Cmd_trainerslidein(void)
