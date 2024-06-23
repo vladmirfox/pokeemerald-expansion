@@ -486,7 +486,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     // Reusing trainer palette for ow
     {gObjectEventPal_Lass,                  OBJ_EVENT_PAL_TAG_LASS},
     {gObjectEventPal_OldMan,                OBJ_EVENT_PAL_TAG_OLD_MAN},
-    {gObjectEventPal_LittleGirl,            OBJ_EVENT_PAL_TAG_LITTLE_GIRL},
+    {gObjectEventPal_OldMan,                OBJ_EVENT_PAL_TAG_OLD_MAN},
+    {gObjectEventPal_Cook,                  OBJ_EVENT_PAL_TAG_COOK},
     {gObjectEventPal_FatMan,                OBJ_EVENT_PAL_TAG_FAT_MAN},
     {gObjectEventPal_Artist,                OBJ_EVENT_PAL_TAG_ARTIST},
     {gObjectEventPal_NinjaBoy,              OBJ_EVENT_PAL_TAG_NINJA_BOY},
@@ -498,6 +499,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_MartEmployee,          OBJ_EVENT_PAL_TAG_MART_EMPLOYEE},
     {gObjectEventPal_BattleGirl,            OBJ_EVENT_PAL_TAG_BATTLE_GIRL},
     {gObjectEventPal_Hana,                  OBJ_EVENT_PAL_TAG_HANA},
+    {gObjectEventPal_Koishi,                  OBJ_EVENT_PAL_TAG_KOISHI},
     {gObjectEventPal_Kaba,                  OBJ_EVENT_PAL_TAG_KABA},
     {gObjectEventPal_Brendan,               OBJ_EVENT_PAL_TAG_BRENDAN},
     {gObjectEventPal_BrendanReflection,     OBJ_EVENT_PAL_TAG_BRENDAN_REFLECTION},
