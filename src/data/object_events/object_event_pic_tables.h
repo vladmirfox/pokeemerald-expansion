@@ -988,8 +988,8 @@ static const struct SpriteFrameImage sPicTable_TuberMSwimming[] = {
     overworld_ascending_frames(gObjectEventPic_TuberMSwimming, 2, 2),
 };
 
-static const struct SpriteFrameImage sPicTable_Mom[] = {
-    overworld_ascending_frames(gObjectEventPic_Mom, 2, 4),
+static const struct SpriteFrameImage sPicTable_BigSister[] = {
+    overworld_ascending_frames(gObjectEventPic_BigSister, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Scott[] = {
