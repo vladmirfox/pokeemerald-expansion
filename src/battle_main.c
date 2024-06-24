@@ -5581,7 +5581,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
     }
 
     FreeAllWindowBuffers();
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
+    if (gBattleStruct != NULL && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         ZeroEnemyPartyMons();
         FreeMonSpritesGfx();
