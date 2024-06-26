@@ -386,7 +386,7 @@ script TranquilRoute_TrainerTips1 {
 
 script TranquilRoute_TrainerTips2 {
 	msgbox(format(
-		"Did you know?\p"
+		"Did you know? {POKE}\p"
 		"You can swap the Pokémon in your party using {R_BUTTON}.\p"
 		"Set the lead Pokémon with {SELECT_BUTTON}."
 	), MSGBOX_SIGN)
