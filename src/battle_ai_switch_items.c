@@ -921,10 +921,9 @@ static bool32 ShouldSwitchIfEncored(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
 {
-    u32 holdEffect = ItemId_GetHoldEffect(gBattleMons[battler].item);
+    u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
-    if ((holdEffect == HOLD_EFFECT_CHOICE_SPECS || holdEffect == HOLD_EFFECT_CHOICE_BAND || holdEffect == HOLD_EFFECT_CHOICE_SCARF)
-        && gBattleMons[battler].ability != ABILITY_KLUTZ)
+    if (HOLD_EFFECT_CHOICE(holdEffect) && gBattleMons[battler].ability != ABILITY_KLUTZ)
     {
         if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
         {
@@ -933,7 +932,6 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
                 BtlController_EmitTwoReturnValues(battler, 1, B_ACTION_SWITCH, 0);
             return TRUE;
         }
-
     }
 
     return FALSE;
