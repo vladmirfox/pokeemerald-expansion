@@ -145,7 +145,7 @@ AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they don't have
     }
 }
 
-AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they can't switch out")
+AI_SINGLE_BATTLE_TEST("Choiced Pokémon won't use status move if they are trapped")
 {
     u32 j, aiAbility = ABILITY_NONE, playerAbility = MOVE_NONE, species = SPECIES_NONE, heldItem = ITEM_NONE;
 
