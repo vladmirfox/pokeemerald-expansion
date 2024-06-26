@@ -14,12 +14,25 @@ mapscripts KuraTown_MapScripts {
 
 script KuraTown_EventScript_GuardStopsYou {
 	lock
-	applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterRight)
-	waitmovement(0)
-	msgbox(format("Hey!"))
-	closemessage
-	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
-	waitmovement(OBJ_EVENT_ID_PLAYER)
+
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	// Player sneaks in from the left
+	if (var(VAR_TEMP_0) <= 14) {
+		applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)
+		waitmovement(0)
+		msgbox(format("Hey!"))
+		closemessage
+		applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight)
+		waitmovement(OBJ_EVENT_ID_PLAYER)
+		// Player sneaks in from the right
+	} else {
+		applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterRight)
+		waitmovement(0)
+		msgbox(format("Hey!"))
+		closemessage
+		applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft)
+		waitmovement(OBJ_EVENT_ID_PLAYER)
+	}
 	delay(20)
 
 	if (var(VAR_SAKU_KURA_VILLAGES_STATE) == 1) {

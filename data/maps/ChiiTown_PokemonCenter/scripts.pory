@@ -53,7 +53,7 @@ script ChiiTown_PokemonCenter_EventScript_Shamisen {
 	lock
 	faceplayer
 	// TODO EVA battle shamisen player!
-	speakername("Blind singer")
+	speakername("Shamisen player")
 	msgbox(format(
 		"Good evening.\p"
 		"We blind shamisen players sing to survive.\p"
@@ -96,7 +96,7 @@ script ChiiTown_PokemonCenter_EventScript_Boy {
 script ChiiTown_PokemonCenter_EventScript_Mom {
 	lock
 	faceplayer
-	speakername("Woman")
+	speakername("Little boy's mom")
 	msgbox(format(
 		"Traveling shamisen players take shelter in Pokémon refuges when the night falls.\p"
 		"Their singing makes for such a cosy atmosphere!"
@@ -139,7 +139,7 @@ script ChiiTown_PokemonCenter_EventScript_Snorunt {
     if (var(VAR_RESULT)) {
         speakername("Snorunt")
     } else {
-        speakername("Cold pyramid")
+        speakername("Shaking triangle")
     }
 	msgbox(format(
 		"Glaglaglaglagla!"

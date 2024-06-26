@@ -1,0 +1,11 @@
+mapscripts SakuTown_House3_MapScripts {
+	
+}
+
+script SakuTown_House3_EventScript_TradeMe {
+	
+}
+
+script SakuTown_House3_EventScript_Man {
+	
+}
