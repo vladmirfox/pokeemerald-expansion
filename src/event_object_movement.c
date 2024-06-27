@@ -191,6 +191,7 @@ static void SpriteCB_VirtualObject(struct Sprite *);
 static void DoShadowFieldEffect(struct ObjectEvent *);
 static void SetJumpSpriteData(struct Sprite *, u8, u8, u8);
 static void SetWalkSlowSpriteData(struct Sprite *, u8);
+static void SetWalkSlowerSpriteData(struct Sprite *, u8);
 static bool8 UpdateWalkSlowAnim(struct Sprite *);
 static u8 DoJumpSpriteMovement(struct Sprite *);
 static u8 DoJumpSpecialSpriteMovement(struct Sprite *);
@@ -331,6 +332,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = MovementType_WalkSlowlyInPlace,
     [MOVEMENT_TYPE_FOLLOW_PLAYER] = MovementType_FollowPlayer,
+    [MOVEMENT_TYPE_WANDER_AROUND_SLOWER] = MovementType_WanderAroundSlower,
 };
 
 static const bool8 sMovementTypeHasRange[NUM_MOVEMENT_TYPES] = {
@@ -981,6 +983,13 @@ const u8 gWalkSlowMovementActions[] = {
     MOVEMENT_ACTION_WALK_SLOW_UP,
     MOVEMENT_ACTION_WALK_SLOW_LEFT,
     MOVEMENT_ACTION_WALK_SLOW_RIGHT,
+};
+const u8 gWalkSlowerMovementActions[] = {
+    MOVEMENT_ACTION_WALK_SLOWER_DOWN,
+    MOVEMENT_ACTION_WALK_SLOWER_DOWN,
+    MOVEMENT_ACTION_WALK_SLOWER_UP,
+    MOVEMENT_ACTION_WALK_SLOWER_LEFT,
+    MOVEMENT_ACTION_WALK_SLOWER_RIGHT,
 };
 const u8 gWalkNormalMovementActions[] = {
     MOVEMENT_ACTION_WALK_NORMAL_DOWN,
@@ -3439,6 +3448,7 @@ u16 GetObjectPaletteTag(u8 palSlot)
 
 movement_type_empty_callback(MovementType_None)
 movement_type_def(MovementType_WanderAround, gMovementTypeFuncs_WanderAround)
+movement_type_def(MovementType_WanderAroundSlower, gMovementTypeFuncs_WanderAroundSlower)
 
 bool8 MovementType_WanderAround_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
@@ -3491,6 +3501,14 @@ bool8 MovementType_WanderAround_Step4(struct ObjectEvent *objectEvent, struct Sp
 bool8 MovementType_WanderAround_Step5(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkNormalMovementAction(objectEvent->movementDirection));
+    objectEvent->singleMovementActive = TRUE;
+    sprite->sTypeFuncId = 6;
+    return TRUE;
+}
+
+bool8 MovementType_WanderAround_Step5Slower(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventSetSingleMovement(objectEvent, sprite, GetWalkSlowerMovementAction(objectEvent->movementDirection));
     objectEvent->singleMovementActive = TRUE;
     sprite->sTypeFuncId = 6;
     return TRUE;
@@ -6263,6 +6281,7 @@ u8 name(u32 idx)\
 }
 
 dirn_to_anim(GetFaceDirectionMovementAction, gFaceDirectionMovementActions);
+dirn_to_anim(GetWalkSlowerMovementAction, gWalkSlowerMovementActions);
 dirn_to_anim(GetWalkSlowMovementAction, gWalkSlowMovementActions);
 dirn_to_anim(GetWalkNormalMovementAction, gWalkNormalMovementActions);
 dirn_to_anim(GetWalkFastMovementAction, gWalkFastMovementActions);
@@ -6424,6 +6443,40 @@ static void StartRunningAnim(struct ObjectEvent *objectEvent, struct Sprite *spr
 static bool8 UpdateMovementNormal(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     if (NpcTakeStep(sprite))
+    {
+        ShiftStillObjectEventCoords(objectEvent);
+        objectEvent->triggerGroundEffectsOnStop = TRUE;
+        sprite->animPaused = TRUE;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void InitNpcForWalkSlower(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction)
+{
+    s16 x;
+    s16 y;
+
+    x = objectEvent->currentCoords.x;
+    y = objectEvent->currentCoords.y;
+    SetObjectEventDirection(objectEvent, direction);
+    MoveCoords(direction, &x, &y);
+    ShiftObjectEventCoords(objectEvent, x, y);
+    SetWalkSlowerSpriteData(sprite, direction);
+    sprite->animPaused = FALSE;
+    objectEvent->triggerGroundEffectsOnMove = TRUE;
+    sprite->data[2] = 1;
+}
+
+static void InitWalkSlower(struct ObjectEvent *objectEvent, struct Sprite *sprite, u8 direction)
+{
+    InitNpcForWalkSlower(objectEvent, sprite, direction);
+    SetStepAnimHandleAlternation(objectEvent, sprite, GetMoveDirectionAnimNum(objectEvent->facingDirection));
+}
+
+bool8 UpdateWalkSlower(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateWalkSlowerAnim(sprite))
     {
         ShiftStillObjectEventCoords(objectEvent);
         objectEvent->triggerGroundEffectsOnStop = TRUE;
@@ -6654,6 +6707,70 @@ bool8 MovementAction_WalkNormalDiagonalDownRight_Step1(struct ObjectEvent *objec
     if (UpdateMovementNormal(objectEvent, sprite))
     {
         sprite->sActionFuncId = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowerDown_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitWalkSlower(objectEvent, sprite, DIR_SOUTH);
+    return MovementAction_WalkSlowerDown_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkSlowerDown_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateWalkSlower(objectEvent, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowerUp_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitWalkSlower(objectEvent, sprite, DIR_NORTH);
+    return MovementAction_WalkSlowerUp_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkSlowerUp_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateWalkSlower(objectEvent, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowerLeft_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitWalkSlower(objectEvent, sprite, DIR_WEST);
+    return MovementAction_WalkSlowerLeft_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkSlowerLeft_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateWalkSlower(objectEvent, sprite))
+    {
+        sprite->data[2] = 2;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool8 MovementAction_WalkSlowerRight_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    InitWalkSlower(objectEvent, sprite, DIR_EAST);
+    return MovementAction_WalkSlowerRight_Step1(objectEvent, sprite);
+}
+
+bool8 MovementAction_WalkSlowerRight_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    if (UpdateWalkSlower(objectEvent, sprite))
+    {
+        sprite->data[2] = 2;
         return TRUE;
     }
     return FALSE;
@@ -9932,6 +10049,29 @@ static bool8 NpcTakeStep(struct Sprite *sprite)
 
 #define sTimer     data[4]
 #define sNumSteps  data[5]
+
+bool8 UpdateWalkSlowerAnim(struct Sprite *sprite)
+{
+    if (!(sprite->sTimer & 1))
+    {
+        Step1(sprite, sprite->sDirection);
+        sprite->sNumSteps++;
+    }
+
+    sprite->sTimer++;
+
+    if (sprite->sNumSteps > 15)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+void SetWalkSlowerSpriteData(struct Sprite *sprite, u8 direction)
+{
+    sprite->sDirection = direction;
+    sprite->sTimer = 0;
+    sprite->sNumSteps = 0;
+}
 
 static void SetWalkSlowSpriteData(struct Sprite *sprite, u8 direction)
 {
