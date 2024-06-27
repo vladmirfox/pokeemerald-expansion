@@ -1000,6 +1000,10 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         return FALSE;
 
+    // Sequence Switching AI never switches mid-battle
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SEQUENCE_SWITCHING)
+        return FALSE;
+
     availableToSwitch = 0;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -1051,10 +1055,6 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
         else
             return FALSE;
     }
-
-    // Bad Switching AI never switches
-    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_BAD_SWITCHING)
-        return FALSE;
 
     //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
@@ -1975,7 +1975,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
 
         // If ace mon is the last available Pokemon and U-Turn/Volt Switch was used - switch to the mon.
         else if (aceMonId != PARTY_SIZE
-            && (gMovesInfo[gLastUsedMove].effect == EFFECT_HIT_ESCAPE || gMovesInfo[gLastUsedMove].effect == EFFECT_PARTING_SHOT))
+            && (gMovesInfo[gLastUsedMove].effect == EFFECT_HIT_ESCAPE || gMovesInfo[gLastUsedMove].effect == EFFECT_PARTING_SHOT || gMovesInfo[gLastUsedMove].effect == EFFECT_BATON_PASS))
             return aceMonId;
     }
     return PARTY_SIZE;
@@ -2041,17 +2041,17 @@ u8 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
     else
         party = gEnemyParty;
 
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SEQUENCE_SWITCHING)
+    {
+        bestMonId = GetNextMonInParty(party, firstId, lastId, battlerIn1, battlerIn2);
+        return bestMonId;
+    }
+
     // Split ideal mon decision between after previous mon KO'd (prioritize offensive options) and after switching active mon out (prioritize defensive options), and expand the scope of both.
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
     if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
         bestMonId = GetBestMonIntegrated(party, firstId, lastId, battler, opposingBattler, battlerIn1, battlerIn2, switchAfterMonKOd);
-        return bestMonId;
-    }
-
-    else if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_BAD_SWITCHING)
-    {
-        bestMonId = GetNextMonInParty(party, firstId, lastId, battlerIn1, battlerIn2);
         return bestMonId;
     }
 
