@@ -47,20 +47,22 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: Roar still forces switch to r
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after U-Turn in exactly party order")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after U-Turn into lowest party index")
 {
     u32 j, aiSequenceSwitchingFlag = 0, move = MOVE_NONE;
 
     static const u32 switchMoves[] = {
         MOVE_U_TURN,
-        MOVE_U_TURN,
-        MOVE_U_TURN,
+        MOVE_PARTING_SHOT,
+        MOVE_BATON_PASS,
     };
+
     for (j = 0; j < ARRAY_COUNT(switchMoves); j++)
     {
         PARAMETRIZE{ aiSequenceSwitchingFlag = 0;                           move = switchMoves[j]; }
         PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING;  move = switchMoves[j]; }
     }
+
     GIVEN {
         ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
         ASSUME(gMovesInfo[MOVE_PARTING_SHOT].effect == EFFECT_PARTING_SHOT);
@@ -72,14 +74,35 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after U
         OPPONENT(SPECIES_MACHOP) { Level(3); Moves(move); }
         OPPONENT(SPECIES_MACHOP) { Level(4); Moves(move); }
         OPPONENT(SPECIES_MACHOP) { Level(5); Moves(move); }
-        OPPONENT(SPECIES_MAGNEZONE) { Level(100); }
+        OPPONENT(SPECIES_MAGNEZONE) { Level(100); Moves(move); }
     } WHEN {
-        TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, aiSequenceSwitchingFlag ? 1 : 1); }
-        if (aiSequenceSwitchingFlag == AI_FLAG_SEQUENCE_SWITCHING) {
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
+        if (aiSequenceSwitchingFlag) {
             TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
             TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
             TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
+            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
+            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
+        }
+        else if (move == MOVE_U_TURN) {
+            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 0); }
+            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 0); }
+            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
+        }
+        else if (move == MOVE_PARTING_SHOT) {
+            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 4); }
+            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 4); }
+            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
+        }
+        else if (move == MOVE_BATON_PASS) {
+            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 4); }
+            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 5); }
+            TURN { EXPECT_SWITCH(opponent, 4); }
+            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 2); }
         }
     }
 }
