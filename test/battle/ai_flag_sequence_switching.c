@@ -39,11 +39,17 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after a
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: Roar still forces switch to random party member")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: Roar and Dragon Tail still force switch to random party member")
 {
+    u32 move;
+
+    PARAMETRIZE { move = MOVE_ROAR; }
+    PARAMETRIZE {move = MOVE_DRAGON_TAIL; }
+
     PASSES_RANDOMLY(1, 2, RNG_FORCE_RANDOM_SWITCH);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROAR].effect == EFFECT_ROAR);
+        ASSUME(gMovesInfo[MOVE_DRAGON_TAIL].effect == EFFECT_HIT_SWITCH_TARGET);
         AI_FLAGS(AI_FLAG_SEQUENCE_SWITCHING);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -51,9 +57,9 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: Roar still forces switch to r
         OPPONENT(SPECIES_CHARMANDER);
         OPPONENT(SPECIES_SQUIRTLE) { HP(0); }
     } WHEN {
-        TURN { MOVE(player, MOVE_ROAR); }
+        TURN { MOVE(player, move); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, player);
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
         MESSAGE("Foe Bulbasaur was dragged out!");
     }
 }
