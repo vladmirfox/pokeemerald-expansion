@@ -29,6 +29,16 @@ script MaguroHarbor_EventScript_FishPokemonSalesman {
 	release
 }
 
+script MaguroHarbor_EventScript_FishermanInBoat {
+	lock
+	faceplayer
+	msgbox(format(
+		"I'm letting my fishing partner Cramorant rest for a while."
+	), MSGBOX_DEFAULT)
+	closemessage
+	release
+}
+
 script MaguroHarbor_EventScript_Mart {
 	lock
 	faceplayer
