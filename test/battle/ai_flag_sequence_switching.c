@@ -11,19 +11,30 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after a
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSequenceSwitchingFlag);
         PLAYER(SPECIES_SWELLOW) { Level (50); }
-        OPPONENT(SPECIES_MACHOP) { Level(1); }
-        OPPONENT(SPECIES_MACHOP) { Level(2); }
-        OPPONENT(SPECIES_MACHOP) { Level(3); }
-        OPPONENT(SPECIES_MACHOP) { Level(4); }
         OPPONENT(SPECIES_MACHOP) { Level(5); }
+        OPPONENT(SPECIES_MACHOKE) { Level(5); }
+        OPPONENT(SPECIES_MACHAMP) { Level(5); }
+        OPPONENT(SPECIES_MANKEY) { Level(5); }
+        OPPONENT(SPECIES_PRIMEAPE) { Level(5); }
         OPPONENT(SPECIES_MAGNEZONE) { Level(100); }
     } WHEN {
-        TURN { MOVE(player, MOVE_WING_ATTACK) ; EXPECT_SEND_OUT(opponent, aiSequenceSwitchingFlag ? 2 : 5); }
-        if (aiSequenceSwitchingFlag == AI_FLAG_SEQUENCE_SWITCHING) {
-            TURN { MOVE(player, MOVE_WING_ATTACK) ; EXPECT_SEND_OUT(opponent, 4); }
-            TURN { MOVE(player, MOVE_WING_ATTACK) ; EXPECT_SEND_OUT(opponent, 3); }
-            TURN { MOVE(player, MOVE_WING_ATTACK) ; EXPECT_SEND_OUT(opponent, 4); }
-            TURN { MOVE(player, MOVE_WING_ATTACK) ; EXPECT_SEND_OUT(opponent, 5); }
+        TURN { MOVE(player, MOVE_WING_ATTACK); }
+        if (aiSequenceSwitchingFlag) {
+            TURN { MOVE(player, MOVE_WING_ATTACK); }
+            TURN { MOVE(player, MOVE_WING_ATTACK); }
+            TURN { MOVE(player, MOVE_WING_ATTACK); }
+            TURN { MOVE(player, MOVE_WING_ATTACK); }
+        }
+    } SCENE {
+        if (aiSequenceSwitchingFlag) {
+            MESSAGE("{PKMN} TRAINER LEAF sent out Machoke!");
+            MESSAGE("{PKMN} TRAINER LEAF sent out Machamp!");
+            MESSAGE("{PKMN} TRAINER LEAF sent out Mankey!");
+            MESSAGE("{PKMN} TRAINER LEAF sent out Primeape!");
+            MESSAGE("{PKMN} TRAINER LEAF sent out Magnezone!");
+        }
+        else {
+            MESSAGE("{PKMN} TRAINER LEAF sent out Magnezone!");
         }
     }
 }
@@ -47,7 +58,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: Roar still forces switch to r
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after U-Turn into lowest party index")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch into lowest party index after U-Turn, Parting Shot, and Baton Pass")
 {
     u32 j, aiSequenceSwitchingFlag = 0, move = MOVE_NONE;
 
@@ -83,100 +94,8 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after U
             TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
             TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
         }
-        else if (move == MOVE_U_TURN) {
-            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, MOVE_U_TURN) ; EXPECT_SEND_OUT(opponent, 5); }
-        }
-        else if (move == MOVE_PARTING_SHOT) {
-            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 4); }
-            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 4); }
-            TURN { EXPECT_MOVE(opponent, MOVE_PARTING_SHOT) ; EXPECT_SEND_OUT(opponent, 5); }
-        }
-        else if (move == MOVE_BATON_PASS) {
-            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 4); }
-            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 5); }
-            TURN { EXPECT_SWITCH(opponent, 4); }
-            TURN { EXPECT_MOVE(opponent, MOVE_BATON_PASS) ; EXPECT_SEND_OUT(opponent, 2); }
-        }
-    }
-}
-
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after Parting Shot in exactly party order")
-{
-    u32 j, aiSequenceSwitchingFlag = 0, move = MOVE_NONE;
-
-    static const u32 switchMoves[] = {
-        MOVE_PARTING_SHOT,
-        MOVE_PARTING_SHOT,
-        MOVE_PARTING_SHOT,
-    };
-    for (j = 0; j < ARRAY_COUNT(switchMoves); j++)
-    {
-        PARAMETRIZE{ aiSequenceSwitchingFlag = 0;                           move = switchMoves[j]; }
-        PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING;  move = switchMoves[j]; }
-    }
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
-        ASSUME(gMovesInfo[MOVE_PARTING_SHOT].effect == EFFECT_PARTING_SHOT);
-        ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSequenceSwitchingFlag);
-        PLAYER(SPECIES_SWELLOW) { Level (50); }
-        OPPONENT(SPECIES_MACHOP) { Level(1); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(2); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(3); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(4); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(5); Moves(move); }
-        OPPONENT(SPECIES_MAGNEZONE) { Level(100); }
-    } WHEN {
-        TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, aiSequenceSwitchingFlag ? 1 : 5); }
-        if (aiSequenceSwitchingFlag == AI_FLAG_SEQUENCE_SWITCHING) {
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
-        }
-    }
-}
-
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after Baton Pass in exactly party order")
-{
-    u32 j, aiSequenceSwitchingFlag = 0, move = MOVE_NONE;
-
-    static const u32 switchMoves[] = {
-        MOVE_BATON_PASS,
-        MOVE_BATON_PASS,
-        MOVE_BATON_PASS,
-    };
-    for (j = 0; j < ARRAY_COUNT(switchMoves); j++)
-    {
-        PARAMETRIZE{ aiSequenceSwitchingFlag = 0;                           move = switchMoves[j]; }
-        PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING;  move = switchMoves[j]; }
-    }
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
-        ASSUME(gMovesInfo[MOVE_PARTING_SHOT].effect == EFFECT_PARTING_SHOT);
-        ASSUME(gMovesInfo[MOVE_BATON_PASS].effect == EFFECT_BATON_PASS);
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSequenceSwitchingFlag);
-        PLAYER(SPECIES_SWELLOW) { Level (50); }
-        OPPONENT(SPECIES_MACHOP) { Level(1); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(2); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(3); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(4); Moves(move); }
-        OPPONENT(SPECIES_MACHOP) { Level(5); Moves(move); }
-        OPPONENT(SPECIES_MAGNEZONE) { Level(100); }
-    } WHEN {
-        TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, aiSequenceSwitchingFlag ? 1 : 5); }
-        if (aiSequenceSwitchingFlag == AI_FLAG_SEQUENCE_SWITCHING) {
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 0); }
-            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 1); }
+        else {
+            TURN { EXPECT_MOVE(opponent, move) ; EXPECT_SEND_OUT(opponent, 5); }
         }
     }
 }
