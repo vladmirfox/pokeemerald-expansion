@@ -1044,27 +1044,6 @@ static void Trade_Memcpy(void *dest, const void *src, u32 size)
         _dest[i] = _src[i];
 }
 
-// In packs of 2 mons at once
-static void ConvertExpansionMons(struct Pokemon *src)
-{
-    struct VanillaPokemon vanillaMons[2];
-
-    ExpansionMonToVanillaMon(&src[0], &vanillaMons[0]);
-    ExpansionMonToVanillaMon(&src[1], &vanillaMons[1]);
-    // The parties are sent in pairs rather than all at once
-    Trade_Memcpy(gBlockSendBuffer, vanillaMons, 2 * sizeof(struct VanillaPokemon));
-}
-
-static void ConvertVanillaMons(struct Pokemon *dst, u32 id)
-{
-    struct VanillaPokemon vanillaMons[2];
-    Trade_Memcpy(vanillaMons, gBlockRecvBuffer[id ^ 1], 2 * sizeof(struct VanillaPokemon));
-
-    //Trade_Memcpy(dst, vanillaMons, 2 * sizeof(struct VanillaPokemon));
-    VanillaMonToExpansion(&vanillaMons[0], &dst[0]);
-    VanillaMonToExpansion(&vanillaMons[1], &dst[1]);
-}
-
 static bool32 BufferTradeParties(void)
 {
     u32 id = GetMultiplayerId();
@@ -1074,7 +1053,7 @@ static bool32 BufferTradeParties(void)
     switch (sTradeMenu->bufferPartyState)
     {
     case 0:
-        ConvertExpansionMons(&gPlayerParty[0]);
+        SendExpansionMonsToVanilla(&gPlayerParty[0], SEND_TRADE);
         sTradeMenu->bufferPartyState++;
         sTradeMenu->timer = 0;
         break;
@@ -1100,13 +1079,13 @@ static bool32 BufferTradeParties(void)
     case 4:
         if (_GetBlockReceivedStatus() == 3)
         {
-            ConvertVanillaMons(&gEnemyParty[0], id);
+            ReceiveVanillaMons(&gEnemyParty[0], gBlockRecvBuffer[id ^ 1], SEND_TRADE);
             TradeResetReceivedFlags();
             sTradeMenu->bufferPartyState++;
         }
         break;
     case 5:
-        ConvertExpansionMons(&gPlayerParty[2]);
+        SendExpansionMonsToVanilla(&gPlayerParty[2], SEND_TRADE);
         sTradeMenu->bufferPartyState++;
         break;
     case 7:
@@ -1117,13 +1096,13 @@ static bool32 BufferTradeParties(void)
     case 8:
         if (_GetBlockReceivedStatus() == 3)
         {
-            ConvertVanillaMons(&gEnemyParty[2], id);
+            ReceiveVanillaMons(&gEnemyParty[2], gBlockRecvBuffer[id ^ 1], SEND_TRADE);
             TradeResetReceivedFlags();
             sTradeMenu->bufferPartyState++;
         }
         break;
     case 9:
-        ConvertExpansionMons(&gPlayerParty[4]);
+        SendExpansionMonsToVanilla(&gPlayerParty[4], SEND_TRADE);
         sTradeMenu->bufferPartyState++;
         break;
     case 11:
@@ -1134,7 +1113,7 @@ static bool32 BufferTradeParties(void)
     case 12:
         if (_GetBlockReceivedStatus() == 3)
         {
-            ConvertVanillaMons(&gEnemyParty[4], id);
+            ReceiveVanillaMons(&gEnemyParty[4], gBlockRecvBuffer[id ^ 1], SEND_TRADE);
             TradeResetReceivedFlags();
             sTradeMenu->bufferPartyState++;
         }
