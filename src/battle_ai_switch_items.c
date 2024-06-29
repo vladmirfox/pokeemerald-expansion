@@ -1769,7 +1769,7 @@ static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent)
 // the Most Damage code will prioritize switching into whatever mon deals the most damage, which is generally not as good as having a good Type Matchup
 // Everything runs in the same loop to minimize computation time. This makes it harder to read, but hopefully the comments can guide you!
 
-static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, u32 battler, u32 opposingBattler, u8 battlerIn1, u8 battlerIn2, bool32 isSwitchAfterKO)
+static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, u32 battler, u32 opposingBattler, u32 battlerIn1, u32 battlerIn2, bool32 isSwitchAfterKO)
 {
     int revengeKillerId = PARTY_SIZE, slowRevengeKillerId = PARTY_SIZE, fastThreatenId = PARTY_SIZE, slowThreatenId = PARTY_SIZE, damageMonId = PARTY_SIZE;
     int batonPassId = PARTY_SIZE, typeMatchupId = PARTY_SIZE, typeMatchupEffectiveId = PARTY_SIZE, defensiveMonId = PARTY_SIZE, aceMonId = PARTY_SIZE, trapperId = PARTY_SIZE;
@@ -1981,7 +1981,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     return PARTY_SIZE;
 }
 
-static u32 GetNextMonInParty(struct Pokemon *party, int firstId, int lastId, u8 battlerIn1, u8 battlerIn2)
+static u32 GetNextMonInParty(struct Pokemon *party, int firstId, int lastId, u32 battlerIn1, u32 battlerIn2)
 {
     u32 i;
     // Iterate through mons
@@ -2001,11 +2001,11 @@ static u32 GetNextMonInParty(struct Pokemon *party, int firstId, int lastId, u8 
     return PARTY_SIZE;
 }
 
-u8 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
+u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
 {
     u32 opposingBattler = 0;
     u32 bestMonId = PARTY_SIZE;
-    u8 battlerIn1 = 0, battlerIn2 = 0;
+    u32 battlerIn1 = 0, battlerIn2 = 0;
     s32 firstId = 0;
     s32 lastId = 0; // + 1
     struct Pokemon *party;

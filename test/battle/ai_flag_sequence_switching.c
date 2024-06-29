@@ -5,8 +5,8 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch after a
 {
     u32 aiSequenceSwitchingFlag = 0;
 
-    PARAMETRIZE{ aiSequenceSwitchingFlag = 0; }
-    PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING; }
+    PARAMETRIZE { aiSequenceSwitchingFlag = 0; }
+    PARAMETRIZE { aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING; }
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSequenceSwitchingFlag);
@@ -76,8 +76,8 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will always switch into lo
 
     for (j = 0; j < ARRAY_COUNT(switchMoves); j++)
     {
-        PARAMETRIZE{ aiSequenceSwitchingFlag = 0;                           move = switchMoves[j]; }
-        PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING;  move = switchMoves[j]; }
+        PARAMETRIZE { aiSequenceSwitchingFlag = 0;                           move = switchMoves[j]; }
+        PARAMETRIZE { aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING;  move = switchMoves[j]; }
     }
 
     GIVEN {
@@ -110,8 +110,8 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SEQUENCE_SWITCHING: AI will not switch mid-battle
 {
     u32 aiSequenceSwitchingFlag = 0;
 
-    PARAMETRIZE{ aiSequenceSwitchingFlag = 0; }
-    PARAMETRIZE{ aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING; }
+    PARAMETRIZE { aiSequenceSwitchingFlag = 0; }
+    PARAMETRIZE { aiSequenceSwitchingFlag = AI_FLAG_SEQUENCE_SWITCHING; }
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | aiSequenceSwitchingFlag);
