@@ -83,7 +83,6 @@ SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize
 
 SINGLE_BATTLE_TEST("Plasma Fists turns normal type dynamax-moves into electric type moves")
 {
-    KNOWN_FAILING; // Mon does not dynamax for some reason
     GIVEN {
         PLAYER(SPECIES_KRABBY) { Speed(100); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
