@@ -1,0 +1,115 @@
+const FLAG_HIDE_HOPPIP = FLAG_TEMP_5
+const FLAG_HIDE_SHEPHERD = FLAG_TEMP_6
+const VAR_TIME_OF_DAY = VAR_0x8000
+const LOCALID_HOPPIP = 10
+
+mapscripts BeachboundRoute_MapScripts {
+		MAP_SCRIPT_ON_LOAD {
+        call(BeachboundRoute_EventScript_TimeBasedEvents)
+    }
+}
+
+script BeachboundRoute_EventScript_TimeBasedEvents {
+	setflag(FLAG_HIDE_SHEPHERD)
+
+	gettimeofday
+	if (var(VAR_TIME_OF_DAY) != TIME_NIGHT) {
+		clearflag(FLAG_HIDE_SHEPHERD)
+	}
+}
+
+script BeachboundRoute_EventScript_RunningBoy {
+	speakername("Little boy")
+	msgbox(format(
+		"Running running running!!\p"
+		"Yaaaaaaaay!!!"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_EventScript_AnnoyedGirl {
+	speakername("Annoyed girl")
+	msgbox(format(
+		"I wish that kid would leave…"
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_EventScript_AnnoyedBoy {
+	speakername("Annoyed boy")
+	msgbox(format(
+		"I brought my date to the Lover's Meadow, but I kind of thought we'd be alone…"
+	), MSGBOX_NPC)
+}
+
+// Hoppip
+script BeachboundRoute_EventScript_Hoppip {
+	lock
+    faceplayer
+    ismonseen(SPECIES_HOPPIP)
+    if (var(VAR_RESULT)) {
+        speakername("Hoppip")
+    } else {
+        speakername("Leafy cat")
+    }
+    msgbox(format(
+        "Pip!"
+    ))
+    playmoncry(SPECIES_HOPPIP, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
+}
+
+// Wooloo
+script BeachboundRoute_EventScript_Wooloo {
+	lock
+    faceplayer
+    ismonseen(SPECIES_WOOLOO)
+    if (var(VAR_RESULT)) {
+        speakername("Wooloo")
+    } else {
+        speakername("Wool ball")
+    }
+    msgbox(format(
+        "Bah…"
+    ))
+    playmoncry(SPECIES_WOOLOO, CRY_MODE_NORMAL)
+    waitmoncry
+    release
+    end
+}
+
+script BeachboundRoute_EventScript_Shepherd {
+	speakername("Shepherd")
+	msgbox(format(
+		"I bring my Wooloo here to graze everyday."
+	), MSGBOX_NPC)
+}
+
+script BeachboundRoute_EventScript_Karu {
+	trainerbattle_single(
+		TRAINER_KARU,
+		format("Please allow me to introduce you to your own defeat!"),
+		format("N-nice to meet you…"),
+		BeachboundRoute_EventScript_Karu_PostBattle
+	)
+	speakername("Karu")
+	msgbox(format("You wiped me away there. How long have you been a wielder?"), MSGBOX_AUTOCLOSE)
+	end
+}
+
+script BeachboundRoute_EventScript_Karu_PostBattle {
+	setflag(FLAG_HIDE_HOPPIP)
+	removeobject(LOCALID_HOPPIP)
+}
+
+script BeachboundRoute_EventScript_Kin {
+	// TODO EVA rematch
+	trainerbattle_single(
+		TRAINER_KIN_1,
+		format("I run several hours everyday! You literally cannot defeat me!"),
+		format("Ow! I pulled a muscle!")
+	)
+	speakername("Kin")
+	msgbox(format("You really don't look strong at all, and yet…"), MSGBOX_AUTOCLOSE)
+	end
+}

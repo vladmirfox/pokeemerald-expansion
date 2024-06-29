@@ -2441,19 +2441,24 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Glare
 - Crunch
 
-=== TRAINER_WINSTON_1 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
+=== TRAINER_KIN_1 ===
+Name: Kin
+Class: Battle Girl
+Pic: Battle Girl
+Gender: Female
+Music: Intense
+Items: Super Potion
 Double Battle: No
-AI: Check Bad Move
+AI: Check Bad Move / Try To Faint / Check Viability
 
-Zigzagoon @ Nugget
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Meditite @ Focus Sash
+Level: 10
+IVs: 3 HP / 3 Atk / 30 Def / 3 SpA / 3 SpD / 6 Spe
+- Focus Punch
+
+Makuhita
+Level: 10
+IVs: 3 HP / 3 Atk / 30 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_MOLLIE ===
 Name: MOLLIE
@@ -6126,21 +6131,21 @@ Zigzagoon
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_ALLEN ===
-Name: ALLEN
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
+=== TRAINER_KARU ===
+Name: Karu
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Zigzagoon
-Level: 4
+Hoppip
+Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Taillow
-Level: 3
+Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TIMMY ===
@@ -9613,7 +9618,7 @@ AI: Check Bad Move / Try To Faint / Check Viability
 Trapinch
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
+- Astonish
 - Growl
 
 === TRAINER_RIVAL_FIRST_BATTLE_SPHEAL ===

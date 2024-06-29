@@ -100,6 +100,7 @@ script SunriseVillage_EldersHouse_Event_Elder {
 
 script SunriseVillage_EldersHouse_EventScript_TryToLeave {
 	lock
+	turnobject(LOCALID_ELDER, DIR_SOUTH)
 	speakername("Elder Kaba")
 	msgbox(format(
 		"Where do you think you're going?"
@@ -176,7 +177,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	} elif (var(VAR_RESULT) == YES) {
 		switch(var(VAR_TEMP_1)) {
 			case SPECIES_SPHEAL:
-				givemon(SPECIES_SPHEAL, 5, ITEM_ORAN_BERRY, move1=MOVE_BUBBLE, move2=MOVE_TAIL_WHIP, move3=MOVE_NONE, move4=MOVE_NONE)
+				givemon(SPECIES_SPHEAL, 5, ITEM_ORAN_BERRY, move1=MOVE_POWDER_SNOW, move2=MOVE_TAIL_WHIP, move3=MOVE_NONE, move4=MOVE_NONE)
 			case SPECIES_ARON:
 				givemon(SPECIES_ARON, 5, ITEM_ORAN_BERRY, move1=MOVE_TACKLE, move2=MOVE_HARDEN, move3=MOVE_NONE, move4=MOVE_NONE)
 			case SPECIES_TRAPINCH:
@@ -328,28 +329,41 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
+	waitmovement(LOCALID_RIVAL)
+
 	speakername("{RIVAL}")
-	msgbox(format("{PLAYER}, are you ready?"), MSGBOX_YESNO)
-	if (var(VAR_RESULT) == YES) {
+	msgbox(format("{PLAYER}, are you ready?"))
+	dynmultichoice(
+		16,
+		6,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"Totally!",
+		"Absolutely not!"
+	)
+
+	if (var(VAR_RESULT) == 0) {
 		msgbox(format(
 				"That's what I'm talking about!\p"
 			))
-			closemessage
+		closemessage
 	} else {
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 
+		speakername("{RIVAL}")
 		checkplayergender
 		if (var(VAR_RESULT) == MALE) {
 			msgbox(format(
 				"Don't listen to him! He's so ready!"
 			))
-			closemessage
 		} else {
 			msgbox(format(
 				"Don't listen to her! She's so ready!"
 			))
-			closemessage
 		}
+		closemessage
 
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	}
@@ -381,20 +395,18 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 	msgbox(format(
 		"Whew! That was so stressful!\p"
 		"I went easy on you this time, but next time… You'll see!\p"
-		"Well, I'm going off now. Don't dilly-dally, or you'll never catch up!\p"
+		"Well, I'm going off now.\p"
+		"Don't dilly-dally, or you'll never catch up!\p"
 		"See ya, {PLAYER}."
 	))
 	closemessage
 
-	switch(var(VAR_FACING)) {
-		case DIR_SOUTH:
-			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsTop)
-		case DIR_NORTH:
-			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsBottom)
-		case DIR_WEST:
-			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsRight)
-		case DIR_EAST:
-			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsLeft)
+	// No idea why VAR_FACING doesn't work here, fuck it
+	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+	if (var(VAR_TEMP_0) == 6 && var(VAR_TEMP_1) == 7) {
+		applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsBottom)
+	} else {
+		applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeaves)
 	}
 
 	waitmovement(LOCALID_RIVAL)
@@ -465,7 +477,7 @@ movement SunriseVillage_EldersHouse_Movement_ElderGivesDex {
 	step_end
 }
 
-movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsTop {
+movement SunriseVillage_EldersHouse_Movement_RivalLeaves {
 	walk_down * 2
 	step_end
 }
@@ -473,18 +485,6 @@ movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsTop {
 
 movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsBottom {
 	walk_left
-	walk_down * 2
-	step_end
-}
-
-
-movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsRight {
-	walk_down * 2
-	step_end
-}
-
-
-movement SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsLeft {
 	walk_down * 2
 	step_end
 }

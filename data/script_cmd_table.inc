@@ -232,6 +232,7 @@ gScriptCmdTable::
 	.4byte ScrCmd_setspeaker                        @ 0xe5
 	.4byte ScrCmd_getgamestat                       @ 0xe6
 	.4byte ScrCmd_bufferspeciesdexdesc              @ 0xe7
+	.4byte ScrCmd_gettimeofday                      @ 0xe8
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

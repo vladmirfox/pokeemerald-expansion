@@ -324,6 +324,11 @@
 	.byte 0x2e
 	.endm
 
+	@ Sets the value of variable VAR_0x8000 to the current time of day (TIME_MORNING, TIME_DAY, TIME_EVENING, TIME_NIGHT).
+	.macro gettimeofday
+	.byte 0xe8
+	.endm
+
 	@ Plays the specified sound. Only one sound may play at a time, with newer ones interrupting older ones.
 	.macro playse song:req
 	.byte 0x2f

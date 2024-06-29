@@ -289,8 +289,8 @@ SakuTown_BonsaiShop_EventScript_FlowerBasket_Text_0:
 
 SakuTown_BonsaiShop_EventScript_WateringCan_Text_0:
 # 42 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "A cute Wailmer-shaped watering can. You\n"
-	.string "have one exactly like it!$"
+	.string "A cute Wailmer-shaped watering can.\n"
+	.string "You have one exactly like it!$"
 
 SakuTown_BonsaiShop_EventScript_WateringCan_Text_1:
 # 46 "data/maps/SakuTown_BonsaiShop/scripts.pory"
@@ -308,8 +308,8 @@ SakuTown_BonsaiShop_EventScript_LittleSister_Text_0:
 
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_1:
 # 72 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "Hi there {STR_VAR_1} Grownup! Have\n"
-	.string "you planted many berries on your\l"
+	.string "Hi there {STR_VAR_1} Grownup!\p"
+	.string "Have you planted many berries on your\n"
 	.string "travels?$"
 
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_2:
@@ -330,8 +330,8 @@ SakuTown_BonsaiShop_EventScript_LittleSister_Text_3:
 SakuTown_BonsaiShop_EventScript_LittleSister_Text_4:
 # 91 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hmm…\p"
-	.string "Hey, I'm actually impressed at the berry\n"
-	.string "skills I'm sensing!\p"
+	.string "Hey, I'm actually impressed at the\n"
+	.string "berry skills I'm sensing!\p"
 	.string "… … Kidding!\p"
 	.string "You're getting better at it though.$"
 
@@ -360,16 +360,16 @@ SakuTown_BonsaiShop_EventScript_LittleSister_Text_7:
 	.string "Acrobatics.\p"
 	.string "Your Pokémon will strike harder if he\n"
 	.string "isn't holding an item.\p"
-	.string "Sounds like a good match for a Pokémon\n"
-	.string "holding a berry, right?\p"
+	.string "Sounds like a good match for a\n"
+	.string "Pokémon holding a berry, right?\p"
 	.string "First eat a little snack, then\n"
 	.string "mercilessly crush your opponent!$"
 
 SakuTown_BonsaiShop_EventScript_Assistant_Text_0:
 # 143 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hi, {PLAYER}!\p"
-	.string "The shop owner is currently away. She's\n"
-	.string "very busy.\p"
+	.string "The shop owner is currently away.\n"
+	.string "She's very busy.\p"
 	.string "Busy with what, you ask?\p"
 	.string "Um, I'm actually not sure.$"
 
@@ -388,8 +388,8 @@ SakuTown_BonsaiShop_EventScript_Assistant_Text_3:
 	.string "route, remember?\p"
 	.string "Have you used the watering can I gave\n"
 	.string "you yet?\p"
-	.string "Oh, yes, I work here. We sell bonsai and\n"
-	.string "other potted flowers!\p"
+	.string "Oh, yes, I work here. We sell bonsai\n"
+	.string "and other potted flowers!\p"
 	.string "I'm the owner's assistant! I also\n"
 	.string "manage the shop whenever she's away.$"
 
@@ -398,13 +398,14 @@ SakuTown_BonsaiShop_EventScript_Assistant_Text_4:
 	.string "Hello, welcome to our bonsai shop! I'm\n"
 	.string "the owner's assistant.\p"
 	.string "We sell bonsai and other potted\n"
-	.string "flowers! Are you interested in plants?\p"
-	.string "Have you ever seen strange patches of\n"
-	.string "soil while on your journey?\p"
+	.string "flowers! Are you interested in\l"
+	.string "plants?\p"
+	.string "Have you ever seen strange patches\n"
+	.string "of soil while on your journey?\p"
 	.string "Those soil patches are incredibly\n"
-	.string "fertile, which means any berry you plant\l"
-	.string "in that soil will thrive and grow into a\l"
-	.string "tree, ready to be harvested!\p"
+	.string "fertile, which means any berry you\l"
+	.string "plant in that soil will thrive and grow\l"
+	.string "into a tree, ready to be harvested!\p"
 	.string "I see you're a wielder. Well, different\n"
 	.string "berries have different effects when\l"
 	.string "they're fed to Pokémon.\p"
@@ -422,29 +423,30 @@ SakuTown_BonsaiShop_EventScript_Assistant_Text_5:
 SakuTown_BonsaiShop_EventScript_Assistant_Text_6:
 # 202 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Isn't it cute? It's friend-shaped!\p"
-	.string "Don't worry about it, I have a spare one.\p"
+	.string "Don't worry about it, I have a spare\n"
+	.string "one.\p"
 	.string "Have fun gardening!$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_0:
 # 221 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "Hello, {PLAYER}. Can I interest you in\n"
-	.string "a little greenery?$"
+	.string "Hello, {PLAYER}. Can I interest you\n"
+	.string "in a little greenery?$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_1:
 # 227 "data/maps/SakuTown_BonsaiShop/scripts.pory"
-	.string "Hello, {PLAYER}. Can I interest you in\n"
-	.string "a little greenery?\p"
+	.string "Hello, {PLAYER}. Can I interest you\n"
+	.string "in a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
-	.string "anywhere to put bonsai. Come back when\l"
-	.string "you do.$"
+	.string "anywhere to put bonsai. Come back\l"
+	.string "when you do.$"
 
 SakuTown_BonsaiShop_EventScript_Owner_Text_2:
 # 235 "data/maps/SakuTown_BonsaiShop/scripts.pory"
 	.string "Hello, young {STR_VAR_1}. Can I\n"
 	.string "interest you in a little greenery?\p"
 	.string "Hmm… It looks like you wouldn't have\n"
-	.string "anywhere to put bonsai. Come back when\l"
-	.string "you do.$"
+	.string "anywhere to put bonsai. Come back\l"
+	.string "when you do.$"
 
 SakuTown_EventScript_Man_Text_0:
 # 247 "data/maps/SakuTown_BonsaiShop/scripts.pory"

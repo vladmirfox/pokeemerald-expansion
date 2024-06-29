@@ -216,9 +216,9 @@ ChiiTown_PokemonCenter_EventScript_NeedMarket::
 # 155 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	faceplayer
 # 156 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	speakername ChiiTown_PokemonCenter_EventScript_Mom_Text_0
+	speakername ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_0
 # 157 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	msgbox ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_0
+	msgbox ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_1
 # 160 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	closemessage
 # 161 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
@@ -312,7 +312,7 @@ ChiiTown_PokemonCenter_Movement_Leave:
 
 ChiiTown_PokemonCenter_EventScript_Shamisen_Text_0:
 # 56 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	.string "Blind singer$"
+	.string "Shamisen player$"
 
 ChiiTown_PokemonCenter_EventScript_Shamisen_Text_1:
 # 58 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
@@ -346,7 +346,7 @@ ChiiTown_PokemonCenter_EventScript_Boy_Text_1:
 
 ChiiTown_PokemonCenter_EventScript_Mom_Text_0:
 # 99 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	.string "Woman$"
+	.string "Little boy's mom$"
 
 ChiiTown_PokemonCenter_EventScript_Mom_Text_1:
 # 101 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
@@ -367,13 +367,14 @@ ChiiTown_PokemonCenter_EventScript_WhereShamisen_Text_1:
 
 ChiiTown_PokemonCenter_EventScript_IveComeALongWay_Text_0:
 # 124 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	.string "Traveler$"
+	.string "Weary traveler$"
 
 ChiiTown_PokemonCenter_EventScript_IveComeALongWay_Text_1:
 # 126 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "I'm so glad I found this refuge. I've\n"
 	.string "come a long way and my feet hurt.\p"
-	.string "My Pokémon and I can rest for a while.$"
+	.string "My Pokémon and I wil rest here for a\n"
+	.string "while.$"
 
 ChiiTown_PokemonCenter_EventScript_Snorunt_Text_0:
 # 140 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
@@ -381,13 +382,17 @@ ChiiTown_PokemonCenter_EventScript_Snorunt_Text_0:
 
 ChiiTown_PokemonCenter_EventScript_Snorunt_Text_1:
 # 142 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	.string "Cold pyramid$"
+	.string "Cold dumpling$"
 
 ChiiTown_PokemonCenter_EventScript_Snorunt_Text_2:
 # 145 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Glaglaglaglagla!$"
 
 ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_0:
+# 156 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	.string "Woman$"
+
+ChiiTown_PokemonCenter_EventScript_NeedMarket_Text_1:
 # 158 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Berries, potions… Oh, right, I should\n"
 	.string "get a few more Pokéballs from the\l"

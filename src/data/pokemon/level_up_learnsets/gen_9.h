@@ -9487,10 +9487,10 @@ static const struct LevelUpMove sFroslassLevelUpLearnset[] = {
 
 #if P_FAMILY_SPHEAL
 static const struct LevelUpMove sSphealLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_BUBBLE),
+    LEVEL_UP_MOVE( 1, MOVE_POWDER_SNOW),
     LEVEL_UP_MOVE( 1, MOVE_DEFENSE_CURL),
     LEVEL_UP_MOVE( 7, MOVE_POUND),
-    LEVEL_UP_MOVE(12, MOVE_POWDER_SNOW),
+    LEVEL_UP_MOVE(12, MOVE_BUBBLE),
     LEVEL_UP_MOVE(16, MOVE_REST),
     LEVEL_UP_MOVE(20, MOVE_SNORE),
     LEVEL_UP_MOVE(24, MOVE_BRINE),

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "rtc.h"
+#include "constants/rtc.h"
 #include "string_util.h"
 #include "strings.h"
 #include "text.h"
@@ -301,7 +302,7 @@ bool8 IsBetweenHours(s32 hours, s32 begin, s32 end)
     else
         return hours >= begin && hours < end;
 }
-// TODO EVA use this for ease of use
+
 u8 GetTimeOfDay(void)
 {
     RtcCalcLocalTime();

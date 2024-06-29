@@ -36,48 +36,62 @@ MaguroHarbor_EventScript_FishPokemonSalesman::
 	return
 
 
-MaguroHarbor_EventScript_Mart::
+MaguroHarbor_EventScript_FishermanInBoat::
 # 33 "data/maps/MaguroHarbor/scripts.pory"
 	lock
 # 34 "data/maps/MaguroHarbor/scripts.pory"
 	faceplayer
 # 35 "data/maps/MaguroHarbor/scripts.pory"
-	message gText_HowMayIServeYou
-# 36 "data/maps/MaguroHarbor/scripts.pory"
-	waitmessage
-# 37 "data/maps/MaguroHarbor/scripts.pory"
-	pokemart MaguroHarbor_Mart
+	msgbox MaguroHarbor_EventScript_FishermanInBoat_Text_0, MSGBOX_DEFAULT
 # 38 "data/maps/MaguroHarbor/scripts.pory"
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	closemessage
 # 39 "data/maps/MaguroHarbor/scripts.pory"
 	release
 	return
 
 
-	.align 2
-# 42 "data/maps/MaguroHarbor/scripts.pory"
-MaguroHarbor_Mart:
+MaguroHarbor_EventScript_Mart::
 # 43 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_POKE_BALL
+	lock
 # 44 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_BERRY_JUICE
+	faceplayer
 # 45 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_PARALYZE_HEAL
+	message gText_HowMayIServeYou
 # 46 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_ANTIDOTE
+	waitmessage
 # 47 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_AWAKENING
+	pokemart MaguroHarbor_Mart
 # 48 "data/maps/MaguroHarbor/scripts.pory"
-	.2byte ITEM_ESCAPE_ROPE
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 # 49 "data/maps/MaguroHarbor/scripts.pory"
+	release
+	return
+
+
+	.align 2
+# 52 "data/maps/MaguroHarbor/scripts.pory"
+MaguroHarbor_Mart:
+# 53 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_POKE_BALL
+# 54 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_BERRY_JUICE
+# 55 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_PARALYZE_HEAL
+# 56 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_ANTIDOTE
+# 57 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_AWAKENING
+# 58 "data/maps/MaguroHarbor/scripts.pory"
+	.2byte ITEM_ESCAPE_ROPE
+# 59 "data/maps/MaguroHarbor/scripts.pory"
 	.2byte ITEM_REPEL
 	.2byte ITEM_NONE
 
 MaguroHarbor_EventScript_TownSign_Text_0:
 # 6 "data/maps/MaguroHarbor/scripts.pory"
 	.string "Maguro Harbor\n"
-	.string "“A town that lives hand in hand with the\l"
-	.string "sea.”$"
+	.string "“A town that lives hand in hand with\l"
+	.string "the sea.”$"
 
 MaguroHarbor_EventScript_FishcakeSalesman_Text_0:
 # 13 "data/maps/MaguroHarbor/scripts.pory"
@@ -87,3 +101,8 @@ MaguroHarbor_EventScript_FishcakeSalesman_Text_0:
 MaguroHarbor_EventScript_FishPokemonSalesman_Text_0:
 # 25 "data/maps/MaguroHarbor/scripts.pory"
 	.string "Fresh fish! Come get yer fish!$"
+
+MaguroHarbor_EventScript_FishermanInBoat_Text_0:
+# 36 "data/maps/MaguroHarbor/scripts.pory"
+	.string "I'm letting my fishing partner\n"
+	.string "Cramorant rest for a while.$"

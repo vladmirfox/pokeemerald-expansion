@@ -165,7 +165,7 @@
       "x": 15,
       "y": 10,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND_SLOWER",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -226,24 +226,6 @@
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 16,
-      "y": 3,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_GuardSeesYou"
-    },
-    {
-      "type": "trigger",
-      "x": 17,
-      "y": 3,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "0",
-      "script": "SakuTown_EventScript_GuardSeesYou"
-    },
     {
       "type": "trigger",
       "x": 17,

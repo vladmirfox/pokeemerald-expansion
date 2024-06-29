@@ -69,7 +69,7 @@ script SakuTown_BonsaiShop_EventScript_LittleSister {
 	} else {
 		special(GetPlayerMrMrsString)
 		msgbox(format(
-			"Hi there {STR_VAR_1} Grownup! Have you planted many berries on your travels?"
+			"Hi there {STR_VAR_1} Grownup!\pHave you planted many berries on your travels?"
 		))
 
 		if (var(VAR_RESULT) < 10) {

@@ -63,6 +63,7 @@
 #include "constants/trainers.h"
 #include "battle_util.h"
 #include "constants/pokemon.h"
+#include "constants/rtc.h"
 #include "config/battle.h"
 #include "data/battle_move_effects.h"
 
