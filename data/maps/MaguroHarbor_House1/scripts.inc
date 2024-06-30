@@ -20,12 +20,12 @@ MaguroHarbor_House1_EventScript_PokedexRiddler::
 
 MaguroHarbor_House1_EventScript_PokedexRiddler_Text_0:
 # 14 "data/maps/MaguroHarbor_House1/scripts.pory"
-	.string "I know a lot about Pokémon. And I mean a\n"
-	.string "LOT.\p"
-	.string "If you prove that you know as much as I\n"
-	.string "do, I'll give you a little something.\p"
-	.string "Can you guess which Pokémon I'm talking\n"
-	.string "about?\p"
+	.string "I know a lot about Pokémon. And I\n"
+	.string "mean a LOT.\p"
+	.string "If you prove that you know as much as\n"
+	.string "I do, I'll give you a little something.\p"
+	.string "Can you guess which Pokémon I'm\n"
+	.string "talking about?\p"
 	.string "Here goes…\p"
 	.string "{STR_VAR_2}\p"
 	.string "So?$"

@@ -281,337 +281,343 @@ TranquilRoute_EventScript_CutGrass::
 	return
 
 
-TranquilRoute_EventScript_Chikao::
+TODOEVA::
 # 196 "data/maps/TranquilRoute/scripts.pory"
+	givemon SPECIES_SPHEAL, 100, move1 = MOVE_TACKLE, move2 = MOVE_POUND, move3 = MOVE_WATER_GUN, move4 = MOVE_FLIPPER_SPLASH
+	return
+
+
+TranquilRoute_EventScript_Chikao::
+# 200 "data/maps/TranquilRoute/scripts.pory"
 	trainerbattle_single TRAINER_CHIKAO, TranquilRoute_EventScript_Chikao_Text_0, TranquilRoute_EventScript_Chikao_Text_1
-# 201 "data/maps/TranquilRoute/scripts.pory"
+# 205 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Chikao_Text_2
-# 202 "data/maps/TranquilRoute/scripts.pory"
+# 206 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Chikao_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 TranquilRoute_EventScript_Takeshi::
-# 207 "data/maps/TranquilRoute/scripts.pory"
+# 211 "data/maps/TranquilRoute/scripts.pory"
 	trainerbattle_single TRAINER_TAKESHI, TranquilRoute_EventScript_Takeshi_Text_0, TranquilRoute_EventScript_Takeshi_Text_1
-# 212 "data/maps/TranquilRoute/scripts.pory"
+# 216 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Takeshi_Text_2
-# 213 "data/maps/TranquilRoute/scripts.pory"
+# 217 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Takeshi_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 TranquilRoute_EventScript_Hana::
-# 218 "data/maps/TranquilRoute/scripts.pory"
+# 222 "data/maps/TranquilRoute/scripts.pory"
 	trainerbattle_single TRAINER_HIINA, TranquilRoute_EventScript_Hana_Text_0, TranquilRoute_EventScript_Hana_Text_1
-# 223 "data/maps/TranquilRoute/scripts.pory"
+# 227 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Hana_Text_2
-# 224 "data/maps/TranquilRoute/scripts.pory"
+# 228 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Hana_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 TranquilRoute_EventScript_Kenji::
-# 229 "data/maps/TranquilRoute/scripts.pory"
+# 233 "data/maps/TranquilRoute/scripts.pory"
 	trainerbattle_single TRAINER_KENJI, TranquilRoute_EventScript_Kenji_Text_0, TranquilRoute_EventScript_Kenji_Text_1
-# 234 "data/maps/TranquilRoute/scripts.pory"
+# 238 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Kenji_Text_2
-# 235 "data/maps/TranquilRoute/scripts.pory"
+# 239 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Kenji_Text_3, MSGBOX_AUTOCLOSE
 	end
 
 
 TranquilRoute_EventScript_MysteriousSamurai::
-# 244 "data/maps/TranquilRoute/scripts.pory"
+# 248 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 246 "data/maps/TranquilRoute/scripts.pory"
+# 250 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_MysteriousSamurai_Text_0
-# 247 "data/maps/TranquilRoute/scripts.pory"
+# 251 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_MysteriousSamurai_Text_1
-# 254 "data/maps/TranquilRoute/scripts.pory"
+# 258 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 256 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 9, TranquilRoute_Movement_MysteriousSamuraiWalksAway
-# 257 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 9
-# 259 "data/maps/TranquilRoute/scripts.pory"
-	setflag FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE
 # 260 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 9, TranquilRoute_Movement_MysteriousSamuraiWalksAway
+# 261 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 9
+# 263 "data/maps/TranquilRoute/scripts.pory"
+	setflag FLAG_MYSTERIOUS_SAMURAI_TRANQUIL_ROUTE
+# 264 "data/maps/TranquilRoute/scripts.pory"
 	release
 	end
 
 
-# 264 "data/maps/TranquilRoute/scripts.pory"
+# 268 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_Movement_MysteriousSamuraiWalksAway:
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 265 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
 	step_end
 
 TranquilRoute_EventScript_Girl::
-# 269 "data/maps/TranquilRoute/scripts.pory"
+# 273 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Girl_Text_0
-# 270 "data/maps/TranquilRoute/scripts.pory"
+# 274 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Girl_Text_1, MSGBOX_NPC
 	return
 
 
 TranquilRoute_EventScript_WhiteslateRoadblockGuard::
-# 274 "data/maps/TranquilRoute/scripts.pory"
+# 278 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0
-# 275 "data/maps/TranquilRoute/scripts.pory"
+# 279 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_1, MSGBOX_NPC
 	return
 
 
 TranquilRoute_EventScript_Shellos::
-# 279 "data/maps/TranquilRoute/scripts.pory"
+# 283 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 280 "data/maps/TranquilRoute/scripts.pory"
+# 284 "data/maps/TranquilRoute/scripts.pory"
 	faceplayer
-# 281 "data/maps/TranquilRoute/scripts.pory"
+# 285 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_SHELLOS, CRY_MODE_NORMAL
-# 282 "data/maps/TranquilRoute/scripts.pory"
+# 286 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Shellos_2
-# 285 "data/maps/TranquilRoute/scripts.pory"
+# 289 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Shellos_Text_1
 TranquilRoute_EventScript_Shellos_1:
-# 287 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_Shellos_Text_2
-# 290 "data/maps/TranquilRoute/scripts.pory"
-	waitmoncry
 # 291 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_Shellos_Text_2
+# 294 "data/maps/TranquilRoute/scripts.pory"
+	waitmoncry
+# 295 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 292 "data/maps/TranquilRoute/scripts.pory"
+# 296 "data/maps/TranquilRoute/scripts.pory"
 	release
 	end
 
 TranquilRoute_EventScript_Shellos_2:
-# 283 "data/maps/TranquilRoute/scripts.pory"
+# 287 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Shellos_Text_0
 	goto TranquilRoute_EventScript_Shellos_1
 
 
 TranquilRoute_EventScript_BerryWoman::
-# 297 "data/maps/TranquilRoute/scripts.pory"
+# 301 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 298 "data/maps/TranquilRoute/scripts.pory"
+# 302 "data/maps/TranquilRoute/scripts.pory"
 	faceplayer
-# 300 "data/maps/TranquilRoute/scripts.pory"
+# 304 "data/maps/TranquilRoute/scripts.pory"
 	goto_if_set FLAG_RECEIVED_WAILMER_PAIL, TranquilRoute_EventScript_BerryWoman_2
-# 306 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 307 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_2
-# 308 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
-# 309 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 5, Common_Movement_FaceRight
 # 310 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
+	speakername TranquilRoute_EventScript_BerryWoman_Text_0
 # 311 "data/maps/TranquilRoute/scripts.pory"
-	delay 48
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_2
 # 312 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 5, Common_Movement_FacePlayer
+	closemessage
 # 313 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
+	applymovement 5, Common_Movement_FaceRight
 # 314 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_BerryWoman_Text_0
+	waitmovement 0
 # 315 "data/maps/TranquilRoute/scripts.pory"
+	delay 48
+# 316 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 5, Common_Movement_FacePlayer
+# 317 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 0
+# 318 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_BerryWoman_Text_0
+# 319 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_BerryWoman_Text_3
-# 322 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
-# 323 "data/maps/TranquilRoute/scripts.pory"
-	giveitem ITEM_ORAN_BERRY, 3
-# 324 "data/maps/TranquilRoute/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 326 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_BerryWoman_Text_0
+	closemessage
 # 327 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_4
-# 332 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
-# 333 "data/maps/TranquilRoute/scripts.pory"
-	giveitem ITEM_WAILMER_PAIL
-# 334 "data/maps/TranquilRoute/scripts.pory"
+	giveitem ITEM_ORAN_BERRY, 3
+# 328 "data/maps/TranquilRoute/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-# 336 "data/maps/TranquilRoute/scripts.pory"
+# 330 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 337 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_5
-# 342 "data/maps/TranquilRoute/scripts.pory"
+# 331 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_4
+# 336 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 344 "data/maps/TranquilRoute/scripts.pory"
+# 337 "data/maps/TranquilRoute/scripts.pory"
+	giveitem ITEM_WAILMER_PAIL
+# 338 "data/maps/TranquilRoute/scripts.pory"
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+# 340 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_BerryWoman_Text_0
+# 341 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_5
+# 346 "data/maps/TranquilRoute/scripts.pory"
+	closemessage
+# 348 "data/maps/TranquilRoute/scripts.pory"
 	setflag FLAG_RECEIVED_WAILMER_PAIL
 TranquilRoute_EventScript_BerryWoman_1:
-# 346 "data/maps/TranquilRoute/scripts.pory"
+# 350 "data/maps/TranquilRoute/scripts.pory"
 	release
 	end
 
 TranquilRoute_EventScript_BerryWoman_2:
-# 301 "data/maps/TranquilRoute/scripts.pory"
+# 305 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 302 "data/maps/TranquilRoute/scripts.pory"
+# 306 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_BerryWoman_Text_1
-# 303 "data/maps/TranquilRoute/scripts.pory"
+# 307 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
 	goto TranquilRoute_EventScript_BerryWoman_1
 
 
 TranquilRoute_EventScript_Mareep::
-# 351 "data/maps/TranquilRoute/scripts.pory"
+# 355 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 352 "data/maps/TranquilRoute/scripts.pory"
+# 356 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_MAREEP, CRY_MODE_NORMAL
-# 353 "data/maps/TranquilRoute/scripts.pory"
+# 357 "data/maps/TranquilRoute/scripts.pory"
 	ismonseen SPECIES_MAREEP
-# 354 "data/maps/TranquilRoute/scripts.pory"
+# 358 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Mareep_2
-# 357 "data/maps/TranquilRoute/scripts.pory"
+# 361 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_1
 TranquilRoute_EventScript_Mareep_1:
-# 359 "data/maps/TranquilRoute/scripts.pory"
+# 363 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Mareep_Text_2
-# 360 "data/maps/TranquilRoute/scripts.pory"
+# 364 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 361 "data/maps/TranquilRoute/scripts.pory"
+# 365 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 TranquilRoute_EventScript_Mareep_2:
-# 355 "data/maps/TranquilRoute/scripts.pory"
+# 359 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_0
 	goto TranquilRoute_EventScript_Mareep_1
 
 
 TranquilRoute_EventScript_Mareep2::
-# 365 "data/maps/TranquilRoute/scripts.pory"
+# 369 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 366 "data/maps/TranquilRoute/scripts.pory"
+# 370 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_MAREEP, CRY_MODE_WEAK
-# 367 "data/maps/TranquilRoute/scripts.pory"
+# 371 "data/maps/TranquilRoute/scripts.pory"
 	ismonseen SPECIES_MAREEP
-# 368 "data/maps/TranquilRoute/scripts.pory"
+# 372 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Mareep2_2
-# 371 "data/maps/TranquilRoute/scripts.pory"
+# 375 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_1
 TranquilRoute_EventScript_Mareep2_1:
-# 373 "data/maps/TranquilRoute/scripts.pory"
+# 377 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Mareep2_Text_0
-# 374 "data/maps/TranquilRoute/scripts.pory"
+# 378 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 375 "data/maps/TranquilRoute/scripts.pory"
+# 379 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 TranquilRoute_EventScript_Mareep2_2:
-# 369 "data/maps/TranquilRoute/scripts.pory"
+# 373 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_0
 	goto TranquilRoute_EventScript_Mareep2_1
 
 
 TranquilRoute_TrainerTips1::
-# 379 "data/maps/TranquilRoute/scripts.pory"
+# 383 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_TrainerTips1_Text_0, MSGBOX_SIGN
 	return
 
 
 TranquilRoute_TrainerTips2::
-# 388 "data/maps/TranquilRoute/scripts.pory"
+# 392 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
 
 TranquilRoute_DirectionSign::
-# 401 "data/maps/TranquilRoute/scripts.pory"
+# 405 "data/maps/TranquilRoute/scripts.pory"
 	goto_if_set FLAG_SAKU_KURA_REUNITED, TranquilRoute_DirectionSign_1
-# 408 "data/maps/TranquilRoute/scripts.pory"
+# 412 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_DirectionSign_Text_1, MSGBOX_SIGN
 	return
 
 TranquilRoute_DirectionSign_1:
-# 402 "data/maps/TranquilRoute/scripts.pory"
+# 406 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_DirectionSign_Text_0, MSGBOX_SIGN
 	return
 
 
-# 415 "data/maps/TranquilRoute/scripts.pory"
+# 419 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_CutMasterGoesSeeGarden:
-# 416 "data/maps/TranquilRoute/scripts.pory"
+# 420 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 416 "data/maps/TranquilRoute/scripts.pory"
+# 420 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 416 "data/maps/TranquilRoute/scripts.pory"
+# 420 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 416 "data/maps/TranquilRoute/scripts.pory"
+# 420 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 416 "data/maps/TranquilRoute/scripts.pory"
+# 420 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 417 "data/maps/TranquilRoute/scripts.pory"
+# 421 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 417 "data/maps/TranquilRoute/scripts.pory"
+# 421 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 417 "data/maps/TranquilRoute/scripts.pory"
+# 421 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 418 "data/maps/TranquilRoute/scripts.pory"
+# 422 "data/maps/TranquilRoute/scripts.pory"
 	face_up
 	step_end
 
-# 421 "data/maps/TranquilRoute/scripts.pory"
+# 425 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_PlayerGoesSeeGarden:
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
-# 423 "data/maps/TranquilRoute/scripts.pory"
-	walk_up
-# 423 "data/maps/TranquilRoute/scripts.pory"
-	walk_up
-	step_end
-
 # 426 "data/maps/TranquilRoute/scripts.pory"
-TranquilRoute_CutMasterWalkLeft:
-# 427 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+# 426 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+# 426 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+# 426 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+# 426 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+# 426 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
 # 427 "data/maps/TranquilRoute/scripts.pory"
-	walk_left
+	walk_up
+# 427 "data/maps/TranquilRoute/scripts.pory"
+	walk_up
 	step_end
 
 # 430 "data/maps/TranquilRoute/scripts.pory"
-TranquilRoute_CutMasterWalkRight:
+TranquilRoute_CutMasterWalkLeft:
 # 431 "data/maps/TranquilRoute/scripts.pory"
-	walk_right
+	walk_left
 # 431 "data/maps/TranquilRoute/scripts.pory"
-	walk_right
-# 431 "data/maps/TranquilRoute/scripts.pory"
-	walk_right
+	walk_left
 	step_end
 
 # 434 "data/maps/TranquilRoute/scripts.pory"
-TranquilRoute_CutMasterWalkBackToPlayer:
+TranquilRoute_CutMasterWalkRight:
 # 435 "data/maps/TranquilRoute/scripts.pory"
+	walk_right
+# 435 "data/maps/TranquilRoute/scripts.pory"
+	walk_right
+# 435 "data/maps/TranquilRoute/scripts.pory"
+	walk_right
+	step_end
+
+# 438 "data/maps/TranquilRoute/scripts.pory"
+TranquilRoute_CutMasterWalkBackToPlayer:
+# 439 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 440 "data/maps/TranquilRoute/scripts.pory"
 	walk_in_place_faster_down
 	step_end
 
@@ -646,83 +652,83 @@ TranquilRoute_EventScript_CutMaster_Text_0:
 	.string "something beautiful.$"
 
 TranquilRoute_EventScript_Chikao_Text_0:
-# 198 "data/maps/TranquilRoute/scripts.pory"
+# 202 "data/maps/TranquilRoute/scripts.pory"
 	.string "I've been studying Pokémon at school!\n"
 	.string "I can't lose!$"
 
 TranquilRoute_EventScript_Chikao_Text_1:
-# 199 "data/maps/TranquilRoute/scripts.pory"
+# 203 "data/maps/TranquilRoute/scripts.pory"
 	.string "I should have listened in class…$"
 
 TranquilRoute_EventScript_Chikao_Text_2:
-# 201 "data/maps/TranquilRoute/scripts.pory"
+# 205 "data/maps/TranquilRoute/scripts.pory"
 	.string "Chikao$"
 
 TranquilRoute_EventScript_Chikao_Text_3:
-# 202 "data/maps/TranquilRoute/scripts.pory"
+# 206 "data/maps/TranquilRoute/scripts.pory"
 	.string "Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh… It's too complicated to explain.$"
 
 TranquilRoute_EventScript_Takeshi_Text_0:
-# 209 "data/maps/TranquilRoute/scripts.pory"
+# 213 "data/maps/TranquilRoute/scripts.pory"
 	.string "Stay right there! I'll defeat you with\n"
 	.string "my ninja skills!$"
 
 TranquilRoute_EventScript_Takeshi_Text_1:
-# 210 "data/maps/TranquilRoute/scripts.pory"
+# 214 "data/maps/TranquilRoute/scripts.pory"
 	.string "I had the sun in my eyes!$"
 
 TranquilRoute_EventScript_Takeshi_Text_2:
-# 212 "data/maps/TranquilRoute/scripts.pory"
+# 216 "data/maps/TranquilRoute/scripts.pory"
 	.string "Takeshi$"
 
 TranquilRoute_EventScript_Takeshi_Text_3:
-# 213 "data/maps/TranquilRoute/scripts.pory"
+# 217 "data/maps/TranquilRoute/scripts.pory"
 	.string "I must hone my ninja skills!$"
 
 TranquilRoute_EventScript_Hana_Text_0:
-# 220 "data/maps/TranquilRoute/scripts.pory"
+# 224 "data/maps/TranquilRoute/scripts.pory"
 	.string "Ugh, how can Kenji paint a portrait of\n"
 	.string "me if people keep walking between us?$"
 
 TranquilRoute_EventScript_Hana_Text_1:
-# 221 "data/maps/TranquilRoute/scripts.pory"
+# 225 "data/maps/TranquilRoute/scripts.pory"
 	.string "Great, now my hair is all messed up.$"
 
 TranquilRoute_EventScript_Hana_Text_2:
-# 223 "data/maps/TranquilRoute/scripts.pory"
+# 227 "data/maps/TranquilRoute/scripts.pory"
 	.string "Hiina$"
 
 TranquilRoute_EventScript_Hana_Text_3:
-# 224 "data/maps/TranquilRoute/scripts.pory"
+# 228 "data/maps/TranquilRoute/scripts.pory"
 	.string "Kenji really is an amazing artist. I\n"
 	.string "feel very lucky.$"
 
 TranquilRoute_EventScript_Kenji_Text_0:
-# 231 "data/maps/TranquilRoute/scripts.pory"
+# 235 "data/maps/TranquilRoute/scripts.pory"
 	.string "You're interrupting my creative flow!!$"
 
 TranquilRoute_EventScript_Kenji_Text_1:
-# 232 "data/maps/TranquilRoute/scripts.pory"
+# 236 "data/maps/TranquilRoute/scripts.pory"
 	.string "Such beauty! What an artistic fight\n"
 	.string "this was!$"
 
 TranquilRoute_EventScript_Kenji_Text_2:
-# 234 "data/maps/TranquilRoute/scripts.pory"
+# 238 "data/maps/TranquilRoute/scripts.pory"
 	.string "Kenji$"
 
 TranquilRoute_EventScript_Kenji_Text_3:
-# 236 "data/maps/TranquilRoute/scripts.pory"
+# 240 "data/maps/TranquilRoute/scripts.pory"
 	.string "Hiina is the best subject I could\n"
 	.string "dream of.\p"
 	.string "…Hey, uh, please don't tell her I said\n"
 	.string "that.$"
 
 TranquilRoute_EventScript_MysteriousSamurai_Text_0:
-# 246 "data/maps/TranquilRoute/scripts.pory"
+# 250 "data/maps/TranquilRoute/scripts.pory"
 	.string "Mystery man$"
 
 TranquilRoute_EventScript_MysteriousSamurai_Text_1:
-# 248 "data/maps/TranquilRoute/scripts.pory"
+# 252 "data/maps/TranquilRoute/scripts.pory"
 	.string "So you are one of those new Pokémon\n"
 	.string "wielders, right?\p"
 	.string "You say Pokémon have been restless,\n"
@@ -733,48 +739,48 @@ TranquilRoute_EventScript_MysteriousSamurai_Text_1:
 	.string "Until then, farewell.$"
 
 TranquilRoute_EventScript_Girl_Text_0:
-# 269 "data/maps/TranquilRoute/scripts.pory"
+# 273 "data/maps/TranquilRoute/scripts.pory"
 	.string "Girl$"
 
 TranquilRoute_EventScript_Girl_Text_1:
-# 270 "data/maps/TranquilRoute/scripts.pory"
+# 274 "data/maps/TranquilRoute/scripts.pory"
 	.string "What? Oh, I don't fight.\p"
 	.string "My Pokémon and I are just strolling.$"
 
 TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0:
-# 274 "data/maps/TranquilRoute/scripts.pory"
+# 278 "data/maps/TranquilRoute/scripts.pory"
 	.string "Man$"
 
 TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_1:
-# 275 "data/maps/TranquilRoute/scripts.pory"
+# 279 "data/maps/TranquilRoute/scripts.pory"
 	.string "Sorry, you can't go through.$"
 
 TranquilRoute_EventScript_Shellos_Text_0:
-# 283 "data/maps/TranquilRoute/scripts.pory"
+# 287 "data/maps/TranquilRoute/scripts.pory"
 	.string "Shellos$"
 
 TranquilRoute_EventScript_Shellos_Text_1:
-# 285 "data/maps/TranquilRoute/scripts.pory"
+# 289 "data/maps/TranquilRoute/scripts.pory"
 	.string "Slug$"
 
 TranquilRoute_EventScript_Shellos_Text_2:
-# 288 "data/maps/TranquilRoute/scripts.pory"
+# 292 "data/maps/TranquilRoute/scripts.pory"
 	.string "Clelel!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_0:
-# 301 "data/maps/TranquilRoute/scripts.pory"
+# 305 "data/maps/TranquilRoute/scripts.pory"
 	.string "Woman$"
 
 TranquilRoute_EventScript_BerryWoman_Text_1:
-# 302 "data/maps/TranquilRoute/scripts.pory"
+# 306 "data/maps/TranquilRoute/scripts.pory"
 	.string "Enjoy gardening!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_2:
-# 307 "data/maps/TranquilRoute/scripts.pory"
+# 311 "data/maps/TranquilRoute/scripts.pory"
 	.string "Hi, young one! See this?$"
 
 TranquilRoute_EventScript_BerryWoman_Text_3:
-# 316 "data/maps/TranquilRoute/scripts.pory"
+# 320 "data/maps/TranquilRoute/scripts.pory"
 	.string "You can plant berries in the ground in\n"
 	.string "fertile spots like this.\p"
 	.string "The seeds will eventually grow into a\n"
@@ -788,37 +794,37 @@ TranquilRoute_EventScript_BerryWoman_Text_3:
 	.string "Here, try planting a few!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_4:
-# 328 "data/maps/TranquilRoute/scripts.pory"
+# 332 "data/maps/TranquilRoute/scripts.pory"
 	.string "Oh, right, I was almost forgetting!\p"
 	.string "You must remember to water them\n"
 	.string "regularly, or they won't grow!\p"
 	.string "I like you. Take this!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_5:
-# 338 "data/maps/TranquilRoute/scripts.pory"
+# 342 "data/maps/TranquilRoute/scripts.pory"
 	.string "Isn't it cute? It's friend-shaped!\p"
 	.string "Don't worry about it, I have a spare\n"
 	.string "one.\p"
 	.string "Have fun gardening!$"
 
 TranquilRoute_EventScript_Mareep_Text_0:
-# 355 "data/maps/TranquilRoute/scripts.pory"
+# 359 "data/maps/TranquilRoute/scripts.pory"
 	.string "Mareep$"
 
 TranquilRoute_EventScript_Mareep_Text_1:
-# 357 "data/maps/TranquilRoute/scripts.pory"
+# 361 "data/maps/TranquilRoute/scripts.pory"
 	.string "Static sheep$"
 
 TranquilRoute_EventScript_Mareep_Text_2:
-# 359 "data/maps/TranquilRoute/scripts.pory"
+# 363 "data/maps/TranquilRoute/scripts.pory"
 	.string "Beeeeeh…$"
 
 TranquilRoute_EventScript_Mareep2_Text_0:
-# 373 "data/maps/TranquilRoute/scripts.pory"
+# 377 "data/maps/TranquilRoute/scripts.pory"
 	.string "Baaaaah…$"
 
 TranquilRoute_TrainerTips1_Text_0:
-# 380 "data/maps/TranquilRoute/scripts.pory"
+# 384 "data/maps/TranquilRoute/scripts.pory"
 	.string "Did you know?\p"
 	.string "Some Pokémon only come out in the\n"
 	.string "morning, in the evening, or at night.\p"
@@ -827,20 +833,20 @@ TranquilRoute_TrainerTips1_Text_0:
 	.string "seeing rare Pokémon!$"
 
 TranquilRoute_TrainerTips2_Text_0:
-# 389 "data/maps/TranquilRoute/scripts.pory"
+# 393 "data/maps/TranquilRoute/scripts.pory"
 	.string "Did you know?\p"
 	.string "You can swap the Pokémon in your\n"
 	.string "party using {R_BUTTON}.\p"
 	.string "Set the lead Pokémon with {SELECT_BUTTON}.$"
 
 TranquilRoute_DirectionSign_Text_0:
-# 403 "data/maps/TranquilRoute/scripts.pory"
+# 407 "data/maps/TranquilRoute/scripts.pory"
 	.string "{LEFT_ARROW} Whiteslate route\n"
 	.string "{UP_ARROW} Sakura Village\p"
 	.string "It looks like the sign has been\n"
 	.string "written over recently…$"
 
 TranquilRoute_DirectionSign_Text_1:
-# 409 "data/maps/TranquilRoute/scripts.pory"
+# 413 "data/maps/TranquilRoute/scripts.pory"
 	.string "{LEFT_ARROW} Whiteslate route\n"
 	.string "{UP_ARROW} Saku and Kura Villages$"

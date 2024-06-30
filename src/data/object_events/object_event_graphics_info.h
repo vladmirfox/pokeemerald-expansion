@@ -228,7 +228,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Girl2 = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleBoy = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_LITTLE_GIRL,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BOY_1,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,
@@ -247,7 +247,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleBoy = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleGirl = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_LITTLE_GIRL,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BOY_1,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 512,
     .width = 32,

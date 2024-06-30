@@ -253,8 +253,8 @@ BelvedereRoute_EventScript_Rancher_Text_1:
 # 82 "data/maps/BelvedereRoute/scripts.pory"
 	.string "Thank you so much!\p"
 	.string "There are five Mareep in total.\p"
-	.string "Hopefully they should all be not too far\n"
-	.string "from the ranch…$"
+	.string "Hopefully they should all be not too\n"
+	.string "far from the ranch…$"
 
 BelvedereRoute_EventScript_Rancher_Text_2:
 # 90 "data/maps/BelvedereRoute/scripts.pory"
@@ -282,9 +282,11 @@ BelvedereRoute_EventScript_Rancher_Text_7:
 
 BelvedereRoute_EventScript_Rancher_Text_8:
 # 121 "data/maps/BelvedereRoute/scripts.pory"
-	.string "Finally, my herd is back together again!\p"
+	.string "Finally, my herd is back together\n"
+	.string "again!\p"
 	.string "I'm so glad. Thank you, sincerely.\p"
-	.string "Here's a small token of my appreciation.$"
+	.string "Here's a small token of my\n"
+	.string "appreciation.$"
 
 BelvedereRoute_EventScript_Wool_Text_0:
 # 138 "data/maps/BelvedereRoute/scripts.pory"

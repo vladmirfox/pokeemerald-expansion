@@ -30,9 +30,9 @@ WindsweptRoute_EventScript_OvergrownTrees_Text_0:
 
 WindsweptRoute_EventScript_OvergrownTrees_Text_1:
 # 15 "data/maps/WindsweptRoute/scripts.pory"
-	.string "The weeds got out of control here, and\n"
-	.string "some trees now block the way to Silver\l"
-	.string "Tunnel…\p"
+	.string "The weeds got out of control here,\n"
+	.string "and some trees now block the way to\l"
+	.string "Silver Tunnel…\p"
 	.string "Someone'll eventually have to ask for\n"
-	.string "help from the old Cut master on Tranquil\l"
-	.string "route…$"
+	.string "help from the old Cut master on\l"
+	.string "Tranquil route…$"

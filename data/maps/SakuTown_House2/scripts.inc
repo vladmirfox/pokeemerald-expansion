@@ -300,8 +300,8 @@ SakuTown_House2_EventScript_EspeonsMaster_Text_3:
 
 SakuTown_House2_EventScript_EspeonsMaster_Text_4:
 # 50 "data/maps/SakuTown_House2/scripts.pory"
-	.string "How are you doing? Espeon looks happy\n"
-	.string "to see you!$"
+	.string "How are you doing? Espeon looks\n"
+	.string "happy to see you!$"
 
 SakuTown_House2_EventScript_Reunited_Text_0:
 # 87 "data/maps/SakuTown_House2/scripts.pory"
@@ -309,21 +309,21 @@ SakuTown_House2_EventScript_Reunited_Text_0:
 
 SakuTown_House2_EventScript_Reunited_Text_1:
 # 113 "data/maps/SakuTown_House2/scripts.pory"
-	.string "It's you! It's really you! Oh, Eevee, I've\n"
-	.string "missed you so much!\p"
+	.string "It's you! It's really you! Oh, Eevee,\n"
+	.string "I've missed you so much!\p"
 	.string "… …\p"
 	.string "Wait, you look a little different…$"
 
 SakuTown_House2_EventScript_Reunited_Text_2:
 # 133 "data/maps/SakuTown_House2/scripts.pory"
-	.string "You say it was a woman from Kura Village\n"
-	.string "that found him?\p"
+	.string "You say it was a woman from Kura\n"
+	.string "Village that found him?\p"
 	.string "She took such good care of him!\p"
 	.string "His fur is so shiny and well-groomed,\n"
 	.string "too…\p"
 	.string "… …\p"
-	.string "Looks like there are actually some nice\n"
-	.string "people too in Kura Village…\p"
+	.string "Looks like there are actually some\n"
+	.string "nice people too in Kura Village…\p"
 	.string "… …\p"
 	.string "Anyway, thank you so much for helping\n"
 	.string "me out. I'm so grateful.\p"
@@ -338,11 +338,12 @@ SakuTown_House2_EventScript_Sister_Text_0:
 	.string "My brother's been feeling really down\n"
 	.string "lately.\p"
 	.string "His precious Pokémon disappeared\n"
-	.string "during the big storm we had a while ago.$"
+	.string "during the big storm we had a while\l"
+	.string "ago.$"
 
 SakuTown_House2_EventScript_Sister_Text_1:
 # 172 "data/maps/SakuTown_House2/scripts.pory"
-	.string "Thank you for your kindness! It's nice\n"
-	.string "to see my brother smiling again.\p"
-	.string "I wish I could thank whoever took such\n"
-	.string "good care of Eevee, too!$"
+	.string "Thank you for your kindness! It's\n"
+	.string "nice to see my brother smiling again.\p"
+	.string "I wish I could thank whoever took\n"
+	.string "such good care of Eevee, too!$"

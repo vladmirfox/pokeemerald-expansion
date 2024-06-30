@@ -376,7 +376,7 @@
 #define OBJ_EVENT_PAL_TAG_AROMA_LADY              0x1125
 #define OBJ_EVENT_PAL_TAG_OLD_MAN                 0x1126
 #define OBJ_EVENT_PAL_TAG_KOISHI                  0x1127
-#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128
+#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL             0x1128 // UNUSED
 #define OBJ_EVENT_PAL_TAG_FAT_MAN                 0x1129
 #define OBJ_EVENT_PAL_TAG_ARTIST                  0x112A
 #define OBJ_EVENT_PAL_TAG_NINJA_BOY               0x112B

@@ -1,5 +1,6 @@
 const FLAG_HIDE_HOPPIP = FLAG_TEMP_5
 const FLAG_HIDE_SHEPHERD = FLAG_TEMP_6
+const FLAG_HIDE_KIDS = FLAG_TEMP_7
 const VAR_TIME_OF_DAY = VAR_0x8000
 const LOCALID_HOPPIP = 10
 
@@ -11,10 +12,15 @@ mapscripts BeachboundRoute_MapScripts {
 
 script BeachboundRoute_EventScript_TimeBasedEvents {
 	setflag(FLAG_HIDE_SHEPHERD)
+	setflag(FLAG_HIDE_KIDS)
 
 	gettimeofday
 	if (var(VAR_TIME_OF_DAY) != TIME_NIGHT) {
 		clearflag(FLAG_HIDE_SHEPHERD)
+	}
+
+	if (var(VAR_TIME_OF_DAY) != TIME_NIGHT && var(VAR_TIME_OF_DAY) != TIME_EVENING) {
+		clearflag(FLAG_HIDE_KIDS)
 	}
 }
 
@@ -26,11 +32,24 @@ script BeachboundRoute_EventScript_RunningBoy {
 	), MSGBOX_NPC)
 }
 
+script BeachboundRoute_EventScript_RunningGirl {
+	speakername("Little girl")
+	msgbox(format(
+		"Wait for me!! It's not fair!!!"
+	), MSGBOX_NPC)
+}
+
 script BeachboundRoute_EventScript_AnnoyedGirl {
 	speakername("Annoyed girl")
-	msgbox(format(
-		"I wish that kid would leave…"
-	), MSGBOX_NPC)
+	if (flag(FLAG_HIDE_KIDS)) {
+		msgbox(format(
+			"Hum… Could you maybe, like, leave?"
+		), MSGBOX_NPC)
+	} else {
+		msgbox(format(
+			"I wish those kids would leave…"
+		), MSGBOX_NPC)
+	}
 }
 
 script BeachboundRoute_EventScript_AnnoyedBoy {

@@ -57,10 +57,11 @@ KuraTown_House1_OldWoman_Text_1:
 
 KuraTown_House1_OldWomansSon_Text_0:
 # 22 "data/maps/KuraTown_House1/scripts.pory"
-	.string "The Pokémon league organization didn't\n"
-	.string "see fit to build a Pokémon refuge in our\l"
-	.string "village, but those jerks over at Saku\l"
-	.string "Village won't let us use theirs.\p"
+	.string "The Pokémon league organization\n"
+	.string "didn't see fit to build a Pokémon\l"
+	.string "refuge in our village, but those jerks\l"
+	.string "over at Saku Village won't let us use\l"
+	.string "theirs.\p"
 	.string "So my mother has to work hard to heal\n"
 	.string "all the villager's Pokémon.\p"
 	.string "It's not fair!$"

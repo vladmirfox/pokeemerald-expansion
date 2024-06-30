@@ -76,7 +76,6 @@ const u32 gObjectEventPic_Boy2[] = INCBIN_U32("graphics/object_events/pics/peopl
 const u32 gObjectEventPic_Girl2[] = INCBIN_U32("graphics/object_events/pics/people/girl_2.4bpp");
 const u32 gObjectEventPic_LittleBoy[] = INCBIN_U32("graphics/object_events/pics/people/little_boy.4bpp");
 const u32 gObjectEventPic_LittleGirl[] = INCBIN_U32("graphics/object_events/pics/people/little_girl.4bpp");
-const u16 gObjectEventPal_LittleGirl[] = INCBIN_U16("graphics/object_events/palettes/little_girl.gbapal");
 const u32 gObjectEventPic_Boy3[] = INCBIN_U32("graphics/object_events/pics/people/boy_3.4bpp");
 const u32 gObjectEventPic_Girl3[] = INCBIN_U32("graphics/object_events/pics/people/girl_3.4bpp");
 const u32 gObjectEventPic_RichBoy[] = INCBIN_U32("graphics/object_events/pics/people/rich_boy.4bpp");

@@ -33632,3 +33632,37 @@ General_DynamaxGrowth:: @ PORTED FROM CFRU
 	createvisualtask AnimTask_DynamaxGrowth, 0x5, 0x1, 0x0
 	waitforvisualfinish
 	end
+
+
+@ CUSTOM MOVES
+
+Move_FLIPPER_SPLASH::
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_SMALL_BUBBLES
+	monbg ANIM_TARGET
+	setalpha 12, 8
+
+	@ Lunge
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 4, 4
+	delay 6
+
+	@ Splat gfx
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 2
+	@ Enemy shake
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
+
+	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
+
+	@ 3 drops
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 0, -15, 0, 15, 55
+	delay 10
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 15, -20, 0, 15, 50
+	delay 10
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, -15, -10, 0, 10, 45
+
+
+	waitforvisualfinish
+
+	clearmonbg ANIM_TARGET
+	blendoff
+	end

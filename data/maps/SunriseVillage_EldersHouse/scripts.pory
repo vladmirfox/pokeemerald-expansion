@@ -177,7 +177,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	} elif (var(VAR_RESULT) == YES) {
 		switch(var(VAR_TEMP_1)) {
 			case SPECIES_SPHEAL:
-				givemon(SPECIES_SPHEAL, 5, ITEM_ORAN_BERRY, move1=MOVE_POWDER_SNOW, move2=MOVE_TAIL_WHIP, move3=MOVE_NONE, move4=MOVE_NONE)
+				givemon(SPECIES_SPHEAL, 5, ITEM_ORAN_BERRY, move1=MOVE_FLIPPER_SPLASH, move2=MOVE_TAIL_WHIP, move3=MOVE_NONE, move4=MOVE_NONE)
 			case SPECIES_ARON:
 				givemon(SPECIES_ARON, 5, ITEM_ORAN_BERRY, move1=MOVE_TACKLE, move2=MOVE_HARDEN, move3=MOVE_NONE, move4=MOVE_NONE)
 			case SPECIES_TRAPINCH:

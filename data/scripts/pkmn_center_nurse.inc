@@ -318,7 +318,8 @@ Common_EventScript_PkmnCenterNurse_CutTheBullshit_Text_0:
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_0:
 # 19 "data/scripts/pkmn_center_nurse.pory"
-	.string "Your Pokémon are all healed and rested.$"
+	.string "Your Pokémon are all healed and\n"
+	.string "rested.$"
 
 EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_1:
 # 23 "data/scripts/pkmn_center_nurse.pory"
@@ -327,11 +328,11 @@ EventScript_PkmnCenterNurse_HealPkmn_CutTheBullshit_Text_1:
 EventScript_PkmnCenterNurse_CheckPokerus_CutTheBullshit_Text_0:
 # 33 "data/scripts/pkmn_center_nurse.pory"
 	.string "Um, excuse me…\p"
-	.string "I think your Pokémon is under some sort\n"
-	.string "of spell.\p"
-	.string "I'm pretty good at feeling this kind of\n"
-	.string "thing. I have seen this before.\p"
-	.string "I'm not sure what it is, but I have seen\n"
-	.string "the Pokémon that had this aura around\l"
-	.string "them grow exceptionally well for a\l"
-	.string "while.$"
+	.string "I think your Pokémon is under some\n"
+	.string "sort of spell.\p"
+	.string "I'm pretty good at feeling this kind\n"
+	.string "of thing. I have seen this before.\p"
+	.string "I'm not sure what it is, but I have\n"
+	.string "seen the Pokémon that had this aura\l"
+	.string "around them grow exceptionally well\l"
+	.string "for a while.$"

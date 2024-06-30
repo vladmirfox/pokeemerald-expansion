@@ -85,11 +85,11 @@ KuraTown_House2_EventScript_Ashii_Text_1:
 	.string "Hey, what are you doing in my house?\n"
 	.string "Were you eavesdropping?\p"
 	.string "…It doesn't matter anyway. The boy I\n"
-	.string "really like lives in Saku Village, but our\l"
-	.string "two villages hate each other, so I can't\l"
-	.string "see him anymore.\p"
-	.string "If only there was a way for him to know\n"
-	.string "my feelings…$"
+	.string "really like lives in Saku Village, but\l"
+	.string "our two villages hate each other, so I\l"
+	.string "can't see him anymore.\p"
+	.string "If only there was a way for him to\n"
+	.string "know my feelings…$"
 
 KuraTown_House2_EventScript_Ashii_Text_2:
 # 41 "data/maps/KuraTown_House2/scripts.pory"

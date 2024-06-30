@@ -255,12 +255,13 @@ KuraTown_Dojo_EventScript_Jocelyn_Text_0:
 
 KuraTown_Dojo_EventScript_Jocelyn_Text_1:
 # 33 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "At least I didn't give you any trouble…$"
+	.string "At least I didn't give you any\n"
+	.string "trouble…$"
 
 KuraTown_Dojo_EventScript_Jocelyn_Text_2:
 # 36 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "You're wondering why you can't just cut\n"
-	.string "down all the trees?\p"
+	.string "You're wondering why you can't just\n"
+	.string "cut down all the trees?\p"
 	.string "Uhhh… It's a secret!$"
 
 KuraTown_Dojo_EventScript_Laura_Text_0:
@@ -288,13 +289,14 @@ KuraTown_Dojo_EventScript_Brenden_Text_1:
 
 KuraTown_Dojo_EventScript_Brenden_Text_2:
 # 58 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Sniff… By zeazonal allergiez are agdig\n"
-	.string "up agaid…$"
+	.string "Sniff… By zeazonal allergiez are\n"
+	.string "agdig up agaid…$"
 
 KuraTown_Dojo_EventScript_Cristian_Text_0:
 # 65 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Did you know any tree can be bonsaified\n"
-	.string "by pruning its leaves regularly?$"
+	.string "Did you know any tree can be\n"
+	.string "bonsaified by pruning its leaves\l"
+	.string "regularly?$"
 
 KuraTown_Dojo_EventScript_Cristian_Text_1:
 # 66 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -309,8 +311,8 @@ KuraTown_Dojo_EventScript_Cristian_Text_2:
 
 KuraTown_Dojo_EventScript_Lilith_Text_0:
 # 75 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Hana may look frail, but she's actually\n"
-	.string "way tougher than you!$"
+	.string "Hana may look frail, but she's\n"
+	.string "actually way tougher than you!$"
 
 KuraTown_Dojo_EventScript_Lilith_Text_1:
 # 76 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -333,13 +335,15 @@ KuraTown_Dojo_EventScript_Hana_Text_0:
 	.string "Did you enjoy my little maze?\p"
 	.string "Tending to my bonsai and fighting\n"
 	.string "alongside my Pokémon are my favorite\l"
-	.string "pastimes. With the Dojo, I can do both!\p"
-	.string "A Pokémon battle can be graceful like a\n"
-	.string "budding flower, strong like the deepest\l"
-	.string "roots, powerful like a windswept pine\l"
-	.string "tree, all at once.\p"
+	.string "pastimes. With the Dojo, I can do\l"
+	.string "both!\p"
+	.string "A Pokémon battle can be graceful like\n"
+	.string "a budding flower, strong like the\l"
+	.string "deepest roots, powerful like a\l"
+	.string "windswept pine tree, all at once.\p"
 	.string "I want you to show me all the grace,\n"
-	.string "strength and power you are capable of!$"
+	.string "strength and power you are capable\l"
+	.string "of!$"
 
 KuraTown_Dojo_EventScript_Hana_Text_1:
 # 99 "data/maps/KuraTown_Dojo/scripts.pory"
@@ -359,8 +363,9 @@ KuraTown_Dojo_EventScript_HanaDefeated_Text_0:
 KuraTown_Dojo_EventScript_HanaDefeated_Text_1:
 # 128 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Thanks to the Bonsai badge, your\n"
-	.string "Pokémon will obey you without question,\l"
-	.string "even those you trade with others.\p"
+	.string "Pokémon will obey you without\l"
+	.string "question, even those you trade with\l"
+	.string "others.\p"
 	.string "Here, let me also give you this.$"
 
 KuraTown_Dojo_EventScript_GiveBulldoze_Text_0:
@@ -369,35 +374,36 @@ KuraTown_Dojo_EventScript_GiveBulldoze_Text_0:
 	.string "powerful ground-type move that slows\l"
 	.string "down the enemy.\p"
 	.string "I invented that technique myself! I\n"
-	.string "needed a way to soften the ground when\l"
-	.string "repotting bonsai, heh heh.\p"
+	.string "needed a way to soften the ground\l"
+	.string "when repotting bonsai, heh heh.\p"
 	.string "$"
 
 KuraTown_Dojo_EventScript_Advice_Text_0:
 # 167 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "That was a beautiful fight! You're going\n"
-	.string "to blossom into an excellent Pokémon\l"
-	.string "wielder, I can just feel it!$"
+	.string "That was a beautiful fight! You're\n"
+	.string "going to blossom into an excellent\l"
+	.string "Pokémon wielder, I can just feel it!$"
 
 KuraTown_Dojo_EventScript_Advice_Text_1:
 # 172 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Hello, young challenger, and welcome to\n"
-	.string "the official Dojo of Kura Village!\p"
-	.string "Lady Hana, the Dojo master, is an expert\n"
-	.string "in all things bonsai. She designed this\l"
-	.string "place and grew these trees, of course!\p"
-	.string "She tends to favor ground-type moves,\n"
-	.string "but she's got other tricks up her\l"
-	.string "sleeve, too. Be on your guard!\p"
-	.string "Now, pay attention: only some of these\n"
-	.string "pretty trees can be cut down.\p"
+	.string "Hello, young challenger, and welcome\n"
+	.string "to the official Dojo of Kura Village!\p"
+	.string "Lady Hana, the Dojo master, is an\n"
+	.string "expert in all things bonsai. She\l"
+	.string "designed this place and grew these\l"
+	.string "trees, of course!\p"
+	.string "She tends to favor ground-type\n"
+	.string "moves, but she's got other tricks up\l"
+	.string "her sleeve, too. Be on your guard!\p"
+	.string "Now, pay attention: only some of\n"
+	.string "these pretty trees can be cut down.\p"
 	.string "Figure out which, and you'll reach the\n"
 	.string "master!$"
 
 KuraTown_Dojo_EventScript_Advice_Text_2:
 # 181 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Hello, young challenger, and welcome to\n"
-	.string "the official Dojo of Kura Village!\p"
+	.string "Hello, young challenger, and welcome\n"
+	.string "to the official Dojo of Kura Village!\p"
 	.string "All these trees are blocking your way,\n"
 	.string "aren't they?\p"
 	.string "You should come back once you've\n"
@@ -405,8 +411,8 @@ KuraTown_Dojo_EventScript_Advice_Text_2:
 
 KuraTown_Dojo_EventScript_Advice_Text_3:
 # 187 "data/maps/KuraTown_Dojo/scripts.pory"
-	.string "Hello, young challenger, and welcome to\n"
-	.string "the official Dojo of Kura Village!\p"
+	.string "Hello, young challenger, and welcome\n"
+	.string "to the official Dojo of Kura Village!\p"
 	.string "All these trees are blocking your way,\n"
 	.string "aren't they?\p"
 	.string "You should come back once you've\n"

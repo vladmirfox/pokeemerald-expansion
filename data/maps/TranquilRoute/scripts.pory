@@ -192,6 +192,10 @@ script TranquilRoute_EventScript_CutGrass {
 	return
 }
 
+script TODOEVA {
+	givemon(SPECIES_SPHEAL, 100, move1=MOVE_TACKLE, move2=MOVE_POUND, move3=MOVE_WATER_GUN, move4=MOVE_FLIPPER_SPLASH)
+}
+
 script TranquilRoute_EventScript_Chikao {
 	trainerbattle_single(
 		TRAINER_CHIKAO,

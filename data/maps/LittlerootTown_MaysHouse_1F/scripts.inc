@@ -130,9 +130,9 @@ LittlerootTown_MaysHouse_1F_EventScript_BigSis_Text_0:
 LittlerootTown_MaysHouse_1F_EventScript_ReadRivalsNote_Text_0:
 # 56 "data/maps/LittlerootTown_MaysHouse_1F/scripts.pory"
 	.string "“Hey {PLAYER}{KUN},\p"
-	.string "“I'm going down to the beach before the\n"
-	.string "giveaway, meet me there if you wanna\l"
-	.string "hang out.\p"
+	.string "“I'm going down to the beach before\n"
+	.string "the giveaway, meet me there if you\l"
+	.string "wanna hang out.\p"
 	.string "“-{RIVAL}”$"
 
 LittlerootTown_MaysHouse_1F_EventScript_RunningShoesBox_Text_0:

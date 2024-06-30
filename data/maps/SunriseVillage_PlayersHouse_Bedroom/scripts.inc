@@ -110,7 +110,7 @@ SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_0:
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_1:
 # 36 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "{PLAYER}! {PLAYER}! Are you still\n"
-	.string "{PK}sleeping?$"
+	.string "sleeping?$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_2:
 # 46 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
@@ -131,7 +131,7 @@ SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_5:
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_6:
 # 64 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"
 	.string "… … … … … …\p"
-	.string "…{PLAYER}? Are you up?$"
+	.string "…{PLAYER}!! ARE YOU UP?!$"
 
 SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling_Text_7:
 # 75 "data/maps/SunriseVillage_PlayersHouse_Bedroom/scripts.pory"

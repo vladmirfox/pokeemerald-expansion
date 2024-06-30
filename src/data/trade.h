@@ -1000,21 +1000,21 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_RALTS
     },
-    [INGAME_TRADE_PLUSLE] =
+    [INGAME_TRADE_PSYDUCK] =
     {
-        .nickname = _("PLUSES"),
-        .species = SPECIES_PLUSLE,
+        .nickname = _("Bread"),
+        .species = SPECIES_PSYDUCK,
         .ivs = {4, 4, 4, 5, 5, 4},
         .abilityNum = 0,
         .otId = 73996,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x6F,
-        .heldItem = ITEM_WOOD_MAIL,
+        .heldItem = ITEM_MYSTIC_WATER,
         .mailNum = 0,
-        .otName = _("ROMAN"),
+        .otName = _("Kodomo"),
         .otGender = MALE,
         .sheen = 10,
-        .requestedSpecies = SPECIES_VOLBEAT
+        .requestedSpecies = SPECIES_HOOTHOOT
     },
     [INGAME_TRADE_HORSEA] =
     {

@@ -147,6 +147,7 @@ extern const u8 Move_LOVELY_KISS[];
 extern const u8 Move_SKY_ATTACK[];
 extern const u8 Move_TRANSFORM[];
 extern const u8 Move_BUBBLE[];
+extern const u8 Move_FLIPPER_SPLASH[];
 extern const u8 Move_DIZZY_PUNCH[];
 extern const u8 Move_SPORE[];
 extern const u8 Move_FLASH[];

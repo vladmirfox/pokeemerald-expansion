@@ -12,13 +12,15 @@ script SakuTown_House2_EventScript_EspeonsMaster {
 
 	// First time talking to him
 	if (var(VAR_SAKU_KURA_QUEST_ESPEON_STATE) == 0) {
-				msgbox(format(
+		speakername("Boy")
+		msgbox(format(
 				"I hope Eevee comes home soon…"
-			))
-			closemessage
-			// Talked to Espeon's master but not to lady
-			setvar(VAR_SAKU_KURA_QUEST_ESPEON_STATE, 2)
+		))
+		closemessage
+		// Talked to Espeon's master but not to lady
+		setvar(VAR_SAKU_KURA_QUEST_ESPEON_STATE, 2)
 	} elif (var(VAR_SAKU_KURA_QUEST_ESPEON_STATE) == 1) {
+		speakername("Boy")
 		msgbox(format(
 			"I hope Eevee comes home soon…\p"
 			"What? Someone found my Eevee? Oh, please, can you tell them to bring it back?"
@@ -28,6 +30,7 @@ script SakuTown_House2_EventScript_EspeonsMaster {
 		// Bring him back!
 		setvar(VAR_SAKU_KURA_QUEST_ESPEON_STATE, 3)
 	} elif (var(VAR_SAKU_KURA_QUEST_ESPEON_STATE) == 2) {
+		speakername("Boy")
 		msgbox(format(
 			"… …"
 		))
@@ -35,6 +38,7 @@ script SakuTown_House2_EventScript_EspeonsMaster {
 
 		// Waiting for Espeon
 	} elif (var(VAR_SAKU_KURA_QUEST_ESPEON_STATE) == 3) {
+		speakername("Boy")
 		msgbox(format(
 			"Where's my Eevee?"
 		))
@@ -46,10 +50,23 @@ script SakuTown_House2_EventScript_EspeonsMaster {
 		
 		// Talked to Espeon's master once are reunited
 	} elif (var(VAR_SAKU_KURA_QUEST_ESPEON_STATE) == 5) {
-		msgbox(format(
-			"How are you doing? Espeon looks happy to see you!"
-		))
-		closemessage
+		if (flag(FLAG_TEMP_1)) {
+			speakername("Boy")
+			msgbox(format(
+				"Thanks again!"
+			))
+			closemessage
+		} else {
+			if (flag(FLAG_SAKU_ESPEON_QUEST_RECEIVED_EVO_STONE)) {
+				speakername("Boy")
+				msgbox(format(
+					"How are you doing? Espeon looks happy to see you!"
+				))
+				closemessage
+			} else {
+				call(SakuTown_House2_EventScript_GiveEvoStone)
+			}
+		}
 	}
 	
 	release
@@ -59,7 +76,7 @@ script SakuTown_House2_EventScript_Reunited {
 	// Reunited at last
 	setvar(VAR_SAKU_KURA_QUEST_ESPEON_STATE, 5)
 	clearflag(FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME)
-
+	speakername("Boy")
 	msgbox(format(
 		"Where's my Eevee?"
 	))
@@ -109,6 +126,7 @@ script SakuTown_House2_EventScript_Reunited {
 	playmoncry(SPECIES_ESPEON, CRY_MODE_NORMAL)
 	waitmoncry
 
+	speakername("Boy")
 	msgbox(format(
 		"It's you! It's really you! Oh, Eevee, I've missed you so much!\p"
 		"… …\p"
@@ -129,6 +147,7 @@ script SakuTown_House2_EventScript_Reunited {
 	}
 	delay(30)
 	
+	speakername("Boy")
 	msgbox(format(
 		"You say it was a woman from Kura Village that found him?\p"
 		"She took such good care of him!\p"
@@ -137,12 +156,42 @@ script SakuTown_House2_EventScript_Reunited {
 		"Looks like there are actually some nice people too in Kura Village…\p"
 		"… …\p"
 		"Anyway, thank you so much for helping me out. I'm so grateful.\p"
-		"Please take this."
+		"As a thanks, you can have your pick from my cool rock collection!"
 	))
+	call(SakuTown_House2_EventScript_GiveEvoStone)
+}
+
+script SakuTown_House2_EventScript_GiveEvoStone {
+	msgbox(format("Which rock would you like?"))
 	closemessage
 
-	// TODO EVA Decide on the reward
-	giveitem(ITEM_THUNDER_STONE)
+	dynmultichoice(
+		16,
+		6,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"The red rock",
+		"The blue rock",
+		"The yellow rock"
+	)
+
+	speakername("Boy")
+	switch (var(VAR_RESULT)) {
+		case 0:
+			giveitem(ITEM_FIRE_STONE)
+		case 1:
+			giveitem(ITEM_WATER_STONE)
+		case 2:
+			giveitem(ITEM_THUNDER_STONE)
+	}
+	closemessage
+
+	goto_if_eq(VAR_RESULT, 0, Common_EventScript_BagIsFull)
+
+	setflag(FLAG_SAKU_ESPEON_QUEST_RECEIVED_EVO_STONE)
+	release
 }
 
 // Espeon
@@ -150,6 +199,12 @@ script SakuTown_House2_EventScript_Espeon {
 	lock
 	faceplayer
 	playmoncry(SPECIES_ESPEON, CRY_MODE_NORMAL)
+    ismonseen(SPECIES_ESPEON)
+    if (var(VAR_RESULT)) {
+        speakername("Espeon")
+    } else {
+        speakername("Purple fox")
+    }
 	msgbox(format(
 		"Eeeoon!"
 	))
@@ -162,19 +217,21 @@ script SakuTown_House2_EventScript_Espeon {
 script SakuTown_House2_EventScript_Sister {
 	lock
 	faceplayer
+	speakername("Girl")
 	if (flag(FLAG_SAKU_KURA_HIDE_ESPEON_MASTERS_HOME)) {
 		msgbox(format(
 			"My brother's been feeling really down lately.\p"
 			"His precious Pokémon disappeared during the big storm we had a while ago."
 		))
+		closemessage
+		applymovement(LOCALID_SISTER, Common_Movement_FaceOriginalDirection)
 	} else {
 		msgbox(format(
 			"Thank you for your kindness! It's nice to see my brother smiling again.\p"
 			"I wish I could thank whoever took such good care of Eevee, too!"
 		))
+		closemessage
 	}
-	closemessage
-	applymovement(LOCALID_SISTER, Common_Movement_FaceOriginalDirection)
 	release
 }
 

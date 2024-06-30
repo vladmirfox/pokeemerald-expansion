@@ -22014,4 +22014,29 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .battleAnimScript = Move_G_MAX_RAPID_FLOW,
     },
 
+    [MOVE_FLIPPER_SPLASH] =
+    {
+        .name = COMPOUND_STRING("Flipper splash"),
+        .description = COMPOUND_STRING(
+            "Splashes the foe with a\n"
+            "wet flipper. May flinch."
+        ),
+        .effect = EFFECT_HIT,
+        .power = 50,
+        .type = TYPE_WATER,
+        .accuracy = 100,
+        .pp = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_FLINCH,
+            .chance = 30,
+        }),
+        .contestEffect = CONTEST_EFFECT_STARTLE_PREV_MONS,
+        .contestCategory = CONTEST_CATEGORY_CUTE,
+        .contestComboStarterId = 0,
+        .contestComboMoves = {COMBO_STARTER_RAIN_DANCE},
+        .battleAnimScript = Move_FLIPPER_SPLASH,
+    },
 };

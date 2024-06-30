@@ -189,15 +189,16 @@ KuraTown_House3_EventScript_Lady_Text_0:
 
 KuraTown_House3_EventScript_Lady_Text_1:
 # 21 "data/maps/KuraTown_House3/scripts.pory"
-	.string "Sorry, I thought you were someone else.\p"
+	.string "Sorry, I thought you were someone\n"
+	.string "else.\p"
 	.string "See, this little one came to me a while\n"
 	.string "ago. There was a thunderstorm and it\l"
 	.string "looked scared and lost.\p"
 	.string "So I've been taking care of it while\n"
 	.string "waiting for its master to show up!\p"
-	.string "Looks like it's feeling a lot better now.\n"
-	.string "Look how shiny his fur is! Such a pretty\l"
-	.string "color, too!$"
+	.string "Looks like it's feeling a lot better\n"
+	.string "now. Look how shiny his fur is! Such a\l"
+	.string "pretty color, too!$"
 
 KuraTown_House3_EventScript_Lady_Text_2:
 # 43 "data/maps/KuraTown_House3/scripts.pory"
@@ -210,8 +211,8 @@ KuraTown_House3_EventScript_Lady_Text_3:
 
 KuraTown_House3_EventScript_Lady_Text_4:
 # 64 "data/maps/KuraTown_House3/scripts.pory"
-	.string "That little lost kitten is reunited with\n"
-	.string "its master? Do they seem happy\l"
+	.string "That little lost kitten is reunited\n"
+	.string "with its master? Do they seem happy\l"
 	.string "together?\p"
 	.string "Oh, how delightful!$"
 

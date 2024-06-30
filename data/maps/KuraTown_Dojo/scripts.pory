@@ -92,7 +92,7 @@ script KuraTown_Dojo_EventScript_Hana {
 		// TODO different dialogue if you already met
 		format(
 			"Welcome to my humble Dojo. I am Hana. Did you enjoy my little maze?\p"
-			"Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With the Dojo, I can do both!\p"
+			"Tending to my bonsai and fighting alongside my Pokémon are my favorite pastimes. With this Dojo, I can do both!\p"
 			"A Pokémon battle can be graceful like a budding flower, strong like the deepest roots, powerful like a windswept pine tree, all at once.\p"
 			"I want you to show me all the grace, strength and power you are capable of!"
 		),

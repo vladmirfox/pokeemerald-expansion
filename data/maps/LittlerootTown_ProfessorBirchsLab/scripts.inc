@@ -2321,8 +2321,8 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 
 LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene_Text_0:
 # 24 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "Elder IWA: {PLAYER}, {RIVAL}, take\n"
-	.string "one of these Pokémon.$"
+	.string "Elder IWA: {PLAYER}, {RIVAL},\n"
+	.string "take one of these Pokémon.$"
 
 LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene_Text_1:
 # 30 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2331,8 +2331,8 @@ LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene_Text_1:
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_0:
 # 69 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "You already got a Pokémon. Better leave\n"
-	.string "this one here.$"
+	.string "You already got a Pokémon. Better\n"
+	.string "leave this one here.$"
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_1:
 # 76 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2349,7 +2349,8 @@ LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_3:
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_4:
 # 101 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "{RIVAL}: I'm choosing this one then!$"
+	.string "{RIVAL}: I'm choosing this one\n"
+	.string "then!$"
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_5:
 # 122 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2362,4 +2363,5 @@ LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_6:
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_7:
 # 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "{RIVAL}: Catch ya later, {PLAYER}!$"
+	.string "{RIVAL}: Catch ya later,\n"
+	.string "{PLAYER}!$"

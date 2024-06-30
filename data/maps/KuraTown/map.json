@@ -150,24 +150,6 @@
       "var": "VAR_SAKU_KURA_VILLAGES_STATE",
       "var_value": "2",
       "script": "KuraTown_EventScript_GuardStopsYou"
-    },
-    {
-      "type": "trigger",
-      "x": 18,
-      "y": 29,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "1",
-      "script": "KuraTown_EventScript_GuardStopsYou"
-    },
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 30,
-      "elevation": 0,
-      "var": "VAR_SAKU_KURA_VILLAGES_STATE",
-      "var_value": "1",
-      "script": "KuraTown_EventScript_GuardStopsYou"
     }
   ],
   "bg_events": [
