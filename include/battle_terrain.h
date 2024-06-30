@@ -6,6 +6,7 @@
 
 struct BattleTerrain {
     u8 name[26];
+    u16 naturePower;
     struct BattleBackground background;
 };
 
