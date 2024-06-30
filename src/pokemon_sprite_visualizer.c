@@ -40,6 +40,7 @@
 
 #include "constants/items.h"
 #include "constants/event_objects.h"
+#include "data/battle_terrain.h"
 
 #if DEBUG_POKEMON_SPRITE_VISUALIZER == TRUE
 extern const struct BattleBackground sBattleTerrainTable[];
@@ -384,19 +385,7 @@ const u8 gBattleBackgroundNames[][30] =
     [MAP_BATTLE_SCENE_KYOGRE]   = _("KYOGRE                  "),
     [MAP_BATTLE_SCENE_RAYQUAZA] = _("RAYQUAZA                "),
 };
-const u8 gBattleBackgroundTerrainNames[][26] =
-{
-    [BATTLE_TERRAIN_GRASS]      = _("NORMAL - GRASS           "),
-    [BATTLE_TERRAIN_LONG_GRASS] = _("NORMAL - LONG GRASS      "),
-    [BATTLE_TERRAIN_SAND]       = _("NORMAL - SAND            "),
-    [BATTLE_TERRAIN_UNDERWATER] = _("NORMAL - UNDERWATER      "),
-    [BATTLE_TERRAIN_WATER]      = _("NORMAL - WATER           "),
-    [BATTLE_TERRAIN_POND]       = _("NORMAL - POND            "),
-    [BATTLE_TERRAIN_MOUNTAIN]   = _("NORMAL - MOUNTAIN        "),
-    [BATTLE_TERRAIN_CAVE]       = _("NORMAL - CAVE            "),
-    [BATTLE_TERRAIN_BUILDING]   = _("NORMAL - BUILDING        "),
-    [BATTLE_TERRAIN_PLAIN]      = _("NORMAL - PLAIN           "),
-};
+
 //Function declarations
 static void PrintDigitChars(struct PokemonSpriteVisualizer *data);
 static void SetUpModifyArrows(struct PokemonSpriteVisualizer *data);
@@ -908,7 +897,7 @@ static void PrintBattleBgName(u8 taskId)
     u8 text[30+1];
 
     if (data->battleBgType == 0)
-        StringCopy(text, gBattleBackgroundTerrainNames[data->battleTerrain]);
+        StringCopy(text, gBattleTerrainInfo[data->battleTerrain].name);
     else
         StringCopy(text, gBattleBackgroundNames[data->battleBgType]);
     AddTextPrinterParameterized(WIN_BOTTOM_RIGHT, fontId, text, 0, 24, 0, NULL);
