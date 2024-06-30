@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_gfx_sfx_util.h"
+#include "battle_terrain.h"
 #include "bg.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -40,10 +41,9 @@
 
 #include "constants/items.h"
 #include "constants/event_objects.h"
-#include "data/battle_terrain.h"
 
 #if DEBUG_POKEMON_SPRITE_VISUALIZER == TRUE
-extern const struct BattleBackground sBattleTerrainTable[];
+extern const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT];
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
@@ -819,9 +819,9 @@ static void LoadBattleBg(u8 battleBgType, u8 battleTerrain)
     {
     default:
     case MAP_BATTLE_SCENE_NORMAL:
-        LZDecompressVram(sBattleTerrainTable[battleTerrain].tileset, (void*)(BG_CHAR_ADDR(2)));
-        LZDecompressVram(sBattleTerrainTable[battleTerrain].tilemap, (void*)(BG_SCREEN_ADDR(26)));
-        LoadCompressedPalette(sBattleTerrainTable[battleTerrain].palette, 0x20, 0x60);
+        LZDecompressVram(gBattleTerrainInfo[battleTerrain].background.tileset, (void*)(BG_CHAR_ADDR(2)));
+        LZDecompressVram(gBattleTerrainInfo[battleTerrain].background.tilemap, (void*)(BG_SCREEN_ADDR(26)));
+        LoadCompressedPalette(gBattleTerrainInfo[battleTerrain].background.palette, 0x20, 0x60);
         break;
     case MAP_BATTLE_SCENE_GYM:
         LZDecompressVram(gBattleTerrainTiles_Building, (void*)(BG_CHAR_ADDR(2)));
