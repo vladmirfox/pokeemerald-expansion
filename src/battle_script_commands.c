@@ -1004,32 +1004,6 @@ static const struct PickupItem sPickupTable[] =
 
 #undef _
 
-static const u8 sTerrainToType[BATTLE_TERRAIN_COUNT] =
-{
-    [BATTLE_TERRAIN_GRASS]            = TYPE_GRASS,
-    [BATTLE_TERRAIN_LONG_GRASS]       = TYPE_GRASS,
-    [BATTLE_TERRAIN_SAND]             = TYPE_GROUND,
-    [BATTLE_TERRAIN_UNDERWATER]       = TYPE_WATER,
-    [BATTLE_TERRAIN_WATER]            = TYPE_WATER,
-    [BATTLE_TERRAIN_POND]             = TYPE_WATER,
-    [BATTLE_TERRAIN_CAVE]             = TYPE_ROCK,
-    [BATTLE_TERRAIN_BUILDING]         = TYPE_NORMAL,
-    [BATTLE_TERRAIN_SOARING]          = TYPE_FLYING,
-    [BATTLE_TERRAIN_SKY_PILLAR]       = TYPE_FLYING,
-    [BATTLE_TERRAIN_BURIAL_GROUND]    = TYPE_GHOST,
-    [BATTLE_TERRAIN_PUDDLE]           = TYPE_GROUND,
-    [BATTLE_TERRAIN_MARSH]            = TYPE_GROUND,
-    [BATTLE_TERRAIN_SWAMP]            = TYPE_GROUND,
-    [BATTLE_TERRAIN_SNOW]             = TYPE_ICE,
-    [BATTLE_TERRAIN_ICE]              = TYPE_ICE,
-    [BATTLE_TERRAIN_VOLCANO]          = TYPE_FIRE,
-    [BATTLE_TERRAIN_DISTORTION_WORLD] = TYPE_NORMAL,
-    [BATTLE_TERRAIN_SPACE]            = TYPE_DRAGON,
-    [BATTLE_TERRAIN_ULTRA_SPACE]      = TYPE_PSYCHIC,
-    [BATTLE_TERRAIN_MOUNTAIN]         = (B_CAMOUFLAGE_TYPES >= GEN_5 ? TYPE_GROUND : TYPE_ROCK),
-    [BATTLE_TERRAIN_PLAIN]            = (B_CAMOUFLAGE_TYPES >= GEN_4 ? TYPE_GROUND : TYPE_NORMAL),
-};
-
 static bool32 NoTargetPresent(u8 battler, u32 move)
 {
     if (!IsBattlerAlive(gBattlerTarget))
@@ -14779,7 +14753,7 @@ static void Cmd_tryrecycleitem(void)
 
 bool32 CanCamouflage(u8 battler)
 {
-    if (IS_BATTLER_OF_TYPE(battler, sTerrainToType[gBattleTerrain]))
+    if (IS_BATTLER_OF_TYPE(battler, gBattleTerrainInfo[gBattleTerrain].camouflageType))
         return FALSE;
     return TRUE;
 }
@@ -14804,7 +14778,7 @@ static void Cmd_settypetoterrain(void)
         terrainType = TYPE_PSYCHIC;
         break;
     default:
-        terrainType = sTerrainToType[gBattleTerrain];
+        terrainType = gBattleTerrainInfo[gBattleTerrain].camouflageType;
         break;
     }
 
