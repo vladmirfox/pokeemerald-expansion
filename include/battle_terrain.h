@@ -7,6 +7,7 @@
 struct BattleTerrain {
     u8 name[26];
     u16 naturePower;
+    u16 secretPowerEffect;
     u8 camouflageType;
     struct BattleBackground background;
 };
