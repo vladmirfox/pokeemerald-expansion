@@ -16,10 +16,10 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ARTIST",
-      "x": 6,
-      "y": 3,
+      "x": 12,
+      "y": 4,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -30,14 +30,14 @@
   ],
   "warp_events": [
     {
-      "x": 4,
+      "x": 2,
       "y": 7,
       "elevation": 0,
       "dest_map": "MAP_SILVERIDGE",
       "dest_warp_id": "1"
     },
     {
-      "x": 5,
+      "x": 3,
       "y": 7,
       "elevation": 0,
       "dest_map": "MAP_SILVERIDGE",
@@ -48,6 +48,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 9,
+      "y": 6,
+      "elevation": 0,
+      "item": "ITEM_HARD_STONE",
+      "flag": "FLAG_TEMP_1"
+    }
   ]
 }

@@ -23,6 +23,11 @@ script Silveridge_House1_EventScript_Sculptor {
 	applymovement(LOCALID_SCULPTOR, Common_Movement_Delay48)
 	waitmovement(0)
 
+	// Absol
+	// Abra
+	// Chansey
+	// Bidoof
+	// Darmanitan
 	msgbox(format(
 		"…Oh? Could it be? Another noble soul moved by the ancestral art of sculpture?\p"
 		"Am I no longer utterly alone? Oh, my heart swells up at the idea!\p"

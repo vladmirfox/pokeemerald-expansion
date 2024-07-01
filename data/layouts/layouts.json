@@ -4584,7 +4584,7 @@
     {
       "id": "LAYOUT_SILVERIDGE",
       "name": "Silveridge_Layout",
-      "width": 42,
+      "width": 43,
       "height": 40,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
@@ -4604,10 +4604,10 @@
     {
       "id": "LAYOUT_SILVERIDGE_SCULPTORS_HOUSE",
       "name": "Silveridge_SculptorsHouse_Layout",
-      "width": 10,
+      "width": 15,
       "height": 8,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseStone",
       "border_filepath": "data/layouts/Silveridge_SculptorsHouse/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_SculptorsHouse/map.bin"
     },

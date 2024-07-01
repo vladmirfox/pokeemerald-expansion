@@ -10,16 +10,22 @@ MaguroHarbor_House1_EventScript_PokedexRiddler::
 # 11 "data/maps/MaguroHarbor_House1/scripts.pory"
 	bufferspeciesdexdesc STR_VAR_2, SPECIES_GROWLITHE
 # 13 "data/maps/MaguroHarbor_House1/scripts.pory"
-	msgbox MaguroHarbor_House1_EventScript_PokedexRiddler_Text_0
-# 21 "data/maps/MaguroHarbor_House1/scripts.pory"
+	speakername MaguroHarbor_House1_EventScript_PokedexRiddler_Text_0
+# 14 "data/maps/MaguroHarbor_House1/scripts.pory"
+	msgbox MaguroHarbor_House1_EventScript_PokedexRiddler_Text_1
+# 22 "data/maps/MaguroHarbor_House1/scripts.pory"
 	closemessage
-# 23 "data/maps/MaguroHarbor_House1/scripts.pory"
+# 24 "data/maps/MaguroHarbor_House1/scripts.pory"
 	release
 	return
 
 
 MaguroHarbor_House1_EventScript_PokedexRiddler_Text_0:
-# 14 "data/maps/MaguroHarbor_House1/scripts.pory"
+# 13 "data/maps/MaguroHarbor_House1/scripts.pory"
+	.string "Nerd$"
+
+MaguroHarbor_House1_EventScript_PokedexRiddler_Text_1:
+# 15 "data/maps/MaguroHarbor_House1/scripts.pory"
 	.string "I know a lot about Pokémon. And I\n"
 	.string "mean a LOT.\p"
 	.string "If you prove that you know as much as\n"

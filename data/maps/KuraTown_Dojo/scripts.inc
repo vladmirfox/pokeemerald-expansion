@@ -335,7 +335,7 @@ KuraTown_Dojo_EventScript_Hana_Text_0:
 	.string "Did you enjoy my little maze?\p"
 	.string "Tending to my bonsai and fighting\n"
 	.string "alongside my Pokémon are my favorite\l"
-	.string "pastimes. With the Dojo, I can do\l"
+	.string "pastimes. With this Dojo, I can do\l"
 	.string "both!\p"
 	.string "A Pokémon battle can be graceful like\n"
 	.string "a budding flower, strong like the\l"

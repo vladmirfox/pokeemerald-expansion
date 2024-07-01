@@ -10,6 +10,7 @@ script MaguroHarbor_House1_EventScript_PokedexRiddler {
 	// random(10)
 	bufferspeciesdexdesc(STR_VAR_2, SPECIES_GROWLITHE)
 
+	speakername("Nerd")
 	msgbox(format(
 		"I know a lot about Pokémon. And I mean a LOT.\p"
 		"If you prove that you know as much as I do, I'll give you a little something.\p"

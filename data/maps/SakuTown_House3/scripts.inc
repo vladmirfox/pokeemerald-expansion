@@ -10,7 +10,7 @@ SakuTown_House3_EventScript_TradeMe::
 # 8 "data/maps/SakuTown_House3/scripts.pory"
 	goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED, SakuTown_House3_EventScript_TradeMe_2
 # 12 "data/maps/SakuTown_House3/scripts.pory"
-	setvar VAR_0x8008, INGAME_TRADE_PLUSLE
+	setvar VAR_0x8008, INGAME_TRADE_PSYDUCK
 # 13 "data/maps/SakuTown_House3/scripts.pory"
 	copyvar VAR_0x8004, VAR_0x8008
 # 14 "data/maps/SakuTown_House3/scripts.pory"
@@ -84,6 +84,8 @@ SakuTown_House3_EventScript_TradeMe_13:
 
 
 SakuTown_House3_EventScript_Man::
+# 47 "data/maps/SakuTown_House3/scripts.pory"
+	msgbox SakuTown_House3_EventScript_Man_Text_0, MSGBOX_NPC
 	return
 
 
@@ -110,3 +112,7 @@ SakuTown_House3_EventScript_TradeMe_Text_4:
 SakuTown_House3_EventScript_TradeMe_Text_5:
 # 37 "data/maps/SakuTown_House3/scripts.pory"
 	.string "{STR_VAR_1}, welcome!\n{STR_VAR_2}, you take care!$"
+
+SakuTown_House3_EventScript_Man_Text_0:
+# 48 "data/maps/SakuTown_House3/scripts.pory"
+	.string "$"

@@ -1721,9 +1721,8 @@ bool8 ScrCmd_bufferspeciesname(struct ScriptContext *ctx)
 
 bool8 ScrCmd_bufferspeciesdexdesc(struct ScriptContext *ctx)
 {
-    // u32 stringVarIndex = ScriptReadByte(ctx);
-    // u16 species = VarGet(ScriptReadHalfword(ctx)) & ((1 << 10) - 1); // ignore possible shiny / form bits
-
+    u32 stringVarIndex = ScriptReadByte(ctx);
+    u16 species = VarGet(ScriptReadHalfword(ctx)) & ((1 << 10) - 1); // ignore possible shiny / form bits
     // u32 desc = GetSpeciesPokedexDescription(species);
 
 //     u32 i;
@@ -1744,7 +1743,7 @@ bool8 ScrCmd_bufferspeciesdexdesc(struct ScriptContext *ctx)
 //     return &dest[i];
 
 // TODO EVA doesn't work pointer bullshit
-    // StringCopy(sScriptStringVars[stringVarIndex], desc);
+    StringCopy(sScriptStringVars[stringVarIndex], GetSpeciesPokedexDescription(species));
     return FALSE;
 }
 

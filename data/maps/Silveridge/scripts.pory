@@ -20,7 +20,7 @@ script Silveridge_EventScript_HousesMadeOfSilverTunnelStone {
 	lock
 	faceplayer
 	msgbox(format(
-		"See the houses around here? They were all built using the stones we got from digging the Silver tunnel."
+		"See the houses around here? They were all built using the stones leftover from digging the Silver tunnel."
 	))
 	release
 }
@@ -31,8 +31,9 @@ script Silveridge_EventScript_MissingStatue {
 	msgbox(format(
 		"Hello, traveler. Have you looked at this stunning statue that makes the pride of our town?\p"
 		"…Is what I would say if we had one.\p"
-		"There used to be a statue, but an earthquake destroyed it long ago, so now we're left with this empty pedestal.\p"
-		"There's an excentric man that lives nearby and that calls himself “The Sculptor”. I wish he'd make a replacement, but he hasn't been making anything for a while now."
+		"There used to be a statue, but a quake destroyed it long ago, so now we're left with this empty pedestal.\p"
+		"There's an excentric man that lives nearby and that calls himself “The Sculptor”.\p"
+		"I wish he'd make a replacement, but he hasn't been making anything for a while now."
 	))
 	release
 }
@@ -42,7 +43,8 @@ script Silveridge_EventScript_Wildflowers {
 	// TODO Havenisle flowers sidequest
 	faceplayer
 	msgbox(format(
-		"I loved gardening back when I lived on Havenisle. When I first moved here, the barren landscape made me very homesick.\p"
+		"I loved gardening back when I lived on Havenisle.\p"
+		"When I first moved here, the barren landscape made me very homesick.\p"
 		"So I started planting little patches of these native wildflowers around the town.\p"
 		"I was told they symbolize eternal love. I don't know about that, but they make me happy!"
 		"I wish I had brought some seeds with me when I left Havenisle, though. The flowers there are so colorful!"
@@ -59,7 +61,7 @@ script Silveridge_EventScript_TownSculptureSignTBD {
 }
 
 script Silveridge_EventScript_SculptorsHouseSign {
-	msgbox(format("The sculptor's atelier"), MSGBOX_SIGN)
+	msgbox(format("The Sculptor's atelier"), MSGBOX_SIGN)
 }
 
 script Silveridge_EventScript_EldersHouseSign {
