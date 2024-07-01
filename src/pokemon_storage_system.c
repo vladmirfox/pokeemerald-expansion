@@ -22,7 +22,6 @@
 #include "naming_screen.h"
 #include "overworld.h"
 #include "palette.h"
-#include "party_menu.h"
 #include "pc_screen_effect.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
@@ -37,11 +36,9 @@
 #include "trig.h"
 #include "walda_phrase.h"
 #include "window.h"
-#include "constants/battle.h"
 #include "constants/form_change_types.h"
 #include "constants/items.h"
 #include "constants/moves.h"
-#include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -204,7 +201,7 @@ enum {
     CURSOR_AREA_IN_BOX,
     CURSOR_AREA_IN_PARTY,
     CURSOR_AREA_BOX_TITLE,
-    CURSOR_AREA_BUTTONS, // Party Pokemon and Close Box
+    CURSOR_AREA_BUTTONS, // Party Pokémon and Close Box
 };
 #define CURSOR_AREA_IN_HAND CURSOR_AREA_BOX_TITLE // Alt name for cursor area used by Move Items
 
@@ -223,9 +220,9 @@ enum {
     PALTAG_MON_ICON_0 = 56000,
     PALTAG_MON_ICON_1, // Used implicitly in CreateMonIconSprite
     PALTAG_MON_ICON_2, // Used implicitly in CreateMonIconSprite
-    PALTAG_3, // Unused
-    PALTAG_4, // Unused
-    PALTAG_5, // Unused
+    PALTAG_MON_ICON_3, // Used implicitly in CreateMonIconSprite
+    PALTAG_MON_ICON_4, // Used implicitly in CreateMonIconSprite
+    PALTAG_MON_ICON_5, // Used implicitly in CreateMonIconSprite
     PALTAG_DISPLAY_MON,
     PALTAG_MISC_1,
     PALTAG_MARKING_COMBO,
@@ -5589,7 +5586,10 @@ static void InitBoxTitle(u8 boxId)
     sStorage->wallpaperPalBits |= (1 << 16) << tagIndex;
 
     StringCopyPadded(sStorage->boxTitleText, GetBoxNamePtr(boxId), 0, BOX_NAME_LENGTH);
-    DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);
+    if (DECAP_ENABLED && DECAP_MIRRORING)
+        DrawTextWindowAndBufferTiles(MirrorPtr(sStorage->boxTitleText), sStorage->boxTitleTiles, 0, 0, 2);
+    else
+        DrawTextWindowAndBufferTiles(sStorage->boxTitleText, sStorage->boxTitleTiles, 0, 0, 2);
     LoadSpriteSheet(&spriteSheet);
     x = GetBoxTitleBaseX(GetBoxNamePtr(boxId));
 
@@ -6025,7 +6025,7 @@ static bool8 UpdateCursorPos(void)
 
 static void InitNewCursorPos(u8 newCursorArea, u8 newCursorPosition)
 {
-    u16 x, y;
+    u16 x = 0, y = 0;
 
     GetCursorCoordsByPos(newCursorArea, newCursorPosition, &x, &y);
     sStorage->newCursorArea = newCursorArea;
@@ -6453,114 +6453,15 @@ static void SetMovingMonData(u8 boxId, u8 position)
     sMovingMonOrigBoxPos = position;
 }
 
-static u8 GetBoxHPFromHP(struct Pokemon *mon)
-{
-    u8 hp_box;
-    u16 hp_curr = GetMonData(mon, MON_DATA_HP);
-    u16 hp_max = GetMonData(mon, MON_DATA_MAX_HP);
-    if (hp_max <= 0xFF)  // If the HP is small enough to fully fit into a u8, put in the precise value
-        hp_box = hp_curr;
-    else  // Otherwise, round
-        hp_box = SAFE_DIV(0xFF * hp_curr, hp_max);
-    if(hp_curr != 0 && hp_box == 0)  // to stop accidental fainting
-        hp_box = 1;
-    return hp_box;
-}
-
-u16 GetHPFromBoxHP(struct Pokemon *mon)
-{
-    u16 hp_curr;
-    u8 hp_box = GetMonData(mon, MON_DATA_BOX_HP);
-    u16 hp_max = GetMonData(mon, MON_DATA_MAX_HP);
-    if (hp_max <= 0xFF)
-        hp_curr = hp_box;
-    else
-        hp_curr = SAFE_DIV(hp_max * hp_box, 0xFF);
-    return hp_curr; 
-}
-
-static u8 GetBoxStatusFromStatus(struct Pokemon *mon)
-{
-    u32 status = GetMonData(mon, MON_DATA_STATUS);
-    u8 ailment = GetAilmentFromStatus(status); 
-    if (ailment > 7)  //Chops off anything above what 3 bits can hold
-        ailment = 0;
-    return ailment;
-}
-
-u32 GetStatusFromBoxStatus(struct Pokemon *mon)
-{
-    u8 boxStatus = GetMonData(mon, MON_DATA_BOX_AILMENT);
-    u32 status;
-    switch (boxStatus)
-    {
-    case AILMENT_PSN:
-        status = STATUS1_POISON;
-        break;
-    case AILMENT_PRZ:
-        status = STATUS1_PARALYSIS;
-        break;
-    case AILMENT_SLP:
-        status = STATUS1_SLEEP_TURN(3);
-        break;
-    case AILMENT_FRZ:
-        status = STATUS1_FREEZE;
-        break;
-    case AILMENT_BRN:
-        status = STATUS1_BURN;
-        break;
-    case AILMENT_FSB:
-        status = STATUS1_FROSTBITE;
-        break;
-    default:
-        status = STATUS1_NONE;
-        break;
-    }
-    return status;
-}
-
-
 static void SetPlacedMonData(u8 boxId, u8 position)
 {
-    u32 hp;
-    u32 status;
-    u8 value;
+    if (OW_PC_HEAL <= GEN_7)
+        HealPokemon(&sStorage->movingMon);
 
     if (boxId == TOTAL_BOXES_COUNT)
-    {
-        if(GetMonData(&sStorage->movingMon, MON_DATA_IN_PC))
-        {
-            hp = GetHPFromBoxHP(&sStorage->movingMon);
-            status = GetStatusFromBoxStatus(&sStorage->movingMon);
-            SetMonData(&sStorage->movingMon, MON_DATA_HP, &hp);
-            SetMonData(&sStorage->movingMon, MON_DATA_STATUS, &status);
-        }
-/*         else
-            MonRestorePP(&sStorage->movingMon); */
-        value = 0;
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_IN_PC, &value);
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_BOX_HP, &value);
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_BOX_AILMENT, &value);
         gPlayerParty[position] = sStorage->movingMon;
-    }
     else
-    {
-        if(GetMonData(&sStorage->movingMon, MON_DATA_IN_PC))
-        {
-            hp = GetMonData(&sStorage->movingMon, MON_DATA_BOX_HP);
-            status = GetMonData(&sStorage->movingMon, MON_DATA_BOX_AILMENT);            
-        }
-        else
-        {
-            hp = GetBoxHPFromHP(&sStorage->movingMon);
-            status = GetBoxStatusFromStatus(&sStorage->movingMon);
-        }
-        value = TRUE;
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_IN_PC, &value);
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_BOX_HP, &hp);
-        SetBoxMonData(&sStorage->movingMon.box, MON_DATA_BOX_AILMENT, &status);
         SetBoxMonAt(boxId, position, &sStorage->movingMon.box);
-    }
 }
 
 static void PurgeMonOrBoxMon(u8 boxId, u8 position)
@@ -6887,23 +6788,10 @@ static void LoadSavedMovingMon(void)
 
 static void InitSummaryScreenData(void)
 {
-    u16 hp;
-    u32 status;
-
     if (sIsMonBeingMoved)
     {
         SaveMovingMon();
         sStorage->summaryMon.mon = &sSavedMovingMon;
-        if (GetMonData(&sStorage->movingMon, MON_DATA_IN_PC) && sMovingMonOrigBoxId != TOTAL_BOXES_COUNT)
-        // If it did not come from the party
-        {
-            hp = GetHPFromBoxHP(&sStorage->movingMon);
-            status = GetStatusFromBoxStatus(&sStorage->movingMon);
-            SetMonData(sStorage->summaryMon.mon, MON_DATA_HP, &hp);
-            SetMonData(sStorage->summaryMon.mon, MON_DATA_STATUS, &status);
-        }
-/*         else
-            MonRestorePP(sStorage->summaryMon.mon); */
         sStorage->summaryStartPos = 0;
         sStorage->summaryMaxPos = 0;
         sStorage->summaryScreenMode = SUMMARY_MODE_NORMAL;
@@ -7115,7 +7003,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
         sStorage->displayMonSpecies = GetBoxMonData(pokemon, MON_DATA_SPECIES_OR_EGG);
         if (sStorage->displayMonSpecies != SPECIES_NONE)
         {
-            u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+            bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
             sanityIsBadEgg = GetBoxMonData(boxMon, MON_DATA_SANITY_IS_BAD_EGG);
             if (sanityIsBadEgg)
                 sStorage->displayMonIsEgg = TRUE;
@@ -7128,7 +7016,7 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-            sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, otId, sStorage->displayMonPersonality);
+            sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sStorage->displayMonSpecies, isShiny, sStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(sStorage->displayMonSpecies, sStorage->displayMonPersonality);
             sStorage->displayMonItemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
         }
@@ -8804,6 +8692,8 @@ static void MultiMove_SetPlacedMonData(void)
         u8 boxPosition = (IN_BOX_COLUMNS * i) + sMultiMove->minColumn;
         for (j = sMultiMove->minColumn; j < columnCount; j++)
         {
+            if (OW_PC_HEAL <= GEN_7)
+                HealBoxPokemon(&sMultiMove->boxMons[monArrayId]);
             if (GetBoxMonData(&sMultiMove->boxMons[monArrayId], MON_DATA_SANITY_HAS_SPECIES))
                 SetBoxMonAt(boxId, boxPosition, &sMultiMove->boxMons[monArrayId]);
             boxPosition++;
@@ -9757,7 +9647,10 @@ struct BoxPokemon *GetBoxedMonPtr(u8 boxId, u8 boxPosition)
 u8 *GetBoxNamePtr(u8 boxId)
 {
     if (boxId < TOTAL_BOXES_COUNT)
-        return gPokemonStoragePtr->boxNames[boxId];
+        if (DECAP_ENABLED && DECAP_MIRRORING)
+            return MirrorPtr(gPokemonStoragePtr->boxNames[boxId]);
+        else
+            return gPokemonStoragePtr->boxNames[boxId];
     else
         return NULL;
 }
@@ -10298,12 +10191,12 @@ static void UnkUtil_DmaRun(struct UnkUtilData *data)
 void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
-    u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+    bool8 isShiny = GetBoxMonData(boxMon, MON_DATA_IS_SHINY);
     u32 pid = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
 
     // Update front sprite
     sStorage->displayMonSpecies = species;
-    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
+    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, isShiny, pid);
     if (!sJustOpenedBag)
     {
         LoadDisplayMonGfx(species, pid);
