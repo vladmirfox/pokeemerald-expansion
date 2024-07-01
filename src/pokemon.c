@@ -5329,13 +5329,11 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
         if (moveLevel <= level)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
-                ;
+            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++);
 
             if (j == MAX_MON_MOVES)
             {
-                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
-                    ;
+                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++);
 
                 if (k == numMoves)
                     moves[numMoves++] = learnset[i].move;

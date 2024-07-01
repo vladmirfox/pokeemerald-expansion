@@ -4515,12 +4515,15 @@ static void SetMoveTypeIcons(void)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
+        type = (15 * typeBits) / 63 + 1;
+
         if (summary->moves[i] != MOVE_NONE) {
             if (summary->moves[i] == MOVE_HIDDEN_POWER) 
             {
                 if (type >= TYPE_MYSTERY)
                     type++;
                 type |= 0xC0;
+                isHiddenPower = TRUE;
             }
             else if (summary->moves[i] == MOVE_RAGING_BULL || summary->moves[i] == MOVE_IVY_CUDGEL) 
             {
@@ -4642,6 +4645,7 @@ static void SetNewMoveTypeIcon(void)
         {
             if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) 
             {
+                isHiddenPower = TRUE;
                 if (type >= TYPE_MYSTERY)
                     type++;
                 type |= 0xC0;

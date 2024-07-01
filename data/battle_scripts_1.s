@@ -318,6 +318,7 @@ BattleScript_EffectCorrosiveGas::
 	attackanimation
 	waitanimation
 	jumpifability BS_TARGET, ABILITY_STICKY_HOLD, BattleScript_StickyHoldActivates
+	jumpifability BS_TARGET, ABILITY_BALL_FETCH, BattleScript_StickyHoldActivates
 	setlastuseditem BS_TARGET
 	removeitem BS_TARGET
 	printstring STRINGID_PKMNITEMMELTED
@@ -330,32 +331,6 @@ BattleScript_CorrosiveGasFail:
 	printstring STRINGID_NOEFFECTONTARGET
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectMakeItRain:
-	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_MakeItRainDoubles
-BattleScript_MakeItRainContinuous:
-	setmoveeffect MOVE_EFFECT_PAYDAY
-	call BattleScript_EffectHit_Ret
-	tryfaintmon BS_TARGET
-	setmoveeffect MOVE_EFFECT_SP_ATK_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	seteffectprimary
-	goto BattleScript_MoveEnd
-BattleScript_MakeItRainDoubles:
-	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_NoMoveEffect
-	goto BattleScript_MakeItRainContinuous
-
-BattleScript_EffectPayDayNew:
-	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_PayDayNewDoubles
-BattleScript_PayDayNewContinuous:
-	setmoveeffect MOVE_EFFECT_PAYDAY
-	call BattleScript_EffectHit_Ret
-	tryfaintmon BS_TARGET
-	setmoveeffect MOVE_EFFECT_ATK_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
-	seteffectprimary
-	goto BattleScript_MoveEnd
-BattleScript_PayDayNewDoubles:
-	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_NoMoveEffect
-	goto BattleScript_PayDayNewContinuous
 
 BattleScript_EffectSpinOut::
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
@@ -785,17 +760,17 @@ BattleScript_EffectShellSideArm::
 	shellsidearmcheck
 	goto BattleScript_EffectHit
 
-BattleScript_EffectDiamondStorm:
+BattleScript_EffectDiamondStorm::
 	setphotongeysercategory
 	setmoveeffect MOVE_EFFECT_DEF_PLUS_2 | MOVE_EFFECT_AFFECTS_USER
 	goto BattleScript_EffectHit
 
-BattleScript_EffectPhotonGeyser:
+BattleScript_EffectPhotonGeyser::
 	setphotongeysercategory
 	goto BattleScript_EffectHit
 
-BattleScript_EffectAuraWheel: @ Aura Wheel can now be used by any mon
-	goto BattleScript_EffectSpeedUpHit
+BattleScript_EffectAuraWheel:: @ Aura Wheel can now be used by any mon
+	goto BattleScript_EffectHit
 
 BattleScript_EffectClangorousSoul::
 	attackcanceler
@@ -3695,7 +3670,7 @@ BattleScript_EffectEvasionDown2::
 	setstatchanger STAT_EVASION, 2, TRUE
 	goto BattleScript_EffectStatDown
 
-BattleScript_EffectEvasionDown6:
+BattleScript_EffectEvasionDown6::
 	setstatchanger STAT_EVASION, 6, TRUE
 	goto BattleScript_EffectStatDown
 
@@ -4194,17 +4169,6 @@ BattleScript_PartyHealEnd::
 	updatestatusicon BS_ATTACKER_WITH_PARTNER
 	waitstate
 	goto BattleScript_MoveEnd
-
-BattleScript_EffectTripleKick::
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	jumpifmove MOVE_TRIPLE_AXEL BS_TripleAxel
-	addbyte sTRIPLE_KICK_POWER, 20 @ triple kick gets +20 power
-	goto BattleScript_HitFromAtkString
-
-BS_TripleAxel:
-	addbyte sTRIPLE_KICK_POWER, 20 @ triple axel gets +20 power
-	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectThief::
 	setmoveeffect MOVE_EFFECT_STEAL_ITEM
@@ -4715,33 +4679,11 @@ BattleScript_EffectFutureSight::
 BattleScript_EffectGust::
 	goto BattleScript_EffectHit
 
-BattleScript_EffectSolarBeam::
-	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_SolarBeamOnFirstTurn
-	jumpifability BS_ATTACKER, ABILITY_SUN_SALUTE, BattleScript_SolarBeamOnFirstTurn
-BattleScript_SolarBeamDecideTurn::
-	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
-	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
-	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SOLAR_BEAM
-	call BattleScriptFirstChargingTurn
-	jumpifnoholdeffect BS_ATTACKER, HOLD_EFFECT_POWER_HERB, BattleScript_MoveEnd
-	call BattleScript_PowerHerbActivation
-	goto BattleScript_TwoTurnMovesSecondTurn
-BattleScript_SolarBeamOnFirstTurn::
-	orword gHitMarker, HITMARKER_CHARGING
-	setmoveeffect MOVE_EFFECT_CHARGING | MOVE_EFFECT_AFFECTS_USER
-	seteffectprimary
-	ppreduce
-	goto BattleScript_TwoTurnMovesSecondTurn
-
 BattleScript_EffectThunder:
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
 
-BattleScript_EffectHurricane:
-	setmoveeffect MOVE_EFFECT_CONFUSION
-	goto BattleScript_EffectHit
-
-BattleScript_EffectTeleport:
+BattleScript_EffectTeleport::
 .if B_TELEPORT_BEHAVIOR >= GEN_8
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
 	jumpifside BS_ATTACKER, B_SIDE_PLAYER, BattleScript_EffectBatonPass
@@ -9686,6 +9628,7 @@ BattleScript_RemoveTerrain_Cont:
 BattleScript_Pickpocket::
 	call BattleScript_AbilityPopUp
 	jumpifability BS_ATTACKER, ABILITY_STICKY_HOLD, BattleScript_PickpocketPrevented
+	jumpifability BS_ATTACKER, ABILITY_BALL_FETCH, BattleScript_PickpocketPrevented
 	swapattackerwithtarget
 	call BattleScript_ItemSteal
 	swapattackerwithtarget

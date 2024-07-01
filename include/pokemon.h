@@ -499,6 +499,10 @@ struct MoveInfo
     u32 ignoresSubstitute:1;
     u32 forcePressure:1;
     u32 cantUseTwice:1;
+    u32 wakesUser:1; // wakes the user upon use (Wild Charge, Volt Tackle, Spark)
+    u32 lightMove:1; // boosted by Illuminate, absorbed by Photon Absorb
+    u32 lazyMove:1; // Moves that can be used during Truant loafing turn (Slack Off, Yawn, Rest)
+    u32 kickingMove:1; // boosted by Iron Sole
 
     // Ban flags
     u32 gravityBanned:1;
@@ -514,10 +518,6 @@ struct MoveInfo
     u32 parentalBondBanned:1;
     u32 skyBattleBanned:1;
     u32 sketchBanned:1;
-    u32 wakesUser:1;
-    u32 lightMove:1;
-    u32 lazyMove:1; // Moves that can be used during Truant loafing turn (Slack Off, Yawn, Rest)
-    u32 kickingMove:1;
 
     u32 argument;
 

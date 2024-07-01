@@ -539,6 +539,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
+    [EFFECT_SPIDER_WEB] =
+    {
+        .battleScript = BattleScript_EffectSpiderWeb,
+        .battleTvScore = 5,
+        .encourageEncore = TRUE,
+    },
+
     [EFFECT_NIGHTMARE] =
     {
         .battleScript = BattleScript_EffectNightmare,
@@ -2229,5 +2236,38 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectTidyUp,
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
+    },
+
+    [EFFECT_POISON_STEEL_HIT] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 1,
+    },
+
+    [EFFECT_EVASION_DOWN_6] =
+    {
+        .battleScript = BattleScript_EffectEvasionDown6,
+        .battleTvScore = 1,
+    },
+
+    [EFFECT_MILK_DRINK] =
+    {
+        .battleScript = BattleScript_EffectMilkDrink,
+        .battleTvScore = 1,
+    },
+    [EFFECT_RECHARGE_EXCEPT_FAINT] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 1,
+    },
+    [EFFECT_CRUSH_GRIP] = 
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 1,
+    },
+    [EFFECT_DIAMOND_STORM] = 
+    {
+        .battleScript = BattleScript_EffectDiamondStorm,
+        .battleTvScore = 1,
     },
 };
