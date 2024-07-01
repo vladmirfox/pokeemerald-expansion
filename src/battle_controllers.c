@@ -1563,7 +1563,7 @@ void BtlController_EmitSpriteInvisibility(u32 battler, u32 bufferId, bool8 isInv
 void BtlController_EmitBattleAnimation(u32 battler, u32 bufferId, u8 animationId, struct DisableStruct* disableStructPtr, u16 argument)
 {
     gBattleResources->transferBuffer[0] = CONTROLLER_BATTLEANIMATION;
-    gBattleResources->transferBuffer[1] = animationId;
+    gBattleResources->transferBuffer[1] = IsVanillaLinkInteraction() ? BattleAnimIdToVanilla(animationId) : animationId;
     gBattleResources->transferBuffer[2] = argument;
     gBattleResources->transferBuffer[3] = (argument & 0xFF00) >> 8;
     CopyDisableStruct(disableStructPtr, &gBattleResources->transferBuffer[4]);
@@ -1661,9 +1661,21 @@ static u32 GetBattlerMonData(u32 battler, struct Pokemon *party, u32 monId, u8 *
         GetMonData(&party[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&party[monId], MON_DATA_OT_NAME, battleMon.otName);
-        src = (u8 *)&battleMon;
-        for (size = 0; size < sizeof(battleMon); size++)
-            dst[size] = src[size];
+        if (IsVanillaLinkInteraction())
+        {
+            struct VanillaBattlePokemon vanillaBattleMon;
+
+            ConvertBattleStruct(&battleMon, &vanillaBattleMon, B_STRUCT_BATTLE_MON, TRUE);
+            src = (u8 *)&vanillaBattleMon;
+            for (size = 0; size < sizeof(vanillaBattleMon); size++)
+                dst[size] = src[size];
+        }
+        else
+        {
+            src = (u8 *)&battleMon;
+            for (size = 0; size < sizeof(battleMon); size++)
+                dst[size] = src[size];
+        }
         break;
     case REQUEST_SPECIES_BATTLE:
         data16 = GetMonData(&party[monId], MON_DATA_SPECIES);
@@ -2760,6 +2772,8 @@ void BtlController_HandleHealthBarUpdate(u32 battler, bool32 updateHpText)
     maxHP = GetMonData(&party[gBattlerPartyIndexes[battler]], MON_DATA_MAX_HP);
     curHP = GetMonData(&party[gBattlerPartyIndexes[battler]], MON_DATA_HP);
 
+    SoftReset(1);
+
     if (hpVal != INSTANT_HP_BAR_DROP)
     {
         SetBattleBarStruct(battler, gHealthboxSpriteIds[battler], maxHP, curHP, hpVal);
@@ -3102,6 +3116,8 @@ void BtlController_HandleBattleAnimation(u32 battler, bool32 ignoreSE, bool32 up
         u16 argument = gBattleResources->bufferA[battler][2] | (gBattleResources->bufferA[battler][3] << 8);
 
         gAnimDisableStructPtr = ReceiveDisableStruct(&gBattleResources->bufferA[battler][4]);
+        if (IsVanillaLinkInteraction())
+            animationId = BattleAnimIdToExpansion(animationId);
 
         if (TryHandleLaunchBattleTableAnimation(battler, battler, battler, animationId, argument))
             BattleControllerComplete(battler);

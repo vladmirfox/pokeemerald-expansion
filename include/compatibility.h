@@ -1114,12 +1114,77 @@ struct VanillaBattleMsgData
     u8 textBuffs[3][VANILLA_TEXT_BUFF_ARRAY_COUNT];
 };
 
+struct VanillaBattlePokemon
+{
+    /*0x00*/ u16 species;
+    /*0x02*/ u16 attack;
+    /*0x04*/ u16 defense;
+    /*0x06*/ u16 speed;
+    /*0x08*/ u16 spAttack;
+    /*0x0A*/ u16 spDefense;
+    /*0x0C*/ u16 moves[MAX_MON_MOVES];
+    /*0x14*/ u32 hpIV:5;
+    /*0x14*/ u32 attackIV:5;
+    /*0x15*/ u32 defenseIV:5;
+    /*0x15*/ u32 speedIV:5;
+    /*0x16*/ u32 spAttackIV:5;
+    /*0x17*/ u32 spDefenseIV:5;
+    /*0x17*/ u32 isEgg:1;
+    /*0x17*/ u32 abilityNum:1;
+    /*0x18*/ s8 statStages[NUM_BATTLE_STATS];
+    /*0x20*/ u8 ability;
+    /*0x21*/ u8 type1;
+    /*0x22*/ u8 type2;
+    /*0x23*/ u8 unknown;
+    /*0x24*/ u8 pp[MAX_MON_MOVES];
+    /*0x28*/ u16 hp;
+    /*0x2A*/ u8 level;
+    /*0x2B*/ u8 friendship;
+    /*0x2C*/ u16 maxHP;
+    /*0x2E*/ u16 item;
+    /*0x30*/ u8 nickname[VANILLA_POKEMON_NAME_LENGTH + 1];
+    /*0x3B*/ u8 ppBonuses;
+    /*0x3C*/ u8 otName[PLAYER_NAME_LENGTH + 1];
+    /*0x44*/ u32 experience;
+    /*0x48*/ u32 personality;
+    /*0x4C*/ u32 status1;
+    /*0x50*/ u32 status2;
+    /*0x54*/ u32 otId;
+};
+
+// Battle animation general ids
+#define VANILLA_B_ANIM_CASTFORM_CHANGE          0
+#define VANILLA_B_ANIM_STATS_CHANGE             1
+#define VANILLA_B_ANIM_SUBSTITUTE_FADE          2
+#define VANILLA_B_ANIM_SUBSTITUTE_APPEAR        3
+#define VANILLA_B_ANIM_POKEBLOCK_THROW          4
+#define VANILLA_B_ANIM_ITEM_KNOCKOFF            5
+#define VANILLA_B_ANIM_TURN_TRAP                6
+#define VANILLA_B_ANIM_HELD_ITEM_EFFECT         7
+#define VANILLA_B_ANIM_SMOKEBALL_ESCAPE         8
+#define VANILLA_B_ANIM_FOCUS_BAND               9
+#define VANILLA_B_ANIM_RAIN_CONTINUES           10
+#define VANILLA_B_ANIM_SUN_CONTINUES            11
+#define VANILLA_B_ANIM_SANDSTORM_CONTINUES      12
+#define VANILLA_B_ANIM_HAIL_CONTINUES           13
+#define VANILLA_B_ANIM_LEECH_SEED_DRAIN         14
+#define VANILLA_B_ANIM_MON_HIT                  15
+#define VANILLA_B_ANIM_ITEM_STEAL               16
+#define VANILLA_B_ANIM_SNATCH_MOVE              17
+#define VANILLA_B_ANIM_FUTURE_SIGHT_HIT         18
+#define VANILLA_B_ANIM_DOOM_DESIRE_HIT          19
+#define VANILLA_B_ANIM_FOCUS_PUNCH_SETUP        20
+#define VANILLA_B_ANIM_INGRAIN_HEAL             21
+#define VANILLA_B_ANIM_WISH_HEAL                22
+
 bool32 ExpansionMonToVanillaMon(struct Pokemon *src, struct VanillaPokemon *dst);
 bool32 VanillaMonToExpansion(struct VanillaPokemon *src, struct Pokemon *dst);
 void SendExpansionMonsToVanilla(struct Pokemon *src, u32 mode);
 void ReceiveVanillaMons(struct Pokemon *dst, void *buffer, u32 mode);
 bool32 IsVanillaLinkInteraction(void);
 void ConvertBattleStruct(void *expStruct, void *vanStruct, u32 structId, bool32 expToVan);
+s32 BattleAnimIdToVanilla(u32 expansionId);
+s32 BattleAnimIdToExpansion(u32 vanillaId);
 
 enum
 {
@@ -1131,6 +1196,7 @@ enum
 {
     B_STRUCT_DISABLE,
     B_STRUCT_MSG_DATA,
+    B_STRUCT_BATTLE_MON,
 };
 
 #endif

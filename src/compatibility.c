@@ -12,6 +12,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "constants/battle_anim.h"
 
 u32 Vanilla_GetMonData(struct VanillaPokemon *mon, s32 field, u8 *data);
 u32 Vanilla_GetBoxMonData(struct VanillaBoxPokemon *boxMon, s32 field, u8 *data);
@@ -2444,7 +2445,6 @@ static void CopyAllMonData(struct Pokemon *expMon, struct VanillaPokemon *vanMon
     CopyMonData(expMon, vanMon, MON_DATA_POKERUS, VANILLA_MON_DATA_POKERUS, expToVan);
     CopyMonData(expMon, vanMon, MON_DATA_ABILITY_NUM, VANILLA_MON_DATA_ABILITY_NUM, expToVan);
     CopyMonData(expMon, vanMon, MON_DATA_PP_BONUSES, VANILLA_MON_DATA_PP_BONUSES, expToVan);
-    CopyMonData(expMon, vanMon, MON_DATA_HELD_ITEM, VANILLA_MON_DATA_HELD_ITEM, expToVan);
     CopyMonData(expMon, vanMon, MON_DATA_IS_EGG, VANILLA_MON_DATA_IS_EGG, expToVan);
     CopyMonData(expMon, vanMon, MON_DATA_MARKINGS, VANILLA_MON_DATA_MARKINGS, expToVan);
     CopyMonData(expMon, vanMon, MON_DATA_EXP, VANILLA_MON_DATA_EXP, expToVan);
@@ -2452,7 +2452,7 @@ static void CopyAllMonData(struct Pokemon *expMon, struct VanillaPokemon *vanMon
 
 bool32 ExpansionMonToVanillaMon(struct Pokemon *src, struct VanillaPokemon *dst)
 {
-    u32 i, ball, vanMovesId;
+    u32 i, ball, item, vanMovesId;
     u32 speciesExpansion = GetMonData(src, MON_DATA_SPECIES_OR_EGG);
     u32 level = GetMonData(src, MON_DATA_LEVEL);
     u32 personality = GetMonData(src, MON_DATA_PERSONALITY);
@@ -2469,6 +2469,11 @@ bool32 ExpansionMonToVanillaMon(struct Pokemon *src, struct VanillaPokemon *dst)
     if (ball == -1) // Not a gen3 ball
         ball = VANILLA_ITEM_POKE_BALL;
     Vanilla_SetMonData(dst, VANILLA_MON_DATA_POKEBALL, &ball);
+
+    item = ItemExpansionToVanilla(GetMonData(src, MON_DATA_HELD_ITEM));
+    if (item == -1) // Not a gen3 item
+        item = VANILLA_ITEM_NONE;
+    Vanilla_SetMonData(dst, VANILLA_MON_DATA_HELD_ITEM, &item);
 
     // copy only gen3 moves
     for (vanMovesId = 0, i = 0; i < MAX_MON_MOVES; i++)
@@ -2488,7 +2493,7 @@ bool32 ExpansionMonToVanillaMon(struct Pokemon *src, struct VanillaPokemon *dst)
 
 bool32 VanillaMonToExpansion(struct VanillaPokemon *src, struct Pokemon *dst)
 {
-    u32 i, ball;
+    u32 i, ball, item;
     u32 vanillaSpecies = Vanilla_GetMonData(src, VANILLA_MON_DATA_SPECIES_OR_EGG, NULL);
     u32 level = Vanilla_GetMonData(src, VANILLA_MON_DATA_LEVEL, NULL);
     u32 personality = Vanilla_GetMonData(src, VANILLA_MON_DATA_PERSONALITY, NULL);
@@ -2505,6 +2510,11 @@ bool32 VanillaMonToExpansion(struct VanillaPokemon *src, struct Pokemon *dst)
     if (ball == -1) // Somehow not a valid ball
         ball = VANILLA_ITEM_POKE_BALL;
     SetMonData(dst, MON_DATA_POKEBALL, &ball);
+
+    item = ItemVanillaToExpansion(Vanilla_GetMonData(src, VANILLA_MON_DATA_HELD_ITEM, NULL));
+    if (item == -1) // Somehow not a valid item
+        item = ITEM_NONE;
+    SetMonData(dst, MON_DATA_HELD_ITEM, &item);
 
     // all vanilla moves are the same as in expansion
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -2660,5 +2670,103 @@ void ConvertBattleStruct(void *expStruct, void *vanStruct, u32 structId, bool32 
             }
         }
         break;
+    case B_STRUCT_BATTLE_MON:
+        {
+            struct BattlePokemon *expMon = expStruct;
+            struct VanillaBattlePokemon *vanMon = vanStruct;
+            if (expToVan)
+            {
+                vanMon->species = expMon->species;
+                vanMon->attack = expMon->attack;
+                vanMon->defense = expMon->defense;
+                vanMon->speed = expMon->speed;
+                vanMon->spAttack = expMon->spAttack;
+                vanMon->spDefense = expMon->spDefense;
+                vanMon->hpIV = expMon->hpIV;
+                vanMon->attackIV = expMon->attackIV;
+                vanMon->defenseIV = expMon->defenseIV;
+                vanMon->speedIV = expMon->speedIV;
+                vanMon->spAttackIV = expMon->spAttackIV;
+                vanMon->spDefenseIV = expMon->spDefenseIV;
+                vanMon->isEgg = FALSE;
+                vanMon->ability = expMon->ability;
+                vanMon->type1 = expMon->type1;
+                vanMon->type2 = expMon->type2;
+                vanMon->unknown = 0;
+                vanMon->hp = expMon->hp;
+                vanMon->level = expMon->level;
+                vanMon->friendship = expMon->friendship;
+                vanMon->maxHP = expMon->maxHP;
+                vanMon->item = expMon->item;
+                vanMon->ppBonuses = expMon->ppBonuses;
+                vanMon->experience = expMon->experience;
+                vanMon->personality = expMon->personality;
+                vanMon->status1 = expMon->status1 & ~(STATUS1_FROSTBITE);
+                vanMon->status2 = expMon->status2;
+                vanMon->otId = expMon->otId;
+                for (i = 0; i < MAX_MON_MOVES; i++)
+                {
+                    vanMon->moves[i] = expMon->moves[i];
+                    vanMon->pp[i] = expMon->pp[i];
+                }
+                for (i = 0; i < NUM_BATTLE_STATS; i++)
+                    vanMon->statStages[i] = expMon->statStages[i];
+                for (i = 0; i < VANILLA_POKEMON_NAME_LENGTH; i++)
+                    vanMon->nickname[i] = expMon->nickname[i];
+                vanMon->nickname[VANILLA_POKEMON_NAME_LENGTH] = EOS;
+                for (i = 0; i < PLAYER_NAME_LENGTH + 1; i++)
+                    vanMon->otName[i] = expMon->otName[i];
+            }
+            else
+            {
+
+            }
+        }
+        break;
     }
+}
+
+static const u8 sVanillaBattleAnimIdsToExpansion[] =
+{
+    [VANILLA_B_ANIM_CASTFORM_CHANGE] = -1, // todo
+    [VANILLA_B_ANIM_STATS_CHANGE] = B_ANIM_STATS_CHANGE,
+    [VANILLA_B_ANIM_SUBSTITUTE_FADE] = B_ANIM_SUBSTITUTE_FADE,
+    [VANILLA_B_ANIM_SUBSTITUTE_APPEAR] = B_ANIM_SUBSTITUTE_APPEAR,
+    [VANILLA_B_ANIM_POKEBLOCK_THROW] = B_ANIM_POKEBLOCK_THROW,
+    [VANILLA_B_ANIM_ITEM_KNOCKOFF] = B_ANIM_ITEM_KNOCKOFF,
+    [VANILLA_B_ANIM_TURN_TRAP] = B_ANIM_TURN_TRAP,
+    [VANILLA_B_ANIM_HELD_ITEM_EFFECT] = B_ANIM_HELD_ITEM_EFFECT,
+    [VANILLA_B_ANIM_SMOKEBALL_ESCAPE] = B_ANIM_SMOKEBALL_ESCAPE,
+    [VANILLA_B_ANIM_FOCUS_BAND] = B_ANIM_HANGED_ON,
+    [VANILLA_B_ANIM_RAIN_CONTINUES] = B_ANIM_RAIN_CONTINUES,
+    [VANILLA_B_ANIM_SUN_CONTINUES] = B_ANIM_SUN_CONTINUES,
+    [VANILLA_B_ANIM_SANDSTORM_CONTINUES] = B_ANIM_SANDSTORM_CONTINUES,
+    [VANILLA_B_ANIM_HAIL_CONTINUES] = B_ANIM_HAIL_CONTINUES,
+    [VANILLA_B_ANIM_LEECH_SEED_DRAIN] = B_ANIM_LEECH_SEED_DRAIN,
+    [VANILLA_B_ANIM_MON_HIT] = B_ANIM_MON_HIT,
+    [VANILLA_B_ANIM_ITEM_STEAL] = B_ANIM_ITEM_STEAL,
+    [VANILLA_B_ANIM_SNATCH_MOVE] = B_ANIM_SNATCH_MOVE,
+    [VANILLA_B_ANIM_FUTURE_SIGHT_HIT] = B_ANIM_FUTURE_SIGHT_HIT,
+    [VANILLA_B_ANIM_DOOM_DESIRE_HIT] = B_ANIM_DOOM_DESIRE_HIT,
+    [VANILLA_B_ANIM_FOCUS_PUNCH_SETUP] = B_ANIM_FOCUS_PUNCH_SETUP,
+    [VANILLA_B_ANIM_INGRAIN_HEAL] = B_ANIM_INGRAIN_HEAL,
+    [VANILLA_B_ANIM_WISH_HEAL] = B_ANIM_WISH_HEAL,
+};
+
+s32 BattleAnimIdToVanilla(u32 expansionId)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sVanillaBattleAnimIdsToExpansion); i++)
+    {
+        if (sVanillaBattleAnimIdsToExpansion[i] == expansionId)
+            return i;
+    }
+    return -1;
+}
+
+s32 BattleAnimIdToExpansion(u32 vanillaId)
+{
+    if (vanillaId >= ARRAY_COUNT(sVanillaBattleAnimIdsToExpansion))
+        return -1;
+    return sVanillaBattleAnimIdsToExpansion[vanillaId];
 }
