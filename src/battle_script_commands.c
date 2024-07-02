@@ -4244,6 +4244,7 @@ static void Cmd_getexp(void)
     u32 holdEffect;
     s32 i; // also used as stringId
     u8 *expMonId = &gBattleStruct->expGetterMonId;
+    u32 currLvl;
 
     gBattlerFainted = GetBattlerForBattleScript(cmd->battler);
 
@@ -4461,7 +4462,7 @@ static void Cmd_getexp(void)
         if (gBattleControllerExecFlags == 0)
         {
             gBattleResources->bufferB[gBattleStruct->expGetterBattlerId][0] = 0;
-            u32 currLvl = GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL);
+            currLvl = GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL);
             if (GetMonData(&gPlayerParty[*expMonId], MON_DATA_HP) && currLvl != MAX_LEVEL)
             {
                 gBattleResources->beforeLvlUp->stats[STAT_HP]    = GetMonData(&gPlayerParty[*expMonId], MON_DATA_MAX_HP);
