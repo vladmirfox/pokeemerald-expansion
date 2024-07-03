@@ -6209,6 +6209,7 @@ static u32 GetBattlerAbilityWithArg(u32 battler, bool32 ignoreUserAbility)
         return gBattleMons[battler].ability;
 
     if (gAbilitiesInfo[gBattleMons[battler].ability].breakable
+     && battler != gBattlerAttacker
      && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
      && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
      && gCurrentTurnActionNumber < gBattlersCount)
