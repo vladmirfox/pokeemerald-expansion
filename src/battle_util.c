@@ -5012,7 +5012,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (!effect)
             {
-                switch (GetBattlerAbility(BATTLE_PARTNER(battler)))
+                switch (GetBattlerAbilityIgnoreUserAbility(BATTLE_PARTNER(battler)))
                 {
                 case ABILITY_DAZZLING:
                 case ABILITY_QUEENLY_MAJESTY:
@@ -6183,10 +6183,8 @@ bool32 IsMoldBreakerTypeAbility(u32 ability)
         || (ability == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
 }
 
-u32 GetBattlerAbility(u32 battler)
+static u32 GetBattlerAbilityWithArg(u32 battler, bool32 ignoreUserAbility)
 {
-    bool32 noAbilityShield = GetBattlerHoldEffectIgnoreAbility(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD;
-
     if (gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed)
     {
         // Edge case: pokemon under the effect of gastro acid transforms into a pokemon with Comatose (Todo: verify how other unsuppressable abilities behave)
@@ -6197,26 +6195,43 @@ u32 GetBattlerAbility(u32 battler)
         return gBattleMons[battler].ability;
     }
 
+    if (GetBattlerHoldEffectIgnoreAbility(battler, TRUE) == HOLD_EFFECT_ABILITY_SHIELD)
+        return gBattleMons[battler].ability;
+
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
         return ABILITY_NONE;
 
     if (IsNeutralizingGasOnField()
-     && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS
-     && noAbilityShield)
+     && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS)
         return ABILITY_NONE;
 
-    if (((IsMoldBreakerTypeAbility(gBattleMons[gBattlerAttacker].ability)
-            && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
-            || gMovesInfo[gCurrentMove].ignoresTargetAbility)
-            && battler != gBattlerAttacker
-            && gAbilitiesInfo[gBattleMons[battler].ability].breakable
-            && noAbilityShield
-            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
-            && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
-            && gCurrentTurnActionNumber < gBattlersCount)
-        return ABILITY_NONE;
+    if (ignoreUserAbility)
+        return gBattleMons[battler].ability;
+
+    if (gAbilitiesInfo[gBattleMons[battler].ability].breakable
+     && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
+     && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
+     && gCurrentTurnActionNumber < gBattlersCount)
+    {
+        if (gMovesInfo[gCurrentMove].ignoresTargetAbility)
+            return ABILITY_NONE;
+
+        if (!(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID)
+         && IsMoldBreakerTypeAbility(gBattleMons[gBattlerAttacker].ability))
+            return ABILITY_NONE;
+    }
 
     return gBattleMons[battler].ability;
+}
+
+u32 GetBattlerAbility(u32 battler)
+{
+    return GetBattlerAbilityWithArg(battler, FALSE);
+}
+
+u32 GetBattlerAbilityIgnoreUserAbility(u32 battler)
+{
+    return GetBattlerAbilityWithArg(battler, TRUE);
 }
 
 u32 IsAbilityOnSide(u32 battler, u32 ability)
