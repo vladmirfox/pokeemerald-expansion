@@ -523,7 +523,7 @@
       "y": 19,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "RustboroCity_EventScript_GymSign"
+      "script": "Custom_RustboroCity_EventScript_GymInfo"
     },
     {
       "type": "sign",
