@@ -179,7 +179,7 @@ struct Time
 struct SaveBlock3
 {
 #if OW_USE_FAKE_RTC
-	struct Time fakeRTC;
+    struct Time fakeRTC;
 #endif
 };
 
