@@ -3224,7 +3224,7 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .lvl = 15,
     .species = SPECIES_LILEEP,
     .heldItem = ITEM_ORAN_BERRY,
-    .moves = {MOVE_WRAP, MOVE_ROCK_TOMB, MOVE_MEGA_DRAIN, MOVE_ASTONISH}
+    .moves = {MOVE_WRAP, MOVE_ROCK_TOMB, MOVE_ASTONISH, MOVE_ACID}
     },
     {
     .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
