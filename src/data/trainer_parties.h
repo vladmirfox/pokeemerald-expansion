@@ -3237,25 +3237,32 @@ static const struct TrainerMon sParty_Roxanne1[] = {
 
 static const struct TrainerMon sParty_Brawly1[] = {
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
     .lvl = 16,
-    .species = SPECIES_MACHOP,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_KARATE_CHOP, MOVE_LOW_KICK, MOVE_SEISMIC_TOSS, MOVE_BULK_UP}
+    .species = SPECIES_HAWLUCHA,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_WING_ATTACK, MOVE_LOW_KICK, MOVE_DETECT, MOVE_HONE_CLAWS}
     },
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
     .lvl = 16,
-    .species = SPECIES_MEDITITE,
+    .species = SPECIES_TIMBURR,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FOCUS_PUNCH, MOVE_LIGHT_SCREEN, MOVE_REFLECT, MOVE_BULK_UP}
+    .moves = {MOVE_FOCUS_PUNCH, MOVE_ROCK_THROW, MOVE_REFLECT, MOVE_BULK_UP}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(20, 20, 20, 31, 20, 20),
+    .lvl = 16,
+    .species = SPECIES_HITMONLEE,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .moves = {MOVE_LOW_SWEEP, MOVE_DOUBLE_KICK, MOVE_FAKE_OUT, MOVE_BULK_UP}
     },
     {
     .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
     .lvl = 19,
-    .species = SPECIES_MAKUHITA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_ARM_THRUST, MOVE_VITAL_THROW, MOVE_REVERSAL, MOVE_BULK_UP}
+    .species = SPECIES_URSHIFU_RAPID_STRIKE_STYLE,
+    .heldItem = ITEM_BLACK_BELT,
+    .moves = {MOVE_SURGING_STRIKES, MOVE_BRICK_BREAK, MOVE_REVERSAL, MOVE_BULK_UP}
     }
 };
 
