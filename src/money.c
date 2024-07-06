@@ -9,7 +9,6 @@
 #include "sprite.h"
 #include "strings.h"
 #include "decompress.h"
-#include "tv.h"
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
@@ -141,7 +140,7 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 
     ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 6);
 
-    strLength = 6 - StringLength(gStringVar1);
+    strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
     txtPtr = gStringVar4;
 
     while (strLength-- > 0)
@@ -195,12 +194,7 @@ void RemoveMoneyLabelObject(void)
     DestroySpriteAndFreeResources(&gSprites[sMoneyLabelSpriteId]);
 }
 
-u32 GetMaxNumMoneyDigits(void)
-{
-	return CountDigits(MAX_MONEY);
-}
-
 u32 GetMoneyBoxHorizontalPosition(void)
 {
-	return (74 - (GetMaxNumMoneyDigits() * 6));
+	return (74 - (MAX_MONEY_DIGITS * 6));
 }
