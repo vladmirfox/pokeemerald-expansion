@@ -48,7 +48,7 @@
 #define AI_FLAG_CONSERVATIVE          (1 << 18)  // AI assumes all moves will low roll damage
 #define AI_FLAG_SEQUENCE_SWITCHING    (1 << 19)  // AI switches in mons in exactly party order, and never switches mid-battle
 
-#define AI_FLAG_COUNT                       19
+#define AI_FLAG_COUNT                       20
 
 // 'other' ai logic flags
 #define AI_FLAG_ROAMING               (1 << 29)
