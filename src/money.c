@@ -9,6 +9,7 @@
 #include "sprite.h"
 #include "strings.h"
 #include "decompress.h"
+#include "tv.h"
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
@@ -130,7 +131,7 @@ void SubtractMoneyFromVar0x8005(void)
 
 void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 {
-    PrintMoneyAmount(windowId, 38, 1, amount, speed);
+    PrintMoneyAmount(windowId, GetMoneyBoxHorizontalPosition(), 1, amount, speed);
 }
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
@@ -192,4 +193,14 @@ void AddMoneyLabelObject(u16 x, u16 y)
 void RemoveMoneyLabelObject(void)
 {
     DestroySpriteAndFreeResources(&gSprites[sMoneyLabelSpriteId]);
+}
+
+u32 GetMaxNumMoneyDigits(void)
+{
+	return CountDigits(MAX_MONEY);
+}
+
+u32 GetMoneyBoxHorizontalPosition(void)
+{
+	return (74 - (GetMaxNumMoneyDigits() * 6));
 }
