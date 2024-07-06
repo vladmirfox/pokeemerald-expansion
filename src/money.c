@@ -135,10 +135,10 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 {
-    u8 *txtPtr;
+    u8 *txtPtr = gStringVar4;
     s32 strLength;
 
-    ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
 
     strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
     txtPtr = gStringVar4;
@@ -197,4 +197,10 @@ void RemoveMoneyLabelObject(void)
 u32 GetMoneyBoxHorizontalPosition(void)
 {
 	return (74 - (MAX_MONEY_DIGITS * 6));
+}
+
+u32 GetItemSoldMoneyHorizontalPosition(void)
+{
+	u32 extraTile = (MAX_MONEY_DIGITS == 9) ? 8 : 0;
+	return (GetMoneyBoxHorizontalPosition() + extraTile);
 }
