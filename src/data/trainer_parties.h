@@ -3237,11 +3237,20 @@ static const struct TrainerMon sParty_Roxanne1[] = {
 
 static const struct TrainerMon sParty_Brawly1[] = {
     {
-    .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-    .lvl = 16,
     .species = SPECIES_HAWLUCHA,
+    .ball = ITEM_MASTER_BALL,
+    .ability = ABILITY_MOLD_BREAKER,
+    .friendship = 42,
+    .gender = TRAINER_MON_MALE,
     .heldItem = ITEM_ORAN_BERRY,
-    .moves = {MOVE_WING_ATTACK, MOVE_LOW_KICK, MOVE_DETECT, MOVE_HONE_CLAWS}
+    .isShiny = FALSE,
+    .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
+    //.ev = TRAINER_PARTY_EVS(00, 00, 00, 00, 00, 00)
+    .lvl = 16,
+    .moves = {MOVE_WING_ATTACK, MOVE_LOW_KICK, MOVE_DETECT, MOVE_HONE_CLAWS},
+    .nature = NATURE_ADAMANT,
+    .nickname = COMPOUND_STRING("berd"),
+    //.dynamaxLevel = 5,
     },
     {
     .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
