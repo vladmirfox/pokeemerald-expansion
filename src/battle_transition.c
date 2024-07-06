@@ -212,7 +212,9 @@ static bool8 AngledWipes_TryEnd(struct Task *);
 static bool8 AngledWipes_StartNext(struct Task *);
 static bool8 ShredSplit_Init(struct Task *);
 static bool8 ShredSplit_Main(struct Task *);
+#if B_ENABLE_SHRED_SPLIT == FALSE
 static bool8 ShredSplit_BrokenCheck(struct Task *);
+#endif
 static bool8 ShredSplit_End(struct Task *);
 static bool8 Blackhole_Init(struct Task *);
 static bool8 Blackhole_Vibrate(struct Task *);
@@ -561,7 +563,9 @@ static const TransitionStateFunc sShredSplit_Funcs[] =
 {
     ShredSplit_Init,
     ShredSplit_Main,
+#if B_ENABLE_SHRED_SPLIT == FALSE
     ShredSplit_BrokenCheck,
+#endif
     ShredSplit_End
 };
 
@@ -2928,11 +2932,13 @@ static bool8 ShredSplit_Main(struct Task *task)
     return FALSE;
 }
 
+#if B_ENABLE_SHRED_SPLIT == FALSE
 // This function never increments the state counter, because the loop condition
 // is always false, resulting in the game being stuck in an infinite loop.
 // It's possible this transition is only partially
 // done and the second part was left out.
 // In any case removing or bypassing this state allows the transition to finish.
+// You can bypass this by searching the repo for B_ENABLE_SHRED_SPLIT and setting it to TRUE.
 static bool8 ShredSplit_BrokenCheck(struct Task *task)
 {
     u16 i;
@@ -2950,6 +2956,7 @@ static bool8 ShredSplit_BrokenCheck(struct Task *task)
 
     return FALSE;
 }
+#endif
 
 static bool8 ShredSplit_End(struct Task *task)
 {
