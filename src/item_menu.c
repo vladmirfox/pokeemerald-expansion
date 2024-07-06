@@ -528,9 +528,17 @@ static const struct WindowTemplate sContextMenuWindowTemplates[] =
     },
     [ITEMWIN_QUANTITY_WIDE] = { // Used for quantity and price of items to Sell
         .bg = 1,
+#if MAX_MONEY_DIGITS == 9
+        .tilemapLeft = 17,
+#else
         .tilemapLeft = 18,
+#endif
         .tilemapTop = 11,
+#if MAX_MONEY_DIGITS == 9
+        .width = 11,
+#else
         .width = 10,
+#endif
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x245,
@@ -1225,7 +1233,7 @@ static void PrintItemSoldAmount(int windowId, int numSold, int moneyEarned)
     ConvertIntToDecimalStringN(gStringVar1, numSold, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, 0);
-    PrintMoneyAmount(windowId, GetMoneyBoxHorizontalPosition(), 1, moneyEarned, 0);
+    PrintMoneyAmount(windowId, GetItemSoldMoneyHorizontalPosition(), 1, moneyEarned, 0);
 }
 
 static void Task_BagMenu_HandleInput(u8 taskId)
