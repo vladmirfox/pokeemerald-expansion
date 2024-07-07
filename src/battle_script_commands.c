@@ -16350,7 +16350,7 @@ void BS_JumpIfEmergencyExited(void)
 void BS_JumpIfRod(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
-    if (IsElectricAbilityAffected(ABILITY_LIGHTNING_ROD))
+    if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_6 && IsElectricAbilityAffected(ABILITY_LIGHTNING_ROD))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

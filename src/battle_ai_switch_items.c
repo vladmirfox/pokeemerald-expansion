@@ -340,16 +340,25 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_WATER)
     {
         absorbingTypeAbilities[0] = ABILITY_WATER_ABSORB;
-        absorbingTypeAbilities[1] = ABILITY_STORM_DRAIN;
-        absorbingTypeAbilities[2] = ABILITY_DRY_SKIN;
+        absorbingTypeAbilities[1] = ABILITY_DRY_SKIN;
+        numAbsorbingAbilities = 2;
+        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
+        {
+            absorbingTypeAbilities[2] = ABILITY_STORM_DRAIN;
+            numAbsorbingAbilities++;
+        }
         numAbsorbingAbilities = 3;
     }
     else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_ELECTRIC)
     {
         absorbingTypeAbilities[0] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[1] = ABILITY_MOTOR_DRIVE;
-        absorbingTypeAbilities[2] = ABILITY_LIGHTNING_ROD;
-        numAbsorbingAbilities = 3;
+        numAbsorbingAbilities = 2;
+        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
+        {
+            absorbingTypeAbilities[2] = ABILITY_LIGHTNING_ROD;
+            numAbsorbingAbilities++;
+        }
     }
     else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GRASS)
     {
