@@ -73,7 +73,7 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [9] = AI_PowerfulStatus,         // AI_FLAG_POWERFUL_STATUS
     [10] = NULL,                     // AI_FLAG_NEGATE_UNAWARE
     [11] = NULL,                     // AI_FLAG_WILL_SUICIDE
-    [12] = NULL,                     // AI_FLAG_HELP_PARTNER
+    [12] = NULL,                     // Unused
     [13] = NULL,                     // Unused
     [14] = NULL,                     // Unused
     [15] = NULL,                     // Unused
@@ -1882,7 +1882,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_REST:
-            if (!AI_CanSleep(battlerAtk, aiData->abilities[battlerAtk]))
+            if (!CanBeSlept(battlerAtk, aiData->abilities[battlerAtk]))
                 ADJUST_SCORE(-10);
             //fallthrough
         case EFFECT_RESTORE_HP:
@@ -3504,7 +3504,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         break;
     case EFFECT_REST:
-        if (!(AI_CanSleep(battlerAtk, aiData->abilities[battlerAtk])))
+        if (!(CanBeSlept(battlerAtk, aiData->abilities[battlerAtk])))
         {
             break;
         }
@@ -3984,7 +3984,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 ADJUST_SCORE(DECENT_EFFECT);
             break;
         case HOLD_EFFECT_FLAME_ORB:
-            if (!ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]) && AI_CanBeBurned(battlerAtk, aiData->abilities[battlerDef]))
+            if (!ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]) && CanBeBurned(battlerAtk, aiData->abilities[battlerDef]))
                 ADJUST_SCORE(DECENT_EFFECT);
             break;
         case HOLD_EFFECT_BLACK_SLUDGE:
@@ -4740,17 +4740,17 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     if (gMovesInfo[move].power)
     {
         if (GetNoOfHitsToKOBattler(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex) == 0)
-            ADJUST_SCORE(-20);
+            ADJUST_AND_RETURN_SCORE(NO_DAMAGE_OR_FAILS); // No point in checking the move further so return early
         else
         {
             if ((AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY) && GetBestDmgMoveFromBattler(battlerAtk, battlerDef) == move)
-                ADJUST_SCORE(1);
+                ADJUST_SCORE(BEST_DAMAGE_MOVE);
             else
-                score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
+                ADJUST_SCORE(AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex));
         }
     }
 
-    score += AI_CalcMoveEffectScore(battlerAtk, battlerDef, move);
+    ADJUST_SCORE(AI_CalcMoveEffectScore(battlerAtk, battlerDef, move));
 
     return score;
 }
