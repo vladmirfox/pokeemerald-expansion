@@ -176,7 +176,7 @@ DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
     }
 }
 
-DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
+DOUBLE_BATTLE_TEST("Opportunist copies the stat increase of each opposing mon")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -184,10 +184,10 @@ DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentRight, MOVE_SHELL_SMASH); MOVE(opponentLeft, MOVE_SHELL_SMASH); }
+        TURN { MOVE(opponentRight, MOVE_SWORDS_DANCE); MOVE(opponentLeft, MOVE_SWORDS_DANCE); }
     } SCENE {
         ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
     } THEN {
-        EXPECT_EQ(playerRight->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 4);
+        EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 4);
     }
 }
