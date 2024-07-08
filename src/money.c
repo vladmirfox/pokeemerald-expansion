@@ -131,7 +131,7 @@ void SubtractMoneyFromVar0x8005(void)
 
 void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 {
-    PrintMoneyAmount(windowId, GetMoneyBoxHorizontalPosition(), 1, amount, speed);
+    PrintMoneyAmount(windowId, GetMoneyBoxHorizontalPosition(amount), 1, amount, speed);
 }
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
@@ -148,11 +148,17 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, convertDigits);
 
 	strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
+
+	/*
 	while (strLength-- > 0)
 		*(txtPtr++) = CHAR_SPACER;
+	*/
 
 	StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
-	//PrependFontIdToFit(gStringVar4, end, FONT_NARROW, 59);
+
+	if (numAmountDigits > 8)
+		PrependFontIdToFit(gStringVar4, txtPtr+1+numAmountDigits, FONT_NORMAL, 54);
+
 	AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, speed, NULL);
 }
 
@@ -200,10 +206,41 @@ void RemoveMoneyLabelObject(void)
     DestroySpriteAndFreeResources(&gSprites[sMoneyLabelSpriteId]);
 }
 
-u32 GetMoneyBoxHorizontalPosition(void)
+u32 GetMoneyBoxHorizontalPosition(u32 amount)
 {
-	u32 currentPos = (74 - (MAX_MONEY_DIGITS * 6));
-	DebugPrintf("currentPos is %d",currentPos);
-	return (currentPos > 38) ? 38 : currentPos;
+	/*
+	   u32 currentPos = (74 - (MAX_MONEY_DIGITS * 6));
+	   DebugPrintf("currentPos is %d",currentPos);
+
+	   if (currentPos > 38)
+	   return 38;
+
+	   if (currentPos < 32)
+	   return 34;
+
+	   return currentPos;
+	   */
+	u32 digits = CountDigits(amount);
+
+	switch (digits)
+	{
+		case 0:
+		case 1:
+			return 68;
+		case 2:
+			return 62;
+		case 3:
+			return 56;
+		case 4:
+			return 50;
+		case 6:
+			return 44;
+		case 7:
+			return 38;
+		case 8:
+			return 32;
+		default:
+			return 34;
+	}
 }
 
