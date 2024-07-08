@@ -9,6 +9,7 @@
 #include "sprite.h"
 #include "strings.h"
 #include "decompress.h"
+#include "tv.h"
 
 EWRAM_DATA static u8 sMoneyBoxWindowId = 0;
 EWRAM_DATA static u8 sMoneyLabelSpriteId = 0;
@@ -135,19 +136,24 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 {
-    u8 *txtPtr = gStringVar4;
-    s32 strLength;
+	u8 *txtPtr = gStringVar4;
+	s32 strLength;
+	u32 numAmountDigits = CountDigits(amount);
+	u32 convertDigits = (numAmountDigits > 6) ? MAX_MONEY_DIGITS: 6;
 
-    ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
+	DebugPrintf("amount is %d",amount);
+	DebugPrintf("numAmountDigits is %d",numAmountDigits);
+	DebugPrintf("convertDigits is %d",convertDigits);
 
-    strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
-    txtPtr = gStringVar4;
+	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, convertDigits);
 
-    while (strLength-- > 0)
-        *(txtPtr++) = CHAR_SPACER;
+	strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
+	while (strLength-- > 0)
+		*(txtPtr++) = CHAR_SPACER;
 
-    StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
-    AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, speed, NULL);
+	StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
+	//PrependFontIdToFit(gStringVar4, end, FONT_NARROW, 59);
+	AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, speed, NULL);
 }
 
 void PrintMoneyAmountInMoneyBoxWithBorder(u8 windowId, u16 tileStart, u8 pallete, int amount)
@@ -197,6 +203,7 @@ void RemoveMoneyLabelObject(void)
 u32 GetMoneyBoxHorizontalPosition(void)
 {
 	u32 currentPos = (74 - (MAX_MONEY_DIGITS * 6));
+	DebugPrintf("currentPos is %d",currentPos);
 	return (currentPos > 38) ? 38 : currentPos;
 }
 
