@@ -175,3 +175,19 @@ DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
         EXPECT_EQ(playerRight->statStages[STAT_SPATK], DEFAULT_STAT_STAGE );
     }
 }
+
+DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_SHELL_SMASH); MOVE(opponentLeft, MOVE_SHELL_SMASH); }
+    } SCENE {
+        ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(playerRight->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 4);
+    }
+}
