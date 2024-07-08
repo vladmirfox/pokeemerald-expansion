@@ -38,3 +38,127 @@ RustboroCity_PokemonCenter_2F_EventScript_RecordCorner::
 	call CableClub_EventScript_RecordCorner
 # 20 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	end
+
+Custom_Givemon_Rustboro::
+# 26 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	lockall
+# 27 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	showmonpic SPECIES_EEVEE, 10, 3
+# 28 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Rustboro_Text_0, MSGBOX_YESNO
+# 29 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Custom_Givemon_Rustboro_2
+# 51 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 52 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Rustboro_NotChosen
+Custom_Givemon_Rustboro_1:
+# 54 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	waitmessage
+# 55 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	releaseall
+	end
+
+Custom_Givemon_Rustboro_2:
+# 30 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	givemon SPECIES_EEVEE, 10, ITEM_LUXURY_BALL
+# 31 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq Custom_Givemon_Rustboro_5
+# 38 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq Custom_Givemon_Rustboro_6
+# 46 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 47 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Rustboro_Text_3
+	goto Custom_Givemon_Rustboro_1
+
+Custom_Givemon_Rustboro_5:
+# 32 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 33 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Rustboro_Text_1
+# 34 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	removeobject 1
+# 35 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	setflag FLAG_UNUSED_0x020
+# 36 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call NicknamePartyMon
+	goto Custom_Givemon_Rustboro_1
+
+Custom_Givemon_Rustboro_6:
+# 39 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 40 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Rustboro_Text_2
+# 41 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	removeobject 1
+# 42 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	setflag FLAG_UNUSED_0x020
+# 43 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call NicknameBoxMon
+	goto Custom_Givemon_Rustboro_1
+
+
+NicknamePartyMon::
+# 62 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+# 63 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 64 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NicknamePartyMon_1
+	return
+
+NicknamePartyMon_1:
+# 65 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_GetGiftMonPartySlot
+# 66 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_NameReceivedPartyMon
+	return
+
+
+NicknameBoxMon::
+# 74 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+# 75 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 76 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NicknameBoxMon_2
+NicknameBoxMon_1:
+# 79 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_TransferredToPC
+	return
+
+NicknameBoxMon_2:
+# 77 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_NameReceivedBoxMon
+	goto NicknameBoxMon_1
+
+
+Custom_Givemon_Rustboro_Text_0:
+# 28 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "Do you want this Eevee?$"
+
+Custom_Givemon_Rustboro_Text_1:
+# 33 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "Here you go!$"
+
+Custom_Givemon_Rustboro_Text_2:
+# 40 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "Check your PC!$"
+
+Custom_Givemon_Rustboro_Text_3:
+# 47 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "You need to release something to get this.$"
+
+NicknamePartyMon_Text_0:
+# 62 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "Give it a nickname?$"
+
+Custom_Givemon_Rustboro_NotChosen::
+# 83 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
+	.string "Guess I'll just have to use it for spells...$"

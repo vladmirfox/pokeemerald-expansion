@@ -3289,7 +3289,6 @@ static const struct TrainerMon sParty_Brawly1[] = {
 };
 
 static const struct TrainerMon sParty_Wattson1[] = {
-static const struct TrainerMon sParty_Wattson[] = {
     {
         .species = SPECIES_VOLTORB,
         .heldItem = ITEM_NONE,
