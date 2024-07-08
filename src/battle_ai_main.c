@@ -5338,6 +5338,32 @@ static s32 AI_FirstBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     return score;
 }
 
+
+// Dynamic AI Functions
+// For specific battle scenarios
+
+// Example - prefer attacking opposite foe in a tag battle
+s32 AI_TagBattlePreferFoe(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
+{
+    if (!(gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER))
+    {
+        /* not a partner battle */
+        return score;
+    }
+    else if (!IsBattlerAlive(BATTLE_OPPOSITE(battlerAtk)) || !IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battlerAtk))))
+    {
+        /* partner is defeated so attack normally */
+        return score;
+    }
+    else if (battlerDef == BATTLE_OPPOSITE(battlerAtk))
+    {
+        /* attacking along the diagonal */
+        ADJUST_SCORE(-20);
+    }
+    
+    return score;
+}
+
 static s32 AI_DynamicFunc(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
     if (sDynamicAiFunc != NULL)
