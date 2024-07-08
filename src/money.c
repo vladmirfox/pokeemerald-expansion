@@ -196,11 +196,7 @@ void RemoveMoneyLabelObject(void)
 
 u32 GetMoneyBoxHorizontalPosition(void)
 {
-	return (74 - (MAX_MONEY_DIGITS * 6));
+	u32 currentPos = (74 - (MAX_MONEY_DIGITS * 6));
+	return (currentPos > 38) ? 38 : currentPos;
 }
 
-u32 GetItemSoldMoneyHorizontalPosition(void)
-{
-	u32 extraTile = (MAX_MONEY_DIGITS == 9) ? 8 : 0;
-	return (GetMoneyBoxHorizontalPosition() + extraTile);
-}
