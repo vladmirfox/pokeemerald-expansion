@@ -3273,11 +3273,8 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         break;
     case EFFECT_FINAL_GAMBIT:
-        if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE && gBattleMons[battlerDef].statStages[STAT_EVASION] < 7)
-        {
-            if (aiData->hpPercents[battlerAtk] > 70 && AI_RandLessThan(128))
-                ADJUST_SCORE(DECENT_EFFECT);
-        }
+        if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_WILL_SUICIDE)
+            ADJUST_SCORE(DECENT_EFFECT);
         break;
     case EFFECT_MIRROR_MOVE:
         if (predictedMove != MOVE_NONE)
