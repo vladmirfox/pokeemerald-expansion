@@ -28,6 +28,7 @@ To balance the increased difficulty, each gym leader will reward players with an
 - [ ] **Red as World Champion Advisor**: Encounter Red before gym leader battles and major events. He offers tips, tests type coverage, and provides strategic warnings.
 - [ ] **Custom Gyms and Trainer Battles**: Revamp gyms and trainer battles with unique teams, improved AI, and strategic depth.
 - [ ] **Enhanced Battle Mechanics and AI**: Upgrade battle mechanics and AI to deliver more challenging and engaging gameplay experiences.
+- [ ] **Updated Level Curve:** Update the level curve to make trainers match the level of the player for each route/section of the game.
 
 ## Project Goals
 
