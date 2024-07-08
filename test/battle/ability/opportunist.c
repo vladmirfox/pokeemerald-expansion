@@ -124,6 +124,54 @@ SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes"
     }
 }
 
-TO_DO_BATTLE_TEST("Opportunist doesn't copy ally stat increases");
-TO_DO_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist");
-TO_DO_BATTLE_TEST("Opportunist copies foe stat increased gained via Swagger and Flatter");
+SINGLE_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist")
+{
+    GIVEN {
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, player);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+        NOT ABILITY_POPUP(player, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], player->statStages[STAT_ATK]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Opportunist copies foe stat increased gained via Swagger and Flatter")
+{
+    GIVEN {
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FLATTER); }
+        TURN { MOVE(opponent, MOVE_SWAGGER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLATTER, opponent);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWAGGER, opponent);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SWORDS_DANCE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, playerLeft);
+        NOT ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(playerRight->statStages[STAT_SPATK], DEFAULT_STAT_STAGE );
+    }
+}
