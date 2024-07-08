@@ -37,7 +37,7 @@ script Custom_Givemon_Rustboro{
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Check your PC!")
+            msgbox("Eevee was placed in your PC.")
             removeobject(1)
             setflag(FLAG_UNUSED_0x020)
             call(NicknameBoxMon)
@@ -83,3 +83,5 @@ script NicknameBoxMon{
 text Custom_Givemon_Rustboro_NotChosen{
     "Guess I'll just have to use it for spells..."
 }
+
+
