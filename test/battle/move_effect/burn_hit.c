@@ -94,9 +94,9 @@ DOUBLE_BATTLE_TEST("Matcha Gatcha can burn both targets")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MATCHA_GOTCHA, playerLeft);
         HP_BAR(opponentLeft);
+        HP_BAR(opponentRight);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentLeft);
         STATUS_ICON(opponentLeft, burn: TRUE);
-        HP_BAR(opponentRight);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
         STATUS_ICON(opponentRight, burn: TRUE);
     }

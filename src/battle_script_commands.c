@@ -1541,21 +1541,21 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
      || (B_TOXIC_NEVER_MISS >= GEN_6 && gMovesInfo[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
      || gStatuses4[battler] & STATUS4_GLAIVE_RUSH)
     {
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
     // If the attacker has the ability No Guard and they aren't targeting a Pokemon involved in a Sky Drop with the move Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[battler] == 0xFF))
     {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
+        // if (!JumpIfMoveFailed(7, move))
+        //     RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
     // If the target has the ability No Guard and they aren't involved in a Sky Drop or the current move isn't Sky Drop, move hits.
     else if (GetBattlerAbility(battler) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[battler] == 0xFF))
     {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(battler, ABILITY_NO_GUARD);
+        // if (!JumpIfMoveFailed(7, move))
+        //     RecordAbilityBattle(battler, ABILITY_NO_GUARD);
         return TRUE;
     }
     // If the target is under the effects of Telekinesis, and the move isn't a OH-KO move, move hits.
@@ -1563,13 +1563,13 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
              && !(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE)
              && gMovesInfo[move].effect != EFFECT_OHKO)
     {
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
     if (gBattleStruct->zmove.active && !(gStatuses3[battler] & STATUS3_SEMI_INVULNERABLE))
     {
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
@@ -1579,7 +1579,7 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
     || ((gStatuses3[battler] & STATUS3_UNDERWATER) && !gMovesInfo[move].damagesUnderwater))
     {
         gBattleStruct->resultFlags[battler] |= MOVE_RESULT_MISSED;
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
@@ -1589,13 +1589,13 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
             && IsBattlerWeatherAffected(battler, B_WEATHER_RAIN))
         {
             // thunder/hurricane/genie moves ignore acc checks in rain unless target is holding utility umbrella
-            JumpIfMoveFailed(7, move);
+            // JumpIfMoveFailed(7, move);
             return TRUE;
         }
         else if ((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && gMovesInfo[move].effect == EFFECT_BLIZZARD)
         {
             // Blizzard ignores acc checks in Hail in Gen4+
-            JumpIfMoveFailed(7, move);
+            // JumpIfMoveFailed(7, move);
             return TRUE;
         }
     }
@@ -1604,13 +1604,13 @@ static bool32 AccuracyCalcHelper(u32 move, u32 battler)
      && (gStatuses3[battler] & STATUS3_MINIMIZED)
      && gMovesInfo[move].minimizeDoubleDamage)
     {
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
     if (gMovesInfo[move].accuracy == 0)
     {
-        JumpIfMoveFailed(7, move);
+        // JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
@@ -1740,17 +1740,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
-u32 FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
+void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
 {
-    u32 accuracy;
-
-    if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE))
-        return TRUE;
-
-    if (AccuracyCalcHelper(move, battlerDef))
-        return TRUE;
-
-    accuracy = GetTotalAccuracy(
+    u32 accuracy = GetTotalAccuracy(
         battlerAtk,
         battlerDef,
         move,
@@ -1772,8 +1764,6 @@ u32 FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u
             CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), TRUE);
         }
     }
-
-    return FALSE;
 }
 
 static void Cmd_accuracycheck(void)
@@ -1785,7 +1775,6 @@ static void Cmd_accuracycheck(void)
     u32 abilityAtk;
     u32 holdEffectAtk;
     u32 move = cmd->move;
-    bool32 finalAccuracyCheck = FALSE;
 
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
@@ -1839,7 +1828,10 @@ static void Cmd_accuracycheck(void)
                  || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                     continue;
 
-                finalAccuracyCheck = FinalAccuracyCheck(
+                if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE) || AccuracyCalcHelper(move, battlerDef))
+                    continue;
+
+                FinalAccuracyCheck(
                     gBattlerAttacker,
                     battlerDef,
                     move,
@@ -1849,11 +1841,17 @@ static void Cmd_accuracycheck(void)
                     holdEffectAtk
                 );
             }
-            // if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
         }
         else
         {
-            finalAccuracyCheck = FinalAccuracyCheck(
+            if (JumpIfMoveAffectedByProtect(move, gBattlerTarget, FALSE) || AccuracyCalcHelper(move, gBattlerTarget))
+            {
+                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
+                JumpIfMoveFailed(7, move);
+                return;
+            }
+
+            FinalAccuracyCheck(
                 gBattlerAttacker,
                 gBattlerTarget,
                 move,
@@ -1864,8 +1862,7 @@ static void Cmd_accuracycheck(void)
             );
         }
         gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
-        if (!finalAccuracyCheck)
-            JumpIfMoveFailed(7, move);
+        JumpIfMoveFailed(7, move);
     }
 }
 
@@ -2100,6 +2097,8 @@ static void Cmd_damagecalc(void)
     }
     gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
     gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
+    // DebugPrintf("gBattleStruct->calculatedDamage[gBattlerTarget] %d", gBattleStruct->calculatedDamage[gBattlerTarget]);
+    // DebugPrintf("gBattleMoveDamage %d", gBattleMoveDamage);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -6504,7 +6503,20 @@ static void Cmd_moveend(void)
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
 
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                gBattleStruct->calculatedDamage[i] = 0;
+                gBattleStruct->calculatedCritChance[i] = 0;
+                gBattleStruct->resultFlags[i] = 0;
+    	        gBattleStruct->noResultString[i] = 0;
+    	    }
+
             gBattleStruct->calculatedDamageDone = 0;
+            gBattleStruct->doneDoublesSpreadHit = 0;
+            gBattleStruct->calculatedDamageDone = 0;
+            gBattleStruct->calculatedSpreadMoveAccuracy = 0;
+            gBattleStruct->numSpreadTargets = 0;
+
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
@@ -9955,7 +9967,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_ARG_TO_BATTLE_DAMAGE:
     {
         VARIOUS_ARGS();
-        gBattleMoveDamage = gMovesInfo[gCurrentMove].argument;
+        gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget] = gMovesInfo[gCurrentMove].argument;
         break;
     }
     case VARIOUS_TRY_HIT_SWITCH_TARGET:

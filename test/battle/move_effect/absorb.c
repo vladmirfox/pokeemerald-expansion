@@ -60,8 +60,8 @@ DOUBLE_BATTLE_TEST("Matcha Gatcha recovers 50% of the damage dealt from both tar
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MATCHA_GOTCHA, playerLeft);
         HP_BAR(opponentLeft, captureDamage: &damageLeft);
-        HP_BAR(playerLeft, captureDamage: &healedLeft);
         HP_BAR(opponentRight, captureDamage: &damageRight);
+        HP_BAR(playerLeft, captureDamage: &healedLeft);
         HP_BAR(playerLeft, captureDamage: &healedRight);
     } THEN {
         EXPECT_MUL_EQ(damageLeft, Q_4_12(-0.5), healedLeft);

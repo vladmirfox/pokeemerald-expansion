@@ -3336,6 +3336,7 @@ static void BattleStartClearSetData(void)
         gBattleStruct->AI_monToSwitchIntoId[i] = PARTY_SIZE;
         gBattleStruct->skyDropTargets[i] = 0xFF;
         gBattleStruct->overwrittenAbilities[i] = ABILITY_NONE;
+
     }
 
     gLastUsedMove = 0;
