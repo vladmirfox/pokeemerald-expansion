@@ -1265,7 +1265,6 @@ static void Cmd_attackcanceler(void)
     s32 i, moveType;
     u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
     GET_MOVE_TYPE(gCurrentMove, moveType);
-
     // Weight-based moves are blocked by Dynamax.
     if (IsDynamaxed(gBattlerTarget) && IsMoveBlockedByDynamax(gCurrentMove))
     {
@@ -1741,12 +1740,15 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
-void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
+u32 FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk)
 {
     u32 accuracy;
 
-    if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE) || AccuracyCalcHelper(move, battlerDef))
-        return;
+    if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE))
+        return TRUE;
+
+    if (AccuracyCalcHelper(move, battlerDef))
+        return TRUE;
 
     accuracy = GetTotalAccuracy(
         battlerAtk,
@@ -1770,16 +1772,20 @@ void FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, 
             CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), TRUE);
         }
     }
+
+    return FALSE;
 }
 
 static void Cmd_accuracycheck(void)
 {
     CMD_ARGS(const u8 *failInstr, u16 move);
 
-    u32 type, moveTarget;
+    u32 type;
+    u32 moveTarget;
     u32 abilityAtk;
     u32 holdEffectAtk;
     u32 move = cmd->move;
+    bool32 finalAccuracyCheck = FALSE;
 
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
@@ -1820,7 +1826,7 @@ static void Cmd_accuracycheck(void)
     else
     {
         GET_MOVE_TYPE(move, type);
-		bool32 calcSpreadMove = IsDoubleBattle() && IS_SPREAD_MOVE(moveTarget) && !IS_MOVE_STATUS(move);
+		bool32 calcSpreadMove = IsDoubleBattle() && IsSpreadMove(gBattlerAttacker, gCurrentMove) && !IS_MOVE_STATUS(move);
 
         if (calcSpreadMove)
         {
@@ -1833,7 +1839,7 @@ static void Cmd_accuracycheck(void)
                  || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
                     continue;
 
-                FinalAccuracyCheck(
+                finalAccuracyCheck = FinalAccuracyCheck(
                     gBattlerAttacker,
                     battlerDef,
                     move,
@@ -1844,27 +1850,23 @@ static void Cmd_accuracycheck(void)
                 );
             }
             // if (gBattleStruct->resultFlags[gBattlerTarget] & MOVE_RESULT_MISSED)
-                gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
         }
         else
         {
-            if (gBattleStruct->noResultString[gBattlerTarget] && gBattleStruct->noResultString[gBattlerTarget] != DO_ACCURACY_CHECK)
-            {
-                FinalAccuracyCheck(
-                    gBattlerAttacker,
-                    gBattlerTarget,
-                    move,
-                    type,
-                    moveTarget,
-                    abilityAtk,
-                    holdEffectAtk
-                );
-            }
+            finalAccuracyCheck = FinalAccuracyCheck(
+                gBattlerAttacker,
+                gBattlerTarget,
+                move,
+                type,
+                moveTarget,
+                abilityAtk,
+                holdEffectAtk
+            );
         }
         gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
-        JumpIfMoveFailed(7, move);
+        if (!finalAccuracyCheck)
+            JumpIfMoveFailed(7, move);
     }
-    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_attackstring(void)
@@ -2096,7 +2098,6 @@ static void Cmd_damagecalc(void)
     {
         gBattleStruct->calculatedDamage[gBattlerTarget] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
     }
-
     gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
     gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -6503,6 +6504,7 @@ static void Cmd_moveend(void)
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
 
+            gBattleStruct->calculatedDamageDone = 0;
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;

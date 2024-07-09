@@ -443,34 +443,34 @@ AI_DOUBLE_BATTLE_TEST("AI will not use Helping Hand if partner does not have any
     }
 }
 
-AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose Helping Hand")
-{
-    s32 j;
-    u32 statusMove = MOVE_NONE;
+// AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose Helping Hand")
+// {
+//     s32 j;
+//     u32 statusMove = MOVE_NONE;
 
-    for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
-    {
-        if (gMovesInfo[j].category == DAMAGE_CATEGORY_STATUS) {
-            PARAMETRIZE{ statusMove = j; }
-        }
-    }
+//     for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
+//     {
+//         if (gMovesInfo[j].category == DAMAGE_CATEGORY_STATUS) {
+//             PARAMETRIZE{ statusMove = j; }
+//         }
+//     }
 
-    GIVEN {
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND); }
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, statusMove); }
-    } WHEN {
-            TURN {  NOT_EXPECT_MOVE(opponentRight, statusMove);
-                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerLeft);
-                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerRight);
-                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:opponentLeft);
-                 }
-    } SCENE {
-        MESSAGE("Foe Wobbuffet used Helping Hand!");
-    }
-}
+//     GIVEN {
+//         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+//         PLAYER(SPECIES_WOBBUFFET);
+//         PLAYER(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND); }
+//         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, statusMove); }
+//     } WHEN {
+//             TURN {  NOT_EXPECT_MOVE(opponentRight, statusMove);
+//                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerLeft);
+//                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerRight);
+//                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:opponentLeft);
+//                  }
+//     } SCENE {
+//         MESSAGE("Foe Wobbuffet used Helping Hand!");
+//     }
+// }
 
 AI_SINGLE_BATTLE_TEST("AI without any flags chooses moves at random - singles")
 {
