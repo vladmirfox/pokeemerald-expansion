@@ -142,9 +142,7 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 
 	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, n);
 
-	u32 strLength = 7 - StringLength(gStringVar1);
-	while (strLength-- > 0)
-		*(txtPtr++) = CHAR_SPACER;
+	*(txtPtr++) = CHAR_SPACER;
 
 	StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
 
