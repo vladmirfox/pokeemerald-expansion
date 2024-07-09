@@ -31,15 +31,15 @@ script Custom_Givemon_Dewford{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Here you go!")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            removeobject(5)
+            setflag(FLAG_UNUSED_0x021)
             call(DewfordNicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Bronzor was placed in your PC.")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            removeobject(5)
+            setflag(FLAG_UNUSED_0x021)
             call(DewfordNicknameBoxMon)
         }
         else{

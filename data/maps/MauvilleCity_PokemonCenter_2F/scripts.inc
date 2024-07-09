@@ -105,9 +105,9 @@ Custom_Givemon_Mauville_5:
 # 45 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Mauville_Text_1
 # 46 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 6
 # 47 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x022
 # 48 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	call MauvilleNicknamePartyMon
 	goto Custom_Givemon_Mauville_1
@@ -118,9 +118,9 @@ Custom_Givemon_Mauville_6:
 # 52 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Mauville_Text_2
 # 53 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 6
 # 54 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x022
 # 55 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	call MauvilleNicknameBoxMon
 	goto Custom_Givemon_Mauville_1
@@ -165,7 +165,7 @@ MauvilleNicknameBoxMon_2:
 
 Custom_Givemon_Mauville_Text_0:
 # 40 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	.string "Do you want this Dreepy?$"
+	.string "Do you want this Larvitar?$"
 
 Custom_Givemon_Mauville_Text_1:
 # 45 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"

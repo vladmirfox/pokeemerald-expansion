@@ -81,9 +81,9 @@ Custom_Givemon_Dewford_5:
 # 33 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Dewford_Text_1
 # 34 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 5
 # 35 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x021
 # 36 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	call DewfordNicknamePartyMon
 	goto Custom_Givemon_Dewford_1
@@ -94,9 +94,9 @@ Custom_Givemon_Dewford_6:
 # 40 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Dewford_Text_2
 # 41 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 5
 # 42 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x021
 # 43 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	call DewfordNicknameBoxMon
 	goto Custom_Givemon_Dewford_1

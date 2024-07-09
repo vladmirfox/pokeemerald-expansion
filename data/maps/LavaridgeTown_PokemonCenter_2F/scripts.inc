@@ -81,9 +81,9 @@ Custom_Givemon_Lavaridge_5:
 # 33 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Lavaridge_Text_1
 # 34 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 5
 # 35 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x023
 # 36 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
 	call LavaridgeNicknamePartyMon
 	goto Custom_Givemon_Lavaridge_1
@@ -94,9 +94,9 @@ Custom_Givemon_Lavaridge_6:
 # 40 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Lavaridge_Text_2
 # 41 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 5
 # 42 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
-	setflag FLAG_UNUSED_0x020
+	setflag FLAG_UNUSED_0x023
 # 43 "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.pory"
 	call LavaridgeNicknameBoxMon
 	goto Custom_Givemon_Lavaridge_1

@@ -81,7 +81,7 @@ Custom_Givemon_Rustboro_5:
 # 33 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Rustboro_Text_1
 # 34 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	removeobject 1
+	removeobject 5
 # 35 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	setflag FLAG_UNUSED_0x020
 # 36 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"

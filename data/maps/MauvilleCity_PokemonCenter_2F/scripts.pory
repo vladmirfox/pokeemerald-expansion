@@ -43,15 +43,15 @@ script Custom_Givemon_Mauville{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Here you go!")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            removeobject(6)
+            setflag(FLAG_UNUSED_0x022)
             call(MauvilleNicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Larvitar was placed in your PC.")
-            removeobject(1)
-            setflag(FLAG_UNUSED_0x020)
+            removeobject(6)
+            setflag(FLAG_UNUSED_0x022)
             call(MauvilleNicknameBoxMon)
         }
         else{
