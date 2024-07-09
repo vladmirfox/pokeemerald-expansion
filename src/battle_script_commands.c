@@ -11781,10 +11781,16 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
         else
         {
+            u32 statIncrease;
+            if ((statValue + gBattleMons[battler].statStages[statId]) > MAX_STAT_STAGE)
+                statIncrease = MAX_STAT_STAGE - gBattleMons[battler].statStages[statId];
+            else
+                statIncrease = statValue;
+
             gBattleCommunication[MULTISTRING_CHOOSER] = (gBattlerTarget == battler);
             gProtectStructs[battler].statRaised = TRUE;
 
-            // check mirror herb
+            // Check Mirror Herb / Opportuniest
             for (index = 0; index < gBattlersCount; index++)
             {
                 if (GetBattlerSide(index) == GetBattlerSide(battler))
@@ -11794,14 +11800,14 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 {
                     gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
                     gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gQueuedStatBoosts[index].statChanges[statId - 1] += statValue; // cumulative in case of multiple opponent boosts
+                    gQueuedStatBoosts[index].statChanges[statId - 1] += statIncrease; // cumulative in case of multiple opponent boosts
                 }
                 else if (GetBattlerHoldEffect(index, TRUE) == HOLD_EFFECT_MIRROR_HERB
                         && gBattleMons[index].statStages[statId] < MAX_STAT_STAGE)
                 {
                     gProtectStructs[index].eatMirrorHerb = 1;
                     gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gQueuedStatBoosts[index].statChanges[statId - 1] = statValue;
+                    gQueuedStatBoosts[index].statChanges[statId - 1] = statIncrease;
                 }
             }
         }
@@ -16999,4 +17005,35 @@ void BS_TryQuash(void)
         }
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_CopyFoesStatIncrease(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+    u32 stat = 0;
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+
+    if (gQueuedStatBoosts[battler].stats == 0)
+    {
+        memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts)); // erase all boosts so they are not stacked
+        gBattlescriptCurrInstr = cmd->jumpInstr;    // stats done, exit
+        return;
+    }
+
+    for (stat = 0; stat < (NUM_BATTLE_STATS - 1); stat++)
+    {
+        if (gQueuedStatBoosts[battler].stats & (1 << stat))
+        {
+            if (gQueuedStatBoosts[battler].statChanges[stat] <= -1)
+                SET_STATCHANGER(stat + 1, abs(gQueuedStatBoosts[battler].statChanges[stat]), TRUE);
+            else
+                SET_STATCHANGER(stat + 1, gQueuedStatBoosts[battler].statChanges[stat], FALSE);
+
+            gQueuedStatBoosts[battler].stats &= ~(1 << stat);
+            gBattlerTarget = battler;
+            gBattlescriptCurrInstr = cmd->nextInstr;
+            return;
+        }
+    }
+    gBattlescriptCurrInstr = cmd->jumpInstr;
 }

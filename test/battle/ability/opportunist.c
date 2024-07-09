@@ -16,16 +16,16 @@ SINGLE_BATTLE_TEST("Opportunist only copies foe's positive stat changes in a tur
         OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SMASH); }
-        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         if (ability == ABILITY_FRISK) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         } else {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         }
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
@@ -78,12 +78,10 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
         if ((abilityLeft == ABILITY_CONTRARY && abilityRight != ABILITY_CONTRARY)
                 || (abilityLeft != ABILITY_CONTRARY && abilityRight == ABILITY_CONTRARY)) {
             ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
-            MESSAGE("Espathra copied its opponent's stat changes!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
             MESSAGE("Espathra's Attack rose!");
         } else if (abilityLeft == ABILITY_CONTRARY && abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
-            MESSAGE("Espathra copied its opponent's stat changes!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
             MESSAGE("Espathra's Attack sharply rose!");
         }
@@ -186,8 +184,58 @@ DOUBLE_BATTLE_TEST("Opportunist copies the stat increase of each opposing mon")
     } WHEN {
         TURN { MOVE(opponentRight, MOVE_SWORDS_DANCE); MOVE(opponentLeft, MOVE_SWORDS_DANCE); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, opponentLeft);
         ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
     } THEN {
         EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 4);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Opportunist copies the stat of each pokemon that were raised at the same time")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_INTREPID_SWORD);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
+        ABILITY_POPUP(opponentRight, ABILITY_INTREPID_SWORD);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
+        ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
+        MESSAGE("Espathra's Attack sharply rose!");
+    } THEN {
+        EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
+SINGLE_BATTLE_TEST("Opportunist copies the increase not the stages")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CHARM); MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(player, MOVE_CHARM); MOVE(opponent, MOVE_CHARM); }
+        TURN { MOVE(player, MOVE_CHARM); MOVE(opponent, MOVE_GROWL); }
+        TURN { MOVE(player, MOVE_BELLY_DRUM); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, opponent);
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARM, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, opponent);
+
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 5); // + 11
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 6); // + 11
     }
 }
