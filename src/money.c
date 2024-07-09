@@ -142,7 +142,29 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 
 	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, n);
 
-	*(txtPtr++) = CHAR_SPACER;
+	u32 strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
+
+	//DebugPrintf("amount %d | strLengt %d",amount,strLength);
+
+	/*
+	if (numDigits == 7)
+		strLength = 1;
+
+	if (numDigits == 4)
+		strLength-=2;
+
+	if (numDigits == 2)
+		strLength-=2;
+
+	if (numDigits == 5)
+		strLength-=2;
+	*/
+
+	if (numDigits < 9)
+		strLength -= 2;
+
+	while (strLength-- > 0)
+		*(txtPtr++) = CHAR_SPACER;
 
 	StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
 
@@ -167,22 +189,44 @@ u32 CalculateMoneyTextHorizontalPosition(u32 amount)
 {
 	u32 digits = CountDigits(amount);
 
+	/*
+	   switch(digits)
+	   {
+	   case 0: return 62;
+	   case 1: return 62;
+	   case 2: return 56; //perfect
+	   case 3: return 50; // perfect
+	   case 4: return 44; //perfect
+	   case 5: return 38; // perfect
+	   case 6: return 32; // perfect
+	   case 7: return 26;
+	   case 8: return 20;
+	   case 9: return 33; // perfect
+	   default:
+	   case 10: return 29; // perfect
+	   }
+	//return (74 - (digits * 8));
+	*/
+	if (digits > 8)
+		return 34;
+	else
+		return 26;
+
 	switch(digits)
 	{
-		case 0: return 62;
-		case 1: return 62;
-		case 2: return 56; //perfect
-		case 3: return 50; // perfect
-		case 4: return 44; //perfect
-		case 5: return 38; // perfect
-		case 6: return 32; // perfect
-		case 7: return 26;
-		case 8: return 20;
-		case 9: return 33; // perfect
-		default:
-		case 10: return 29; // perfect
+		case	0	: return	62	;
+		case	1	: return	62	;
+		case	2	: return	26	; // perfect
+		case	3	: return	50	;
+		case	4	: return	26	; // perfect
+		case	5	: return	26	;
+		case	6	: return	32	;
+		case	7	: return	26  ; // perfect
+		case	8	: return	20	;
+		default		:
+		case	9	:
+		case	10	: return	34	; // perfect
 	}
-	//return (74 - (digits * 8));
 }
 
 void DrawMoneyBox(int amount, u8 x, u8 y)
