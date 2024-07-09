@@ -1,7 +1,16 @@
 #ifndef GUARD_MONEY_H
 #define GUARD_MONEY_H
 
-#define MAX_MONEY 999999 // Can be increased to INT_MAX
+//#define MAX_MONEY 9
+//#define MAX_MONEY 99
+//#define MAX_MONEY 999
+//#define MAX_MONEY 9999
+//#define MAX_MONEY 99999
+//#define MAX_MONEY 9999999
+//#define MAX_MONEY 99999999
+//#define MAX_MONEY 999999999
+#define MAX_MONEY INT_MAX
+//#define MAX_MONEY 999999 // Can be increased to INT_MAX
 
 #define MAX_MONEY_DIGITS ((MAX_MONEY > 999999999) ? 10 : \
         (MAX_MONEY > 99999999) ? 9 : \
@@ -28,6 +37,6 @@ void DrawMoneyBox(int amount, u8 x, u8 y);
 void HideMoneyBox(void);
 void AddMoneyLabelObject(u16 x, u16 y);
 void RemoveMoneyLabelObject(void);
-u32 GetMoneyBoxHorizontalPosition(u32 amount);
+u32 CalculateMoneyTextHorizontalPosition(u32 amount);
 
 #endif // GUARD_MONEY_H

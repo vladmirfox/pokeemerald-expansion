@@ -131,33 +131,25 @@ void SubtractMoneyFromVar0x8005(void)
 
 void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
 {
-    PrintMoneyAmount(windowId, GetMoneyBoxHorizontalPosition(amount), 1, amount, speed);
+    PrintMoneyAmount(windowId, CalculateMoneyTextHorizontalPosition(amount), 1, amount, speed);
 }
 
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 {
 	u8 *txtPtr = gStringVar4;
-	s32 strLength;
-	u32 numAmountDigits = CountDigits(amount);
-	u32 convertDigits = (numAmountDigits > 6) ? MAX_MONEY_DIGITS: 6;
+	u32 numDigits = CountDigits(amount);
+	u32 n = (numDigits > 6) ? MAX_MONEY_DIGITS: 6;
 
-	DebugPrintf("amount is %d",amount);
-	DebugPrintf("numAmountDigits is %d",numAmountDigits);
-	DebugPrintf("convertDigits is %d",convertDigits);
+	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, n);
 
-	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, convertDigits);
-
-	strLength = MAX_MONEY_DIGITS - StringLength(gStringVar1);
-
-	/*
+	u32 strLength = 7 - StringLength(gStringVar1);
 	while (strLength-- > 0)
 		*(txtPtr++) = CHAR_SPACER;
-	*/
 
 	StringExpandPlaceholders(txtPtr, gText_PokedollarVar1);
 
-	if (numAmountDigits > 8)
-		PrependFontIdToFit(gStringVar4, txtPtr+1+numAmountDigits, FONT_NORMAL, 54);
+	if (numDigits > 8)
+		PrependFontIdToFit(gStringVar4, txtPtr+1+numDigits, FONT_NORMAL, 54);
 
 	AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, speed, NULL);
 }
@@ -171,6 +163,28 @@ void PrintMoneyAmountInMoneyBoxWithBorder(u8 windowId, u16 tileStart, u8 pallete
 void ChangeAmountInMoneyBox(int amount)
 {
     PrintMoneyAmountInMoneyBox(sMoneyBoxWindowId, amount, 0);
+}
+
+u32 CalculateMoneyTextHorizontalPosition(u32 amount)
+{
+	u32 digits = CountDigits(amount);
+
+	switch(digits)
+	{
+		case 0: return 62;
+		case 1: return 62;
+		case 2: return 56; //perfect
+		case 3: return 50; // perfect
+		case 4: return 44; //perfect
+		case 5: return 38; // perfect
+		case 6: return 32; // perfect
+		case 7: return 26;
+		case 8: return 20;
+		case 9: return 33; // perfect
+		default:
+		case 10: return 29; // perfect
+	}
+	//return (74 - (digits * 8));
 }
 
 void DrawMoneyBox(int amount, u8 x, u8 y)
@@ -204,43 +218,5 @@ void AddMoneyLabelObject(u16 x, u16 y)
 void RemoveMoneyLabelObject(void)
 {
     DestroySpriteAndFreeResources(&gSprites[sMoneyLabelSpriteId]);
-}
-
-u32 GetMoneyBoxHorizontalPosition(u32 amount)
-{
-	/*
-	   u32 currentPos = (74 - (MAX_MONEY_DIGITS * 6));
-	   DebugPrintf("currentPos is %d",currentPos);
-
-	   if (currentPos > 38)
-	   return 38;
-
-	   if (currentPos < 32)
-	   return 34;
-
-	   return currentPos;
-	   */
-	u32 digits = CountDigits(amount);
-
-	switch (digits)
-	{
-		case 0:
-		case 1:
-			return 68;
-		case 2:
-			return 62;
-		case 3:
-			return 56;
-		case 4:
-			return 50;
-		case 6:
-			return 44;
-		case 7:
-			return 38;
-		case 8:
-			return 32;
-		default:
-			return 34;
-	}
 }
 
