@@ -62,3 +62,127 @@ MauvilleCity_PokemonCenter_2F_Text_Youngster:
 	.string "It's embarrassing if you lose more\n"
 # 32 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	.string "often than you win…$"
+
+Custom_Givemon_Mauville::
+# 38 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	lockall
+# 39 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	showmonpic SPECIES_LARVITAR, 10, 3
+# 40 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Mauville_Text_0, MSGBOX_YESNO
+# 41 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Custom_Givemon_Mauville_2
+# 63 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 64 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Mauville_NotChosen
+Custom_Givemon_Mauville_1:
+# 66 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	waitmessage
+# 67 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	releaseall
+	end
+
+Custom_Givemon_Mauville_2:
+# 42 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	givemon SPECIES_LARVITAR, 10, ITEM_LUXURY_BALL
+# 43 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq Custom_Givemon_Mauville_5
+# 50 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq Custom_Givemon_Mauville_6
+# 58 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 59 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Mauville_Text_3
+	goto Custom_Givemon_Mauville_1
+
+Custom_Givemon_Mauville_5:
+# 44 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 45 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Mauville_Text_1
+# 46 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	removeobject 1
+# 47 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	setflag FLAG_UNUSED_0x020
+# 48 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call MauvilleNicknamePartyMon
+	goto Custom_Givemon_Mauville_1
+
+Custom_Givemon_Mauville_6:
+# 51 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 52 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox Custom_Givemon_Mauville_Text_2
+# 53 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	removeobject 1
+# 54 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	setflag FLAG_UNUSED_0x020
+# 55 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call MauvilleNicknameBoxMon
+	goto Custom_Givemon_Mauville_1
+
+
+MauvilleNicknamePartyMon::
+# 74 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox MauvilleNicknamePartyMon_Text_0, MSGBOX_YESNO
+# 75 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 76 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleNicknamePartyMon_1
+	return
+
+MauvilleNicknamePartyMon_1:
+# 77 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_GetGiftMonPartySlot
+# 78 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_NameReceivedPartyMon
+	return
+
+
+MauvilleNicknameBoxMon::
+# 86 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	msgbox MauvilleNicknamePartyMon_Text_0, MSGBOX_YESNO
+# 87 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	hidemonpic
+# 88 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq MauvilleNicknameBoxMon_2
+MauvilleNicknameBoxMon_1:
+# 91 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_TransferredToPC
+	return
+
+MauvilleNicknameBoxMon_2:
+# 89 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	call Common_EventScript_NameReceivedBoxMon
+	goto MauvilleNicknameBoxMon_1
+
+
+Custom_Givemon_Mauville_Text_0:
+# 40 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "Do you want this Dreepy?$"
+
+Custom_Givemon_Mauville_Text_1:
+# 45 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "Here you go!$"
+
+Custom_Givemon_Mauville_Text_2:
+# 52 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "Larvitar was placed in your PC.$"
+
+Custom_Givemon_Mauville_Text_3:
+# 59 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "You need to release something to get this.$"
+
+MauvilleNicknamePartyMon_Text_0:
+# 74 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "Give it a nickname?$"
+
+Custom_Givemon_Mauville_NotChosen::
+# 95 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
+	.string "Guess I'll just have to use it for spells...$"

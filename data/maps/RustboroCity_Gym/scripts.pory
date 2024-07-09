@@ -28,9 +28,11 @@ RustboroCity_Gym_EventScript_RoxanneDefeated::
 
 RustboroCity_Gym_EventScript_GiveRockTomb::
 	giveitem ITEM_TM_ROCK_TOMB
+	giveitem ITEM_HARD_STONE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM_ROCK_TOMB
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
+	msgbox Custom_RusboroCity_Gym_Text_ExplainHardStone, MSGBOX_DEFAULT
 	release
 	end
 
@@ -283,3 +285,11 @@ RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons:
 	.string "Please return with at least one more\n"
 	.string "POKéMON.$"
 `
+script Custom_RusboroCity_Gym_Text_ExplainHardStone {
+	   msgbox(explain_hard_stone)
+}
+
+text explain_hard_stone {
+	 "I have also given you a hard stone.\p"
+	 "Hard stones boost rock type moves when held by a pokemon!"
+}

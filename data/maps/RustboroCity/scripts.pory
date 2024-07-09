@@ -1304,10 +1304,11 @@ script Custom_RustboroCity_EventScript_GymInfo {
        lockall
        msgbox(format("Good job reaching your first gym {PLAYER}!\n"))
        msgbox(format("This is the first step to becoming the pokemon champion! Just like Ash!\p"))
-       msgbox(format("Inside you will find Roxanne and her three rock type pokemon.\p"))
-       msgbox(format("Her strongest pokemon is a Nosepass at level 15.\p"))
+       msgbox(format("Inside you will find Roxanne and her four rock type pokemon.\p"))
+       msgbox(format("Her strongest pokemon is a Larvitar at level 15.\p"))
        msgbox(format("Rock types are really strong against:\nFlying, Bug, Fire and Ice\p"))
        msgbox(format("Rock types are weak against:\n- Fighting, Steel, Water and Grass\p"))
+       msgbox(format("Reward item: Hard Stone\p"))
        msgbox(format("Goodluck!"))
        releaseall
 }

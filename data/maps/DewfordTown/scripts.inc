@@ -1606,3 +1606,58 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "“{STR_VAR_1}” is the\n"
 # 804 "data/maps/DewfordTown/scripts.pory"
 	.string "definition of “in” right now.$"
+
+Custom_Dewford_EventScript_GymInfo::
+# 808 "data/maps/DewfordTown/scripts.pory"
+	lockall
+# 809 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_0
+# 810 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_1
+# 811 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_2
+# 812 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_3
+# 813 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_4
+# 814 "data/maps/DewfordTown/scripts.pory"
+	msgbox Custom_Dewford_EventScript_GymInfo_Text_5
+# 815 "data/maps/DewfordTown/scripts.pory"
+	releaseall
+	return
+
+
+Custom_Dewford_EventScript_GymInfo_Text_0:
+# 809 "data/maps/DewfordTown/scripts.pory"
+	.string "Good job reaching your second gym\n"
+	.string "{PLAYER}!\n"
+	.string "$"
+
+Custom_Dewford_EventScript_GymInfo_Text_1:
+# 810 "data/maps/DewfordTown/scripts.pory"
+	.string "Inside you will find Brawly and his four\n"
+	.string "fighting type pokemon.\p"
+	.string "$"
+
+Custom_Dewford_EventScript_GymInfo_Text_2:
+# 811 "data/maps/DewfordTown/scripts.pory"
+	.string "His strongest pokemon is a Rapid Strike\n"
+	.string "Urshifu at level 19.\p"
+	.string "$"
+
+Custom_Dewford_EventScript_GymInfo_Text_3:
+# 812 "data/maps/DewfordTown/scripts.pory"
+	.string "Fighting types are really strong\n"
+	.string "against:\n"
+	.string "Normal, Rock, Steel, Ice and Dark\p"
+	.string "$"
+
+Custom_Dewford_EventScript_GymInfo_Text_4:
+# 813 "data/maps/DewfordTown/scripts.pory"
+	.string "Fighting types are weak against:\n"
+	.string "- Flying, Psychic and Fairy\p"
+	.string "$"
+
+Custom_Dewford_EventScript_GymInfo_Text_5:
+# 814 "data/maps/DewfordTown/scripts.pory"
+	.string "Goodluck!$"

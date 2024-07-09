@@ -803,3 +803,14 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
 `
+
+script Custom_Dewford_EventScript_GymInfo {
+       lockall
+       msgbox(format("Good job reaching your second gym {PLAYER}!\n"))
+       msgbox(format("Inside you will find Brawly and his four fighting type pokemon.\p"))
+       msgbox(format("His strongest pokemon is a Rapid Strike Urshifu at level 19.\p"))
+       msgbox(format("Fighting types are really strong against:\n Normal, Rock, Steel, Ice and Dark\p"))
+       msgbox(format("Fighting types are weak against:\n- Flying, Psychic and Fairy\p"))
+       msgbox(format("Goodluck!"))
+       releaseall
+}

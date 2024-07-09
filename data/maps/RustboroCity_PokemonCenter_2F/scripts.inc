@@ -149,7 +149,7 @@ Custom_Givemon_Rustboro_Text_1:
 
 Custom_Givemon_Rustboro_Text_2:
 # 40 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	.string "Check your PC!$"
+	.string "Eevee was placed in your PC.$"
 
 Custom_Givemon_Rustboro_Text_3:
 # 47 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"

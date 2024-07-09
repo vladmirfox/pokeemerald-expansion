@@ -2617,6 +2617,8 @@ Custom_RustboroCity_EventScript_GymInfo::
 # 1311 "data/maps/RustboroCity/scripts.pory"
 	msgbox Custom_RustboroCity_EventScript_GymInfo_Text_6
 # 1312 "data/maps/RustboroCity/scripts.pory"
+	msgbox Custom_RustboroCity_EventScript_GymInfo_Text_7
+# 1313 "data/maps/RustboroCity/scripts.pory"
 	releaseall
 	return
 
@@ -2636,12 +2638,12 @@ Custom_RustboroCity_EventScript_GymInfo_Text_1:
 Custom_RustboroCity_EventScript_GymInfo_Text_2:
 # 1307 "data/maps/RustboroCity/scripts.pory"
 	.string "Inside you will find Roxanne and her\n"
-	.string "three rock type pokemon.\p"
+	.string "four rock type pokemon.\p"
 	.string "$"
 
 Custom_RustboroCity_EventScript_GymInfo_Text_3:
 # 1308 "data/maps/RustboroCity/scripts.pory"
-	.string "Her strongest pokemon is a Nosepass at\n"
+	.string "Her strongest pokemon is a Larvitar at\n"
 	.string "level 15.\p"
 	.string "$"
 
@@ -2659,4 +2661,9 @@ Custom_RustboroCity_EventScript_GymInfo_Text_5:
 
 Custom_RustboroCity_EventScript_GymInfo_Text_6:
 # 1311 "data/maps/RustboroCity/scripts.pory"
+	.string "Reward item: Hard Stone\p"
+	.string "$"
+
+Custom_RustboroCity_EventScript_GymInfo_Text_7:
+# 1312 "data/maps/RustboroCity/scripts.pory"
 	.string "Goodluck!$"
