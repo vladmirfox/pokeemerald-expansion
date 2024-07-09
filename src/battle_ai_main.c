@@ -89,7 +89,7 @@ static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
     [25] = NULL,                     // Unused
     [26] = NULL,                     // Unused
     [27] = NULL,                     // Unused
-    [28] = AI_DynamicFunc,               // AI_FLAG_DYNAMIC_FUNC
+    [AI_DynamicFunc,           // AI_FLAG_DYNAMIC_FUNC
     [29] = AI_Roaming,              // AI_FLAG_ROAMING
     [30] = AI_Safari,               // AI_FLAG_SAFARI
     [31] = AI_FirstBattle,          // AI_FLAG_FIRST_BATTLE
