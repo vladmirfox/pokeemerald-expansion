@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Oppor
     }
 }
 
-SINGLE_BATTLE_TEST("Opportunist copies foe stat increased gained via Swagger and Flatter")
+SINGLE_BATTLE_TEST("Opportunist copies foe stat increase gained via Swagger and Flatter")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
@@ -237,5 +237,42 @@ SINGLE_BATTLE_TEST("Opportunist copies the increase not the stages")
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 5); // + 11
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 6); // + 11
+    }
+}
+
+SINGLE_BATTLE_TEST("Opportunist copies the stat increase from the incoming mon")
+{
+    GIVEN {
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ABILITY_POPUP(opponent, ABILITY_INTREPID_SWORD);
+        ABILITY_POPUP(player, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+
+DOUBLE_BATTLE_TEST("1 Opportunist")
+{
+    GIVEN {
+        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); Item(ITEM_EJECT_PACK); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+    } WHEN {
+        TURN { SEND_OUT(opponentLeft, 2); }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
+        ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
+        ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
+    } THEN {
+
     }
 }
