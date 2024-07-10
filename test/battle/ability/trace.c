@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the ch
     }
 }
 
-DOUBLE_BATTLE_TEST("Trace respect the turn order")
+DOUBLE_BATTLE_TEST("Trace respects the turn order")
 {
     GIVEN {
         PLAYER(SPECIES_DEOXYS_SPEED) { Speed(40); Ability(ABILITY_PRESSURE); }
