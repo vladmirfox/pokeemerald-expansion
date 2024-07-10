@@ -6136,7 +6136,7 @@ BattleScript_BideAttack::
 	accuracycheck BattleScript_MoveMissed, ACC_CURR_MOVE
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	copyword gBattleMoveDamage, sBIDE_DMG
+	unused_95
 	adjustdamage
 	setbyte sB_ANIM_TURN, 1
 	attackanimation

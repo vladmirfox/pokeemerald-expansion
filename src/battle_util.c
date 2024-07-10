@@ -3461,7 +3461,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     if (gBideDmg[gBattlerAttacker])
                     {
                         gCurrentMove = MOVE_BIDE;
-                        gBattleScripting.bideDmg = gBideDmg[gBattlerAttacker] * 2;
                         gBattlerTarget = gBideTarget[gBattlerAttacker];
                         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                             gBattlerTarget = GetMoveTarget(MOVE_BIDE, MOVE_TARGET_SELECTED + 1);

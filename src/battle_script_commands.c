@@ -1388,6 +1388,15 @@ static void Cmd_attackcanceler(void)
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         // Edge case for bouncing a powder move against a grass type pokemon.
+
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            gBattleStruct->calculatedDamage[i] = 0;
+            gBattleStruct->calculatedCritChance[i] = 0;
+            gBattleStruct->resultFlags[i] = 0;
+            gBattleStruct->noResultString[i] = 0;
+        }
+
         SetAtkCancellerForCalledMove();
         if (BlocksPrankster(gCurrentMove, gBattlerTarget, gBattlerAttacker, TRUE))
         {
@@ -1406,6 +1415,15 @@ static void Cmd_attackcanceler(void)
              && gMovesInfo[gCurrentMove].magicCoatAffected
              && !gProtectStructs[gBattlerAttacker].usesBouncedMove)
     {
+
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            gBattleStruct->calculatedDamage[i] = 0;
+            gBattleStruct->calculatedCritChance[i] = 0;
+            gBattleStruct->resultFlags[i] = 0;
+            gBattleStruct->noResultString[i] = 0;
+        }
+
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
         // Edge case for bouncing a powder move against a grass type pokemon.
@@ -1841,6 +1859,7 @@ static void Cmd_accuracycheck(void)
                     holdEffectAtk
                 );
             }
+            gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
         }
         else
         {
@@ -6428,6 +6447,14 @@ static void Cmd_moveend(void)
                     }
                     if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, 0))
                         effect = TRUE;
+
+                    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+                    {
+                        gBattleStruct->calculatedDamage[i] = 0;
+                        gBattleStruct->calculatedCritChance[i] = 0;
+                        gBattleStruct->resultFlags[i] = 0;
+                        gBattleStruct->noResultString[i] = 0;
+                    }
                 }
             }
             gBattleScripting.moveendState++;
@@ -12574,6 +12601,9 @@ static void Cmd_damagetohalftargethp(void)
 
 static void Cmd_unused_95(void)
 {
+    CMD_ARGS();
+    gBattleStruct->calculatedDamage[gBattlerTarget] = gBideDmg[gBattlerAttacker] * 2;
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 static void Cmd_weatherdamage(void)
@@ -12920,7 +12950,7 @@ static void Cmd_dmgtolevel(void)
 {
     CMD_ARGS();
 
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
+    gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerAttacker].level;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -12929,7 +12959,7 @@ static void Cmd_psywavedamageeffect(void)
     CMD_ARGS();
 
     s32 randDamage = B_PSYWAVE_DMG >= GEN_6 ? (Random() % 101) : ((Random() % 11) * 10);
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
+    gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -12944,7 +12974,7 @@ static void Cmd_counterdamagecalculator(void)
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].physicalBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
+        gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget] = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
@@ -12971,7 +13001,7 @@ static void Cmd_mirrorcoatdamagecalculator(void)
         && sideAttacker != sideTarget
         && gBattleMons[gProtectStructs[gBattlerAttacker].specialBattlerId].hp)
     {
-        gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
+        gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget] = gProtectStructs[gBattlerAttacker].specialDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
             gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
