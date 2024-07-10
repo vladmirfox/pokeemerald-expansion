@@ -7288,7 +7288,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
 
         gDisableStructs[battler].truantSwitchInHack = 0;
 
-        for (u32 i = 0; i < gBattlersCount; i++)
+        for (i = 0; i < gBattlersCount; i++)
         {
             if (i != battler
              && GetBattlerAbility(i) == ABILITY_TRACE
