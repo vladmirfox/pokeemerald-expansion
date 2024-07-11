@@ -976,15 +976,15 @@ void BS_DamageNonTypes(void)
 {
     NATIVE_ARGS();
     u8 side = GetBattlerSide(gBattlerAttacker);
-    gBattleMoveDamage = 0;
+    gBattleStruct->calculatedDamage[gBattlerAttacker] = 0;
     if (gSideTimers[side].damageNonTypesTimer
         && !IS_BATTLER_OF_TYPE(gBattlerAttacker, gSideTimers[side].damageNonTypesType)
         && IsBattlerAlive(gBattlerAttacker)
         && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
     {
-        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
-        if (gBattleMoveDamage == 0)
-            gBattleMoveDamage = 1;
+        gBattleStruct->calculatedDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
+        if (gBattleStruct->calculatedDamage[gBattlerAttacker] == 0)
+            gBattleStruct->calculatedDamage[gBattlerAttacker] = 1;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -993,10 +993,10 @@ void BS_DamageNonTypes(void)
 void BS_HealOneSixth(void)
 {
     NATIVE_ARGS(const u8* failInstr);
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 6;
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
-    gBattleMoveDamage *= -1;
+    gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerTarget].maxHP / 6;
+    if (gBattleStruct->calculatedDamage[gBattlerTarget] == 0)
+        gBattleStruct->calculatedDamage[gBattlerTarget] = 1;
+    gBattleStruct->calculatedDamage[gBattlerTarget] *= -1;
 
     if (gBattleMons[gBattlerTarget].hp == gBattleMons[gBattlerTarget].maxHP)
         gBattlescriptCurrInstr = cmd->failInstr;    // fail
