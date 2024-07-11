@@ -2937,7 +2937,7 @@ u8 DoBattlerEndTurnEffects(void)
             }
             gBattleStruct->turnEffectsTracker++;
             break;
-        case ENDTURN_DAMAGE_NON_TYPES_DAMAGE:
+        case ENDTURN_GMAX_MOVE_RESIDUAL_DAMAGE:
             {
                 u32 side = GetBattlerSide(gBattlerAttacker);
                 if (gSideTimers[side].damageNonTypesTimer
