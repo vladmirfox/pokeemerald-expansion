@@ -134,17 +134,22 @@ void PrintMoneyAmountInMoneyBox(u8 windowId, int amount, u8 speed)
     PrintMoneyAmount(windowId, CalculateMoneyTextHorizontalPosition(amount), 1, amount, speed);
 }
 
+static u32 CalculateLeadingSpacesForMoney(u32 numDigits)
+{
+	u32 leadingSpaces = CountDigits(INT_MAX) - StringLength(gStringVar1);
+	return (numDigits > 8) ? leadingSpaces : leadingSpaces - 2;
+}
+
 void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 {
 	u8 *txtPtr = gStringVar4;
 	u32 numDigits = CountDigits(amount);
 	u32 maxDigits = (numDigits > 6) ? MAX_MONEY_DIGITS: 6;
-	u32 leadingSpaces = CountDigits(INT_MAX) - StringLength(gStringVar1);
+	u32 leadingSpaces;
 
 	ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_LEFT_ALIGN, maxDigits);
 
-	if (numDigits < 9)
-		leadingSpaces -= 2;
+	leadingSpaces = CalculateLeadingSpacesForMoney(numDigits);
 
 	while (leadingSpaces-- > 0)
 		*(txtPtr++) = CHAR_SPACER;
@@ -153,7 +158,6 @@ void PrintMoneyAmount(u8 windowId, u8 x, u8 y, int amount, u8 speed)
 
 	if (numDigits > 8)
 		PrependFontIdToFit(gStringVar4, txtPtr + 1 + numDigits, FONT_NORMAL, 54);
-
 	AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, speed, NULL);
 }
 
