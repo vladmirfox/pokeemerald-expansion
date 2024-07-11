@@ -2227,17 +2227,20 @@ static void Cmd_adjustdamage(void)
             gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED_AFFECTION;
         }
 
-        if (!(gBattleStruct->resultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT) && gBattleStruct->calculatedDamage[battlerDef] >= 1)
-            gSpecialStatuses[gBattlerAttacker].damagedMons |= gBitTable[gBattlerTarget];
 
         END:
+        if (!(gBattleStruct->resultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT) && gBattleStruct->calculatedDamage[battlerDef] >= 1)
+            gSpecialStatuses[gBattlerAttacker].damagedMons |= gBitTable[battlerDef];
+
         if (!calcSpreadMoveDamage)
             break;
     }
 
+
     gBattleStruct->calculatedDamageDone = TRUE;
     gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
     gBattlescriptCurrInstr = cmd->nextInstr;
+
 
     // Check gems and damage reducing berries.
     if (gSpecialStatuses[gBattlerTarget].berryReduced
@@ -2421,6 +2424,7 @@ static void DoublesHPBarReduction(void)
             gBattleResults.playerMonWasDamaged = TRUE;
     }
     gBattleStruct->doneDoublesSpreadHit = TRUE;
+    gBattleStruct->numSpreadTargets = 0;
 }
 
 static void Cmd_healthbarupdate(void)
@@ -9256,9 +9260,9 @@ static void Cmd_various(void)
         VARIOUS_ARGS(u8 stat);
         i = cmd->stat;
         // TODO: Check if correct
-        gBattleStruct->calculatedDamage[battler] = *(u16 *)(&gBattleMons[battler].attack) + (i - 1);
-        gBattleStruct->calculatedDamage[battler] *= gStatStageRatios[gBattleMons[battler].statStages[i]][0];
-        gBattleStruct->calculatedDamage[battler] /= gStatStageRatios[gBattleMons[battler].statStages[i]][1];
+        gBattleStruct->calculatedDamage[gBattlerAttacker] = *(u16 *)(&gBattleMons[battler].attack) + (i - 1);
+        gBattleStruct->calculatedDamage[gBattlerAttacker] *= gStatStageRatios[gBattleMons[battler].statStages[i]][0];
+        gBattleStruct->calculatedDamage[gBattlerAttacker] /= gStatStageRatios[gBattleMons[battler].statStages[i]][1];
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
@@ -11506,7 +11510,7 @@ static void Cmd_setseeded(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-// TODO: Needs a thorough check
+// TODO: Needs tests for everything
 static void Cmd_manipulatedamage(void)
 {
     CMD_ARGS(u8 mode);
@@ -11514,7 +11518,7 @@ static void Cmd_manipulatedamage(void)
     switch (cmd->mode)
     {
     case DMG_CHANGE_SIGN:
-        gBattleStruct->calculatedDamage[gBattlerTarget] *= -1;
+        gBattleStruct->calculatedDamage[gBattlerAttacker] *= -1;
         break;
     case DMG_RECOIL_FROM_MISS:
         if (B_RECOIL_IF_MISS_DMG >= GEN_5)
@@ -11548,20 +11552,20 @@ static void Cmd_manipulatedamage(void)
         gBattleStruct->calculatedDamage[gBattlerTarget] = GetNonDynamaxHP(gBattlerAttacker);
         break;
     case DMG_BIG_ROOT:
-        gBattleStruct->calculatedDamage[gBattlerAttacker] = GetDrainedBigRootHp(gBattlerAttacker, gBattleStruct->calculatedDamage[gBattlerTarget]);
+        gBattleStruct->calculatedDamage[gBattlerAttacker] = GetDrainedBigRootHp(gBattlerAttacker, gBattleStruct->calculatedDamage[gBattlerAttacker]);
         break;
     case DMG_RECOIL_FROM_IMMUNE:
         gBattleStruct->calculatedDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
         break;
     case DMG_SET_BIDE_DAMAGE:
         break;
-    case DMG_COPY_TO_HP_DEALT: // TODO: Needs tests
+    case DMG_COPY_TO_HP_DEALT: // This can probably be simplified further since damage can be saved for all battlers
         gHpDealt = gBattleStruct->calculatedDamage[gBattlerTarget];
         break;
-    case DMG_COPY_FROM_HP_DEALT: // TODO: Needs tests for endevour
+    case DMG_COPY_FROM_HP_DEALT:
         gBattleStruct->calculatedDamage[gBattlerTarget] = gHpDealt;
         break;
-    case DMG_SET_TO_ZERO: // TODO: Test fir keacg seed
+    case DMG_SET_TO_ZERO: // TODO: test
         gBattleStruct->calculatedDamage[gBattlerTarget] = 0;
         break;
     }

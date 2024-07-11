@@ -5765,9 +5765,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             {
                 if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                 {
-                    gBattleStruct->calculatedDamage[battler] = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
-                    if (gBattleStruct->calculatedDamage[battler] == 0)
-                        gBattleStruct->calculatedDamage[battler] = 1;
+                    gBattleStruct->calculatedDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
+                    if (gBattleStruct->calculatedDamage[gBattlerAttacker] == 0)
+                        gBattleStruct->calculatedDamage[gBattlerAttacker] = 1;
                 }
 
                 switch(gBattleMons[gBattlerTarget].species)

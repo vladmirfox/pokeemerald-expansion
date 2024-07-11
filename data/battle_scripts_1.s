@@ -5216,12 +5216,12 @@ BattleScript_EffectEndeavor::
 	attackstring
 	ppreduce
 	setdamagetohealthdifference BattleScript_ButItFailed
-	manipulatedamage DMG_COPY_FROM_HP_DEALT
+	manipulatedamage DMG_COPY_TO_HP_DEALT
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
 	typecalc
 	jumpifmovehadnoeffect BattleScript_HitFromAtkAnimation
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	manipulatedamage DMG_COPY_TO_HP_DEALT
+	manipulatedamage DMG_COPY_FROM_HP_DEALT
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 
