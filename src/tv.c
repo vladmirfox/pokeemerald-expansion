@@ -2760,14 +2760,14 @@ void ConvertIntToDecimalString(u8 varIdx, int value)
 
 size_t CountDigits(int value)
 {
-	u32 count = 0;
+    u32 count = 0;
 
-	while (value > 0)
-	{
-		value /= 10;
-		count++;
-	}
-	return count;
+    while (value > 0)
+    {
+        value /= 10;
+        count++;
+    }
+    return count;
 }
 
 static void SmartShopper_BufferPurchaseTotal(u8 varIdx, TVShow *show)
