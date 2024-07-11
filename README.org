@@ -30,6 +30,10 @@ To balance the increased difficulty, each gym leader will reward players with an
 - [ ] *Enhanced Battle Mechanics and AI*: Upgrade battle mechanics and AI to deliver more challenging and engaging gameplay experiences.
 - [ ] *Updated Level Curve*: Update the level curve to make trainers match the level of the player for each route/section of the game.
 
+** Implementation Roadmap:
+*** TODO Create an encounter list for all the routes up to Roxanne.
+*** TODO Roxanne Gym - trainers and leader.
+*** TODO Fix text issues when giving "hard stone"
 ** Project Goals
 
 - *Enhanced Gameplay Experience*: Introduce new challenges and gameplay mechanics that enrich the Pokémon Emerald experience, catering to both casual players and nuzlocke enthusiasts.
