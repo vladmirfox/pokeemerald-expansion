@@ -1232,11 +1232,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro unused3
+	.macro setbattlemovedamage
 	.byte 0xe6
 	.endm
 
-	.macro unused4
+	.macro copybattlemovedamage
 	.byte 0xe7
 	.endm
 
@@ -1359,15 +1359,15 @@
 	.macro restoretarget
 	callnative BS_RestoreTarget
 	.endm
-	
+
 	.macro saveattacker
 	callnative BS_SaveAttacker
 	.endm
-	
+
 	.macro restoreattacker
 	callnative BS_RestoreAttacker
 	.endm
-	
+
 	.macro metalburstdamagecalculator failInstr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \failInstr
@@ -1667,7 +1667,7 @@
 	.macro removeweather
 	callnative BS_RemoveWeather
 	.endm
-	
+
 	.macro applyterastallization
 	callnative BS_ApplyTerastallization
 	.endm

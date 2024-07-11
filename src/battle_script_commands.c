@@ -570,8 +570,8 @@ static void Cmd_switchoutabilities(void);
 static void Cmd_jumpifhasnohp(void);
 static void Cmd_jumpifnotcurrentmoveargtype(void);
 static void Cmd_pickup(void);
-static void Cmd_unused3(void);
-static void Cmd_unused4(void);
+static void Cmd_setbattlemovedamage(void);
+static void Cmd_copybattlemovedamage(void);
 static void Cmd_settypebasedhalvers(void);
 static void Cmd_jumpifsubstituteblocks(void);
 static void Cmd_tryrecycleitem(void);
@@ -829,8 +829,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_jumpifhasnohp,                           //0xE3
     Cmd_jumpifnotcurrentmoveargtype,             //0xE4
     Cmd_pickup,                                  //0xE5
-    Cmd_unused3,                                 //0xE6
-    Cmd_unused4,                                 //0xE7
+    Cmd_setbattlemovedamage,                     //0xE6
+    Cmd_copybattlemovedamage,                    //0xE7
     Cmd_settypebasedhalvers,                     //0xE8
     Cmd_jumpifsubstituteblocks,                  //0xE9
     Cmd_tryrecycleitem,                          //0xEA
@@ -2236,7 +2236,6 @@ static void Cmd_adjustdamage(void)
     }
 
     gBattleStruct->calculatedDamageDone = TRUE;
-    gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
     gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
     gBattlescriptCurrInstr = cmd->nextInstr;
 
@@ -2373,7 +2372,6 @@ static void Cmd_attackanimation(void)
             else
                 multihit = gMultiHitCounter;
 
-            gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
             BtlController_EmitMoveAnimation(gBattlerAttacker, BUFFER_A, gCurrentMove, gBattleScripting.animTurn, gBattleMovePower, gBattleMoveDamage, gBattleMons[gBattlerAttacker].friendship, &gDisableStructs[gBattlerAttacker], multihit);
             gBattleScripting.animTurn++;
             gBattleScripting.animTargetsHit++;
@@ -2450,13 +2448,12 @@ static void Cmd_healthbarupdate(void)
             }
             else
             {
-                gBattleMoveDamage = gBattleStruct->calculatedDamage[battler];
-                s16 healthValue = min(gBattleMoveDamage, 10000); // Max damage (10000) not present in R/S, ensures that huge damage values don't change sign
+                s16 healthValue = min(gBattleStruct->calculatedDamage[battler], 10000); // Max damage (10000) not present in R/S, ensures that huge damage values don't change sign
 
                 BtlController_EmitHealthBarUpdate(battler, BUFFER_A, healthValue);
                 MarkBattlerForControllerExec(battler);
 
-                if (GetBattlerSide(battler) == B_SIDE_PLAYER && gBattleMoveDamage > 0)
+                if (GetBattlerSide(battler) == B_SIDE_PLAYER && gBattleStruct->calculatedDamage[battler] > 0)
                     gBattleResults.playerMonWasDamaged = TRUE;
             }
         }
@@ -5905,6 +5902,7 @@ static void Cmd_moveend(void)
                     MarkBattlerForControllerExec(gBattlerTarget);
                     effect = TRUE;
                     BattleScriptPush(gBattlescriptCurrInstr);
+
                     switch (gMovesInfo[gCurrentMove].argument)
                     {
                     case STATUS1_PARALYSIS:
@@ -11555,6 +11553,17 @@ static void Cmd_manipulatedamage(void)
     case DMG_RECOIL_FROM_IMMUNE:
         gBattleStruct->calculatedDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
         break;
+    case DMG_SET_BIDE_DAMAGE:
+        break;
+    case DMG_COPY_TO_HP_DEALT: // TODO: Needs tests
+        gHpDealt = gBattleStruct->calculatedDamage[gBattlerTarget];
+        break;
+    case DMG_COPY_FROM_HP_DEALT: // TODO: Needs tests for endevour
+        gBattleStruct->calculatedDamage[gBattlerTarget] = gHpDealt;
+        break;
+    case DMG_SET_TO_ZERO: // TODO: Test fir keacg seed
+        gBattleStruct->calculatedDamage[gBattlerTarget] = 0;
+        break;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -13159,17 +13168,11 @@ static void Cmd_painsplitdmgcalc(void)
     if (!(DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)))
     {
         s32 hpDiff = (gBattleMons[gBattlerAttacker].hp + GetNonDynamaxHP(gBattlerTarget)) / 2;
-        s32 painSplitHp = gBattleStruct->calculatedDamage[gBattlerTarget] = GetNonDynamaxHP(gBattlerTarget) - hpDiff;
-        u8 *storeLoc = (void *)(&gBattleScripting.painSplitHp);
 
-        storeLoc[0] = (painSplitHp);
-        storeLoc[1] = (painSplitHp & 0x0000FF00) >> 8;
-        storeLoc[2] = (painSplitHp & 0x00FF0000) >> 16;
-        storeLoc[3] = (painSplitHp & 0xFF000000) >> 24;
+        gBattleStruct->calculatedDamage[gBattlerTarget] = GetNonDynamaxHP(gBattlerTarget) - hpDiff;
+        gBattleStruct->calculatedDamage[gBattlerAttacker] = gBattleMons[gBattlerAttacker].hp - hpDiff;
 
-        gBattleStruct->calculatedDamage[gBattlerTarget] = gBattleMons[gBattlerAttacker].hp - hpDiff;
         gSpecialStatuses[gBattlerTarget].shellBellDmg = IGNORE_SHELL_BELL;
-
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -15038,11 +15041,11 @@ static void Cmd_pickup(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused3(void)
+static void Cmd_setbattlemovedamage(void)
 {
 }
 
-static void Cmd_unused4(void)
+static void Cmd_copybattlemovedamage(void)
 {
 }
 

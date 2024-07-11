@@ -4010,7 +4010,6 @@ BattleScript_EffectPainSplit::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	copyword gBattleMoveDamage, sPAINSPLIT_HP
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
 	printstring STRINGID_SHAREDPAIN
@@ -5217,12 +5216,12 @@ BattleScript_EffectEndeavor::
 	attackstring
 	ppreduce
 	setdamagetohealthdifference BattleScript_ButItFailed
-	copyword gHpDealt, gBattleMoveDamage
+	manipulatedamage DMG_COPY_FROM_HP_DEALT
 	accuracycheck BattleScript_MoveMissedPause, ACC_CURR_MOVE
 	typecalc
 	jumpifmovehadnoeffect BattleScript_HitFromAtkAnimation
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	copyword gBattleMoveDamage, gHpDealt
+	manipulatedamage DMG_COPY_TO_HP_DEALT
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 
@@ -6093,7 +6092,7 @@ BattleScript_LeechSeedTurnDrain::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	copyword gBattleMoveDamage, gHpDealt
+	manipulatedamage DMG_COPY_TO_HP_DEALT
 	jumpifability BS_ATTACKER, ABILITY_LIQUID_OOZE, BattleScript_LeechSeedTurnPrintLiquidOoze
 	setbyte cMULTISTRING_CHOOSER, B_MSG_LEECH_SEED_DRAIN
 	jumpifstatus3 BS_TARGET, STATUS3_HEAL_BLOCK, BattleScript_LeechSeedHealBlock
@@ -6113,7 +6112,7 @@ BattleScript_LeechSeedTurnPrintAndUpdateHp::
 	tryfaintmon BS_TARGET
 	end2
 BattleScript_LeechSeedHealBlock:
-	setword gBattleMoveDamage, 0
+	manipulatedamage DMG_SET_TO_ZERO
 	goto BattleScript_LeechSeedTurnPrintAndUpdateHp
 
 BattleScript_BideStoringEnergy::

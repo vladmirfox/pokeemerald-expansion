@@ -143,8 +143,8 @@ DOUBLE_BATTLE_TEST("t1")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PRECIPICE_BLADES);
         HP_BAR(opponentLeft);
-        MESSAGE("Foe Wobbuffet fainted!");
         HP_BAR(opponentRight);
+        MESSAGE("Foe Wobbuffet fainted!");
         NOT MESSAGE("Foe Wobbuffet fainted!");
     }
 }
