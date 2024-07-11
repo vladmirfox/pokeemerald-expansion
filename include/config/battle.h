@@ -267,5 +267,6 @@
 #define B_NEW_MORNING_SUN_STAR_PARTICLE TRUE    // If set to TRUE, it updates Morning Sun's star particles.
 #define B_NEW_IMPACT_PALETTE            TRUE    // If set to TRUE, it updates the basic 'hit' palette.
 #define B_NEW_SURF_PARTICLE_PALETTE     TRUE    // If set to TRUE, it updates Surf's wave palette.
+#define B_OPPONENT_THROW_BALLS          GEN_LATEST    // In GEN_6+, opposing Trainers throw Pokeballs into battle instead of just dropping them.
 
 #endif // GUARD_CONFIG_BATTLE_H
