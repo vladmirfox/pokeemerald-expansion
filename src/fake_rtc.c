@@ -4,6 +4,7 @@
 #include "text.h"
 #include "rtc.h"
 #include "fake_rtc.h"
+#include "event_data.h"
 
 struct Time *FakeRtc_GetCurrentTime(void)
 {
@@ -26,6 +27,9 @@ void FakeRtc_GetRawInfo(struct SiiRtcInfo *rtc)
 void FakeRtc_TickTimeForward(void)
 {
     if (!OW_USE_FAKE_RTC)
+        return;
+
+    if (FlagGet(OW_FLAG_PAUSE_TIME))
         return;
 
     FakeRtc_AdvanceTimeBy(0, 0, FakeRtc_GetSecondsRatio());
@@ -82,3 +86,19 @@ u32 FakeRtc_GetSecondsRatio(void)
                                                   1;
 }
 
+STATIC_ASSERT(OW_FLAG_PAUSE_TIME != 0 && OW_USE_FAKE_RTC == FALSE, FakeRtcMustBeTrueToPauseTime)
+
+void PauseFakeRtc(void)
+{
+    FlagSet(OW_FLAG_PAUSE_TIME);
+}
+
+void ResumeFakeRtc(void)
+{
+    FlagClear(OW_FLAG_PAUSE_TIME);
+}
+
+void ToggleFakeRtc(void)
+{
+    FlagToggle(OW_FLAG_PAUSE_TIME);
+}
