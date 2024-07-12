@@ -16,6 +16,7 @@
 #include "constants/songs.h"
 
 static void Task_DoPokeballSendOutAnim(u8 taskId);
+static void DoPokeballSendOutSoundEffect(void);
 static void *GetOpponentMonSendOutCallback(void);
 static void SpriteCB_PlayerMonSendOut_1(struct Sprite *sprite);
 static void SpriteCB_PlayerMonSendOut_2(struct Sprite *sprite);
@@ -581,6 +582,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gSprites[ballSpriteId].x = 24;
         gSprites[ballSpriteId].y = 68;
         gSprites[ballSpriteId].callback = SpriteCB_PlayerMonSendOut_1;
+		DoPokeballSendOutSoundEffect();
         break;
     case POKEBALL_OPPONENT_SENDOUT:
         gSprites[ballSpriteId].x = GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X) + throwXoffset;
@@ -588,6 +590,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gBattlerTarget = battlerId;
         gSprites[ballSpriteId].data[0] = 0;
         gSprites[ballSpriteId].callback = GetOpponentMonSendOutCallback();
+		DoPokeballSendOutSoundEffect();
         break;
     default:
         gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
@@ -612,6 +615,14 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
     gTasks[taskId].tOpponentBattler = gBattlerTarget;
     gTasks[taskId].func = TaskDummy;
     PlaySE(SE_BALL_THROW);
+}
+
+static void DoPokeballSendOutSoundEffect(void)
+{
+	if (B_THROW_BALLS_SOUND < GEN_5)
+		return;
+
+	 PlaySE(SE_BALL_THROW);
 }
 
 // This sequence of functions is very similar to those that get run when
