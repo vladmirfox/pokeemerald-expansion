@@ -1132,7 +1132,7 @@ static void SpriteCB_BallThrow_CaptureMon(struct Sprite *sprite)
 
 static bool32 IsBattlerPlayer(u32 battler)
 {
-    return (battler % 2) ? FALSE : TRUE;
+    return (battler % B_POSITION_PLAYER_RIGHT) ? FALSE : TRUE;
 }
 
 static void SpriteCB_MonSendOut_1(struct Sprite *sprite)
