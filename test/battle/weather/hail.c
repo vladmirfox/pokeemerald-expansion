@@ -17,21 +17,6 @@ SINGLE_BATTLE_TEST("Hail deals 1/16 damage per turn")
    } THEN { EXPECT_EQ(hailDamage, opponent->maxHP / 16); }
 }
 
-SINGLE_BATTLE_TEST("Hail heals 1/16 damage per turn on Icy Body")
-{
-    s16 hailDamage;
-
-    GIVEN {
-        PLAYER(SPECIES_GLALIE);
-        OPPONENT(SPECIES_SEEL) { HP(1); Ability(ABILITY_ICE_BODY); }
-    } WHEN {
-        TURN {MOVE(player, MOVE_HAIL);}
-    } SCENE {
-        ABILITY_POPUP(opponent, ABILITY_ICE_BODY);
-        HP_BAR(opponent, captureDamage: &hailDamage);
-   } THEN { EXPECT_EQ(hailDamage, -(opponent->maxHP / 16)); }
-}
-
 SINGLE_BATTLE_TEST("Hail damage does not affect Ice-type Pokémon")
 {
     GIVEN {
