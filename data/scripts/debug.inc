@@ -137,40 +137,15 @@ Debug_EventScript_Text_OffensiveIVs:
 Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
-    Debug_EventScript_Script_1::
-	msgbox Debug_EventScript_Script_1_Text_2
-    togglefakertc
-	goto_if_set OW_FLAG_PAUSE_TIME, Debug_EventScript_Script_1_1
-	msgbox Debug_EventScript_Script_1_Text_1
-    closemessage
-	return
-
-Debug_EventScript_Script_1_1:
-	msgbox Debug_EventScript_Script_1_Text_0
-    closemessage
-	return
-
-
-Debug_EventScript_Script_1_Text_0:
-	.string "time is stopped.$"
-
-Debug_EventScript_Script_1_Text_1:
-	.string "time is not stopped.$"
-
-Debug_EventScript_Script_1_Text_2:
-	.string "toggle activated.$"
+Debug_EventScript_Script_1::
+	release
+	end
 
 Debug_EventScript_Script_2::
-    resumefakertc
-	msgbox Debug_EventScript_Script_1_Text_1
-    closemessage
 	release
 	end
 
 Debug_EventScript_Script_3::
-   pausefakertc
-	msgbox Debug_EventScript_Script_1_Text_0
-    closemessage
 	release
 	end
 
