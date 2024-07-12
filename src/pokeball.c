@@ -1156,8 +1156,7 @@ static void SpriteCB_MonSendOut_2(struct Sprite *sprite)
 {
     u32 r6;
     u32 r7;
-    bool32 isPlayer = IsBattlerPlayer(sprite->sBattler);
-    bool32 rightPosition = (isPlayer) ? B_POSITION_PLAYER_RIGHT : B_POSITION_OPPONENT_RIGHT;
+    bool32 rightPosition = (IsBattlerPlayer(sprite->sBattler)) ? B_POSITION_PLAYER_RIGHT : B_POSITION_OPPONENT_RIGHT;
 
     if (HIBYTE(sprite->data[7]) >= 35 && HIBYTE(sprite->data[7]) < 80)
     {
@@ -1209,6 +1208,8 @@ static void SpriteCB_MonSendOut_2(struct Sprite *sprite)
         }
     }
 }
+
+#undef HIBYTE
 
 static void SpriteCB_ReleaseMon2FromBall(struct Sprite *sprite)
 {
