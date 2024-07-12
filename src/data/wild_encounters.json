@@ -1900,62 +1900,62 @@
               {
                 "min_level": 6,
                 "max_level": 6,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_ARON"
               },
               {
                 "min_level": 7,
                 "max_level": 7,
-                "species": "SPECIES_SCRAGGY"
+                "species": "SPECIES_LARVITAR"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_GASTLY"
               },
               {
                 "min_level": 6,
                 "max_level": 6,
-                "species": "SPECIES_SCRAGGY"
+                "species": "SPECIES_BRONZOR"
               },
               {
                 "min_level": 7,
                 "max_level": 7,
-                "species": "SPECIES_MUNCHLAX"
+                "species": "SPECIES_ZORUA"
               },
               {
                 "min_level": 7,
                 "max_level": 7,
-                "species": "SPECIES_TANDEMAUS"
+                "species": "SPECIES_ZORUA_HISUIAN"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_ARON"
               },
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_MUNCHLAX"
+                "species": "SPECIES_LARVITAR"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_SCRAGGY"
+                "species": "SPECIES_BRONZOR"
               },
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_WHISMUR"
+                "species": "SPECIES_GASTLY"
               },
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_ABRA"
+                "species": "SPECIES_ZORUA"
               },
               {
                 "min_level": 8,
                 "max_level": 8,
-                "species": "SPECIES_ZUBAT"
+                "species": "SPECIES_ZORUA_HISUIAN"
               }
             ]
           }
