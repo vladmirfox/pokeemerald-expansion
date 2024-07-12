@@ -741,7 +741,19 @@
 	@ When used with an event script, you can also pass in an optional flag to disable music
 	.macro trainerbattle_single trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
 	.if \event_script == FALSE
-	trainerbattle TRAINER_BATTLE_SINGLE, \trainer, 0, \intro_text, \lose_text
+	.byte 0x5c
+	.byte TRAINER_BATTLE_SINGLE	@ battleMode		1
+	.2byte 0					@ objEventLocalId	2
+	.2byte \trainer				@ battleOpponentA	2
+	.4byte \intro_text			@ introTextA		4
+	.4byte \lose_text			@ defeatTextA		4
+	.4byte 0					@ retAddrA			4
+	.2byte 0					@ battleOpponentB	2
+	.4byte 0					@ introTextB		4
+	.4byte 0					@ defeatTextB		4
+	.4byte 0					@ retAddrB			4
+	.4byte 0					@ victoryText		4
+	.4byte 0					@ cannotBattle		4
 	.elseif \music == TRUE
 	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT, \trainer, 0, \intro_text, \lose_text, \event_script
 	.else

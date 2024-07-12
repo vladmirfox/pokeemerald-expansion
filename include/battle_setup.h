@@ -12,8 +12,29 @@ struct RematchTrainer
     u16 mapNum;
 };
 
+typedef union TrainerBattleParameterUnion
+{
+    struct PACKED Parameters
+    {
+        u8 battleMode;
+        u16 objEventLocalId;
+        u16 battleOpponentA;
+        u8* introTextA;
+        u8* defeatTextA;
+        u8* battleScriptRetAddrA;
+        u16 battleOpponentB;
+        u8* introTextB;
+        u8* defeatTextB;
+        u8* battleScriptRetAddrB;
+        u8* victoryText;
+        u8* cannotBattleText;
+    } params;
+    u8 data[sizeof(struct Parameters)];
+} TrainerBattleParameterU;
+
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
+extern TrainerBattleParameterU sTrainerBattleParameter;
 extern u16 gTrainerBattleOpponent_A;
 extern u16 gTrainerBattleOpponent_B;
 extern u16 gPartnerTrainerId;

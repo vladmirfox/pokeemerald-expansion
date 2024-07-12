@@ -7698,9 +7698,9 @@ static void Cmd_getmoneyreward(void)
 
     if (gBattleOutcome == B_OUTCOME_WON)
     {
-        money = GetTrainerMoneyToGive(gTrainerBattleOpponent_A);
+        money = GetTrainerMoneyToGive(sTrainerBattleParameter.params.battleOpponentA);
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-            money += GetTrainerMoneyToGive(gTrainerBattleOpponent_B);
+            money += GetTrainerMoneyToGive(sTrainerBattleParameter.params.battleOpponentB);
         AddMoney(&gSaveBlock1Ptr->money, money);
     }
     else

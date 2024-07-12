@@ -32,6 +32,7 @@ void ScriptReturn(struct ScriptContext *ctx);
 u16 ScriptReadHalfword(struct ScriptContext *ctx);
 u32 ScriptReadWord(struct ScriptContext *ctx);
 u32 ScriptPeekWord(struct ScriptContext *ctx);
+void ScriptConsume(struct ScriptContext *ctx, u8* buffer, u32 n);
 void LockPlayerFieldControls(void);
 void UnlockPlayerFieldControls(void);
 bool8 ArePlayerFieldControlsLocked(void);

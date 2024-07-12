@@ -1971,13 +1971,16 @@ bool8 ScrCmd_dotrainerbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_gotopostbattlescript(struct ScriptContext *ctx)
 {
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "gotopostbattlescript");
     ctx->scriptPtr = BattleSetup_GetScriptAddrAfterBattle();
     return FALSE;
 }
 
 bool8 ScrCmd_gotobeatenscript(struct ScriptContext *ctx)
 {
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "gotobeatenscript");
     ctx->scriptPtr = BattleSetup_GetTrainerPostBattleScript();
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "ctx->scriptPtr: %x", ctx->scriptPtr);
     return FALSE;
 }
 

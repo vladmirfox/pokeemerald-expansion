@@ -5149,7 +5149,7 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     {
         u8 friendshipLevel = 0;
         s16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-        u32 opponentTrainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
+        u32 opponentTrainerClass = GetTrainerClassFromId(sTrainerBattleParameter.params.battleOpponentA);
 
         if (friendship > 99)
             friendshipLevel++;
@@ -5713,11 +5713,11 @@ u16 GetBattleBGM(void)
         u8 trainerClass;
 
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-            trainerClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A);
+            trainerClass = GetFrontierOpponentClass(sTrainerBattleParameter.params.battleOpponentA);
         else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
             trainerClass = TRAINER_CLASS_EXPERT;
         else
-            trainerClass = GetTrainerClassFromId(gTrainerBattleOpponent_A);
+            trainerClass = GetTrainerClassFromId(sTrainerBattleParameter.params.battleOpponentA);
 
         switch (trainerClass)
         {
@@ -5736,7 +5736,7 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_RIVAL:
             if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
                 return MUS_VS_RIVAL;
-            if (!StringCompare(GetTrainerNameFromId(gTrainerBattleOpponent_A), gText_BattleWallyName))
+            if (!StringCompare(GetTrainerNameFromId(sTrainerBattleParameter.params.battleOpponentA), gText_BattleWallyName))
                 return MUS_VS_TRAINER;
             return MUS_VS_RIVAL;
         case TRAINER_CLASS_ELITE_FOUR:

@@ -218,7 +218,7 @@ static void InitFactoryChallenge(void)
         gFrontierTempParty[i] = 0xFFFF;
 
     SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, WARP_ID_NONE);
-    gTrainerBattleOpponent_A = 0;
+    sTrainerBattleParameter.params.battleOpponentA = 0;
 }
 
 static void GetBattleFactoryData(void)
@@ -324,7 +324,7 @@ static void GenerateOpponentMons(void)
         }
     } while (i != gSaveBlock2Ptr->frontier.curChallengeBattleNum);
 
-    gTrainerBattleOpponent_A = trainerId;
+    sTrainerBattleParameter.params.battleOpponentA = trainerId;
     if (gSaveBlock2Ptr->frontier.curChallengeBattleNum < FRONTIER_STAGES_PER_CHALLENGE - 1)
         gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = trainerId;
 
@@ -378,7 +378,7 @@ static void GenerateOpponentMons(void)
 
 static void SetOpponentGfxVar(void)
 {
-    SetBattleFacilityTrainerGfxId(gTrainerBattleOpponent_A, 0);
+    SetBattleFacilityTrainerGfxId(sTrainerBattleParameter.params.battleOpponentA, 0);
 }
 
 static void SetRentalsToOpponentParty(void)
@@ -837,7 +837,7 @@ u32 GetAiScriptsInBattleFactory(void)
         int battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
         int challengeNum = gSaveBlock2Ptr->frontier.factoryWinStreaks[battleMode][lvlMode] / FRONTIER_STAGES_PER_CHALLENGE;
 
-        if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
+        if (sTrainerBattleParameter.params.battleOpponentA == TRAINER_FRONTIER_BRAIN)
             return AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY;
         else if (challengeNum < 2)
             return 0;
