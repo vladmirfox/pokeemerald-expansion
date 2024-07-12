@@ -2935,9 +2935,8 @@ u8 DoBattlerEndTurnEffects(void)
                  && IsBattlerAlive(gBattlerAttacker)
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                 {
+                    gBattleScripting.battler = battler;
                     gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 6;
-                    BtlController_EmitHitAnimation(battler, BUFFER_A);
-                    MarkBattlerForControllerExec(battler);
                     ChooseDamageNonTypesString(gSideTimers[side].damageNonTypesType);
                     BattleScriptExecute(BattleScript_DamageNonTypesContinues);
                     effect++;
@@ -2948,7 +2947,6 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_SEA_OF_FIRE_DAMAGE:
             if (IsBattlerAlive(battler) && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SEA_OF_FIRE)
             {
-                gBattleScripting.battler = battler;
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
                 BtlController_EmitStatusAnimation(battler, BUFFER_A, FALSE, STATUS1_BURN);
                 MarkBattlerForControllerExec(battler);
