@@ -1440,12 +1440,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_PRESENT:
         case EFFECT_FIXED_DAMAGE_ARG:
-        case EFFECT_FOCUS_PUNCH:
-            if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
-            || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
-            || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
-                ADJUST_SCORE(-10);
-            break;
         case EFFECT_COUNTER:
         case EFFECT_MIRROR_COAT:
             if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
@@ -3565,11 +3559,17 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_SUBSTITUTE:
-        ADJUST_SCORE(GOOD_EFFECT);
+        if (!gDisableStructs[battlerAtk].isFirstTurn && GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 4)
+            ADJUST_SCORE(GOOD_EFFECT);
         if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
             ADJUST_SCORE(GOOD_EFFECT);
-        if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
+        if (gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
+            ADJUST_SCORE(GOOD_EFFECT);
+        else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
             ADJUST_SCORE(DECENT_EFFECT);
+        // TODO: 
+        // if (IsPredictedToSwitch(battlerDef, battlerAtk)
+        //     ADJUST_SCORE(DECENT_EFFECT);
         if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
           || HasMoveEffect(battlerDef, EFFECT_TOXIC)
           || HasMoveEffect(battlerDef, EFFECT_POISON)
@@ -4462,15 +4462,6 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(DECENT_EFFECT);
         else if (ShouldRecover(battlerAtk, battlerDef, move, 50))
             ADJUST_SCORE(DECENT_EFFECT);
-        break;
-    case EFFECT_FOCUS_PUNCH:
-        if (!isDoubleBattle && effectiveness > AI_EFFECTIVENESS_x0_5)
-        {
-            if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]))
-                ADJUST_SCORE(DECENT_EFFECT);
-            if (gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
-                ADJUST_SCORE(DECENT_EFFECT);
-        }
         break;
     case EFFECT_ENDEAVOR:
         if (AI_IsSlower(battlerAtk, battlerDef, move) && !CanTargetFaintAi(battlerDef, battlerAtk))
