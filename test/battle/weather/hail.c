@@ -17,6 +17,21 @@ SINGLE_BATTLE_TEST("Hail deals 1/16 damage per turn")
    } THEN { EXPECT_EQ(hailDamage, opponent->maxHP / 16); }
 }
 
+SINGLE_BATTLE_TEST("Hail heals 1/16 damage per turn on Icy Body")
+{
+    s16 hailDamage;
+
+    GIVEN {
+        PLAYER(SPECIES_GLALIE);
+        OPPONENT(SPECIES_SEEL) { HP(1); Ability(ABILITY_ICE_BODY); }
+    } WHEN {
+        TURN {MOVE(player, MOVE_HAIL);}
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_ICE_BODY);
+        HP_BAR(opponent, captureDamage: &hailDamage);
+   } THEN { EXPECT_EQ(hailDamage, -(opponent->maxHP / 16)); }
+}
+
 SINGLE_BATTLE_TEST("Hail damage does not affect Ice-type Pokémon")
 {
     GIVEN {
@@ -52,4 +67,21 @@ SINGLE_BATTLE_TEST("Hail fails if Desolate Land or Primordial Sea are active")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HAIL, opponent);
         }
     }
+}
+
+DOUBLE_BATTLE_TEST("Hail deals based on turn order")
+{
+    GIVEN {
+        PLAYER(SPECIES_GLALIE);
+        PLAYER(SPECIES_WYNAUT) { Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(2); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(3); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_HAIL); }
+    } SCENE {
+        NOT HP_BAR(playerLeft);
+        HP_BAR(opponentRight);
+        HP_BAR(opponentLeft);
+        HP_BAR(playerRight);
+   }
 }
