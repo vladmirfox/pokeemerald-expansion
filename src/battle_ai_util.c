@@ -401,7 +401,7 @@ static inline s32 DmgRoll(s32 dmg)
 
 bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
 {
-    s32 moveType, i;
+    s32 moveType;
     struct AiLogicData *aiData = AI_DATA;
     u32 battlerDefAbility;
     GET_MOVE_TYPE(move, moveType);
@@ -500,11 +500,8 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
          // TODO: || IsPredictedToSwitch(battlerDef, battlerAtk)
             return TRUE;
         // If AI could Sub and doesn't have a Sub, don't Punch yet
-        for (i = 0; i < MAX_MON_MOVES; i++)
-        {
-            if (gMovesInfo[gBattleMons[battlerAtk].moves[i]].effect == EFFECT_SUBSTITUTE && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
-                return TRUE;
-        }
+        if (HasMoveEffect(battlerAtk, EFFECT_SUBSTITUTE) && !(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
+            return TRUE;
         break;
     }
 
