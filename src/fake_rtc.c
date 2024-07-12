@@ -88,17 +88,17 @@ u32 FakeRtc_GetSecondsRatio(void)
 
 STATIC_ASSERT((OW_FLAG_PAUSE_TIME == 0 || OW_USE_FAKE_RTC == TRUE), FakeRtcMustBeTrueToPauseTime);
 
-void PauseFakeRtc(void)
+void Script_PauseFakeRtc(void)
 {
     FlagSet(OW_FLAG_PAUSE_TIME);
 }
 
-void ResumeFakeRtc(void)
+void Script_ResumeFakeRtc(void)
 {
     FlagClear(OW_FLAG_PAUSE_TIME);
 }
 
-void ToggleFakeRtc(void)
+void Script_ToggleFakeRtc(void)
 {
     FlagToggle(OW_FLAG_PAUSE_TIME);
 }
