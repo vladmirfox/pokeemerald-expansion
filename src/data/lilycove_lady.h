@@ -16,36 +16,36 @@ static const struct LilycoveContestLadyValues sContestLadyValues[] =
     [CONTEST_CATEGORY_COOL] = {
         .monGfxId = OBJ_EVENT_GFX_ZIGZAGOON_1,
         .monSpecies = SPECIES_ZIGZAGOON,
-        .monName = gText_ContestLady_Handsome,
-        .categoryName = gText_ContestLady_Coolness,
+        .monName = COMPOUND_STRING("HANDSOME"),
+        .categoryName = COMPOUND_STRING("coolness"),
         .contestName = gText_CoolnessContest,
     },
     [CONTEST_CATEGORY_BEAUTY] = {
         .monGfxId = OBJ_EVENT_GFX_SKITTY,
         .monSpecies = SPECIES_SKITTY,
-        .monName = gText_ContestLady_Vinny,
-        .categoryName = gText_ContestLady_Beauty,
+        .monName = COMPOUND_STRING("VINNY"),
+        .categoryName = COMPOUND_STRING("beauty"),
         .contestName = gText_BeautyContest,
     },
     [CONTEST_CATEGORY_CUTE] = {
         .monGfxId = OBJ_EVENT_GFX_POOCHYENA,
         .monSpecies = SPECIES_POOCHYENA,
-        .monName = gText_ContestLady_Moreme,
-        .categoryName = gText_ContestLady_Cuteness,
+        .monName = COMPOUND_STRING("MOREME"),
+        .categoryName = COMPOUND_STRING("cuteness"),
         .contestName = gText_CutenessContest,
     },
     [CONTEST_CATEGORY_SMART] = {
         .monGfxId = OBJ_EVENT_GFX_KECLEON,
         .monSpecies = SPECIES_KECLEON,
-        .monName = gText_ContestLady_Ironhard,
-        .categoryName = gText_ContestLady_Smartness,
+        .monName = COMPOUND_STRING("IRONHARD"),
+        .categoryName = COMPOUND_STRING("smartness"),
         .contestName = gText_SmartnessContest,
     },
     [CONTEST_CATEGORY_TOUGH] = {
         .monGfxId = OBJ_EVENT_GFX_PIKACHU,
         .monSpecies = SPECIES_PIKACHU,
-        .monName = gText_ContestLady_Muscle,
-        .categoryName = gText_ContestLady_Toughness,
+        .monName = COMPOUND_STRING("MUSCLE"),
+        .categoryName = COMPOUND_STRING("toughness"),
         .contestName = gText_ToughnessContest,
     },
 };
@@ -329,12 +329,12 @@ static const u16 sQuizLadyPrizes[] =
 // Favor Lady data
 static const u8 *const sFavorLadyRequests[] =
 {
-    gText_FavorLady_Slippery,
-    gText_FavorLady_Roundish,
-    gText_FavorLady_Whamish,
-    gText_FavorLady_Shiny,
-    gText_FavorLady_Sticky,
-    gText_FavorLady_Pointy
+    COMPOUND_STRING("slippery"),
+    COMPOUND_STRING("roundish"),
+    COMPOUND_STRING("wham-ish"),
+    COMPOUND_STRING("shiny"),
+    COMPOUND_STRING("sticky"),
+    COMPOUND_STRING("pointy"),
 };
 
 static const u16 sFavorLadyAcceptedItems_Slippery[] =
