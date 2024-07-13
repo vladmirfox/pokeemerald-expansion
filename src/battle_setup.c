@@ -1164,20 +1164,10 @@ static void TrainerBattleLoadArgs(const struct TrainerBattleParameter *specs, co
     }
 }
 
-void memconsume(u8* dst, const u8* src, u32 n)
-{
-    for (int i = 0; i < n; i++)
-        dst[i] = *src++;
-}
-
 static void TrainerBattleLoadArgs_2(const u8* data)
 {   
-    u32 n = sizeof(sTrainerBattleParameter);
-    u8 buffer[n];
-
-    memconsume(buffer, data, n);
-    sTrainerBattleEndScript = (u8*)data;
-    memcpy(sTrainerBattleParameter.data, buffer, n);
+    memcpy(sTrainerBattleParameter.data, data, sizeof(TrainerBattleParameterU));
+    sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameterU);
 }
 
 void SetMapVarsToTrainer(void)

@@ -12,7 +12,7 @@ struct RematchTrainer
     u16 mapNum;
 };
 
-typedef union TrainerBattleParameterUnion
+typedef union PACKED TrainerBattleParameterUnion
 {
     struct PACKED Parameters
     {
