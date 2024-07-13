@@ -103,7 +103,7 @@ static const struct SpriteSheet sSpriteSheet_MegaIndicator = {sMegaIndicatorGfx,
 static const struct SpriteSheet sSpriteSheet_AlphaIndicator = {sAlphaIndicatorGfx, sizeof(sAlphaIndicatorGfx), TAG_ALPHA_INDICATOR_TILE};
 static const struct SpriteSheet sSpriteSheet_OmegaIndicator = {sOmegaIndicatorGfx, sizeof(sOmegaIndicatorGfx), TAG_OMEGA_INDICATOR_TILE};
 static const struct SpriteSheet sSpriteSheet_DynamaxIndicator = {sDynamaxIndicatorGfx, sizeof(sDynamaxIndicatorGfx), TAG_DYNAMAX_INDICATOR_TILE};
-static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES + 1] =
+static const struct SpriteSheet sTeraIndicatorSpriteSheets[NUMBER_OF_MON_TYPES] =
 {
     {sNormalIndicatorGfx, sizeof(sNormalIndicatorGfx), TAG_NORMAL_INDICATOR_TILE},
     {sFightingIndicatorGfx, sizeof(sFightingIndicatorGfx), TAG_FIGHTING_INDICATOR_TILE},

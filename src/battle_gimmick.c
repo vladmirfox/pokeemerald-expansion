@@ -300,7 +300,7 @@ u32 GetIndicatorTileTag(u32 battler)
     }
     else if (gimmick == GIMMICK_TERA) // special case
     {
-        return sTeraIndicatorSpriteSheets[GetBattlerTeraType(battler)].tag;
+        return sTeraIndicatorSpriteSheets[GetBattlerTeraType(battler) - 1].tag;
     }
     else if (gGimmicksInfo[gimmick].indicatorSheet != NULL)
     {
