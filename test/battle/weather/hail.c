@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Hail fails if Desolate Land or Primordial Sea are active")
     }
 }
 
-DOUBLE_BATTLE_TEST("Hail deals based on turn order")
+DOUBLE_BATTLE_TEST("Hail deals damage based on turn order")
 {
     GIVEN {
         PLAYER(SPECIES_GLALIE);
