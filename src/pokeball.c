@@ -16,9 +16,9 @@
 #include "constants/songs.h"
 
 static void Task_DoPokeballSendOutAnim(u8 taskId);
-static void DoPokeballSendOutSoundEffect(void);
-static void *GetOpponentMonSendOutCallback(void);
-static bool32 IsBattlerPlayer(u32 battler);
+static inline void DoPokeballSendOutSoundEffect(u32 battler);
+static inline void *GetOpponentMonSendOutCallback(void);
+static inline bool32 IsBattlerPlayer(u32 battler);
 static void SpriteCB_MonSendOut_1(struct Sprite *sprite);
 static void SpriteCB_MonSendOut_2(struct Sprite *sprite);
 static void SpriteCB_OpponentMonSendOut(struct Sprite *sprite);
@@ -551,8 +551,8 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
 {
     u32 throwCaseId, ballId, battlerId, ballSpriteId;
     bool32 notSendOut = FALSE;
-    u32 throwXoffset = (B_OPPONENT_THROW_BALLS >= GEN_6) ? 24 : 0;
-    s32 throwYoffset = (B_OPPONENT_THROW_BALLS >= GEN_6) ? -16 : 24;
+    u32 throwXoffset = (B_ENEMY_THROW_BALLS >= GEN_6) ? 24 : 0;
+    s32 throwYoffset = (B_ENEMY_THROW_BALLS >= GEN_6) ? -16 : 24;
 
     if (gTasks[taskId].tFrames == 0)
     {
@@ -581,7 +581,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gSprites[ballSpriteId].x = 24;
         gSprites[ballSpriteId].y = 68;
         gSprites[ballSpriteId].callback = SpriteCB_MonSendOut_1;
-        DoPokeballSendOutSoundEffect();
+        DoPokeballSendOutSoundEffect(battlerId);
         break;
     case POKEBALL_OPPONENT_SENDOUT:
         gSprites[ballSpriteId].x = GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X) + throwXoffset;
@@ -589,7 +589,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gBattlerTarget = battlerId;
         gSprites[ballSpriteId].data[0] = 0;
         gSprites[ballSpriteId].callback = GetOpponentMonSendOutCallback();
-        DoPokeballSendOutSoundEffect();
+        DoPokeballSendOutSoundEffect(battlerId);
         break;
     default:
         gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
@@ -616,17 +616,22 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
     PlaySE(SE_BALL_THROW);
 }
 
-static void DoPokeballSendOutSoundEffect(void)
+STATIC_ASSERT(B_ENEMY_THROW_BALLS_SOUND < GEN_5 || B_ENEMY_THROW_BALLS >= GEN_6,OpponentThrowBallAndSoundMustBeOnTogether)
+
+static inline void DoPokeballSendOutSoundEffect(u32 battler)
 {
-    if (B_THROW_BALLS_SOUND < GEN_5)
+    if (IsBattlerPlayer(battler) && B_PLAYER_THROW_BALLS_SOUND < GEN_5)
+        return;
+
+    if (!IsBattlerPlayer(battler) && B_ENEMY_THROW_BALLS_SOUND < GEN_5)
         return;
 
      PlaySE(SE_BALL_THROW);
 }
 
-static void *GetOpponentMonSendOutCallback(void)
+static inline void *GetOpponentMonSendOutCallback(void)
 {
-    return (B_OPPONENT_THROW_BALLS >= GEN_6) ? SpriteCB_MonSendOut_1 : SpriteCB_OpponentMonSendOut;
+    return (B_ENEMY_THROW_BALLS >= GEN_6) ? SpriteCB_MonSendOut_1 : SpriteCB_OpponentMonSendOut;
 }
 
 // This sequence of functions is very similar to those that get run when
@@ -1130,7 +1135,7 @@ static void SpriteCB_BallThrow_CaptureMon(struct Sprite *sprite)
     }
 }
 
-static bool32 IsBattlerPlayer(u32 battler)
+static inline bool32 IsBattlerPlayer(u32 battler)
 {
     return (battler % B_POSITION_PLAYER_RIGHT) ? FALSE : TRUE;
 }
