@@ -32,6 +32,8 @@ typedef union PACKED TrainerBattleParameterUnion
     u8 data[sizeof(struct Parameters)];
 } TrainerBattleParameterU;
 
+#define TRAINER_BATTLE_PARAM sTrainerBattleParameter.params
+
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
 extern TrainerBattleParameterU sTrainerBattleParameter;

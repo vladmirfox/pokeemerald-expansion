@@ -413,7 +413,7 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
     {
         trainerPicId = GetSecretBaseTrainerPicIndex();
     }
-    else if (sTrainerBattleParameter.params.battleOpponentA == TRAINER_FRONTIER_BRAIN)
+    else if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_FRONTIER_BRAIN)
     {
         trainerPicId = GetFrontierBrainTrainerPicIndex();
     }
@@ -422,13 +422,13 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
         {
             if (battlerId == 1)
-                trainerPicId = GetTrainerHillTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentA);
+                trainerPicId = GetTrainerHillTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentA);
             else
-                trainerPicId = GetTrainerHillTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentB);
+                trainerPicId = GetTrainerHillTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentB);
         }
         else
         {
-            trainerPicId = GetTrainerHillTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentA);
+            trainerPicId = GetTrainerHillTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentA);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
@@ -436,13 +436,13 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
         if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
         {
             if (battlerId == 1)
-                trainerPicId = GetFrontierTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentA);
+                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentA);
             else
-                trainerPicId = GetFrontierTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentB);
+                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentB);
         }
         else
         {
-            trainerPicId = GetFrontierTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentA);
+            trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentA);
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
@@ -452,13 +452,13 @@ static u32 OpponentGetTrainerPicId(u32 battlerId)
     else if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
     {
         if (battlerId != 1)
-            trainerPicId = GetTrainerPicFromId(sTrainerBattleParameter.params.battleOpponentB);
+            trainerPicId = GetTrainerPicFromId(TRAINER_BATTLE_PARAM.battleOpponentB);
         else
-            trainerPicId = GetTrainerPicFromId(sTrainerBattleParameter.params.battleOpponentA);
+            trainerPicId = GetTrainerPicFromId(TRAINER_BATTLE_PARAM.battleOpponentA);
     }
     else
     {
-        trainerPicId = GetTrainerPicFromId(sTrainerBattleParameter.params.battleOpponentA);
+        trainerPicId = GetTrainerPicFromId(TRAINER_BATTLE_PARAM.battleOpponentA);
     }
 
     return trainerPicId;

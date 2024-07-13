@@ -127,14 +127,14 @@ static void SetVerdanturfTentPrize(void)
 
 static void SetVerdanturfTentTrainerGfx(void)
 {
-    sTrainerBattleParameter.params.battleOpponentA = (u32)((Random() % 255) * 5) / 64;
-    SetBattleFacilityTrainerGfxId(sTrainerBattleParameter.params.battleOpponentA, 0);
+    TRAINER_BATTLE_PARAM.battleOpponentA = (u32)((Random() % 255) * 5) / 64;
+    SetBattleFacilityTrainerGfxId(TRAINER_BATTLE_PARAM.battleOpponentA, 0);
 }
 
 static void BufferVerdanturfTentTrainerIntro(void)
 {
-    if (sTrainerBattleParameter.params.battleOpponentA < FRONTIER_TRAINERS_COUNT)
-        FrontierSpeechToString(gFacilityTrainers[sTrainerBattleParameter.params.battleOpponentA].speechBefore);
+    if (TRAINER_BATTLE_PARAM.battleOpponentA < FRONTIER_TRAINERS_COUNT)
+        FrontierSpeechToString(gFacilityTrainers[TRAINER_BATTLE_PARAM.battleOpponentA].speechBefore);
 }
 
 static void SaveVerdanturfTentChallenge(void)
@@ -216,7 +216,7 @@ static void GiveFallarborTentPrize(void)
 
 static void BufferFallarborTentTrainerName(void)
 {
-    GetFrontierTrainerName(gStringVar1, sTrainerBattleParameter.params.battleOpponentA);
+    GetFrontierTrainerName(gStringVar1, TRAINER_BATTLE_PARAM.battleOpponentA);
 }
 
 void CallSlateportTentFunction(void)
@@ -372,8 +372,8 @@ static void GenerateOpponentMons(void)
             }
         } while (i != gSaveBlock2Ptr->frontier.curChallengeBattleNum);
 
-        sTrainerBattleParameter.params.battleOpponentA = trainerId;
-        monSet = gFacilityTrainers[sTrainerBattleParameter.params.battleOpponentA].monSet;
+        TRAINER_BATTLE_PARAM.battleOpponentA = trainerId;
+        monSet = gFacilityTrainers[TRAINER_BATTLE_PARAM.battleOpponentA].monSet;
         while (monSet[numMons] != 0xFFFF)
             numMons++;
         if (numMons > 8)
@@ -382,9 +382,9 @@ static void GenerateOpponentMons(void)
     }
 
     if (gSaveBlock2Ptr->frontier.curChallengeBattleNum < TENT_STAGES_PER_CHALLENGE - 1)
-        gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = sTrainerBattleParameter.params.battleOpponentA;
+        gSaveBlock2Ptr->frontier.trainerIds[gSaveBlock2Ptr->frontier.curChallengeBattleNum] = TRAINER_BATTLE_PARAM.battleOpponentA;
 
-    monSet = gFacilityTrainers[sTrainerBattleParameter.params.battleOpponentA].monSet;
+    monSet = gFacilityTrainers[TRAINER_BATTLE_PARAM.battleOpponentA].monSet;
     i = 0;
     while (i != FRONTIER_PARTY_SIZE)
     {

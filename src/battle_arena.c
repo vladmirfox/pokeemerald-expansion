@@ -472,7 +472,7 @@ static void InitArenaChallenge(void)
         gSaveBlock2Ptr->frontier.arenaWinStreaks[lvlMode] = 0;
 
     SetDynamicWarp(0, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, WARP_ID_NONE);
-    sTrainerBattleParameter.params.battleOpponentA = 0;
+    TRAINER_BATTLE_PARAM.battleOpponentA = 0;
 }
 
 static void GetArenaData(void)
@@ -561,7 +561,7 @@ static void GiveArenaPrize(void)
 
 static void BufferArenaOpponentName(void)
 {
-    GetFrontierTrainerName(gStringVar1, sTrainerBattleParameter.params.battleOpponentA);
+    GetFrontierTrainerName(gStringVar1, TRAINER_BATTLE_PARAM.battleOpponentA);
 }
 
 void DrawArenaRefereeTextBox(void)

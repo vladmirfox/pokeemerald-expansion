@@ -398,9 +398,9 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
         if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
         {
             if (battler == B_POSITION_OPPONENT_LEFT)
-                trainerPicId = GetFrontierTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentA);
+                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentA);
             else
-                trainerPicId = GetFrontierTrainerFrontSpriteId(sTrainerBattleParameter.params.battleOpponentB);
+                trainerPicId = GetFrontierTrainerFrontSpriteId(TRAINER_BATTLE_PARAM.battleOpponentB);
         }
         else
         {
@@ -410,7 +410,7 @@ static void RecordedOpponentHandleDrawTrainerPic(u32 battler)
     else
     {
         xPos = 176;
-        if (sTrainerBattleParameter.params.battleOpponentA == TRAINER_UNION_ROOM)
+        if (TRAINER_BATTLE_PARAM.battleOpponentA == TRAINER_UNION_ROOM)
         {
             trainerPicId = GetUnionRoomTrainerPic();
         }
