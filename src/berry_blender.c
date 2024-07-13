@@ -266,10 +266,6 @@ static const u8 sUnusedText_PleaseWaitAWhile[] = _("Please wait a while.");
 static const u8 sUnusedText_BerryUsed[] = _("BERRY USED");
 static const u8 sUnusedText_Space2[] = _(" ");
 
-static const u8 sText_BerryBlenderStart[] = _("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p");
-static const u8 sText_NewParagraph[] = _("\p");
-static const u8 sText_WasMade[] = _(" was made!");
-
 static const u8 *const sBlenderOpponentsNames[] =
 {
     [BLENDER_MISTER] = COMPOUND_STRING("MISTER"),
@@ -281,24 +277,10 @@ static const u8 *const sBlenderOpponentsNames[] =
 };
 
 static const u8 sText_CommunicationStandby[] = _("Communication standby…");
-static const u8 sText_WouldLikeToBlendAnotherBerry[] = _("Would you like to blend another BERRY?");
-static const u8 sText_RunOutOfBerriesForBlending[] = _("You've run out of BERRIES for\nblending in the BERRY BLENDER.\p");
-static const u8 sText_YourPokeblockCaseIsFull[] = _("Your {POKEBLOCK} CASE is full.\p");
-static const u8 sText_HasNoBerriesToPut[] = _(" has no BERRIES to put in\nthe BERRY BLENDER.");
-static const u8 sText_ApostropheSPokeblockCaseIsFull[] = _("'s {POKEBLOCK} CASE is full.\p");
 static const u8 sText_BlendingResults[] = _("RESULTS OF BLENDING");
-static const u8 sText_SpaceBerry[] = _(" BERRY");
-static const u8 sText_Time[] = _("Time:");
-static const u8 sText_Min[] = _(" min. ");
-static const u8 sText_Sec[] = _(" sec.");
-static const u8 sText_MaximumSpeed[] = _("MAXIMUM SPEED");
 static const u8 sText_RPM[] = _(" RPM");
 static const u8 sText_Dot[] = _(".");
-static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Ranking[] = _("RANKING");
-static const u8 sText_TheLevelIs[] = _("The level is ");
-static const u8 sText_TheFeelIs[] = _(", and the feel is ");
-static const u8 sText_Dot2[] = _(".");
 
 static const struct BgTemplate sBgTemplates[3] =
 {
@@ -1109,7 +1091,7 @@ static void CB2_LoadBerryBlender(void)
             sBerryBlender->mainState++;
         break;
     case 4:
-        if (PrintMessage(&sBerryBlender->textState, sText_BerryBlenderStart, GetPlayerTextSpeedDelay()))
+        if (PrintMessage(&sBerryBlender->textState, COMPOUND_STRING("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p"), GetPlayerTextSpeedDelay()))
             sBerryBlender->mainState++;
         break;
     case 5:
@@ -2655,7 +2637,7 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 7:
-        if (PrintMessage(&sBerryBlender->textState, sText_WouldLikeToBlendAnotherBerry, GetPlayerTextSpeedDelay()))
+        if (PrintMessage(&sBerryBlender->textState, COMPOUND_STRING("Would you like to blend another BERRY?"), GetPlayerTextSpeedDelay()))
             sBerryBlender->gameEndState++;
         break;
     case 9:
@@ -2841,12 +2823,12 @@ static void CB2_CheckPlayAgainLink(void)
     case 1:
         sBerryBlender->gameEndState = 3;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-        StringAppend(gStringVar4, sText_ApostropheSPokeblockCaseIsFull);
+        StringAppend(gStringVar4, COMPOUND_STRING("'s {POKEBLOCK} CASE is full.\p"));
         break;
     case 2:
         sBerryBlender->gameEndState++;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-        StringAppend(gStringVar4, sText_HasNoBerriesToPut);
+        StringAppend(gStringVar4, COMPOUND_STRING(" has no BERRIES to put in\nthe BERRY BLENDER."));
         break;
     case 3:
         if (PrintMessage(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
@@ -2948,12 +2930,12 @@ static void CB2_CheckPlayAgainLocal(void)
     case 1:
         sBerryBlender->gameEndState = 3;
         sBerryBlender->textState = 0;
-        StringCopy(gStringVar4, sText_YourPokeblockCaseIsFull);
+        StringCopy(gStringVar4, COMPOUND_STRING("Your {POKEBLOCK} CASE is full.\p"));
         break;
     case 2:
         sBerryBlender->gameEndState++;
         sBerryBlender->textState = 0;
-        StringCopy(gStringVar4, sText_RunOutOfBerriesForBlending);
+        StringCopy(gStringVar4, COMPOUND_STRING("You've run out of BERRIES for\nblending in the BERRY BLENDER.\p"));
         break;
     case 3:
         if (PrintMessage(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
@@ -3505,11 +3487,11 @@ static bool8 PrintBlendingResults(void)
 
                 StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
                 ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
-                StringAppend(sBerryBlender->stringVar, sText_SpaceBerry);
+                StringAppend(sBerryBlender->stringVar, COMPOUND_STRING(" BERRY"));
                 Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0x54, yPos, TEXT_SKIP_DRAW, 3);
             }
 
-            Blender_AddTextPrinter(WIN_RESULTS, sText_MaximumSpeed, 0, 0x51, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinter(WIN_RESULTS, COMPOUND_STRING("MAXIMUM SPEED"), 0, 0x51, TEXT_SKIP_DRAW, 3);
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->maxRPM / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
             StringAppend(sBerryBlender->stringVar, sText_Dot);
 
@@ -3519,16 +3501,16 @@ static bool8 PrintBlendingResults(void)
 
             xPos = GetStringRightAlignXOffset(FONT_NORMAL, sBerryBlender->stringVar, 0xA8);
             Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x51, TEXT_SKIP_DRAW, 3);
-            Blender_AddTextPrinter(WIN_RESULTS, sText_Time, 0, 0x61, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinter(WIN_RESULTS, COMPOUND_STRING("Time:"), 0, 0x61, TEXT_SKIP_DRAW, 3);
 
             seconds = (sBerryBlender->gameFrameTime / 60) % 60;
             minutes = (sBerryBlender->gameFrameTime / (60 * 60));
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-            txtPtr = StringAppend(sBerryBlender->stringVar, sText_Min);
+            txtPtr = StringAppend(sBerryBlender->stringVar, COMPOUND_STRING(" min. "));
 
             ConvertIntToDecimalStringN(txtPtr, seconds, STR_CONV_MODE_LEADING_ZEROS, 2);
-            StringAppend(sBerryBlender->stringVar, sText_Sec);
+            StringAppend(sBerryBlender->stringVar, COMPOUND_STRING(" sec."));
 
             xPos = GetStringRightAlignXOffset(FONT_NORMAL, sBerryBlender->stringVar, 0xA8);
             Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x61, TEXT_SKIP_DRAW, 3);
@@ -3590,22 +3572,22 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
 
     dst[0] = EOS;
     StringCopy(dst, gPokeblockNames[pokeblock->color]);
-    StringAppend(dst, sText_WasMade);
-    StringAppend(dst, sText_NewLine);
+    StringAppend(dst, COMPOUND_STRING(" was made!"));
+    StringAppend(dst, COMPOUND_STRING("\n"));
 
     flavorLvl = GetHighestPokeblocksFlavorLevel(pokeblock);
     feel = GetPokeblocksFeel(pokeblock);
 
-    StringAppend(dst, sText_TheLevelIs);
+    StringAppend(dst, COMPOUND_STRING("The level is "));
     ConvertIntToDecimalStringN(text, flavorLvl, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(dst, text);
 
-    StringAppend(dst, sText_TheFeelIs);
+    StringAppend(dst, COMPOUND_STRING(", and the feel is "));
     ConvertIntToDecimalStringN(text, feel, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(dst, text);
 
-    StringAppend(dst, sText_Dot2);
-    StringAppend(dst, sText_NewParagraph);
+    StringAppend(dst, COMPOUND_STRING("."));
+    StringAppend(dst, COMPOUND_STRING("\p"));
 }
 
 static void SortBasedOnPoints(u8 *places, u8 playersNum, u32 *scores)
