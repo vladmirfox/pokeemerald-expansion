@@ -7762,6 +7762,6 @@ void IsLastMonThatKnowsSurf(void)
             }
         }
         if (AnyStorageMonWithMove(move) != TRUE)
-            gSpecialVar_Result = !(P_CAN_FORGET_HMS);
+            gSpecialVar_Result = !(P_CAN_FORGET_HIDDEN_MOVE);
     }
 }
