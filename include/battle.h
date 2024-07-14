@@ -594,6 +594,12 @@ struct BattleGimmickData
     bool8 activated[MAX_BATTLERS_COUNT][GIMMICKS_COUNT]; // stores whether a trainer has used gimmick
 };
 
+struct SleepClauseData
+{
+    u8 isActive[NUM_BATTLE_SIDES]; // Stores sleep clause state for each battle side
+    bool8 effectExempt; // Stores whether effect should be exempt from triggering sleep clause (Effect Spore)
+};
+
 struct LostItem
 {
     u16 originalItem:15;
@@ -723,6 +729,7 @@ struct BattleStruct
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
     struct BattleGimmickData gimmick;
+    struct SleepClauseData sleepClause;
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
