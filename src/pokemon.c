@@ -5840,8 +5840,8 @@ bool8 IsMoveHM(u16 move)
 {
     int i = 0;
 
-	if (P_CAN_FORGET_HIDDEN_MOVE)
-		return FALSE;
+    if (P_CAN_FORGET_HIDDEN_MOVE)
+        return FALSE;
 
     while (sHMMoves[i] != HM_MOVES_END)
     {
