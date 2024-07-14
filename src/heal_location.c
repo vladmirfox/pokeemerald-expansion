@@ -1,7 +1,6 @@
 #include "global.h"
 #include "event_data.h"
 #include "heal_location.h"
-#include "overworld.h"
 #include "constants/heal_locations.h"
 #include "constants/maps.h"
 
