@@ -616,8 +616,6 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
     PlaySE(SE_BALL_THROW);
 }
 
-STATIC_ASSERT(B_ENEMY_THROW_BALLS_SOUND < GEN_5 || B_ENEMY_THROW_BALLS >= GEN_6,OpponentThrowBallAndSoundMustBeOnTogether)
-
 static inline void DoPokeballSendOutSoundEffect(u32 battler)
 {
     if (IsBattlerPlayer(battler) && B_PLAYER_THROW_BALLS_SOUND < GEN_5)
