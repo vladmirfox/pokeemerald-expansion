@@ -689,7 +689,7 @@ void SetWarpDestinationToHealLocation(u8 healLocationId)
         SetWarpDestination(healLocation->group, healLocation->map, WARP_ID_NONE, healLocation->x, healLocation->y);
 }
 
-static bool32 IsFLRGWhiteout(void)
+static bool32 IsFRLGWhiteout(void)
 {
     if (!OW_FRLG_WHITEOUT)
         return FALSE;
@@ -698,7 +698,7 @@ static bool32 IsFLRGWhiteout(void)
 
 void SetWarpDestinationToLastHealLocation(void)
 {
-    if (IsFLRGWhiteout())
+    if (IsFRLGWhiteout())
         SetWhiteoutRespawnWarpAndHealerNPC(&sWarpDestination);
     else
         sWarpDestination = gSaveBlock1Ptr->lastHealLocation;
@@ -1620,7 +1620,7 @@ void CB2_WhiteOut(void)
         ResetInitialPlayerAvatarState();
         ScriptContext_Init();
         UnlockPlayerFieldControls();
-        if (IsFLRGWhiteout())
+        if (IsFRLGWhiteout())
             gFieldCallback = FieldCB_RushInjuredPokemonToCenter;
         else
             gFieldCallback = FieldCB_WarpExitFadeFromBlack;
