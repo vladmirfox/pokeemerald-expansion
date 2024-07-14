@@ -1280,7 +1280,6 @@ static void Task_EnableScriptAfterMusicFade(u8 taskId)
     }
 }
 
-
 static const struct WindowTemplate sWindowTemplate_WhiteoutText =
 {
     .bg = 0,

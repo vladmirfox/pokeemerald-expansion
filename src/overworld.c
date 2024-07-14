@@ -700,7 +700,7 @@ static bool32 IsFLRGWhiteout(void)
 void SetWarpDestinationToLastHealLocation(void)
 {
     if (IsFLRGWhiteout())
-        SetWhiteoutRespawnWarpAndHealerNpc(&sWarpDestination);
+        SetWhiteoutRespawnWarpAndHealerNPC(&sWarpDestination);
     else
         sWarpDestination = gSaveBlock1Ptr->lastHealLocation;
 }
