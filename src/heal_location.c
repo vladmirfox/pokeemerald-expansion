@@ -73,12 +73,7 @@ static void SetWhiteoutRespawnHealerNPCAsLastTalked(u32 healLocationId)
 void SetWhiteoutRespawnWarpAndHealerNPC(struct WarpData *warp)
 {
         u32 healLocationId = GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation);
-        struct HealLocation pkmCenterHealLocation;
-
-        if (!HasHealNPC(healLocationId))
-            healLocationId = gSaveBlock2Ptr->playerGender == MALE ? HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE : HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE;
-        
-        pkmCenterHealLocation = sHealLocationsPokemonCenter[healLocationId - 1];
+        struct HealLocation pkmCenterHealLocation = sHealLocationsPokemonCenter[healLocationId - 1];
 
         warp->mapGroup = pkmCenterHealLocation.group;
         warp->mapNum = pkmCenterHealLocation.map;
