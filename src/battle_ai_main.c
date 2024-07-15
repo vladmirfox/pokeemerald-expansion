@@ -182,7 +182,7 @@ static u32 GetAiFlags(u16 trainerId)
     // Automatically includes AI_FLAG_SMART_MON_CHOICES to improve smart switching
     if (flags & AI_FLAG_SMART_SWITCHING)
         flags |= AI_FLAG_SMART_MON_CHOICES;
-    
+
     if (sDynamicAiFunc != NULL)
         flags |= AI_FLAG_DYNAMIC_FUNC;
 
@@ -493,7 +493,6 @@ static bool32 AI_SwitchMonIfSuitable(u32 battler, bool32 doubleBattle)
     u32 monToSwitchId = AI_DATA->mostSuitableMonId[battler];
     if (monToSwitchId != PARTY_SIZE && IsValidForBattle(&GetBattlerParty(battler)[monToSwitchId]))
     {
-        gBattleMoveDamage = monToSwitchId;
         // Edge case: See if partner already chose to switch into the same mon
         if (doubleBattle)
         {
@@ -3572,7 +3571,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
             ADJUST_SCORE(GOOD_EFFECT);
         else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
             ADJUST_SCORE(DECENT_EFFECT);
-        // TODO: 
+        // TODO:
         // if (IsPredictedToSwitch(battlerDef, battlerAtk)
         //     ADJUST_SCORE(DECENT_EFFECT);
         if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
@@ -5376,7 +5375,7 @@ s32 AI_TagBattlePreferFoe(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         /* attacking along the diagonal */
         ADJUST_SCORE(-20);
     }
-    
+
     return score;
 }
 

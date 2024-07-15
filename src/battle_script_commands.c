@@ -1385,9 +1385,7 @@ static void Cmd_attackcanceler(void)
     }
 
     // Z-moves and Max Moves bypass protection, but deal reduced damage (factored in AccumulateOtherModifiers)
-    if ((IsZMove(gCurrentMove)
-        || IsMaxMove(gCurrentMove))
-         && IS_BATTLER_PROTECTED(gBattlerTarget))
+    if ((IsZMove(gCurrentMove) || IsMaxMove(gCurrentMove)) && IS_BATTLER_PROTECTED(gBattlerTarget))
     {
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = BattleScript_CouldntFullyProtect;
@@ -1492,16 +1490,17 @@ static void Cmd_unused5(void)
 
 static bool8 JumpIfMoveAffectedByProtect(u32 move, u32 battler, u32 shouldJump)
 {
-    bool8 affected = FALSE;
+    // bool8 affected = FALSE;
     if (IsBattlerProtected(gBattlerAttacker, battler, move))
     {
         gBattleStruct->resultFlags[battler] |= MOVE_RESULT_MISSED;
         gBattleCommunication[MISS_TYPE] = B_MSG_PROTECTED;
-        affected = TRUE;
-        if (shouldJump)
-            JumpIfMoveFailed(7, move);
+        return TRUE;
+        // affected = TRUE;
+        // if (shouldJump)
+        //     JumpIfMoveFailed(7, move);
     }
-    return affected;
+    return FALSE;
 }
 
 static bool32 AccuracyCalcHelper(u32 move, u32 battler)
@@ -1709,48 +1708,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
-bool32 FinalAccuracyCheck(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType, u32 moveTarget, u32 abilityAtk, u32 holdEffectAtk, bool32 recalcDragonDarts)
-{
-    u32 accuracy = GetTotalAccuracy(
-        battlerAtk,
-        battlerDef,
-        move,
-        abilityAtk,
-        GetBattlerAbility(battlerDef),
-        holdEffectAtk,
-        GetBattlerHoldEffect(battlerDef, TRUE)
-    );
-
-    if (!RandomPercentage(RNG_ACCURACY, accuracy))
-    {
-        gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_MISSED;
-        if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
-            gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
-
-
-        if (gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_DARTS
-            && !recalcDragonDarts // So we don't jump back and forth between targets
-            && CanTargetPartner(gBattlerAttacker, battlerDef)
-            && !TargetFullyImmuneToCurrMove(gBattlerAttacker, BATTLE_PARTNER(battlerDef)))
-        {
-            // Smart target to partner if miss
-            gBattlerTarget = BATTLE_PARTNER(battlerDef);
-            gMoveResultFlags &= ~MOVE_RESULT_MISSED;
-            return TRUE;
-        }
-
-        gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
-        if (gMovesInfo[move].power)
-        {
-            CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), TRUE);
-        }
-    }
-    return FALSE;
-}
-
 static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u8 *failInstr, u16 move)
 {
-    u32 type;
+    u32 moveType;
     u32 moveTarget;
     u32 abilityAtk;
     u32 holdEffectAtk;
@@ -1793,59 +1753,64 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
     }
     else
     {
-        u32 shouldRecalcDragonDarts;
-        GET_MOVE_TYPE(move, type);
+        GET_MOVE_TYPE(move, moveType);
 		bool32 calcSpreadMove = IsDoubleBattle() && IsSpreadMove(gBattlerAttacker, gCurrentMove) && !IS_MOVE_STATUS(move);
 
-        if (calcSpreadMove)
+        u32 battlerDef;
+        for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
         {
-            u32 battlerDef;
-            for (battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
-            {
-                if (gBattlerAttacker == battlerDef
-                 || !IsBattlerAlive(battlerDef)
-                 || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH))
-                 || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
-                    continue;
+            if (!calcSpreadMove)
+                battlerDef = gBattlerTarget;
+            else if (gBattlerAttacker == battlerDef
+                  || !IsBattlerAlive(battlerDef)
+                  || (battlerDef == BATTLE_PARTNER(gBattlerAttacker) && (moveTarget == MOVE_TARGET_BOTH))
+                  || (gBattleStruct->noResultString[battlerDef] && gBattleStruct->noResultString[battlerDef] != DO_ACCURACY_CHECK))
+                continue;
 
-                if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE) || AccuracyCalcHelper(move, battlerDef))
-                    continue;
-
-                shouldRecalcDragonDarts = FinalAccuracyCheck(
-                    gBattlerAttacker,
-                    battlerDef,
-                    move,
-                    type,
-                    moveTarget,
-                    abilityAtk,
-                    holdEffectAtk,
-                    recalcDragonDarts
-                );
-            }
-            gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
-        }
-        else
-        {
-            if (JumpIfMoveAffectedByProtect(move, gBattlerTarget, FALSE) || AccuracyCalcHelper(move, gBattlerTarget))
+            if (JumpIfMoveAffectedByProtect(move, battlerDef, FALSE) || AccuracyCalcHelper(move, battlerDef))
             {
-                gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
-                JumpIfMoveFailed(7, move);
-                return;
+                if (!calcSpreadMove)
+                    break;
+                else
+                    continue;
             }
 
-            shouldRecalcDragonDarts = FinalAccuracyCheck(
+            u32 accuracy = GetTotalAccuracy(
                 gBattlerAttacker,
-                gBattlerTarget,
+                battlerDef,
                 move,
-                type,
-                moveTarget,
                 abilityAtk,
+                GetBattlerAbility(battlerDef),
                 holdEffectAtk,
-                recalcDragonDarts
+                GetBattlerHoldEffect(battlerDef, TRUE)
             );
+            if (!RandomPercentage(RNG_ACCURACY, accuracy))
+            {
+                gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_MISSED;
+                if (holdEffectAtk == HOLD_EFFECT_BLUNDER_POLICY)
+                    gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
 
-            if (shouldRecalcDragonDarts)
-                AccuracyCheck(TRUE, nextInstr, failInstr, move);
+
+                if (gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+                    && !recalcDragonDarts // So we don't jump back and forth between targets
+                    && CanTargetPartner(gBattlerAttacker, battlerDef)
+                    && !TargetFullyImmuneToCurrMove(gBattlerAttacker, BATTLE_PARTNER(battlerDef)))
+                {
+                    // Smart target to partner if miss
+                    gBattlerTarget = BATTLE_PARTNER(battlerDef);
+                    gMoveResultFlags &= ~MOVE_RESULT_MISSED;
+                    AccuracyCheck(TRUE, nextInstr, failInstr, move);
+                    return;
+                }
+
+                gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
+                if (gMovesInfo[move].power)
+                    CalcTypeEffectivenessMultiplier(move, moveType, gBattlerAttacker, battlerDef, GetBattlerAbility(battlerDef), TRUE);
+            }
+            if (!calcSpreadMove)
+                break;
+
+            gBattleStruct->calculatedSpreadMoveAccuracy = TRUE;
         }
         gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
         JumpIfMoveFailed(7, move);
@@ -2067,19 +2032,17 @@ static void Cmd_critcalc(void)
 static void Cmd_damagecalc(void)
 {
     CMD_ARGS();
+    u32 moveType, moveTarget;
 
-    u8 moveType;
-    u32 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
-
-    if (gBattleStruct->calculatedDamageDone)
+    if (gBattleStruct->calculatedDamageDone && gMultiHitCounter == 0)
     {
-        gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
         gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
+    moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
 
     if (IsDoubleBattle() && IsSpreadMove(gBattlerAttacker, gCurrentMove))
     {
@@ -2105,10 +2068,8 @@ static void Cmd_damagecalc(void)
             gBattleStruct->swapDamageCategory = TRUE;
         gBattleStruct->calculatedDamage[gBattlerTarget] = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
     }
-    gBattleMoveDamage = gBattleStruct->calculatedDamage[gBattlerTarget];
+
     gMoveResultFlags |= gBattleStruct->resultFlags[gBattlerTarget];
-    // DebugPrintf("gBattleStruct->calculatedDamage[gBattlerTarget] %d", gBattleStruct->calculatedDamage[gBattlerTarget]);
-    // DebugPrintf("gBattleMoveDamage %d", gBattleMoveDamage);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -2235,7 +2196,6 @@ static void Cmd_adjustdamage(void)
         if (!calcSpreadMoveDamage)
             break;
     }
-
 
     gBattleStruct->calculatedDamageDone = TRUE;
     gMoveResultFlags = gBattleStruct->resultFlags[gBattlerTarget];
@@ -2685,6 +2645,21 @@ static void Cmd_effectivenesssound(void)
         }
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static inline bool32 ShouldPrintTwoFoesMessage(u32 moveResult)
+{
+	return gBattlerTarget == BATTLE_OPPOSITE(gBattlerAttacker)
+		&& gBattleStruct->resultFlags[BATTLE_PARTNER(gBattlerTarget)] & moveResult
+		&& !gBattleStruct->noResultString[BATTLE_PARTNER(gBattlerTarget)];
+}
+
+static inline bool32 ShouldRelyOnTwoFoesMessage(u32 moveResult)
+{
+	return gBattlerTarget == BATTLE_PARTNER(BATTLE_OPPOSITE(gBattlerAttacker))
+		&& gBattleStruct->resultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & moveResult
+		&& !(gBattleStruct->resultFlags[BATTLE_OPPOSITE(gBattlerAttacker)] & MOVE_RESULT_MISSED && gBattleStruct->missStringId[BATTLE_OPPOSITE(gBattlerAttacker)] > 2) // Partner was missed
+		&& !gBattleStruct->noResultString[BATTLE_OPPOSITE(gBattlerAttacker)];
 }
 
 static void Cmd_resultmessage(void)

@@ -804,6 +804,7 @@ struct BattleStruct
     s32 calculatedDamage[MAX_BATTLERS_COUNT];
     s32 calculatedCritChance[MAX_BATTLERS_COUNT];
     u32 resultFlags[MAX_BATTLERS_COUNT];
+    u32 missStringId[MAX_BATTLERS_COUNT];
 	u8 noResultString[MAX_BATTLERS_COUNT];
     u8 doneDoublesSpreadHit:1;
     u8 calculatedDamageDone:1;
