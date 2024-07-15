@@ -1436,7 +1436,7 @@ static void NamingScreen_CreateWaldaDadIcon(void)
 //--------------------------------------------------
 
 static bool8 KeyboardKeyHandler_Character(u8);
-static void  SwapKeyboardToLowerAfterFirstCapitalLetter(void);
+static void SwapKeyboardToLowerAfterFirstCapitalLetter(void);
 static bool8 KeyboardKeyHandler_Page(u8);
 static bool8 KeyboardKeyHandler_Backspace(u8);
 static bool8 KeyboardKeyHandler_OK(u8);
@@ -1481,7 +1481,7 @@ static bool8 KeyboardKeyHandler_Character(u8 input)
     {
         bool8 textFull = AddTextCharacter();
 
-		SwapKeyboardToLowerAfterFirstCapitalLetter();
+        SwapKeyboardToLowerAfterFirstCapitalLetter();
 
         SquishCursor();
         if (textFull)
