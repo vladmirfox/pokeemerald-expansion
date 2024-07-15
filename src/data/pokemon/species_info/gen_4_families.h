@@ -348,21 +348,21 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
     {
         .baseHP        = 53,
         .baseAttack    = 51,
-        .baseDefense   = 53,
+        .baseDefense   = 55, // 53
         .baseSpeed     = 40,
-        .baseSpAttack  = 61,
-        .baseSpDefense = 56,
+        .baseSpAttack  = 66, // 61
+        .baseSpDefense = 60, // 56
         .types = MON_TYPES(TYPE_WATER),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 63 : 66,
         .evYield_SpAttack = 1,
-        .genderRatio = PERCENT_FEMALE(12.5),
+        .genderRatio = PERCENT_FEMALE(75),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
     #if P_UPDATED_ABILITIES >= GEN_9
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_COMPETITIVE },
+        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_COMPETITIVE },
     #else
         .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_DEFIANT },
     #endif

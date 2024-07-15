@@ -10284,10 +10284,10 @@ static const struct LevelUpMove sInfernapeLevelUpLearnset[] = {
 static const struct LevelUpMove sPiplupLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_POUND),
     LEVEL_UP_MOVE( 4, MOVE_GROWL),
-    LEVEL_UP_MOVE( 8, MOVE_BUBBLE),
+    LEVEL_UP_MOVE( 5, MOVE_BUBBLE), // piplup now has bubble from the moment you receive it
     LEVEL_UP_MOVE(11, MOVE_WATER_SPORT),
-    LEVEL_UP_MOVE(15, MOVE_PECK),
-    LEVEL_UP_MOVE(18, MOVE_BUBBLE_BEAM),
+    LEVEL_UP_MOVE(12, MOVE_PECK), // learns peck a bit early to help with some of the early bug types
+    LEVEL_UP_MOVE(15, MOVE_BUBBLE_BEAM), // now learns bubble beam before evolving
     LEVEL_UP_MOVE(22, MOVE_BIDE),
     LEVEL_UP_MOVE(25, MOVE_FURY_ATTACK),
     LEVEL_UP_MOVE(29, MOVE_BRINE),

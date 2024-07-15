@@ -6,12 +6,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #if P_FAMILY_SPRIGATITO
     [SPECIES_SPRIGATITO] =
     {
-        .baseHP        = 40,
-        .baseAttack    = 61,
-        .baseDefense   = 54,
-        .baseSpeed     = 65,
-        .baseSpAttack  = 45,
-        .baseSpDefense = 45,
+        .baseHP        = 45, // 40
+        .baseAttack    = 66, // 61
+        .baseDefense   = 49, // 54
+        .baseSpeed     = 70, // 65
+        .baseSpAttack  = 50, // 45
+        .baseSpDefense = 45, // 45
         .types = MON_TYPES(TYPE_GRASS),
         .catchRate = 45,
         .expYield = 62,
