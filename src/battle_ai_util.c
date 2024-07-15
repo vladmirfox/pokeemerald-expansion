@@ -1043,6 +1043,7 @@ static u32 AI_GetEffectiveness(uq4_12_t multiplier)
 s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
 {
     s32 prioAI = 0, prioBattler = 0;
+    u32 speedBattlerAI, speedBattler;
     u32 holdEffectAI = AI_DATA->holdEffects[battlerAI];
     u32 holdEffectPlayer = AI_DATA->holdEffects[battler];
     prioAI = GetMovePriority(battlerAI, moveConsidered);
@@ -1050,8 +1051,8 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
     if (prioAI > prioBattler)
         return AI_IS_FASTER;
 
-    u32 speedBattlerAI = GetBattlerTotalSpeedStatArgs(battlerAI, AI_DATA->abilities[battlerAI], holdEffectAI);
-    u32 speedBattler   = GetBattlerTotalSpeedStatArgs(battler, AI_DATA->abilities[battler], holdEffectPlayer);
+    speedBattlerAI = GetBattlerTotalSpeedStatArgs(battlerAI, AI_DATA->abilities[battlerAI], holdEffectAI);
+    speedBattler   = GetBattlerTotalSpeedStatArgs(battler, AI_DATA->abilities[battler], holdEffectPlayer);
 
     if (holdEffectAI == HOLD_EFFECT_LAGGING_TAIL && holdEffectPlayer != HOLD_EFFECT_LAGGING_TAIL)
         return AI_IS_SLOWER;
