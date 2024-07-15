@@ -2085,19 +2085,19 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #if P_FAMILY_AUDINO
     [SPECIES_AUDINO] =
     {
-        .baseHP        = 103,
-        .baseAttack    = 60,
-        .baseDefense   = 86,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 86,
-        .types = MON_TYPES(TYPE_NORMAL),
+        .baseHP        = 103, // unchaged
+        .baseAttack    = 50, // 60
+        .baseDefense   = 100, // 86
+        .baseSpeed     = 50, // unchanged
+        .baseSpAttack  = 70, // 60
+        .baseSpDefense = 100, // 86
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_PSYCHIC),
         .catchRate = 255,
         .expYield = 390,
         .evYield_HP = 2,
         .itemCommon = ITEM_ORAN_BERRY,
         .itemRare = ITEM_SITRUS_BERRY,
-        .genderRatio = PERCENT_FEMALE(50),
+        .genderRatio = PERCENT_FEMALE(75),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
