@@ -1040,23 +1040,45 @@ static u32 AI_GetEffectiveness(uq4_12_t multiplier)
     * AI_IS_FASTER: is user(ai) faster
     * AI_IS_SLOWER: is target faster
 */
-s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler2, u32 moveConsidered)
+s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
 {
-    s8 prioAI = 0;
-    s8 prioBattler2 = 0;
+    s32 prioAI = 0, prioBattler = 0;
+    u32 holdEffectAI = AI_DATA->holdEffects[battlerAI];
+    u32 holdEffectPlayer = AI_DATA->holdEffects[battler];
     prioAI = GetMovePriority(battlerAI, moveConsidered);
 
-    if (prioAI > prioBattler2)
+    if (prioAI > prioBattler)
         return AI_IS_FASTER;
 
-    if (GetWhichBattlerFasterArgs(battlerAI, battler2, TRUE,
-                                  AI_DATA->abilities[battlerAI], AI_DATA->abilities[battler2],
-                                  AI_DATA->holdEffects[battlerAI], AI_DATA->holdEffects[battler2],
-                                  AI_DATA->speedStats[battlerAI], AI_DATA->speedStats[battler2],
-                                  prioAI, prioBattler2) == 1)
-        return AI_IS_FASTER;
-    else
+    u32 speedBattlerAI = GetBattlerTotalSpeedStatArgs(battlerAI, AI_DATA->abilities[battlerAI], holdEffectAI);
+    u32 speedBattler   = GetBattlerTotalSpeedStatArgs(battler, AI_DATA->abilities[battler], holdEffectPlayer);
+
+    if (holdEffectAI == HOLD_EFFECT_LAGGING_TAIL && holdEffectPlayer != HOLD_EFFECT_LAGGING_TAIL)
         return AI_IS_SLOWER;
+
+    if (holdEffectAI != HOLD_EFFECT_LAGGING_TAIL && holdEffectPlayer == HOLD_EFFECT_LAGGING_TAIL)
+        return AI_IS_FASTER;
+
+    if (speedBattlerAI > speedBattler)
+    {
+        if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+            return AI_IS_SLOWER;
+        else
+            return AI_IS_FASTER;
+    }
+    else if (speedBattlerAI == speedBattler)
+    {
+        return AI_IS_FASTER;
+    }
+    else
+    {
+        if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+            return AI_IS_FASTER;
+        else
+            return AI_IS_SLOWER;
+    }
+
+    return AI_IS_SLOWER;
 }
 
 // Check if target has means to faint ai mon.
