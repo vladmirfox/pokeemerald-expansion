@@ -172,18 +172,6 @@
 #define CONNECTION_DIVE     5
 #define CONNECTION_EMERGE   6
 
-#if MODERN
-#define U8_ENUM : u8
-#else
-#define U8_ENUM
-#endif
-
-#if MODERN
-#define U16_ENUM : u16
-#else
-#define U16_ENUM
-#endif
-
 #if TESTING
 #include "config/test.h"
 #endif
