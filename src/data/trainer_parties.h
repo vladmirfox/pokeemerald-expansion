@@ -3364,7 +3364,6 @@ static const struct TrainerMon sParty_Wattson1[] = {
     }
 };
 
-// Flannery's team with new Pokemon, abilities, items, and comments
 static const struct TrainerMon sParty_Flannery1[] = {
     {
         .species = SPECIES_LITLEO,
