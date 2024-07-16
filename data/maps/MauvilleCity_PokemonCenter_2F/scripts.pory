@@ -36,10 +36,10 @@ MauvilleCity_PokemonCenter_2F_Text_Youngster:
 script Custom_Givemon_Mauville{
 
     lockall
-    showmonpic(SPECIES_LARVITAR, 10,3)
-    msgbox("Do you want this Larvitar?", MSGBOX_YESNO)
+    showmonpic(SPECIES_GLIGAR, 10,3)
+    msgbox("Do you want this GLIGAR?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_LARVITAR, 10, ITEM_LUXURY_BALL)
+        givemon(SPECIES_GLIGAR, 10, ITEM_LUXURY_BALL)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Here you go!")
@@ -49,7 +49,7 @@ script Custom_Givemon_Mauville{
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Larvitar was placed in your PC.")
+            msgbox("Gligar was placed in your PC.")
             removeobject(6)
             setflag(FLAG_UNUSED_0x022)
             call(MauvilleNicknameBoxMon)

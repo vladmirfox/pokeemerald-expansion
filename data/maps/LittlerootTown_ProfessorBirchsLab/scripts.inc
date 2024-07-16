@@ -2002,3 +2002,127 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "… … … … … …\n"
 # 1002 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "… … … … … Click!$"
+
+Custom_Givemon_Littleroot::
+# 1007 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lockall
+# 1008 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	showmonpic SPECIES_HAWLUCHA, 5, 3
+# 1009 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox Custom_Givemon_Littleroot_Text_0, MSGBOX_YESNO
+# 1010 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Custom_Givemon_Littleroot_2
+# 1032 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonpic
+# 1033 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox Custom_Givemon_Littleroot_NotChosen
+Custom_Givemon_Littleroot_1:
+# 1035 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmessage
+# 1036 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	releaseall
+	end
+
+Custom_Givemon_Littleroot_2:
+# 1011 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	givemon SPECIES_HAWLUCHA, 10, ITEM_LUXURY_BALL
+# 1012 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq Custom_Givemon_Littleroot_5
+# 1019 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq Custom_Givemon_Littleroot_6
+# 1027 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonpic
+# 1028 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox Custom_Givemon_Littleroot_Text_3
+	goto Custom_Givemon_Littleroot_1
+
+Custom_Givemon_Littleroot_5:
+# 1013 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 1014 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox Custom_Givemon_Littleroot_Text_1
+# 1015 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject 5
+# 1016 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_UNUSED_0x028
+# 1017 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call NicknamePartyMon
+	goto Custom_Givemon_Littleroot_1
+
+Custom_Givemon_Littleroot_6:
+# 1020 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 1021 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox Custom_Givemon_Littleroot_Text_2
+# 1022 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject 1
+# 1023 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_UNUSED_0x028
+# 1024 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call NicknameBoxMon
+	goto Custom_Givemon_Littleroot_1
+
+
+NicknamePartyMon::
+# 1043 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+# 1044 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonpic
+# 1045 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NicknamePartyMon_1
+	return
+
+NicknamePartyMon_1:
+# 1046 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call Common_EventScript_GetGiftMonPartySlot
+# 1047 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call Common_EventScript_NameReceivedPartyMon
+	return
+
+
+NicknameBoxMon::
+# 1055 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+# 1056 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonpic
+# 1057 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq NicknameBoxMon_2
+NicknameBoxMon_1:
+# 1060 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call Common_EventScript_TransferredToPC
+	return
+
+NicknameBoxMon_2:
+# 1058 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call Common_EventScript_NameReceivedBoxMon
+	goto NicknameBoxMon_1
+
+
+Custom_Givemon_Littleroot_Text_0:
+# 1009 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Do you want this Hawlucha?$"
+
+Custom_Givemon_Littleroot_Text_1:
+# 1014 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Here you go!$"
+
+Custom_Givemon_Littleroot_Text_2:
+# 1021 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Hawlucha was placed in your PC.$"
+
+Custom_Givemon_Littleroot_Text_3:
+# 1028 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "You need to release something to get this.$"
+
+NicknamePartyMon_Text_0:
+# 1043 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Give it a nickname?$"
+
+Custom_Givemon_Littleroot_NotChosen::
+# 1064 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Guess I'll just have to use it for spells...$"

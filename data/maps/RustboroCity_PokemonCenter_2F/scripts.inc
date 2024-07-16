@@ -85,7 +85,7 @@ Custom_Givemon_Rustboro_5:
 # 35 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	setflag FLAG_UNUSED_0x020
 # 36 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	call NicknamePartyMon
+	call Rustboro_NicknamePartyMon
 	goto Custom_Givemon_Rustboro_1
 
 Custom_Givemon_Rustboro_6:
@@ -98,21 +98,21 @@ Custom_Givemon_Rustboro_6:
 # 42 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	setflag FLAG_UNUSED_0x020
 # 43 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	call NicknameBoxMon
+	call Rustboro_NicknameBoxMon
 	goto Custom_Givemon_Rustboro_1
 
 
-NicknamePartyMon::
+Rustboro_NicknamePartyMon::
 # 62 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+	msgbox Rustboro_NicknamePartyMon_Text_0, MSGBOX_YESNO
 # 63 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	hidemonpic
 # 64 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	compare VAR_RESULT, YES
-	goto_if_eq NicknamePartyMon_1
+	goto_if_eq Rustboro_NicknamePartyMon_1
 	return
 
-NicknamePartyMon_1:
+Rustboro_NicknamePartyMon_1:
 # 65 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	call Common_EventScript_GetGiftMonPartySlot
 # 66 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
@@ -120,23 +120,23 @@ NicknamePartyMon_1:
 	return
 
 
-NicknameBoxMon::
+Rustboro_NicknameBoxMon::
 # 74 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
-	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
+	msgbox Rustboro_NicknamePartyMon_Text_0, MSGBOX_YESNO
 # 75 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	hidemonpic
 # 76 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	compare VAR_RESULT, YES
-	goto_if_eq NicknameBoxMon_2
-NicknameBoxMon_1:
+	goto_if_eq Rustboro_NicknameBoxMon_2
+Rustboro_NicknameBoxMon_1:
 # 79 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	call Common_EventScript_TransferredToPC
 	return
 
-NicknameBoxMon_2:
+Rustboro_NicknameBoxMon_2:
 # 77 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	call Common_EventScript_NameReceivedBoxMon
-	goto NicknameBoxMon_1
+	goto Rustboro_NicknameBoxMon_1
 
 
 Custom_Givemon_Rustboro_Text_0:
@@ -155,7 +155,7 @@ Custom_Givemon_Rustboro_Text_3:
 # 47 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	.string "You need to release something to get this.$"
 
-NicknamePartyMon_Text_0:
+Rustboro_NicknamePartyMon_Text_0:
 # 62 "data/maps/RustboroCity_PokemonCenter_2F/scripts.pory"
 	.string "Give it a nickname?$"
 

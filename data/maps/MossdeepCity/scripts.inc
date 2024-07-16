@@ -868,3 +868,127 @@ MossdeepCity_Text_SootopolisNewGymLeader:
 	.string "People tell me the new LEADER once\n"
 # 435 "data/maps/MossdeepCity/scripts.pory"
 	.string "mentored WALLACE.$"
+
+Custom_Givemon_Mossdeep::
+# 441 "data/maps/MossdeepCity/scripts.pory"
+	lockall
+# 442 "data/maps/MossdeepCity/scripts.pory"
+	showmonpic SPECIES_MISDREAVUS, 10, 3
+# 443 "data/maps/MossdeepCity/scripts.pory"
+	msgbox Custom_Givemon_Mossdeep_Text_0, MSGBOX_YESNO
+# 444 "data/maps/MossdeepCity/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq Custom_Givemon_Mossdeep_2
+# 466 "data/maps/MossdeepCity/scripts.pory"
+	hidemonpic
+# 467 "data/maps/MossdeepCity/scripts.pory"
+	msgbox Custom_Givemon_Mossdeep_NotChosen
+Custom_Givemon_Mossdeep_1:
+# 469 "data/maps/MossdeepCity/scripts.pory"
+	waitmessage
+# 470 "data/maps/MossdeepCity/scripts.pory"
+	releaseall
+	end
+
+Custom_Givemon_Mossdeep_2:
+# 445 "data/maps/MossdeepCity/scripts.pory"
+	givemon SPECIES_MISDREAVUS, 10, ITEM_LUXURY_BALL
+# 446 "data/maps/MossdeepCity/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq Custom_Givemon_Mossdeep_5
+# 453 "data/maps/MossdeepCity/scripts.pory"
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq Custom_Givemon_Mossdeep_6
+# 461 "data/maps/MossdeepCity/scripts.pory"
+	hidemonpic
+# 462 "data/maps/MossdeepCity/scripts.pory"
+	msgbox Custom_Givemon_Mossdeep_Text_3
+	goto Custom_Givemon_Mossdeep_1
+
+Custom_Givemon_Mossdeep_5:
+# 447 "data/maps/MossdeepCity/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 448 "data/maps/MossdeepCity/scripts.pory"
+	msgbox Custom_Givemon_Mossdeep_Text_1
+# 449 "data/maps/MossdeepCity/scripts.pory"
+	removeobject 5
+# 450 "data/maps/MossdeepCity/scripts.pory"
+	setflag FLAG_UNUSED_0x026
+# 451 "data/maps/MossdeepCity/scripts.pory"
+	call MossdeepNicknamePartyMon
+	goto Custom_Givemon_Mossdeep_1
+
+Custom_Givemon_Mossdeep_6:
+# 454 "data/maps/MossdeepCity/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 455 "data/maps/MossdeepCity/scripts.pory"
+	msgbox Custom_Givemon_Mossdeep_Text_2
+# 456 "data/maps/MossdeepCity/scripts.pory"
+	removeobject 5
+# 457 "data/maps/MossdeepCity/scripts.pory"
+	setflag FLAG_UNUSED_0x026
+# 458 "data/maps/MossdeepCity/scripts.pory"
+	call MossdeepNicknameBoxMon
+	goto Custom_Givemon_Mossdeep_1
+
+
+MossdeepNicknamePartyMon::
+# 477 "data/maps/MossdeepCity/scripts.pory"
+	msgbox MossdeepNicknamePartyMon_Text_0, MSGBOX_YESNO
+# 478 "data/maps/MossdeepCity/scripts.pory"
+	hidemonpic
+# 479 "data/maps/MossdeepCity/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq MossdeepNicknamePartyMon_1
+	return
+
+MossdeepNicknamePartyMon_1:
+# 480 "data/maps/MossdeepCity/scripts.pory"
+	call Common_EventScript_GetGiftMonPartySlot
+# 481 "data/maps/MossdeepCity/scripts.pory"
+	call Common_EventScript_NameReceivedPartyMon
+	return
+
+
+MossdeepNicknameBoxMon::
+# 489 "data/maps/MossdeepCity/scripts.pory"
+	msgbox MossdeepNicknamePartyMon_Text_0, MSGBOX_YESNO
+# 490 "data/maps/MossdeepCity/scripts.pory"
+	hidemonpic
+# 491 "data/maps/MossdeepCity/scripts.pory"
+	compare VAR_RESULT, YES
+	goto_if_eq MossdeepNicknameBoxMon_2
+MossdeepNicknameBoxMon_1:
+# 494 "data/maps/MossdeepCity/scripts.pory"
+	call Common_EventScript_TransferredToPC
+	return
+
+MossdeepNicknameBoxMon_2:
+# 492 "data/maps/MossdeepCity/scripts.pory"
+	call Common_EventScript_NameReceivedBoxMon
+	goto MossdeepNicknameBoxMon_1
+
+
+Custom_Givemon_Mossdeep_Text_0:
+# 443 "data/maps/MossdeepCity/scripts.pory"
+	.string "Do you want this Misdreavus?$"
+
+Custom_Givemon_Mossdeep_Text_1:
+# 448 "data/maps/MossdeepCity/scripts.pory"
+	.string "Here you go!$"
+
+Custom_Givemon_Mossdeep_Text_2:
+# 455 "data/maps/MossdeepCity/scripts.pory"
+	.string "Misdreavus was placed in your PC.$"
+
+Custom_Givemon_Mossdeep_Text_3:
+# 462 "data/maps/MossdeepCity/scripts.pory"
+	.string "You need to release something to get this.$"
+
+MossdeepNicknamePartyMon_Text_0:
+# 477 "data/maps/MossdeepCity/scripts.pory"
+	.string "Give it a nickname?$"
+
+Custom_Givemon_Mossdeep_NotChosen::
+# 498 "data/maps/MossdeepCity/scripts.pory"
+	.string "Guess I'll just have to use it for spells...$"

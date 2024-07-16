@@ -33,14 +33,14 @@ script Custom_Givemon_Rustboro{
             msgbox("Here you go!")
             removeobject(5)
             setflag(FLAG_UNUSED_0x020)
-            call(NicknamePartyMon)
+            call(Rustboro_NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Eevee was placed in your PC.")
             removeobject(1)
             setflag(FLAG_UNUSED_0x020)
-            call(NicknameBoxMon)
+            call(Rustboro_NicknameBoxMon)
         }
         else{
             hidemonpic
@@ -57,7 +57,7 @@ script Custom_Givemon_Rustboro{
 
 }
 
-script NicknamePartyMon{
+script Rustboro_NicknamePartyMon{
 
     msgbox("Give it a nickname?", MSGBOX_YESNO)
     hidemonpic
@@ -69,7 +69,7 @@ script NicknamePartyMon{
 
 }
 
-script NicknameBoxMon{
+script Rustboro_NicknameBoxMon{
 
     msgbox("Give it a nickname?", MSGBOX_YESNO)
     hidemonpic

@@ -1001,3 +1001,66 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 `
+
+script Custom_Givemon_Littleroot{
+
+    lockall
+    showmonpic(SPECIES_HAWLUCHA, 5,3)
+    msgbox("Do you want this Hawlucha?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_HAWLUCHA, 10, ITEM_LUXURY_BALL)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Here you go!")
+            removeobject(5)
+            setflag(FLAG_UNUSED_0x028)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Hawlucha was placed in your PC.")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x028)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("You need to release something to get this.")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox(Custom_Givemon_Littleroot_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+
+}
+
+script NicknamePartyMon{
+
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+
+
+}
+
+script NicknameBoxMon{
+
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    call(Common_EventScript_TransferredToPC)
+
+}
+
+text Custom_Givemon_Littleroot_NotChosen{
+    "Guess I'll just have to use it for spells..."
+}
