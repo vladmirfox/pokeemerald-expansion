@@ -122,6 +122,25 @@ SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes"
     }
 }
 
+SINGLE_BATTLE_TEST("Opportunist copies each stat increase individually from ability and move")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
+    } WHEN {
+        TURN { SWITCH(player, 1); }
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_INTREPID_SWORD);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, player);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 3);
+    }
+}
+
 SINGLE_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist")
 {
     GIVEN {
@@ -192,6 +211,7 @@ DOUBLE_BATTLE_TEST("Opportunist copies the stat increase of each opposing mon")
     }
 }
 
+
 DOUBLE_BATTLE_TEST("Opportunist copies the stat of each pokemon that were raised at the same time")
 {
     GIVEN {
@@ -257,22 +277,18 @@ SINGLE_BATTLE_TEST("Opportunist copies the stat increase from the incoming mon")
     }
 }
 
-
-DOUBLE_BATTLE_TEST("1 Opportunist")
+SINGLE_BATTLE_TEST("Opportunist and Mirror Herb stack stat increases")
 {
     GIVEN {
-        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_INTIMIDATE); }
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
-        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); Item(ITEM_EJECT_PACK); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+        PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); Item(ITEM_MIRROR_HERB); }
     } WHEN {
-        TURN { SEND_OUT(opponentLeft, 2); }
+        TURN { }
     } SCENE {
-        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
-        ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
-        ABILITY_POPUP(playerRight, ABILITY_OPPORTUNIST);
+        ABILITY_POPUP(player, ABILITY_INTREPID_SWORD);
+        ABILITY_POPUP(opponent, ABILITY_OPPORTUNIST);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
     } THEN {
-
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
     }
 }
