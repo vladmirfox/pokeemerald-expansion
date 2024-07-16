@@ -17023,7 +17023,11 @@ void BS_CopyFoesStatIncrease(void)
 
     if (gQueuedStatBoosts[battler].stats == 0)
     {
-        gQueuedStatBoosts[battler].stats = 0xFF;
+        for (stat = 0; stat < (NUM_BATTLE_STATS - 1); stat++)
+        {
+            if (gQueuedStatBoosts[battler].statChanges[stat] != 0)
+                gQueuedStatBoosts[battler].stats |= (1 << stat);
+        }
         gBattlescriptCurrInstr = cmd->jumpInstr;
         return;
     }
