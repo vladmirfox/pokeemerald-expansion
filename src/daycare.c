@@ -1061,8 +1061,8 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     fatherEggSpecies = GetEggSpecies(species[parentSlots[1]]);
     hasMotherEverstone = ItemId_GetHoldEffect(GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM)) == HOLD_EFFECT_PREVENT_EVOLVE;
     hasFatherEverstone = ItemId_GetHoldEffect(GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM)) == HOLD_EFFECT_PREVENT_EVOLVE;
-    motherIsForeign = IsSpeciesForeignRegionalForm(motherEggSpecies);
-    fatherIsForeign = IsSpeciesForeignRegionalForm(fatherEggSpecies);
+    motherIsForeign = IsSpeciesForeignRegionalForm(motherEggSpecies, REGION_CURRENT);
+    fatherIsForeign = IsSpeciesForeignRegionalForm(fatherEggSpecies, REGION_CURRENT);
 
     if (motherIsForeign && hasMotherEverstone)
         parentSpecies = motherEggSpecies;
