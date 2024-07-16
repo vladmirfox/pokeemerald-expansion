@@ -6588,7 +6588,7 @@ u16 GetRegionalForm(u32 species, u32 region)
             if ((gSpeciesInfo[foundSpecies].isAlolanForm   && region == REGION_ALOLA)
              || (gSpeciesInfo[foundSpecies].isGalarianForm && region == REGION_GALAR)
              || (gSpeciesInfo[foundSpecies].isHisuianForm  && region == REGION_HISUI)
-             || (gSpeciesInfo[foundSpecies].isGalarianForm && region == REGION_GALAR))
+             || (gSpeciesInfo[foundSpecies].isPaldeanForm  && region == REGION_PALDEA))
                 return foundSpecies;
         }
     }
@@ -6600,7 +6600,7 @@ bool32 IsSpeciesForeignRegionalForm(u32 species)
     if ((gSpeciesInfo[species].isAlolanForm   && REGION_CURRENT != REGION_ALOLA)
      || (gSpeciesInfo[species].isGalarianForm && REGION_CURRENT != REGION_GALAR)
      || (gSpeciesInfo[species].isHisuianForm  && REGION_CURRENT != REGION_HISUI)
-     || (gSpeciesInfo[species].isGalarianForm && REGION_CURRENT != REGION_GALAR))
+     || (gSpeciesInfo[species].isPaldeanForm  && REGION_CURRENT != REGION_PALDEA))
         return TRUE;
     return FALSE;
 }
