@@ -25,7 +25,7 @@ Optional (but still recommended) fields for trainers:
           see "constants/battle_ai.h" for all flags)
     - Mugshot (enable Mugshots during battle transition
                set to one of Purple, Green, Pink, Blue or Yellow)
-    - Starting Status (see include/constants/battle.h for values) 
+    - Starting Status (see include/constants/battle.h for values)
 
 Pokemon are then speficied using the Showdown Export format
 If a field is not specified, it will use it's default value.
@@ -38,7 +38,7 @@ Required fields for Pokemon
       Both lines are valid, gender (M) or (F) must be capital letters.
       Nickname length is limited to 10 characters using standard letters.
       With narrow font it's increased to 12, longer strings will be silently shortened.
-      
+
 Optional fields for Pokemon
     - Level (Number between 1 and 100, defaults to 100)
     - Ability (Ability Name or ABILITY_ABILITY_NAME)
