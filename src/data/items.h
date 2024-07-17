@@ -11862,7 +11862,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("ScrllOfDrknss"),
         .pluralName = _("ScrllsOfDrknss"),
-        .price = 0,
+        .price = 10000,
         .description = COMPOUND_STRING(
             "A peculiar scroll\n"
             "with secrets of\n"
@@ -11878,7 +11878,7 @@ const struct Item gItemsInfo[] =
     {
         .name = _("ScrollOfWatrs"),
         .pluralName = _("ScrollsOfWatrs"),
-        .price = 0,
+        .price = 10000,
         .description = COMPOUND_STRING(
             "A peculiar scroll\n"
             "with secrets of\n"
