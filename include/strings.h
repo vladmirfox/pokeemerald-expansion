@@ -520,91 +520,7 @@ extern const u8 gText_Son[];
 extern const u8 gText_Daughter[];
 
 // Multichoice strings
-extern const u8 gText_Exit[];
-extern const u8 gText_1F[];
-extern const u8 gText_2F[];
-extern const u8 gText_3F[];
-extern const u8 gText_4F[];
-extern const u8 gText_5F[];
-extern const u8 gText_6F[];
-extern const u8 gText_7F[];
-extern const u8 gText_8F[];
-extern const u8 gText_9F[];
-extern const u8 gText_10F[];
-extern const u8 gText_11F[];
-extern const u8 gText_B1F[];
-extern const u8 gText_B2F[];
-extern const u8 gText_B3F[];
-extern const u8 gText_B4F[];
-extern const u8 gText_Rooftop[];
 extern const u8 gText_ElevatorNowOn[];
-
-extern const u8 gText_BlueFlute[];
-extern const u8 gText_YellowFlute[];
-extern const u8 gText_RedFlute[];
-extern const u8 gText_WhiteFlute[];
-extern const u8 gText_BlackFlute[];
-extern const u8 gText_PrettyChair[];
-extern const u8 gText_PrettyDesk[];
-
-extern const u8 gText_0Pts[];
-extern const u8 gText_10Pts[];
-extern const u8 gText_20Pts[];
-extern const u8 gText_30Pts[];
-extern const u8 gText_40Pts[];
-extern const u8 gText_50Pts[];
-extern const u8 gText_60Pts[];
-extern const u8 gText_70Pts[];
-extern const u8 gText_80Pts[];
-extern const u8 gText_90Pts[];
-extern const u8 gText_100Pts[];
-extern const u8 gText_QuestionMark[];
-
-extern const u8 gText_KissPoster16BP[];
-extern const u8 gText_KissCushion32BP[];
-extern const u8 gText_SmoochumDoll32BP[];
-extern const u8 gText_TogepiDoll48BP[];
-extern const u8 gText_MeowthDoll48BP[];
-extern const u8 gText_ClefairyDoll48BP[];
-extern const u8 gText_DittoDoll48BP[];
-extern const u8 gText_CyndaquilDoll80BP[];
-extern const u8 gText_ChikoritaDoll80BP[];
-extern const u8 gText_TotodileDoll80BP[];
-
-extern const u8 gText_LaprasDoll128BP[];
-extern const u8 gText_SnorlaxDoll128BP[];
-extern const u8 gText_VenusaurDoll256BP[];
-extern const u8 gText_CharizardDoll256BP[];
-extern const u8 gText_BlastoiseDoll256BP[];
-
-extern const u8 gText_Protein1BP[];
-extern const u8 gText_Calcium1BP[];
-extern const u8 gText_Iron1BP[];
-extern const u8 gText_Zinc1BP[];
-extern const u8 gText_Carbos1BP[];
-extern const u8 gText_HpUp1BP[];
-
-extern const u8 gText_Leftovers48BP[];
-extern const u8 gText_WhiteHerb48BP[];
-extern const u8 gText_QuickClaw48BP[];
-extern const u8 gText_MentalHerb48BP[];
-extern const u8 gText_BrightPowder64BP[];
-extern const u8 gText_ChoiceBand64BP[];
-extern const u8 gText_KingsRock64BP[];
-extern const u8 gText_FocusBand64BP[];
-extern const u8 gText_ScopeLens64BP[];
-
-extern const u8 gText_EnergyPowder50[];
-extern const u8 gText_EnergyRoot80[];
-extern const u8 gText_HealPowder50[];
-extern const u8 gText_RevivalHerb300[];
-extern const u8 gText_Protein1000[];
-extern const u8 gText_Iron1000[];
-extern const u8 gText_Carbos1000[];
-extern const u8 gText_Calcium1000[];
-extern const u8 gText_Zinc1000[];
-extern const u8 gText_HPUp1000[];
-extern const u8 gText_PPUp3000[];
 
 extern const u8 gText_BattleTower2[];
 extern const u8 gText_BattleDome[];
@@ -615,28 +531,6 @@ extern const u8 gText_BattlePike[];
 extern const u8 gText_BattlePyramid[];
 extern const u8 gText_RankingHall[];
 extern const u8 gText_ExchangeService[];
-
-// Battle Frontier Move Tutors
-extern const u8 gText_Softboiled16BP[];
-extern const u8 gText_SeismicToss24BP[];
-extern const u8 gText_DreamEater24BP[];
-extern const u8 gText_MegaPunch24BP[];
-extern const u8 gText_MegaKick48BP[];
-extern const u8 gText_BodySlam48BP[];
-extern const u8 gText_RockSlide48BP[];
-extern const u8 gText_Counter48BP[];
-extern const u8 gText_ThunderWave48BP[];
-extern const u8 gText_SwordsDance48BP[];
-extern const u8 gText_DefenseCurl16BP[];
-extern const u8 gText_Snore24BP[];
-extern const u8 gText_MudSlap24BP[];
-extern const u8 gText_Swift24BP[];
-extern const u8 gText_IcyWind24BP[];
-extern const u8 gText_Endure48BP[];
-extern const u8 gText_PsychUp48BP[];
-extern const u8 gText_IcePunch48BP[];
-extern const u8 gText_ThunderPunch48BP[];
-extern const u8 gText_FirePunch48BP[];
 
 extern const u8 gText_SlateportCity[];
 extern const u8 gText_BattleFrontier[];
