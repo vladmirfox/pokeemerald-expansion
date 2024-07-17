@@ -148,7 +148,6 @@ static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
 static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer);
 #endif //FREE_LINK_BATTLE_RECORDS
 
-static const u8 gText_ElevatorNowOn[] = _("Now on:");
 static const u8 gText_BigGuy[] = _("Big guy");
 static const u8 gText_BigGirl[] = _("Big girl");
 static const u8 gText_Son[] = _("son");
@@ -1722,22 +1721,22 @@ static const struct WindowTemplate sWindowTemplate_ElevatorFloor =
 
 static const u8 *const sDeptStoreFloorNames[] =
 {
-    [DEPT_STORE_FLOORNUM_B4F]     = COMPOUND_STRING("1F"),
-    [DEPT_STORE_FLOORNUM_B3F]     = COMPOUND_STRING("2F"),
-    [DEPT_STORE_FLOORNUM_B2F]     = COMPOUND_STRING("3F"),
-    [DEPT_STORE_FLOORNUM_B1F]     = COMPOUND_STRING("4F"),
-    [DEPT_STORE_FLOORNUM_1F]      = COMPOUND_STRING("5F"),
-    [DEPT_STORE_FLOORNUM_2F]      = COMPOUND_STRING("6F"),
-    [DEPT_STORE_FLOORNUM_3F]      = COMPOUND_STRING("7F"),
-    [DEPT_STORE_FLOORNUM_4F]      = COMPOUND_STRING("8F"),
-    [DEPT_STORE_FLOORNUM_5F]      = COMPOUND_STRING("9F"),
-    [DEPT_STORE_FLOORNUM_6F]      = COMPOUND_STRING("10F"),
-    [DEPT_STORE_FLOORNUM_7F]      = COMPOUND_STRING("11F"),
-    [DEPT_STORE_FLOORNUM_8F]      = COMPOUND_STRING("B1F"),
-    [DEPT_STORE_FLOORNUM_9F]      = COMPOUND_STRING("B2F"),
-    [DEPT_STORE_FLOORNUM_10F]     = COMPOUND_STRING("B3F"),
-    [DEPT_STORE_FLOORNUM_11F]     = COMPOUND_STRING("B4F"),
-    [DEPT_STORE_FLOORNUM_ROOFTOP] = COMPOUND_STRING("ROOFTOP")
+    [DEPT_STORE_FLOORNUM_B4F] = gText_B4F,
+    [DEPT_STORE_FLOORNUM_B3F] = gText_B3F,
+    [DEPT_STORE_FLOORNUM_B2F] = gText_B2F,
+    [DEPT_STORE_FLOORNUM_B1F] = gText_B1F,
+    [DEPT_STORE_FLOORNUM_1F] = gText_1F,
+    [DEPT_STORE_FLOORNUM_2F] = gText_2F,
+    [DEPT_STORE_FLOORNUM_3F] = gText_3F,
+    [DEPT_STORE_FLOORNUM_4F] = gText_4F,
+    [DEPT_STORE_FLOORNUM_5F] = gText_5F,
+    [DEPT_STORE_FLOORNUM_6F] = gText_6F,
+    [DEPT_STORE_FLOORNUM_7F] = gText_7F,
+    [DEPT_STORE_FLOORNUM_8F] = gText_8F,
+    [DEPT_STORE_FLOORNUM_9F] = gText_9F,
+    [DEPT_STORE_FLOORNUM_10F] = gText_10F,
+    [DEPT_STORE_FLOORNUM_11F] = gText_11F,
+    [DEPT_STORE_FLOORNUM_ROOFTOP] = gText_Rooftop
 };
 
 static const u16 sElevatorWindowTiles_Ascending[ELEVATOR_WINDOW_HEIGHT][ELEVATOR_LIGHT_STAGES] =
