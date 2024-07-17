@@ -460,9 +460,9 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 
     [SPECIES_EMPOLEON] =
     {
-        .baseHP        = 84,
+        .baseHP        = 85, // 85
         .baseAttack    = 86,
-        .baseDefense   = 88,
+        .baseDefense   = 88, // 88
         .baseSpeed     = 60,
         .baseSpAttack  = 111,
         .baseSpDefense = 101,

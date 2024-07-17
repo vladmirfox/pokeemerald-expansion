@@ -331,12 +331,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
 
     [SPECIES_INCINEROAR] =
     {
-        .baseHP        = 95,
+        .baseHP        = 80,
         .baseAttack    = 115,
-        .baseDefense   = 90,
-        .baseSpeed     = 60,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 90,
+        .baseDefense   = 65,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 65,
         .types = MON_TYPES(TYPE_FIRE, TYPE_DARK),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 265 : 239,
