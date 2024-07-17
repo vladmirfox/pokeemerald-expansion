@@ -1627,6 +1627,61 @@ Custom_Dewford_EventScript_GymInfo::
 	return
 
 
+Dewford_Black_Mart::
+# 820 "data/maps/DewfordTown/scripts.pory"
+	lock
+# 821 "data/maps/DewfordTown/scripts.pory"
+	faceplayer
+# 822 "data/maps/DewfordTown/scripts.pory"
+	message Dewford_Black_Mart_Text_0
+# 823 "data/maps/DewfordTown/scripts.pory"
+	message Dewford_Black_Mart_Text_1
+# 824 "data/maps/DewfordTown/scripts.pory"
+	waitmessage
+# 825 "data/maps/DewfordTown/scripts.pory"
+	pokemart Dewford_Inventory
+# 826 "data/maps/DewfordTown/scripts.pory"
+	msgbox Dewford_Black_Mart_Text_2
+# 827 "data/maps/DewfordTown/scripts.pory"
+	release
+	end
+
+
+# 831 "data/maps/DewfordTown/scripts.pory"
+
+# 832 "data/maps/DewfordTown/scripts.pory"
+
+# 833 "data/maps/DewfordTown/scripts.pory"
+.align 2
+# 834 "data/maps/DewfordTown/scripts.pory"
+Dewford_Inventory::
+# 835 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_RARE_CANDY
+# 836 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_FIGY_BERRY
+# 837 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_IAPAPA_BERRY
+# 838 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_WIKI_BERRY
+# 839 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_AGUAV_BERRY
+# 840 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_FIGY_BERRY
+# 841 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_SHINY_STONE
+# 842 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_DAWN_STONE
+# 843 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_SHELL_BELL
+# 844 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_CHOICE_SCARF
+# 845 "data/maps/DewfordTown/scripts.pory"
+	.2byte ITEM_NONE
+# 846 "data/maps/DewfordTown/scripts.pory"
+	release
+# 847 "data/maps/DewfordTown/scripts.pory"
+	end
+
 Custom_Dewford_EventScript_GymInfo_Text_0:
 # 809 "data/maps/DewfordTown/scripts.pory"
 	.string "Good job reaching your second gym\n"
@@ -1661,3 +1716,15 @@ Custom_Dewford_EventScript_GymInfo_Text_4:
 Custom_Dewford_EventScript_GymInfo_Text_5:
 # 814 "data/maps/DewfordTown/scripts.pory"
 	.string "Goodluck!$"
+
+Dewford_Black_Mart_Text_0:
+# 822 "data/maps/DewfordTown/scripts.pory"
+	.string "Welcome to the Dewford blackmarket!\n$"
+
+Dewford_Black_Mart_Text_1:
+# 823 "data/maps/DewfordTown/scripts.pory"
+	.string "How can I help you?$"
+
+Dewford_Black_Mart_Text_2:
+# 826 "data/maps/DewfordTown/scripts.pory"
+	.string "See you soon...$"

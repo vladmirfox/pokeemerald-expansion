@@ -2623,6 +2623,57 @@ Custom_RustboroCity_EventScript_GymInfo::
 	return
 
 
+Rustboro_Black_Mart::
+# 1317 "data/maps/RustboroCity/scripts.pory"
+	lock
+# 1318 "data/maps/RustboroCity/scripts.pory"
+	faceplayer
+# 1319 "data/maps/RustboroCity/scripts.pory"
+	message Rustboro_Black_Mart_Text_0
+# 1320 "data/maps/RustboroCity/scripts.pory"
+	message Rustboro_Black_Mart_Text_1
+# 1321 "data/maps/RustboroCity/scripts.pory"
+	waitmessage
+# 1322 "data/maps/RustboroCity/scripts.pory"
+	pokemart Rustboro_Inventory
+# 1323 "data/maps/RustboroCity/scripts.pory"
+	msgbox Rustboro_Black_Mart_Text_2
+# 1324 "data/maps/RustboroCity/scripts.pory"
+	release
+	end
+
+
+# 1328 "data/maps/RustboroCity/scripts.pory"
+
+# 1329 "data/maps/RustboroCity/scripts.pory"
+
+# 1330 "data/maps/RustboroCity/scripts.pory"
+.align 2
+# 1331 "data/maps/RustboroCity/scripts.pory"
+Rustboro_Inventory::
+# 1332 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_RARE_CANDY
+# 1333 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_FIGY_BERRY
+# 1334 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_IAPAPA_BERRY
+# 1335 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_WIKI_BERRY
+# 1336 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_AGUAV_BERRY
+# 1337 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_FIGY_BERRY
+# 1338 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_FOCUS_SASH
+# 1339 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_WATER_STONE
+# 1340 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_NONE
+# 1341 "data/maps/RustboroCity/scripts.pory"
+	release
+# 1342 "data/maps/RustboroCity/scripts.pory"
+	end
+
 Custom_RustboroCity_EventScript_GymInfo_Text_0:
 # 1305 "data/maps/RustboroCity/scripts.pory"
 	.string "Good job reaching your first gym\n"
@@ -2667,3 +2718,15 @@ Custom_RustboroCity_EventScript_GymInfo_Text_6:
 Custom_RustboroCity_EventScript_GymInfo_Text_7:
 # 1312 "data/maps/RustboroCity/scripts.pory"
 	.string "Goodluck!$"
+
+Rustboro_Black_Mart_Text_0:
+# 1319 "data/maps/RustboroCity/scripts.pory"
+	.string "Welcome to the Rustboro blackmarket!\n$"
+
+Rustboro_Black_Mart_Text_1:
+# 1320 "data/maps/RustboroCity/scripts.pory"
+	.string "How can I help you?$"
+
+Rustboro_Black_Mart_Text_2:
+# 1323 "data/maps/RustboroCity/scripts.pory"
+	.string "See you soon...$"

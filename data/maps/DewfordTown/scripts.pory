@@ -814,3 +814,36 @@ script Custom_Dewford_EventScript_GymInfo {
        msgbox(format("Goodluck!"))
        releaseall
 }
+
+
+script Dewford_Black_Mart{
+    lock
+    faceplayer
+    message("Welcome to the Dewford blackmarket!\n")
+	message("How can I help you?")
+    waitmessage
+    pokemart(Dewford_Inventory)
+    msgbox("See you soon...")
+    release
+    end
+}
+
+raw`
+
+.align 2
+Dewford_Inventory::
+	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_IAPAPA_BERRY
+	.2byte ITEM_WIKI_BERRY
+	.2byte ITEM_AGUAV_BERRY
+	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_SHINY_STONE
+	.2byte ITEM_DAWN_STONE
+	.2byte ITEM_SHELL_BELL
+	.2byte ITEM_CHOICE_SCARF
+	.2byte ITEM_NONE
+	release
+	end
+
+`
