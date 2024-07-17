@@ -194,4 +194,4 @@ Oldale_Black_Mart_Text_1:
 
 Oldale_Black_Mart_Text_2:
 # 84 "data/maps/OldaleTown_Mart/scripts.pory"
-	.string "Please Come Again.$"
+	.string "See you soon...$"

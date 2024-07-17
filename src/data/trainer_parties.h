@@ -3341,7 +3341,7 @@ static const struct TrainerMon sParty_Wattson1[] = {
         .heldItem = ITEM_BERRY_JUICE,  // Provides a small amount of healing
         .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
         .lvl = 25,
-        .moves = {MOVE_SLACK_OFF, MOVE_SPARK, MOVE_MUD_SHOT, MOVE_CHARGE},
+        .moves = {MOVE_SLACK_OFF, MOVE_SPARK, MOVE_TACKLE, MOVE_CHARGE},
         .nature = NATURE_MODEST,  // Bellibolt benefits from increased Special Attack
     },
     {
@@ -3350,7 +3350,7 @@ static const struct TrainerMon sParty_Wattson1[] = {
         .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
         .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
         .lvl = 24,
-        .moves = {MOVE_NUZZLE, MOVE_BELCH, MOVE_ACID, MOVE_FLAIL},
+        .moves = {MOVE_NUZZLE, MOVE_SUBSTITUTE, MOVE_ACID, MOVE_FLAIL},
         .nature = NATURE_TIMID,  // Toxel benefits from increased Speed
     },
     {
@@ -3359,7 +3359,7 @@ static const struct TrainerMon sParty_Wattson1[] = {
         .heldItem = ITEM_LIGHT_BALL,  // Doubles Raichu's Attack and Special Attack
         .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
         .lvl = 26,
-        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_IRON_TAIL},
+        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_CHARM},
         .nature = NATURE_TIMID,  // Raichu benefits from increased Speed
     }
 };
@@ -3380,7 +3380,7 @@ static const struct TrainerMon sParty_Flannery1[] = {
         .ability = ABILITY_SHELL_ARMOR,  // Prevents critical hits
         .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
         .lvl = 28,
-        .moves = {MOVE_ENDURE, MOVE_INCINERATE, MOVE_IRON_DEFENSE, MOVE_REST},
+        .moves = {MOVE_ENDURE, MOVE_INCINERATE, MOVE_IRON_DEFENSE, MOVE_SUNNY_DAY},
         .nature = NATURE_RELAXED,  // Turtonator benefits from increased Defense
     },
     {
@@ -3421,7 +3421,6 @@ static const struct TrainerMon sParty_Flannery1[] = {
     }
 };
 
-// Norman's team with new Pokemon, abilities, items, and comments
 static const struct TrainerMon sParty_Norman1[] = {
     {
         .species = SPECIES_DITTO,
