@@ -148,6 +148,16 @@ static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
 static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer);
 #endif //FREE_LINK_BATTLE_RECORDS
 
+static const u8 gText_ElevatorNowOn[] = _("Now on:");
+static const u8 gText_BigGuy[] = _("Big guy");
+static const u8 gText_BigGirl[] = _("Big girl");
+static const u8 gText_Son[] = _("son");
+static const u8 gText_Daughter[] = _("daughter");
+static const u8 gText_99TimesPlus[] = _("99 times +");
+static const u8 gText_1MinutePlus[] = _("1 minute +");
+static const u8 gText_SpaceSeconds[] = _(" seconds");
+static const u8 gText_SpaceTimes[] = _(" time(s)");
+
 void Special_ShowDiploma(void)
 {
     SetMainCallback2(CB2_ShowDiploma);

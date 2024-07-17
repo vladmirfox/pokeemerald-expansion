@@ -509,19 +509,7 @@ extern const u8 gText_HealthboxGender_None[];
 extern const u8 gText_HealthboxGender_Male[];
 extern const u8 gText_HealthboxGender_Female[];
 
-extern const u8 gText_99TimesPlus[];
-extern const u8 gText_1MinutePlus[];
-extern const u8 gText_SpaceSeconds[];
-extern const u8 gText_SpaceTimes[];
-
-extern const u8 gText_BigGuy[];
-extern const u8 gText_BigGirl[];
-extern const u8 gText_Son[];
-extern const u8 gText_Daughter[];
-
 // Multichoice strings
-extern const u8 gText_ElevatorNowOn[];
-
 extern const u8 gText_BattleTower2[];
 extern const u8 gText_BattleDome[];
 extern const u8 gText_BattlePalace[];
