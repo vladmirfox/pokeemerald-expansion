@@ -512,7 +512,7 @@ $(ROM): $(ELF)
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:
-	@echo "'make agbcc' is deprecated as of Expansion 1.9 and will likely be removed in Expansion 1.10"
+	@echo "'make agbcc' is deprecated as of pokeemerald-expansion 1.9 and will be removed in 1.10"
 	@echo "search for 'agbcc: all' in Makefile to reenable agbcc"
 	@exit 1
 
