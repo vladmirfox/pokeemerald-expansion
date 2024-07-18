@@ -691,3 +691,24 @@ void DACSHandle(void)
     ReinitCallbacks();
     DACS_LR = ((uintptr_t)JumpToAgbMainLoop & ~1) + 4;
 }
+
+static const struct Test *GetTest(void)
+{
+    const struct Test *test = gTestRunnerState.test;
+    return test;
+}
+
+u32 SourceLine(u32 sourceLineOffset)
+{
+    const struct Test *test = GetTest();
+    return test->sourceLine + sourceLineOffset;
+}
+
+u32 SourceLineOffset(u32 sourceLine)
+{
+    const struct Test *test = GetTest();
+    if (sourceLine - test->sourceLine > 0xFF)
+        return 0;
+    else
+        return sourceLine - test->sourceLine;
+}

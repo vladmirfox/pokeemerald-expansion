@@ -33,6 +33,7 @@ struct Test
     const char *filename;
     const struct TestRunner *runner;
     void *data;
+    u16 sourceLine;
 };
 
 struct TestRunnerState
@@ -74,6 +75,8 @@ void CB2_TestRunner(void);
 void Test_ExpectedResult(enum TestResult);
 void Test_ExpectLeaks(bool32);
 void Test_ExitWithResult(enum TestResult, const char *fmt, ...);
+u32 SourceLine(u32 sourceLineOffset);
+u32 SourceLineOffset(u32 sourceLine);
 
 s32 MgbaPrintf_(const char *fmt, ...);
 
@@ -84,6 +87,7 @@ s32 MgbaPrintf_(const char *fmt, ...);
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gFunctionTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)CAT(Test, __LINE__), \
     }; \
     static void CAT(Test, __LINE__)(void)

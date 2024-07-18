@@ -518,7 +518,6 @@ typedef void (*DoubleBattleTestFunction)(void *, const u32, struct BattlePokemon
 struct BattleTest
 {
     u8 type;
-    u16 sourceLine;
     union
     {
         SingleBattleTestFunction singles;
@@ -761,10 +760,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \
@@ -779,10 +778,10 @@ extern struct BattleTestRunnerState *const gBattleTestRunnerState;
         .name = _name, \
         .filename = __FILE__, \
         .runner = &gBattleTestRunner, \
+        .sourceLine = __LINE__, \
         .data = (void *)&(const struct BattleTest) \
         { \
             .type = _type, \
-            .sourceLine = __LINE__, \
             .function = { .doubles = (DoubleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
         }, \

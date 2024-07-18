@@ -145,21 +145,6 @@ static bool32 IsAITest(void)
     return FALSE;
 }
 
-static u32 SourceLine(u32 sourceLineOffset)
-{
-    const struct BattleTest *test = GetBattleTest();
-    return test->sourceLine + sourceLineOffset;
-}
-
-static u32 SourceLineOffset(u32 sourceLine)
-{
-    const struct BattleTest *test = GetBattleTest();
-    if (sourceLine - test->sourceLine > 0xFF)
-        return 0;
-    else
-        return sourceLine - test->sourceLine;
-}
-
 static u32 BattleTest_EstimateCost(void *data)
 {
     u32 cost;
