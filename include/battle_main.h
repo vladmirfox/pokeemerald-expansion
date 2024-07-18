@@ -23,13 +23,7 @@ struct MultiPartnerMenuPokemon
 #define BOUNCE_MON          0x0
 #define BOUNCE_HEALTHBOX    0x1
 
-#if MODERN
-#define U8_ENUM : u8
-#else
-#define U8_ENUM
-#endif
-
-enum FirstTurnEventStates U8_ENUM {
+enum {
     FIRST_TURN_EVENTS_START,
     FIRST_TURN_EVENTS_OVERWORLD_WEATHER,
     FIRST_TURN_EVENTS_TERRAIN,

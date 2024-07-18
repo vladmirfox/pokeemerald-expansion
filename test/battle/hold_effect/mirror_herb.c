@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Mirror Herb copies all of foe's positive stat changes in a t
     }
 }
 
-SINGLE_BATTLE_TEST("Mirror Herb copies all of Stuff Cheeks stat boosts")
+SINGLE_BATTLE_TEST("Mirror Herb copies all of Stuff Cheeks' stat boosts")
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LIECHI_BERRY].holdEffect == HOLD_EFFECT_ATTACK_UP);
