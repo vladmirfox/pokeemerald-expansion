@@ -284,8 +284,8 @@ static const struct MenuAction MultichoiceList_GameCornerCoins[] =
 
 static const struct MenuAction MultichoiceList_HowsFishing[] =
 {
-    {gText_Excellent2},
-    {gText_NotSoGood},
+    {COMPOUND_STRING("Excellent")},
+    {COMPOUND_STRING("Not so good")},
 };
 
 static const struct MenuAction MultichoiceList_SSTidalSlateportWithBF[] =
@@ -304,8 +304,8 @@ static const struct MenuAction MultichoiceList_SSTidalBattleFrontier[] =
 
 static const struct MenuAction MultichoiceList_RightLeft[] =
 {
-    {gText_Right},
-    {gText_Left},
+    {COMPOUND_STRING("Right")},
+    {COMPOUND_STRING("Left")},
 };
 
 static const struct MenuAction MultichoiceList_SSTidalSlateportNoBF[] =
@@ -506,46 +506,46 @@ static const struct MenuAction MultichoiceList_LinkServicesNoRecordBerry[] =
 
 static const struct MenuAction MultichoiceList_WirelessMinigame[] =
 {
-    {gText_PokemonJump},
-    {gText_DodrioBerryPicking},
+    {COMPOUND_STRING("POKéMON JUMP")},
+    {COMPOUND_STRING("DODRIO BERRY-PICKING")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_LinkLeader[] =
 {
-    {gText_JoinGroup},
-    {gText_BecomeLeader},
+    {COMPOUND_STRING("JOIN GROUP")},
+    {COMPOUND_STRING("BECOME LEADER")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_ContestRank[] =
 {
-    {gText_NormalRank},
-    {gText_SuperRank},
-    {gText_HyperRank},
-    {gText_MasterRank},
+    {COMPOUND_STRING("NORMAL RANK")},
+    {COMPOUND_STRING("SUPER RANK")},
+    {COMPOUND_STRING("HYPER RANK")},
+    {COMPOUND_STRING("MASTER RANK")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_FrontierItemChoose[] =
 {
-    {gText_BattleBag},
-    {gText_HeldItem},
+    {COMPOUND_STRING("BATTLE BAG")},
+    {COMPOUND_STRING("HELD ITEM")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_LinkContestInfo[] =
 {
-    {gText_LinkContest},
-    {gText_AboutE_Mode},
-    {gText_AboutG_Mode},
+    {COMPOUND_STRING("LINK CONTEST")},
+    {COMPOUND_STRING("ABOUT E-MODE")},
+    {COMPOUND_STRING("ABOUT G-MODE")},
     {gText_Cancel2},
 };
 
 static const struct MenuAction MultichoiceList_LinkContestMode[] =
 {
-    {gText_E_Mode},
-    {gText_G_Mode},
+    {COMPOUND_STRING("E-MODE")},
+    {COMPOUND_STRING("G-MODE")},
     {gText_Exit},
 };
 
@@ -613,19 +613,19 @@ static const struct MenuAction MultichoiceList_YesNo[] =
 
 static const struct MenuAction MultichoiceList_FrontierRules[] =
 {
-    {gText_TwoStyles},
-    {gText_Lv50_3},
-    {gText_OpenLevel2},
-    {gText_MonTypeAndNo},
-    {gText_HoldItems},
+    {COMPOUND_STRING("TWO STYLES")},
+    {COMPOUND_STRING("LV. 50")},
+    {COMPOUND_STRING("OPEN LEVEL")},
+    {COMPOUND_STRING("{PKMN} TYPE & NO.")},
+    {COMPOUND_STRING("HOLD ITEMS")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_FrontierPassInfo[] =
 {
-    {gText_Symbols2},
-    {gText_Record3},
-    {gText_BattlePts},
+    {COMPOUND_STRING("SYMBOLS")},
+    {COMPOUND_STRING("RECORD")},
+    {COMPOUND_STRING("BATTLE PTS")},
     {gText_Exit},
 };
 
@@ -640,18 +640,18 @@ static const struct MenuAction MultichoiceList_BattleArenaRules[] =
 
 static const struct MenuAction MultichoiceList_BattleTowerRules[] =
 {
-    {gText_TowerInfo},
-    {gText_BattleMon},
-    {gText_BattleSalon},
-    {gText_MultiLink2},
+    {COMPOUND_STRING("TOWER INFO")},
+    {COMPOUND_STRING("BATTLE {PKMN}")},
+    {COMPOUND_STRING("BATTLE SALON")},
+    {COMPOUND_STRING("MULTI-LINK")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_BattleDomeRules[] =
 {
-    {gText_Matchup},
-    {gText_TourneyTree},
-    {gText_DoubleKO},
+    {COMPOUND_STRING("MATCHUP")},
+    {COMPOUND_STRING("TOURNEY TREE")},
+    {COMPOUND_STRING("DOUBLE KO")},
     {gText_Exit},
 };
 
@@ -677,18 +677,18 @@ static const struct MenuAction MultichoiceList_BattlePalaceRules[] =
 
 static const struct MenuAction MultichoiceList_BattlePyramidRules[] =
 {
-    {gText_PyramidPokemon},
-    {gText_PyramidTrainers},
-    {gText_PyramidMaze},
-    {gText_BattleBag2},
+    {COMPOUND_STRING("PYRAMID: POKéMON")},
+    {COMPOUND_STRING("PYRAMID: TRAINERS")},
+    {COMPOUND_STRING("PYRAMID: MAZE")},
+    {COMPOUND_STRING("BATTLE BAG")},
     {gText_Exit},
 };
 
 static const struct MenuAction MultichoiceList_BattlePikeRules[] =
 {
-    {gText_PokenavAndBag},
-    {gText_HeldItems},
-    {gText_PokemonOrder},
+    {COMPOUND_STRING("POKéNAV AND BAG")},
+    {COMPOUND_STRING("HELD ITEMS")},
+    {COMPOUND_STRING("POKéMON ORDER")},
     {gText_Exit},
 };
 
@@ -722,24 +722,24 @@ static const struct MenuAction MultichoiceList_GoOnRetire[] =
 
 static const struct MenuAction MultichoiceList_TVLati[] =
 {
-    {gText_Red},
-    {gText_Blue},
+    {COMPOUND_STRING("RED")},
+    {COMPOUND_STRING("BLUE")},
 };
 
 static const struct MenuAction MultichoiceList_BattleTowerFeelings[] =
 {
-    {gText_IllBattleNow},
-    {gText_IWon},
-    {gText_ILost},
-    {gText_IWontTell},
+    {COMPOUND_STRING("I'll battle now!")},
+    {COMPOUND_STRING("I won!")},
+    {COMPOUND_STRING("I lost!")},
+    {COMPOUND_STRING("I won't tell.")},
 };
 
 static const struct MenuAction MultichoiceList_WheresRayquaza[] =
 {
-    {gText_CaveOfOrigin},
-    {gText_MtPyre},
-    {gText_SkyPillar},
-    {gText_DontRemember},
+    {COMPOUND_STRING("CAVE OF ORIGIN")},
+    {COMPOUND_STRING("MT. PYRE")},
+    {COMPOUND_STRING("SKY PILLAR")},
+    {COMPOUND_STRING("Don't remember")},
 };
 
 static const struct MenuAction MultichoiceList_SlateportTentRules[] =
@@ -773,8 +773,8 @@ static const struct MenuAction MultichoiceList_TagMatchType[] =
 
 static const struct MenuAction MultichoiceList_BerryPlot[] =
 {
-    {gText_Fertilize},
-    {gText_PlantBerry},
+    {COMPOUND_STRING("FERTILIZE")},
+    {COMPOUND_STRING("PLANT BERRY")},
     {gText_Exit},
 };
 
