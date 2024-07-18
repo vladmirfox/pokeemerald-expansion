@@ -640,7 +640,7 @@ int main(int argc, char *argv[])
             {
                 if (i >= MAX_SUMMARY_TESTS_TO_LIST)
                 {
-                    fprintf(stdout, "  - \e[33mand %d more...\e[0m\n", fails - MAX_SUMMARY_TESTS_TO_LIST);
+                    fprintf(stdout, "  - \e[33mand %d more...\e[0m\n", assumptionFails - MAX_SUMMARY_TESTS_TO_LIST);
                     break;
                 }
                 fprintf(stdout, "  - \e[33m%s\e[0m - %s.\n", assumeFailed_FilenameLine[i], assumeFailed_TestNames[i]);
