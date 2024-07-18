@@ -426,8 +426,6 @@ static u8 CheckTrainer(u8 objectEventId)
     else
         scriptPtr = GetObjectEventScriptPointerByObjectEventId(objectEventId);
 
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "scritpptr %x", scriptPtr);
-
     if (InBattlePyramid())
     {
         if (GetBattlePyramidTrainerFlag(objectEventId))
