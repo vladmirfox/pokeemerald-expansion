@@ -179,7 +179,7 @@ top:
         }
 
         MgbaPrintf_(":N%s", gTestRunnerState.test->name);
-        MgbaPrintf_(":L%s", gTestRunnerState.test->filename);
+        MgbaPrintf_(":L%s:%d", gTestRunnerState.test->filename, gTestRunnerState.stopLine);
         gTestRunnerState.result = TEST_RESULT_PASS;
         gTestRunnerState.expectedResult = TEST_RESULT_PASS;
         gTestRunnerState.expectLeaks = FALSE;
@@ -481,9 +481,10 @@ static void Intr_Timer2(void)
     }
 }
 
-void Test_ExitWithResult(enum TestResult result, const char *fmt, ...)
+void Test_ExitWithResult(enum TestResult result, u32 stopLine, const char *fmt, ...)
 {
     gTestRunnerState.result = result;
+    gTestRunnerState.stopLine = stopLine;
     ReinitCallbacks();
     if (gTestRunnerState.state == STATE_REPORT_RESULT
      && gTestRunnerState.result != gTestRunnerState.expectedResult)
