@@ -1967,9 +1967,11 @@ bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
     while ((ptr = pop(&scrStack)) != NULL)
     {
         DebugPrintfLevel(MGBA_LOG_DEBUG, "script call: %x", ptr);
-        ScriptCall(ctx, ptr);
+        ScriptPush(ctx, ptr);
     }
     
+    ctx->scriptPtr = ScriptPop(ctx);
+
     DebugPrintScriptStack;
     return FALSE;
 }

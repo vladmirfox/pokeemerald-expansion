@@ -139,7 +139,7 @@ bool8 ScriptPush(struct ScriptContext *ctx, const u8 *ptr)
     }
 }
 
-static const u8 *ScriptPop(struct ScriptContext *ctx)
+const u8 *ScriptPop(struct ScriptContext *ctx)
 {
     if (ctx->stackDepth == 0)
         return NULL;
