@@ -4,6 +4,7 @@
 #include "gym_leader_rematch.h"
 
 #define REMATCHES_COUNT 5
+#define MAX_STACK_SIZE 20
 
 struct RematchTrainer
 {
@@ -32,6 +33,12 @@ typedef union PACKED TrainerBattleParameterUnion
     u8 data[sizeof(struct Parameters)];
 } TrainerBattleParameterU;
 
+typedef struct TrainerBattleScriptStack
+{
+    const u8* stack[MAX_STACK_SIZE];
+    s8 stackPtr;
+} TrainerBattleScriptStack;
+
 #define TRAINER_BATTLE_PARAM sTrainerBattleParameter.params
 
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
@@ -59,7 +66,7 @@ u8 GetSpecialBattleTransition(s32 id);
 void ChooseStarter(void);
 void ResetTrainerOpponentIds(void);
 void SetMapVarsToTrainer(void);
-const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data);
+const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, TrainerBattleScriptStack *scrStack);
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerScript);
 void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript);
 void SetUpTwoTrainersBattle(void);
@@ -96,5 +103,9 @@ void BattleSetup_StartTrainerBattle_Debug(void);
 s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBattleTrainerId);
+
+void initStack(TrainerBattleScriptStack *scrStack);
+const u8* pop(TrainerBattleScriptStack *scrStack);
+bool8 push(TrainerBattleScriptStack *scrStack, const u8* ptr);
 
 #endif // GUARD_BATTLE_SETUP_H

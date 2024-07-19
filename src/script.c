@@ -107,6 +107,7 @@ bool8 RunScriptCommand(struct ScriptContext *ctx)
             }
 
             cmdCode = *(ctx->scriptPtr);
+            //DebugPrintfLevel(MGBA_LOG_DEBUG, "code: %x, ptr: %x\n", cmdCode, ctx->scriptPtr);
             ctx->scriptPtr++;
             func = &ctx->cmdTable[cmdCode];
 
@@ -124,7 +125,7 @@ bool8 RunScriptCommand(struct ScriptContext *ctx)
     return TRUE;
 }
 
-static bool8 ScriptPush(struct ScriptContext *ctx, const u8 *ptr)
+bool8 ScriptPush(struct ScriptContext *ctx, const u8 *ptr)
 {
     if (ctx->stackDepth + 1 >= (int)ARRAY_COUNT(ctx->stack))
     {

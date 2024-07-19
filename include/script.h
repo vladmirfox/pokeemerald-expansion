@@ -21,11 +21,22 @@ struct ScriptContext
 
 #define ScriptReadByte(ctx) (*(ctx->scriptPtr++))
 
+#define DebugPrintScriptStack \
+do { \
+    u8 i; \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______ScriptStack________"); \
+    for (i = 0; i < ctx->stackDepth; i++) { \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, ctx->stack[i]); \
+    } \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______StackFloor_________"); \
+} while(0);
+
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);
 u8 SetupBytecodeScript(struct ScriptContext *ctx, const u8 *ptr);
 void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void));
 void StopScript(struct ScriptContext *ctx);
 bool8 RunScriptCommand(struct ScriptContext *ctx);
+bool8 ScriptPush(struct ScriptContext *ctx, const u8 *ptr);
 void ScriptJump(struct ScriptContext *ctx, const u8 *ptr);
 void ScriptCall(struct ScriptContext *ctx, const u8 *ptr);
 void ScriptReturn(struct ScriptContext *ctx);

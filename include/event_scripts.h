@@ -37,6 +37,13 @@ extern const u8 EventScript_TryDoNormalTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleRematchBattle[];
 extern const u8 EventScript_TryDoRematchBattle[];
 
+extern const u8 EventScript_TryDoNormalTrainerBattle2[];
+extern const u8 EventScript_RevealTrainer2[];
+extern const u8 EventScript_GetTrainerFlag[];
+extern const u8 EventScript_PlayTrainerEncounterMusic[];
+extern const u8 EventScript_SetTrainerFacingDirecttion[];
+extern const u8 EventScript_ShowTrainerIntroMsg[];
+
 extern const u8 BerryTreeScript[];
 
 extern const u8 gTVBravoTrainerText00[];

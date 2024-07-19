@@ -1959,7 +1959,18 @@ bool8 ScrCmd_updatecoinsbox(struct ScriptContext *ctx)
 
 bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
 {
-    ctx->scriptPtr = BattleSetup_ConfigureTrainerBattle(ctx->scriptPtr);
+    TrainerBattleScriptStack scrStack;
+
+    BattleSetup_ConfigureTrainerBattle(ctx->scriptPtr, &scrStack);
+
+    const u8* ptr;
+    while ((ptr = pop(&scrStack)) != NULL)
+    {
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "script call: %x", ptr);
+        ScriptCall(ctx, ptr);
+    }
+    
+    DebugPrintScriptStack;
     return FALSE;
 }
 
@@ -1973,6 +1984,7 @@ bool8 ScrCmd_gotopostbattlescript(struct ScriptContext *ctx)
 {
     DebugPrintfLevel(MGBA_LOG_DEBUG, "gotopostbattlescript");
     ctx->scriptPtr = BattleSetup_GetScriptAddrAfterBattle();
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "ctx->scriptPtr: %x", ctx->scriptPtr);
     return FALSE;
 }
 

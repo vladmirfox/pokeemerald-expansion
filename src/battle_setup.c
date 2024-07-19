@@ -116,11 +116,12 @@ EWRAM_DATA static u8 *sTrainerBattleEndScript = NULL;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
 EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
 
-#define DebugPrintTrainerParams DebugPrintfLevel(MGBA_LOG_DEBUG, "\nmode: %d\nlocalId: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x", \
+#define DebugPrintTrainerParams DebugPrintfLevel(MGBA_LOG_DEBUG, "\nmode: %d\nlocalId: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\nendscript: %x\n", \
         sTrainerBattleParameter.params.battleMode, sTrainerBattleParameter.params.objEventLocalId, \
         sTrainerBattleParameter.params.battleOpponentA, sTrainerBattleParameter.params.introTextA, sTrainerBattleParameter.params.defeatTextA, sTrainerBattleParameter.params.battleScriptRetAddrA, \
         sTrainerBattleParameter.params.battleOpponentB, sTrainerBattleParameter.params.introTextB, sTrainerBattleParameter.params.defeatTextB, sTrainerBattleParameter.params.battleScriptRetAddrB, \
-        sTrainerBattleParameter.params.victoryText, sTrainerBattleParameter.params.cannotBattleText)
+        sTrainerBattleParameter.params.victoryText, sTrainerBattleParameter.params.cannotBattleText, \
+        sTrainerBattleEndScript)
 
 // The first transition is used if the enemy Pokémon are lower level than our Pokémon.
 // Otherwise, the second transition is used.
@@ -1205,13 +1206,30 @@ void SetMapVarsToTrainer(void)
     }
 }
 
-const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
+const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, TrainerBattleScriptStack *scrStack)
 {
     if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_SET_TRAINER_B)
         InitTrainerBattleVariables();
 
     TrainerBattleLoadArgs_2(data);
     DebugPrintTrainerParams;
+
+    initStack(scrStack);
+    push(scrStack, EventScript_TryDoNormalTrainerBattle2);
+    push(scrStack, EventScript_RevealTrainer2);
+    push(scrStack, EventScript_GetTrainerFlag);
+    push(scrStack, EventScript_PlayTrainerEncounterMusic);
+    push(scrStack, EventScript_SetTrainerFacingDirecttion);
+    push(scrStack, EventScript_ShowTrainerIntroMsg);
+
+    u8 i;
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrStack______");
+    for (i = 0; i < scrStack->stackPtr; i++) {
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, scrStack->stack[i]);
+    }
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrFloor______");
+
+    return NULL;
 
     switch (TRAINER_BATTLE_PARAM.battleMode)
     {
@@ -1299,7 +1317,7 @@ void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerSc
 {
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
-    BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
+    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL);
     ScriptContext_SetupScript(EventScript_StartTrainerApproach);
     LockPlayerFieldControls();
 }
@@ -1308,7 +1326,7 @@ void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript)
 {
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
-    BattleSetup_ConfigureTrainerBattle(trainerScript + 1);
+    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL);
 }
 
 void SetUpTwoTrainersBattle(void)
@@ -2076,4 +2094,27 @@ u16 CountBattledRematchTeams(u16 trainerId)
     }
 
     return i;
+}
+
+void initStack(TrainerBattleScriptStack *scrStack)
+{
+    memset(scrStack->stack, 0, sizeof(MAX_STACK_SIZE));
+    scrStack->stackPtr = -1;
+}
+
+const u8* pop(TrainerBattleScriptStack *scrStack)
+{
+    if (scrStack->stackPtr - 1 < -1)
+        return NULL;
+
+    return scrStack->stack[scrStack->stackPtr--];
+}
+
+bool8 push(TrainerBattleScriptStack *scrStack, const u8* ptr)
+{
+    if (scrStack->stackPtr + 1 >= MAX_STACK_SIZE)
+        return FALSE;
+
+    scrStack->stack[++(scrStack->stackPtr)] = ptr;
+    return TRUE;
 }

@@ -135,3 +135,28 @@ Std_MsgboxAutoclose::
 	waitbuttonpress
 	release
 	return
+
+EventScript_TryDoNormalTrainerBattle2::
+	lock
+	faceplayer
+	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	return
+
+EventScript_RevealTrainer2::
+	applymovement VAR_LAST_TALKED, Movement_RevealTrainer
+	waitmovement 0
+	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	return
+
+EventScript_GetTrainerFlag::
+	specialvar VAR_RESULT, GetTrainerFlag
+	goto_if_ne VAR_RESULT, FALSE, EventScript_NoNormalTrainerBattle
+	return
+
+EventScript_PlayTrainerEncounterMusic::
+	special PlayTrainerEncounterMusic
+	return
+
+EventScript_SetTrainerFacingDirecttion::
+	special SetTrainerFacingDirection
+	return
