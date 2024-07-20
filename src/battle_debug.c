@@ -143,22 +143,13 @@ enum
 {
     LIST_STATUS2_CONFUSION,
     LIST_STATUS2_FLINCHED,
-    LIST_STATUS2_UPROAR,
     LIST_STATUS2_TORMENT,
-    LIST_STATUS2_BIDE,
-    LIST_STATUS2_LOCK_CONFUSE,
-    LIST_STATUS2_MULTIPLETURNS,
-    LIST_STATUS2_WRAPPED,
     LIST_STATUS2_POWDER,
-    LIST_STATUS2_INFATUATION,
     LIST_STATUS2_DEFENSE_CURL,
-    LIST_STATUS2_TRANSFORMED,
     LIST_STATUS2_RECHARGE,
     LIST_STATUS2_RAGE,
-    LIST_STATUS2_SUBSTITUTE,
     LIST_STATUS2_DESTINY_BOND,
     LIST_STATUS2_ESCAPE_PREVENTION,
-    LIST_STATUS2_NIGHTMARE,
     LIST_STATUS2_CURSED,
     LIST_STATUS2_FORESIGHT,
     LIST_STATUS2_DRAGON_CHEER,
@@ -182,18 +173,14 @@ enum
     LIST_STATUS3_GASTRO_ACID,
     LIST_STATUS3_EMBARGO,
     LIST_STATUS3_UNDERWATER,
-    LIST_STATUS3_TRACE,
     LIST_STATUS3_SMACKED_DOWN,
-    LIST_STATUS3_ME_FIRST,
     LIST_STATUS3_TELEKINESIS,
-    LIST_STATUS3_PHANTOM_FORCE,
     LIST_STATUS3_MIRACLE_EYED,
     LIST_STATUS3_MAGNET_RISE,
     LIST_STATUS3_HEAL_BLOCK,
     LIST_STATUS3_AQUA_RING,
     LIST_STATUS3_LASER_FOCUS,
     LIST_STATUS3_POWER_TRICK,
-    LIST_STATUS3_SKY_DROPPED,
 };
 
 enum
@@ -201,7 +188,6 @@ enum
     LIST_STATUS4_ELECTRIFIED,
     LIST_STATUS4_MUD_SPORT,
     LIST_STATUS4_WATER_SPORT,
-    LIST_STATUS4_INFINITE_CONFUSION,
     LIST_STATUS4_SALT_CURE,
     LIST_STATUS4_SYRUP_BOMB,
     LIST_STATUS4_GLAIVE_RUSH,
@@ -214,7 +200,6 @@ enum
     LIST_SIDE_STICKY_WEB,
     LIST_SIDE_SPIKES,
     LIST_SIDE_SAFEGUARD,
-    LIST_SIDE_FUTUREATTACK,
     LIST_SIDE_MIST,
     LIST_SIDE_TAILWIND,
     LIST_SIDE_AURORA_VEIL,
@@ -439,22 +424,13 @@ static const struct BitfieldInfo sStatus2Bitfield[] =
 {
     {/*Confusion*/ 3, 0},
     {/*Flinched*/ 1, 3},
-    {/*Uproar*/ 3, 4},
     {/*Torment*/ 1, 7},
-    {/*Bide*/ 2, 8},
-    {/*Lock Confuse*/ 2, 10},
-    {/*Multiple Turns*/ 1, 12},
-    {/*Wrapped*/ 1, 13},
     {/*Powder*/ 1, 14},
-    {/*Infatuation*/ 4, 16},
     {/*Defense Curl*/ 1, 20},
-    {/*Transformed*/ 1, 21},
     {/*Recharge*/ 1, 22},
     {/*Rage*/ 1, 23},
-    {/*Substitute*/ 1, 24},
     {/*Destiny Bond*/ 1, 25},
     {/*Escape Prevention*/ 1, 26},
-    {/*Nightmare*/ 1, 27},
     {/*Cursed*/ 1, 28},
     {/*Foresight*/ 1, 29},
     {/*Dragon Cheer*/ 1, 30},
@@ -478,18 +454,14 @@ static const struct BitfieldInfo sStatus3Bitfield[] =
     {/*Gastro Acid*/ 1, 16},
     {/*Embargo*/ 1, 17},
     {/*Underwater*/ 1, 18},
-    {/*Trace*/ 1, 20},
     {/*Smacked Down*/ 1, 21},
-    {/*Me First*/ 1, 22},
     {/*Telekinesis*/ 1, 23},
-    {/*Phantom Force*/ 1, 24},
     {/*Miracle Eyed*/ 1, 25},
     {/*Magnet Rise*/ 1, 26},
     {/*Heal Blocked*/ 1, 27},
     {/*Aqua Ring*/ 1, 28},
     {/*Laser Focus*/ 1, 29},
     {/*Power Trick*/ 1, 30},
-    {/*Sky Dropped*/ 1, 31},
 };
 
 static const struct BitfieldInfo sStatus4Bitfield[] =
@@ -497,7 +469,6 @@ static const struct BitfieldInfo sStatus4Bitfield[] =
     {/*Electrified*/ 1, 0},
     {/*Mud Sport*/ 1, 1},
     {/*Water Sport*/ 1, 2},
-    {/*Infinite Confusion*/ 1, 3},
     {/*Salt Cure*/ 1, 4},
     {/*Syrup Bomb*/ 1, 5},
     {/*Glaive Rush*/ 1, 6},
@@ -580,22 +551,13 @@ static const struct ListMenuItem sStatus2ListItems[] =
 {
     {sText_Confusion, LIST_STATUS2_CONFUSION},
     {sText_Flinched, LIST_STATUS2_FLINCHED},
-    //{sText_Uproar, LIST_STATUS2_UPROAR},
     {sText_Torment, LIST_STATUS2_TORMENT},
-    //{sText_Bide, LIST_STATUS2_BIDE},
-    //{sText_LockConfuse, LIST_STATUS2_LOCK_CONFUSE},
-    //{sText_MultipleTurns, LIST_STATUS2_MULTIPLETURNS},
-    //{sText_Wrapped, LIST_STATUS2_WRAPPED},
     {sText_Powder, LIST_STATUS2_POWDER},
-    //{sText_Infatuation, LIST_STATUS2_INFATUATION},
     {sText_DefenseCurl, LIST_STATUS2_DEFENSE_CURL},
-    //{sText_Transformed, LIST_STATUS2_TRANSFORMED},
     {sText_Recharge, LIST_STATUS2_RECHARGE},
     {sText_Rage, LIST_STATUS2_RAGE},
-    //{sText_Substitute, LIST_STATUS2_SUBSTITUTE},
     {sText_DestinyBond, LIST_STATUS2_DESTINY_BOND},
     {sText_EscapePrevention, LIST_STATUS2_ESCAPE_PREVENTION},
-    //{sText_Nightmare, LIST_STATUS2_NIGHTMARE},
     {sText_Cursed, LIST_STATUS2_CURSED},
     {sText_Foresight, LIST_STATUS2_FORESIGHT},
     {sText_DragonCheer, LIST_STATUS2_DRAGON_CHEER},
@@ -619,18 +581,14 @@ static const struct ListMenuItem sStatus3ListItems[] =
     {sText_GastroAcid, LIST_STATUS3_GASTRO_ACID},
     {sText_Embargo, LIST_STATUS3_EMBARGO},
     {sText_Underwater, LIST_STATUS3_UNDERWATER},
-    //{sText_Trace, LIST_STATUS3_TRACE},
     {sText_SmackedDown, LIST_STATUS3_SMACKED_DOWN},
-    //{sText_MeFirst, LIST_STATUS3_ME_FIRST},
     {sText_Telekinesis, LIST_STATUS3_TELEKINESIS},
-    //{sText_PhantomForce, LIST_STATUS3_PHANTOM_FORCE},
     {sText_MiracleEyed, LIST_STATUS3_MIRACLE_EYED},
     {sText_MagnetRise, LIST_STATUS3_MAGNET_RISE},
     {sText_HealBlock, LIST_STATUS3_HEAL_BLOCK},
     {sText_AquaRing, LIST_STATUS3_AQUA_RING},
     {sText_LaserFocus, LIST_STATUS3_LASER_FOCUS},
     {sText_PowerTrick, LIST_STATUS3_POWER_TRICK},
-    //{sText_SkyDropped, LIST_STATUS3_SKY_DROPPED},
 };
 
 static const struct ListMenuItem sStatus4ListItems[] =
@@ -638,7 +596,6 @@ static const struct ListMenuItem sStatus4ListItems[] =
     {sText_Electrified, LIST_STATUS4_ELECTRIFIED},
     {sText_MudSport, LIST_STATUS4_MUD_SPORT},
     {sText_WaterSport, LIST_STATUS4_WATER_SPORT},
-    //{sText_InfiniteConfusion, LIST_STATUS4_INFINITE_CONFUSION},
     {sText_SaltCure, LIST_STATUS4_SALT_CURE},
     {sText_SyrupBomb, LIST_STATUS4_SYRUP_BOMB},
     {sText_GlaiveRush, LIST_STATUS4_GLAIVE_RUSH},
@@ -651,7 +608,6 @@ static const struct ListMenuItem sSideStatusListItems[] =
     {sText_StickyWeb, LIST_SIDE_STICKY_WEB},
     {sText_Spikes, LIST_SIDE_SPIKES},
     {sText_Safeguard, LIST_SIDE_SAFEGUARD},
-    //{sText_FutureAttack, LIST_SIDE_FUTUREATTACK},
     {sText_Mist, LIST_SIDE_MIST},
     {sText_Tailwind, LIST_SIDE_TAILWIND},
     {sText_AuroraVeil, LIST_SIDE_AURORA_VEIL},
@@ -1952,18 +1908,6 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             sideTimer->safeguardBattlerId = data->battlerId;
         }
         return &sideTimer->safeguardTimer;
-    case LIST_SIDE_FUTUREATTACK:
-        if (changeStatus)
-        {
-            if (statusTrue)
-                *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_FUTUREATTACK;
-            else
-                *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_FUTUREATTACK;
-            gWishFutureKnock.futureSightBattlerIndex[data->battlerId] = gBattlerAttacker;
-            gWishFutureKnock.futureSightPartyIndex[data->battlerId] = gBattlerPartyIndexes[gBattlerAttacker];
-            gWishFutureKnock.futureSightMove[data->battlerId] = gCurrentMove;
-        }
-        return &gWishFutureKnock.futureSightCounter[data->battlerId];
     case LIST_SIDE_MIST:
         if (changeStatus)
         {
