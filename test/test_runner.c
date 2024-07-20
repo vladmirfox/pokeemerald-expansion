@@ -217,7 +217,7 @@ top:
         // NOTE: Assumes that the compiler interns __FILE__.
         if (gTestRunnerState.skipFilename == gTestRunnerState.test->filename) // Assumption fails for tests in this file.
         {
-            MgbaPrintf_(":L%s:%d", gTestRunnerState.test->filename, gTestRunnerState.stopLine);
+            MgbaPrintf_(":L%s:%d", gTestRunnerState.test->filename, gTestRunnerState.failedAssumptionsBlockLine);
             gTestRunnerState.result = TEST_RESULT_ASSUMPTION_FAIL;
             return;
         }
@@ -485,7 +485,7 @@ static void Intr_Timer2(void)
 void Test_ExitWithResult(enum TestResult result, u32 stopLine, const char *fmt, ...)
 {
     gTestRunnerState.result = result;
-    gTestRunnerState.stopLine = stopLine;
+    gTestRunnerState.failedAssumptionsBlockLine = stopLine;
     ReinitCallbacks();
     if (gTestRunnerState.state == STATE_REPORT_RESULT
      && gTestRunnerState.result != gTestRunnerState.expectedResult)

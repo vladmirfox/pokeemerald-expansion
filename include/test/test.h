@@ -41,7 +41,7 @@ struct TestRunnerState
     u8 state;
     u8 exitCode;
     const char *skipFilename;
-    u32 stopLine;
+    u32 failedAssumptionsBlockLine;
     const struct Test *test;
     u32 processCosts[MAX_PROCESSES];
 
