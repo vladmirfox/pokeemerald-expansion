@@ -6526,7 +6526,7 @@ static void Cmd_switchindataupdate(void)
         if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
             gBattleMons[battler].ability = gBattleStruct->overwrittenAbilities[battler] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
     }
-#endif
+    #endif
 
     // check knocked off item
     i = GetBattlerSide(battler);
@@ -13243,14 +13243,14 @@ static void Cmd_healpartystatus(void)
                 else
                 {
                     ability = GetAbilityBySpecies(species, abilityNum);
-                #if TESTING
+                    #if TESTING
                     if (gTestRunnerEnabled)
                     {
                         u32 side = GetBattlerSide(gBattlerAttacker);
                         if (TestRunner_Battle_GetForcedAbility(side, i))
                             ability = TestRunner_Battle_GetForcedAbility(side, i);
                     }
-                #endif
+                    #endif
                 }
 
                 if (ability != ABILITY_SOUNDPROOF)
