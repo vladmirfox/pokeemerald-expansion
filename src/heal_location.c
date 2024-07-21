@@ -5,6 +5,7 @@
 #include "constants/maps.h"
 
 #include "data/heal_locations.h"
+#include "data/heal_locations_pkm_center.h"
 
 u32 GetHealLocationIndexByMap(u16 mapGroup, u16 mapNum)
 {
