@@ -881,8 +881,8 @@ SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly")
 SINGLE_BATTLE_TEST("(TERA) All type indicators function correctly - Opponent")
 {
     u32 type;
-    PARAMETRIZE { type = TYPE_NORMAL; }
     PARAMETRIZE { type = TYPE_NONE; }
+    PARAMETRIZE { type = TYPE_NORMAL; }
     PARAMETRIZE { type = TYPE_FIGHTING; }
     PARAMETRIZE { type = TYPE_FLYING; }
     PARAMETRIZE { type = TYPE_POISON; }

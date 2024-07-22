@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("Teraform Zero cannot be swapped")
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); MOVE(opponent, MOVE_SKILL_SWAP); }
     } SCENE {
         MESSAGE("Foe Wobbuffet used Skill Swap!");
-        MESSAGE("But if failed!");
+        MESSAGE("But it failed!");
     }
 }
 
@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("Teraform Zero cannot be copied")
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); MOVE(opponent, MOVE_ROLE_PLAY); }
     } SCENE {
         MESSAGE("Foe Wobbuffet used Role Play!");
-        MESSAGE("But if failed!");
+        MESSAGE("But it failed!");
     }
 }
 
