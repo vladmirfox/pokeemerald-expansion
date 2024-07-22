@@ -1,6 +1,8 @@
 EventScript_StartTrainerApproach::
 	selectapproachingtrainer
 	lockfortrainer
+	return
+
 EventScript_TrainerApproach::
 	special PlayTrainerEncounterMusic
 	special DoTrainerApproach
@@ -136,10 +138,14 @@ Std_MsgboxAutoclose::
 	release
 	return
 
-EventScript_TryDoNormalTrainerBattle2::
+EventScript_Lock::
 	lock
 	faceplayer
 	setflag FLAG_SAFE_FOLLOWER_MOVEMENT
+	return
+
+EventScript_TrainerApproach2::
+	special DoTrainerApproach
 	return
 
 EventScript_RevealTrainer2::
@@ -148,7 +154,7 @@ EventScript_RevealTrainer2::
 	clearflag FLAG_SAFE_FOLLOWER_MOVEMENT
 	return
 
-EventScript_GetTrainerFlag::
+EventScript_IsTrainerFlagSet::
 	specialvar VAR_RESULT, GetTrainerFlag
 	goto_if_ne VAR_RESULT, FALSE, EventScript_NoNormalTrainerBattle
 	return
@@ -157,6 +163,29 @@ EventScript_PlayTrainerEncounterMusic::
 	special PlayTrainerEncounterMusic
 	return
 
-EventScript_SetTrainerFacingDirecttion::
+EventScript_SetTrainerFacingDirection::
 	special SetTrainerFacingDirection
 	return
+
+EventScript_ShowTrainerIntroMsg2::
+	special ShowTrainerIntroSpeech
+	waitmessage
+	waitbuttonpress
+	return 
+
+EventScript_PrepareSecondTrainerApproach::
+	special PrepareSecondApproachingTrainer
+	return
+
+EventScript_GotoPostBattleScript::
+	gotopostbattlescript
+	return
+
+EventScript_DoTrainerBattle2::
+	dotrainerbattle
+	return
+
+EventScript_EndTrainerBattle2::
+	gotobeatenscript
+	releaseall
+	end

@@ -244,6 +244,7 @@ bool8 ScriptContext_RunScript(void)
 
     LockPlayerFieldControls();
 
+    //DebugPrintGlobalScriptStack;
     if (!RunScriptCommand(&sGlobalScriptContext))
     {
         sGlobalScriptContextStatus = CONTEXT_SHUTDOWN;
@@ -274,6 +275,19 @@ void ScriptContext_Enable(void)
 {
     sGlobalScriptContextStatus = CONTEXT_RUNNING;
     LockPlayerFieldControls();
+}
+
+// Pops all scripts from one Stack and pushes them on the global script context
+bool32 ScriptContext_PushFromStack(PtrStack *stack)
+{
+    const u8* ptr;
+    while ((ptr = (u8*)PtrStackPop(stack)) != NULL)
+    {
+        if (ScriptPush(&sGlobalScriptContext, ptr) == TRUE)
+            return FALSE;
+    }
+    DebugPrintGlobalScriptStack;
+    return TRUE;
 }
 
 // Sets up and runs a script in its own context immediately. The script will be

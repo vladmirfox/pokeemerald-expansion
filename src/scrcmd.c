@@ -1959,20 +1959,21 @@ bool8 ScrCmd_updatecoinsbox(struct ScriptContext *ctx)
 
 bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
 {
-    TrainerBattleScriptStack scrStack;
+    PtrStack trainerBattleScriptStack;
+    PtrStackInit(&trainerBattleScriptStack);
 
-    BattleSetup_ConfigureTrainerBattle(ctx->scriptPtr, &scrStack);
+    TrainerBattleLoadArgs_2(ctx->scriptPtr);
+    BattleSetup_ConfigureTrainerBattle(ctx->scriptPtr, &trainerBattleScriptStack, FALSE);
 
     const u8* ptr;
-    while ((ptr = pop(&scrStack)) != NULL)
+    while ((ptr = PtrStackPopU8(&trainerBattleScriptStack)) != NULL)
     {
-        DebugPrintfLevel(MGBA_LOG_DEBUG, "script call: %x", ptr);
         ScriptPush(ctx, ptr);
     }
     
     ctx->scriptPtr = ScriptPop(ctx);
 
-    DebugPrintScriptStack;
+    //DebugPrintScriptStack;
     return FALSE;
 }
 
@@ -1984,17 +1985,13 @@ bool8 ScrCmd_dotrainerbattle(struct ScriptContext *ctx)
 
 bool8 ScrCmd_gotopostbattlescript(struct ScriptContext *ctx)
 {
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "gotopostbattlescript");
     ctx->scriptPtr = BattleSetup_GetScriptAddrAfterBattle();
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "ctx->scriptPtr: %x", ctx->scriptPtr);
     return FALSE;
 }
 
 bool8 ScrCmd_gotobeatenscript(struct ScriptContext *ctx)
 {
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "gotobeatenscript");
     ctx->scriptPtr = BattleSetup_GetTrainerPostBattleScript();
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "ctx->scriptPtr: %x", ctx->scriptPtr);
     return FALSE;
 }
 

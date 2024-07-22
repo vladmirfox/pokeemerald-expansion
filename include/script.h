@@ -31,6 +31,16 @@ do { \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______StackFloor_________"); \
 } while(0);
 
+#define DebugPrintGlobalScriptStack \
+do { \
+    u8 i; \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______GlobalScriptStack________"); \
+    for (i = 0; i < sGlobalScriptContext.stackDepth; i++) { \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, sGlobalScriptContext.stack[i]); \
+    } \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______GlobalStackFloor_________"); \
+} while(0);
+
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd);
 u8 SetupBytecodeScript(struct ScriptContext *ctx, const u8 *ptr);
 void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void));
@@ -54,6 +64,7 @@ bool8 ScriptContext_RunScript(void);
 void ScriptContext_SetupScript(const u8 *ptr);
 void ScriptContext_Stop(void);
 void ScriptContext_Enable(void);
+bool32 ScriptContext_PushFromStack(PtrStack *stack);
 void RunScriptImmediately(const u8 *ptr);
 u8 *MapHeaderGetScriptTable(u8 tag);
 void MapHeaderRunScriptType(u8 tag);

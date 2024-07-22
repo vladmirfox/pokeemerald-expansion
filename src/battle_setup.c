@@ -1171,7 +1171,7 @@ static void TrainerBattleLoadArgs(const struct TrainerBattleParameter *specs, co
     }
 }
 
-static void TrainerBattleLoadArgsTrainerA(const u8* data) 
+void TrainerBattleLoadArgsTrainerA(const u8* data) 
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
@@ -1181,7 +1181,7 @@ static void TrainerBattleLoadArgsTrainerA(const u8* data)
     TRAINER_BATTLE_PARAM.battleScriptRetAddrA = temp->params.battleScriptRetAddrA;
 }
 
-static void TrainerBattleLoadArgsTrainerB(const u8* data) 
+void TrainerBattleLoadArgsTrainerB(const u8* data) 
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
@@ -1191,10 +1191,23 @@ static void TrainerBattleLoadArgsTrainerB(const u8* data)
     TRAINER_BATTLE_PARAM.battleScriptRetAddrB = temp->params.battleScriptRetAddrB;
 }
 
-static void TrainerBattleLoadArgs_2(const u8* data)
-{   
+// loads trainer A parameter to trainer B. Used for second trainer in trainer_see.c
+void TrainerBattleLoadArgsSecondTrainer(const u8* data)
+{
+    TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
+
+    TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentA;
+    TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextA;
+    TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextA;
+    TRAINER_BATTLE_PARAM.battleScriptRetAddrB = temp->params.battleScriptRetAddrA;
+}
+
+void TrainerBattleLoadArgs_2(const u8* data)
+{
+    InitTrainerBattleVariables();
     memcpy(sTrainerBattleParameter.data, data, sizeof(TrainerBattleParameterU));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameterU);
+    DebugPrintTrainerParams;
 }
 
 void SetMapVarsToTrainer(void)
@@ -1206,28 +1219,72 @@ void SetMapVarsToTrainer(void)
     }
 }
 
-const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, TrainerBattleScriptStack *scrStack)
+#define DebugPrintTrainerBattleStack \
+do { \
+    u8 i; \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrStack______");  \
+    for (i = 0; i < scrStack->stackPtr; i++) {  \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, scrStack->stack[i]);  \
+    }   \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrFloor______");  \
+} while(0) 
+
+
+const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack, bool32 isApproaching)
 {
+    /*
     if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_SET_TRAINER_B)
         InitTrainerBattleVariables();
-
-    TrainerBattleLoadArgs_2(data);
+    */
+   
     DebugPrintTrainerParams;
 
-    initStack(scrStack);
-    push(scrStack, EventScript_TryDoNormalTrainerBattle2);
-    push(scrStack, EventScript_RevealTrainer2);
-    push(scrStack, EventScript_GetTrainerFlag);
-    push(scrStack, EventScript_PlayTrainerEncounterMusic);
-    push(scrStack, EventScript_SetTrainerFacingDirecttion);
-    push(scrStack, EventScript_ShowTrainerIntroMsg);
-
-    u8 i;
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrStack______");
-    for (i = 0; i < scrStack->stackPtr; i++) {
-        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, scrStack->stack[i]);
+    if (isApproaching) {
+        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
+        PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
+        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+        if (TryPrepareSecondApproachingTrainer2()) {
+            PtrStackPushU8(scrStack, EventScript_PrepareSecondTrainerApproach);
+            PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
+            PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
+            PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+        }
+        PtrStackPushU8(scrStack, EventScript_DoTrainerBattle2);
+        PtrStackPushU8(scrStack, EventScript_EndTrainerBattle2);
+        return NULL;
     }
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrFloor______");
+
+    PtrStackPushU8(scrStack, EventScript_Lock);
+    PtrStackPushU8(scrStack, EventScript_RevealTrainer2);
+    
+    if (GetTrainerFlag()) 
+    {
+        PtrStackPushU8(scrStack, EventScript_GotoPostBattleScript);
+        return NULL;
+    }
+
+    if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
+     && TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
+    {
+        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
+    }
+
+    PtrStackPushU8(scrStack, EventScript_SetTrainerFacingDirection);
+
+    if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT)
+    {
+        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+    }
+
+    if (gNoOfApproachingTrainers > 1)
+    {
+        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
+        PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
+        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+    }
+
+    PtrStackPushU8(scrStack, EventScript_DoTrainerBattle2);
+    PtrStackPushU8(scrStack, EventScript_EndTrainerBattle2);
 
     return NULL;
 
@@ -1317,7 +1374,7 @@ void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerSc
 {
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
-    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL);
+    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL, TRUE);
     ScriptContext_SetupScript(EventScript_StartTrainerApproach);
     LockPlayerFieldControls();
 }
@@ -1326,7 +1383,7 @@ void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript)
 {
     gSelectedObjectEvent = trainerObjEventId;
     gSpecialVar_LastTalked = gObjectEvents[trainerObjEventId].localId;
-    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL);
+    BattleSetup_ConfigureTrainerBattle(trainerScript + 1, NULL, TRUE);
 }
 
 void SetUpTwoTrainersBattle(void)
@@ -1696,7 +1753,7 @@ const u8 *GetTrainerALoseText(void)
 
 const u8 *GetTrainerBLoseText(void)
 {
-    StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(sTrainerBDefeatSpeech));
+    StringExpandPlaceholders(gStringVar4, ReturnEmptyStringIfNull(TRAINER_BATTLE_PARAM.defeatTextB));
     return gStringVar4;
 }
 
@@ -2094,27 +2151,4 @@ u16 CountBattledRematchTeams(u16 trainerId)
     }
 
     return i;
-}
-
-void initStack(TrainerBattleScriptStack *scrStack)
-{
-    memset(scrStack->stack, 0, sizeof(MAX_STACK_SIZE));
-    scrStack->stackPtr = -1;
-}
-
-const u8* pop(TrainerBattleScriptStack *scrStack)
-{
-    if (scrStack->stackPtr - 1 < -1)
-        return NULL;
-
-    return scrStack->stack[scrStack->stackPtr--];
-}
-
-bool8 push(TrainerBattleScriptStack *scrStack, const u8* ptr)
-{
-    if (scrStack->stackPtr + 1 >= MAX_STACK_SIZE)
-        return FALSE;
-
-    scrStack->stack[++(scrStack->stackPtr)] = ptr;
-    return TRUE;
 }
