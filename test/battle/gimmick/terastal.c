@@ -764,7 +764,6 @@ SINGLE_BATTLE_TEST("(TERA) Stellar type's one-time boost factors in dynamically-
 
 SINGLE_BATTLE_TEST("(TERA) Terapagos retains the Stellar type boost at all times")
 {
-    KNOWN_FAILING; // #5012
     s16 damage[2];
     u32 move;
     PARAMETRIZE { move = MOVE_TACKLE; }
