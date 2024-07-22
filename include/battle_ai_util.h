@@ -203,7 +203,18 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
 s32 AI_TryToClearStats(u32 battlerAtk, u32 battlerDef, bool32 isDoubleBattle);
 bool32 AI_ShouldCopyStatChanges(u32 battlerAtk, u32 battlerDef);
 bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
-void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score);
 bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, struct AiLogicData *aiData);
+bool32 AI_ShouldTrickOrBestow(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
+
+// s32 AI_EffectRest(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
+// s32 AI_EffectOHKO(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
+// s32 AI_EffectMeanLook(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
+// s32 AI_EffectFocusEnergy(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
+// s32 AI_EffectLaserFocus(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
+// s32 AI_EffectSubstitute(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
+// s32 AI_EffectMimic(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData);
+// s32 AI_EffectLeechSeed(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
+// s32 AI_EffectHitEscapeOrEscape(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData);
 
 #endif //GUARD_BATTLE_AI_UTIL_H
+

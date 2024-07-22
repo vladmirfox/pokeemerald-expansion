@@ -493,6 +493,10 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
         if (!gDisableStructs[battlerAtk].isFirstTurn)
             return TRUE;
         break;
+    case EFFECT_FUTURE_SIGHT:
+        if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_FUTUREATTACK)
+            return TRUE;
+        break;
     case EFFECT_FOCUS_PUNCH:
         if (HasDamagingMove(battlerDef) && !((gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
          || IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
@@ -854,6 +858,10 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 
     // recoil
     if (gMovesInfo[move].recoil > 0 && AI_IsDamagedByRecoil(battlerAtk))
+        return TRUE;
+
+    // Vital Throw type moves
+    if (gMovesInfo[move].priority < 0 && AI_IsFaster(battlerAtk, battlerDef, move) && AI_DATA->hpPercents[battlerAtk] < 40)
         return TRUE;
 
     switch (gMovesInfo[move].effect)
@@ -3921,24 +3929,6 @@ bool32 AI_ShouldSetUpHazards(u32 battlerAtk, u32 battlerDef, struct AiLogicData 
     return TRUE;
 }
 
-void IncreaseTidyUpScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
-{
-    if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
-        ADJUST_SCORE_PTR(GOOD_EFFECT);
-    if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerDef) != 0)
-        ADJUST_SCORE_PTR(-2);
-
-    if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE && AI_IsFaster(battlerAtk, battlerDef, move))
-        ADJUST_SCORE_PTR(-10);
-    if (gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE)
-        ADJUST_SCORE_PTR(GOOD_EFFECT);
-
-    if (gStatuses3[battlerAtk] & STATUS3_LEECHSEED)
-        ADJUST_SCORE_PTR(DECENT_EFFECT);
-    if (gStatuses3[battlerDef] & STATUS3_LEECHSEED)
-        ADJUST_SCORE_PTR(-2);
-}
-
 bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, struct AiLogicData *aiData)
 {
     u32 preventsStatLoss;
@@ -3976,4 +3966,70 @@ bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, st
     return (preventsStatLoss
          && AI_IsFaster(battlerAtk, battlerAtkPartner, TRUE)
          && HasMoveWithCategory(battlerAtkPartner, DAMAGE_CATEGORY_PHYSICAL));
+}
+
+bool32 AI_ShouldTrickOrBestow(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
+{
+    switch (aiData->holdEffects[battlerAtk])
+    {
+    case HOLD_EFFECT_CHOICE_SCARF:
+        return TRUE; // assume its beneficial
+    case HOLD_EFFECT_CHOICE_BAND:
+        return !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL);
+    case HOLD_EFFECT_CHOICE_SPECS:
+        return !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL);
+    case HOLD_EFFECT_TOXIC_ORB:
+        return !ShouldPoisonSelf(battlerAtk, aiData->abilities[battlerAtk]);
+    case HOLD_EFFECT_FLAME_ORB:
+        return !ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]) && CanBeBurned(battlerAtk, aiData->abilities[battlerDef]);
+    case HOLD_EFFECT_BLACK_SLUDGE:
+        return !IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON) && aiData->abilities[battlerDef] != ABILITY_MAGIC_GUARD;
+    case HOLD_EFFECT_IRON_BALL:
+        return !HasMoveEffect(battlerDef, EFFECT_FLING) || !IsBattlerGrounded(battlerDef);
+    case HOLD_EFFECT_LAGGING_TAIL:
+    case HOLD_EFFECT_STICKY_BARB:
+        return TRUE;
+        break;
+    case HOLD_EFFECT_UTILITY_UMBRELLA:
+        if (aiData->abilities[battlerAtk] != ABILITY_SOLAR_POWER && aiData->abilities[battlerAtk] != ABILITY_DRY_SKIN)
+        {
+            switch (aiData->abilities[battlerDef])
+            {
+            case ABILITY_SWIFT_SWIM:
+                return AI_GetWeather(aiData) & B_WEATHER_RAIN;
+            case ABILITY_CHLOROPHYLL:
+            case ABILITY_FLOWER_GIFT:
+                return AI_GetWeather(aiData) & B_WEATHER_SUN;
+            }
+        }
+        break;
+    case HOLD_EFFECT_EJECT_BUTTON:
+        //if (!IsRaidBattle() && GetActiveGimmick(battlerDef) == GIMMICK_DYNAMAX && gNewBS->dynamaxData.timer[battlerDef] > 1 &&
+        return HasDamagingMove(battlerAtk)
+           || (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && HasDamagingMove(BATTLE_PARTNER(battlerAtk)));
+    default:
+        if (move != MOVE_BESTOW && aiData->items[battlerAtk] == ITEM_NONE)
+        {
+            switch (aiData->holdEffects[battlerDef])
+            {
+            case HOLD_EFFECT_CHOICE_BAND:
+                break;
+            case HOLD_EFFECT_TOXIC_ORB:
+                return ShouldPoisonSelf(battlerAtk, aiData->abilities[battlerAtk]);
+            case HOLD_EFFECT_FLAME_ORB:
+                return ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]);
+            case HOLD_EFFECT_BLACK_SLUDGE:
+                return IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON) || aiData->abilities[battlerAtk] == ABILITY_MAGIC_GUARD;
+            case HOLD_EFFECT_IRON_BALL:
+                return HasMoveEffect(battlerAtk, EFFECT_FLING);
+            case HOLD_EFFECT_LAGGING_TAIL:
+            case HOLD_EFFECT_STICKY_BARB:
+                break;
+            default:
+                return TRUE;    //other hold effects generally universally good
+                break;
+            }
+        }
+    }
+    return FALSE;
 }

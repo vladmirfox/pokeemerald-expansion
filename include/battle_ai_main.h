@@ -34,7 +34,9 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 
 #define BEST_DAMAGE_MOVE         1  // Move with the most amount of hits with the best accuracy/effect
 #define POWERFUL_STATUS_MOVE     10 // Moves with this score will be chosen over a move that faints target
+#define BAD_MOVE                -10
 #define NO_DAMAGE_OR_FAILS      -20 // Move fails or does no damage
+#define MOVE_UNUSABLE          -100
 
 // Scores given in AI_CalcMoveEffectScore
 #define NO_INCREASE      0
