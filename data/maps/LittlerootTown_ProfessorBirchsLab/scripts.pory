@@ -1005,20 +1005,20 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 script Custom_Givemon_Littleroot{
 
     lockall
-    showmonpic(SPECIES_HAWLUCHA, 5,3)
-    msgbox("Do you want this Hawlucha?", MSGBOX_YESNO)
+    showmonpic(SPECIES_ZORUA_HISUIAN, 5,3)
+    msgbox("As a welcome gift from me\n Please take this Hisuian Zorua.", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_HAWLUCHA, 10, ITEM_LUXURY_BALL)
+        givemon(SPECIES_ZORUA_HISUIAN, 10, ITEM_LUXURY_BALL)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Here you go!")
+            msgbox("Just as expected!")
             removeobject(5)
             setflag(FLAG_UNUSED_0x028)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("Hawlucha was placed in your PC.")
+            msgbox("Zorua was placed in your PC.")
             removeobject(1)
             setflag(FLAG_UNUSED_0x028)
             call(NicknameBoxMon)

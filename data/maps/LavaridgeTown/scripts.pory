@@ -409,3 +409,41 @@ LavaridgeTown_Text_HerbShopSign:
 	.string "“Bitter taste--better cure!”$"
 
 `
+
+
+script Lavaridge_Black_Mart{
+    lock
+    faceplayer
+    message("Welcome to the Lavaridge black market!\n")
+	message("How can I help you?")
+    waitmessage
+    pokemart(Lavaridge_Inventory)
+    msgbox("See you soon...")
+    release
+    end
+}
+
+raw`
+
+.align 2
+Lavaridge_Inventory::
+    .2byte ITEM_RARE_CANDY
+    .2byte ITEM_CHARCOAL
+    .2byte ITEM_MIRACLE_SEED
+    .2byte ITEM_SOFT_SAND
+    .2byte ITEM_FOCUS_BAND
+    .2byte ITEM_WHITE_HERB
+    .2byte ITEM_MOOMOO_MILK
+    .2byte ITEM_HYPER_POTION
+    .2byte ITEM_PASSHO_BERRY
+    .2byte ITEM_WACAN_BERRY
+    .2byte ITEM_RINDO_BERRY
+    .2byte ITEM_OCCA_BERRY
+    .2byte ITEM_ASSAULT_VEST
+    .2byte ITEM_EXPERT_BELT
+    .2byte ITEM_BLACK_SLUDGE
+    .2byte ITEM_NONE
+    release
+    end
+
+`

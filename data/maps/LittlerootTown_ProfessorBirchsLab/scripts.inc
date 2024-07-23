@@ -2007,7 +2007,7 @@ Custom_Givemon_Littleroot::
 # 1007 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	lockall
 # 1008 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	showmonpic SPECIES_HAWLUCHA, 5, 3
+	showmonpic SPECIES_ZORUA_HISUIAN, 5, 3
 # 1009 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	msgbox Custom_Givemon_Littleroot_Text_0, MSGBOX_YESNO
 # 1010 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2026,7 +2026,7 @@ Custom_Givemon_Littleroot_1:
 
 Custom_Givemon_Littleroot_2:
 # 1011 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	givemon SPECIES_HAWLUCHA, 10, ITEM_LUXURY_BALL
+	givemon SPECIES_ZORUA_HISUIAN, 10, ITEM_LUXURY_BALL
 # 1012 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq Custom_Givemon_Littleroot_5
@@ -2105,15 +2105,15 @@ NicknameBoxMon_2:
 
 Custom_Givemon_Littleroot_Text_0:
 # 1009 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "Do you want this Hawlucha?$"
+	.string "As a welcome gift from me\n Please take this Hisuian Zorua.$"
 
 Custom_Givemon_Littleroot_Text_1:
 # 1014 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "Here you go!$"
+	.string "Just as expected!$"
 
 Custom_Givemon_Littleroot_Text_2:
 # 1021 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "Hawlucha was placed in your PC.$"
+	.string "Zorua was placed in your PC.$"
 
 Custom_Givemon_Littleroot_Text_3:
 # 1028 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"

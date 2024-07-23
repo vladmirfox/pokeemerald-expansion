@@ -668,3 +668,32 @@ MauvilleCity_Text_ExplainTV:
 MauvilleCity_Text_BeenCheckingOutTV:
 	.string "Hi, have you been checking out TVs?$"
 `
+
+script Mauville_Black_Mart{
+    lock
+    faceplayer
+    message("Welcome to the Mauville black market!\n")
+	message("How can I help you?")
+    waitmessage
+    pokemart(Mauville_Inventory)
+    msgbox("See you soon...")
+    release
+    end
+}
+
+raw`
+
+.align 2
+Mauville_Inventory::
+    .2byte ITEM_RARE_CANDY
+    .2byte ITEM_CHOICE_SPECS
+    .2byte ITEM_LIFE_ORB
+    .2byte ITEM_LEFTOVERS
+    .2byte ITEM_DESTINY_KNOT
+    .2byte ITEM_MAGNET
+    .2byte ITEM_SITRUS_BERRY
+    .2byte ITEM_NONE
+    release
+    end
+
+`

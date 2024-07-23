@@ -1336,3 +1336,64 @@ MauvilleCity_Text_ExplainTV:
 MauvilleCity_Text_BeenCheckingOutTV:
 # 669 "data/maps/MauvilleCity/scripts.pory"
 	.string "Hi, have you been checking out TVs?$"
+
+Mauville_Black_Mart::
+# 673 "data/maps/MauvilleCity/scripts.pory"
+	lock
+# 674 "data/maps/MauvilleCity/scripts.pory"
+	faceplayer
+# 675 "data/maps/MauvilleCity/scripts.pory"
+	message Mauville_Black_Mart_Text_0
+# 676 "data/maps/MauvilleCity/scripts.pory"
+	message Mauville_Black_Mart_Text_1
+# 677 "data/maps/MauvilleCity/scripts.pory"
+	waitmessage
+# 678 "data/maps/MauvilleCity/scripts.pory"
+	pokemart Mauville_Inventory
+# 679 "data/maps/MauvilleCity/scripts.pory"
+	msgbox Mauville_Black_Mart_Text_2
+# 680 "data/maps/MauvilleCity/scripts.pory"
+	release
+	end
+
+
+# 684 "data/maps/MauvilleCity/scripts.pory"
+
+# 685 "data/maps/MauvilleCity/scripts.pory"
+
+# 686 "data/maps/MauvilleCity/scripts.pory"
+.align 2
+# 687 "data/maps/MauvilleCity/scripts.pory"
+Mauville_Inventory::
+# 688 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_RARE_CANDY
+# 689 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_CHOICE_SPECS
+# 690 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_LIFE_ORB
+# 691 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_LEFTOVERS
+# 692 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_DESTINY_KNOT
+# 693 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_MAGNET
+# 694 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_SITRUS_BERRY
+# 695 "data/maps/MauvilleCity/scripts.pory"
+    .2byte ITEM_NONE
+# 696 "data/maps/MauvilleCity/scripts.pory"
+    release
+# 697 "data/maps/MauvilleCity/scripts.pory"
+    end
+
+Mauville_Black_Mart_Text_0:
+# 675 "data/maps/MauvilleCity/scripts.pory"
+	.string "Welcome to the Mauville black market!\n$"
+
+Mauville_Black_Mart_Text_1:
+# 676 "data/maps/MauvilleCity/scripts.pory"
+	.string "How can I help you?$"
+
+Mauville_Black_Mart_Text_2:
+# 679 "data/maps/MauvilleCity/scripts.pory"
+	.string "See you soon...$"

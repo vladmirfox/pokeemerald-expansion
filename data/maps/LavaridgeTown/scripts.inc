@@ -816,3 +816,80 @@ LavaridgeTown_Text_HerbShopSign:
 	.string "POKéMON HERB SHOP\n"
 # 409 "data/maps/LavaridgeTown/scripts.pory"
 	.string "“Bitter taste--better cure!”$"
+
+Lavaridge_Black_Mart::
+# 415 "data/maps/LavaridgeTown/scripts.pory"
+	lock
+# 416 "data/maps/LavaridgeTown/scripts.pory"
+	faceplayer
+# 417 "data/maps/LavaridgeTown/scripts.pory"
+	message Lavaridge_Black_Mart_Text_0
+# 418 "data/maps/LavaridgeTown/scripts.pory"
+	message Lavaridge_Black_Mart_Text_1
+# 419 "data/maps/LavaridgeTown/scripts.pory"
+	waitmessage
+# 420 "data/maps/LavaridgeTown/scripts.pory"
+	pokemart Lavaridge_Inventory
+# 421 "data/maps/LavaridgeTown/scripts.pory"
+	msgbox Lavaridge_Black_Mart_Text_2
+# 422 "data/maps/LavaridgeTown/scripts.pory"
+	release
+	end
+
+
+# 426 "data/maps/LavaridgeTown/scripts.pory"
+
+# 427 "data/maps/LavaridgeTown/scripts.pory"
+
+# 428 "data/maps/LavaridgeTown/scripts.pory"
+.align 2
+# 429 "data/maps/LavaridgeTown/scripts.pory"
+Lavaridge_Inventory::
+# 430 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_RARE_CANDY
+# 431 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_CHARCOAL
+# 432 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_MIRACLE_SEED
+# 433 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_SOFT_SAND
+# 434 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_FOCUS_BAND
+# 435 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_WHITE_HERB
+# 436 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_MOOMOO_MILK
+# 437 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_HYPER_POTION
+# 438 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_PASSHO_BERRY
+# 439 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_WACAN_BERRY
+# 440 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_RINDO_BERRY
+# 441 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_OCCA_BERRY
+# 442 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_ASSAULT_VEST
+# 443 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_EXPERT_BELT
+# 444 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_BLACK_SLUDGE
+# 445 "data/maps/LavaridgeTown/scripts.pory"
+    .2byte ITEM_NONE
+# 446 "data/maps/LavaridgeTown/scripts.pory"
+    release
+# 447 "data/maps/LavaridgeTown/scripts.pory"
+    end
+
+Lavaridge_Black_Mart_Text_0:
+# 417 "data/maps/LavaridgeTown/scripts.pory"
+	.string "Welcome to the Lavaridge black market!\n$"
+
+Lavaridge_Black_Mart_Text_1:
+# 418 "data/maps/LavaridgeTown/scripts.pory"
+	.string "How can I help you?$"
+
+Lavaridge_Black_Mart_Text_2:
+# 421 "data/maps/LavaridgeTown/scripts.pory"
+	.string "See you soon...$"
