@@ -52,38 +52,8 @@ struct FrontierBrainMon
 struct FrontierBrain
 {
     u16 trainerId;
-};
-
-const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER] =
-    {
-        .trainerId = TRAINER_ANABEL
-    },
-    [FRONTIER_FACILITY_DOME] =
-    {
-        .trainerId = TRAINER_TUCKER
-    },
-    [FRONTIER_FACILITY_PALACE] =
-    {
-        .trainerId = TRAINER_SPENSER
-    },
-    [FRONTIER_FACILITY_ARENA] =
-    {
-        .trainerId = TRAINER_GRETA
-    },
-    [FRONTIER_FACILITY_FACTORY] =
-    {
-        .trainerId = TRAINER_NOLAND
-    },
-    [FRONTIER_FACILITY_PIKE] =
-    {
-        .trainerId = TRAINER_LUCY
-    },
-    [FRONTIER_FACILITY_PYRAMID] =
-    {
-        .trainerId = TRAINER_BRANDON
-    },
+    u8 objEventGfx;
+    u8 isFemale;
 };
 
 // This file's functions.
@@ -130,6 +100,52 @@ static const u8 sFrontierBrainStreakAppearances[NUM_FRONTIER_FACILITIES][4] =
     [FRONTIER_FACILITY_FACTORY] = {21,  42, 21, 1},
     [FRONTIER_FACILITY_PIKE]    = {28, 140, 56, 1},
     [FRONTIER_FACILITY_PYRAMID] = {21,  70, 35, 0},
+};
+
+const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
+{
+    [FRONTIER_FACILITY_TOWER] =
+    {
+        .trainerId = TRAINER_ANABEL,
+        .objEventGfx = OBJ_EVENT_GFX_ANABEL,
+        .isFemale = TRUE,
+    },
+    [FRONTIER_FACILITY_DOME] =
+    {
+        .trainerId = TRAINER_TUCKER,
+        .objEventGfx = OBJ_EVENT_GFX_TUCKER,
+        .isFemale = FALSE,
+    },
+    [FRONTIER_FACILITY_PALACE] =
+    {
+        .trainerId = TRAINER_SPENSER,
+        .objEventGfx = OBJ_EVENT_GFX_SPENSER,
+        .isFemale = FALSE,
+    },
+    [FRONTIER_FACILITY_ARENA] =
+    {
+        .trainerId = TRAINER_GRETA,
+        .objEventGfx = OBJ_EVENT_GFX_GRETA,
+        .isFemale = TRUE,
+    },
+    [FRONTIER_FACILITY_FACTORY] =
+    {
+        .trainerId = TRAINER_NOLAND,
+        .objEventGfx = OBJ_EVENT_GFX_NOLAND,
+        .isFemale = FALSE,
+    },
+    [FRONTIER_FACILITY_PIKE] =
+    {
+        .trainerId = TRAINER_LUCY,
+        .objEventGfx = OBJ_EVENT_GFX_LUCY,
+        .isFemale = TRUE,
+    },
+    [FRONTIER_FACILITY_PYRAMID] =
+    {
+        .trainerId = TRAINER_BRANDON,
+        .objEventGfx = OBJ_EVENT_GFX_BRANDON,
+        .isFemale = FALSE,
+    },
 };
 
 static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZE] =
@@ -646,18 +662,6 @@ static const struct WindowTemplate sRankingHallRecordsWindowTemplate =
     .height = 17,
     .paletteNum = 15,
     .baseBlock = 1
-};
-
-// Second field - whether the character is female.
-static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
-{
-    [FRONTIER_FACILITY_TOWER]   = {OBJ_EVENT_GFX_ANABEL,  TRUE},
-    [FRONTIER_FACILITY_DOME]    = {OBJ_EVENT_GFX_TUCKER,  FALSE},
-    [FRONTIER_FACILITY_PALACE]  = {OBJ_EVENT_GFX_SPENSER, FALSE},
-    [FRONTIER_FACILITY_ARENA]   = {OBJ_EVENT_GFX_GRETA,   TRUE},
-    [FRONTIER_FACILITY_FACTORY] = {OBJ_EVENT_GFX_NOLAND,  FALSE},
-    [FRONTIER_FACILITY_PIKE]    = {OBJ_EVENT_GFX_LUCY,    TRUE},
-    [FRONTIER_FACILITY_PYRAMID] = {OBJ_EVENT_GFX_BRANDON, FALSE},
 };
 
 static const u8 *const sRecordsWindowChallengeTexts[][2] =
@@ -2458,13 +2462,13 @@ void CopyFrontierBrainTrainerName(u8 *dst)
 bool8 IsFrontierBrainFemale(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    return sFrontierBrainObjEventGfx[facility][1];
+    return gFrontierBrainInfo[facility].isFemale;
 }
 
 void SetFrontierBrainObjEventGfx_2(void)
 {
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
-    VarSet(VAR_OBJ_GFX_ID_0, sFrontierBrainObjEventGfx[facility][0]);
+    VarSet(VAR_OBJ_GFX_ID_0, gFrontierBrainInfo[facility].objEventGfx);
 }
 
 #define FRONTIER_BRAIN_OTID 61226
@@ -2531,7 +2535,7 @@ u16 GetFrontierBrainMonSpecies(u8 monId)
 void SetFrontierBrainObjEventGfx(u8 facility)
 {
     gTrainerBattleOpponent_A = TRAINER_FRONTIER_BRAIN;
-    VarSet(VAR_OBJ_GFX_ID_0, sFrontierBrainObjEventGfx[facility][0]);
+    VarSet(VAR_OBJ_GFX_ID_0, gFrontierBrainInfo[facility].objEventGfx);
 }
 
 u16 GetFrontierBrainMonMove(u8 monId, u8 moveSlotId)
