@@ -49,6 +49,43 @@ struct FrontierBrainMon
     u16 moves[MAX_MON_MOVES];
 };
 
+struct FrontierBrain
+{
+    u16 trainerId;
+};
+
+const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
+{
+    [FRONTIER_FACILITY_TOWER] =
+    {
+        .trainerId = TRAINER_ANABEL
+    },
+    [FRONTIER_FACILITY_DOME] =
+    {
+        .trainerId = TRAINER_TUCKER
+    },
+    [FRONTIER_FACILITY_PALACE] =
+    {
+        .trainerId = TRAINER_SPENSER
+    },
+    [FRONTIER_FACILITY_ARENA] =
+    {
+        .trainerId = TRAINER_GRETA
+    },
+    [FRONTIER_FACILITY_FACTORY] =
+    {
+        .trainerId = TRAINER_NOLAND
+    },
+    [FRONTIER_FACILITY_PIKE] =
+    {
+        .trainerId = TRAINER_LUCY
+    },
+    [FRONTIER_FACILITY_PYRAMID] =
+    {
+        .trainerId = TRAINER_BRANDON
+    },
+};
+
 // This file's functions.
 static void GetChallengeStatus(void);
 static void GetFrontierData(void);
@@ -655,17 +692,6 @@ static const u8 *const sHallFacilityToRecordsText[] =
     [RANKING_HALL_PIKE]          = gText_FrontierFacilityRoomsCleared,
     [RANKING_HALL_PYRAMID]       = gText_FrontierFacilityFloorsCleared,
     [RANKING_HALL_TOWER_LINK]    = gText_FrontierFacilityWinStreak,
-};
-
-static const u16 sFrontierBrainTrainerIds[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER]   = TRAINER_ANABEL,
-    [FRONTIER_FACILITY_DOME]    = TRAINER_TUCKER,
-    [FRONTIER_FACILITY_PALACE]  = TRAINER_SPENSER,
-    [FRONTIER_FACILITY_ARENA]   = TRAINER_GRETA,
-    [FRONTIER_FACILITY_FACTORY] = TRAINER_NOLAND,
-    [FRONTIER_FACILITY_PIKE]    = TRAINER_LUCY,
-    [FRONTIER_FACILITY_PYRAMID] = TRAINER_BRANDON,
 };
 
 static const u8 *const sFrontierBrainPlayerLostSilverTexts[NUM_FRONTIER_FACILITIES] =
@@ -2396,7 +2422,7 @@ u8 GetFrontierBrainTrainerPicIndex(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return GetTrainerPicFromId(sFrontierBrainTrainerIds[facility]);
+    return GetTrainerPicFromId(gFrontierBrainInfo[facility].trainerId);
 }
 
 u8 GetFrontierBrainTrainerClass(void)
@@ -2408,7 +2434,7 @@ u8 GetFrontierBrainTrainerClass(void)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    return GetTrainerClassFromId(sFrontierBrainTrainerIds[facility]);
+    return GetTrainerClassFromId(gFrontierBrainInfo[facility].trainerId);
 }
 
 void CopyFrontierBrainTrainerName(u8 *dst)
@@ -2422,7 +2448,7 @@ void CopyFrontierBrainTrainerName(u8 *dst)
     else
         facility = VarGet(VAR_FRONTIER_FACILITY);
 
-    trainerName = GetTrainerNameFromId(sFrontierBrainTrainerIds[facility]);
+    trainerName = GetTrainerNameFromId(gFrontierBrainInfo[facility].trainerId);
     for (i = 0; i < PLAYER_NAME_LENGTH; i++)
         dst[i] = trainerName[i];
 
