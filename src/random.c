@@ -91,6 +91,13 @@ void SeedRng2(u32 seed)
     SFC32_Seed(&gRng2Value, seed, STREAM2);
 }
 
+rng_value_t LocalRandomSeed(u32 seed)
+{
+    rng_value_t result;
+    SFC32_Seed(&result, seed, STREAM1);
+    return result;
+}
+
 void AdvanceRandom(void)
 {
     if (sRngLoopUnlocked == TRUE)
@@ -231,4 +238,23 @@ u32 RandomWeightedArrayDefault(enum RandomTag tag, u32 sum, u32 n, const u8 *wei
 const void *RandomElementArrayDefault(enum RandomTag tag, const void *array, size_t size, size_t count)
 {
     return (const u8 *)array + size * RandomUniformDefault(tag, 0, count - 1);
+}
+
+// Returns a random index according to a list of weights
+u8 RandomWeightedIndex(u8 *weights, u8 length)
+{
+    u32 i;
+    u16 randomValue;
+    u16 weightSum = 0;
+    for (i = 0; i < length; i++)
+        weightSum += weights[i];
+    randomValue = weightSum > 0 ? Random() % weightSum : 0;
+    weightSum = 0;
+    for (i = 0; i < length; i++)
+    {
+        weightSum += weights[i];
+        if (randomValue <= weightSum)
+            return i;
+    }
+    return 0;
 }

@@ -752,7 +752,7 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 83 + count * 54, i * 15, 0, NULL);
 
             ConvertIntToDecimalStringN(text,
-                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i],
+                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i].expected,
                                        STR_CONV_MODE_RIGHT_ALIGN, 3);
             AddTextPrinterParameterized(data->aiMovesWindowId, FONT_NORMAL, text, 110 + count * 54, i * 15, 0, NULL);
 
@@ -1480,7 +1480,7 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
         {
             u8 *types = &gBattleMons[data->battlerId].type1;
 
-            PadString(gTypeNames[types[i]], text);
+            PadString(gTypesInfo[types[i]].name, text);
             printer.currentY = printer.y = (i * yMultiplier) + sSecondaryListTemplate.upText_Y;
             AddTextPrinter(&printer, 0, NULL);
         }
