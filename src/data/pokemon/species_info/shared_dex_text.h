@@ -272,18 +272,7 @@ const u8 gOgerponTealMaskPokedexText[] = _(
     "its enemies with nimble movements\n"
     "and kicks.");
 
-const u8 gOgerponTealMaskTeraPokedexText[] = _(
-    "This Pokémon's type changes based on\n"
-    "which mask it's wearing. It confounds\n"
-    "its enemies with nimble movements\n"
-    "and kicks.");
-
 const u8 gOgerponWellspringMaskPokedexText[] = _(
-    "This form excels in both attack\n"
-    "and defense. It ceaselessly unleashes\n"
-    "moves like a spring gushes water.");
-
-const u8 gOgerponWellspringMaskTeraPokedexText[] = _(
     "This form excels in both attack\n"
     "and defense. It ceaselessly unleashes\n"
     "moves like a spring gushes water.");
@@ -293,18 +282,7 @@ const u8 gOgerponHearthflameMaskPokedexText[] = _(
     "bombarding enemies with the\n"
     "intensity of flames blazing within a hearth.");
 
-const u8 gOgerponHearthflameMaskTeraPokedexText[] = _(
-    "This form is the most aggressive,\n"
-    "bombarding enemies with the\n"
-    "intensity of flames blazing within a hearth.");
-
 const u8 gOgerponCornerstoneMaskPokedexText[] = _(
-    "In this form, it draws on the power\n"
-    "of stone. Its body is rock-solid,\n"
-    "protecting it from all manner of\n"
-    "attacks.");
-
-const u8 gOgerponCornerstoneMaskTeraPokedexText[] = _(
     "In this form, it draws on the power\n"
     "of stone. Its body is rock-solid,\n"
     "protecting it from all manner of\n"
