@@ -3917,8 +3917,7 @@ static void TryDoEventsBeforeFirstTurn(void)
 
         for (i = 0; i < gBattlersCount; i++)
         {
-            gBattleMons[i].status2 = 0;
-            gBattleMons[i].status1 &= ~STATUS1_TOXIC_COUNTER;
+            gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
             // Record party slots of player's mons that appeared in battle
             if (!BattlerHasAi(i))
                 gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[i]];
