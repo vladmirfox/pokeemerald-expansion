@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Bad poison deals 1/16th cumulative damage per turn")
     }
 }
 
-SINGLE_BATTLE_TEST("Bad poison cumulative damage resets on switch")
+SINGLE_BATTLE_TEST("1 Bad poison cumulative damage resets on switch")
 {
     u32 j;
     GIVEN {
