@@ -34,6 +34,7 @@ static void AnimLeechSeed(struct Sprite *);
 static void AnimLeechSeed_Step(struct Sprite *);
 static void AnimLeechSeedSprouts(struct Sprite *);
 static void AnimTranslateLinearSingleSineWave_Step(struct Sprite *);
+static void AnimTranslateLinearLine_Step(struct Sprite *);
 static void AnimConstrictBinding(struct Sprite *);
 static void AnimConstrictBinding_Step1(struct Sprite *);
 static void AnimConstrictBinding_Step2(struct Sprite *);
@@ -3988,6 +3989,51 @@ static void AnimRazorLeafParticle_Step2(struct Sprite *sprite)
     if (sprite->data[1] > 80)
         DestroyAnimSprite(sprite);
 }
+
+/*
+static void AnimTeraStarstormBeam(struct Sprite *sprite)
+{
+    InitSpritePosToAnimAttacker(sprite, TRUE);
+
+    sprite->data[0] = gbattleAnimArgs[0];
+    sprite->data[1] = sprite->x;
+    sprite->data[2] = sprite->x;
+    sprite->data[3] = sprite->y;
+    sprite->data[4] = sprite->y+120;
+    InitAnimLinearTranslation(sprite);
+    sprite->callback = AnimTeraStarstormBeam_Step;
+
+}
+
+static void AnimTeraStarstormBeam_Step(struct Sprite *sprite)
+{
+    if (AnimTranslateLinear(sprite))
+        DestroyAnimSprite(sprite);
+}
+*/
+
+/*
+void AnimTranslateLinearLine(struct Sprite *sprite)
+{
+    InitSpritePosToAnimAttacker(sprite, TRUE);
+    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+        gBattleAnimArgs[2] = -gBattleAnimArgs[2];
+
+    sprite->data[0] = gBattleAnimArgs[4];
+
+    //  Double battle offset calc, TODO
+
+    sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2) + gBattleAnimArgs[2];
+    sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[3];
+    InitAnimLinearTranslation(sprite);
+}
+
+static void AnimTranslateLinearLine_Step(struct Sprite *)
+{
+
+
+}
+*/
 
 // Animates a sprite that moves linearly from one location to another, with a
 // single-cycle sine wave added to the y position along the way.

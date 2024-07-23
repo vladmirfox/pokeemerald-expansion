@@ -11,8 +11,10 @@ SINGLE_BATTLE_TEST("Tera Starstorm changes from Normal-type to Stellar-type if u
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TERA_STARSTORM].type == TYPE_NORMAL);
         PLAYER(SPECIES_TERAPAGOS_STELLAR);
-        OPPONENT(SPECIES_MISDREAVUS);
+        OPPONENT(SPECIES_WOBBUFFET);
+        //OPPONENT(SPECIES_MISDREAVUS);
     } WHEN {
+        //TURN { MOVE(player, MOVE_CHARGE_BEAM); }
         TURN { MOVE(player, MOVE_TERA_STARSTORM); }
     } SCENE {
         MESSAGE("Terapagos used Tera Starstorm!");

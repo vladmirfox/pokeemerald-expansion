@@ -17650,6 +17650,19 @@ Move_MAGICAL_TORQUE::
 Move_PSYBLADE::
 Move_MATCHA_GOTCHA::
 Move_TERA_STARSTORM::
+	loadspritegfx ANIM_TAG_RAINBOW_RINGS
+	loadspritegfx ANIM_TAG_YELLOW_STAR
+	loadspritegfx ANIM_TAG_IMPACT
+	call TeraStarstormCreateBeam
+        delay 5
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 300, -50, 1
+	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 0, -50, 20, 0, 300, 0, 1
+	delay 5
+	waitforvisualfinish
+	end
+TeraStarstormCreateBeam::
+        @createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 3, 300
+        return
 Move_MIGHTY_CLEAVE::
 Move_TACHYON_CUTTER::
 Move_SUPERCELL_SLAM::
@@ -22658,7 +22671,7 @@ Move_AURORA_BEAM::
 	waitbgfadein
 	end
 AuroraBeamCreateRings:
-	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 17
+	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 300
 	delay 1
 	createsprite gAuroraBeamRingSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 0, 17
 	delay 1
