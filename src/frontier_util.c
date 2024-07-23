@@ -56,6 +56,8 @@ struct FrontierBrain
     u8 isFemale;
     const u8 *lostTexts[2];
     const u8 *wonTexts[2];
+    u16 battledBit[2];
+    u8 streakAppearances[4];
 };
 
 // This file's functions.
@@ -92,18 +94,8 @@ static void ShowPyramidResultsWindow(void);
 static void ShowLinkContestResultsWindow(void);
 static void CopyFrontierBrainText(bool8 playerWonText);
 
-// const rom data
-static const u8 sFrontierBrainStreakAppearances[NUM_FRONTIER_FACILITIES][4] =
-{
-    [FRONTIER_FACILITY_TOWER]   = {35,  70, 35, 1},
-    [FRONTIER_FACILITY_DOME]    = { 1,   2,  5, 0},
-    [FRONTIER_FACILITY_PALACE]  = {21,  42, 21, 1},
-    [FRONTIER_FACILITY_ARENA]   = {28,  56, 28, 1},
-    [FRONTIER_FACILITY_FACTORY] = {21,  42, 21, 1},
-    [FRONTIER_FACILITY_PIKE]    = {28, 140, 56, 1},
-    [FRONTIER_FACILITY_PYRAMID] = {21,  70, 35, 0},
-};
-
+// battledBit: Flags to change the conversation when the Frontier Brain is encountered for a battle
+// First bit is has battled them before and not won yet, second bit is has battled them and won (obtained a Symbol)
 const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
 {
     [FRONTIER_FACILITY_TOWER] =
@@ -113,6 +105,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = TRUE,
         .lostTexts = {gText_AnabelDefeatSilver, gText_AnabelDefeatGold},
         .wonTexts = {gText_AnabelWonSilver, gText_AnabelWonGold},
+        .battledBit = {1 << 0, 1 << 1},
+        .streakAppearances = {35, 70, 35, 1},
     },
     [FRONTIER_FACILITY_DOME] =
     {
@@ -121,6 +115,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = FALSE,
         .lostTexts = {gText_TuckerDefeatSilver, gText_TuckerDefeatGold},
         .wonTexts = {gText_TuckerWonSilver, gText_TuckerWonGold},
+        .battledBit = {1 << 2, 1 << 3},
+        .streakAppearances = {1, 2, 5, 0},
     },
     [FRONTIER_FACILITY_PALACE] =
     {
@@ -129,6 +125,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = FALSE,
         .lostTexts = {gText_SpenserDefeatSilver, gText_SpenserDefeatGold},
         .wonTexts = {gText_SpenserWonSilver, gText_SpenserWonGold},
+        .battledBit = {1 << 4, 1 << 5},
+        .streakAppearances = {21, 42, 21, 1},
     },
     [FRONTIER_FACILITY_ARENA] =
     {
@@ -137,6 +135,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = TRUE,
         .lostTexts = {gText_GretaDefeatSilver, gText_GretaDefeatGold},
         .wonTexts = {gText_GretaWonSilver, gText_GretaWonGold},
+        .battledBit = {1 << 6, 1 << 7},
+        .streakAppearances = {28, 56, 28, 1},
     },
     [FRONTIER_FACILITY_FACTORY] =
     {
@@ -145,6 +145,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = FALSE,
         .lostTexts = {gText_NolandDefeatSilver, gText_NolandDefeatGold},
         .wonTexts = {gText_NolandWonSilver, gText_NolandWonGold},
+        .battledBit = {1 << 8, 1 << 9},
+        .streakAppearances = {21, 42, 21, 1},
     },
     [FRONTIER_FACILITY_PIKE] =
     {
@@ -153,6 +155,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = TRUE,
         .lostTexts = {gText_LucyDefeatSilver, gText_LucyDefeatGold},
         .wonTexts = {gText_LucyWonSilver, gText_LucyWonGold},
+        .battledBit = {1 << 10, 1 << 11},
+        .streakAppearances = {28, 140, 56, 1},
     },
     [FRONTIER_FACILITY_PYRAMID] =
     {
@@ -161,6 +165,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .isFemale = FALSE,
         .lostTexts = {gText_BrandonDefeatSilver, gText_BrandonDefeatGold},
         .wonTexts = {gText_BrandonWonSilver, gText_BrandonWonGold},
+        .battledBit = {1 << 12, 1 << 13},
+        .streakAppearances = {21, 70, 35, 0},
     },
 };
 
@@ -606,20 +612,6 @@ static const u8 sBattlePointAwards[NUM_FRONTIER_FACILITIES][FRONTIER_MODE_COUNT]
     },
 };
 
-
-// Flags to change the conversation when the Frontier Brain is encountered for a battle
-// First bit is has battled them before and not won yet, second bit is has battled them and won (obtained a Symbol)
-static const u16 sBattledBrainBitFlags[NUM_FRONTIER_FACILITIES][2] =
-{
-    [FRONTIER_FACILITY_TOWER]   = {1 << 0, 1 << 1},
-    [FRONTIER_FACILITY_DOME]    = {1 << 2, 1 << 3},
-    [FRONTIER_FACILITY_PALACE]  = {1 << 4, 1 << 5},
-    [FRONTIER_FACILITY_ARENA]   = {1 << 6, 1 << 7},
-    [FRONTIER_FACILITY_FACTORY] = {1 << 8, 1 << 9},
-    [FRONTIER_FACILITY_PIKE]    = {1 << 10, 1 << 11},
-    [FRONTIER_FACILITY_PYRAMID] = {1 << 12, 1 << 13},
-};
-
 static void (* const sFrontierUtilFuncs[])(void) =
 {
     [FRONTIER_UTIL_FUNC_GET_STATUS]            = GetChallengeStatus,
@@ -775,7 +767,7 @@ static void GetFrontierData(void)
         gSpecialVar_Result = gSaveBlock2Ptr->frontier.disableRecordBattle;
         break;
     case FRONTIER_DATA_HEARD_BRAIN_SPEECH:
-        gSpecialVar_Result = gSaveBlock2Ptr->frontier.battledBrainFlags & sBattledBrainBitFlags[facility][hasSymbol];
+        gSpecialVar_Result = gSaveBlock2Ptr->frontier.battledBrainFlags & gFrontierBrainInfo[facility].battledBit[hasSymbol];
         break;
     }
 }
@@ -810,7 +802,7 @@ static void SetFrontierData(void)
         gSaveBlock2Ptr->frontier.disableRecordBattle = gSpecialVar_0x8006;
         break;
     case FRONTIER_DATA_HEARD_BRAIN_SPEECH:
-        gSaveBlock2Ptr->frontier.battledBrainFlags |= sBattledBrainBitFlags[facility][hasSymbol];
+        gSaveBlock2Ptr->frontier.battledBrainFlags |= gFrontierBrainInfo[facility].battledBit[hasSymbol];
         break;
     }
 }
@@ -1590,7 +1582,7 @@ u8 GetFrontierBrainStatus(void)
     s32 facility = VarGet(VAR_FRONTIER_FACILITY);
     s32 battleMode = VarGet(VAR_FRONTIER_BATTLE_MODE);
     u16 winStreakNoModifier = GetCurrentFacilityWinStreak();
-    s32 winStreak = winStreakNoModifier + sFrontierBrainStreakAppearances[facility][3];
+    s32 winStreak = winStreakNoModifier + gFrontierBrainInfo[facility].streakAppearances[3];
     s32 symbolsCount;
 
     if (battleMode != FRONTIER_MODE_SINGLES)
@@ -1602,20 +1594,20 @@ u8 GetFrontierBrainStatus(void)
     // Missing a symbol
     case 0:
     case 1:
-        if (winStreak == sFrontierBrainStreakAppearances[facility][symbolsCount])
+        if (winStreak == gFrontierBrainInfo[facility].streakAppearances[symbolsCount])
             status = symbolsCount + 1; // FRONTIER_BRAIN_SILVER and FRONTIER_BRAIN_GOLD
         break;
     // Already received both symbols
     case 2:
     default:
         // Silver streak is reached
-        if (winStreak == sFrontierBrainStreakAppearances[facility][0])
+        if (winStreak == gFrontierBrainInfo[facility].streakAppearances[0])
             status = FRONTIER_BRAIN_STREAK;
         // Gold streak is reached
-        else if (winStreak == sFrontierBrainStreakAppearances[facility][1])
+        else if (winStreak == gFrontierBrainInfo[facility].streakAppearances[1])
             status = FRONTIER_BRAIN_STREAK_LONG;
         // Some increment of the gold streak is reached
-        else if (winStreak > sFrontierBrainStreakAppearances[facility][1] && (winStreak - sFrontierBrainStreakAppearances[facility][1]) % sFrontierBrainStreakAppearances[facility][2] == 0)
+        else if (winStreak > gFrontierBrainInfo[facility].streakAppearances[1] && (winStreak - gFrontierBrainInfo[facility].streakAppearances[1]) % gFrontierBrainInfo[facility].streakAppearances[2] == 0)
             status = FRONTIER_BRAIN_STREAK_LONG;
         break;
     }
@@ -2530,12 +2522,12 @@ s32 GetFronterBrainSymbol(void)
     if (symbol == 2)
     {
         u16 winStreak = GetCurrentFacilityWinStreak();
-        if (winStreak + sFrontierBrainStreakAppearances[facility][3] == sFrontierBrainStreakAppearances[facility][0])
+        if (winStreak + gFrontierBrainInfo[facility].streakAppearances[3] == gFrontierBrainInfo[facility].streakAppearances[0])
             symbol = 0;
-        else if (winStreak + sFrontierBrainStreakAppearances[facility][3] == sFrontierBrainStreakAppearances[facility][1])
+        else if (winStreak + gFrontierBrainInfo[facility].streakAppearances[3] == gFrontierBrainInfo[facility].streakAppearances[1])
             symbol = 1;
-        else if (winStreak + sFrontierBrainStreakAppearances[facility][3] > sFrontierBrainStreakAppearances[facility][1]
-                 && (winStreak + sFrontierBrainStreakAppearances[facility][3] - sFrontierBrainStreakAppearances[facility][1]) % sFrontierBrainStreakAppearances[facility][2] == 0)
+        else if (winStreak + gFrontierBrainInfo[facility].streakAppearances[3] > gFrontierBrainInfo[facility].streakAppearances[1]
+                 && (winStreak + gFrontierBrainInfo[facility].streakAppearances[3] - gFrontierBrainInfo[facility].streakAppearances[1]) % gFrontierBrainInfo[facility].streakAppearances[2] == 0)
             symbol = 1;
     }
     return symbol;
