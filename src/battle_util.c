@@ -2359,20 +2359,27 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 if (ability == ABILITY_MAGIC_GUARD) \
 {\
     RecordAbilityBattle(battler, ability);\
-    gBattleStruct->turnEffectsTracker++;\
+    gBattleStruct->turnEffectsBattlerId++;\
             break;\
 }
 
 
 u8 DoBattlerEndTurnEffects(void)
 {
-    u32 battler, ability, i, effect = 0;
+    u32 battler = 0, ability = 0, i = 0, effect = 0;
 
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
-    while (gBattleStruct->turnEffectsBattlerId < gBattlersCount && gBattleStruct->turnEffectsTracker <= ENDTURN_BATTLER_COUNT)
+    while (gBattleStruct->turnEffectsTracker < ENDTURN_BATTLER_COUNT)
     {
+
+        if (gBattleStruct->turnEffectsBattlerId == gBattlersCount)
+        {
+            gBattleStruct->turnEffectsBattlerId = 0;
+            gBattleStruct->turnEffectsTracker++;
+        }
+
         battler = gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->turnEffectsBattlerId];
-        if (gAbsentBattlerFlags & gBitTable[battler])
+        if (!IsBattlerAlive(battler))
         {
             gBattleStruct->turnEffectsBattlerId++;
             continue;
@@ -2383,9 +2390,9 @@ u8 DoBattlerEndTurnEffects(void)
         {
         case ENDTURN_WEATHER_DAMAGE:
             ability = GetBattlerAbility(battler);
-            if (!IsBattlerAlive(battler) || !WEATHER_HAS_EFFECT || ability == ABILITY_MAGIC_GUARD)
+            if (!WEATHER_HAS_EFFECT || ability == ABILITY_MAGIC_GUARD)
             {
-                gBattleStruct->turnEffectsTracker++;
+                gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
             else if (gBattleWeather & B_WEATHER_SANDSTORM
@@ -2428,7 +2435,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_DamagingWeather);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_INGRAIN:  // ingrain
             if ((gStatuses3[battler] & STATUS3_ROOTED)
@@ -2440,7 +2447,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_IngrainTurnHeal);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_AQUA_RING:  // aqua ring
             if ((gStatuses3[battler] & STATUS3_AQUA_RING)
@@ -2452,27 +2459,27 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_AquaRingHeal);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ABILITIES:  // end turn abilities
             if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, 0, 0, 0))
                 effect++;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ITEMS1:  // item effects
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
                 effect++;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ITEMS2:  // item effects again
             if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, TRUE))
                 effect++;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ORBS:
             if (IsBattlerAlive(battler) && ItemBattleEffects(ITEMEFFECT_ORBS, battler, FALSE))
                 effect++;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_LEECH_SEED:  // leech seed
             if ((gStatuses3[battler] & STATUS3_LEECHSEED)
@@ -2490,7 +2497,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_LeechSeedTurnDrain);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_POISON:  // poison
             if ((gBattleMons[battler].status1 & STATUS1_POISON)
@@ -2519,7 +2526,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_BAD_POISON:  // toxic poison
             if ((gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
@@ -2551,7 +2558,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_BURN:  // burn
             if ((gBattleMons[battler].status1 & STATUS1_BURN)
@@ -2570,7 +2577,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_BurnTurnDmg);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_FROSTBITE:  // burn
             if ((gBattleMons[battler].status1 & STATUS1_FROSTBITE)
@@ -2583,7 +2590,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_FrostbiteTurnDmg);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_NIGHTMARES:  // spooky nightmares
             if ((gBattleMons[battler].status2 & STATUS2_NIGHTMARE)
@@ -2605,7 +2612,7 @@ u8 DoBattlerEndTurnEffects(void)
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_CURSE:  // curse
             if ((gBattleMons[battler].status2 & STATUS2_CURSED)
@@ -2618,7 +2625,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_CurseTurnDmg);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_WRAP:  // wrap
             if ((gBattleMons[battler].status2 & STATUS2_WRAPPED) && IsBattlerAlive(battler))
@@ -2648,18 +2655,16 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_OCTOLOCK:
-        {
             if (gDisableStructs[battler].octolock)
             {
                 gBattlerTarget = battler;
                 BattleScriptExecute(BattleScript_OctolockEndTurn);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
-        }
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_UPROAR:  // uproar
             if (gBattleMons[battler].status2 & STATUS2_UPROAR)
@@ -2707,7 +2712,7 @@ u8 DoBattlerEndTurnEffects(void)
                 }
             }
             if (effect != 2)
-                gBattleStruct->turnEffectsTracker++;
+                gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_THRASH:  // thrash
             // Don't decrement STATUS2_LOCK_CONFUSE if the target is held by Sky Drop
@@ -2730,11 +2735,11 @@ u8 DoBattlerEndTurnEffects(void)
                     }
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_FLINCH:  // reset flinch
             gBattleMons[battler].status2 &= ~STATUS2_FLINCHED;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_DISABLE:  // disable
             if (gDisableStructs[battler].disableTimer != 0)
@@ -2756,7 +2761,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ENCORE:  // encore
             if (gDisableStructs[battler].encoreTimer != 0)
@@ -2775,17 +2780,17 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_LOCK_ON:  // lock-on decrement
             if (gStatuses3[battler] & STATUS3_ALWAYS_HITS)
                 gStatuses3[battler] -= STATUS3_ALWAYS_HITS_TURN(1);
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_CHARGE:  // charge
             if (gDisableStructs[battler].chargeTimer && --gDisableStructs[battler].chargeTimer == 0)
                 gStatuses3[battler] &= ~STATUS3_CHARGED_UP;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_TAUNT:  // taunt
             if (gDisableStructs[battler].tauntTimer && --gDisableStructs[battler].tauntTimer == 0)
@@ -2794,7 +2799,7 @@ u8 DoBattlerEndTurnEffects(void)
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_YAWN:  // yawn
             if (gStatuses3[battler] & STATUS3_YAWN)
@@ -2832,7 +2837,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_LASER_FOCUS:
             if (gStatuses3[battler] & STATUS3_LASER_FOCUS)
@@ -2840,7 +2845,7 @@ u8 DoBattlerEndTurnEffects(void)
                 if (gDisableStructs[battler].laserFocusTimer == 0 || --gDisableStructs[battler].laserFocusTimer == 0)
                     gStatuses3[battler] &= ~STATUS3_LASER_FOCUS;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_EMBARGO:
             if (gStatuses3[battler] & STATUS3_EMBARGO)
@@ -2852,7 +2857,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_MAGNET_RISE:
             if (gStatuses3[battler] & STATUS3_MAGNET_RISE)
@@ -2865,7 +2870,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_TELEKINESIS:
             if (gStatuses3[battler] & STATUS3_TELEKINESIS)
@@ -2877,7 +2882,7 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_HEALBLOCK:
             if (gStatuses3[battler] & STATUS3_HEAL_BLOCK)
@@ -2890,26 +2895,28 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ROOST: // Return flying type.
             if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_ROOST)
                 gBattleResources->flags->flags[battler] &= ~RESOURCE_FLAG_ROOST;
-            gBattleStruct->turnEffectsTracker++;
+           gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_ELECTRIFY:
             gStatuses4[battler] &= ~STATUS4_ELECTRIFIED;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
+            break;
         case ENDTURN_POWDER:
             gBattleMons[battler].status2 &= ~STATUS2_POWDER;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
+            break;
         case ENDTURN_THROAT_CHOP:
             if (gDisableStructs[battler].throatChopTimer && --gDisableStructs[battler].throatChopTimer == 0)
             {
                 BattleScriptExecute(BattleScript_ThroatChopEndTurn);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_SLOW_START:
             if (gDisableStructs[battler].slowStartTimer
@@ -2919,12 +2926,12 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_SlowStartEnds);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_CUD_CHEW:
             if (GetBattlerAbility(battler) == ABILITY_CUD_CHEW && !gDisableStructs[battler].cudChew && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 gDisableStructs[battler].cudChew = TRUE;
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_SALT_CURE:
             if (gStatuses4[battler] & STATUS4_SALT_CURE && IsBattlerAlive(battler))
@@ -2940,7 +2947,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_SaltCureExtraDamage);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_SYRUP_BOMB:
             if ((gStatuses4[battler] & STATUS4_SYRUP_BOMB) && (IsBattlerAlive(battler)))
@@ -2953,7 +2960,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_TORMENT:
             if (gDisableStructs[battler].tormentTimer != PERMANENT_TORMENT
@@ -2963,7 +2970,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_TormentEnds);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_DYNAMAX:
             if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX
@@ -2974,7 +2981,7 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_DynamaxEnds);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_GMAX_MOVE_RESIDUAL_DAMAGE:
             {
@@ -2990,7 +2997,7 @@ u8 DoBattlerEndTurnEffects(void)
                     BattleScriptExecute(BattleScript_DamageNonTypesContinues);
                     effect++;
                 }
-                gBattleStruct->turnEffectsTracker++;
+                gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
         case ENDTURN_SEA_OF_FIRE_DAMAGE:
@@ -3002,11 +3009,10 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_HurtByTheSeaOfFire);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_BATTLER_COUNT:  // done
-            gBattleStruct->turnEffectsTracker = 0;
-            gBattleStruct->turnEffectsBattlerId++;
+            gBattleStruct->turnEffectsTracker++;
             break;
         }
 
