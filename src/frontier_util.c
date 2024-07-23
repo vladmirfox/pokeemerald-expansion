@@ -54,6 +54,8 @@ struct FrontierBrain
     u16 trainerId;
     u8 objEventGfx;
     u8 isFemale;
+    const u8 *lostTexts[2];
+    const u8 *wonTexts[2];
 };
 
 // This file's functions.
@@ -94,7 +96,7 @@ static void CopyFrontierBrainText(bool8 playerWonText);
 static const u8 sFrontierBrainStreakAppearances[NUM_FRONTIER_FACILITIES][4] =
 {
     [FRONTIER_FACILITY_TOWER]   = {35,  70, 35, 1},
-    [FRONTIER_FACILITY_DOME]    = { 4,   9,  5, 0},
+    [FRONTIER_FACILITY_DOME]    = { 1,   2,  5, 0},
     [FRONTIER_FACILITY_PALACE]  = {21,  42, 21, 1},
     [FRONTIER_FACILITY_ARENA]   = {28,  56, 28, 1},
     [FRONTIER_FACILITY_FACTORY] = {21,  42, 21, 1},
@@ -109,42 +111,56 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_ANABEL,
         .objEventGfx = OBJ_EVENT_GFX_ANABEL,
         .isFemale = TRUE,
+        .lostTexts = {gText_AnabelDefeatSilver, gText_AnabelDefeatGold},
+        .wonTexts = {gText_AnabelWonSilver, gText_AnabelWonGold},
     },
     [FRONTIER_FACILITY_DOME] =
     {
         .trainerId = TRAINER_TUCKER,
         .objEventGfx = OBJ_EVENT_GFX_TUCKER,
         .isFemale = FALSE,
+        .lostTexts = {gText_TuckerDefeatSilver, gText_TuckerDefeatGold},
+        .wonTexts = {gText_TuckerWonSilver, gText_TuckerWonGold},
     },
     [FRONTIER_FACILITY_PALACE] =
     {
         .trainerId = TRAINER_SPENSER,
         .objEventGfx = OBJ_EVENT_GFX_SPENSER,
         .isFemale = FALSE,
+        .lostTexts = {gText_SpenserDefeatSilver, gText_SpenserDefeatGold},
+        .wonTexts = {gText_SpenserWonSilver, gText_SpenserWonGold},
     },
     [FRONTIER_FACILITY_ARENA] =
     {
         .trainerId = TRAINER_GRETA,
         .objEventGfx = OBJ_EVENT_GFX_GRETA,
         .isFemale = TRUE,
+        .lostTexts = {gText_GretaDefeatSilver, gText_GretaDefeatGold},
+        .wonTexts = {gText_GretaWonSilver, gText_GretaWonGold},
     },
     [FRONTIER_FACILITY_FACTORY] =
     {
         .trainerId = TRAINER_NOLAND,
         .objEventGfx = OBJ_EVENT_GFX_NOLAND,
         .isFemale = FALSE,
+        .lostTexts = {gText_NolandDefeatSilver, gText_NolandDefeatGold},
+        .wonTexts = {gText_NolandWonSilver, gText_NolandWonGold},
     },
     [FRONTIER_FACILITY_PIKE] =
     {
         .trainerId = TRAINER_LUCY,
         .objEventGfx = OBJ_EVENT_GFX_LUCY,
         .isFemale = TRUE,
+        .lostTexts = {gText_LucyDefeatSilver, gText_LucyDefeatGold},
+        .wonTexts = {gText_LucyWonSilver, gText_LucyWonGold},
     },
     [FRONTIER_FACILITY_PYRAMID] =
     {
         .trainerId = TRAINER_BRANDON,
         .objEventGfx = OBJ_EVENT_GFX_BRANDON,
         .isFemale = FALSE,
+        .lostTexts = {gText_BrandonDefeatSilver, gText_BrandonDefeatGold},
+        .wonTexts = {gText_BrandonWonSilver, gText_BrandonWonGold},
     },
 };
 
@@ -696,62 +712,6 @@ static const u8 *const sHallFacilityToRecordsText[] =
     [RANKING_HALL_PIKE]          = gText_FrontierFacilityRoomsCleared,
     [RANKING_HALL_PYRAMID]       = gText_FrontierFacilityFloorsCleared,
     [RANKING_HALL_TOWER_LINK]    = gText_FrontierFacilityWinStreak,
-};
-
-static const u8 *const sFrontierBrainPlayerLostSilverTexts[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER]   = gText_AnabelWonSilver,
-    [FRONTIER_FACILITY_DOME]    = gText_TuckerWonSilver,
-    [FRONTIER_FACILITY_PALACE]  = gText_SpenserWonSilver,
-    [FRONTIER_FACILITY_ARENA]   = gText_GretaWonSilver,
-    [FRONTIER_FACILITY_FACTORY] = gText_NolandWonSilver,
-    [FRONTIER_FACILITY_PIKE]    = gText_LucyWonSilver,
-    [FRONTIER_FACILITY_PYRAMID] = gText_BrandonWonSilver,
-};
-
-static const u8 *const sFrontierBrainPlayerWonSilverTexts[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER]   = gText_AnabelDefeatSilver,
-    [FRONTIER_FACILITY_DOME]    = gText_TuckerDefeatSilver,
-    [FRONTIER_FACILITY_PALACE]  = gText_SpenserDefeatSilver,
-    [FRONTIER_FACILITY_ARENA]   = gText_GretaDefeatSilver,
-    [FRONTIER_FACILITY_FACTORY] = gText_NolandDefeatSilver,
-    [FRONTIER_FACILITY_PIKE]    = gText_LucyDefeatSilver,
-    [FRONTIER_FACILITY_PYRAMID] = gText_BrandonDefeatSilver,
-};
-
-static const u8 *const sFrontierBrainPlayerLostGoldTexts[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER]   = gText_AnabelWonGold,
-    [FRONTIER_FACILITY_DOME]    = gText_TuckerWonGold,
-    [FRONTIER_FACILITY_PALACE]  = gText_SpenserWonGold,
-    [FRONTIER_FACILITY_ARENA]   = gText_GretaWonGold,
-    [FRONTIER_FACILITY_FACTORY] = gText_NolandWonGold,
-    [FRONTIER_FACILITY_PIKE]    = gText_LucyWonGold,
-    [FRONTIER_FACILITY_PYRAMID] = gText_BrandonWonGold,
-};
-
-static const u8 *const sFrontierBrainPlayerWonGoldTexts[NUM_FRONTIER_FACILITIES] =
-{
-    [FRONTIER_FACILITY_TOWER]   = gText_AnabelDefeatGold,
-    [FRONTIER_FACILITY_DOME]    = gText_TuckerDefeatGold,
-    [FRONTIER_FACILITY_PALACE]  = gText_SpenserDefeatGold,
-    [FRONTIER_FACILITY_ARENA]   = gText_GretaDefeatGold,
-    [FRONTIER_FACILITY_FACTORY] = gText_NolandDefeatGold,
-    [FRONTIER_FACILITY_PIKE]    = gText_LucyDefeatGold,
-    [FRONTIER_FACILITY_PYRAMID] = gText_BrandonDefeatGold,
-};
-
-static const u8 *const *const sFrontierBrainPlayerLostTexts[] =
-{
-    sFrontierBrainPlayerLostSilverTexts,
-    sFrontierBrainPlayerLostGoldTexts,
-};
-
-static const u8 *const *const sFrontierBrainPlayerWonTexts[] =
-{
-    sFrontierBrainPlayerWonSilverTexts,
-    sFrontierBrainPlayerWonGoldTexts,
 };
 
 // code
@@ -2601,10 +2561,10 @@ static void CopyFrontierBrainText(bool8 playerWonText)
     switch (playerWonText)
     {
     case FALSE:
-        StringCopy(gStringVar4, sFrontierBrainPlayerLostTexts[symbol][facility]);
+        StringCopy(gStringVar4, gFrontierBrainInfo[facility].wonTexts[symbol]);
         break;
     case TRUE:
-        StringCopy(gStringVar4, sFrontierBrainPlayerWonTexts[symbol][facility]);
+        StringCopy(gStringVar4, gFrontierBrainInfo[facility].lostTexts[symbol]);
         break;
     }
 }
