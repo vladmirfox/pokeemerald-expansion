@@ -609,9 +609,9 @@ struct BattleVideo {
 
 struct BattleStruct
 {
-    u8 turnEffectsTracker;
+    u8 eventBlockCounter;
     u8 turnEffectsBattlerId;
-    u8 turnCountersTracker;
+    u8 endTurnEventsCounter;
     u16 wrappedMove[MAX_BATTLERS_COUNT];
     u16 moveTarget[MAX_BATTLERS_COUNT];
     u32 expShareExpValue;

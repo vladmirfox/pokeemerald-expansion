@@ -3923,13 +3923,13 @@ static void TryDoEventsBeforeFirstTurn(void)
                 gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[i]];
         }
 
-        *(&gBattleStruct->turnEffectsTracker) = 0;
+        *(&gBattleStruct->eventBlockCounter) = 0;
         *(&gBattleStruct->turnEffectsBattlerId) = 0;
         *(&gBattleStruct->wishPerishSongState) = 0;
         *(&gBattleStruct->wishPerishSongBattlerId) = 0;
         gBattleScripting.moveendState = 0;
         gBattleStruct->faintedActionsState = 0;
-        gBattleStruct->turnCountersTracker = 0;
+        gBattleStruct->endTurnEventsCounter = 0;
         gMoveResultFlags = 0;
 
         memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
@@ -3964,11 +3964,11 @@ static void HandleEndTurn_ContinueBattle(void)
             if ((gBattleMons[i].status1 & STATUS1_SLEEP) && (gBattleMons[i].status2 & STATUS2_MULTIPLETURNS))
                 CancelMultiTurnMoves(i);
         }
-        gBattleStruct->turnEffectsTracker = 0;
+        gBattleStruct->eventBlockCounter = 0;
         gBattleStruct->turnEffectsBattlerId = 0;
         gBattleStruct->wishPerishSongState = 0;
         gBattleStruct->wishPerishSongBattlerId = 0;
-        gBattleStruct->turnCountersTracker = 0;
+        gBattleStruct->endTurnEventsCounter = 0;
         gMoveResultFlags = 0;
     }
 }
@@ -3978,13 +3978,9 @@ void BattleTurnPassed(void)
     s32 i;
 
     TurnValuesCleanUp(TRUE);
-    if (gBattleOutcome == 0)
-    {
-        if (DoFieldEndTurnEffects())
-            return;
-        if (DoBattlerEndTurnEffects())
-            return;
-    }
+
+    if (gBattleOutcome == 0 && DoEndTurnEffects())
+        return;
     if (HandleWishPerishSongOnTurnEnd())
         return;
     if (HandleFaintedMonActions())
