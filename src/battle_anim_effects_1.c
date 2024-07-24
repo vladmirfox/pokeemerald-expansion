@@ -30,11 +30,12 @@ static void AnimPetalDanceSmallFlower_Step(struct Sprite *);
 static void AnimRazorLeafParticle(struct Sprite *);
 static void AnimRazorLeafParticle_Step1(struct Sprite *);
 static void AnimRazorLeafParticle_Step2(struct Sprite *);
+static void AnimTeraStarstormBeamRings_Step(struct Sprite *);
+static void AnimTeraStarstormStars_Step(struct Sprite *);
 static void AnimLeechSeed(struct Sprite *);
 static void AnimLeechSeed_Step(struct Sprite *);
 static void AnimLeechSeedSprouts(struct Sprite *);
 static void AnimTranslateLinearSingleSineWave_Step(struct Sprite *);
-static void AnimTranslateLinearLine_Step(struct Sprite *);
 static void AnimConstrictBinding(struct Sprite *);
 static void AnimConstrictBinding_Step1(struct Sprite *);
 static void AnimConstrictBinding_Step2(struct Sprite *);
@@ -3990,27 +3991,122 @@ static void AnimRazorLeafParticle_Step2(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
-/*
-static void AnimTeraStarstormBeam(struct Sprite *sprite)
+static const union AnimCmd sAnim_TeraStarstormBeamRing_0[] =
 {
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_TeraStarstormBeamRing_1[] =
+{
+    ANIMCMD_FRAME(4, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sAnims_TeraStarstormBeamRing[] =
+{
+    sAnim_TeraStarstormBeamRing_0,
+    sAnim_TeraStarstormBeamRing_1,
+};
+
+static const union AffineAnimCmd sAffineAnim_TeraStarstormBeamRing[] =
+{
+    AFFINEANIMCMD_FRAME(0x0, 0x0, 0, 1),
+    AFFINEANIMCMD_FRAME(0x60, 0x60, 0, 1),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd *const sAffineAnims_TeraStarstormBeamRing[] =
+{
+    sAffineAnim_TeraStarstormBeamRing,
+};
+
+const struct SpriteTemplate gTeraStarstormBeamSpriteTemplate = 
+{
+    .tileTag = ANIM_TAG_RAINBOW_RINGS,
+    .paletteTag = ANIM_TAG_RAINBOW_RINGS,
+    .oam = &gOamData_AffineDouble_ObjNormal_8x16,
+    .anims = sAnims_TeraStarstormBeamRing,
+    .images = NULL,
+    .affineAnims = sAffineAnims_TeraStarstormBeamRing,
+    .callback = AnimTeraStarstormBeamRings,
+};
+
+void AnimTeraStarstormBeamRings(struct Sprite *sprite)
+{
+    gBattleAnimArgs[0] += 4;
+    gBattleAnimArgs[1] -= 30;
     InitSpritePosToAnimAttacker(sprite, TRUE);
 
-    sprite->data[0] = gbattleAnimArgs[0];
-    sprite->data[1] = sprite->x;
-    sprite->data[2] = sprite->x;
-    sprite->data[3] = sprite->y;
-    sprite->data[4] = sprite->y+120;
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[3] = 0;
+    sprite->data[4] = -60;
     InitAnimLinearTranslation(sprite);
-    sprite->callback = AnimTeraStarstormBeam_Step;
+    sprite->callback = AnimTeraStarstormBeamRings_Step;
+    sprite->affineAnimPaused = TRUE;
+    sprite->callback(sprite);
 
 }
 
-static void AnimTeraStarstormBeam_Step(struct Sprite *sprite)
+static void AnimTeraStarstormBeamRings_Step(struct Sprite *sprite)
 {
     if (AnimTranslateLinear(sprite))
         DestroyAnimSprite(sprite);
+    if ((u16)gBattleAnimArgs[7] == 0xFFFF)
+    {
+        StartSpriteAnim(sprite, 1);
+        sprite->affineAnimPaused = FALSE;
+    }
 }
-*/
+
+const union AffineAnimCmd gTeraStarAffineAnimCmds[] = {
+    AFFINEANIMCMD_FRAME(0, 0, 0, 1),
+    AFFINEANIMCMD_JUMP(0),
+};
+
+const union AffineAnimCmd *const gTeraStarAffineAnimTable[] = {
+    gTeraStarAffineAnimCmds,
+};
+
+const struct SpriteTemplate gTeraStarSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_YELLOW_STAR,
+    .paletteTag = ANIM_TAG_YELLOW_STAR,
+    .oam = &gOamData_AffineNormal_ObjNormal_32x32,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gTeraStarAffineAnimTable,
+    .callback = AnimTeraStarstormStars,
+};
+
+
+void AnimTeraStarstormStars(struct Sprite *sprite)
+{
+    gBattleAnimArgs[0] += 4;
+    gBattleAnimArgs[1] -= 100;
+    InitSpritePosToAnimAttacker(sprite, TRUE);
+
+    sprite->data[0] = gBattleAnimArgs[4];
+    sprite->data[2] = 100;
+    //sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X_2);
+    sprite->data[4] = 100;
+    //sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y_PIC_OFFSET);
+    InitAnimLinearTranslation(sprite);
+    sprite->callback = AnimTeraStarstormStars_Step;
+    sprite->affineAnimPaused = TRUE;
+    sprite->callback(sprite);
+}
+
+static void AnimTeraStarstormStars_Step(struct Sprite *sprite)
+{
+    if (AnimTranslateLinear(sprite))
+        DestroyAnimSprite(sprite);
+    if ((u16)gBattleAnimArgs[7] == 0xFFFF)
+    {
+        StartSpriteAnim(sprite, 1);
+        sprite->affineAnimPaused = FALSE;
+    }
+}
 
 /*
 void AnimTranslateLinearLine(struct Sprite *sprite)

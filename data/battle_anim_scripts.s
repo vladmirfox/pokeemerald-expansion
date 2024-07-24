@@ -17654,14 +17654,42 @@ Move_TERA_STARSTORM::
 	loadspritegfx ANIM_TAG_YELLOW_STAR
 	loadspritegfx ANIM_TAG_IMPACT
 	call TeraStarstormCreateBeam
-        delay 5
-	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 300, -50, 1
-	createsprite gSwiftStarSpriteTemplate, ANIM_TARGET, 3, 0, -50, 20, 0, 300, 0, 1
-	delay 5
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	call TeraStarstormCreateBeam
+        delay 1
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 60, 0, 1
+	delay 30
+	createsprite gTeraStarSpriteTemplate, ANIM_BATTLER, 3, 0, 0, 0, 0, 60, 0, 1
 	waitforvisualfinish
 	end
 TeraStarstormCreateBeam::
-        @createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 3, 300
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, 0, 0, 0, 40,0, 0
+        delay 1
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 40,0, 0
         return
 Move_MIGHTY_CLEAVE::
 Move_TACHYON_CUTTER::
