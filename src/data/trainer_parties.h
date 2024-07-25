@@ -3391,133 +3391,144 @@ static const struct TrainerMon sParty_Roxanne1[] = {
 static const struct TrainerMon sParty_Brawly1[] = {
     {
         .species = SPECIES_TIMBURR,
-        .ability = ABILITY_GUTS,  // Boosts Attack if statused
-        .heldItem = ITEM_EVIOLITE,  // Increases Timburr's Defense and Special Defense
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 16,
-        .moves = {MOVE_TACKLE, MOVE_LOW_KICK, MOVE_BULK_UP, MOVE_DETECT},
-        .nature = NATURE_BRAVE,  // Timburr benefits from increased Attack and lower Speed doesn't matter much
+        .ability = ABILITY_GUTS,
+        .heldItem = ITEM_EVIOLITE,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 19,
+        .moves = {MOVE_POUND, MOVE_LOW_KICK, MOVE_BULK_UP, MOVE_ROCK_THROW},
+        .nature = NATURE_BRAVE,
     },
     {
         .species = SPECIES_PAWMO,
-        .ability = ABILITY_IRON_FIST,  // Boosts punching moves
-        .heldItem = ITEM_BERRY_JUICE,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 16,
-        .moves = {MOVE_LOW_KICK, MOVE_QUICK_ATTACK, MOVE_NUZZLE, MOVE_DIG},
-        .nature = NATURE_TIMID,  // Pawmo benefits from increased Speed
+        .ability = ABILITY_IRON_FIST,
+        .heldItem = ITEM_ORAN_BERRY,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 19,
+        .moves = {MOVE_QUICK_ATTACK, MOVE_ARM_THRUST, MOVE_NUZZLE, MOVE_BITE},
+        .nature = NATURE_TIMID,
     },
     {
         .species = SPECIES_MACHOP,
-        .ability = ABILITY_NO_GUARD,  // Ensures moves hit
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 17,
+        .ability = ABILITY_NO_GUARD,
+        .heldItem = ITEM_ORAN_BERRY,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 19,
         .moves = {MOVE_LOW_KICK, MOVE_BULK_UP, MOVE_REVENGE, MOVE_KNOCK_OFF},
-        .nature = NATURE_ADAMANT,  // Machop benefits from increased Attack
+        .nature = NATURE_ADAMANT,
+    },
+    {
+        .species = SPECIES_MARSHADOW,
+        .ability = ABILITY_TECHNICIAN,
+        .heldItem = ITEM_ORAN_BERRY,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 19,
+        .moves = {MOVE_SHADOW_SNEAK, MOVE_DRAIN_PUNCH, MOVE_FEINT, MOVE_PAYBACK},
+        .nature = NATURE_LONELY,
     },
     {
         .species = SPECIES_KUBFU,
-        .ability = ABILITY_INNER_FOCUS,  // Prevents flinching
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(10, 10, 10, 10, 10, 10),
-        .lvl = 18,
+        .ability = ABILITY_INNER_FOCUS,
+        .heldItem = ITEM_ORAN_BERRY,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 19,
         .moves = {MOVE_ROCK_SMASH, MOVE_ENDURE, MOVE_HEADBUTT, MOVE_FOCUS_ENERGY},
-        .nature = NATURE_ADAMANT,  // Kubfu benefits from increased Attack
+        .nature = NATURE_ADAMANT,
     },
     {
         .species = SPECIES_COMBUSKEN,
-        .ability = ABILITY_SPEED_BOOST,  // Boosts punching moves
-        .heldItem = ITEM_BLACK_BELT,  // Boosts Fighting-type moves
-        .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
+        .ability = ABILITY_SPEED_BOOST,
+        .heldItem = ITEM_BLACK_BELT,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
         .lvl = 19,
         .moves = {MOVE_DOUBLE_KICK, MOVE_DETECT, MOVE_LOW_KICK, MOVE_AGILITY},
-        .nature = NATURE_JOLLY,  // Monferno benefits from increased Speed
+        .nature = NATURE_JOLLY,
     }
 };
 
 static const struct TrainerMon sParty_Wattson1[] = {
     {
         .species = SPECIES_CHINCHOU,
-        .ability = ABILITY_VOLT_ABSORB,  // Heals when hit by Electric moves
-        .heldItem = ITEM_MYSTIC_WATER,  // Boosts Water-type moves
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 24,
-        .moves = {MOVE_SPARK, MOVE_CHARGE, MOVE_CONFUSE_RAY, MOVE_BUBBLE_BEAM},
-        .nature = NATURE_MODEST,  // Chinchou benefits from increased Special Attack
-    },
-    {
-        .species = SPECIES_FLAAFFY,
-        .ability = ABILITY_STATIC,  // May paralyze on contact
-        .heldItem = ITEM_EVIOLITE,  // Increases Flaaffy's Defense and Special Defense
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 24,
-        .moves = {MOVE_THUNDER_WAVE, MOVE_THUNDER, MOVE_COTTON_SPORE, MOVE_TAKE_DOWN},
-        .nature = NATURE_BOLD,  // Flaaffy benefits from increased Defense
+        .ability = ABILITY_VOLT_ABSORB,
+        .heldItem = ITEM_MYSTIC_WATER,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 26,
+        .moves = {MOVE_SPARK, MOVE_CHARGE_BEAM, MOVE_CONFUSE_RAY, MOVE_BUBBLE_BEAM},
+        .nature = NATURE_MODEST,
     },
     {
         .species = SPECIES_MORPEKO,
-        .ability = ABILITY_HUNGER_SWITCH,  // Changes form each turn
-        .heldItem = ITEM_BERRY_JUICE,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
-        .lvl = 24,
-        .moves = {MOVE_FLATTER, MOVE_THUNDER, MOVE_QUICK_ATTACK, MOVE_FAKE_TEARS},
-        .nature = NATURE_JOLLY,  // Morpeko benefits from increased Speed
+        .ability = ABILITY_HUNGER_SWITCH,
+        .heldItem = ITEM_BERRY_JUICE,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 26,
+        .moves = {MOVE_FLATTER, MOVE_THUNDERBOLT, MOVE_QUICK_ATTACK, MOVE_PLAY_ROUGH},
+        .nature = NATURE_JOLLY,
     },
     {
         .species = SPECIES_BELLIBOLT,
-        .ability = ABILITY_STATIC,  // May paralyze on contact
-        .heldItem = ITEM_BERRY_JUICE,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .lvl = 25,
-        .moves = {MOVE_SLACK_OFF, MOVE_SPARK, MOVE_TACKLE, MOVE_CHARGE},
-        .nature = NATURE_MODEST,  // Bellibolt benefits from increased Special Attack
+        .ability = ABILITY_ELECTRIC_SURGE,
+        .heldItem = ITEM_LEFTOVERS,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 26,
+        .moves = {MOVE_SLACK_OFF, MOVE_THUNDERBOLT, MOVE_TACKLE, MOVE_CHARGE},
+        .nature = NATURE_MODEST,
     },
     {
         .species = SPECIES_TOXEL,
-        .ability = ABILITY_RATTLED,  // Boosts Speed when hit by Dark, Ghost, or Bug moves
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 24,
-        .moves = {MOVE_NUZZLE, MOVE_SUBSTITUTE, MOVE_ACID, MOVE_FLAIL},
-        .nature = NATURE_TIMID,  // Toxel benefits from increased Speed
+        .ability = ABILITY_RATTLED,
+        .heldItem = ITEM_ORAN_BERRY,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 26,
+        .moves = {MOVE_NUZZLE, MOVE_SUBSTITUTE, MOVE_ACID, MOVE_BOOMBURST},
+        .nature = NATURE_TIMID,
     },
     {
         .species = SPECIES_RAICHU,
-        .ability = ABILITY_STATIC,  // May paralyze on contact
-        .heldItem = ITEM_LIGHT_BALL,  // Doubles Raichu's Attack and Special Attack
-        .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
+        .ability = ABILITY_STATIC,
+        .heldItem = ITEM_LIGHT_BALL,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
         .lvl = 26,
-        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_CHARM},
-        .nature = NATURE_TIMID,  // Raichu benefits from increased Speed
+        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK, MOVE_PSYCHIC},
+        .nature = NATURE_TIMID,
+    },
+    {
+    .species = SPECIES_FLAAFFY,
+    .ability = ABILITY_STATIC,
+    .heldItem = ITEM_MAGNET, // or Eviolite, Sitrus Berry
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .lvl = 26,
+    .moves = {MOVE_THUNDER_WAVE, MOVE_THUNDERBOLT, MOVE_COTTON_SPORE, MOVE_VOLT_SWITCH}, // or Charge Beam
+    .nature = NATURE_MODEST, // or Bold
     }
+
 };
 
+
 static const struct TrainerMon sParty_Flannery1[] = {
-    {
-        .species = SPECIES_LITLEO,
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .ability = ABILITY_RIVALRY,  // Boosts Attack if the foe is of the same gender
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 26,
-        .moves = {MOVE_WORK_UP, MOVE_NOBLE_ROAR, MOVE_FIRE_FANG, MOVE_TAKE_DOWN},
-        .nature = NATURE_JOLLY,  // Litleo benefits from increased Speed
-    },
     {
         .species = SPECIES_TURTONATOR,
         .heldItem = ITEM_SITRUS_BERRY,  // Provides a moderate amount of healing
         .ability = ABILITY_SHELL_ARMOR,  // Prevents critical hits
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 28,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 29,
         .moves = {MOVE_ENDURE, MOVE_INCINERATE, MOVE_IRON_DEFENSE, MOVE_SUNNY_DAY},
         .nature = NATURE_RELAXED,  // Turtonator benefits from increased Defense
+    },
+    {
+        .species = SPECIES_CHARMELEON,
+        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
+        .ability = ABILITY_BLAZE,  // Boosts Fire-type moves when HP is low
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 29,
+        .moves = {MOVE_WORK_UP, MOVE_FLAME_BURST, MOVE_FIRE_FANG, MOVE_GROWL},
+        .nature = NATURE_JOLLY,  // Charmander benefits from increased Speed
     },
     {
         .species = SPECIES_CERULEDGE,
         .heldItem = ITEM_QUICK_CLAW,  // Occasionally allows Ceruledge to move first
         .ability = ABILITY_FLASH_FIRE,  // Powers up Fire-type moves if hit by one
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 27,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 29,
         .moves = {MOVE_FLAME_CHARGE, MOVE_CLEAR_SMOG, MOVE_SWORDS_DANCE, MOVE_FACADE},
         .nature = NATURE_ADAMANT,  // Ceruledge benefits from increased Attack
     },
@@ -3525,8 +3536,8 @@ static const struct TrainerMon sParty_Flannery1[] = {
         .species = SPECIES_HOUNDOOM,
         .heldItem = ITEM_WISE_GLASSES,  // Boosts the power of special moves
         .ability = ABILITY_FLASH_FIRE,  // Powers up Fire-type moves if hit by one
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 27,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 29,
         .moves = {MOVE_NASTY_PLOT, MOVE_FIRE_FANG, MOVE_BITE, MOVE_ROAR},
         .nature = NATURE_MODEST,  // Houndoom benefits from increased Special Attack
     },
@@ -3534,8 +3545,8 @@ static const struct TrainerMon sParty_Flannery1[] = {
         .species = SPECIES_BRAIXEN,
         .heldItem = ITEM_EVIOLITE,  // Increases Braixen's Defense and Special Defense
         .ability = ABILITY_MAGICIAN,  // Steals the foe's held item if Braixen uses a move
-        .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
-        .lvl = 26,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 29,
         .moves = {MOVE_FLAME_CHARGE, MOVE_PSYBEAM, MOVE_HOWL, MOVE_SUNNY_DAY},
         .nature = NATURE_MODEST,  // Braixen benefits from increased Special Attack
     },
@@ -3543,7 +3554,7 @@ static const struct TrainerMon sParty_Flannery1[] = {
         .species = SPECIES_NINETALES,
         .heldItem = ITEM_CHARCOAL,  // Boosts the power of Fire-type moves
         .ability = ABILITY_DROUGHT,  // Summons sunlight when entering battle
-        .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
         .lvl = 29,
         .moves = {MOVE_FLAME_CHARGE, MOVE_ENERGY_BALL, MOVE_QUICK_ATTACK, MOVE_CONFUSE_RAY},
         .nature = NATURE_TIMID,  // Ninetales benefits from increased Speed
@@ -3594,7 +3605,7 @@ static const struct TrainerMon sParty_Norman1[] = {
         .iv = TRAINER_PARTY_IVS(28, 28, 28, 28, 28, 28),
         .lvl = 31,
         .moves = {MOVE_HIGH_HORSEPOWER, MOVE_PLAY_ROUGH, MOVE_CRUNCH, MOVE_PROTECT},
-        .nature = NATURE_BRAVE,  // Ursaluna benefits from increased Attack and lowered Speed fits Trick Room strategy
+        .nature = NATURE_BRAVE,  // Ursaluna benefits from increased Attack
     },
     {
         .species = SPECIES_ZOROARK_HISUIAN,
@@ -10248,32 +10259,58 @@ static const struct TrainerMon sParty_Roxanne5[] = {
 
 static const struct TrainerMon sParty_Brawly2[] = {
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 33,
-    .species = SPECIES_MACHAMP,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_KARATE_CHOP, MOVE_ROCK_SLIDE, MOVE_FOCUS_PUNCH, MOVE_BULK_UP}
+        .species = SPECIES_CONKELDURR,
+        .ability = ABILITY_GUTS,
+        .heldItem = ITEM_TOXIC_ORB,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_BULK_UP, MOVE_BRICK_BREAK},
+        .nature = NATURE_ADAMANT,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 33,
-    .species = SPECIES_MEDITITE,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PSYCHIC, MOVE_LIGHT_SCREEN, MOVE_REFLECT, MOVE_FOCUS_PUNCH}
+        .species = SPECIES_PAWMOT,
+        .ability = ABILITY_NATURAL_CURE,
+        .heldItem = ITEM_MUSCLE_BAND,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_BULK_UP, MOVE_WILD_CHARGE, MOVE_NUZZLE, MOVE_CLOSE_COMBAT},
+        .nature = NATURE_TIMID,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 35,
-    .species = SPECIES_HITMONTOP,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PURSUIT, MOVE_COUNTER, MOVE_PROTECT, MOVE_TRIPLE_KICK}
+        .species = SPECIES_MACHAMP,
+        .ability = ABILITY_NO_GUARD,
+        .heldItem = ITEM_ASSAULT_VEST,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_KNOCK_OFF, MOVE_DUAL_CHOP, MOVE_STRENGTH, MOVE_CROSS_CHOP},
+        .nature = NATURE_BRAVE,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 37,
-    .species = SPECIES_HARIYAMA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_FAKE_OUT, MOVE_FOCUS_PUNCH, MOVE_BELLY_DRUM, MOVE_EARTHQUAKE}
+        .species = SPECIES_MARSHADOW,
+        .ability = ABILITY_TECHNICIAN,
+        .heldItem = ITEM_LEFTOVERS,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_SPECTRAL_THIEF, MOVE_DRAIN_PUNCH, MOVE_FEINT, MOVE_PAYBACK},
+        .nature = NATURE_LONELY,
+    },
+    {
+        .species = SPECIES_URSHIFU_RAPID_STRIKE_STYLE,
+        .ability = ABILITY_INNER_FOCUS,
+        .heldItem = ITEM_FOCUS_SASH,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_SURGING_STRIKES, MOVE_BULK_UP, MOVE_IRON_HEAD, MOVE_BRICK_BREAK},
+        .nature = NATURE_ADAMANT,
+    },
+    {
+        .species = SPECIES_BLAZIKEN,
+        .ability = ABILITY_SPEED_BOOST,
+        .heldItem = ITEM_BLAZIKENITE,
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .lvl = 37,
+        .moves = {MOVE_BLAZE_KICK, MOVE_BOUNCE, MOVE_HIGH_JUMP_KICK, MOVE_AURA_SPHERE},
+        .nature = NATURE_JOLLY,
     }
 };
 
