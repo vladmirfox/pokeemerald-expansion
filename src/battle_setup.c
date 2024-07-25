@@ -1221,12 +1221,12 @@ void SetMapVarsToTrainer(void)
 
 #define DebugPrintTrainerBattleStack \
 do { \
-    u8 i; \
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrStack______");  \
-    for (i = 0; i < scrStack->stackPtr; i++) {  \
+    s16 i; \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______TrainerScriptStack______");  \
+    for (i = scrStack->stackPtr; i > -1; i--) {  \
         DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, scrStack->stack[i]);  \
     }   \
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______scrFloor______");  \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______TrainerScriptFloor______");  \
 } while(0) 
 
 

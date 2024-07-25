@@ -10,7 +10,7 @@ void PtrStackInit(PtrStack *s)
 
 void* PtrStackPop(PtrStack *s)
 {
-    if (s->stackPtr - 1 < 0) 
+    if (s->stackPtr < 0) 
         return NULL;
 
     return s->stack[s->stackPtr--];

@@ -25,8 +25,8 @@ struct ScriptContext
 do { \
     u8 i; \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______ScriptStack________"); \
-    for (i = 0; i < ctx->stackDepth; i++) { \
-        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, ctx->stack[i]); \
+    for (i = ctx->stackDepth; i > 0; i--) { \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i-1, ctx->stack[i-1]); \
     } \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______StackFloor_________"); \
 } while(0);
@@ -35,8 +35,8 @@ do { \
 do { \
     u8 i; \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______GlobalScriptStack________"); \
-    for (i = 0; i < sGlobalScriptContext.stackDepth; i++) { \
-        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, sGlobalScriptContext.stack[i]); \
+    for (i = sGlobalScriptContext.stackDepth; i > 0; i--) { \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i-1, sGlobalScriptContext.stack[i-1]); \
     } \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______GlobalStackFloor_________"); \
 } while(0);

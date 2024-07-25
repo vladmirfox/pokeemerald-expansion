@@ -1970,6 +1970,8 @@ bool8 ScrCmd_trainerbattle(struct ScriptContext *ctx)
     {
         ScriptPush(ctx, ptr);
     }
+
+    DebugPrintScriptStack;
     
     ctx->scriptPtr = ScriptPop(ctx);
 
