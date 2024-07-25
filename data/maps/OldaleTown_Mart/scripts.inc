@@ -178,10 +178,12 @@ Oldale_Inventory::
 # 93 "data/maps/OldaleTown_Mart/scripts.pory"
 	.2byte ITEM_RARE_CANDY
 # 94 "data/maps/OldaleTown_Mart/scripts.pory"
-	.2byte ITEM_NONE
+	.2byte ITEM_ORAN_BERRY
 # 95 "data/maps/OldaleTown_Mart/scripts.pory"
-	release
+	.2byte ITEM_NONE
 # 96 "data/maps/OldaleTown_Mart/scripts.pory"
+	release
+# 97 "data/maps/OldaleTown_Mart/scripts.pory"
 	end
 
 Oldale_Black_Mart_Text_0:

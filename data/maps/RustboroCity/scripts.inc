@@ -2654,24 +2654,18 @@ Rustboro_Inventory::
 # 1332 "data/maps/RustboroCity/scripts.pory"
 	.2byte ITEM_RARE_CANDY
 # 1333 "data/maps/RustboroCity/scripts.pory"
-	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_ORAN_BERRY
 # 1334 "data/maps/RustboroCity/scripts.pory"
-	.2byte ITEM_IAPAPA_BERRY
-# 1335 "data/maps/RustboroCity/scripts.pory"
-	.2byte ITEM_WIKI_BERRY
-# 1336 "data/maps/RustboroCity/scripts.pory"
-	.2byte ITEM_AGUAV_BERRY
-# 1337 "data/maps/RustboroCity/scripts.pory"
-	.2byte ITEM_FIGY_BERRY
-# 1338 "data/maps/RustboroCity/scripts.pory"
 	.2byte ITEM_FOCUS_SASH
-# 1339 "data/maps/RustboroCity/scripts.pory"
+# 1335 "data/maps/RustboroCity/scripts.pory"
 	.2byte ITEM_WATER_STONE
-# 1340 "data/maps/RustboroCity/scripts.pory"
+# 1336 "data/maps/RustboroCity/scripts.pory"
+	.2byte ITEM_ICE_STONE
+# 1337 "data/maps/RustboroCity/scripts.pory"
 	.2byte ITEM_NONE
-# 1341 "data/maps/RustboroCity/scripts.pory"
+# 1338 "data/maps/RustboroCity/scripts.pory"
 	release
-# 1342 "data/maps/RustboroCity/scripts.pory"
+# 1339 "data/maps/RustboroCity/scripts.pory"
 	end
 
 Custom_RustboroCity_EventScript_GymInfo_Text_0:

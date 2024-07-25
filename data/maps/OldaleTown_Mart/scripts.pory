@@ -91,6 +91,7 @@ raw`
 .align 2
 Oldale_Inventory::
 	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_ORAN_BERRY
 	.2byte ITEM_NONE
 	release
 	end
