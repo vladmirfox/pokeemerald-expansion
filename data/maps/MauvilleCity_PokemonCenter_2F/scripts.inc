@@ -67,7 +67,7 @@ Custom_Givemon_Mauville::
 # 38 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	lockall
 # 39 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	showmonpic SPECIES_GLIGAR, 10, 3
+	showmonpic SPECIES_GREAT_TUSK, 10, 3
 # 40 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Mauville_Text_0, MSGBOX_YESNO
 # 41 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
@@ -86,7 +86,7 @@ Custom_Givemon_Mauville_1:
 
 Custom_Givemon_Mauville_2:
 # 42 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	givemon SPECIES_GLIGAR, 10, ITEM_LUXURY_BALL
+	givemon SPECIES_GREAT_TUSK, 10, ITEM_LUXURY_BALL
 # 43 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq Custom_Givemon_Mauville_5
@@ -165,7 +165,7 @@ MauvilleNicknameBoxMon_2:
 
 Custom_Givemon_Mauville_Text_0:
 # 40 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	.string "Do you want this GLIGAR?$"
+	.string "Do you want this Great Tusk?$"
 
 Custom_Givemon_Mauville_Text_1:
 # 45 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
@@ -173,7 +173,7 @@ Custom_Givemon_Mauville_Text_1:
 
 Custom_Givemon_Mauville_Text_2:
 # 52 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"
-	.string "Gligar was placed in your PC.$"
+	.string "Great Tusk placed in your PC.$"
 
 Custom_Givemon_Mauville_Text_3:
 # 59 "data/maps/MauvilleCity_PokemonCenter_2F/scripts.pory"

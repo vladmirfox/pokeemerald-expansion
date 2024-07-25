@@ -43,7 +43,7 @@ Custom_Givemon_Dewford::
 # 26 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	lockall
 # 27 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	showmonpic SPECIES_HAWLUCHA, 10, 3
+	showmonpic SPECIES_HATENNA, 10, 3
 # 28 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Dewford_Text_0, MSGBOX_YESNO
 # 29 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
@@ -62,7 +62,7 @@ Custom_Givemon_Dewford_1:
 
 Custom_Givemon_Dewford_2:
 # 30 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	givemon SPECIES_HAWLUCHA, 10, ITEM_LUXURY_BALL
+	givemon SPECIES_HATENNA, 10, ITEM_LUXURY_BALL
 # 31 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq Custom_Givemon_Dewford_5
@@ -141,7 +141,7 @@ DewfordNicknameBoxMon_2:
 
 Custom_Givemon_Dewford_Text_0:
 # 28 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	.string "Do you want this Hawlucha?$"
+	.string "Do you want this Hatenna?$"
 
 Custom_Givemon_Dewford_Text_1:
 # 33 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
@@ -149,7 +149,7 @@ Custom_Givemon_Dewford_Text_1:
 
 Custom_Givemon_Dewford_Text_2:
 # 40 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"
-	.string "Hawlucha was placed in your PC.$"
+	.string "Hatenna was placed in your PC.$"
 
 Custom_Givemon_Dewford_Text_3:
 # 47 "data/maps/DewfordTown_PokemonCenter_2F/scripts.pory"

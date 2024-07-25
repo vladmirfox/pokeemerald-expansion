@@ -43,7 +43,7 @@ Custom_Givemon_Petalburg::
 # 26 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
 	lockall
 # 27 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
-	showmonpic SPECIES_KUBFU, 10, 3
+	showmonpic SPECIES_EEVEE, 10, 3
 # 28 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
 	msgbox Custom_Givemon_Petalburg_Text_0, MSGBOX_YESNO
 # 29 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
@@ -62,7 +62,7 @@ Custom_Givemon_Petalburg_1:
 
 Custom_Givemon_Petalburg_2:
 # 30 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
-	givemon SPECIES_KUBFU, 10, ITEM_LUXURY_BALL
+	givemon SPECIES_EEVEE, 10, ITEM_LUXURY_BALL
 # 31 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq Custom_Givemon_Petalburg_5
@@ -141,7 +141,7 @@ PetalburgNicknameBoxMon_2:
 
 Custom_Givemon_Petalburg_Text_0:
 # 28 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
-	.string "Do you want this Kubu?$"
+	.string "Do you want this Eevee?$"
 
 Custom_Givemon_Petalburg_Text_1:
 # 33 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
@@ -149,7 +149,7 @@ Custom_Givemon_Petalburg_Text_1:
 
 Custom_Givemon_Petalburg_Text_2:
 # 40 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"
-	.string "Kubfu was placed in your PC.$"
+	.string "Eevee was placed in your PC.$"
 
 Custom_Givemon_Petalburg_Text_3:
 # 47 "data/maps/PetalburgCity_PokemonCenter_2F/scripts.pory"

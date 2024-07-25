@@ -3333,40 +3333,58 @@ static const struct TrainerMon sParty_Drake[] = {
 
 static const struct TrainerMon sParty_Roxanne1[] = {
     {
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .ability = ABILITY_RECKLESS,  // Boosts the power of recoil moves
-        .lvl = 12,
-        .species = SPECIES_RHYHORN,
-        .heldItem = ITEM_EVIOLITE,  // Increases Rhyhorn's Defense and Special Defense
-        .moves = {MOVE_TAKE_DOWN, MOVE_SMACK_DOWN, MOVE_BULLDOZE, MOVE_ROCK_TOMB},
-        .nature = NATURE_ADAMANT,  // Rhyhorn benefits from a boost in Attack
-    },
-    {
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .ability = ABILITY_SAND_VEIL,  // Boosts evasion in a sandstorm
-        .lvl = 12,
-        .species = SPECIES_LARVITAR,
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .moves = {MOVE_SANDSTORM, MOVE_BITE, MOVE_ROCK_TOMB, MOVE_SCARY_FACE},
-        .nature = NATURE_JOLLY,  // Larvitar benefits from boosted Speed
-    },
-    {
-        .iv = TRAINER_PARTY_IVS(20, 20, 20, 20, 20, 20),
-        .ability = ABILITY_STURDY,  // Prevents being one-hit KO'd
-        .lvl = 14,
-        .species = SPECIES_TYRUNT,
-        .heldItem = ITEM_ORAN_BERRY,  // Provides a small amount of healing
-        .moves = {MOVE_TACKLE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_ROCK_TOMB},
-        .nature = NATURE_JOLLY,  // Tyrunt benefits from increased Speed
-    },
-    {
-        .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
-        .ability = ABILITY_SHIELDS_DOWN,  // Changes form and stats when HP is below 50%
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_RECKLESS,
         .lvl = 15,
-        .species = SPECIES_MINIOR_CORE_RED,  // Minior in its core form, providing a defensive Rock/Flying type
-        .heldItem = ITEM_FOCUS_SASH,  // Prevents being one-hit KO'd
+        .species = SPECIES_RHYHORN,
+        .heldItem = ITEM_EVIOLITE,
+        .moves = {MOVE_SMACK_DOWN, MOVE_BULLDOZE, MOVE_TAKE_DOWN, MOVE_ENDURE},
+        .nature = NATURE_ADAMANT,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SAND_VEIL,
+        .lvl = 15,
+        .species = SPECIES_LARVITAR,
+        .heldItem = ITEM_ORAN_BERRY,
+        .moves = {MOVE_SANDSTORM, MOVE_BITE, MOVE_SCARY_FACE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_STURDY,
+        .lvl = 37,
+        .species = SPECIES_TYRUNT,
+        .heldItem = ITEM_ORAN_BERRY,
+        .moves = {MOVE_TACKLE, MOVE_ROAR, MOVE_BITE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SUCTION_CUPS,
+        .lvl = 15,
+        .species = SPECIES_LILEEP,
+        .heldItem = ITEM_ORAN_BERRY,
+        .moves = {MOVE_ASTONISH, MOVE_INGRAIN, MOVE_WRAP, MOVE_ROCK_TOMB},
+        .nature = NATURE_BOLD,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SHIELDS_DOWN,
+        .lvl = 15,
+        .species = SPECIES_MINIOR_CORE_RED,
+        .heldItem = ITEM_AGUAV_BERRY,
         .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_CONFUSE_RAY, MOVE_ROLLOUT},
-        .nature = NATURE_JOLLY,  // Minior benefits from increased Speed
+        .nature = NATURE_JOLLY,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_CLEAR_BODY,
+        .lvl = 15,
+        .species = SPECIES_DIANCIE,
+        .heldItem = ITEM_HARD_STONE,
+        .moves = {MOVE_TACKLE, MOVE_BULLDOZE, MOVE_DIAMOND_STORM, MOVE_SMACK_DOWN},
+        .nature = NATURE_JOLLY,
     }
 };
 
@@ -10002,153 +10020,229 @@ static const struct TrainerMon sParty_MayRustboroTorchic[] = {
 
 static const struct TrainerMon sParty_Roxanne2[] = {
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 32,
-    .species = SPECIES_GOLEM,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ROLLOUT, MOVE_MAGNITUDE, MOVE_EXPLOSION}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_RECKLESS,  // Boosts the power of recoil moves
+        .lvl = 37,
+        .species = SPECIES_RHYHORN,
+        .heldItem = ITEM_EVIOLITE,  // Increases Rhyhorn's Defense and Special Defense
+        .moves = {MOVE_BULLDOZE, MOVE_THUNDER_FANG, MOVE_FACADE, MOVE_ROCK_BLAST},
+        .nature = NATURE_ADAMANT,  // Rhyhorn benefits from a boost in Attack
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 35,
-    .species = SPECIES_KABUTO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SWORDS_DANCE, MOVE_ICE_BEAM, MOVE_SURF, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SAND_VEIL,  // Boosts evasion in a sandstorm
+        .lvl = 37,
+        .species = SPECIES_PUPITAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_SANDSTORM, MOVE_CRUNCH, MOVE_STOMPING_TANTRUM, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,  // Larvitar benefits from boosted Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 35,
-    .species = SPECIES_ONIX,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_ROAR, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_STURDY,  // Prevents being one-hit KO'd
+        .lvl = 37,
+        .species = SPECIES_TYRUNT,
+        .heldItem = ITEM_LIFE_ORB,
+        .moves = {MOVE_STOMP, MOVE_ANCIENT_POWER, MOVE_ANCIENT_POWER, MOVE_ROCK_SLIDE},
+        .nature = NATURE_JOLLY,  // Tyrunt benefits from increased Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 37,
-    .species = SPECIES_NOSEPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_DOUBLE_TEAM, MOVE_EXPLOSION, MOVE_PROTECT, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SUCTION_CUPS,
+        .lvl = 37,
+        .species = SPECIES_LILEEP,
+        .heldItem = ITEM_FOCUS_SASH,
+        .moves = {MOVE_INGRAIN, MOVE_ANCIENT_POWER, MOVE_BRINE, MOVE_BULLET_SEED},
+        .nature = NATURE_BOLD,
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SHIELDS_DOWN,  // Changes form and stats when HP is below 50%
+        .lvl = 37,
+        .species = SPECIES_MINIOR_CORE_RED,  // Minior in its core form, providing a defensive Rock/Flying type
+        .heldItem = ITEM_WHITE_HERB,  // Prevents being one-hit KO'd
+        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_CONFUSE_RAY, MOVE_ROLLOUT},
+        .nature = NATURE_JOLLY,  // Minior benefits from increased Speed
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_CLEAR_BODY,
+        .lvl = 37,
+        .species = SPECIES_DIANCIE,
+        .heldItem = ITEM_WEAKNESS_POLICY,
+        .moves = {MOVE_TACKLE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
     }
 };
 
 static const struct TrainerMon sParty_Roxanne3[] = {
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 37,
-    .species = SPECIES_OMANYTE,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ICE_BEAM, MOVE_ROCK_SLIDE, MOVE_SURF}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_RECKLESS,  // Boosts the power of recoil moves
+        .lvl = 42,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_EVIOLITE,
+        .moves = {MOVE_BULLDOZE, MOVE_THUNDER_FANG, MOVE_FACADE, MOVE_ROCK_BLAST},
+        .nature = NATURE_ADAMANT,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 37,
-    .species = SPECIES_GOLEM,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ROLLOUT, MOVE_MAGNITUDE, MOVE_EXPLOSION}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SAND_VEIL,  // Boosts evasion in a sandstorm
+        .lvl = 42,
+        .species = SPECIES_PUPITAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_SANDSTORM, MOVE_CRUNCH, MOVE_STOMPING_TANTRUM, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,  // Larvitar benefits from boosted Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 40,
-    .species = SPECIES_KABUTOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SWORDS_DANCE, MOVE_ICE_BEAM, MOVE_SURF, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_STURDY,  // Prevents being one-hit KO'd
+        .lvl = 42,
+        .species = SPECIES_TYRANTRUM,
+        .heldItem = ITEM_LIFE_ORB,
+        .moves = {MOVE_STOMP, MOVE_ANCIENT_POWER, MOVE_ANCIENT_POWER, MOVE_ROCK_SLIDE},
+        .nature = NATURE_JOLLY,  // Tyrunt benefits from increased Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 40,
-    .species = SPECIES_ONIX,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_ROAR, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SUCTION_CUPS,
+        .lvl = 42,
+        .species = SPECIES_LILEEP,
+        .heldItem = ITEM_FOCUS_SASH,
+        .moves = {MOVE_INGRAIN, MOVE_ANCIENT_POWER, MOVE_BRINE, MOVE_BULLET_SEED},
+        .nature = NATURE_BOLD,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 42,
-    .species = SPECIES_NOSEPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_DOUBLE_TEAM, MOVE_EXPLOSION, MOVE_PROTECT, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SHIELDS_DOWN,  // Changes form and stats when HP is below 50%
+        .lvl = 42,
+        .species = SPECIES_MINIOR_CORE_RED,  // Minior in its core form, providing a defensive Rock/Flying type
+        .heldItem = ITEM_WHITE_HERB,  // Prevents being one-hit KO'd
+        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_CONFUSE_RAY, MOVE_ROLLOUT},
+        .nature = NATURE_JOLLY,  // Minior benefits from increased Speed
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_CLEAR_BODY,
+        .lvl = 42,
+        .species = SPECIES_DIANCIE,
+        .heldItem = ITEM_WEAKNESS_POLICY,
+        .moves = {MOVE_TACKLE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
     }
 };
 
 static const struct TrainerMon sParty_Roxanne4[] = {
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 42,
-    .species = SPECIES_OMASTAR,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ICE_BEAM, MOVE_ROCK_SLIDE, MOVE_SURF}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_RECKLESS,  // Boosts the power of recoil moves
+        .lvl = 47,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_EVIOLITE,
+        .moves = {MOVE_BULLDOZE, MOVE_THUNDER_FANG, MOVE_FACADE, MOVE_ROCK_BLAST},
+        .nature = NATURE_ADAMANT,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 42,
-    .species = SPECIES_GOLEM,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ROLLOUT, MOVE_EARTHQUAKE, MOVE_EXPLOSION}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SAND_VEIL,  // Boosts evasion in a sandstorm
+        .lvl = 47,
+        .species = SPECIES_PUPITAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_SANDSTORM, MOVE_CRUNCH, MOVE_STOMPING_TANTRUM, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,  // Larvitar benefits from boosted Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 45,
-    .species = SPECIES_KABUTOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SWORDS_DANCE, MOVE_ICE_BEAM, MOVE_SURF, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_STURDY,  // Prevents being one-hit KO'd
+        .lvl = 47,
+        .species = SPECIES_TYRANTRUM,
+        .heldItem = ITEM_LIFE_ORB,
+        .moves = {MOVE_STOMP, MOVE_ANCIENT_POWER, MOVE_ANCIENT_POWER, MOVE_ROCK_SLIDE},
+        .nature = NATURE_JOLLY,  // Tyrunt benefits from increased Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 45,
-    .species = SPECIES_ONIX,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_ROAR, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SUCTION_CUPS,
+        .lvl = 47,
+        .species = SPECIES_CRADILY,
+        .heldItem = ITEM_FOCUS_SASH,
+        .moves = {MOVE_INGRAIN, MOVE_ANCIENT_POWER, MOVE_BRINE, MOVE_BULLET_SEED},
+        .nature = NATURE_BOLD,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 47,
-    .species = SPECIES_NOSEPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_DOUBLE_TEAM, MOVE_EXPLOSION, MOVE_PROTECT, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SHIELDS_DOWN,  // Changes form and stats when HP is below 50%
+        .lvl = 47,
+        .species = SPECIES_MINIOR_CORE_RED,  // Minior in its core form, providing a defensive Rock/Flying type
+        .heldItem = ITEM_WHITE_HERB,  // Prevents being one-hit KO'd
+        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_CONFUSE_RAY, MOVE_ROLLOUT},
+        .nature = NATURE_JOLLY,  // Minior benefits from increased Speed
+    },
+    {
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_CLEAR_BODY,
+        .lvl = 47,
+        .species = SPECIES_DIANCIE,
+        .heldItem = ITEM_DIANCITE,
+        .moves = {MOVE_TACKLE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
     }
 };
 
 static const struct TrainerMon sParty_Roxanne5[] = {
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 47,
-    .species = SPECIES_AERODACTYL,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_ROCK_SLIDE, MOVE_HYPER_BEAM, MOVE_SUPERSONIC, MOVE_PROTECT}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_RECKLESS,  // Boosts the power of recoil moves
+        .lvl = 52,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_EVIOLITE,
+        .moves = {MOVE_BULLDOZE, MOVE_THUNDER_FANG, MOVE_FACADE, MOVE_ROCK_BLAST},
+        .nature = NATURE_ADAMANT,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 47,
-    .species = SPECIES_GOLEM,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_FOCUS_PUNCH, MOVE_ROLLOUT, MOVE_EARTHQUAKE, MOVE_EXPLOSION}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SAND_VEIL,  // Boosts evasion in a sandstorm
+        .lvl = 52,
+        .species = SPECIES_PUPITAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_SANDSTORM, MOVE_CRUNCH, MOVE_STOMPING_TANTRUM, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,  // Larvitar benefits from boosted Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 47,
-    .species = SPECIES_OMASTAR,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_PROTECT, MOVE_ICE_BEAM, MOVE_ROCK_SLIDE, MOVE_SURF}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_STURDY,  // Prevents being one-hit KO'd
+        .lvl = 52,
+        .species = SPECIES_TYRANTRUM,
+        .heldItem = ITEM_LIFE_ORB,
+        .moves = {MOVE_STOMP, MOVE_ANCIENT_POWER, MOVE_ANCIENT_POWER, MOVE_ROCK_SLIDE},
+        .nature = NATURE_JOLLY,  // Tyrunt benefits from increased Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 50,
-    .species = SPECIES_KABUTOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SWORDS_DANCE, MOVE_ICE_BEAM, MOVE_SURF, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SUCTION_CUPS,
+        .lvl = 52,
+        .species = SPECIES_CRADILY,
+        .heldItem = ITEM_FOCUS_SASH,
+        .moves = {MOVE_INGRAIN, MOVE_ANCIENT_POWER, MOVE_BRINE, MOVE_BULLET_SEED},
+        .nature = NATURE_BOLD,
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 50,
-    .species = SPECIES_STEELIX,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_ROAR, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_SHIELDS_DOWN,  // Changes form and stats when HP is below 50%
+        .lvl = 52,
+        .species = SPECIES_MINIOR_CORE_RED,  // Minior in its core form, providing a defensive Rock/Flying type
+        .heldItem = ITEM_WHITE_HERB,  // Prevents being one-hit KO'd
+        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_CONFUSE_RAY, MOVE_ROLLOUT},
+        .nature = NATURE_JOLLY,  // Minior benefits from increased Speed
     },
     {
-    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
-    .lvl = 52,
-    .species = SPECIES_NOSEPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_DOUBLE_TEAM, MOVE_EXPLOSION, MOVE_PROTECT, MOVE_ROCK_SLIDE}
+        .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+        .ability = ABILITY_CLEAR_BODY,
+        .lvl = 52,
+        .species = SPECIES_DIANCIE,
+        .heldItem = ITEM_DIANCITE,
+        .moves = {MOVE_TACKLE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_ROCK_TOMB},
+        .nature = NATURE_JOLLY,
     }
 };
 
