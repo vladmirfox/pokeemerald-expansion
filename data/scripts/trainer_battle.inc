@@ -146,6 +146,7 @@ EventScript_Lock::
 
 EventScript_TrainerApproach2::
 	special DoTrainerApproach
+	waitstate
 	return
 
 EventScript_RevealTrainer2::
@@ -183,6 +184,11 @@ EventScript_GotoPostBattleScript::
 
 EventScript_DoTrainerBattle2::
 	dotrainerbattle
+	return
+
+EventScript_DoRematchTrainerBattle::
+	special BattleSetup_StartRematchBattle
+	waitstate
 	return
 
 EventScript_EndTrainerBattle2::

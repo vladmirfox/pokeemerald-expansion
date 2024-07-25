@@ -49,6 +49,8 @@ extern const u8 EventScript_ShowTrainerIntroMsg[];
 extern const u8 EventScript_ShowTrainerIntroMsg2[];
 extern const u8 EventScript_GotoPostBattleScript[];
 extern const u8 EventScript_DoTrainerBattle2[];
+extern const u8 EventScript_DoRematchTrainerBattle[];
+extern const u8 EventScript_NotEnoughMonsForDoubleBattle[];
 extern const u8 EventScript_EndTrainerBattle2[];
 
 extern const u8 BerryTreeScript[];

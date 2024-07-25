@@ -116,13 +116,6 @@ EWRAM_DATA static u8 *sTrainerBattleEndScript = NULL;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
 EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
 
-#define DebugPrintTrainerParams DebugPrintfLevel(MGBA_LOG_DEBUG, "\nmode: %d\nlocalId: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\nendscript: %x\n", \
-        sTrainerBattleParameter.params.battleMode, sTrainerBattleParameter.params.objEventLocalId, \
-        sTrainerBattleParameter.params.battleOpponentA, sTrainerBattleParameter.params.introTextA, sTrainerBattleParameter.params.defeatTextA, sTrainerBattleParameter.params.battleScriptRetAddrA, \
-        sTrainerBattleParameter.params.battleOpponentB, sTrainerBattleParameter.params.introTextB, sTrainerBattleParameter.params.defeatTextB, sTrainerBattleParameter.params.battleScriptRetAddrB, \
-        sTrainerBattleParameter.params.victoryText, sTrainerBattleParameter.params.cannotBattleText, \
-        sTrainerBattleEndScript)
-
 // The first transition is used if the enemy Pokémon are lower level than our Pokémon.
 // Otherwise, the second transition is used.
 static const u8 sBattleTransitionTable_Wild[][2] =
@@ -1175,6 +1168,7 @@ void TrainerBattleLoadArgsTrainerA(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.objEventLocalIdA = temp->params.objEventLocalIdA;
     TRAINER_BATTLE_PARAM.battleOpponentA = temp->params.battleOpponentA;
     TRAINER_BATTLE_PARAM.introTextA = temp->params.introTextA;
     TRAINER_BATTLE_PARAM.defeatTextA = temp->params.defeatTextA;
@@ -1185,6 +1179,7 @@ void TrainerBattleLoadArgsTrainerB(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdB;
     TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentB;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextB;
     TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextB;
@@ -1196,6 +1191,7 @@ void TrainerBattleLoadArgsSecondTrainer(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdA;
     TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentA;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextA;
     TRAINER_BATTLE_PARAM.defeatTextB = temp->params.defeatTextA;
@@ -1212,10 +1208,10 @@ void TrainerBattleLoadArgs_2(const u8* data)
 
 void SetMapVarsToTrainer(void)
 {
-    if (TRAINER_BATTLE_PARAM.objEventLocalId != 0)
+    if (TRAINER_BATTLE_PARAM.objEventLocalIdA != 0)
     {
-        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalId;
-        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdA;
+        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdA, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
     }
 }
 
@@ -1229,66 +1225,92 @@ do { \
     DebugPrintfLevel(MGBA_LOG_DEBUG, "_______TrainerScriptFloor______");  \
 } while(0) 
 
+#define PUSH(script) PtrStackPushU8(scrStack, script);
+
+
+const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, PtrStack *scrStack)
+{
+    if (TRAINER_BATTLE_PARAM.playMusic)
+    {
+        PUSH(EventScript_PlayTrainerEncounterMusic);
+    }
+
+    PUSH(EventScript_TrainerApproach2);
+
+    if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
+    {
+        PUSH(EventScript_ShowTrainerIntroMsg2);
+    }
+    
+    if (TryPrepareSecondApproachingTrainer2()) {
+        PUSH(EventScript_PrepareSecondTrainerApproach);
+        PUSH(EventScript_PlayTrainerEncounterMusic);
+        PUSH(EventScript_TrainerApproach2);
+        PUSH(EventScript_ShowTrainerIntroMsg2);
+    }
+    PUSH(EventScript_DoTrainerBattle2);
+    PUSH(EventScript_EndTrainerBattle2);
+    return NULL;
+}
 
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack, bool32 isApproaching)
-{
-    /*
-    if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_SET_TRAINER_B)
-        InitTrainerBattleVariables();
-    */
-   
+{   
     DebugPrintTrainerParams;
 
-    if (isApproaching) {
-        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
-        PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
-        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
-        if (TryPrepareSecondApproachingTrainer2()) {
-            PtrStackPushU8(scrStack, EventScript_PrepareSecondTrainerApproach);
-            PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
-            PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
-            PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
-        }
-        PtrStackPushU8(scrStack, EventScript_DoTrainerBattle2);
-        PtrStackPushU8(scrStack, EventScript_EndTrainerBattle2);
+    if (isApproaching) 
+    {
+        return BattleSetup_ConfigureTrainerBattleApproachingTrainer(data, scrStack);
+    }
+
+
+    SetMapVarsToTrainer(); // TODO check which cases exactly need this and why
+    PUSH(EventScript_Lock);
+    PUSH(EventScript_RevealTrainer2);
+
+    if (GetTrainerFlag() || (TRAINER_BATTLE_PARAM.isRematch && !IsTrainerReadyForRematch())) { 
+        PUSH(EventScript_GotoPostBattleScript);
         return NULL;
     }
 
-    PtrStackPushU8(scrStack, EventScript_Lock);
-    PtrStackPushU8(scrStack, EventScript_RevealTrainer2);
-    
-    if (GetTrainerFlag()) 
+    if (TRAINER_BATTLE_PARAM.isDoubleBattle && !HasEnoughMonsForDoubleBattle2())
     {
-        PtrStackPushU8(scrStack, EventScript_GotoPostBattleScript);
+        PUSH(EventScript_NotEnoughMonsForDoubleBattle);
         return NULL;
     }
 
-    if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
-     && TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC)
+    if (TRAINER_BATTLE_PARAM.isRematch)
     {
-        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
+        TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
     }
 
-    PtrStackPushU8(scrStack, EventScript_SetTrainerFacingDirection);
-
-    if (TRAINER_BATTLE_PARAM.battleMode != TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT)
+    if (TRAINER_BATTLE_PARAM.playMusic)
     {
-        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+        PUSH(EventScript_PlayTrainerEncounterMusic);
     }
 
-    if (gNoOfApproachingTrainers > 1)
+    PUSH(EventScript_SetTrainerFacingDirection);
+
+    if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
     {
-        PtrStackPushU8(scrStack, EventScript_PlayTrainerEncounterMusic);
-        PtrStackPushU8(scrStack, EventScript_TrainerApproach2);
-        PtrStackPushU8(scrStack, EventScript_ShowTrainerIntroMsg2);
+        PUSH(EventScript_ShowTrainerIntroMsg2);
     }
 
-    PtrStackPushU8(scrStack, EventScript_DoTrainerBattle2);
-    PtrStackPushU8(scrStack, EventScript_EndTrainerBattle2);
+    if (TRAINER_BATTLE_PARAM.isRematch) 
+    {
+        PUSH(EventScript_DoRematchTrainerBattle);
+    }
+    else 
+    {
+        PUSH(EventScript_DoTrainerBattle2);
+    }
 
+    PUSH(EventScript_EndTrainerBattle2);
+
+    DebugPrintTrainerBattleStack;
     return NULL;
 
-    switch (TRAINER_BATTLE_PARAM.battleMode)
+    /*
+    switch (TRAINER_BATTLE_PARAM.battleFlags)
     {
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
         return EventScript_DoNoIntroTrainerBattle;
@@ -1368,6 +1390,7 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
             SetMapVarsToTrainer();
         return EventScript_TryDoNormalTrainerBattle;
     }
+    */
 }
 
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerScript)
@@ -1405,6 +1428,7 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 //       For trainers who spot the player this is handled by PlayerFaceApproachingTrainer
 void SetTrainerFacingDirection(void)
 {
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "settrainerfacingdirection:\nselected: %d\nlast talked: %d\nfacing: %d", gSelectedObjectEvent, gSpecialVar_LastTalked, gSpecialVar_Facing);
     struct ObjectEvent *objectEvent = &gObjectEvents[gSelectedObjectEvent];
     SetTrainerMovementType(objectEvent, GetTrainerFacingDirectionMovementType(objectEvent->facingDirection));
 }
@@ -1639,10 +1663,10 @@ const u8 *BattleSetup_GetTrainerPostBattleScript(void)
     if (sShouldCheckTrainerBScript)
     {
         sShouldCheckTrainerBScript = FALSE;
-        if (sTrainerBBattleScriptRetAddr != NULL)
+        if (TRAINER_BATTLE_PARAM.battleScriptRetAddrB != NULL)
         {
             gWhichTrainerToFaceAfterBattle = 1;
-            return sTrainerBBattleScriptRetAddr;
+            return TRAINER_BATTLE_PARAM.battleScriptRetAddrB;
         }
     }
     else

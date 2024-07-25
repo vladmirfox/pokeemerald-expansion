@@ -13,16 +13,27 @@ struct RematchTrainer
     u16 mapNum;
 };
 
+/*
+the layout of the first byte can be confusing here
+isDoubleBattle is the least lsb. msb is in the padding.
+*/
 typedef union PACKED TrainerBattleParameterUnion
 {
     struct PACKED Parameters
     {
-        u8 battleMode;
-        u16 objEventLocalId;
+        u8 isDoubleBattle:1;
+        u8 playMusic:1;
+        u8 isRematch:1;
+        u8 isTrainerHill:1;
+        u8 isTrainerPyramid:1;
+        u8 isMultiBattle:1;
+        u8 padding:2;
+        u8 objEventLocalIdA;
         u16 battleOpponentA;
         u8* introTextA;
         u8* defeatTextA;
         u8* battleScriptRetAddrA;
+        u8 objEventLocalIdB;
         u16 battleOpponentB;
         u8* introTextB;
         u8* defeatTextB;
@@ -32,6 +43,13 @@ typedef union PACKED TrainerBattleParameterUnion
     } params;
     u8 data[sizeof(struct Parameters)];
 } TrainerBattleParameterU;
+
+#define DebugPrintTrainerParams DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusic: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\nisMultiBattle: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\nendscript: %x\n", \
+        sTrainerBattleParameter.params.isDoubleBattle, sTrainerBattleParameter.params.playMusic, sTrainerBattleParameter.params.isRematch, sTrainerBattleParameter.params.isTrainerHill, sTrainerBattleParameter.params.isTrainerPyramid, sTrainerBattleParameter.params.isMultiBattle, sTrainerBattleParameter.params.padding, \
+        sTrainerBattleParameter.params.objEventLocalIdA, sTrainerBattleParameter.params.battleOpponentA, sTrainerBattleParameter.params.introTextA, sTrainerBattleParameter.params.defeatTextA, sTrainerBattleParameter.params.battleScriptRetAddrA, \
+        sTrainerBattleParameter.params.objEventLocalIdB, sTrainerBattleParameter.params.battleOpponentB, sTrainerBattleParameter.params.introTextB, sTrainerBattleParameter.params.defeatTextB, sTrainerBattleParameter.params.battleScriptRetAddrB, \
+        sTrainerBattleParameter.params.victoryText, sTrainerBattleParameter.params.cannotBattleText, \
+        sTrainerBattleEndScript)
 
 typedef struct TrainerBattleScriptStack
 {

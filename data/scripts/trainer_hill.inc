@@ -60,7 +60,7 @@ TrainerHill_1F_Movement_SetInvisible::
 
 @ TRAINER_PHILLIP is an actual Trainer on the SS Tidal, but is used as a placeholder here
 TrainerHill_EventScript_TrainerBattle::
-	trainerbattle TRAINER_BATTLE_HILL, 0, TRAINER_PHILLIP, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText, NULL, 0, NULL, NULL, NULL, NULL, NULL
+	@trainerbattle TRAINER_BATTLE_HILL, 0, TRAINER_PHILLIP, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText, NULL, 0, NULL, NULL, NULL, NULL, NULL
 	trainerhill_postbattletext
 	waitmessage
 	waitbuttonpress
