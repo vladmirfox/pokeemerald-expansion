@@ -554,7 +554,7 @@
 #define P_FAMILY_RELLOR                  FALSE
 #define P_FAMILY_FLITTLE                 FALSE
 #define P_FAMILY_TINKATINK               FALSE
-#define P_FAMILY_WIGLETT                 FALSE
+#define P_FAMILY_WIGLETT                 P_GEN_9_POKEMON
 #define P_FAMILY_BOMBIRDIER              FALSE
 #define P_FAMILY_FINIZEN                 FALSE
 #define P_FAMILY_VAROOM                  FALSE
