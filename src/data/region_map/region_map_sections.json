@@ -706,16 +706,16 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PALLET_TOWN",
-      "name": "PALLET TOWN",
+      "map_section": "MAPSEC_WYRMSHIRE",
+      "name": "WYRMSHIRE",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_VIRIDIAN_CITY",
-      "name": "VIRIDIAN CITY",
+      "map_section": "MAPSEC_GREENSFIELD",
+      "name": "GREENSFIELD",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -730,64 +730,64 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CERULEAN_CITY",
-      "name": "CERULEAN CITY",
+      "map_section": "MAPSEC_MARINA_PORT",
+      "name": "MARINA PORT",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_LAVENDER_TOWN",
-      "name": "LAVENDER TOWN",
+      "map_section": "MAPSEC_IRONFORGE_CITY",
+      "name": "IRONFORGE CITY",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_VERMILION_CITY",
-      "name": "VERMILION CITY",
+      "map_section": "MAPSEC_FORT_VALORITE",
+      "name": "FORT VALORITE",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CELADON_CITY",
-      "name": "CELADON CITY",
+      "map_section": "MAPSEC_MYSTERIA_CITY",
+      "name": "MYSTERIA CITY",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_FUCHSIA_CITY",
-      "name": "FUCHSIA CITY",
+      "map_section": "MAPSEC_FORTUNA_CITY",
+      "name": "FORTUNA CITY",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_CINNABAR_ISLAND",
-      "name": "CINNABAR ISLAND",
+      "map_section": "MAPSEC_WYRMSPIRE_KEEP",
+      "name": "WYRMSPIRE KEEP",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_INDIGO_PLATEAU",
-      "name": "INDIGO PLATEAU",
+      "map_section": "MAPSEC_SHINRYU_PAGODA",
+      "name": "SHINRYU PAGODA",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_SAFFRON_CITY",
-      "name": "SAFFRON CITY",
+      "map_section": "MAPSEC_DESERT_OASIS",
+      "name": "DESERT OASIS",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -812,200 +812,200 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_1",
-      "name": "ROUTE 1",
+      "map_section": "MAPSEC_ROUTE_001",
+      "name": "ROUTE 001",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_2",
-      "name": "ROUTE 2",
+      "map_section": "MAPSEC_ROUTE_002",
+      "name": "ROUTE 002",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_3",
-      "name": "ROUTE 3",
+      "map_section": "MAPSEC_ROUTE_003",
+      "name": "ROUTE 003",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_4",
-      "name": "ROUTE 4",
+      "map_section": "MAPSEC_ROUTE_004",
+      "name": "ROUTE 004",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_5",
-      "name": "ROUTE 5",
+      "map_section": "MAPSEC_ROUTE_005",
+      "name": "ROUTE 005",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_6",
-      "name": "ROUTE 6",
+      "map_section": "MAPSEC_ROUTE_006",
+      "name": "ROUTE 006",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_7",
-      "name": "ROUTE 7",
+      "map_section": "MAPSEC_ROUTE_007",
+      "name": "ROUTE 007",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_8",
-      "name": "ROUTE 8",
+      "map_section": "MAPSEC_ROUTE_008",
+      "name": "ROUTE 008",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_9",
-      "name": "ROUTE 9",
+      "map_section": "MAPSEC_ROUTE_009",
+      "name": "ROUTE 009",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_10",
-      "name": "ROUTE 10",
+      "map_section": "MAPSEC_ROUTE_010",
+      "name": "ROUTE 010",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_11",
-      "name": "ROUTE 11",
+      "map_section": "MAPSEC_ROUTE_011",
+      "name": "ROUTE 011",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_12",
-      "name": "ROUTE 12",
+      "map_section": "MAPSEC_ROUTE_012",
+      "name": "ROUTE 012",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_13",
-      "name": "ROUTE 13",
+      "map_section": "MAPSEC_ROUTE_013",
+      "name": "ROUTE 013",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_14",
-      "name": "ROUTE 14",
+      "map_section": "MAPSEC_ROUTE_014",
+      "name": "ROUTE 014",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_15",
-      "name": "ROUTE 15",
+      "map_section": "MAPSEC_ROUTE_015",
+      "name": "ROUTE 015",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_16",
-      "name": "ROUTE 16",
+      "map_section": "MAPSEC_ROUTE_016",
+      "name": "ROUTE 016",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_17",
-      "name": "ROUTE 17",
+      "map_section": "MAPSEC_ROUTE_017",
+      "name": "ROUTE 017",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_18",
-      "name": "ROUTE 18",
+      "map_section": "MAPSEC_ROUTE_018",
+      "name": "ROUTE 018",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_19",
-      "name": "ROUTE 19",
+      "map_section": "MAPSEC_ROUTE_019",
+      "name": "ROUTE 019",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_20",
-      "name": "ROUTE 20",
+      "map_section": "MAPSEC_ROUTE_020",
+      "name": "ROUTE 020",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_21",
-      "name": "ROUTE 21",
+      "map_section": "MAPSEC_ROUTE_021",
+      "name": "ROUTE 021",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_22",
-      "name": "ROUTE 22",
+      "map_section": "MAPSEC_ROUTE_022",
+      "name": "ROUTE 022",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_23",
-      "name": "ROUTE 23",
+      "map_section": "MAPSEC_ROUTE_023",
+      "name": "ROUTE 023",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_24",
-      "name": "ROUTE 24",
+      "map_section": "MAPSEC_ROUTE_024",
+      "name": "ROUTE 024",
       "x": 0,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_25",
-      "name": "ROUTE 25",
+      "map_section": "MAPSEC_ROUTE_025",
+      "name": "ROUTE 025",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1028,8 +1028,8 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_S_S_ANNE",
-      "name": "S.S. ANNE",
+      "map_section": "MAPSEC_HYDROELECTRIC_DAM",
+      "name": "HYDROELECTRIC DAM",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1061,8 +1061,8 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_KANTO_VICTORY_ROAD",
-      "name": "VICTORY ROAD",
+      "map_section": "MAPSEC_SHINRYU_PATH",
+      "name": "SHINRYU PATH",
       "name_clone": true,
       "x": 0,
       "y": 0,
@@ -1094,9 +1094,8 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_KANTO_SAFARI_ZONE",
-      "name": "SAFARI ZONE",
-      "name_clone": true,
+      "map_section": "MAPSEC_PROVING_TRIAL",
+      "name": "PROVING TRIAL",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1111,8 +1110,8 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROCK_TUNNEL",
-      "name": "ROCK TUNNEL",
+      "map_section": "MAPSEC_GREAT_DESERT",
+      "name": "GREAT DESERT",
       "x": 0,
       "y": 0,
       "width": 1,
