@@ -265,6 +265,10 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_STAR_SWEET] = {gItemIcon_StarSweet, gItemIconPalette_StarSweet},
     [ITEM_RIBBON_SWEET] = {gItemIcon_RibbonSweet, gItemIconPalette_RibbonSweet},
     [ITEM_EVERSTONE] = {gItemIcon_Everstone, gItemIconPalette_Everstone},
+    [ITEM_REGION_PASS_ALOLA] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_GALAR] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_HISUI] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_PALDEA] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
     // Nectars
     [ITEM_RED_NECTAR] = {gItemIcon_RedNectar, gItemIconPalette_RedNectar},
     [ITEM_YELLOW_NECTAR] = {gItemIcon_YellowNectar, gItemIconPalette_YellowNectar},
