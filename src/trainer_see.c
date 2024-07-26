@@ -473,7 +473,7 @@ static u8 CheckTrainer(u8 objectEventId)
 
     if (approachDistance != 0)
     {
-        TrainerBattleParameterU* temp = (TrainerBattleParameterU*)scriptPtr + 1;
+        TrainerBattleParameterU* temp = (TrainerBattleParameterU*)(scriptPtr + 1);
         if (temp->params.isDoubleBattle)
         {
             if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
