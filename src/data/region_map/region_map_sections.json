@@ -1639,7 +1639,7 @@
       "height": 1
     },
     {
-      "map_section": "_UNDERWATER_MARINE_CAVE",
+      "map_section": "MAPSEC_UNDERWATER_MARINE_CAVE",
       "name": "UNDERWATER",
       "x": 0,
       "y": 0,
@@ -1663,7 +1663,7 @@
       "height": 3
     },
     {
-      "map_section": "_UNDERWATER_125",
+      "map_section": "MAPSEC_UNDERWATER_125",
       "name": "UNDERWATER",
       "x": 24,
       "y": 3,
