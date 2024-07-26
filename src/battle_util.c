@@ -2037,8 +2037,43 @@ u32 DoEndTurnEffects(void)
             gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_FUTURE_SIGHT:
+            if (!IsBattlerAlive(battler))
+            {
+                gBattleStruct->turnEffectsBattlerId++;
+                break;
+            }
+            if (gWishFutureKnock.futureSightCounter[battler] > 0 && --gWishFutureKnock.futureSightCounter[battler] == 0)
+            {
+                struct Pokemon *party;
+
+                if (gWishFutureKnock.futureSightCounter[battler] == 0
+                 && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] == 0)
+                {
+                    gSideStatuses[GetBattlerSide(battler)] &= ~SIDE_STATUS_FUTUREATTACK;
+                }
+
+                if (gWishFutureKnock.futureSightMove[battler] == MOVE_FUTURE_SIGHT)
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FUTURE_SIGHT;
+                else
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;
+
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gWishFutureKnock.futureSightMove[battler]);
+
+                gBattlerTarget = battler;
+                gBattlerAttacker = gWishFutureKnock.futureSightBattlerIndex[battler];
+                gSpecialStatuses[gBattlerTarget].shellBellDmg = IGNORE_SHELL_BELL;
+                gCurrentMove = gWishFutureKnock.futureSightMove[battler];
+
+                party = GetSideParty(GetBattlerSide(gBattlerAttacker));
+                if (&party[gWishFutureKnock.futureSightPartyIndex[gBattlerTarget]] == &party[gBattlerPartyIndexes[gBattlerAttacker]])
+                    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
+
+                BattleScriptExecute(BattleScript_MonTookFutureAttack);
+            }
+            gBattleStruct->turnEffectsBattlerId++;
+            break;
         case ENDTURN_DOOM_DESIRE:
-        case ENDTURN_WISH:
+        case ENDTURN_WISH: //
             if (!IsBattlerAlive(battler))
             {
                 gBattleStruct->turnEffectsBattlerId++;
@@ -2928,52 +2963,6 @@ bool32 HandleWishPerishSongOnTurnEnd(void)
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
     switch (gBattleStruct->wishPerishSongState)
     {
-    case 0:
-        while (gBattleStruct->wishPerishSongBattlerId < gBattlersCount)
-        {
-            battler = gBattleStruct->wishPerishSongBattlerId;
-
-            gBattleStruct->wishPerishSongBattlerId++;
-
-            if (gWishFutureKnock.futureSightCounter[battler] != 0
-             && --gWishFutureKnock.futureSightCounter[battler] == 0
-             && !(gAbsentBattlerFlags & gBitTable[battler]))
-            {
-                struct Pokemon *party;
-
-                if (gWishFutureKnock.futureSightCounter[battler] == 0
-                 && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] == 0)
-                {
-                    gSideStatuses[GetBattlerSide(battler)] &= ~SIDE_STATUS_FUTUREATTACK;
-                }
-
-                if (!IsBattlerAlive(battler))
-                    continue;
-
-                if (gWishFutureKnock.futureSightMove[battler] == MOVE_FUTURE_SIGHT)
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FUTURE_SIGHT;
-                else
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;
-
-                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gWishFutureKnock.futureSightMove[battler]);
-
-                gBattlerTarget = battler;
-                gBattlerAttacker = gWishFutureKnock.futureSightBattlerIndex[battler];
-                gSpecialStatuses[gBattlerTarget].shellBellDmg = IGNORE_SHELL_BELL;
-                gCurrentMove = gWishFutureKnock.futureSightMove[battler];
-
-                party = GetSideParty(GetBattlerSide(gBattlerAttacker));
-                if (&party[gWishFutureKnock.futureSightPartyIndex[gBattlerTarget]] == &party[gBattlerPartyIndexes[gBattlerAttacker]])
-                    SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
-
-                BattleScriptExecute(BattleScript_MonTookFutureAttack);
-
-                return TRUE;
-            }
-        }
-        gBattleStruct->wishPerishSongState = 1;
-        gBattleStruct->wishPerishSongBattlerId = 0;
-        // fall through
     case 1:
         while (gBattleStruct->wishPerishSongBattlerId < gBattlersCount)
         {
