@@ -22,12 +22,13 @@ typedef union PACKED TrainerBattleParameterUnion
     struct PACKED Parameters
     {
         u8 isDoubleBattle:1;
-        u8 playMusic:1;
         u8 isRematch:1;
         u8 isTrainerHill:1;
         u8 isTrainerPyramid:1;
         u8 isMultiBattle:1;
-        u8 padding:2;
+        u8 playMusicA:1;
+        u8 playMusicB:1;
+        u8 padding:1;
         u8 objEventLocalIdA;
         u16 battleOpponentA;
         u8* introTextA;
@@ -44,12 +45,11 @@ typedef union PACKED TrainerBattleParameterUnion
     u8 data[sizeof(struct Parameters)];
 } TrainerBattleParameterU;
 
-#define DebugPrintTrainerParams DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusic: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\nisMultiBattle: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\nendscript: %x\n", \
-        sTrainerBattleParameter.params.isDoubleBattle, sTrainerBattleParameter.params.playMusic, sTrainerBattleParameter.params.isRematch, sTrainerBattleParameter.params.isTrainerHill, sTrainerBattleParameter.params.isTrainerPyramid, sTrainerBattleParameter.params.isMultiBattle, sTrainerBattleParameter.params.padding, \
-        sTrainerBattleParameter.params.objEventLocalIdA, sTrainerBattleParameter.params.battleOpponentA, sTrainerBattleParameter.params.introTextA, sTrainerBattleParameter.params.defeatTextA, sTrainerBattleParameter.params.battleScriptRetAddrA, \
-        sTrainerBattleParameter.params.objEventLocalIdB, sTrainerBattleParameter.params.battleOpponentB, sTrainerBattleParameter.params.introTextB, sTrainerBattleParameter.params.defeatTextB, sTrainerBattleParameter.params.battleScriptRetAddrB, \
-        sTrainerBattleParameter.params.victoryText, sTrainerBattleParameter.params.cannotBattleText, \
-        sTrainerBattleEndScript)
+#define DebugPrintTrainerParams(battleParameter) DebugPrintfLevel(MGBA_LOG_DEBUG, "\nisDouble: %d\nplayMusicA: %d\nplayMusicB: %d\nisRematch: %d\nisTrainerHill: %d\nisTrainerPyramid: %d\nisMultiBattle: %d\npadding: %d\nlocalIdA: %d\ntrainerA: %d\nintroA: %x\ndefeatA: %x\neventA: %x\nlocalIdB: %d\ntrainerB: %d\nintroB: %x\ndefeatB: %x\neventB: %x\nvictory: %x\nnotBattle:%x\n", \
+        battleParameter->params.isDoubleBattle, battleParameter->params.playMusicA, battleParameter->params.playMusicB, battleParameter->params.isRematch, battleParameter->params.isTrainerHill, battleParameter->params.isTrainerPyramid, battleParameter->params.isMultiBattle, battleParameter->params.padding, \
+        battleParameter->params.objEventLocalIdA, battleParameter->params.battleOpponentA, battleParameter->params.introTextA, battleParameter->params.defeatTextA, battleParameter->params.battleScriptRetAddrA, \
+        battleParameter->params.objEventLocalIdB, battleParameter->params.battleOpponentB, battleParameter->params.introTextB, battleParameter->params.defeatTextB, battleParameter->params.battleScriptRetAddrB, \
+        battleParameter->params.victoryText, battleParameter->params.cannotBattleText)
 
 typedef struct TrainerBattleScriptStack
 {
@@ -62,6 +62,7 @@ typedef struct TrainerBattleScriptStack
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
 extern TrainerBattleParameterU sTrainerBattleParameter;
+extern bool16 gHideCancelOptionOnPartySelect;
 extern u16 gTrainerBattleOpponent_A;
 extern u16 gTrainerBattleOpponent_B;
 extern u16 gPartnerTrainerId;
@@ -83,7 +84,7 @@ u8 GetTrainerBattleTransition(void);
 u8 GetSpecialBattleTransition(s32 id);
 void ChooseStarter(void);
 void ResetTrainerOpponentIds(void);
-void SetMapVarsToTrainer(void);
+void SetMapVarsToTrainerA(void);
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack, bool32 isApproaching);
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerObjEventId, const u8 *trainerScript);
 void ConfigureTwoTrainersBattle(u8 trainerObjEventId, const u8 *trainerScript);

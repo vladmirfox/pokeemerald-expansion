@@ -9,6 +9,16 @@ typedef struct PtrStack
     s32 stackPtr;
 } PtrStack;
 
+#define DebugPrintStack(s) \
+do { \
+    s16 i; \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______StackTop______");  \
+    for (i = s->stackPtr; i > -1; i--) {  \
+        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, s->stack[i]);  \
+    }   \
+    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______StackFloor______");  \
+} while(0) 
+
 void PtrStackInit(PtrStack* stack);
 void* PtrStackPop(PtrStack* stack);
 bool32 PtrStackPush(PtrStack* stack, void* ptr);

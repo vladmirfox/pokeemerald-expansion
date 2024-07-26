@@ -195,3 +195,40 @@ EventScript_EndTrainerBattle2::
 	gotobeatenscript
 	releaseall
 	end
+
+EventScript_SavePlayerParty::
+	special SavePlayerParty
+	return
+
+EventScript_ChooseHalfPartyForBattle::
+	fadescreen FADE_TO_BLACK
+	special ChooseHalfPartyForBattle
+	waitstate
+	return
+
+EventScript_LoadPlayerParty::
+	special LoadPlayerParty
+	return
+
+EventScript_ReducePlayerPartyToSelectedMons::
+	special ReducePlayerPartyToSelectedMons
+	return
+	
+EventScript_SaveMonOrder::
+	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SET_DATA
+	setvar VAR_0x8005, FRONTIER_DATA_SELECTED_MON_ORDER
+	special CallFrontierUtilFunc @ saves the mon order, so the non-selected mons get restored afterwards
+	return
+
+EventScript_DoSpecialTrainerBattle::
+	setvar VAR_0x8004, SPECIAL_BATTLE_MULTI
+	setvar VAR_0x8005, MULTI_BATTLE_2_VS_2 | MULTI_BATTLE_CHOOSE_MONS
+	setvar VAR_0x8006, PARTNER_STEVEN
+	special DoSpecialTrainerBattle
+	waitstate
+	return
+
+EventScript_SaveSelectedParty::
+	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
+	special CallFrontierUtilFunc
+	return

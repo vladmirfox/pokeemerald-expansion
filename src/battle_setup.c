@@ -1168,6 +1168,7 @@ void TrainerBattleLoadArgsTrainerA(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.playMusicA = temp->params.playMusicA;
     TRAINER_BATTLE_PARAM.objEventLocalIdA = temp->params.objEventLocalIdA;
     TRAINER_BATTLE_PARAM.battleOpponentA = temp->params.battleOpponentA;
     TRAINER_BATTLE_PARAM.introTextA = temp->params.introTextA;
@@ -1179,6 +1180,7 @@ void TrainerBattleLoadArgsTrainerB(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.playMusicB = temp->params.playMusicB;
     TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdB;
     TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentB;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextB;
@@ -1191,6 +1193,7 @@ void TrainerBattleLoadArgsSecondTrainer(const u8* data)
 {
     TrainerBattleParameterU *temp = (TrainerBattleParameterU*)data;
 
+    TRAINER_BATTLE_PARAM.playMusicB = temp->params.playMusicA;
     TRAINER_BATTLE_PARAM.objEventLocalIdB = temp->params.objEventLocalIdA;
     TRAINER_BATTLE_PARAM.battleOpponentB = temp->params.battleOpponentA;
     TRAINER_BATTLE_PARAM.introTextB = temp->params.introTextA;
@@ -1203,10 +1206,10 @@ void TrainerBattleLoadArgs_2(const u8* data)
     InitTrainerBattleVariables();
     memcpy(sTrainerBattleParameter.data, data, sizeof(TrainerBattleParameterU));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameterU);
-    DebugPrintTrainerParams;
+    DebugPrintTrainerParams((&sTrainerBattleParameter));
 }
 
-void SetMapVarsToTrainer(void)
+void SetMapVarsToTrainerA(void)
 {
     if (TRAINER_BATTLE_PARAM.objEventLocalIdA != 0)
     {
@@ -1215,22 +1218,62 @@ void SetMapVarsToTrainer(void)
     }
 }
 
-#define DebugPrintTrainerBattleStack \
-do { \
-    s16 i; \
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______TrainerScriptStack______");  \
-    for (i = scrStack->stackPtr; i > -1; i--) {  \
-        DebugPrintfLevel(MGBA_LOG_DEBUG, "%d: %x", i, scrStack->stack[i]);  \
-    }   \
-    DebugPrintfLevel(MGBA_LOG_DEBUG, "_______TrainerScriptFloor______");  \
-} while(0) 
+void SetMapVarsToTrainerB(void)
+{
+    if (TRAINER_BATTLE_PARAM.objEventLocalIdB != 0)
+    {
+        gSpecialVar_LastTalked = TRAINER_BATTLE_PARAM.objEventLocalIdB;
+        gSelectedObjectEvent = GetObjectEventIdByLocalIdAndMap(TRAINER_BATTLE_PARAM.objEventLocalIdB, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    }
+}
 
 #define PUSH(script) PtrStackPushU8(scrStack, script);
 
+const u8* BattleSetup_ConfigureTrainerBattleMultiBattle(const u8* data, PtrStack *scrStack)
+{
+    if (TRAINER_BATTLE_PARAM.playMusicA)
+    {
+        PUSH(EventScript_PlayTrainerEncounterMusic);
+    }
+
+    PUSH(EventScript_TrainerApproach2);
+
+    if (TRAINER_BATTLE_PARAM.introTextA != NULL) 
+    {
+        PUSH(EventScript_ShowTrainerIntroMsg2);
+    }
+
+    PUSH(EventScript_SavePlayerParty);
+    PUSH(EventScript_ChooseHalfPartyForBattle);
+    PUSH(EventScript_LoadPlayerParty);
+    PUSH(EventScript_SavePlayerParty);
+    PUSH(EventScript_ReducePlayerPartyToSelectedMons);
+    PUSH(EventScript_SaveMonOrder);
+    PUSH(EventScript_DoSpecialTrainerBattle);
+    PUSH(EventScript_SaveSelectedParty);
+    PUSH(EventScript_LoadPlayerParty);
+
+    return NULL;
+}
 
 const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, PtrStack *scrStack)
 {
-    if (TRAINER_BATTLE_PARAM.playMusic)
+    if (TRAINER_BATTLE_PARAM.isMultiBattle) 
+    {
+        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack);
+    }
+
+    if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
+    {
+        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
+    }
+    
+    if (TRAINER_BATTLE_PARAM.isTrainerHill) 
+    {
+        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
+    }
+
+    if (TRAINER_BATTLE_PARAM.playMusicA)
     {
         PUSH(EventScript_PlayTrainerEncounterMusic);
     }
@@ -1243,11 +1286,31 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
     }
     
     if (TryPrepareSecondApproachingTrainer2()) {
+        SetMapVarsToTrainerB();
+        if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
+        {
+            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
+        }
+
+        if (TRAINER_BATTLE_PARAM.isTrainerHill) 
+        {
+            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
+        }
+
         PUSH(EventScript_PrepareSecondTrainerApproach);
-        PUSH(EventScript_PlayTrainerEncounterMusic);
+        if (TRAINER_BATTLE_PARAM.playMusicB) 
+        {
+            PUSH(EventScript_PlayTrainerEncounterMusic);
+        }
+
         PUSH(EventScript_TrainerApproach2);
-        PUSH(EventScript_ShowTrainerIntroMsg2);
+        
+        if (TRAINER_BATTLE_PARAM.introTextB) 
+        {
+            PUSH(EventScript_ShowTrainerIntroMsg2);
+        }
     }
+
     PUSH(EventScript_DoTrainerBattle2);
     PUSH(EventScript_EndTrainerBattle2);
     return NULL;
@@ -1255,15 +1318,19 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
 
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack, bool32 isApproaching)
 {   
-    DebugPrintTrainerParams;
+    DebugPrintTrainerParams((&sTrainerBattleParameter));
 
     if (isApproaching) 
     {
         return BattleSetup_ConfigureTrainerBattleApproachingTrainer(data, scrStack);
     }
+    if (TRAINER_BATTLE_PARAM.isMultiBattle) 
+    {
+        return BattleSetup_ConfigureTrainerBattleMultiBattle(data, scrStack);
+    }
 
 
-    SetMapVarsToTrainer(); // TODO check which cases exactly need this and why
+    SetMapVarsToTrainerA(); // TODO check which cases exactly need this and why
     PUSH(EventScript_Lock);
     PUSH(EventScript_RevealTrainer2);
 
@@ -1283,7 +1350,25 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
         TRAINER_BATTLE_PARAM.battleOpponentA = GetRematchTrainerId(TRAINER_BATTLE_PARAM.battleOpponentA);
     }
 
-    if (TRAINER_BATTLE_PARAM.playMusic)
+    if (TRAINER_BATTLE_PARAM.isTrainerPyramid) 
+    {
+        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
+        if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
+        {
+            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToPyramidTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
+        }
+    }
+
+    if (TRAINER_BATTLE_PARAM.isTrainerHill) 
+    {
+        TRAINER_BATTLE_PARAM.battleOpponentA = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdA);
+        if (TRAINER_BATTLE_PARAM.battleOpponentB != 0)
+        {
+            TRAINER_BATTLE_PARAM.battleOpponentB = LocalIdToHillTrainerId(TRAINER_BATTLE_PARAM.objEventLocalIdB);
+        }
+    }
+
+    if (TRAINER_BATTLE_PARAM.playMusicA)
     {
         PUSH(EventScript_PlayTrainerEncounterMusic);
     }
@@ -1306,7 +1391,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack,
 
     PUSH(EventScript_EndTrainerBattle2);
 
-    DebugPrintTrainerBattleStack;
+
+    DebugPrintStack(scrStack);
     return NULL;
 
     /*

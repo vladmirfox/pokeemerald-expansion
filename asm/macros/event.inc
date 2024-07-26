@@ -685,15 +685,16 @@
 	NO_TRAINER = 0
 
 	@ Configures the arguments for a trainer battle, then jumps to the appropriate script in scripts/trainer_battle.inc
-	.macro trainerbattle localIdA:req, trainer_a:req, intro_text_a:req, lose_text_a:req, event_script_a:req, localIdB:req, trainer_b:req, intro_text_b:req, lose_text_b:req, event_script_b:req, victory_text:req, cannot_battle:req, isDouble:req, playMusic:req, isRematch:req, isTrainerHill:req, isTrainerPyramid:req, isMulti:req
+	.macro trainerbattle localIdA:req, trainer_a:req, intro_text_a:req, lose_text_a:req, event_script_a:req, localIdB:req, trainer_b:req, intro_text_b:req, lose_text_b:req, event_script_b:req, victory_text:req, cannot_battle:req, isDouble:req, playMusicA:req, playMusicB:req, isRematch:req, isTrainerHill:req, isTrainerPyramid:req, isMulti:req
 	.byte 0x5c
 	.set trainerbattle_flags, 0
 	.ifgt \isDouble; .set trainerbattle_flags, trainerbattle_flags | (1 << 0); .endif
-	.ifgt \playMusic; .set trainerbattle_flags, trainerbattle_flags | (1 << 1); .endif
-	.ifgt \isRematch; .set trainerbattle_flags, trainerbattle_flags | (1 << 2); .endif
-	.ifgt \isTrainerHill; .set trainerbattle_flags, trainerbattle_flags | (1 << 3); .endif
-	.ifgt \isTrainerPyramid; .set trainerbattle_flags, trainerbattle_flags | (1 << 4); .endif
-	.ifgt \isMulti; .set trainerbattle_flags, trainerbattle_flags | (1 << 5); .endif
+	.ifgt \isRematch; .set trainerbattle_flags, trainerbattle_flags | (1 << 1); .endif
+	.ifgt \isTrainerHill; .set trainerbattle_flags, trainerbattle_flags | (1 << 2); .endif
+	.ifgt \isTrainerPyramid; .set trainerbattle_flags, trainerbattle_flags | (1 << 3); .endif
+	.ifgt \isMulti; .set trainerbattle_flags, trainerbattle_flags | (1 << 4); .endif
+	.ifgt \playMusicA; .set trainerbattle_flags, trainerbattle_flags | (1 << 5); .endif
+	.ifgt \playMusicB; .set trainerBattle_flags, trainerbattle_flags | (1 << 6); .endif
 	.byte trainerbattle_flags
 	.byte \localIdA             @ objEventLocalIdA
 	.2byte \trainer_a           @ battleOpponentA
@@ -713,11 +714,11 @@
 	@ When used with an event script, you can also pass in an optional flag to disable music
 	.macro trainerbattle_single trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
 	.if \event_script == FALSE
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.elseif \music == TRUE
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.else
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.endif
 	.endm
 
@@ -725,27 +726,31 @@
 	@ and an optional event script. When used with an event script you can pass in an optional flag to disable music
 	.macro trainerbattle_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
 	.if \event_script == FALSE
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.elseif \music == TRUE
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.else
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, \event_script, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
 	.endif
 	.endm
 
 	@ Starts a rematch battle. Takes a trainer, intro text and loss text
 	.macro trainerbattle_rematch trainer:req, intro_text:req, lose_text:req
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE
 	.endm
 
 	@ Starts a rematch double battle. Takes a trainer, intro text, loss text, and text for when you have too few pokemon
 	.macro trainerbattle_rematch_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req
-	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, \intro_text, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE
 	.endm
 
 	@ Starts a trainer battle, skipping intro text. Takes a trainer and loss text
 	.macro trainerbattle_no_intro trainer:req, lose_text:req
-	trainerbattle NO_OBJ_ID, \trainer, NULL, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE
+	trainerbattle NO_OBJ_ID, \trainer, NULL, \lose_text, NULL, NO_OBJ_ID, NO_TRAINER, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE
+	.endm
+
+	.macro trainerbattle_2v2 trainer_a:req, intro_text_a:req, trainer_b:req, intro_text_b:req
+	trainerbattle NO_OBJ_ID, \trainer_a, \intro_text_a, NULL, NULL, NO_OBJ_ID, \trainer_b, \intro_text_b, NULL, NULL, NULL, NULL, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE
 	.endm
 
 	@ Starts a double battle with the player against two trainers

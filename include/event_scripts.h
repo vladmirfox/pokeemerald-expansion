@@ -53,6 +53,14 @@ extern const u8 EventScript_DoRematchTrainerBattle[];
 extern const u8 EventScript_NotEnoughMonsForDoubleBattle[];
 extern const u8 EventScript_EndTrainerBattle2[];
 
+extern const u8 EventScript_SavePlayerParty[];
+extern const u8 EventScript_ChooseHalfPartyForBattle[];
+extern const u8 EventScript_LoadPlayerParty[];
+extern const u8 EventScript_ReducePlayerPartyToSelectedMons[];
+extern const u8 EventScript_SaveMonOrder[];
+extern const u8 EventScript_DoSpecialTrainerBattle[];
+extern const u8 EventScript_SaveSelectedParty[];
+
 extern const u8 BerryTreeScript[];
 
 extern const u8 gTVBravoTrainerText00[];
