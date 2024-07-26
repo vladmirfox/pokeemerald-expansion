@@ -93,7 +93,7 @@
 #define P_FAMILY_DODUO                   P_GEN_1_POKEMON
 #define P_FAMILY_SEEL                    FALSE
 #define P_FAMILY_GRIMER                  P_GEN_1_POKEMON
-#define P_FAMILY_SHELLDER                FALSE
+#define P_FAMILY_SHELLDER                P_GEN_1_POKEMON
 #define P_FAMILY_GASTLY                  P_GEN_1_POKEMON
 #define P_FAMILY_ONIX                    P_GEN_1_POKEMON
 #define P_FAMILY_DROWZEE                 FALSE
@@ -107,7 +107,7 @@
 #define P_FAMILY_RHYHORN                 P_GEN_1_POKEMON
 #define P_FAMILY_CHANSEY                 P_GEN_1_POKEMON
 #define P_FAMILY_TANGELA                 P_GEN_1_POKEMON
-#define P_FAMILY_KANGASKHAN              FALSE
+#define P_FAMILY_KANGASKHAN              P_GEN_1_POKEMON
 #define P_FAMILY_HORSEA                  P_GEN_1_POKEMON
 #define P_FAMILY_GOLDEEN                 FALSE
 #define P_FAMILY_STARYU                  FALSE
