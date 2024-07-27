@@ -3884,7 +3884,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_ALOLA] =
     {
-        .name = _("Region Passport - Alola"),
+        .name = _("Passport - Alola"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3896,7 +3896,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_GALAR] =
     {
-        .name = _("Region Passport - Galar"),
+        .name = _("Passport - Galar"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3908,7 +3908,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_HISUI] =
     {
-        .name = _("Region Passport - Hisui"),
+        .name = _("Passport - Hisui"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3920,7 +3920,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_PALDEA] =
     {
-        .name = _("Region Passport - Paldea"),
+        .name = _("Passport - Paldea"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
