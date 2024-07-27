@@ -1692,7 +1692,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRattataLevelUpLearnset,
         .teachableLearnset = sRattataTeachableLearnset,
         .formSpeciesIdTable = sRattataFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_RATICATE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_RATICATE},
+                                {EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_RATTATA_ALOLAN}),
     },
 
     [SPECIES_RATICATE] =
@@ -1750,6 +1751,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRaticateLevelUpLearnset,
         .teachableLearnset = sRaticateTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
+        .evolution = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_RATICATE_ALOLAN}),
     },
 
 #if P_ALOLAN_FORMS
@@ -1807,6 +1809,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sRattataAlolanTeachableLearnset,
         .formSpeciesIdTable = sRattataFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN},
+                                {EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_RATTATA},
                                 {EVO_NONE, 0, SPECIES_RATICATE_ALOLAN_TOTEM}),
     },
 
@@ -1859,6 +1862,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRaticateAlolanLevelUpLearnset,
         .teachableLearnset = sRaticateAlolanTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
+        .evolution = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_RATICATE}),
     },
 
     [SPECIES_RATICATE_ALOLAN_TOTEM] =
