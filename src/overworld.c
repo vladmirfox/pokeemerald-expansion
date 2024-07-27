@@ -693,7 +693,7 @@ static bool32 IsFRLGWhiteout(void)
 {
     if (!OW_FRLG_WHITEOUT)
         return FALSE;
-    return HasHealNPC(GetHealLocationIndexByMap(gSaveBlock1Ptr->lastHealLocation.mapGroup, gSaveBlock1Ptr->lastHealLocation.mapNum));
+    return HasHealNPC(GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation));
 }
 
 void SetWarpDestinationToLastHealLocation(void)

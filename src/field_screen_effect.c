@@ -1293,9 +1293,10 @@ static const struct WindowTemplate sWindowTemplate_WhiteoutText =
 
 static const u8 sWhiteoutTextColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
 
-#define tState      data[0]
-#define tWindowId   data[1]
-#define tPrintState data[2]
+#define tState         data[0]
+#define tWindowId      data[1]
+#define tPrintState    data[2]
+#define tIsPlayerHouse data[3]
 
 static bool8 PrintWhiteOutRecoveryMessage(u8 taskId, const u8 *text, u8 x, u8 y)
 {
@@ -1322,13 +1323,20 @@ static bool8 PrintWhiteOutRecoveryMessage(u8 taskId, const u8 *text, u8 x, u8 y)
     return FALSE;
 }
 
+enum {
+    FRLG_WHITEOUT_ENTER_MSG_SCREEN,
+    FRLG_WHITEOUT_PRINT_MSG,
+    FRLG_WHITEOUT_LEAVE_MSG_SCREEN,
+    FRLG_WHITEOUT_HEAL_SCRIPT,
+};
+
 static void Task_RushInjuredPokemonToCenter(u8 taskId)
 {
     u8 windowId;
 
     switch (gTasks[taskId].tState)
     {
-    case 0:
+    case FRLG_WHITEOUT_ENTER_MSG_SCREEN:
         windowId = AddWindow(&sWindowTemplate_WhiteoutText);
         gTasks[taskId].tWindowId = windowId;
         Menu_LoadStdPalAt(BG_PLTT_ID(15));
@@ -1336,51 +1344,36 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
         PutWindowTilemap(windowId);
         CopyWindowToVram(windowId, COPYWIN_FULL);
 
-        // Scene changes if last heal location was the player's house
-        if (IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE)
-            || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F)
-            || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE)
-            || IsLastHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F))
-            gTasks[taskId].tState = 4;
-        else
-            gTasks[taskId].tState = 1;
+        gTasks[taskId].tIsPlayerHouse = IsLastHealLocationPlayerHouse();
+        gTasks[taskId].tState = FRLG_WHITEOUT_PRINT_MSG;
         break;
-    case 1:
-        if (PrintWhiteOutRecoveryMessage(taskId, gText_PlayerScurriedToCenter, 2, 8))
+    case FRLG_WHITEOUT_PRINT_MSG:
+    {
+        const u8 *recoveryMessage = gTasks[taskId].tIsPlayerHouse == TRUE ? gText_PlayerScurriedBackHome : gText_PlayerScurriedToCenter;
+        if (PrintWhiteOutRecoveryMessage(taskId, recoveryMessage, 2, 8))
         {
             ObjectEventTurn(&gObjectEvents[gPlayerAvatar.objectEventId], DIR_NORTH);
-            gTasks[taskId].tState++;
+            gTasks[taskId].tState = FRLG_WHITEOUT_LEAVE_MSG_SCREEN;
         }
         break;
-    case 4:
-        if (PrintWhiteOutRecoveryMessage(taskId, gText_PlayerScurriedBackHome, 2, 8))
-        {
-            ObjectEventTurn(&gObjectEvents[gPlayerAvatar.objectEventId], DIR_NORTH);
-            gTasks[taskId].tState++;
-        }
-        break;
-    case 2:
-    case 5:
+    }
+    case FRLG_WHITEOUT_LEAVE_MSG_SCREEN:
         windowId = gTasks[taskId].tWindowId;
         ClearWindowTilemap(windowId);
         CopyWindowToVram(windowId, COPYWIN_MAP);
         RemoveWindow(windowId);
         FillPalBufferBlack();
         FadeInFromBlack();
-        gTasks[taskId].tState++;
+        gTasks[taskId].tState = FRLG_WHITEOUT_HEAL_SCRIPT;
         break;
-    case 3:
+    case FRLG_WHITEOUT_HEAL_SCRIPT:
         if (WaitForWeatherFadeIn() == TRUE)
         {
             DestroyTask(taskId);
-            ScriptContext_SetupScript(EventScript_AfterWhiteOutHeal);
-        }
-        break;
-    case 6:
-        if (WaitForWeatherFadeIn() == TRUE)
-        {
-            DestroyTask(taskId);
-            ScriptContext_SetupScript(EventScript_AfterWhiteOutMomHeal);
+            if (gTasks[taskId].tIsPlayerHouse)
+                ScriptContext_SetupScript(EventScript_AfterWhiteOutMomHeal);
+            else
+                ScriptContext_SetupScript(EventScript_AfterWhiteOutHeal);
         }
         break;
     }
@@ -1393,5 +1386,5 @@ void FieldCB_RushInjuredPokemonToCenter(void)
     LockPlayerFieldControls();
     FillPalBufferBlack();
     taskId = CreateTask(Task_RushInjuredPokemonToCenter, 10);
-    gTasks[taskId].tState = 0;
+    gTasks[taskId].tState = FRLG_WHITEOUT_ENTER_MSG_SCREEN;
 }
