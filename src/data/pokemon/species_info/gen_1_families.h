@@ -3415,7 +3415,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sSandslashLevelUpLearnset,
         .teachableLearnset = sSandslashTeachableLearnset,
         .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_SANDSLASH_ALOLAN}).
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_SANDSLASH_ALOLAN}),
     },
 
 #if P_ALOLAN_FORMS
@@ -13321,6 +13321,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosLevelUpLearnset,
         .teachableLearnset = sTaurosTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_TAUROS_PALDEAN_COMBAT_BREED}),
     },
 
 #if P_PALDEAN_FORMS
@@ -13376,6 +13377,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosPaldeanCombatBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanCombatBreedTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_TAUROS},
+        {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_TAUROS_PALDEAN_BLAZE_BREED},
+        {EVO_ITEM, ITEM_WATER_STONE, SPECIES_TAUROS_PALDEAN_AQUA_BREED}),
     },
 
     [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
@@ -13430,6 +13434,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosPaldeanBlazeBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanBlazeBreedTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_TAUROS_PALDEAN_AQUA_BREED}),
     },
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
@@ -13484,6 +13489,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosPaldeanAquaBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanAquaBreedTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_TAUROS_PALDEAN_BLAZE_BREED}),
     },
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
