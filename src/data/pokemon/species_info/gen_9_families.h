@@ -5956,7 +5956,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Poltchageist)
         .levelUpLearnset = sPoltchageistLevelUpLearnset,
         .teachableLearnset = sPoltchageistTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UNREMARKABLE_TEACUP, SPECIES_SINISTCHA_UNREMARKABLE}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UNREMARKABLE_TEACUP, SPECIES_SINISTCHA_UNREMARKABLE},
+                                {EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_SINISTEA_PHONY}),
     },
     [SPECIES_POLTCHAGEIST_ARTISAN] =
     {
@@ -6009,7 +6010,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Poltchageist)
         .levelUpLearnset = sPoltchageistLevelUpLearnset,
         .teachableLearnset = sPoltchageistTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE},
+                                {EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_SINISTEA_ANTIQUE}),
     },
 
     [SPECIES_SINISTCHA_UNREMARKABLE] =
@@ -6063,6 +6065,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Sinistcha)
         .levelUpLearnset = sSinistchaLevelUpLearnset,
         .teachableLearnset = sSinistchaTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_POLTEAGEIST_PHONY}),
     },
     [SPECIES_SINISTCHA_MASTERPIECE] =
     {
@@ -6115,6 +6118,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Sinistcha)
         .levelUpLearnset = sSinistchaLevelUpLearnset,
         .teachableLearnset = sSinistchaTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_POLTEAGEIST_ANTIQUE}),
     },
 #endif //P_FAMILY_POLTCHAGEIST
 

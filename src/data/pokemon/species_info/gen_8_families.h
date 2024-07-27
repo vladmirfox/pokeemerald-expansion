@@ -3429,7 +3429,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sSinisteaLevelUpLearnset,
         .teachableLearnset = sSinisteaTeachableLearnset,
         .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CRACKED_POT, SPECIES_POLTEAGEIST_PHONY}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CRACKED_POT, SPECIES_POLTEAGEIST_PHONY},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_POLTCHAGEIST_COUNTERFEIT}),
     },
 
     [SPECIES_SINISTEA_ANTIQUE] =
@@ -3484,7 +3485,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sSinisteaLevelUpLearnset,
         .teachableLearnset = sSinisteaTeachableLearnset,
         .formSpeciesIdTable = sSinisteaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_POLTCHAGEIST_ARTISAN}),
     },
 
     [SPECIES_POLTEAGEIST_PHONY] =
@@ -3538,6 +3540,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sPolteageistLevelUpLearnset,
         .teachableLearnset = sPolteageistTeachableLearnset,
         .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_SINISTCHA_UNREMARKABLE}),
     },
 
     [SPECIES_POLTEAGEIST_ANTIQUE] =
@@ -3592,6 +3595,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sPolteageistLevelUpLearnset,
         .teachableLearnset = sPolteageistTeachableLearnset,
         .formSpeciesIdTable = sPolteageistFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_SINISTCHA_MASTERPIECE}),
     },
 #endif //P_FAMILY_SINISTEA
 
