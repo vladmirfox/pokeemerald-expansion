@@ -7832,7 +7832,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRapidashLevelUpLearnset,
         .teachableLearnset = sRapidashTeachableLearnset,
         .formSpeciesIdTable = sRapidashFormSpeciesIdTable,
-        evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_RAPIDASH_GALARIAN}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_RAPIDASH_GALARIAN}),
     },
 
 #if P_GALARIAN_FORMS
@@ -13434,7 +13434,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosPaldeanBlazeBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanBlazeBreedTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_TAUROS_PALDEAN_AQUA_BREED}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_TAUROS_PALDEAN_AQUA_BREED},
+                                {EVO_ITEM, ITEM_FIGHTING_GEM, SPECIES_TAUROS_PALDEAN_COMBAT_BREED}),
     },
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
@@ -13489,7 +13490,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sTaurosPaldeanAquaBreedLevelUpLearnset,
         .teachableLearnset = sTaurosPaldeanAquaBreedTeachableLearnset,
         .formSpeciesIdTable = sTaurosFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_TAUROS_PALDEAN_BLAZE_BREED}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_TAUROS_PALDEAN_BLAZE_BREED},
+                                {EVO_ITEM, ITEM_FIGHTING_GEM, SPECIES_TAUROS_PALDEAN_COMBAT_BREED}),
     },
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
