@@ -1716,7 +1716,7 @@ enum FirstEventBlock
     FIRST_EVENT_BLOCK_GMAX_MOVE_RESIDUAL,
     FIRST_EVENT_BLOCK_SEA_OF_FIRE_DAMAGE,
     FIRST_EVENT_BLOCK_THRASH,
-    FIRST_EVENT_BLOCK_GRASSY_TERRAIN,
+    FIRST_EVENT_BLOCK_GRASSY_TERRAIN_HEAL,
     FIRST_EVENT_BLOCK_ABILITIES,
     FIRST_EVENT_BLOCK_HEAL_ITEMS,
 };
@@ -2147,12 +2147,11 @@ u32 DoEndTurnEffects(void)
                 }
                 gBattleStruct->eventBlockCounter++;
                 break;
-            case FIRST_EVENT_BLOCK_GRASSY_TERRAIN:
-                if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerAlive(battler))
+            case FIRST_EVENT_BLOCK_GRASSY_TERRAIN_HEAL:
+                if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerAlive(battler) && !AtMaxHp(battler))
                 {
                     gBattleScripting.battler = battler;
                     gBattleMoveDamage = -(GetNonDynamaxMaxHP(battler) / 16);
-                    MarkBattlerForControllerExec(battler);
                     BattleScriptExecute(BattleScript_GrassyTerrainHeals);
                     effect++;
                 }
@@ -2180,10 +2179,10 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     break;
                 }
+                gBattleStruct->eventBlockCounter = 0;
+                gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
-            gBattleStruct->eventBlockCounter = 0;
-            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_EMERGENCY_EXIT_2:
             effect = TryEmergencyExit(battler);
@@ -2740,6 +2739,7 @@ u32 DoEndTurnEffects(void)
                 // if (effect != 0)
                 //     break;
                 gBattleStruct->turnSideTracker++;
+                gBattleStruct->eventBlockCounter = 0;
                 break;
             }
             break;
@@ -2898,6 +2898,7 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     break;
                 }
+                gBattleStruct->eventBlockCounter = 0;
                 gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
@@ -2937,6 +2938,7 @@ u32 DoEndTurnEffects(void)
                     if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
                         effect++;
                 }
+                gBattleStruct->eventBlockCounter = 0;
                 gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
