@@ -280,8 +280,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         FOOTPRINT(Quilava)
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
-                                {EVO_ITEM, ITEM_REAPER_CLOTH, SPECIES_TYPHLOSION_HISUIAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -344,6 +343,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sTyphlosionLevelUpLearnset,
         .teachableLearnset = sTyphlosionTeachableLearnset,
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_TYPHLOSION_HISUIAN}),
     },
 
 #if P_HISUIAN_FORMS
@@ -399,6 +399,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sTyphlosionHisuianLevelUpLearnset,
         .teachableLearnset = sTyphlosionHisuianTeachableLearnset,
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_TYPHLOSION}),
     },
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_CYNDAQUIL
@@ -2525,7 +2526,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_QUAGSIRE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_QUAGSIRE},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_WOOPER_PALDEAN}),
     },
 
     [SPECIES_QUAGSIRE] =
@@ -2582,6 +2584,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         FOOTPRINT(Quagsire)
         .levelUpLearnset = sQuagsireLevelUpLearnset,
         .teachableLearnset = sQuagsireTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_CLODSIRE}),
     },
 
 #if P_PALDEAN_FORMS
@@ -2637,7 +2640,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sWooperPaldeanLevelUpLearnset,
         .teachableLearnset = sWooperPaldeanTeachableLearnset,
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CLODSIRE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CLODSIRE},
+                                {EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_WOOPER}),
     },
 
     [SPECIES_CLODSIRE] =
@@ -2690,6 +2694,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         FOOTPRINT(Clodsire)
         .levelUpLearnset = sClodsireLevelUpLearnset,
         .teachableLearnset = sClodsireTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_QUAGSIRE}),
     },
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_WOOPER
@@ -3818,6 +3823,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sQwilfishLevelUpLearnset,
         .teachableLearnset = sQwilfishTeachableLearnset,
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_QWILFISH_HISUIAN}),
     },
 
 #if P_HISUIAN_FORMS
@@ -3875,7 +3881,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sQwilfishHisuianLevelUpLearnset,
         .teachableLearnset = sQwilfishHisuianTeachableLearnset,
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BARB_BARRAGE, SPECIES_OVERQWIL}),
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BARB_BARRAGE, SPECIES_OVERQWIL},
+                                {EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_QWILFISH}),
     },
 
     [SPECIES_OVERQWIL] =
@@ -4169,7 +4176,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .teachableLearnset = sSneaselTeachableLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE},
-                                {EVO_ITEM_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE}),
+                                {EVO_ITEM_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE},
+                                {EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_SNEASEL_HISUIAN}),
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -4292,7 +4300,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .teachableLearnset = sSneaselHisuianTeachableLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM_HOLD_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER},
-                                {EVO_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER}),
+                                {EVO_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER},
+                                {EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_SNEASEL}),
     },
 
     [SPECIES_SNEASLER] =
@@ -4940,6 +4949,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sCorsolaLevelUpLearnset,
         .teachableLearnset = sCorsolaTeachableLearnset,
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_CORSOLA_GALARIAN}),
     },
 
 #if P_GALARIAN_FORMS
@@ -4995,7 +5005,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sCorsolaGalarianLevelUpLearnset,
         .teachableLearnset = sCorsolaGalarianTeachableLearnset,
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CURSOLA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CURSOLA},
+                                {EVO_ITEM, ITEM_REGION_PASS_JOHTO, SPECIES_CORSOLA}),
     },
 
     [SPECIES_CURSOLA] =

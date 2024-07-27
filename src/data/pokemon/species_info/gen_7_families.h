@@ -163,6 +163,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .levelUpLearnset = sDecidueyeLevelUpLearnset,
         .teachableLearnset = sDecidueyeTeachableLearnset,
         .formSpeciesIdTable = sDecidueyeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_DECIDUEYE_HISUIAN}),
     },
 
 #if P_HISUIAN_FORMS
@@ -218,6 +219,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .levelUpLearnset = sDecidueyeHisuianLevelUpLearnset,
         .teachableLearnset = sDecidueyeHisuianTeachableLearnset,
         .formSpeciesIdTable = sDecidueyeFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DECIDUEYE}),
     },
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_ROWLET

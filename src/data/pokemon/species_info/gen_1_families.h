@@ -5240,7 +5240,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sDiglettTeachableLearnset,
         .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO},
-                                {EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DIGLETT_ALOLAN}),
+                                {EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DIGLETT_ALOLAN},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_WIGLETT}),
     },
 
     [SPECIES_DUGTRIO] =
@@ -5296,7 +5297,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sDugtrioLevelUpLearnset,
         .teachableLearnset = sDugtrioTeachableLearnset,
         .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DUGTRIO_ALOLAN}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DUGTRIO_ALOLAN},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_WUGTRIO}),
     },
 
 #if P_ALOLAN_FORMS
@@ -5354,7 +5356,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sDiglettAlolanTeachableLearnset,
         .formSpeciesIdTable = sDiglettFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN},
-                                {EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DIGLETT}),
+                                {EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DIGLETT},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_WIGLETT}),
     },
 
     [SPECIES_DUGTRIO_ALOLAN] =
@@ -5411,7 +5414,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sDugtrioAlolanLevelUpLearnset,
         .teachableLearnset = sDugtrioAlolanTeachableLearnset,
         .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DUGTRIO}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DUGTRIO},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_WUGTRIO}),
     },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_DIGLETT
@@ -7301,7 +7305,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Tentacool)
         .levelUpLearnset = sTentacoolLevelUpLearnset,
         .teachableLearnset = sTentacoolTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TENTACRUEL}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TENTACRUEL},
+                                {EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_TOEDSCOOL}),
     },
 
     [SPECIES_TENTACRUEL] =
@@ -7355,6 +7360,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         FOOTPRINT(Tentacruel)
         .levelUpLearnset = sTentacruelLevelUpLearnset,
         .teachableLearnset = sTentacruelTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_PALDEA, SPECIES_TOEDSCRUEL}),
     },
 #endif //P_FAMILY_TENTACOOL
 

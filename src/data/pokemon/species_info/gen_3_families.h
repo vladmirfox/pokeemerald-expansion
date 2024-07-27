@@ -876,7 +876,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sZigzagoonLevelUpLearnset,
         .teachableLearnset = sZigzagoonTeachableLearnset,
         .formSpeciesIdTable = sZigzagoonFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE},
+                                {EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_ZIGZAGOON_GALARIAN}),
     },
 
     [SPECIES_LINOONE] =
@@ -936,6 +937,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sLinooneLevelUpLearnset,
         .teachableLearnset = sLinooneTeachableLearnset,
         .formSpeciesIdTable = sLinooneFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_GALAR, SPECIES_LINOONE_GALARIAN}),
     },
 
 #if P_GALARIAN_FORMS
@@ -991,7 +993,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sZigzagoonGalarianLevelUpLearnset,
         .teachableLearnset = sZigzagoonGalarianTeachableLearnset,
         .formSpeciesIdTable = sZigzagoonFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE_GALARIAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE_GALARIAN},
+                                {EVO_ITEM, ITEM_REGION_PASS_HOENN, SPECIES_ZIGZAGOON}),
     },
 
     [SPECIES_LINOONE_GALARIAN] =
@@ -1046,7 +1049,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sLinooneGalarianLevelUpLearnset,
         .teachableLearnset = sLinooneGalarianTeachableLearnset,
         .formSpeciesIdTable = sLinooneFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 35, SPECIES_OBSTAGOON}),
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 35, SPECIES_OBSTAGOON},
+                                {EVO_ITEM, ITEM_REGION_PASS_HOENN, SPECIES_LINOONE}),
     },
 
     [SPECIES_OBSTAGOON] =

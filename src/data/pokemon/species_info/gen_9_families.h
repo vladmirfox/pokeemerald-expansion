@@ -2569,7 +2569,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Toedscool)
         .levelUpLearnset = sToedscoolLevelUpLearnset,
         .teachableLearnset = sToedscoolTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TOEDSCRUEL}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TOEDSCRUEL},
+                                {EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_TENTACOOL}),
     },
 
     [SPECIES_TOEDSCRUEL] =
@@ -2624,6 +2625,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Toedscruel)
         .levelUpLearnset = sToedscruelLevelUpLearnset,
         .teachableLearnset = sToedscruelTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_TENTACRUEL}),
     },
 #endif //P_FAMILY_TOEDSCOOL
 
@@ -3212,7 +3214,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Wiglett)
         .levelUpLearnset = sWiglettLevelUpLearnset,
         .teachableLearnset = sWiglettTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO},
+                                {EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DIGLETT},
+                                {EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DIGLETT_ALOLAN}),
     },
 
     [SPECIES_WUGTRIO] =
@@ -3264,6 +3268,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         FOOTPRINT(Wugtrio)
         .levelUpLearnset = sWugtrioLevelUpLearnset,
         .teachableLearnset = sWugtrioTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_DUGTRIO},
+                                {EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_DUGTRIO_ALOLAN}),
     },
 #endif //P_FAMILY_WIGLETT
 

@@ -3575,7 +3575,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sSliggooTeachableLearnset,
         .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA},
-                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA}),
+                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA},
+                                {EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_SLIGGOO_HISUIAN}),
     },
 
     [SPECIES_GOODRA] =
@@ -3629,6 +3630,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sGoodraLevelUpLearnset,
         .teachableLearnset = sGoodraTeachableLearnset,
         .formSpeciesIdTable = sGoodraFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_HISUI, SPECIES_GOODRA_HISUIAN}),
     },
 
 #if P_HISUIAN_FORMS
@@ -3686,7 +3688,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sSliggooHisuianTeachableLearnset,
         .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA_HISUIAN},
-                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA_HISUIAN}),
+                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA_HISUIAN},
+                                {EVO_ITEM, ITEM_REGION_PASS_KALOS, SPECIES_SLIGGOO}),
     },
 
     [SPECIES_GOODRA_HISUIAN] =
@@ -3741,6 +3744,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sGoodraHisuianLevelUpLearnset,
         .teachableLearnset = sGoodraHisuianTeachableLearnset,
         .formSpeciesIdTable = sGoodraFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KALOS, SPECIES_GOODRA}),
     },
 #endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_GOOMY
