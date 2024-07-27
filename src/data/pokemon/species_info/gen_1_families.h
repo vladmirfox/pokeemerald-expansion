@@ -1751,7 +1751,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRaticateLevelUpLearnset,
         .teachableLearnset = sRaticateTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
-        .evolution = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_RATICATE_ALOLAN}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_ALOLA, SPECIES_RATICATE_ALOLAN}),
     },
 
 #if P_ALOLAN_FORMS
@@ -1862,7 +1862,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .levelUpLearnset = sRaticateAlolanLevelUpLearnset,
         .teachableLearnset = sRaticateAlolanTeachableLearnset,
         .formSpeciesIdTable = sRaticateFormSpeciesIdTable,
-        .evolution = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_RATICATE}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_REGION_PASS_KANTO, SPECIES_RATICATE}),
     },
 
     [SPECIES_RATICATE_ALOLAN_TOTEM] =
