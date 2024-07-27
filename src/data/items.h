@@ -3884,7 +3884,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_ALOLA] =
     {
-        .name = _("Passport-Alola"),
+        .name = _("AlolaPass"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3896,7 +3896,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_GALAR] =
     {
-        .name = _("Passport-Galar"),
+        .name = _("GalarPass"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3908,7 +3908,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_HISUI] =
     {
-        .name = _("Passport-Hisui"),
+        .name = _("HisuiPass"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,
@@ -3920,7 +3920,79 @@ const struct Item gItemsInfo[] =
 
     [ITEM_REGION_PASS_PALDEA] =
     {
-        .name = _("Passport-Paldea"),
+        .name = _("PaldeaPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_KANTO] =
+    {
+        .name = _("KantoPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_JOHTO] =
+    {
+        .name = _("JohtoPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_HOENN] =
+    {
+        .name = _("HoennPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_SINNOH] =
+    {
+        .name = _("SinnohPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_UNOVA] =
+    {
+        .name = _("UnovaPass"),
+        .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
+        .description = sEvolutionStoneDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .effect = gItemEffect_EvoItem,
+        .flingPower = 30,
+    },
+
+    [ITEM_REGION_PASS_KALOS] =
+    {
+        .name = _("KalosPass"),
         .price = (I_PRICE >= GEN_7) ? 3000 : 2100,
         .description = sEvolutionStoneDesc,
         .pocket = POCKET_ITEMS,

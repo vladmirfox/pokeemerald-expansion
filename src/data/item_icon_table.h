@@ -269,6 +269,12 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_REGION_PASS_GALAR] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
     [ITEM_REGION_PASS_HISUI] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
     [ITEM_REGION_PASS_PALDEA] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_KANTO] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_JOHTO] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_HOENN] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_SINNOH] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_UNOVA] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
+    [ITEM_REGION_PASS_KALOS] = {gItemIcon_Letter, gItemIconPalette_LavaCookieAndLetter},
     // Nectars
     [ITEM_RED_NECTAR] = {gItemIcon_RedNectar, gItemIconPalette_RedNectar},
     [ITEM_YELLOW_NECTAR] = {gItemIcon_YellowNectar, gItemIconPalette_YellowNectar},
