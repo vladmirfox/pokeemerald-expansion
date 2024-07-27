@@ -1675,12 +1675,12 @@ enum EndTurnResolutionOrder
     ENDTURN_AQUA_RING,
     ENDTURN_INGRAIN,
     ENDTURN_LEECH_SEED,
-    ENDTURN_POISON,  // Poison, Toxic Poison, Poison Heal
+    ENDTURN_POISON,
     ENDTURN_BURN,
     ENDTURN_FROSTBITE,
     ENDTURN_NIGHTMARE,
     ENDTURN_CURSE,
-    ENDTURN_WRAP, // Both damage and freeing is handled here
+    ENDTURN_WRAP,
     ENDTURN_SALT_CURE,
     ENDTURN_OCTOLOCK,
     ENDTURN_SYRUP_BOMB,
@@ -2544,7 +2544,7 @@ u32 DoEndTurnEffects(void)
             }
             gBattleStruct->turnEffectsBattlerId++;
             break;
-        case ENDTURN_PERISH_SONG:
+        case ENDTURN_PERISH_SONG: // TODO: Write tests
             if (IsBattlerAlive(battler) && gStatuses3[battler] & STATUS3_PERISH_SONG)
             {
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gDisableStructs[battler].perishSongTimer);
@@ -2577,88 +2577,77 @@ u32 DoEndTurnEffects(void)
             {
             case SECOND_EVENT_BLOCK_REFLECT:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].reflectBattlerId;
-                if (!(gSideStatuses[side] & SIDE_STATUS_REFLECT) && --gSideTimers[side].reflectTimer == 0)
+                if (gSideStatuses[side] & SIDE_STATUS_REFLECT && --gSideTimers[side].reflectTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_REFLECT;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
+                    gBattleCommunication[MULTISTRING_CHOOSER] = side;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_REFLECT);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_LIGHT_SCREEN:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].lightscreenBattlerId;
                 if (gSideStatuses[side] & SIDE_STATUS_LIGHTSCREEN && --gSideTimers[side].lightscreenTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_LIGHTSCREEN;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_LIGHT_SCREEN);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_SAFEGUARD:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
                 if (gSideStatuses[side] & SIDE_STATUS_SAFEGUARD && --gSideTimers[side].safeguardTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
                     BattleScriptExecute(BattleScript_SafeguardEnds);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_MIST:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].mistBattlerId;
                 if (gSideTimers[side].mistTimer != 0 && --gSideTimers[side].mistTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_MIST;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_MIST);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_TAILWIND:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].tailwindBattlerId;
                 if (gSideStatuses[side] & SIDE_STATUS_TAILWIND && gSideTimers[side].tailwindTimer > 0 && --gSideTimers[side].tailwindTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_TAILWIND;
                     BattleScriptExecute(BattleScript_TailwindEnds);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_LUCKY_CHANT:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].luckyChantBattlerId;
                 if (gSideStatuses[side] & SIDE_STATUS_LUCKY_CHANT)
                 {
                     if (--gSideTimers[side].luckyChantTimer == 0)
                     {
+                        gBattlerAttacker = gSideTimers[side].reflectBattlerId;
                         gSideStatuses[side] &= ~SIDE_STATUS_LUCKY_CHANT;
                         BattleScriptExecute(BattleScript_LuckyChantEnds);
                         effect++;
                     }
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_RAINBOW:
@@ -2678,8 +2667,6 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     }
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_SEA_OF_FIRE:
@@ -2699,8 +2686,6 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     }
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_SWAMP:
@@ -2721,23 +2706,19 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     }
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->eventBlockCounter++;
                 break;
             case SECOND_EVENT_BLOCK_AURORA_VEIL:
                 side = gBattleStruct->turnSideTracker;
-                gBattlerAttacker = gSideTimers[side].auroraVeilBattlerId;
                 if (gSideStatuses[side] & SIDE_STATUS_AURORA_VEIL && --gSideTimers[side].auroraVeilTimer == 0)
                 {
+                    gBattlerAttacker = gSideTimers[side].auroraVeilBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_AURORA_VEIL;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_AURORA_VEIL);
                     effect++;
                 }
-                // if (effect != 0)
-                //     break;
                 gBattleStruct->turnSideTracker++;
                 gBattleStruct->eventBlockCounter = 0;
                 break;
@@ -2866,10 +2847,13 @@ u32 DoEndTurnEffects(void)
             case THIRD_EVENT_BLOCK_ABILITIES:
                 switch (ability)
                 {
-                case ABILITY_CUD_CHEW: // I don't know
-                    if (GetBattlerAbility(battler) == ABILITY_CUD_CHEW && !gDisableStructs[battler].cudChew && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+
+                case ABILITY_CUD_CHEW:
+                    if (!gDisableStructs[battler].cudChew && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                    {
                         gDisableStructs[battler].cudChew = TRUE;
-                    break;
+                        break;
+                    }
                 case ABILITY_BAD_DREAMS:
                 case ABILITY_BALL_FETCH:
                 case ABILITY_HARVEST:
@@ -2923,7 +2907,7 @@ u32 DoEndTurnEffects(void)
         case ENDTURN_FOURTH_EVENT_BLOCK:
             switch (gBattleStruct->eventBlockCounter)
             {
-            case FOURTH_EVENT_BLOCK_HUNGER_SWITCH:
+            case FOURTH_EVENT_BLOCK_HUNGER_SWITCH: // TODO: tests
                 if (ability == ABILITY_HUNGER_SWITCH)
                 {
                     if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, 0, 0, 0))
@@ -2931,7 +2915,7 @@ u32 DoEndTurnEffects(void)
                 }
                 gBattleStruct->eventBlockCounter++;
                 break;
-            case FOURTH_EVENT_BLOCK_EJECT_PACK:
+            case FOURTH_EVENT_BLOCK_EJECT_PACK: // TODO more tests
                 holdEffect = GetBattlerHoldEffect(battler, TRUE);
                 if (holdEffect == HOLD_EFFECT_EJECT_PACK)
                 {
