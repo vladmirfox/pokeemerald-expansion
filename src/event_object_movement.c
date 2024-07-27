@@ -5227,15 +5227,19 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
 {
     u32 multi;
     u32 baseSpecies = GET_BASE_SPECIES_ID(OW_SPECIES(objectEvent));
-    if ((baseSpecies == SPECIES_CASTFORM || baseSpecies == SPECIES_CHERRIM)
+    if (OW_FOLLOWERS_WEATHER_FORMS
+        && (baseSpecies == SPECIES_CASTFORM || baseSpecies == SPECIES_CHERRIM)
         && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
         sprite->data[7] = TRANSFORM_TYPE_WEATHER << 8;
+        PlaySE(SE_M_MINIMIZE);
         return TRUE;
     }
-    else if ((Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE)
-            && (baseSpecies == SPECIES_MEW || baseSpecies == SPECIES_DITTO
-             || baseSpecies == SPECIES_ZORUA || baseSpecies == SPECIES_ZOROARK))
+
+    if (OW_FOLLOWERS_COPY_WILD_PKMN
+        && (baseSpecies == SPECIES_MEW || baseSpecies == SPECIES_DITTO
+         || baseSpecies == SPECIES_ZORUA || baseSpecies == SPECIES_ZOROARK)
+        && (Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE))
     {
         sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
         PlaySE(SE_M_MINIMIZE);
