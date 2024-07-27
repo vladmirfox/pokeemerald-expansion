@@ -2117,6 +2117,7 @@ u32 DoEndTurnEffects(void)
             case FIRST_EVENT_BLOCK_SEA_OF_FIRE_DAMAGE:
                 if (IsBattlerAlive(battler) && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SEA_OF_FIRE)
                 {
+                    gBattleScripting.battler = battler;
                     gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
                     BtlController_EmitStatusAnimation(battler, BUFFER_A, FALSE, STATUS1_BURN);
                     MarkBattlerForControllerExec(battler);
@@ -2239,28 +2240,33 @@ u32 DoEndTurnEffects(void)
             MAGIC_GUARD_CHECK;
             if (gBattleMons[battler].status1 & STATUS1_POISON || gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
             {
-                if (ability != ABILITY_POISON_HEAL)
-                {
-                    u32 poisonDamage = 8;
-                    if (gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
-                    {
-                        poisonDamage = 16;
-                        if ((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
-                            gBattleMons[battler].status1 += STATUS1_TOXIC_TURN(1);
-                    }
-                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / poisonDamage;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    BattleScriptExecute(BattleScript_PoisonTurnDmg);
-                    effect++;
-                }
-                else if (!BATTLER_MAX_HP(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                gBattleScripting.battler = battler;
+                if (ability == ABILITY_POISON_HEAL && !AtMaxHp(battler) && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
                 {
                     gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
                     BattleScriptExecute(BattleScript_PoisonHealActivates);
+                    effect++;
+                }
+                else if (gBattleMons[battler].status1 & STATUS1_TOXIC_POISON)
+                {
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    if ((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
+                        gBattleMons[battler].status1 += STATUS1_TOXIC_TURN(1);
+                    gBattleMoveDamage *= (gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >> 8;
+                    BattleScriptExecute(BattleScript_PoisonTurnDmg);
+                    effect++;
+                }
+                else
+                {
+                    gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    BattleScriptExecute(BattleScript_PoisonTurnDmg);
                     effect++;
                 }
             }
@@ -2270,6 +2276,7 @@ u32 DoEndTurnEffects(void)
             if ((gBattleMons[battler].status1 & STATUS1_BURN) && IsBattlerAlive(battler))
             {
                 MAGIC_GUARD_CHECK;
+                gBattleScripting.battler = battler;
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
                 if (ability == ABILITY_HEATPROOF)
                 {
@@ -2288,6 +2295,7 @@ u32 DoEndTurnEffects(void)
             if ((gBattleMons[battler].status1 & STATUS1_FROSTBITE) && IsBattlerAlive(battler))
             {
                 MAGIC_GUARD_CHECK;
+                gBattleScripting.battler = battler;
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -2302,6 +2310,7 @@ u32 DoEndTurnEffects(void)
                 MAGIC_GUARD_CHECK;
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
+                    gBattleScripting.battler = battler;
                     gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 4;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -2319,6 +2328,7 @@ u32 DoEndTurnEffects(void)
             if ((gBattleMons[battler].status2 & STATUS2_CURSED) && IsBattlerAlive(battler))
             {
                 MAGIC_GUARD_CHECK;
+                gBattleScripting.battler = battler;
                 gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -2333,11 +2343,11 @@ u32 DoEndTurnEffects(void)
                 gBattleStruct->turnEffectsBattlerId++;
                 break;
             }
-
             if (--gDisableStructs[battler].wrapTurns != 0)
             {
                 MAGIC_GUARD_CHECK;
 
+                gBattleScripting.battler = battler;
                 gBattleScripting.animArg1 = gBattleStruct->wrappedMove[battler];
                 gBattleScripting.animArg2 = gBattleStruct->wrappedMove[battler] >> 8;
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[battler]);
@@ -2847,7 +2857,6 @@ u32 DoEndTurnEffects(void)
             case THIRD_EVENT_BLOCK_ABILITIES:
                 switch (ability)
                 {
-
                 case ABILITY_CUD_CHEW:
                     if (!gDisableStructs[battler].cudChew && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                     {
