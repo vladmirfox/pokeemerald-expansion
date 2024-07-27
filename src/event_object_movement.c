@@ -2018,21 +2018,38 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent)
     }
 }
 
-static u16 GetOverworldCastformSpecies(void)
+static u16 GetOverworldWeatherSpecies(u32 species)
 {
-    switch (GetCurrentWeather())
+    u32 weather = GetCurrentWeather();
+    u32 baseSpecies = GET_BASE_SPECIES_ID(species);
+
+    if (baseSpecies == SPECIES_CASTFORM)
     {
-    case WEATHER_SUNNY_CLOUDS:
-    case WEATHER_DROUGHT:
-        return SPECIES_CASTFORM_SUNNY;
-    case WEATHER_RAIN:
-    case WEATHER_RAIN_THUNDERSTORM:
-    case WEATHER_DOWNPOUR:
-        return SPECIES_CASTFORM_RAINY;
-    case WEATHER_SNOW:
-        return SPECIES_CASTFORM_SNOWY;
+        switch (GetCurrentWeather())
+        {
+        case WEATHER_SUNNY_CLOUDS:
+        case WEATHER_DROUGHT:
+            return SPECIES_CASTFORM_SUNNY;
+        case WEATHER_RAIN:
+        case WEATHER_RAIN_THUNDERSTORM:
+        case WEATHER_DOWNPOUR:
+            return SPECIES_CASTFORM_RAINY;
+        case WEATHER_SNOW:
+            return SPECIES_CASTFORM_SNOWY;
+        }
+        return SPECIES_CASTFORM_NORMAL;
     }
-    return SPECIES_CASTFORM_NORMAL;
+    else if (baseSpecies == SPECIES_CHERRIM)
+    {
+        switch (GetCurrentWeather())
+        {
+        case WEATHER_SUNNY_CLOUDS:
+        case WEATHER_DROUGHT:
+            return SPECIES_CHERRIM_SUNSHINE;
+        }
+        return SPECIES_CHERRIM_OVERCAST;
+    }
+    return species;
 }
 
 static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
@@ -2047,13 +2064,15 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon);
-    switch (*species)
+    switch (GET_BASE_SPECIES_ID(*species))
     {
     case SPECIES_UNOWN:
         *form = GET_UNOWN_LETTER(mon->box.personality);
         break;
-    case SPECIES_CASTFORM: // form is based on overworld weather
-        *species = GetOverworldCastformSpecies();
+    // form is based on overworld weather
+    case SPECIES_CASTFORM:
+    case SPECIES_CHERRIM:
+        *species = GetOverworldWeatherSpecies(*species);
         break;
     }
     return TRUE;
@@ -5207,14 +5226,16 @@ static bool32 EndFollowerTransformEffect(struct ObjectEvent *objectEvent, struct
 static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     u32 multi;
-    if (GET_BASE_SPECIES_ID(OW_SPECIES(objectEvent)) == SPECIES_CASTFORM
-        && OW_SPECIES(objectEvent) != (multi = GetOverworldCastformSpecies()))
+    u32 baseSpecies = GET_BASE_SPECIES_ID(OW_SPECIES(objectEvent));
+    if ((baseSpecies == SPECIES_CASTFORM || baseSpecies == SPECIES_CHERRIM)
+        && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
         sprite->data[7] = TRANSFORM_TYPE_WEATHER << 8;
         return TRUE;
     }
     else if ((Random() & 0xFFFF) < 18 && GetLocalWildMon(FALSE)
-            && (OW_SPECIES(objectEvent) == SPECIES_MEW || OW_SPECIES(objectEvent) == SPECIES_DITTO))
+            && (baseSpecies == SPECIES_MEW || baseSpecies == SPECIES_DITTO
+             || baseSpecies == SPECIES_ZORUA || baseSpecies == SPECIES_ZOROARK))
     {
         sprite->data[7] = TRANSFORM_TYPE_RANDOM_WILD << 8;
         PlaySE(SE_M_MINIMIZE);
@@ -5248,7 +5269,7 @@ static bool8 UpdateFollowerTransformEffect(struct ObjectEvent *objectEvent, stru
             break;
         case TRANSFORM_TYPE_WEATHER:
             multi = objectEvent->graphicsId;
-            objectEvent->graphicsId = GetOverworldCastformSpecies();
+            objectEvent->graphicsId = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent));
             if (!objectEvent->graphicsId)
             {
                 objectEvent->graphicsId = multi;
