@@ -3925,7 +3925,6 @@ static void TryDoEventsBeforeFirstTurn(void)
 
         *(&gBattleStruct->eventBlockCounter) = 0;
         *(&gBattleStruct->turnEffectsBattlerId) = 0;
-        *(&gBattleStruct->wishPerishSongState) = 0;
         *(&gBattleStruct->wishPerishSongBattlerId) = 0;
         gBattleScripting.moveendState = 0;
         gBattleStruct->faintedActionsState = 0;
@@ -3966,7 +3965,6 @@ static void HandleEndTurn_ContinueBattle(void)
         }
         gBattleStruct->eventBlockCounter = 0;
         gBattleStruct->turnEffectsBattlerId = 0;
-        gBattleStruct->wishPerishSongState = 0;
         gBattleStruct->wishPerishSongBattlerId = 0;
         gBattleStruct->endTurnEventsCounter = 0;
         gMoveResultFlags = 0;
@@ -3979,9 +3977,15 @@ void BattleTurnPassed(void)
 
     TurnValuesCleanUp(TRUE);
 
-    if (gBattleOutcome == 0 && DoEndTurnEffects())
-        return;
-    if (HandleWishPerishSongOnTurnEnd())
+    if (gBattleOutcome == 0)
+    {
+        if (DoEndTurnEffects())
+            return;
+        if (DoDynamaxTurnEnd())
+            return;
+    }
+
+    if (DoArenaTurnEnd())
         return;
     if (HandleFaintedMonActions())
         return;

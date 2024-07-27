@@ -1646,17 +1646,12 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 {
     if (gFieldStatuses & terrainFlag)
     {
-        if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
-            BattleScriptExecute(BattleScript_GrassyTerrainHeals);
         if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
         {
             gFieldStatuses &= ~terrainFlag;
             TryToRevertMimicryAndFlags();
             gBattleCommunication[MULTISTRING_CHOOSER] = stringTableId;
-            if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
-                BattleScriptExecute(BattleScript_GrassyTerrainEnds);
-            else
-                BattleScriptExecute(BattleScript_TerrainEnds);
+            BattleScriptExecute(BattleScript_TerrainEnds);
             return TRUE;
         }
     }
@@ -1713,7 +1708,6 @@ enum EndTurnResolutionOrder
     ENDTURN_EMERGENCY_EXIT_4,
     ENDTURN_ABILITIES,
     ENDTURN_FOURTH_EVENT_BLOCK,
-    ENDTURN_DYNAMAX,
     ENDTURN_COUNT,
 };
 
@@ -1824,24 +1818,34 @@ u32 DoEndTurnEffects(void)
             if (gSideTimers[B_SIDE_OPPONENT].retaliateTimer > 0)
                 gSideTimers[B_SIDE_OPPONENT].retaliateTimer--;
 
-            for (battler = 0; battler < gBattlersCount; battler++)
+            for (i = 0; i < NUM_BATTLE_SIDES; i++)
             {
-                if (gStatuses3[battler] & STATUS3_ALWAYS_HITS)
-                    gStatuses3[battler] -= STATUS3_ALWAYS_HITS_TURN(1);
-
-                if (gDisableStructs[battler].chargeTimer && --gDisableStructs[battler].chargeTimer == 0)
-                    gStatuses3[battler] &= ~STATUS3_CHARGED_UP;
-
-                if (gStatuses3[battler] & STATUS3_LASER_FOCUS && --gDisableStructs[battler].laserFocusTimer == 0)
-                    gStatuses3[battler] &= ~STATUS3_LASER_FOCUS;
-
-                if (gDisableStructs[battler].throatChopTimer)
-                    gDisableStructs[battler].throatChopTimer--;
-
-                gBattleMons[battler].status2 &= ~STATUS2_FLINCHED;
-                gBattleMons[battler].status2 &= ~STATUS2_POWDER;
-                gStatuses4[battler] &= ~STATUS4_ELECTRIFIED;
+                if (gSideStatuses[i] & SIDE_STATUS_DAMAGE_NON_TYPES
+                 && gSideTimers[i].damageNonTypesTimer > 0
+                 && --gSideTimers[i].damageNonTypesTimer == 0)
+                    gSideStatuses[i] &= ~SIDE_STATUS_DAMAGE_NON_TYPES;
             }
+
+
+            for (i = 0; i < gBattlersCount; i++)
+            {
+                if (gStatuses3[i] & STATUS3_ALWAYS_HITS)
+                    gStatuses3[i] -= STATUS3_ALWAYS_HITS_TURN(1);
+
+                if (gDisableStructs[i].chargeTimer && --gDisableStructs[i].chargeTimer == 0)
+                    gStatuses3[i] &= ~STATUS3_CHARGED_UP;
+
+                if (gStatuses3[i] & STATUS3_LASER_FOCUS && --gDisableStructs[i].laserFocusTimer == 0)
+                    gStatuses3[i] &= ~STATUS3_LASER_FOCUS;
+
+                if (gDisableStructs[i].throatChopTimer)
+                    gDisableStructs[i].throatChopTimer--;
+
+                gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
+                gBattleMons[i].status2 &= ~STATUS2_POWDER;
+                gStatuses4[i] &= ~STATUS4_ELECTRIFIED;
+            }
+
             gBattleStruct->endTurnEventsCounter++;
             break;
         case ENDTURN_WEATHER:
@@ -2036,12 +2040,7 @@ u32 DoEndTurnEffects(void)
             }
             gBattleStruct->turnEffectsBattlerId++;
             break;
-        case ENDTURN_FUTURE_SIGHT:
-            if (!IsBattlerAlive(battler))
-            {
-                gBattleStruct->turnEffectsBattlerId++;
-                break;
-            }
+        case ENDTURN_FUTURE_SIGHT: // TODO future sight, doom desire and wish need a queue
             if (gWishFutureKnock.futureSightCounter[battler] > 0 && --gWishFutureKnock.futureSightCounter[battler] == 0)
             {
                 struct Pokemon *party;
@@ -2050,6 +2049,12 @@ u32 DoEndTurnEffects(void)
                  && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(battler)] == 0)
                 {
                     gSideStatuses[GetBattlerSide(battler)] &= ~SIDE_STATUS_FUTUREATTACK;
+                }
+
+                if (!IsBattlerAlive(battler))
+                {
+                    gBattleStruct->turnEffectsBattlerId++;
+                    break;
                 }
 
                 if (gWishFutureKnock.futureSightMove[battler] == MOVE_FUTURE_SIGHT)
@@ -2069,25 +2074,25 @@ u32 DoEndTurnEffects(void)
                     SetTypeBeforeUsingMove(gCurrentMove, gBattlerAttacker);
 
                 BattleScriptExecute(BattleScript_MonTookFutureAttack);
+                effect++;
             }
             gBattleStruct->turnEffectsBattlerId++;
             break;
-        case ENDTURN_DOOM_DESIRE:
-        case ENDTURN_WISH: //
-            if (!IsBattlerAlive(battler))
-            {
-                gBattleStruct->turnEffectsBattlerId++;
-                break;
-            }
+        case ENDTURN_DOOM_DESIRE: // TODO: Is decoupled from future sight in new gens
+            gBattleStruct->turnEffectsBattlerId++;
+            break;
+        case ENDTURN_WISH:
             if (gWishFutureKnock.wishCounter[battler] != 0 && --gWishFutureKnock.wishCounter[battler] == 0)
             {
-                gBattlerTarget = battler;
+                if (!IsBattlerAlive(battler))
+                {
+                    gBattleStruct->turnEffectsBattlerId++;
+                    break;
+                }
+                gBattleScripting.battler = battler;
                 BattleScriptExecute(BattleScript_WishComesTrue);
                 effect++;
             }
-            gBattleStruct->turnSideTracker++;
-            if (effect != 0)
-                break;
             gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_FIRST_EVENT_BLOCK:
@@ -2097,12 +2102,6 @@ u32 DoEndTurnEffects(void)
                 side = GetBattlerSide(battler);
                 if (gSideStatuses[side] & SIDE_STATUS_DAMAGE_NON_TYPES)
                 {
-                    if (gSideTimers[side].damageNonTypesTimer > 0 && --gSideTimers[side].damageNonTypesTimer == 0)
-                    {
-                        gSideStatuses[side] &= ~SIDE_STATUS_DAMAGE_NON_TYPES;
-                        gBattleStruct->eventBlockCounter++;
-                        break;
-                    }
                     if (IsBattlerAlive(battler) && !IS_BATTLER_OF_TYPE(battler, gSideTimers[side].damageNonTypesType))
                     {
                         MAGIC_GUARD_CHECK;
@@ -2127,7 +2126,6 @@ u32 DoEndTurnEffects(void)
                 gBattleStruct->eventBlockCounter++;
                 break;
             case FIRST_EVENT_BLOCK_THRASH: // Move to moveend
-                // Don't decrement STATUS2_LOCK_CONFUSE if the target is held by Sky Drop
                 if (gBattleMons[battler].status2 & STATUS2_LOCK_CONFUSE && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
                 {
                     gBattleMons[battler].status2 -= STATUS2_LOCK_CONFUSE_TURN(1);
@@ -2150,7 +2148,14 @@ u32 DoEndTurnEffects(void)
                 gBattleStruct->eventBlockCounter++;
                 break;
             case FIRST_EVENT_BLOCK_GRASSY_TERRAIN:
-                // TODO
+                if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerAlive(battler))
+                {
+                    gBattleScripting.battler = battler;
+                    gBattleMoveDamage = -(GetNonDynamaxMaxHP(battler) / 16);
+                    MarkBattlerForControllerExec(battler);
+                    BattleScriptExecute(BattleScript_GrassyTerrainHeals);
+                    effect++;
+                }
                 gBattleStruct->eventBlockCounter++;
                 break;
             case FIRST_EVENT_BLOCK_ABILITIES:
@@ -2175,10 +2180,10 @@ u32 DoEndTurnEffects(void)
                         effect++;
                     break;
                 }
-                gBattleStruct->turnEffectsBattlerId++;
-                gBattleStruct->eventBlockCounter = 0;
                 break;
             }
+            gBattleStruct->eventBlockCounter = 0;
+            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_EMERGENCY_EXIT_2:
             effect = TryEmergencyExit(battler);
@@ -2541,6 +2546,24 @@ u32 DoEndTurnEffects(void)
             gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_PERISH_SONG:
+            if (IsBattlerAlive(battler) && gStatuses3[battler] & STATUS3_PERISH_SONG)
+            {
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gDisableStructs[battler].perishSongTimer);
+                if (gDisableStructs[battler].perishSongTimer == 0)
+                {
+                    gStatuses3[battler] &= ~STATUS3_PERISH_SONG;
+                    gBattleMoveDamage = gBattleMons[battler].hp;
+                    gBattlescriptCurrInstr = BattleScript_PerishSongTakesLife;
+                }
+                else
+                {
+                    gDisableStructs[battler].perishSongTimer--;
+                    gBattlescriptCurrInstr = BattleScript_PerishSongCountGoesDown;
+                }
+                BattleScriptExecute(gBattlescriptCurrInstr);
+            }
+            gBattleStruct->turnEffectsBattlerId++;
+            break;
         case ENDTURN_ROOST:
             if (gBattleResources->flags->flags[battler] & RESOURCE_FLAG_ROOST)
                 gBattleResources->flags->flags[battler] &= ~RESOURCE_FLAG_ROOST;
@@ -2717,7 +2740,6 @@ u32 DoEndTurnEffects(void)
                 // if (effect != 0)
                 //     break;
                 gBattleStruct->turnSideTracker++;
-                gBattleStruct->eventBlockCounter = 0;
                 break;
             }
             break;
@@ -2877,7 +2899,6 @@ u32 DoEndTurnEffects(void)
                     break;
                 }
                 gBattleStruct->turnEffectsBattlerId++;
-                gBattleStruct->eventBlockCounter = 0;
                 break;
             }
             break;
@@ -2917,19 +2938,8 @@ u32 DoEndTurnEffects(void)
                         effect++;
                 }
                 gBattleStruct->turnEffectsBattlerId++;
-                gBattleStruct->eventBlockCounter = 0;
                 break;
             }
-            break;
-        case ENDTURN_DYNAMAX: // Has to be handled in it's own function
-            if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && --gBattleStruct->dynamax.dynamaxTurns[battler] == 0)
-            {
-                gBattleScripting.battler = battler;
-	            UndoDynamax(battler);
-                BattleScriptExecute(BattleScript_DynamaxEnds);
-                effect++;
-            }
-            gBattleStruct->turnEffectsBattlerId++;
             break;
         case ENDTURN_COUNT:
             gBattleStruct->endTurnEventsCounter++;
@@ -2955,65 +2965,36 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
     return hp * -1;
 }
 
-// TODO : Intergrate into DoEndTurnEffects
-bool32 HandleWishPerishSongOnTurnEnd(void)
+bool32 DoDynamaxTurnEnd(void)
 {
     u32 battler;
-
-    gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
-    switch (gBattleStruct->wishPerishSongState)
+    for (battler = 0; battler < gBattlersCount; battler++)
     {
-    case 1:
-        while (gBattleStruct->wishPerishSongBattlerId < gBattlersCount)
+        if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX && --gBattleStruct->dynamax.dynamaxTurns[battler] == 0)
         {
-            battler = gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->wishPerishSongBattlerId];
-            if (gAbsentBattlerFlags & gBitTable[battler])
-            {
-                gBattleStruct->wishPerishSongBattlerId++;
-                continue;
-            }
-            gBattleStruct->wishPerishSongBattlerId++;
-            if (gStatuses3[battler] & STATUS3_PERISH_SONG)
-            {
-                PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gDisableStructs[battler].perishSongTimer);
-                if (gDisableStructs[battler].perishSongTimer == 0)
-                {
-                    gStatuses3[battler] &= ~STATUS3_PERISH_SONG;
-                    gBattleMoveDamage = gBattleMons[battler].hp;
-                    gBattlescriptCurrInstr = BattleScript_PerishSongTakesLife;
-                }
-                else
-                {
-                    gDisableStructs[battler].perishSongTimer--;
-                    gBattlescriptCurrInstr = BattleScript_PerishSongCountGoesDown;
-                }
-                BattleScriptExecute(gBattlescriptCurrInstr);
-                return TRUE;
-            }
-        }
-        gBattleStruct->wishPerishSongState = 2;
-        gBattleStruct->wishPerishSongBattlerId = 0;
-        // fall through
-    case 2:
-        if ((gBattleTypeFlags & BATTLE_TYPE_ARENA)
-         && gBattleStruct->arenaTurnCounter == 2
-         && IsBattlerAlive(B_POSITION_PLAYER_LEFT) && IsBattlerAlive(B_POSITION_OPPONENT_LEFT))
-        {
-            s32 i;
-
-            for (i = 0; i < 2; i++)
-                CancelMultiTurnMoves(i);
-
-            gBattlescriptCurrInstr = BattleScript_ArenaDoJudgment;
-            BattleScriptExecute(BattleScript_ArenaDoJudgment);
-            gBattleStruct->wishPerishSongState++;
+            gBattleScripting.battler = battler;
+            UndoDynamax(battler);
+            BattleScriptExecute(BattleScript_DynamaxEnds);
             return TRUE;
         }
-        break;
     }
+    return FALSE;
+}
 
-    gHitMarker &= ~(HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
+bool32 DoArenaTurnEnd(void)
+{
+    if (gBattleTypeFlags & BATTLE_TYPE_ARENA
+     && gBattleStruct->arenaTurnCounter == 2
+     && IsBattlerAlive(B_POSITION_PLAYER_LEFT) && IsBattlerAlive(B_POSITION_OPPONENT_LEFT))
+    {
+        s32 i;
 
+        for (i = 0; i < 2; i++)
+            CancelMultiTurnMoves(i);
+
+        BattleScriptExecute(BattleScript_ArenaDoJudgment);
+        return TRUE;
+    }
     return FALSE;
 }
 
