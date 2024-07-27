@@ -18,8 +18,8 @@
   ],
   "warp_events": [
     {
-      "x": 3,
-      "y": 15,
+      "x": 14,
+      "y": 16,
       "elevation": 0,
       "dest_map": "MAP_PROVING_TRIAL_ENTRANCE",
       "dest_warp_id": "0"
