@@ -1076,3 +1076,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Wyrmshire/scripts.inc"
 
 	.include "data/maps/ProvingTrialEntrance/scripts.inc"
+
+	.include "data/maps/ProvingTrialA1/scripts.inc"

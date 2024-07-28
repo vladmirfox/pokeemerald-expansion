@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/ProvingTrialEntrance/border.bin",
       "blockdata_filepath": "data/layouts/ProvingTrialEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROVING_TRIAL_A1",
+      "name": "ProvingTrialA1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/ProvingTrialA1/border.bin",
+      "blockdata_filepath": "data/layouts/ProvingTrialA1/map.bin"
     }
   ]
 }
