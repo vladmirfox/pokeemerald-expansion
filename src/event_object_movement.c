@@ -2018,36 +2018,22 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent)
     }
 }
 
-static u16 GetOverworldWeatherSpecies(u32 species)
+static u16 GetOverworldWeatherSpecies(u16 species)
 {
+    u32 i;
     u32 weather = GetCurrentWeather();
-    u32 baseSpecies = GET_BASE_SPECIES_ID(species);
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
-    if (baseSpecies == SPECIES_CASTFORM)
+    for (i = 0; formChanges != NULL && formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
     {
-        switch (GetCurrentWeather())
+        // Unlike other form change checks, we don't do the "species != formChanges[i].targetSpecies" check
+        if (formChanges[i].method == FORM_CHANGE_OVERWORLD_WEATHER)
         {
-        case WEATHER_SUNNY_CLOUDS:
-        case WEATHER_DROUGHT:
-            return SPECIES_CASTFORM_SUNNY;
-        case WEATHER_RAIN:
-        case WEATHER_RAIN_THUNDERSTORM:
-        case WEATHER_DOWNPOUR:
-            return SPECIES_CASTFORM_RAINY;
-        case WEATHER_SNOW:
-            return SPECIES_CASTFORM_SNOWY;
+            if (formChanges[i].param1 == weather)
+                return formChanges[i].targetSpecies;
+            else if (formChanges[i].param1 == WEATHER_NONE) // Set the default form for weather not defined in form change table
+                species = formChanges[i].targetSpecies;
         }
-        return SPECIES_CASTFORM_NORMAL;
-    }
-    else if (baseSpecies == SPECIES_CHERRIM)
-    {
-        switch (GetCurrentWeather())
-        {
-        case WEATHER_SUNNY_CLOUDS:
-        case WEATHER_DROUGHT:
-            return SPECIES_CHERRIM_SUNSHINE;
-        }
-        return SPECIES_CHERRIM_OVERCAST;
     }
     return species;
 }
@@ -2064,14 +2050,12 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
     *shiny = IsMonShiny(mon);
-    switch (GET_BASE_SPECIES_ID(*species))
+    switch (*species)
     {
     case SPECIES_UNOWN:
         *form = GET_UNOWN_LETTER(mon->box.personality);
         break;
-    // form is based on overworld weather
-    case SPECIES_CASTFORM:
-    case SPECIES_CHERRIM:
+    default:
         *species = GetOverworldWeatherSpecies(*species);
         break;
     }
@@ -5228,7 +5212,7 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
     u32 multi;
     u32 baseSpecies = GET_BASE_SPECIES_ID(OW_SPECIES(objectEvent));
     if (OW_FOLLOWERS_WEATHER_FORMS
-        && (baseSpecies == SPECIES_CASTFORM || baseSpecies == SPECIES_CHERRIM)
+        && DoesSpeciesHaveFormChangeMethod(OW_SPECIES(objectEvent), FORM_CHANGE_BATTLE_WEATHER)
         && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
         sprite->data[7] = TRANSFORM_TYPE_WEATHER << 8;
