@@ -2423,6 +2423,9 @@ gCryTable::
 .if P_FAMILY_PECHARUNT == TRUE
 	cry Cry_Pecharunt
 .endif @ P_FAMILY_PECHARUNT
+.if P_FAMILY_MAPLAGE == TRUE
+    cry Cry_Maplage
+.endif @ P_FAMILY_MAPLAGE
 
 	.align 2
 gCryTable_Reverse::
@@ -4849,3 +4852,6 @@ gCryTable_Reverse::
 .if P_FAMILY_PECHARUNT == TRUE
 	cry_reverse Cry_Pecharunt
 .endif @ P_FAMILY_PECHARUNT
+.if P_FAMILY_MAPLAGE == TRUE
+	cry_reverse Cry_Maplage
+.endif @ P_FAMILY_MAPLAGE

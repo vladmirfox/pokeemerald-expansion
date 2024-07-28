@@ -6155,6 +6155,10 @@ Cry_Pecharunt::
 .endif @ P_FAMILY_PECHARUNT
 
 	.align 2
+Cry_Maplage::
+	.incbin "sound/direct_sound_samples/cries/maplage.bin"
+
+	.align 2
 DirectSoundWaveData_register_noise::
 	.incbin "sound/direct_sound_samples/register_noise.bin"
 
