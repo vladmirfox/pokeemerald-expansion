@@ -1080,3 +1080,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ProvingTrialA1/scripts.inc"
 
 	.include "data/maps/ProvingTrialA2/scripts.inc"
+
+	.include "data/maps/ProvingTrialA3/scripts.inc"
+
+	.include "data/maps/ProvingTrialA4/scripts.inc"

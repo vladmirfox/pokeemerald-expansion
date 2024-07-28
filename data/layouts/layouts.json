@@ -4450,6 +4450,26 @@
       "secondary_tileset": "gTileset_Mauville",
       "border_filepath": "data/layouts/ProvingTrialA2/border.bin",
       "blockdata_filepath": "data/layouts/ProvingTrialA2/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROVING_TRIAL_A3",
+      "name": "ProvingTrialA3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ProvingTrialA3/border.bin",
+      "blockdata_filepath": "data/layouts/ProvingTrialA3/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROVING_TRIAL_A4",
+      "name": "ProvingTrialA4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ProvingTrialA4/border.bin",
+      "blockdata_filepath": "data/layouts/ProvingTrialA4/map.bin"
     }
   ]
 }

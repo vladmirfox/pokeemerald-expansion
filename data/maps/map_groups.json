@@ -96,7 +96,9 @@
     "Wyrmshire",
     "ProvingTrialEntrance",
     "ProvingTrialA1",
-    "ProvingTrialA2"
+    "ProvingTrialA2",
+    "ProvingTrialA3",
+    "ProvingTrialA4"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
