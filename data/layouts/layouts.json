@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_EverGrande",
       "border_filepath": "data/layouts/ProvingTrialA1/border.bin",
       "blockdata_filepath": "data/layouts/ProvingTrialA1/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROVING_TRIAL_A2",
+      "name": "ProvingTrialA2_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/ProvingTrialA2/border.bin",
+      "blockdata_filepath": "data/layouts/ProvingTrialA2/map.bin"
     }
   ]
 }
