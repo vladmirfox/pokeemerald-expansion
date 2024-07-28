@@ -2018,7 +2018,7 @@ static void RefreshFollowerGraphics(struct ObjectEvent *objEvent)
     }
 }
 
-static u16 GetOverworldWeatherSpecies(u16 species)
+u16 GetOverworldWeatherSpecies(u16 species)
 {
     u32 i;
     u32 weather = GetCurrentWeather();
