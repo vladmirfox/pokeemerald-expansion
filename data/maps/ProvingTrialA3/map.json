@@ -18,17 +18,17 @@
   ],
   "warp_events": [
     {
-      "x": 15,
-      "y": 17,
-      "elevation": 0,
-      "dest_map": "MAP_PROVING_TRIAL_A2",
-      "dest_warp_id": "0"
-    },
-    {
       "x": 5,
       "y": 16,
       "elevation": 0,
       "dest_map": "MAP_PROVING_TRIAL_A4",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 15,
+      "y": 17,
+      "elevation": 3,
+      "dest_map": "",
       "dest_warp_id": "0"
     }
   ],
