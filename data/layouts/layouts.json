@@ -4424,10 +4424,10 @@
     {
       "id": "LAYOUT_PROVING_TRIAL_ENTRANCE",
       "name": "ProvingTrialEntrance_Layout",
-      "width": 40,
-      "height": 40,
+      "width": 5,
+      "height": 15,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/ProvingTrialEntrance/border.bin",
       "blockdata_filepath": "data/layouts/ProvingTrialEntrance/map.bin"
     }
