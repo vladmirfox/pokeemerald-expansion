@@ -928,12 +928,16 @@ void TextPrinterClearDownArrow(struct TextPrinter *textPrinter)
     CopyWindowToVram(textPrinter->printerTemplate.windowId, COPYWIN_GFX);
 }
 
+
+#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
+
 bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
 
-    if (subStruct->autoScrollDelay == 49)
+    if (subStruct->autoScrollDelay == NUM_FRAMES_AUTO_SCROLL_DELAY)
     {
+		subStruct->autoScrollDelay = 0;
         return TRUE;
     }
     else
@@ -946,7 +950,7 @@ bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 {
     bool32 result = FALSE;
-    if (gTextFlags.autoScroll != 0)
+    if (gTextFlags.autoScroll != 0 || (AUTO_SCROLL_TEXT))
     {
         result = TextPrinterWaitAutoMode(textPrinter);
     }
@@ -965,7 +969,7 @@ bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
 bool32 TextPrinterWait(struct TextPrinter *textPrinter)
 {
     bool32 result = FALSE;
-    if (gTextFlags.autoScroll != 0)
+    if (gTextFlags.autoScroll != 0 || (AUTO_SCROLL_TEXT))
     {
         result = TextPrinterWaitAutoMode(textPrinter);
     }
