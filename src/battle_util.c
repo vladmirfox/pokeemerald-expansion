@@ -10828,6 +10828,7 @@ bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, u32 battler)
 
 u8 GetBattleMoveCategory(u32 moveId)
 {
+    u8 moveType;
     if (gBattleStruct != NULL && gBattleStruct->zmove.active && !IS_MOVE_STATUS(moveId))
         return gBattleStruct->zmove.activeCategory;
     if (gBattleStruct != NULL && IsMaxMove(moveId)) // TODO: Might be buggy depending on when this is called.
@@ -10839,10 +10840,14 @@ u8 GetBattleMoveCategory(u32 moveId)
 
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
-    else if (gMovesInfo[moveId].type < TYPE_MYSTERY)
-        return DAMAGE_CATEGORY_PHYSICAL;
     else
-        return DAMAGE_CATEGORY_SPECIAL;
+    {
+        GET_MOVE_TYPE(moveId, moveType);
+        if (moveType < TYPE_MYSTERY)
+            return DAMAGE_CATEGORY_PHYSICAL;
+        else
+            return DAMAGE_CATEGORY_SPECIAL;
+    }
 }
 
 static bool32 TryRemoveScreens(u32 battler)
