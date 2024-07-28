@@ -1257,9 +1257,14 @@ EventScript_CloseMossdeepGameCornerBarrier::
 	return
 
 CableClub_OnResume:
-.if OW_DISABLE_UNION_CHECK == FALSE
+.if OW_UNION_CONNECTED_ONLY_CHECK == TRUE
+	specialvar VAR_0x8001, IsWirelessAdapterConnected
+	goto_if_eq VAR_0x8001, FALSE, CableClub_OnResume_End
+.endif
+.if OW_UNION_DISABLE_CHECK == FALSE
 	special InitUnionRoom
 .endif
+CableClub_OnResume_End:
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_InfoMan2::
