@@ -2048,3 +2048,9 @@ const u16 gFrontierPassCancelButtonHighlighted_Tilemap[] = INCBIN_U16("graphics/
 const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.gbapal");
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
+
+const u8 battleIconsTiles[] = INCBIN_U8("graphics/types/battle_icons.4bpp");
+const u8 battleIcons2Tiles[] = INCBIN_U8("graphics/types/battle_icons2.4bpp");
+const u16 battleIconsPal[] = INCBIN_U16("graphics/types/battle_icons.gbapal");
+const u16 battleIcons2Pal[] = INCBIN_U16("graphics/types/battle_icons2.gbapal");
+
