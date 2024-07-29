@@ -5945,6 +5945,14 @@ static const struct TrainerMon sParty_GinaAndMia1[] = {
     {
     .lvl = 6,
     .species = SPECIES_LOTAD,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SEEDOT,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_LOTAD,
     }
 };
 
