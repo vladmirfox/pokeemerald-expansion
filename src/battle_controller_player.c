@@ -2094,7 +2094,6 @@ void PlayerHandleChooseMove(u32 battler)
     {
         struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
-        TryLoadTypeIcons(battler);
         InitMoveSelectionsVarsAndStrings(battler);
         gBattleStruct->gimmick.playerSelect = FALSE;
 
@@ -2112,6 +2111,7 @@ void PlayerHandleChooseMove(u32 battler)
 
 void InitMoveSelectionsVarsAndStrings(u32 battler)
 {
+    TryLoadTypeIcons(battler);
     MoveSelectionDisplayMoveNames(battler);
     gMultiUsePlayerCursor = 0xFF;
     MoveSelectionCreateCursorAt(gMoveSelectionCursor[battler], 0);
