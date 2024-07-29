@@ -10841,9 +10841,7 @@ u8 GetBattleMoveCategory(u32 moveId)
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
     else if (gMain.inBattle)
-    {
         GET_MOVE_TYPE(moveId, moveType);
-    }
     else
         moveType = gMovesInfo[moveId].type;
     return moveType < TYPE_MYSTERY ? DAMAGE_CATEGORY_PHYSICAL : DAMAGE_CATEGORY_SPECIAL;
