@@ -3,6 +3,11 @@ AI flags alter the behavior of AI controlled trainers.  These flags affect what 
 
 The AI flags can be found in [`include/constants/battle_ai.h`](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/constants/battle_ai.h). Some flags have their own dedicated functions that affect how the AI scores its options when choosing what to do in battle, and those functions can be found in [`src/battle_ai_main.c`](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/src/battle_ai_main.c). Other flags are used in conditional checks to gate certain behaviour behind certain flags, which you can typically find by searching the codebase for the flag name and browsing from there.
 
+# What flags should you use?
+When adding new AI flags it is recommended to use `AI_FLAG_CHECK_BAD_MOVE`, `AI_FLAG_CHECK_VIABILITY`, `AI_FLAG_TRY_TO_FAINT` to make sure the AI makes good decisions. It is especially important to use `AI_FLAG_CHECK_BAD_MOVE` in combination with any added flags otherwise the AI will use moves that can fail.
+
+Other flags should be used with consideration to the circumstances.
+
 # How do you use them?
 Adding an AI flag to a trainer is straightforward, but the process is different depending on how trainers are being defined.
 
@@ -22,27 +27,23 @@ If you are not using competitive syntax parties, instead access the trainer data
 # What AI Flags does pokeemerald-expansion have?
 This section lists all of expansion’s AI Flags and briefly describes the effect they have on the AI’s behaviour. In all cases, please check the corresponding function or surrounding code around their implementation for more details. Some of these functions are vanilla, some share a name with vanilla but have been modified to varying degrees, and some are completely new.
 
-## `AI_FLAG_CHECK_BAD_MOVE` 
-AI will avoid using moves that are considered poor in its current situation. The following list is not exhaustive. The AI will be disincentivized to:
-* Use powder moves into an immune target
-* Attack into invulnerability (Fly etc.) poorly
-* Use moves that are not very effective or worse
-* Use moves that are blocked or made worse by opposing abilities (don’t Poison Magic Guard, priority into Queenly Majesty, etc.) or partner abilities (Lightningrod redirect etc.)
-* Use moves that are negated by terrain
-* Use move effects that are poor (Attack buffs without a physical move, Charge if already charged, stat buffs if stats maxed, Roar when the opponent has one mon left, etc.)
-* Use moves that are not good in current weather, or set weather when partner is
-* Copy negative stat changes
-* Sucker Punch into predicted status move
-* Choice Lock into a poor move
+## `AI_FLAG_CHECK_BAD_MOVE`
+The AI will avoid using moves that are likely to fail in the current situation. This flag helps prevent the AI from making ineffective choices, such as using moves into immunities, into invulnerable states, or when the moves are otherwise hindered by abilities, terrain, or status conditions. 
 
 ## `AI_FLAG_TRY_TO_FAINT`
 AI will prioritize KOing the player if able rather than using status moves. Will prioritize using a move that can OHKO the player. If the player can KO the AI’s mon and the AI’s mon is slower, prioritize priority moves (this does not prevent the AI from switching out instead).
 
 ## `AI_FLAG_CHECK_VIABILITY`
-AI will choose the best available attacking move among its options to hit the player. Moves are priorities that take fewer hits to KO, don’t take a turn to charge, have more accuracy, and have a better effect. Good moves effects are also scored depending on current context.
+This flag is divided into two components to calculate the best available move for the current context:
+- **`AI_CompareDamagingMoves`**: This function compares damaging moves against each other and picks the best one.
+- **`AI_CalcMoveEffectScore`**: This function checks every move effect (status or damaging move effect) and increases the score accordingly.
+
+This is different to `AI_FLAG_CHECK_BAD_MOVE` as it calculates how poor a move is and not whether it will fail or not.
 
 ## `AI_FLAG_SETUP_FIRST_TURN`
 AI will prioritize using setup moves on the first turn. These include stat buffs, field effects, status moves, etc.
+
+This is just a flat increase without any consideration of whether it makes sense to use the move or not. For better move choice quality for those moves, `AI_FLAG_CHECK_VIABILITY` should be used.
 
 ## `AI_FLAG_RISKY`
 AI will generally behave more recklessly. This AI enables the following behaviour:
@@ -56,6 +57,7 @@ AI will generally behave more recklessly. This AI enables the following behaviou
 
 ## `AI_FLAG_PREFER_STRONGEST_MOVE`
 Adds score bonus to any move the AI has that either OHKOs or 2HKOs the player. 
+Keep in mind that this is a weaker form of `AI_FLAG_TRY_TO_FAINT`.
 
 ## `AI_FLAG_PREFER_BATON_PASS`
 AI prefers raising its own stats if it has >= 60% HP, as well as Ingrain, Aqua Ring, and Protect. Prioritizes Baton Bass if the mon is rooted (Ingrain) or has the Aqua Ring effect, and doesn’t if it has been Leech Seeded. 
@@ -94,7 +96,7 @@ AI does not understand ability suppression (Mold Breaker etc., weather suppressi
 AI prioritizes self destruction moves (Explosion, Memento). 
 
 ## `AI_FLAG_PREFER_STATUS_MOVES`
-AI gets a score bonus for status moves. Should be combined with `AI_FLAG_CHECK_BAD_MOVE` to prevent using only status moves.
+AI gets a score bonus for status moves. This should be combined with `AI_FLAG_CHECK_BAD_MOVE` to prevent using only status moves.
 
 ## `AI_FLAG_STALL`
 AI prefers simple classically "stalling" behaviour. It will prioritize:
