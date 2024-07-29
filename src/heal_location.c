@@ -76,32 +76,31 @@ bool32 IsLastHealLocationPlayerHouse()
     return FALSE;
 }
 
-bool32 HasHealNPC(u32 healLocationId)
+u32 GetHealNpcLocalId(u32 healLocationId)
 {
     if (healLocationId == HEAL_LOCATION_NONE || healLocationId >= HEAL_LOCATION_COUNT)
-        return FALSE;
+        return 0;
 
-    return sWhiteoutRespawnHealerNpcLocalIds[healLocationId - 1] > 0 ? TRUE : FALSE;
+    return sHealNpcLocalId[healLocationId - 1];
 }
 
 void SetWhiteoutRespawnWarpAndHealerNPC(struct WarpData *warp)
 {
     u32 healLocationId = GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation);
+    u32 healNpcLocalId = GetHealNpcLocalId(healLocationId);
     struct HealLocation pkmCenterHealLocation;
     
-    if (HasHealNPC(healLocationId))
-    {
-        pkmCenterHealLocation = sHealLocationsPokemonCenter[healLocationId - 1];
-        warp->mapGroup = pkmCenterHealLocation.group;
-        warp->mapNum = pkmCenterHealLocation.map;
-        warp->warpId = WARP_ID_NONE;
-        warp->x = pkmCenterHealLocation.x;
-        warp->y = pkmCenterHealLocation.y;
-
-        gSpecialVar_LastTalked = sWhiteoutRespawnHealerNpcLocalIds[healLocationId - 1];
-    }
-    else
+    if (!healNpcLocalId)
     {
         *(warp) = gSaveBlock1Ptr->lastHealLocation;
+        return;
     }
+
+    pkmCenterHealLocation = sHealLocationsPokemonCenter[healLocationId - 1];
+    warp->mapGroup = pkmCenterHealLocation.group;
+    warp->mapNum = pkmCenterHealLocation.map;
+    warp->warpId = WARP_ID_NONE;
+    warp->x = pkmCenterHealLocation.x;
+    warp->y = pkmCenterHealLocation.y;
+    gSpecialVar_LastTalked = healNpcLocalId;
 }

@@ -1298,9 +1298,9 @@ static const u8 sWhiteoutTextColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHI
 #define tPrintState    data[2]
 #define tIsPlayerHouse data[3]
 
-static bool8 PrintWhiteOutRecoveryMessage(u8 taskId, const u8 *text, u8 x, u8 y)
+static bool32 PrintWhiteOutRecoveryMessage(u8 taskId, const u8 *text, u32 x, u32 y)
 {
-    u8 windowId = gTasks[taskId].tWindowId;
+    u32 windowId = gTasks[taskId].tWindowId;
 
     switch (gTasks[taskId].tPrintState)
     {
@@ -1332,7 +1332,7 @@ enum {
 
 static void Task_RushInjuredPokemonToCenter(u8 taskId)
 {
-    u8 windowId;
+    u32 windowId;
 
     switch (gTasks[taskId].tState)
     {
