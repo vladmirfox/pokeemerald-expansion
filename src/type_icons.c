@@ -61,7 +61,7 @@ static void DestroyTypeIcon(struct Sprite* sprite);
 #define SIDE(bank) GetBattlerSide(bank)
 
 static const struct SpritePalette sTypeIconPalTemplate = {battleIconsPal, TYPE_ICON_TAG};
-static const struct SpritePalette sTypeIconPalTemplate2 = {battleIcons2Pal, TYPE_ICON_TAG_2};
+static const struct SpritePalette sTypeIconPalTemplate2 = {battleIconsPal2, TYPE_ICON_TAG_2};
 
 struct Pokemon* GetBankPartyData(u8 bank)
 {
@@ -216,28 +216,28 @@ static const struct OamData sTypeIconOAM =
     .priority = 1, //Same level as health bar
 };
 
-#define type_icon_frame(ptr, frame) {.data = (u8 *)ptr + (1 * 2 * frame * 32), .size = 1 * 2 * 32}
+#define type_icon_frame(ptr, frame) {.data = ((u8 *)ptr + (64 * (frame))), .size = 64}
 static const struct SpriteFrameImage sTypeIconPicTable[] =
 {
-    [TYPE_NORMAL] =        type_icon_frame(battleIcons2Tiles, TYPE_NORMAL),
+    [TYPE_NORMAL] =        type_icon_frame(battleIconsTiles, TYPE_NORMAL),
     [TYPE_FIGHTING] =    type_icon_frame(battleIconsTiles, TYPE_FIGHTING),
-    [TYPE_FLYING] =        type_icon_frame(battleIcons2Tiles, TYPE_FLYING),
-    [TYPE_POISON] =        type_icon_frame(battleIcons2Tiles, TYPE_POISON),
-    [TYPE_GROUND] =        type_icon_frame(battleIcons2Tiles, TYPE_GROUND),
+    [TYPE_FLYING] =        type_icon_frame(battleIconsTiles, TYPE_FLYING),
+    [TYPE_POISON] =        type_icon_frame(battleIconsTiles, TYPE_POISON),
+    [TYPE_GROUND] =        type_icon_frame(battleIconsTiles, TYPE_GROUND),
     [TYPE_ROCK] =        type_icon_frame(battleIconsTiles, TYPE_ROCK),
     [TYPE_BUG] =        type_icon_frame(battleIconsTiles, TYPE_BUG),
     [TYPE_GHOST] =        type_icon_frame(battleIconsTiles, TYPE_GHOST),
     [TYPE_STEEL] =        type_icon_frame(battleIconsTiles, TYPE_STEEL),
-    [TYPE_MYSTERY] =    type_icon_frame(battleIcons2Tiles, TYPE_MYSTERY),
-    [TYPE_FIRE] =        type_icon_frame(battleIconsTiles, TYPE_FIRE),
-    [TYPE_WATER] =        type_icon_frame(battleIconsTiles, TYPE_WATER),
-    [TYPE_GRASS] =        type_icon_frame(battleIconsTiles, TYPE_GRASS),
-    [TYPE_ELECTRIC] =    type_icon_frame(battleIconsTiles, TYPE_ELECTRIC),
-    [TYPE_PSYCHIC] =    type_icon_frame(battleIconsTiles, TYPE_PSYCHIC),
-    [TYPE_ICE] =        type_icon_frame(battleIconsTiles, TYPE_ICE),
-    [TYPE_DRAGON] =        type_icon_frame(battleIcons2Tiles, TYPE_DRAGON),
-    [TYPE_DARK] =        type_icon_frame(battleIconsTiles, TYPE_DARK),
-    [TYPE_FAIRY] =         type_icon_frame(battleIconsTiles, TYPE_FAIRY),
+    [TYPE_MYSTERY] =    type_icon_frame(battleIconsTiles, TYPE_MYSTERY),
+    [TYPE_FIRE] =        type_icon_frame(battleIconsTiles2, TYPE_FIRE),
+    [TYPE_WATER] =        type_icon_frame(battleIconsTiles2, TYPE_WATER),
+    [TYPE_GRASS] =        type_icon_frame(battleIconsTiles2, TYPE_GRASS),
+    [TYPE_ELECTRIC] =    type_icon_frame(battleIconsTiles2, TYPE_ELECTRIC),
+    [TYPE_PSYCHIC] =    type_icon_frame(battleIconsTiles2, TYPE_PSYCHIC),
+    [TYPE_ICE] =        type_icon_frame(battleIconsTiles2, TYPE_ICE),
+    [TYPE_DRAGON] =        type_icon_frame(battleIconsTiles2, TYPE_DRAGON),
+    [TYPE_DARK] =        type_icon_frame(battleIconsTiles2, TYPE_DARK),
+    [TYPE_FAIRY] =         type_icon_frame(battleIconsTiles2, TYPE_FAIRY),
     // [TYPE_ROOSTLESS] =     type_icon_frame(battleIcons2Tiles, TYPE_MYSTERY),
     // [TYPE_BLANK] =         type_icon_frame(battleIcons2Tiles, TYPE_MYSTERY),
 };
@@ -279,35 +279,24 @@ void TryLoadTypeIcons(u32 battler)
         if (!BATTLER_ALIVE(GetBattlerAtPosition(position)))
             continue;
 
-
         u8 type1, type2;
 
-        /* struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
+        /*
+           struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
 
            if (monIllusion != GetBankPartyData(bank)) //Under Illusion
-
            {
-
            type1 = GetMonType(monIllusion, 0);
-
            type2 = GetMonType(monIllusion, 1);
-
            }
-
            else
-
            {
-
            type1 = gBattleMons[bank].type1;
-
            type2 = gBattleMons[bank].type2;
-
-           } */
-
-
+           }
+           */
 
         type1 = gBattleMons[bank].type1;
-
         type2 = gBattleMons[bank].type2;
 
         for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
@@ -319,12 +308,15 @@ void TryLoadTypeIcons(u32 battler)
             u8 type = (typeNum == 0) ? type1 : type2;
 
             switch (type) { //Certain types have a different palette
-                case TYPE_NORMAL:
-                case TYPE_FLYING:
-                case TYPE_POISON:
-                case TYPE_GROUND:
-                case TYPE_DRAGON:
-                case TYPE_MYSTERY:
+case TYPE_FIRE:
+case TYPE_WATER:
+case TYPE_GRASS:
+case TYPE_ELECTRIC:
+case TYPE_PSYCHIC:
+case TYPE_ICE:
+case TYPE_DRAGON:
+case TYPE_DARK:
+case TYPE_FAIRY:
                     // case TYPE_ROOSTLESS:
                     // case TYPE_BLANK:
                     spriteId = CreateSpriteAtEnd(&sTypeIconSpriteTemplate2, x, y, 0xFF);
