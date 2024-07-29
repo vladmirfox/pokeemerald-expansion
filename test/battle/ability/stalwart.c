@@ -20,15 +20,15 @@ DOUBLE_BATTLE_TEST("Stalwart ignores redirection from Follow-Me")
 
 DOUBLE_BATTLE_TEST("Stalwart stops Lightning Rod and Storm Drain from redirecting moves")
 {
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_STORM_DRAIN; }
-    PARAMETRIZE { ability = ABILITY_LIGHTNING_ROD; }
+    u32 ability, species;
+    PARAMETRIZE { ability = ABILITY_STORM_DRAIN; species = SPECIES_LUMINEON; }
+    PARAMETRIZE { ability = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPARK].type == TYPE_ELECTRIC);
         ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_STALWART); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_RAICHU) { Ability(ability); }
+        OPPONENT(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
