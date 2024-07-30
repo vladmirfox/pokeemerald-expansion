@@ -1351,7 +1351,6 @@
 	.4byte \func
 	.endm
 
-@ callnative macros
 	.macro savetarget
 	callnative BS_SaveTarget
 	.endm
@@ -1670,6 +1669,11 @@
 	callnative BS_DamageToQuarterTargetHP
 	.endm
 
+	.macro jumpfifcommanderactive jumpInstr:req
+	callnative BS_JumpIfCommanderActive
+	.4byte \jumpInstr
+	.endm
+	
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES

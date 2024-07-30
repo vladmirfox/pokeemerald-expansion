@@ -27715,7 +27715,7 @@ F_TRAINER_FEMALE |
 #line 10987
             TRAINER_ENCOUNTER_MUSIC_FEMALE,
 #line 10988
-        .doubleBattle = FALSE,
+        .doubleBattle = TRUE,
 #line 10989
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .partySize = 2,
