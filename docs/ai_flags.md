@@ -33,6 +33,8 @@ The AI will avoid using moves that are likely to fail in the current situation. 
 ## `AI_FLAG_TRY_TO_FAINT`
 AI will prioritize KOing the player if able rather than using status moves. Will prioritize using a move that can OHKO the player. If the player can KO the AI’s mon and the AI’s mon is slower, prioritize priority moves (this does not prevent the AI from switching out instead).
 
+This flag handles scoring for OHKOs but does not handle 2HKOs at all, `AI_FLAG_STRONGEST_MOVE` should be used for 2HKO scoring.
+
 ## `AI_FLAG_CHECK_VIABILITY`
 This flag is divided into two components to calculate the best available move for the current context:
 - **`AI_CompareDamagingMoves`**: This function compares damaging moves against each other and picks the best one.
@@ -57,7 +59,8 @@ AI will generally behave more recklessly. This AI enables the following behaviou
 
 ## `AI_FLAG_PREFER_STRONGEST_MOVE`
 Adds score bonus to any move the AI has that either OHKOs or 2HKOs the player. 
-Keep in mind that this is a weaker form of `AI_FLAG_TRY_TO_FAINT`.
+
+Keep in mind that this is a weaker form of `AI_FLAG_TRY_TO_FAINT` at scoring OHKOs as it does not take into account who is attacking first, it does however handle 2HKOs.
 
 ## `AI_FLAG_PREFER_BATON_PASS`
 AI prefers raising its own stats if it has >= 60% HP, as well as Ingrain, Aqua Ring, and Protect. Prioritizes Baton Bass if the mon is rooted (Ingrain) or has the Aqua Ring effect, and doesn’t if it has been Leech Seeded. 
