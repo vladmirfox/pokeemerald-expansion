@@ -1,7 +1,7 @@
 import re
 
 def battle_frontier_mons(data):
-    data = re.sub(".itemTableId = BATTLE_FRONTIER_", ".heldItem = ", data)
+    data = re.sub(re.escape(".itemTableId = BATTLE_FRONTIER_"), ".heldItem = ", data)
     data = re.sub(re.escape("FacilityMon"), "TrainerMon", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(252, 0, 0, 0, 0, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,"), ".ev = TRAINER_PARTY_EVS(0, 170, 170, 170, 0, 0),", data)
