@@ -11,7 +11,7 @@ def battle_frontier_mons(data):
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,"), ".ev = TRAINER_PARTY_EVS(0, 170, 170, 0, 170, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(170, 0, 0, 170, 170, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(170, 0, 0, 170, 170, 0),", data)
-    data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(170, 170, 0, 0, 170, 0),", data)
+    data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(170, 0, 170, 0, 170, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,"), ".ev = TRAINER_PARTY_EVS(0, 0, 170, 170, 170, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,"), ".ev = TRAINER_PARTY_EVS(0, 170, 0, 170, 170, 0),", data)
     data = re.sub(re.escape(".evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,"), ".ev = TRAINER_PARTY_EVS(170, 170, 0, 0, 170, 0),", data)

@@ -1156,7 +1156,7 @@ const struct TrainerMon gSlateportBattleTentMons[NUM_SLATEPORT_TENT_MONS] =
         .species = SPECIES_SANDSHREW,
         .moves = {MOVE_SLASH, MOVE_SAND_ATTACK, MOVE_SAND_TOMB, MOVE_DEFENSE_CURL},
         .heldItem = ITEM_SOFT_SAND,
-        .ev = NULL,
+        .evSpread = 0,
         .nature = NATURE_HARDY
     },
     [SLATEPORT_TENT_MON_SWALOT] = {
@@ -2048,7 +2048,7 @@ const struct TrainerMon gVerdanturfBattleTentMons[NUM_VERDANTURF_TENT_MONS] =
         .species = SPECIES_PELIPPER,
         .moves = {MOVE_WING_ATTACK, MOVE_MIST, MOVE_AGILITY, MOVE_PROTECT},
         .heldItem = ITEM_FIGY_BERRY,
-        .ev = NULL,
+        .evSpread = 0,
         .nature = NATURE_BRAVE
     },
     [VERDANTURF_TENT_MON_LOUDRED] = {
