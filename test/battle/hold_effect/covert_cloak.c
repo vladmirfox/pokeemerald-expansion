@@ -1,6 +1,14 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gItemsInfo[ITEM_COVERT_CLOAK].holdEffect == HOLD_EFFECT_COVERT_CLOAK);
+}
+
+#include "global.h"
+#include "test/battle.h"
+
 SINGLE_BATTLE_TEST("Covert Cloak blocks secondary effects")
 {
     u16 move;
@@ -160,5 +168,17 @@ SINGLE_BATTLE_TEST("Covert Cloak blocks Sparkling Aria in singles")
             MESSAGE("Foe Wobbuffet's burn was healed.");
             STATUS_ICON(opponent, none: TRUE);
         }
+    }
+}
+
+SINGLE_BATTLE_TEST("Covert Cloak does not prevent ability stat changes")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_COVERT_CLOAK); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_COTTON_DOWN); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        NOT MESSAGE("Wobbuffet's Speed won't go lower!");
     }
 }
