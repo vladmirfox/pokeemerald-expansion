@@ -423,7 +423,7 @@
 #define SPECIES_WORMADAM_PLANT_CLOAK                    SPECIES_WORMADAM_PLANT
 #define SPECIES_MOTHIM_PLANT                            414
 #define SPECIES_MOTHIM                                  SPECIES_MOTHIM_PLANT
-#define SPECIES_MOTHIM_PLANT_CLOAK                            SPECIES_MOTHIM_PLANT
+#define SPECIES_MOTHIM_PLANT_CLOAK                      SPECIES_MOTHIM_PLANT
 #define SPECIES_COMBEE                                  415
 #define SPECIES_VESPIQUEN                               416
 #define SPECIES_PACHIRISU                               417
