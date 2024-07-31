@@ -1648,10 +1648,10 @@
 #define SPECIES_TERAPAGOS_STELLAR                       1433
 #define SPECIES_PECHARUNT                               1434
 #define SPECIES_LUGIA_SHADOW                            1435
-#define SPECIES_MOTHIM_SANDY                            SPECIES_MOTHIM_SANDY
-#define SPECIES_MOTHIM_SANDY_CLOAK                      1436
-#define SPECIES_MOTHIM_TRASH                            SPECIES_MOTHIM_TRASH
-#define SPECIES_MOTHIM_TRASH_CLOAK                      1437
+#define SPECIES_MOTHIM_SANDY                            1436
+#define SPECIES_MOTHIM_SANDY_CLOAK                      SPECIES_MOTHIM_SANDY
+#define SPECIES_MOTHIM_TRASH                            1437
+#define SPECIES_MOTHIM_TRASH_CLOAK                      SPECIES_MOTHIM_TRASH
 #define SPECIES_SCATTERBUG_POLAR                        1438
 #define SPECIES_SCATTERBUG_TUNDRA                       1439
 #define SPECIES_SCATTERBUG_CONTINENTAL                  1440
