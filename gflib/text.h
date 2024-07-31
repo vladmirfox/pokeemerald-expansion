@@ -53,6 +53,8 @@ enum {
     FONTATTR_COLOR_SHADOW
 };
 
+#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
+
 struct TextPrinterSubStruct
 {
     u8 fontId:4;  // 0x14
@@ -149,8 +151,6 @@ void RestoreTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor);
 void DecompressGlyphTile(const void *src_, void *dest_);
 void CopyGlyphToWindow(struct TextPrinter *x);
 void ClearTextSpan(struct TextPrinter *textPrinter, u32 width);
-
-#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter);
 void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter);
