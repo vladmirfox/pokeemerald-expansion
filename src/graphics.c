@@ -2049,8 +2049,10 @@ const u16 gBerryCrush_Crusher_Pal[] = INCBIN_U16("graphics/berry_crush/crusher.g
 const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4bpp.lz");
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
 
-const u8 battleIconsTiles[] = INCBIN_U8("graphics/types/battle_icons3.4bpp");
-const u8 battleIconsTiles2[] = INCBIN_U8("graphics/types/battle_icons4.4bpp");
-const u16 battleIconsPal[] = INCBIN_U16("graphics/types/battle_icons3.gbapal");
-const u16 battleIconsPal2[] = INCBIN_U16("graphics/types/battle_icons4.gbapal");
+// const u8 battleIconsTiles[] = INCBIN_U8("graphics/types/battle_icons3.4bpp");
+// const u8 battleIconsTiles2[] = INCBIN_U8("graphics/types/battle_icons4.4bpp");
+const u32 battleIconsTiles[] = INCBIN_U32("graphics/types/battle_icons5.4bpp.lz");
+const u32 battleIconsTiles2[] = INCBIN_U32("graphics/types/battle_icons6.4bpp.lz");
+const u32 battleIconsPal[] = INCBIN_U16("graphics/types/battle_icons3.gbapal.lz");
+const u32 battleIconsPal2[] = INCBIN_U16("graphics/types/battle_icons4.gbapal.lz");
 

@@ -12,6 +12,7 @@
 #include "battle_gimmick.h"
 #include "bg.h"
 #include "data.h"
+#include "decompress.h"
 #include "item.h"
 #include "item_menu.h"
 #include "link.h"
@@ -60,8 +61,19 @@ static void DestroyTypeIcon(struct Sprite* sprite);
 #define IS_SINGLE_BATTLE !IS_DOUBLE_BATTLE
 #define SIDE(bank) GetBattlerSide(bank)
 
-static const struct SpritePalette sTypeIconPalTemplate = {battleIconsPal, TYPE_ICON_TAG};
-static const struct SpritePalette sTypeIconPalTemplate2 = {battleIconsPal2, TYPE_ICON_TAG_2};
+// static const struct SpritePalette sTypeIconPalTemplate = {battleIconsPal, TYPE_ICON_TAG};
+// static const struct SpritePalette sTypeIconPalTemplate2 = {battleIconsPal2, TYPE_ICON_TAG_2};
+
+static const struct CompressedSpritePalette sTypeIconPalTemplate =
+{
+    .data = battleIconsPal,
+    .tag = TYPE_ICON_TAG
+};
+static const struct CompressedSpritePalette sTypeIconPalTemplate2 =
+{
+    .data = battleIconsPal2,
+    .tag = TYPE_ICON_TAG_2
+};
 
 struct Pokemon* GetBankPartyData(u8 bank)
 {
@@ -264,12 +276,177 @@ static const struct SpriteTemplate sTypeIconSpriteTemplate2 =
     .callback = SpriteCB_CamomonsTypeIcon,
 };
 
+// new stuff rave
+const struct CompressedSpriteSheet sSpriteSheet_TypeIcons1 =
+{
+    .data = battleIconsTiles,
+    .size = 8*16*10,
+    .tag = TYPE_ICON_TAG,
+};
+
+static const union AnimCmd sSpriteAnim_TypeIcon_NORMAL[] =
+{
+    ANIMCMD_FRAME((TYPE_NORMAL - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_FIGHTING[] =
+{
+    ANIMCMD_FRAME((TYPE_FIGHTING - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_FLYING[] =
+{
+    ANIMCMD_FRAME((TYPE_FLYING - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_POISON[] =
+{
+    ANIMCMD_FRAME((TYPE_POISON - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_GROUND[] =
+{
+    ANIMCMD_FRAME((TYPE_GROUND - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_ROCK[] =
+{
+    ANIMCMD_FRAME((TYPE_ROCK - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_BUG[] =
+{
+    ANIMCMD_FRAME((TYPE_BUG - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_GHOST[] =
+{
+    ANIMCMD_FRAME((TYPE_GHOST - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_STEEL[] =
+{
+    ANIMCMD_FRAME((TYPE_STEEL - 1) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_MYSTERY[] =
+{
+    ANIMCMD_FRAME((TYPE_MYSTERY - 1) * 2, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_TypeIcons1[] =
+{
+    [TYPE_NORMAL] =     sSpriteAnim_TypeIcon_NORMAL,
+    [TYPE_FIGHTING] =   sSpriteAnim_TypeIcon_FIGHTING,
+    [TYPE_FLYING] =     sSpriteAnim_TypeIcon_FLYING,
+    [TYPE_POISON] =     sSpriteAnim_TypeIcon_POISON,
+    [TYPE_GROUND] =     sSpriteAnim_TypeIcon_GROUND,
+    [TYPE_ROCK] =       sSpriteAnim_TypeIcon_ROCK,
+    [TYPE_BUG] =        sSpriteAnim_TypeIcon_BUG,
+    [TYPE_GHOST] =      sSpriteAnim_TypeIcon_GHOST,
+    [TYPE_STEEL] =      sSpriteAnim_TypeIcon_STEEL,
+    [TYPE_MYSTERY] =    sSpriteAnim_TypeIcon_MYSTERY,
+};
+
+const struct SpriteTemplate gSpriteTemplate_TypeIcons1 =
+{
+    .tileTag = TYPE_ICON_TAG,
+    .paletteTag = TYPE_ICON_TAG,
+    .oam = &sTypeIconOAM,
+    .anims = sSpriteAnimTable_TypeIcons1,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_CamomonsTypeIcon
+};
+
+const struct CompressedSpriteSheet sSpriteSheet_TypeIcons2 =
+{
+    .data = battleIconsTiles2,
+    .size = 8*16*9,
+    .tag = TYPE_ICON_TAG_2,
+};
+
+static const union AnimCmd sSpriteAnim_TypeIcon_FIRE[] =
+{
+    ANIMCMD_FRAME((TYPE_FIRE - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_WATER[] =
+{
+    ANIMCMD_FRAME((TYPE_WATER - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_GRASS[] =
+{
+    ANIMCMD_FRAME((TYPE_GRASS - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_ELECTRIC[] =
+{
+    ANIMCMD_FRAME((TYPE_ELECTRIC - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_PSYCHIC[] =
+{
+    ANIMCMD_FRAME((TYPE_PSYCHIC - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_ICE[] =
+{
+    ANIMCMD_FRAME((TYPE_ICE - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_DRAGON[] =
+{
+    ANIMCMD_FRAME((TYPE_DRAGON - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_DARK[] =
+{
+    ANIMCMD_FRAME((TYPE_DARK - 11) * 2, 0),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_TypeIcon_FAIRY[] =
+{
+    ANIMCMD_FRAME((TYPE_FAIRY - 11) * 2, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd *const sSpriteAnimTable_TypeIcons2[] =
+{
+    [TYPE_FIRE] =           sSpriteAnim_TypeIcon_FIRE,
+    [TYPE_WATER] =          sSpriteAnim_TypeIcon_WATER,
+    [TYPE_GRASS] =          sSpriteAnim_TypeIcon_GRASS,
+    [TYPE_ELECTRIC] =       sSpriteAnim_TypeIcon_ELECTRIC,
+    [TYPE_PSYCHIC] =        sSpriteAnim_TypeIcon_PSYCHIC,
+    [TYPE_ICE] =            sSpriteAnim_TypeIcon_ICE,
+    [TYPE_DRAGON] =         sSpriteAnim_TypeIcon_DRAGON,
+    [TYPE_DARK] =           sSpriteAnim_TypeIcon_DARK,
+    [TYPE_FAIRY] =          sSpriteAnim_TypeIcon_FAIRY,
+};
+
+const struct SpriteTemplate gSpriteTemplate_TypeIcons2 =
+{
+    .tileTag = TYPE_ICON_TAG_2,
+    .paletteTag = TYPE_ICON_TAG_2,
+    .oam = &sTypeIconOAM,
+    .anims = sSpriteAnimTable_TypeIcons2,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_CamomonsTypeIcon
+};
+
+// end rave stuff
+
 void TryLoadTypeIcons(u32 battler)
 {
     if (IndexOfSpritePaletteTag(TYPE_ICON_TAG) == 0xFF)
     {
-        LoadSpritePalette(&sTypeIconPalTemplate);
-        LoadSpritePalette(&sTypeIconPalTemplate2);
+        LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons1);
+        LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons2);
+        LoadCompressedSpritePalette(&sTypeIconPalTemplate);
+        LoadCompressedSpritePalette(&sTypeIconPalTemplate2);
     }
 
     for (u8 position = 0; position < gBattlersCount; ++position)
@@ -319,10 +496,10 @@ case TYPE_DARK:
 case TYPE_FAIRY:
                     // case TYPE_ROOSTLESS:
                     // case TYPE_BLANK:
-                    spriteId = CreateSpriteAtEnd(&sTypeIconSpriteTemplate2, x, y, 0xFF);
+                    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_TypeIcons2, x, y, 0xFF);
                     break;
                 default:
-                    spriteId = CreateSpriteAtEnd(&sTypeIconSpriteTemplate, x, y, 0xFF);
+                    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_TypeIcons1, x, y, 0xFF);
             }
 
             if (spriteId != MAX_SPRITES)
@@ -343,7 +520,8 @@ case TYPE_FAIRY:
                         SetSpriteOamFlipBits(sprite, TRUE, FALSE); //Flip horizontally
                 }
 
-                RequestSpriteFrameImageCopy(type, sprite->oam.tileNum, sprite->images);
+                //RequestSpriteFrameImageCopy(type, sprite->oam.tileNum, sprite->images);
+                StartSpriteAnim(sprite, type);
             }
         }
     }

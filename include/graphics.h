@@ -3363,9 +3363,9 @@ extern const u8 gMailTilemap_Retro[];
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
 
-extern const u8 battleIconsTiles[];
-extern const u8 battleIconsTiles2[];
-extern const u16 battleIconsPal[];
-extern const u16 battleIconsPal2[];
+extern const u32 battleIconsTiles[];
+extern const u32 battleIconsTiles2[];
+extern const u32 battleIconsPal[];
+extern const u32 battleIconsPal2[];
 
 #endif //GUARD_GRAPHICS_H
