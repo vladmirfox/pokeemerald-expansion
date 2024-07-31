@@ -1185,14 +1185,14 @@
 #define SPECIES_DEOXYS_ATTACK                           1054
 #define SPECIES_DEOXYS_DEFENSE                          1055
 #define SPECIES_DEOXYS_SPEED                            1056
-#define SPECIES_BURMY_SANDY                             SPECIES_BURMY_SANDY
-#define SPECIES_BURMY_SANDY_CLOAK                       1057
-#define SPECIES_BURMY_TRASH                             SPECIES_BURMY_TRASH
-#define SPECIES_BURMY_TRASH_CLOAK                       1058
-#define SPECIES_WORMADAM_SANDY                          SPECIES_WORMADAM_SANDY
-#define SPECIES_WORMADAM_SANDY_CLOAK                    1059
-#define SPECIES_WORMADAM_TRASH                          SPECIES_WORMADAM_TRASH
-#define SPECIES_WORMADAM_TRASH_CLOAK                    1060
+#define SPECIES_BURMY_SANDY                             1057
+#define SPECIES_BURMY_SANDY_CLOAK                       SPECIES_BURMY_SANDY
+#define SPECIES_BURMY_TRASH                             1058
+#define SPECIES_BURMY_TRASH_CLOAK                       SPECIES_BURMY_TRASH
+#define SPECIES_WORMADAM_SANDY                          1059
+#define SPECIES_WORMADAM_SANDY_CLOAK                    SPECIES_WORMADAM_SANDY
+#define SPECIES_WORMADAM_TRASH                          1060
+#define SPECIES_WORMADAM_TRASH_CLOAK                    SPECIES_WORMADAM_TRASH
 #define SPECIES_CHERRIM_SUNSHINE                        1061
 #define SPECIES_SHELLOS_EAST_SEA                        1062
 #define SPECIES_GASTRODON_EAST_SEA                      1063
@@ -1596,11 +1596,11 @@
 #define SPECIES_MIRAIDON                                1401
 // Paldean Forms
 #define SPECIES_TAUROS_PALDEA_COMBAT                    1402
-#define SPECIES_TAUROS_PALDEAN_COMBAT_BREED             SPECIES_TAUROS_PALDEAN_COMBAT
+#define SPECIES_TAUROS_PALDEAN_COMBAT_BREED             SPECIES_TAUROS_PALDEA_COMBAT
 #define SPECIES_TAUROS_PALDEA_BLAZE                     1403
-#define SPECIES_TAUROS_PALDEAN_BLAZE_BREED              SPECIES_TAUROS_PALDEAN_BLAZE
+#define SPECIES_TAUROS_PALDEAN_BLAZE_BREED              SPECIES_TAUROS_PALDEA_BLAZE
 #define SPECIES_TAUROS_PALDEA_AQUA                      1404
-#define SPECIES_TAUROS_PALDEAN_AQUA_BREED               SPECIES_TAUROS_PALDEAN_AQUA
+#define SPECIES_TAUROS_PALDEAN_AQUA_BREED               SPECIES_TAUROS_PALDEA_AQUA
 #define SPECIES_WOOPER_PALDEA                           1405
 #define SPECIES_WOOPER_PALDEAN                          SPECIES_WOOPER_PALDEA
 // Scarlet and Violet 1.2.0
