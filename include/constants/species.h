@@ -432,10 +432,12 @@
 #define SPECIES_CHERUBI                                 420
 #define SPECIES_CHERRIM                                 SPECIES_CHERRIM_OVERCAST
 #define SPECIES_CHERRIM_OVERCAST                        421
-#define SPECIES_SHELLOS                                 SPECIES_SHELLOS_WEST_SEA
-#define SPECIES_SHELLOS_WEST_SEA                        422
-#define SPECIES_GASTRODON                               SPECIES_GASTRODON_WEST_SEA
-#define SPECIES_GASTRODON_WEST_SEA                      423
+#define SPECIES_SHELLOS_WEST                            422
+#define SPECIES_SHELLOS                                 SPECIES_SHELLOS_WEST
+#define SPECIES_SHELLOS_WEST_SEA                        SPECIES_SHELLOS_WEST
+#define SPECIES_GASTRODON_WEST                          423
+#define SPECIES_GASTRODON                               SPECIES_GASTRODON_WEST
+#define SPECIES_GASTRODON_WEST_SEA                      SPECIES_GASTRODON_WEST
 #define SPECIES_AMBIPOM                                 424
 #define SPECIES_DRIFLOON                                425
 #define SPECIES_DRIFBLIM                                426
@@ -951,7 +953,8 @@
 #define SPECIES_ETERNATUS                               890
 #define SPECIES_KUBFU                                   891
 #define SPECIES_URSHIFU                                 SPECIES_URSHIFU_SINGLE_STRIKE_STYLE
-#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE             892
+#define SPECIES_URSHIFU_SINGLE_STRIKE                   892
+#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE             SPECIES_URSHIFU_SINGLE_STRIKE
 #define SPECIES_ZARUDE                                  893
 #define SPECIES_REGIELEKI                               894
 #define SPECIES_REGIDRAGO                               895
@@ -1148,6 +1151,7 @@
 #define SPECIES_PIKACHU_KALOS_CAP                       SPECIES_PIKACHU_KALOS
 #define SPECIES_PIKACHU_ALOLA                           1020
 #define SPECIES_PIKACHU_ALOLA_CAP                       SPECIES_PIKACHU_ALOLA
+//#define SPECIES_PIKACHU_PARTNER                       SPECIES_PIKACHU_PARTNER_CAP
 #define SPECIES_PIKACHU_PARTNER_CAP                     1021 // Showdown does not seem to have Partner Cap
 #define SPECIES_PIKACHU_WORLD                           1022
 #define SPECIES_PIKACHU_WORLD_CAP                       SPECIES_PIKACHU_WORLD
@@ -1177,8 +1181,10 @@
 #define SPECIES_UNOWN_X                                 1046
 #define SPECIES_UNOWN_Y                                 1047
 #define SPECIES_UNOWN_Z                                 1048
-#define SPECIES_UNOWN_EMARK                             1049
-#define SPECIES_UNOWN_QMARK                             1050
+#define SPECIES_UNOWN_EXCLAMATION                       1049
+#define SPECIES_UNOWN_EMARK                             SPECIES_UNOWN_EXCLAMATION
+#define SPECIES_UNOWN_QUESTION                          1050
+#define SPECIES_UNOWN_QMARK                             SPECIES_UNOWN_QUESTION
 #define SPECIES_CASTFORM_SUNNY                          1051
 #define SPECIES_CASTFORM_RAINY                          1052
 #define SPECIES_CASTFORM_SNOWY                          1053
@@ -1194,8 +1200,10 @@
 #define SPECIES_WORMADAM_TRASH                          1060
 #define SPECIES_WORMADAM_TRASH_CLOAK                    SPECIES_WORMADAM_TRASH
 #define SPECIES_CHERRIM_SUNSHINE                        1061
-#define SPECIES_SHELLOS_EAST_SEA                        1062
-#define SPECIES_GASTRODON_EAST_SEA                      1063
+#define SPECIES_SHELLOS_EAST                            1062
+#define SPECIES_SHELLOS_EAST_SEA                        SPECIES_SHELLOS_EAST
+#define SPECIES_GASTRODON_EAST                          1063
+#define SPECIES_GASTRODON_EAST_SEA                      SPECIES_GASTRODON_EAST
 #define SPECIES_ROTOM_HEAT                              1064
 #define SPECIES_ROTOM_WASH                              1065
 #define SPECIES_ROTOM_FROST                             1066
@@ -1699,7 +1707,8 @@
 #define SPECIES_MIMIKYU_TOTEM                           SPECIES_MIMIKYU_TOTEM_DISGUISED
 #define SPECIES_MIMIKYU_TOTEM_DISGUISED                 1481
 #define SPECIES_KOMMO_O_TOTEM                           1482
-#define SPECIES_MAROWAK_ALOLAN_TOTEM                    1483
+#define SPECIES_MAROWAK_ALOLA_TOTEM                     1483
+#define SPECIES_MAROWAK_ALOLAN_TOTEM                    SPECIES_MAROWAK_ALOLA_TOTEM
 #define SPECIES_RIBOMBEE_TOTEM                          1484
 #define SPECIES_ARAQUANID_TOTEM                         1485
 #define SPECIES_TOGEDEMARU_TOTEM                        1486
@@ -1771,14 +1780,20 @@
 #define SPECIES_COPPERAJAH_GIGANTAMAX                   SPECIES_COPPERAJAH_GMAX
 #define SPECIES_DURALUDON_GMAX                          1520
 #define SPECIES_DURALUDON_GIGANTAMAX                    SPECIES_DURALUDON_GMAX
-#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GMAX        1521
-#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX  SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GMAX
-#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GMAX         1522
-#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GMAX
+#define SPECIES_URSHIFU_SINGLE_STRIKE_GMAX              1521
+#define SPECIES_URSHIFU_GMAX                            SPECIES_URSHIFU_SINGLE_STRIKE_GMAX
+#define SPECIES_URSHIFU_GIGANTAMAX                      SPECIES_URSHIFU_SINGLE_STRIKE_GMAX
+#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GMAX        SPECIES_URSHIFU_SINGLE_STRIKE_GMAX
+#define SPECIES_URSHIFU_SINGLE_STRIKE_GIGANTAMAX        SPECIES_URSHIFU_SINGLE_STRIKE_GMAX
+#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX  SPECIES_URSHIFU_SINGLE_STRIKE_GMAX
+#define SPECIES_URSHIFU_RAPID_STRIKE_GMAX               1522
+#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GMAX         SPECIES_URSHIFU_RAPID_STRIKE_GMAX
+#define SPECIES_URSHIFU_RAPID_STRIKE_GIGANTAMAX         SPECIES_URSHIFU_RAPID_STRIKE_GMAX
+#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   SPECIES_URSHIFU_RAPID_STRIKE_GMAX
 #define SPECIES_MIMIKYU_BUSTED_TOTEM                    1523
 #define SPECIES_MIMIKYU_TOTEM_BUSTED                    SPECIES_MIMIKYU_BUSTED_TOTEM
 
-#define SPECIES_EGG SPECIES_MIMIKYU_TOTEM_BUSTED + 1
+#define SPECIES_EGG                                     (SPECIES_MIMIKYU_BUSTED_TOTEM + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 
