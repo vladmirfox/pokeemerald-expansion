@@ -173,6 +173,6 @@ SINGLE_BATTLE_TEST("Shield Dust does not prevent ability stat changes")
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet's Speed won't go lower!");
+        MESSAGE("Vivillon's Speed fell!");
     }
 }
