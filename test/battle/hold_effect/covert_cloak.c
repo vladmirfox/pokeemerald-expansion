@@ -6,9 +6,6 @@ ASSUMPTIONS
     ASSUME(gItemsInfo[ITEM_COVERT_CLOAK].holdEffect == HOLD_EFFECT_COVERT_CLOAK);
 }
 
-#include "global.h"
-#include "test/battle.h"
-
 SINGLE_BATTLE_TEST("Covert Cloak blocks secondary effects")
 {
     u16 move;
