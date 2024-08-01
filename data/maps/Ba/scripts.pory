@@ -1,0 +1,9 @@
+mapscripts Ba_MapScripts {
+
+}
+
+script WalkingLady {
+    lockall
+    msgbox("Good Morning!")
+    releaseall
+}

@@ -1,0 +1,40 @@
+mapscripts gBaIndoor_Prof_MapScripts {
+
+}
+
+
+script noticeplayer{
+    lockall
+    applymovement(4, noticeleftmove)
+    waitmovement(0)
+    msgbox("Hello! I just got the Pokemon from Silph Co. in. Say, why don't you choose one?")
+    msgbox("Take good care of it! :3")
+
+    applymovement(4, postnoticeleftT)
+    waitmovement(0)
+    release
+}
+
+// text PostChoice{
+//     "Take good care of it!\nSay could you do me a favor and check on my granddaughter in Appleton?\nMy sister told me she lost her precious Scyther.\nOh! and before you leave, take this."
+// }
+
+// text SilphCo {
+//     "Silph Co. sent it to me. It's a PokeDex.It automatically records data about\nthe Pokemon you catch."
+// }
+
+// text GenMsg {
+//     "All this new technology makes my head spin!"
+// }
+
+// movement noticeleftmove {
+//      walk_left
+//      walk_down*2
+// }
+
+
+// movement postnoticeleftT {
+//     walk_up*3
+//     walk_left
+// }
+

@@ -3060,5 +3060,10 @@ extern const u8 gText_BasePointsResetToZero[];
 
 extern const u8 gText_Fertilize[];
 extern const u8 gText_PlantBerry[];
+extern const u8 gText_Spheal[];
+extern const u8 gText_Seel[];
+extern const u8 gText_Tatsugiri[];
+extern const u8 gText_Dwebble[];
+extern const u8 gText_Skrelp[];
 
 #endif // GUARD_STRINGS_H

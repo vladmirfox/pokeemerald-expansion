@@ -63,6 +63,12 @@
 #define MAP_UNDERWATER_ROUTE129 (54 | (0 << 8))
 #define MAP_UNDERWATER_ROUTE105 (55 | (0 << 8))
 #define MAP_UNDERWATER_ROUTE125 (56 | (0 << 8))
+#define MAP_BA                  (57 | (0 << 8))
+#define MAP_G_BA_INDOOR_PROF    (58 | (0 << 8))
+#define MAP_BA_POKEMON_CENTER   (59 | (0 << 8))
+#define MAP_PLAYER_HOME         (60 | (0 << 8))
+#define MAP_BA_MART             (61 | (0 << 8))
+#define MAP_BA_ALMOND_HOUSE     (62 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

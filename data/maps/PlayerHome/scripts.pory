@@ -1,0 +1,42 @@
+mapscripts PlayerHome_MapScripts {
+
+}
+
+
+
+script turnto_and_getunown {
+    lockall
+    call(getunown)
+    releaseall
+    end
+}
+
+script getrunning_shoes {
+    lockall
+    playfanfare(MUS_OBTAIN_ITEM)
+    
+    setflag(FLAG_SYS_B_DASH)
+    removeobject(2)
+    releaseall
+    end
+}
+
+script getunown {
+    lockall
+    setrespawn(HEAL_LOCATION_BA)
+    givemon(SPECIES_UNOWN,5,ITEM_POKE_BALL)
+    playfanfare(MUS_OBTAIN_ITEM)
+    msgbox("You grabbed your partner, Unown!")
+    removeobject(1)
+    setflag(FLAG_UNUSED_0x020)
+    setflag(FLAG_SYS_POKEMON_GET)
+    setvar(VAR_UNUSED_0x404E, 1)
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+    waitmessage
+    releaseall
+    end
+}
+ 

@@ -1072,3 +1072,15 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/Ba/scripts.inc"
+
+	.include "data/maps/gBaIndoor_Prof/scripts.inc"
+
+	.include "data/maps/BaPokemonCenter/scripts.inc"
+
+	.include "data/maps/PlayerHome/scripts.inc"
+
+	.include "data/maps/BaMart/scripts.inc"
+
+	.include "data/maps/BaAlmondHouse/scripts.inc"

@@ -4410,6 +4410,66 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_BA",
+      "name": "Ba_Layout",
+      "width": 38,
+      "height": 27,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattleFrontierOutsideEast",
+      "border_filepath": "data/layouts/Ba/border.bin",
+      "blockdata_filepath": "data/layouts/Ba/map.bin"
+    },
+    {
+      "id": "LAYOUT_G_BA_INDOOR_PROF",
+      "name": "gBaIndoor_Prof_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Lab",
+      "border_filepath": "data/layouts/gBaIndoor_Prof/border.bin",
+      "blockdata_filepath": "data/layouts/gBaIndoor_Prof/map.bin"
+    },
+    {
+      "id": "LAYOUT_BA_POKEMON_CENTER",
+      "name": "BaPokemonCenter_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/BaPokemonCenter/border.bin",
+      "blockdata_filepath": "data/layouts/BaPokemonCenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLAYER_HOME",
+      "name": "PlayerHome_Layout",
+      "width": 10,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/PlayerHome/border.bin",
+      "blockdata_filepath": "data/layouts/PlayerHome/map.bin"
+    },
+    {
+      "id": "LAYOUT_BA_MART",
+      "name": "BaMart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/BaMart/border.bin",
+      "blockdata_filepath": "data/layouts/BaMart/map.bin"
+    },
+    {
+      "id": "LAYOUT_BA_ALMOND_HOUSE",
+      "name": "BaAlmondHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/BaAlmondHouse/border.bin",
+      "blockdata_filepath": "data/layouts/BaAlmondHouse/map.bin"
     }
   ]
 }
