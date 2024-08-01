@@ -2053,6 +2053,6 @@ const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/t
 // const u8 battleIconsTiles2[] = INCBIN_U8("graphics/types/battle_icons4.4bpp");
 const u32 battleIconsTiles[] = INCBIN_U32("graphics/types/battle_icons5.4bpp.lz");
 const u32 battleIconsTiles2[] = INCBIN_U32("graphics/types/battle_icons6.4bpp.lz");
-const u32 battleIconsPal[] = INCBIN_U16("graphics/types/battle_icons3.gbapal.lz");
-const u32 battleIconsPal2[] = INCBIN_U16("graphics/types/battle_icons4.gbapal.lz");
+const u32 battleIconsPal[] = INCBIN_U32("graphics/types/battle_icons3.gbapal.lz");
+const u32 battleIconsPal2[] = INCBIN_U32("graphics/types/battle_icons4.gbapal.lz");
 
