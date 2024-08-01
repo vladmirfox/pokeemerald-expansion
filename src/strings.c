@@ -912,6 +912,7 @@ const u8 gPCText_Place[] = _("PLACE");
 const u8 gPCText_Summary[] = _("SUMMARY");
 const u8 gPCText_Release[] = _("RELEASE");
 const u8 gPCText_Mark[] = _("MARK");
+const u8 gPCText_Rename[] = _("RENAME");
 const u8 gPCText_Name[] = _("NAME");
 const u8 gPCText_Jump[] = _("JUMP");
 const u8 gPCText_Wallpaper[] = _("WALLPAPER");
