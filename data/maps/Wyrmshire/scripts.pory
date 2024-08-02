@@ -1,0 +1,11 @@
+raw `
+Wyrmshire_MapScripts::
+	.byte 0
+`
+
+script Wyrmshire_Sign1 {
+	lockall
+    msgbox("Wyrmshire - The Birthplace of Dragons!")
+    releaseall
+}
+
