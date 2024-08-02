@@ -15,6 +15,20 @@ Wyrmshire_Sign1::
 	return
 
 
+Wyrmshire_Sign2::
+# 14 "data/maps/Wyrmshire/scripts.pory"
+	lockall
+# 15 "data/maps/Wyrmshire/scripts.pory"
+	msgbox Wyrmshire_Sign2_Text_0
+# 16 "data/maps/Wyrmshire/scripts.pory"
+	releaseall
+	return
+
+
 Wyrmshire_Sign1_Text_0:
 # 8 "data/maps/Wyrmshire/scripts.pory"
 	.string "Wyrmshire - The Birthplace of Dragons!$"
+
+Wyrmshire_Sign2_Text_0:
+# 15 "data/maps/Wyrmshire/scripts.pory"
+	.string "Proving Trial Grounds$"
