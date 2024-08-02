@@ -1,9 +1,11 @@
 #include "global.h"
 #include "main.h"
 #include "battle.h"
+#include "battle_util.h"
 #include "bg.h"
 #include "contest_effect.h"
 #include "data.h"
+#include "decompress.h"
 #include "event_data.h"
 #include "field_screen_effect.h"
 #include "gpu_regs.h"
@@ -22,8 +24,6 @@
 #include "string_util.h"
 #include "strings.h"
 #include "task.h"
-#include "decompress.h"
-#include "battle_util.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -175,7 +175,7 @@ static EWRAM_DATA struct
     u8 moveListScrollArrowTask;                          /*0x113*/
     u8 moveDisplayArrowTask;                             /*0x114*/
     u16 scrollOffset;                                    /*0x116*/
-    u8 categoryIconSpriteId; //Physical/Special/Status category
+    u8 categoryIconSpriteId;                             //Physical/Special/Status category
 } *sMoveRelearnerStruct = {0};
 
 static EWRAM_DATA struct {
