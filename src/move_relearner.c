@@ -980,7 +980,7 @@ u8 MoveRelearnerShowHideCategoryIcon(s32 moveId)
     else
     {
         if (sMoveRelearnerStruct->categoryIconSpriteId == 0xFF)
-            sMoveRelearnerStruct->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 68, 40, 0);
+            sMoveRelearnerStruct->categoryIconSpriteId = CreateSprite(&gSpriteTemplate_CategoryIcons, 66, 40, 0);
 
         gSprites[sMoveRelearnerStruct->categoryIconSpriteId].invisible = FALSE;
         StartSpriteAnim(&gSprites[sMoveRelearnerStruct->categoryIconSpriteId], GetBattleMoveCategory(moveId));
