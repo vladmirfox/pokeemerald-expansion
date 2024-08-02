@@ -9,3 +9,9 @@ script Wyrmshire_Sign1 {
     releaseall
 }
 
+
+script Wyrmshire_Sign2 {
+	lockall
+    msgbox("Proving Trial Grounds")
+    releaseall
+}
