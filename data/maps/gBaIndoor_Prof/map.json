@@ -2,7 +2,7 @@
   "id": "MAP_G_BA_INDOOR_PROF",
   "name": "gBaIndoor_Prof",
   "layout": "LAYOUT_G_BA_INDOOR_PROF",
-  "music": "MUS_MT_PYRE",
+  "music": "MUS_BIRCH_LAB",
   "region_map_section": "MAPSEC_ABANDONED_SHIP",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -24,8 +24,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_TEMP_4"
+      "script": "NewProfessor_EventScript_Cyndaquill",
+      "flag": "FLAG_STATER_GET"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -37,8 +37,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "NewProfessor_EventScript_Oshawott",
+      "flag": "FLAG_STATER_GET"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -50,20 +50,20 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "NewProfessor_EventScript_Rowlet",
+      "flag": "FLAG_STATER_GET"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
-      "x": 4,
-      "y": 4,
+      "x": 2,
+      "y": 3,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Sigillaria",
       "flag": "0"
     }
   ],
@@ -89,9 +89,9 @@
       "x": 3,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_SIG_LAB_TRIGGER",
       "var_value": "0",
-      "script": "noticeplayerleft"
+      "script": "noticeplayer"
     }
   ],
   "bg_events": [

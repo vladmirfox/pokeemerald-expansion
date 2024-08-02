@@ -4,37 +4,227 @@ mapscripts gBaIndoor_Prof_MapScripts {
 
 
 script noticeplayer{
-    lockall
-    applymovement(4, noticeleftmove)
-    waitmovement(0)
-    msgbox("Hello! I just got the Pokemon from Silph Co. in. Say, why don't you choose one?")
-    msgbox("Take good care of it! :3")
-
-    applymovement(4, postnoticeleftT)
-    waitmovement(0)
-    release
+    switch(var(VAR_SIGILLARIA_STATE)){
+        case 0:
+            lockall
+            applymovement(4, noticeleftmove)
+            waitmovement(0)
+            msgbox(TriggerGreet)
+            waitmessage
+            setvar(VAR_SIGILLARIA_STATE,1)
+            applymovement(4, postnoticeleftT)
+            waitmovement(0)
+            release
+        case 1:
+            lockall
+            msgbox("Wait! Please take a pokemon!")
+            release
+            applymovement(OBJ_EVENT_ID_PLAYER,stopplayer)
+        case 2:
+            lockall
+            applymovement(4,noticeleftmove)
+            waitmovement(0)
+            release
+            applymovement(OBJ_EVENT_ID_PLAYER,playerlookup)
+            waitmovement(0)
+            lockall
+            msgbox(PostChoice)
+            msgbox(beforeyouleave)
+            applymovement(4,postnoticeleftT)
+            waitmovement(0)
+            setvar(VAR_SIGILLARIA_STATE,3)
+            setvar(VAR_SIG_LAB_TRIGGER,1)
+            release
+        default:
+        setvar(VAR_SIG_LAB_TRIGGER,1)
+    }
+    end
 }
 
-// text PostChoice{
-//     "Take good care of it!\nSay could you do me a favor and check on my granddaughter in Appleton?\nMy sister told me she lost her precious Scyther.\nOh! and before you leave, take this."
-// }
+script NewProfessor_EventScript_Cyndaquill{
+    lockall
+    showmonpic(SPECIES_CYNDAQUIL, 10,3)
+    msgbox("Do you want to choose Cyndaquil?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_CYNDAQUIL, 5, ITEM_MASTER_BALL)
+        setflag(FLAG_STATER_GET)
+        setvar(VAR_SIGILLARIA_STATE,2)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Cyndaquil")
+            removeobject(1)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Cyndaquil")
+            removeobject(1)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox("Choose carefully!")
+    }
+    waitmessage
+    releaseall
+}
 
-// text SilphCo {
-//     "Silph Co. sent it to me. It's a PokeDex.It automatically records data about\nthe Pokemon you catch."
-// }
+script NewProfessor_EventScript_Oshawott{
+    lockall
+    showmonpic(SPECIES_OSHAWOTT, 10,3)
+    msgbox("Do you want to choose Oshawott?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_OSHAWOTT, 5, ITEM_MASTER_BALL)
+        setflag(FLAG_STATER_GET)
+        setvar(VAR_SIGILLARIA_STATE,2)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Oshawott")
+            removeobject(2)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Oshawott")
+            removeobject(2)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox("Choose carefully!")
+    }
+    waitmessage
+    releaseall
+ 
+}
 
-// text GenMsg {
-//     "All this new technology makes my head spin!"
-// }
+script NewProfessor_EventScript_Rowlet{
+    lockall
+    showmonpic(SPECIES_ROWLET, 10,3)
+    msgbox("Do you want to choose Rowlet?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_ROWLET, 5, ITEM_MASTER_BALL)
+        setflag(FLAG_STATER_GET)
+        setvar(VAR_SIGILLARIA_STATE,2)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Rowlet")
+            removeobject(3)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Rowlet")
+            removeobject(3)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox("Choose carefully!")
+    }
+    waitmessage
+    releaseall
+ 
+}
+script NicknamePartyMon{
+    msgbox("Give a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+ 
+ 
+}
+ 
+script NicknameBoxMon{
+    msgbox("Give a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    msgbox("Transferred to PC")
+}
 
-// movement noticeleftmove {
-//      walk_left
-//      walk_down*2
-// }
+script Sigillaria{
+    switch(var(VAR_SIGILLARIA_STATE)){
+        case 0:
+        lockall
+        msgbox("Go on, pick a pokemon!")
+        release
+
+        case 1:
+        lockall
+        msgbox("Go on, pick a pokemon!")
+        release
+
+        case 2:
+        lockall
+        msgbox(PostChoice)
+        msgbox(beforeyouleave)
+        setvar(VAR_SIGILLARIA_STATE,3)
+        setvar(VAR_SIG_LAB_TRIGGER,1)
+        release
+
+        case 3:
+        lockall
+        msgbox("All this new technology makes my head spin!")
+        release
+
+        default:
+        lockall
+        msgbox("All this new technology makes my head spin!")
+        release
+
+    }
+}
+
+text PostChoice{
+     format("Say could you do me a favor and check on my granddaughter in Appleton? My sister told me she lost her precious Scyther."
+     )
+}
+
+text beforeyouleave{
+    format("Oh! and before you leave, take this.Silph Co. sent it to me. It's a PokeDex. It automatically records data about the Pokemon you catch."
+     )
+}
+
+text TriggerGreet {
+
+    format("Hello! I just got the Pokemon from Silph Co. in. Say, why don't you choose one?")
+
+}
+
+movement noticeleftmove {
+     walk_right
+     walk_down*3
+}
 
 
-// movement postnoticeleftT {
-//     walk_up*3
-//     walk_left
-// }
+movement postnoticeleftT {
+    walk_up*3
+    walk_left
+    face_player
+}
 
+movement stopplayer {
+    walk_up
+}
+movement playerlookup {
+    face_up
+}
