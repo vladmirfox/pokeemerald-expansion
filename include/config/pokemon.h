@@ -41,6 +41,7 @@
 // Optional party/box menu actions
 #define P_CAN_RENAME_FROM_PARTY          TRUE
 #define P_CAN_RENAME_FROM_BOX            TRUE
+#define P_CAN_RELEARN_FROM_PARTY         TRUE
 
 // Other settings
 #define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // If TRUE, will give more Pokémon custom icons for their female forms, i.e. Hippopotas and Hippowdon

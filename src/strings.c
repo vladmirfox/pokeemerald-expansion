@@ -374,6 +374,7 @@ const u8 gText_Summary5[] = _("SUMMARY");
 const u8 gText_Moves[] = _("MOVES"); // Unused
 const u8 gText_Enter[] = _("ENTER");
 const u8 gText_Rename[] = _("RENAME");
+const u8 gText_Relearn[] = _("RELEARN");
 const u8 gText_NoEntry[] = _("NO ENTRY");
 const u8 gText_Take2[] = _("TAKE");
 const u8 gText_Read2[] = _("READ");

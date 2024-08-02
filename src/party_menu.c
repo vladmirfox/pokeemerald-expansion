@@ -41,6 +41,7 @@
 #include "menu_helpers.h"
 #include "menu_specialized.h"
 #include "metatile_behavior.h"
+#include "move_relearner.h"
 #include "naming_screen.h"
 #include "overworld.h"
 #include "palette.h"
@@ -106,6 +107,7 @@ enum {
     MENU_CHANGE_FORM,
     MENU_CHANGE_ABILITY,
     MENU_RENAME,
+    MENU_RELEARN,
     MENU_FIELD_MOVES,
 };
 
@@ -199,7 +201,7 @@ struct PartyMenuBoxInfoRects
 };
 
 // Allocate based on number of optional actions enabled
-#define ACTION_COUNT    8 + P_CAN_RENAME_FROM_PARTY
+#define ACTION_COUNT    8 + P_CAN_RENAME_FROM_PARTY + P_CAN_RELEARN_FROM_PARTY
 
 struct PartyMenuInternal
 {
@@ -360,6 +362,7 @@ static void Task_UpdateHeldItemSprite(u8);
 static void Task_HandleSelectionMenuInput(u8);
 static void CB2_ShowPokemonSummaryScreen(void);
 static void CB2_ShowRenameScreenFromPartyMenu(void);
+static void CB2_UpdateRelearnerScreen(void);
 static void UpdatePartyToBattleOrder(void);
 static void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 static void CB2_ReturnToPartyMenuFromRenameScreen(void);
@@ -507,6 +510,7 @@ static void CursorCb_CatalogMower(u8);
 static void CursorCb_ChangeForm(u8);
 static void CursorCb_ChangeAbility(u8);
 static void CursorCb_Rename(u8);
+static void CursorCb_Relearn(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
@@ -2822,6 +2826,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         #if P_CAN_RENAME_FROM_PARTY
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_RENAME);
         #endif
+        #if P_CAN_RELEARN_FROM_PARTY
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_RELEARN);
+        #endif
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SWITCH);
         if (ItemIsMail(GetMonData(&mons[slotId], MON_DATA_HELD_ITEM)))
@@ -3015,6 +3022,21 @@ static void CB2_ReturnToPartyMenuFromRenameScreen(void)
     SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_NICKNAME, gStringVar1);
     gPaletteFade.bufferTransferDisabled = TRUE;
     InitPartyMenu(gPartyMenu.menuType, KEEP_PARTY_LAYOUT, gPartyMenu.action, TRUE, PARTY_MSG_DO_WHAT_WITH_MON, Task_TryCreateSelectionWindow, gPartyMenu.exitCallback);
+}
+
+static void CursorCb_Relearn(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    gSpecialVar_0x8004 = gPartyMenu.slotId;
+    sPartyMenuInternal->exitCallback = CB2_UpdateRelearnerScreen;
+    Task_ClosePartyMenu(taskId);
+    TeachMoveRelearnerMove();
+}
+
+static void CB2_UpdateRelearnerScreen(void)
+{
+    RunTasks();
+    UpdatePaletteFade();
 }
 
 static void CursorCb_Switch(u8 taskId)
