@@ -81,10 +81,10 @@ DOUBLE_BATTLE_TEST("Battler end turn effects are done per battler for each state
 DOUBLE_BATTLE_TEST("End Turn Effects Test")
 {
     GIVEN {
-        PLAYER(SPECIES_WYNAUT)      { Speed(23); Status1(STATUS1_TOXIC_POISON); }
-        PLAYER(SPECIES_WOBBUFFET)   { Speed(2);  Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1);  Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WYNAUT)    { Speed(12); Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WYNAUT)      { Speed(23); MaxHP(300); HP(151); Item(ITEM_ORAN_BERRY); Status1(STATUS1_TOXIC_POISON); }
+        PLAYER(SPECIES_WOBBUFFET)   { Speed(2);  MaxHP(300); HP(151); Item(ITEM_ORAN_BERRY); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1);  MaxHP(300); HP(151); Item(ITEM_ORAN_BERRY); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_WYNAUT)    { Speed(12); MaxHP(300); HP(151); Item(ITEM_ORAN_BERRY); Status1(STATUS1_POISON); }
     } WHEN {
         TURN {}
         TURN {}

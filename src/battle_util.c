@@ -1756,15 +1756,15 @@ if (ability == ABILITY_MAGIC_GUARD) \
             break;\
 }
 
-static inline u32 TryEmergencyExit(u32 battler)
+static inline bool32 TryEmergencyExit(u32 battler)
 {
     u32 ability = GetBattlerAbility(battler);
     if (ability == ABILITY_EMERGENCY_EXIT || ability == ABILITY_WIMP_OUT)
     {
         if (AbilityBattleEffects(ABILITYEFFECT_ENDTURN, battler, 0, 0, 0))
-            return 1;
+            return TRUE;
     }
-    return 0;
+    return FALSE;
 }
 
 u32 DoEndTurnEffects(void)
@@ -2602,7 +2602,7 @@ u32 DoEndTurnEffects(void)
                 side = gBattleStruct->turnSideTracker;
                 if (gSideStatuses[side] & SIDE_STATUS_LIGHTSCREEN && --gSideTimers[side].lightscreenTimer == 0)
                 {
-                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
+                    gBattlerAttacker = gSideTimers[side].lightscreenBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_LIGHTSCREEN;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
@@ -2615,7 +2615,7 @@ u32 DoEndTurnEffects(void)
                 side = gBattleStruct->turnSideTracker;
                 if (gSideStatuses[side] & SIDE_STATUS_SAFEGUARD && --gSideTimers[side].safeguardTimer == 0)
                 {
-                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
+                    gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
                     BattleScriptExecute(BattleScript_SafeguardEnds);
                     effect++;
@@ -2626,7 +2626,7 @@ u32 DoEndTurnEffects(void)
                 side = gBattleStruct->turnSideTracker;
                 if (gSideTimers[side].mistTimer != 0 && --gSideTimers[side].mistTimer == 0)
                 {
-                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
+                    gBattlerAttacker = gSideTimers[side].mistBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_MIST;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
@@ -2639,7 +2639,7 @@ u32 DoEndTurnEffects(void)
                 side = gBattleStruct->turnSideTracker;
                 if (gSideStatuses[side] & SIDE_STATUS_TAILWIND && gSideTimers[side].tailwindTimer > 0 && --gSideTimers[side].tailwindTimer == 0)
                 {
-                    gBattlerAttacker = gSideTimers[side].reflectBattlerId;
+                    gBattlerAttacker = gSideTimers[side].tailwindBattlerId;
                     gSideStatuses[side] &= ~SIDE_STATUS_TAILWIND;
                     BattleScriptExecute(BattleScript_TailwindEnds);
                     effect++;
@@ -2652,7 +2652,7 @@ u32 DoEndTurnEffects(void)
                 {
                     if (--gSideTimers[side].luckyChantTimer == 0)
                     {
-                        gBattlerAttacker = gSideTimers[side].reflectBattlerId;
+                        gBattlerAttacker = gSideTimers[side].luckyChantBattlerId;
                         gSideStatuses[side] &= ~SIDE_STATUS_LUCKY_CHANT;
                         BattleScriptExecute(BattleScript_LuckyChantEnds);
                         effect++;
