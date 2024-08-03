@@ -126,6 +126,8 @@ const u32 gBattleAnimSpritePal_DragonPulseRing[] = INCBIN_U32("graphics/battle_a
 
 const u32 gBattleAnimSpriteGfx_DreepyMissile[] = INCBIN_U32("graphics/battle_anims/sprites/dreepy_missile.4bpp.lz");
 const u32 gBattleAnimSpritePal_DreepyMissile[] = INCBIN_U32("graphics/battle_anims/sprites/dreepy_missile.gbapal.lz");
+const u32 gBattleAnimSpriteGfx_DreepyMissileShiny[] = INCBIN_U32("graphics/battle_anims/sprites/dreepy_missile.4bpp.lz");
+const u32 gBattleAnimSpritePal_DreepyMissileShiny[] = INCBIN_U32("graphics/battle_anims/sprites/dreepy_missile_shiny.gbapal.lz");
 
 const u32 gBattleAnimSpriteGfx_Drill[] = INCBIN_U32("graphics/battle_anims/sprites/drill.4bpp.lz");
 const u32 gBattleAnimSpritePal_Drill[] = INCBIN_U32("graphics/battle_anims/sprites/drill.gbapal.lz");
@@ -462,6 +464,12 @@ const u32 gBattleAnimSpriteGfx_SyrupShell[] = INCBIN_U32("graphics/battle_anims/
 const u32 gBattleAnimSpriteGfx_SyrupSplat[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_bomb_splat.4bpp.lz");
 const u32 gBattleAnimSpritePal_SyrupRed[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_red.gbapal.lz");
 const u32 gBattleAnimSpritePal_SyrupYellow[] = INCBIN_U32("graphics/battle_anims/sprites/syrup_yellow.gbapal.lz");
+
+const u32 gBattleAnimSpriteGfx_IvyCudgel[] = INCBIN_U32("graphics/battle_anims/sprites/cudgel.4bpp.lz");
+const u32 gBattleAnimSpritePal_IvyCudgelGrass[] = INCBIN_U32("graphics/pokemon/ogerpon/normal.gbapal.lz");
+const u32 gBattleAnimSpritePal_IvyCudgelFire[] = INCBIN_U32("graphics/pokemon/ogerpon/hearthflame/normal.gbapal.lz");
+const u32 gBattleAnimSpritePal_IvyCudgelRock[] = INCBIN_U32("graphics/pokemon/ogerpon/cornerstone/normal.gbapal.lz");
+const u32 gBattleAnimSpritePal_IvyCudgelWater[] = INCBIN_U32("graphics/pokemon/ogerpon/wellspring/normal.gbapal.lz");
 
 // old battle interface data, unused
 
@@ -1640,6 +1648,9 @@ const u32 gPartyMenuPokeball_Pal[] = INCBIN_U32("graphics/party_menu/pokeball.gb
 const u32 gStatusGfx_Icons[] = INCBIN_U32("graphics/interface/status_icons.4bpp.lz");
 const u32 gStatusPal_Icons[] = INCBIN_U32("graphics/interface/status_icons.gbapal.lz");
 
+const u16 gCategoryIcons_Pal[] = INCBIN_U16("graphics/interface/category_icons.gbapal");
+const u32 gCategoryIcons_Gfx[] = INCBIN_U32("graphics/interface/category_icons.4bpp.lz");
+
 const u32 gMoveTypes_Gfx[] = INCBIN_U32("graphics/types/move_types.4bpp.lz");
 const u32 gMoveTypes_Pal[] = INCBIN_U32("graphics/types/move_types.gbapal.lz");
 
@@ -1754,7 +1765,6 @@ const u16 gFrontierPassMedalsGold_Pal[] = INCBIN_U16("graphics/frontier_pass/gol
 
 // Pokédex
 const u16 gPokedexBgHoenn_Pal[] = INCBIN_U16("graphics/pokedex/bg_hoenn.gbapal");
-const u16 gPokedexCaughtScreen_Pal[] = INCBIN_U16("graphics/pokedex/caught_screen.gbapal");
 const u16 gPokedexSearchResults_Pal[] = INCBIN_U16("graphics/pokedex/search_results_bg.gbapal");
 const u16 gPokedexBgNational_Pal[] = INCBIN_U16("graphics/pokedex/bg_national.gbapal");
 const u32 gPokedexMenu_Gfx[] = INCBIN_U32("graphics/pokedex/menu.4bpp.lz");

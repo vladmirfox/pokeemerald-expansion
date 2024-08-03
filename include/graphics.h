@@ -1681,6 +1681,9 @@ extern const u32 gItemIconPalette_DragonTeraShard[];
 extern const u32 gItemIconPalette_SteelTeraShard[];
 extern const u32 gItemIconPalette_FairyTeraShard[];
 
+extern const u32 gItemIcon_StellarTeraShard[];
+extern const u32 gItemIconPalette_StellarTeraShard[];
+
 extern const u32 gItemIcon_AdamantCrystal[];
 extern const u32 gItemIconPalette_AdamantCrystal[];
 extern const u32 gItemIcon_GriseousCore[];
@@ -1983,6 +1986,8 @@ extern const u32 gSummaryMoveSelect_Gfx[];
 extern const u32 gSummaryMoveSelect_Pal[];
 extern const u32 gStatusGfx_Icons[];
 extern const u32 gStatusPal_Icons[];
+extern const u16 gCategoryIcons_Pal[];
+extern const u32 gCategoryIcons_Gfx[];
 
 extern const u32 gShopMenu_Gfx[];
 extern const u32 gShopMenu_Tilemap[];
@@ -2755,6 +2760,8 @@ extern const u32 gBattleAnimSpriteGfx_DragonPulseRing[];
 extern const u32 gBattleAnimSpritePal_DragonPulseRing[];
 extern const u32 gBattleAnimSpriteGfx_DreepyMissile[];
 extern const u32 gBattleAnimSpritePal_DreepyMissile[];
+extern const u32 gBattleAnimSpriteGfx_DreepyMissileShiny[];
+extern const u32 gBattleAnimSpritePal_DreepyMissileShiny[];
 extern const u32 gBattleAnimSpriteGfx_Drill[];
 extern const u32 gBattleAnimSpritePal_Drill[];
 extern const u32 gBattleAnimSpriteGfx_NewEmbers[];
@@ -2872,6 +2879,11 @@ extern const u32 gBattleAnimSpriteGfx_SyrupShell[];
 extern const u32 gBattleAnimSpriteGfx_SyrupSplat[];
 extern const u32 gBattleAnimSpritePal_SyrupRed[];
 extern const u32 gBattleAnimSpritePal_SyrupYellow[];
+extern const u32 gBattleAnimSpriteGfx_IvyCudgel[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelGrass[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelFire[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelRock[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelWater[];
 
 //Shadow Pokemon effects
 extern const u32 gBattleAnimSpriteGfx_ShadowParticles[];

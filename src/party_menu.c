@@ -14,6 +14,7 @@
 #include "decompress.h"
 #include "easy_chat.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "evolution_scene.h"
 #include "field_control_avatar.h"
 #include "field_effect.h"
@@ -74,12 +75,6 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-
-#if (DECAP_ENABLED) && (DECAP_MIRRORING) && !(DECAP_PARTY_MENU)
-#define gStringVar4 (MirrorPtr(gStringVar4))
-#define AddTextPrinterParameterized4(a, b, c, d, e, f, g, h, str) (AddTextPrinterParameterized4(a, b, c, d, e, f, g, h, MirrorPtr(str)))
-#define AddTextPrinterParameterized3(a, b, c, d, e, f, str) AddTextPrinterParameterized3(a, b, c, d, e, f, MirrorPtr(str))
-#endif
 
 enum {
     MENU_SUMMARY,
@@ -2774,10 +2769,7 @@ static void PrintMessage(const u8 *text)
 {
     DrawStdFrameWithCustomTileAndPalette(WIN_MSG, FALSE, 0x4F, 13);
     gTextFlags.canABSpeedUpPrint = TRUE;
-    if (DECAP_ENABLED && DECAP_MIRRORING && !DECAP_PARTY_MENU)
-        AddTextPrinterParameterized2(WIN_MSG, FONT_NORMAL, MirrorPtr(text), GetPlayerTextSpeedDelay(), 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
-    else
-        AddTextPrinterParameterized2(WIN_MSG, FONT_NORMAL, text, GetPlayerTextSpeedDelay(), 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    AddTextPrinterParameterized2(WIN_MSG, FONT_NORMAL, text, GetPlayerTextSpeedDelay(), 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
 }
 
 static void PartyMenuDisplayYesNoMenu(void)
@@ -3012,6 +3004,9 @@ static void CB2_ReturnToPartyMenuFromSummaryScreen(void)
 
 static void CursorCb_Switch(u8 taskId)
 {
+    // Reset follower steps when the party leader is changed
+    if (gPartyMenu.slotId == 0 || gPartyMenu.slotId2 == 0)
+        gFollowerSteps = 0;
     PlaySE(SE_SELECT);
     gPartyMenu.action = PARTY_ACTION_SWITCH;
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
@@ -4037,6 +4032,13 @@ bool8 FieldCallback_PrepareFadeInFromMenu(void)
     FadeInFromBlack();
     CreateTask(Task_FieldMoveWaitForFade, 8);
     return TRUE;
+}
+
+// Same as above, but removes follower pokemon
+bool8 FieldCallback_PrepareFadeInForTeleport(void)
+{
+    RemoveFollowingPokemon();
+    return FieldCallback_PrepareFadeInFromMenu();
 }
 
 static void Task_FieldMoveWaitForFade(u8 taskId)
@@ -6382,6 +6384,7 @@ static void Task_TryItemUseFormChange(u8 taskId)
     case 0:
         targetSpecies = gTasks[taskId].tTargetSpecies;
         SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
+        TrySetDayLimitToFormChange(mon);
         CalculateMonStats(mon);
         gTasks[taskId].tState++;
         break;
@@ -7782,6 +7785,6 @@ void IsLastMonThatKnowsSurf(void)
             }
         }
         if (AnyStorageMonWithMove(move) != TRUE)
-            gSpecialVar_Result = TRUE;
+            gSpecialVar_Result = !P_CAN_FORGET_HIDDEN_MOVE;
     }
 }

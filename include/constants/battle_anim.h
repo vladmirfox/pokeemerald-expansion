@@ -405,10 +405,15 @@
 #define ANIM_TAG_SYRUP_SHELL_YELLOW         (ANIM_SPRITES_START + 391)
 #define ANIM_TAG_SYRUP_SPLAT_RED            (ANIM_SPRITES_START + 392)
 #define ANIM_TAG_SYRUP_SPLAT_YELLOW         (ANIM_SPRITES_START + 393)
-#define ANIM_TAG_TERA_CRYSTAL               (ANIM_SPRITES_START + 394)
-#define ANIM_TAG_TERA_SHATTER               (ANIM_SPRITES_START + 395)
-#define ANIM_TAG_SHADOW_PARTICLES           (ANIM_SPRITES_START + 396)
-#define ANIM_TAG_REVERSE_PARTICLES          (ANIM_SPRITES_START + 397)
+#define ANIM_TAG_IVY_CUDGEL_GRASS           (ANIM_SPRITES_START + 394)
+#define ANIM_TAG_IVY_CUDGEL_FIRE            (ANIM_SPRITES_START + 395)
+#define ANIM_TAG_IVY_CUDGEL_ROCK            (ANIM_SPRITES_START + 396)
+#define ANIM_TAG_IVY_CUDGEL_WATER           (ANIM_SPRITES_START + 397)
+#define ANIM_TAG_TERA_CRYSTAL               (ANIM_SPRITES_START + 398)
+#define ANIM_TAG_TERA_SHATTER               (ANIM_SPRITES_START + 399)
+#define ANIM_TAG_DREEPY_SHINY               (ANIM_SPRITES_START + 400)
+#define ANIM_TAG_SHADOW_PARTICLES           (ANIM_SPRITES_START + 401)
+#define ANIM_TAG_REVERSE_PARTICLES          (ANIM_SPRITES_START + 402)
 
 // battlers
 #define ANIM_ATTACKER         0
@@ -575,8 +580,9 @@
 #define B_ANIM_FOG_CONTINUES            49
 #define B_ANIM_TERA_CHARGE              50
 #define B_ANIM_TERA_ACTIVATE            51
-#define B_ANIM_SHADOW_SKY_CONTINUES     52
-#define B_ANIM_CALL_REVERSE_MODE        53
+#define B_ANIM_SIMPLE_HEAL              52
+#define B_ANIM_SHADOW_SKY_CONTINUES     53
+#define B_ANIM_CALL_REVERSE_MODE        54
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0
