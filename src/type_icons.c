@@ -389,6 +389,8 @@ static const struct SpriteTemplate sSpriteTemplate_TypeIcons2 =
 
 void TryLoadTypeIcons(u32 battler)
 {
+	if (!B_SHOW_TYPES)
+		return;
     if (IndexOfSpritePaletteTag(TYPE_ICON_TAG) == 0xFF)
     {
         LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons1);
@@ -431,7 +433,7 @@ void TryLoadTypeIcons(u32 battler)
             u8 type = (typeNum == 0) ? type1 : type2;
 
             switch (type) //Certain types have a different palette
-            { 
+            {
             case TYPE_FIRE:
             case TYPE_WATER:
             case TYPE_GRASS:
