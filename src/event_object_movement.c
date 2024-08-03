@@ -5213,8 +5213,7 @@ static bool32 TryStartFollowerTransformEffect(struct ObjectEvent *objectEvent, s
     u32 multi;
     struct Pokemon *mon;
     u32 ability;
-    if (OW_FOLLOWERS_WEATHER_FORMS
-        && DoesSpeciesHaveFormChangeMethod(OW_SPECIES(objectEvent), FORM_CHANGE_BATTLE_WEATHER)
+    if (DoesSpeciesHaveFormChangeMethod(OW_SPECIES(objectEvent), FORM_CHANGE_OVERWORLD_WEATHER)
         && OW_SPECIES(objectEvent) != (multi = GetOverworldWeatherSpecies(OW_SPECIES(objectEvent))))
     {
         sprite->data[7] = TRANSFORM_TYPE_WEATHER << 8;
