@@ -3964,8 +3964,16 @@ static void SetMoveTypeIcons(void)
     {
         if (summary->moves[i] != MOVE_NONE) 
         {
+            u16 species = GetMonData(mon, MON_DATA_SPECIES);
+
+            if (P_DYNAMIC_IVY_CUDGEL && summary->moves[i] == MOVE_IVY_CUDGEL && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA
+                    || species == SPECIES_OGERPON_HEARTHFLAME_MASK || species == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
+                    || species == SPECIES_OGERPON_CORNERSTONE_MASK || species == SPECIES_OGERPON_CORNERSTONE_MASK_TERA))
+            {
+                SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);                
+            }
             
-            if (P_DYNAMIC_HIDDEN_POWER_TYPES && summary->moves[i] == MOVE_HIDDEN_POWER) 
+            else if (P_DYNAMIC_HIDDEN_POWER_TYPES && summary->moves[i] == MOVE_HIDDEN_POWER) 
             {
                 u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
                      | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
@@ -4008,6 +4016,7 @@ static void SetContestMoveTypeIcons(void)
 static void SetNewMoveTypeIcon(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+    struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
@@ -4016,7 +4025,17 @@ static void SetNewMoveTypeIcon(void)
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            if (P_DYNAMIC_HIDDEN_POWER_TYPES && sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) 
+        {
+            u16 species = GetMonData(mon, MON_DATA_SPECIES);
+
+            if (P_DYNAMIC_IVY_CUDGEL && sMonSummaryScreen->newMove == MOVE_IVY_CUDGEL && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA
+                    || species == SPECIES_OGERPON_HEARTHFLAME_MASK || species == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
+                    || species == SPECIES_OGERPON_CORNERSTONE_MASK || species == SPECIES_OGERPON_CORNERSTONE_MASK_TERA))
+            {
+                SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 85, 96, SPRITE_ARR_ID_TYPE + 4);                
+            }
+
+            else if (P_DYNAMIC_HIDDEN_POWER_TYPES && sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) 
             {
                 u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
                      | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
@@ -4035,6 +4054,8 @@ static void SetNewMoveTypeIcon(void)
                 {
                 SetTypeSpritePosAndPal(gMovesInfo[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
                 }
+        }
+
         else
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
     }
