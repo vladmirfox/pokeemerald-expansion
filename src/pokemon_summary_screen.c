@@ -3989,7 +3989,6 @@ static void SetContestMoveTypeIcons(void)
 static void SetNewMoveTypeIcon(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
-    //struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 4, TRUE);
