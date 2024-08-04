@@ -90,7 +90,7 @@ static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
     [B_POSITION_PLAYER_LEFT] =
     {
         [TRUE] = {221, 86},     //Single Battle
-        [FALSE] = {144, 70},    //Double Battle
+        [FALSE] = {144, 71},    //Double Battle
     },
     [B_POSITION_OPPONENT_LEFT] =
     {
@@ -395,88 +395,92 @@ static const struct SpriteTemplate sSpriteTemplate_TypeIcons2 =
     .callback = SpriteCB_CamomonsTypeIcon
 };
 
+bool32 IsTypeIsSecondPalette(u32 type)
+{
+	switch (type)
+	{
+		case TYPE_FIRE:
+		case TYPE_WATER:
+		case TYPE_GRASS:
+		case TYPE_ELECTRIC:
+		case TYPE_PSYCHIC:
+		case TYPE_ICE:
+		case TYPE_DRAGON:
+		case TYPE_DARK:
+		case TYPE_FAIRY:
+			return TRUE;
+		default:
+			return FALSE;
+	}
+}
+
+void LoadTypeSpritesAndPalettes(void)
+{
+	if (IndexOfSpritePaletteTag(TYPE_ICON_TAG) != 0xFF)
+		return;
+
+	LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons1);
+	LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons2);
+	LoadCompressedSpritePalette(&sTypeIconPal1);
+	LoadCompressedSpritePalette(&sTypeIconPal2);
+}
+
 void TryLoadTypeIcons(u32 battler)
 {
 	if (!B_SHOW_TYPES)
 		return;
-    if (IndexOfSpritePaletteTag(TYPE_ICON_TAG) == 0xFF)
-    {
-        LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons1);
-        LoadCompressedSpriteSheet(&sSpriteSheet_TypeIcons2);
-        LoadCompressedSpritePalette(&sTypeIconPal1);
-        LoadCompressedSpritePalette(&sTypeIconPal2);
-    }
 
-    for (u8 position = 0; position < gBattlersCount; ++position)
-    {
-        u8 bank = GetBattlerAtPosition(position);
+	LoadTypeSpritesAndPalettes();
 
-        if (!BATTLER_ALIVE(GetBattlerAtPosition(position)))
-            continue;
+	for (u8 position = 0; position < gBattlersCount; ++position)
+	{
+		u8 bank = GetBattlerAtPosition(position);
 
-        /*
-           struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
-
-           if (monIllusion != GetBankPartyData(bank)) //Under Illusion
-           {
-           type1 = GetMonType(monIllusion, 0);
-           type2 = GetMonType(monIllusion, 1);
-           }
-           else
-           {
-           type1 = gBattleMons[bank].type1;
-           type2 = gBattleMons[bank].type2;
-           }
-           */
+		if (!BATTLER_ALIVE(GetBattlerAtPosition(position)))
+			continue;
 
 		u32 type1 = GetMonType(bank, 0);
 		u32 type2 = GetMonType(bank, 1);
 
-        for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
-        {
-            u8 spriteId;
-            s16 x = sTypeIconPositions[position][IS_SINGLE_BATTLE].x;
-            s16 y = sTypeIconPositions[position][IS_SINGLE_BATTLE].y + (11 * typeNum); //2nd type is 13px below
+		for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
+		{
+			u8 spriteId;
+			s16 x = sTypeIconPositions[position][IS_SINGLE_BATTLE].x;
+			s16 y = sTypeIconPositions[position][IS_SINGLE_BATTLE].y + (11 * typeNum); //2nd type is 13px below
+			/*
+			if (!IS_SINGLE_BATTLE)
+				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+					if (position == 0)
+						y++;
+						*/
 
-            u8 type = (typeNum == 0) ? type1 : type2;
+			u8 type = (typeNum == 0) ? type1 : type2;
 
-            switch (type) //Certain types have a different palette
-            {
-            case TYPE_FIRE:
-            case TYPE_WATER:
-            case TYPE_GRASS:
-            case TYPE_ELECTRIC:
-            case TYPE_PSYCHIC:
-            case TYPE_ICE:
-            case TYPE_DRAGON:
-            case TYPE_DARK:
-            case TYPE_FAIRY:
-                spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons2, x, y, 0xFF);
-                break;
-            default:
-                spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons1, x, y, 0xFF);
-            }
+			if (IsTypeIsSecondPalette(type))
+				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons2, x, y, 0xFF);
+			else
+				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons1, x, y, 0xFF);
 
-            if (spriteId != MAX_SPRITES)
-            {
-                struct Sprite* sprite = &gSprites[spriteId];
-                sprite->data[0] = position;
-                sprite->data[1] = battler;
-                sprite->data[3] = y; //Save original y-value for bouncing
+			if (spriteId == MAX_SPRITES)
+				return;
 
-                if (IS_SINGLE_BATTLE)
-                {
-                    if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
-                        sprite->hFlip = TRUE;
-                }
-                else //Double Battle
-                {
-                    if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
-                        sprite->hFlip = TRUE;
-                }
+			struct Sprite* sprite = &gSprites[spriteId];
+			sprite->data[0] = position;
+			sprite->data[1] = battler;
+			sprite->data[3] = y; //Save original y-value for bouncing
 
-                StartSpriteAnim(sprite, type);
-            }
-        }
-    }
+			if (IS_SINGLE_BATTLE)
+			{
+				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+					sprite->hFlip = TRUE;
+			}
+			else //Double Battle
+			{
+				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
+					sprite->hFlip = TRUE;
+			}
+
+			StartSpriteAnim(sprite, type);
+		}
+	}
 }
