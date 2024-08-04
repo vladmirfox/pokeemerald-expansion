@@ -69,15 +69,30 @@ struct Pokemon* GetBankPartyData(u8 bank)
 
 u8 GetMonType(u32 bank, u8 typeId)
 {
-	struct Pokemon* monIllusion;
+	struct Pokemon* mon = GetBankPartyData(bank);
+	struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
 
 	if (GetActiveGimmick(bank) == GIMMICK_TERA)
-		return GetMonData(GetBankPartyData(bank), MON_DATA_TERA_TYPE);
+	{
+		if (GetMonData(mon,MON_DATA_TERA_TYPE,NULL) == TYPE_STELLAR)
+		{
+			if (monIllusion != NULL)
+				return gSpeciesInfo[GetMonData(monIllusion,MON_DATA_SPECIES,NULL)].types[typeId];
+			else
+				return gSpeciesInfo[GetMonData(mon,MON_DATA_SPECIES,NULL)].types[typeId];
+		}
+	}
 
-	monIllusion = GetIllusionMonPtr(bank);
-
-    if (monIllusion != NULL)
-		return gSpeciesInfo[GetMonData(monIllusion,MON_DATA_SPECIES,NULL)].types[typeId];
+	if (monIllusion != NULL)
+	{
+		if (
+				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[0] == gBattleMons[bank].type1) &&
+				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[1] == gBattleMons[bank].type2)
+		   )
+		{
+			return gSpeciesInfo[GetMonData(monIllusion, MON_DATA_SPECIES, NULL)].types[typeId];
+		}
+	}
 
 	if (!typeId)
 		return gBattleMons[bank].type1;
@@ -110,7 +125,7 @@ static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
 static void DestroyTypeIcon(struct Sprite* sprite)
 {
     u32 i;
-    DestroySprite(sprite);
+    DestroySpriteAndFreeResources(sprite);
 
     //Check if any more type icons are still on the screen
     for (i = 0; i < MAX_SPRITES; ++i)
@@ -430,6 +445,7 @@ void TryLoadTypeIcons(u32 battler)
 	if (!B_SHOW_TYPES)
 		return;
 
+
 	LoadTypeSpritesAndPalettes();
 
 	for (u8 position = 0; position < gBattlersCount; ++position)
@@ -447,19 +463,15 @@ void TryLoadTypeIcons(u32 battler)
 			u8 spriteId;
 			s16 x = sTypeIconPositions[position][IS_SINGLE_BATTLE].x;
 			s16 y = sTypeIconPositions[position][IS_SINGLE_BATTLE].y + (11 * typeNum); //2nd type is 13px below
-			/*
-			if (!IS_SINGLE_BATTLE)
-				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
-					if (position == 0)
-						y++;
-						*/
-
 			u8 type = (typeNum == 0) ? type1 : type2;
+			if (type1 == type2)
+				if (typeNum == 1)
+					continue;
 
 			if (IsTypeIsSecondPalette(type))
-				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons2, x, y, 0xFF);
+				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons2, x, y,255);
 			else
-				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons1, x, y, 0xFF);
+				spriteId = CreateSpriteAtEnd(&sSpriteTemplate_TypeIcons1, x, y, 255);
 
 			if (spriteId == MAX_SPRITES)
 				return;
