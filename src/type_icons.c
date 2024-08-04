@@ -49,7 +49,7 @@
 #include "graphics.h"
 
 struct Pokemon* GetBankPartyData(u8 bank);
-u8 GetMonType(struct Pokemon* mon, u8 typeId);
+u8 GetMonType(u32 bank, u8 typeId);
 static void SpriteCB_CamomonsTypeIcon(struct Sprite* sprite);
 static bool8 ShouldHideTypeIconSprite(u8 bank);
 static void DestroyTypeIcon(struct Sprite* sprite);
@@ -67,14 +67,25 @@ struct Pokemon* GetBankPartyData(u8 bank)
     return (SIDE(bank) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
-u8 GetMonType(struct Pokemon* mon, u8 typeId)
+u8 GetMonType(u32 bank, u8 typeId)
 {
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u32 species = GetMonData(&GetBattlerParty(bank)[gBattlerPartyIndexes[bank]], MON_DATA_SPECIES);
+	struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
 
-    if (typeId == 0)
-        return gSpeciesInfo[species].types[0];
-    else
-        return gSpeciesInfo[species].types[1];
+	if (GetActiveGimmick(bank) == GIMMICK_TERA)
+		return GetMonData(&GetBattlerParty(bank)[gBattlerPartyIndexes[bank]], MON_DATA_TERA_TYPE);
+
+    if (monIllusion != NULL)
+	{
+		species = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
+		return gSpeciesInfo[species].types[typeId];
+	}
+
+	if (typeId)
+		return gBattleMons[bank].type1;
+	else
+		return gBattleMons[bank].type2;
+//return gSpeciesInfo[species].types[typeId];
 }
 
 static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
@@ -421,8 +432,8 @@ void TryLoadTypeIcons(u32 battler)
            }
            */
 
-        u8 type1 = gBattleMons[bank].type1;
-        u8 type2 = gBattleMons[bank].type2;
+		u32 type1 = GetMonType(bank, 0);
+		u32 type2 = GetMonType(bank, 1);
 
         for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
         {
