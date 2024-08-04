@@ -1754,21 +1754,12 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
     
-    //Dynamic Hidden Power types
-    else if (P_DYNAMIC_HIDDEN_POWER_TYPES && moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_HIDDEN_POWER)
+    //Dynamic Move Types
+    else if (P_SHOW_DYNAMIC_TYPES)
     {
-        u8 typeBits  = ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_HP_IV) & 1) << 0)
-                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_ATK_IV) & 1) << 1)
-                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_DEF_IV) & 1) << 2)
-                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPEED_IV) & 1) << 3)
-                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPATK_IV) & 1) << 4)
-                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPDEF_IV) & 1) << 5);
-
-        u8 type = (15 * typeBits) / 63 + 2;
-        if (type >= TYPE_MYSTERY)
-            type++;
-        type |= 0xC0;
-        end = StringCopy(txtPtr, gTypesInfo[type & 0x3F].name);
+        struct Pokemon *mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
+        type = CheckDynamicMoveType(mon, moveInfo->moves[gMoveSelectionCursor[battler]], battler);
+        end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
 
     else

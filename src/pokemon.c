@@ -2,6 +2,7 @@
 #include "malloc.h"
 #include "apprentice.h"
 #include "battle.h"
+#include "battle_ai_switch_items.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_message.h"
@@ -6940,4 +6941,151 @@ void UpdateDaysPassedSinceFormChange(u16 days)
             }
         }
     }
+}
+
+u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
+{
+    u8 type = gMovesInfo[move].type;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
+    u16 heldItemEffect = ItemId_GetHoldEffect(heldItem);
+    u16 ability = GetMonAbility(mon);
+    u8 type1 = gSpeciesInfo[species].types[0];
+    u8 type2 = gSpeciesInfo[species].types[1];
+
+
+    if (P_SHOW_DYNAMIC_TYPES)
+    {
+        if (move == MOVE_IVY_CUDGEL && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA
+                    || species == SPECIES_OGERPON_HEARTHFLAME_MASK || species == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
+                    || species == SPECIES_OGERPON_CORNERSTONE_MASK || species == SPECIES_OGERPON_CORNERSTONE_MASK_TERA))
+            type = type2;
+
+        else if (move == MOVE_STRUGGLE)
+            type = TYPE_NORMAL;
+
+        else if (move == MOVE_HIDDEN_POWER)
+            type = CalculateHiddenPowerType(mon);
+
+        else if (move == MOVE_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
+            type = TYPE_DARK;
+
+        else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
+        {
+            if (heldItemEffect == gMovesInfo[move].argument)
+                type = ItemId_GetSecondaryId(heldItem);
+        }
+
+        else if (move == MOVE_NATURAL_GIFT && ItemId_GetPocket(heldItem) == POCKET_BERRIES)
+            type = gNaturalGiftTable[ITEM_TO_BERRY(heldItem)].type;
+
+        else if (move == MOVE_RAGING_BULL && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED 
+                        || SPECIES_TAUROS_PALDEAN_BLAZE_BREED 
+                        || SPECIES_TAUROS_PALDEAN_AQUA_BREED))
+                type = type2;
+        
+        else if (move == MOVE_REVELATION_DANCE)
+        {
+            if (gBattleMons[battler].species != species && type1 != TYPE_MYSTERY)
+                type = type1;
+            else if (gBattleMons[battler].species != species && type2 != TYPE_MYSTERY)
+                type = type2;
+            else if (GetActiveGimmick(battler) == GIMMICK_TERA && GetBattlerTeraType(battler) != TYPE_STELLAR)
+                type = GetMonData(mon, MON_DATA_TERA_TYPE);
+            else if (gBattleMons[battler].type1 != TYPE_MYSTERY)
+                type = gBattleMons[battler].type1;
+            else if (gBattleMons[battler].type2 != TYPE_MYSTERY)
+                type = gBattleMons[battler].type2;
+            else if (gBattleMons[battler].type3 != TYPE_MYSTERY)
+                type = gBattleMons[battler].type3;
+        }
+
+        else if (gMovesInfo[move].effect == EFFECT_TERRAIN_PULSE)
+        {
+            if ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species) 
+                || (IsBattlerTerrainAffected(battler, STATUS_FIELD_TERRAIN_ANY) && gBattleMons[battler].species == species))
+            {
+                if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+                    return TYPE_ELECTRIC;
+                else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                    return TYPE_GRASS;
+                else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+                    return TYPE_FAIRY;
+                else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+                    return TYPE_PSYCHIC;
+                else //failsafe
+                    return TYPE_NORMAL;
+            }
+        }
+
+        if (gMovesInfo[move].effect == EFFECT_WEATHER_BALL)
+        {
+            if (WEATHER_HAS_EFFECT)
+            {
+                if (gBattleWeather & B_WEATHER_RAIN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                    return TYPE_WATER;
+                else if (gBattleWeather & B_WEATHER_SANDSTORM)
+                    return TYPE_ROCK;
+                else if (gBattleWeather & B_WEATHER_SUN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                    return TYPE_FIRE;
+                else if (gBattleWeather & B_WEATHER_SNOW)
+                    return TYPE_ICE;
+                else
+                    return TYPE_NORMAL;
+            }
+        }
+
+        if (ability == ABILITY_NORMALIZE)
+        {
+            if (gMovesInfo[move].type != TYPE_NORMAL
+                && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
+                && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
+                && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
+            type = TYPE_NORMAL;
+        }
+
+        if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && type == TYPE_NORMAL) || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
+            type = TYPE_ELECTRIC;
+
+        if (gMovesInfo[move].type == TYPE_NORMAL
+                    && gMovesInfo[move].effect != EFFECT_HIDDEN_POWER
+                    && gMovesInfo[move].effect != EFFECT_WEATHER_BALL
+                    && gMovesInfo[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+                    && gMovesInfo[move].effect != EFFECT_NATURAL_GIFT
+                    && gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS
+                    && ((ability == ABILITY_PIXILATE       && (type = TYPE_FAIRY))
+                        || (ability == ABILITY_REFRIGERATE && (type = TYPE_ICE))
+                        || (ability == ABILITY_AERILATE    && (type = TYPE_FLYING))
+                        || ((ability == ABILITY_GALVANIZE) && (type = TYPE_ELECTRIC)))
+                        )
+            {
+                return type;
+            }
+
+        if (ability == ABILITY_LIQUID_VOICE)
+        {
+            if (gMovesInfo[move].soundMove == TRUE)
+                return TYPE_WATER;
+        }
+
+    }
+
+    return type;
+}
+
+u8 CalculateHiddenPowerType(struct Pokemon *mon)
+{
+    u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
+        | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
+        | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
+        | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
+        | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
+        | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
+
+    u8 type = (15 * typeBits) / 63 + 2;
+    if (type >= TYPE_MYSTERY)
+        type++;
+    type |= 0xC0;
+    u8 typehp = type & 0x3F;
+    return typehp;
 }
