@@ -69,23 +69,20 @@ struct Pokemon* GetBankPartyData(u8 bank)
 
 u8 GetMonType(u32 bank, u8 typeId)
 {
-	u32 species = GetMonData(&GetBattlerParty(bank)[gBattlerPartyIndexes[bank]], MON_DATA_SPECIES);
-	struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
+	struct Pokemon* monIllusion;
 
 	if (GetActiveGimmick(bank) == GIMMICK_TERA)
-		return GetMonData(&GetBattlerParty(bank)[gBattlerPartyIndexes[bank]], MON_DATA_TERA_TYPE);
+		return GetMonData(GetBankPartyData(bank), MON_DATA_TERA_TYPE);
+
+	monIllusion = GetIllusionMonPtr(bank);
 
     if (monIllusion != NULL)
-	{
-		species = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
-		return gSpeciesInfo[species].types[typeId];
-	}
+		return gSpeciesInfo[GetMonData(monIllusion,MON_DATA_SPECIES,NULL)].types[typeId];
 
-	if (typeId)
+	if (!typeId)
 		return gBattleMons[bank].type1;
 	else
 		return gBattleMons[bank].type2;
-//return gSpeciesInfo[species].types[typeId];
 }
 
 static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
