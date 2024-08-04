@@ -360,7 +360,7 @@ AI_SINGLE_BATTLE_TEST("AI won't use trapping behaviour if player only has 1 mon 
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if mon would be OKHO'd and they have a good switchin 50% of the time")
 {
-    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH);
+    PASSES_RANDOMLY(50, 100, RNG_AI_HASBADODDS);
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_RHYDON].types[0] == TYPE_GROUND);
         ASSUME(gSpeciesInfo[SPECIES_PELIPPER].types[0] == TYPE_WATER);
