@@ -20,6 +20,7 @@
 #include "m4a.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "pokedex.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "random.h"
@@ -84,6 +85,10 @@ u8 GetMonDisplayedType(u32 battlerId, u8 typeId)
 {
     struct Pokemon* mon = GetBattlerData(battlerId);
     struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
+
+	if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(mon,MON_DATA_SPECIES,NULL)),FLAG_GET_CAUGHT))
+		if (B_SHOW_TYPES == SHOW_TYPES_SEEN)
+			return TYPE_MYSTERY;
 
     if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
     {
@@ -511,15 +516,17 @@ void TryLoadTypeIcons(u32 battler)
             sprite->data[3] = y; //Save original y-value for bouncing
 
             if (doubleBattle)
-            {
-                if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
-                    sprite->hFlip = TRUE;
-            }
+			{
+				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
+					if (type1 != TYPE_MYSTERY)
+						sprite->hFlip = TRUE;
+			}
             else
-            {
-                if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
-                    sprite->hFlip = TRUE;
-            }
+			{
+				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+					if (type1 != TYPE_MYSTERY)
+						sprite->hFlip = TRUE;
+			}
 
             StartSpriteAnim(sprite, type);
         }
