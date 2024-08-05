@@ -94,25 +94,25 @@ u8 GetMonDisplayedType(u32 battlerId, u8 typeId)
 		return gBattleMons[battlerId].type2;
 }
 
-static const struct Coords16 sTypeIconPositions[][/*BATTLE_TYPE_IS_SINGLE*/2] =
+static const struct Coords16 sTypeIconPositions[][/*BATTLE_TYPE_IS_DOUBLE*/2] =
 {
     [B_POSITION_PLAYER_LEFT] =
     {
-        [TRUE] = {221, 86},     //Single Battle
-        [FALSE] = {144, 71},    //Double Battle
+        [FALSE] = {221, 86},     //Single Battle
+        [TRUE] = {144, 71},    //Double Battle
     },
     [B_POSITION_OPPONENT_LEFT] =
     {
-        [TRUE] = {20, 26},         //Single Battle
-        [FALSE] = {97, 14},        //Double Battle
+        [FALSE] = {20, 26},         //Single Battle
+        [TRUE] = {97, 14},        //Double Battle
     },
     [B_POSITION_PLAYER_RIGHT] =
     {
-        [FALSE] = {156, 96},    //Double Battle
+        [TRUE] = {156, 96},    //Double Battle
     },
     [B_POSITION_OPPONENT_RIGHT] =
     {
-        [FALSE] = {85, 39},        //Double Battle
+        [TRUE] = {85, 39},        //Double Battle
     },
 };
 
@@ -158,18 +158,7 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
     //Type icons should prepare to destroy themselves if the Player is not choosing an action
     if (ShouldHideTypeIcon(battlerId))
     {
-        if (BATTLE_TYPE_IS_SINGLE)
-        {
-            switch (position) {
-                case B_POSITION_PLAYER_LEFT:
-                    sprite->x -= 1;
-                    break;
-                case B_POSITION_OPPONENT_LEFT:
-                    sprite->x += 1;
-                    break;
-            }
-        }
-        else //Double Battle
+        if (BATTLE_TYPE_IS_DOUBLE)
         {
             switch (position) {
                 case B_POSITION_PLAYER_LEFT:
@@ -182,21 +171,34 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
                     break;
             }
         }
+        else //Double Battle
+        {
+            switch (position) {
+                case B_POSITION_PLAYER_LEFT:
+                    sprite->x -= 1;
+                    break;
+                case B_POSITION_OPPONENT_LEFT:
+                    sprite->x += 1;
+                    break;
+            }
+        }
 
         ++sprite->data[2];
         return;
     }
 
-    if (BATTLE_TYPE_IS_SINGLE)
+    if (BATTLE_TYPE_IS_DOUBLE)
     {
         switch (position) {
             case B_POSITION_PLAYER_LEFT:
-                if (sprite->x < sTypeIconPositions[position][TRUE].x + 10)
-                    sprite->x += 1;
-                break;
-            case B_POSITION_OPPONENT_LEFT:
+            case B_POSITION_PLAYER_RIGHT:
                 if (sprite->x > sTypeIconPositions[position][TRUE].x - 10)
                     sprite->x -= 1;
+                break;
+            case B_POSITION_OPPONENT_LEFT:
+            case B_POSITION_OPPONENT_RIGHT:
+                if (sprite->x < sTypeIconPositions[position][TRUE].x + 10)
+                    sprite->x += 1;
                 break;
         }
     }
@@ -204,14 +206,12 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
     {
         switch (position) {
             case B_POSITION_PLAYER_LEFT:
-            case B_POSITION_PLAYER_RIGHT:
-                if (sprite->x > sTypeIconPositions[position][FALSE].x - 10)
-                    sprite->x -= 1;
-                break;
-            case B_POSITION_OPPONENT_LEFT:
-            case B_POSITION_OPPONENT_RIGHT:
                 if (sprite->x < sTypeIconPositions[position][FALSE].x + 10)
                     sprite->x += 1;
+                break;
+            case B_POSITION_OPPONENT_LEFT:
+                if (sprite->x > sTypeIconPositions[position][FALSE].x - 10)
+                    sprite->x -= 1;
                 break;
         }
     }
@@ -455,8 +455,8 @@ void TryLoadTypeIcons(u32 battler)
 		for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
 		{
 			u8 spriteId;
-			s16 x = sTypeIconPositions[position][BATTLE_TYPE_IS_SINGLE].x;
-			s16 y = sTypeIconPositions[position][BATTLE_TYPE_IS_SINGLE].y + (11 * typeNum); //2nd type is 13px below
+			s16 x = sTypeIconPositions[position][BATTLE_TYPE_IS_DOUBLE].x;
+			s16 y = sTypeIconPositions[position][BATTLE_TYPE_IS_DOUBLE].y + (11 * typeNum); //2nd type is 13px below
 			u8 type = (typeNum == 0) ? type1 : type2;
 			if (type1 == type2)
 				if (typeNum == 1)
@@ -475,14 +475,14 @@ void TryLoadTypeIcons(u32 battler)
 			sprite->data[1] = battler;
 			sprite->data[3] = y; //Save original y-value for bouncing
 
-			if (BATTLE_TYPE_IS_SINGLE)
+			if (BATTLE_TYPE_IS_DOUBLE)
 			{
-				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
 					sprite->hFlip = TRUE;
 			}
 			else //Double Battle
 			{
-				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
+				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
 					sprite->hFlip = TRUE;
 			}
 
