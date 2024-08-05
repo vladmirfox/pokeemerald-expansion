@@ -49,18 +49,19 @@
 #include "sprite.h"
 #include "graphics.h"
 
-struct Pokemon* GetBattlerData(u8 battlerId);
-u8 GetMonDisplayedType(u32 battlerId, u8 typeId);
+struct Pokemon* GetBattlerData(u32 battlerId);
+u32 GetMonDisplayedType(u32 battlerId, u32 typeId);
 static void SpriteCB_TypeIcon(struct Sprite* sprite);
-static bool8 ShouldHideTypeIcon(u8 battlerId);
+static bool32 ShouldHideTypeIcon(u32 battlerId);
 static void DestroyTypeIcon(struct Sprite* sprite);
 bool32 UseDoubleBattleCoords(u32);
 bool32 IsBattlerFainted(u32);
 bool32 IsBattlerNull(u32);
 
-struct Pokemon* GetBattlerData(u8 battlerId)
+struct Pokemon* GetBattlerData(u32 battlerId)
 {
-    u8 index = gBattlerPartyIndexes[battlerId];
+    u32 index = gBattlerPartyIndexes[battlerId];
+
     return (GetBattlerSide(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
@@ -69,26 +70,23 @@ bool32 UseDoubleBattleCoords(u32 position)
 	if (!BATTLE_TYPE_IS_DOUBLE)
 		return FALSE;
 
-	if (position == 0)
-        if (IsBattlerNull(2))
-			return FALSE;
+	if ((position == B_POSITION_PLAYER_LEFT) && (IsBattlerNull(B_POSITION_PLAYER_RIGHT)))
+		return FALSE;
 
-	if (position == 1)
-        if (IsBattlerNull(3))
-			return FALSE;
+	if ((position == B_POSITION_OPPONENT_LEFT) && (IsBattlerNull(B_POSITION_OPPONENT_RIGHT)))
+		return FALSE;
 
 	return TRUE;
 }
 
-
-u8 GetMonDisplayedType(u32 battlerId, u8 typeId)
+u32 GetMonDisplayedType(u32 battlerId, u32 typeId)
 {
     struct Pokemon* mon = GetBattlerData(battlerId);
     struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
 
-	if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(mon,MON_DATA_SPECIES,NULL)),FLAG_GET_CAUGHT))
-		if (B_SHOW_TYPES == SHOW_TYPES_SEEN)
-			return TYPE_MYSTERY;
+    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(mon,MON_DATA_SPECIES,NULL)),FLAG_GET_CAUGHT))
+        if (B_SHOW_TYPES == SHOW_TYPES_SEEN)
+            return TYPE_MYSTERY;
 
     if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
     {
@@ -157,7 +155,7 @@ static void DestroyTypeIcon(struct Sprite* sprite)
     FreeSpritePaletteByTag(TYPE_ICON_TAG_2);
 }
 
-static bool8 ShouldHideTypeIcon(u8 battlerId)
+static bool32 ShouldHideTypeIcon(u32 battlerId)
 {
     return gBattlerControllerFuncs[battlerId] != PlayerHandleChooseMove
         && gBattlerControllerFuncs[battlerId] != HandleInputChooseMove
@@ -170,9 +168,9 @@ static bool8 ShouldHideTypeIcon(u8 battlerId)
 
 static void SpriteCB_TypeIcon(struct Sprite* sprite)
 {
-    u8 position = sprite->data[0];
-    u8 battlerId = sprite->data[1];
-	bool32 doubleBattle = UseDoubleBattleCoords(GetBattlerAtPosition(position));
+    u32 position = sprite->data[0];
+    u32 battlerId = sprite->data[1];
+    bool32 doubleBattle = UseDoubleBattleCoords(GetBattlerAtPosition(position));
 
     if (sprite->data[2] == 10)
     {
@@ -465,7 +463,7 @@ bool32 IsBattlerFainted(u32 battlerId)
 
 bool32 IsBattlerNull(u32 battlerId)
 {
-	return gBattleMons[battlerId].species== SPECIES_NONE;
+    return gBattleMons[battlerId].species== SPECIES_NONE;
 }
 
 void TryLoadTypeIcons(u32 battler)
@@ -475,28 +473,28 @@ void TryLoadTypeIcons(u32 battler)
 
     LoadTypeSpritesAndPalettes();
 
-    for (u8 position = 0; position < gBattlersCount; ++position)
+    for (u32 position = 0; position < gBattlersCount; ++position)
     {
-        u8 battlerId = GetBattlerAtPosition(position);
-		bool32 doubleBattle = UseDoubleBattleCoords(battlerId);
+        u32 battlerId = GetBattlerAtPosition(position);
+        bool32 doubleBattle = UseDoubleBattleCoords(battlerId);
 
         if (IsBattlerFainted(battlerId))
             continue;
 
-		DebugPrintf("battler id %d",battlerId);
-		DebugPrintf("double? %d",doubleBattle);
+        DebugPrintf("battler id %d",battlerId);
+        DebugPrintf("double? %d",doubleBattle);
         u32 type1 = GetMonDisplayedType(battlerId, 0);
         u32 type2 = GetMonDisplayedType(battlerId, 1);
 
-        for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
+        for (u32 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
         {
-            u8 spriteId;
+            u32 spriteId;
             s16 x = sTypeIconPositions[position][doubleBattle].x;
             s16 y = sTypeIconPositions[position][doubleBattle].y + (11 * typeNum); //2nd type is 13px below
-            u8 type = (typeNum == 0) ? type1 : type2;
-			if (position == 0)
-				if (GetBattlerData(position) == NULL)
-					x = sTypeIconPositions[position][doubleBattle].x;
+            u32 type = (typeNum == 0) ? type1 : type2;
+            if (position == 0)
+                if (GetBattlerData(position) == NULL)
+                    x = sTypeIconPositions[position][doubleBattle].x;
 
             if (type1 == type2)
                 if (typeNum == 1)
@@ -516,17 +514,17 @@ void TryLoadTypeIcons(u32 battler)
             sprite->data[3] = y; //Save original y-value for bouncing
 
             if (doubleBattle)
-			{
-				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
-					if (type1 != TYPE_MYSTERY)
-						sprite->hFlip = TRUE;
-			}
+            {
+                if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
+                    if (type1 != TYPE_MYSTERY)
+                        sprite->hFlip = TRUE;
+            }
             else
-			{
-				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
-					if (type1 != TYPE_MYSTERY)
-						sprite->hFlip = TRUE;
-			}
+            {
+                if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+                    if (type1 != TYPE_MYSTERY)
+                        sprite->hFlip = TRUE;
+            }
 
             StartSpriteAnim(sprite, type);
         }
