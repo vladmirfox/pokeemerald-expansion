@@ -7039,8 +7039,8 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
     }
 
     else if (gMovesInfo[move].effect == EFFECT_TERRAIN_PULSE 
-        && ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species) 
-        || (IsBattlerTerrainAffected(battler, STATUS_FIELD_TERRAIN_ANY) && gBattleMons[battler].species == species)))
+          && ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species) 
+           || (IsBattlerTerrainAffected(battler, STATUS_FIELD_TERRAIN_ANY) && gBattleMons[battler].species == species)))
     {  
         if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         {
