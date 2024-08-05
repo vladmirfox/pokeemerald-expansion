@@ -11085,9 +11085,7 @@ u8 GetBattleMoveCategory(u32 moveId)
 
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
-
-    moveType = GetMoveType(gCurrentMove);
-    return gTypesInfo[moveType].damageCategory;
+    return gTypesInfo[GetMoveType(gCurrentMove)].damageCategory;
 }
 
 static bool32 TryRemoveScreens(u32 battler)
