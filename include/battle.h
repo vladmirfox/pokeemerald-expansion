@@ -810,13 +810,6 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
 #define F_DYNAMIC_TYPE_IGNORE_PHYSICALITY  (1 << 6) // If set, the dynamic type's physicality won't be used for certain move effects.
 #define F_DYNAMIC_TYPE_SET                 (1 << 7) // Set for all dynamic types to distinguish a dynamic type of Normal (0) from no dynamic type.
 
-#define GET_MOVE_TYPE(move, typeArg) do {                             \
-    if (gBattleStruct->dynamicMoveType)                               \
-        typeArg = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK; \
-    else                                                              \
-        typeArg = gMovesInfo[move].type;                              \
-} while(0)
-
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveCategory(move) == DAMAGE_CATEGORY_SPECIAL)
 #define IS_MOVE_STATUS(move)(gMovesInfo[move].category == DAMAGE_CATEGORY_STATUS)
@@ -1135,6 +1128,13 @@ static inline u32 GetBattlerPosition(u32 battler)
 static inline u32 GetBattlerSide(u32 battler)
 {
     return GetBattlerPosition(battler) & BIT_SIDE;
+}
+
+static inline u32 GetMoveType(u32 move)
+{
+    if (gBattleStruct->dynamicMoveType)
+        return gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
+    return gMovesInfo[move].type;
 }
 
 static inline struct Pokemon *GetSideParty(u32 side)
