@@ -29,6 +29,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "test_runner.h"
+#include "type_icons.h"
 #include "text.h"
 #include "util.h"
 #include "window.h"
@@ -48,31 +49,24 @@
 #include "sprite.h"
 #include "graphics.h"
 
-struct Pokemon* GetBankPartyData(u8 bank);
-u8 GetMonType(u32 bank, u8 typeId);
-static void SpriteCB_CamomonsTypeIcon(struct Sprite* sprite);
-static bool8 ShouldHideTypeIconSprite(u8 bank);
+struct Pokemon* GetBattlerData(u8 battlerId);
+u8 GetMonDisplayedType(u32 battlerId, u8 typeId);
+static void SpriteCB_TypeIcon(struct Sprite* sprite);
+static bool8 ShouldHideTypeIcon(u8 battlerId);
 static void DestroyTypeIcon(struct Sprite* sprite);
 
-#define TYPE_ICON_TAG 0x2720
-#define TYPE_ICON_TAG_2 0x2721
-#define BATTLER_ALIVE(bank) (gBattleMons[bank].hp > 0)
-#define IS_DOUBLE_BATTLE (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-#define IS_SINGLE_BATTLE !IS_DOUBLE_BATTLE
-#define SIDE(bank) GetBattlerSide(bank)
-
-struct Pokemon* GetBankPartyData(u8 bank)
+struct Pokemon* GetBattlerData(u8 battlerId)
 {
-    u8 index = gBattlerPartyIndexes[bank];
-    return (SIDE(bank) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
+    u8 index = gBattlerPartyIndexes[battlerId];
+    return (SIDE(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
-u8 GetMonType(u32 bank, u8 typeId)
+u8 GetMonDisplayedType(u32 battlerId, u8 typeId)
 {
-	struct Pokemon* mon = GetBankPartyData(bank);
-	struct Pokemon* monIllusion = GetIllusionMonPtr(bank);
+	struct Pokemon* mon = GetBattlerData(battlerId);
+	struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
 
-	if (GetActiveGimmick(bank) == GIMMICK_TERA)
+	if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
 	{
 		if (GetMonData(mon,MON_DATA_TERA_TYPE,NULL) == TYPE_STELLAR)
 		{
@@ -86,8 +80,8 @@ u8 GetMonType(u32 bank, u8 typeId)
 	if (monIllusion != NULL)
 	{
 		if (
-				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[0] == gBattleMons[bank].type1) &&
-				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[1] == gBattleMons[bank].type2)
+				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[0] == gBattleMons[battlerId].type1) &&
+				(gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].types[1] == gBattleMons[battlerId].type2)
 		   )
 		{
 			return gSpeciesInfo[GetMonData(monIllusion, MON_DATA_SPECIES, NULL)].types[typeId];
@@ -95,12 +89,12 @@ u8 GetMonType(u32 bank, u8 typeId)
 	}
 
 	if (!typeId)
-		return gBattleMons[bank].type1;
+		return gBattleMons[battlerId].type1;
 	else
-		return gBattleMons[bank].type2;
+		return gBattleMons[battlerId].type2;
 }
 
-static const struct Coords16 sTypeIconPositions[][/*IS_SINGLE_BATTLE*/2] =
+static const struct Coords16 sTypeIconPositions[][/*BATTLE_TYPE_IS_SINGLE*/2] =
 {
     [B_POSITION_PLAYER_LEFT] =
     {
@@ -139,21 +133,21 @@ static void DestroyTypeIcon(struct Sprite* sprite)
     FreeSpritePaletteByTag(TYPE_ICON_TAG_2);
 }
 
-static bool8 ShouldHideTypeIconSprite(u8 bank)
+static bool8 ShouldHideTypeIcon(u8 battlerId)
 {
-    return gBattlerControllerFuncs[bank] != PlayerHandleChooseMove
-        && gBattlerControllerFuncs[bank] != HandleInputChooseMove
-        && gBattlerControllerFuncs[bank] != HandleChooseMoveAfterDma3
-        && gBattlerControllerFuncs[bank] != HandleInputChooseMove
-        && gBattlerControllerFuncs[bank] != HandleInputChooseTarget
-        && gBattlerControllerFuncs[bank] != HandleMoveSwitching
-        && gBattlerControllerFuncs[bank] != HandleInputChooseMove;
+    return gBattlerControllerFuncs[battlerId] != PlayerHandleChooseMove
+        && gBattlerControllerFuncs[battlerId] != HandleInputChooseMove
+        && gBattlerControllerFuncs[battlerId] != HandleChooseMoveAfterDma3
+        && gBattlerControllerFuncs[battlerId] != HandleInputChooseMove
+        && gBattlerControllerFuncs[battlerId] != HandleInputChooseTarget
+        && gBattlerControllerFuncs[battlerId] != HandleMoveSwitching
+        && gBattlerControllerFuncs[battlerId] != HandleInputChooseMove;
 }
 
-static void SpriteCB_CamomonsTypeIcon(struct Sprite* sprite)
+static void SpriteCB_TypeIcon(struct Sprite* sprite)
 {
     u8 position = sprite->data[0];
-    u8 bank = sprite->data[1];
+    u8 battlerId = sprite->data[1];
 
     if (sprite->data[2] == 10)
     {
@@ -162,9 +156,9 @@ static void SpriteCB_CamomonsTypeIcon(struct Sprite* sprite)
     }
 
     //Type icons should prepare to destroy themselves if the Player is not choosing an action
-    if (ShouldHideTypeIconSprite(bank))
+    if (ShouldHideTypeIcon(battlerId))
     {
-        if (IS_SINGLE_BATTLE)
+        if (BATTLE_TYPE_IS_SINGLE)
         {
             switch (position) {
                 case B_POSITION_PLAYER_LEFT:
@@ -193,7 +187,7 @@ static void SpriteCB_CamomonsTypeIcon(struct Sprite* sprite)
         return;
     }
 
-    if (IS_SINGLE_BATTLE)
+    if (BATTLE_TYPE_IS_SINGLE)
     {
         switch (position) {
             case B_POSITION_PLAYER_LEFT:
@@ -396,7 +390,7 @@ static const struct SpriteTemplate sSpriteTemplate_TypeIcons1 =
     .anims = sSpriteAnimTable_TypeIcons,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_CamomonsTypeIcon
+    .callback = SpriteCB_TypeIcon
 };
 
 static const struct SpriteTemplate sSpriteTemplate_TypeIcons2 =
@@ -407,7 +401,7 @@ static const struct SpriteTemplate sSpriteTemplate_TypeIcons2 =
     .anims = sSpriteAnimTable_TypeIcons,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_CamomonsTypeIcon
+    .callback = SpriteCB_TypeIcon
 };
 
 bool32 IsTypeIsSecondPalette(u32 type)
@@ -450,19 +444,19 @@ void TryLoadTypeIcons(u32 battler)
 
 	for (u8 position = 0; position < gBattlersCount; ++position)
 	{
-		u8 bank = GetBattlerAtPosition(position);
+		u8 battlerId = GetBattlerAtPosition(position);
 
 		if (!BATTLER_ALIVE(GetBattlerAtPosition(position)))
 			continue;
 
-		u32 type1 = GetMonType(bank, 0);
-		u32 type2 = GetMonType(bank, 1);
+		u32 type1 = GetMonDisplayedType(battlerId, 0);
+		u32 type2 = GetMonDisplayedType(battlerId, 1);
 
 		for (u8 typeNum = 0; typeNum < 2; ++typeNum) //Load each type
 		{
 			u8 spriteId;
-			s16 x = sTypeIconPositions[position][IS_SINGLE_BATTLE].x;
-			s16 y = sTypeIconPositions[position][IS_SINGLE_BATTLE].y + (11 * typeNum); //2nd type is 13px below
+			s16 x = sTypeIconPositions[position][BATTLE_TYPE_IS_SINGLE].x;
+			s16 y = sTypeIconPositions[position][BATTLE_TYPE_IS_SINGLE].y + (11 * typeNum); //2nd type is 13px below
 			u8 type = (typeNum == 0) ? type1 : type2;
 			if (type1 == type2)
 				if (typeNum == 1)
@@ -481,7 +475,7 @@ void TryLoadTypeIcons(u32 battler)
 			sprite->data[1] = battler;
 			sprite->data[3] = y; //Save original y-value for bouncing
 
-			if (IS_SINGLE_BATTLE)
+			if (BATTLE_TYPE_IS_SINGLE)
 			{
 				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
 					sprite->hFlip = TRUE;
