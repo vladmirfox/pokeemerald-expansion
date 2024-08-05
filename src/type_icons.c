@@ -434,11 +434,15 @@ void LoadTypeSpritesAndPalettes(void)
 	LoadCompressedSpritePalette(&sTypeIconPal2);
 }
 
+bool32 IsBattlerFainted(u32 battlerId)
+{
+	return gBattleMons[battlerId].hp < 1;
+}
+
 void TryLoadTypeIcons(u32 battler)
 {
 	if (!B_SHOW_TYPES)
 		return;
-
 
 	LoadTypeSpritesAndPalettes();
 
@@ -446,7 +450,7 @@ void TryLoadTypeIcons(u32 battler)
 	{
 		u8 battlerId = GetBattlerAtPosition(position);
 
-		if (!BATTLER_ALIVE(GetBattlerAtPosition(position)))
+		if (IsBattlerFainted(battlerId))
 			continue;
 
 		u32 type1 = GetMonDisplayedType(battlerId, 0);
