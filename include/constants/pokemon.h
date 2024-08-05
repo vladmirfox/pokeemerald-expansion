@@ -253,8 +253,8 @@
 #endif
 
 enum EvolutionMethods U8_ENUM {
-    EVO_FRIENDSHIP_DAY,                  // Pokémon levels up during the day with friendship ≥ 220
     EVO_FRIENDSHIP,                      // Pokémon levels up with friendship ≥ 220
+    EVO_FRIENDSHIP_DAY,                  // Pokémon levels up during the day with friendship ≥ 220
     EVO_FRIENDSHIP_NIGHT,                // Pokémon levels up at night with friendship ≥ 220
     EVO_LEVEL,                           // Pokémon reaches the specified level
     EVO_TRADE,                           // Pokémon is traded
