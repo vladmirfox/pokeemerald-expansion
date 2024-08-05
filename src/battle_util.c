@@ -1155,6 +1155,10 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         SET_STATCHANGER(STAT_SPEED, 1, FALSE);
     }
 
+    // To prevent Defiant/Competitive never triggering again after Sticky Web has been Court Changed
+    if (gBattleScripting.stickyWebStatDrop == 1 && gSideTimers[targetSide].stickyWebBattlerSide == targetSide)
+        gBattleScripting.stickyWebStatDrop = 0;
+
     // Signal for the trainer slide-in system.
     if ((stringId == STRINGID_ITDOESNTAFFECT || stringId == STRINGID_PKMNWASNTAFFECTED || stringId == STRINGID_PKMNUNAFFECTED)
      && GetBattlerSide(gBattlerTarget) == B_SIDE_OPPONENT
