@@ -17,7 +17,7 @@
 #include "util.h"
 #include "constants/battle_anim.h"
 
-#define IS_DOUBLE_BATTLE() ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+#define IS_DOUBLE_BATTLE() ((BATTLE_TYPE_IS_DOUBLE))
 
 extern const struct OamData gOamData_AffineNormal_ObjNormal_64x64;
 
