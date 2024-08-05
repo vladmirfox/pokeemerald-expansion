@@ -55,6 +55,7 @@ static bool8 ShouldHideTypeIcon(u8 battlerId);
 static void DestroyTypeIcon(struct Sprite* sprite);
 bool32 UseDoubleBattleCoords(u32);
 bool32 IsBattlerFainted(u32);
+bool32 IsBattlerNull(u32);
 
 struct Pokemon* GetBattlerData(u8 battlerId)
 {
@@ -68,11 +69,11 @@ bool32 UseDoubleBattleCoords(u32 position)
 		return FALSE;
 
 	if (position == 0)
-        if (IsBattlerFainted(2))
+        if (IsBattlerNull(2))
 			return FALSE;
 
 	if (position == 1)
-        if (IsBattlerFainted(3))
+        if (IsBattlerNull(3))
 			return FALSE;
 
 	return TRUE;
@@ -455,6 +456,11 @@ void LoadTypeSpritesAndPalettes(void)
 bool32 IsBattlerFainted(u32 battlerId)
 {
     return gBattleMons[battlerId].hp < 1;
+}
+
+bool32 IsBattlerNull(u32 battlerId)
+{
+	return gBattleMons[battlerId].species== SPECIES_NONE;
 }
 
 void TryLoadTypeIcons(u32 battler)
