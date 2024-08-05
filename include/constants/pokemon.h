@@ -303,7 +303,7 @@ enum EvolutionMethods U8_ENUM {
     EVO_RECOIL_DAMAGE_MALE,              // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a male
     EVO_RECOIL_DAMAGE_FEMALE,            // Pokémon levels up after having suffered specified amount of non-fainting recoil damage as a female
     EVO_ITEM_COUNT_999,                  // Pokémon levels up after trainer has collected 999 of a specific item
-    EVO_DEFEAT_WITH_ITEM,                // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
+    EVO_DEFEAT_THREE_WITH_ITEM,          // Pokémon levels up after having defeat 3 Pokémon of the same species holding the specified item
     EVO_OVERWORLD_STEPS,                 // Pokémon levels up after having taken a specific amount of steps in the overworld
 };
 
