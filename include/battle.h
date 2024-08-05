@@ -1130,13 +1130,6 @@ static inline u32 GetBattlerSide(u32 battler)
     return GetBattlerPosition(battler) & BIT_SIDE;
 }
 
-static inline u32 GetMoveType(u32 move)
-{
-    if (gBattleStruct->dynamicMoveType)
-        return gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    return gMovesInfo[move].type;
-}
-
 static inline struct Pokemon *GetSideParty(u32 side)
 {
     return (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;

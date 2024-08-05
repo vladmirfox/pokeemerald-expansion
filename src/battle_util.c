@@ -11085,10 +11085,8 @@ u8 GetBattleMoveCategory(u32 moveId)
 
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
-    else if (gMain.inBattle)
-        moveType = GetMoveType(gCurrentMove);
-    else
-        moveType = gMovesInfo[moveId].type;
+
+    moveType = GetMoveType(gCurrentMove);
     return gTypesInfo[moveType].damageCategory;
 }
 
@@ -11810,4 +11808,11 @@ bool32 TargetFullyImmuneToCurrMove(u32 BattlerAtk, u32 battlerDef)
          || IsBattlerProtected(BattlerAtk, battlerDef, gCurrentMove)
          || IsSemiInvulnerable(battlerDef, gCurrentMove)
          || DoesCurrentTargetHaveAbilityImmunity());
+}
+
+u32 GetMoveType(u32 move)
+{
+    if (gMain.inBattle && gBattleStruct->dynamicMoveType)
+        return gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
+    return gMovesInfo[move].type;
 }
