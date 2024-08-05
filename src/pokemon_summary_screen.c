@@ -3958,6 +3958,7 @@ static void SetMonTypeIcons(void)
 static void SetMoveTypeIcons(void)
 {
     u8 i;
+    u8 type;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
@@ -3965,8 +3966,15 @@ static void SetMoveTypeIcons(void)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            u8 type = CheckDynamicMoveType(mon, summary->moves[i], 0);
-            SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);  
+            if (P_SHOW_DYNAMIC_TYPES)
+            {
+                type = CheckDynamicMoveType(mon, summary->moves[i], 0);
+                SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);  
+            }
+            else
+            {
+                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE); 
+            }
         }
         else
             SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);     
@@ -3988,21 +3996,28 @@ static void SetContestMoveTypeIcons(void)
 
 static void SetNewMoveTypeIcon(void)
 {
+    u8 type = gMovesInfo[sMonSummaryScreen->newMove].type;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
-    if (sMonSummaryScreen->newMove == MOVE_NONE)
-        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 4, TRUE);
+    if (P_SHOW_DYNAMIC_TYPES)
+    {
+        type = CheckDynamicMoveType(mon, sMonSummaryScreen->newMove, 0);
+    }
 
+    if (sMonSummaryScreen->newMove == MOVE_NONE)
+    {
+        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 4, TRUE);
+    }
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            u8 type = CheckDynamicMoveType(mon, sMonSummaryScreen->newMove, 0);
             SetTypeSpritePosAndPal(type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
         }
-
         else
+        {
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+        }
     }
 }
 

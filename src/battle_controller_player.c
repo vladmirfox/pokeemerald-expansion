@@ -1716,9 +1716,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     u8 type;
     u32 speciesId;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-
     type = gMovesInfo[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
 
     if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_BLAST)
@@ -1727,7 +1725,6 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             type = GetBattlerTeraType(battler);
             end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
-
     else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
     {
         speciesId = gBattleMons[battler].species;
@@ -1745,7 +1742,6 @@ static void MoveSelectionDisplayMoveType(u32 battler)
         type = TYPE_NORMAL;
         end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
-
     else if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_TERA_STARSTORM)
     {
         if (gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR
@@ -1753,15 +1749,12 @@ static void MoveSelectionDisplayMoveType(u32 battler)
             type = TYPE_STELLAR;
             end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
-    
-    //Dynamic Move Types
     else if (P_SHOW_DYNAMIC_TYPES)
     {
         struct Pokemon *mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
         type = CheckDynamicMoveType(mon, moveInfo->moves[gMoveSelectionCursor[battler]], battler);
         end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
-
     else
     {
         end = StringCopy(txtPtr, gTypesInfo[type].name);       
