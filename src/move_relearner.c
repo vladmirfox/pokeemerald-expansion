@@ -175,7 +175,7 @@ static EWRAM_DATA struct
     u8 moveListScrollArrowTask;                          /*0x113*/
     u8 moveDisplayArrowTask;                             /*0x114*/
     u16 scrollOffset;                                    /*0x116*/
-    u8 categoryIconSpriteId;                             //Physical/Special/Status category
+    u8 categoryIconSpriteId;                             /*0x117*/
 } *sMoveRelearnerStruct = {0};
 
 static EWRAM_DATA struct {
@@ -968,12 +968,13 @@ void MoveRelearnerShowHideHearts(s32 moveId)
     }
 }
 
-u8 MoveRelearnerShowHideCategoryIcon(s32 moveId)
+void MoveRelearnerShowHideCategoryIcon(s32 moveId)
 {
     if (sMoveRelearnerMenuSate.showContestInfo || moveId == LIST_CANCEL)
     {
         if (sMoveRelearnerStruct->categoryIconSpriteId != 0xFF)
             DestroySprite(&gSprites[sMoveRelearnerStruct->categoryIconSpriteId]);
+
         sMoveRelearnerStruct->categoryIconSpriteId = 0xFF;
         gSprites[sMoveRelearnerStruct->categoryIconSpriteId].invisible = TRUE;
     }
@@ -985,5 +986,4 @@ u8 MoveRelearnerShowHideCategoryIcon(s32 moveId)
         gSprites[sMoveRelearnerStruct->categoryIconSpriteId].invisible = FALSE;
         StartSpriteAnim(&gSprites[sMoveRelearnerStruct->categoryIconSpriteId], GetBattleMoveCategory(moveId));
     }
-    return sMoveRelearnerStruct->categoryIconSpriteId;
 }
