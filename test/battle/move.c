@@ -82,55 +82,34 @@ SINGLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
 
 DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie [doubles]")
 {
-    struct BattlePokemon *order[4] = { NULL, NULL, NULL, NULL };
-    u32 a, b, c, d;
-
-    // TODO: Test all of these in a single PASSES_RANDOMLY pass rather
-    // than 24 PARAMETRIZEd passes.
-    PARAMETRIZE { a = 0; b = 1; c = 2; d = 3; }
-    PARAMETRIZE { a = 0; b = 1; c = 3; d = 2; }
-    PARAMETRIZE { a = 0; b = 2; c = 1; d = 3; }
-    PARAMETRIZE { a = 0; b = 2; c = 3; d = 1; }
-    PARAMETRIZE { a = 0; b = 3; c = 1; d = 2; }
-    PARAMETRIZE { a = 0; b = 3; c = 2; d = 1; }
-    PARAMETRIZE { a = 1; b = 0; c = 2; d = 3; }
-    PARAMETRIZE { a = 1; b = 0; c = 3; d = 2; }
-    PARAMETRIZE { a = 1; b = 2; c = 0; d = 3; }
-    PARAMETRIZE { a = 1; b = 2; c = 3; d = 0; }
-    PARAMETRIZE { a = 1; b = 3; c = 0; d = 2; }
-    PARAMETRIZE { a = 1; b = 3; c = 2; d = 0; }
-    PARAMETRIZE { a = 2; b = 0; c = 1; d = 3; }
-    PARAMETRIZE { a = 2; b = 0; c = 3; d = 1; }
-    PARAMETRIZE { a = 2; b = 1; c = 0; d = 3; }
-    PARAMETRIZE { a = 2; b = 1; c = 3; d = 0; }
-    PARAMETRIZE { a = 2; b = 3; c = 0; d = 1; }
-    PARAMETRIZE { a = 2; b = 3; c = 1; d = 0; }
-    PARAMETRIZE { a = 3; b = 0; c = 1; d = 2; }
-    PARAMETRIZE { a = 3; b = 0; c = 2; d = 1; }
-    PARAMETRIZE { a = 3; b = 1; c = 0; d = 2; }
-    PARAMETRIZE { a = 3; b = 1; c = 2; d = 0; }
-    PARAMETRIZE { a = 3; b = 2; c = 0; d = 1; }
-    PARAMETRIZE { a = 3; b = 2; c = 1; d = 0; }
-
-    order[a] = playerLeft;
-    order[b] = playerRight;
-    order[c] = opponentLeft;
-    order[d] = opponentRight;
+    u16 hpMon1, hpMon2;
 
     PASSES_RANDOMLY(1, 24, RNG_SPEED_TIE);
 
+    ASSUME(gMovesInfo[MOVE_ENDEAVOR].effect == EFFECT_ENDEAVOR);
+    ASSUME(gMovesInfo[MOVE_LIFE_DEW].effect == EFFECT_JUNGLE_HEALING);
+    ASSUME(gMovesInfo[MOVE_CRUSH_GRIP].effect == EFFECT_VARY_POWER_BASED_ON_HP);
+    ASSUME(gMovesInfo[MOVE_SUPER_FANG].effect == EFFECT_SUPER_FANG);
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_WOBBUFFET) { MaxHP(480); HP(360); Defense(100); Speed(1); }
         PLAYER(SPECIES_WYNAUT) { Speed(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Attack(100); Speed(1); }
         OPPONENT(SPECIES_WYNAUT) { Speed(1); }
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_SPLASH); MOVE(playerRight, MOVE_SPLASH); MOVE(opponentLeft, MOVE_SPLASH); MOVE(opponentRight, MOVE_SPLASH); }
+        TURN { MOVE(playerLeft, MOVE_ENDEAVOR, target: opponentLeft); MOVE(playerRight, MOVE_LIFE_DEW); MOVE(opponentLeft, MOVE_CRUSH_GRIP, target: playerLeft, WITH_RNG(RNG_DAMAGE_MODIFIER, 0)); MOVE(opponentRight, MOVE_SUPER_FANG, target: playerLeft); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, order[0]);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, order[1]);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, order[2]);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, order[3]);
+        HP_BAR(opponentLeft, captureHP: &hpMon2);
+        HP_BAR(playerLeft, captureHP: &hpMon1);
+        HP_BAR(playerLeft, captureHP: &hpMon1);
+        HP_BAR(playerLeft, captureHP: &hpMon1);
+    } THEN {
+        EXPECT_EQ(hpMon1, 202);
+        EXPECT_EQ(hpMon2, 360);
+        //  Any of the following pairs of hp values work:
+        //  (188, 360), (189, 360), (261, 360), (235, 360), (262, 360), (202, 360),
+        //  (189, 378), (189, 189), (189, 480), (138, 480), (188, 240), (188, 188),
+        //  (262, 262), (262, 142), (202, 403), (202, 202), (262, 283), (202, 283),
+        //  (235, 180), (261, 180), (235, 235), (235, 300), (261, 141), (261, 261)
     }
 }
 
