@@ -58,7 +58,7 @@ static void DestroyTypeIcon(struct Sprite* sprite);
 struct Pokemon* GetBattlerData(u8 battlerId)
 {
     u8 index = gBattlerPartyIndexes[battlerId];
-    return (SIDE(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
+    return (GetBattlerSide(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
 u8 GetMonDisplayedType(u32 battlerId, u8 typeId)
@@ -477,12 +477,12 @@ void TryLoadTypeIcons(u32 battler)
 
 			if (BATTLE_TYPE_IS_DOUBLE)
 			{
-				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
+				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_OPPONENT)
 					sprite->hFlip = TRUE;
 			}
 			else //Double Battle
 			{
-				if (SIDE(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
+				if (GetBattlerSide(GetBattlerAtPosition(position)) == B_SIDE_PLAYER)
 					sprite->hFlip = TRUE;
 			}
 
