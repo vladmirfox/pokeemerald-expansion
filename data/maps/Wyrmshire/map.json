@@ -28,8 +28,8 @@
       "x": 4,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_INSIDE_OF_TRUCK",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
