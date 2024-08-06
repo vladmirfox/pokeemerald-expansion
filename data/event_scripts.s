@@ -1086,3 +1086,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ProvingTrialA3/scripts.inc"
 
 	.include "data/maps/ProvingTrialA4/scripts.inc"
+
+	.include "data/maps/Greensfield/scripts.inc"
+
+	.include "data/maps/ShinryuPagoda/scripts.inc"

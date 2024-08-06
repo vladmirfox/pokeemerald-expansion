@@ -69,6 +69,8 @@
 #define MAP_PROVING_TRIAL_A2       (60 | (0 << 8))
 #define MAP_PROVING_TRIAL_A3       (61 | (0 << 8))
 #define MAP_PROVING_TRIAL_A4       (62 | (0 << 8))
+#define MAP_GREENSFIELD            (63 | (0 << 8))
+#define MAP_SHINRYU_PAGODA         (64 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
