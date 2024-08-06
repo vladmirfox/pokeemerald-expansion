@@ -36,6 +36,7 @@
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi);
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi);
 static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef);
+static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlags, s16 score);
 static bool32 IsPinchBerryItemEffect(u32 holdEffect);
 
 #include "battle_ai_move_effects.h"
@@ -61,42 +62,6 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_PowerfulStatus(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 static s32 AI_DynamicFunc(u32 battlerAtk, u32 battlerDef, u32 move, s32 score);
 
-
-static s32 (*const sBattleAiFuncTable[])(u32, u32, u32, s32) =
-{
-    [0] = AI_CheckBadMove,           // AI_FLAG_CHECK_BAD_MOVE
-    [1] = AI_TryToFaint,             // AI_FLAG_TRY_TO_FAINT
-    [2] = AI_CheckViability,         // AI_FLAG_CHECK_VIABILITY
-    [3] = AI_SetupFirstTurn,         // AI_FLAG_SETUP_FIRST_TURN
-    [4] = AI_Risky,                  // AI_FLAG_RISKY
-    [5] = AI_PreferStrongestMove,    // AI_FLAG_PREFER_STRONGEST_MOVE
-    [6] = AI_PreferBatonPass,        // AI_FLAG_PREFER_BATON_PASS
-    [7] = AI_DoubleBattle,           // AI_FLAG_DOUBLE_BATTLE
-    [8] = AI_HPAware,                // AI_FLAG_HP_AWARE
-    [9] = AI_PowerfulStatus,         // AI_FLAG_POWERFUL_STATUS
-    [10] = NULL,                     // AI_FLAG_NEGATE_UNAWARE
-    [11] = NULL,                     // AI_FLAG_WILL_SUICIDE
-    [12] = NULL,                     // Unused
-    [13] = NULL,                     // Unused
-    [14] = NULL,                     // Unused
-    [15] = NULL,                     // Unused
-    [16] = NULL,                     // Unused
-    [17] = NULL,                     // Unused
-    [18] = NULL,                     // Unused
-    [19] = NULL,                     // Unused
-    [20] = NULL,                     // Unused
-    [21] = NULL,                     // Unused
-    [22] = NULL,                     // Unused
-    [23] = NULL,                     // Unused
-    [24] = NULL,                     // Unused
-    [25] = NULL,                     // Unused
-    [26] = NULL,                     // Unused
-    [27] = NULL,                     // Unused
-    [28] = AI_DynamicFunc,          // AI_FLAG_DYNAMIC_FUNC
-    [29] = AI_Roaming,              // AI_FLAG_ROAMING
-    [30] = AI_Safari,               // AI_FLAG_SAFARI
-    [31] = AI_FirstBattle,          // AI_FLAG_FIRST_BATTLE
-};
 
 // Functions
 void BattleAI_SetupItems(void)
@@ -580,18 +545,9 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
     u8 consideredMoveArray[MAX_MON_MOVES];
     u32 numOfBestMoves;
     s32 i;
-    u32 flags = AI_THINKING_STRUCT->aiFlags[battlerAi];
 
     AI_DATA->partnerMove = 0;   // no ally
-    while (flags != 0)
-    {
-        if (flags & 1)
-        {
-            BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
-        }
-        flags >>= 1;
-        AI_THINKING_STRUCT->aiLogicId++;
-    }
+    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -636,7 +592,6 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
 {
     s32 i, j;
-    u32 flags;
     s32 bestMovePointsForTarget[MAX_BATTLERS_COUNT];
     u8 mostViableTargetsArray[MAX_BATTLERS_COUNT];
     u8 actionOrMoveIndex[MAX_BATTLERS_COUNT];
@@ -665,17 +620,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
             AI_DATA->partnerMove = GetAllyChosenMove(battlerAi);
             AI_THINKING_STRUCT->aiLogicId = 0;
             AI_THINKING_STRUCT->movesetIndex = 0;
-            flags = AI_THINKING_STRUCT->aiFlags[sBattler_AI];
-
-            while (flags != 0)
-            {
-                if (flags & 1)
-                {
-                    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
-                }
-                flags >>= 1;
-                AI_THINKING_STRUCT->aiLogicId++;
-            }
+            BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
 
             if (AI_THINKING_STRUCT->aiAction & AI_ACTION_FLEE)
             {
@@ -777,19 +722,15 @@ static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u3
 
         // There is no point in calculating scores for all 3 battlers(2 opponents + 1 ally) with certain moves.
         if (aiThink->moveConsidered != MOVE_NONE
-          && aiThink->score[aiThink->movesetIndex] > 0
-          && ShouldConsiderMoveForBattler(battlerAi, battlerDef, aiThink->moveConsidered))
+         && aiThink->score[aiThink->movesetIndex] > 0
+         && ShouldConsiderMoveForBattler(battlerAi, battlerDef, aiThink->moveConsidered))
         {
-            if (aiThink->aiLogicId < ARRAY_COUNT(sBattleAiFuncTable)
-              && sBattleAiFuncTable[aiThink->aiLogicId] != NULL)
-            {
-                // Call AI function
-                aiThink->score[aiThink->movesetIndex] =
-                    sBattleAiFuncTable[aiThink->aiLogicId](battlerAi,
-                      battlerDef,
-                      aiThink->moveConsidered,
-                      aiThink->score[aiThink->movesetIndex]);
-            }
+            aiThink->score[aiThink->movesetIndex] = BattleAI_CalcScore(battlerAi,
+                                                                       battlerDef,
+                                                                       aiThink->moveConsidered,
+                                                                       aiThink->aiFlags[battlerDef],
+                                                                       aiThink->score[aiThink->movesetIndex]);
+
         }
         else
         {
@@ -2517,4 +2458,50 @@ void ScriptSetDynamicAiFunc(struct ScriptContext *ctx)
 void ResetDynamicAiFunc(void)
 {
     sDynamicAiFunc = NULL;
+}
+
+static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlags, s16 score)
+{
+    if (aiFlags & AI_FLAG_DYNAMIC_FUNC)
+        score = AI_DynamicFunc(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_ROAMING)
+        score = AI_Roaming(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_SAFARI)
+        score = AI_Safari(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_FIRST_BATTLE)
+        score = AI_FirstBattle(battlerAtk, battlerDef, move, score);
+
+    if (aiFlags & AI_FLAG_CHECK_BAD_MOVE)
+    {
+        score = AI_CheckBadMove(battlerAtk, battlerDef, move, score);
+        if (score <= 90) // Return early because AI_CheckBadMove outcome conluded the the move is bad
+            return score;
+    }
+
+    ADJUST_SCORE(AI_CalcMoveEffectScore(battlerAtk, battlerDef, move, AI_DATA));
+    if (score <= 90) // Return early because AI_CalcMoveEffectScore outcome conluded the the move is bad
+        return score;
+
+    if (aiFlags & AI_FLAG_TRY_TO_FAINT)
+        score = AI_TryToFaint(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_CHECK_VIABILITY)
+        score = AI_CheckViability(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_SETUP_FIRST_TURN)
+        score = AI_SetupFirstTurn(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_RISKY)
+        score = AI_Risky(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_PREFER_STRONGEST_MOVE)
+        score = AI_PreferStrongestMove(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_PREFER_BATON_PASS)
+        score = AI_PreferBatonPass(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_DOUBLE_BATTLE)
+        score = AI_DoubleBattle(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_HP_AWARE)
+        score = AI_HPAware(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_POWERFUL_STATUS)
+        score = AI_PowerfulStatus(battlerAtk, battlerDef, move, score);
+
+    // if (aiFlag & AI_FLAG_NEGATE_UNAWARE)
+    // if (aiFlag & AI_FLAG_WILL_SUICIDE)
+    return score;
 }
