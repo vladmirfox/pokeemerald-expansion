@@ -52,6 +52,6 @@ AI_SINGLE_BATTLE_TEST("AI avoids Will-o-Wisp when it can not burn target")
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE, MOVE_WILL_O_WISP); }
     } WHEN {
-        TURN { SCORE_EQ(opponent, MOVE_CELEBRATE, MOVE_WILL_O_WISP); } // Both get -10
+        TURN { SCORE_LT(opponent, MOVE_WILL_O_WISP, MOVE_CELEBRATE); }
     }
 }

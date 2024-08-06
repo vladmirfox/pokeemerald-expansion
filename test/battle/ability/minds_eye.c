@@ -61,9 +61,12 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
     } WHEN {
             TURN { MOVE(player, MOVE_TACKLE); }
             TURN { MOVE(player, MOVE_TACKLE);
-                   if (abilityAI == ABILITY_MOLD_BREAKER) { SCORE_GT(opponent, moveAI, MOVE_CELEBRATE); }
-                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }
+                if (abilityAI == ABILITY_MOLD_BREAKER) {
+                    SCORE_GT(opponent, moveAI, MOVE_CELEBRATE);
+                } else {
+                    SCORE_LT(opponent, MOVE_CELEBRATE, moveAI);
                 }
+            }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         if (abilityAI == ABILITY_MOLD_BREAKER) { ANIMATION(ANIM_TYPE_MOVE, moveAI, opponent); }

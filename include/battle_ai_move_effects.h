@@ -1,20 +1,3 @@
-// static s32 UNUSED AI_EffectTemplate(u32 battlerAtk, u32 battlerDef, struct AiLogicData *aiData)
-// {
-//     s32 tempScore = 0;
-
-//     if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_CHECK_BAD_MOVE)
-//     {
-
-//     }
-
-//     if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_CHECK_VIABILITY)
-//     {
-
-//     }
-
-//     return tempScore;
-// }
-
 static s32 AI_EffectSleep(u32 battlerAtk, u32 battlerDef, u32 move, struct AiLogicData *aiData)
 {
     s32 tempScore = 0;
@@ -4911,7 +4894,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move, stru
     case EFFECT_LEECH_SEED:
         return AI_EffectLeechSeed(battlerAtk, battlerDef, move, aiData);
     case EFFECT_DO_NOTHING:
-        return BAD_MOVE;
+        return NO_INCREASE;
     case EFFECT_TELEPORT:
     case EFFECT_HIT_ESCAPE:
     case EFFECT_PARTING_SHOT:

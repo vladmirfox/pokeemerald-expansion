@@ -33,10 +33,10 @@
 #define AI_ACTION_WATCH         (1 << 2)
 #define AI_ACTION_DO_NOT_ATTACK (1 << 3)
 
+static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlags, s16 score);
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi);
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi);
 static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef);
-static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlags, s16 score);
 static bool32 IsPinchBerryItemEffect(u32 holdEffect);
 
 #include "battle_ai_move_effects.h"
@@ -728,7 +728,7 @@ static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u3
             aiThink->score[aiThink->movesetIndex] = BattleAI_CalcScore(battlerAi,
                                                                        battlerDef,
                                                                        aiThink->moveConsidered,
-                                                                       aiThink->aiFlags[battlerDef],
+                                                                       aiThink->aiFlags[battlerAi],
                                                                        aiThink->score[aiThink->movesetIndex]);
 
         }
@@ -2462,15 +2462,6 @@ void ResetDynamicAiFunc(void)
 
 static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlags, s16 score)
 {
-    if (aiFlags & AI_FLAG_DYNAMIC_FUNC)
-        score = AI_DynamicFunc(battlerAtk, battlerDef, move, score);
-    if (aiFlags & AI_FLAG_ROAMING)
-        score = AI_Roaming(battlerAtk, battlerDef, move, score);
-    if (aiFlags & AI_FLAG_SAFARI)
-        score = AI_Safari(battlerAtk, battlerDef, move, score);
-    if (aiFlags & AI_FLAG_FIRST_BATTLE)
-        score = AI_FirstBattle(battlerAtk, battlerDef, move, score);
-
     if (aiFlags & AI_FLAG_CHECK_BAD_MOVE)
     {
         score = AI_CheckBadMove(battlerAtk, battlerDef, move, score);
@@ -2500,6 +2491,15 @@ static s16 BattleAI_CalcScore(u8 battlerAtk, u8 battlerDef, u16 move, u32 aiFlag
         score = AI_HPAware(battlerAtk, battlerDef, move, score);
     if (aiFlags & AI_FLAG_POWERFUL_STATUS)
         score = AI_PowerfulStatus(battlerAtk, battlerDef, move, score);
+
+    if (aiFlags & AI_FLAG_DYNAMIC_FUNC)
+        score = AI_DynamicFunc(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_ROAMING)
+        score = AI_Roaming(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_SAFARI)
+        score = AI_Safari(battlerAtk, battlerDef, move, score);
+    if (aiFlags & AI_FLAG_FIRST_BATTLE)
+        score = AI_FirstBattle(battlerAtk, battlerDef, move, score);
 
     // if (aiFlag & AI_FLAG_NEGATE_UNAWARE)
     // if (aiFlag & AI_FLAG_WILL_SUICIDE)
