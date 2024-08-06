@@ -7063,7 +7063,7 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
         {
             return TYPE_FIRE;
         }
-        else if (gBattleWeather & B_WEATHER_SNOW)
+        else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
         {
             return TYPE_ICE;
         }
