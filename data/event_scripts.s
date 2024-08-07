@@ -1090,3 +1090,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Greensfield/scripts.inc"
 
 	.include "data/maps/ShinryuPagoda/scripts.inc"
+
+	.include "data/maps/WyrmshireHouse1/scripts.inc"
+
+	.include "data/maps/WyrmshireHouse2/scripts.inc"
