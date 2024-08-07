@@ -50,7 +50,7 @@
 #include "graphics.h"
 
 struct Pokemon* GetBattlerData(u32 battlerId);
-u32 GetMonDisplayedType(u32 battlerId, u32 typeId);
+u32 GetMonPublicType(u32 battlerId, u32 typeId);
 static void SpriteCB_TypeIcon(struct Sprite* sprite);
 static bool32 ShouldHideTypeIcon(u32 battlerId);
 static void DestroyTypeIcon(struct Sprite* sprite);
@@ -127,7 +127,34 @@ bool32 IsMonTerastallizedAndStellarType(struct Pokemon* mon,u32 battlerId)
 	return TRUE;
 }
 
-u32 GetMonDisplayedType(u32 battlerId, u32 typeId)
+bool32 IsIllusionActive(struct Pokemon* monIllusion)
+{
+	return (monIllusion != NULL);
+}
+
+u32 GetSpeciesType(struct Pokemon* monIllusion, u32 typeNum, u32 illusionSpecies, u32 monSpecies)
+{
+	if (IsIllusionActive(monIllusion))
+		return gSpeciesInfo[illusionSpecies].types[typeNum];
+	else
+		return gSpeciesInfo[monSpecies].types[typeNum];
+}
+
+u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon* monIllusion, u32 monSpecies, u32 battlerId)
+{
+	if (!IsIllusionActive(monIllusion))
+		return FALSE;
+
+	if (
+			(gSpeciesInfo[monSpecies].types[0] != gBattleMons[battlerId].type1) ||
+			(gSpeciesInfo[monSpecies].types[1] != gBattleMons[battlerId].type2)
+	   )
+		return FALSE;
+
+	return TRUE;
+}
+
+u32 GetMonPublicType(u32 battlerId, u32 typeNum)
 {
 	struct Pokemon* mon = GetBattlerData(battlerId);
 	struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
@@ -138,25 +165,12 @@ u32 GetMonDisplayedType(u32 battlerId, u32 typeId)
 		return TYPE_MYSTERY;
 
 	if (IsMonTerastallizedAndStellarType(mon, battlerId))
-	{
-		if (monIllusion != NULL)
-			return gSpeciesInfo[illusionSpecies].types[typeId];
-		else
-			return gSpeciesInfo[monSpecies].types[typeId];
-	}
+		return GetSpeciesType(monIllusion,typeNum,illusionSpecies,monSpecies);
 
-	if (monIllusion != NULL)
-	{
-		if (
-				(gSpeciesInfo[monSpecies].types[0] == gBattleMons[battlerId].type1) &&
-				(gSpeciesInfo[monSpecies].types[1] == gBattleMons[battlerId].type2)
-		   )
-		{
-			return gSpeciesInfo[illusionSpecies].types[typeId];
-		}
-	}
+	if (IsIllusionActiveAndTypeUnchanged(monIllusion,monSpecies, battlerId))
+		return gSpeciesInfo[illusionSpecies].types[typeNum];
 
-	if (!typeId)
+	if (!typeNum)
 		return gBattleMons[battlerId].type1;
 	else
 		return gBattleMons[battlerId].type2;
@@ -191,7 +205,10 @@ static void DestroyTypeIcon(struct Sprite* sprite)
 
 	for (i = 0; i < MAX_SPRITES; ++i)
 	{
-		if (gSprites[i].inUse && gSprites[i].template->paletteTag == TYPE_ICON_TAG)
+		if (!gSprites[i].inUse)
+			continue;
+
+		if (gSprites[i].template->paletteTag == TYPE_ICON_TAG)
 			return;
 	}
 
@@ -562,7 +579,7 @@ void LoadTypeIconsPerBattler(u32 battler, u32 position)
 		return;
 
 	for (typeNum = 0; typeNum < 2; ++typeNum)
-		types[typeNum] = GetMonDisplayedType(battlerId, typeNum);
+		types[typeNum] = GetMonPublicType(battlerId, typeNum);
 
 	for (typeNum = 0; typeNum < 2; ++typeNum)
 		CreateSpriteFromType(position, useDoubleBattleCoords, types, typeNum, battler);
