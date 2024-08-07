@@ -494,7 +494,7 @@ bool32 ShouldFlipTypeIcon(bool32 useDoubleBattleCoords, u32 position, u32 typeId
 }
 
 
-void TryLoadTypeIcons(u32 battler)
+void LoadTypeIcons(u32 battler)
 {
 	u32 battlerId, spriteId, type, position, typeNum, type1, type2;
 	bool32 useDoubleBattleCoords;
