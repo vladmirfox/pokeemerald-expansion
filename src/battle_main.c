@@ -4258,9 +4258,9 @@ static void HandleTurnActionSelectionState(void)
 
                         moveInfo.zmove = gBattleStruct->zmove;
                         moveInfo.species = gBattleMons[battler].species;
-                        moveInfo.monType1 = gBattleMons[battler].types[0];
-                        moveInfo.monType2 = gBattleMons[battler].types[1];
-                        moveInfo.monType3 = gBattleMons[battler].types[2];
+                        moveInfo.monTypes[0] = gBattleMons[battler].types[0];
+                        moveInfo.monTypes[1] = gBattleMons[battler].types[1];
+                        moveInfo.monTypes[2] = gBattleMons[battler].types[2];
 
                         for (i = 0; i < MAX_MON_MOVES; i++)
                         {

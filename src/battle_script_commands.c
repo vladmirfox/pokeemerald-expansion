@@ -12420,6 +12420,14 @@ static void Cmd_damagetohalftargethp(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static void Cmd_unused_95(void)
+{
+}
+
+static void Cmd_unused_96(void)
+{
+}
+
 static void Cmd_tryinfatuating(void)
 {
     CMD_ARGS(const u8 *failInstr);
