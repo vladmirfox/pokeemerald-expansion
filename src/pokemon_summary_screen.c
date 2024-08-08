@@ -3957,8 +3957,8 @@ static void SetMonTypeIcons(void)
 
 static void SetMoveTypeIcons(void)
 {
-    u8 i;
-    u8 type;
+    u32 i;
+    u32 type;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
@@ -3977,7 +3977,9 @@ static void SetMoveTypeIcons(void)
             }
         }
         else
-            SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);     
+        {
+            SetSpriteInvisibility(i + SPRITE_ARR_ID_TYPE, TRUE);
+        }     
     }
 }
 
@@ -4000,9 +4002,7 @@ static void SetNewMoveTypeIcon(void)
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 
     if (P_SHOW_DYNAMIC_TYPES)
-    {
         type = CheckDynamicMoveType(mon, sMonSummaryScreen->newMove, 0);
-    }
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {

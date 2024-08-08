@@ -6943,15 +6943,15 @@ void UpdateDaysPassedSinceFormChange(u16 days)
     }
 }
 
-u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
+u8 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
 {
-    u8 type = gMovesInfo[move].type;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-    u16 heldItemEffect = ItemId_GetHoldEffect(heldItem);
-    u16 ability = GetMonAbility(mon);
-    u8 type1 = gSpeciesInfo[species].types[0];
-    u8 type2 = gSpeciesInfo[species].types[1];
+    u32 type = gMovesInfo[move].type;
+    u32 species = GetMonData(mon, MON_DATA_SPECIES);
+    u32 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
+    u32 heldItemEffect = ItemId_GetHoldEffect(heldItem);
+    u32 ability = GetMonAbility(mon);
+    u32 type1 = gSpeciesInfo[species].types[0];
+    u32 type2 = gSpeciesInfo[species].types[1];
 
     if (move == MOVE_IVY_CUDGEL
         && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA 
@@ -6998,90 +6998,53 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
     else if (move == MOVE_REVELATION_DANCE)
     {
         if (gBattleMons[battler].species != species && type1 != TYPE_MYSTERY)
-        {
             type = type1;
-        }
         else if (gBattleMons[battler].species != species && type2 != TYPE_MYSTERY)
-        {
             type = type2;
-        }
-        else if (GetBattlerTeraType(battler) != TYPE_STELLAR 
-            && (GetActiveGimmick(battler) == GIMMICK_TERA || IsGimmickSelected(battler, GIMMICK_TERA)))
-        {
-            type = GetMonData(mon, MON_DATA_TERA_TYPE);
-        }        
+        else if (GetBattlerTeraType(battler) != TYPE_STELLAR && (GetActiveGimmick(battler) == GIMMICK_TERA || IsGimmickSelected(battler, GIMMICK_TERA)))
+            type = GetMonData(mon, MON_DATA_TERA_TYPE);       
         else if (gBattleMons[battler].type1 != TYPE_MYSTERY)
-        {
             type = gBattleMons[battler].type1;
-        }
         else if (gBattleMons[battler].type2 != TYPE_MYSTERY)
-        {
             type = gBattleMons[battler].type2;
-        }
         else if (gBattleMons[battler].type3 != TYPE_MYSTERY)
-        {
             type = gBattleMons[battler].type3;
-        }
     }
     else if (gMovesInfo[move].effect == EFFECT_TERRAIN_PULSE 
           && ((IsMonGrounded(heldItemEffect, ability, type1, type2) && gBattleMons[battler].species != species) 
            || (IsBattlerTerrainAffected(battler, STATUS_FIELD_TERRAIN_ANY) && gBattleMons[battler].species == species)))
     {  
         if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        {
             return TYPE_ELECTRIC;
-        }
         else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
-        {
             return TYPE_GRASS;
-        }
         else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
-        {
             return TYPE_FAIRY;
-        }
         else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
-        {
             return TYPE_PSYCHIC;
-        }
         else //failsafe
-        {
-            type = TYPE_NORMAL;
-        }        
+            type = TYPE_NORMAL;      
     }
 
     if (gMovesInfo[move].effect == EFFECT_WEATHER_BALL && WEATHER_HAS_EFFECT)
     {
         if (gBattleWeather & B_WEATHER_RAIN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-        {
             return TYPE_WATER;
-        }
         else if (gBattleWeather & B_WEATHER_SANDSTORM)
-        {
             return TYPE_ROCK;
-        }
         else if (gBattleWeather & B_WEATHER_SUN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-        {
             return TYPE_FIRE;
-        }
         else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
-        {
             return TYPE_ICE;
-        }
         else
-        {
             return TYPE_NORMAL;
-        }  
     }
 
     if (ability == ABILITY_NORMALIZE && gMovesInfo[move].type != TYPE_NORMAL && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
-    {
         type = TYPE_NORMAL;
-    }
 
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && type == TYPE_NORMAL) || gStatuses4[battler] & STATUS4_ELECTRIFIED)
-    {
         type = TYPE_ELECTRIC;
-    }
 
     if (gMovesInfo[move].type == TYPE_NORMAL && gMovesInfo[move].category != DAMAGE_CATEGORY_STATUS)
     {
@@ -7096,15 +7059,15 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u16 move, u32 battler)
     }
 
     if (ability == ABILITY_LIQUID_VOICE && gMovesInfo[move].soundMove == TRUE)
-    {
         return TYPE_WATER;
-    }
 
     return type;
 }
 
 u8 CalculateHiddenPowerType(struct Pokemon *mon)
 {
+    u32 typehp;
+    u32 type;
     u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
                  | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
                  | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
@@ -7112,10 +7075,10 @@ u8 CalculateHiddenPowerType(struct Pokemon *mon)
                  | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
                  | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
 
-    u8 type = (15 * typeBits) / 63 + 2;
+    type = (15 * typeBits) / 63 + 2;
     if (type >= TYPE_MYSTERY)
         type++;
     type |= 0xC0;
-    u8 typehp = type & 0x3F;
+    typehp = type & 0x3F;
     return typehp;
 }
