@@ -6980,13 +6980,19 @@ u8 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     {
         type = TYPE_DARK;
     }
-    else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM && heldItemEffect == gMovesInfo[move].argument)
+    else if (gMovesInfo[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
     {
-        return ItemId_GetSecondaryId(heldItem);
+        if (heldItemEffect == gMovesInfo[move].argument)
+            return ItemId_GetSecondaryId(heldItem);
+        else
+            return TYPE_NORMAL;
     }
-    else if (move == MOVE_NATURAL_GIFT && ItemId_GetPocket(heldItem) == POCKET_BERRIES)
+    else if (move == MOVE_NATURAL_GIFT)
     {
-        return gNaturalGiftTable[ITEM_TO_BERRY(heldItem)].type;
+        if (ItemId_GetPocket(heldItem) == POCKET_BERRIES)
+            return gNaturalGiftTable[ITEM_TO_BERRY(heldItem)].type;
+        else
+            return TYPE_NORMAL;
     }
     else if (move == MOVE_RAGING_BULL 
         && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED 
