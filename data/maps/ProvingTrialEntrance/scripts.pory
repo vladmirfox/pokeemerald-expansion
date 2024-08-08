@@ -3,7 +3,7 @@ mapscripts ProvingTrialEntrance_MapScripts {
 }
 
 script ProvingTrial {
-    if(var(VAR_WYRMSHIRE_STATE) == 0) {
+    if((var(VAR_WYRMSHIRE_STATE) == 0) && !(flag(FLAG_PROVINGTRIAL))) {
         setflag(FLAG_PROVINGTRIAL)
         setvar(VAR_WYRMSHIRE_STATE,1)
     }
