@@ -53,7 +53,7 @@ enum {
     FONTATTR_COLOR_SHADOW
 };
 
-#define NUM_FRAMES_AUTO_SCROLL_DELAY 34
+#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
 
 struct TextPrinterSubStruct
 {
