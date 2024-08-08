@@ -339,7 +339,7 @@ static struct Pokemon* GetBattlerData(u32 battlerId)
 
 static bool32 ShouldHideUncaughtType(u32 species)
 {
-    if (B_SHOW_TYPES != SHOW_TYPES_SEEN)
+    if (B_SHOW_TYPES != SHOW_TYPES_CAUGHT)
         return FALSE;
 
     if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(species),FLAG_GET_CAUGHT))
