@@ -1,4 +1,4 @@
-ProvingTrialEntrance_MapScripts::
+ProvingTrialA1_MapScripts::
 # 2 "data/maps/ProvingTrialA1/scripts.pory"
 	map_script MAP_SCRIPT_ON_TRANSITION, PT_GO
 	.byte 0
