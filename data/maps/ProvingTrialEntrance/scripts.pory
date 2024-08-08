@@ -51,7 +51,6 @@ script ElderLiSpeech {
 }
 
 movement RefuseTrial {
-    
     walk_down
 }
 
