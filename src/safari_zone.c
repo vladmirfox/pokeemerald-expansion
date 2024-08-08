@@ -26,7 +26,9 @@ struct PokeblockFeeder
 extern const u8 SafariZone_EventScript_TimesUp[];
 extern const u8 SafariZone_EventScript_RetirePrompt[];
 extern const u8 SafariZone_EventScript_OutOfBallsMidBattle[];
+extern const u8 ProvingTrial_EventScript_OutOfBallsMidBattle[];
 extern const u8 SafariZone_EventScript_OutOfBalls[];
+extern const u8 ProvingTrial_EventScript_OutOfBalls[];
 
 EWRAM_DATA u8 gNumSafariBalls = 0;
 EWRAM_DATA static u16 sSafariZoneStepCounter = 0;
