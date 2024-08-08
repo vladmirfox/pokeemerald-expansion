@@ -4070,6 +4070,9 @@ static inline bool32 HadMoreThanHalfHpNowDoesnt(u32 battler)
 #define ANIM_STAT_STAT_EVASION 7
 static void ChooseStatBoostAnimation(u32 battler)
 {
+    u32 stat;
+    gBattleScripting.animArg1 = 0;
+    bool32 statBuffMoreThan1 = FALSE;
     u32 static const statsOrder[NUM_BATTLE_STATS] =
     {
         [ANIM_STAT_STAT_HP]      = STAT_HP,
@@ -4082,9 +4085,6 @@ static void ChooseStatBoostAnimation(u32 battler)
         [ANIM_STAT_STAT_EVASION] = STAT_EVASION,
     };
 
-    gBattleScripting.animArg1 = 0;
-    bool32 statBuffMoreThan1 = FALSE;
-    u32 stat;
     for (stat = 0; stat < NUM_BATTLE_STATS; stat++)
     {
         if (stat == STAT_HP) // Skip HP because it can not be boosted
