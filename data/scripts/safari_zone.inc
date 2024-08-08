@@ -52,6 +52,12 @@ SafariZone_EventScript_OutOfBalls::
 	releaseall
 	goto SafariZone_EventScript_Exit
 
+SafariZone_EventScript_OutOfBalls::
+	setvar VAR_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	setwarp MAP_PROVINGTRIALENTRANCE, 2, 1
+	end
+
 EventScript_PokeBlockFeeder::
 	lockall
 	special GetPokeblockFeederInFront
