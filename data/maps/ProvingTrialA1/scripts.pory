@@ -1,0 +1,8 @@
+mapscripts ProvingTrialEntrance_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: PT_GO
+}
+
+script PT_GO {
+    special(EnterSafariMode)
+	setvar(VAR_SAFARI_ZONE_STATE, 2)
+}
