@@ -36,65 +36,71 @@ ProvingTrialStart_1:
 # 18 "data/maps/ProvingTrialEntrance/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq ProvingTrialStart_4
-# 22 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 23 "data/maps/ProvingTrialEntrance/scripts.pory"
+	closemessage
+# 24 "data/maps/ProvingTrialEntrance/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, RefuseTrial
 	return
 
 ProvingTrialStart_4:
 # 19 "data/maps/ProvingTrialEntrance/scripts.pory"
+	closemessage
+# 20 "data/maps/ProvingTrialEntrance/scripts.pory"
 	call ElderLiSpeech
 	return
 
 
 ProvingTrialInProgress::
-# 31 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 33 "data/maps/ProvingTrialEntrance/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, NoLeave
 	return
 
 
 ElderLiSpeech::
-# 35 "data/maps/ProvingTrialEntrance/scripts.pory"
-	applymovement 1, ElderLiFacing
-# 36 "data/maps/ProvingTrialEntrance/scripts.pory"
-	lockall
 # 37 "data/maps/ProvingTrialEntrance/scripts.pory"
-	msgbox ElderLiWelcome
+	applymovement 1, ElderLiFacing
 # 38 "data/maps/ProvingTrialEntrance/scripts.pory"
-	setflag FLAG_SYS_POKEMON_GET
+	lockall
 # 39 "data/maps/ProvingTrialEntrance/scripts.pory"
-	msgbox ElderLiSupplies
+	msgbox ElderLiWelcome
 # 40 "data/maps/ProvingTrialEntrance/scripts.pory"
+	setflag FLAG_SYS_POKEMON_GET
+# 41 "data/maps/ProvingTrialEntrance/scripts.pory"
+	msgbox ElderLiSupplies
+# 42 "data/maps/ProvingTrialEntrance/scripts.pory"
 	goto_if_unset FLAG_RECEIVED_OLD_ROD, ElderLiSpeech_2
-# 45 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 47 "data/maps/ProvingTrialEntrance/scripts.pory"
 	msgbox ElderLiSpeech_Text_0
 ElderLiSpeech_1:
-# 47 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 49 "data/maps/ProvingTrialEntrance/scripts.pory"
 	releaseall
 	end
 
 ElderLiSpeech_2:
-# 41 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 43 "data/maps/ProvingTrialEntrance/scripts.pory"
 	giveitem ITEM_OLD_ROD
-# 42 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 44 "data/maps/ProvingTrialEntrance/scripts.pory"
 	setflag FLAG_RECEIVED_OLD_ROD
 	goto ElderLiSpeech_1
 
 
-# 51 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 53 "data/maps/ProvingTrialEntrance/scripts.pory"
 RefuseTrial:
-# 52 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 54 "data/maps/ProvingTrialEntrance/scripts.pory"
 	walk_down
 	step_end
 
-# 55 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 57 "data/maps/ProvingTrialEntrance/scripts.pory"
 NoLeave:
-# 56 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 58 "data/maps/ProvingTrialEntrance/scripts.pory"
+	lock
+# 59 "data/maps/ProvingTrialEntrance/scripts.pory"
 	walk_up
 	step_end
 
-# 59 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 62 "data/maps/ProvingTrialEntrance/scripts.pory"
 ElderLiFacing:
-# 60 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 63 "data/maps/ProvingTrialEntrance/scripts.pory"
 	face_left
 	step_end
 
@@ -103,11 +109,11 @@ ProvingTrialStart_Text_0:
 	.string "Are you ready to face the Proving Trial?$"
 
 ElderLiSpeech_Text_0:
-# 45 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 47 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "You already have your Supplies Aspirant.$"
 
 ElderLiWelcome::
-# 63 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 66 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}Welcome Aspirant, I am Elder Li\n"
 	.string "and I shall oversee your Proving Trial.\l"
 	.string "You will be tasked with finding and\l"
@@ -115,7 +121,7 @@ ElderLiWelcome::
 	.string "your future challenges.$"
 
 ElderLiSupplies::
-# 70 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 73 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}We shall provide you with\n"
 	.string "Safari Balls and a Fishing Rod for your\l"
 	.string "coming Trials.$"
