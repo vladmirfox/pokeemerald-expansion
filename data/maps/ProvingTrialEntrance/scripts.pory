@@ -21,7 +21,7 @@ script ProvingTrialStart {
             call(ElderLiSpeech)
         }
         else{
-            applymovement(OBJ_EVENT_ID_PLAYER, walk_down)
+            applymovement(OBJ_EVENT_ID_PLAYER, RefuseTrial)
         }
     }
     else {
@@ -30,11 +30,11 @@ script ProvingTrialStart {
 }
 
 script ProvingTrialInProgress {
-    applymovement(OBJ_EVENT_ID_PLAYER, walk_up)
+    applymovement(OBJ_EVENT_ID_PLAYER, NoLeave)
 }
 
 script ElderLiSpeech {
-    applymovement(1, face_player)
+    applymovement(1, ElderLiFacing)
     lockall
     msgbox(ElderLiWelcome)
     setflag(FLAG_SYS_POKEMON_GET)
@@ -48,6 +48,18 @@ script ElderLiSpeech {
     }
     releaseall
     end
+}
+
+movement RefuseTrial {
+    walk_down
+}
+
+movement NoLeave {
+    walk_up
+}
+
+movement ElderLiFacing {
+    face_left
 }
 
 text ElderLiWelcome {
