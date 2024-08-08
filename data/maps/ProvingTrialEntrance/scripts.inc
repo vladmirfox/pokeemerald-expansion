@@ -34,7 +34,7 @@ ElderLiSpeech_Text_0:
 
 ElderLiWelcome::
 # 21 "data/maps/ProvingTrialEntrance/scripts.pory"
-	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR BLACK}{COLOR LIGHT_GRAY}Welcome Aspirant, I am Elder Li\n"
+	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}Welcome Aspirant, I am Elder Li\n"
 	.string "and I shall oversee your Proving Trial.\l"
 	.string "You will be tasked with finding and\l"
 	.string "capturing a worthy Dragon-Type for\l"
@@ -42,6 +42,6 @@ ElderLiWelcome::
 
 ElderLiSupplies::
 # 28 "data/maps/ProvingTrialEntrance/scripts.pory"
-	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR BLACK}{COLOR LIGHT_GRAY}We shall provide you with\n"
+	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}We shall provide you with\n"
 	.string "Safari Balls and a Fishing Rod for your\l"
 	.string "coming Trials.$"

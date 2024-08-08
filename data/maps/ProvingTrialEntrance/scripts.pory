@@ -1,8 +1,40 @@
 mapscripts ProvingTrialEntrance_MapScripts {
-    
+    MAP_SCRIPT_ON_TRANSITION: ProvingTrial
+}
+
+script ProvingTrial {
+    lockall
+    if(var(VAR_WYRMSHIRE_STATE) == 0) {
+        setflag(FLAG_PROVINGTRIAL)
+        setvar(VAR_WYRMSHIRE_STATE,1)
+    }
+    else {
+        releaseall
+        end
+    }
+}
+
+script ProvingTrialStart {
+    if(var(VAR_WYRMSHIRE_STATE) == 1) {
+        msgbox("Are you ready to face the Proving Trial?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            call(ElderLiSpeech)
+        }
+        else{
+            applymovement(OBJ_EVENT_ID_PLAYER, walk_down)
+        }
+    }
+    else {
+        end
+    }
+}
+
+script ProvingTrialInProgress {
+    applymovement(OBJ_EVENT_ID_PLAYER, walk_up)
 }
 
 script ElderLiSpeech {
+    applymovement(1, face_player)
     lockall
     msgbox(ElderLiWelcome)
     setflag(FLAG_SYS_POKEMON_GET)
