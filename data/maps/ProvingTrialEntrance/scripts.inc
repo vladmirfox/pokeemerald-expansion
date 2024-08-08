@@ -35,7 +35,7 @@ ProvingTrialStart_1:
 	compare VAR_RESULT, YES
 	goto_if_eq ProvingTrialStart_4
 # 24 "data/maps/ProvingTrialEntrance/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, walk_down
+	applymovement OBJ_EVENT_ID_PLAYER, RefuseTrial
 	return
 
 ProvingTrialStart_4:
@@ -46,13 +46,13 @@ ProvingTrialStart_4:
 
 ProvingTrialInProgress::
 # 33 "data/maps/ProvingTrialEntrance/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, walk_up
+	applymovement OBJ_EVENT_ID_PLAYER, NoLeave
 	return
 
 
 ElderLiSpeech::
 # 37 "data/maps/ProvingTrialEntrance/scripts.pory"
-	applymovement 1, face_player
+	applymovement 1, ElderLiFacing
 # 38 "data/maps/ProvingTrialEntrance/scripts.pory"
 	lockall
 # 39 "data/maps/ProvingTrialEntrance/scripts.pory"
@@ -78,6 +78,24 @@ ElderLiSpeech_2:
 	goto ElderLiSpeech_1
 
 
+# 53 "data/maps/ProvingTrialEntrance/scripts.pory"
+RefuseTrial:
+# 54 "data/maps/ProvingTrialEntrance/scripts.pory"
+	walk_down
+	step_end
+
+# 57 "data/maps/ProvingTrialEntrance/scripts.pory"
+NoLeave:
+# 58 "data/maps/ProvingTrialEntrance/scripts.pory"
+	walk_up
+	step_end
+
+# 61 "data/maps/ProvingTrialEntrance/scripts.pory"
+ElderLiFacing:
+# 62 "data/maps/ProvingTrialEntrance/scripts.pory"
+	face_left
+	step_end
+
 ProvingTrialStart_Text_0:
 # 19 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "Are you ready to face the Proving Trial?$"
@@ -87,7 +105,7 @@ ElderLiSpeech_Text_0:
 	.string "You already have your Supplies Aspirant.$"
 
 ElderLiWelcome::
-# 53 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 65 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}Welcome Aspirant, I am Elder Li\n"
 	.string "and I shall oversee your Proving Trial.\l"
 	.string "You will be tasked with finding and\l"
@@ -95,7 +113,7 @@ ElderLiWelcome::
 	.string "your future challenges.$"
 
 ElderLiSupplies::
-# 60 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 72 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}We shall provide you with\n"
 	.string "Safari Balls and a Fishing Rod for your\l"
 	.string "coming Trials.$"

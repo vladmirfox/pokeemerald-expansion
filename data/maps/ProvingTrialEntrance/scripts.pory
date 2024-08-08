@@ -3,13 +3,11 @@ mapscripts ProvingTrialEntrance_MapScripts {
 }
 
 script ProvingTrial {
-    lockall
     if(var(VAR_WYRMSHIRE_STATE) == 0) {
         setflag(FLAG_PROVINGTRIAL)
         setvar(VAR_WYRMSHIRE_STATE,1)
     }
     else {
-        releaseall
         end
     }
 }
