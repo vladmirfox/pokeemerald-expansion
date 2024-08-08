@@ -7,7 +7,7 @@ SafariZone_EventScript_OutOfBallsMidBattle::
 ProvingTrial_EventScript_OutOfBallsMidBattle::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	setwarp MAP_ProvingTrialEntrance, 2, 1
+	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
 	end
 
 SafariZone_EventScript_Exit::
@@ -20,7 +20,7 @@ SafariZone_EventScript_Exit::
 ProvingTrial_EventScript_Exit::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	warp MAP_ProvingTrialEntrance, 2, 1
+	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
 	waitstate
 	end
 
@@ -55,7 +55,7 @@ SafariZone_EventScript_OutOfBalls::
 ProvingTrial_EventScript_OutOfBalls::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	setwarp MAP_ProvingTrialEntrance, 2, 1
+	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
 	end
 
 EventScript_PokeBlockFeeder::
