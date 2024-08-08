@@ -3,7 +3,8 @@ mapscripts ProvingTrialEntrance_MapScripts {
 }
 
 script ProvingTrial {
-    setvar(VAR_SAFARI_ZONE_STATE, 1)
+    setvar(VAR_SAFARI_ZONE_STATE, 0)
+    special(ExitSafariMode)
     if((var(VAR_WYRMSHIRE_STATE) == 0) && !(flag(FLAG_PROVINGTRIAL))) {
         setflag(FLAG_PROVINGTRIAL)
         setvar(VAR_WYRMSHIRE_STATE,1)

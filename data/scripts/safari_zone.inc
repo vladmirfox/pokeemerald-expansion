@@ -4,10 +4,23 @@ SafariZone_EventScript_OutOfBallsMidBattle::
 	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
 	end
 
+ProvingTrial_EventScript_OutOfBallsMidBattle::
+	setvar VAR_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	setwarp MAP_PROVINGTRIALENTRANCE, 2, 1
+	end
+
 SafariZone_EventScript_Exit::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
 	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+	waitstate
+	end
+
+ProvingTrial_EventScript_Exit::
+	setvar VAR_SAFARI_ZONE_STATE, 1
+	special ExitSafariMode
+	warp MAP_PROVINGTRIALENTRANCE, 2, 1
 	waitstate
 	end
 

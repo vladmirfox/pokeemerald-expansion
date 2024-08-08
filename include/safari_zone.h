@@ -14,6 +14,7 @@ bool8 SafariZoneTakeStep(void);
 void SafariZoneRetirePrompt(void);
 
 void CB2_EndSafariBattle(void);
+void CB2_EndPTBattle(void);
 
 struct Pokeblock *SafariZoneGetActivePokeblock(void);
 void SafariZoneActivatePokeblockFeeder(u8 pokeblock_index);
