@@ -1,4 +1,4 @@
-mapscripts ProvingTrialEntrance_MapScripts {
+mapscripts ProvingTrialA1_MapScripts {
     MAP_SCRIPT_ON_TRANSITION: PT_GO
 }
 
