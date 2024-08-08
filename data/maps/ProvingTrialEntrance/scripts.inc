@@ -96,11 +96,13 @@ NoLeave:
 	lock
 # 59 "data/maps/ProvingTrialEntrance/scripts.pory"
 	walk_up
+# 60 "data/maps/ProvingTrialEntrance/scripts.pory"
+	release
 	step_end
 
-# 62 "data/maps/ProvingTrialEntrance/scripts.pory"
-ElderLiFacing:
 # 63 "data/maps/ProvingTrialEntrance/scripts.pory"
+ElderLiFacing:
+# 64 "data/maps/ProvingTrialEntrance/scripts.pory"
 	face_left
 	step_end
 
@@ -113,7 +115,7 @@ ElderLiSpeech_Text_0:
 	.string "You already have your Supplies Aspirant.$"
 
 ElderLiWelcome::
-# 66 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 67 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}Welcome Aspirant, I am Elder Li\n"
 	.string "and I shall oversee your Proving Trial.\l"
 	.string "You will be tasked with finding and\l"
@@ -121,7 +123,7 @@ ElderLiWelcome::
 	.string "your future challenges.$"
 
 ElderLiSupplies::
-# 73 "data/maps/ProvingTrialEntrance/scripts.pory"
+# 74 "data/maps/ProvingTrialEntrance/scripts.pory"
 	.string "{COLOR RED}{SHADOW LIGHT_RED}Elder Li: {COLOR DARK_GRAY}{SHADOW LIGHT_GRAY}We shall provide you with\n"
 	.string "Safari Balls and a Fishing Rod for your\l"
 	.string "coming Trials.$"

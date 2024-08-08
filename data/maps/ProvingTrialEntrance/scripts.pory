@@ -55,9 +55,7 @@ movement RefuseTrial {
 }
 
 movement NoLeave {
-    lock
-    walk_up
-    release
+    walk_up * 2
 }
 
 movement ElderLiFacing {
