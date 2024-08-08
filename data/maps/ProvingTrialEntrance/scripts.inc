@@ -7,7 +7,8 @@ ProvingTrialEntrance_MapScripts::
 ProvingTrial::
 # 6 "data/maps/ProvingTrialEntrance/scripts.pory"
 	compare VAR_WYRMSHIRE_STATE, 0
-	goto_if_eq ProvingTrial_1
+	goto_if_eq ProvingTrial_3
+ProvingTrial_2:
 	end
 
 ProvingTrial_1:
@@ -16,6 +17,11 @@ ProvingTrial_1:
 # 8 "data/maps/ProvingTrialEntrance/scripts.pory"
 	setvar VAR_WYRMSHIRE_STATE, 1
 	return
+
+ProvingTrial_3:
+# 6 "data/maps/ProvingTrialEntrance/scripts.pory"
+	goto_if_unset FLAG_PROVINGTRIAL, ProvingTrial_1
+	goto ProvingTrial_2
 
 
 ProvingTrialStart::
