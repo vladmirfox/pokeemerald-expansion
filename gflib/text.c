@@ -934,7 +934,7 @@ bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
 
     if (subStruct->autoScrollDelay == NUM_FRAMES_AUTO_SCROLL_DELAY)
     {
-		subStruct->autoScrollDelay = 0;
+        subStruct->autoScrollDelay = 0;
         return TRUE;
     }
     else
