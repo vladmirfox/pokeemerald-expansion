@@ -53,8 +53,6 @@ enum {
     FONTATTR_COLOR_SHADOW
 };
 
-#define NUM_FRAMES_AUTO_SCROLL_DELAY 49
-
 struct TextPrinterSubStruct
 {
     u8 fontId:4;  // 0x14
