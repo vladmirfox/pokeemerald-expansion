@@ -439,7 +439,7 @@ static bool32 ShouldFlipTypeIcon(bool32 useDoubleBattleCoords, u32 position, u32
     if (GetBattlerSide(GetBattlerAtPosition(position)) != side)
         return FALSE;
 
-    return gTypesInfo[typeId].isOrdinary;
+    return !gTypesInfo[typeId].isSpecialCase;
 }
 
 static void SpriteCB_TypeIcon(struct Sprite* sprite)

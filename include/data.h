@@ -113,7 +113,7 @@ struct TypeInfo
     u16 padding:14;
     const u32 *const paletteTMHM;
     bool8 useSecondPalette:1;
-    bool8 isOrdinary:1;
+    bool8 isSpecialCase:1;
     //u16 enhanceItem;
     //u16 berry;
     //u16 gem;
