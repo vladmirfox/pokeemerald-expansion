@@ -246,7 +246,7 @@ void LoadTypeIcons(u32 battler)
 {
     u32 position;
 
-    if (!B_SHOW_TYPES)
+    if (B_SHOW_TYPES == SHOW_TYPES_NEVER)
         return;
 
     LoadTypeSpritesAndPalettes();
@@ -393,6 +393,7 @@ static void CreateSpriteFromType(u32 position, bool32 useDoubleBattleCoords, u32
 
     SetTypeIconXY(&x, &y, position, useDoubleBattleCoords, typeNum);
 
+	DebugPrintf("test");
     CreateSpriteAndSetTypeSpriteAttributes(types[typeNum], x, y, position, battler, useDoubleBattleCoords);
 }
 
@@ -416,7 +417,7 @@ static void SetTypeIconXY(s32* x, s32* y, u32 position, bool32 useDoubleBattleCo
 static void CreateSpriteAndSetTypeSpriteAttributes(u32 type, u32 x, u32 y, u32 position, u32 battler, bool32 useDoubleBattleCoords)
 {
     struct Sprite* sprite;
-    const struct SpriteTemplate* spriteTemplate = gTypesInfo[type].useSecondPalette ? &sSpriteTemplate_TypeIcons2 : &sSpriteTemplate_TypeIcons1;
+    const struct SpriteTemplate* spriteTemplate = gTypesInfo[type].useSecondTypeIconPalette ? &sSpriteTemplate_TypeIcons2 : &sSpriteTemplate_TypeIcons1;
     u32 spriteId = CreateSpriteAtEnd(spriteTemplate, x, y, UCHAR_MAX);
 
     if (spriteId == MAX_SPRITES)
@@ -439,7 +440,7 @@ static bool32 ShouldFlipTypeIcon(bool32 useDoubleBattleCoords, u32 position, u32
     if (GetBattlerSide(GetBattlerAtPosition(position)) != side)
         return FALSE;
 
-    return !gTypesInfo[typeId].isSpecialCase;
+    return !gTypesInfo[typeId].isSpecialCaseType;
 }
 
 static void SpriteCB_TypeIcon(struct Sprite* sprite)
