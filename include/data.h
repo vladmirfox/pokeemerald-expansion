@@ -112,6 +112,8 @@ struct TypeInfo
     u16 damageCategory:2;    // Used for B_PHYSICAL_SPECIAL_SPLIT <= GEN_3
     u16 padding:14;
     const u32 *const paletteTMHM;
+    bool8 useSecondPalette:1;
+    bool8 isOrdinary:1;
     //u16 enhanceItem;
     //u16 berry;
     //u16 gem;

@@ -29,9 +29,7 @@ static bool32 ShouldSkipSecondType(u32[], u32);
 static void SetTypeIconXY(s32*, s32*, u32, bool32, u32);
 
 static void CreateSpriteAndSetTypeSpriteAttributes(u32, u32 x, u32 y, u32, u32, bool32);
-static bool32 DoesTypeUseSecondPalette(u32);
 static bool32 ShouldFlipTypeIcon(bool32, u32, u32);
-static bool32 IsTypeOrdinary(u32);
 
 static void SpriteCB_TypeIcon(struct Sprite*);
 static void DestroyTypeIcon(struct Sprite*);
@@ -418,8 +416,8 @@ static void SetTypeIconXY(s32* x, s32* y, u32 position, bool32 useDoubleBattleCo
 static void CreateSpriteAndSetTypeSpriteAttributes(u32 type, u32 x, u32 y, u32 position, u32 battler, bool32 useDoubleBattleCoords)
 {
     struct Sprite* sprite;
-    const struct SpriteTemplate* spriteTemplate = DoesTypeUseSecondPalette(type) ? &sSpriteTemplate_TypeIcons2 : &sSpriteTemplate_TypeIcons1;
-    u32 spriteId = CreateSpriteAtEnd(spriteTemplate, x, y,UCHAR_MAX);
+    const struct SpriteTemplate* spriteTemplate = gTypesInfo[type].useSecondPalette ? &sSpriteTemplate_TypeIcons2 : &sSpriteTemplate_TypeIcons1;
+    u32 spriteId = CreateSpriteAtEnd(spriteTemplate, x, y, UCHAR_MAX);
 
     if (spriteId == MAX_SPRITES)
         return;
@@ -434,45 +432,14 @@ static void CreateSpriteAndSetTypeSpriteAttributes(u32 type, u32 x, u32 y, u32 p
     StartSpriteAnim(sprite, type);
 }
 
-static bool32 DoesTypeUseSecondPalette(u32 typeId)
-{
-    // TODO merge into gTypesInfo
-    switch (typeId)
-    {
-        case TYPE_FIRE:
-        case TYPE_WATER:
-        case TYPE_GRASS:
-        case TYPE_ELECTRIC:
-        case TYPE_PSYCHIC:
-        case TYPE_ICE:
-        case TYPE_DRAGON:
-        case TYPE_DARK:
-        case TYPE_FAIRY:
-            return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
 static bool32 ShouldFlipTypeIcon(bool32 useDoubleBattleCoords, u32 position, u32 typeId)
 {
     bool32 side = (useDoubleBattleCoords) ? B_SIDE_OPPONENT : B_SIDE_PLAYER;
 
-    if (!IsTypeOrdinary(typeId))
-        return FALSE;
-
     if (GetBattlerSide(GetBattlerAtPosition(position)) != side)
         return FALSE;
 
-    return TRUE;
-}
-
-static bool32 IsTypeOrdinary(u32 typeId)
-{
-    // TODO merge into gTypesInfo
-    return typeId != TYPE_NONE &&
-        typeId != TYPE_MYSTERY &&
-        typeId <= TYPE_FAIRY;
+    return gTypesInfo[typeId].isOrdinary;
 }
 
 static void SpriteCB_TypeIcon(struct Sprite* sprite)
