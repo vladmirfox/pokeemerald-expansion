@@ -605,11 +605,25 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         }
         else
         {
-            s32 nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                    effectivenessMultiplier, weather, FALSE,
-                                                    aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                    aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+            s32 nonCritDmg = 0;
+            if (gMovesInfo[move].effect == EFFECT_TRIPLE_KICK)
+            {
+                for (gMultiHitCounter = 3; gMultiHitCounter > 0; gMultiHitCounter--)
+                {
+                    nonCritDmg += CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
+                                                            effectivenessMultiplier, weather, FALSE,
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                }
+            }
+            else
+            {
+                nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
+                                                        effectivenessMultiplier, weather, FALSE,
+                                                        aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                        aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
+            }
             simDamage.expected = GetDamageByRollType(nonCritDmg, rollType);
             simDamage.minimum = LowestRollDmg(nonCritDmg);
         }
