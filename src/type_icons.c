@@ -280,7 +280,7 @@ static void LoadTypeIconsPerBattler(u32 battler, u32 position)
 
 static bool32 UseDoubleBattleCoords(u32 position)
 {
-    if (!BATTLE_TYPE_IS_DOUBLE)
+    if (!IsDoubleBattle())
         return FALSE;
 
     if ((position == B_POSITION_PLAYER_LEFT) && (IsBattlerNull(B_POSITION_PLAYER_RIGHT)))

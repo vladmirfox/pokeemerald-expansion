@@ -175,7 +175,7 @@ static void InitSinglePlayerBtlControllers(void)
             gBattlerPartyIndexes[3] = 3;
         }
     }
-    else if (!(BATTLE_TYPE_IS_DOUBLE))
+    else if (!(IsDoubleBattle()))
     {
         gBattleMainFunc = BeginBattleIntro;
 
@@ -417,7 +417,7 @@ static void InitLinkBtlControllers(void)
     s32 i;
     u8 multiplayerId;
 
-    if (!(BATTLE_TYPE_IS_DOUBLE))
+    if (!(IsDoubleBattle()))
     {
         if (gBattleTypeFlags & BATTLE_TYPE_IS_MASTER)
         {
@@ -442,7 +442,7 @@ static void InitLinkBtlControllers(void)
             gBattlersCount = 2;
         }
     }
-    else if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && BATTLE_TYPE_IS_DOUBLE)
+    else if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && IsDoubleBattle())
     {
         if (gBattleTypeFlags & BATTLE_TYPE_IS_MASTER)
         {
