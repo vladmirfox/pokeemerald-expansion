@@ -138,6 +138,7 @@ SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, opponent);
         HP_BAR(player);
         ABILITY_POPUP(player, ABILITY_DANCER);
+        NOT MESSAGE("It doesn't affect Foe Zoroark");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, player);
         HP_BAR(opponent);
     }
