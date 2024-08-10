@@ -17,7 +17,6 @@ static bool32 UseDoubleBattleCoords(u32);
 static u32 GetMonPublicType(u32, u32);
 static bool32 ShouldHideUncaughtType(u32);
 static u32 GetMonDefensiveTeraType(struct Pokemon *, struct Pokemon*, u32, u32, u32, u32);
-static bool32 IsIllusionActive(struct Pokemon*);
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon*, u32, u32);
 
 static void CreateSpriteFromType(u32, bool32, u32[], u32, u32);
@@ -292,12 +291,15 @@ static bool32 UseDoubleBattleCoords(u32 position)
 static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
 {
     struct Pokemon* mon = GetBattlerData(battlerId);
-    struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
-    u32 illusionSpecies = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
     u32 monSpecies = GetMonData(mon,MON_DATA_SPECIES,NULL);
+    struct Pokemon* monIllusion;
+    u32 illusionSpecies;
 
     if (ShouldHideUncaughtType(monSpecies))
         return TYPE_MYSTERY;
+
+    monIllusion = GetIllusionMonPtr(battlerId);
+    illusionSpecies = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
 
     if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
         return GetMonDefensiveTeraType(mon,monIllusion,battlerId,typeNum,illusionSpecies,monSpecies);
@@ -327,21 +329,16 @@ static u32 GetMonDefensiveTeraType(struct Pokemon * mon, struct Pokemon* monIllu
     if (teraType != TYPE_STELLAR)
         return teraType;
 
-    targetSpecies = (IsIllusionActive(monIllusion)) ? illusionSpecies : monSpecies;
+	targetSpecies = (monIllusion != NULL) ? illusionSpecies : monSpecies;
 
     return gSpeciesInfo[targetSpecies].types[typeNum];
-}
-
-static bool32 IsIllusionActive(struct Pokemon* monIllusion)
-{
-    return (monIllusion != NULL);
 }
 
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon* monIllusion, u32 monSpecies, u32 battlerId)
 {
 	u32 typeNum;
 
-    if (!IsIllusionActive(monIllusion))
+	if (monIllusion == NULL)
         return FALSE;
 
 	for (typeNum = 0; typeNum < 2; typeNum++)
