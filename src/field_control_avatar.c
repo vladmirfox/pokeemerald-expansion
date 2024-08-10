@@ -664,8 +664,14 @@ static void UpdateLetsGoEvolutionTracker(void)
 {
     u32 i;
     u16 count;
+    const struct Evolution *evolutions;
     struct Pokemon *followingMon = GetFirstLiveMon();
-    const struct Evolution *evolutions = GetSpeciesEvolutions(GetMonData(followingMon, MON_DATA_SPECIES));
+    if (!followingMon)
+    {
+        return;
+    }
+
+    evolutions = GetSpeciesEvolutions(GetMonData(followingMon, MON_DATA_SPECIES));
 
     if (evolutions == NULL)
         return;
