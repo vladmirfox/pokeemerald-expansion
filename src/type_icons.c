@@ -13,7 +13,6 @@ static void LoadTypeSpritesAndPalettes(void);
 static void LoadTypeIconsPerBattler(u32, u32);
 
 static bool32 UseDoubleBattleCoords(u32);
-static bool32 IsBattlerNull(u32);
 
 static u32 GetMonPublicType(u32, u32);
 static struct Pokemon* GetBattlerData(u32);
@@ -282,18 +281,13 @@ static bool32 UseDoubleBattleCoords(u32 position)
     if (!IsDoubleBattle())
         return FALSE;
 
-    if ((position == B_POSITION_PLAYER_LEFT) && (IsBattlerNull(B_POSITION_PLAYER_RIGHT)))
+	if ((position == B_POSITION_PLAYER_LEFT) && (gBattleMons[B_POSITION_PLAYER_RIGHT].species == SPECIES_NONE))
         return FALSE;
 
-    if ((position == B_POSITION_OPPONENT_LEFT) && (IsBattlerNull(B_POSITION_OPPONENT_RIGHT)))
+	if ((position == B_POSITION_OPPONENT_LEFT) && (gBattleMons[B_POSITION_OPPONENT_RIGHT].species == SPECIES_NONE))
         return FALSE;
 
     return TRUE;
-}
-
-static bool32 IsBattlerNull(u32 battlerId)
-{
-    return gBattleMons[battlerId].species== SPECIES_NONE;
 }
 
 static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
