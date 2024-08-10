@@ -7057,11 +7057,11 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
             switch (gWeatherPtr->currWeather)
             {
             case WEATHER_SUNNY:
-                if (heldItem =! ITEM_UTILITY_UMBRELLA)
+                if (heldItem != ITEM_UTILITY_UMBRELLA)
                     return TYPE_FIRE;
                 break;
             case WEATHER_RAIN:
-                if (heldItem =! ITEM_UTILITY_UMBRELLA)
+                if (heldItem != ITEM_UTILITY_UMBRELLA)
                     return TYPE_WATER;
                 break;
             case WEATHER_SNOW:
