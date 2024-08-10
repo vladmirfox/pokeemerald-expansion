@@ -264,7 +264,7 @@ static void LoadTypeIconsPerBattler(u32 battler, u32 position)
     u32 battlerId = GetBattlerAtPosition(position);
     bool32 useDoubleBattleCoords = UseDoubleBattleCoords(battlerId);
 
-	if (!IsBattlerAlive(battlerId))
+    if (!IsBattlerAlive(battlerId))
         return;
 
     for (typeNum = 0; typeNum < 2; ++typeNum)
@@ -279,10 +279,10 @@ static bool32 UseDoubleBattleCoords(u32 position)
     if (!IsDoubleBattle())
         return FALSE;
 
-	if ((position == B_POSITION_PLAYER_LEFT) && (gBattleMons[B_POSITION_PLAYER_RIGHT].species == SPECIES_NONE))
+    if ((position == B_POSITION_PLAYER_LEFT) && (gBattleMons[B_POSITION_PLAYER_RIGHT].species == SPECIES_NONE))
         return FALSE;
 
-	if ((position == B_POSITION_OPPONENT_LEFT) && (gBattleMons[B_POSITION_OPPONENT_RIGHT].species == SPECIES_NONE))
+    if ((position == B_POSITION_OPPONENT_LEFT) && (gBattleMons[B_POSITION_OPPONENT_RIGHT].species == SPECIES_NONE))
         return FALSE;
 
     return TRUE;
@@ -307,7 +307,7 @@ static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
     if (IsIllusionActiveAndTypeUnchanged(monIllusion,monSpecies, battlerId))
         return gSpeciesInfo[illusionSpecies].types[typeNum];
 
-	return gBattleMons[battlerId].types[typeNum];
+    return gBattleMons[battlerId].types[typeNum];
 }
 
 static bool32 ShouldHideUncaughtType(u32 species)
@@ -329,20 +329,20 @@ static u32 GetMonDefensiveTeraType(struct Pokemon * mon, struct Pokemon* monIllu
     if (teraType != TYPE_STELLAR)
         return teraType;
 
-	targetSpecies = (monIllusion != NULL) ? illusionSpecies : monSpecies;
+    targetSpecies = (monIllusion != NULL) ? illusionSpecies : monSpecies;
 
     return gSpeciesInfo[targetSpecies].types[typeNum];
 }
 
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon* monIllusion, u32 monSpecies, u32 battlerId)
 {
-	u32 typeNum;
+    u32 typeNum;
 
-	if (monIllusion == NULL)
+    if (monIllusion == NULL)
         return FALSE;
 
-	for (typeNum = 0; typeNum < 2; typeNum++)
-		if (gSpeciesInfo[monSpecies].types[typeNum] != gBattleMons[battlerId].types[typeNum])
+    for (typeNum = 0; typeNum < 2; typeNum++)
+        if (gSpeciesInfo[monSpecies].types[typeNum] != gBattleMons[battlerId].types[typeNum])
         return FALSE;
 
     return TRUE;
