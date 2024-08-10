@@ -14,7 +14,6 @@ static void LoadTypeIconsPerBattler(u32, u32);
 
 static bool32 UseDoubleBattleCoords(u32);
 static bool32 IsBattlerNull(u32);
-static bool32 IsBattlerFainted(u32);
 
 static u32 GetMonPublicType(u32, u32);
 static struct Pokemon* GetBattlerData(u32);
@@ -268,7 +267,7 @@ static void LoadTypeIconsPerBattler(u32 battler, u32 position)
     u32 battlerId = GetBattlerAtPosition(position);
     bool32 useDoubleBattleCoords = UseDoubleBattleCoords(battlerId);
 
-    if (IsBattlerFainted(battlerId))
+	if (!IsBattlerAlive(battleId))
         return;
 
     for (typeNum = 0; typeNum < 2; ++typeNum)
@@ -295,11 +294,6 @@ static bool32 UseDoubleBattleCoords(u32 position)
 static bool32 IsBattlerNull(u32 battlerId)
 {
     return gBattleMons[battlerId].species== SPECIES_NONE;
-}
-
-static bool32 IsBattlerFainted(u32 battlerId)
-{
-    return gBattleMons[battlerId].hp < 1;
 }
 
 static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
