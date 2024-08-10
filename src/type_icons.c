@@ -460,10 +460,18 @@ static bool32 ShouldHideTypeIcon(u32 battlerId)
 
 static s32 GetTypeIconHideMovement(bool32 useDoubleBattleCoords, u32 position)
 {
-    return useDoubleBattleCoords ?
-        (position == B_POSITION_PLAYER_LEFT ||
-         position == B_POSITION_PLAYER_RIGHT ? 1 : -1) :
-        (position == B_POSITION_PLAYER_LEFT ? -1 : 1);
+    if (useDoubleBattleCoords)
+    {
+        if (position == B_POSITION_PLAYER_LEFT || position == B_POSITION_PLAYER_RIGHT)
+            return 1;
+        else
+            return -1;
+    }
+
+    if (position == B_POSITION_PLAYER_LEFT)
+        return -1;
+    else
+        return 1;
 }
 
 static s32 GetTypeIconSlideMovement(bool32 useDoubleBattleCoords, u32 position, s32 xPos)
