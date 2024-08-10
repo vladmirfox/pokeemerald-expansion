@@ -1501,7 +1501,7 @@ void SetUpTwoTrainersBattle(void)
     LockPlayerFieldControls();
 }
 
-#define OFFSET_TRAINERID    4
+#define OFFSET_TRAINERID    3
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     u32 flag = TrainerBattleLoadArg16(data + OFFSET_TRAINERID);

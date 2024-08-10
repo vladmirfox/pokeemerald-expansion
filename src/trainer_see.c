@@ -417,7 +417,7 @@ bool8 CheckForTrainersWantingBattle(void)
         PtrStack trainerBattleScriptStack;
         PtrStackInit(&trainerBattleScriptStack);
         TrainerBattleLoadArgs_2(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET);
-        TrainerBattleLoadArgsSecondTrainer  (gApproachingTrainers[1].trainerScriptPtr + OPCODE_OFFSET);
+        TrainerBattleLoadArgsSecondTrainer(gApproachingTrainers[1].trainerScriptPtr + OPCODE_OFFSET);
 
         BattleSetup_ConfigureTrainerBattle(gApproachingTrainers[0].trainerScriptPtr + OPCODE_OFFSET, &trainerBattleScriptStack, TRUE);
         ScriptContext_SetupScript(EventScript_StartTrainerApproach);
