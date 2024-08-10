@@ -110,7 +110,7 @@ EWRAM_DATA static u8 *sTrainerCannotBattleSpeech = NULL;
 EWRAM_DATA static u8 *sTrainerABattleScriptRetAddr = NULL;
 EWRAM_DATA static u8 *sTrainerBBattleScriptRetAddr = NULL;
 
-EWRAM_DATA TrainerBattleParameterU sTrainerBattleParameter = {0};
+EWRAM_DATA TrainerBattleParameterU gTrainerBattleParameter = {0};
 EWRAM_DATA u16 gPartnerTrainerId = 0;
 EWRAM_DATA static u8 *sTrainerBattleEndScript = NULL;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
@@ -1106,7 +1106,7 @@ static void InitTrainerBattleVariables(void)
     sTrainerCannotBattleSpeech = NULL;
     sTrainerBattleEndScript = NULL;
 
-    memset(sTrainerBattleParameter.data, 0, sizeof(sTrainerBattleParameter));
+    memset(gTrainerBattleParameter.data, 0, sizeof(gTrainerBattleParameter));
 }
 
 static inline void SetU8(void *ptr, u8 value)
@@ -1204,9 +1204,9 @@ void TrainerBattleLoadArgsSecondTrainer(const u8* data)
 void TrainerBattleLoadArgs_2(const u8* data)
 {
     InitTrainerBattleVariables();
-    memcpy(sTrainerBattleParameter.data, data, sizeof(TrainerBattleParameterU));
+    memcpy(gTrainerBattleParameter.data, data, sizeof(TrainerBattleParameterU));
     sTrainerBattleEndScript = (u8*)data + sizeof(TrainerBattleParameterU);
-    DebugPrintTrainerParams((&sTrainerBattleParameter));
+    DebugPrintTrainerParams((&gTrainerBattleParameter));
 }
 
 void SetMapVarsToTrainerA(void)
@@ -1318,7 +1318,7 @@ const u8 *BattleSetup_ConfigureTrainerBattleApproachingTrainer(const u8* data, P
 
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data, PtrStack *scrStack, bool32 isApproaching)
 {   
-    DebugPrintTrainerParams((&sTrainerBattleParameter));
+    DebugPrintTrainerParams((&gTrainerBattleParameter));
 
     if (isApproaching) 
     {
@@ -1501,13 +1501,15 @@ void SetUpTwoTrainersBattle(void)
     LockPlayerFieldControls();
 }
 
+#define OPCODE_OFFSET   1
 #define OFFSET_TRAINERID    3
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
-    u32 flag = TrainerBattleLoadArg16(data + OFFSET_TRAINERID);
-    return FlagGet(TRAINER_FLAGS_START + flag);
+    TrainerBattleParameterU *temp = (TrainerBattleParameterU*)(data + OPCODE_OFFSET);
+    return FlagGet(TRAINER_FLAGS_START + temp->params.battleOpponentA);
 }
 #undef OFFSET_TRAINERID
+#undef OPCODE_OFFSET
 
 // Set trainer's movement type so they stop and remain facing that direction
 // Note: Only for trainers who are spoken to directly

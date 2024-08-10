@@ -57,11 +57,11 @@ typedef struct TrainerBattleScriptStack
     s8 stackPtr;
 } TrainerBattleScriptStack;
 
-#define TRAINER_BATTLE_PARAM sTrainerBattleParameter.params
+#define TRAINER_BATTLE_PARAM gTrainerBattleParameter.params
 
 extern const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES];
 
-extern TrainerBattleParameterU sTrainerBattleParameter;
+extern TrainerBattleParameterU gTrainerBattleParameter;
 extern bool16 gHideCancelOptionOnPartySelect;
 extern u16 gTrainerBattleOpponent_A;
 extern u16 gTrainerBattleOpponent_B;
