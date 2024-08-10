@@ -12898,7 +12898,7 @@ static void Cmd_settypetorandomresistance(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-    else if (gLastHitByType[gBattlerAttacker] == TYPE_STELLAR)
+    else if (gLastHitByType[gBattlerAttacker] == TYPE_STELLAR || gLastHitByType[gBattlerAttacker] == TYPE_MYSTERY)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
