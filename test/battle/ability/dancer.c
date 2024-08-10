@@ -126,3 +126,19 @@ DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     }
 }
+
+SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
+{
+    GIVEN {
+        PLAYER(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); }
+        OPPONENT(SPECIES_ZOROARK_HISUI);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_REVELATION_DANCE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, opponent);
+        HP_BAR(player);
+        ABILITY_POPUP(player, ABILITY_DANCER);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, player);
+        HP_BAR(opponent);
+    }
+}
