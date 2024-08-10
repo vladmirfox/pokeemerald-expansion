@@ -7037,18 +7037,42 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
             type = TYPE_NORMAL;
     }
 
-    if (gMovesInfo[move].effect == EFFECT_WEATHER_BALL && WEATHER_HAS_EFFECT)
+    if (gMovesInfo[move].effect == EFFECT_WEATHER_BALL)
     {
-        if (gBattleWeather & B_WEATHER_RAIN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-            return TYPE_WATER;
-        else if (gBattleWeather & B_WEATHER_SANDSTORM)
-            return TYPE_ROCK;
-        else if (gBattleWeather & B_WEATHER_SUN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
-            return TYPE_FIRE;
-        else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
-            return TYPE_ICE;
+        if (gMain.inBattle && WEATHER_HAS_EFFECT)
+        {
+            if (gBattleWeather & B_WEATHER_RAIN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                return TYPE_WATER;
+            else if (gBattleWeather & B_WEATHER_SANDSTORM)
+                return TYPE_ROCK;
+            else if (gBattleWeather & B_WEATHER_SUN && heldItemEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                return TYPE_FIRE;
+            else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
+                return TYPE_ICE;
+            else
+                return TYPE_NORMAL;
+        }
         else
+        {
+            switch (gWeatherPtr->currWeather)
+            {
+            case WEATHER_SUNNY:
+                if (heldItem =! ITEM_UTILITY_UMBRELLA)
+                    return TYPE_FIRE;
+                break;
+            case WEATHER_RAIN:
+                if (heldItem =! ITEM_UTILITY_UMBRELLA)
+                    return TYPE_WATER;
+                break;
+            case WEATHER_SNOW:
+                return TYPE_ICE;
+                break;
+            case WEATHER_SANDSTORM:
+                return TYPE_ROCK;
+                break;
+            }
             return TYPE_NORMAL;
+        }
     }
 
     if (ability == ABILITY_NORMALIZE && gMovesInfo[move].type != TYPE_NORMAL && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
