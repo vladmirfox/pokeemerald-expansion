@@ -10636,16 +10636,16 @@ void ActivateMegaEvolution(u32 battler)
     gLastUsedItem = gBattleMons[battler].item;
     SetActiveGimmick(battler, GIMMICK_MEGA);
     if (GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
-        BattleScriptExecute(BattleScript_WishMegaEvolution);
+        BattleScriptPushCursorAndCallback(BattleScript_WishMegaEvolution);
     else
-        BattleScriptExecute(BattleScript_MegaEvolution);
+        BattleScriptPushCursorAndCallback(BattleScript_MegaEvolution);
 }
 
 void ActivateUltraBurst(u32 battler)
 {
     gLastUsedItem = gBattleMons[battler].item;
     SetActiveGimmick(battler, GIMMICK_ULTRA_BURST);
-    BattleScriptExecute(BattleScript_UltraBurst);
+    BattleScriptPushCursorAndCallback(BattleScript_UltraBurst);
 }
 
 bool32 IsBattlerMegaEvolved(u32 battler)
