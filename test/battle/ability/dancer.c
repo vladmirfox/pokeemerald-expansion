@@ -132,7 +132,7 @@ SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
     GIVEN {
         ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].danceMove == TRUE);
         PLAYER(SPECIES_ZOROARK_HISUIAN);
-        OPPONENT(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); }
+        OPPONENT(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); HP(900); }
     } WHEN {
         TURN { MOVE(player, MOVE_REVELATION_DANCE); }
     } SCENE {
