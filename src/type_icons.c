@@ -318,10 +318,7 @@ static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
     if (IsIllusionActiveAndTypeUnchanged(monIllusion,monSpecies, battlerId))
         return gSpeciesInfo[illusionSpecies].types[typeNum];
 
-    if (!typeNum)
-        return gBattleMons[battlerId].type1;
-    else
-        return gBattleMons[battlerId].type2;
+	return gBattleMons[battlerId].types[typeNum];
 }
 
 static struct Pokemon* GetBattlerData(u32 battlerId)
@@ -362,13 +359,13 @@ static bool32 IsIllusionActive(struct Pokemon* monIllusion)
 
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon* monIllusion, u32 monSpecies, u32 battlerId)
 {
+	u32 typeNum;
+
     if (!IsIllusionActive(monIllusion))
         return FALSE;
 
-    if (gSpeciesInfo[monSpecies].types[0] != gBattleMons[battlerId].type1)
-        return FALSE;
-
-    if (gSpeciesInfo[monSpecies].types[1] != gBattleMons[battlerId].type2)
+	for (typeNum = 0; typeNum < 2; typeNum++)
+		if (gSpeciesInfo[monSpecies].types[typeNum] != gBattleMons[battlerId].types[typeNum])
         return FALSE;
 
     return TRUE;
