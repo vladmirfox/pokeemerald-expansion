@@ -662,35 +662,8 @@ static void UpdateFriendshipStepCounter(void)
 
 static void UpdateFollowerStepCounter(void)
 {
-<<<<<<< HEAD
-    u32 i;
-    u16 count;
-    const struct Evolution *evolutions;
-    struct Pokemon *followingMon = GetFirstLiveMon();
-    if (!followingMon)
-    {
-        return;
-    }
-
-    evolutions = GetSpeciesEvolutions(GetMonData(followingMon, MON_DATA_SPECIES));
-
-    if (evolutions == NULL)
-        return;
-
-    for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-    {
-        if (evolutions[i].method != EVO_OVERWORLD_STEPS || SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
-            continue;
-
-        // We only have 10 bits to use
-        count = min(1023, GetMonData(followingMon, MON_DATA_EVOLUTION_TRACKER) + 1);
-        SetMonData(followingMon, MON_DATA_EVOLUTION_TRACKER, &count);
-        return;
-    }
-=======
     if (gPlayerPartyCount > 0 && gFollowerSteps < (u16)-1)
         gFollowerSteps++;
->>>>>>> ex-upcoming
 }
 
 void ClearPoisonStepCounter(void)
