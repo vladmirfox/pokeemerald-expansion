@@ -19,8 +19,7 @@ static bool32 IsBattlerFainted(u32);
 static u32 GetMonPublicType(u32, u32);
 static struct Pokemon* GetBattlerData(u32);
 static bool32 ShouldHideUncaughtType(u32);
-static bool32 IsMonTerastallizedAndStellarType(struct Pokemon*,u32);
-static u32 GetSpeciesType(struct Pokemon*, u32, u32, u32);
+static u32 ReturnMonDefensiveTeraType(struct Pokemon *, struct Pokemon*, u32, u32, u32, u32);
 static bool32 IsIllusionActive(struct Pokemon*);
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon*, u32, u32);
 
@@ -62,7 +61,6 @@ const struct Coords16 sTypeIconPositions[][2] =
 
 const union AnimCmd sSpriteAnim_TypeIcon_Normal[] =
 {
-// TODO merge into gTypesInfo
     ANIMCMD_FRAME(TYPE_ICON_1_FRAME(TYPE_NORMAL), 0),
     ANIMCMD_END
 };
@@ -114,7 +112,6 @@ const union AnimCmd sSpriteAnim_TypeIcon_Mystery[] =
 
 const union AnimCmd sSpriteAnim_TypeIcon_Fire[] =
 {
-    // TODO merge into gTypesInfo
     ANIMCMD_FRAME(TYPE_ICON_2_FRAME(TYPE_FIRE), 0),
     ANIMCMD_END
 };
@@ -161,7 +158,6 @@ const union AnimCmd sSpriteAnim_TypeIcon_Fairy[] =
 
 const union AnimCmd *const sSpriteAnimTable_TypeIcons[] =
 {
-    // TODO merge into gTypesInfo
     [TYPE_NONE] =       sSpriteAnim_TypeIcon_Mystery,
     [TYPE_NORMAL] =     sSpriteAnim_TypeIcon_Normal,
     [TYPE_FIGHTING] =   sSpriteAnim_TypeIcon_Fighting,
@@ -310,14 +306,14 @@ static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
 {
     struct Pokemon* mon = GetBattlerData(battlerId);
     struct Pokemon* monIllusion = GetIllusionMonPtr(battlerId);
-    u32 monSpecies = GetMonData(mon,MON_DATA_SPECIES,NULL);
     u32 illusionSpecies = GetMonData(monIllusion,MON_DATA_SPECIES,NULL);
+    u32 monSpecies = GetMonData(mon,MON_DATA_SPECIES,NULL);
 
     if (ShouldHideUncaughtType(monSpecies))
         return TYPE_MYSTERY;
 
-    if (IsMonTerastallizedAndStellarType(mon, battlerId))
-        return GetSpeciesType(monIllusion,typeNum,illusionSpecies,monSpecies);
+    if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
+		return ReturnMonDefensiveTeraType(mon,monIllusion,battlerId,typeNum,illusionSpecies,monSpecies);
 
     if (IsIllusionActiveAndTypeUnchanged(monIllusion,monSpecies, battlerId))
         return gSpeciesInfo[illusionSpecies].types[typeNum];
@@ -346,23 +342,17 @@ static bool32 ShouldHideUncaughtType(u32 species)
     return TRUE;
 }
 
-static bool32 IsMonTerastallizedAndStellarType(struct Pokemon* mon,u32 battlerId)
+static u32 ReturnMonDefensiveTeraType(struct Pokemon * mon, struct Pokemon* monIllusion, u32 battlerId, u32 typeNum, u32 illusionSpecies, u32 monSpecies)
 {
-    if (GetActiveGimmick(battlerId) != GIMMICK_TERA)
-        return FALSE;
+	u32 teraType = GetBattlerTeraType(battlerId);
+	u32 targetSpecies;
 
-    if (GetMonData(mon,MON_DATA_TERA_TYPE,NULL) != TYPE_STELLAR)
-        return FALSE;
+	if (teraType != TYPE_STELLAR)
+		return teraType;
 
-    return TRUE;
-}
+	targetSpecies = (IsIllusionActive(monIllusion)) ? illusionSpecies : monSpecies;
 
-static u32 GetSpeciesType(struct Pokemon* monIllusion, u32 typeNum, u32 illusionSpecies, u32 monSpecies)
-{
-    if (IsIllusionActive(monIllusion))
-        return gSpeciesInfo[illusionSpecies].types[typeNum];
-    else
-        return gSpeciesInfo[monSpecies].types[typeNum];
+	return gSpeciesInfo[targetSpecies].types[typeNum];
 }
 
 static bool32 IsIllusionActive(struct Pokemon* monIllusion)
@@ -375,11 +365,11 @@ static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon* monIllusion, u32 mon
     if (!IsIllusionActive(monIllusion))
         return FALSE;
 
-    if (
-            (gSpeciesInfo[monSpecies].types[0] != gBattleMons[battlerId].type1) ||
-            (gSpeciesInfo[monSpecies].types[1] != gBattleMons[battlerId].type2)
-       )
-        return FALSE;
+	if (gSpeciesInfo[monSpecies].types[0] != gBattleMons[battlerId].type1)
+		return FALSE;
+
+	if (gSpeciesInfo[monSpecies].types[1] != gBattleMons[battlerId].type2)
+		return FALSE;
 
     return TRUE;
 }
@@ -393,7 +383,6 @@ static void CreateSpriteFromType(u32 position, bool32 useDoubleBattleCoords, u32
 
     SetTypeIconXY(&x, &y, position, useDoubleBattleCoords, typeNum);
 
-	DebugPrintf("test");
     CreateSpriteAndSetTypeSpriteAttributes(types[typeNum], x, y, position, battler, useDoubleBattleCoords);
 }
 
