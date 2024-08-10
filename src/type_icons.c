@@ -15,7 +15,6 @@ static void LoadTypeIconsPerBattler(u32, u32);
 static bool32 UseDoubleBattleCoords(u32);
 
 static u32 GetMonPublicType(u32, u32);
-static struct Pokemon* GetBattlerData(u32);
 static bool32 ShouldHideUncaughtType(u32);
 static u32 ReturnMonDefensiveTeraType(struct Pokemon *, struct Pokemon*, u32, u32, u32, u32);
 static bool32 IsIllusionActive(struct Pokemon*);
@@ -266,7 +265,7 @@ static void LoadTypeIconsPerBattler(u32 battler, u32 position)
     u32 battlerId = GetBattlerAtPosition(position);
     bool32 useDoubleBattleCoords = UseDoubleBattleCoords(battlerId);
 
-	if (!IsBattlerAlive(battleId))
+	if (!IsBattlerAlive(battlerId))
         return;
 
     for (typeNum = 0; typeNum < 2; ++typeNum)
@@ -307,13 +306,6 @@ static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
         return gSpeciesInfo[illusionSpecies].types[typeNum];
 
 	return gBattleMons[battlerId].types[typeNum];
-}
-
-static struct Pokemon* GetBattlerData(u32 battlerId)
-{
-    u32 index = gBattlerPartyIndexes[battlerId];
-
-    return (GetBattlerSide(battlerId) == B_SIDE_OPPONENT) ? &gEnemyParty[index] : &gPlayerParty[index];
 }
 
 static bool32 ShouldHideUncaughtType(u32 species)
