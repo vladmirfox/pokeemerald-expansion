@@ -153,6 +153,9 @@ SECTIONS {
         src/tileset_anims.o(.text);
         src/palette.o(.text);
         src/sound.o(.text);
+        src/ui_startmenu_full.o(.text);
+        src/ui_main_menu.o(.text);
+        src/mugshot.o(.text);
         src/battle_anim.o(.text);
         src/battle_anim_mons.o(.text);
         src/task.o(.text);
@@ -539,6 +542,9 @@ SECTIONS {
         src/tileset_anims.o(.rodata);
         src/palette.o(.rodata);
         src/sound.o(.rodata);
+        src/ui_startmenu_full.o(.rodata);
+        src/ui_main_menu.o(.rodata);
+        src/mugshot.o(.rodata);
         src/battle_anim.o(.rodata);
         src/battle_anim_mons.o(.rodata);
         data/map_events.o(.rodata);
