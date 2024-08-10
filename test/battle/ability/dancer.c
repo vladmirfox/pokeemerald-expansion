@@ -130,6 +130,7 @@ DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
 SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].danceMove == TRUE);
         PLAYER(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); }
         OPPONENT(SPECIES_ZOROARK_HISUI);
     } WHEN {
