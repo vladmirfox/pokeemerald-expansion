@@ -4277,7 +4277,7 @@ static void HandleTurnActionSelectionState(void)
                                                             i);
                         }
 
-                        BtlController_EmitChooseMove(battler, BUFFER_A, (IsDoubleBattle()) != 0, FALSE, &moveInfo);
+                        BtlController_EmitChooseMove(battler, BUFFER_A, IsDoubleBattle() != 0, FALSE, &moveInfo);
                         MarkBattlerForControllerExec(battler);
                     }
                     break;
@@ -4570,7 +4570,7 @@ static void HandleTurnActionSelectionState(void)
                 else
                     i = FALSE;
 
-                if (((gBattleTypeFlags & BATTLE_TYPE_MULTI) || !(IsDoubleBattle()))
+                if (((gBattleTypeFlags & BATTLE_TYPE_MULTI) || !IsDoubleBattle())
                     || (position & BIT_FLANK) != B_FLANK_LEFT
                     || (*(&gBattleStruct->absentBattlerFlags) & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(position))]))
                 {

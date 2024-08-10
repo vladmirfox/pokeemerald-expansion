@@ -221,7 +221,7 @@ void HandleAction_UseMove(void)
     {
         gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = gSideTimers[side].followmeTarget; // follow me moxie fix
     }
-    else if ((IsDoubleBattle())
+    else if (IsDoubleBattle()
            && gSideTimers[side].followmeTimer == 0
            && (gMovesInfo[gCurrentMove].power != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
@@ -305,8 +305,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = battler;
         }
     }
-    else if (IsDoubleBattle()
-          && moveTarget & MOVE_TARGET_RANDOM)
+	else if (IsDoubleBattle() && moveTarget & MOVE_TARGET_RANDOM)
     {
         if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
         {
@@ -336,8 +335,7 @@ void HandleAction_UseMove(void)
         else
             gBattlerTarget = gBattlerAttacker;
     }
-    else if (IsDoubleBattle()
-          && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
+	else if (IsDoubleBattle() && moveTarget == MOVE_TARGET_FOES_AND_ALLY)
     {
         for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
         {
@@ -3744,7 +3742,7 @@ bool32 HasNoMonsToSwitch(u32 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2
     u32 i, side, playerId, flankId;
     struct Pokemon *party;
 
-    if (!(IsDoubleBattle()))
+    if (!IsDoubleBattle())
         return FALSE;
 
     side = GetBattlerSide(battler);
@@ -5177,7 +5175,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                   && BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
                   && !(IS_MOVE_STATUS(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[gBattlerTarget].bounceMove)))
             {
-                if (!(IsDoubleBattle()) || !(moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
+                if (!IsDoubleBattle() || !(moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
                     CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
                 gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
                 battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;

@@ -275,7 +275,7 @@ u32 BattleAI_ChooseMoveOrAction(void)
 {
     u32 ret;
 
-    if (!(IsDoubleBattle()))
+    if (!IsDoubleBattle())
         ret = ChooseMoveOrAction_Singles(sBattler_AI);
     else
         ret = ChooseMoveOrAction_Doubles(sBattler_AI);

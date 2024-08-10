@@ -707,7 +707,7 @@ static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
             }
         }
     }
-    if (!(IsDoubleBattle()))
+    if (!IsDoubleBattle())
         return FALSE;
 
     opposingBattler = GetBattlerAtPosition(BATTLE_PARTNER(opposingPosition));
@@ -1140,7 +1140,7 @@ void AI_TrySwitchOrUseItem(u32 battler)
                 s32 monToSwitchId = AI_DATA->mostSuitableMonId[battler];
                 if (monToSwitchId == PARTY_SIZE)
                 {
-                    if (!(IsDoubleBattle()))
+                    if (!IsDoubleBattle())
                     {
                         battlerIn1 = GetBattlerAtPosition(battlerPosition);
                         battlerIn2 = battlerIn1;
@@ -2074,7 +2074,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
 
     // Split ideal mon decision between after previous mon KO'd (prioritize offensive options) and after switching active mon out (prioritize defensive options), and expand the scope of both.
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
-    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !(IsDoubleBattle())) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !IsDoubleBattle()) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
         bestMonId = GetBestMonIntegrated(party, firstId, lastId, battler, opposingBattler, battlerIn1, battlerIn2, switchAfterMonKOd);
         return bestMonId;

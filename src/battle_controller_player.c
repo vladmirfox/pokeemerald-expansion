@@ -379,7 +379,7 @@ static void HandleInputChooseAction(u32 battler)
     }
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
-        if ((IsDoubleBattle())
+        if (IsDoubleBattle()
          && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT
          && !(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)])
          && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
@@ -1754,7 +1754,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     }
     else
     {
-        end = StringCopy(txtPtr, gTypesInfo[type].name);       
+        end = StringCopy(txtPtr, gTypesInfo[type].name);
     }
 
     PrependFontIdToFit(txtPtr, end, FONT_NORMAL, WindowWidthPx(B_WIN_MOVE_TYPE) - 25);

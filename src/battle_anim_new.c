@@ -7595,7 +7595,7 @@ static void SpriteCB_CoreEnforcerHits(struct Sprite *sprite)
 
 static void SpriteCB_CoreEnforcerBeam(struct Sprite *sprite)
 {
-    if (!(IsDoubleBattle()))
+    if (!IsDoubleBattle())
     {
         AnimSolarBeamBigOrb(sprite);
     }

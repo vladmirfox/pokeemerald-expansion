@@ -653,7 +653,7 @@ static void OpponentHandleChoosePokemon(u32 battler)
         {
             s32 battler1, battler2, firstId, lastId;
 
-            if (!(IsDoubleBattle()))
+            if (!IsDoubleBattle())
             {
                 battler2 = battler1 = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
             }
