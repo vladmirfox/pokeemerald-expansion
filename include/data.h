@@ -110,7 +110,7 @@ struct TypeInfo
     u16 maxMove;
     u16 teraTypeRGBValue;    // Most values pulled from the Tera type icon palette.
     u16 damageCategory:2;    // Used for B_PHYSICAL_SPECIAL_SPLIT <= GEN_3
-    u16 padding:14;
+    u16 padding:12;
     const u32 *const paletteTMHM;
     bool8 useSecondTypeIconPalette:1;
     bool8 isSpecialCaseType:1;
