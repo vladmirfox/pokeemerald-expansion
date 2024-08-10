@@ -10,10 +10,6 @@
 // Eg: If P_GEN_2_POKEMON is set to FALSE, all members of the Sneasel Family will be disabled
 // (Sneasel + Hisuian, Weavile and Sneasler).
 
-#if TESTING
-// Species enabled in tests:
-#include "config/test/species_enabled.h"
-#else
 // Species in the actual game:
 #define P_GEN_1_POKEMON                  TRUE // Generation 1 Pokémon (RGBY)
 #define P_GEN_2_POKEMON                  TRUE // Generation 2 Pokémon (GSC)
@@ -608,7 +604,5 @@
 #define P_FAMILY_IRON_CROWN              P_GEN_9_POKEMON
 #define P_FAMILY_TERAPAGOS               P_GEN_9_POKEMON
 #define P_FAMILY_PECHARUNT               P_GEN_9_POKEMON
-
-#endif // TESTING
 
 #endif // GUARD_CONFIG_SPECIES_ENABLED_H
