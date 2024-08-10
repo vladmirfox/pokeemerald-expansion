@@ -76,6 +76,7 @@ bool32 CanDynamax(u32 battler)
     u16 species = gBattleMons[battler].species;
     u16 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
+    // Prevents Zigzagoon from dynamaxing in vanilla.
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
         return FALSE;
 
