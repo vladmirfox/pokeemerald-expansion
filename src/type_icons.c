@@ -16,7 +16,7 @@ static bool32 UseDoubleBattleCoords(u32);
 
 static u32 GetMonPublicType(u32, u32);
 static bool32 ShouldHideUncaughtType(u32);
-static u32 ReturnMonDefensiveTeraType(struct Pokemon *, struct Pokemon*, u32, u32, u32, u32);
+static u32 GetMonDefensiveTeraType(struct Pokemon *, struct Pokemon*, u32, u32, u32, u32);
 static bool32 IsIllusionActive(struct Pokemon*);
 static u32 IsIllusionActiveAndTypeUnchanged(struct Pokemon*, u32, u32);
 
@@ -300,7 +300,7 @@ static u32 GetMonPublicType(u32 battlerId, u32 typeNum)
         return TYPE_MYSTERY;
 
     if (GetActiveGimmick(battlerId) == GIMMICK_TERA)
-        return ReturnMonDefensiveTeraType(mon,monIllusion,battlerId,typeNum,illusionSpecies,monSpecies);
+        return GetMonDefensiveTeraType(mon,monIllusion,battlerId,typeNum,illusionSpecies,monSpecies);
 
     if (IsIllusionActiveAndTypeUnchanged(monIllusion,monSpecies, battlerId))
         return gSpeciesInfo[illusionSpecies].types[typeNum];
@@ -319,7 +319,7 @@ static bool32 ShouldHideUncaughtType(u32 species)
     return TRUE;
 }
 
-static u32 ReturnMonDefensiveTeraType(struct Pokemon * mon, struct Pokemon* monIllusion, u32 battlerId, u32 typeNum, u32 illusionSpecies, u32 monSpecies)
+static u32 GetMonDefensiveTeraType(struct Pokemon * mon, struct Pokemon* monIllusion, u32 battlerId, u32 typeNum, u32 illusionSpecies, u32 monSpecies)
 {
     u32 teraType = GetBattlerTeraType(battlerId);
     u32 targetSpecies;
