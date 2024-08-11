@@ -4060,14 +4060,14 @@ static inline bool32 HadMoreThanHalfHpNowDoesnt(u32 battler)
              && gBattleMons[battler].hp <= cutoff);
 }
 
-#define ANIM_STAT_STAT_HP      0
-#define ANIM_STAT_STAT_ATK     1
-#define ANIM_STAT_STAT_DEF     2
-#define ANIM_STAT_STAT_SPATK   3
-#define ANIM_STAT_STAT_SPDEF   4
-#define ANIM_STAT_STAT_SPEED   5
-#define ANIM_STAT_STAT_ACC     6
-#define ANIM_STAT_STAT_EVASION 7
+#define ANIM_STAT_HP      0
+#define ANIM_STAT_ATK     1
+#define ANIM_STAT_DEF     2
+#define ANIM_STAT_SPATK   3
+#define ANIM_STAT_SPDEF   4
+#define ANIM_STAT_SPEED   5
+#define ANIM_STAT_ACC     6
+#define ANIM_STAT_EVASION 7
 static void ChooseStatBoostAnimation(u32 battler)
 {
     u32 stat;
@@ -4075,42 +4075,39 @@ static void ChooseStatBoostAnimation(u32 battler)
     bool32 statBuffMoreThan1 = FALSE;
     u32 static const statsOrder[NUM_BATTLE_STATS] =
     {
-        [ANIM_STAT_STAT_HP]      = STAT_HP,
-        [ANIM_STAT_STAT_ATK]     = STAT_ATK,
-        [ANIM_STAT_STAT_DEF]     = STAT_DEF,
-        [ANIM_STAT_STAT_SPATK]   = STAT_SPATK,
-        [ANIM_STAT_STAT_SPDEF]   = STAT_SPDEF,
-        [ANIM_STAT_STAT_SPEED]   = STAT_SPEED,
-        [ANIM_STAT_STAT_ACC]     = STAT_ACC,
-        [ANIM_STAT_STAT_EVASION] = STAT_EVASION,
+        [ANIM_STAT_HP]      = STAT_HP,
+        [ANIM_STAT_ATK]     = STAT_ATK,
+        [ANIM_STAT_DEF]     = STAT_DEF,
+        [ANIM_STAT_SPATK]   = STAT_SPATK,
+        [ANIM_STAT_SPDEF]   = STAT_SPDEF,
+        [ANIM_STAT_SPEED]   = STAT_SPEED,
+        [ANIM_STAT_ACC]     = STAT_ACC,
+        [ANIM_STAT_EVASION] = STAT_EVASION,
     };
 
-    for (stat = 0; stat < NUM_BATTLE_STATS; stat++)
+    for (stat = 1; stat < NUM_BATTLE_STATS; stat++) // Start loop at 1 to avoid STAT_HP
     {
-        if (stat == STAT_HP) // Skip HP because it can not be boosted
-            continue;
-
         if ((gQueuedStatBoosts[battler].stats & (1 << statsOrder[stat])) == 0)
             continue;
 
         if (!statBuffMoreThan1)
             statBuffMoreThan1 = ((gQueuedStatBoosts[battler].stats & (1 << statsOrder[stat])) > 1);
 
-        if (gBattleScripting.animArg1 != 0) //Already set in a different stat so now boosting multiple stats
-            gBattleScripting.animArg1 = (!statBuffMoreThan1 ? STAT_ANIM_MULTIPLE_PLUS1 : STAT_ANIM_MULTIPLE_PLUS2);
+        if (gBattleScripting.animArg1 != 0) // Already set in a different stat so now boosting multiple stats
+            gBattleScripting.animArg1 = (statBuffMoreThan1 ? STAT_ANIM_MULTIPLE_PLUS2 : STAT_ANIM_MULTIPLE_PLUS1);
         else
             gBattleScripting.animArg1 = GET_STAT_BUFF_ID((statsOrder[stat] + 1)) + (!statBuffMoreThan1 ? STAT_ANIM_PLUS1 : STAT_ANIM_PLUS2);
 
     }
 }
-#undef ANIM_STAT_STAT_HP
-#undef ANIM_STAT_STAT_ATK
-#undef ANIM_STAT_STAT_DEF
-#undef ANIM_STAT_STAT_SPATK
-#undef ANIM_STAT_STAT_SPDEF
-#undef ANIM_STAT_STAT_SPEED
-#undef ANIM_STAT_STAT_ACC
-#undef ANIM_STAT_STAT_EVASION
+#undef ANIM_STAT_HP
+#undef ANIM_STAT_ATK
+#undef ANIM_STAT_DEF
+#undef ANIM_STAT_SPATK
+#undef ANIM_STAT_SPDEF
+#undef ANIM_STAT_SPEED
+#undef ANIM_STAT_ACC
+#undef ANIM_STAT_EVASION
 
 u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 moveArg)
 {
