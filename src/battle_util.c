@@ -4071,7 +4071,6 @@ static inline bool32 HadMoreThanHalfHpNowDoesnt(u32 battler)
 static void ChooseStatBoostAnimation(u32 battler)
 {
     u32 stat;
-    gBattleScripting.animArg1 = 0;
     bool32 statBuffMoreThan1 = FALSE;
     u32 static const statsOrder[NUM_BATTLE_STATS] =
     {
@@ -4084,6 +4083,7 @@ static void ChooseStatBoostAnimation(u32 battler)
         [ANIM_STAT_ACC]     = STAT_ACC,
         [ANIM_STAT_EVASION] = STAT_EVASION,
     };
+    gBattleScripting.animArg1 = 0;
 
     for (stat = 1; stat < NUM_BATTLE_STATS; stat++) // Start loop at 1 to avoid STAT_HP
     {
