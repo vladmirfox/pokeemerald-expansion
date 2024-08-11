@@ -131,16 +131,19 @@ SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].danceMove == TRUE);
-        PLAYER(SPECIES_ZOROARK_HISUIAN);
-        OPPONENT(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); HP(900); }
+        ASSUME(gMovesInfo[MOVE_REVELATION_DANCE].effect == EFFECT_REVELATION_DANCE);
+        PLAYER(SPECIES_TANGROWTH);
+        OPPONENT(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_DANCER); }
     } WHEN {
         TURN { MOVE(player, MOVE_REVELATION_DANCE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, player);
         HP_BAR(opponent);
+        MESSAGE("It's not very effective…");
         ABILITY_POPUP(opponent, ABILITY_DANCER);
-        NOT MESSAGE("It doesn't affect Foe Zoroark…");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REVELATION_DANCE, opponent);
         HP_BAR(player);
+        NOT MESSAGE("It's not very effective…");
+        MESSAGE("It's super effective!");
     }
 }
