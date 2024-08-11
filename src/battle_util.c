@@ -4097,7 +4097,6 @@ static void ChooseStatBoostAnimation(u32 battler)
             gBattleScripting.animArg1 = (statBuffMoreThan1 ? STAT_ANIM_MULTIPLE_PLUS2 : STAT_ANIM_MULTIPLE_PLUS1);
         else
             gBattleScripting.animArg1 = GET_STAT_BUFF_ID((statsOrder[stat] + 1)) + (!statBuffMoreThan1 ? STAT_ANIM_PLUS1 : STAT_ANIM_PLUS2);
-
     }
 }
 #undef ANIM_STAT_HP
