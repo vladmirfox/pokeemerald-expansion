@@ -586,8 +586,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
             u32 critOdds = GetCritHitOdds(critChanceIndex);
-            // With critOdds getting closer to 1,
-            dmg gets closer to critDmg.
+            // With critOdds getting closer to 1, dmg gets closer to critDmg.
             simDamage.expected = GetDamageByRollType((critDmg + nonCritDmg * (critOdds - 1)) / critOdds, rollType);
             if (critOdds == 1)
                 simDamage.minimum = LowestRollDmg(critDmg);
