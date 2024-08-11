@@ -944,7 +944,7 @@ bool32 TextPrinterWaitAutoMode(struct TextPrinter *textPrinter)
     }
 }
 
-void SetResultWithButtonPress(bool32* result)
+void SetResultWithButtonPress(bool32 *result)
 {
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
