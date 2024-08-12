@@ -432,20 +432,22 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
 static void DestroyTypeIcon(struct Sprite* sprite)
 {
     u32 i;
-    FreeSpriteTilesByTag(TYPE_ICON_TAG_2);
-    FreeSpriteTilesByTag(TYPE_ICON_TAG);
     DestroySpriteAndFreeResources(sprite);
-
 
     for (i = 0; i < MAX_SPRITES; ++i)
     {
         if (!gSprites[i].inUse)
             continue;
 
-        if (gSprites[i].template->paletteTag == TYPE_ICON_TAG)
+        if ((gSprites[i].template->paletteTag == TYPE_ICON_TAG) || (gSprites[i].template->paletteTag == TYPE_ICON_TAG_2))
+            return;
+
+        if ((gSprites[i].template->tileTag == TYPE_ICON_TAG) || (gSprites[i].template->tileTag == TYPE_ICON_TAG_2))
             return;
     }
 
+    FreeSpriteTilesByTag(TYPE_ICON_TAG);
+    FreeSpriteTilesByTag(TYPE_ICON_TAG_2);
     FreeSpritePaletteByTag(TYPE_ICON_TAG);
     FreeSpritePaletteByTag(TYPE_ICON_TAG_2);
 }
