@@ -1,3 +1,5 @@
+Note: For further information beyond this very basic guide, please visit mdBook's [official documentation](https://rust-lang.github.io/mdBook/).
+
 ## Running documentation website locally (Ubuntu WSL1/WSL2)
 ### Previous Requirements:
 - Option 1: Install via Rust toolchain
