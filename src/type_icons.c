@@ -439,10 +439,16 @@ static void DestroyTypeIcon(struct Sprite* sprite)
         if (!gSprites[i].inUse)
             continue;
 
-        if ((gSprites[i].template->paletteTag == TYPE_ICON_TAG) || (gSprites[i].template->paletteTag == TYPE_ICON_TAG_2))
+        if (gSprites[i].template->paletteTag == TYPE_ICON_TAG)
             return;
 
-        if ((gSprites[i].template->tileTag == TYPE_ICON_TAG) || (gSprites[i].template->tileTag == TYPE_ICON_TAG_2))
+        if (gSprites[i].template->paletteTag == TYPE_ICON_TAG_2)
+            return;
+
+        if (gSprites[i].template->tileTag == TYPE_ICON_TAG_1)
+            return;
+
+        if (gSprites[i].template->tileTag == TYPE_ICON_TAG_2)
             return;
     }
 
