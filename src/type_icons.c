@@ -432,7 +432,10 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
 static void DestroyTypeIcon(struct Sprite* sprite)
 {
     u32 i;
+    FreeSpriteTilesByTag(TYPE_ICON_TAG_2);
+    FreeSpriteTilesByTag(TYPE_ICON_TAG);
     DestroySpriteAndFreeResources(sprite);
+
 
     for (i = 0; i < MAX_SPRITES; ++i)
     {
