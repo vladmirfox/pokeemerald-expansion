@@ -309,7 +309,7 @@ static u8 GetBattlePalaceMoveGroup(u8 battler, u16 move)
 
 static u16 GetBattlePalaceTarget(u32 battler)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         u8 opposing1, opposing2;
 
@@ -1114,7 +1114,7 @@ void LoadAndCreateEnemyShadowSprites(void)
     u32 i;
 
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
-    
+
     // initialize shadow sprite ids
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -1123,7 +1123,7 @@ void LoadAndCreateEnemyShadowSprites(void)
 
     battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
     CreateEnemyShadowSprite(battler);
-    
+
     if (IsDoubleBattle())
     {
         battler = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
