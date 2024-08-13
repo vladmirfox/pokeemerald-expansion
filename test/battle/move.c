@@ -100,7 +100,6 @@ DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
         //  This tests for unique combinatins of HP values depending on which order the moves are executed in
         //  The unique outcomes arise from the specific attacks and HP, Def, and Atk values chosen
         //  The switch is then set up in such a way that the only way for this test to pass exactly one is for each HP combination to occur exactly once
-        //  HP values for individual 'mons are the 3 first for player 'mon and 3 last digits for opponent 'mon
 #define HP_PAIR(a, b) ((a) * 1000 + (b))
         switch (HP_PAIR(playerLeft->hp, opponentLeft->hp))
         {
