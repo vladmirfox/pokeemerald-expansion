@@ -100,87 +100,86 @@ DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
     } THEN {
         hpMon1 = playerLeft->hp;
         hpMon2 = opponentLeft->hp;
+        //  This tests for unique combinatins of HP values depending on which order the moves are executed in
+        //  The unique outcomes arise from the specific attacks and HP, Def, and Atk values chosen
+        //  The switch is then set up in such a way that the only way for this test to pass exactly one is for each HP combination to occur exactly once
+        //  HP values for individual 'mons are the 3 first for player 'mon and 3 last digits for opponent 'mon
         switch (hpMon1*1000+hpMon2)
         {
             case 188360:
-                gBattleTestRunnerState->occurenceCounter += 1;
+                gBattleTestRunnerState->occurenceCounter += 1 << 0;
                 break;
             case 189360:
-                gBattleTestRunnerState->occurenceCounter += 2;
+                gBattleTestRunnerState->occurenceCounter += 1 << 1;
                 break;
             case 261360:
-                gBattleTestRunnerState->occurenceCounter += 4;
+                gBattleTestRunnerState->occurenceCounter += 1 << 2;
                 break;
             case 235360:
-                gBattleTestRunnerState->occurenceCounter += 8;
+                gBattleTestRunnerState->occurenceCounter += 1 << 3;
                 break;
             case 262360:
-                gBattleTestRunnerState->occurenceCounter += 16;
+                gBattleTestRunnerState->occurenceCounter += 1 << 4;
                 break;
             case 202360:
-                gBattleTestRunnerState->occurenceCounter += 32;
+                gBattleTestRunnerState->occurenceCounter += 1 << 5;
                 break;
             case 189378:
-                gBattleTestRunnerState->occurenceCounter += 64;
+                gBattleTestRunnerState->occurenceCounter += 1 << 6;
                 break;
             case 189189:
-                gBattleTestRunnerState->occurenceCounter += 128;
+                gBattleTestRunnerState->occurenceCounter += 1 << 7;
                 break;
             case 189480:
-                gBattleTestRunnerState->occurenceCounter += 256;
+                gBattleTestRunnerState->occurenceCounter += 1 << 8;
                 break;
             case 188480:
-                gBattleTestRunnerState->occurenceCounter += 512;
+                gBattleTestRunnerState->occurenceCounter += 1 << 9;
                 break;
             case 188240:
-                gBattleTestRunnerState->occurenceCounter += 1024;
+                gBattleTestRunnerState->occurenceCounter += 1 << 10;
                 break;
             case 188188:
-                gBattleTestRunnerState->occurenceCounter += 2048;
+                gBattleTestRunnerState->occurenceCounter += 1 << 11;
                 break;
             case 262262:
-                gBattleTestRunnerState->occurenceCounter += 4096;
+                gBattleTestRunnerState->occurenceCounter += 1 << 12;
                 break;
             case 262142:
-                gBattleTestRunnerState->occurenceCounter += 8192;
+                gBattleTestRunnerState->occurenceCounter += 1 << 13;
                 break;
             case 202403:
-                gBattleTestRunnerState->occurenceCounter += 16384;
+                gBattleTestRunnerState->occurenceCounter += 1 << 14;
                 break;
             case 202202:
-                gBattleTestRunnerState->occurenceCounter += 32768;
+                gBattleTestRunnerState->occurenceCounter += 1 << 15;
                 break;
             case 262283:
-                gBattleTestRunnerState->occurenceCounter += 65536;
+                gBattleTestRunnerState->occurenceCounter += 1 << 16;
                 break;
             case 202283:
-                gBattleTestRunnerState->occurenceCounter += 131072;
+                gBattleTestRunnerState->occurenceCounter += 1 << 17;
                 break;
             case 235180:
-                gBattleTestRunnerState->occurenceCounter += 262144;
+                gBattleTestRunnerState->occurenceCounter += 1 << 18;
                 break;
             case 261180:
-                gBattleTestRunnerState->occurenceCounter += 524288;
+                gBattleTestRunnerState->occurenceCounter += 1 << 19;
                 break;
             case 235235:
-                gBattleTestRunnerState->occurenceCounter += 1048576;
+                gBattleTestRunnerState->occurenceCounter += 1 << 20;
                 break;
             case 235300:
-                gBattleTestRunnerState->occurenceCounter += 2097152;
+                gBattleTestRunnerState->occurenceCounter += 1 << 21;
                 break;
             case 261141:
-                gBattleTestRunnerState->occurenceCounter += 4194304;
+                gBattleTestRunnerState->occurenceCounter += 1 << 22;
                 break;
             case 261261:
-                gBattleTestRunnerState->occurenceCounter += 8388608;
+                gBattleTestRunnerState->occurenceCounter += 1 << 23;
                 break;
         }
-        EXPECT_EQ(gBattleTestRunnerState->occurenceCounter, 16777215);
-        //  Any of the following pairs of hp values work:
-        //  (188, 360), (189, 360), (261, 360), (235, 360), (262, 360), (202, 360),
-        //  (189, 378), (189, 189), (189, 480), (188, 480), (188, 240), (188, 188),
-        //  (262, 262), (262, 142), (202, 403), (202, 202), (262, 283), (202, 283),
-        //  (235, 180), (261, 180), (235, 235), (235, 300), (261, 141), (261, 261)
+        EXPECT_EQ(gBattleTestRunnerState->occurenceCounter, (1 << 24) - 1);
     }
 }
 
