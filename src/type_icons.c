@@ -28,6 +28,7 @@ static bool32 ShouldFlipTypeIcon(bool32, u32, u32);
 
 static void SpriteCB_TypeIcon(struct Sprite*);
 static void DestroyTypeIcon(struct Sprite*);
+static void FreeAllTypeIconResources(void);
 static bool32 ShouldHideTypeIcon(u32);
 static s32 GetTypeIconHideMovement(bool32, u32);
 static s32 GetTypeIconSlideMovement(bool32, u32, s32);
@@ -429,33 +430,45 @@ static void SpriteCB_TypeIcon(struct Sprite* sprite)
     sprite->y = GetTypeIconBounceMovement(sprite->tVerticalPosition,position);
 }
 
+static const u32 typeIconTags[] =
+{
+    TYPE_ICON_TAG,
+    TYPE_ICON_TAG_2
+};
+
 static void DestroyTypeIcon(struct Sprite* sprite)
 {
-    u32 i;
+    u32 spriteId, tag;
+
     DestroySpriteAndFreeResources(sprite);
 
-    for (i = 0; i < MAX_SPRITES; ++i)
+    for (spriteId = 0; spriteId < MAX_SPRITES; ++spriteId)
     {
-        if (!gSprites[i].inUse)
+        if (!gSprites[spriteId].inUse)
             continue;
 
-        if (gSprites[i].template->paletteTag == TYPE_ICON_TAG)
-            return;
+        for (tag = 0; tag < 2; tag++)
+        {
+            if (gSprites[spriteId].template->paletteTag == typeIconTags[tag])
+                return;
 
-        if (gSprites[i].template->paletteTag == TYPE_ICON_TAG_2)
-            return;
-
-        if (gSprites[i].template->tileTag == TYPE_ICON_TAG_1)
-            return;
-
-        if (gSprites[i].template->tileTag == TYPE_ICON_TAG_2)
-            return;
+            if (gSprites[spriteId].template->tileTag == typeIconTags[tag])
+                return;
+        }
     }
 
-    FreeSpriteTilesByTag(TYPE_ICON_TAG);
-    FreeSpriteTilesByTag(TYPE_ICON_TAG_2);
-    FreeSpritePaletteByTag(TYPE_ICON_TAG);
-    FreeSpritePaletteByTag(TYPE_ICON_TAG_2);
+    FreeAllTypeIconResources();
+}
+
+static void FreeAllTypeIconResources(void)
+{
+    u32 tag;
+
+    for (tag = 0; tag < 2; tag++)
+    {
+        FreeSpriteTilesByTag(typeIconTags[tag]);
+        FreeSpritePaletteByTag(typeIconTags[tag]);
+    }
 }
 
 static bool32 ShouldHideTypeIcon(u32 battlerId)
