@@ -17136,14 +17136,15 @@ void BS_DamageToQuarterTargetHP(void)
 void BS_FickleBeamDamageCalculation(void)
 {
     NATIVE_ARGS();
+    gBattleStruct->fickleBeamBoosted = FALSE;
+
     if (RandomPercentage(RNG_FICKLE_BEAM, 30))
     {
-        gBattleStruct->fickleBeamBasePower = 160;
+        gBattleStruct->fickleBeamBoosted = TRUE;
         gBattlescriptCurrInstr = BattleScript_FickleBeamDoubled;
     }
     else
     {
-        gBattleStruct->fickleBeamBasePower = 80;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

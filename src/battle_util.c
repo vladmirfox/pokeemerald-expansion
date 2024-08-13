@@ -9073,7 +9073,8 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         basePower = (basePower > 350) ? 350 : basePower;
         break;
     case EFFECT_FICKLE_BEAM:
-        basePower = gBattleStruct->fickleBeamBasePower;
+        if (gBattleStruct->fickleBeamBoosted == TRUE)
+            basePower *= 2;
         break;
     case EFFECT_TERA_BLAST:
         if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA && GetBattlerTeraType(battlerAtk) == TYPE_STELLAR)
