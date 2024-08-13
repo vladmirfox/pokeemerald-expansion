@@ -80,11 +80,10 @@ SINGLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
     }
 }
 
-DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie [doubles]")
+DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie [doubles]", u32 permutations)
 {
-    u16 hpMon1, hpMon2;
-
-    PASSES_RANDOMLY(1, 24, RNG_SPEED_TIE);
+    PARAMETRIZE {} // Hack to make permutations legal.
+    PASSES_RANDOMLY(24, 24, RNG_SPEED_TIE);
 
     ASSUME(gMovesInfo[MOVE_ENDEAVOR].effect == EFFECT_ENDEAVOR);
     ASSUME(gMovesInfo[MOVE_LIFE_DEW].effect == EFFECT_JUNGLE_HEALING);
@@ -98,88 +97,41 @@ DOUBLE_BATTLE_TEST("Turn order is determined randomly if priority and Speed tie 
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_ENDEAVOR, target: opponentLeft); MOVE(playerRight, MOVE_LIFE_DEW); MOVE(opponentLeft, MOVE_CRUSH_GRIP, target: playerLeft, WITH_RNG(RNG_DAMAGE_MODIFIER, 0)); MOVE(opponentRight, MOVE_SUPER_FANG, target: playerLeft); }
     } THEN {
-        hpMon1 = playerLeft->hp;
-        hpMon2 = opponentLeft->hp;
         //  This tests for unique combinatins of HP values depending on which order the moves are executed in
         //  The unique outcomes arise from the specific attacks and HP, Def, and Atk values chosen
         //  The switch is then set up in such a way that the only way for this test to pass exactly one is for each HP combination to occur exactly once
         //  HP values for individual 'mons are the 3 first for player 'mon and 3 last digits for opponent 'mon
-        switch (hpMon1*1000+hpMon2)
+#define HP_PAIR(a, b) ((a) * 1000 + (b))
+        switch (HP_PAIR(playerLeft->hp, opponentLeft->hp))
         {
-            case 188360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 0;
-                break;
-            case 189360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 1;
-                break;
-            case 261360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 2;
-                break;
-            case 235360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 3;
-                break;
-            case 262360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 4;
-                break;
-            case 202360:
-                gBattleTestRunnerState->occurenceCounter += 1 << 5;
-                break;
-            case 189378:
-                gBattleTestRunnerState->occurenceCounter += 1 << 6;
-                break;
-            case 189189:
-                gBattleTestRunnerState->occurenceCounter += 1 << 7;
-                break;
-            case 189480:
-                gBattleTestRunnerState->occurenceCounter += 1 << 8;
-                break;
-            case 188480:
-                gBattleTestRunnerState->occurenceCounter += 1 << 9;
-                break;
-            case 188240:
-                gBattleTestRunnerState->occurenceCounter += 1 << 10;
-                break;
-            case 188188:
-                gBattleTestRunnerState->occurenceCounter += 1 << 11;
-                break;
-            case 262262:
-                gBattleTestRunnerState->occurenceCounter += 1 << 12;
-                break;
-            case 262142:
-                gBattleTestRunnerState->occurenceCounter += 1 << 13;
-                break;
-            case 202403:
-                gBattleTestRunnerState->occurenceCounter += 1 << 14;
-                break;
-            case 202202:
-                gBattleTestRunnerState->occurenceCounter += 1 << 15;
-                break;
-            case 262283:
-                gBattleTestRunnerState->occurenceCounter += 1 << 16;
-                break;
-            case 202283:
-                gBattleTestRunnerState->occurenceCounter += 1 << 17;
-                break;
-            case 235180:
-                gBattleTestRunnerState->occurenceCounter += 1 << 18;
-                break;
-            case 261180:
-                gBattleTestRunnerState->occurenceCounter += 1 << 19;
-                break;
-            case 235235:
-                gBattleTestRunnerState->occurenceCounter += 1 << 20;
-                break;
-            case 235300:
-                gBattleTestRunnerState->occurenceCounter += 1 << 21;
-                break;
-            case 261141:
-                gBattleTestRunnerState->occurenceCounter += 1 << 22;
-                break;
-            case 261261:
-                gBattleTestRunnerState->occurenceCounter += 1 << 23;
-                break;
+        case HP_PAIR(188, 360): results[i].permutations += 1 << 0; break;
+        case HP_PAIR(189, 360): results[i].permutations += 1 << 1; break;
+        case HP_PAIR(261, 360): results[i].permutations += 1 << 2; break;
+        case HP_PAIR(235, 360): results[i].permutations += 1 << 3; break;
+        case HP_PAIR(262, 360): results[i].permutations += 1 << 4; break;
+        case HP_PAIR(202, 360): results[i].permutations += 1 << 5; break;
+        case HP_PAIR(189, 378): results[i].permutations += 1 << 6; break;
+        case HP_PAIR(189, 189): results[i].permutations += 1 << 7; break;
+        case HP_PAIR(189, 480): results[i].permutations += 1 << 8; break;
+        case HP_PAIR(188, 480): results[i].permutations += 1 << 9; break;
+        case HP_PAIR(188, 240): results[i].permutations += 1 << 10; break;
+        case HP_PAIR(188, 188): results[i].permutations += 1 << 11; break;
+        case HP_PAIR(262, 262): results[i].permutations += 1 << 12; break;
+        case HP_PAIR(262, 142): results[i].permutations += 1 << 13; break;
+        case HP_PAIR(202, 403): results[i].permutations += 1 << 14; break;
+        case HP_PAIR(202, 202): results[i].permutations += 1 << 15; break;
+        case HP_PAIR(262, 283): results[i].permutations += 1 << 16; break;
+        case HP_PAIR(202, 283): results[i].permutations += 1 << 17; break;
+        case HP_PAIR(235, 180): results[i].permutations += 1 << 18; break;
+        case HP_PAIR(261, 180): results[i].permutations += 1 << 19; break;
+        case HP_PAIR(235, 235): results[i].permutations += 1 << 20; break;
+        case HP_PAIR(235, 300): results[i].permutations += 1 << 21; break;
+        case HP_PAIR(261, 141): results[i].permutations += 1 << 22; break;
+        case HP_PAIR(261, 261): results[i].permutations += 1 << 23; break;
         }
-        EXPECT_EQ(gBattleTestRunnerState->occurenceCounter, (1 << 24) - 1);
+#undef HP_PAIR
+    } FINALLY {
+        EXPECT_EQ(results[i].permutations, (1 << 24) - 1);
     }
 }
 
