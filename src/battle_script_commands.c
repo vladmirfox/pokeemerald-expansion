@@ -8605,11 +8605,14 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
             DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
             DEFOG_CLEAR(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
-        DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesDefog, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockDefog, 0);
-        DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesDefog, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebDefog, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STEELSURGE, steelsurgeAmount, BattleScript_SteelsurgeDefog, 0);
+        if (B_DEFOG_EFFECT_CLEARING >= GEN_6)
+        {
+            DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesDefog, 0);
+            DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockDefog, 0);
+            DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesDefog, 0);
+            DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebDefog, 0);
+            DEFOG_CLEAR(SIDE_STATUS_STEELSURGE, steelsurgeAmount, BattleScript_SteelsurgeDefog, 0);
+        }
         if (gBattleWeather & B_WEATHER_FOG)
         {
             gBattleWeather &= ~B_WEATHER_FOG;
@@ -8617,7 +8620,7 @@ static bool32 TryDefogClear(u32 battlerAtk, bool32 clear)
             gBattlescriptCurrInstr = BattleScript_FogEnded_Ret;
             return TRUE;
         }
-        if (B_DEFOG_CLEARS_TERRAIN >= GEN_8 && (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))
+        if (B_DEFOG_EFFECT_CLEARING >= GEN_8 && (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))
         {
             RemoveAllTerrains();
             BattleScriptPushCursor();
