@@ -63,21 +63,28 @@ enum RandomizerSpeciesMode {
     MAX_MON_MODE
 };
 
+// This object can be passed to IsRandomizationPossible to speed up queries.
+struct RandomizerGroupSet {
+    u16 species;
+    u16 minGroup;
+    u16 maxGroup;
+};
+
 
 u32 GetRandomizerSeed(void);
-bool8 RandomizerFeatureEnabled(enum RandomizerFeature feature);
+bool32 RandomizerFeatureEnabled(enum RandomizerFeature feature);
 
-struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u16 data2);
+struct Sfc32State RandomizerRandSeed(enum RandomizerReason reason, u32 data1, u32 data2);
 
 // Returns the next number from a randomizer seed.
 static inline u16 RandomizerNext(struct Sfc32State* state)
 {
     return _SFC32_Next_Stream(state, RANDOMIZER_STREAM) >> 16;
 }
-u16 RandomizerNextRange(struct Sfc32State* state, u16 range);
+u32 RandomizerNextRange(struct Sfc32State* state, u32 range);
 
-u16 RandomizerRand(enum RandomizerReason reason, u32 data1, u16 data2);
-u16 RandomizerRandRange(enum RandomizerReason reason, u32 data1, u16 data2, u16 range);
+u16 RandomizerRand(enum RandomizerReason reason, u32 data1, u32 data2);
+u16 RandomizerRandRange(enum RandomizerReason reason, u32 data1, u32 data2, u16 range);
 
 static inline u8 RandomizeMonType(u16 species, u8 typeNum)
 {
@@ -89,12 +96,13 @@ void FindItemRandomize_NativeCall(struct ScriptContext *ctx);
 void FindHiddenItemRandomize_NativeCall(struct ScriptContext *ctx);
 
 u16 RandomizeMon(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species);
+u16 RandomizeMonBaseForm(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed, u16 species);
 
 u16 RandomizeWildEncounter(u16 species, u8 mapNum, u8 mapGroup, enum WildArea area, u8 slot);
 
 // Returns TRUE if it is possible for the species tableSpecies to randomize into the species matchSpecies.
 // This does not mean that it actually did, though.
-bool8 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
+bool32 IsRandomizationPossible(u16 tableSpecies, u16 matchSpecies);
 
 u16 RandomizeTrainerMon(u16 trainerId, u8 slot, u8 totalMons, u16 species);
 
@@ -102,6 +110,12 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId);
 
 // Given a starter slot and the list of original starters, returns the starter in that slot.
 u16 RandomizeStarter(u16 starterSlot, const u16* originalStarters);
+
+static inline bool32 GroupSetsIntersect(struct RandomizerGroupSet* originalCache, struct RandomizerGroupSet* targetCache)
+{
+    return originalCache->maxGroup >= targetCache->minGroup
+        && originalCache->minGroup <= targetCache->maxGroup;
+}
 
 #if RANDOMIZER_DYNAMIC_SPECIES == TRUE
 // Once the randomizer is set up, in RAM mode, you can call this to preload the tables.

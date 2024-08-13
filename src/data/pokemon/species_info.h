@@ -55,6 +55,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
+        .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
     #include "species_info/gen_1_families.h"

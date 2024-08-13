@@ -116,6 +116,13 @@ enum {
     MON_DATA_EVOLUTION_TRACKER,
 };
 
+enum {
+    MON_RANDOMIZER_NORMAL,
+    MON_RANDOMIZER_RANDOM_FORM,
+    MON_RANDOMIZER_SPECIAL_FORM,
+    MON_RANDOMIZER_INVALID
+};
+
 struct PokemonSubstruct0
 {
     u16 species:11; // 2047 species.
@@ -438,7 +445,8 @@ struct SpeciesInfo /*0x8C*/
             u32 allPerfectIVs:1;
             u32 dexForceRequired:1; // This species will be taken into account for Pokédex ratings even if they have the "isMythical" flag set.
             u32 tmIlliterate:1; // This species will be unable to learn the universal moves.
-            u32 padding4:16;
+            u32 randomizerMode:2; // The randomizer will not randomize to or from this species.
+            u32 padding4:14;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *levelUpLearnset;
  /* 0x84 */ const u16 *teachableLearnset;
