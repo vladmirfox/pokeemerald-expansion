@@ -3101,6 +3101,17 @@ const struct SpriteTemplate gPsyshockSmokeSpriteTemplate =
     .callback = AnimSpriteOnMonPos,
 };
 
+const struct SpriteTemplate gChainBindingSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_PURPLE_CHAIN,
+    .paletteTag = ANIM_TAG_PURPLE_CHAIN,
+    .oam = &gOamData_AffineNormal_ObjNormal_64x32,
+    .anims = sAnims_ConstrictBinding,
+    .images = NULL,
+    .affineAnims = sAffineAnims_ConstrictBinding,
+    .callback = AnimConstrictBinding,
+};
+
 // functions
 static void AnimGrassKnot(struct Sprite *sprite)
 {
