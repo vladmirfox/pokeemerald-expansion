@@ -11435,7 +11435,7 @@ bool32 CantPickupItem(u32 battler)
     // Used by RandomUniformExcept() for RNG_PICKUP
     if (battler == gBattlerAttacker && gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))
         return TRUE;
-    return !(IsBattlerAlive(battler) && GetUsedHeldItem(battler) && gBattleStruct->canPickupItem[battler] == TRUE);
+    return !(IsBattlerAlive(battler) && GetUsedHeldItem(battler) && gBattleStruct->canPickupItem & gBitTable[battler]);
 }
 
 bool32 PickupHasValidTarget(u32 battler)
@@ -11443,7 +11443,7 @@ bool32 PickupHasValidTarget(u32 battler)
     u32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((i != battler || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))) && IsBattlerAlive(i) && GetUsedHeldItem(i) && gBattleStruct->canPickupItem[i] == TRUE)
+        if ((i != battler || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))) && IsBattlerAlive(i) && GetUsedHeldItem(i) && gBattleStruct->canPickupItem & gBitTable[i])
             return TRUE;
     }
     return FALSE;
