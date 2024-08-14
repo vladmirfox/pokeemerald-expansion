@@ -3898,12 +3898,15 @@ static void ShouldChangeFormInWeather()
 {
     int i;
 
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    for (i = 0; i < gBattlersCount; i++)
     {
-        if (gBattleMons[i].species == SPECIES_EISCUE_NOICE_FACE)
-            gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = TRUE;
-        else
-            gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = FALSE;
+        if (isBattlerAlive(i))
+        {
+            if (gBattleMons[i].species == SPECIES_EISCUE_NOICE_FACE)
+                gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = TRUE;
+            else
+                gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = FALSE;
+        }
     }
 }
 
