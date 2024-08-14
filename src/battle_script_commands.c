@@ -17078,7 +17078,6 @@ void BS_ActivateWeatherChangeAbilities(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     gBattlescriptCurrInstr = cmd->nextInstr;
     AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0);
-    return;
 }
 
 void BS_ActivateTerrainChangeAbilities(void)
@@ -17142,12 +17141,10 @@ void BS_TryRevivalBlessing(void)
 
         gSelectedMonPartyId = PARTY_SIZE;
         gBattlescriptCurrInstr = cmd->nextInstr;
-        return;
     }
-
-    // Open party menu, wait to go to next instruction.
     else
     {
+        // Open party menu, wait to go to next instruction.
         BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
         MarkBattlerForControllerExec(gBattlerAttacker);
     }
