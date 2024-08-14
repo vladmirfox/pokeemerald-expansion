@@ -94,10 +94,6 @@ static void ShowPyramidResultsWindow(void);
 static void ShowLinkContestResultsWindow(void);
 static void CopyFrontierBrainText(bool8 playerWonText);
 
-#define FRONTIER_BRAIN_SPRITES(Brain) \
-    .trainerId = TRAINER_##Brain,     \
-    .objEventGfx = OBJ_EVENT_GFX_##Brain
-
 #define FRONTIER_BRAIN_TEXTS(Brain)                                        \
     .lostTexts = {gText_##Brain##DefeatSilver, gText_##Brain##DefeatGold}, \
     .wonTexts = {gText_##Brain##WonSilver, gText_##Brain##WonGold}
@@ -108,7 +104,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
 {
     [FRONTIER_FACILITY_TOWER] =
     {
-        FRONTIER_BRAIN_SPRITES(ANABEL),
+        .trainerId = TRAINER_ANABEL,
+        .objEventGfx = OBJ_EVENT_GFX_ANABEL,
         .isFemale = TRUE,
         FRONTIER_BRAIN_TEXTS(Anabel),
         .battledBit = {1 << 0, 1 << 1},
@@ -116,7 +113,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_DOME] =
     {
-        FRONTIER_BRAIN_SPRITES(TUCKER),
+        .trainerId = TRAINER_TUCKER,
+        .objEventGfx = OBJ_EVENT_GFX_TUCKER,
         .isFemale = FALSE,
         FRONTIER_BRAIN_TEXTS(Tucker),
         .battledBit = {1 << 2, 1 << 3},
@@ -124,7 +122,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_PALACE] =
     {
-        FRONTIER_BRAIN_SPRITES(SPENSER),
+        .trainerId = TRAINER_SPENSER,
+        .objEventGfx = OBJ_EVENT_GFX_SPENSER,
         .isFemale = FALSE,
         FRONTIER_BRAIN_TEXTS(Spenser),
         .battledBit = {1 << 4, 1 << 5},
@@ -132,7 +131,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_ARENA] =
     {
-        FRONTIER_BRAIN_SPRITES(GRETA),
+        .trainerId = TRAINER_GRETA,
+        .objEventGfx = OBJ_EVENT_GFX_GRETA,
         .isFemale = TRUE,
         FRONTIER_BRAIN_TEXTS(Greta),
         .battledBit = {1 << 6, 1 << 7},
@@ -140,7 +140,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_FACTORY] =
     {
-        FRONTIER_BRAIN_SPRITES(NOLAND),
+        .trainerId = TRAINER_NOLAND,
+        .objEventGfx = OBJ_EVENT_GFX_NOLAND,
         .isFemale = FALSE,
         FRONTIER_BRAIN_TEXTS(Noland),
         .battledBit = {1 << 8, 1 << 9},
@@ -148,7 +149,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_PIKE] =
     {
-        FRONTIER_BRAIN_SPRITES(LUCY),
+        .trainerId = TRAINER_LUCY,
+        .objEventGfx = OBJ_EVENT_GFX_LUCY,
         .isFemale = TRUE,
         FRONTIER_BRAIN_TEXTS(Lucy),
         .battledBit = {1 << 10, 1 << 11},
@@ -156,7 +158,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
     },
     [FRONTIER_FACILITY_PYRAMID] =
     {
-        FRONTIER_BRAIN_SPRITES(BRANDON),
+        .trainerId = TRAINER_BRANDON,
+        .objEventGfx = OBJ_EVENT_GFX_BRANDON,
         .isFemale = FALSE,
         FRONTIER_BRAIN_TEXTS(Brandon),
         .battledBit = {1 << 12, 1 << 13},
