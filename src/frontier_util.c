@@ -94,10 +94,6 @@ static void ShowPyramidResultsWindow(void);
 static void ShowLinkContestResultsWindow(void);
 static void CopyFrontierBrainText(bool8 playerWonText);
 
-#define FRONTIER_BRAIN_TEXTS(Brain)                                        \
-    .lostTexts = {gText_##Brain##DefeatSilver, gText_##Brain##DefeatGold}, \
-    .wonTexts = {gText_##Brain##WonSilver, gText_##Brain##WonGold}
-
 // battledBit: Flags to change the conversation when the Frontier Brain is encountered for a battle
 // First bit is has battled them before and not won yet, second bit is has battled them and won (obtained a Symbol)
 const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
@@ -107,7 +103,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_ANABEL,
         .objEventGfx = OBJ_EVENT_GFX_ANABEL,
         .isFemale = TRUE,
-        FRONTIER_BRAIN_TEXTS(Anabel),
+        .lostTexts = {gText_AnabelDefeatSilver, gText_AnabelDefeatGold},
+        .wonTexts = {gText_AnabelWonSilver, gText_AnabelWonGold},
         .battledBit = {1 << 0, 1 << 1},
         .streakAppearances = {35, 70, 35, 1},
     },
@@ -116,7 +113,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_TUCKER,
         .objEventGfx = OBJ_EVENT_GFX_TUCKER,
         .isFemale = FALSE,
-        FRONTIER_BRAIN_TEXTS(Tucker),
+        .lostTexts = {gText_TuckerDefeatSilver, gText_TuckerDefeatGold},
+        .wonTexts = {gText_TuckerWonSilver, gText_TuckerWonGold},
         .battledBit = {1 << 2, 1 << 3},
         .streakAppearances = {1, 2, 5, 0},
     },
@@ -125,7 +123,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_SPENSER,
         .objEventGfx = OBJ_EVENT_GFX_SPENSER,
         .isFemale = FALSE,
-        FRONTIER_BRAIN_TEXTS(Spenser),
+        .lostTexts = {gText_SpenserDefeatSilver, gText_SpenserDefeatGold},
+        .wonTexts = {gText_SpenserWonSilver, gText_SpenserWonGold},
         .battledBit = {1 << 4, 1 << 5},
         .streakAppearances = {21, 42, 21, 1},
     },
@@ -134,7 +133,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_GRETA,
         .objEventGfx = OBJ_EVENT_GFX_GRETA,
         .isFemale = TRUE,
-        FRONTIER_BRAIN_TEXTS(Greta),
+        .lostTexts = {gText_GretaDefeatSilver, gText_GretaDefeatGold},
+        .wonTexts = {gText_GretaWonSilver, gText_GretaWonGold},
         .battledBit = {1 << 6, 1 << 7},
         .streakAppearances = {28, 56, 28, 1},
     },
@@ -143,7 +143,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_NOLAND,
         .objEventGfx = OBJ_EVENT_GFX_NOLAND,
         .isFemale = FALSE,
-        FRONTIER_BRAIN_TEXTS(Noland),
+        .lostTexts = {gText_NolandDefeatSilver, gText_NolandDefeatGold},
+        .wonTexts = {gText_NolandWonSilver, gText_NolandWonGold},
         .battledBit = {1 << 8, 1 << 9},
         .streakAppearances = {21, 42, 21, 1},
     },
@@ -152,7 +153,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_LUCY,
         .objEventGfx = OBJ_EVENT_GFX_LUCY,
         .isFemale = TRUE,
-        FRONTIER_BRAIN_TEXTS(Lucy),
+        .lostTexts = {gText_LucyDefeatSilver, gText_LucyDefeatGold},
+        .wonTexts = {gText_LucyWonSilver, gText_LucyWonGold},
         .battledBit = {1 << 10, 1 << 11},
         .streakAppearances = {28, 140, 56, 1},
     },
@@ -161,7 +163,8 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_BRANDON,
         .objEventGfx = OBJ_EVENT_GFX_BRANDON,
         .isFemale = FALSE,
-        FRONTIER_BRAIN_TEXTS(Brandon),
+        .lostTexts = {gText_BrandonDefeatSilver, gText_BrandonDefeatGold},
+        .wonTexts = {gText_BrandonWonSilver, gText_BrandonWonGold},
         .battledBit = {1 << 12, 1 << 13},
         .streakAppearances = {21, 70, 35, 0},
     },
