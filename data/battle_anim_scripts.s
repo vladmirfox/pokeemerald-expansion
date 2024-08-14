@@ -17124,11 +17124,11 @@ Move_FILLET_AWAY::
 	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 60, -37, 0
 	playsewithpan SE_M_CUT, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x2, 0x0, 0x9, 0x7FFF
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 2, 0, 9, 0x7FFF
 	waitforvisualfinish
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 2, 4, 4
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x2, 0x9, 0x0, 0x7FFF
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 2, 9, 0, 0x7FFF
 	waitforvisualfinish
 	blendoff
 	end
@@ -17180,19 +17180,24 @@ Move_MAKE_IT_RAIN::
 	jumpretfalse MakingItRainOnOpponent
 	jumprettrue MakingItRainOnPlayer
 MakingItRainContinue:
+	waitbgfadeout
 	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, 7, 1, 11, 1
-	loopsewithpan SE_M_PAY_DAY, SOUND_PAN_TARGET, 0x8, 15
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xfffb, 0x0, 0xfffb, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x5, 0x0, 0x6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x13, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffe9, 0x0, 0xfff6, 0x1
+	loopsewithpan SE_M_PAY_DAY, SOUND_PAN_TARGET, 8, 15
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -5, 0, -5, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 5, 0, 6, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 19, 0, 10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -23, 0, -10, 1
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 5, 50, 1
 	createvisualtask AnimTask_ShakeMon, 2, ANIM_DEF_PARTNER, 0, 5, 50, 1
 	call MakingItRain
-	MakeItRainEnd:
+	call MakingItRain
+	call MakingItRain
+	restorebg
+	waitbgfadein
+	blendoff
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
 	end
@@ -17203,58 +17208,23 @@ MakingItRainOnPlayer:
 	fadetobg BG_IMPACT_PLAYER
 	goto MakingItRainContinue
 MakingItRain:
-	waitbgfadein
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1c, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xfff6, 0x0, 0xfffb, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xa, 0x0, 0x6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x18, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffe0, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1e, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1c, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xfff6, 0x0, 0xfffb, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xa, 0x0, 0x6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x18, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffe0, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1e, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1c, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xfff6, 0x0, 0xfffb, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xa, 0x0, 0x6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x18, 0x0, 0xa, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffe0, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0xffec, 0x0, 0xfff6, 0x1
-	delay 0x2
-	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 0x1e, 0x0, 0xa, 0x1
-	restorebg
-	waitbgfadein
-	blendoff
-	goto MakeItRainEnd
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 28, 0, 10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -10, 0, -5, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 10, 0, 6, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 24, 0, 10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -32, 0, -10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, -20, 0, -10, 1
+	delay 2
+	createsprite gMakingItRainTemplate, ANIM_TARGET, 2, 30, 0, 10, 1
+	delay 2
+	return
 
 Move_SHED_TAIL::
 	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 24, 3
@@ -17269,50 +17239,50 @@ Move_HYPER_DRILL::
 	loadspritegfx ANIM_TAG_HORN_HIT
 	fadetobgfromset BG_GUILLOTINE_OPPONENT, BG_GUILLOTINE_PLAYER, BG_GUILLOTINE_CONTESTS
 	waitbgfadein
-	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0x0
+	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0
 	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	delay 0x2
-	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0x1
-	createsprite gHornHitSpriteTemplate, ANIM_TARGET, 4, 0x0, 0x0, 0xc
+	delay 2
+	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 1
+	createsprite gHornHitSpriteTemplate, ANIM_TARGET, 4, 0, 0, 12
 	waitforvisualfinish
-	playse 0x14
+	playse 20
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_ATTACKER, 2, 0, 40, 1
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 10, 0, 40, 1
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x0, 0x0, 0x1, 0x3
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x0, 0x2, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 2, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0xfffc, 0x3, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, -4, 3, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0xfff8, 0xfffb, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, -8, -5, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x4, 0xfff4, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 4, -12, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x10, 0x0, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 16, 0, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x5, 0x12, 0x1, 0x3
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 5, 18, 1, 3
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0xffef, 0xc, 0x1, 0x2
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, -17, 12, 1, 2
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0xffeb, 0xfff1, 0x1, 0x2
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, -21, -15, 1, 2
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x8, 0xffe5, 0x1, 0x2
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 8, -27, 1, 2
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0x20, 0x0, 0x1, 0x2
+	delay 4
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 32, 0, 1, 2
 	playsewithpan SE_M_HORN_ATTACK, SOUND_PAN_TARGET
-	delay 0x4
-	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0x2
+	delay 4
+	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 2
 	createsprite gComplexPaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG | F_PAL_BATTLERS, 3, 1, RGB_BLACK, 8, RGB_BLACK, 0
 	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
 	waitforvisualfinish
@@ -17402,8 +17372,8 @@ Move_BLOOD_MOON::
 	delay 15
 	playsewithpan SE_M_DETECT, 0
 	waitforvisualfinish
-	createvisualtask AnimTask_IsTargetPlayerSide, 0x2
-	jumpargeq 0x7 ANIM_TARGET BloodMoonOnPlayer
+	createvisualtask AnimTask_IsTargetPlayerSide, 2
+	jumpargeq 7 ANIM_TARGET BloodMoonOnPlayer
 BloodMoonOnOpponent:
 	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_HYPER_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 1, 10, 0, 5
 	call BloodMoonOnslaughtOpponent
@@ -17411,7 +17381,7 @@ BloodMoonOnOpponent:
 	call BloodMoonOnslaughtOpponent
 	call BloodMoonOnslaughtOpponent
 	call BloodMoonOnslaughtOpponent
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 6, 5, 1, 0
 	delay 0
@@ -17424,7 +17394,7 @@ BloodMoonOnPlayer:
 	call BloodMoonOnslaughtPlayer
 	call BloodMoonOnslaughtPlayer
 	call BloodMoonOnslaughtPlayer
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	delay 0
 	waitforvisualfinish
@@ -17434,45 +17404,45 @@ BloodMoonFinish:
 	clearmonbg ANIM_ATTACKER
 	end
 BloodMoonOnslaughtOpponent:
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 6, 5, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, -16, -15, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 16, -5, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, -12, 18, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, 0xfff0, 165, 40, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 140, -16, 165, 40, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 0, 5, 1, 0
 	delay 0
 	return
 BloodMoonOnslaughtPlayer:
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 6, 5, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, -16, -15, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 16, -5, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, -12, 18, 1, 0
 	delay 0
-	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, 0xfff0, 75, 80, 0x4
+	createsprite gBloodMoonOnslaughtSpriteTemplate, ANIM_TARGET, 2, 40, -16, 75, 80, 4
 	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
 	createsprite gRedExplosionSpriteTemplate, ANIM_TARGET, 4, 0, 5, 1, 0
 	delay 0
@@ -17583,17 +17553,17 @@ Move_HARD_PRESS::
 	loadspritegfx ANIM_TAG_PURPLE_HAND_OUTLINE
 	setalpha 15, 0
 	call SetSteelBeamBackground
-	createvisualtask AnimTask_CompressTargetHorizontally, 2
+	createvisualtask AnimTask_CompressTargetHorizontallyFast, 2
 	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 0, 0, 1, 1
 	delay 3
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
-	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 0x18, 0xffe8, 1, 1
+	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 24, -24, 1, 1
 	delay 3
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
-	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 0xfff0, 16, 1, 1
+	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, -16, 16, 1, 1
 	delay 3
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
-	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 0xffe8, -12, 1, 1
+	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, -24, -12, 1, 1
 	delay 3
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
 	createsprite gCrushGripExplosionTemplate, ANIM_TARGET, 0, 16, 16, 1, 1
@@ -17653,7 +17623,7 @@ Move_MALIGNANT_CHAIN::
 	delay 3
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 8, 1
 	delay 20
-	setarg 7, 0xFFFF
+	setarg 7, -1
 	playsewithpan SE_M_BIND, SOUND_PAN_TARGET
 	waitforvisualfinish
 	call PoisonBubblesEffect
