@@ -103,8 +103,14 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_ANABEL,
         .objEventGfx = OBJ_EVENT_GFX_ANABEL,
         .isFemale = TRUE,
-        .lostTexts = {gText_AnabelDefeatSilver, gText_AnabelDefeatGold},
-        .wonTexts = {gText_AnabelWonSilver, gText_AnabelWonGold},
+        .lostTexts = {
+            COMPOUND_STRING("Okay, I understand…"), //Silver
+            COMPOUND_STRING("Thank you…")           //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING("It's very disappointing…"), //Silver
+            COMPOUND_STRING("I'm terribly sorry…")       //Gold
+        },
         .battledBit = {1 << 0, 1 << 1},
         .streakAppearances = {35, 70, 35, 1},
     },
@@ -113,8 +119,20 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_TUCKER,
         .objEventGfx = OBJ_EVENT_GFX_TUCKER,
         .isFemale = FALSE,
-        .lostTexts = {gText_TuckerDefeatSilver, gText_TuckerDefeatGold},
-        .wonTexts = {gText_TuckerWonSilver, gText_TuckerWonGold},
+        .lostTexts = {
+            COMPOUND_STRING(
+                "Grr…\n"
+                "What the…"),        //Silver
+            COMPOUND_STRING(
+                "Ahahaha!\n"
+                "You're inspiring!") //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING(
+                "Ahahaha! Aren't you embarrassed?\n"
+                "Everyone's watching!"),                              //Silver
+            COMPOUND_STRING("My DOME ACE title isn't just for show!") //Gold
+        },
         .battledBit = {1 << 2, 1 << 3},
         .streakAppearances = {1, 2, 5, 0},
     },
@@ -123,8 +141,22 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_SPENSER,
         .objEventGfx = OBJ_EVENT_GFX_SPENSER,
         .isFemale = FALSE,
-        .lostTexts = {gText_SpenserDefeatSilver, gText_SpenserDefeatGold},
-        .wonTexts = {gText_SpenserWonSilver, gText_SpenserWonGold},
+        .lostTexts = {
+            COMPOUND_STRING(
+                "Ah…\n"
+                "Now this is something else…"), //Silver
+            COMPOUND_STRING(
+                "Gwah!\n"
+                "Hahahaha!")                    //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING(
+                "Your POKéMON are wimpy because\n"
+                "you're wimpy as a TRAINER!"),           //Silver
+            COMPOUND_STRING(
+                "Gwahahaha!\n"
+                "My brethren, we have nothing to fear!") //Gold
+        },
         .battledBit = {1 << 4, 1 << 5},
         .streakAppearances = {21, 42, 21, 1},
     },
@@ -133,8 +165,22 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_GRETA,
         .objEventGfx = OBJ_EVENT_GFX_GRETA,
         .isFemale = TRUE,
-        .lostTexts = {gText_GretaDefeatSilver, gText_GretaDefeatGold},
-        .wonTexts = {gText_GretaWonSilver, gText_GretaWonGold},
+        .lostTexts = {
+            COMPOUND_STRING(
+                "No way!\n"
+                "Good job!"),        //Silver
+            COMPOUND_STRING(
+                "Huh?\n"
+                "Are you serious?!") //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING(
+                "Oh, come on!\n"
+                "You have to try harder than that!"), //Silver
+            COMPOUND_STRING(
+                "Heheh!\n"
+                "What did you expect?")               //Gold
+        },
         .battledBit = {1 << 6, 1 << 7},
         .streakAppearances = {28, 56, 28, 1},
     },
@@ -143,8 +189,20 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_NOLAND,
         .objEventGfx = OBJ_EVENT_GFX_NOLAND,
         .isFemale = FALSE,
-        .lostTexts = {gText_NolandDefeatSilver, gText_NolandDefeatGold},
-        .wonTexts = {gText_NolandWonSilver, gText_NolandWonGold},
+        .lostTexts = {
+            COMPOUND_STRING(
+                "Good job!\n"
+                "You know what you're doing!"),    //Silver
+            COMPOUND_STRING("What happened here?") //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING(
+                "Way to work!\n"
+                "That was a good lesson, eh?"), //Silver
+            COMPOUND_STRING(
+                "Hey, hey, hey!\n"
+                "You're finished already?")     //Gold
+        },
         .battledBit = {1 << 8, 1 << 9},
         .streakAppearances = {21, 42, 21, 1},
     },
@@ -153,8 +211,14 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_LUCY,
         .objEventGfx = OBJ_EVENT_GFX_LUCY,
         .isFemale = TRUE,
-        .lostTexts = {gText_LucyDefeatSilver, gText_LucyDefeatGold},
-        .wonTexts = {gText_LucyWonSilver, gText_LucyWonGold},
+        .lostTexts = {
+            COMPOUND_STRING("Urk…"), //Silver
+            COMPOUND_STRING("Darn!") //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING("Humph…"), //Silver
+            COMPOUND_STRING("Hah!")    //Gold
+        },
         .battledBit = {1 << 10, 1 << 11},
         .streakAppearances = {28, 140, 56, 1},
     },
@@ -163,8 +227,22 @@ const struct FrontierBrain gFrontierBrainInfo[NUM_FRONTIER_FACILITIES] =
         .trainerId = TRAINER_BRANDON,
         .objEventGfx = OBJ_EVENT_GFX_BRANDON,
         .isFemale = FALSE,
-        .lostTexts = {gText_BrandonDefeatSilver, gText_BrandonDefeatGold},
-        .wonTexts = {gText_BrandonWonSilver, gText_BrandonWonGold},
+        .lostTexts = {
+            COMPOUND_STRING(
+                "That's it! You've done great!\n"
+                "You've worked hard for this!"), //Silver
+            COMPOUND_STRING(
+                "That's it! You've done it!\n"
+                "You kept working for this!")    //Gold
+        },
+        .wonTexts = {
+            COMPOUND_STRING(
+                "Hey! What's wrong with you!\n"
+                "Let's see some effort! Get up!"),       //Silver
+            COMPOUND_STRING(
+                "Hey! Don't you give up now!\n"
+                "Get up! Don't lose faith in yourself!") //Gold
+        },
         .battledBit = {1 << 12, 1 << 13},
         .streakAppearances = {21, 70, 35, 0},
     },
