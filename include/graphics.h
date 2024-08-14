@@ -2873,6 +2873,11 @@ extern const u32 gBattleAnimSpriteGfx_SyrupShell[];
 extern const u32 gBattleAnimSpriteGfx_SyrupSplat[];
 extern const u32 gBattleAnimSpritePal_SyrupRed[];
 extern const u32 gBattleAnimSpritePal_SyrupYellow[];
+extern const u32 gBattleAnimSpriteGfx_IvyCudgel[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelGrass[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelFire[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelRock[];
+extern const u32 gBattleAnimSpritePal_IvyCudgelWater[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
@@ -3357,5 +3362,10 @@ extern const u8 gMailTilemap_Retro[];
 
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
+
+extern const u32 gBattleIcons_Gfx1[];
+extern const u32 gBattleIcons_Gfx2[];
+extern const u32 gBattleIcons_Pal1[];
+extern const u32 gBattleIcons_Pal2[];
 
 #endif //GUARD_GRAPHICS_H

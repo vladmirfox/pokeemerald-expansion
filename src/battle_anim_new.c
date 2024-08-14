@@ -110,6 +110,14 @@ static const union AffineAnimCmd sSquishTargetAffineAnimCmds[] =
     AFFINEANIMCMD_END,
 };
 
+static const union AffineAnimCmd sSquishTargetShortAffineAnimCmds[] =
+{
+    AFFINEANIMCMD_FRAME(0, 64, 0, 4), //Flatten
+    AFFINEANIMCMD_FRAME(0, 0, 0, 16),
+    AFFINEANIMCMD_FRAME(0, -64, 0, 4),
+    AFFINEANIMCMD_END,
+};
+
 // GEN 4
 // shadow sneak
 const struct SpriteTemplate gShadowSneakImpactSpriteTemplate =
@@ -4801,6 +4809,17 @@ const struct SpriteTemplate gUltraBurstSymbolSpriteTemplate =
     .callback = AnimSpriteOnMonPos
 };
 
+const struct SpriteTemplate gAxeKickSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_HANDS_AND_FEET,
+    .paletteTag = ANIM_TAG_HANDS_AND_FEET,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = &gAnims_HandsAndFeet[2],
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBounceBallLand,
+};
+
 // Z MOVES
 //activate
 const struct SpriteTemplate gZMoveSymbolSpriteTemplate =
@@ -7231,7 +7250,7 @@ static u8 LoadBattleAnimTarget(u8 arg)
 {
     u8 battler;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         switch (gBattleAnimArgs[arg])
         {
@@ -7262,7 +7281,7 @@ static u8 LoadBattleAnimTarget(u8 arg)
 
 static u8 GetProperCentredCoord(u8 battler, u8 coordType)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
         return (GetBattlerSpriteCoord2(battler, coordType) + GetBattlerSpriteCoord2(BATTLE_PARTNER(battler), coordType)) / 2;
 
     return GetBattlerSpriteCoord(battler, coordType);
@@ -7452,14 +7471,14 @@ static void SpriteCB_SpriteToCentreOfSide(struct Sprite *sprite)
 
         if (gBattleAnimArgs[2] == 0) //Attacker
         {
-            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            if (IsDoubleBattle())
                 InitSpritePosToAnimAttackersCentre(sprite, var);
             else
                 InitSpritePosToAnimAttacker(sprite, var);
         }
         else
         {
-            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            if (IsDoubleBattle())
                 InitSpritePosToAnimTargetsCentre(sprite, var);
             else
                 InitSpritePosToAnimTarget(sprite, var);
@@ -7543,7 +7562,7 @@ static void SpriteCB_GrowingSuperpower(struct Sprite *sprite)
 
 static void SpriteCB_CentredSpiderWeb(struct Sprite *sprite)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
         InitSpritePosToAnimTargetsCentre(sprite, FALSE);
     else
         InitSpritePosToAnimTarget(sprite, FALSE);
@@ -7557,14 +7576,14 @@ static void SpriteCB_CoreEnforcerHits(struct Sprite *sprite)
 
     if (gBattleAnimArgs[2] == 0)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (IsDoubleBattle())
             InitSpritePosToAnimAttackersCentre(sprite, FALSE);
         else
             InitSpritePosToAnimAttacker(sprite, FALSE);
     }
     else
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (IsDoubleBattle())
             InitSpritePosToAnimTargetsCentre(sprite, FALSE);
         else
             InitSpritePosToAnimTarget(sprite, FALSE);
@@ -7576,7 +7595,7 @@ static void SpriteCB_CoreEnforcerHits(struct Sprite *sprite)
 
 static void SpriteCB_CoreEnforcerBeam(struct Sprite *sprite)
 {
-    if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+    if (!IsDoubleBattle())
     {
         AnimSolarBeamBigOrb(sprite);
     }
@@ -7848,14 +7867,14 @@ void SpriteCB_RandomCentredHits(struct Sprite *sprite)
 
     if (gBattleAnimArgs[0] == 0)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (IsDoubleBattle())
             InitSpritePosToAnimAttackersCentre(sprite, FALSE);
         else
             InitSpritePosToAnimAttacker(sprite, FALSE);
     }
     else
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (IsDoubleBattle())
             InitSpritePosToAnimTargetsCentre(sprite, FALSE);
         else
             InitSpritePosToAnimTarget(sprite, FALSE);
@@ -8160,7 +8179,7 @@ static void SpriteCB_BeamUpStep(struct Sprite *sprite)
 
 static void SpriteCB_CentredElectricity(struct Sprite *sprite)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
         InitSpritePosToAnimTargetsCentre(sprite, FALSE);
     else
         InitSpritePosToAnimTarget(sprite, FALSE);
@@ -8541,6 +8560,15 @@ void AnimTask_SquishTarget(u8 taskId)
     u8 spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
 
     PrepareAffineAnimInTaskData(task, spriteId, sSquishTargetAffineAnimCmds);
+    task->func = AnimTask_WaitAffineAnim;
+}
+
+void AnimTask_SquishTargetShort(u8 taskId)
+{
+    struct Task* task = &gTasks[taskId];
+    u8 spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
+
+    PrepareAffineAnimInTaskData(task, spriteId, sSquishTargetShortAffineAnimCmds);
     task->func = AnimTask_WaitAffineAnim;
 }
 

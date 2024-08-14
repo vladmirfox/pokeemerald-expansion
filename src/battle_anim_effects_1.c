@@ -2958,6 +2958,50 @@ const struct SpriteTemplate gWoodHammerHammerSpriteTemplate =
     .callback = AnimWoodHammerHammer,
 };
 
+const struct SpriteTemplate gIvyCudgelSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelFireSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_FIRE,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelRockSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_ROCK,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
+const struct SpriteTemplate gIvyCudgelWaterSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_IVY_CUDGEL_GRASS,
+    .paletteTag = ANIM_TAG_IVY_CUDGEL_WATER,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gWoodHammerHammerAffineAnims,
+    .callback = AnimWoodHammerHammer,
+};
+
 const struct SpriteTemplate gJudgmentGrayOutwardSpikesTemplate =
 {
     .tileTag = ANIM_TAG_GREEN_SPIKE,
@@ -3273,7 +3317,7 @@ static void AnimSolarBeamSmallOrb(struct Sprite *sprite)
 {
     InitSpritePosToAnimAttacker(sprite, TRUE);
 
-    if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gAnimMoveIndex == MOVE_CORE_ENFORCER)
+    if (IsDoubleBattle() && gAnimMoveIndex == MOVE_CORE_ENFORCER)
     {
         CoreEnforcerLoadBeamTarget(sprite);
     }
@@ -6523,11 +6567,11 @@ void PrepareDoubleTeamAnim(u32 taskId, u32 animBattler, bool32 forAllySwitch)
             gSprites[spriteId].sBattlerFlank = (animBattler != ANIM_ATTACKER);
         else
             gSprites[spriteId].sBattlerFlank = (animBattler == ANIM_ATTACKER);
-        
+
         // correct direction on opponent side
         if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_OPPONENT)
             gSprites[spriteId].sBattlerFlank ^= 1;
-        
+
         gSprites[spriteId].callback = AnimDoubleTeam;
         task->tBlendSpritesCount++;
     }
@@ -6559,7 +6603,7 @@ static void ReloadBattlerSprites(u32 battler, struct Pokemon *party)
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], mon, HEALTHBOX_ALL);
     // If battler has an indicator for a gimmick, hide the sprite until the move animation finishes.
     UpdateIndicatorVisibilityAndType(gHealthboxSpriteIds[battler], TRUE);
-    
+
     // Try to recreate shadow sprite
     if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId < MAX_SPRITES)
     {
