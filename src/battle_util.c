@@ -3897,17 +3897,13 @@ static const u16 sWeatherFlagsInfo[][3] =
 static void ShouldChangeFormInWeather()
 {
     int i;
-    int side;
-    struct Pokemon *party; 
 
-    for (i = 0; i < gBattlersCount; i++)
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        side = (i & 0b10) >> 1;
-        party= GetSideParty(side);
-        if (GetMonData(&party[i & 0b1], MON_DATA_SPECIES) == SPECIES_EISCUE_NOICE_FACE)
-            gBattleStruct->allowedToChangeFormInWeather[side][i & 0b1] = TRUE;
+        if (gBattleMons[i].species == SPECIES_EISCUE_NOICE_FACE)
+            gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = TRUE;
         else
-            gBattleStruct->allowedToChangeFormInWeather[side][i & 0b1] = FALSE;
+            gBattleStruct->allowedToChangeFormInWeather[(i & 2) >> 1][i & 1] = FALSE;
     }
 }
 
