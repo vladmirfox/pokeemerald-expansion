@@ -2690,8 +2690,8 @@ void ConvertBattleStruct(void *expStruct, void *vanStruct, u32 structId, bool32 
                 vanMon->spDefenseIV = expMon->spDefenseIV;
                 vanMon->isEgg = FALSE;
                 vanMon->ability = expMon->ability;
-                vanMon->type1 = expMon->type1;
-                vanMon->type2 = expMon->type2;
+                vanMon->type1 = expMon->types[0];
+                vanMon->type2 = expMon->types[1];
                 vanMon->unknown = 0;
                 vanMon->hp = expMon->hp;
                 vanMon->level = expMon->level;
