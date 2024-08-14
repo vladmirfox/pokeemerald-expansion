@@ -3894,18 +3894,20 @@ static const u16 sWeatherFlagsInfo[][3] =
     [ENUM_WEATHER_FOG] = {B_WEATHER_FOG_TEMPORARY, B_WEATHER_FOG_PERMANENT, HOLD_EFFECT_NONE},
 };
 
-static void ShouldChangeFormInWeather(u32 battler)
+static void ShouldChangeFormInWeather()
 {
     int i;
-    int side = GetBattlerSide(battler);
-    struct Pokemon *party = GetSideParty(side);
+    int side;
+    struct Pokemon *party; 
 
-    for (i = 0; i < PARTY_SIZE; i++)
+    for (i = 0; i < gBattlersCount; i++)
     {
-        if (GetMonData(&party[i], MON_DATA_SPECIES) == SPECIES_EISCUE_NOICE_FACE)
-            gBattleStruct->allowedToChangeFormInWeather[i][side] = TRUE;
+        side = (i & 0b10) >> 1;
+        party= GetSideParty(side);
+        if (GetMonData(&party[i & 0b1], MON_DATA_SPECIES) == SPECIES_EISCUE_NOICE_FACE)
+            gBattleStruct->allowedToChangeFormInWeather[side][i & 0b1] = TRUE;
         else
-            gBattleStruct->allowedToChangeFormInWeather[i][side] = FALSE;
+            gBattleStruct->allowedToChangeFormInWeather[side][i & 0b1] = FALSE;
     }
 }
 
@@ -3922,7 +3924,7 @@ bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility)
     else if (B_ABILITY_WEATHER < GEN_6 && viaAbility && !(gBattleWeather & sWeatherFlagsInfo[weatherEnumId][1]))
     {
         gBattleWeather = (sWeatherFlagsInfo[weatherEnumId][0] | sWeatherFlagsInfo[weatherEnumId][1]);
-        ShouldChangeFormInWeather(battler);
+        ShouldChangeFormInWeather();
         return TRUE;
     }
     else if (!(gBattleWeather & (sWeatherFlagsInfo[weatherEnumId][0] | sWeatherFlagsInfo[weatherEnumId][1])))
@@ -3932,7 +3934,7 @@ bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility)
             gWishFutureKnock.weatherDuration = 8;
         else
             gWishFutureKnock.weatherDuration = 5;
-        ShouldChangeFormInWeather(battler);
+        ShouldChangeFormInWeather();
         return TRUE;
     }
     return FALSE;
@@ -4958,6 +4960,18 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TERA_SHIFT;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeWithStringEnd3);
+                effect++;
+            }
+            break;
+        case ABILITY_ICE_FACE:
+            if (IsBattlerWeatherAffected(battler, B_WEATHER_HAIL | B_WEATHER_SNOW)
+             && gBattleMons[battler].species == SPECIES_EISCUE_NOICE_FACE
+             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
+            {
+                // TODO: Convert this to a proper FORM_CHANGE type.
+                gBattleStruct->allowedToChangeFormInWeather[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = FALSE;
+                gBattleMons[battler].species = SPECIES_EISCUE_ICE_FACE;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerFormChangeWithStringEnd3);
                 effect++;
             }
             break;
