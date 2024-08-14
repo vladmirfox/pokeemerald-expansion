@@ -3212,6 +3212,7 @@ void SwitchInClearSetData(u32 battler)
     gLastPrintedMoves[battler] = MOVE_NONE;
     gLastHitBy[battler] = 0xFF;
 
+    gBattleStruct->canPickupItem[battler] = FALSE;
     gBattleStruct->lastTakenMove[battler] = 0;
     gBattleStruct->sameMoveTurns[battler] = 0;
     gBattleStruct->lastTakenMoveFrom[battler][0] = 0;
@@ -5115,6 +5116,7 @@ static void TurnValuesCleanUp(bool8 var0)
                 if (gDisableStructs[i].rechargeTimer == 0)
                     gBattleMons[i].status2 &= ~STATUS2_RECHARGE;
             }
+            gBattleStruct->canPickupItem[i] = FALSE;
         }
 
         if (gDisableStructs[i].substituteHP == 0)
