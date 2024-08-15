@@ -115,7 +115,7 @@ const struct SpriteTemplate gSpriteTemplate_EnemyShadow =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_SetInvisible
+    .callback = SpriteCallbackDummy,
 };
 
 // code
@@ -1152,6 +1152,7 @@ void CreateEnemyShadowSprite(u32 battler)
         sprite->tBattlerId = battler;
         sprite->tSpriteSide = SPRITE_SIDE_LEFT;
         sprite->oam.tileNum += 8 * size;
+        sprite->invisible = TRUE;
     }
 
     gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdRight = CreateSprite(&gSpriteTemplate_EnemyShadow,
@@ -1164,6 +1165,7 @@ void CreateEnemyShadowSprite(u32 battler)
         sprite->tBattlerId = battler;
         sprite->tSpriteSide = SPRITE_SIDE_RIGHT;
         sprite->oam.tileNum += (8 * size) + 4;
+        sprite->invisible = TRUE;
     }
 
 #else
@@ -1271,7 +1273,16 @@ void SetBattlerShadowSpriteCallback(u8 battler, u16 species)
 {
     // The player's shadow is never seen.
     if (GetBattlerSide(battler) == B_SIDE_PLAYER || gBattleScripting.monCaught)
+    {
+#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
+        gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdLeft].callback = SpriteCB_SetInvisible;
+        gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdRight].callback = SpriteCB_SetInvisible;
         return;
+#else
+        gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId].callback = SpriteCB_SetInvisible;
+        return;
+#endif
+    }
 
 #if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
     if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdLeft >= MAX_SPRITES
