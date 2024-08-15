@@ -4974,7 +4974,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && PickupHasValidTarget(battler))
                 {
-                    gBattlerTarget = RandomUniformExcept(RNG_PICKUP, 0, gBattlersCount, CantPickupItem);
+                    gBattlerTarget = RandomUniformExcept(RNG_PICKUP, 0, gBattlersCount - 1, CantPickupItem);
                     gLastUsedItem = GetUsedHeldItem(gBattlerTarget);
                     BattleScriptPushCursorAndCallback(BattleScript_PickupActivates);
                     effect++;
@@ -11435,7 +11435,7 @@ bool32 CantPickupItem(u32 battler)
     // Used by RandomUniformExcept() for RNG_PICKUP
     if (battler == gBattlerAttacker && gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))
         return TRUE;
-    return !(IsBattlerAlive(battler) && GetUsedHeldItem(battler) && gBattleStruct->canPickupItem & gBitTable[battler]);
+    return !(IsBattlerAlive(battler) && GetUsedHeldItem(battler) && gBattleStruct->canPickupItem & (1u << battler));
 }
 
 bool32 PickupHasValidTarget(u32 battler)
@@ -11443,7 +11443,7 @@ bool32 PickupHasValidTarget(u32 battler)
     u32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((i != battler || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))) && IsBattlerAlive(i) && GetUsedHeldItem(i) && gBattleStruct->canPickupItem & gBitTable[i])
+        if ((i != battler || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))) && IsBattlerAlive(i) && GetUsedHeldItem(i) && gBattleStruct->canPickupItem & (1u << i))
             return TRUE;
     }
     return FALSE;
