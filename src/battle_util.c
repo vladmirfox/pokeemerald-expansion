@@ -11443,7 +11443,7 @@ bool32 PickupHasValidTarget(u32 battler)
     u32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((i != battler || !(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_LINK))) && IsBattlerAlive(i) && GetUsedHeldItem(i) && gBattleStruct->canPickupItem & (1u << i))
+        if (!CantPickupItem(i))
             return TRUE;
     }
     return FALSE;
