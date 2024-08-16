@@ -6413,13 +6413,13 @@ static void Task_TryItemUseFormChange(u8 taskId)
     case 6:
         if (!IsPartyMenuTextPrinterActive())
         {
-            if (gSpecialVar_ItemId == ITEM_ROTOM_CATALOG) //only for rotom currently
+            if (gSpecialVar_ItemId == ITEM_ROTOM_CATALOG) //only for Rotom currently
             {
                 u32 i;
                 for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
                     DeleteMove(mon, sRotomFormChangeMoves[i]);
 
-                if (gSpecialVar_0x8000 == MOVE_THUNDER_SHOCK)
+                if (gSpecialVar_0x8000 == ROTOM_BASE_MOVE && I_ROTOM_CATALOG_THUNDER_SHOCK < GEN_9)
                 {
                     if (!DoesMonHaveAnyMoves(mon))
                         FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
@@ -6517,7 +6517,7 @@ bool32 TryMultichoiceFormChange(u8 taskId)
 static void CursorCb_CatalogBulb(u8 taskId)
 {
     gSpecialVar_Result = 0;
-    gSpecialVar_0x8000 = MOVE_THUNDER_SHOCK;
+    gSpecialVar_0x8000 = ROTOM_BASE_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 

@@ -1140,6 +1140,7 @@ static const u8 *const sUnused_StatStrings[] =
     gText_Speed2
 };
 
+#define ROTOM_BASE_MOVE  MOVE_THUNDER_SHOCK
 #define ROTOM_HEAT_MOVE  MOVE_OVERHEAT
 #define ROTOM_WASH_MOVE  MOVE_HYDRO_PUMP
 #define ROTOM_FROST_MOVE MOVE_BLIZZARD
