@@ -1851,13 +1851,15 @@ void BerryTreeTimeUpdate(s32 minutes)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
-        if (tree->berry && tree->stage && !tree->stopGrowth && (tree->stage != BERRY_STAGE_BERRIES && OW_BERRY_IMMORTAL))
+        if (tree->berry && tree->stage && !tree->stopGrowth && (!OW_BERRY_IMMORTAL || tree->stage != BERRY_STAGE_BERRIES))
         {
-            if ((minutes >= GetStageDurationByBerryType(tree->berry) * 71) && !OW_BERRY_IMMORTAL)
+#if OW_BERRY_IMMORTAL == FALSE
+            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
             {
                 *tree = gBlankBerryTree;
-            }
+			}
             else
+#endif
             {
                 s32 time = minutes;
 
