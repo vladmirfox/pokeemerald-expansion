@@ -1853,13 +1853,11 @@ void BerryTreeTimeUpdate(s32 minutes)
 
         if (tree->berry && tree->stage && !tree->stopGrowth && (!OW_BERRY_IMMORTAL || tree->stage != BERRY_STAGE_BERRIES))
         {
-#if OW_BERRY_IMMORTAL == FALSE
-            if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
+            if ((minutes >= GetStageDurationByBerryType(tree->berry) * 71) && !OW_BERRY_IMMORTAL)
             {
                 *tree = gBlankBerryTree;
 			}
             else
-#endif
             {
                 s32 time = minutes;
 
