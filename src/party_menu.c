@@ -6524,35 +6524,35 @@ static void CursorCb_CatalogBulb(u8 taskId)
 static void CursorCb_CatalogOven(u8 taskId)
 {
     gSpecialVar_Result = 1;
-    gSpecialVar_0x8000 = MOVE_OVERHEAT;
+    gSpecialVar_0x8000 = ROTOM_HEAT_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogWashing(u8 taskId)
 {
     gSpecialVar_Result = 2;
-    gSpecialVar_0x8000 = MOVE_HYDRO_PUMP;
+    gSpecialVar_0x8000 = ROTOM_WASH_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogFridge(u8 taskId)
 {
     gSpecialVar_Result = 3;
-    gSpecialVar_0x8000 = MOVE_BLIZZARD;
+    gSpecialVar_0x8000 = ROTOM_FROST_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogFan(u8 taskId)
 {
     gSpecialVar_Result = 4;
-    gSpecialVar_0x8000 = MOVE_AIR_SLASH;
+    gSpecialVar_0x8000 = ROTOM_FAN_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogMower(u8 taskId)
 {
     gSpecialVar_Result = 5;
-    gSpecialVar_0x8000 = MOVE_LEAF_STORM;
+    gSpecialVar_0x8000 = ROTOM_MOW_MOVE;
     TryMultichoiceFormChange(taskId);
 }
 
