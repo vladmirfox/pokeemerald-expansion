@@ -26,6 +26,7 @@ SINGLE_BATTLE_TEST("Harvest has a 50% chance to restore a Berry at the end of th
 
 SINGLE_BATTLE_TEST("Harvest always restores a Berry in Sunlight")
 {
+    PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_EXEGGUTOR) { Ability(ABILITY_HARVEST); MaxHP(500); HP(251); Item(ITEM_SITRUS_BERRY); }
@@ -114,6 +115,7 @@ TO_DO_BATTLE_TEST("Harvest only works once per turn"); // Check for berries that
 
 SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when destroyed by Incinerate")
 {
+    PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     ASSUME(MoveHasAdditionalEffect(MOVE_INCINERATE, MOVE_EFFECT_INCINERATE));
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -131,6 +133,7 @@ SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when destroyed by Incinerate
 
 SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when knocked off by Knock Off")
 {
+    PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     ASSUME(MoveHasAdditionalEffect(MOVE_KNOCK_OFF, MOVE_EFFECT_KNOCK_OFF));
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -148,6 +151,7 @@ SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when knocked off by Knock Of
 
 SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when eaten by Bug Bite/Pluck")
 {
+    PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     ASSUME(MoveHasAdditionalEffect(MOVE_BUG_BITE, MOVE_EFFECT_BUG_BITE));
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
