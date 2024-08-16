@@ -6419,7 +6419,7 @@ static void Task_TryItemUseFormChange(u8 taskId)
                 for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
                     DeleteMove(mon, sRotomFormChangeMoves[i]);
 
-                if (gSpecialVar_0x8000 == ROTOM_BASE_MOVE && I_ROTOM_CATALOG_THUNDER_SHOCK < GEN_9)
+                if (I_ROTOM_CATALOG_THUNDER_SHOCK < GEN_9 && gSpecialVar_0x8000 == ROTOM_BASE_MOVE)
                 {
                     if (!DoesMonHaveAnyMoves(mon))
                         FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
