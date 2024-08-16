@@ -74,10 +74,10 @@ DOUBLE_BATTLE_TEST("Retaliate works with passive damage")
         ASSUME(gMovesInfo[MOVE_LEECH_SEED].effect == EFFECT_LEECH_SEED);
         ASSUME(gMovesInfo[MOVE_MAGMA_STORM].additionalEffects[0].moveEffect == MOVE_EFFECT_WRAP);
         ASSUME(gMovesInfo[MOVE_FLAME_BURST].additionalEffects[0].moveEffect == MOVE_EFFECT_FLAME_BURST);
-        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_SHADOW_TAG); HP(18); Defense(9999); SpDefense(9999); }
+        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_SHADOW_TAG); HP(18); }
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); Level(1); }
         OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_MAGIC_GUARD); }
     } WHEN {
         TURN { MOVE(opponentRight, move2, target: moveTarget); MOVE(opponentLeft, move, target: moveTarget); MOVE(playerLeft, MOVE_CELEBRATE); SEND_OUT(playerLeft, 2); }
