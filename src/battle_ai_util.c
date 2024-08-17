@@ -520,7 +520,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     struct SimulatedDamage simDamage;
     s32 moveType;
     uq4_12_t effectivenessMultiplier;
-    u32 moveEffect = gMovesInfo[move].effect;
+    u32 moveEffect;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
@@ -541,6 +541,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
+    moveEffect = gMovesInfo[move].effect;
     switch (moveEffect)
     {
     case EFFECT_PHOTON_GEYSER:
