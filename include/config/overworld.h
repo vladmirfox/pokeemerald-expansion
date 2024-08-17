@@ -98,4 +98,6 @@
 // Pokémon Center
 #define OW_IGNORE_EGGS_ON_HEAL     GEN_LATEST               // In Gen 4+, the nurse in the Pokémon Center does not heal Eggs on healing machine.
 
+#define OW_ARRAY_FOR_COLOR_MAPS     TRUE                    // When enabled, the speed at which maps load is improved due to the reduced computational load of generating color maps.
+
 #endif // GUARD_CONFIG_OVERWORLD_H
