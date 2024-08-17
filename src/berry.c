@@ -1817,8 +1817,8 @@ bool32 BerryTreeGrow(struct BerryTree *tree)
         tree->stage = BERRY_STAGE_BERRIES;
         break;
     case BERRY_STAGE_BERRIES:
-		if (OW_BERRY_IMMORTAL)
-			break;
+        if (OW_BERRY_IMMORTAL)
+            break;
         tree->watered = 0;
         tree->berryYield = 0;
         tree->stage = BERRY_STAGE_SPROUTED;
@@ -1856,7 +1856,7 @@ void BerryTreeTimeUpdate(s32 minutes)
             if ((minutes >= GetStageDurationByBerryType(tree->berry) * 71) && !OW_BERRY_IMMORTAL)
             {
                 *tree = gBlankBerryTree;
-			}
+            }
             else
             {
                 s32 time = minutes;
