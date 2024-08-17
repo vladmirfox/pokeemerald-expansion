@@ -15677,7 +15677,7 @@ static u16 *GetBattlerStat(struct BattlePokemon *battler, u32 stat)
     case STAT_DEF:   return &battler->defense;
     case STAT_SPATK: return &battler->spAttack;
     case STAT_SPDEF: return &battler->spDefense;
-    default: return NULL;
+    default:         return NULL;
     }
 }
 
