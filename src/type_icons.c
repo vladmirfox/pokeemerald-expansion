@@ -473,20 +473,22 @@ static void FreeAllTypeIconResources(void)
 
 static bool32 ShouldHideTypeIcon(u32 battlerId)
 {
-	if (gBattlerControllerFuncs[battlerId] == PlayerHandleChooseMove)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleChooseMoveAfterDma3)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleInputChooseTarget)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleInputShowTargets)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleInputShowEntireFieldTargets)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleMoveSwitching)
-		return FALSE;
-	if (gBattlerControllerFuncs[battlerId] == HandleInputChooseMove)
-		return FALSE;
+	u32 funcIndex;
+
+	void* showTypesControllerFuncs[] =
+	{
+		PlayerHandleChooseMove,
+		HandleChooseMoveAfterDma3,
+		HandleInputChooseTarget,
+		HandleInputShowTargets,
+		HandleInputShowEntireFieldTargets,
+		HandleMoveSwitching,
+		HandleInputChooseMove,
+	};
+
+	for (funcIndex = 0; funcIndex < ARRAY_COUNT(showTypesControllerFuncs); funcIndex++)
+		if (gBattlerControllerFuncs[battlerId] == showTypesControllerFuncs[funcIndex])
+			return FALSE;
 
 	return TRUE;
 }
