@@ -473,15 +473,22 @@ static void FreeAllTypeIconResources(void)
 
 static bool32 ShouldHideTypeIcon(u32 battlerId)
 {
-	bool32 test = (gBattlerControllerFuncs[battlerId] != PlayerHandleChooseMove
-        && gBattlerControllerFuncs[battlerId] != HandleChooseMoveAfterDma3
-        && gBattlerControllerFuncs[battlerId] != HandleInputChooseTarget
-        && gBattlerControllerFuncs[battlerId] != HandleInputShowTargets
-        && gBattlerControllerFuncs[battlerId] != HandleInputShowEntireFieldTargets
-        && gBattlerControllerFuncs[battlerId] != HandleMoveSwitching
-        && gBattlerControllerFuncs[battlerId] != HandleInputChooseMove);
-	DebugPrintf("test is %d",test);
-	return test;
+	if (gBattlerControllerFuncs[battlerId] == PlayerHandleChooseMove)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleChooseMoveAfterDma3)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleInputChooseTarget)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleInputShowTargets)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleInputShowEntireFieldTargets)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleMoveSwitching)
+		return FALSE;
+	if (gBattlerControllerFuncs[battlerId] == HandleInputChooseMove)
+		return FALSE;
+
+	return TRUE;
 }
 
 static s32 GetTypeIconHideMovement(bool32 useDoubleBattleCoords, u32 position)
