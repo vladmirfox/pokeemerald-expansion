@@ -110,7 +110,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_COMPOUND_EYES] =
     {
-        .name = _("CompoundEyes"),
+        .name = _("Compound Eyes"),
         .description = COMPOUND_STRING("Raises accuracy."),
         .aiRating = 7,
     },
@@ -240,7 +240,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_LIGHTNING_ROD] =
     {
-        .name = _("LightningRod"),
+        .name = _("Lightning Rod"),
         .description = COMPOUND_STRING("Draws electrical moves."),
         .aiRating = 7,
         .breakable = TRUE,
@@ -1320,7 +1320,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_STANCE_CHANGE] =
     {
-        .name = _("StanceChange"),
+        .name = _("Stance Change"),
         .description = COMPOUND_STRING("Transforms as it battles."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
@@ -1339,7 +1339,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_MEGA_LAUNCHER] =
     {
-        .name = _("MegaLauncher"),
+        .name = _("Mega Launcher"),
         .description = COMPOUND_STRING("Boosts pulse moves."),
         .aiRating = 7,
     },
@@ -1389,7 +1389,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PARENTAL_BOND] =
     {
-        .name = _("ParentalBond"),
+        .name = _("Parental Bond"),
         .description = COMPOUND_STRING("Moves hit twice."),
         .aiRating = 10,
     },
@@ -1417,14 +1417,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PRIMORDIAL_SEA] =
     {
-        .name = _("PrimrdialSea"),
+        .name = _("Primordial Sea"),
         .description = COMPOUND_STRING("Summons heavy rain."),
         .aiRating = 10,
     },
 
     [ABILITY_DESOLATE_LAND] =
     {
-        .name = _("DesolateLand"),
+        .name = _("Desolate Land"),
         .description = COMPOUND_STRING("Summons intense sunlight."),
         .aiRating = 10,
     },
@@ -1452,14 +1452,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_EMERGENCY_EXIT] =
     {
-        .name = _("EmergncyExit"),
+        .name = _("Emergency Exit"),
         .description = COMPOUND_STRING("Flees at half HP."),
         .aiRating = 3,
     },
 
     [ABILITY_WATER_COMPACTION] =
     {
-        .name = _("WtrCmpaction"),
+        .name = _("Water Compaction"),
         .description = COMPOUND_STRING("Water boosts Defense."),
         .aiRating = 4,
     },
@@ -1593,7 +1593,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_POWER_CONSTRUCT] =
     {
-        .name = _("PwrConstruct"),
+        .name = _("Power Construct"),
         .description = COMPOUND_STRING("Cells aid it when weakened."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
@@ -1624,7 +1624,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_QUEENLY_MAJESTY] =
     {
-        .name = _("QueenlyMjsty"),
+        .name = _("Queenly Majesty"),
         .description = COMPOUND_STRING("Protects from priority."),
         .aiRating = 6,
         .breakable = TRUE,
@@ -1676,7 +1676,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_TANGLING_HAIR] =
     {
-        .name = _("TanglingHair"),
+        .name = _("Tangling Hair"),
         .description = COMPOUND_STRING("Lowers Speed on contact."),
         .aiRating = 5,
     },
@@ -1692,7 +1692,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_POWER_OF_ALCHEMY] =
     {
-        .name = _("PwrOfAlchemy"),
+        .name = _("Power Of Alchemy"),
         .description = COMPOUND_STRING("Copies ally's ability."),
         .aiRating = 0,
         .cantBeCopied = TRUE,
@@ -1720,14 +1720,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ELECTRIC_SURGE] =
     {
-        .name = _("ElectrcSurge"),
+        .name = _("Electric Surge"),
         .description = COMPOUND_STRING("Field becomes Electric."),
         .aiRating = 8,
     },
 
     [ABILITY_PSYCHIC_SURGE] =
     {
-        .name = _("PsychicSurge"),
+        .name = _("Psychic Surge"),
         .description = COMPOUND_STRING("Field becomes weird."),
         .aiRating = 8,
     },
@@ -1748,14 +1748,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_FULL_METAL_BODY] =
     {
-        .name = _("FullMetalBdy"),
+        .name = _("Full Metal Body"),
         .description = COMPOUND_STRING("Prevents stat reduction."),
         .aiRating = 4,
     },
 
     [ABILITY_SHADOW_SHIELD] =
     {
-        .name = _("ShadowShield"),
+        .name = _("Shadow Shield"),
         .description = COMPOUND_STRING("Halves damage at full HP."),
         .aiRating = 8,
     },
@@ -1776,14 +1776,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_INTREPID_SWORD] =
     {
-        .name = _("IntrepidSwrd"),
+        .name = _("Intrepid Sword"),
         .description = COMPOUND_STRING("Ups Attack on entry."),
         .aiRating = 3,
     },
 
     [ABILITY_DAUNTLESS_SHIELD] =
     {
-        .name = _("DauntlssShld"),
+        .name = _("Dauntless Shield"),
         .description = COMPOUND_STRING("Ups Defense on entry."),
         .aiRating = 3,
     },
@@ -1810,7 +1810,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PROPELLER_TAIL] =
     {
-        .name = _("PropellrTail"),
+        .name = _("Propeller Tail"),
         .description = COMPOUND_STRING("Ignores foe's redirection."),
         .aiRating = 2,
     },
@@ -1908,14 +1908,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_SCREEN_CLEANER] =
     {
-        .name = _("ScreenCleanr"),
+        .name = _("Screen Cleaner"),
         .description = COMPOUND_STRING("Removes walls of light."),
         .aiRating = 3,
     },
 
     [ABILITY_STEELY_SPIRIT] =
     {
-        .name = _("SteelySpirit"),
+        .name = _("Steely Spirit"),
         .description = COMPOUND_STRING("Boosts ally's Steel moves."),
         .aiRating = 2,
     },
@@ -1929,21 +1929,21 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_WANDERING_SPIRIT] =
     {
-        .name = _("WandrngSprit"),
+        .name = _("Wandering Spirit"),
         .description = COMPOUND_STRING("Trade abilities on contact."),
         .aiRating = 2,
     },
 
     [ABILITY_GORILLA_TACTICS] =
     {
-        .name = _("GorillaTacti"),
+        .name = _("Gorilla Tactics"),
         .description = COMPOUND_STRING("Ups Attack and locks move."),
         .aiRating = 4,
     },
 
     [ABILITY_NEUTRALIZING_GAS] =
     {
-        .name = _("NeutrlzngGas"),
+        .name = _("Neutralizing Gas"),
         .description = COMPOUND_STRING("All Abilities are nullified."),
         .aiRating = 5,
         .cantBeCopied = TRUE,
@@ -1962,7 +1962,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_HUNGER_SWITCH] =
     {
-        .name = _("HungerSwitch"),
+        .name = _("Hunger Switch"),
         .description = COMPOUND_STRING("Changes form each turn."),
         .aiRating = 2,
         .cantBeCopied = TRUE,
@@ -1987,7 +1987,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_CURIOUS_MEDICINE] =
     {
-        .name = _("CuriusMedicn"),
+        .name = _("Curious Medicine"),
         .description = COMPOUND_STRING("Remove ally's stat changes."),
         .aiRating = 3,
     },
@@ -2008,7 +2008,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_CHILLING_NEIGH] =
     {
-        .name = _("ChillngNeigh"),
+        .name = _("Chilling Neigh"),
         .description = COMPOUND_STRING("KOs boost Attack stat."),
         .aiRating = 7,
     },
@@ -2046,7 +2046,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_LINGERING_AROMA] =
     {
-        .name = _("LngerngAroma"),
+        .name = _("Lingering Aroma"),
         .description = COMPOUND_STRING("Spreads with contact."),
         .aiRating = 5,
     },
@@ -2060,7 +2060,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_THERMAL_EXCHANGE] =
     {
-        .name = _("ThrmlExchnge"),
+        .name = _("Thermal Exchange"),
         .description = COMPOUND_STRING("Fire hits up Attack."),
         .aiRating = 4,
         .breakable = TRUE,
@@ -2075,7 +2075,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_PURIFYING_SALT] =
     {
-        .name = _("PurfyingSalt"),
+        .name = _("Purifying Salt"),
         .description = COMPOUND_STRING("Protected by pure salts."),
         .aiRating = 6,
         .breakable = TRUE,
@@ -2083,7 +2083,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_WELL_BAKED_BODY] =
     {
-        .name = _("WellBakedBdy"),
+        .name = _("Well-Baked Body"),
         .description = COMPOUND_STRING("Strengthened by Fire."),
         .aiRating = 5,
         .breakable = TRUE,
@@ -2107,7 +2107,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ROCKY_PAYLOAD] =
     {
-        .name = _("RockyPayload"),
+        .name = _("Rocky Payload"),
         .description = COMPOUND_STRING("Powers up Rock moves."),
         .aiRating = 6,
     },
@@ -2145,14 +2145,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ELECTROMORPHOSIS] =
     {
-        .name = _("Elecmrphosis"),
+        .name = _("Electromorphosis"),
         .description = COMPOUND_STRING("Gets Charged when hit."),
         .aiRating = 5,
     },
 
     [ABILITY_PROTOSYNTHESIS] =
     {
-        .name = _("Protosnthsis"),
+        .name = _("Protosynthesis"),
         .description = COMPOUND_STRING("Sun boosts best stat."),
         .aiRating = 7,
         .cantBeCopied = TRUE,
@@ -2182,7 +2182,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_VESSEL_OF_RUIN] =
     {
-        .name = _("VesselOfRuin"),
+        .name = _("Vessel of Ruin"),
         .description = COMPOUND_STRING("Lowers foes' sp. damage."),
         .aiRating = 5,
         .breakable = TRUE,
@@ -2190,7 +2190,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_SWORD_OF_RUIN] =
     {
-        .name = _("SwordOfRuin"),
+        .name = _("Sword of Ruin"),
         .description = COMPOUND_STRING("Lowers foes' Defense."),
         .aiRating = 5,
         .breakable = TRUE,
@@ -2198,7 +2198,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_TABLETS_OF_RUIN] =
     {
-        .name = _("TabltsOfRuin"),
+        .name = _("Tablets of Ruin"),
         .description = COMPOUND_STRING("Lowers foes' damage."),
         .aiRating = 5,
         .breakable = TRUE,
@@ -2206,7 +2206,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_BEADS_OF_RUIN] =
     {
-        .name = _("BeadsOfRuin"),
+        .name = _("Beads of Ruin"),
         .description = COMPOUND_STRING("Lowers foes' Sp. Defense."),
         .aiRating = 5,
         .breakable = TRUE,
@@ -2214,14 +2214,14 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_ORICHALCUM_PULSE] =
     {
-        .name = _("OrchlcumPlse"),
+        .name = _("Orichalcum Pulse"),
         .description = COMPOUND_STRING("Summons sunlight in battle."),
         .aiRating = 8,
     },
 
     [ABILITY_HADRON_ENGINE] =
     {
-        .name = _("HadronEngine"),
+        .name = _("Hadron Engine"),
         .description = COMPOUND_STRING("Field becomes Electric."),
         .aiRating = 8,
     },
@@ -2249,7 +2249,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_SUPREME_OVERLORD] =
     {
-        .name = _("SuprmeOvrlrd"),
+        .name = _("Supreme Overlord"),
         .description = COMPOUND_STRING("Inherits fallen's strength."),
         .aiRating = 6,
     },
@@ -2286,7 +2286,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_MYCELIUM_MIGHT] =
     {
-        .name = _("MceliumMight"),
+        .name = _("Mycelium Might"),
         .description = COMPOUND_STRING("Status moves never fail."),
         .aiRating = 2,
     },
@@ -2308,7 +2308,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_EMBODY_ASPECT_TEAL_MASK] =
     {
-        .name = _("EmbodyAspect"),
+        .name = _("Embody Aspect"),
         .description = COMPOUND_STRING("Raises Speed."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
@@ -2319,7 +2319,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK] =
     {
-        .name = _("EmbodyAspect"),
+        .name = _("Embody Aspect"),
         .description = COMPOUND_STRING("Raises Attack."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
@@ -2330,7 +2330,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_EMBODY_ASPECT_WELLSPRING_MASK] =
     {
-        .name = _("EmbodyAspect"),
+        .name = _("Embody Aspect"),
         .description = COMPOUND_STRING("Raises Sp. Def."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
@@ -2341,7 +2341,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK] =
     {
-        .name = _("EmbodyAspect"),
+        .name = _("Embody Aspect"),
         .description = COMPOUND_STRING("Raises Defense."),
         .aiRating = 6,
         .cantBeCopied = TRUE,
@@ -2359,7 +2359,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_SUPERSWEET_SYRUP] =
     {
-        .name = _("SuprswtSyrup"),
+        .name = _("Supersweet Syrup"),
         .description = COMPOUND_STRING("Lowers the foe's Evasion."),
         .aiRating = 5,
     },
@@ -2390,7 +2390,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_TERAFORM_ZERO] =
     {
-        .name = _("TeraformZero"),
+        .name = _("Teraform Zero"),
         .description = COMPOUND_STRING("Removes weather and terrain."),
         .aiRating = 10,
         .cantBeCopied = TRUE,
@@ -2400,7 +2400,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
 
     [ABILITY_POISON_PUPPETEER] =
     {
-        .name = _("PoisnPuppter"),
+        .name = _("Poison Puppeteer"),
         .description = COMPOUND_STRING("Confuses poisoned foes."),
         .aiRating = 8,
         .cantBeCopied = TRUE,
