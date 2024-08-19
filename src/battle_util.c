@@ -4767,8 +4767,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_WIND_RIDER:
-            if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
-            && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
+            if (!gSpecialStatuses[battler].switchInAbilityDone 
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
+             && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
             {
                 gBattleScripting.savedBattler = gBattlerAttacker;
                 gBattlerAttacker = battler;
