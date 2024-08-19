@@ -16,11 +16,18 @@ DOUBLE_BATTLE_TEST("Round allows other battlers which also selected the moves to
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LAGGING_TAIL); }
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_ROUND, target: playerLeft); MOVE(playerLeft, MOVE_IRON_HEAD, target: opponentRight); MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
+        TURN {
+            MOVE(playerRight, MOVE_CELEBRATE);
+            MOVE(opponentLeft, MOVE_ROUND, target: playerLeft);
+            MOVE(playerLeft, MOVE_IRON_HEAD, target: opponentRight);
+            MOVE(opponentRight, MOVE_ROUND, target: playerLeft);
+        }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_IRON_HEAD, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_IRON_HEAD, playerLeft);
     }
 }
 
@@ -33,7 +40,10 @@ DOUBLE_BATTLE_TEST("Round usages beyond the first one has double base power")
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_ROUND, target: playerLeft); MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
+        TURN {
+            MOVE(opponentLeft, MOVE_ROUND, target: playerLeft);
+            MOVE(opponentRight, MOVE_ROUND, target: playerLeft);
+        }
     } SCENE {
         HP_BAR(playerLeft, captureDamage: &damage[0]);
         HP_BAR(playerLeft, captureDamage: &damage[1]);
@@ -50,7 +60,11 @@ DOUBLE_BATTLE_TEST("Round still preserves the turn order outside of the other Ro
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_ROUND, target: playerLeft); MOVE(playerRight, MOVE_CELEBRATE); MOVE(playerLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
+        TURN {
+            MOVE(opponentLeft, MOVE_ROUND, target: playerLeft);
+            MOVE(playerRight, MOVE_CELEBRATE);
+            MOVE(playerLeft, MOVE_CELEBRATE);
+            MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentRight);
@@ -68,7 +82,12 @@ DOUBLE_BATTLE_TEST("Round still preserves the turn order outside of the other Ro
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { SWITCH(playerRight, 2); MOVE(opponentLeft, MOVE_ROUND, target: playerLeft); MOVE(playerLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
+        TURN {
+            SWITCH(playerRight, 2);
+            MOVE(opponentLeft, MOVE_ROUND, target: playerLeft);
+            MOVE(playerLeft, MOVE_CELEBRATE);
+            MOVE(opponentRight, MOVE_ROUND, target: playerLeft);
+        }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentRight);
@@ -87,8 +106,10 @@ DOUBLE_BATTLE_TEST("Round causes opposing pokemon to use Round immediately")
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE); MOVE(playerRight, MOVE_ROUND, target: opponentLeft); MOVE(playerLeft, MOVE_CELEBRATE, target: opponentRight); MOVE(opponentRight, MOVE_ROUND, target: playerLeft); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, playerRight);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, opponentRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
     }
 }
