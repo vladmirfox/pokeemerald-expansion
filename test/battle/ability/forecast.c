@@ -400,9 +400,13 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that f
 
 SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user leaves the field")
 {
+    u32 species = 0, ability = 0;
+    PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
+    PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
+
     GIVEN {
         PLAYER(SPECIES_CASTFORM) { Ability(ABILITY_FORECAST); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_CLOUD_NINE); }
+        OPPONENT(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_CELEBRATE); }
