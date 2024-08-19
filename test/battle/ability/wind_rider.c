@@ -43,6 +43,25 @@ DOUBLE_BATTLE_TEST("Wind Rider raises Attack by one stage if Tailwind is setup b
     }
 }
 
+SINGLE_BATTLE_TEST("Wind Rider doesn't raise Attack if opponent sets up Tailwind")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_WIND_RIDER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TAILWIND); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, player);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_WIND_RIDER);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Foe Bramblin's Attack rose!");
+        }
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+    }
+}
+
 SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if switched into Tailwind on its side of the field")
 {
     GIVEN {
@@ -81,6 +100,8 @@ SINGLE_BATTLE_TEST("Wind Rider activates when it's no longer effected by Neutral
         ABILITY_POPUP(opponent, ABILITY_WIND_RIDER);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Bramblin's Wind Rider raised its Attack!");
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
     }
 }
 
@@ -100,5 +121,7 @@ SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage
         ABILITY_POPUP(opponent, ABILITY_WIND_RIDER);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Bramblin's Attack rose!");
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
     }
 }
