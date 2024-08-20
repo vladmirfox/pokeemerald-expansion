@@ -9288,7 +9288,7 @@ static void AnimMakingItRain(struct Sprite *sprite)
 
 void AnimTask_RandomBool(u8 taskId)
 {
-    if (Random() % 2 == 1)
+    if (RandomPercentage(RNG_NONE, 50))
         gBattleAnimArgs[ARG_RET_ID] = TRUE;
     else
         gBattleAnimArgs[ARG_RET_ID] = FALSE;
