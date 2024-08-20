@@ -28,11 +28,21 @@ struct LoadedSaveData
  /*0x0130*/ struct ItemSlot TMsHMs[BAG_TMHM_COUNT];
  /*0x0230*/ struct ItemSlot berries[BAG_BERRIES_COUNT];
  /*0x02E8*/ struct Mail mail[MAIL_COUNT];
+#if I_POCKET_MEDICINE_ENABLED
  /*0x0230*/ struct ItemSlot medicine[BAG_MEDICINE_COUNT];
+#endif
+#if I_POCKET_BATTLE_ITEMS_ENABLED
  /*0x0230*/ struct ItemSlot battleItems[BAG_BATTLEITEMS_COUNT];
+#endif
+#if I_POCKET_TREASURES_ENABLED
  /*0x0230*/ struct ItemSlot treasures[BAG_TREASURES_COUNT];
+#endif
+#if I_POCKET_MEGA_STONES_ENABLED
  /*0x0230*/ struct ItemSlot megastones[BAG_MEGASTONES_COUNT];
+#endif
+#if I_POCKET_Z_CRYSTALS_ENABLED
  /*0x0230*/ struct ItemSlot zcrystals[BAG_ZCRYSTALS_COUNT];
+#endif
 };
 
 // EWRAM DATA
@@ -285,25 +295,35 @@ void LoadPlayerBag(void)
     for (i = 0; i < MAIL_COUNT; i++)
         gLoadedSaveData.mail[i] = gSaveBlock1Ptr->mail[i];
 
+#if I_POCKET_MEDICINE_ENABLED
     // load player medicine.
     for (i = 0; i < BAG_MEDICINE_COUNT; i++)
         gLoadedSaveData.medicine[i] = gSaveBlock1Ptr->bagPocket_Medicine[i];
+#endif
 
+#if I_POCKET_BATTLE_ITEMS_ENABLED
     // load player battle items.
     for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
         gLoadedSaveData.battleItems[i] = gSaveBlock1Ptr->bagPocket_BattleItems[i];
+#endif
 
+#if I_POCKET_TREASURES_ENABLED
     // load player treasures.
     for (i = 0; i < BAG_TREASURES_COUNT; i++)
         gLoadedSaveData.treasures[i] = gSaveBlock1Ptr->bagPocket_Treasures[i];
+#endif
 
+#if I_POCKET_MEGA_STONES_ENABLED
     // load player mega stones.
     for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
         gLoadedSaveData.megastones[i] = gSaveBlock1Ptr->bagPocket_MegaStones[i];
+#endif
 
+#if I_POCKET_Z_CRYSTALS_ENABLED
     // load player Z-Crystals.
     for (i = 0; i < BAG_ZCRYSTALS_COUNT; i++)
         gLoadedSaveData.zcrystals[i] = gSaveBlock1Ptr->bagPocket_ZCrystals[i];
+#endif
 
     gLastEncryptionKey = gSaveBlock2Ptr->encryptionKey;
 }
@@ -337,25 +357,35 @@ void SavePlayerBag(void)
     for (i = 0; i < MAIL_COUNT; i++)
         gSaveBlock1Ptr->mail[i] = gLoadedSaveData.mail[i];
 
+#if I_POCKET_MEDICINE_ENABLED
     // save player medicine.
     for (i = 0; i < BAG_MEDICINE_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_Medicine[i] = gLoadedSaveData.medicine[i];
+#endif
 
+#if I_POCKET_BATTLE_ITEMS_ENABLED
     // save player battle items.
     for (i = 0; i < BAG_BATTLEITEMS_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_BattleItems[i] = gLoadedSaveData.battleItems[i];
+#endif
 
+#if I_POCKET_TREASURES_ENABLED
     // save player treasures.
     for (i = 0; i < BAG_TREASURES_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_Treasures[i] = gLoadedSaveData.treasures[i];
+#endif
 
+#if I_POCKET_MEGA_STONES_ENABLED
     // save player mega stones.
     for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_MegaStones[i] = gLoadedSaveData.megastones[i];
+#endif
 
+#if I_POCKET_Z_CRYSTALS_ENABLED
     // save player z-crystals.
     for (i = 0; i < BAG_ZCRYSTALS_COUNT; i++)
         gSaveBlock1Ptr->bagPocket_ZCrystals[i] = gLoadedSaveData.zcrystals[i];
+#endif
 
     encryptionKeyBackup = gSaveBlock2Ptr->encryptionKey;
     gSaveBlock2Ptr->encryptionKey = gLastEncryptionKey;

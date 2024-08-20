@@ -82,20 +82,30 @@ void SetBagItemsPointers(void)
     gBagPockets[BERRIES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Berries;
     gBagPockets[BERRIES_POCKET].capacity = BAG_BERRIES_COUNT;
 
+#if I_POCKET_MEDICINE_ENABLED
     gBagPockets[MEDICINE_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Medicine;
     gBagPockets[MEDICINE_POCKET].capacity = BAG_MEDICINE_COUNT;
+#endif
 
+#if I_POCKET_BATTLE_ITEMS_ENABLED
     gBagPockets[BATTLEITEMS_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_BattleItems;
     gBagPockets[BATTLEITEMS_POCKET].capacity = BAG_BATTLEITEMS_COUNT;
+#endif
 
+#if I_POCKET_TREASURES_ENABLED
     gBagPockets[TREASURES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Treasures;
     gBagPockets[TREASURES_POCKET].capacity = BAG_TREASURES_COUNT;
+#endif
 
+#if I_POCKET_MEGA_STONES_ENABLED
     gBagPockets[MEGASTONES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_MegaStones;
     gBagPockets[MEGASTONES_POCKET].capacity = BAG_MEGASTONES_COUNT;
+#endif
 
+#if I_POCKET_Z_CRYSTALS_ENABLED
     gBagPockets[ZCRYSTALS_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_ZCrystals;
     gBagPockets[ZCRYSTALS_POCKET].capacity = BAG_ZCRYSTALS_COUNT;
+#endif
 }
 
 u8 *CopyItemName(u16 itemId, u8 *dst)

@@ -1003,11 +1003,21 @@ struct SaveBlock1
     /*0x650*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     /*0x690*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
+        #if I_POCKET_MEDICINE_ENABLED
               struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+        #endif
+        #if I_POCKET_BATTLE_ITEMS_ENABLED
               struct ItemSlot bagPocket_BattleItems[BAG_BATTLEITEMS_COUNT];
+        #endif
+        #if I_POCKET_TREASURES_ENABLED
               struct ItemSlot bagPocket_Treasures[BAG_TREASURES_COUNT];
+        #endif
+        #if I_POCKET_MEGA_STONES_ENABLED
               struct ItemSlot bagPocket_MegaStones[BAG_MEGASTONES_COUNT];
+        #endif
+        #if I_POCKET_Z_CRYSTALS_ENABLED
               struct ItemSlot bagPocket_ZCrystals[BAG_ZCRYSTALS_COUNT];
+        #endif
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
 #if FREE_EXTRA_SEEN_FLAGS_SAVEBLOCK1 == FALSE
     /*0x988*/ u8 filler1[0x34]; // Previously Dex Flags, feel free to remove.

@@ -229,23 +229,43 @@ const u8 gText_PokeBallsPocket[] = _("POKé BALLS");
 const u8 gText_TMHMPocket[] = _("TMs & HMs");
 const u8 gText_BerriesPocket[] = _("BERRIES");
 const u8 gText_KeyItemsPocket[] = _("KEY ITEMS");
+#if I_POCKET_MEDICINE_ENABLED
 const u8 gText_MedicinePocket[] = _("MEDICINE");
+#endif
+#if I_POCKET_BATTLE_ITEMS_ENABLED
 const u8 gText_BattleItemsPocket[] = _("BATTLE ITEM");
+#endif
+#if I_POCKET_TREASURES_ENABLED
 const u8 gText_TreasuresPocket[] = _("TREASURES");
+#endif
+#if I_POCKET_MEGA_STONES_ENABLED
 const u8 gText_MegaStonesPocket[] = _("MEGA STONES");
+#endif
+#if I_POCKET_Z_CRYSTALS_ENABLED
 const u8 gText_ZCrystalsPocket[] = _("Z-CRYSTALS");
+#endif
 
 const u8 *const gPocketNamesStringsTable[] =
 {
     [ITEMS_POCKET] = gText_ItemsPocket,
+#if I_POCKET_MEDICINE_ENABLED
     [MEDICINE_POCKET] = gText_MedicinePocket,
+#endif
     [BALLS_POCKET] = gText_PokeBallsPocket,
+#if I_POCKET_BATTLE_ITEMS_ENABLED
     [BATTLEITEMS_POCKET] = gText_BattleItemsPocket,
-    [BERRIES_POCKET] = gText_BerriesPocket,
-    [TREASURES_POCKET] = gText_TreasuresPocket,
-    [MEGASTONES_POCKET] = gText_MegaStonesPocket,
-    [ZCRYSTALS_POCKET] = gText_ZCrystalsPocket,
+#endif
     [TMHM_POCKET]  = gText_TMHMPocket,
+    [BERRIES_POCKET] = gText_BerriesPocket,
+#if I_POCKET_TREASURES_ENABLED
+    [TREASURES_POCKET] = gText_TreasuresPocket,
+#endif
+#if I_POCKET_MEGA_STONES_ENABLED
+    [MEGASTONES_POCKET] = gText_MegaStonesPocket,
+#endif
+#if I_POCKET_Z_CRYSTALS_ENABLED
+    [ZCRYSTALS_POCKET] = gText_ZCrystalsPocket,
+#endif
     [KEYITEMS_POCKET] = gText_KeyItemsPocket
 };
 

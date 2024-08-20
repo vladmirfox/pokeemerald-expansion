@@ -118,7 +118,11 @@ struct ListBuffer2 {
 };
 
 struct TempWallyBag {
+#if I_POCKET_MEDICINE_ENABLED
     struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+#else
+    struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
+#endif
     struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     u16 cursorPosition[POCKETS_COUNT];
     u16 scrollPosition[POCKETS_COUNT];
@@ -1668,23 +1672,22 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
                 break;
+        #if I_POCKET_MEDICINE_ENABLED
             case MEDICINE_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
+        #endif
+        #if I_POCKET_BATTLE_ITEMS_ENABLED
             case BATTLEITEMS_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
+        #endif
+        #if I_POCKET_TREASURES_ENABLED
             case TREASURES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
+        #endif
+        #if I_POCKET_MEGA_STONES_ENABLED
             case MEGASTONES_POCKET:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
-                break;
+        #endif
+        #if I_POCKET_Z_CRYSTALS_ENABLED
             case ZCRYSTALS_POCKET:
+        #endif
+            case POCKETS_COUNT: // Not a valid pocket, but used to avoid repeating code
                 gBagMenu->contextMenuItemsPtr = sContextMenuItems_ItemsPocket;
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_ItemsPocket);
                 break;
@@ -2352,7 +2355,11 @@ static void PrepareBagForWallyTutorial(void)
     u32 i;
 
     sTempWallyBag = AllocZeroed(sizeof(*sTempWallyBag));
+#if I_POCKET_MEDICINE_ENABLED
     memcpy(sTempWallyBag->bagPocket_Medicine, gSaveBlock1Ptr->bagPocket_Medicine, sizeof(gSaveBlock1Ptr->bagPocket_Medicine));
+#else
+    memcpy(sTempWallyBag->bagPocket_Items, gSaveBlock1Ptr->bagPocket_Items, sizeof(gSaveBlock1Ptr->bagPocket_Items));
+#endif
     memcpy(sTempWallyBag->bagPocket_PokeBalls, gSaveBlock1Ptr->bagPocket_PokeBalls, sizeof(gSaveBlock1Ptr->bagPocket_PokeBalls));
     sTempWallyBag->pocket = gBagPosition.pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2360,7 +2367,11 @@ static void PrepareBagForWallyTutorial(void)
         sTempWallyBag->cursorPosition[i] = gBagPosition.cursorPosition[i];
         sTempWallyBag->scrollPosition[i] = gBagPosition.scrollPosition[i];
     }
+#if I_POCKET_MEDICINE_ENABLED
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_Medicine, BAG_MEDICINE_COUNT);
+#else
+    ClearItemSlots(gSaveBlock1Ptr->bagPocket_Items, BAG_ITEMS_COUNT);
+#endif
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT);
     ResetBagScrollPositions();
 }
@@ -2369,7 +2380,11 @@ static void RestoreBagAfterWallyTutorial(void)
 {
     u32 i;
 
+#if I_POCKET_MEDICINE_ENABLED
     memcpy(gSaveBlock1Ptr->bagPocket_Medicine, sTempWallyBag->bagPocket_Medicine, sizeof(sTempWallyBag->bagPocket_Medicine));
+#else
+    memcpy(gSaveBlock1Ptr->bagPocket_Items, sTempWallyBag->bagPocket_Items, sizeof(sTempWallyBag->bagPocket_Items));
+#endif
     memcpy(gSaveBlock1Ptr->bagPocket_PokeBalls, sTempWallyBag->bagPocket_PokeBalls, sizeof(sTempWallyBag->bagPocket_PokeBalls));
     gBagPosition.pocket = sTempWallyBag->pocket;
     for (i = 0; i < POCKETS_COUNT; i++)
@@ -2385,7 +2400,11 @@ void DoWallyTutorialBagMenu(void)
     PrepareBagForWallyTutorial();
     AddBagItem(ITEM_POTION, 1);
     AddBagItem(ITEM_POKE_BALL, 1);
+#if I_POCKET_MEDICINE_ENABLED
     GoToBagMenu(ITEMMENULOCATION_WALLY, MEDICINE_POCKET, CB2_SetUpReshowBattleScreenAfterMenu2);
+#else
+    GoToBagMenu(ITEMMENULOCATION_WALLY, ITEMS_POCKET, CB2_SetUpReshowBattleScreenAfterMenu2);
+#endif
 }
 
 #define tTimer data[8]
