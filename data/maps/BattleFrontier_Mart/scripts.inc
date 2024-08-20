@@ -28,6 +28,12 @@ BattleFrontier_Mart_Pokemart:
 	.2byte ITEM_ZINC
 	.2byte ITEM_CARBOS
 	.2byte ITEM_HP_UP
+	.2byte ITEM_TM_BUG_BUZZ
+	.2byte ITEM_TM_IRON_HEAD
+	.2byte ITEM_TM_STEALTH_ROCK
+	.2byte ITEM_TM_TRICK_ROOM
+	.2byte ITEM_TM_GUARD_SWAP
+	.2byte ITEM_TM_POWER_SWAP
 	.2byte ITEM_NONE
 	release
 	end

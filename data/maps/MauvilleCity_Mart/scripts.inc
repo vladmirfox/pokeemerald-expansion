@@ -51,3 +51,37 @@ MauvilleCity_Mart_Text_DecisionsDetermineBattle:
 	.string "The TRAINER's decisions determine how\n"
 	.string "battles turn out, I think.$"
 
+MauvilleCity_Mart_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart MauvilleCity_Pokemart_EXItems
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+MauvilleCity_Pokemart_EXItems:
+        .2byte ITEM_THUNDER_STONE
+        .2byte ITEM_METAL_COAT
+	.2byte ITEM_DUBIOUS_DISC
+        .2byte ITEM_ELECTIRIZER
+	.2byte ITEM_TOXIC_ORB
+	.2byte ITEM_FLAME_ORB
+        .2byte ITEM_CELL_BATTERY
+        .2byte ITEM_RED_CARD
+	.2byte ITEM_LOADED_DICE
+        .2byte ITEM_EJECT_BUTTON
+	.2byte ITEM_EJECT_PACK
+        .2byte ITEM_RING_TARGET
+	.2byte ITEM_EXPERT_BELT
+	.2byte ITEM_COVERT_CLOAK
+	.2byte ITEM_LIGHT_BALL
+	.2byte ITEM_ADRENALINE_ORB
+	.2byte ITEM_TERRAIN_EXTENDER
+	.2byte ITEM_THROAT_SPRAY
+	.2byte ITEM_ROOM_SERVICE
+	.2byte ITEM_NONE
+	release
+	end

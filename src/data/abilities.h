@@ -881,11 +881,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_SNOW_WARNING] =
     {
         .name = _("Snow Warning"),
-    #if B_SNOW_WARNING >= GEN_9
-        .description = COMPOUND_STRING("Summons snow in battle."),
-    #else
-        .description = COMPOUND_STRING("Summons hail in battle."),
-    #endif
+        .description = COMPOUND_STRING("Summons a Hailstorm."),
         .aiRating = 8,
     },
 
@@ -1606,7 +1602,6 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Disguise"),
         .description = COMPOUND_STRING("Decoy protects it once."),
         .aiRating = 8,
-        .breakable = TRUE,
         .cantBeCopied = TRUE,
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
@@ -2552,7 +2547,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     #else
         .name = _("SuprswtSyrup"),
     #endif
-        .description = COMPOUND_STRING("Lowers the foe's Evasion."),
+        .description = COMPOUND_STRING("Lowers the foe's Speed."),
         .aiRating = 5,
     },
 

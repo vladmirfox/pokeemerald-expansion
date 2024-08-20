@@ -27,6 +27,37 @@ FortreeCity_Mart_Pokemart:
 	release
 	end
 
+FortreeCity_Mart_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart FortreeCity_Mart_Pokemart_EX
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+FortreeCity_Mart_Pokemart_EX:
+	.2byte ITEM_SACHET
+	.2byte ITEM_WHIPPED_DREAM
+	.2byte ITEM_STRAWBERRY_SWEET
+	.2byte ITEM_FLOWER_SWEET
+	.2byte ITEM_CLOVER_SWEET
+	.2byte ITEM_EVERSTONE
+	.2byte ITEM_LUCKY_PUNCH
+	.2byte ITEM_AIR_BALLOON
+	.2byte ITEM_TM_SHADOW_CLAW
+	.2byte ITEM_TM_EARTH_POWER
+	.2byte ITEM_TM_DAZZLING_GLEAM
+	.2byte ITEM_TM_PLAY_ROUGH
+	.2byte ITEM_TM_FLASH_CANNON
+	.2byte ITEM_TM_DARK_PULSE
+	.2byte ITEM_NONE
+	release
+	end
+
+
 FortreeCity_Mart_EventScript_Woman::
 	msgbox FortreeCity_Mart_Text_SuperRepelBetter, MSGBOX_NPC
 	end

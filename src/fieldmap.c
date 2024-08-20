@@ -16,7 +16,6 @@
 #include "tv.h"
 #include "constants/rgb.h"
 #include "constants/metatile_behaviors.h"
-#include "wild_encounter.h"
 
 struct ConnectionFlags
 {
@@ -141,7 +140,7 @@ static void InitBackupMapLayoutConnections(struct MapHeader *mapHeader)
         for (i = 0; i < count; i++, connection++)
         {
             struct MapHeader const *cMap = GetMapHeaderFromConnection(connection);
-            s32 offset = connection->offset;
+            u32 offset = connection->offset;
             switch (connection->direction)
             {
             case CONNECTION_SOUTH:

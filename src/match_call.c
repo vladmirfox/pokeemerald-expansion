@@ -1039,82 +1039,6 @@ static u32 GetCurrentTotalMinutes(struct Time *time)
     return time->days * 24 * 60 + time->hours * 60 + time->minutes;
 }
 
-static bool32 UpdateMatchCallMinutesCounter(void)
-{
-    int curMinutes;
-    RtcCalcLocalTime();
-    curMinutes = GetCurrentTotalMinutes(&gLocalTime);
-    if (sMatchCallState.minutes > curMinutes || curMinutes - sMatchCallState.minutes > 9)
-    {
-        sMatchCallState.minutes = curMinutes;
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-static bool32 CheckMatchCallChance(void)
-{
-    int callChance = 1;
-    if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG) && GetMonAbility(&gPlayerParty[0]) == ABILITY_LIGHTNING_ROD)
-        callChance = 2;
-
-    if (Random() % 10 < callChance * 3)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-static bool32 MapAllowsMatchCall(void)
-{
-    if (!Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) || gMapHeader.regionMapSectionId == MAPSEC_SAFARI_ZONE)
-        return FALSE;
-
-    if (gMapHeader.regionMapSectionId == MAPSEC_SOOTOPOLIS_CITY
-     && FlagGet(FLAG_HIDE_SOOTOPOLIS_CITY_RAYQUAZA) == TRUE
-     && FlagGet(FLAG_NEVER_SET_0x0DC) == FALSE)
-        return FALSE;
-
-    if (gMapHeader.regionMapSectionId == MAPSEC_MT_CHIMNEY
-     && FlagGet(FLAG_MET_ARCHIE_METEOR_FALLS) == TRUE
-     && FlagGet(FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY) == FALSE)
-        return FALSE;
-
-    return TRUE;
-}
-
-static bool32 UpdateMatchCallStepCounter(void)
-{
-    if (++sMatchCallState.stepCounter >= 10)
-    {
-        sMatchCallState.stepCounter = 0;
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
-
-static bool32 SelectMatchCallTrainer(void)
-{
-    u32 matchCallId;
-    u32 numRegistered = GetNumRegisteredNPCs();
-    if (numRegistered == 0)
-        return FALSE;
-
-    sMatchCallState.trainerId = GetActiveMatchCallTrainerId(Random() % numRegistered);
-    sMatchCallState.triggeredFromScript = FALSE;
-    if (sMatchCallState.trainerId == REMATCH_TABLE_ENTRIES)
-        return FALSE;
-
-    matchCallId = GetTrainerMatchCallId(sMatchCallState.trainerId);
-    if (GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId && !TrainerIsEligibleForRematch(matchCallId))
-        return FALSE;
-
-    return TRUE;
-}
-
 static u32 GetNumRegisteredNPCs(void)
 {
     u32 i, count;
@@ -1155,17 +1079,6 @@ static u32 GetActiveMatchCallTrainerId(u32 activeMatchCallId)
 */
 bool32 TryStartMatchCall(void)
 {
-    if (FlagGet(FLAG_HAS_MATCH_CALL)
-        && UpdateMatchCallStepCounter()
-        && UpdateMatchCallMinutesCounter()
-        && CheckMatchCallChance()
-        && MapAllowsMatchCall()
-        && SelectMatchCallTrainer())
-    {
-        StartMatchCall();
-        return TRUE;
-    }
-
     return FALSE;
 }
 

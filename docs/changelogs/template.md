@@ -6,8 +6,7 @@
 - Once you have your remote set up, run the command `git pull RHH expansion/1.Y.Z`.
 ```
 
-## 🌋 *REFACTORS* 🌋
-📜 = Uses a migration script.
+## 🌋 *IMPORTANT CHANGES* 🌋
 * N/A
 
 ## 💥 *Softlock/Crash fixes* 💥
@@ -44,13 +43,6 @@
 #### Fixed
 * N/A
 ### ***ghoulslash's Saveblock Cleansing***:
-#### Added
-* N/A
-#### Changed
-* N/A
-#### Fixed
-* N/A
-### ***merrp/aarant's Followers***
 #### Added
 * N/A
 #### Changed
@@ -122,10 +114,7 @@
 ### Fixed
 * N/A
 
-## 📦 Branch Synchronisation 📦
-### pret's base pokeemerald
-* N/A
-### merrp/aarant's followers
+## 📦 Pret merges 📦
 * N/A
 
 

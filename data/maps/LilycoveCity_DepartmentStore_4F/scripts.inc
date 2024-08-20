@@ -28,7 +28,11 @@ LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs:
 	.2byte ITEM_TM_FIRE_BLAST
 	.2byte ITEM_TM_THUNDER
 	.2byte ITEM_TM_BLIZZARD
+	.2byte ITEM_TM_FIRE_FANG
+	.2byte ITEM_TM_THUNDER_FANG
+	.2byte ITEM_TM_ICE_FANG
 	.2byte ITEM_TM_HYPER_BEAM
+	.2byte ITEM_TM_GIGA_IMPACT
 	.2byte ITEM_NONE
 	release
 	end
@@ -49,6 +53,11 @@ LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
 	.2byte ITEM_TM_SAFEGUARD
 	.2byte ITEM_TM_REFLECT
 	.2byte ITEM_TM_LIGHT_SCREEN
+	.2byte ITEM_TM_SWORDS_DANCE
+	.2byte ITEM_TM_IRON_DEFENSE
+	.2byte ITEM_TM_NASTY_PLOT
+	.2byte ITEM_TM_AMNESIA
+	.2byte ITEM_TM_AGILITY
 	.2byte ITEM_NONE
 	release
 	end

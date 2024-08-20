@@ -12,7 +12,6 @@
 #include "battle_z_move.h"
 #include "data.h"
 #include "event_data.h"
-#include "event_object_movement.h"
 #include "evolution_scene.h"
 #include "field_specials.h"
 #include "field_weather.h"
@@ -47,7 +46,6 @@
 #include "constants/battle_script_commands.h"
 #include "constants/battle_partner.h"
 #include "constants/cries.h"
-#include "constants/event_objects.h"
 #include "constants/form_change_types.h"
 #include "constants/hold_effects.h"
 #include "constants/item_effects.h"
@@ -58,7 +56,6 @@
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
-#include "wild_encounter.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9) ? 160 : 220)
 
@@ -85,7 +82,6 @@ EWRAM_DATA struct Pokemon gEnemyParty[PARTY_SIZE] = {0};
 EWRAM_DATA struct SpriteTemplate gMultiuseSpriteTemplate = {0};
 EWRAM_DATA static struct MonSpritesGfxManager *sMonSpritesGfxManagers[MON_SPR_GFX_MANAGERS_COUNT] = {NULL};
 EWRAM_DATA static u8 sTriedEvolving = 0;
-EWRAM_DATA u16 gFollowerSteps = 0;
 
 #include "data/moves_info.h"
 #include "data/abilities.h"
@@ -126,9 +122,7 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(MIGHTYENA),
     HOENN_TO_NATIONAL(ZIGZAGOON),
     HOENN_TO_NATIONAL(LINOONE),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GALARIAN_FORMS
     HOENN_TO_NATIONAL(OBSTAGOON),
-#endif
     HOENN_TO_NATIONAL(WURMPLE),
     HOENN_TO_NATIONAL(SILCOON),
     HOENN_TO_NATIONAL(BEAUTIFLY),
@@ -147,9 +141,7 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(RALTS),
     HOENN_TO_NATIONAL(KIRLIA),
     HOENN_TO_NATIONAL(GARDEVOIR),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(GALLADE),
-#endif
     HOENN_TO_NATIONAL(SURSKIT),
     HOENN_TO_NATIONAL(MASQUERAIN),
     HOENN_TO_NATIONAL(SHROOMISH),
@@ -179,9 +171,7 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(GRAVELER),
     HOENN_TO_NATIONAL(GOLEM),
     HOENN_TO_NATIONAL(NOSEPASS),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(PROBOPASS),
-#endif
     HOENN_TO_NATIONAL(SKITTY),
     HOENN_TO_NATIONAL(DELCATTY),
     HOENN_TO_NATIONAL(ZUBAT),
@@ -205,9 +195,7 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(MINUN),
     HOENN_TO_NATIONAL(MAGNEMITE),
     HOENN_TO_NATIONAL(MAGNETON),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(MAGNEZONE),
-#endif
     HOENN_TO_NATIONAL(VOLTORB),
     HOENN_TO_NATIONAL(ELECTRODE),
     HOENN_TO_NATIONAL(VOLBEAT),
@@ -218,13 +206,9 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(BELLOSSOM),
     HOENN_TO_NATIONAL(DODUO),
     HOENN_TO_NATIONAL(DODRIO),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(BUDEW),
     HOENN_TO_NATIONAL(ROSELIA),
     HOENN_TO_NATIONAL(ROSERADE),
-#else
-    HOENN_TO_NATIONAL(ROSELIA),
-#endif
     HOENN_TO_NATIONAL(GULPIN),
     HOENN_TO_NATIONAL(SWALOT),
     HOENN_TO_NATIONAL(CARVANHA),
@@ -280,13 +264,9 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(BANETTE),
     HOENN_TO_NATIONAL(DUSKULL),
     HOENN_TO_NATIONAL(DUSCLOPS),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(DUSKNOIR),
     HOENN_TO_NATIONAL(TROPIUS),
     HOENN_TO_NATIONAL(CHINGLING),
-#else
-    HOENN_TO_NATIONAL(TROPIUS),
-#endif
     HOENN_TO_NATIONAL(CHIMECHO),
     HOENN_TO_NATIONAL(ABSOL),
     HOENN_TO_NATIONAL(VULPIX),
@@ -301,23 +281,17 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(NATU),
     HOENN_TO_NATIONAL(XATU),
     HOENN_TO_NATIONAL(GIRAFARIG),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_9_CROSS_EVOS
     HOENN_TO_NATIONAL(FARIGIRAF),
-#endif
     HOENN_TO_NATIONAL(PHANPY),
     HOENN_TO_NATIONAL(DONPHAN),
     HOENN_TO_NATIONAL(PINSIR),
     HOENN_TO_NATIONAL(HERACROSS),
     HOENN_TO_NATIONAL(RHYHORN),
     HOENN_TO_NATIONAL(RHYDON),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(RHYPERIOR),
-#endif
     HOENN_TO_NATIONAL(SNORUNT),
     HOENN_TO_NATIONAL(GLALIE),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GEN_4_CROSS_EVOS
     HOENN_TO_NATIONAL(FROSLASS),
-#endif
     HOENN_TO_NATIONAL(SPHEAL),
     HOENN_TO_NATIONAL(SEALEO),
     HOENN_TO_NATIONAL(WALREIN),
@@ -326,9 +300,7 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(GOREBYSS),
     HOENN_TO_NATIONAL(RELICANTH),
     HOENN_TO_NATIONAL(CORSOLA),
-#if P_NEW_EVOS_IN_REGIONAL_DEX && P_GALARIAN_FORMS
     HOENN_TO_NATIONAL(CURSOLA),
-#endif
     HOENN_TO_NATIONAL(CHINCHOU),
     HOENN_TO_NATIONAL(LANTURN),
     HOENN_TO_NATIONAL(LUVDISC),
@@ -344,6 +316,9 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(REGIROCK),
     HOENN_TO_NATIONAL(REGICE),
     HOENN_TO_NATIONAL(REGISTEEL),
+	HOENN_TO_NATIONAL(REGIELEKI),
+	HOENN_TO_NATIONAL(REGIDRAGO),
+	HOENN_TO_NATIONAL(REGIGIGAS),
     HOENN_TO_NATIONAL(LATIAS),
     HOENN_TO_NATIONAL(LATIOS),
     HOENN_TO_NATIONAL(KYOGRE),
@@ -351,6 +326,213 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(RAYQUAZA),
     HOENN_TO_NATIONAL(JIRACHI),
     HOENN_TO_NATIONAL(DEOXYS),
+	HOENN_TO_NATIONAL(SPRIGATITO),
+	HOENN_TO_NATIONAL(FLORAGATO),
+	HOENN_TO_NATIONAL(MEOWSCARADA),
+	HOENN_TO_NATIONAL(SCORBUNNY),
+	HOENN_TO_NATIONAL(RABOOT),
+	HOENN_TO_NATIONAL(CINDERACE),
+	HOENN_TO_NATIONAL(FROAKIE),
+	HOENN_TO_NATIONAL(FROGADIER),
+	HOENN_TO_NATIONAL(GRENINJA),
+	HOENN_TO_NATIONAL(YAMPER),
+	HOENN_TO_NATIONAL(BOLTUND),
+	HOENN_TO_NATIONAL(PURRLOIN),
+	HOENN_TO_NATIONAL(LIEPARD),
+	HOENN_TO_NATIONAL(BIDOOF),
+	HOENN_TO_NATIONAL(BIBAREL),
+	HOENN_TO_NATIONAL(SEWADDLE),
+	HOENN_TO_NATIONAL(SWADLOON),
+	HOENN_TO_NATIONAL(LEAVANNY),
+	HOENN_TO_NATIONAL(SCATTERBUG),
+	HOENN_TO_NATIONAL(SPEWPA),
+	HOENN_TO_NATIONAL(VIVILLON),
+	HOENN_TO_NATIONAL(RIOLU),
+	HOENN_TO_NATIONAL(LUCARIO),
+	HOENN_TO_NATIONAL(ZORUA),
+	HOENN_TO_NATIONAL(ZOROARK),
+	HOENN_TO_NATIONAL(TADBULB),
+	HOENN_TO_NATIONAL(BELLIBOLT),
+	HOENN_TO_NATIONAL(WIMPOD),
+	HOENN_TO_NATIONAL(GOLISOPOD),
+	HOENN_TO_NATIONAL(DUCKLETT),
+	HOENN_TO_NATIONAL(SWANNA),
+	HOENN_TO_NATIONAL(PARAS),
+	HOENN_TO_NATIONAL(PARASECT),
+	HOENN_TO_NATIONAL(WEEDLE),
+	HOENN_TO_NATIONAL(KAKUNA),
+	HOENN_TO_NATIONAL(BEEDRILL),
+	HOENN_TO_NATIONAL(PACHIRISU),
+	HOENN_TO_NATIONAL(STARLY),
+	HOENN_TO_NATIONAL(STARAVIA),
+	HOENN_TO_NATIONAL(STARAPTOR),
+	HOENN_TO_NATIONAL(FLETCHLING),
+	HOENN_TO_NATIONAL(FLETCHINDER),
+	HOENN_TO_NATIONAL(TALONFLAME),
+	HOENN_TO_NATIONAL(FIDOUGH),
+	HOENN_TO_NATIONAL(DACHSBUN),
+	HOENN_TO_NATIONAL(NACLI),
+	HOENN_TO_NATIONAL(NACLSTACK),
+	HOENN_TO_NATIONAL(GARGANACL),
+	HOENN_TO_NATIONAL(IMPIDIMP),
+	HOENN_TO_NATIONAL(MORGREM),
+	HOENN_TO_NATIONAL(GRIMMSNARL),
+	HOENN_TO_NATIONAL(HATENNA),
+	HOENN_TO_NATIONAL(HATTREM),
+	HOENN_TO_NATIONAL(HATTERENE),
+	HOENN_TO_NATIONAL(NOIBAT),
+	HOENN_TO_NATIONAL(NOIVERN),
+	HOENN_TO_NATIONAL(BINACLE),
+	HOENN_TO_NATIONAL(BARBARACLE),
+	HOENN_TO_NATIONAL(BASCULIN),
+	HOENN_TO_NATIONAL(BASCULEGION),
+	HOENN_TO_NATIONAL(FRILLISH),
+	HOENN_TO_NATIONAL(JELLICENT),
+	HOENN_TO_NATIONAL(POLIWAG),
+	HOENN_TO_NATIONAL(POLIWHIRL),
+	HOENN_TO_NATIONAL(POLIWRATH),
+	HOENN_TO_NATIONAL(POLITOED),
+	HOENN_TO_NATIONAL(SHELLDER),
+	HOENN_TO_NATIONAL(CLOYSTER),
+	HOENN_TO_NATIONAL(CYCLIZAR),
+	HOENN_TO_NATIONAL(MILCERY),
+	HOENN_TO_NATIONAL(ALCREMIE),
+	HOENN_TO_NATIONAL(EEVEE),
+	HOENN_TO_NATIONAL(FLAREON),
+	HOENN_TO_NATIONAL(JOLTEON),
+	HOENN_TO_NATIONAL(VAPOREON),
+	HOENN_TO_NATIONAL(ESPEON),
+	HOENN_TO_NATIONAL(UMBREON),
+	HOENN_TO_NATIONAL(LEAFEON),
+	HOENN_TO_NATIONAL(GLACEON),
+	HOENN_TO_NATIONAL(SYLVEON),
+	HOENN_TO_NATIONAL(WOOBAT),
+	HOENN_TO_NATIONAL(SWOOBAT),
+	HOENN_TO_NATIONAL(SANDILE),
+	HOENN_TO_NATIONAL(KROKOROK),
+	HOENN_TO_NATIONAL(KROOKODILE),
+	HOENN_TO_NATIONAL(MARACTUS),
+	HOENN_TO_NATIONAL(SIZZLIPEDE),
+	HOENN_TO_NATIONAL(CENTISKORCH),
+	HOENN_TO_NATIONAL(EKANS),
+	HOENN_TO_NATIONAL(ARBOK),
+	HOENN_TO_NATIONAL(NYMBLE),
+	HOENN_TO_NATIONAL(LOKIX),
+	HOENN_TO_NATIONAL(LARVESTA),
+	HOENN_TO_NATIONAL(VOLCARONA),
+	HOENN_TO_NATIONAL(GROWLITHE),
+	HOENN_TO_NATIONAL(ARCANINE),
+	HOENN_TO_NATIONAL(TIMBURR),
+	HOENN_TO_NATIONAL(GURDURR),
+	HOENN_TO_NATIONAL(CONKELDURR),
+	HOENN_TO_NATIONAL(CHARCADET),
+	HOENN_TO_NATIONAL(ARMAROUGE),
+	HOENN_TO_NATIONAL(CERULEDGE),
+	HOENN_TO_NATIONAL(KLINK),
+	HOENN_TO_NATIONAL(KLANG),
+	HOENN_TO_NATIONAL(KLINKLANG),
+	HOENN_TO_NATIONAL(PORYGON),
+	HOENN_TO_NATIONAL(PORYGON2),
+	HOENN_TO_NATIONAL(PORYGON_Z),
+	HOENN_TO_NATIONAL(LITWICK),
+	HOENN_TO_NATIONAL(LAMPENT),
+	HOENN_TO_NATIONAL(CHANDELURE),
+	HOENN_TO_NATIONAL(CAPSAKID),
+	HOENN_TO_NATIONAL(SCOVILLAIN),
+	HOENN_TO_NATIONAL(ROOKIDEE),
+	HOENN_TO_NATIONAL(CORVISQUIRE),
+	HOENN_TO_NATIONAL(CORVIKNIGHT),
+	HOENN_TO_NATIONAL(DROWZEE),
+	HOENN_TO_NATIONAL(HYPNO),
+	HOENN_TO_NATIONAL(CLEFFA),
+	HOENN_TO_NATIONAL(CLEFAIRY),
+	HOENN_TO_NATIONAL(CLEFABLE),
+	HOENN_TO_NATIONAL(MINIOR),
+	HOENN_TO_NATIONAL(FOONGUS),
+	HOENN_TO_NATIONAL(AMOONGUSS),
+	HOENN_TO_NATIONAL(TOEDSCOOL),
+	HOENN_TO_NATIONAL(TOEDSCRUEL),
+	HOENN_TO_NATIONAL(MORELULL),
+	HOENN_TO_NATIONAL(SHIINOTIC),
+	HOENN_TO_NATIONAL(EMOLGA),
+	HOENN_TO_NATIONAL(PAWMI),
+	HOENN_TO_NATIONAL(PAWMO),
+	HOENN_TO_NATIONAL(PAWMOT),
+	HOENN_TO_NATIONAL(GOOMY),
+	HOENN_TO_NATIONAL(SLIGGOO),
+	HOENN_TO_NATIONAL(GOODRA),
+	HOENN_TO_NATIONAL(DEWPIDER),
+	HOENN_TO_NATIONAL(ARAQUANID),
+	HOENN_TO_NATIONAL(SLOWPOKE),
+	HOENN_TO_NATIONAL(SLOWBRO),
+	HOENN_TO_NATIONAL(SLOWKING),
+	HOENN_TO_NATIONAL(ROGGENROLA),
+	HOENN_TO_NATIONAL(BOLDORE),
+	HOENN_TO_NATIONAL(GIGALITH),	
+	HOENN_TO_NATIONAL(MISDREAVUS),
+	HOENN_TO_NATIONAL(MISMAGIUS),
+	HOENN_TO_NATIONAL(MURKROW),
+	HOENN_TO_NATIONAL(HONCHKROW),
+	HOENN_TO_NATIONAL(MIMIKYU),
+	HOENN_TO_NATIONAL(GREAVARD),
+	HOENN_TO_NATIONAL(HOUNDSTONE),
+	HOENN_TO_NATIONAL(HONEDGE),
+	HOENN_TO_NATIONAL(DOUBLADE),
+	HOENN_TO_NATIONAL(AEGISLASH),
+	HOENN_TO_NATIONAL(QWILFISH),
+	HOENN_TO_NATIONAL(OVERQWIL),
+	HOENN_TO_NATIONAL(MAREANIE),
+	HOENN_TO_NATIONAL(TOXAPEX),
+	HOENN_TO_NATIONAL(WISHIWASHI),
+	HOENN_TO_NATIONAL(TYNAMO),
+	HOENN_TO_NATIONAL(EELEKTRIK),
+	HOENN_TO_NATIONAL(EELEKTROSS),
+	HOENN_TO_NATIONAL(MAGBY),
+	HOENN_TO_NATIONAL(MAGMAR),
+	HOENN_TO_NATIONAL(MAGMORTAR),
+	HOENN_TO_NATIONAL(ELEKID),
+	HOENN_TO_NATIONAL(ELECTABUZZ),
+	HOENN_TO_NATIONAL(ELECTIVIRE),
+	HOENN_TO_NATIONAL(SMOOCHUM),
+	HOENN_TO_NATIONAL(JYNX),
+	HOENN_TO_NATIONAL(MIME_JR),
+	HOENN_TO_NATIONAL(MR_MIME),
+	HOENN_TO_NATIONAL(MR_RIME),
+	HOENN_TO_NATIONAL(HAPPINY),
+	HOENN_TO_NATIONAL(CHANSEY),
+	HOENN_TO_NATIONAL(BLISSEY),
+	HOENN_TO_NATIONAL(TOGEPI),
+	HOENN_TO_NATIONAL(TOGETIC),
+	HOENN_TO_NATIONAL(TOGEKISS),
+	HOENN_TO_NATIONAL(TOXEL),
+	HOENN_TO_NATIONAL(TOXTRICITY),
+	HOENN_TO_NATIONAL(MUNCHLAX),
+	HOENN_TO_NATIONAL(SNORLAX),
+	HOENN_TO_NATIONAL(AIPOM),
+	HOENN_TO_NATIONAL(AMBIPOM),
+	HOENN_TO_NATIONAL(GLIGAR),
+	HOENN_TO_NATIONAL(GLISCOR),
+	HOENN_TO_NATIONAL(TAUROS),
+	HOENN_TO_NATIONAL(MILTANK),
+	HOENN_TO_NATIONAL(SNEASEL),
+	HOENN_TO_NATIONAL(WEAVILE),
+	HOENN_TO_NATIONAL(SNEASLER),
+	HOENN_TO_NATIONAL(MAREEP),
+	HOENN_TO_NATIONAL(FLAAFFY),
+	HOENN_TO_NATIONAL(AMPHAROS),
+	HOENN_TO_NATIONAL(SCYTHER),
+	HOENN_TO_NATIONAL(SCIZOR),
+	HOENN_TO_NATIONAL(KLEAVOR),
+	HOENN_TO_NATIONAL(ONIX),
+	HOENN_TO_NATIONAL(STEELIX),
+	HOENN_TO_NATIONAL(DUNSPARCE),
+	HOENN_TO_NATIONAL(DUDUNSPARCE),
+	HOENN_TO_NATIONAL(STANTLER),
+	HOENN_TO_NATIONAL(WYRDEER),
+	HOENN_TO_NATIONAL(OSHAWOTT),
+	HOENN_TO_NATIONAL(DEWOTT),
+	HOENN_TO_NATIONAL(SAMUROTT),
+	HOENN_TO_NATIONAL(OGERPON),
 };
 
 const struct SpindaSpot gSpindaSpotGraphics[] =
@@ -361,316 +543,62 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
     {.x = 34, .y = 26, .image = INCBIN_U16("graphics/pokemon/spinda/spots/spot_3.1bpp")}
 };
 
-// In Battle Palace, moves are chosen based on the pokemons nature rather than by the player
-// Moves are grouped into "Attack", "Defense", or "Support" (see PALACE_MOVE_GROUP_*)
-// Each nature has a certain percent chance of selecting a move from a particular group
-// and a separate percent chance for each group when at or below 50% HP
-// The table below doesn't list percentages for Support because you can subtract the other two
-// Support percentages are listed in comments off to the side instead
-#define PALACE_STYLE(atk, def, atkLow, defLow) {atk, atk + def, atkLow, atkLow + defLow}
-
-const struct NatureInfo gNaturesInfo[NUM_NATURES] =
+const u8 *const gNatureNamePointers[NUM_NATURES] =
 {
-    [NATURE_HARDY] =
-    {
-        .name = COMPOUND_STRING("Hardy"),
-        .statUp = STAT_ATK,
-        .statDown = STAT_ATK,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_HARDY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlHardy,
-        .battlePalacePercents = PALACE_STYLE(61, 7, 61, 7), //32% support >= 50% HP, 32% support < 50% HP
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_LONELY] =
-    {
-        .name = COMPOUND_STRING("Lonely"),
-        .statUp = STAT_ATK,
-        .statDown = STAT_DEF,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_LONELY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlLonely,
-        .battlePalacePercents = PALACE_STYLE(20, 25, 84, 8), //55%,  8%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_BRAVE] =
-    {
-        .name = COMPOUND_STRING("Brave"),
-        .statUp = STAT_ATK,
-        .statDown = STAT_SPEED,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_BRAVE, AFFINE_TURN_UP},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlBrave,
-        .battlePalacePercents = PALACE_STYLE(70, 15, 32, 60), //15%, 8%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_ADAMANT] =
-    {
-        .name = COMPOUND_STRING("Adamant"),
-        .statUp = STAT_ATK,
-        .statDown = STAT_SPATK,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_ADAMANT, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlAdamant,
-        .battlePalacePercents = PALACE_STYLE(38, 31, 70, 15), //31%, 15%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_NAUGHTY] =
-    {
-        .name = COMPOUND_STRING("Naughty"),
-        .statUp = STAT_ATK,
-        .statDown = STAT_SPDEF,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_NAUGHTY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlNaughty,
-        .battlePalacePercents = PALACE_STYLE(20, 70, 70, 22), //10%, 8%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_BOLD] =
-    {
-        .name = COMPOUND_STRING("Bold"),
-        .statUp = STAT_DEF,
-        .statDown = STAT_ATK,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_BOLD, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlBold,
-        .battlePalacePercents = PALACE_STYLE(30, 20, 32, 58), //50%, 10%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_DOCILE] =
-    {
-        .name = COMPOUND_STRING("Docile"),
-        .statUp = STAT_DEF,
-        .statDown = STAT_DEF,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_DOCILE, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
-        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
-    },
-    [NATURE_RELAXED] =
-    {
-        .name = COMPOUND_STRING("Relaxed"),
-        .statUp = STAT_DEF,
-        .statDown = STAT_SPEED,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_RELAXED, AFFINE_TURN_UP_AND_DOWN},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlRelaxed,
-        .battlePalacePercents = PALACE_STYLE(25, 15, 75, 15), //60%, 10%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_IMPISH] =
-    {
-        .name = COMPOUND_STRING("Impish"),
-        .statUp = STAT_DEF,
-        .statDown = STAT_SPATK,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_IMPISH, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlImpish,
-        .battlePalacePercents = PALACE_STYLE(69, 6, 28, 55), //25%, 17%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_LAX] =
-    {
-        .name = COMPOUND_STRING("Lax"),
-        .statUp = STAT_DEF,
-        .statDown = STAT_SPDEF,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_LAX, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlLax,
-        .battlePalacePercents = PALACE_STYLE(35, 10, 29, 6), //55%, 65%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_TIMID] =
-    {
-        .name = COMPOUND_STRING("Timid"),
-        .statUp = STAT_SPEED,
-        .statDown = STAT_ATK,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_TIMID, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlTimid,
-        .battlePalacePercents = PALACE_STYLE(62, 10, 30, 20), //28%, 50%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_HASTY] =
-    {
-        .name = COMPOUND_STRING("Hasty"),
-        .statUp = STAT_SPEED,
-        .statDown = STAT_DEF,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_HASTY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlHasty,
-        .battlePalacePercents = PALACE_STYLE(58, 37, 88, 6), //5%, 6%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_SERIOUS] =
-    {
-        .name = COMPOUND_STRING("Serious"),
-        .statUp = STAT_SPEED,
-        .statDown = STAT_SPEED,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_SERIOUS, AFFINE_TURN_DOWN},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlSerious,
-        .battlePalacePercents = PALACE_STYLE(34, 11, 29, 11), //55%, 60%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_JOLLY] =
-    {
-        .name = COMPOUND_STRING("Jolly"),
-        .statUp = STAT_SPEED,
-        .statDown = STAT_SPATK,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_JOLLY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlJolly,
-        .battlePalacePercents = PALACE_STYLE(35, 5, 35, 60), //60%, 5%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_NAIVE] =
-    {
-        .name = COMPOUND_STRING("Naive"),
-        .statUp = STAT_SPEED,
-        .statDown = STAT_SPDEF,
-        .backAnim = 0,
-        .pokeBlockAnim = {ANIM_NAIVE, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
-        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_RANDOM,
-    },
-    [NATURE_MODEST] =
-    {
-        .name = COMPOUND_STRING("Modest"),
-        .statUp = STAT_SPATK,
-        .statDown = STAT_ATK,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_MODEST, AFFINE_TURN_DOWN_SLOW},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlModest,
-        .battlePalacePercents = PALACE_STYLE(35, 45, 34, 60), //20%, 6%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_MILD] =
-    {
-        .name = COMPOUND_STRING("Mild"),
-        .statUp = STAT_SPATK,
-        .statDown = STAT_DEF,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_MILD, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlMild,
-        .battlePalacePercents = PALACE_STYLE(44, 50, 34, 6), //6%, 60%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_QUIET] =
-    {
-        .name = COMPOUND_STRING("Quiet"),
-        .statUp = STAT_SPATK,
-        .statDown = STAT_SPEED,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_QUIET, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
-        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_BASHFUL] =
-    {
-        .name = COMPOUND_STRING("Bashful"),
-        .statUp = STAT_SPATK,
-        .statDown = STAT_SPATK,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_BASHFUL, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlBashful,
-        .battlePalacePercents = PALACE_STYLE(30, 58, 30, 58), //12%, 12%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_RASH] =
-    {
-        .name = COMPOUND_STRING("Rash"),
-        .statUp = STAT_SPATK,
-        .statDown = STAT_SPDEF,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_RASH, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlRash,
-        .battlePalacePercents = PALACE_STYLE(30, 13, 27, 6), //57%, 67%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_CALM] =
-    {
-        .name = COMPOUND_STRING("Calm"),
-        .statUp = STAT_SPDEF,
-        .statDown = STAT_ATK,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_CALM, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlCalm,
-        .battlePalacePercents = PALACE_STYLE(40, 50, 25, 62), //10%, 13%
-        .battlePalaceFlavorText = B_MSG_GETTING_IN_POS,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_GENTLE] =
-    {
-        .name = COMPOUND_STRING("Gentle"),
-        .statUp = STAT_SPDEF,
-        .statDown = STAT_DEF,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_GENTLE, AFFINE_TURN_DOWN_SLIGHT},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlGentle,
-        .battlePalacePercents = PALACE_STYLE(18, 70, 90, 5), //12%, 5%
-        .battlePalaceFlavorText = B_MSG_GLINT_IN_EYE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
-    [NATURE_SASSY] =
-    {
-        .name = COMPOUND_STRING("Sassy"),
-        .statUp = STAT_SPDEF,
-        .statDown = STAT_SPEED,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_SASSY, AFFINE_TURN_UP_HIGH},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlSassy,
-        .battlePalacePercents = PALACE_STYLE(88, 6, 22, 20), //6%, 58%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_CAREFUL] =
-    {
-        .name = COMPOUND_STRING("Careful"),
-        .statUp = STAT_SPDEF,
-        .statDown = STAT_SPATK,
-        .backAnim = 2,
-        .pokeBlockAnim = {ANIM_CAREFUL, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlCareful,
-        .battlePalacePercents = PALACE_STYLE(42, 50, 42, 5), //8%, 53%
-        .battlePalaceFlavorText = B_MSG_GROWL_DEEPLY,
-        .battlePalaceSmokescreen = PALACE_TARGET_WEAKER,
-    },
-    [NATURE_QUIRKY] =
-    {
-        .name = COMPOUND_STRING("Quirky"),
-        .statUp = STAT_SPDEF,
-        .statDown = STAT_SPDEF,
-        .backAnim = 1,
-        .pokeBlockAnim = {ANIM_QUIRKY, AFFINE_NONE},
-        .natureGirlMessage = BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky,
-        .battlePalacePercents = PALACE_STYLE(56, 22, 56, 22), //22%, 22%
-        .battlePalaceFlavorText = B_MSG_EAGER_FOR_MORE,
-        .battlePalaceSmokescreen = PALACE_TARGET_STRONGER,
-    },
+    [NATURE_HARDY] = COMPOUND_STRING("Hardy"),
+    [NATURE_LONELY] = COMPOUND_STRING("Lonely"),
+    [NATURE_BRAVE] = COMPOUND_STRING("Brave"),
+    [NATURE_ADAMANT] = COMPOUND_STRING("Adamant"),
+    [NATURE_NAUGHTY] = COMPOUND_STRING("Naughty"),
+    [NATURE_BOLD] = COMPOUND_STRING("Bold"),
+    [NATURE_DOCILE] = COMPOUND_STRING("Docile"),
+    [NATURE_RELAXED] = COMPOUND_STRING("Relaxed"),
+    [NATURE_IMPISH] = COMPOUND_STRING("Impish"),
+    [NATURE_LAX] = COMPOUND_STRING("Lax"),
+    [NATURE_TIMID] = COMPOUND_STRING("Timid"),
+    [NATURE_HASTY] = COMPOUND_STRING("Hasty"),
+    [NATURE_SERIOUS] = COMPOUND_STRING("Serious"),
+    [NATURE_JOLLY] = COMPOUND_STRING("Jolly"),
+    [NATURE_NAIVE] = COMPOUND_STRING("Naive"),
+    [NATURE_MODEST] = COMPOUND_STRING("Modest"),
+    [NATURE_MILD] = COMPOUND_STRING("Mild"),
+    [NATURE_QUIET] = COMPOUND_STRING("Quiet"),
+    [NATURE_BASHFUL] = COMPOUND_STRING("Bashful"),
+    [NATURE_RASH] = COMPOUND_STRING("Rash"),
+    [NATURE_CALM] = COMPOUND_STRING("Calm"),
+    [NATURE_GENTLE] = COMPOUND_STRING("Gentle"),
+    [NATURE_SASSY] = COMPOUND_STRING("Sassy"),
+    [NATURE_CAREFUL] = COMPOUND_STRING("Careful"),
+    [NATURE_QUIRKY] = COMPOUND_STRING("Quirky"),
+};
+
+const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
+{                      // Attack  Defense  Speed  Sp.Atk  Sp. Def
+    [NATURE_HARDY]   = {    0,      0,      0,      0,      0   },
+    [NATURE_LONELY]  = {   +1,     -1,      0,      0,      0   },
+    [NATURE_BRAVE]   = {   +1,      0,     -1,      0,      0   },
+    [NATURE_ADAMANT] = {   +1,      0,      0,     -1,      0   },
+    [NATURE_NAUGHTY] = {   +1,      0,      0,      0,     -1   },
+    [NATURE_BOLD]    = {   -1,     +1,      0,      0,      0   },
+    [NATURE_DOCILE]  = {    0,      0,      0,      0,      0   },
+    [NATURE_RELAXED] = {    0,     +1,     -1,      0,      0   },
+    [NATURE_IMPISH]  = {    0,     +1,      0,     -1,      0   },
+    [NATURE_LAX]     = {    0,     +1,      0,      0,     -1   },
+    [NATURE_TIMID]   = {   -1,      0,     +1,      0,      0   },
+    [NATURE_HASTY]   = {    0,     -1,     +1,      0,      0   },
+    [NATURE_SERIOUS] = {    0,      0,      0,      0,      0   },
+    [NATURE_JOLLY]   = {    0,      0,     +1,     -1,      0   },
+    [NATURE_NAIVE]   = {    0,      0,     +1,      0,     -1   },
+    [NATURE_MODEST]  = {   -1,      0,      0,     +1,      0   },
+    [NATURE_MILD]    = {    0,     -1,      0,     +1,      0   },
+    [NATURE_QUIET]   = {    0,      0,     -1,     +1,      0   },
+    [NATURE_BASHFUL] = {    0,      0,      0,      0,      0   },
+    [NATURE_RASH]    = {    0,      0,      0,     +1,     -1   },
+    [NATURE_CALM]    = {   -1,      0,      0,      0,     +1   },
+    [NATURE_GENTLE]  = {    0,     -1,      0,      0,     +1   },
+    [NATURE_SASSY]   = {    0,      0,     -1,      0,     +1   },
+    [NATURE_CAREFUL] = {    0,      0,      0,     -1,     +1   },
+    [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
 #include "data/graphics/pokemon.h"
@@ -700,11 +628,9 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #endif
 
 #include "data/pokemon/teachable_learnsets.h"
-#include "data/pokemon/egg_moves.h"
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
-#include "data/object_events/object_event_pic_tables_followers.h"
 
 #include "data/pokemon/species_info.h"
 
@@ -1003,20 +929,6 @@ static const u32 sCompressedStatuses[] =
 // - The maximum PP.
 // - The maximum HP.
 // - The maximum form countdown.
-
-// The following STATIC_ASSERT will prevent developers from compiling the game if the value of the constant on the left does not fit within the number of bits defined in PokemonSubstruct0 (currently located in include/pokemon.h).
-
-// To successfully compile, developers will need to do one of the following:
-// 1) Decrease the size of the constant.
-// 2) Increase the number of bits both on the struct AND in the corresponding assert. This will likely break user's saves unless there is free space after the member that is being adjsted.
-// 3) Repurpose unused IDs.
-
-// EXAMPLES
-// If a developer has added enough new items so that ITEMS_COUNT now equals 1200, they could...
-// 1) remove new items until ITEMS_COUNT is 1023, the max value that will fit in 10 bits.
-// 2) change heldItem:10 to heldItem:11 AND change the below assert for ITEMS_COUNT to check for (1 << 11).
-// 3) repurpose IDs from other items that aren't being used, like ITEM_GOLD_TEETH or ITEM_SS_TICKET until ITEMS_COUNT equals 1023, the max value that will fit in 10 bits.
-
 STATIC_ASSERT(NUM_SPECIES < (1 << 11), PokemonSubstruct0_species_TooSmall);
 STATIC_ASSERT(NUMBER_OF_MON_TYPES + 1 <= (1 << 5), PokemonSubstruct0_teraType_TooSmall);
 STATIC_ASSERT(ITEMS_COUNT < (1 << 10), PokemonSubstruct0_heldItem_TooSmall);
@@ -1144,14 +1056,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             isShiny = TRUE;
         }
-        else if (P_ONLY_OBTAINABLE_SHINIES && InBattlePyramid())
-        {
-            isShiny = FALSE;
-        }
-        else if (P_NO_SHINIES_WITHOUT_POKEBALLS && !HasAtLeastOnePokeBall())
-        {
-            isShiny = FALSE;
-        }
         else
         {
             u32 totalRerolls = 0;
@@ -1159,8 +1063,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
             if (LURE_STEP_COUNT != 0)
                 totalRerolls += 1;
-            if (I_FISHING_CHAIN && gIsFishingEncounter)
-                totalRerolls += CalculateChainFishingShinyRolls();
 
             while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
             {
@@ -1206,8 +1108,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else
     {
         u32 iv;
-        u32 ivRandom = Random32();
-        value = (u16)ivRandom;
+        value = Random();
 
         iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
@@ -1216,7 +1117,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         iv = (value & (MAX_IV_MASK << 10)) >> 10;
         SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
 
-        value = (u16)(ivRandom >> 16);
+        value = Random();
 
         iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
@@ -1616,7 +1517,7 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     dest->spDefenseIV  = GetMonData(mon, MON_DATA_SPDEF_IV, NULL);
     dest->abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
     dest->personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
-    GetMonData(mon, MON_DATA_NICKNAME10, dest->nickname);
+    GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
 }
 
 static void CreateEventMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -1946,7 +1847,30 @@ void GiveMonInitialMoveset(struct Pokemon *mon)
     GiveBoxMonInitialMoveset(&mon->box);
 }
 
-void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon) //Credit: AsparagusEduardo
+void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
+{
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+    s32 level = GetLevelFromBoxMonExp(boxMon);
+    s32 i;
+    const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
+
+    for (i = 0; learnset[i].move != LEVEL_UP_MOVE_END; i++)
+    {
+        if (learnset[i].level > level)
+            break;
+        if (learnset[i].level == 0)
+            continue;
+        if (GiveMoveToBoxMon(boxMon, learnset[i].move) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, learnset[i].move);
+    }
+}
+
+void GiveMonInitialMoveset_Fast(struct Pokemon *mon)
+{
+    GiveBoxMonInitialMoveset_Fast(&mon->box);
+}
+
+void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon) //Credit: AsparagusEduardo
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromBoxMonExp(boxMon);
@@ -2393,8 +2317,8 @@ u32 GetMonData2(struct Pokemon *mon, s32 field)
 struct EvolutionTrackerBitfield
 {
     u16 a: 5;
-    u16 b: 5;
-    u16 unused: 6;
+    u16 b: 4;
+    u16 unused: 7;
 };
 
 union EvolutionTracker
@@ -2437,7 +2361,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         switch (field)
         {
         case MON_DATA_NICKNAME:
-        case MON_DATA_NICKNAME10:
         {
             if (boxMon->isBadEgg)
             {
@@ -2478,7 +2401,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 // so if both are 0 we assume that this is a vanilla
                 // Pokémon and replace them with EOS. This means that
                 // two CHAR_SPACE at the end of a nickname are trimmed.
-                if (field != MON_DATA_NICKNAME10 && POKEMON_NAME_LENGTH >= 12)
+                if (POKEMON_NAME_LENGTH >= 12)
                 {
                     if (substruct0->nickname11 == 0 && substruct0->nickname12 == 0)
                     {
@@ -2783,20 +2706,18 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = substruct3->gigantamaxFactor;
             break;
         case MON_DATA_TERA_TYPE:
-            if (gSpeciesInfo[substruct0->species].forceTeraType)
-            {
-                retVal = gSpeciesInfo[substruct0->species].forceTeraType;
-            }
-            else if (substruct0->teraType == TYPE_NONE) // Tera Type hasn't been modified so we can just use the personality
+        {
+            if (substruct0->teraType == 0)
             {
                 const u8 *types = gSpeciesInfo[substruct0->species].types;
                 retVal = (boxMon->personality & 0x1) == 0 ? types[0] : types[1];
             }
             else
             {
-                retVal = substruct0->teraType;
+                retVal = substruct0->teraType - 1;
             }
             break;
+        }
         case MON_DATA_EVOLUTION_TRACKER:
             evoTracker.asField.a = substruct1->evolutionTracker1;
             evoTracker.asField.b = substruct1->evolutionTracker2;
@@ -2866,9 +2787,6 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
             retVal = nature ^ boxMon->hiddenNatureModifier;
             break;
         }
-        case MON_DATA_DAYS_SINCE_FORM_CHANGE:
-            retVal = boxMon->daysSinceFormChange;
-            break;
         default:
             break;
         }
@@ -2977,23 +2895,14 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         switch (field)
         {
         case MON_DATA_NICKNAME:
-        case MON_DATA_NICKNAME10:
         {
             s32 i;
             for (i = 0; i < min(sizeof(boxMon->nickname), POKEMON_NAME_LENGTH); i++)
                 boxMon->nickname[i] = data[i];
-            if (field != MON_DATA_NICKNAME10)
-            {
-                if (POKEMON_NAME_LENGTH >= 11)
-                    substruct0->nickname11 = data[10];
-                if (POKEMON_NAME_LENGTH >= 12)
-                    substruct0->nickname12 = data[11];
-            }
-            else
-            {
-                substruct0->nickname11 = EOS;
-                substruct0->nickname12 = EOS;
-            }
+            if (POKEMON_NAME_LENGTH >= 11)
+                substruct0->nickname11 = data[10];
+            if (POKEMON_NAME_LENGTH >= 12)
+                substruct0->nickname12 = data[11];
             break;
         }
         case MON_DATA_SPECIES:
@@ -3225,7 +3134,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         {
             u32 teraType;
             SET8(teraType);
-            substruct0->teraType = teraType;
+            substruct0->teraType = 1 + teraType;
             break;
         }
         case MON_DATA_EVOLUTION_TRACKER:
@@ -3303,9 +3212,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             boxMon->hiddenNatureModifier = nature ^ hiddenNature;
             break;
         }
-        case MON_DATA_DAYS_SINCE_FORM_CHANGE:
-            SET8(boxMon->daysSinceFormChange);
-            break;
         }
     }
 
@@ -3407,9 +3313,6 @@ u8 GetMonsStateToDoubles(void)
     s32 aliveCount = 0;
     s32 i;
     CalculatePlayerPartyCount();
-
-    if (OW_DOUBLE_APPROACH_WITH_ONE_MON)
-        return PLAYER_HAS_TWO_USABLE_MONS;
 
     if (gPlayerPartyCount == 1)
         return gPlayerPartyCount; // PLAYER_HAS_ONE_MON
@@ -3598,14 +3501,6 @@ const u16 *GetSpeciesTeachableLearnset(u16 species)
     return learnset;
 }
 
-const u16 *GetSpeciesEggMoves(u16 species)
-{
-    const u16 *learnset = gSpeciesInfo[SanitizeSpeciesId(species)].eggMoveLearnset;
-    if (learnset == NULL)
-        return gSpeciesInfo[SPECIES_NONE].eggMoveLearnset;
-    return learnset;
-}
-
 const struct Evolution *GetSpeciesEvolutions(u16 species)
 {
     const struct Evolution *evolutions = gSpeciesInfo[SanitizeSpeciesId(species)].evolutions;
@@ -3682,10 +3577,9 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
-    dst->types[0] = gSpeciesInfo[dst->species].types[0];
-    dst->types[1] = gSpeciesInfo[dst->species].types[1];
-    dst->types[2] = TYPE_MYSTERY;
-    dst->isShiny = IsMonShiny(src);
+    dst->type1 = gSpeciesInfo[dst->species].types[0];
+    dst->type2 = gSpeciesInfo[dst->species].types[1];
+    dst->type3 = TYPE_MYSTERY;
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
@@ -4468,7 +4362,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     switch (mode)
     {
     case EVO_MODE_NORMAL:
-    case EVO_MODE_BATTLE_ONLY:
         level = GetMonData(mon, MON_DATA_LEVEL, 0);
         friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
 
@@ -4557,11 +4450,11 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             case EVO_LEVEL_FAMILY_OF_FOUR:
-                if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) != 0)
+                if (evolutions[i].param <= level && (personality % 100) != 0)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             case EVO_LEVEL_FAMILY_OF_THREE:
-                if (mode == EVO_MODE_BATTLE_ONLY && evolutions[i].param <= level && (personality % 100) == 0)
+                if (evolutions[i].param <= level && (personality % 100) == 0)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
             case EVO_BEAUTY:
@@ -4693,46 +4586,17 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     consumeItem = TRUE;
                 }
                 break;
-            case EVO_USE_MOVE_TWENTY_TIMES:
+            case EVO_LEVEL_MOVE_TWENTY_TIMES:
                 if (evolutionTracker >= 20)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
-            case EVO_RECOIL_DAMAGE_MALE:
+            case EVO_LEVEL_RECOIL_DAMAGE_MALE:
                 if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_MALE)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
-            case EVO_RECOIL_DAMAGE_FEMALE:
+            case EVO_LEVEL_RECOIL_DAMAGE_FEMALE:
                 if (evolutionTracker >= evolutions[i].param && GetMonGender(mon) == MON_FEMALE)
                     targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_DEFEAT_THREE_WITH_ITEM:
-                if (evolutionTracker >= 3)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            case EVO_OVERWORLD_STEPS:
-                if (mon == GetFirstLiveMon() && gFollowerSteps >= evolutions[i].param)
-                    targetSpecies = evolutions[i].targetSpecies;
-                break;
-            }
-        }
-        break;
-    case EVO_MODE_CANT_STOP:
-        level = GetMonData(mon, MON_DATA_LEVEL, 0);
-        friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, 0);
-
-        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-        {
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
-                continue;
-
-            switch (evolutions[i].method)
-            {
-            case EVO_ITEM_COUNT_999:
-                if (CheckBagHasItem(evolutions[i].param, 999))
-                {
-                    targetSpecies = evolutions[i].targetSpecies;
-                    RemoveBagItem(evolutions[i].param, 999);
-                }
                 break;
             }
         }
@@ -5108,15 +4972,38 @@ u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
 
 u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 {
+// Because this is a u16 it will be unable to store the
+// result of the multiplication for any stat > 595 for a
+// positive nature and > 728 for a negative nature.
+// Neither occur in the base game, but this can happen if
+// any Nature-affected base stat is increased to a value
+// above 248. The closest by default is Shuckle at 230.
+#ifdef BUGFIX
+    u32 retVal;
+#else
+    u16 retVal;
+#endif
+
     // Don't modify HP, Accuracy, or Evasion by nature
-    if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS || gNaturesInfo[nature].statUp == gNaturesInfo[nature].statDown)
+    if (statIndex <= STAT_HP || statIndex > NUM_NATURE_STATS)
         return stat;
-    else if (statIndex == gNaturesInfo[nature].statUp)
-        return stat * 110 / 100;
-    else if (statIndex == gNaturesInfo[nature].statDown)
-        return stat * 90 / 100;
-    else
-        return stat;
+
+    switch (gNatureStatTable[nature][statIndex - 1])
+    {
+    case 1:
+        retVal = stat * 110;
+        retVal /= 100;
+        break;
+    case -1:
+        retVal = stat * 90;
+        retVal /= 100;
+        break;
+    default:
+        retVal = stat;
+        break;
+    }
+
+    return retVal;
 }
 
 void AdjustFriendship(struct Pokemon *mon, u8 event)
@@ -5811,16 +5698,11 @@ const u32 *GetMonFrontSpritePal(struct Pokemon *mon)
 
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, bool32 isShiny, u32 personality)
 {
-    return GetMonSpritePalFromSpecies(species, isShiny, IsPersonalityFemale(species, personality));
-}
-
-const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFemale)
-{
     species = SanitizeSpeciesId(species);
 
     if (isShiny)
     {
-        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && isFemale)
+        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && IsPersonalityFemale(species, personality))
             return gSpeciesInfo[species].shinyPaletteFemale;
         else if (gSpeciesInfo[species].shinyPalette != NULL)
             return gSpeciesInfo[species].shinyPalette;
@@ -5829,7 +5711,7 @@ const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFema
     }
     else
     {
-        if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
+        if (gSpeciesInfo[species].paletteFemale != NULL && IsPersonalityFemale(species, personality))
             return gSpeciesInfo[species].paletteFemale;
         else if (gSpeciesInfo[species].palette != NULL)
             return gSpeciesInfo[species].palette;
@@ -5841,10 +5723,6 @@ const u32 *GetMonSpritePalFromSpecies(u16 species, bool32 isShiny, bool32 isFema
 bool8 IsMoveHM(u16 move)
 {
     int i = 0;
-
-    if (P_CAN_FORGET_HIDDEN_MOVE)
-        return FALSE;
-
     while (sHMMoves[i] != HM_MOVES_END)
     {
         if (sHMMoves[i++] == move)
@@ -5953,9 +5831,9 @@ static inline bool32 CanFirstMonBoostHeldItemRarity(void)
         return FALSE;
 
     ability = GetMonAbility(&gPlayerParty[0]);
-    if (ability == ABILITY_COMPOUND_EYES)
+    if ((OW_COMPOUND_EYES < GEN_9) && ability == ABILITY_COMPOUND_EYES)
         return TRUE;
-    else if ((OW_SUPER_LUCK >= GEN_8) && ability == ABILITY_SUPER_LUCK)
+    else if ((OW_SUPER_LUCK == GEN_8) && ability == ABILITY_SUPER_LUCK)
         return TRUE;
     return FALSE;
 }
@@ -6253,7 +6131,7 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return P_TWO_FRAME_FRONT_SPRITES && species != SPECIES_UNOWN;
+    return species != SPECIES_UNOWN;
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
@@ -6504,24 +6382,20 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
                 case FORM_CHANGE_ITEM_USE:
                     if (arg == formChanges[i].param1)
                     {
-                        bool32 pass = TRUE;
                         switch (formChanges[i].param2)
                         {
                         case DAY:
-                            if (GetTimeOfDay() == TIME_NIGHT)
-                                pass = FALSE;
+                            if (GetTimeOfDay() != TIME_NIGHT)
+                                targetSpecies = formChanges[i].targetSpecies;
                             break;
                         case NIGHT:
-                            if (GetTimeOfDay() != TIME_NIGHT)
-                                pass = FALSE;
+                            if (GetTimeOfDay() == TIME_NIGHT)
+                                targetSpecies = formChanges[i].targetSpecies;
+                            break;
+                        default:
+                            targetSpecies = formChanges[i].targetSpecies;
                             break;
                         }
-
-                        if (formChanges[i].param3 != STATUS1_NONE && GetBoxMonData(boxMon, MON_DATA_STATUS, NULL) & formChanges[i].param3)
-                            pass = FALSE;
-
-                        if (pass)
-                            targetSpecies = formChanges[i].targetSpecies;
                     }
                     break;
                 case FORM_CHANGE_ITEM_USE_MULTICHOICE:
@@ -6546,7 +6420,6 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
                     break;
                 case FORM_CHANGE_WITHDRAW:
                 case FORM_CHANGE_FAINT:
-                case FORM_CHANGE_DAYS_PASSED:
                     targetSpecies = formChanges[i].targetSpecies;
                     break;
                 case FORM_CHANGE_STATUS:
@@ -6572,22 +6445,6 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
     }
 
     return targetSpecies;
-}
-
-void TrySetDayLimitToFormChange(struct Pokemon *mon)
-{
-    u32 i;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
-
-    for (i = 0; formChanges[i].method != FORM_CHANGE_TERMINATOR; i++)
-    {
-        if (formChanges[i].method == FORM_CHANGE_DAYS_PASSED && species != formChanges[i].targetSpecies)
-        {
-            SetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, &formChanges[i].param1);
-            break;
-        }
-    }
 }
 
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
@@ -6868,8 +6725,8 @@ void HealBoxPokemon(struct BoxPokemon *boxMon)
 u16 GetCryIdBySpecies(u16 species)
 {
     species = SanitizeSpeciesId(species);
-    if (P_CRIES_ENABLED == FALSE || gSpeciesInfo[species].cryId >= CRY_COUNT)
-        return CRY_NONE;
+    if (gSpeciesInfo[species].cryId >= CRY_COUNT)
+        return 0;
     return gSpeciesInfo[species].cryId;
 }
 
@@ -6895,49 +6752,4 @@ u16 GetSpeciesPreEvolution(u16 species)
 const u8 *GetMoveName(u16 moveId)
 {
     return gMovesInfo[moveId].name;
-}
-
-const u8 *GetMoveAnimationScript(u16 moveId)
-{
-    if (gMovesInfo[moveId].battleAnimScript == NULL)
-    {
-        DebugPrintfLevel(MGBA_LOG_WARN, "No animation for moveId=%u", moveId);
-        return Move_TACKLE;
-    }
-    return gMovesInfo[moveId].battleAnimScript;
-}
-
-void UpdateDaysPassedSinceFormChange(u16 days)
-{
-    u32 i;
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        struct Pokemon *mon = &gPlayerParty[i];
-        u8 daysSinceFormChange;
-
-        if (!GetMonData(mon, MON_DATA_SPECIES, 0))
-            continue;
-
-        daysSinceFormChange = GetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, 0);
-        if (daysSinceFormChange == 0)
-            continue;
-
-        if (daysSinceFormChange > days)
-            daysSinceFormChange -= days;
-        else
-            daysSinceFormChange = 0;
-
-        SetMonData(mon, MON_DATA_DAYS_SINCE_FORM_CHANGE, &daysSinceFormChange);
-
-        if (daysSinceFormChange == 0)
-        {
-            u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_DAYS_PASSED, 0);
-
-            if (targetSpecies != SPECIES_NONE)
-            {
-                SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
-                CalculateMonStats(mon);
-            }
-        }
-    }
 }

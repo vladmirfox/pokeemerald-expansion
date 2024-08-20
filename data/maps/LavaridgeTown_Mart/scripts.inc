@@ -26,6 +26,37 @@ LavaridgeTown_Mart_Pokemart:
 	release
 	end
 
+LavaridgeTown_Mart_EventScript_Clerk2::
+	lock
+	faceplayer
+	message gText_HowMayIServeYou
+	waitmessage
+	pokemart LavaridgeTown_Mart_Pokemart_EX
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+LavaridgeTown_Mart_Pokemart_EX:
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_WATER_STONE
+	.2byte ITEM_SHINY_STONE
+        .2byte ITEM_MAGMARIZER
+	.2byte ITEM_AUSPICIOUS_ARMOR
+	.2byte ITEM_MALICIOUS_ARMOR
+	.2byte ITEM_SMOKE_BALL
+	.2byte ITEM_LUCKY_EGG
+	.2byte ITEM_FOCUS_BAND
+	.2byte ITEM_FOCUS_SASH
+	.2byte ITEM_WIDE_LENS
+	.2byte ITEM_SCOPE_LENS
+	.2byte ITEM_ZOOM_LENS
+	.2byte ITEM_LIGHT_CLAY
+	.2byte ITEM_LIFE_ORB
+	.2byte ITEM_NONE
+	release
+	end
+
 LavaridgeTown_Mart_EventScript_ExpertM::
 	msgbox LavaridgeTown_Mart_Text_XSpeedFirstStrike, MSGBOX_NPC
 	end
