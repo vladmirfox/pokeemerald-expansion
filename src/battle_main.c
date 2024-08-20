@@ -3435,7 +3435,6 @@ enum
     STATE_TRAINER_SEND_OUT_TEXT,
     STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT,
     STATE_TRAINER_1_SEND_OUT_ANIM,
-    STATE_NOTHING,
     STATE_TRAINER_2_SEND_OUT_ANIM,
     STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM,
     STATE_WAIT_FOR_WILD_BATTLE_TEXT,
@@ -3668,8 +3667,6 @@ static void DoBattleIntro(void)
         MarkBattlerForControllerExec(battler);
         (*state)++;
         break;
-    case STATE_NOTHING:
-        (*state)++;
     case STATE_TRAINER_2_SEND_OUT_ANIM:
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
         {
