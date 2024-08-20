@@ -3421,6 +3421,31 @@ const u8* FaintClearSetData(u32 battler)
     return result;
 }
 
+enum
+{
+    STATE_GET_MON_DATA,
+    STATE_LOOP_BATTLER_DATA,
+    STATE_PREPARE_BG_SLIDE,
+    STATE_WAIT_FOR_BG_SLIDE,
+    STATE_DRAW_SPRITES,
+    STATE_DRAW_PARTY_SUMMARY,
+    STATE_WAIT_FOR_PARTY_SUMMARY,
+    STATE_INTRO_TEXT,
+    STATE_WAIT_FOR_INTRO_TEXT,
+    STATE_TRAINER_SEND_OUT_TEXT,
+    STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT,
+    STATE_TRAINER_1_SEND_OUT_ANIM,
+    STATE_NOTHING,
+    STATE_TRAINER_2_SEND_OUT_ANIM,
+    STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM,
+    STATE_WAIT_FOR_WILD_BATTLE_TEXT,
+    STATE_PRINT_PLAYER_SEND_OUT_TEXT,
+    STATE_WAIT_FOR_PLAYER_SEND_OUT_TEXT,
+    STATE_PRINT_PLAYER_1_SEND_OUT_TEXT,
+    STATE_PRINT_PLAYER_2_SEND_OUT_TEXT,
+    STATE_SET_DEX_AND_BATTLE_VARS
+};
+
 static void DoBattleIntro(void)
 {
     s32 i;
@@ -3429,13 +3454,13 @@ static void DoBattleIntro(void)
 
     switch (*state)
     {
-    case 0: // Get Data of all battlers.
+    case STATE_GET_MON_DATA:
         battler = gBattleCommunication[1];
         BtlController_EmitGetMonData(battler, BUFFER_A, REQUEST_ALL_BATTLE, 0);
         MarkBattlerForControllerExec(battler);
         (*state)++;
         break;
-    case 1: // Loop through all battlers.
+    case STATE_LOOP_BATTLER_DATA:
         if (!gBattleControllerExecFlags)
         {
             if (++gBattleCommunication[1] == gBattlersCount)
@@ -3444,7 +3469,7 @@ static void DoBattleIntro(void)
                 *state = 0;
         }
         break;
-    case 2: // Start graphical intro slide.
+    case STATE_PREPARE_BG_SLIDE:
         if (!gBattleControllerExecFlags)
         {
             battler = GetBattlerAtPosition(0);
@@ -3455,11 +3480,11 @@ static void DoBattleIntro(void)
             (*state)++;
         }
         break;
-    case 3: // Wait for intro slide.
+    case STATE_WAIT_FOR_BG_SLIDE:
         if (!gBattleControllerExecFlags)
             (*state)++;
         break;
-    case 4: // Copy battler data gotten in cases 0 and 1. Draw trainer/mon sprite.
+    case STATE_DRAW_SPRITES:
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && GetBattlerSide(battler) == B_SIDE_PLAYER)
@@ -3549,7 +3574,7 @@ static void DoBattleIntro(void)
                 *state = 6; // Wait for sprite to load.
         }
         break;
-    case 5: // draw party summary in trainer battles
+    case STATE_DRAW_PARTY_SUMMARY:
         if (!gBattleControllerExecFlags)
         {
             struct HpAndStatus hpStatus[PARTY_SIZE];
@@ -3595,18 +3620,18 @@ static void DoBattleIntro(void)
             (*state)++;
         }
         break;
-    case 6: // wait for previous action to complete
+    case STATE_WAIT_FOR_PARTY_SUMMARY:
         if (!gBattleControllerExecFlags)
             (*state)++;
         break;
-    case 7: // print battle intro message
+    case STATE_INTRO_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
         {
             PrepareStringBattle(STRINGID_INTROMSG, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
             (*state)++;
         }
         break;
-    case 8: // wait for intro message to be printed
+    case STATE_WAIT_FOR_INTRO_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -3622,18 +3647,18 @@ static void DoBattleIntro(void)
             }
         }
         break;
-    case 9: // print opponent sends out
+    case STATE_TRAINER_SEND_OUT_TEXT:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
         else
             PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
         (*state)++;
         break;
-    case 10: // wait for opponent sends out text
+    case STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT:
         if (!gBattleControllerExecFlags)
             (*state)++;
         break;
-    case 11: // first opponent's mon send out animation
+    case STATE_TRAINER_1_SEND_OUT_ANIM:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
         else
@@ -3643,9 +3668,9 @@ static void DoBattleIntro(void)
         MarkBattlerForControllerExec(battler);
         (*state)++;
         break;
-    case 12: // nothing
+    case STATE_NOTHING:
         (*state)++;
-    case 13: // second opponent's mon send out
+    case STATE_TRAINER_2_SEND_OUT_ANIM:
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3662,15 +3687,15 @@ static void DoBattleIntro(void)
         else
             (*state)++;
         break;
-    case 14: // wait for opponent 2 send out
+    case STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM:
         if (!gBattleControllerExecFlags)
             (*state)++;
         break;
-    case 15: // wait for wild battle message
+    case STATE_WAIT_FOR_WILD_BATTLE_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
             (*state)++;
         break;
-    case 16: // print player sends out
+    case STATE_PRINT_PLAYER_SEND_OUT_TEXT:
         if (!(gBattleTypeFlags & BATTLE_TYPE_SAFARI))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3691,7 +3716,7 @@ static void DoBattleIntro(void)
         }
         (*state)++;
         break;
-    case 17: // wait for player send out message
+    case STATE_WAIT_FOR_PLAYER_SEND_OUT_TEXT:
         if (!(gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleControllerExecFlags))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3703,7 +3728,7 @@ static void DoBattleIntro(void)
                 (*state)++;
         }
         break;
-    case 18: // player 1 send out
+    case STATE_PRINT_PLAYER_1_SEND_OUT_TEXT:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         else
@@ -3713,7 +3738,7 @@ static void DoBattleIntro(void)
         MarkBattlerForControllerExec(battler);
         (*state)++;
         break;
-    case 19: // player 2 send out
+    case STATE_PRINT_PLAYER_2_SEND_OUT_TEXT:
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3726,7 +3751,7 @@ static void DoBattleIntro(void)
         }
         (*state)++;
         break;
-    case 20: // set dex and battle vars
+    case STATE_SET_DEX_AND_BATTLE_VARS:
         if (!gBattleControllerExecFlags)
         {
             for (battler = 0; battler < gBattlersCount; battler++)
