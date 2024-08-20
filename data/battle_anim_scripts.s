@@ -17677,19 +17677,19 @@ Move_TERA_STARSTORM::
 	waitforvisualfinish
 	end
 TeraStarstormCreateBeam::
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -3, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 1, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 3, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -2, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 0, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, -1, 0, 0, 0, 20, 0, 0
         delay 1
-        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 40,0, 0
+        createsprite gTeraStarstormBeamSpriteTemplate, ANIM_BATTLER, 1, 2, 0, 0, 0, 20, 0, 0
         return
 Move_MIGHTY_CLEAVE::
 Move_TACHYON_CUTTER::
