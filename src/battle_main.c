@@ -3421,7 +3421,7 @@ const u8* FaintClearSetData(u32 battler)
     return result;
 }
 
-enum
+enum BattleIntroStates
 {
     STATE_GET_MON_DATA,
     STATE_LOOP_BATTLER_DATA,
