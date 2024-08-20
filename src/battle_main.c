@@ -3465,7 +3465,7 @@ static void DoBattleIntro(void)
             if (++gBattleCommunication[1] == gBattlersCount)
                 (*state)++;
             else
-                *state = 0;
+                *state = STATE_GET_MON_DATA;
         }
         break;
     case STATE_PREPARE_BG_SLIDE:
@@ -3568,9 +3568,9 @@ static void DoBattleIntro(void)
         else // Skip party summary since it is a wild battle.
         {
             if (B_FAST_INTRO == TRUE)
-                *state = 7; // Don't wait for sprite, print message at the same time.
+                *state = STATE_INTRO_TEXT; // Don't wait for sprite, print message at the same time.
             else
-                *state = 6; // Wait for sprite to load.
+                *state = STATE_WAIT_FOR_PARTY_SUMMARY; // Wait for sprite to load.
         }
         break;
     case STATE_DRAW_PARTY_SUMMARY:
@@ -3640,9 +3640,9 @@ static void DoBattleIntro(void)
             else
             {
                 if (B_FAST_INTRO == TRUE)
-                    *state = 15; // Wait for text to be printed.
+                    *state = STATE_WAIT_FOR_WILD_BATTLE_TEXT;
                 else
-                    *state = 14; // Wait for text and sprite.
+                    *state = STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM;
             }
         }
         break;
@@ -3680,7 +3680,7 @@ static void DoBattleIntro(void)
         }
         if (B_FAST_INTRO == TRUE
           && !(gBattleTypeFlags & (BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_LINK)))
-            *state = 15; // Print at the same time as trainer sends out second mon.
+            *state = STATE_WAIT_FOR_WILD_BATTLE_TEXT; // Print at the same time as trainer sends out second mon.
         else
             (*state)++;
         break;
