@@ -1002,7 +1002,7 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if ((I_REPEL_INCLUDE_FAINTED == GEN_1 || I_REPEL_INCLUDE_FAINTED >= GEN_6) || (&gPlayerParty[i], MON_DATA_HP))
+        if (I_REPEL_INCLUDE_FAINTED == GEN_1 || I_REPEL_INCLUDE_FAINTED >= GEN_6 || (&gPlayerParty[i], MON_DATA_HP))
         {
             if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
             {
