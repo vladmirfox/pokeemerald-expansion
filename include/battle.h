@@ -607,6 +607,30 @@ struct BattleVideo {
 };
 #endif
 
+enum BattleIntroStates
+{
+    STATE_GET_MON_DATA,
+    STATE_LOOP_BATTLER_DATA,
+    STATE_PREPARE_BG_SLIDE,
+    STATE_WAIT_FOR_BG_SLIDE,
+    STATE_DRAW_SPRITES,
+    STATE_DRAW_PARTY_SUMMARY,
+    STATE_WAIT_FOR_PARTY_SUMMARY,
+    STATE_INTRO_TEXT,
+    STATE_WAIT_FOR_INTRO_TEXT,
+    STATE_TRAINER_SEND_OUT_TEXT,
+    STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT,
+    STATE_TRAINER_1_SEND_OUT_ANIM,
+    STATE_TRAINER_2_SEND_OUT_ANIM,
+    STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM,
+    STATE_WAIT_FOR_WILD_BATTLE_TEXT,
+    STATE_PRINT_PLAYER_SEND_OUT_TEXT,
+    STATE_WAIT_FOR_PLAYER_SEND_OUT_TEXT,
+    STATE_PRINT_PLAYER_1_SEND_OUT_TEXT,
+    STATE_PRINT_PLAYER_2_SEND_OUT_TEXT,
+    STATE_SET_DEX_AND_BATTLE_VARS
+};
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -726,7 +750,7 @@ struct BattleStruct
     struct BattleGimmickData gimmick;
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
-    u8 introState;
+    enum BattleIntroStates introState:8;
     u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
     u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
