@@ -3428,22 +3428,22 @@ static void DoBattleIntro(void)
 
     switch (gBattleStruct->introState)
     {
-    case STATE_GET_MON_DATA:
+    case BATTLE_INTRO_STATE_GET_MON_DATA:
         battler = gBattleCommunication[1];
         BtlController_EmitGetMonData(battler, BUFFER_A, REQUEST_ALL_BATTLE, 0);
         MarkBattlerForControllerExec(battler);
         gBattleStruct->introState++;
         break;
-    case STATE_LOOP_BATTLER_DATA:
+    case BATTLE_INTRO_STATE_LOOP_BATTLER_DATA:
         if (!gBattleControllerExecFlags)
         {
             if (++gBattleCommunication[1] == gBattlersCount)
                 gBattleStruct->introState++;
             else
-                gBattleStruct->introState = STATE_GET_MON_DATA;
+                gBattleStruct->introState = BATTLE_INTRO_STATE_GET_MON_DATA;
         }
         break;
-    case STATE_PREPARE_BG_SLIDE:
+    case BATTLE_INTRO_STATE_PREPARE_BG_SLIDE:
         if (!gBattleControllerExecFlags)
         {
             battler = GetBattlerAtPosition(0);
@@ -3454,11 +3454,11 @@ static void DoBattleIntro(void)
             gBattleStruct->introState++;
         }
         break;
-    case STATE_WAIT_FOR_BG_SLIDE:
+    case BATTLE_INTRO_STATE_WAIT_FOR_BG_SLIDE:
         if (!gBattleControllerExecFlags)
             gBattleStruct->introState++;
         break;
-    case STATE_DRAW_SPRITES:
+    case BATTLE_INTRO_STATE_DRAW_SPRITES:
         for (battler = 0; battler < gBattlersCount; battler++)
         {
             if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && GetBattlerSide(battler) == B_SIDE_PLAYER)
@@ -3543,12 +3543,12 @@ static void DoBattleIntro(void)
         else // Skip party summary since it is a wild battle.
         {
             if (B_FAST_INTRO == TRUE)
-                gBattleStruct->introState = STATE_INTRO_TEXT; // Don't wait for sprite, print message at the same time.
+                gBattleStruct->introState = BATTLE_INTRO_STATE_INTRO_TEXT; // Don't wait for sprite, print message at the same time.
             else
-                gBattleStruct->introState = STATE_WAIT_FOR_PARTY_SUMMARY; // Wait for sprite to load.
+                gBattleStruct->introState++; // Wait for sprite to load.
         }
         break;
-    case STATE_DRAW_PARTY_SUMMARY:
+    case BATTLE_INTRO_STATE_DRAW_PARTY_SUMMARY:
         if (!gBattleControllerExecFlags)
         {
             struct HpAndStatus hpStatus[PARTY_SIZE];
@@ -3594,18 +3594,18 @@ static void DoBattleIntro(void)
             gBattleStruct->introState++;
         }
         break;
-    case STATE_WAIT_FOR_PARTY_SUMMARY:
+    case BATTLE_INTRO_STATE_WAIT_FOR_PARTY_SUMMARY:
         if (!gBattleControllerExecFlags)
             gBattleStruct->introState++;
         break;
-    case STATE_INTRO_TEXT:
+    case BATTLE_INTRO_STATE_INTRO_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
         {
             PrepareStringBattle(STRINGID_INTROMSG, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
             gBattleStruct->introState++;
         }
         break;
-    case STATE_WAIT_FOR_INTRO_TEXT:
+    case BATTLE_INTRO_STATE_WAIT_FOR_INTRO_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
@@ -3615,24 +3615,24 @@ static void DoBattleIntro(void)
             else
             {
                 if (B_FAST_INTRO == TRUE)
-                    gBattleStruct->introState = STATE_WAIT_FOR_WILD_BATTLE_TEXT;
+                    gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_WILD_BATTLE_TEXT;
                 else
-                    gBattleStruct->introState = STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM;
+                    gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM;
             }
         }
         break;
-    case STATE_TRAINER_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_TRAINER_SEND_OUT_TEXT:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
         else
             PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
         gBattleStruct->introState++;
         break;
-    case STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_WAIT_FOR_TRAINER_SEND_OUT_TEXT:
         if (!gBattleControllerExecFlags)
             gBattleStruct->introState++;
         break;
-    case STATE_TRAINER_1_SEND_OUT_ANIM:
+    case BATTLE_INTRO_STATE_TRAINER_1_SEND_OUT_ANIM:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
         else
@@ -3642,7 +3642,7 @@ static void DoBattleIntro(void)
         MarkBattlerForControllerExec(battler);
         gBattleStruct->introState++;
         break;
-    case STATE_TRAINER_2_SEND_OUT_ANIM:
+    case BATTLE_INTRO_STATE_TRAINER_2_SEND_OUT_ANIM:
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3655,19 +3655,19 @@ static void DoBattleIntro(void)
         }
         if (B_FAST_INTRO == TRUE
           && !(gBattleTypeFlags & (BATTLE_TYPE_RECORDED | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_LINK)))
-            gBattleStruct->introState = STATE_WAIT_FOR_WILD_BATTLE_TEXT; // Print at the same time as trainer sends out second mon.
+            gBattleStruct->introState = BATTLE_INTRO_STATE_WAIT_FOR_WILD_BATTLE_TEXT; // Print at the same time as trainer sends out second mon.
         else
             gBattleStruct->introState++;
         break;
-    case STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM:
+    case BATTLE_INTRO_STATE_WAIT_FOR_TRAINER_2_SEND_OUT_ANIM:
         if (!gBattleControllerExecFlags)
             gBattleStruct->introState++;
         break;
-    case STATE_WAIT_FOR_WILD_BATTLE_TEXT:
+    case BATTLE_INTRO_STATE_WAIT_FOR_WILD_BATTLE_TEXT:
         if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
             gBattleStruct->introState++;
         break;
-    case STATE_PRINT_PLAYER_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_PRINT_PLAYER_SEND_OUT_TEXT:
         if (!(gBattleTypeFlags & BATTLE_TYPE_SAFARI))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3688,7 +3688,7 @@ static void DoBattleIntro(void)
         }
         gBattleStruct->introState++;
         break;
-    case STATE_WAIT_FOR_PLAYER_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_WAIT_FOR_PLAYER_SEND_OUT_TEXT:
         if (!(gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleControllerExecFlags))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3700,7 +3700,7 @@ static void DoBattleIntro(void)
                 gBattleStruct->introState++;
         }
         break;
-    case STATE_PRINT_PLAYER_1_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_PRINT_PLAYER_1_SEND_OUT_TEXT:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
             battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         else
@@ -3710,7 +3710,7 @@ static void DoBattleIntro(void)
         MarkBattlerForControllerExec(battler);
         gBattleStruct->introState++;
         break;
-    case STATE_PRINT_PLAYER_2_SEND_OUT_TEXT:
+    case BATTLE_INTRO_STATE_PRINT_PLAYER_2_SEND_OUT_TEXT:
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER))
         {
             if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
@@ -3723,7 +3723,7 @@ static void DoBattleIntro(void)
         }
         gBattleStruct->introState++;
         break;
-    case STATE_SET_DEX_AND_BATTLE_VARS:
+    case BATTLE_INTRO_STATE_SET_DEX_AND_BATTLE_VARS:
         if (!gBattleControllerExecFlags)
         {
             for (battler = 0; battler < gBattlersCount; battler++)
