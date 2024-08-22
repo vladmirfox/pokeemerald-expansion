@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_WEATHER_BALL; }
-    // PARAMETRIZE { move = MOVE_NATURAL_GIFT; } can't hold berry
+    // PARAMETRIZE { move = MOVE_NATURAL_GIFT; } TODO: handle this case via Skill Swap
     PARAMETRIZE { move = MOVE_JUDGMENT; }
     PARAMETRIZE { move = MOVE_TECHNO_BLAST; }
     PARAMETRIZE { move = MOVE_REVELATION_DANCE; }
