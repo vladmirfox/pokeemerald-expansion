@@ -134,3 +134,17 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu is ignored by Mold Breaker")
         NOT ABILITY_POPUP(player, ABILITY_DISGUISE);
     }
 }
+
+SINGLE_BATTLE_TEST("Disguised Mimikyu's types revert back to Ghost/Fairy when Disguise is broken")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SHADOW_CLAW].type == TYPE_GHOST);
+        PLAYER(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SOAK); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SHADOW_CLAW); }
+    } SCENE {
+    }
+}
