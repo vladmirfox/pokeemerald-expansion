@@ -2130,7 +2130,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     MoveGetIdAndSlot(battlerId, &ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, &ctx, sourceLine);
 
-    requirePartyIndex = (gMovesInfo[moveId].effect == EFFECT_REVIVAL_BLESSING);
+    requirePartyIndex = (gMovesInfo[moveId].effect == EFFECT_REVIVAL_BLESSING && GetFirstFaintedPartyIndex(battlerId) != PARTY_SIZE);
 
     // Check party menu moves.
     INVALID_IF(requirePartyIndex && !ctx.explicitPartyIndex, "%S requires explicit party index", GetMoveName(moveId));
