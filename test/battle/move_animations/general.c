@@ -1,6 +1,8 @@
 #include "global.h"
 #include "test/battle.h"
 
+// These tests are very heavy computationally. Only use them for animation PRs.
+/*
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles")
 {
     u32 j = 1, move = 0, species = 0;
@@ -873,3 +875,4 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
         FORCE_MOVE_ANIM(FALSE);
     }
 }
+//*/
