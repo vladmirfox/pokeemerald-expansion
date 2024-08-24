@@ -7050,7 +7050,7 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
             case WEATHER_FOG_HORIZONTAL:
             case WEATHER_FOG_DIAGONAL:
                 if (B_OVERWORLD_FOG >= GEN_8)
-                        return TYPE_FAIRY;
+                    return TYPE_FAIRY;
                 break;
             }
             return TYPE_NORMAL;
