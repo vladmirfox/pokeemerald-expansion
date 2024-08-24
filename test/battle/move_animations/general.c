@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-// These tests are very heavy computationally. Only use them for animation PRs.
+// These tests are very heavy computationally. Only use them to review animation PRs.
 /*
 SINGLE_BATTLE_TEST("Move Animations don't leak when used - Singles")
 {
@@ -299,6 +299,11 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
                     || gMovesInfo[move].effect == EFFECT_SHELL_TRAP) { // Player needs to go first
                 MOVE(attacker, move, target: target);
                 MOVE(target, MOVE_POUND, target: attacker);
+            } else if (gMovesInfo[move].effect == EFFECT_AFTER_YOU) { // Player goes first, opponent third
+                MOVE(attacker, move, target: target);
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(target, MOVE_POUND, target: attacker);
+                MOVE(ignore2, MOVE_CELEBRATE);
             } else if (gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING) { // Player selects party member
                 MOVE(attacker, move, partyIndex: 2);
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
@@ -309,22 +314,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
                 MOVE(attacker, move, target: target);
             }
-            // Actions for the remaining battlers
-            MOVE(ignore1, MOVE_CELEBRATE);
-            MOVE(ignore2, MOVE_CELEBRATE);
+            if (gMovesInfo[move].effect != EFFECT_AFTER_YOU) {
+                // Actions for the remaining battlers
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(ignore2, MOVE_CELEBRATE);
+            }
         }
     } SCENE {
-        if (gMovesInfo[move].effect == EFFECT_FOLLOW_ME
-         || gMovesInfo[move].effect == EFFECT_HELPING_HAND
-         || gMovesInfo[move].effect == EFFECT_AFTER_YOU
-         || gMovesInfo[move].effect == EFFECT_ALLY_SWITCH
-         || gMovesInfo[move].effect == EFFECT_AROMATIC_MIST
-         || move == MOVE_HOLD_HANDS // Hack here because it shares its effect with Splash and Celebrate
-         || gMovesInfo[move].effect == EFFECT_COACHING
-         || gMovesInfo[move].effect == EFFECT_DRAGON_CHEER
-         || gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
+        if (gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
         {
-            // Moves that fail in Single Battles
+            // Moves that fail in Double Battles
         } else if (gMovesInfo[move].effect == EFFECT_MIRROR_MOVE) { // Copy the opponent's move
             ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, attacker);
         } else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER) { // Recorded battles always use BATTLE_TERRAIN_BUILDING
@@ -478,6 +477,11 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
                     || gMovesInfo[move].effect == EFFECT_SHELL_TRAP) { // Player needs to go first
                 MOVE(attacker, move, target: target);
                 MOVE(target, MOVE_POUND, target: attacker);
+            } else if (gMovesInfo[move].effect == EFFECT_AFTER_YOU) { // Player goes first, opponent third
+                MOVE(attacker, move, target: target);
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(target, MOVE_POUND, target: attacker);
+                MOVE(ignore2, MOVE_CELEBRATE);
             } else if (gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING) { // Player selects party member
                 MOVE(attacker, move, partyIndex: 2);
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
@@ -488,22 +492,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerLeft t
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
                 MOVE(attacker, move, target: target);
             }
-            // Actions for the remaining battlers
-            MOVE(ignore1, MOVE_CELEBRATE);
-            MOVE(ignore2, MOVE_CELEBRATE);
+            if (gMovesInfo[move].effect != EFFECT_AFTER_YOU) {
+                // Actions for the remaining battlers
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(ignore2, MOVE_CELEBRATE);
+            }
         }
     } SCENE {
-        if (gMovesInfo[move].effect == EFFECT_FOLLOW_ME
-         || gMovesInfo[move].effect == EFFECT_HELPING_HAND
-         || gMovesInfo[move].effect == EFFECT_AFTER_YOU
-         || gMovesInfo[move].effect == EFFECT_ALLY_SWITCH
-         || gMovesInfo[move].effect == EFFECT_AROMATIC_MIST
-         || move == MOVE_HOLD_HANDS // Hack here because it shares its effect with Splash and Celebrate
-         || gMovesInfo[move].effect == EFFECT_COACHING
-         || gMovesInfo[move].effect == EFFECT_DRAGON_CHEER
-         || gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
+        if (gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
         {
-            // Moves that fail in Single Battles
+            // Moves that fail in Double Battles
         } else if (gMovesInfo[move].effect == EFFECT_MIRROR_MOVE) { // Copy the opponent's move
             ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, attacker);
         } else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER) { // Recorded battles always use BATTLE_TERRAIN_BUILDING
@@ -657,6 +655,11 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
                     || gMovesInfo[move].effect == EFFECT_SHELL_TRAP) { // Player needs to go first
                 MOVE(attacker, move, target: target);
                 MOVE(target, MOVE_POUND, target: attacker);
+            } else if (gMovesInfo[move].effect == EFFECT_AFTER_YOU) { // Player goes first, opponent third
+                MOVE(attacker, move, target: target);
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(target, MOVE_POUND, target: attacker);
+                MOVE(ignore2, MOVE_CELEBRATE);
             } else if (gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING) { // Player selects party member
                 MOVE(attacker, move, partyIndex: 2);
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
@@ -667,22 +670,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
                 MOVE(attacker, move, target: target);
             }
-            // Actions for the remaining battlers
-            MOVE(ignore1, MOVE_CELEBRATE);
-            MOVE(ignore2, MOVE_CELEBRATE);
+            if (gMovesInfo[move].effect != EFFECT_AFTER_YOU) {
+                // Actions for the remaining battlers
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(ignore2, MOVE_CELEBRATE);
+            }
         }
     } SCENE {
-        if (gMovesInfo[move].effect == EFFECT_FOLLOW_ME
-         || gMovesInfo[move].effect == EFFECT_HELPING_HAND
-         || gMovesInfo[move].effect == EFFECT_AFTER_YOU
-         || gMovesInfo[move].effect == EFFECT_ALLY_SWITCH
-         || gMovesInfo[move].effect == EFFECT_AROMATIC_MIST
-         || move == MOVE_HOLD_HANDS // Hack here because it shares its effect with Splash and Celebrate
-         || gMovesInfo[move].effect == EFFECT_COACHING
-         || gMovesInfo[move].effect == EFFECT_DRAGON_CHEER
-         || gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
+        if (gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
         {
-            // Moves that fail in Single Battles
+            // Moves that fail in Double Battles
         } else if (gMovesInfo[move].effect == EFFECT_MIRROR_MOVE) { // Copy the opponent's move
             ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, attacker);
         } else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER) { // Recorded battles always use BATTLE_TERRAIN_BUILDING
@@ -836,6 +833,11 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
                     || gMovesInfo[move].effect == EFFECT_SHELL_TRAP) { // Player needs to go first
                 MOVE(attacker, move, target: target);
                 MOVE(target, MOVE_POUND, target: attacker);
+            } else if (gMovesInfo[move].effect == EFFECT_AFTER_YOU) { // Player goes first, opponent third
+                MOVE(attacker, move, target: target);
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(target, MOVE_POUND, target: attacker);
+                MOVE(ignore2, MOVE_CELEBRATE);
             } else if (gMovesInfo[move].effect == EFFECT_REVIVAL_BLESSING) { // Player selects party member
                 MOVE(attacker, move, partyIndex: 2);
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
@@ -846,22 +848,16 @@ DOUBLE_BATTLE_TEST("Move Animations don't leak when used - Doubles (playerRight 
                 MOVE(target, MOVE_LAST_RESORT, target: attacker); // Last Resort, so there's no anim on the opponent's side.
                 MOVE(attacker, move, target: target);
             }
-            // Actions for the remaining battlers
-            MOVE(ignore1, MOVE_CELEBRATE);
-            MOVE(ignore2, MOVE_CELEBRATE);
+            if (gMovesInfo[move].effect != EFFECT_AFTER_YOU) {
+                // Actions for the remaining battlers
+                MOVE(ignore1, MOVE_CELEBRATE);
+                MOVE(ignore2, MOVE_CELEBRATE);
+            }
         }
     } SCENE {
-        if (gMovesInfo[move].effect == EFFECT_FOLLOW_ME
-         || gMovesInfo[move].effect == EFFECT_HELPING_HAND
-         || gMovesInfo[move].effect == EFFECT_AFTER_YOU
-         || gMovesInfo[move].effect == EFFECT_ALLY_SWITCH
-         || gMovesInfo[move].effect == EFFECT_AROMATIC_MIST
-         || move == MOVE_HOLD_HANDS // Hack here because it shares its effect with Splash and Celebrate
-         || gMovesInfo[move].effect == EFFECT_COACHING
-         || gMovesInfo[move].effect == EFFECT_DRAGON_CHEER
-         || gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
+        if (gMovesInfo[move].effect == EFFECT_MAGNETIC_FLUX || gMovesInfo[move].effect == EFFECT_GEAR_UP) // For some reason, Magnetic Flux and Gear Up are failing in Double Battles here
         {
-            // Moves that fail in Single Battles
+            // Moves that fail in Double Battles
         } else if (gMovesInfo[move].effect == EFFECT_MIRROR_MOVE) { // Copy the opponent's move
             ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, attacker);
         } else if (gMovesInfo[move].effect == EFFECT_NATURE_POWER) { // Recorded battles always use BATTLE_TERRAIN_BUILDING

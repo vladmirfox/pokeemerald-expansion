@@ -83,7 +83,7 @@ DOUBLE_BATTLE_TEST("Revival Blessing cannot revive a partner's party member")
     }
 }
 
-DOUBLE_BATTLE_TEST("Revived battlers still lose their turn")
+DOUBLE_BATTLE_TEST("Revival Blessing doesn't prevent revived battlers from losing their turn")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
