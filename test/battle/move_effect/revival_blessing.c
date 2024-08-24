@@ -92,8 +92,7 @@ DOUBLE_BATTLE_TEST("Revived battlers still lose their turn")
         OPPONENT(SPECIES_WYNAUT) { HP(1); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentRight);
-               MOVE(opponentLeft, MOVE_REVIVAL_BLESSING);
-               SEND_OUT(opponentLeft, 1); }
+               MOVE(opponentLeft, MOVE_REVIVAL_BLESSING, partyIndex: 1); }
     } SCENE {
         MESSAGE("Wobbuffet used Tackle!");
         MESSAGE("Foe Wynaut fainted!");
