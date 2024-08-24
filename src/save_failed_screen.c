@@ -413,10 +413,10 @@ void CB2_FlashNotDetectedScreen(void)
             .paletteNum = 15,
             .baseBlock = 1,
         }
-	};
+    };
 
-	if (gMain.state)
-		return;
+    if (gMain.state)
+        return;
 
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
@@ -436,6 +436,16 @@ void CB2_FlashNotDetectedScreen(void)
     LoadPalette(gStandardMenuPalette, 0xF0, 0x20);
     InitWindows(textWin);
     DrawStdFrameWithCustomTileAndPalette(0, TRUE, 0x214, 0xE);
+    static const u8 saveFailedMessage[] =_(
+        "{COLOR RED}ERROR! {COLOR DARK_GRAY}Flash memory not detected!\n\n"
+        "If playing on an emulator, set your\n"
+        "save type setting to\n"
+        "Flash 1Mb/128K and reload the ROM.\n"
+        "\n"
+        "If playing on hardware, your cart\n"
+        "does not have a working flash chip.");
+    SaveFailedScreenTextPrint(saveFailedMessage, 1, 0);
+    /*
     SaveFailedScreenTextPrint(
         COMPOUND_STRING(
             "{COLOR RED}ERROR! {COLOR DARK_GRAY}Flash memory not detected!\n\n"
@@ -446,6 +456,7 @@ void CB2_FlashNotDetectedScreen(void)
             "If playing on hardware, your cart\n"
             "does not have a working flash chip."),
         1, 0);
+        */
     TransferPlttBuffer();
     *(u16*)PLTT = RGB(17, 18, 31);
     ShowBg(0);
