@@ -4037,7 +4037,7 @@ void BattleTurnPassed(void)
         gChosenMoveByBattler[i] = MOVE_NONE;
 
         if (!(gStatuses3[i] & STATUS3_COMMANDER))
-            gBattleStruct->commandingDondozo & (1u << i);
+            gBattleStruct->commandingDondozo &= ~(1u << i);
     }
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
