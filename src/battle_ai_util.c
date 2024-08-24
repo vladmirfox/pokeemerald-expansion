@@ -412,7 +412,7 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     if (battlerDef == BATTLE_PARTNER(battlerAtk))
         battlerDefAbility = aiData->abilities[battlerDef];
 
-    if (gStatuses3[battlerDef] & STATUS3_COMMANDER)
+    if (gBattleStruct->commandingDondozo & (1u << battlerDef))
         return TRUE;
 
     switch (battlerDefAbility)

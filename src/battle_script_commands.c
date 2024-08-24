@@ -1197,7 +1197,7 @@ static void Cmd_attackcanceler(void)
     u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
     u32 moveType = GetMoveType(gCurrentMove);
 
-    if (gStatuses3[gBattlerAttacker] & STATUS3_COMMANDER)
+    if (gBattleStruct->commandingDondozo & (1u << gBattlerAttacker))
     {
         gCurrentActionFuncId = B_ACTION_FINISHED;
         return;
@@ -5404,6 +5404,7 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
             && !(excludeCurrent && i == gBattlerTarget)
             && IsBattlerAlive(i)
             && !(gBattleStruct->targetsDone[gBattlerAttacker] & (1u << i))
+            && !(gBattleStruct->commandingDondozo & (1u << i))
             && (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
                 break;
     }

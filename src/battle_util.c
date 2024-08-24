@@ -4960,6 +4960,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
                 gBattlerTarget = partner;
+                gBattleStruct->commandingDondozo |= 1u << battler;
                 gBattleStruct->commanderActive[partner] = gBattleMons[battler].species;
                 gStatuses3[battler] |= STATUS3_COMMANDER;
                 BtlController_EmitSpriteInvisibility(battler, BUFFER_A, TRUE);
