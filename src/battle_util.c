@@ -4955,7 +4955,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             partner = BATTLE_PARTNER(battler);
             if (!gSpecialStatuses[battler].switchInAbilityDone
              && gBattleStruct->commanderActive[partner] == SPECIES_NONE
-             && gBattleMons[partner].species == SPECIES_DONDOZO)
+             && gBattleMons[partner].species == SPECIES_DONDOZO
+             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SaveBattlerAttacker(gBattlerAttacker);
