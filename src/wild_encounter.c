@@ -1005,9 +1005,7 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
         if (I_REPEL_INCLUDE_FAINTED == GEN_1 || I_REPEL_INCLUDE_FAINTED >= GEN_6 || GetMonData(&gPlayerParty[i], MON_DATA_HP))
         {
             if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
-            {
                 return wildLevel >= GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
-            }
         }
     }
 
