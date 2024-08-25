@@ -5404,7 +5404,6 @@ static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
             && !(excludeCurrent && i == gBattlerTarget)
             && IsBattlerAlive(i)
             && !(gBattleStruct->targetsDone[gBattlerAttacker] & (1u << i))
-            && !(gBattleStruct->commandingDondozo & (1u << i))
             && (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
                 break;
     }

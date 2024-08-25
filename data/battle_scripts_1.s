@@ -8054,8 +8054,6 @@ BattleScript_ZeroToHeroActivates::
 	end3
 
 BattleScript_CommanderActivates::
-	saveattacker
-	savetarget
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_COMMANDERACTIVATES
@@ -8094,8 +8092,6 @@ BattleScript_CommanderSpeedIncrease:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_CommanderEnd:
-	restoreattacker
-	restoretarget
 	end3
 
 BattleScript_HospitalityActivates::
