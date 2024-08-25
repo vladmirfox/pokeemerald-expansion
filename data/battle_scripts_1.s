@@ -8093,7 +8093,7 @@ BattleScript_CommanderSpeedIncrease:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_CommanderEnd:
 	restoreattacker
-	restoreattacker
+	restoretarget
 	end3
 
 BattleScript_HospitalityActivates::

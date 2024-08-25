@@ -130,7 +130,9 @@ void HandleAction_UseMove(void)
     u16 moveTarget;
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
-    if (gBattleStruct->absentBattlerFlags & (1u << gBattlerAttacker) || !IsBattlerAlive(gBattlerAttacker))
+    if (gBattleStruct->absentBattlerFlags & (1u << gBattlerAttacker)
+     || gBattleStruct->commandingDondozo & (1u << gBattlerAttacker)
+     || !IsBattlerAlive(gBattlerAttacker))
     {
         gCurrentActionFuncId = B_ACTION_FINISHED;
         return;

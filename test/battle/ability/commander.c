@@ -281,3 +281,54 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move
         NOT HP_BAR(playerRight);
     }
 }
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri under Commander takes no damage")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_SURF); MOVE(opponentRight, MOVE_SURF); SWITCH(playerLeft, 2); }
+    } SCENE {
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
+        HP_BAR(playerLeft);
+        NOT HP_BAR(playerRight);
+        HP_BAR(opponentRight);
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentRight);
+        HP_BAR(playerLeft);
+        HP_BAR(opponentLeft);
+        NOT HP_BAR(playerRight);
+    }
+}
+
+// doesn't get hit by Perish Song
+// When Dozo switches in with Tatsu on field, doesn't advance Sleep turn, advances confusion turn (only this turn)
+// Tatsu can be targeted by Imposter inside Dozo
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is still affected by Haze while controlling Dondozo")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_SWORDS_DANCE); }
+        TURN { SWITCH(playerLeft, 2); MOVE(opponentRight, MOVE_HAZE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, playerRight);
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HAZE, opponentRight);
+    } THEN {
+        EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+    }
+}

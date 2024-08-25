@@ -1195,12 +1195,6 @@ static void Cmd_attackcanceler(void)
     u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
     u32 moveType = GetMoveType(gCurrentMove);
 
-    if (gBattleStruct->commandingDondozo & (1u << gBattlerAttacker))
-    {
-        gCurrentActionFuncId = B_ACTION_FINISHED;
-        return;
-    }
-
     // Weight-based moves are blocked by Dynamax.
     if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX) && IsMoveBlockedByDynamax(gCurrentMove))
     {
