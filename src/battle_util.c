@@ -4958,6 +4958,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && gBattleMons[partner].species == SPECIES_DONDOZO)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                SaveBattlerAttacker(gBattlerAttacker);
+                SaveBattlerTarget(gBattlerTarget);
                 gBattlerAttacker = battler;
                 gBattlerTarget = partner;
                 gBattleStruct->commandingDondozo |= 1u << battler;

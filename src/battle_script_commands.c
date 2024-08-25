@@ -5397,17 +5397,17 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
 
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent)
 {
-    u32 i;
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    u32 battler;
+    for (battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
     {
-        if (i != gBattlerAttacker
-            && !(excludeCurrent && i == gBattlerTarget)
-            && IsBattlerAlive(i)
-            && !(gBattleStruct->targetsDone[gBattlerAttacker] & (1u << i))
-            && (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
-                break;
+        if (battler != gBattlerAttacker
+         && !(excludeCurrent && battler == gBattlerTarget)
+         && IsBattlerAlive(battler)
+         && !(gBattleStruct->targetsDone[gBattlerAttacker] & (1u << battler))
+         && (GetBattlerSide(battler) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
+            break;
     }
-    return i;
+    return battler;
 }
 
 static void Cmd_moveend(void)
@@ -15782,7 +15782,7 @@ static void Cmd_callnative(void)
 
 // Callnative Funcs
 
-static void SaveBattlerTarget(u32 battler)
+void SaveBattlerTarget(u32 battler)
 {
     if (gBattleStruct->savedTargetCount < NELEMS(gBattleStruct->savedBattlerTarget))
         gBattleStruct->savedBattlerTarget[gBattleStruct->savedTargetCount++] = battler;
@@ -15790,7 +15790,7 @@ static void SaveBattlerTarget(u32 battler)
         DebugPrintfLevel(MGBA_LOG_WARN, "Attempting to exceed savedBattlerTarget array size!");
 }
 
-static void SaveBattlerAttacker(u32 battler)
+void SaveBattlerAttacker(u32 battler)
 {
     if (gBattleStruct->savedAttackerCount < NELEMS(gBattleStruct->savedBattlerAttacker))
         gBattleStruct->savedBattlerAttacker[gBattleStruct->savedAttackerCount++] = battler;

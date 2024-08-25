@@ -8092,6 +8092,8 @@ BattleScript_CommanderSpeedIncrease:
 	printfromtable gStatUpStringIds
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_CommanderEnd:
+	restoreattacker
+	restoreattacker
 	end3
 
 BattleScript_HospitalityActivates::

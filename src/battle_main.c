@@ -4370,7 +4370,6 @@ static void HandleTurnActionSelectionState(void)
                     RecordedBattle_ClearBattlerAction(battler, 1);
                     if (gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))].status2 & STATUS2_MULTIPLETURNS
                         || gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))].status2 & STATUS2_RECHARGE)
-                        // || gStatuses3[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))] & STATUS3_COMMANDER)
                     {
                         BtlController_EmitEndBounceEffect(battler, BUFFER_A);
                         MarkBattlerForControllerExec(battler);
