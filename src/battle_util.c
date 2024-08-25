@@ -4904,13 +4904,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     effect++;
                 }
                 break;
-            SHOWDOWN_MODE_HP_DROP:
             case ABILITY_SHOWDOWN_MODE:
+                if (GetBattlerAbility(battler) == ABILITY_SHOWDOWN_MODE)
+                {
                     BattleScriptPushCursorAndCallback(BattleScript_ShowdownModeActivates);
                     gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 6;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     effect++;
+                }
                 break;
             case ABILITY_HEALER:
                 gBattleScripting.battler = BATTLE_PARTNER(battler);
@@ -5242,16 +5244,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
-        case ABILITY_INSPIRE:
-            if (gBattleMons[gBattlerTarget].hp == 0)
-            && IsBattlerAlive(battlerDefAlly)
-            && (CompareStat(battlerDefAlly, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(battlerDefAlly, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-            {
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_InspireActivates;
-                effect++;
-            }
-            break;
+        // case ABILITY_INSPIRE:
+        //     if (gBattleMons[battler].hp == 0)
+        //     && IsBattlerAlive(BATTLE_PARTNER(battler))
+        //     && (CompareStat(BATTLE_PARTNER(battler), STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(BATTLE_PARTNER(battler), STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+        //     {
+        //         BattleScriptPushCursor();
+        //         gBattlescriptCurrInstr = BattleScript_InspireActivates;
+        //         effect++;
+        //     }
+        //     break;
         case ABILITY_WEAK_ARMOR:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
@@ -8968,7 +8970,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_BOMBS_AWAY:
-        if (gMovesInfo[move].ballisticMoveMove)
+        if (gMovesInfo[move].ballisticMove)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
     case ABILITY_WATER_BUBBLE:
@@ -10119,11 +10121,10 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, abilityAtk);
     }
-    {
     else if ((moveType == TYPE_PSYCHIC) && defType == TYPE_DARK
         && (abilityAtk == ABILITY_MINDS_EYE)
         && mod == UQ_4_12(0.0))
-    }
+    {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, abilityAtk);

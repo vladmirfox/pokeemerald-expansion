@@ -1331,9 +1331,19 @@ static void Cmd_attackcanceler(void)
     }
 
     if (gSpecialStatuses[gBattlerAttacker].fermataState == FERMATA_OFF
-    && GetBattlerAbility(gBattlerAttacker) == ABILITY_FERMATA 
-    || GetBattlerAbility(battle_partner) == ABILITY_FERMATA
-    && IsMove(gCurrentMove, gBattlerAttacker)
+    && GetBattlerAbility(gBattlerAttacker) == ABILITY_FERMATA
+    && IsMoveAffectedByFermata(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
+    && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
+    {
+        gSpecialStatuses[gBattlerAttacker].fermataState = FERMATA_1ST_HIT;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+    else if (gSpecialStatuses[gBattlerAttacker].fermataState == FERMATA_OFF
+    && GetBattlerAbility(BATTLE_PARTNER(gBattlerAttacker)) == ABILITY_FERMATA
+    && IsMoveAffectedByFermata(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
     && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
     {
@@ -1499,7 +1509,7 @@ static void Cmd_attackcanceler(void)
         gBattleCommunication[MISS_TYPE] = B_MSG_PROTECTED;
         gBattlescriptCurrInstr = cmd->nextInstr;
 
-        if (gSpecialStatuses[gBattlerAttacker].fermataState == FERMATA_1ST_HIT_1ST_HIT)
+        if (gSpecialStatuses[gBattlerAttacker].fermataState == FERMATA_1ST_HIT)
         {
             gSpecialStatuses[gBattlerAttacker].fermataState = FERMATA_OFF; // No second hit if first hit was blocked
             gSpecialStatuses[gBattlerAttacker].multiHitOn = 0;
@@ -1649,7 +1659,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     return FALSE;
 }
 
-u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 battlerDefAlly, u32 move, u32 atkAbility, u32 defAbility, u32 defAllyAbility, u32 atkHoldEffect, u32 defHoldEffect)
+u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect)
 {
     u32 calc, moveAcc;
     s8 buff, accStage, evasionStage;
@@ -1657,8 +1667,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 battlerDefAlly, u32 mov
     u32 defParam = GetBattlerHoldEffectParam(battlerDef);
     u32 atkAlly = BATTLE_PARTNER(battlerAtk);
     u32 atkAllyAbility = GetBattlerAbility(atkAlly);
-    u32 defAlly = BATTLE_PARTNER(battlerDefAlly);
-    u32 defAllyAbility = GetBattlerAbility(defAllyAbility);
+    u32 defAlly = BATTLE_PARTNER(battlerDef);
+    u32 dAllyAbility = GetBattlerAbility(defAlly);
 
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
@@ -1709,7 +1719,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 battlerDefAlly, u32 mov
             calc = (calc * 120) / 100; // 1.2 boost to all Pokemon from Illuminate
         break;
     }
-    }
+    
 
     // Target's ability
     switch (defAbility)
@@ -1733,7 +1743,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 battlerDefAlly, u32 mov
     }
 
     // Target's ally's ability
-    switch (defAllyAbility)
+    switch (dAllyAbility)
     {
         case ABILITY_ILLUMINATE:
         if(IsBattlerAlive(defAlly))

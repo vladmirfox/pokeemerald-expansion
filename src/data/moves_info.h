@@ -21104,7 +21104,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Sledge Claw"),
         .description = COMPOUND_STRING(
-            "Super effective on Rock-\n"
+            "Super effective on Rock-\n"),
         .effect = EFFECT_SLEDGE_CLAW,
         .power = 95,
         .type = TYPE_BUG,
@@ -21125,7 +21125,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Flame Feast"),
         .description = COMPOUND_STRING(
-            "Super effective on Fire-\n"
+            "Super effective on Fire-\n"),
         .effect = EFFECT_FLAME_FEAST,
         .power = 80,
         .type = TYPE_BUG,
@@ -21181,6 +21181,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_STATUS,
         .ignoresSubstitute = TRUE,
     },
+    
     [MOVE_WEB_GARROTE] =
     {
         .name = COMPOUND_STRING("Web Garrote"),
@@ -21191,10 +21192,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 15,
-        .target = MOVE_TARGET_SELECTED
+        .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        
     },
 
 };

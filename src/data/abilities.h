@@ -2717,25 +2717,41 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
     },
         [ABILITY_PARALYZING_SCALES] =
     {
-        .name = _("Paralyzing Scales"),
+        #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("ParalyzingScales"),
+        #else
+        .name = _("PAR Scales"),
+        #endif
         .description = COMPOUND_STRING("FLYING moves lower speed."),
         .aiRating = 5,
     },
         [ABILITY_REFLECTIVE_SCALES] =
     {
-        .name = _("Reflective Scales"),
+        #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("ReflectiveScales"),
+        #else
+        .name = _("ReflectScale"),
+        #endif
         .description = COMPOUND_STRING("Bounce moves after user."),
         .aiRating = 5,
     },
         [ABILITY_PROTEIN_DRAIN] =
     {
+        #if B_EXPANDED_ABILITY_NAMES == TRUE
         .name = _("Protein Drain"),
+        #else
+        .name = _("ProteinDrain"),
+        #endif
         .description = COMPOUND_STRING("Absorb to boost ATK/DEF."),
         .aiRating = 5,
     },
         [ABILITY_INTOXICATING_SCENT] =
     {
-        .name = _("Intoxicating Scent"),
+        #if B_EXPANDED_ABILITY_NAMES == TRUE
+        .name = _("Intoxicating"),
+        #else
+        .name = _("Daze Scent"),
+        #endif
         .description = COMPOUND_STRING("Inflicts infatuation."),
         .aiRating = 5,
     },
