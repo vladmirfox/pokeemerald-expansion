@@ -1531,6 +1531,16 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             else if (HasSubstituteIgnoringMove(battlerDef))
                 ADJUST_SCORE(-8);
             break;
+        case EFFECT_SHED_TAIL:
+            if (CountUsablePartyMons(battlerAtk) == 0)
+                ADJUST_SCORE(-10);
+            if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || aiData->abilities[battlerDef] == ABILITY_INFILTRATOR)
+                ADJUST_SCORE(-8);
+            else if (aiData->hpPercents[battlerAtk] <= 50)
+                ADJUST_SCORE(-10);
+            else if (HasSubstituteIgnoringMove(battlerDef))
+                ADJUST_SCORE(-8);
+            break;
         case EFFECT_LEECH_SEED:
             if (gStatuses3[battlerDef] & STATUS3_LEECHSEED
              || IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
@@ -3591,7 +3601,33 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
           || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
           || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
             ADJUST_SCORE(GOOD_EFFECT);
-        if (!gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION && aiData->hpPercents[battlerAtk] > 70))
+        if (!(gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION)) && aiData->hpPercents[battlerAtk] > 70) // Why are we doing this?
+            ADJUST_SCORE(WEAK_EFFECT);
+        break;
+    case EFFECT_SHED_TAIL: // Mostly the same as the AI for Substitute
+        if (ShouldSwitch(battlerAtk, FALSE) 
+          && (gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK) || AnyStatIsRaised(battlerAtk))
+          && (aiData->hpPercents[battlerAtk] > 50) // Just extra reinforcement that this should never be used when at 50 or less HP
+          && (HasAnyKnownMove(battlerDef) && (GetBestDmgFromBattler(battlerDef, battlerAtk) < gBattleMons[battlerAtk].maxHP / 2 || AI_IsFaster(battlerAtk, battlerDef, move))))
+            ADJUST_SCORE(BEST_EFFECT); // A speed check has been added here, basically meaning that the AI will boost the score if they're faster even if the opponent has disruptive damage potential.
+        if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
+            ADJUST_SCORE(GOOD_EFFECT);
+        if (gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
+            ADJUST_SCORE(GOOD_EFFECT);
+        else if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY | STATUS1_FROSTBITE))
+            ADJUST_SCORE(DECENT_EFFECT);
+        // TODO:
+        // if (IsPredictedToSwitch(battlerDef, battlerAtk)
+        //     ADJUST_SCORE(DECENT_EFFECT);
+        if (HasMoveEffect(battlerDef, EFFECT_SLEEP)
+        || HasMoveEffect(battlerDef, EFFECT_TOXIC)
+        || HasMoveEffect(battlerDef, EFFECT_POISON)
+        || HasMoveEffect(battlerDef, EFFECT_PARALYZE)
+        || HasMoveEffect(battlerDef, EFFECT_WILL_O_WISP)
+        || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
+        || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
+            ADJUST_SCORE(GOOD_EFFECT);
+        if (!(gBattleMons[battlerDef].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION)) && aiData->hpPercents[battlerAtk] > 70) // Inherited from Substitute AI: Why are we doing this?
             ADJUST_SCORE(WEAK_EFFECT);
         break;
     case EFFECT_MIMIC:
