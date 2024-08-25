@@ -471,23 +471,24 @@ static void FreeAllTypeIconResources(void)
     }
 }
 
+static void (* const sShowTypesControllerFuncs[])(u32 battler) =
+{
+    PlayerHandleChooseMove,
+    HandleChooseMoveAfterDma3,
+    HandleInputChooseTarget,
+    HandleInputShowTargets,
+    HandleInputShowEntireFieldTargets,
+    HandleMoveSwitching,
+    HandleInputChooseMove,
+};
+
+
 static bool32 ShouldHideTypeIcon(u32 battlerId)
 {
     u32 funcIndex;
 
-    void* showTypesControllerFuncs[] =
-    {
-        PlayerHandleChooseMove,
-        HandleChooseMoveAfterDma3,
-        HandleInputChooseTarget,
-        HandleInputShowTargets,
-        HandleInputShowEntireFieldTargets,
-        HandleMoveSwitching,
-        HandleInputChooseMove,
-    };
-
-    for (funcIndex = 0; funcIndex < ARRAY_COUNT(showTypesControllerFuncs); funcIndex++)
-        if (gBattlerControllerFuncs[battlerId] == showTypesControllerFuncs[funcIndex])
+    for (funcIndex = 0; funcIndex < ARRAY_COUNT(sShowTypesControllerFuncs); funcIndex++)
+        if (gBattlerControllerFuncs[battlerId] == sShowTypesControllerFuncs[funcIndex])
             return FALSE;
 
     return TRUE;
