@@ -3582,8 +3582,6 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_SUBSTITUTE:
-        IncreaseSubstituteMoveScore(battlerAtk, battlerDef, move, &score);
-        break;
     case EFFECT_SHED_TAIL:
         IncreaseSubstituteMoveScore(battlerAtk, battlerDef, move, &score);
         break;

@@ -4023,4 +4023,6 @@ void IncreaseSubstituteMoveScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *
     || HasMoveEffect(battlerDef, EFFECT_CONFUSE)
     || HasMoveEffect(battlerDef, EFFECT_LEECH_SEED))
         ADJUST_SCORE_PTR(GOOD_EFFECT);
+    if (aiData->hpPercents[battlerAtk] > 70)
+        ADJUST_SCORE_PTR(WEAK_EFFECT);
 }
