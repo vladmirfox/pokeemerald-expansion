@@ -6393,12 +6393,12 @@ bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
 
 static inline bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 ability)
 {
-    return ((IsMoldBreakerTypeAbility(battlerAtk, ability) || gMovesInfo[gCurrentMove].ignoresTargetAbility)
-         && battlerDef != battlerAtk
-         && gAbilitiesInfo[gBattleMons[battlerDef].ability].breakable
-         && gBattlerByTurnOrder[gCurrentTurnActionNumber] == battlerAtk
+    return (battlerDef != battlerAtk
          && gActionsByTurnOrder[gCurrentTurnActionNumber] == B_ACTION_USE_MOVE
-         && gCurrentTurnActionNumber < gBattlersCount);
+         && gBattlerByTurnOrder[gCurrentTurnActionNumber] == battlerAtk
+         && gCurrentTurnActionNumber < gBattlersCount
+         && gAbilitiesInfo[gBattleMons[battlerDef].ability].breakable
+         && (IsMoldBreakerTypeAbility(battlerAtk, ability) || gMovesInfo[gCurrentMove].ignoresTargetAbility));
 }
 
 u32 GetBattlerAbility(u32 battler)
