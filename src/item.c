@@ -92,6 +92,11 @@ void SetBagItemsPointers(void)
     gBagPockets[BATTLEITEMS_POCKET].capacity = BAG_BATTLEITEMS_COUNT;
 #endif
 
+#if I_POCKET_POWER_UP_ENABLED
+    gBagPockets[POWERUP_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_PowerUp;
+    gBagPockets[POWERUP_POCKET].capacity = BAG_POWERUP_COUNT;
+#endif
+
 #if I_POCKET_TREASURES_ENABLED
     gBagPockets[TREASURES_POCKET].itemSlots = gSaveBlock1Ptr->bagPocket_Treasures;
     gBagPockets[TREASURES_POCKET].capacity = BAG_TREASURES_COUNT;

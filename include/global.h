@@ -1009,6 +1009,9 @@ struct SaveBlock1
         #if I_POCKET_BATTLE_ITEMS_ENABLED
               struct ItemSlot bagPocket_BattleItems[BAG_BATTLEITEMS_COUNT];
         #endif
+        #if I_POCKET_POWER_UP_ENABLED
+              struct ItemSlot bagPocket_PowerUp[BAG_POWERUP_COUNT];
+        #endif
         #if I_POCKET_TREASURES_ENABLED
               struct ItemSlot bagPocket_Treasures[BAG_TREASURES_COUNT];
         #endif

@@ -29,6 +29,7 @@
 #define I_POCKET_TREASURES_ENABLED      FALSE       // Enables a new pocket for valuable items.
 #define I_POCKET_MEGA_STONES_ENABLED    FALSE       // Enables a new pocket for Mega Stones.
 #define I_POCKET_Z_CRYSTALS_ENABLED     FALSE       // Enables a new pocket for Z-Crystals.
+#define I_POCKET_POWER_UP_ENABLED       FALSE       // Enables a new pocket for Vitamins, Mints, and evolution items.
 
 // TM config
 #define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.

@@ -107,6 +107,14 @@ static const union AnimCmd sSpriteAnim_Bag_BattleItems[] =
 };
 #endif
 
+#if I_POCKET_POWER_UP_ENABLED == TRUE
+static const union AnimCmd sSpriteAnim_Bag_PowerUp[] =
+{
+    ANIMCMD_FRAME(128, 4),
+    ANIMCMD_END
+};
+#endif
+
 #if I_POCKET_MEGA_STONES_ENABLED
 static const union AnimCmd sSpriteAnim_Bag_MegaStones[] =
 {
@@ -143,6 +151,9 @@ static const union AnimCmd *const sBagSpriteAnimTable[] =
     [POCKET_BATTLE_ITEMS] = sSpriteAnim_Bag_BattleItems,
 #endif
     [POCKET_TM_HM]        = sSpriteAnim_Bag_TMsHMs,
+#if I_POCKET_POWER_UP_ENABLED
+    [POCKET_POWER_UP]     = sSpriteAnim_Bag_PowerUp,
+#endif
     [POCKET_BERRIES]      = sSpriteAnim_Bag_Berries,
 #if I_POCKET_TREASURES_ENABLED
     [POCKET_TREASURES]    = sSpriteAnim_Bag_Treasures,

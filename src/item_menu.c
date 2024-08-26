@@ -1676,6 +1676,9 @@ static void OpenContextMenu(u8 taskId)
         #if I_POCKET_BATTLE_ITEMS_ENABLED
             case BATTLEITEMS_POCKET:
         #endif
+        #if I_POCKET_POWER_UP_ENABLED
+            case POWERUP_POCKET:
+        #endif
         #if I_POCKET_TREASURES_ENABLED
             case TREASURES_POCKET:
         #endif

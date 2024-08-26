@@ -170,6 +170,7 @@
 #define STDSTRING_TREASURES        32
 #define STDSTRING_MEGASTONES       33
 #define STDSTRING_ZCRYSTALS        34
+#define STDSTRING_POWERUP          35
 
 // Dynamic Multichoice Callbacks
 
