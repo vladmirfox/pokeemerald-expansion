@@ -352,7 +352,7 @@ void HandleAction_UseMove(void)
     else
     {
         gBattlerTarget = *(gBattleStruct->moveTarget + gBattlerAttacker);
-        if (!IsBattlerAlive(gBattlerTarget))
+        if (!IsBattlerAlive(gBattlerTarget) && moveTarget != MOVE_TARGET_OPPONENTS_FIELD)
         {
             if (GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
@@ -8302,10 +8302,12 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     case MOVE_TARGET_DEPENDS:
     case MOVE_TARGET_BOTH:
     case MOVE_TARGET_FOES_AND_ALLY:
+        targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker)));
+        if (!IsBattlerAlive(targetBattler))
+            targetBattler ^= BIT_FLANK;
+        break;
     case MOVE_TARGET_OPPONENTS_FIELD:
         targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker)));
-        if (!IsBattlerAlive(targetBattler) && gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            targetBattler ^= BIT_FLANK;
         break;
     case MOVE_TARGET_RANDOM:
         side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
