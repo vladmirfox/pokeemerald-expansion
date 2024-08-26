@@ -60,6 +60,7 @@
 #include "constants/union_room.h"
 #include "constants/weather.h"
 #include "wild_encounter.h"
+#include "ev_caps.h"
 
 #define FRIENDSHIP_EVO_THRESHOLD ((P_FRIENDSHIP_EVO_THRESHOLD >= GEN_9) ? 160 : 220)
 
@@ -3888,11 +3889,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             else
                                 evCap = MAX_PER_STAT_EVS;
 
-                            if (dataSigned >= evCap)
+                            if (B_EV_ITEMS_CAP && dataSigned >= evCap)
                                 break;
 
                             // Limit the increase
-                            if (dataSigned + evChange > evCap)
+                            if (B_EV_ITEMS_CAP && dataSigned + evChange > evCap)
                                 temp2 = evCap - (dataSigned + evChange) + evChange;
                             else
                                 temp2 = evChange;
@@ -4073,11 +4074,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             else
                                 evCap = MAX_PER_STAT_EVS;
 
-                            if (dataSigned >= evCap)
+                            if (B_EV_ITEMS_CAP && dataSigned >= evCap)
                                 break;
 
                             // Limit the increase
-                            if (dataSigned + evChange > evCap)
+                            if (B_EV_ITEMS_CAP && dataSigned + evChange > evCap)
                                 temp2 = evCap - (dataSigned + evChange) + evChange;
                             else
                                 temp2 = evChange;
@@ -5195,6 +5196,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     int i, multiplier;
     u8 stat;
     u8 bonus;
+    u32 currentEVCap = GetCurrentEVCap(); // Get the current EV cap
 
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
     if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
@@ -5224,7 +5226,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (totalEVs >= MAX_TOTAL_EVS)
+        if (totalEVs >= currentEVCap) // Use currentEVCap instead of MAX_TOTAL_EVS
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))
@@ -5275,8 +5277,8 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         if (holdEffect == HOLD_EFFECT_MACHO_BRACE)
             evIncrease *= 2;
 
-        if (totalEVs + (s16)evIncrease > MAX_TOTAL_EVS)
-            evIncrease = ((s16)evIncrease + MAX_TOTAL_EVS) - (totalEVs + evIncrease);
+        if (totalEVs + (s16)evIncrease > currentEVCap) // Use currentEVCap instead of MAX_TOTAL_EVS
+            evIncrease = ((s16)evIncrease + currentEVCap) - (totalEVs + evIncrease);
 
         if (evs[i] + (s16)evIncrease > MAX_PER_STAT_EVS)
         {

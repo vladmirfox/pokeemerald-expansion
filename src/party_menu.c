@@ -75,6 +75,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "ev_caps.h"
 
 enum {
     MENU_SUMMARY,
@@ -243,6 +244,8 @@ static EWRAM_DATA u16 sPartyMenuItemId = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
+static EWRAM_DATA u8 sInitialEVs = 0;
+static EWRAM_DATA u8 sFinalEVs = 0;
 
 // IWRAM common
 void (*gItemUseCB)(u8, TaskFunc);
@@ -5742,9 +5745,156 @@ static void Task_TryLearningNextMove(u8 taskId)
     }
 }
 
-static void CB2_ReturnToPartyMenuUsingRareCandy(void)
+u16 GetItemEVValue(const u8 *itemEffect)
 {
-    gItemUseCB = ItemUseCB_RareCandy;
+        // Assuming the EV value is stored at index [6] in the item effect array
+    return itemEffect[6];
+}
+
+void ItemUseCB_EVItem(u8 taskId, TaskFunc task)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    struct PartyMenuInternal *ptr = sPartyMenuInternal;
+    s16 *arrayPtr = ptr->data;
+    u16 *itemPtr = &gSpecialVar_ItemId;
+    bool8 cannotUseEffect;
+    sInitialEVs = GetMonEVCount(mon);
+
+    // Get the item effect array from the item info
+    const u8 *itemEffect = gItemsInfo[*itemPtr].effect;
+
+    // Calculate potential new EVs after using the item
+    u16 potentialNewEVs = sInitialEVs + GetItemEVValue(itemEffect);
+
+    // Check if current EVs are below the EV cap or if it's an HP EV item on Shedinja
+    if ((!B_EV_ITEMS_CAP || sInitialEVs < GetCurrentEVCap()) && NotUsingHPEVItemOnShedinja(mon, *itemPtr))
+    {
+        BufferMonStatsToTaskData(mon, arrayPtr);
+        if (potentialNewEVs <= GetCurrentEVCap())
+            cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);
+        else
+        {
+            u16 evCap = GetCurrentEVCap();
+            u16 evsToAdd = evCap - sInitialEVs;
+
+            switch (GetItemEffectType(*itemPtr))
+            {
+                case ITEM_EFFECT_HP_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_HP_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_HP_EV, &newEV);
+                    break;
+                }
+                case ITEM_EFFECT_ATK_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_ATK_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_ATK_EV, &newEV);
+                    break;
+                }
+                case ITEM_EFFECT_DEF_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_DEF_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_DEF_EV, &newEV);
+                    break;
+                }
+                case ITEM_EFFECT_SPEED_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_SPEED_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_SPEED_EV, &newEV);
+                    break;
+                }
+                case ITEM_EFFECT_SPATK_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_SPATK_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_SPATK_EV, &newEV);
+                    break;
+                }
+                case ITEM_EFFECT_SPDEF_EV:
+                {
+                    u16 currentEV = GetMonData(mon, MON_DATA_SPDEF_EV);
+                    u16 newEV = currentEV + evsToAdd;
+                    if (newEV > 255) newEV = 255;
+                    SetMonData(mon, MON_DATA_SPDEF_EV, &newEV);
+                    break;
+                }
+                default:
+                    // Handle unexpected item effect types if necessary
+                    break;
+            }
+
+            cannotUseEffect = FALSE;
+        }
+        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
+    }
+    else
+    {
+        cannotUseEffect = TRUE;
+    }
+
+    PlaySE(SE_SELECT);
+    if (cannotUseEffect)
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+    {
+        sFinalEVs = GetMonEVCount(mon);
+        gPartyMenuUseExitCallback = TRUE;
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        GetMonNickname(mon, gStringVar1);
+        PlaySE(SE_USE_ITEM);
+        gPartyMenuUseExitCallback = FALSE;
+
+        // Determine the stat name based on the item used
+        switch (GetItemEffectType(*itemPtr))
+        {
+        case ITEM_EFFECT_HP_EV:
+            StringCopy(gStringVar2, gText_HP3);
+            break;
+        case ITEM_EFFECT_ATK_EV:
+            StringCopy(gStringVar2, gText_Attack3);
+            break;
+        case ITEM_EFFECT_DEF_EV:
+            StringCopy(gStringVar2, gText_Defense3);
+            break;
+        case ITEM_EFFECT_SPEED_EV:
+            StringCopy(gStringVar2, gText_Speed2);
+            break;
+        case ITEM_EFFECT_SPATK_EV:
+            StringCopy(gStringVar2, gText_SpAtk3);
+            break;
+        case ITEM_EFFECT_SPDEF_EV:
+            StringCopy(gStringVar2, gText_SpDef3);
+            break;
+        }
+
+        // Generate the message
+        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
+        DisplayPartyMenuMessage(gStringVar4, FALSE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+}
+
+static void CB2_ReturnToPartyMenuUsingItem(void)
+{
+    if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RareCandy)
+        gItemUseCB = ItemUseCB_RareCandy;
+    else if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_EVItem)
+        gItemUseCB = ItemUseCB_EVItem;
     SetMainCallback2(CB2_ShowPartyMenuForItemUse);
 }
 
@@ -5769,7 +5919,7 @@ static void PartyMenuTryEvolution(u8 taskId)
     {
         FreePartyPointers();
         if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RareCandy && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
-            gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingRareCandy;
+            gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingItem;
         else
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
         BeginEvolutionScene(mon, targetSpecies, evoModeNormal, gPartyMenu.slotId);
