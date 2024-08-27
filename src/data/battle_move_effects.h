@@ -1089,6 +1089,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
+    [EFFECT_DEFEND_ORDER] =
+    {
+        .battleScript = BattleScript_EffectDefendOrder,
+        .battleTvScore = 1,
+        .encourageEncore = TRUE,
+    },
+
     [EFFECT_BULK_UP] =
     {
         .battleScript = BattleScript_EffectBulkUp,

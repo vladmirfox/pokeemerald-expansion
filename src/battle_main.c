@@ -4952,6 +4952,10 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
             speed *= 2;
         else if (ability == ABILITY_SLUSH_RUSH  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             speed *= 2;
+        else if (ability == ABILITY_WATERLOGGED && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_SUN)
+            speed *= 2;
+        else if (ability == ABILITY_WATERLOGGED && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & B_WEATHER_RAIN)
+            speed *= 0.5;
     }
 
     // other abilities
@@ -5048,6 +5052,10 @@ s8 GetMovePriority(u32 battler, u16 move)
     else if (ability == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battler].pranksterElevated = 1;
+        priority++;
+    }
+    else if (ability == ABILITY_BRACING_LEGS && gMovesInfo[move].target == MOVE_TARGET_USER && IS_MOVE_STATUS(move))
+    {    
         priority++;
     }
     else if (gMovesInfo[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battler))

@@ -1160,8 +1160,9 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
         if (targetAbility == ABILITY_DEFIANT)
             SET_STATCHANGER(STAT_ATK, 2, FALSE);
-        else
+        else 
             SET_STATCHANGER(STAT_SPATK, 2, FALSE);
+            
     }
     else if (B_UPDATED_INTIMIDATE >= GEN_8 && stringId == STRINGID_PKMNCUTSATTACKWITH && targetAbility == ABILITY_RATTLED
             && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
@@ -1170,6 +1171,14 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
         SET_STATCHANGER(STAT_SPEED, 1, FALSE);
+    }
+
+    else if (battlerAbility == ABILITY_SHOCK_THREADS && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+    {
+        BattleScriptPushCursorAndCallback(BattleScript_ShockThreadsActivates);
+                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 16;
+                if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
     }
 
     // Signal for the trainer slide-in system.
@@ -4743,6 +4752,14 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_SHADOW_WEAVE:
+            if(!gSpecialStatuses[battler].switchInAbilityDone && !(gStatuses4[battler] & STATUS4_SHADOW_WEAVE))
+            {
+                gStatuses4[battler] |= STATUS4_SHADOW_WEAVE;
+                BattleScriptPushCursorAndCallback(BattleScript_ShadowWeaveActivates);
+                effect++;
+            }
+            break;
         case ABILITY_EMBODY_ASPECT_TEAL:
         case ABILITY_EMBODY_ASPECT_HEARTHFLAME:
         case ABILITY_EMBODY_ASPECT_WELLSPRING:
@@ -5760,6 +5777,20 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_PARALYZING_SCALES:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && moveType == TYPE_FLYING)
+            {
+                gBattleScripting.moveEffect = MOVE_EFFECT_SPD_MINUS_1;
+                BattleScriptPushCursor();
+                SetMoveEffect(FALSE, FALSE);
+                BattleScriptPop();
+                effect++;
+            }
+            break;
         case ABILITY_GULP_MISSILE:
             if ((gBattleMons[gBattlerAttacker].species == SPECIES_CRAMORANT)
              && ((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
@@ -5770,6 +5801,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+        case ABILITY_PROTEIN_DRAIN:
+            if ((gMovesInfo[gCurrentMove].effect == EFFECT_ABSORB)
+             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
+            {
+                gBattleScripting.moveEffect = EFFECT_BULK_UP;
+                gBattleStruct->overwrittenAbilities[gBattlerAttacker] = ABILITY_VITAL_SPIRIT;
+                BattleScriptPushCursor();
+                effect++;
+
+            }
         }
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
@@ -9834,11 +9875,15 @@ static inline uq4_12_t GetDefenderAbilitiesModifier(u32 move, u32 moveType, u32 
         if (IS_MOVE_SPECIAL(move))
             return UQ_4_12(0.5);
         break;
+    case ABILITY_FLAMING_SCALES:
+        if (moveType == TYPE_FIRE)
+        return UQ_4_12(0.5);
+        break;
     }
     return UQ_4_12(1.0);
 }
 
-static inline uq4_12_t GetDefenderPartnerAbilitiesModifier(u32 battlerPartnerDef)
+static inline uq4_12_t GetDefenderPartnerAbilitiesModifier(u32 battlerPartnerDef, u32 moveType)
 {
     if (!IsBattlerAlive(battlerPartnerDef))
         return UQ_4_12(1.0);
@@ -9848,6 +9893,10 @@ static inline uq4_12_t GetDefenderPartnerAbilitiesModifier(u32 battlerPartnerDef
     case ABILITY_FRIEND_GUARD:
     case ABILITY_QUEENLY_MAJESTY:
         return UQ_4_12(0.75);
+        break;
+    case ABILITY_FLAMING_SCALES:
+        if (moveType == TYPE_FIRE)
+        return UQ_4_12(0.5);
         break;
     }
     return UQ_4_12(1.0);
@@ -9923,14 +9972,14 @@ static inline uq4_12_t GetOtherModifiers(u32 move, u32 moveType, u32 battlerAtk,
     {
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerAbilitiesModifier(battlerAtk, typeEffectivenessModifier, isCrit, abilityAtk));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(move, moveType, battlerAtk, battlerDef, typeEffectivenessModifier, abilityDef));
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner));
+        DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner, moveType));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(battlerAtk, typeEffectivenessModifier, holdEffectAtk));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(moveType, battlerDef, typeEffectivenessModifier, updateFlags, abilityDef, holdEffectDef));
     }
     else
     {
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(move, moveType, battlerAtk, battlerDef, typeEffectivenessModifier, abilityDef));
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner));
+        DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner, moveType));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerAbilitiesModifier(battlerAtk, typeEffectivenessModifier, isCrit, abilityAtk));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(moveType, battlerDef, typeEffectivenessModifier, updateFlags, abilityDef, holdEffectDef));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(battlerAtk, typeEffectivenessModifier, holdEffectAtk));
@@ -11204,8 +11253,12 @@ bool32 IsBattlerWeatherAffected(u32 battler, u32 weatherFlags)
 // Possible return values are defined in battle.h following MOVE_TARGET_SELECTED
 u32 GetBattlerMoveTargetType(u32 battler, u32 move)
 {
+    u32 battlerAbility = GetBattlerAbility(battler);
+
     if (gMovesInfo[move].effect == EFFECT_EXPANDING_FORCE
         && IsBattlerTerrainAffected(battler, STATUS_FIELD_PSYCHIC_TERRAIN))
+        return MOVE_TARGET_BOTH;
+    if (battlerAbility == ABILITY_ESP_WAVES && IS_MOVE_STATUS(move) && gMovesInfo[move].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
     else
         return gMovesInfo[move].target;

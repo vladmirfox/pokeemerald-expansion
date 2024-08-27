@@ -1776,9 +1776,11 @@ BattleScript_HitSwitchTargetForceRandomSwitchFailed:
 
 BattleScript_EffectToxicThread::
 	setstatchanger STAT_SPEED, 2, TRUE
+	setstatchanger STAT_DEF, 2, TRUE
 	attackcanceler
 	jumpifsubstituteblocks BattleScript_FailedFromAtkString
 	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_SPEED, MIN_STAT_STAGE, BattleScript_ToxicThreadWorks
+	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_ToxicThreadWorks
 	jumpifstatus BS_TARGET, STATUS1_PSN_ANY, BattleScript_FailedFromAtkString
 BattleScript_ToxicThreadWorks:
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
@@ -5360,6 +5362,31 @@ BattleScript_CosmicPowerTrySpDef::
 BattleScript_CosmicPowerEnd::
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectDefendOrder::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_DEF, MAX_STAT_STAGE, BattleScript_DefendOrderDoMoveAnim
+	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
+BattleScript_DefendOrderDoMoveAnim::
+	attackanimation
+	waitanimation
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_ATTACKER, BIT_DEF | BIT_SPDEF, 0
+	setstatchanger STAT_DEF, 2, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_DefendOrderTrySpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_DefendOrderTrySpDef
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefendOrderTrySpDef::
+	setstatchanger STAT_SPDEF, 2, FALSE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_DefendOrderEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_DefendOrderEnd
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefendOrderEnd::
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectBulkUp::
 	attackcanceler
 	attackstring
@@ -7713,6 +7740,16 @@ BattleScript_ShowdownModeActivates::
 	tryfaintmon BS_ATTACKER
 	end3
 
+BattleScript_ShockThreadsActivates::
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	call BattleScript_AbilityPopUp
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_SHOCKTHREADSHPDROP
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER
+	end3
+
 BattleScript_HealerActivates::
 	call BattleScript_AbilityPopUp
 	curestatus BS_SCRIPTING
@@ -7982,6 +8019,13 @@ BattleScript_HospitalityActivates::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
+	end3
+
+BattleScript_ShadowWeaveActivates::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_SHADOWWEAVE
+	waitmessage B_WAIT_TIME_LONG
 	end3
 
 BattleScript_AttackWeakenedByStrongWinds::

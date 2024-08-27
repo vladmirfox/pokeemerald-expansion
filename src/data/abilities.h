@@ -2670,7 +2670,7 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         [ABILITY_WATERLOGGED] =
     {
         .name = _("Waterlogged"),
-        .description = COMPOUND_STRING("Fast in sun slow in rain"),
+        .description = COMPOUND_STRING("Fast in sun slow in rain."),
         .aiRating = 5,
     },
         [ABILITY_LIGHTNING_CHARGE] =
