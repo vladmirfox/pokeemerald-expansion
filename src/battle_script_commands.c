@@ -1436,6 +1436,21 @@ static void Cmd_attackcanceler(void)
         }
         return;
     }
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_REFLECTIVE_SCALES
+             && gMovesInfo[gCurrentMove].magicCoatAffected
+             && !gProtectStructs[gBattlerAttacker].usesBouncedMove
+             && GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
+    {
+        gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+        // Edge case for bouncing a powder move against a grass type pokemon.
+        SetAtkCancellerForCalledMove();
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
+        gBattlerAbility = gBattlerTarget;
+        return;
+    }
+
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE
              && gMovesInfo[gCurrentMove].magicCoatAffected
              && !gProtectStructs[gBattlerAttacker].usesBouncedMove)
@@ -1740,6 +1755,15 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         if(IsBattlerAlive(battlerDef))
             calc = (calc * 120) / 100; // 1.2 boost to all Pokemon from Illuminate
         break;
+    case ABILITY_SHADOW_WEAVE:
+        if (gStatuses4[battlerDef] & STATUS4_SHADOW_WEAVE)
+            calc = (calc * 0); //First move always misses a Pokemon with Shadow Weave
+            gStatuses4[battlerDef] &= ~STATUS4_SHADOW_WEAVE;
+        break;
+    case ABILITY_WATERLOGGED:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_RAIN)
+            calc = (calc * 60) / 100; // Equivalent to +2 Evasion when in Rain
+            
     }
 
     // Target's ally's ability
@@ -11109,7 +11133,12 @@ static void Cmd_tryhealhalfhealth(void)
     if (cmd->battler == BS_ATTACKER)
         gBattlerTarget = gBattlerAttacker;
 
+    if (gCurrentMove == MOVE_HEAL_ORDER)
+    gBattleMoveDamage = 20 * GetNonDynamaxMaxHP(gBattlerAttacker) / 30;
+
+    else
     gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 2;
+
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
     gBattleMoveDamage *= -1;
@@ -12565,7 +12594,7 @@ static void Cmd_setfocusenergy(void)
         gMoveResultFlags |= MOVE_RESULT_FAILED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FOCUS_ENERGY_FAILED;
     }
-    else if (gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_CHEER && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_DRAGON))
+    else if (gMovesInfo[gCurrentMove].effect == EFFECT_DRAGON_CHEER && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))
     {
         gBattleMons[gBattlerTarget].status2 |= STATUS2_DRAGON_CHEER;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;

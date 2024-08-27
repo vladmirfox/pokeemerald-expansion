@@ -1087,7 +1087,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Stingers on the forelegs\n"
             "jab the foe twice."),
         .effect = EFFECT_HIT,
-        .power = 25,
+        .power = 35,
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 20,
@@ -6006,7 +6006,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "An attack that may raise\n"
             "all stats."),
         .effect = EFFECT_HIT,
-        .power = 60,
+        .power = 90,
         .type = TYPE_ROCK,
         .accuracy = 100,
         .pp = 5,
@@ -7211,7 +7211,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "down. May lower Sp. Atk."),
         .effect = EFFECT_HIT,
         .power = (B_UPDATED_MOVE_DATA >= GEN_9) ? 95 : 70,
-        .type = TYPE_PSYCHIC,
+        .type = TYPE_FAIRY,
         .accuracy = 100,
         .pp = 5,
         .target = MOVE_TARGET_SELECTED,
@@ -9748,12 +9748,13 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Slashes the foe with crossed\n"
             "scythes, claws, etc."),
         .effect = EFFECT_HIT,
-        .power = 80,
+        .power = 85,
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 15,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .criticalHitStage = 1,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
         .slicingMove = TRUE,
@@ -9770,7 +9771,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "A damaging sound wave that\n"
             "may lower Sp. Def."),
         .effect = EFFECT_HIT,
-        .power = 90,
+        .power = 95,
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 10,
@@ -10937,14 +10938,15 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Underlings pummel the foe.\n"
             "High critical-hit ratio."),
         .effect = EFFECT_HIT,
-        .power = 90,
+        .power = 20,
         .type = TYPE_BUG,
         .accuracy = 100,
         .criticalHitStage = 1,
         .pp = 15,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .strikeCount = 5,
+        .category = DAMAGE_CATEGORY_SPECIAL,
         .contestEffect = CONTEST_EFFECT_AFFECTED_BY_PREV_APPEAL,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_ATTACK_ORDER,
@@ -10957,7 +10959,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Raises Defense and Sp. Def\n"
             "with a living shield."),
-        .effect = EFFECT_COSMIC_POWER,
+        .effect = EFFECT_DEFEND_ORDER,
         .power = 0,
         .type = TYPE_BUG,
         .accuracy = 0,
@@ -11164,10 +11166,10 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .effect = EFFECT_DARK_VOID,
         .power = 0,
         .type = TYPE_DARK,
-        .accuracy = B_UPDATED_MOVE_DATA >= GEN_7 ? 50 : 80,
+        .accuracy = B_UPDATED_MOVE_DATA >= GEN_7 ? 75 : 80,
         .pp = 10,
         .target = MOVE_TARGET_BOTH,
-        .priority = 0,
+        .priority = -1,
         .category = DAMAGE_CATEGORY_STATUS,
         .zMove = { .effect = Z_EFFECT_RESET_STATS },
         .magicCoatAffected = TRUE,
@@ -12608,9 +12610,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "Snares the foe with an\n"
             "electric net. Lowers Speed."),
         .effect = EFFECT_HIT,
-        .power = 55,
+        .power = 75,
         .type = TYPE_ELECTRIC,
-        .accuracy = 95,
+        .accuracy = 90,
         .pp = 15,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
@@ -13199,7 +13201,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_SP_ATK_PLUS_1,
             .self = TRUE,
-            .chance = 50,
+            .chance = 100,
         }),
         .contestEffect = CONTEST_EFFECT_IMPROVE_CONDITION_PREVENT_NERVOUSNESS,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
@@ -13521,7 +13523,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "If it knocks out a foe\n"
             "the Attack stat is raised."),
         .effect = EFFECT_FELL_STINGER,
-        .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 50 : 30,
+        .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 60 : 30,
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 25,
@@ -17479,17 +17481,18 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "User skitters behind foe to\n"
             "attack. Lowers foe's Sp. Atk."),
         .effect = EFFECT_HIT,
-        .power = 70,
+        .power = 60,
         .type = TYPE_BUG,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
         .makesContact = TRUE,
+        .ignoresProtect = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
-            .moveEffect = MOVE_EFFECT_SP_ATK_MINUS_1,
-            .chance = 100,
+
+            .moveEffect = MOVE_EFFECT_FEINT,
         }),
         .contestEffect = CONTEST_EFFECT_BADLY_STARTLE_PREV_MONS,
         .contestCategory = CONTEST_CATEGORY_CUTE,
@@ -18031,7 +18034,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
             "High critical hit ratio. Sets\n"
             "Splinters that hurt the foe."),
         .effect = EFFECT_HIT,
-        .power = 65,
+        .power = 75,
         .type = TYPE_ROCK,
         .accuracy = 90,
         .pp = 15,
@@ -21181,7 +21184,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .category = DAMAGE_CATEGORY_STATUS,
         .ignoresSubstitute = TRUE,
     },
-    
+
     [MOVE_WEB_GARROTE] =
     {
         .name = COMPOUND_STRING("Web Garrote"),
