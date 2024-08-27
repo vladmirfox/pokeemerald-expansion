@@ -4,7 +4,14 @@
 #include "config/item.h"
 
 // These constants are used in gItemsInfo.
-// Uncomment and asign values in sequence to enable pockets in your preferred order
+// Uncomment and asign values in sequence to enable pockets in your preferred order.
+// NOTE: Wally's catch tutorial assumes that Items and Pokéball pockets are right next to each other,
+// so manual edits to the following struct and functions is needed in order to avoid breaking the sequence:
+//    - TempWallyBag
+//    - PrepareBagForWallyTutorial
+//    - RestoreBagAfterWallyTutorial
+//    - DoWallyTutorialBagMenu
+
 #define POCKET_ITEMS        0
 //#define POCKET_MEDICINE     0
 #define POCKET_POKE_BALLS   1
