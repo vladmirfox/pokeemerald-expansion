@@ -2303,7 +2303,6 @@ enum
     ENDTURN_HEALBLOCK,
     ENDTURN_EMBARGO,
     ENDTURN_LOCK_ON,
-    ENDTURN_CHARGE,
     ENDTURN_LASER_FOCUS,
     ENDTURN_TAUNT,
     ENDTURN_YAWN,
@@ -2764,11 +2763,6 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_LOCK_ON:  // lock-on decrement
             if (gStatuses3[battler] & STATUS3_ALWAYS_HITS)
                 gStatuses3[battler] -= STATUS3_ALWAYS_HITS_TURN(1);
-            gBattleStruct->turnEffectsTracker++;
-            break;
-        case ENDTURN_CHARGE:  // charge
-            if (gDisableStructs[battler].chargeTimer && --gDisableStructs[battler].chargeTimer == 0)
-                gStatuses3[battler] &= ~STATUS3_CHARGED_UP;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_TAUNT:  // taunt
