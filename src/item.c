@@ -146,9 +146,9 @@ bool8 IsBagPocketNonEmpty(u8 pocket)
 {
     u8 i;
 
-    for (i = 0; i < gBagPockets[pocket - 1].capacity; i++)
+    for (i = 0; i < gBagPockets[pocket].capacity; i++)
     {
-        if (gBagPockets[pocket - 1].itemSlots[i].itemId != 0)
+        if (gBagPockets[pocket].itemSlots[i].itemId != 0)
             return TRUE;
     }
     return FALSE;
@@ -163,7 +163,7 @@ bool8 CheckBagHasItem(u16 itemId, u16 count)
         return FALSE;
     if (InBattlePyramid() || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
         return CheckPyramidBagHasItem(itemId, count);
-    pocket = ItemId_GetPocket(itemId) - 1;
+    pocket = ItemId_GetPocket(itemId);
     // Check for item slots that contain the item
     for (i = 0; i < gBagPockets[pocket].capacity; i++)
     {
@@ -225,7 +225,7 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
 u32 GetFreeSpaceForItemInBag(u16 itemId)
 {
     u8 i;
-    u8 pocket = ItemId_GetPocket(itemId) - 1;
+    u8 pocket = ItemId_GetPocket(itemId);
     u16 ownedCount;
     u32 spaceForItem = 0;
 
@@ -265,7 +265,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
         struct BagPocket *itemPocket;
         struct ItemSlot *newItems;
         u16 ownedCount;
-        u8 pocket = ItemId_GetPocket(itemId) - 1;
+        u8 pocket = ItemId_GetPocket(itemId);
 
         itemPocket = &gBagPockets[pocket];
         newItems = AllocZeroed(itemPocket->capacity * sizeof(struct ItemSlot));
@@ -369,7 +369,7 @@ bool8 RemoveBagItem(u16 itemId, u16 count)
         u16 ownedCount;
         struct BagPocket *itemPocket;
 
-        pocket = ItemId_GetPocket(itemId) - 1;
+        pocket = ItemId_GetPocket(itemId);
         itemPocket = &gBagPockets[pocket];
 
         for (i = 0; i < itemPocket->capacity; i++)
@@ -591,12 +591,12 @@ void SwapRegisteredBike(void)
 
 u16 BagGetItemIdByPocketPosition(u8 pocketId, u16 pocketPos)
 {
-    return gBagPockets[pocketId - 1].itemSlots[pocketPos].itemId;
+    return gBagPockets[pocketId].itemSlots[pocketPos].itemId;
 }
 
 u16 BagGetQuantityByPocketPosition(u8 pocketId, u16 pocketPos)
 {
-    return GetBagItemQuantity(&gBagPockets[pocketId - 1].itemSlots[pocketPos].quantity);
+    return GetBagItemQuantity(&gBagPockets[pocketId].itemSlots[pocketPos].quantity);
 }
 
 static void SwapItemSlots(struct ItemSlot *a, struct ItemSlot *b)
@@ -679,7 +679,7 @@ u16 CountTotalItemQuantityInBag(u16 itemId)
 {
     u16 i;
     u16 ownedCount = 0;
-    struct BagPocket *bagPocket = &gBagPockets[ItemId_GetPocket(itemId) - 1];
+    struct BagPocket *bagPocket = &gBagPockets[ItemId_GetPocket(itemId)];
 
     for (i = 0; i < bagPocket->capacity; i++)
     {

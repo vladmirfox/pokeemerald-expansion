@@ -552,12 +552,12 @@ void SetBagVisualPocketId(u8 bagPocketId, bool8 isSwitchingPockets)
     {
         sprite->y2 = -5;
         sprite->callback = SpriteCB_BagVisualSwitchingPockets;
-        sprite->sPocketId = bagPocketId + 1;
+        sprite->sPocketId = bagPocketId;
         StartSpriteAnim(sprite, POCKETS_COUNT);
     }
     else
     {
-        StartSpriteAnim(sprite, bagPocketId + 1);
+        StartSpriteAnim(sprite, bagPocketId);
     }
 }
 
