@@ -1749,7 +1749,6 @@ BattleScript_CopycatFail:
 	ppreduce
 	goto BattleScript_ButItFailed
 
-@ restoreattacker and restoretarget are used to obtain attacker and target of the called move
 BattleScript_EffectInstruct::
 	attackcanceler
 	attackstring
@@ -1758,8 +1757,8 @@ BattleScript_EffectInstruct::
 	tryinstruct BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	restoreattacker
-	restoretarget
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, gEffectBattler
 	printstring STRINGID_USEDINSTRUCTEDMOVE
 	waitmessage B_WAIT_TIME_LONG
 	setbyte sB_ANIM_TURN, 0
