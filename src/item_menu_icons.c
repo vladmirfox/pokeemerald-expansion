@@ -91,7 +91,7 @@ static const union AnimCmd sSpriteAnim_Bag_Berries[] =
     ANIMCMD_END
 };
 
-#if I_POCKET_MEDICINE_ENABLED
+#if POCKET_MEDICINE != DEFAULT_MEDICINE_POCKET
 static const union AnimCmd sSpriteAnim_Bag_Medicine[] =
 {
     ANIMCMD_FRAME(192, 4),
@@ -99,7 +99,7 @@ static const union AnimCmd sSpriteAnim_Bag_Medicine[] =
 };
 #endif
 
-#if I_POCKET_BATTLE_ITEMS_ENABLED
+#if POCKET_BATTLE_ITEMS != DEFAULT_BATTLE_ITEMS_POCKET
 static const union AnimCmd sSpriteAnim_Bag_BattleItems[] =
 {
     ANIMCMD_FRAME(64, 4),
@@ -107,7 +107,7 @@ static const union AnimCmd sSpriteAnim_Bag_BattleItems[] =
 };
 #endif
 
-#if I_POCKET_POWER_UP_ENABLED == TRUE
+#if POCKET_POWER_UP != DEFAULT_POWER_UP_POCKET == TRUE
 static const union AnimCmd sSpriteAnim_Bag_PowerUp[] =
 {
     ANIMCMD_FRAME(128, 4),
@@ -115,7 +115,7 @@ static const union AnimCmd sSpriteAnim_Bag_PowerUp[] =
 };
 #endif
 
-#if I_POCKET_MEGA_STONES_ENABLED
+#if POCKET_MEGA_STONES != DEFAULT_MEGA_STONES_POCKET
 static const union AnimCmd sSpriteAnim_Bag_MegaStones[] =
 {
     ANIMCMD_FRAME(192, 4),
@@ -123,7 +123,7 @@ static const union AnimCmd sSpriteAnim_Bag_MegaStones[] =
 };
 #endif
 
-#if I_POCKET_Z_CRYSTALS_ENABLED
+#if POCKET_Z_CRYSTALS != DEFAULT_Z_CRYSTALS_POCKET
 static const union AnimCmd sSpriteAnim_Bag_ZCrystals[] =
 {
     ANIMCMD_FRAME(64, 4),
@@ -131,7 +131,7 @@ static const union AnimCmd sSpriteAnim_Bag_ZCrystals[] =
 };
 #endif
 
-#if I_POCKET_TREASURES_ENABLED
+#if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
 static const union AnimCmd sSpriteAnim_Bag_Treasures[] =
 {
     ANIMCMD_FRAME(256, 4),
@@ -141,30 +141,30 @@ static const union AnimCmd sSpriteAnim_Bag_Treasures[] =
 
 static const union AnimCmd *const sBagSpriteAnimTable[] =
 {
-    [POCKET_NONE]         = sSpriteAnim_Bag_Closed,
     [POCKET_ITEMS]        = sSpriteAnim_Bag_Items,
-#if I_POCKET_MEDICINE_ENABLED
+#if POCKET_MEDICINE != DEFAULT_MEDICINE_POCKET
     [POCKET_MEDICINE]     = sSpriteAnim_Bag_Medicine,
 #endif
     [POCKET_POKE_BALLS]   = sSpriteAnim_Bag_Pokeballs,
-#if I_POCKET_BATTLE_ITEMS_ENABLED
+#if POCKET_BATTLE_ITEMS != DEFAULT_BATTLE_ITEMS_POCKET
     [POCKET_BATTLE_ITEMS] = sSpriteAnim_Bag_BattleItems,
 #endif
     [POCKET_TM_HM]        = sSpriteAnim_Bag_TMsHMs,
-#if I_POCKET_POWER_UP_ENABLED
+#if POCKET_POWER_UP != DEFAULT_POWER_UP_POCKET
     [POCKET_POWER_UP]     = sSpriteAnim_Bag_PowerUp,
 #endif
     [POCKET_BERRIES]      = sSpriteAnim_Bag_Berries,
-#if I_POCKET_TREASURES_ENABLED
+#if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
     [POCKET_TREASURES]    = sSpriteAnim_Bag_Treasures,
 #endif
-#if I_POCKET_MEGA_STONES_ENABLED
+#if POCKET_MEGA_STONES != DEFAULT_MEGA_STONES_POCKET
     [POCKET_MEGA_STONES]  = sSpriteAnim_Bag_MegaStones,
 #endif
-#if I_POCKET_Z_CRYSTALS_ENABLED
+#if POCKET_Z_CRYSTALS != DEFAULT_Z_CRYSTALS_POCKET
     [POCKET_Z_CRYSTALS]   = sSpriteAnim_Bag_ZCrystals,
 #endif
     [POCKET_KEY_ITEMS]    = sSpriteAnim_Bag_KeyItems,
+    [POCKETS_COUNT]       = sSpriteAnim_Bag_Closed,
 };
 
 static const union AffineAnimCmd sSpriteAffineAnim_BagNormal[] =
@@ -542,7 +542,7 @@ void SetBagVisualPocketId(u8 bagPocketId, bool8 isSwitchingPockets)
         sprite->y2 = -5;
         sprite->callback = SpriteCB_BagVisualSwitchingPockets;
         sprite->sPocketId = bagPocketId + 1;
-        StartSpriteAnim(sprite, POCKET_NONE);
+        StartSpriteAnim(sprite, POCKETS_COUNT);
     }
     else
     {

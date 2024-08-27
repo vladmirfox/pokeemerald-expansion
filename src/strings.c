@@ -229,50 +229,50 @@ const u8 gText_PokeBallsPocket[] = _("POKé BALLS");
 const u8 gText_TMHMPocket[] = _("TMs & HMs");
 const u8 gText_BerriesPocket[] = _("BERRIES");
 const u8 gText_KeyItemsPocket[] = _("KEY ITEMS");
-#if I_POCKET_MEDICINE_ENABLED
+#if POCKET_MEDICINE != DEFAULT_MEDICINE_POCKET
 const u8 gText_MedicinePocket[] = _("MEDICINE");
 #endif
-#if I_POCKET_BATTLE_ITEMS_ENABLED
+#if POCKET_BATTLE_ITEMS != DEFAULT_BATTLE_ITEMS_POCKET
 const u8 gText_BattleItemsPocket[] = _("BATTLE ITEM");
 #endif
-#if I_POCKET_POWER_UP_ENABLED
+#if POCKET_POWER_UP != DEFAULT_POWER_UP_POCKET
 const u8 gText_PowerUpPocket[] = _("POWER UP");
 #endif
-#if I_POCKET_TREASURES_ENABLED
+#if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
 const u8 gText_TreasuresPocket[] = _("TREASURES");
 #endif
-#if I_POCKET_MEGA_STONES_ENABLED
+#if POCKET_MEGA_STONES != DEFAULT_MEGA_STONES_POCKET
 const u8 gText_MegaStonesPocket[] = _("MEGA STONES");
 #endif
-#if I_POCKET_Z_CRYSTALS_ENABLED
+#if POCKET_Z_CRYSTALS != DEFAULT_Z_CRYSTALS_POCKET
 const u8 gText_ZCrystalsPocket[] = _("Z-CRYSTALS");
 #endif
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] = gText_ItemsPocket,
-#if I_POCKET_MEDICINE_ENABLED
-    [MEDICINE_POCKET] = gText_MedicinePocket,
+    [POCKET_ITEMS] = gText_ItemsPocket,
+#if POCKET_MEDICINE != DEFAULT_MEDICINE_POCKET
+    [POCKET_MEDICINE] = gText_MedicinePocket,
 #endif
-    [BALLS_POCKET] = gText_PokeBallsPocket,
-#if I_POCKET_BATTLE_ITEMS_ENABLED
-    [BATTLEITEMS_POCKET] = gText_BattleItemsPocket,
+    [POCKET_POKE_BALLS] = gText_PokeBallsPocket,
+#if POCKET_BATTLE_ITEMS != DEFAULT_BATTLE_ITEMS_POCKET
+    [POCKET_BATTLE_ITEMS] = gText_BattleItemsPocket,
 #endif
-    [TMHM_POCKET]  = gText_TMHMPocket,
-#if I_POCKET_POWER_UP_ENABLED
-    [POWERUP_POCKET] = gText_PowerUpPocket,
+    [POCKET_TM_HM]  = gText_TMHMPocket,
+#if POCKET_POWER_UP != DEFAULT_POWER_UP_POCKET
+    [POCKET_POWER_UP] = gText_PowerUpPocket,
 #endif
-    [BERRIES_POCKET] = gText_BerriesPocket,
-#if I_POCKET_TREASURES_ENABLED
-    [TREASURES_POCKET] = gText_TreasuresPocket,
+    [POCKET_BERRIES] = gText_BerriesPocket,
+#if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
+    [POCKET_TREASURES] = gText_TreasuresPocket,
 #endif
-#if I_POCKET_MEGA_STONES_ENABLED
-    [MEGASTONES_POCKET] = gText_MegaStonesPocket,
+#if POCKET_MEGA_STONES != DEFAULT_MEGA_STONES_POCKET
+    [POCKET_MEGA_STONES] = gText_MegaStonesPocket,
 #endif
-#if I_POCKET_Z_CRYSTALS_ENABLED
-    [ZCRYSTALS_POCKET] = gText_ZCrystalsPocket,
+#if POCKET_Z_CRYSTALS != DEFAULT_Z_CRYSTALS_POCKET
+    [POCKET_Z_CRYSTALS] = gText_ZCrystalsPocket,
 #endif
-    [KEYITEMS_POCKET] = gText_KeyItemsPocket
+    [POCKET_KEY_ITEMS] = gText_KeyItemsPocket
 };
 
 const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");

@@ -21,16 +21,6 @@
 #define I_PREMIER_BALL_BONUS            GEN_LATEST  // In LGPE onwards (Gen8+ here), you are given a Premier Ball for every 10 Poké Balls of any type and in the same purchase. Previously, it only applied to regular Poké Balls and only 1 could be obtained per purchase.
 #define I_ROTOM_CATALOG_THUNDER_SHOCK   GEN_LATEST  // In Gen9+, reverting Rotom to its base form will teach it Thunder Shock even if it knows another move.
 
-// Bag pockets config
-// NOTE: Modifying these values breaks existing saves. Also, there's not enough space in SaveBlock1 to enable everything, so you'll need to clear some space to do so.
-// If a pocket is disabled, their items default to POCKET_ITEMS. Check include/constants/item.h to change this.
-#define I_POCKET_MEDICINE_ENABLED       FALSE       // Enables a new pocket for healing items.
-#define I_POCKET_BATTLE_ITEMS_ENABLED   FALSE       // Enables a new pocket for items with in-battle effects.
-#define I_POCKET_TREASURES_ENABLED      FALSE       // Enables a new pocket for valuable items.
-#define I_POCKET_MEGA_STONES_ENABLED    FALSE       // Enables a new pocket for Mega Stones.
-#define I_POCKET_Z_CRYSTALS_ENABLED     FALSE       // Enables a new pocket for Z-Crystals.
-#define I_POCKET_POWER_UP_ENABLED       FALSE       // Enables a new pocket for Vitamins, Mints, and evolution items.
-
 // TM config
 #define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
