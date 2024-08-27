@@ -60,6 +60,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_GRASS,
         .background = TERRAIN_BACKGROUND(TallGrass),
     },
+
     [BATTLE_TERRAIN_LONG_GRASS] =
     {
     #if B_NATURE_POWER_MOVES >= GEN_6
@@ -73,6 +74,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_GRASS,
         .background = TERRAIN_BACKGROUND(LongGrass),
     },
+
     [BATTLE_TERRAIN_SAND] =
     {
         .naturePower = B_NATURE_POWER_MOVES >= GEN_6 ? MOVE_EARTH_POWER : MOVE_EARTHQUAKE,
@@ -80,6 +82,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_GROUND,
         .background = TERRAIN_BACKGROUND(Sand),
     },
+
     [BATTLE_TERRAIN_UNDERWATER] =
     {
         .naturePower = MOVE_HYDRO_PUMP,
@@ -87,6 +90,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_WATER,
         .background = TERRAIN_BACKGROUND(Underwater),
     },
+
     [BATTLE_TERRAIN_WATER] =
     {
         .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_HYDRO_PUMP : MOVE_SURF,
@@ -94,6 +98,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_WATER,
         .background = TERRAIN_BACKGROUND(Water),
     },
+
     [BATTLE_TERRAIN_POND] =
     {
         .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_HYDRO_PUMP : MOVE_BUBBLE_BEAM,
@@ -101,6 +106,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_WATER,
         .background = TERRAIN_BACKGROUND(PondWater),
     },
+
     [BATTLE_TERRAIN_MOUNTAIN] =
     {
     #if B_NATURE_POWER_MOVES >= GEN_6
@@ -120,6 +126,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = B_CAMOUFLAGE_TYPES >= GEN_5 ? TYPE_GROUND : TYPE_ROCK,
         .background = TERRAIN_BACKGROUND(Rock),
     },
+
     [BATTLE_TERRAIN_CAVE] =
     {
     #if B_NATURE_POWER_MOVES >= GEN_6
@@ -135,6 +142,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_ROCK,
         .background = TERRAIN_BACKGROUND(Cave),
     },
+
     [BATTLE_TERRAIN_BUILDING] =
     {
         .naturePower = B_NATURE_POWER_MOVES >= GEN_4 ? MOVE_TRI_ATTACK : MOVE_SWIFT,
@@ -142,6 +150,7 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .camouflageType = TYPE_NORMAL,
         .background = TERRAIN_BACKGROUND(Building),
     },
+
     [BATTLE_TERRAIN_PLAIN] =
     {
     #if B_NATURE_POWER_MOVES >= GEN_6
@@ -162,42 +171,205 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
             .palette = gBattleTerrainPalette_Plain,
         },
     },
+
+    [BATTLE_TERRAIN_FRONTIER] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Building,
+            .tilemap = gBattleTerrainTilemap_Building,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_Frontier,
+        },
+    },
+
+    [BATTLE_TERRAIN_GYM] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Building,
+            .tilemap = gBattleTerrainTilemap_Building,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_BuildingGym,
+        },
+    },
+
+    [BATTLE_TERRAIN_LEADER] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Building,
+            .tilemap = gBattleTerrainTilemap_Building,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_BuildingLeader,
+        },
+    },
+
+    [BATTLE_TERRAIN_MAGMA] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumMagma,
+        },
+    },
+
+    [BATTLE_TERRAIN_AQUA] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumAqua,
+        },
+    },
+
+    [BATTLE_TERRAIN_SIDNEY] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumSidney,
+        },
+    },
+
+    [BATTLE_TERRAIN_PHOEBE] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumPhoebe,
+        },
+    },
+
+    [BATTLE_TERRAIN_GLACIA] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumGlacia,
+        },
+    },
+
+    [BATTLE_TERRAIN_DRAKE] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumDrake,
+        },
+    },
+
+    [BATTLE_TERRAIN_CHAMPION] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Stadium,
+            .tilemap = gBattleTerrainTilemap_Stadium,
+            .entryTileset = gBattleTerrainAnimTiles_Building,
+            .entryTilemap = gBattleTerrainAnimTilemap_Building,
+            .palette = gBattleTerrainPalette_StadiumWallace,
+        },
+    },
+
+    [BATTLE_TERRAIN_GROUDON] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Cave,
+            .tilemap = gBattleTerrainTilemap_Cave,
+            .entryTileset = gBattleTerrainAnimTiles_Cave,
+            .entryTilemap = gBattleTerrainAnimTilemap_Cave,
+            .palette = gBattleTerrainPalette_Groudon,
+        },
+    },
+
+    [BATTLE_TERRAIN_KYOGRE] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Water,
+            .tilemap = gBattleTerrainTilemap_Water,
+            .entryTileset = gBattleTerrainAnimTiles_Underwater,
+            .entryTilemap = gBattleTerrainAnimTilemap_Underwater,
+            .palette = gBattleTerrainPalette_Kyogre,
+        },
+    },
+
+    [BATTLE_TERRAIN_RAYQUAZA] =
+    {
+        .background =
+        {
+            .tileset = gBattleTerrainTiles_Rayquaza,
+            .tilemap = gBattleTerrainTilemap_Rayquaza,
+            .entryTileset = gBattleTerrainAnimTiles_Rayquaza,
+            .entryTilemap = gBattleTerrainAnimTilemap_Rayquaza,
+            .palette = gBattleTerrainPalette_Rayquaza,
+        },
+    },
+
     [BATTLE_TERRAIN_SOARING] =
     {
         .naturePower = MOVE_AIR_SLASH,
         .secretPowerEffect = MOVE_EFFECT_SPD_MINUS_1,
         .camouflageType = TYPE_FLYING,
     },
+
     [BATTLE_TERRAIN_SKY_PILLAR] =
     {
         .naturePower = MOVE_AIR_SLASH,
         .secretPowerEffect = MOVE_EFFECT_SPD_MINUS_1,
         .camouflageType = TYPE_FLYING,
     },
+
     [BATTLE_TERRAIN_BURIAL_GROUND] =
     {
         .naturePower = MOVE_SHADOW_BALL,
         .secretPowerEffect = MOVE_EFFECT_FLINCH,
         .camouflageType = TYPE_GHOST,
     },
+
     [BATTLE_TERRAIN_PUDDLE] =
     {
         .naturePower = MOVE_MUD_BOMB,
         .secretPowerEffect = B_SECRET_POWER_EFFECT >= GEN_5 ? MOVE_EFFECT_SPD_MINUS_1 : MOVE_EFFECT_ACC_MINUS_1,
         .camouflageType = TYPE_GROUND,
     },
+
     [BATTLE_TERRAIN_MARSH] =
     {
         .naturePower = MOVE_MUD_BOMB,
         .secretPowerEffect = MOVE_EFFECT_SPD_MINUS_1,
         .camouflageType = TYPE_GROUND,
     },
+
     [BATTLE_TERRAIN_SWAMP] =
     {
         .naturePower = MOVE_MUD_BOMB,
         .secretPowerEffect = MOVE_EFFECT_SPD_MINUS_1,
         .camouflageType = TYPE_GROUND,
     },
+
     [BATTLE_TERRAIN_SNOW] =
     {
     #if B_NATURE_POWER_MOVES >= GEN_7
@@ -210,34 +382,53 @@ const struct BattleTerrain gBattleTerrainInfo[BATTLE_TERRAIN_COUNT] =
         .secretPowerEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
         .camouflageType = TYPE_ICE,
     },
+
     [BATTLE_TERRAIN_ICE] =
     {
         .naturePower = MOVE_ICE_BEAM,
         .secretPowerEffect = MOVE_EFFECT_FREEZE_OR_FROSTBITE,
         .camouflageType = TYPE_ICE,
     },
+
     [BATTLE_TERRAIN_VOLCANO] =
     {
         .naturePower = MOVE_LAVA_PLUME,
         .secretPowerEffect = MOVE_EFFECT_BURN,
         .camouflageType = TYPE_FIRE,
     },
+
     [BATTLE_TERRAIN_DISTORTION_WORLD] =
     {
         .naturePower = MOVE_TRI_ATTACK,
         .secretPowerEffect = MOVE_EFFECT_PARALYSIS,
         .camouflageType = TYPE_NORMAL,
     },
+
     [BATTLE_TERRAIN_SPACE] =
     {
         .naturePower = MOVE_DRACO_METEOR,
         .secretPowerEffect = MOVE_EFFECT_FLINCH,
         .camouflageType = TYPE_DRAGON,
     },
+
     [BATTLE_TERRAIN_ULTRA_SPACE] =
     {
         .naturePower = MOVE_PSYSHOCK,
         .secretPowerEffect = MOVE_EFFECT_DEF_MINUS_1,
         .camouflageType = TYPE_PSYCHIC,
     },
+};
+
+static const struct {
+    u8 mapScene;
+    u8 battleTerrain;
+} sMapBattleSceneMapping[] = {
+    {MAP_BATTLE_SCENE_GYM,      BATTLE_TERRAIN_GYM},
+    {MAP_BATTLE_SCENE_MAGMA,    BATTLE_TERRAIN_MAGMA},
+    {MAP_BATTLE_SCENE_AQUA,     BATTLE_TERRAIN_AQUA},
+    {MAP_BATTLE_SCENE_SIDNEY,   BATTLE_TERRAIN_SIDNEY},
+    {MAP_BATTLE_SCENE_PHOEBE,   BATTLE_TERRAIN_PHOEBE},
+    {MAP_BATTLE_SCENE_GLACIA,   BATTLE_TERRAIN_GLACIA},
+    {MAP_BATTLE_SCENE_DRAKE,    BATTLE_TERRAIN_DRAKE},
+    {MAP_BATTLE_SCENE_FRONTIER, BATTLE_TERRAIN_FRONTIER}
 };
