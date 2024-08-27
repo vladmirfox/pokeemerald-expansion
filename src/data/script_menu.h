@@ -946,6 +946,7 @@ const u8 *const gStdStrings[] =
     [STDSTRING_MEGASTONES] = gText_MegaStones,
     [STDSTRING_ZCRYSTALS] = gText_ZCrystals,
     [STDSTRING_POWERUP] = gText_PowerUp,
+    [STDSTRING_MAIL] = gText_Mail,
 };
 
 static const u8 sLinkServicesMultichoiceIds[] =

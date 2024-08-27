@@ -139,6 +139,14 @@ static const union AnimCmd sSpriteAnim_Bag_Treasures[] =
 };
 #endif
 
+#if POCKET_MAIL != DEFAULT_MAIL_POCKET
+static const union AnimCmd sSpriteAnim_Bag_Mail[] =
+{
+    ANIMCMD_FRAME(256, 4),
+    ANIMCMD_END
+};
+#endif
+
 static const union AnimCmd *const sBagSpriteAnimTable[] =
 {
     [POCKET_ITEMS]        = sSpriteAnim_Bag_Items,
@@ -154,6 +162,9 @@ static const union AnimCmd *const sBagSpriteAnimTable[] =
     [POCKET_POWER_UP]     = sSpriteAnim_Bag_PowerUp,
 #endif
     [POCKET_BERRIES]      = sSpriteAnim_Bag_Berries,
+#if POCKET_MAIL != DEFAULT_MAIL_POCKET
+    [POCKET_MAIL]         = sSpriteAnim_Bag_Mail,
+#endif
 #if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
     [POCKET_TREASURES]    = sSpriteAnim_Bag_Treasures,
 #endif

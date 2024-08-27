@@ -238,6 +238,9 @@ const u8 gText_BattleItemsPocket[] = _("BATTLE ITEM");
 #if POCKET_POWER_UP != DEFAULT_POWER_UP_POCKET
 const u8 gText_PowerUpPocket[] = _("POWER UP");
 #endif
+#if POCKET_MAIL != DEFAULT_MAIL_POCKET
+const u8 gText_MailPocket[] = _("MAIL");
+#endif
 #if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
 const u8 gText_TreasuresPocket[] = _("TREASURES");
 #endif
@@ -263,6 +266,9 @@ const u8 *const gPocketNamesStringsTable[] =
     [POCKET_POWER_UP] = gText_PowerUpPocket,
 #endif
     [POCKET_BERRIES] = gText_BerriesPocket,
+#if POCKET_MAIL != DEFAULT_MAIL_POCKET
+    [POCKET_MAIL] = gText_MailPocket,
+#endif
 #if POCKET_TREASURES != DEFAULT_TREASURES_POCKET
     [POCKET_TREASURES] = gText_TreasuresPocket,
 #endif
