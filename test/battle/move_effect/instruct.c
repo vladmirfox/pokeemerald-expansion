@@ -16,7 +16,7 @@ DOUBLE_BATTLE_TEST("Instruct fails if target hasn't made a move")
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); MOVE(playerRight, MOVE_TACKLE, target: opponentLeft); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }
@@ -33,7 +33,7 @@ DOUBLE_BATTLE_TEST("Instruct fails if move is banned by Instruct")
         TURN { MOVE(playerRight, MOVE_BIDE); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BIDE, playerRight);
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
     }
 }
 
@@ -50,7 +50,7 @@ DOUBLE_BATTLE_TEST("Instruct-called move targets the target of the move picked o
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
         HP_BAR(opponentLeft);
         NOT HP_BAR(opponentRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
         HP_BAR(opponentLeft);
         NOT HP_BAR(opponentRight);
@@ -70,7 +70,8 @@ DOUBLE_BATTLE_TEST("Instruct doesn't bypass sleep")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentLeft);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
+        MESSAGE("Wobbuffet is fast asleep.");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }
@@ -90,7 +91,7 @@ DOUBLE_BATTLE_TEST("Instruct fails if target doesn't know the last move it used"
         ABILITY_POPUP(playerRight, ABILITY_DANCER);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
         NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
         }
     }
@@ -108,7 +109,7 @@ DOUBLE_BATTLE_TEST("Instruct-called move fails if it can only be used on the fir
         TURN { MOVE(playerRight, MOVE_FAKE_OUT, target: opponentLeft); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, playerRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, playerRight);
     } THEN {
         EXPECT_EQ(playerRight->pp[3], gMovesInfo[MOVE_FAKE_OUT].pp - 2);
@@ -128,7 +129,7 @@ DOUBLE_BATTLE_TEST("Instruct-called move doesn't fail if tormented")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TORMENT, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }
@@ -146,7 +147,7 @@ DOUBLE_BATTLE_TEST("Instruct-called status moves don't fail if holding Assault V
         TURN { MOVE(playerRight, MOVE_TRICK, target: opponentLeft); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRICK, playerRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TRICK, playerRight);
     }
 }
@@ -166,7 +167,7 @@ DOUBLE_BATTLE_TEST("Instruct-called status move fails if taunted")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAUNT, opponentLeft);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, playerRight);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
@@ -190,7 +191,7 @@ DOUBLE_BATTLE_TEST("Instruct-called moves fail if disabled")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DISABLE, opponentLeft);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     } THEN {
         EXPECT_EQ(playerRight->pp[0], gMovesInfo[MOVE_TACKLE].pp - 1);
@@ -211,7 +212,7 @@ DOUBLE_BATTLE_TEST("Instruct-called moves keep their priority")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC_TERRAIN, opponentLeft);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_INSTRUCT, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, playerRight);
     }
 }
