@@ -9,7 +9,7 @@ if not os.path.exists("Makefile"):
     print("Please run this script from the root folder containing the Makefile.")
     exit(1)
 
-    primary_path = os.path.join(tileset_root, 'primary')
+primary_path = os.path.join(tileset_root, 'primary')
 secondary_path = os.path.join(tileset_root, 'secondary')
 
 if not os.path.exists(primary_path):
@@ -17,10 +17,10 @@ if not os.path.exists(primary_path):
     exit(1)
 
     if not os.path.exists(secondary_path):
-    print(f"[ERR] The secondary folder does not exist within {tileset_root}, aborting.")
+        print(f"[ERR] The secondary folder does not exist within {tileset_root}, aborting.")
     exit(1)
 
-    tileset_dirs = []
+tileset_dirs = []
 
 _, dirs, _ = next(os.walk(primary_path))
 tileset_dirs += [os.path.join(primary_path, d) for d in dirs]
@@ -96,5 +96,5 @@ if os.path.exists(config_path):
         print("[OK] Porymap has been changed to enable triple layer metatiles. If you have the program open, please close it and open it again.")
     else:
         print("[OK] Porymap already enabled triple layer metatiles.")
-        else:
+else:
     print("[WARN] Porymap's project config file could not be found to automatically enable triple layer metatiles.")
