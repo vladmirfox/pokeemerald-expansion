@@ -245,7 +245,7 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
 {
     u32 tileAddress = (OW_TRIPLE_METATILE_LAYERS) ? 4 : 0;
 
-#ifdef OW_TRIPLE_METATILE_LAYERS
+#if OW_TRIPLE_METATILE_LAYERS == TRUE
     if (metatileLayerType == UCHAR_MAX)
     {
 #else
@@ -270,7 +270,7 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5];
         gOverworldTilemapBuffer_Bg1[offset + 0x20] = tiles[6];
         gOverworldTilemapBuffer_Bg1[offset + 0x21] = tiles[7];
-#ifdef OW_TRIPLE_METATILE_LAYERS
+#if OW_TRIPLE_METATILE_LAYERS == TRUE
     }
     else
     {
@@ -290,7 +290,7 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         gOverworldTilemapBuffer_Bg2[offset + 0x20] = tiles[6];
         gOverworldTilemapBuffer_Bg2[offset + 0x21] = tiles[7];
 
-#ifndef OW_TRIPLE_METATILE_LAYERS
+#if OW_TRIPLE_METATILE_LAYERS == FALSE
         // Draw transparent tiles to the top background layer.
         gOverworldTilemapBuffer_Bg1[offset] = 0;
         gOverworldTilemapBuffer_Bg1[offset + 1] = 0;
@@ -316,7 +316,7 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5 + tileAddress];
         gOverworldTilemapBuffer_Bg1[offset + 0x20] = tiles[6 + tileAddress];
         gOverworldTilemapBuffer_Bg1[offset + 0x21] = tiles[7 + tileAddress];
-#ifndef OW_TRIPLE_METATILE_LAYERS
+#if OW_TRIPLE_METATILE_LAYERS == FALSE
         break;
 #endif
     }
