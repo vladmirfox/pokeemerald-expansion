@@ -3498,10 +3498,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 if (effect != 0)
                     gBattlescriptCurrInstr = BattleScript_PowderMoveNoEffect;
             }
-            if (gProtectStructs[gBattlerAttacker].usesBouncedMove) // Edge case for bouncing a powder move against a grass type pokemon.
-                gBattleStruct->atkCancellerTracker = CANCELLER_END;
-            else
-                gBattleStruct->atkCancellerTracker++;
+            gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_POWDER_STATUS:
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
@@ -4718,6 +4715,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && CountBattlerStatIncreases(BATTLE_PARTNER(battler), FALSE))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
                     gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
                 gBattlerTarget = BATTLE_PARTNER(battler);
@@ -4734,6 +4732,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !(gBattleStruct->transformZeroToHero[side] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
                 gBattleStruct->transformZeroToHero[side] |= gBitTable[gBattlerPartyIndexes[battler]];
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
                 effect++;
@@ -4742,7 +4741,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_HOSPITALITY:
             partner = BATTLE_PARTNER(battler);
 
-            if (!gSpecialStatuses[battler].switchInAbilityDone && IsDoubleBattle() && gBattleMons[partner].hp < gBattleMons[partner].maxHP)
+            if (!gSpecialStatuses[battler].switchInAbilityDone
+             && IsDoubleBattle()
+             && gBattleMons[partner].hp < gBattleMons[partner].maxHP
+             && IsBattlerAlive(partner))
             {
                 gBattlerTarget = partner;
                 gBattlerAttacker = battler;
@@ -4752,6 +4754,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
+
         case ABILITY_SHADOW_WEAVE:
             if(!gSpecialStatuses[battler].switchInAbilityDone && !(gStatuses4[battler] & STATUS4_SHADOW_WEAVE))
             {
@@ -4764,18 +4767,19 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_EMBODY_ASPECT_HEARTHFLAME:
         case ABILITY_EMBODY_ASPECT_WELLSPRING:
         case ABILITY_EMBODY_ASPECT_CORNERSTONE:
+
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
-                u32 stat = STAT_SPATK;
+                u32 stat;
 
-                if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_TEAL)
-                    stat = STAT_SPATK;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_HEARTHFLAME)
+                if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK)
                     stat = STAT_ATK;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_WELLSPRING)
+                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_WELLSPRING_MASK)
                     stat = STAT_SPDEF;
-                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_CORNERSTONE)
+                else if (gLastUsedAbility == ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK)
                     stat = STAT_DEF;
+                else //ABILITY_EMBODY_ASPECT_TEAL_MASK
+                    stat = STAT_SPEED;
 
                 if (CompareStat(battler, stat, MAX_STAT_STAGE, CMP_EQUAL))
                     break;

@@ -157,4 +157,3 @@ Based off RHH's pokeemerald-expansion v1.7.2 https://github.com/rh-hideout/pokee
 There are some mechanics, moves and abilities that are missing and being developed. Check [the project's milestones](https://github.com/rh-hideout/pokeemerald-expansion/milestones) to see which ones.
 
 ### Credit to all the awesome people at pokeemerald-expansion! (https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) 
-
