@@ -75,7 +75,6 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "ev_caps.h"
 
 enum {
     MENU_SUMMARY,
@@ -5743,71 +5742,9 @@ static void Task_TryLearningNextMove(u8 taskId)
     }
 }
 
-void ItemUseCB_EVItem(u8 taskId, TaskFunc task)
+static void CB2_ReturnToPartyMenuUsingRareCandy(void)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 *itemPtr = &gSpecialVar_ItemId;
-    bool8 cannotUseEffect;
-
-    // Apply the item effect using ExecuteTableBasedItemEffect, which calls PokemonUseItemEffects
-    cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);
-
-    PlaySE(SE_SELECT);
-    if (cannotUseEffect)
-    {
-        gPartyMenuUseExitCallback = FALSE;
-        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
-    }
-    else
-    {
-        gPartyMenuUseExitCallback = TRUE;
-        RemoveBagItem(gSpecialVar_ItemId, 1);
-        GetMonNickname(mon, gStringVar1);
-        PlaySE(SE_USE_ITEM);
-        gPartyMenuUseExitCallback = FALSE;
-
-        // Determine the stat name based on the item used
-        switch (GetItemEffectType(*itemPtr))
-        {
-        case ITEM_EFFECT_HP_EV:
-            StringCopy(gStringVar2, gText_HP3);
-            break;
-        case ITEM_EFFECT_ATK_EV:
-            StringCopy(gStringVar2, gText_Attack3);
-            break;
-        case ITEM_EFFECT_DEF_EV:
-            StringCopy(gStringVar2, gText_Defense3);
-            break;
-        case ITEM_EFFECT_SPEED_EV:
-            StringCopy(gStringVar2, gText_Speed2);
-            break;
-        case ITEM_EFFECT_SPATK_EV:
-            StringCopy(gStringVar2, gText_SpAtk3);
-            break;
-        case ITEM_EFFECT_SPDEF_EV:
-            StringCopy(gStringVar2, gText_SpDef3);
-            break;
-        default:
-            // Handle unexpected item effect types if necessary
-            break;
-        }
-
-        // Generate the message
-        StringExpandPlaceholders(gStringVar4, gText_PkmnBaseVar2StatIncreased);
-        DisplayPartyMenuMessage(gStringVar4, FALSE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
-    }
-}
-
-static void CB2_ReturnToPartyMenuUsingItem(void)
-{
-    if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RareCandy)
-        gItemUseCB = ItemUseCB_RareCandy;
-    else if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_EVItem)
-        gItemUseCB = ItemUseCB_EVItem;
+    gItemUseCB = ItemUseCB_RareCandy;
     SetMainCallback2(CB2_ShowPartyMenuForItemUse);
 }
 
@@ -5832,7 +5769,7 @@ static void PartyMenuTryEvolution(u8 taskId)
     {
         FreePartyPointers();
         if (ItemId_GetFieldFunc(gSpecialVar_ItemId) == ItemUseOutOfBattle_RareCandy && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
-            gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingItem;
+            gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingRareCandy;
         else
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
         BeginEvolutionScene(mon, targetSpecies, evoModeNormal, gPartyMenu.slotId);

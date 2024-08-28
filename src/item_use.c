@@ -849,12 +849,6 @@ void ItemUseOutOfBattle_RareCandy(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
-void ItemUseOutOfBattle_EVItem(u8 taskId)
-{
-    gItemUseCB = ItemUseCB_EVItem;
-    SetUpItemUseCallback(taskId);
-}
-
 void ItemUseOutOfBattle_DynamaxCandy(u8 taskId)
 {
     gItemUseCB = ItemUseCB_DynamaxCandy;
@@ -1311,8 +1305,6 @@ void ItemUseOutOfBattle_EnigmaBerry(u8 taskId)
     case ITEM_EFFECT_CURE_FREEZE_FROSTBITE:
     case ITEM_EFFECT_CURE_PARALYSIS:
     case ITEM_EFFECT_CURE_ALL_STATUS:
-        gTasks[taskId].tEnigmaBerryType = ITEM_USE_PARTY_MENU;
-        ItemUseOutOfBattle_Medicine(taskId);
     case ITEM_EFFECT_ATK_EV:
     case ITEM_EFFECT_HP_EV:
     case ITEM_EFFECT_SPATK_EV:
@@ -1320,7 +1312,7 @@ void ItemUseOutOfBattle_EnigmaBerry(u8 taskId)
     case ITEM_EFFECT_SPEED_EV:
     case ITEM_EFFECT_DEF_EV:
         gTasks[taskId].tEnigmaBerryType = ITEM_USE_PARTY_MENU;
-        ItemUseOutOfBattle_EVItem(taskId);
+        ItemUseOutOfBattle_Medicine(taskId);
         break;
     case ITEM_EFFECT_SACRED_ASH:
         gTasks[taskId].tEnigmaBerryType = ITEM_USE_PARTY_MENU;
