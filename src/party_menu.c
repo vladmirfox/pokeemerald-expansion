@@ -244,8 +244,6 @@ static EWRAM_DATA u16 sPartyMenuItemId = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
-static EWRAM_DATA u8 sInitialEVs = 0;
-static EWRAM_DATA u8 sFinalEVs = 0;
 
 // IWRAM common
 void (*gItemUseCB)(u8, TaskFunc);
@@ -5745,101 +5743,14 @@ static void Task_TryLearningNextMove(u8 taskId)
     }
 }
 
-u16 GetItemEVValue(const u8 *itemEffect)
-{
-        // Assuming the EV value is stored at index [6] in the item effect array
-    return itemEffect[6];
-}
-
 void ItemUseCB_EVItem(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    struct PartyMenuInternal *ptr = sPartyMenuInternal;
-    s16 *arrayPtr = ptr->data;
     u16 *itemPtr = &gSpecialVar_ItemId;
     bool8 cannotUseEffect;
-    sInitialEVs = GetMonEVCount(mon);
 
-    // Get the item effect array from the item info
-    const u8 *itemEffect = gItemsInfo[*itemPtr].effect;
-
-    // Calculate potential new EVs after using the item
-    u16 potentialNewEVs = sInitialEVs + GetItemEVValue(itemEffect);
-
-    // Check if current EVs are below the EV cap or if it's an HP EV item on Shedinja
-    if ((!B_EV_ITEMS_CAP || sInitialEVs < GetCurrentEVCap()) && NotUsingHPEVItemOnShedinja(mon, *itemPtr))
-    {
-        BufferMonStatsToTaskData(mon, arrayPtr);
-        if (potentialNewEVs <= GetCurrentEVCap())
-            cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);
-        else
-        {
-            u16 evCap = GetCurrentEVCap();
-            u16 evsToAdd = evCap - sInitialEVs;
-
-            switch (GetItemEffectType(*itemPtr))
-            {
-                case ITEM_EFFECT_HP_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_HP_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_HP_EV, &newEV);
-                    break;
-                }
-                case ITEM_EFFECT_ATK_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_ATK_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_ATK_EV, &newEV);
-                    break;
-                }
-                case ITEM_EFFECT_DEF_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_DEF_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_DEF_EV, &newEV);
-                    break;
-                }
-                case ITEM_EFFECT_SPEED_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_SPEED_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_SPEED_EV, &newEV);
-                    break;
-                }
-                case ITEM_EFFECT_SPATK_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_SPATK_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_SPATK_EV, &newEV);
-                    break;
-                }
-                case ITEM_EFFECT_SPDEF_EV:
-                {
-                    u16 currentEV = GetMonData(mon, MON_DATA_SPDEF_EV);
-                    u16 newEV = currentEV + evsToAdd;
-                    if (newEV > 255) newEV = 255;
-                    SetMonData(mon, MON_DATA_SPDEF_EV, &newEV);
-                    break;
-                }
-                default:
-                    // Handle unexpected item effect types if necessary
-                    break;
-            }
-
-            cannotUseEffect = FALSE;
-        }
-        BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
-    }
-    else
-    {
-        cannotUseEffect = TRUE;
-    }
+    // Apply the item effect using ExecuteTableBasedItemEffect, which calls PokemonUseItemEffects
+    cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);
 
     PlaySE(SE_SELECT);
     if (cannotUseEffect)
@@ -5851,7 +5762,6 @@ void ItemUseCB_EVItem(u8 taskId, TaskFunc task)
     }
     else
     {
-        sFinalEVs = GetMonEVCount(mon);
         gPartyMenuUseExitCallback = TRUE;
         RemoveBagItem(gSpecialVar_ItemId, 1);
         GetMonNickname(mon, gStringVar1);
@@ -5878,6 +5788,9 @@ void ItemUseCB_EVItem(u8 taskId, TaskFunc task)
             break;
         case ITEM_EFFECT_SPDEF_EV:
             StringCopy(gStringVar2, gText_SpDef3);
+            break;
+        default:
+            // Handle unexpected item effect types if necessary
             break;
         }
 

@@ -3753,6 +3753,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     s8 evChange;
     u16 evCount;
 
+    // Determine the EV cap to use
+    u32 maxAllowedEVs = !B_EV_ITEMS_CAP ? MAX_TOTAL_EVS : GetCurrentEVCap();
+
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
@@ -3881,7 +3884,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         if (evChange > 0) // Increasing EV (HP or Atk)
                         {
                             // Has EV increase limit already been reached?
-                            if (evCount >= MAX_TOTAL_EVS)
+                            if (evCount >= maxAllowedEVs)
                                 return TRUE;
 
                             if (itemEffect[10] & ITEM10_IS_VITAMIN)
@@ -3898,8 +3901,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             else
                                 temp2 = evChange;
 
-                            if (evCount + temp2 > MAX_TOTAL_EVS)
-                                temp2 += MAX_TOTAL_EVS - (evCount + temp2);
+                            if (evCount + temp2 > maxAllowedEVs)
+                                temp2 += maxAllowedEVs - (evCount + temp2);
 
                             dataSigned += temp2;
                         }
@@ -4066,7 +4069,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         if (evChange > 0) // Increasing EV
                         {
                             // Has EV increase limit already been reached?
-                            if (evCount >= MAX_TOTAL_EVS)
+                            if (evCount >= maxAllowedEVs)
                                 return TRUE;
 
                             if (itemEffect[10] & ITEM10_IS_VITAMIN)
@@ -4083,8 +4086,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             else
                                 temp2 = evChange;
 
-                            if (evCount + temp2 > MAX_TOTAL_EVS)
-                                temp2 += MAX_TOTAL_EVS - (evCount + temp2);
+                            if (evCount + temp2 > maxAllowedEVs)
+                                temp2 += maxAllowedEVs - (evCount + temp2);
 
                             dataSigned += temp2;
                         }
