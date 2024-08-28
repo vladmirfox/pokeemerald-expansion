@@ -193,6 +193,7 @@
 #define STATUS4_SALT_CURE               (1 << 4)
 #define STATUS4_SYRUP_BOMB              (1 << 5)
 #define STATUS4_GLAIVE_RUSH             (1 << 6)
+#define STATUS4_SHADOW_WEAVE            (1 << 7)
 
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_IGNORE_BIDE           (1 << 5)
@@ -508,6 +509,11 @@
 #define PARENTAL_BOND_1ST_HIT 2
 #define PARENTAL_BOND_2ND_HIT 1
 #define PARENTAL_BOND_OFF     0
+
+// Constants for Fermata
+#define FERMATA_1ST_HIT 2
+#define FERMATA_2ND_HIT 1
+#define FERMATA_OFF     0
 
 // Constants for if HandleScriptMegaPrimalBurst should handle Mega Evolution, Primal Reversion, or Ultra Burst.
 #define HANDLE_TYPE_MEGA_EVOLUTION 0
