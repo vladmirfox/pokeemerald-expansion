@@ -1089,6 +1089,13 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
+    [EFFECT_DEFEND_ORDER] =
+    {
+        .battleScript = BattleScript_EffectDefendOrder,
+        .battleTvScore = 1,
+        .encourageEncore = TRUE,
+    },
+
     [EFFECT_BULK_UP] =
     {
         .battleScript = BattleScript_EffectBulkUp,
@@ -2229,5 +2236,20 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectTidyUp,
         .battleTvScore = 0, // TODO: Assign points
         .encourageEncore = TRUE,
+    },
+    [EFFECT_SLEDGE_CLAW] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+    [EFFECT_FLAME_FEAST] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+    [EFFECT_WEB_GARROTE] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
     },
 };

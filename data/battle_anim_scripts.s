@@ -36,6 +36,7 @@ gBattleAnims_Moves::
 	.4byte Move_RAZOR_WIND
 	.4byte Move_SWORDS_DANCE
 	.4byte Move_CUT
+	.4byte Move_WEB_GARROTE
 	.4byte Move_GUST
 	.4byte Move_WING_ATTACK
 	.4byte Move_WHIRLWIND
@@ -245,6 +246,7 @@ gBattleAnims_Moves::
 	.4byte Move_MAGNITUDE
 	.4byte Move_DYNAMIC_PUNCH
 	.4byte Move_MEGAHORN
+	.4byte Move_RUTHLESS_HORNS
 	.4byte Move_DRAGON_BREATH
 	.4byte Move_BATON_PASS
 	.4byte Move_ENCORE
@@ -253,6 +255,7 @@ gBattleAnims_Moves::
 	.4byte Move_SWEET_SCENT
 	.4byte Move_IRON_TAIL
 	.4byte Move_METAL_CLAW
+	.4byte Move_SLEDGE_CLAW
 	.4byte Move_VITAL_THROW
 	.4byte Move_MORNING_SUN
 	.4byte Move_SYNTHESIS
@@ -294,6 +297,7 @@ gBattleAnims_Moves::
 	.4byte Move_TRICK
 	.4byte Move_ROLE_PLAY
 	.4byte Move_WISH
+	.4byte Move_STAR_DUSTING
 	.4byte Move_ASSIST
 	.4byte Move_INGRAIN
 	.4byte Move_SUPERPOWER
@@ -446,6 +450,7 @@ gBattleAnims_Moves::
 	.4byte Move_THUNDER_FANG
 	.4byte Move_ICE_FANG
 	.4byte Move_FIRE_FANG
+	.4byte Move_FLAME_FEAST
 	.4byte Move_SHADOW_SNEAK
 	.4byte Move_MUD_BOMB
 	.4byte Move_PSYCHO_CUT
@@ -3033,6 +3038,35 @@ Move_ICE_FANG:
 	end
 
 Move_FIRE_FANG:
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB_RED
+	createsprite gFireSpiralInwardSpriteTemplate, ANIM_TARGET, 1, 0
+	createsprite gFireSpiralInwardSpriteTemplate, ANIM_TARGET, 1, 64
+	createsprite gFireSpiralInwardSpriteTemplate, ANIM_TARGET, 1, 128
+	createsprite gFireSpiralInwardSpriteTemplate, ANIM_TARGET, 1, 196
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	delay 10
+	waitforvisualfinish
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 1, 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
+	call FireSpreadEffect
+	delay 4
+	playsewithpan SE_M_FIRE_PUNCH, SOUND_PAN_TARGET
+	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 0, 9, 0, RGB_RED
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	delay 1
+	end
+
+Move_FLAME_FEAST:
 	loadspritegfx ANIM_TAG_SMALL_EMBER
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
@@ -18681,6 +18715,20 @@ Move_CUT:
 	waitforvisualfinish
 	end
 
+Move_WEB_GARROTE:
+	loadspritegfx ANIM_TAG_CUT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_CUT, SOUND_PAN_TARGET
+	createsprite gCuttingSliceSpriteTemplate, ANIM_ATTACKER, 2, 40, -32, 0
+	delay 5
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 10, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	waitforvisualfinish
+	end
+
 Move_HIDDEN_POWER:
 	loadspritegfx ANIM_TAG_RED_ORB
 	playsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER
@@ -23604,6 +23652,17 @@ MegahornInContest:
 	createvisualtask AnimTask_StartSlidingBg, 5, 2304, 768, 0, -1
 	goto MegahornContinue
 
+Move_RUTHLESS_HORNS:
+	loadspritegfx ANIM_TAG_HORN_HIT_2
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_DEF_PARTNER
+	playsewithpan SE_M_DRAGON_RAGE, SOUND_PAN_ATTACKER
+	jumpifcontest MegahornInContest
+	fadetobg BG_DRILL
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 5, -2304, 768, 1, -1
+	goto MegahornContinue
+
 Move_GUST:
 	loadspritegfx ANIM_TAG_GUST
 	loadspritegfx ANIM_TAG_IMPACT
@@ -24768,6 +24827,27 @@ Move_METAL_CLAW:
 	waitforvisualfinish
 	end
 
+Move_SLEDGE_CLAW:
+	loadspritegfx ANIM_TAG_CLAW_SLASH
+	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 28, 2
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, RGB_BLACK
+	waitforvisualfinish
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	delay 2
+	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, -10, 0
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, 10, 0
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	delay 8
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	delay 2
+	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, -10, 1
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	waitforvisualfinish
+	end
+
 Move_NIGHT_SHADE:
 	monbg ANIM_ATTACKER
 	splitbgprio ANIM_ATTACKER
@@ -25612,6 +25692,22 @@ Move_TRICK:
 	end
 
 Move_WISH:
+	loadspritegfx ANIM_TAG_GOLD_STARS
+	loadspritegfx ANIM_TAG_SPARKLE_2
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 3, 0, 10, RGB_BLACK
+	waitforvisualfinish
+	panse_adjustall SE_M_REFLECT, SOUND_PAN_TARGET, SOUND_PAN_ATTACKER, -3, 0
+	createsprite gWishStarSpriteTemplate, ANIM_ATTACKER, 40
+	waitforvisualfinish
+	delay 60
+	loopsewithpan SE_M_HEAL_BELL, SOUND_PAN_ATTACKER, 16, 3
+	call GrantingStarsEffect
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 3, 10, 0, RGB_BLACK
+	waitforvisualfinish
+	end
+
+Move_STAR_DUSTING:
 	loadspritegfx ANIM_TAG_GOLD_STARS
 	loadspritegfx ANIM_TAG_SPARKLE_2
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 3, 0, 10, RGB_BLACK
