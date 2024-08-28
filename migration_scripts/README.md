@@ -17,6 +17,21 @@ python3 migration_scripts/*.py ; #run the migration script
 
 `*` will need to be replaced with the name of the appropriate script.
 
+## 1.9.x to 1.10.x+
+
+### Triple Metatile Layers
+
+* Filepath [`migration_scripts/1.10/triple_layer_converter.py`](1.10/triple_layer_converter.py)
+* Introduced in stairWarps [google.com](google.com)
+
+Triple metatile layers requires 4 additional tilemap entries for each metatile. The normal tileset data does not contain that data and without this, your game will just look corrupted. This is only neccesary to run if you have added new tilesets and were not previous using triple metatile layers.
+
+#### Porymap
+
+If you are using Porymap, after running the migration script, you will need to enable [Triple Layer Metatiles](https://huderlem.github.io/porymap/manual/settings-and-options.html?highlight=triple#tilesets).
+
+If you are using an older version of porymap (<= 5.1.1) you must instead manually set `enable_triple_layer_metatiles` to 1 in the `porymap.project.cfg` file located in your pokeemerald directory.
+ 
 ## 1.8.x to 1.9.x+
 
 ### Battle Anim Moves
