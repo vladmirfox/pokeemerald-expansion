@@ -24,14 +24,8 @@ python3 migration_scripts/*.py ; #run the migration script
 * Filepath [`migration_scripts/1.10/triple_layer_converter.py`](1.10/triple_layer_converter.py)
 * Introduced in https://github.com/rh-hideout/pokeemerald-expansion/pull/5282
 
-Triple metatile layers requires 4 additional tilemap entries for each metatile. The normal tileset data does not contain that data and without this, your game will just look corrupted. This is only neccesary to run if you have added new tilesets and were not previous using triple metatile layers.
+When `OW_TRIPLE_METATILE_LAYERS` is enabled, developers have full control over all the BG layers in the overworld, as opposed to the default 2. If `OW_TRIPLE_METATILE_LAYERS` is `TRUE`, this script needs to be run.
 
-#### Porymap
-
-If you are using Porymap, after running the migration script, you will need to enable [Triple Layer Metatiles](https://huderlem.github.io/porymap/manual/settings-and-options.html?highlight=triple#tilesets).
-
-If you are using an older version of porymap (<= 5.1.1) you must instead manually set `enable_triple_layer_metatiles` to 1 in the `porymap.project.cfg` file located in your pokeemerald directory.
- 
 ## 1.8.x to 1.9.x+
 
 ### Battle Anim Moves
