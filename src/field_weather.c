@@ -45,7 +45,7 @@ struct WeatherCallbacks
 
 // This file's functions.
 static bool8 LightenSpritePaletteInFog(u8);
-static void BuildColorMaps(void);
+static void UNUSED BuildColorMaps(void);
 static void UpdateWeatherColorMap(void);
 static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex);
 static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex, u8 blendCoeff, u32 blendColor);
@@ -67,7 +67,6 @@ EWRAM_DATA static u8 ALIGNED(2) sFieldEffectPaletteColorMapTypes[32] = {0};
 
 static const u8 *sPaletteColorMapTypes;
 
-#if OW_ARRAY_FOR_COLOR_MAPS == TRUE
 static const u8 sDarkenedContrastColorMaps[NUM_WEATHER_COLOR_MAPS][32] =
 {
     {0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29},
@@ -113,7 +112,6 @@ static const u8 sContrastColorMaps[NUM_WEATHER_COLOR_MAPS][32] =
     {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31},
     {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31}
 };
-#endif
 
 // The drought weather effect uses a precalculated color lookup table. Presumably this
 // is because the underlying color shift calculation is slow.
@@ -208,10 +206,7 @@ void StartWeather(void)
         u8 index = AllocSpritePalette(PALTAG_WEATHER);
         CpuCopy32(gFogPalette, &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
 
-        if (OW_ARRAY_FOR_COLOR_MAPS)
-            sPaletteColorMapTypes = sBasePaletteColorMapTypes;
-        else
-            BuildColorMaps();
+        sPaletteColorMapTypes = sBasePaletteColorMapTypes;
 
         gWeatherPtr->contrastColorMapSpritePalIndex = index;
         gWeatherPtr->weatherPicSpritePalIndex = AllocSpritePalette(PALTAG_WEATHER_2);
@@ -325,7 +320,7 @@ static u8 None_Finish(void)
 // effects like lightning are created.
 // It's unclear why the two tables aren't declared as const arrays, since
 // this function always builds the same two tables.
-static void BuildColorMaps(void)
+static void UNUSED BuildColorMaps(void)
 {
     u32 i;
     u8 (*colorMaps)[32];
@@ -517,11 +512,7 @@ static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex)
 {
     u16 curPalIndex;
     u16 palOffset;
-#if OW_ARRAY_FOR_COLOR_MAPS == TRUE
     const u8* colorMap;
-#else
-    u8 *colorMap;
-#endif
     u32 i;
 
     if (colorMapIndex > 0)
@@ -545,19 +536,9 @@ static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex)
                 u8 r, g, b;
 
                 if (sPaletteColorMapTypes[curPalIndex] == COLOR_MAP_CONTRAST || curPalIndex - 16 == gWeatherPtr->contrastColorMapSpritePalIndex)
-                {
-                    if (OW_ARRAY_FOR_COLOR_MAPS)
-                        colorMap = sContrastColorMaps[colorMapIndex];
-                    else
-                        colorMap = gWeatherPtr->contrastColorMaps[colorMapIndex];
-                }
+                    colorMap = sContrastColorMaps[colorMapIndex];
                 else
-                {
-                    if (OW_ARRAY_FOR_COLOR_MAPS)
-                        colorMap = sDarkenedContrastColorMaps[colorMapIndex];
-                    else
-                        colorMap = gWeatherPtr->darkenedContrastColorMaps[colorMapIndex];
-                }
+                    colorMap = sDarkenedContrastColorMaps[colorMapIndex];
 
                 for (i = 0; i < 16; i++)
                 {
@@ -633,26 +614,12 @@ static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMap
         }
         else
         {
-#if OW_ARRAY_FOR_COLOR_MAPS == TRUE
             const u8* colorMap;
-#else
-            u8 *colorMap;
-#endif
 
             if (sPaletteColorMapTypes[curPalIndex] == COLOR_MAP_DARK_CONTRAST)
-            {
-                if (OW_ARRAY_FOR_COLOR_MAPS)
-                    colorMap = sDarkenedContrastColorMaps[colorMapIndex];
-                else
-                    colorMap = gWeatherPtr->darkenedContrastColorMaps[colorMapIndex];
-            }
+                colorMap = sDarkenedContrastColorMaps[colorMapIndex];
             else
-            {
-                if (OW_ARRAY_FOR_COLOR_MAPS)
-                    colorMap = sContrastColorMaps[colorMapIndex];
-                else
-                    colorMap = gWeatherPtr->contrastColorMaps[colorMapIndex];
-            }
+                colorMap = sContrastColorMaps[colorMapIndex];
 
             for (i = 0; i < 16; i++)
             {
