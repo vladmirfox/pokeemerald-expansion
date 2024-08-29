@@ -22,7 +22,7 @@ python3 migration_scripts/*.py ; #run the migration script
 ### Triple Metatile Layers
 
 * Filepath [`migration_scripts/1.10/triple_layer_converter.py`](1.10/triple_layer_converter.py)
-* Introduced in stairWarps [google.com](google.com)
+* Introduced in https://github.com/rh-hideout/pokeemerald-expansion/pull/5282
 
 Triple metatile layers requires 4 additional tilemap entries for each metatile. The normal tileset data does not contain that data and without this, your game will just look corrupted. This is only neccesary to run if you have added new tilesets and were not previous using triple metatile layers.
 
