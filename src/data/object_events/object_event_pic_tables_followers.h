@@ -1426,12 +1426,12 @@ static const struct SpriteFrameImage sPicTable_Quagsire[] = {
     overworld_ascending_frames(gObjectEventPic_Quagsire, 4, 4),
 };
 #if P_PALDEAN_FORMS
-/*static const struct SpriteFrameImage sPicTable_WooperPaldean[] = {
+static const struct SpriteFrameImage sPicTable_WooperPaldean[] = {
     overworld_ascending_frames(gObjectEventPic_WooperPaldean, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_Clodsire[] = {
     overworld_ascending_frames(gObjectEventPic_Clodsire, 4, 4),
-};*/
+};
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_WOOPER
 
@@ -4465,9 +4465,9 @@ static const struct SpriteFrameImage sPicTable_Noivern[] = {
 static const struct SpriteFrameImage sPicTable_XerneasNeutral[] = {
     overworld_ascending_frames(gObjectEventPic_XerneasNeutral, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_XerneasActive[] = {
+static const struct SpriteFrameImage sPicTable_XerneasActive[] = {
     overworld_ascending_frames(gObjectEventPic_XerneasActive, 4, 4),
-};*/
+};
 #endif //P_FAMILY_XERNEAS
 
 #if P_FAMILY_YVELTAL
