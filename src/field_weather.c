@@ -46,7 +46,6 @@ struct WeatherCallbacks
 // This file's functions.
 static bool8 LightenSpritePaletteInFog(u8);
 static void BuildColorMaps(void);
-static void LoadArrayColorMaps(void);
 static void UpdateWeatherColorMap(void);
 static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex);
 static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex, u8 blendCoeff, u32 blendColor);
@@ -210,7 +209,7 @@ void StartWeather(void)
         CpuCopy32(gFogPalette, &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
 
         if (OW_ARRAY_FOR_COLOR_MAPS)
-            LoadArrayColorMaps();
+            sPaletteColorMapTypes = sBasePaletteColorMapTypes;
         else
             BuildColorMaps();
 
@@ -326,16 +325,6 @@ static u8 None_Finish(void)
 // effects like lightning are created.
 // It's unclear why the two tables aren't declared as const arrays, since
 // this function always builds the same two tables.
-static void LoadArrayColorMaps(void)
-{
-    u32 paletteIndex;
-
-    for (paletteIndex = 0; paletteIndex < NUM_PALS_TOTAL; paletteIndex++)
-        sBasePaletteColorMapTypes[paletteIndex] = COLOR_MAP_DARK_CONTRAST;
-
-    sPaletteColorMapTypes = sBasePaletteColorMapTypes;
-}
-
 static void BuildColorMaps(void)
 {
     u32 i;
