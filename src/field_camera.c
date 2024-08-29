@@ -256,20 +256,20 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         // Draw metatile's bottom layer to the bottom background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, also a door metatile shall be drawn, we use covered behavior.
         gOverworldTilemapBuffer_Bg3[offset] = tiles[0];
         gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg3[offset + 0x20] = tiles[2];
-        gOverworldTilemapBuffer_Bg3[offset + 0x21] = tiles[3];
+        gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[2];
+        gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[3];
 
         // Draw transparent tiles to the middle background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this is the top background layer.
         gOverworldTilemapBuffer_Bg2[offset] = 0;
         gOverworldTilemapBuffer_Bg2[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 0x20] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 0x21] = 0;
+        gOverworldTilemapBuffer_Bg2[offset + 32] = 0;
+        gOverworldTilemapBuffer_Bg2[offset + 33] = 0;
 
         // Draw metatile's top layer to the top background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this is the middle background layer.
         gOverworldTilemapBuffer_Bg1[offset] = tiles[4];
         gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5];
-        gOverworldTilemapBuffer_Bg1[offset + 0x20] = tiles[6];
-        gOverworldTilemapBuffer_Bg1[offset + 0x21] = tiles[7];
+        gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[6];
+        gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[7];
 #if OW_TRIPLE_METATILE_LAYERS == TRUE
     }
     else
@@ -281,41 +281,41 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         // Draw metatile's bottom layer to the bottom background layer.
         gOverworldTilemapBuffer_Bg3[offset] = tiles[0];
         gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg3[offset + 0x20] = tiles[2];
-        gOverworldTilemapBuffer_Bg3[offset + 0x21] = tiles[3];
+        gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[2];
+        gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[3];
 
         // Draw metatile's top layer to the middle background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this draws the top layer to the middle background layer.
         gOverworldTilemapBuffer_Bg2[offset] = tiles[4];
         gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[5];
-        gOverworldTilemapBuffer_Bg2[offset + 0x20] = tiles[6];
-        gOverworldTilemapBuffer_Bg2[offset + 0x21] = tiles[7];
+        gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[6];
+        gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[7];
 
 #if OW_TRIPLE_METATILE_LAYERS == FALSE
         // Draw transparent tiles to the top background layer.
         gOverworldTilemapBuffer_Bg1[offset] = 0;
         gOverworldTilemapBuffer_Bg1[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 0x20] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 0x21] = 0;
+        gOverworldTilemapBuffer_Bg1[offset + 32] = 0;
+        gOverworldTilemapBuffer_Bg1[offset + 33] = 0;
         break;
     case METATILE_LAYER_TYPE_NORMAL:
         // Draw garbage to the bottom background layer.
         gOverworldTilemapBuffer_Bg3[offset] = 0x3014;
         gOverworldTilemapBuffer_Bg3[offset + 1] = 0x3014;
-        gOverworldTilemapBuffer_Bg3[offset + 0x20] = 0x3014;
-        gOverworldTilemapBuffer_Bg3[offset + 0x21] = 0x3014;
+        gOverworldTilemapBuffer_Bg3[offset + 32] = 0x3014;
+        gOverworldTilemapBuffer_Bg3[offset + 33] = 0x3014;
 
         // Draw metatile's bottom layer to the middle background layer.
         gOverworldTilemapBuffer_Bg2[offset] = tiles[0];
         gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg2[offset + 0x20] = tiles[2];
-        gOverworldTilemapBuffer_Bg2[offset + 0x21] = tiles[3];
+        gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[2];
+        gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[3];
 #endif
 
         // Draw metatile's top layer to the top background layer, which covers object event sprites.
         gOverworldTilemapBuffer_Bg1[offset] = tiles[4 + tileAddress];
         gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5 + tileAddress];
-        gOverworldTilemapBuffer_Bg1[offset + 0x20] = tiles[6 + tileAddress];
-        gOverworldTilemapBuffer_Bg1[offset + 0x21] = tiles[7 + tileAddress];
+        gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[6 + tileAddress];
+        gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[7 + tileAddress];
 #if OW_TRIPLE_METATILE_LAYERS == FALSE
         break;
 #endif
