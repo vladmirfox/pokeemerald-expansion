@@ -6,9 +6,9 @@ rse_script_path = 'migration_scripts/1.10/rse_triple_layer_converter.py'
 frlg_script_path = 'migration_scripts/1.10/frlg_triple_layer_converter.py'
 
 # Ask the user to select a mode
-print("Select the mode:")
-print("1. RSE Mode")
-print("2. FRLG Mode")
+print("What style metatiles is your project using?")
+print("1. Emerald (if you are unsure, select this one.")
+print("2. FRLG")
 mode = input("Enter your choice (1 or 2): ")
 
 # Determine the script to run based on the user's choice
