@@ -10610,9 +10610,9 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "May cause flinching or\n"
         #if B_USE_FROSTBITE == TRUE
-            "leave the foe frozen."),
-        #else
             "leave the foe with frostbite."),
+        #else
+            "leave the foe frozen."),
         #endif
         .effect = EFFECT_HIT,
         .power = 65,
@@ -17493,7 +17493,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = COMPOUND_STRING("Decorate"),
         .description = COMPOUND_STRING(
             "The user sharply raises\n"
-            "the target's Atk and Sp.Atk"),
+            "the target's Atk and Sp.Atk."),
         .effect = EFFECT_DECORATE,
         .power = 0,
         .type = TYPE_FAIRY,
@@ -19768,7 +19768,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = HANDLE_EXPANDED_MOVE_NAME("ColisinCours", "Collision Course"),
         .description = COMPOUND_STRING(
             "Prehistoric explosion that's\n"
-            "stronger if supereffective."),
+            "stronger if super effective."),
         .effect = EFFECT_COLLISION_COURSE,
         .power = 100,
         .type = TYPE_FIGHTING,
@@ -19787,7 +19787,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .name = HANDLE_EXPANDED_MOVE_NAME("ElectroDrift", "Electro Drift"),
         .description = COMPOUND_STRING(
             "Futuristic electricity. It's\n"
-            "stronger if supereffective."),
+            "stronger if super effective."),
         .effect = EFFECT_COLLISION_COURSE,
         .power = 100,
         .type = TYPE_ELECTRIC,
@@ -20451,8 +20451,8 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Fickle Beam"),
         .description = COMPOUND_STRING(
-            "Shoots a beam of light. Sometimes\n"
-            "twice as strong."),
+            "Shoots a beam of light.\n"
+            "Sometimes twice as strong."),
         .effect = EFFECT_FICKLE_BEAM,
         .power = 80,
         .type = TYPE_DRAGON,
