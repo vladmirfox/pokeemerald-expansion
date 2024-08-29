@@ -299,10 +299,10 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         break;
     case METATILE_LAYER_TYPE_NORMAL:
         // Draw garbage to the bottom background layer.
-        gOverworldTilemapBuffer_Bg3[offset] = 0x3014;
-        gOverworldTilemapBuffer_Bg3[offset + 1] = 0x3014;
-        gOverworldTilemapBuffer_Bg3[offset + 32] = 0x3014;
-        gOverworldTilemapBuffer_Bg3[offset + 33] = 0x3014;
+        gOverworldTilemapBuffer_Bg3[offset] = 12308;
+        gOverworldTilemapBuffer_Bg3[offset + 1] = 12308;
+        gOverworldTilemapBuffer_Bg3[offset + 32] = 12308;
+        gOverworldTilemapBuffer_Bg3[offset + 33] = 12308;
 
         // Draw metatile's bottom layer to the middle background layer.
         gOverworldTilemapBuffer_Bg2[offset] = tiles[0];
