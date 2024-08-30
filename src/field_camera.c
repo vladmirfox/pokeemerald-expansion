@@ -31,9 +31,6 @@ static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *, s32, s32);
 static void DrawWholeMapViewInternal(int, int, const struct MapLayout *);
 static void DrawMetatileAt(const struct MapLayout *, u16, int, int);
 static void DrawMetatile(s32, const u16 *, u16);
-static void DrawMetatileLayer3(const u16 *, u16, u32);
-static void DrawMetatileLayer2(const u16 *, u16, u32);
-static void DrawMetatileLayer1(const u16 *, u16, u32);
 static void DrawTripleMetatileLayers(s32, const u16 *, u16);
 static void DrawDualMetatileLayers(s32, const u16 *, u16);
 static void CameraPanningCB_PanAhead(void);
@@ -273,46 +270,34 @@ static void DrawMetatileAt(const struct MapLayout *mapLayout, u16 offset, int x,
     DrawMetatile(MapGridGetMetatileLayerTypeAt(x, y), metatiles + metatileId * NUM_TILES_PER_METATILE, offset);
 }
 
-static void DrawMetatileLayer3(const u16 *tiles, u16 offset, u32 tileIndex)
+static void DrawMetatileLayer(u16 *buffer, const u16 *tiles, u16 offset, u32 tileIndex)
 {
     u32 offsetIndex = 0;
 
     for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
-        gOverworldTilemapBuffer_Bg3[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
-    return;
-}
-
-static void DrawMetatileLayer2(const u16 *tiles, u16 offset, u32 tileIndex)
-{
-    u32 offsetIndex = 0;
-
-    for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
-        gOverworldTilemapBuffer_Bg2[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
-    return;
-}
-
-static void DrawMetatileLayer1(const u16 *tiles, u16 offset, u32 tileIndex)
-{
-    u32 offsetIndex = 0;
-
-    for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
-        gOverworldTilemapBuffer_Bg1[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
-    return;
+        buffer[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
 }
 
 static void DrawTripleMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 offset)
 {
     if (metatileLayerType == UCHAR_MAX)
     {
-        DrawMetatileLayer3(tiles,offset,0);
-        DrawMetatileLayer2(tilesTransperant,offset,0);
-        DrawMetatileLayer1(tiles,offset,4);
+        // A door metatile shall be drawn, we use covered behavior
+        // Draw metatile's bottom layer to the bottom background layer.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tiles,offset,0);
+        // Draw transparent tiles to the top background layer.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tilesTransperant,offset,0);
+        // Draw metatile's top layer to the middle background layer.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,4);
     }
     else
     {
-        DrawMetatileLayer3(tiles,offset,0);
-        DrawMetatileLayer2(tiles,offset,4);
-        DrawMetatileLayer1(tiles,offset,8);
+        // Draw metatile's bottom layer to the bottom background layer.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tiles,offset,0);
+        // Draw metatile's middle layer to the middle background layer.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tiles,offset,4);
+        // Draw metatile's top layer to the top background layer, which covers object event sprites.
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,8);
     }
 }
 
@@ -321,20 +306,29 @@ static void DrawDualMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 
     switch (metatileLayerType)
     {
         case METATILE_LAYER_TYPE_SPLIT:
-            DrawMetatileLayer3(tiles,offset,0);
-            DrawMetatileLayer2(tilesTransperant,offset,0);
-            DrawMetatileLayer1(tiles,offset,4);
+        // Draw metatile's bottom layer to the bottom background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tiles,offset,0);
+        // Draw transparent tiles to the middle background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tilesTransperant,offset,0);
+        // Draw metatile's top layer to the top background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,4);
             break;
         case METATILE_LAYER_TYPE_COVERED:
-            DrawMetatileLayer3(tiles,offset,0);
-            DrawMetatileLayer2(tiles,offset,4);
-            DrawMetatileLayer1(tilesTransperant,offset,0);
+        // Draw metatile's bottom layer to the bottom background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tiles,offset,0);
+        // Draw metatile's top layer to the middle background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tiles,offset,4);
+        // Draw transparent tiles to the top background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tilesTransperant,offset,0);
             break;
         default:
         case METATILE_LAYER_TYPE_NORMAL:
-            DrawMetatileLayer3(tilesGarbage,offset,0);
-            DrawMetatileLayer2(tiles,offset,0);
-            DrawMetatileLayer1(tiles,offset,4);
+        // Draw garbage to the bottom background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tilesGarbage,offset,0);
+        // Draw metatile's bottom layer to the middle background layer.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tiles,offset,0);
+        // Draw metatile's top layer to the top background layer, which covers object event sprites.
+            DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,4);
             break;
     }
 }
