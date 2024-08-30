@@ -38,23 +38,25 @@ for tileset_dir in tileset_dirs:
     if not os.path.exists(metatile_attributes_path):
         print(f"[SKIP] {tileset_name} skipped because metatile_attributes.bin was not found.")
         continue
-    if os.path.getsize(metatiles_path) != 4 * os.path.getsize(metatile_attributes_path):
+    if os.path.getsize(metatiles_path) != 4*os.path.getsize(metatile_attributes_path):
         print(f"[SKIP] {tileset_name} skipped because metatiles.bin is not four times the size of metatile_attributes.bin (already converted?)")
         continue
 
     layer_types = []
     meta_attributes = []
     with open(metatile_attributes_path, 'rb') as fileobj:
-        while (chunk := fileobj.read(2)):
-            metatile_attribute = struct.unpack('<H', chunk)[0]
-            meta_attributes.append(metatile_attribute & 0x9FFFFFFF)
-            layer_types.append((metatile_attribute & layer_type_mask) >> layer_type_shift)
+        for chunk in iter(lambda: fileobj.read(4), ''):
+            if chunk == b'':
+                break
+            metatile_attribute = struct.unpack('<I', chunk)[0]
 
     i = 0
     new_metatile_data = []
 
     with open(metatiles_path, 'rb') as fileobj:
-        while (chunk := fileobj.read(16)):
+        for chunk in iter(lambda: fileobj.read(16), ''):
+            if chunk == b'':
+                break
             metatile_data = struct.unpack('<HHHHHHHH', chunk)
             if layer_types[i] == 0:
                 new_metatile_data += [0]*4
@@ -71,7 +73,7 @@ for tileset_dir in tileset_dirs:
             i += 1
 
     metatile_buffer = struct.pack(f'<{len(new_metatile_data)}H', *new_metatile_data)
-    metatile_attribute_buffer = struct.pack(f'<{len(meta_attributes)}H', *meta_attributes)
+    metatile_attribute_buffer = struct.pack(f'<{len(meta_attributes)}I', *meta_attributes)
     with open(metatiles_path, 'wb') as fileobj:
         fileobj.write(metatile_buffer)
     with open(metatile_attributes_path, 'wb') as fileobj:
