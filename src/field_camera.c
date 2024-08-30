@@ -31,6 +31,11 @@ static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *, s32, s32);
 static void DrawWholeMapViewInternal(int, int, const struct MapLayout *);
 static void DrawMetatileAt(const struct MapLayout *, u16, int, int);
 static void DrawMetatile(s32, const u16 *, u16);
+static void DrawMetatileLayer3(const u16 *, u16, u32);
+static void DrawMetatileLayer2(const u16 *, u16, u32);
+static void DrawMetatileLayer1(const u16 *, u16, u32);
+static void DrawTripleMetatileLayers(s32, const u16 *, u16);
+static void DrawDualMetatileLayers(s32, const u16 *, u16);
 static void CameraPanningCB_PanAhead(void);
 
 static struct FieldCameraOffset sFieldCameraOffset;
@@ -42,6 +47,33 @@ static void (*sFieldCameraPanningCallback)(void);
 struct CameraObject gFieldCamera;
 u16 gTotalCameraPixelOffsetY;
 u16 gTotalCameraPixelOffsetX;
+
+#define TILE_TRANSPERANT 0
+#define TILE_GARBAGE     12308
+
+const u16 tilesTransperant[] =
+{
+    TILE_TRANSPERANT,
+    TILE_TRANSPERANT,
+    TILE_TRANSPERANT,
+    TILE_TRANSPERANT
+};
+
+const u16 tilesGarbage[] =
+{
+    TILE_GARBAGE,
+    TILE_GARBAGE,
+    TILE_GARBAGE,
+    TILE_GARBAGE
+};
+
+const u32 offsetArray[] =
+{
+    0,
+    1,
+    32,
+    33
+};
 
 static void ResetCameraOffset(struct FieldCameraOffset *cameraOffset)
 {
@@ -241,91 +273,30 @@ static void DrawMetatileAt(const struct MapLayout *mapLayout, u16 offset, int x,
     DrawMetatile(MapGridGetMetatileLayerTypeAt(x, y), metatiles + metatileId * NUM_TILES_PER_METATILE, offset);
 }
 
-enum
+static void DrawMetatileLayer3(const u16 *tiles, u16 offset, u32 tileIndex)
 {
-    MODE_TILE_TRANSPERANT,
-    MODE_TILE_GARBAGE,
-    MODE_TILE_NORMAL,
-};
+    u32 offsetIndex = 0;
 
-static void DrawMetatileLayer3(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
-{
-    if (tileMode == MODE_TILE_GARBAGE)
-    {
-        gOverworldTilemapBuffer_Bg3[offset] = 12308;
-        gOverworldTilemapBuffer_Bg3[offset + 1] = 12308;
-        gOverworldTilemapBuffer_Bg3[offset + 32] = 12308;
-        gOverworldTilemapBuffer_Bg3[offset + 33] = 12308;
-        return;
-    }
-
-    if (tileMode == MODE_TILE_TRANSPERANT)
-    {
-        gOverworldTilemapBuffer_Bg3[offset] = 0;
-        gOverworldTilemapBuffer_Bg3[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg3[offset + 32] = 0;
-        gOverworldTilemapBuffer_Bg3[offset + 33] = 0;
-        return;
-    }
-
-    gOverworldTilemapBuffer_Bg3[offset] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[tileIndex];
+    for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
+        gOverworldTilemapBuffer_Bg3[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
     return;
 }
 
-static void DrawMetatileLayer2(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
+static void DrawMetatileLayer2(const u16 *tiles, u16 offset, u32 tileIndex)
 {
-    if (tileMode == MODE_TILE_GARBAGE)
-    {
-        gOverworldTilemapBuffer_Bg2[offset] = 12308;
-        gOverworldTilemapBuffer_Bg2[offset + 1] = 12308;
-        gOverworldTilemapBuffer_Bg2[offset + 32] = 12308;
-        gOverworldTilemapBuffer_Bg2[offset + 33] = 12308;
-        return;
-    }
+    u32 offsetIndex = 0;
 
-    if (tileMode == MODE_TILE_TRANSPERANT)
-    {
-        gOverworldTilemapBuffer_Bg2[offset] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 32] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 33] = 0;
-        return;
-    }
-
-    gOverworldTilemapBuffer_Bg2[offset] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[tileIndex];
+    for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
+        gOverworldTilemapBuffer_Bg2[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
     return;
 }
 
-static void DrawMetatileLayer1(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
+static void DrawMetatileLayer1(const u16 *tiles, u16 offset, u32 tileIndex)
 {
-    if (tileMode == MODE_TILE_GARBAGE)
-    {
-        gOverworldTilemapBuffer_Bg1[offset] = 12308;
-        gOverworldTilemapBuffer_Bg1[offset + 1] = 12308;
-        gOverworldTilemapBuffer_Bg1[offset + 32] = 12308;
-        gOverworldTilemapBuffer_Bg1[offset + 33] = 12308;
-        return;
-    }
+    u32 offsetIndex = 0;
 
-    if (tileMode == MODE_TILE_TRANSPERANT)
-    {
-        gOverworldTilemapBuffer_Bg1[offset] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 32] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 33] = 0;
-        return;
-    }
-
-    gOverworldTilemapBuffer_Bg1[offset] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[tileIndex++];
-    gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[tileIndex];
+    for (offsetIndex = 0; offsetIndex < 4; offsetIndex++)
+        gOverworldTilemapBuffer_Bg1[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
     return;
 }
 
@@ -333,15 +304,15 @@ static void DrawTripleMetatileLayers(s32 metatileLayerType, const u16 *tiles, u1
 {
     if (metatileLayerType == UCHAR_MAX)
     {
-        DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
-        DrawMetatileLayer2(tiles,offset,MODE_TILE_TRANSPERANT,0);
-        DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+        DrawMetatileLayer3(tiles,offset,0);
+        DrawMetatileLayer2(tilesTransperant,offset,0);
+        DrawMetatileLayer1(tiles,offset,4);
     }
     else
     {
-        DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
-        DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,4);
-        DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,8);
+        DrawMetatileLayer3(tiles,offset,0);
+        DrawMetatileLayer2(tiles,offset,4);
+        DrawMetatileLayer1(tiles,offset,8);
     }
 }
 
@@ -350,20 +321,20 @@ static void DrawDualMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 
     switch (metatileLayerType)
     {
         case METATILE_LAYER_TYPE_SPLIT:
-            DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
-            DrawMetatileLayer2(tiles,offset,MODE_TILE_TRANSPERANT,0);
-            DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+            DrawMetatileLayer3(tiles,offset,0);
+            DrawMetatileLayer2(tilesTransperant,offset,0);
+            DrawMetatileLayer1(tiles,offset,4);
             break;
         case METATILE_LAYER_TYPE_COVERED:
-            DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
-            DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,4);
-            DrawMetatileLayer1(tiles,offset,MODE_TILE_TRANSPERANT,0);
+            DrawMetatileLayer3(tiles,offset,0);
+            DrawMetatileLayer2(tiles,offset,4);
+            DrawMetatileLayer1(tilesTransperant,offset,0);
             break;
         default:
         case METATILE_LAYER_TYPE_NORMAL:
-            DrawMetatileLayer3(tiles,offset,MODE_TILE_GARBAGE,0);
-            DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,0);
-            DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+            DrawMetatileLayer3(tilesGarbage,offset,0);
+            DrawMetatileLayer2(tiles,offset,0);
+            DrawMetatileLayer1(tiles,offset,4);
             break;
     }
 }
