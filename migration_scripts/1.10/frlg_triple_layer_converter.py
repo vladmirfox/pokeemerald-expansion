@@ -49,6 +49,8 @@ for tileset_dir in tileset_dirs:
             if chunk == b'':
                 break
             metatile_attribute = struct.unpack('<I', chunk)[0]
+            meta_attributes.append(metatile_attribute & 0x9FFFFFFF)
+            layer_types.append((metatile_attribute & layer_type_mask) >> layer_type_shift)
 
     i = 0
     new_metatile_data = []
