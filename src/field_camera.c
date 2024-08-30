@@ -241,85 +241,140 @@ static void DrawMetatileAt(const struct MapLayout *mapLayout, u16 offset, int x,
     DrawMetatile(MapGridGetMetatileLayerTypeAt(x, y), metatiles + metatileId * NUM_TILES_PER_METATILE, offset);
 }
 
-static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
+enum
 {
-    u32 tileAddress = (OW_TRIPLE_METATILE_LAYERS) ? 4 : 0;
+    MODE_TILE_TRANSPERANT,
+    MODE_TILE_GARBAGE,
+    MODE_TILE_NORMAL,
+};
 
-#if OW_TRIPLE_METATILE_LAYERS == TRUE
-    if (metatileLayerType == UCHAR_MAX)
+static void DrawMetatileLayer3(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
+{
+    if (tileMode == MODE_TILE_GARBAGE)
     {
-#else
-    switch (metatileLayerType)
-    {
-    case METATILE_LAYER_TYPE_SPLIT:
-#endif
-        // Draw metatile's bottom layer to the bottom background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, also a door metatile shall be drawn, we use covered behavior.
-        gOverworldTilemapBuffer_Bg3[offset] = tiles[0];
-        gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[2];
-        gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[3];
-
-        // Draw transparent tiles to the middle background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this is the top background layer.
-        gOverworldTilemapBuffer_Bg2[offset] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 32] = 0;
-        gOverworldTilemapBuffer_Bg2[offset + 33] = 0;
-
-        // Draw metatile's top layer to the top background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this is the middle background layer.
-        gOverworldTilemapBuffer_Bg1[offset] = tiles[4];
-        gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5];
-        gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[6];
-        gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[7];
-#if OW_TRIPLE_METATILE_LAYERS == TRUE
-    }
-    else
-    {
-#else
-        break;
-    case METATILE_LAYER_TYPE_COVERED:
-#endif
-        // Draw metatile's bottom layer to the bottom background layer.
-        gOverworldTilemapBuffer_Bg3[offset] = tiles[0];
-        gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[2];
-        gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[3];
-
-        // Draw metatile's top layer to the middle background layer. If OW_TRIPLE_METATILE_LAYERS is enabled, this draws the top layer to the middle background layer.
-        gOverworldTilemapBuffer_Bg2[offset] = tiles[4];
-        gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[5];
-        gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[6];
-        gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[7];
-
-#if OW_TRIPLE_METATILE_LAYERS == FALSE
-        // Draw transparent tiles to the top background layer.
-        gOverworldTilemapBuffer_Bg1[offset] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 1] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 32] = 0;
-        gOverworldTilemapBuffer_Bg1[offset + 33] = 0;
-        break;
-    case METATILE_LAYER_TYPE_NORMAL:
-        // Draw garbage to the bottom background layer.
         gOverworldTilemapBuffer_Bg3[offset] = 12308;
         gOverworldTilemapBuffer_Bg3[offset + 1] = 12308;
         gOverworldTilemapBuffer_Bg3[offset + 32] = 12308;
         gOverworldTilemapBuffer_Bg3[offset + 33] = 12308;
-
-        // Draw metatile's bottom layer to the middle background layer.
-        gOverworldTilemapBuffer_Bg2[offset] = tiles[0];
-        gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[1];
-        gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[2];
-        gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[3];
-#endif
-
-        // Draw metatile's top layer to the top background layer, which covers object event sprites.
-        gOverworldTilemapBuffer_Bg1[offset] = tiles[4 + tileAddress];
-        gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[5 + tileAddress];
-        gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[6 + tileAddress];
-        gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[7 + tileAddress];
-#if OW_TRIPLE_METATILE_LAYERS == FALSE
-        break;
-#endif
+        return;
     }
+
+    if (tileMode == MODE_TILE_TRANSPERANT)
+    {
+        gOverworldTilemapBuffer_Bg3[offset] = 0;
+        gOverworldTilemapBuffer_Bg3[offset + 1] = 0;
+        gOverworldTilemapBuffer_Bg3[offset + 32] = 0;
+        gOverworldTilemapBuffer_Bg3[offset + 33] = 0;
+        return;
+    }
+
+    gOverworldTilemapBuffer_Bg3[offset] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg3[offset + 1] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg3[offset + 32] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg3[offset + 33] = tiles[tileIndex];
+    return;
+}
+
+static void DrawMetatileLayer2(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
+{
+    if (tileMode == MODE_TILE_GARBAGE)
+    {
+        gOverworldTilemapBuffer_Bg2[offset] = 12308;
+        gOverworldTilemapBuffer_Bg2[offset + 1] = 12308;
+        gOverworldTilemapBuffer_Bg2[offset + 32] = 12308;
+        gOverworldTilemapBuffer_Bg2[offset + 33] = 12308;
+        return;
+    }
+
+    if (tileMode == MODE_TILE_TRANSPERANT)
+    {
+        gOverworldTilemapBuffer_Bg2[offset] = 0;
+        gOverworldTilemapBuffer_Bg2[offset + 1] = 0;
+        gOverworldTilemapBuffer_Bg2[offset + 32] = 0;
+        gOverworldTilemapBuffer_Bg2[offset + 33] = 0;
+        return;
+    }
+
+    gOverworldTilemapBuffer_Bg2[offset] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg2[offset + 1] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg2[offset + 32] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg2[offset + 33] = tiles[tileIndex];
+    return;
+}
+
+static void DrawMetatileLayer1(const u16 *tiles, u16 offset, u32 tileMode, u32 tileIndex)
+{
+    if (tileMode == MODE_TILE_GARBAGE)
+    {
+        gOverworldTilemapBuffer_Bg1[offset] = 12308;
+        gOverworldTilemapBuffer_Bg1[offset + 1] = 12308;
+        gOverworldTilemapBuffer_Bg1[offset + 32] = 12308;
+        gOverworldTilemapBuffer_Bg1[offset + 33] = 12308;
+        return;
+    }
+
+    if (tileMode == MODE_TILE_TRANSPERANT)
+    {
+        gOverworldTilemapBuffer_Bg1[offset] = 0;
+        gOverworldTilemapBuffer_Bg1[offset + 1] = 0;
+        gOverworldTilemapBuffer_Bg1[offset + 32] = 0;
+        gOverworldTilemapBuffer_Bg1[offset + 33] = 0;
+        return;
+    }
+
+    gOverworldTilemapBuffer_Bg1[offset] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg1[offset + 1] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg1[offset + 32] = tiles[tileIndex++];
+    gOverworldTilemapBuffer_Bg1[offset + 33] = tiles[tileIndex];
+    return;
+}
+
+static void DrawTripleMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 offset)
+{
+    if (metatileLayerType == UCHAR_MAX)
+    {
+        DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
+        DrawMetatileLayer2(tiles,offset,MODE_TILE_TRANSPERANT,0);
+        DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+    }
+    else
+    {
+        DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
+        DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,4);
+        DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,8);
+    }
+}
+
+static void DrawDualMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 offset)
+{
+    switch (metatileLayerType)
+    {
+        case METATILE_LAYER_TYPE_SPLIT:
+            DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
+            DrawMetatileLayer2(tiles,offset,MODE_TILE_TRANSPERANT,0);
+            DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+            break;
+        case METATILE_LAYER_TYPE_COVERED:
+            DrawMetatileLayer3(tiles,offset,MODE_TILE_NORMAL,0);
+            DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,4);
+            DrawMetatileLayer1(tiles,offset,MODE_TILE_TRANSPERANT,0);
+            break;
+        default:
+        case METATILE_LAYER_TYPE_NORMAL:
+            DrawMetatileLayer3(tiles,offset,MODE_TILE_GARBAGE,0);
+            DrawMetatileLayer2(tiles,offset,MODE_TILE_NORMAL,0);
+            DrawMetatileLayer1(tiles,offset,MODE_TILE_NORMAL,4);
+            break;
+    }
+}
+
+static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
+{
+    if (OW_TRIPLE_METATILE_LAYERS)
+        DrawTripleMetatileLayers(metatileLayerType,tiles,offset);
+    else
+        DrawDualMetatileLayers(metatileLayerType,tiles,offset);
+
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
     ScheduleBgCopyTilemapToVram(3);
