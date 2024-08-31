@@ -1506,6 +1506,8 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Moves don't bypass absorbing abilities")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_LIGHTNING, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_FLARE, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_GEYSER, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_QUAKE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_MAX_OVERGROWTH, player);
             HP_BAR(opponent);
         }
         ABILITY_POPUP(opponent, ability);
