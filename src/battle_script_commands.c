@@ -1255,7 +1255,7 @@ static void Cmd_attackcanceler(void)
     && GetBattlerAbility(gBattlerAttacker) == ABILITY_FERMATA
     && IsMoveAffectedByFermata(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
-    && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
+    && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE)
     {
         gSpecialStatuses[gBattlerAttacker].fermataState = FERMATA_1ST_HIT;
         gMultiHitCounter = 2;
@@ -1266,7 +1266,7 @@ static void Cmd_attackcanceler(void)
     && GetBattlerAbility(BATTLE_PARTNER(gBattlerAttacker)) == ABILITY_FERMATA
     && IsMoveAffectedByFermata(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget])
-    && gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE)
+    && GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE)
     {
         gSpecialStatuses[gBattlerAttacker].fermataState = FERMATA_1ST_HIT;
         gMultiHitCounter = 2;
@@ -1384,10 +1384,10 @@ static void Cmd_attackcanceler(void)
 
     if (GetBattlerAbility(gBattlerTarget) == ABILITY_REFLECTIVE_SCALES
              && gMovesInfo[gCurrentMove].magicCoatAffected
-             && !gProtectStructs[gBattlerAttacker].usesBouncedMove
+             && !gBattleStruct->bouncedMoveIsUsed
              && GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget))
     {
-        gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
+        gBattleStruct->bouncedMoveIsUsed = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
         // Edge case for bouncing a powder move against a grass type pokemon.
         SetAtkCancellerForCalledMove();
@@ -1400,7 +1400,6 @@ static void Cmd_attackcanceler(void)
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE
              && gMovesInfo[gCurrentMove].magicCoatAffected
              && !gBattleStruct->bouncedMoveIsUsed)
-
     {
         u32 battler = gBattlerTarget;
 
