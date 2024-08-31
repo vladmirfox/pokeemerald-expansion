@@ -17209,3 +17209,12 @@ void BS_FickleBeamDamageCalculation(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
+
+void BS_JumpIfAllyBlockSoundMove(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+    if (gMovesInfo[gCurrentMove].soundMove && GetBattlerAbility(GetBattlerForBattleScript(cmd->battler)) == ABILITY_SOUNDPROOF)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
