@@ -31,7 +31,6 @@ static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *, s32, s32);
 static void DrawWholeMapViewInternal(int, int, const struct MapLayout *);
 static void DrawMetatileAt(const struct MapLayout *, u16, int, int);
 static void DrawMetatile(s32, const u16 *, u16);
-static void DrawTripleMetatileLayers(s32, const u16 *, u16);
 static void CameraPanningCB_PanAhead(void);
 
 static struct FieldCameraOffset sFieldCameraOffset;
@@ -276,7 +275,7 @@ static void DrawMetatileLayer(u16 *buffer, const u16 *tiles, u16 offset, u32 til
         buffer[offset + offsetArray[offsetIndex]] = tiles[tileIndex++];
 }
 
-static void DrawTripleMetatileLayers(s32 metatileLayerType, const u16 *tiles, u16 offset)
+static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
 {
     if (metatileLayerType == UCHAR_MAX)
     {
@@ -297,11 +296,7 @@ static void DrawTripleMetatileLayers(s32 metatileLayerType, const u16 *tiles, u1
         // Draw metatile's top layer to the top background layer, which covers object event sprites.
         DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,8);
     }
-}
 
-static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
-{
-    DrawTripleMetatileLayers(metatileLayerType,tiles,offset);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
     ScheduleBgCopyTilemapToVram(3);
