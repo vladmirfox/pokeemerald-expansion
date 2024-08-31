@@ -365,6 +365,7 @@ SECTIONS {
         src/follow_me.o(.text);
         src/pokemon_sprite_visualizer.o(.text);
         src/expansion_intro.o(.text);
+        src/new_shop.o(.text);
     } > ROM =0
 
     script_data :
@@ -738,6 +739,7 @@ SECTIONS {
         src/follow_me.o(.rodata);
         src/pokemon_sprite_visualizer.o(.rodata);
         src/expansion_intro.o(.rodata);
+        src/new_shop.o(.rodata);
     } > ROM =0
 
     song_data :
