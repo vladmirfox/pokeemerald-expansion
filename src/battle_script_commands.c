@@ -7777,7 +7777,7 @@ static void Cmd_getmoneyreward(void)
         for (i = 0; i < PARTY_SIZE; i++)
         {
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+             && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
             {
                 if (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL) > sPartyLevel)
                     sPartyLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
