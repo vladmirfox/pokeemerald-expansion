@@ -3220,6 +3220,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            //sAnimTable_Following_Asym,
             gOverworldPalette_Scovillain,
             gShinyOverworldPalette_Scovillain
         )
@@ -3530,6 +3531,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             SIZE_32x32,
             SHADOW_SIZE_S,
             TRACKS_FOOT,
+            //sAnimTable_Following_Asym,
             gOverworldPalette_Tinkatink,
             gShinyOverworldPalette_Tinkatink
         )
@@ -3592,6 +3594,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             SIZE_32x32,
             SHADOW_SIZE_S,
             TRACKS_FOOT,
+            //sAnimTable_Following_Asym,
             gOverworldPalette_Tinkatuff,
             gShinyOverworldPalette_Tinkatuff
         )
@@ -3653,6 +3656,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
+            //sAnimTable_Following_Asym,
             gOverworldPalette_Tinkaton,
             gShinyOverworldPalette_Tinkaton
         )
