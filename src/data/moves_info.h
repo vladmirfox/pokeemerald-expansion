@@ -2238,7 +2238,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestComboStarterId = 0,
         .contestComboMoves = {COMBO_STARTER_CHARGE},
         .battleAnimScript = Move_THUNDERBOLT,
-        .beamMove - TRUE,
+        .beamMove = TRUE,
     },
 
     [MOVE_THUNDER_WAVE] =
