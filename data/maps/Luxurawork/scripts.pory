@@ -1,0 +1,83 @@
+raw `
+Luxurawork_MapScripts::
+map_script MAP_SCRIPT_ON_LOAD, Luxurawork_MapScripts_MAP_SCRIPT_ON_LOAD
+	.byte 0
+`
+script Luxurawork_MapScripts_MAP_SCRIPT_ON_LOAD {
+if (var(VAR_ROUTE102_STATE) < 5) {
+    removeobject(4)
+	removeobject(5)
+	removeobject(6)
+	setflag(FLAG_UNUSED_0x4A6)
+    setflag(FLAG_UNUSED_0x49A)
+} elif (var(VAR_ROUTE102_STATE) >= 5 && var(VAR_ROUTE102_STATE) <= 10) {
+    addobject(4)
+	removeobject(5)
+	removeobject(6)
+	setflag(FLAG_UNUSED_0x4A6)
+    clearflag(FLAG_UNUSED_0x49A)
+} elif (var(VAR_ROUTE102_STATE) > 10) {
+    removeobject(4)
+	removeobject(1)
+	removeobject(2)
+	removeobject(3)
+	addobject(5)
+	addobject(6)
+	setflag(FLAG_UNUSED_0x4A7)
+	setflag(FLAG_UNUSED_0x4A8)
+	clearflag(FLAG_UNUSED_0x4A6)
+    setflag(FLAG_UNUSED_0x49A)
+}
+
+}
+
+script dad {
+	if(!flag(FLAG_UNUSED_0x49D)){
+	lockall
+	faceplayer
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Xylar,all set for the academy?"))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Yeah,Dad.\pI've got everything packed."))
+	hidenamebox
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Good to hear.\pRemember you don't need to worry about living up to our name.\pI want you to have a life full of joy and discovery."))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Thanks Dad,I'll try to make the most of it."))
+	hidenamebox
+    namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}That's all i ask,son."))
+	hidenamebox
+    waitmessage
+	applymovement(4,exclam)
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Oh, Xylar, I almost forgot\pGuests from the academy are coming in two days."))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Guests?\pFrom the academy,You didn't tell me about this."))
+	hidenamebox	
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Hahaha I meant to but it slipped my mind.\pThey want to meet you before the start.\pDon't worry they're just here to make sure you're comfortable and ready."))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Alright,I guess I'd better be on my best behaviour,then."))
+	hidenamebox
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Just be yourself,son.That's all they'll want to see."))
+	hidenamebox
+    releaseall
+	setflag(FLAG_UNUSED_0x49D)}
+	else{
+	lockall
+	faceplayer
+	namebox(name3)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}I have some work to do.\pGo ahead and join your mother."))
+	hidenamebox
+	releaseall
+	}
+}
+movement exclam {
+	emote_exclamation_mark
+}

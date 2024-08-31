@@ -27,7 +27,7 @@
 #define OBJ_EVENT_GFX_MAN_2                       23
 #define OBJ_EVENT_GFX_WOMAN_3                     24
 #define OBJ_EVENT_GFX_POKEFAN_M                   25
-#define OBJ_EVENT_GFX_WOMAN_4                     26
+#define OBJ_EVENT_GFX_WOMAN_4                        26
 #define OBJ_EVENT_GFX_COOK                        27
 #define OBJ_EVENT_GFX_LINK_RECEPTIONIST           28
 #define OBJ_EVENT_GFX_OLD_MAN                     29
@@ -35,7 +35,7 @@
 #define OBJ_EVENT_GFX_CAMPER                      31
 #define OBJ_EVENT_GFX_PICNICKER                   32
 #define OBJ_EVENT_GFX_MAN_3                       33
-#define OBJ_EVENT_GFX_WOMAN_5                     34
+#define OBJ_EVENT_GFX_WOMAN_5                        34
 #define OBJ_EVENT_GFX_YOUNGSTER                   35
 #define OBJ_EVENT_GFX_BUG_CATCHER                 36
 #define OBJ_EVENT_GFX_PSYCHIC_M                   37
@@ -117,7 +117,7 @@
 #define OBJ_EVENT_GFX_MOVING_BOX                 113
 #define OBJ_EVENT_GFX_CABLE_CAR                  114
 #define OBJ_EVENT_GFX_SCIENTIST_2                115
-#define OBJ_EVENT_GFX_DEVON_EMPLOYEE             116
+#define OBJ_EVENT_GFX_DEVON_EMPLOYEE                       116
 #define OBJ_EVENT_GFX_AQUA_MEMBER_M              117
 #define OBJ_EVENT_GFX_AQUA_MEMBER_F              118
 #define OBJ_EVENT_GFX_MAGMA_MEMBER_M             119
@@ -191,7 +191,7 @@
 #define OBJ_EVENT_GFX_LATIAS                     187
 #define OBJ_EVENT_GFX_LATIOS                     188
 #define OBJ_EVENT_GFX_GAMEBOY_KID                189
-#define OBJ_EVENT_GFX_CONTEST_JUDGE              190
+#define OBJ_EVENT_GFX_CONTEST_JUDGE                    190
 #define OBJ_EVENT_GFX_BRENDAN_WATERING           191
 #define OBJ_EVENT_GFX_MAY_WATERING               192
 #define OBJ_EVENT_GFX_BRENDAN_DECORATING         193
@@ -291,11 +291,12 @@
 #define OBJ_EVENT_GFX_BLOOD                      287
 #define OBJ_EVENT_GFX_ASHES                      288
 #define OBJ_EVENT_GFX_OW_MON                     289
+#define OBJ_EVENT_GFX_SURGE                      290
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        290
+#define NUM_OBJ_EVENT_GFX                        291
 
 
 // These are dynamic object gfx ids.

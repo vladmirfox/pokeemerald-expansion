@@ -377,6 +377,10 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     TRAINER_CLASS(PIKE_QUEEN, "PIKE QUEEN"),
     TRAINER_CLASS(PYRAMID_KING, "PYRAMID KING"),
     TRAINER_CLASS(RS_PROTAG, "{PKMN} TRAINER"),
+    TRAINER_CLASS(SPARK_SYNDICATE, "SPARK"),
+    TRAINER_CLASS(SPARK_ADMIN, "SPARK ADMIN", 10),
+    TRAINER_CLASS(SPARK_LEADER, "SPARK LEADER", 20),
+    TRAINER_CLASS(SHADOW_SLAYER, "SHADOW", 15),
 };
 
 static void (* const sTurnActionsFuncsTable[])(void) =
@@ -5397,6 +5401,10 @@ static void HandleEndTurn_BattleWon(void)
         case TRAINER_CLASS_AQUA_LEADER:
         case TRAINER_CLASS_MAGMA_ADMIN:
         case TRAINER_CLASS_MAGMA_LEADER:
+        case TRAINER_CLASS_SPARK_SYNDICATE:
+        case TRAINER_CLASS_SPARK_ADMIN:
+        case TRAINER_CLASS_SPARK_LEADER:
+        case TRAINER_CLASS_SHADOW_SLAYER:
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
         case TRAINER_CLASS_LEADER:
@@ -5703,6 +5711,12 @@ static void ReturnFromBattleToOverworld(void)
 
     m4aSongNumStop(SE_LOW_HEALTH);
     SetMainCallback2(gMain.savedCallback);
+
+    // if you experience the follower de-syncing with the player after battle, set POST_BATTLE_FOLLOWER_FIX to TRUE in include/constants/global.h
+    #if POST_BATTLE_FOLLOWER_FIX
+        FollowMe_WarpSetEnd();
+        gObjectEvents[GetFollowerObjectId()].invisible = TRUE;
+    #endif
 }
 
 void RunBattleScriptCommands_PopCallbacksStack(void)

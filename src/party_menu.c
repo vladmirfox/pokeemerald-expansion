@@ -26,6 +26,7 @@
 #include "fieldmap.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
+#include "follow_me.h"
 #include "frontier_util.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -4211,6 +4212,9 @@ static void FieldCallback_Surf(void)
 
 static bool8 SetUpFieldMove_Surf(void)
 {
+    if (!CheckFollowerFlag(FOLLOWER_FLAG_CAN_SURF))
+        return FALSE;
+
     if (PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
     {
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
@@ -4230,6 +4234,9 @@ static void DisplayCantUseSurfMessage(void)
 
 static bool8 SetUpFieldMove_Fly(void)
 {
+    if (!CheckFollowerFlag(FOLLOWER_FLAG_CAN_LEAVE_ROUTE))
+        return FALSE;
+
     if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
         return TRUE;
     else
@@ -4252,6 +4259,9 @@ static bool8 SetUpFieldMove_Waterfall(void)
 {
     s16 x, y;
 
+    if (!CheckFollowerFlag(FOLLOWER_FLAG_CAN_WATERFALL))
+        return FALSE;
+
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
     if (MetatileBehavior_IsWaterfall(MapGridGetMetatileBehaviorAt(x, y)) == TRUE && IsPlayerSurfingNorth() == TRUE)
     {
@@ -4270,6 +4280,9 @@ static void FieldCallback_Dive(void)
 
 static bool8 SetUpFieldMove_Dive(void)
 {
+    if (!CheckFollowerFlag(FOLLOWER_FLAG_CAN_DIVE))
+        return FALSE;
+
     gFieldEffectArguments[1] = TrySetDiveWarp();
     if (gFieldEffectArguments[1] != 0)
     {

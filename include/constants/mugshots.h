@@ -37,6 +37,8 @@
 #define MUGSHOT_PETREL 32
 #define MUGSHOT_LUCAS 33
 #define MUGSHOT_GHETSIS 34
+#define MUGSHOT_MAID 35
+#define MUGSHOT_BABY 36
 
 
 

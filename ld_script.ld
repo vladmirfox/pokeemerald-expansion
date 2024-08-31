@@ -361,6 +361,8 @@ SECTIONS {
         src/gym_leader_rematch.o(.text);
         src/battle_transition_frontier.o(.text);
         src/international_string_util.o(.text);
+        src/field_name_box.o(.text);
+        src/follow_me.o(.text);
         src/pokemon_sprite_visualizer.o(.text);
         src/expansion_intro.o(.text);
     } > ROM =0
@@ -542,6 +544,7 @@ SECTIONS {
         src/tileset_anims.o(.rodata);
         src/palette.o(.rodata);
         src/sound.o(.rodata);
+        src/field_name_box.o(.rodata);
         src/ui_startmenu_full.o(.rodata);
         src/ui_main_menu.o(.rodata);
         src/mugshot.o(.rodata);
@@ -732,6 +735,7 @@ SECTIONS {
         data/mystery_gift.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
+        src/follow_me.o(.rodata);
         src/pokemon_sprite_visualizer.o(.rodata);
         src/expansion_intro.o(.rodata);
     } > ROM =0

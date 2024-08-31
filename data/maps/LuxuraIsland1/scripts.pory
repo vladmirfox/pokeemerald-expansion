@@ -1,0 +1,68 @@
+raw `
+LuxuraIsland1_MapScripts::
+map_script MAP_SCRIPT_ON_TRANSITION, musicchange
+	.byte 0
+`script luxuraisland {
+	lockall
+	applymovement(OBJ_EVENT_ID_PLAYER,notal)
+	msgbox(format("I'm not allowed to go there alone."))
+	releaseall
+	
+}
+movement notal {
+	walk_left*2
+}
+script officer {
+	lockall
+	faceplayer
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Good day, Young Master."))
+	releaseall
+}
+
+script forest {
+    lockall
+    applymovement(5,exclam)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER,run)
+	waitmovement(0)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Young Master, you're not allowed to go the forest.\pIt's filled with wild and dangerous Pokemon."))
+	waitmessage
+	delay(60)
+	setvar(VAR_0x8004,4)
+	setvar(VAR_0x8005,6)
+	setvar(VAR_0x8006,7)
+	setvar(VAR_0x8007,7)	
+	special(ShakeCamera)
+	playse(SE_M_THUNDERBOLT)
+	waitse
+	playse(SE_M_EXPLOSION)
+	waitse
+	setweather(WEATHER_RAIN_THUNDERSTORM)
+	doweather
+	playse(MUS_DUMMY)
+	setflag(FLAG_UNUSED_0x4AA)
+	applymovement(OBJ_EVENT_ID_PLAYER,exclam)
+	applymovement(OBJ_EVENT_ID_FOLLOWER,exclam)
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}What was that?"))
+	hidenamebox
+	namebox(name4)
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Master Xylar, did you hear that? It sounded like a voice coming from the direction of the mansion.\pWe should go check it out!"))
+	hidenamebox
+    applymovement(OBJ_EVENT_ID_PLAYER,notal)
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Mom and Dad are in the Mansion."))
+	hidenamebox
+    releaseall
+	setflag(FLAG_AFTERTRAGEDY_MUSIC)
+	setvar(VAR_ROUTE102_STATE, 11)
+	setvar(VAR_ROUTE103_STATE, 3)
+
+}
+
+script hurry{
+	lockall
+	applymovement(OBJ_EVENT_ID_PLAYER,notal)
+	msgbox(format("I should hurry."))
+	releaseall
+}

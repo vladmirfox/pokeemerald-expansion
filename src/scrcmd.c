@@ -38,6 +38,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
+#include "field_name_box.h"
 #include "script_movement.h"
 #include "script_pokemon_util.h"
 #include "shop.h"
@@ -2471,4 +2472,67 @@ bool8 ScrCmd_warpwhitefade(struct ScriptContext *ctx)
 void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
 {
     sIsScriptedWildDouble = TRUE;
+}
+
+// follow me script commands
+#include "follow_me.h"
+bool8 ScrCmd_setfollower(struct ScriptContext *ctx)
+{
+    u8 localId = ScriptReadByte(ctx);
+    u16 flags = ScriptReadHalfword(ctx);
+
+    SetUpFollowerSprite(localId, flags);
+    return FALSE;
+}
+
+bool8 ScrCmd_destroyfollower(struct ScriptContext *ctx)
+{
+    DestroyFollower();
+    if (OW_FOLLOWERS_ENABLED == TRUE) {
+        UpdateFollowingPokemon();
+    }
+    return FALSE;
+}
+
+bool8 ScrCmd_facefollower(struct ScriptContext *ctx)
+{
+    PlayerFaceFollowerSprite();
+    return FALSE;
+}
+
+bool8 ScrCmd_checkfollower(struct ScriptContext *ctx)
+{
+    CheckPlayerHasFollower();
+    return FALSE;
+}
+
+bool8 ScrCmd_updatefollowingmon(struct ScriptContext *ctx)
+{
+    if (OW_FOLLOWERS_ENABLED == TRUE) {
+        UpdateFollowingPokemon();
+    }
+    return FALSE;
+}
+
+bool8 ScrCmd_ballfollowingmon(struct ScriptContext *ctx)
+{
+    if (OW_FOLLOWERS_ENABLED == TRUE && FlagGet(FLAG_SYS_POKEMON_GET)) {
+        ReturnFollowingMonToBall();
+    }
+    return FALSE;
+}
+
+bool8 ScrCmd_namebox(struct ScriptContext *ctx) {
+    const u8 *name = (const u8 *)ScriptReadWord(ctx);
+
+    if (name == NULL)
+        name = (const u8 *)ctx->data[0];
+    ShowFieldName(name);
+    return FALSE;
+}
+
+bool8 ScrCmd_hidenamebox(struct ScriptContext *ctx) {
+    if(IsNameboxDisplayed())
+        ClearNamebox();
+    return FALSE;
 }

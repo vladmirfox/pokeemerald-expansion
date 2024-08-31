@@ -29,6 +29,7 @@
 #include "constants/field_tasks.h"
 #include "constants/field_weather.h"
 #include "constants/flags.h"
+#include "constants/follow_me.h"
 #include "constants/frontier_util.h"
 #include "constants/game_stat.h"
 #include "constants/item.h"
@@ -1075,3 +1076,36 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/LuxuraIsland/scripts.inc"
+
+	.include "data/maps/LuxuraIndoor/scripts.inc"
+
+	.include "data/maps/Luxuraliving/scripts.inc"
+
+	.include "data/maps/Luxuradining/scripts.inc"
+
+	.include "data/maps/luxurakitchen/scripts.inc"
+
+	.include "data/maps/Luxuralib/scripts.inc"
+
+	.include "data/maps/Luxurawork/scripts.inc"
+
+
+	.include "data/maps/Luxuraupstair/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/Parentroom/scripts.inc"
+
+	.include "data/maps/Playerroom/scripts.inc"
+
+	.include "data/maps/guest/scripts.inc"
+
+	.include "data/maps/LuxuraIsland1/scripts.inc"
+
+	.include "data/maps/Luxurawoods/scripts.inc"
+
+	.include "data/maps/Hospital/scripts.inc"
+
+	.include "data/maps/Servantquarter/scripts.inc"

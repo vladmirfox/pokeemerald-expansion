@@ -268,6 +268,21 @@ const u32 gTrainerPalette_PikeQueenLucy[] = INCBIN_U32("graphics/trainers/front_
 const u32 gTrainerFrontPic_PyramidKingBrandon[] = INCBIN_U32("graphics/trainers/front_pics/pyramid_king_brandon.4bpp.lz");
 const u32 gTrainerPalette_PyramidKingBrandon[] = INCBIN_U32("graphics/trainers/front_pics/pyramid_king_brandon.gbapal.lz");
 
+const u32 gTrainerFrontPic_SparkGruntM[] = INCBIN_U32("graphics/trainers/front_pics/spark_grunt_m.4bpp.lz");
+const u32 gTrainerPalette_SparkGruntM[] = INCBIN_U32("graphics/trainers/front_pics/spark_grunt_m.gbapal.lz");
+
+const u32 gTrainerFrontPic_SparkGruntF[] = INCBIN_U32("graphics/trainers/front_pics/spark_grunt_f.4bpp.lz");
+const u32 gTrainerPalette_SparkGruntF[] = INCBIN_U32("graphics/trainers/front_pics/spark_grunt_f.gbapal.lz");
+
+const u32 gTrainerFrontPic_SparkAdmin[] = INCBIN_U32("graphics/trainers/front_pics/spark_admin.4bpp.lz");
+const u32 gTrainerPalette_SparkAdmin[] = INCBIN_U32("graphics/trainers/front_pics/spark_admin.gbapal.lz");
+
+const u32 gTrainerFrontPic_SparkLeader[] = INCBIN_U32("graphics/trainers/front_pics/spark_leader.4bpp.lz");
+const u32 gTrainerPalette_SparkLeader[] = INCBIN_U32("graphics/trainers/front_pics/spark_leader.gbapal.lz");
+
+const u32 gTrainerFrontPic_Spy[] = INCBIN_U32("graphics/trainers/front_pics/spy.4bpp.lz");
+const u32 gTrainerPalette_Spy[] = INCBIN_U32("graphics/trainers/front_pics/spy.gbapal.lz");
+
 const u32 gTrainerFrontPic_Red[] = INCBIN_U32("graphics/trainers/front_pics/red.4bpp.lz");
 const u32 gTrainerPalette_Red[] = INCBIN_U32("graphics/trainers/front_pics/red.gbapal.lz");
 
@@ -401,6 +416,11 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(LEAF, Leaf),
     TRAINER_SPRITE(RS_BRENDAN, RubySapphireBrendan),
     TRAINER_SPRITE(RS_MAY, RubySapphireMay),
+    TRAINER_SPRITE(SPARK_ADMIN, SparkAdmin),
+    TRAINER_SPRITE(SPARK_LEADER, SparkLeader),
+    TRAINER_SPRITE(SPARK_GRUNT_M, SparkGruntM),
+    TRAINER_SPRITE(SPARK_GRUNT_F, SparkGruntF),
+    TRAINER_SPRITE(SPY, Spy),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

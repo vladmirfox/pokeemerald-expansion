@@ -296,7 +296,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sparkadmin;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sparkleader;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ashes;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Blood;
-
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Surge;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -589,7 +589,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_SPARK_LEADER] =                      &gObjectEventGraphicsInfo_Sparkleader,
     [OBJ_EVENT_GFX_BLOOD] =                      &gObjectEventGraphicsInfo_Blood,
     [OBJ_EVENT_GFX_ASHES] =                      &gObjectEventGraphicsInfo_Ashes,
-
+    [OBJ_EVENT_GFX_SURGE] =                      &gObjectEventGraphicsInfo_Surge,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

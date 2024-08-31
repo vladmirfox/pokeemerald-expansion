@@ -92,14 +92,29 @@
     "Underwater_Route128",
     "Underwater_Route129",
     "Underwater_Route105",
-    "Underwater_Route125"
+    "Underwater_Route125",
+    "LuxuraIsland",
+    "Luxuradining",
+    "LuxuraIsland1"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
     "LittlerootTown_BrendansHouse_2F",
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
-    "LittlerootTown_ProfessorBirchsLab"
+    "LittlerootTown_ProfessorBirchsLab",
+    "LuxuraIndoor",
+    "Luxuraliving",
+    "luxurakitchen",
+    "Luxuralib",
+    "Luxurawork",
+    "Luxuraupstair",
+    "NewMap1",
+    "Parentroom",
+    "Playerroom",
+    "guest",
+    "Hospital",
+    "Servantquarter"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
@@ -583,7 +598,8 @@
     "NavelRock_Down10",
     "NavelRock_Down11",
     "NavelRock_Bottom",
-    "TrainerHill_Elevator"
+    "TrainerHill_Elevator",
+    "Luxurawoods"
   ],
   "gMapGroup_IndoorRoute104Prototype": [
     "Route104_Prototype",

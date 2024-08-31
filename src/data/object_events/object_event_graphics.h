@@ -470,6 +470,7 @@ const u32 gObjectEventPic_Sparkadmin[] = INCBIN_U32("graphics/object_events/pics
 const u32 gObjectEventPic_Sparkleader[] = INCBIN_U32("graphics/object_events/pics/people/sparkleader.4bpp");
 const u32 gObjectEventPic_Blood[] = INCBIN_U32("graphics/object_events/pics/people/blood.4bpp");
 const u32 gObjectEventPic_Ashes[] = INCBIN_U32("graphics/object_events/pics/people/ashes.4bpp");
+const u32 gObjectEventPic_Surge[] = INCBIN_U32("graphics/object_events/pics/people/surge.4bpp");
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");
