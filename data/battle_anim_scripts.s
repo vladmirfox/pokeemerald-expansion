@@ -27527,9 +27527,6 @@ Status_Nightmare::
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
-Status_Powder::
-	end
-
 General_StatsChange::
 	createvisualtask AnimTask_StatsChange, 5
 	waitforvisualfinish
