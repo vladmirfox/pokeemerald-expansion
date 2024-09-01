@@ -1604,6 +1604,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
 
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
+    fprintf(f, "[DIFFICULTY_NORMAL]\n{\n");
 
     for (int i = 0; i < parsed->trainers_n; i++)
     {
@@ -1866,6 +1867,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         fprintf(f, "        },\n");
         fprintf(f, "    },\n");
     }
+    fprintf(f, "}\n");
 }
 
 static void usage(FILE *file, char *argv0)
