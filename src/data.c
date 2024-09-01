@@ -229,14 +229,7 @@ const union AnimCmd *const sAnims_Trainer[] ={
 
 const struct Trainer gTrainers[DIFFICULTY_COUNT][TRAINERS_COUNT] =
 {
-    /*
-    [DIFFICULTY_NORMAL] =
-    {
-    */
 #include "data/trainers.h"
-    /*
-    }
-    */
 };
 
 #include "data/text/follower_messages.h"
