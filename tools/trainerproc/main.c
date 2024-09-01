@@ -37,6 +37,14 @@ enum Gender
     GENDER_FEMALE,
 };
 
+enum DifficultyLevel
+{
+    DIFFICULTY_NORMAL,
+    DIFFICULTY_EASY,
+    DIFFICULTY_HARD,
+    DIFFICULTY_COUNT,
+};
+
 // TODO: Support Hidden Power.
 struct Pokemon
 {
@@ -123,6 +131,9 @@ struct Trainer
 
     struct String starting_status;
     int starting_status_line;
+
+    enum DifficultyLevel difficulty;
+    int difficulty_line;
 };
 
 static bool is_empty_string(struct String s)
@@ -966,6 +977,34 @@ static bool token_bool(struct Parser *p, const struct Token *t, bool *b)
     }
 }
 
+static bool token_difficulty(struct Parser *p, const struct Token *t, enum DifficultyLevel *g)
+{
+    if (is_empty_token(t))
+    {
+        *g = DIFFICULTY_NORMAL;
+        return true;
+    }
+    else if (is_literal_token(t, "Normal"))
+    {
+        *g = DIFFICULTY_NORMAL;
+        return true;
+    }
+    else if (is_literal_token(t, "Hard"))
+    {
+        *g = DIFFICULTY_HARD;
+        return true;
+    }
+    else if (is_literal_token(t, "Easy"))
+    {
+        *g = DIFFICULTY_EASY;
+        return true;
+    }
+    else
+    {
+        return set_parse_error(p, t->location, "invalid difficulty");
+    }
+}
+
 static bool parse_pragma(struct Parser *p, struct Parsed *parsed)
 {
     assert(p && parsed);
@@ -1186,6 +1225,14 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
                 any_error = !set_show_parse_error(p, key.location, "duplicate 'Starting Status'");
             trainer->starting_status_line = value.location.line;
             trainer->starting_status = token_string(&value);
+        }
+        else if (is_literal_token(&key, "Difficulty"))
+        {
+            if (trainer->difficulty_line)
+                any_error = !set_show_parse_error(p, key.location, "duplicate 'Difficulty'");
+            trainer->difficulty_line = value.location.line;
+            if (!token_difficulty(p, &value, &trainer->difficulty))
+                any_error = !show_parse_error(p);
         }
         else
         {
@@ -1605,7 +1652,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
 
-    for (int difficulty = 0; difficulty < 3; difficulty++)
+    for (int difficulty = DIFFICULTY_NORMAL; difficulty < DIFFICULTY_COUNT; difficulty++)
     {
 
         fprintf(f, "[");
@@ -1616,6 +1663,9 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         for (int i = 0; i < parsed->trainers_n; i++)
         {
             struct Trainer *trainer = &parsed->trainers[i];
+            if ((trainer->difficulty) != difficulty)
+                continue;
+
             fprintf(f, "#line %d\n", trainer->id_line);
             fprintf(f, "    [");
             fprint_string(f, trainer->id);
