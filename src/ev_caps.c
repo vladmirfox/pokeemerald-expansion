@@ -20,16 +20,12 @@ u32 GetCurrentEVCap(void)
         {FLAG_IS_CHAMPION, MAX_TOTAL_EVS},
     };
 
-    u32 i;
-
     if (B_EV_CAP_TYPE == EV_CAP_FLAG_LIST)
     {
-        for (i = 0; i < ARRAY_COUNT(sEvCapFlagMap); i++)
+        for (u32 evCap = 0; evCap < ARRAY_COUNT(sEvCapFlagMap); evCap++)
         {
-            if (!FlagGet(sEvCapFlagMap[i][0]))
-            {
-                return sEvCapFlagMap[i][1];
-            }
+            if (!FlagGet(sEvCapFlagMap[evCap][0]))
+                return sEvCapFlagMap[evCap][1];
         }
     }
     else if (B_EV_CAP_TYPE == EV_CAP_VARIABLE)
