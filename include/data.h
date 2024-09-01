@@ -167,7 +167,7 @@ extern const struct TrainerSprite gTrainerSprites[];
 extern const struct TrainerBacksprite gTrainerBacksprites[];
 
 extern const struct Trainer gTrainers[DIFFICULTY_COUNT][TRAINERS_COUNT];
-extern const struct Trainer gBattlePartners[];
+extern const struct Trainer gBattlePartners[DIFFICULTY_COUNT][PARTNER_COUNT];
 
 extern const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT];
 
@@ -189,6 +189,22 @@ static inline u16 SanitizeTrainerId(u16 trainerId)
     if (trainerId >= TRAINERS_COUNT)
         return TRAINER_NONE;
     return trainerId;
+}
+
+static inline u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
+{
+    u32 difficulty = VarGet(B_VAR_DIFFICULTY);
+
+    if (partnerId > TRAINER_PARTNER(PARTNER_NONE))
+        partnerId -= TRAINER_PARTNER(PARTNER_NONE);
+
+    if (difficulty == DIFFICULTY_NORMAL)
+        return DIFFICULTY_NORMAL;
+
+    if (gBattlePartners[difficulty][partnerId].party == NULL)
+        return DIFFICULTY_NORMAL;
+
+    return difficulty;
 }
 
 static inline u32 GetTrainerDifficultyLevel(u16 trainerId)
@@ -222,18 +238,23 @@ static inline const u8 GetTrainerClassFromId(u16 trainerId)
 
 static inline const u8 *GetTrainerClassNameFromId(u16 trainerId)
 {
+    u32 difficulty = GetBattlePartnerDifficultyLevel(trainerId);
+
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gTrainerClasses[gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerClass].name;
+        return gTrainerClasses[gBattlePartners[difficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerClass].name;
     return gTrainerClasses[GetTrainerClassFromId(trainerId)].name;
 }
 
 static inline const u8 *GetTrainerNameFromId(u16 trainerId)
 {
     u32 sanitizedTrainerId = SanitizeTrainerId(trainerId);
+
     u32 difficulty = GetTrainerDifficultyLevel(sanitizedTrainerId);
 
+    u32 partnerDifficulty = GetBattlePartnerDifficultyLevel(trainerId);
+
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
-        return gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName;
+        return gBattlePartners[partnerDifficulty][trainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerName;
     return gTrainers[difficulty][sanitizedTrainerId].trainerName;
 }
 

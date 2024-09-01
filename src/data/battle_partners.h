@@ -8,6 +8,8 @@
 
 #line 1 "src/data/battle_partners.party"
 
+[DIFFICULTY_NORMAL]
+{
 #line 1
     [PARTNER_NONE] =
     {
@@ -103,3 +105,4 @@
             },
         },
     },
+}
