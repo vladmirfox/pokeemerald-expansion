@@ -29,7 +29,6 @@
 */
 
 #define ANIM_SPRITE_INDEX_COUNT 8
-#define QUIET_MOVES_END 0xFFFF
 
 static void Cmd_loadspritegfx(void);
 static void Cmd_unloadspritegfx(void);
@@ -181,7 +180,7 @@ static void (* const sScriptCmdTable[])(void) =
 
 static const u16 sMovesWithQuietBGM[] =
 {
-    MOVE_SING, MOVE_PERISH_SONG, MOVE_GRASS_WHISTLE, QUIET_MOVES_END,
+    MOVE_SING, MOVE_PERISH_SONG, MOVE_GRASS_WHISTLE
 };
 
 static const u8* const sBattleAnims_StatusConditions[NUM_B_ANIMS_STATUS] =
@@ -420,7 +419,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
 
     if (animType == ANIM_TYPE_MOVE)
     {
-        for (i = 0; sMovesWithQuietBGM[i] != QUIET_MOVES_END; i++)
+        for (i = 0; i < ARRAY_COUNT(sMovesWithQuietBGM); i++)
         {
             if (animId == sMovesWithQuietBGM[i])
             {
