@@ -4,7 +4,7 @@
 #include "constants/moves.h"
 #include "constants/trainers.h"
 #include "constants/battle.h"
-#include "event_data.h"
+#include "difficulty.h"
 
 #define MAX_TRAINER_ITEMS 4
 
@@ -189,43 +189,6 @@ static inline u16 SanitizeTrainerId(u16 trainerId)
     if (trainerId >= TRAINERS_COUNT)
         return TRAINER_NONE;
     return trainerId;
-}
-
-static inline u32 GetCurrentDifficultyLevel(void)
-{
-    if (!B_VAR_DIFFICULTY)
-        return DIFFICULTY_NORMAL;
-
-    return VarGet(B_VAR_DIFFICULTY);
-}
-
-static inline u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
-{
-    u32 difficulty = GetCurrentDifficultyLevel();
-
-    if (partnerId > TRAINER_PARTNER(PARTNER_NONE))
-        partnerId -= TRAINER_PARTNER(PARTNER_NONE);
-
-    if (difficulty == DIFFICULTY_NORMAL)
-        return DIFFICULTY_NORMAL;
-
-    if (gBattlePartners[difficulty][partnerId].party == NULL)
-        return DIFFICULTY_NORMAL;
-
-    return difficulty;
-}
-
-static inline u32 GetTrainerDifficultyLevel(u16 trainerId)
-{
-    u32 difficulty = GetCurrentDifficultyLevel();
-
-    if (difficulty == DIFFICULTY_NORMAL)
-        return DIFFICULTY_NORMAL;
-
-    if (gTrainers[difficulty][trainerId].party == NULL)
-        return DIFFICULTY_NORMAL;
-
-    return difficulty;
 }
 
 static inline const struct Trainer *GetTrainerStructFromId(u16 trainerId)
