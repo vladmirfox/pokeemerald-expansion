@@ -191,9 +191,17 @@ static inline u16 SanitizeTrainerId(u16 trainerId)
     return trainerId;
 }
 
+static inline u32 GetCurrentDifficultyLevel(void)
+{
+    if (!B_VAR_DIFFICULTY)
+        return DIFFICULTY_NORMAL;
+
+    return VarGet(B_VAR_DIFFICULTY);
+}
+
 static inline u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
 {
-    u32 difficulty = VarGet(B_VAR_DIFFICULTY);
+    u32 difficulty = GetCurrentDifficultyLevel();
 
     if (partnerId > TRAINER_PARTNER(PARTNER_NONE))
         partnerId -= TRAINER_PARTNER(PARTNER_NONE);
@@ -209,7 +217,7 @@ static inline u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
 
 static inline u32 GetTrainerDifficultyLevel(u16 trainerId)
 {
-    u32 difficulty = VarGet(B_VAR_DIFFICULTY);
+    u32 difficulty = GetCurrentDifficultyLevel();
 
     if (difficulty == DIFFICULTY_NORMAL)
         return DIFFICULTY_NORMAL;
@@ -268,7 +276,7 @@ static inline const u8 GetTrainerPicFromId(u16 trainerId)
 
 static inline const u8 GetTrainerStartingStatusFromId(u16 trainerId)
 {
-    return gTrainers[VarGet(B_VAR_DIFFICULTY)][SanitizeTrainerId(trainerId)].startingStatus;
+    return gTrainers[GetCurrentDifficultyLevel()][SanitizeTrainerId(trainerId)].startingStatus;
 }
 
 static inline const bool32 IsTrainerDoubleBattle(u16 trainerId)
@@ -289,12 +297,12 @@ static inline const u8 GetTrainerPartySizeFromId(u16 trainerId)
 
 static inline const bool32 DoesTrainerHaveMugshot(u16 trainerId)
 {
-    return gTrainers[VarGet(B_VAR_DIFFICULTY)][SanitizeTrainerId(trainerId)].mugshotEnabled;
+    return gTrainers[GetCurrentDifficultyLevel()][SanitizeTrainerId(trainerId)].mugshotEnabled;
 }
 
 static inline const u8 GetTrainerMugshotColorFromId(u16 trainerId)
 {
-    return gTrainers[VarGet(B_VAR_DIFFICULTY)][SanitizeTrainerId(trainerId)].mugshotColor;
+    return gTrainers[GetCurrentDifficultyLevel()][SanitizeTrainerId(trainerId)].mugshotColor;
 }
 
 static inline const u16 *GetTrainerItemsFromId(u16 trainerId)
