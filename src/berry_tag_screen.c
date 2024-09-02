@@ -143,11 +143,11 @@ static const struct WindowTemplate sWindowTemplates[] =
 
 static const u8 *const sBerryFirmnessStrings[] =
 {
-    gBerryFirmnessString_VerySoft,
-    gBerryFirmnessString_Soft,
-    gBerryFirmnessString_Hard,
-    gBerryFirmnessString_VeryHard,
-    gBerryFirmnessString_SuperHard
+    COMPOUND_STRING("Very soft"),
+    COMPOUND_STRING("Soft"),
+    COMPOUND_STRING("Hard"),
+    COMPOUND_STRING("Very hard"),
+    COMPOUND_STRING("Super hard")
 };
 
 // this file's functions
@@ -171,6 +171,13 @@ static void Task_CloseBerryTagScreen(u8 taskId);
 static void Task_DisplayAnotherBerry(u8 taskId);
 static void TryChangeDisplayedBerry(u8 taskId, s8 toMove);
 static void HandleBagCursorPositionChange(s8 toMove);
+
+static const u8 gText_SizeSlash[] = _("SIZE /");
+static const u8 gText_FirmSlash[] = _("FIRM /");
+static const u8 gText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
+static const u8 gText_NumberVar1Var2[] = _("{NO}{STR_VAR_1} {STR_VAR_2}");
+static const u8 gText_BerryTag[] = _("BERRY TAG");
+static const u8 gText_ThreeMarks[] = _("???");
 
 // code
 void DoBerryTagScreen(void)
