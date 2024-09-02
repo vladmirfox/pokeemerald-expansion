@@ -45,6 +45,8 @@ enum DifficultyLevel
     DIFFICULTY_COUNT,
 };
 
+#define DIFFICULTY_DEFAULT DIFFICULTY_NORMAL
+
 // TODO: Support Hidden Power.
 struct Pokemon
 {
@@ -981,7 +983,7 @@ static bool token_difficulty(struct Parser *p, const struct Token *t, enum Diffi
 {
     if (is_empty_token(t))
     {
-        *g = DIFFICULTY_NORMAL;
+        *g = DIFFICULTY_DEFAULT;
         return true;
     }
     else if (is_literal_token(t, "Easy"))
@@ -1665,7 +1667,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         {
             struct Trainer *trainer = &parsed->trainers[i];
             if ((trainer->difficulty) == DIFFICULTY_COUNT)
-                trainer->difficulty = DIFFICULTY_NORMAL;
+                trainer->difficulty = DIFFICULTY_DEFAULT;
 
             if ((trainer->difficulty) != difficulty)
                 continue;
