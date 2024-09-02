@@ -37,14 +37,6 @@ enum Gender
     GENDER_FEMALE,
 };
 
-enum DifficultyLevel
-{
-    DIFFICULTY_EASY,
-    DIFFICULTY_NORMAL,
-    DIFFICULTY_HARD,
-    DIFFICULTY_COUNT,
-};
-
 #define DIFFICULTY_DEFAULT DIFFICULTY_NORMAL
 
 // TODO: Support Hidden Power.
@@ -135,7 +127,6 @@ struct Trainer
     int starting_status_line;
 
     struct String difficulty_string;
-    enum DifficultyLevel difficulty;
     int difficulty_line;
 };
 
@@ -1122,7 +1113,8 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
     }
     trainer->id = token_string(&id);
     trainer->id_line = id.location.line;
-    trainer->difficulty_string = token_string(&id); //TODO actually do default string
+    trainer->difficulty_string = token_string(&id);
+    // TODO Mgriffin: difficulty_string should be set to "DEFAULT" but I can't figure out how to make a blank token
 
     // Parse trainer attributes.
     struct Token key, value;
@@ -1626,6 +1618,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         for (j = 0; j < numDifficulty; j++)
         {
             if (difficultyStrings[numDifficulty] == trainer->difficulty_string)
+            // TODO Mgriffin: match_exact and is_literal_string don't seem to be correct here, am I doing wrong?
                 break;
         }
 
@@ -1661,6 +1654,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
             struct Trainer *trainer = &parsed->trainers[i];
 
             if (trainer->difficulty_string != difficultyStrings[difficulty])
+            // TODO Mgriffin: match_exact and is_literal_string don't seem to be correct here, am I doing wrong?
                 continue;
 
             fprintf(f, "#line %d\n", trainer->id_line);
