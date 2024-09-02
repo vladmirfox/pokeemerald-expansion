@@ -134,6 +134,7 @@ struct Trainer
     struct String starting_status;
     int starting_status_line;
 
+    struct String difficulty_string;
     enum DifficultyLevel difficulty;
     int difficulty_line;
 };
@@ -979,34 +980,6 @@ static bool token_bool(struct Parser *p, const struct Token *t, bool *b)
     }
 }
 
-static bool token_difficulty(struct Parser *p, const struct Token *t, enum DifficultyLevel *g)
-{
-    if (is_empty_token(t))
-    {
-        *g = DIFFICULTY_DEFAULT;
-        return true;
-    }
-    else if (is_literal_token(t, "Easy"))
-    {
-        *g = DIFFICULTY_EASY;
-        return true;
-    }
-    else if (is_literal_token(t, "Normal"))
-    {
-        *g = DIFFICULTY_NORMAL;
-        return true;
-    }
-    else if (is_literal_token(t, "Hard"))
-    {
-        *g = DIFFICULTY_HARD;
-        return true;
-    }
-    else
-    {
-        return set_parse_error(p, t->location, "invalid difficulty");
-    }
-}
-
 static bool parse_pragma(struct Parser *p, struct Parsed *parsed)
 {
     assert(p && parsed);
@@ -1149,7 +1122,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
     }
     trainer->id = token_string(&id);
     trainer->id_line = id.location.line;
-    trainer->difficulty = DIFFICULTY_COUNT;
+    trainer->difficulty_string = token_string(&id); //TODO actually do default string
 
     // Parse trainer attributes.
     struct Token key, value;
@@ -1234,8 +1207,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             if (trainer->difficulty_line)
                 any_error = !set_show_parse_error(p, key.location, "duplicate 'Difficulty'");
             trainer->difficulty_line = value.location.line;
-            if (!token_difficulty(p, &value, &trainer->difficulty))
-                any_error = !show_parse_error(p);
+            trainer->difficulty_string = token_string(&value);
         }
         else
         {
@@ -1643,6 +1615,27 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
 
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
+    int numDifficulty = 0;
+    int j = 0;
+    struct String difficultyStrings[numDifficulty];
+
+    for (int i = 0; i < parsed->trainers_n; i++)
+    {
+        struct Trainer *trainer = &parsed->trainers[i];
+
+        for (j = 0; j < numDifficulty; j++)
+        {
+            if (difficultyStrings[numDifficulty] == trainer->difficulty_string)
+                break;
+        }
+
+        if (j != numDifficulty)
+            continue;
+
+        difficultyStrings[numDifficulty] = trainer->difficulty_string;
+        numDifficulty++;
+    }
+
     fprintf(f, "//\n");
     fprintf(f, "// DO NOT MODIFY THIS FILE! It is auto-generated from %s\n", parsed->source->path);
     fprintf(f, "//\n");
@@ -1655,21 +1648,19 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
 
-    for (int difficulty = 0; difficulty < DIFFICULTY_COUNT; difficulty++)
+    for (int difficulty = 0; difficulty < numDifficulty; difficulty++)
     {
 
         fprintf(f, "[");
-        fprintf(f, "%d", difficulty);
+        fprint_constant(f, "DIFFICULTY", difficultyStrings[difficulty]);
         fprintf(f, "] =\n");
         fprintf(f, "{\n");
 
         for (int i = 0; i < parsed->trainers_n; i++)
         {
             struct Trainer *trainer = &parsed->trainers[i];
-            if ((trainer->difficulty) == DIFFICULTY_COUNT)
-                trainer->difficulty = DIFFICULTY_DEFAULT;
 
-            if ((trainer->difficulty) != difficulty)
+            if (trainer->difficulty_string != difficultyStrings[difficulty])
                 continue;
 
             fprintf(f, "#line %d\n", trainer->id_line);
