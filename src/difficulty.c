@@ -49,10 +49,10 @@ void Script_IncreaseDifficulty(void)
 
     currentDifficulty = GetCurrentDifficultyLevel();
 
-    if (currentDifficulty++ >= DIFFICULTY_COUNT)
+    if (currentDifficulty++ > DIFFICULTY_MAX)
         return;
 
-    VarSet(B_VAR_DIFFICULTY,currentDifficulty);
+    Script_SetDifficulty(currentDifficulty);
 }
 
 void Script_DecreaseDifficulty(void)
@@ -67,5 +67,16 @@ void Script_DecreaseDifficulty(void)
     if (!currentDifficulty)
         return;
 
-    VarSet(B_VAR_DIFFICULTY,--currentDifficulty);
+    Script_SetDifficulty(--currentDifficulty);
+}
+
+void Script_SetDifficulty(u32 desiredDifficulty)
+{
+    if (!B_VAR_DIFFICULTY)
+        return;
+
+    if (desiredDifficulty > DIFFICULTY_MAX)
+        desiredDifficulty = DIFFICULTY_MAX;
+
+    VarSet(B_VAR_DIFFICULTY,desiredDifficulty);
 }

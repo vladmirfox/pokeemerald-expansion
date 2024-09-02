@@ -2329,3 +2329,14 @@
     .macro decreasedifficulty
     callnative Script_DecreaseDifficulty
     .endm
+
+	.macro getdifficulty var:req
+	.byte 0xe5
+	.2byte \var
+	.endm
+
+	.macro setdifficulty difficulty:req
+	.byte 0xe6
+	.2byte \difficulty
+	.endm
+

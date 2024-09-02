@@ -979,29 +979,24 @@ static bool token_bool(struct Parser *p, const struct Token *t, bool *b)
 
 static bool token_difficulty(struct Parser *p, const struct Token *t, enum DifficultyLevel *g)
 {
-    fprintf(stderr,"token check\n");
     if (is_empty_token(t))
     {
         *g = DIFFICULTY_NORMAL;
-        fprintf(stderr,"token is empty\n");
         return true;
     }
     else if (is_literal_token(t, "Easy"))
     {
         *g = DIFFICULTY_EASY;
-        fprintf(stderr,"token is easy\n");
         return true;
     }
     else if (is_literal_token(t, "Normal"))
     {
         *g = DIFFICULTY_NORMAL;
-        fprintf(stderr,"token is normal\n");
         return true;
     }
     else if (is_literal_token(t, "Hard"))
     {
         *g = DIFFICULTY_HARD;
-        fprintf(stderr,"token is hard\n");
         return true;
     }
     else
@@ -1675,8 +1670,6 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
             if ((trainer->difficulty) != difficulty)
                 continue;
 
-            //fprintf(stderr, "trainer %d difficulty %d \n", i,trainer->difficulty);
-            //fprintf(stderr, "trainer %d is on difficulty %d \n", i,difficulty);
             fprintf(f, "#line %d\n", trainer->id_line);
             fprintf(f, "    [");
             fprint_string(f, trainer->id);
