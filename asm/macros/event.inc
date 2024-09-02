@@ -2321,3 +2321,11 @@
 	.macro togglefakertc
 	callnative Script_ToggleFakeRtc
 	.endm
+
+   .macro increasedifficulty
+    callnative Script_IncreaseDifficulty
+   .endm
+
+    .macro decreasedifficulty
+    callnative Script_DecreaseDifficulty
+    .endm

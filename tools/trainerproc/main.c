@@ -39,8 +39,8 @@ enum Gender
 
 enum DifficultyLevel
 {
-    DIFFICULTY_NORMAL,
     DIFFICULTY_EASY,
+    DIFFICULTY_NORMAL,
     DIFFICULTY_HARD,
     DIFFICULTY_COUNT,
 };
@@ -979,24 +979,29 @@ static bool token_bool(struct Parser *p, const struct Token *t, bool *b)
 
 static bool token_difficulty(struct Parser *p, const struct Token *t, enum DifficultyLevel *g)
 {
+    fprintf(stderr,"token check\n");
     if (is_empty_token(t))
     {
         *g = DIFFICULTY_NORMAL;
-        return true;
-    }
-    else if (is_literal_token(t, "Normal"))
-    {
-        *g = DIFFICULTY_NORMAL;
-        return true;
-    }
-    else if (is_literal_token(t, "Hard"))
-    {
-        *g = DIFFICULTY_HARD;
+        fprintf(stderr,"token is empty\n");
         return true;
     }
     else if (is_literal_token(t, "Easy"))
     {
         *g = DIFFICULTY_EASY;
+        fprintf(stderr,"token is easy\n");
+        return true;
+    }
+    else if (is_literal_token(t, "Normal"))
+    {
+        *g = DIFFICULTY_NORMAL;
+        fprintf(stderr,"token is normal\n");
+        return true;
+    }
+    else if (is_literal_token(t, "Hard"))
+    {
+        *g = DIFFICULTY_HARD;
+        fprintf(stderr,"token is hard\n");
         return true;
     }
     else
@@ -1147,6 +1152,7 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
     }
     trainer->id = token_string(&id);
     trainer->id_line = id.location.line;
+    trainer->difficulty = DIFFICULTY_COUNT;
 
     // Parse trainer attributes.
     struct Token key, value;
@@ -1652,7 +1658,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
 
-    for (int difficulty = DIFFICULTY_NORMAL; difficulty < DIFFICULTY_COUNT; difficulty++)
+    for (int difficulty = 0; difficulty < DIFFICULTY_COUNT; difficulty++)
     {
 
         fprintf(f, "[");
@@ -1663,9 +1669,14 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         for (int i = 0; i < parsed->trainers_n; i++)
         {
             struct Trainer *trainer = &parsed->trainers[i];
+            if ((trainer->difficulty) == DIFFICULTY_COUNT)
+                trainer->difficulty = DIFFICULTY_NORMAL;
+
             if ((trainer->difficulty) != difficulty)
                 continue;
 
+            //fprintf(stderr, "trainer %d difficulty %d \n", i,trainer->difficulty);
+            //fprintf(stderr, "trainer %d is on difficulty %d \n", i,difficulty);
             fprintf(f, "#line %d\n", trainer->id_line);
             fprintf(f, "    [");
             fprint_string(f, trainer->id);
