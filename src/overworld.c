@@ -3489,7 +3489,7 @@ static void DestroyItemIconSprite(void)
 #else
 void ScriptShowItemDescription(struct ScriptContext *ctx)
 {
-    ScriptReadByte(ctx);
+    (void) ScriptReadByte(ctx);
 }
 void ScriptHideItemDescription(struct ScriptContext *ctx)
 {
