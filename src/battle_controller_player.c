@@ -2061,13 +2061,13 @@ static void PlayerHandleChooseAction(u32 battler)
         StringAppend(gStringVar1, gMovesInfo[move].name);
         if (gMovesInfo[move].target == MOVE_TARGET_SELECTED)
         {
-            if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == 1)
+            if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_LEFT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" -{UP_ARROW}"));
-            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == 3)
+            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_OPPONENT_RIGHT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" {UP_ARROW}-"));
-            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == 0)
+            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_PLAYER_LEFT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" {DOWN_ARROW}-"));
-            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == 2)
+            else if (gBattleStruct->aiChosenTarget[B_POSITION_PLAYER_RIGHT] == B_POSITION_PLAYER_RIGHT)
                 StringAppend(gStringVar1, COMPOUND_STRING(" {DOWN_ARROW}-"));
         }
         else if (gMovesInfo[move].target == MOVE_TARGET_BOTH)
