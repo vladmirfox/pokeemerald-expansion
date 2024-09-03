@@ -3489,7 +3489,7 @@ static void DestroyItemIconSprite(void)
 #else
 void ScriptShowItemDescription(struct ScriptContext *ctx)
 {
-    u8 UNUSED headerType = ScriptReadByte(ctx);
+    ScriptReadByte(ctx);
 }
 void ScriptHideItemDescription(struct ScriptContext *ctx)
 {
