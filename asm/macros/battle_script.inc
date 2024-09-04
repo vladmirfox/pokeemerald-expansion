@@ -1674,8 +1674,8 @@
 	callnative BS_FickleBeamDamageCalculation
 	.endm
 
-	.macro jumpifallyblocksoundmove battler:req, failInstr:req
-	callnative BS_JumpIfAllyBlockSoundMove
+	.macro jumpifblockedbysoundproof battler:req, failInstr:req
+	callnative BS_JumpIfBlockedBySoundproof
 	.byte \battler
 	.4byte \failInstr
 	.endm

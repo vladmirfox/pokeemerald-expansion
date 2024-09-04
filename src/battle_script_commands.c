@@ -17210,11 +17210,19 @@ void BS_FickleBeamDamageCalculation(void)
     }
 }
 
-void BS_JumpIfAllyBlockSoundMove(void)
+void BS_JumpIfBlockedBySoundproof(void)
 {
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
-    if (gMovesInfo[gCurrentMove].soundMove && GetBattlerAbility(GetBattlerForBattleScript(cmd->battler)) == ABILITY_SOUNDPROOF)
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (gMovesInfo[gCurrentMove].soundMove && GetBattlerAbility(battler) == ABILITY_SOUNDPROOF)
+    {
+        gLastUsedAbility = ABILITY_SOUNDPROOF;
         gBattlescriptCurrInstr = cmd->jumpInstr;
+        RecordAbilityBattle(battler, gLastUsedAbility);
+        gBattlerAbility = battler;
+    }
     else
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
+    }
 }
