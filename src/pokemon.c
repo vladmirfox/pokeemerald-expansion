@@ -2391,6 +2391,8 @@ union EvolutionTracker
     struct EvolutionTrackerBitfield asField;
 };
 
+#define GEN_3_SHINY_ODDS 8 // For backwards compatibility with save data, the actual chance for a Pokemon to be generated as shiny is different.
+
 /* GameFreak called GetBoxMonData with either 2 or 3 arguments, for type
  * safety we have a GetBoxMonData macro (in include/pokemon.h) which
  * dispatches to either GetBoxMonData2 or GetBoxMonData3 based on the
@@ -2845,7 +2847,7 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_IS_SHINY:
         {
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
-            retVal = (shinyValue < 8) ^ boxMon->shinyModifier;
+            retVal = (shinyValue < GEN_3_SHINY_ODDS) ^ boxMon->shinyModifier;
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
@@ -3280,7 +3282,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             u32 shinyValue = GET_SHINY_VALUE(boxMon->otId, boxMon->personality);
             bool32 isShiny;
             SET8(isShiny);
-            boxMon->shinyModifier = (shinyValue < 8) ^ isShiny;
+            boxMon->shinyModifier = (shinyValue < GEN_3_SHINY_ODDS) ^ isShiny;
             break;
         }
         case MON_DATA_HIDDEN_NATURE:
