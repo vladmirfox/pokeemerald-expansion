@@ -2391,7 +2391,7 @@ union EvolutionTracker
     struct EvolutionTrackerBitfield asField;
 };
 
-#define GEN_3_SHINY_ODDS 8 // For backwards compatibility with save data, the actual chance for a Pokemon to be generated as shiny is different.
+#define GEN_3_SHINY_ODDS 8 // For backwards compatibility with save data, the actual chance for a Pokemon to be generated as shiny is different. If you change this, change SHINY_ODDS too.
 
 /* GameFreak called GetBoxMonData with either 2 or 3 arguments, for type
  * safety we have a GetBoxMonData macro (in include/pokemon.h) which

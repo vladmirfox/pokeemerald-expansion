@@ -94,6 +94,7 @@
 
 // Shiny odds
 // Actual probability is SHINY_ODDS/65536
+// If you change this directly, change GEN_3_SHINY_ODDS too. Otherwise you just need to change the P_BASE_SHINY_ODDS config.
 #if P_BASE_SHINY_ODDS >= GEN_6
 #define SHINY_ODDS 16
 #else
