@@ -11,6 +11,7 @@
 #include "pokeblock.h"
 #include "battle_setup.h"
 #include "roamer.h"
+#include "rtc.h"
 #include "tv.h"
 #include "link.h"
 #include "script.h"
@@ -51,15 +52,7 @@ enum {
 
 static u16 FeebasRandom(void);
 static void FeebasSeedRng(u16 seed);
-static u32 GetLastFishingSpecies(void);
-static bool32 DoesSpeciesMatchLastFishingSpecies(u32 species);
-static u32 GetCurrentChainFishingDexNavStreak(void);
-static bool32 IsChainFishingStreakAtMax(void);
-static void IncrementChainFishingDexNavStreak(void);
-static void SetEncounterFishing(void);
-static void SetLastFishingSpecies(u32 species);
-static void HandleChainFishingStreak(u32 species);
-static void UpdateChainFishingSpeciesAndStreak(u32 species);
+static void UpdateChainFishingStreak();
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
@@ -75,11 +68,7 @@ EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
-
-#ifdef I_FISHING_CHAIN
 EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
-EWRAM_DATA static u16 sLastFishingSpecies = 0;
-#endif
 
 #include "data/wild_encounters.h"
 
@@ -366,9 +355,32 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     }
 }
 
+static bool8 IsExactTimeOfDayMatchForWildEncounters(u8 currentTimeOfDay, u8 encounterTimeOfDay)
+{
+    switch (currentTimeOfDay)
+    {
+    case TIME_MORNING:
+        if (OW_ENABLE_MORNING_WILD_ENCOUNTERS)
+            return encounterTimeOfDay == TIME_MORNING;
+        // fallthrough
+    case TIME_DAY:
+        return encounterTimeOfDay == TIME_DAY;
+    case TIME_EVENING:
+        if (OW_ENABLE_EVENING_WILD_ENCOUNTERS)
+            return encounterTimeOfDay == TIME_EVENING;
+        // fallthrough
+    case TIME_NIGHT:
+        return encounterTimeOfDay == TIME_NIGHT;
+    }
+    return FALSE;
+}
+
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
+    u8 currentTimeOfDay = GetTimeOfDay();
+    u16 dayId = HEADER_NONE;
+    u16 nightId = HEADER_NONE;
 
     for (i = 0; ; i++)
     {
@@ -387,13 +399,30 @@ static u16 GetCurrentMapWildMonHeaderId(void)
                     alteringCaveId = 0;
 
                 i += alteringCaveId;
+                return i; // Altering cave is not affected by time-of-day encounters.
             }
 
-            return i;
+            if (OW_TIME_BASED_WILD_ENCOUNTERS)
+            {
+                if (IsExactTimeOfDayMatchForWildEncounters(currentTimeOfDay, gWildMonHeaders[i].timeOfDay))
+                    return i;
+                else if (gWildMonHeaders[i].timeOfDay == TIME_DAY && dayId == HEADER_NONE)
+                    dayId = i;
+                else if (gWildMonHeaders[i].timeOfDay == TIME_NIGHT && nightId == HEADER_NONE)
+                    nightId = i;
+            }
+            else
+                return i;
         }
     }
 
-    return HEADER_NONE;
+    if (!OW_TIME_BASED_WILD_ENCOUNTERS)
+        return HEADER_NONE;
+
+    // Exact match for time of day was not found. We fall back to other encounter groups for this map
+    if (currentTimeOfDay == TIME_EVENING && OW_ENABLE_EVENING_WILD_ENCOUNTERS && nightId != HEADER_NONE)
+        return nightId;
+    return dayId;
 }
 
 u8 PickWildMonNature(void)
@@ -531,7 +560,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
 
-    UpdateChainFishingSpeciesAndStreak(wildMonSpecies);
+    UpdateChainFishingStreak();
     CreateWildMon(wildMonSpecies, level);
     return wildMonSpecies;
 }
@@ -683,9 +712,9 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
             else if (WildEncounterCheck(gWildMonHeaders[headerId].landMonsInfo->encounterRate, FALSE) != TRUE)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
-                roamer = &gSaveBlock1Ptr->roamer;
+                roamer = &gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex];
                 if (!IsWildLevelAllowedByRepel(roamer->level))
                     return FALSE;
 
@@ -732,9 +761,9 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
             else if (WildEncounterCheck(gWildMonHeaders[headerId].waterMonsInfo->encounterRate, FALSE) != TRUE)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
-                roamer = &gSaveBlock1Ptr->roamer;
+                roamer = &gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex];
                 if (!IsWildLevelAllowedByRepel(roamer->level))
                     return FALSE;
 
@@ -834,7 +863,7 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
                 BattleSetup_StartRoamerBattle();
                 return TRUE;
@@ -855,7 +884,7 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].waterMonsInfo == NULL)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
                 BattleSetup_StartRoamerBattle();
                 return TRUE;
@@ -880,84 +909,27 @@ bool8 DoesCurrentMapHaveFishingMons(void)
         return FALSE;
 }
 
-static u32 GetLastFishingSpecies(void)
-{
-    return sLastFishingSpecies;
-}
-
-static bool32 DoesSpeciesMatchLastFishingSpecies(u32 species)
-{
-    return (species == GetLastFishingSpecies());
-}
-
-static u32 GetCurrentChainFishingDexNavStreak(void)
-{
-    return gChainFishingDexNavStreak;
-}
-
-static bool32 IsChainFishingStreakAtMax(void)
-{
-    return (GetCurrentChainFishingDexNavStreak() >= FISHING_CHAIN_LENGTH_MAX);
-}
-
-static void IncrementChainFishingDexNavStreak(void)
-{
-    gChainFishingDexNavStreak++;
-}
-
-void ResetChainFishingDexNavStreak(void)
-{
-    gChainFishingDexNavStreak = 0;
-}
-
-bool32 IsCurrentEncounterFishing(void)
-{
-    return gIsFishingEncounter;
-}
-
-static void SetEncounterFishing(void)
-{
-    gIsFishingEncounter = TRUE;
-}
-
 u32 CalculateChainFishingShinyRolls(void)
 {
-    return (1 + (2 * GetCurrentChainFishingDexNavStreak()));
+    return (2 * min(gChainFishingDexNavStreak, FISHING_CHAIN_SHINY_STREAK_MAX));
 }
 
-static void SetLastFishingSpecies(u32 species)
-{
-    sLastFishingSpecies = species;
-}
-
-static void HandleChainFishingStreak(u32 species)
-{
-    if (!DoesSpeciesMatchLastFishingSpecies(species))
-    {
-        ResetChainFishingDexNavStreak();
-        return;
-    }
-
-    if (IsChainFishingStreakAtMax())
-        return;
-
-    IncrementChainFishingDexNavStreak();
-}
-
-static void UpdateChainFishingSpeciesAndStreak(u32 species)
+static void UpdateChainFishingStreak()
 {
     if (!I_FISHING_CHAIN)
         return;
 
-    HandleChainFishingStreak(species);
-    SetLastFishingSpecies(species);
+    if (gChainFishingDexNavStreak >= FISHING_CHAIN_LENGTH_MAX)
+        return;
+
+    gChainFishingDexNavStreak++;
 }
 
 void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    SetEncounterFishing();
+    gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
         u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
@@ -1071,14 +1043,10 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_HP) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+        if (I_REPEL_INCLUDE_FAINTED == GEN_1 || I_REPEL_INCLUDE_FAINTED >= GEN_6 || GetMonData(&gPlayerParty[i], MON_DATA_HP))
         {
-            u8 ourLevel = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
-
-            if (wildLevel < ourLevel)
-                return FALSE;
-            else
-                return TRUE;
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+                return wildLevel >= GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
         }
     }
 
