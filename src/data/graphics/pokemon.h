@@ -5601,6 +5601,8 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gOverworldPalette_Dudunsparce[] = INCBIN_U32("graphics/pokemon/dudunsparce/overworld_normal.gbapal.lz");
     const u32 gShinyOverworldPalette_Dudunsparce[] = INCBIN_U32("graphics/pokemon/dudunsparce/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_DudunsparceThreeSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/three_segment/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_DudunsparceThreeSegment[] = INCBIN_U32("graphics/pokemon/dudunsparce/three_segment/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
