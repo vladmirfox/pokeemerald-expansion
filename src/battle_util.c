@@ -198,7 +198,7 @@ void HandleAction_UseMove(void)
 
     // Set dynamic move type.
     SetTypeBeforeUsingMove(gChosenMove, gBattlerAttacker);
-    GET_MOVE_TYPE(gChosenMove, moveType);
+    moveType = GetMoveType(gChosenMove);
 
     // check Z-Move used
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE && !IS_MOVE_STATUS(gCurrentMove) && !IsZMove(gCurrentMove))
@@ -724,7 +724,7 @@ void HandleAction_ActionFinished(void)
                     | HITMARKER_CHARGING | HITMARKER_NEVER_SET | HITMARKER_IGNORE_DISGUISE);
 
     // check if Stellar type boost should be used up
-    GET_MOVE_TYPE(gCurrentMove, moveType);
+    moveType = GetMoveType(gCurrentMove);
     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA
         && GetBattlerTeraType(gBattlerAttacker) == TYPE_STELLAR
         && gMovesInfo[gCurrentMove].category != DAMAGE_CATEGORY_STATUS
@@ -4103,7 +4103,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     else
         move = gCurrentMove;
 
-    GET_MOVE_TYPE(move, moveType);
+    moveType = GetMoveType(move);
 
     switch (caseID)
     {
@@ -4476,7 +4476,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         for (j = 0; j < MAX_MON_MOVES; j++)
                         {
                             move = gBattleMons[i].moves[j];
-                            GET_MOVE_TYPE(move, moveType);
+                            moveType = GetMoveType(move);
                             if (CalcTypeEffectivenessMultiplier(move, moveType, i, battler, ABILITY_ANTICIPATION, FALSE) >= UQ_4_12(2.0))
                             {
                                 effect++;
@@ -7991,7 +7991,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
     case ITEMEFFECT_TARGET:
         if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
         {
-            GET_MOVE_TYPE(gCurrentMove, moveType);
+            moveType = GetMoveType(gCurrentMove);
             switch (battlerHoldEffect)
             {
             case HOLD_EFFECT_AIR_BALLOON:
@@ -8263,7 +8263,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     u8 targetBattler = 0;
     u32 moveTarget, side;
     u32 moveType;
-    GET_MOVE_TYPE(move, moveType);
+    moveType = GetMoveType(move);
 
     if (setTarget != NO_TARGET_OVERRIDE)
         moveTarget = setTarget - 1;
@@ -10445,7 +10445,7 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 a
 {
     uq4_12_t modifier = UQ_4_12(1.0);
     u32 moveType;
-    GET_MOVE_TYPE(move, moveType);
+    moveType = GetMoveType(move);
 
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
@@ -11049,7 +11049,7 @@ u8 GetBattleMoveCategory(u32 moveId)
     if (IS_MOVE_STATUS(moveId))
         return DAMAGE_CATEGORY_STATUS;
     else if (gMain.inBattle)
-        GET_MOVE_TYPE(moveId, moveType);
+        moveType = GetMoveType(moveId);
     else
         moveType = gMovesInfo[moveId].type;
     return gTypesInfo[moveType].damageCategory;
@@ -11789,10 +11789,27 @@ static inline bool32 DoesCurrentTargetHaveAbilityImmunity(void)
 bool32 TargetFullyImmuneToCurrMove(u32 BattlerAtk, u32 battlerDef)
 {
     u32 moveType = 0;
-    GET_MOVE_TYPE(gCurrentMove, moveType);
+    moveType = GetMoveType(gCurrentMove);
 
     return ((CalcTypeEffectivenessMultiplier(gCurrentMove, moveType, BattlerAtk, battlerDef, GetBattlerAbility(battlerDef), FALSE) == UQ_4_12(0.0))
          || IsBattlerProtected(BattlerAtk, battlerDef, gCurrentMove)
          || IsSemiInvulnerable(battlerDef, gCurrentMove)
          || DoesCurrentTargetHaveAbilityImmunity());
+}
+
+u8 GetMoveType(u32 move)
+{
+    u8 type;
+    if (gBattleStruct->dynamicMoveType)
+        type = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
+    else if (B_UPDATED_MOVE_TYPES < GEN_5
+         && (move == MOVE_BEAT_UP
+          || move == MOVE_FUTURE_SIGHT
+          || move == MOVE_DOOM_DESIRE))
+    {
+        type = TYPE_MYSTERY;
+    }
+    else
+        type = gMovesInfo[move].type;
+    return type;
 }
