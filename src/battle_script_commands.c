@@ -1730,7 +1730,12 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
         else if (!JumpIfMoveAffectedByProtect(gCurrentMove))
             gBattlescriptCurrInstr = nextInstr;
         if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX)
-            AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, gCurrentMove);
+        {
+            if (gProtectStructs[gBattlerTarget].maxGuarded)
+                gBattlescriptCurrInstr = nextInstr;
+            else
+                AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, gCurrentMove);
+        }
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_2ND_HIT
         || (gSpecialStatuses[gBattlerAttacker].multiHitOn
@@ -10715,20 +10720,6 @@ static void Cmd_various(void)
         }
         return;
     }
-    case VARIOUS_TRY_TAR_SHOT:
-    {
-        VARIOUS_ARGS(const u8 *failInstr);
-        if (gDisableStructs[battler].tarShot)
-        {
-            gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        else
-        {
-            gDisableStructs[battler].tarShot = TRUE;
-            gBattlescriptCurrInstr = cmd->nextInstr;
-        }
-        return;
-    }
     case VARIOUS_CAN_TAR_SHOT_WORK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
@@ -17206,6 +17197,20 @@ void BS_FickleBeamDamageCalculation(void)
     }
     else
     {
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+}
+
+void BS_TryTarShot(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    if (gDisableStructs[gBattlerTarget].tarShot || GetActiveGimmick(gBattlerTarget) == GIMMICK_TERA)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else
+    {
+        gDisableStructs[gBattlerTarget].tarShot = TRUE;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

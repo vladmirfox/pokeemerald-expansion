@@ -1674,6 +1674,11 @@
 	callnative BS_FickleBeamDamageCalculation
 	.endm
 
+	.macro trytarshot failInstr:req
+	callnative BS_TryTarShot
+	.4byte \failInstr
+	.endm
+
 	.macro jumpifblockedbysoundproof battler:req, failInstr:req
 	callnative BS_JumpIfBlockedBySoundproof
 	.byte \battler
@@ -2213,11 +2218,6 @@
 
 	.macro trynoretreat battler:req, failInstr:req
 	various \battler, VARIOUS_TRY_NO_RETREAT
-	.4byte \failInstr
-	.endm
-
-	.macro trytarshot battler:req, failInstr:req
-	various \battler, VARIOUS_TRY_TAR_SHOT
 	.4byte \failInstr
 	.endm
 
