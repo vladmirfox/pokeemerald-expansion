@@ -3073,7 +3073,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             sPicTable_Clodsire,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,,
+            TRACKS_FOOT,
             gOverworldPalette_Clodsire,
             gShinyOverworldPalette_Clodsire
         )
