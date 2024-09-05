@@ -7439,7 +7439,7 @@ static void Cmd_trainerslidein(void)
 {
     CMD_ARGS(u8 battler);
 
-    u32 battler = GetBattlerAtPosition(cmd->battler);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
     BtlController_EmitTrainerSlide(battler, BUFFER_A);
     MarkBattlerForControllerExec(battler);
 
