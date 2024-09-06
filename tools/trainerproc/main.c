@@ -37,8 +37,6 @@ enum Gender
     GENDER_FEMALE,
 };
 
-#define DIFFICULTY_DEFAULT DIFFICULTY_NORMAL
-
 // TODO: Support Hidden Power.
 struct Pokemon
 {
@@ -126,9 +124,22 @@ struct Trainer
     struct String starting_status;
     int starting_status_line;
 
-    struct String difficulty_string;
+    struct String difficulty;
     int difficulty_line;
 };
+
+static bool strings_equal(struct String s1, struct String s2)
+{
+    if (s1.string_n != s2.string_n)
+        return false;
+
+    for (int i = 0; i < s1.string_n ; i++)
+        if (s1.string[i] != s2.string[i])
+            return false;
+
+    return true;
+}
+
 
 static bool is_empty_string(struct String s)
 {
@@ -1113,8 +1124,6 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
     }
     trainer->id = token_string(&id);
     trainer->id_line = id.location.line;
-    trainer->difficulty_string = token_string(&id);
-    // TODO Mgriffin: difficulty_string should be set to "DEFAULT" but I can't figure out how to make a blank token
 
     // Parse trainer attributes.
     struct Token key, value;
@@ -1199,11 +1208,11 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             if (trainer->difficulty_line)
                 any_error = !set_show_parse_error(p, key.location, "duplicate 'Difficulty'");
             trainer->difficulty_line = value.location.line;
-            trainer->difficulty_string = token_string(&value);
+            trainer->difficulty = token_string(&value);
         }
         else
         {
-            any_error = !set_show_parse_error(p, key.location, "expected one of 'Name', 'Class', 'Pic', 'Gender', 'Music', 'Items', 'Double Battle', or 'AI'");
+            any_error = !set_show_parse_error(p, key.location, "expected one of 'Name', 'Class', 'Pic', 'Gender', 'Music', 'Items', 'Double Battle', 'Difficulty', or 'AI'");
         }
     }
     if (!trainer->pic_line)
@@ -1607,27 +1616,12 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
 
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
-    int numDifficulty = 0;
-    int j = 0;
+    int numDifficulty = 3;
     struct String difficultyStrings[numDifficulty];
 
-    for (int i = 0; i < parsed->trainers_n; i++)
-    {
-        struct Trainer *trainer = &parsed->trainers[i];
-
-        for (j = 0; j < numDifficulty; j++)
-        {
-            if (difficultyStrings[numDifficulty] == trainer->difficulty_string)
-            // TODO Mgriffin: match_exact and is_literal_string don't seem to be correct here, am I doing wrong?
-                break;
-        }
-
-        if (j != numDifficulty)
-            continue;
-
-        difficultyStrings[numDifficulty] = trainer->difficulty_string;
-        numDifficulty++;
-    }
+    difficultyStrings[0] = literal_string("Easy");
+    difficultyStrings[1] = literal_string("Default");
+    difficultyStrings[2] = literal_string("Hard");
 
     fprintf(f, "//\n");
     fprintf(f, "// DO NOT MODIFY THIS FILE! It is auto-generated from %s\n", parsed->source->path);
@@ -1652,9 +1646,10 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         for (int i = 0; i < parsed->trainers_n; i++)
         {
             struct Trainer *trainer = &parsed->trainers[i];
+            if (is_empty_string(trainer->difficulty))
+                trainer->difficulty = literal_string("Default");
 
-            if (trainer->difficulty_string != difficultyStrings[difficulty])
-            // TODO Mgriffin: match_exact and is_literal_string don't seem to be correct here, am I doing wrong?
+            if (!strings_equal(trainer->difficulty,difficultyStrings[difficulty]))
                 continue;
 
             fprintf(f, "#line %d\n", trainer->id_line);
