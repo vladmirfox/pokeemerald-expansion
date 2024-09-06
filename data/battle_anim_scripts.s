@@ -28359,7 +28359,7 @@ SeaOfFireTwisterTres:
 	delay 2
 	return
 
-gBattleAnimGeneral_Swamp:: @ To do
+gBattleAnimGeneral_Swamp::
 	loadspritegfx ANIM_TAG_RAIN_DROPS
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES
 	loadspritegfx ANIM_TAG_THOUGHT_BUBBLE
@@ -28370,13 +28370,16 @@ gBattleAnimGeneral_Swamp:: @ To do
 	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 60
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SMALL_BUBBLES, 0, 4, 4, RGB(12, 11, 31)
 	delay 1
-	createvisualtask AnimTask_BlendBattleAnimPal, 10, (F_PAL_BG | F_PAL_BATTLERS_2), 2, 4, 0, RGB_BLACK
 	waitforvisualfinish
 	fadetobg BG_SWAMP
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 60
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 60
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 0, 11, RGB(11, 26, 10)
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_DEF_PARTNER, 2, 0, 11, RGB(11, 26, 10)
 	waitbgfadeout
 	delay 4
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 60
+	createvisualtask AnimTask_CreateRaindrops, 2, 0, 3, 60
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 10, 1
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_DEF_PARTNER, 1, 0, 10, 1
 	loopsewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET, 20, 3
@@ -28386,6 +28389,7 @@ gBattleAnimGeneral_Swamp:: @ To do
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 11, 0, RGB(11, 26, 10)
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_DEF_PARTNER, 2, 11, 0, RGB(11, 26, 10)
 	waitbgfadein
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, (F_PAL_BG | F_PAL_BATTLERS_2), 2, 4, 0, RGB_BLACK
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
