@@ -1614,33 +1614,40 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
     }
 }
 
-static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
+static int build_difficulty_list(struct Trainer *trainers, int trainers_n, struct String *difficultyList)
 {
     int numDifficulty = 0;
-    struct String difficultyStrings[99];
 
-    for (int i = 0; i < parsed->trainers_n; i++)
+    for (int i = 0; i < trainers_n; i++)
     {
-        struct Trainer *trainer = &parsed->trainers[i];
+        struct Trainer *trainer = &trainers[i];
         if (is_empty_string(trainer->difficulty))
             trainer->difficulty = literal_string("Normal");
 
-        bool found = false;
+        bool stringMatch = false;
         for (int j = 0; j < numDifficulty; j++)
         {
-            if (strings_equal(difficultyStrings[j], trainer->difficulty))
+            if (strings_equal(difficultyList[j], trainer->difficulty))
             {
-                found = true;
+                stringMatch = true;
                 break;
             }
         }
 
-        if (found)
+        if (stringMatch)
             continue;
 
-        difficultyStrings[numDifficulty].string_n = trainer->difficulty.string_n;
-        difficultyStrings[numDifficulty++].string = trainer->difficulty.string;
+        difficultyList[numDifficulty].string_n = trainer->difficulty.string_n;
+        difficultyList[numDifficulty++].string = trainer->difficulty.string;
     }
+    fprintf(stderr,"%d\n",numDifficulty);
+    return numDifficulty;
+}
+
+static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
+{
+    struct String difficultyList[99];
+    int numDifficulty = build_difficulty_list(parsed->trainers, parsed->trainers_n, difficultyList);
 
     fprintf(f, "//\n");
     fprintf(f, "// DO NOT MODIFY THIS FILE! It is auto-generated from %s\n", parsed->source->path);
@@ -1654,11 +1661,12 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
 
+
     for (int difficulty = 0; difficulty < numDifficulty; difficulty++)
     {
 
         fprintf(f, "[");
-        fprint_constant(f, "DIFFICULTY", difficultyStrings[difficulty]);
+        fprint_constant(f, "DIFFICULTY", difficultyList[difficulty]);
         fprintf(f, "] =\n");
         fprintf(f, "{\n");
 
@@ -1666,7 +1674,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         {
             struct Trainer *trainer = &parsed->trainers[i];
 
-            if (!strings_equal(trainer->difficulty,difficultyStrings[difficulty]))
+            if (!strings_equal(trainer->difficulty,difficultyList[difficulty]))
                 continue;
 
             fprintf(f, "#line %d\n", trainer->id_line);
