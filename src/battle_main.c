@@ -5780,12 +5780,13 @@ bool32 TrySetAteType(u32 move, u32 battlerAtk, u32 attackerAbility)
 // NULL can be passed to ateBoost to avoid applying ate-ability boosts when opening the summary screen in-battle.
 u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
 {
-    u32 moveType, species, heldItem, holdEffect, ability, type1, type2, type3, effect;
+    u32 moveType = gMovesInfo[move].type;
+    u32 moveEffect = gMovesInfo[move].effect;
+    u32 species, heldItem, holdEffect, ability, type1, type2, type3;
 
     if (move == MOVE_STRUGGLE)
         return TYPE_NORMAL;
 
-    moveType = gMovesInfo[move].type;
     if (gMain.inBattle)
     {
         species = gBattleMons[battler].species;
@@ -5806,9 +5807,8 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         type2 = gSpeciesInfo[species].types[1];
         type3 = TYPE_MYSTERY;
     }
-    effect = gMovesInfo[move].effect;
 
-    if (effect == EFFECT_WEATHER_BALL)
+    if (moveEffect == EFFECT_WEATHER_BALL)
     {
         if (gMain.inBattle && WEATHER_HAS_EFFECT)
         {
@@ -5844,7 +5844,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             return moveType;
         }
     }
-    else if (effect == EFFECT_HIDDEN_POWER)
+    else if (moveEffect == EFFECT_HIDDEN_POWER)
     {
         u8 typeBits;
         if (gMain.inBattle)
@@ -5873,11 +5873,11 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             moveType++;
         return (moveType | F_DYNAMIC_TYPE_IGNORE_PHYSICALITY);
     }
-    else if (effect == EFFECT_CHANGE_TYPE_ON_ITEM && holdEffect == gMovesInfo[move].argument)
+    else if (moveEffect == EFFECT_CHANGE_TYPE_ON_ITEM && holdEffect == gMovesInfo[move].argument)
     {
         return ItemId_GetSecondaryId(heldItem);
     }
-    else if (effect == EFFECT_REVELATION_DANCE && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
+    else if (moveEffect == EFFECT_REVELATION_DANCE && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
     {
         u8 teraType;
         if (GetActiveGimmick(battler) == GIMMICK_TERA && ((teraType = GetMonData(mon, MON_DATA_TERA_TYPE)) != TYPE_STELLAR))
@@ -5893,28 +5893,28 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         else
             return TYPE_MYSTERY;
     }
-    else if (effect == EFFECT_RAGING_BULL
+    else if (moveEffect == EFFECT_RAGING_BULL
             && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED
              || species == SPECIES_TAUROS_PALDEAN_BLAZE_BREED
              || species == SPECIES_TAUROS_PALDEAN_AQUA_BREED))
     {
         return type2;
     }
-    else if (effect == EFFECT_IVY_CUDGEL
+    else if (moveEffect == EFFECT_IVY_CUDGEL
             && (species == SPECIES_OGERPON_WELLSPRING_MASK || species == SPECIES_OGERPON_WELLSPRING_MASK_TERA
              || species == SPECIES_OGERPON_HEARTHFLAME_MASK || species == SPECIES_OGERPON_HEARTHFLAME_MASK_TERA
              || species == SPECIES_OGERPON_CORNERSTONE_MASK || species == SPECIES_OGERPON_CORNERSTONE_MASK_TERA))
     {
         return type2;
     }
-    else if (effect == EFFECT_NATURAL_GIFT)
+    else if (moveEffect == EFFECT_NATURAL_GIFT)
     {
         if (ItemId_GetPocket(heldItem) == POCKET_BERRIES)
             return gNaturalGiftTable[ITEM_TO_BERRY(heldItem)].type;
         else
             return moveType;
     }
-    else if (effect == EFFECT_TERRAIN_PULSE)
+    else if (moveEffect == EFFECT_TERRAIN_PULSE)
     {
         if (gMain.inBattle)
         {
@@ -5949,11 +5949,11 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             return moveType;
         }
     }
-    else if (effect == EFFECT_TERA_BLAST && GetActiveGimmick(battler) == GIMMICK_TERA)
+    else if (moveEffect == EFFECT_TERA_BLAST && GetActiveGimmick(battler) == GIMMICK_TERA)
     {
         return GetMonData(mon, MON_DATA_TERA_TYPE);
     }
-    else if (effect == EFFECT_TERA_STARSTORM && species == SPECIES_TERAPAGOS_STELLAR)
+    else if (moveEffect == EFFECT_TERA_STARSTORM && species == SPECIES_TERAPAGOS_STELLAR)
     {
         return TYPE_STELLAR;
     }
@@ -5966,8 +5966,8 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             *ateBoost = TRUE;
     }
     else if (moveType != TYPE_NORMAL
-          && effect != EFFECT_HIDDEN_POWER
-          && effect != EFFECT_WEATHER_BALL
+          && moveEffect != EFFECT_HIDDEN_POWER
+          && moveEffect != EFFECT_WEATHER_BALL
           && ability == ABILITY_NORMALIZE
           && GetActiveGimmick(battler) != GIMMICK_Z_MOVE)
     {
@@ -5979,7 +5979,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
     {
         return TYPE_WATER;
     }
-    else if (effect == EFFECT_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
+    else if (moveEffect == EFFECT_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
     {
         return TYPE_DARK;
     }
