@@ -5514,16 +5514,17 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 effect++;
             }
             break;
-        // case ABILITY_INSPIRE:
-        //     if (gBattleMons[battler].hp == 0)
-        //     && IsBattlerAlive(BATTLE_PARTNER(battler))
-        //     && (CompareStat(BATTLE_PARTNER(battler), STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(BATTLE_PARTNER(battler), STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-        //     {
-        //         BattleScriptPushCursor();
-        //         gBattlescriptCurrInstr = BattleScript_InspireActivates;
-        //         effect++;
-        //     }
-        //     break;
+        case ABILITY_INSPIRE:
+            partner = BATTLE_PARTNER(battler);
+            if ((gBattleMons[battler].hp == 0)
+            && IsBattlerAlive(partner)
+            && (CompareStat(partner, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(partner, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)))
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_InspireActivates;
+                effect++;
+            }
+            break;
         case ABILITY_WEAK_ARMOR:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
