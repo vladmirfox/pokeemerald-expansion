@@ -205,7 +205,7 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
-    Script_SetDifficulty(DIFFICULTY_DEFAULT);
+    Script_SetDifficulty(DIFFICULTY_NORMAL);
 }
 
 static void ResetMiniGamesRecords(void)

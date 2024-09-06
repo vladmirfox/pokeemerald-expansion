@@ -1616,12 +1616,31 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
 
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
-    int numDifficulty = 3;
-    struct String difficultyStrings[numDifficulty];
+    int numDifficulty = 0;
+    struct String difficultyStrings[99];
 
-    difficultyStrings[0] = literal_string("Easy");
-    difficultyStrings[1] = literal_string("Default");
-    difficultyStrings[2] = literal_string("Hard");
+    for (int i = 0; i < parsed->trainers_n; i++)
+    {
+        struct Trainer *trainer = &parsed->trainers[i];
+        if (is_empty_string(trainer->difficulty))
+            trainer->difficulty = literal_string("Normal");
+
+        bool found = false;
+        for (int j = 0; j < numDifficulty; j++)
+        {
+            if (strings_equal(difficultyStrings[j], trainer->difficulty))
+            {
+                found = true;
+                break;
+            }
+        }
+
+        if (found)
+            continue;
+
+        difficultyStrings[numDifficulty].string_n = trainer->difficulty.string_n;
+        difficultyStrings[numDifficulty++].string = trainer->difficulty.string;
+    }
 
     fprintf(f, "//\n");
     fprintf(f, "// DO NOT MODIFY THIS FILE! It is auto-generated from %s\n", parsed->source->path);
@@ -1646,8 +1665,6 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         for (int i = 0; i < parsed->trainers_n; i++)
         {
             struct Trainer *trainer = &parsed->trainers[i];
-            if (is_empty_string(trainer->difficulty))
-                trainer->difficulty = literal_string("Default");
 
             if (!strings_equal(trainer->difficulty,difficultyStrings[difficulty]))
                 continue;
