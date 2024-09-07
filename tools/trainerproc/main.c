@@ -1637,10 +1637,8 @@ static int build_difficulty_list(struct Trainer *trainers, int trainers_n, struc
         if (stringMatch)
             continue;
 
-        difficultyList[numDifficulty].string_n = trainer->difficulty.string_n;
-        difficultyList[numDifficulty++].string = trainer->difficulty.string;
+        difficultyList[numDifficulty++] = trainer->difficulty;
     }
-    fprintf(stderr,"%d\n",numDifficulty);
     return numDifficulty;
 }
 
