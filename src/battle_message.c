@@ -4106,13 +4106,13 @@ static const struct TrainerSlide sTrainerSlides[DIFFICULTY_COUNT][TRAINERS_COUNT
         .msgBeforeFirstTurn = sText_GravityIntensified,
         .msgDynamax = sText_TargetWokeUp,
     },
-    */
     },
     [DIFFICULTY_EASY] =
     {
     },
     [DIFFICULTY_HARD] =
     {
+    */
     },
 };
 
