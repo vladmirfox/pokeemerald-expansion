@@ -1173,10 +1173,14 @@ void CreateEnemyShadowSprite(u32 battler)
     {
         gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary = CreateSprite(&gSpriteTemplate_EnemyShadow,
                                                                                         GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_Y) + 29,
+                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
                                                                                         0xC8);
         if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary < MAX_SPRITES)
-            gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary].tBattlerId = battler;
+        {
+            struct Sprite *sprite = &gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary];
+            sprite->tBattlerId = battler;
+            sprite->invisible = TRUE;
+        }
     }
 }
 
@@ -1242,21 +1246,15 @@ void SpriteCB_EnemyShadow(struct Sprite *shadowSprite)
                   ? gSpeciesInfo[transformSpecies].suppressEnemyShadow
                   : gSpeciesInfo[transformSpecies].enemyMonElevation == 0;
     }
-    else
+    else if (B_ENEMY_MON_SHADOW_STYLE >= GEN_4)
     {
         u16 species = SanitizeSpeciesId(gBattleMons[battler].species);
-        xOffset = gSpeciesInfo[species].enemyShadowXOffset;
-        yOffset = gSpeciesInfo[species].enemyShadowYOffset;
-    }
-
-    if (B_ENEMY_MON_SHADOW_STYLE >= GEN_4)
-    {
-        xOffset += (shadowSprite->tSpriteSide == SPRITE_SIDE_LEFT ? -16 : 16);
-        yOffset += 16;
+        xOffset = gSpeciesInfo[species].enemyShadowXOffset + (shadowSprite->tSpriteSide == SPRITE_SIDE_LEFT ? -16 : 16);
+        yOffset = gSpeciesInfo[species].enemyShadowYOffset + 16;
     }
     else
     {
-        yOffset += 29;
+        yOffset = 29;
     }
 
     if (gBattleSpritesDataPtr->battlerData[battler].behindSubstitute)
