@@ -1642,6 +1642,11 @@ static int build_difficulty_list(struct Trainer *trainers, int trainers_n, struc
     return numDifficulty;
 }
 
+static bool current_loop_is_test_trainers(const char *f)
+{
+    return (strcmp(f, "test/battle/trainer_control.party") == 0);
+}
+
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
     struct String difficultyList[99];
@@ -1663,10 +1668,13 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     for (int difficulty = 0; difficulty < numDifficulty; difficulty++)
     {
 
-        fprintf(f, "[");
-        fprint_constant(f, "DIFFICULTY", difficultyList[difficulty]);
-        fprintf(f, "] =\n");
-        fprintf(f, "{\n");
+        if (!current_loop_is_test_trainers(parsed->source->path))
+        {
+            fprintf(f, "[");
+            fprint_constant(f, "DIFFICULTY", difficultyList[difficulty]);
+            fprintf(f, "] =\n");
+            fprintf(f, "{\n");
+        }
 
         for (int i = 0; i < parsed->trainers_n; i++)
         {
@@ -1933,6 +1941,9 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
             fprintf(f, "        },\n");
             fprintf(f, "    },\n");
         }
+
+        if (current_loop_is_test_trainers(parsed->source->path))
+            break;
 
         fprintf(f, "},\n");
 
