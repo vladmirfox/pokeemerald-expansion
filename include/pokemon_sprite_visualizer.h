@@ -68,13 +68,9 @@ struct PokemonSpriteVisualizer
     bool8 isShiny;
     bool8 isFemale;
 
-#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
-    u8 frontShadowSpriteIdLeft;
-    u8 frontShadowSpriteIdRight;
+    u8 frontShadowSpriteIdPrimary;
+    u8 frontShadowSpriteIdSecondary;
     struct PokemonShadowSettings shadowSettings;
-#else
-    u8 frontShadowSpriteId;
-#endif
 
     struct PokemonSpriteVisualizerModifyArrows modifyArrows;
     struct PokemonSpriteVisualizerOptionArrows optionArrows;

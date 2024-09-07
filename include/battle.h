@@ -980,12 +980,8 @@ struct BattleHealthboxInfo
     u8 partyStatusDelayTimer;
     u8 matrixNum;
 
-#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
-    u8 shadowSpriteIdLeft;
-    u8 shadowSpriteIdRight;
-#else
-    u8 shadowSpriteId;
-#endif
+    u8 shadowSpriteIdPrimary;
+    u8 shadowSpriteIdSecondary;
 
     u8 soundTimer;
     u8 introEndDelay;

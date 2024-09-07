@@ -211,6 +211,18 @@ static void Intro_WaitForShinyAnimAndHealthbox(u32 battler)
     }
 }
 
+static void TrySetBattlerShadowSpriteCallback(u32 battler)
+{
+    if (gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary].callback == SpriteCallbackDummy)
+    {
+        if (B_ENEMY_MON_SHADOW_STYLE <= GEN_3
+            || gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary].callback == SpriteCallbackDummy)
+        {
+            SetBattlerShadowSpriteCallback(battler, GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES));
+        }
+    }
+}
+
 static void Intro_TryShinyAnimShowHealthbox(u32 battler)
 {
     bool32 bgmRestored = FALSE;
@@ -271,16 +283,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
     {
         if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy)
         {
-#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
-            if (gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdLeft].callback == SpriteCallbackDummy
-                && gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdRight].callback == SpriteCallbackDummy)
-#else
-            if (gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId].callback == SpriteCallbackDummy)
-#endif
-            {
-                SetBattlerShadowSpriteCallback(battler, GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES));
-            }
-
+            TrySetBattlerShadowSpriteCallback(battler);
             if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
             {
                 battlerAnimsDone = TRUE;
@@ -292,16 +295,8 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
         if (gSprites[gBattleControllerData[battler]].callback == SpriteCallbackDummy
             && gSprites[gBattleControllerData[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
         {
-#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
-            if (gSprites[gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].shadowSpriteIdLeft].callback == SpriteCallbackDummy
-                && gSprites[gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].shadowSpriteIdRight].callback == SpriteCallbackDummy)
-#else
-            if (gSprites[gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].shadowSpriteId].callback == SpriteCallbackDummy)
-#endif
-            {
-                SetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler), GetMonData(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]], MON_DATA_SPECIES));
-            }
-
+            TrySetBattlerShadowSpriteCallback(battler);
+            TrySetBattlerShadowSpriteCallback(BATTLE_PARTNER(battler));
             if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
                 && gSprites[gBattlerSpriteIds[BATTLE_PARTNER(battler)]].callback == SpriteCallbackDummy)
             {
