@@ -2322,6 +2322,23 @@
 	callnative Script_ToggleFakeRtc
 	.endm
 
+	@ ============================ @
+	@ ITEM DESCRIPTION HEADER MACROS
+	@ Used with OW_SHOW_ITEM_DESCRIPTIONS config
+	.macro showitemdescription
+	callnative ScriptShowItemDescription
+	.byte 0
+	.endm
+
+	.macro showberrydescription
+	callnative ScriptShowItemDescription
+	.byte 1
+	.endm
+
+	.macro hideitemdescription
+	callnative ScriptHideItemDescription
+	.endm
+
    .macro increasedifficulty
     callnative Script_IncreaseDifficulty
    .endm
@@ -2339,4 +2356,3 @@
 	.byte 0xe6
 	.2byte \difficulty
 	.endm
-
