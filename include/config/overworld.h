@@ -51,7 +51,7 @@
                                                   // (You should not use 48x48 sprites/tables for compressed gfx)
                                                   // 16x32, 32x32, 64x64 etc are fine
 // Follower Pokémon
-#define OW_FOLLOWERS_ENABLED           FALSE // Enables follower Pokémon, HGSS style. Requires OW_POKEMON_OBJECT_EVENTS. Note that additional scripting may be required for them to be fully supported!
+#define OW_FOLLOWERS_ENABLED           FALSE      // Enables follower Pokémon, HGSS style. Requires OW_POKEMON_OBJECT_EVENTS. Note that additional scripting may be required for them to be fully supported!
 #define OW_FOLLOWERS_BOBBING           TRUE       // If true, follower pokemon will bob up and down during their idle & walking animations
 #define OW_FOLLOWERS_POKEBALLS         TRUE       // Followers will emerge from the pokeball they are stored in, instead of a normal pokeball
 
@@ -74,7 +74,7 @@
 #define OW_USE_FAKE_RTC                 FALSE      // When TRUE, seconds on the in-game clock will only advance once every 60 playTimeVBlanks (every 60 frames).
 #define OW_ALTERED_TIME_RATIO           GEN_LATEST // In GEN_8_PLA, the time in game moves forward 60 seconds for every second in the RTC. In GEN_9, it is 20 seconds. This has no effect if OW_USE_FAKE_RTC is FALSE.
 
-// Time-based wild Pokemon encounters - Allows you to create additional encounter groups in wild_encounters.json (or in porymap). 
+// Time-based wild Pokemon encounters - Allows you to create additional encounter groups in wild_encounters.json (or in porymap).
 // The groups are processed by base label's suffix. For example, "gRoute101" (no suffix) contains daytime encounters, and "gRoute101_Night" contains nighttime encounters.
 // Not every group needs to be defined for every map - you could for example omit them inside caves and it would fall back to the unsuffixed daytime encounter group.
 #define OW_TIME_BASED_WILD_ENCOUNTERS           FALSE // Enables the system. If disabled, all suffixes are ignored and the first encounter group found for a map will be used for wild encounters.
