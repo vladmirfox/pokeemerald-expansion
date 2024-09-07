@@ -353,7 +353,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Right")
         OPPONENT(SPECIES_WYNAUT) { Speed(speedORight); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedPLeft < speedPRight) {
             MESSAGE("Wynaut is fast asleep.");
@@ -392,7 +391,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Left")
         OPPONENT(SPECIES_WYNAUT) { Speed(speedORight); }
     } WHEN {
         TURN { MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerLeft, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedPRight < speedPLeft) {
             MESSAGE("Wobbuffet is fast asleep.");
@@ -426,7 +424,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Flinch Right"
         OPPONENT(SPECIES_WYNAUT) { Speed(speedORight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_FAKE_OUT, target: playerRight); MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedPLeft < speedPRight) {
             MESSAGE("Wynaut flinched!");
@@ -460,7 +457,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Flinch Left")
         OPPONENT(SPECIES_WYNAUT) { Speed(speedORight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_FAKE_OUT, target: playerLeft); MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerLeft, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedPRight < speedPLeft) {
             MESSAGE("Wobbuffet flinched!");
@@ -539,7 +535,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Both Le
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedLeft < speedRight) {
             MESSAGE("Wynaut is fast asleep.");
@@ -568,7 +563,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Both Ri
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         if (speedRight < speedLeft) {
             MESSAGE("Wobbuffet is fast asleep.");
@@ -598,7 +592,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Both Le
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         MESSAGE("Wobbuffet is fast asleep.");
         MESSAGE("Wynaut is fast asleep.");
@@ -625,7 +618,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Sleep Both Ri
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         MESSAGE("Wynaut is fast asleep.");
         MESSAGE("Wobbuffet is fast asleep.");
@@ -648,7 +640,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Frozen Both L
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight, WITH_RNG(RNG_FROZEN, 0)); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight, WITH_RNG(RNG_FROZEN, 0)); }
-        TURN {}
     } SCENE {
         MESSAGE("Wobbuffet is frozen solid!");
         MESSAGE("Wynaut is frozen solid!");
@@ -671,7 +662,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Frozen Both R
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight, WITH_RNG(RNG_FROZEN, 0)); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight, WITH_RNG(RNG_FROZEN, 0)); }
-        TURN {}
     } SCENE {
         MESSAGE("Wynaut is frozen solid!");
         MESSAGE("Wobbuffet is frozen solid!");
@@ -694,7 +684,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Paralyzed Bot
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight, WITH_RNG(RNG_PARALYSIS, 0)); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight, WITH_RNG(RNG_PARALYSIS, 0)); }
-        TURN {}
     } SCENE {
         MESSAGE("Wobbuffet is paralyzed! It can't move!");
         MESSAGE("Wynaut is paralyzed! It can't move!");
@@ -717,7 +706,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Paralyzed Bot
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_FIRE_PLEDGE, target: opponentRight, WITH_RNG(RNG_PARALYSIS, 0)); MOVE(playerRight, MOVE_GRASS_PLEDGE, target: opponentRight, WITH_RNG(RNG_PARALYSIS, 0)); }
-        TURN {}
     } SCENE {
         MESSAGE("Wynaut is paralyzed! It can't move!");
         MESSAGE("Wobbuffet is paralyzed! It can't move!");
@@ -741,7 +729,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Flinch Both L
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_FAKE_OUT, target: playerLeft); MOVE(opponentRight, MOVE_FAKE_OUT, target: playerRight); MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerLeft, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponentRight);
@@ -767,7 +754,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo fails if ally fails to act - Flinch Both R
         OPPONENT(SPECIES_WYNAUT) { Speed(2); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_FAKE_OUT, target: playerLeft); MOVE(opponentRight, MOVE_FAKE_OUT, target: playerRight); MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight); MOVE(playerLeft, MOVE_GRASS_PLEDGE, target: opponentRight); }
-        TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, opponentRight);
