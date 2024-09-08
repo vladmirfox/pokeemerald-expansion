@@ -4607,7 +4607,7 @@ static const struct SpriteFrameImage sPicTable_Crabominable[] = {
 static const struct SpriteFrameImage sPicTable_OricorioBaile[] = {
     overworld_ascending_frames(gObjectEventPic_OricorioBaile, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_OricorioPomPom[] = {
+static const struct SpriteFrameImage sPicTable_OricorioPomPom[] = {
     overworld_ascending_frames(gObjectEventPic_OricorioPomPom, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_OricorioPau[] = {
@@ -4615,7 +4615,7 @@ static const struct SpriteFrameImage sPicTable_OricorioPau[] = {
 };
 static const struct SpriteFrameImage sPicTable_OricorioSensu[] = {
     overworld_ascending_frames(gObjectEventPic_OricorioSensu, 4, 4),
-};*/
+};
 #endif //P_FAMILY_ORICORIO
 
 #if P_FAMILY_CUTIEFLY

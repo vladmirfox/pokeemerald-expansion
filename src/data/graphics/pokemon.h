@@ -16464,10 +16464,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/shiny.gbapal.lz");
     const u8 gMonIcon_OricorioPomPom[] = INCBIN_U8("graphics/pokemon/oricorio/pom_pom/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_OricorioPomPom[] = INCBIN_COMP("graphics/pokemon/oricorio/pom_pom/overworld.4bpp");
+    const u32 gObjectEventPic_OricorioPomPom[] = INCBIN_COMP("graphics/pokemon/oricorio/pom_pom/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_OricorioPomPom[] = INCBIN_U32("graphics/pokemon/oricorio/pom_pom/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
@@ -16477,10 +16477,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/shiny.gbapal.lz");
     const u8 gMonIcon_OricorioPau[] = INCBIN_U8("graphics/pokemon/oricorio/pau/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_OricorioPau[] = INCBIN_COMP("graphics/pokemon/oricorio/pau/overworld.4bpp");
+    const u32 gObjectEventPic_OricorioPau[] = INCBIN_COMP("graphics/pokemon/oricorio/pau/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_OricorioPau[] = INCBIN_U32("graphics/pokemon/oricorio/pau/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
@@ -16490,10 +16490,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/shiny.gbapal.lz");
     const u8 gMonIcon_OricorioSensu[] = INCBIN_U8("graphics/pokemon/oricorio/sensu/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_OricorioSensu[] = INCBIN_COMP("graphics/pokemon/oricorio/sensu/overworld.4bpp");
+    const u32 gObjectEventPic_OricorioSensu[] = INCBIN_COMP("graphics/pokemon/oricorio/sensu/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_OricorioSensu[] = INCBIN_U32("graphics/pokemon/oricorio/sensu/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_ORICORIO
