@@ -11807,27 +11807,178 @@ static const struct TrainerMon sParty_MayLinkPlaceholder[] = {
 
 static const struct TrainerMon sParty_AlmondFight1[] = {
     {
-    .lvl = 8,
+    .lvl = 5,
     .species = SPECIES_SPHEAL,
     },
     {
-    .lvl = 8,
+    .lvl = 5,
     .species = SPECIES_SKRELP,
     },
     {
-    .lvl = 8,
+    .lvl = 5,
     .species = SPECIES_DWEBBLE,
     },
     {
-    .lvl = 9,
+    .lvl = 6,
     .species = SPECIES_SEEL,
     },
     {
-    .lvl = 9,
+    .lvl = 6,
     .species = SPECIES_TATSUGIRI,
     },
     {
-    .lvl = 11,
+    .lvl = 9,
     .species = SPECIES_SPHEAL,
+    }
+};
+
+static const struct TrainerMon sAppelForestBugCatcher1[] = {
+    {
+    .lvl = 4,
+    .species = SPECIES_PARAS,
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_SIZZLIPEDE,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SHUCKLE,
+    }
+};
+
+static const struct TrainerMon sAppelForestBugCatcher2[] = {
+    {
+    .lvl = 4,
+    .species = SPECIES_PARAS,
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_SIZZLIPEDE,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SHUCKLE,
+    }
+};
+
+
+static const struct TrainerMon sAppelFisherman1[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGIKARP,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGIKARP,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_ANORITH,
+    }
+};
+
+static const struct TrainerMon sAppelFisherman2[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGIKARP,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGIKARP,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_KABUTO,
+    }
+};
+
+static const struct TrainerMon sAppelSilph1[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_GRIMER,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGNEMITE,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_PORYGON,
+    }
+};
+
+static const struct TrainerMon sAppelSilph2[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_MAGNEMITE,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_VOLTORB,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_ZUBAT,
+    }
+};
+
+static const struct TrainerMon sAppelSilph3[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_PARAS,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SIZZLIPEDE,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_SHUCKLE,
+    }
+};
+
+static const struct TrainerMon sAppelSilph4[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_DITTO,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_NATU,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_ABRA,
+    }
+};
+
+static const struct TrainerMon sAppelSilph5[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_LUNATONE,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SOLROCK,
+    },
+    {
+    .lvl = 7,
+    .species = SPECIES_CLEFAIRY,
+    }
+};
+
+static const struct TrainerMon sAppelTourist[] = {
+    {
+    .lvl = 6,
+    .species = SPECIES_RATTATA,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_SANDSHREW,
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_PIDGEY,
     }
 };

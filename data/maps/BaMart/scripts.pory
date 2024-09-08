@@ -1,0 +1,34 @@
+mapscripts BaMart_MapScripts {
+
+}
+
+script Ba_Mart_Employee{
+    lock
+    faceplayer
+    if(flag(FLAG_STATER_GET)==FALSE){
+        msgbox(BaMartEmployeeBeforeStarter)
+    }
+    else{
+        message("How may I serve you?")
+        waitmessage
+        pokemart(Ba_Mart_Items)
+        msgbox("Please Come Again.")
+    }
+    release
+    end
+}
+
+mart Ba_Mart_Items {
+    ITEM_POKE_BALL
+    ITEM_POTION
+    ITEM_FULL_HEAL
+    ITEM_REPEL
+    ITEM_ABILITY_CAPSULE
+    ITEM_CHARCOAL
+    ITEM_MYSTIC_WATER
+    ITEM_MIRACLE_SEED
+}
+
+text BaMartEmployeeBeforeStarter{
+    format("Hey, I heard Prof. Sigillaria was looking for you.")
+}

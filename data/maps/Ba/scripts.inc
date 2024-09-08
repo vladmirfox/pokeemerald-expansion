@@ -20,11 +20,39 @@ looktowards:
 	face_player
 	step_end
 
-SilphCoMSg::
-# 15 "data/maps/Ba/scripts.pory"
+BaSign::
+# 16 "data/maps/Ba/scripts.pory"
+	lockall
+# 17 "data/maps/Ba/scripts.pory"
+	msgbox BaSign_Text
+# 18 "data/maps/Ba/scripts.pory"
+	release
+	return
+
+
+SigillariaSign::
+# 22 "data/maps/Ba/scripts.pory"
+	lockall
+# 23 "data/maps/Ba/scripts.pory"
+	msgbox SigillariaSign_Text
+# 24 "data/maps/Ba/scripts.pory"
+	release
+	return
+
+
+SilphCoMsg::
+# 27 "data/maps/Ba/scripts.pory"
 	.string "The Atlantia region used to be\n"
 	.string "completely shut off the rest of the\l"
-	.string "world.\n"
-	.string "But then Silph Co. showed up in their\l"
-	.string "fancy submarine!\n"
-	.string "Now things are so much busier here.$"
+	.string "world. But then Silph Co. showed up in\l"
+	.string "their fancy submarine! Now things are\l"
+	.string "so much busier here.$"
+
+BaSign_Text::
+# 31 "data/maps/Ba/scripts.pory"
+	.string "Welcome to the town of Ba, miles\n"
+	.string "beneath Bel.$"
+
+SigillariaSign_Text::
+# 35 "data/maps/Ba/scripts.pory"
+	.string "Prof. Sigillaria's lab.$"

@@ -98,7 +98,11 @@
     "BaPokemonCenter",
     "PlayerHome",
     "BaMart",
-    "BaAlmondHouse"
+    "BaAlmondHouse",
+    "Appel_Forest",
+    "River",
+    "Agriville",
+    "OceanByway"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

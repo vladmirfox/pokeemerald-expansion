@@ -1,0 +1,153 @@
+mapscripts Appel_Forest_MapScripts{
+
+}
+
+script givebulletseed {
+    lockall
+    giveitem(ITEM_TM09)
+    removeobject(6)
+    setflag(FLAG_APPEL_FOREST_ITEM_1)
+    release
+    end
+}
+
+script giverocktomb {
+    lockall
+    giveitem(ITEM_TM39)
+    removeobject(7)
+    setflag(FLAG_APPEL_FOREST_ITEM_2)
+    release
+    end
+}
+
+script givesilverpowder {
+    lockall
+    giveitem(ITEM_SILVER_POWDER)
+    removeobject(5)
+    setflag(FLAG_APPEL_FOREST_ITEM_3)
+    release
+    end
+}
+
+script giveblackaugerite {
+    lockall
+    giveitem(ITEM_BLACK_AUGURITE)
+    removeobject(3)
+    setflag(FLAG_APPEL_FOREST_ITEM_4)
+    release
+    end
+}
+
+script givesuperpotion {
+    lockall
+    giveitem(ITEM_SUPER_POTION)
+    removeobject(4)
+    setflag(FLAG_APPEL_FOREST_ITEM_5)
+    release
+    end
+}
+
+script Fisherman_Gives_Good_Rod {
+    applymovement(12,looktowards)
+    waitmovement(0)
+    lockall
+    if(flag(FLAG_RECEIVED_GOOD_ROD)==TRUE){
+        msgbox("How's the rod treating you?")
+    }
+    else{
+        msgbox("Hey kid! You like to fish?", MSGBOX_YESNO)
+        if(var(VAR_RESULT)==YES){
+            msgbox("That's what I like to hear!\nTake this!")
+            giveitem(ITEM_GOOD_ROD)
+            setflag(FLAG_RECEIVED_GOOD_ROD)
+            msgbox("Put that to good use!")
+        }
+        else{
+            msgbox("Youngsters these days...")
+        }
+    }
+    lockall
+    applymovement(12,lookup)
+    waitmovement(0)
+    release
+    end
+}
+
+script AppelBugBattle1 {
+
+       trainerbattle_single(APPEL_BUG_CATCHER_1,"This forest is crawling with critters!",":(")
+       msgbox(TheCritters)
+       waitmessage
+
+}
+
+script AppelBugBattle2 {
+       trainerbattle_single(APPEL_BUG_CATCHER_2,ToJoinAgrivilleGym,gymMaterial)
+}
+
+script AppelFisherman1 {
+       trainerbattle_single(APPEL_FISHERMAN_1,MyLatestCatch,"You broke my line!")
+}
+
+script AppelFisherman2 {
+       trainerbattle_single(APPEL_FISHERMAN_2,"Sploosh!","...sploosh...")
+}
+
+script AppelSilph1{
+       trainerbattle_single(APPEL_SILPH_1,"PLACEHOLDER","PLACEHOLDER")
+}
+
+script AppelSilph2{
+       trainerbattle_single(APPEL_SILPH_2,"PLACEHOLDER","PLACEHOLDER")
+}
+
+script AppelSilph3{
+       trainerbattle_single(APPEL_SILPH_3,"PLACEHOLDER","PLACEHOLDER")
+}
+
+script AppelSilph4{
+       trainerbattle_single(APPEL_SILPH_4,"PLACEHOLDER","PLACEHOLDER")
+}
+
+script AppelSilph5{
+       trainerbattle_single(APPEL_SILPH_5,"PLACEHOLDER","PLACEHOLDER")
+}
+script AppelTourist {
+    trainerbattle_single(APPEL_TOURIST,Vacation,"I guess you do...")
+}
+
+text Vacation {
+    format("You're a local! Say, do you know what a pokemon battle is?")
+}
+
+text ToJoinAgrivilleGym {
+    format("I'm catching bugs to join Agriville gym!")
+}
+
+text gymMaterial {
+    format("I'll never be gym material at this rate...")
+}
+
+text MyLatestCatch{
+    format("My latest catch will reel you in!")
+}
+
+script SilphBlockPlayer {
+    lockall()
+    msgbox(BlockPlayer)
+    waitmessage
+    release
+    end
+}
+
+movement lookup {
+    face_up
+}
+
+text TheCritters {
+    format("The critters weren't strong enough.")
+}
+
+text BlockPlayer {
+    format("Child. This is the scyther sanctuary. No one is allowed in ")
+}

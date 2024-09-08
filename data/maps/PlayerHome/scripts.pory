@@ -5,7 +5,7 @@ mapscripts PlayerHome_MapScripts {
 
 
 script turnto_and_getunown {
-    applymovement(OBJECT_EVENT_ID_PLAYER,lookatunown)
+    applymovement(OBJ_EVENT_ID_PLAYER,lookatunown)
     waitmovement(0)
     call(getunown)
     end
@@ -14,7 +14,7 @@ script turnto_and_getunown {
 script getrunning_shoes {
     lockall
     playfanfare(MUS_OBTAIN_ITEM)
-    
+    msgbox("You got the running shoes!")
     setflag(FLAG_SYS_B_DASH)
     removeobject(2)
     releaseall
@@ -26,7 +26,7 @@ script getunown {
     setrespawn(HEAL_LOCATION_BA)
     playfanfare(MUS_OBTAIN_ITEM)
     removeobject(1)
-    givemon(SPECIES_UNOWN,5,ITEM_POKE_BALL)
+    givemon(SPECIES_UNOWN,5,ITEM_TWISTED_SPOON)
     if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("You grabbed your partner, Unown!")

@@ -5,67 +5,77 @@ mapscripts BaAlmondHouse_MapScripts {
 script AlmondBattle {
     lockall
     faceplayer
-    msgbox(HeyKid)
-    msgbox(Tellya, MSGBOX_YESNO)
-    if(var(VAR_RESULT) == YES){
-        trainerbattle_single(TRAINER_SAWYER_1,AlmondIntro,AlmondExit)
-        msgbox(lookslike)
-        multichoice(25, 5, MULTI_ALMOND_GIFT_CHOICE, 0)
-        switch(var(VAR_RESULT)) {
-            case 0:
-                msgbox("You got Dwebble!")
-                givemon(SPECIES_DWEBBLE,5)
-                msgbox("Give it a nickname?", MSGBOX_YESNO)
-                if(var(VAR_RESULT) == YES){
-                    call(Common_EventScript_GetGiftMonPartySlot)
-                    call(Common_EventScript_NameReceivedPartyMon)
-                }
-            case 1:
-                msgbox("You got Seel!")
-                givemon(SPECIES_SEEL,5)
-                msgbox("Give it a nickname?", MSGBOX_YESNO)
-                if(var(VAR_RESULT) == YES){
-                    call(Common_EventScript_GetGiftMonPartySlot)
-                    call(Common_EventScript_NameReceivedPartyMon)
-                }
-            case 2:
-                msgbox("You got Skrelp!")
-                givemon(SPECIES_SKRELP,5)
-                msgbox("Give it a nickname?", MSGBOX_YESNO)
-                if(var(VAR_RESULT) == YES){
-                    call(Common_EventScript_GetGiftMonPartySlot)
-                    call(Common_EventScript_NameReceivedPartyMon)
-                }
-            case 3:
-                msgbox("You got Spheal!")
-                givemon(SPECIES_SPHEAL,5)
-                msgbox("Give it a nickname?", MSGBOX_YESNO)
-                if(var(VAR_RESULT) == YES){
-                    call(Common_EventScript_GetGiftMonPartySlot)
-                    call(Common_EventScript_NameReceivedPartyMon)
-                }
-            case 4:
-                msgbox("You got Tatsugiri!")
-                givemon(SPECIES_TATSUGIRI,5)
-                msgbox("Give it a nickname?", MSGBOX_YESNO)
-                if(var(VAR_RESULT) == YES){
-                    call(Common_EventScript_GetGiftMonPartySlot)
-                    call(Common_EventScript_NameReceivedPartyMon)
-                }
+    if(!defeated(TRAINER_SAWYER_1)){
+        msgbox(HeyKid)
+        msgbox(Tellya, MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES){
+            trainerbattle_single(TRAINER_SAWYER_1,AlmondIntro,AlmondExit)
+            
+            //call select mon
         }
-        //call select mon
+        else{
+            msgbox("Another time then.")
+        }
     }
     else{
-        msgbox("Another time then.")
+        if(var(VAR_ALMOND_GIFT)==0){
+            msgbox(lookslike)
+                multichoice(25, 5, MULTI_ALMOND_GIFT_CHOICE, 0)
+                switch(var(VAR_RESULT)) {
+                    case 0:
+                        msgbox("You got Dwebble!")
+                        givemon(SPECIES_DWEBBLE,5)
+                        setvar(VAR_ALMOND_GIFT,1)
+                        msgbox("Give it a nickname?", MSGBOX_YESNO)
+                        if(var(VAR_RESULT) == YES){
+                            call(Common_EventScript_GetGiftMonPartySlot)
+                            call(Common_EventScript_NameReceivedPartyMon)
+                        }
+                    case 1:
+                        msgbox("You got Seel!")
+                        givemon(SPECIES_SEEL,5)
+                        setvar(VAR_ALMOND_GIFT,1)
+                        msgbox("Give it a nickname?", MSGBOX_YESNO)
+                        if(var(VAR_RESULT) == YES){
+                            call(Common_EventScript_GetGiftMonPartySlot)
+                            call(Common_EventScript_NameReceivedPartyMon)
+                        }
+                    case 2:
+                        msgbox("You got Skrelp!")
+                        givemon(SPECIES_SKRELP,5)
+                        setvar(VAR_ALMOND_GIFT,1)
+                        msgbox("Give it a nickname?", MSGBOX_YESNO)
+                        if(var(VAR_RESULT) == YES){
+                            call(Common_EventScript_GetGiftMonPartySlot)
+                            call(Common_EventScript_NameReceivedPartyMon)
+                        }
+                    case 3:
+                        msgbox("You got Spheal!")
+                        givemon(SPECIES_SPHEAL,5)
+                        setvar(VAR_ALMOND_GIFT,1)
+                        msgbox("Give it a nickname?", MSGBOX_YESNO)
+                        if(var(VAR_RESULT) == YES){
+                            call(Common_EventScript_GetGiftMonPartySlot)
+                            call(Common_EventScript_NameReceivedPartyMon)
+                        }
+                    case 4:
+                        msgbox("You got Tatsugiri!")
+                        givemon(SPECIES_TATSUGIRI,5)
+                        setvar(VAR_ALMOND_GIFT,1)
+                        msgbox("Give it a nickname?", MSGBOX_YESNO)
+                        if(var(VAR_RESULT) == YES){
+                            call(Common_EventScript_GetGiftMonPartySlot)
+                            call(Common_EventScript_NameReceivedPartyMon)
+                        }
+                }
+        }
+        else{
+            msgbox("Spheal you later, kid!")
+        }
     }
     release
 }
 
-script SelectMon {
-
-
-
-}
 
 text AlmondIntro {
 "We will Seel how you measure up!"

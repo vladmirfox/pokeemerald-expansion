@@ -1,10 +1,19 @@
 mapscripts BaPokemonCenter_MapScripts {
-
+    MAP_SCRIPT_ON_TRANSITION: Ba_PokemonCenter_OnTransition
+	MAP_SCRIPT_ON_RESUME: CableClub_OnResume
 }
 
-script BaPokemonCenter_Scripts {
-
-
+script Ba_PokemonCenter_OnTransition {
+    setrespawn(HEAL_LOCATION_BA)
+	end 
 }
 
-raw``
+script NurseHeal {
+    setvar(VAR_0x800B,1)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}
+

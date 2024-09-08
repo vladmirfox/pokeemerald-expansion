@@ -34,6 +34,11 @@ script noticeplayer{
             waitmovement(0)
             setvar(VAR_SIGILLARIA_STATE,3)
             setvar(VAR_SIG_LAB_TRIGGER,1)
+            setflag(FLAG_SYS_POKEDEX_GET)
+            setflag(FLAG_ADVENTURE_STARTED)
+            special(SetUnlockedPokedexFlags)
+            setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+            setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
             release
         default:
         setvar(VAR_SIG_LAB_TRIGGER,1)
@@ -46,7 +51,7 @@ script NewProfessor_EventScript_Cyndaquill{
     showmonpic(SPECIES_CYNDAQUIL, 10,3)
     msgbox("Do you want to choose Cyndaquil?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_CYNDAQUIL, 5, ITEM_MASTER_BALL)
+        givemon(SPECIES_CYNDAQUIL, 5, ITEM_CHARCOAL)
         setflag(FLAG_STATER_GET)
         setvar(VAR_SIGILLARIA_STATE,2)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
@@ -79,7 +84,7 @@ script NewProfessor_EventScript_Oshawott{
     showmonpic(SPECIES_OSHAWOTT, 10,3)
     msgbox("Do you want to choose Oshawott?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_OSHAWOTT, 5, ITEM_MASTER_BALL)
+        givemon(SPECIES_OSHAWOTT, 5, ITEM_MYSTIC_WATER)
         setflag(FLAG_STATER_GET)
         setvar(VAR_SIGILLARIA_STATE,2)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
@@ -113,7 +118,7 @@ script NewProfessor_EventScript_Rowlet{
     showmonpic(SPECIES_ROWLET, 10,3)
     msgbox("Do you want to choose Rowlet?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_ROWLET, 5, ITEM_MASTER_BALL)
+        givemon(SPECIES_ROWLET, 5, ITEM_MIRACLE_SEED)
         setflag(FLAG_STATER_GET)
         setvar(VAR_SIGILLARIA_STATE,2)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
@@ -178,24 +183,29 @@ script Sigillaria{
         msgbox(PostChoice)
         msgbox(beforeyouleave)
         setvar(VAR_SIGILLARIA_STATE,3)
-        setvar(VAR_SIG_LAB_TRIGGER,1)
+        setvar(VAR_SIG_LAB_TRIGGER,1)	
+        setflag(FLAG_SYS_POKEDEX_GET)
+        setflag(FLAG_ADVENTURE_STARTED)
+	    special(SetUnlockedPokedexFlags)
+	    setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+	    setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
         release
 
         case 3:
         lockall
-        msgbox("All this new technology makes my head spin!")
+        msgbox(AllThisNewTech)
         release
 
         default:
         lockall
-        msgbox("All this new technology makes my head spin!")
+        msgbox(AllThisNewTech)
         release
 
     }
 }
 
 text PostChoice{
-     format("Say could you do me a favor and check on my granddaughter in Appleton? My sister told me she lost her precious Scyther."
+     format("Say could you do me a favor and check on my granddaughter in Appel? My sister told me she lost her precious Scyther."
      )
 }
 
@@ -206,7 +216,7 @@ text beforeyouleave{
 
 text TriggerGreet {
 
-    format("Hello! I just got the Pokemon from Silph Co. in. Say, why don't you choose one?")
+    format("Hello {PLAYER}! I just got the Pokemon from Silph Co. in. Say, why don't you choose one?")
 
 }
 
@@ -227,4 +237,8 @@ movement stopplayer {
 }
 movement playerlookup {
     face_up
+}
+
+text AllThisNewTech {
+    format("All this new technology makes my head spin!")
 }

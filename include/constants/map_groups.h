@@ -69,6 +69,10 @@
 #define MAP_PLAYER_HOME         (60 | (0 << 8))
 #define MAP_BA_MART             (61 | (0 << 8))
 #define MAP_BA_ALMOND_HOUSE     (62 | (0 << 8))
+#define MAP_APPEL_FOREST        (63 | (0 << 8))
+#define MAP_RIVER               (64 | (0 << 8))
+#define MAP_AGRIVILLE           (65 | (0 << 8))
+#define MAP_OCEAN_BYWAY         (66 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

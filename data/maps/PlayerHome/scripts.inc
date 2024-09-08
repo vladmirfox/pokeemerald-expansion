@@ -4,7 +4,7 @@ PlayerHome_MapScripts::
 
 turnto_and_getunown::
 # 8 "data/maps/PlayerHome/scripts.pory"
-	applymovement OBJECT_EVENT_ID_PLAYER, face_right
+	applymovement OBJ_EVENT_ID_PLAYER, lookatunown
 # 9 "data/maps/PlayerHome/scripts.pory"
 	waitmovement 0
 # 10 "data/maps/PlayerHome/scripts.pory"
@@ -17,6 +17,8 @@ getrunning_shoes::
 	lockall
 # 16 "data/maps/PlayerHome/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
+# 17 "data/maps/PlayerHome/scripts.pory"
+	msgbox getrunning_shoes_Text_0
 # 18 "data/maps/PlayerHome/scripts.pory"
 	setflag FLAG_SYS_B_DASH
 # 19 "data/maps/PlayerHome/scripts.pory"
@@ -36,7 +38,7 @@ getunown::
 # 28 "data/maps/PlayerHome/scripts.pory"
 	removeobject 1
 # 29 "data/maps/PlayerHome/scripts.pory"
-	givemon SPECIES_UNOWN, 5, ITEM_POKE_BALL
+	givemon SPECIES_UNOWN, 5, ITEM_TWISTED_SPOON
 # 30 "data/maps/PlayerHome/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq getunown_2
@@ -84,6 +86,10 @@ lookatunown:
 # 51 "data/maps/PlayerHome/scripts.pory"
 	face_right
 	step_end
+
+getrunning_shoes_Text_0:
+# 17 "data/maps/PlayerHome/scripts.pory"
+	.string "You got the running shoes!$"
 
 getunown_Text_0:
 # 32 "data/maps/PlayerHome/scripts.pory"

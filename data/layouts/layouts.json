@@ -2417,7 +2417,7 @@
       "width": 58,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "0",
+      "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/UnusedOutdoorArea/border.bin",
       "blockdata_filepath": "data/layouts/UnusedOutdoorArea/map.bin"
     },
@@ -4414,10 +4414,10 @@
     {
       "id": "LAYOUT_BA",
       "name": "Ba_Layout",
-      "width": 38,
+      "width": 40,
       "height": 27,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_BattleFrontierOutsideEast",
+      "secondary_tileset": "gTileset_Small_Towns",
       "border_filepath": "data/layouts/Ba/border.bin",
       "blockdata_filepath": "data/layouts/Ba/map.bin"
     },
@@ -4470,6 +4470,46 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/BaAlmondHouse/border.bin",
       "blockdata_filepath": "data/layouts/BaAlmondHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_APPEL_FOREST",
+      "name": "Appel_Forest_Layout",
+      "width": 50,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/Appel_Forest/border.bin",
+      "blockdata_filepath": "data/layouts/Appel_Forest/map.bin"
+    },
+    {
+      "id": "LAYOUT_RIVER",
+      "name": "River_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/River/border.bin",
+      "blockdata_filepath": "data/layouts/River/map.bin"
+    },
+    {
+      "id": "LAYOUT_AGRIVILLE",
+      "name": "Agriville_Layout",
+      "width": 80,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Small_Towns",
+      "border_filepath": "data/layouts/Agriville/border.bin",
+      "blockdata_filepath": "data/layouts/Agriville/map.bin"
+    },
+    {
+      "id": "LAYOUT_OCEAN_BYWAY",
+      "name": "OceanByway_Layout",
+      "width": 20,
+      "height": 120,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/OceanByway/border.bin",
+      "blockdata_filepath": "data/layouts/OceanByway/map.bin"
     }
   ]
 }

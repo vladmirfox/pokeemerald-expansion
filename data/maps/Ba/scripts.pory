@@ -12,6 +12,26 @@ movement looktowards {
     face_player
 }
 
-text SilphCoMSg {
-    format("The Atlantia region used to be completely shut off the rest of the world.\n But then Silph Co. showed up in their fancy submarine!\n Now things are so much busier here.")
+script BaSign{
+    lockall
+    msgbox(BaSign_Text)
+    release
+}
+
+script SigillariaSign {
+    lockall
+    msgbox(SigillariaSign_Text)
+    release
+}
+
+text SilphCoMsg {
+    format("The Atlantia region used to be completely shut off the rest of the world. But then Silph Co. showed up in their fancy submarine! Now things are so much busier here.")
+}
+
+text BaSign_Text {
+    format("Welcome to the town of Ba, miles beneath Bel.")
+}
+
+text SigillariaSign_Text {
+    format("Prof. Sigillaria's lab.")
 }

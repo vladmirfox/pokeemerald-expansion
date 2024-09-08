@@ -11,7 +11,7 @@ noticeplayer::
 	case 1, noticeplayer_4
 # 23 "data/maps/gBaIndoor_Prof/scripts.pory"
 	case 2, noticeplayer_5
-# 39 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 44 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setvar VAR_SIG_LAB_TRIGGER, 1
 noticeplayer_1:
 	end
@@ -76,265 +76,266 @@ noticeplayer_5:
 # 36 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setvar VAR_SIG_LAB_TRIGGER, 1
 # 37 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_SYS_POKEDEX_GET
+# 38 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_ADVENTURE_STARTED
+# 39 "data/maps/gBaIndoor_Prof/scripts.pory"
+	special SetUnlockedPokedexFlags
+# 40 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+# 41 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+# 42 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	goto noticeplayer_1
 
 
 NewProfessor_EventScript_Cyndaquill::
-# 45 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 50 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 46 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 51 "data/maps/gBaIndoor_Prof/scripts.pory"
 	showmonpic SPECIES_CYNDAQUIL, 10, 3
-# 47 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 52 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_0, MSGBOX_YESNO
-# 48 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 53 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NewProfessor_EventScript_Cyndaquill_2
-# 70 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 75 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 71 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 76 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_3
 NewProfessor_EventScript_Cyndaquill_1:
-# 73 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 78 "data/maps/gBaIndoor_Prof/scripts.pory"
 	waitmessage
-# 74 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 79 "data/maps/gBaIndoor_Prof/scripts.pory"
 	releaseall
 	return
 
 NewProfessor_EventScript_Cyndaquill_2:
-# 49 "data/maps/gBaIndoor_Prof/scripts.pory"
-	givemon SPECIES_CYNDAQUIL, 5, ITEM_MASTER_BALL
-# 50 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 54 "data/maps/gBaIndoor_Prof/scripts.pory"
+	givemon SPECIES_CYNDAQUIL, 5, ITEM_CHARCOAL
+# 55 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setflag FLAG_STATER_GET
-# 51 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 56 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setvar VAR_SIGILLARIA_STATE, 2
-# 52 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 57 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq NewProfessor_EventScript_Cyndaquill_5
-# 58 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 63 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq NewProfessor_EventScript_Cyndaquill_6
-# 65 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 70 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 66 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 71 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_2
 	goto NewProfessor_EventScript_Cyndaquill_1
 
 NewProfessor_EventScript_Cyndaquill_5:
-# 53 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 58 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 54 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 59 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_1
-# 55 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 60 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 1
-# 56 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 61 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknamePartyMon
 	goto NewProfessor_EventScript_Cyndaquill_1
 
 NewProfessor_EventScript_Cyndaquill_6:
-# 59 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 64 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 60 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 65 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_1
-# 61 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 66 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 1
-# 62 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 67 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknameBoxMon
 	goto NewProfessor_EventScript_Cyndaquill_1
 
 
 NewProfessor_EventScript_Oshawott::
-# 78 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 83 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 79 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 84 "data/maps/gBaIndoor_Prof/scripts.pory"
 	showmonpic SPECIES_OSHAWOTT, 10, 3
-# 80 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 85 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Oshawott_Text_0, MSGBOX_YESNO
-# 81 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 86 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NewProfessor_EventScript_Oshawott_2
-# 103 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 108 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 104 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 109 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_3
 NewProfessor_EventScript_Oshawott_1:
-# 106 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 111 "data/maps/gBaIndoor_Prof/scripts.pory"
 	waitmessage
-# 107 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 112 "data/maps/gBaIndoor_Prof/scripts.pory"
 	releaseall
 	return
 
 NewProfessor_EventScript_Oshawott_2:
-# 82 "data/maps/gBaIndoor_Prof/scripts.pory"
-	givemon SPECIES_OSHAWOTT, 5, ITEM_MASTER_BALL
-# 83 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 87 "data/maps/gBaIndoor_Prof/scripts.pory"
+	givemon SPECIES_OSHAWOTT, 5, ITEM_MYSTIC_WATER
+# 88 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setflag FLAG_STATER_GET
-# 84 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 89 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setvar VAR_SIGILLARIA_STATE, 2
-# 85 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 90 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq NewProfessor_EventScript_Oshawott_5
-# 91 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 96 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq NewProfessor_EventScript_Oshawott_6
-# 98 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 103 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 99 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 104 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_2
 	goto NewProfessor_EventScript_Oshawott_1
 
 NewProfessor_EventScript_Oshawott_5:
-# 86 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 91 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 87 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 92 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Oshawott_Text_1
-# 88 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 93 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 2
-# 89 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 94 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknamePartyMon
 	goto NewProfessor_EventScript_Oshawott_1
 
 NewProfessor_EventScript_Oshawott_6:
-# 92 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 97 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 93 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 98 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Oshawott_Text_1
-# 94 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 99 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 2
-# 95 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 100 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknameBoxMon
 	goto NewProfessor_EventScript_Oshawott_1
 
 
 NewProfessor_EventScript_Rowlet::
-# 112 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 117 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 113 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 118 "data/maps/gBaIndoor_Prof/scripts.pory"
 	showmonpic SPECIES_ROWLET, 10, 3
-# 114 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 119 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Rowlet_Text_0, MSGBOX_YESNO
-# 115 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 120 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NewProfessor_EventScript_Rowlet_2
-# 137 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 142 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 138 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 143 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_3
 NewProfessor_EventScript_Rowlet_1:
-# 140 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 145 "data/maps/gBaIndoor_Prof/scripts.pory"
 	waitmessage
-# 141 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 146 "data/maps/gBaIndoor_Prof/scripts.pory"
 	releaseall
 	return
 
 NewProfessor_EventScript_Rowlet_2:
-# 116 "data/maps/gBaIndoor_Prof/scripts.pory"
-	givemon SPECIES_ROWLET, 5, ITEM_MASTER_BALL
-# 117 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 121 "data/maps/gBaIndoor_Prof/scripts.pory"
+	givemon SPECIES_ROWLET, 5, ITEM_MIRACLE_SEED
+# 122 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setflag FLAG_STATER_GET
-# 118 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 123 "data/maps/gBaIndoor_Prof/scripts.pory"
 	setvar VAR_SIGILLARIA_STATE, 2
-# 119 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 124 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq NewProfessor_EventScript_Rowlet_5
-# 125 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 130 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, MON_GIVEN_TO_PC
 	goto_if_eq NewProfessor_EventScript_Rowlet_6
-# 132 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 137 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 133 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 138 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Cyndaquill_Text_2
 	goto NewProfessor_EventScript_Rowlet_1
 
 NewProfessor_EventScript_Rowlet_5:
-# 120 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 125 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 121 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 126 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Rowlet_Text_1
-# 122 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 127 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 3
-# 123 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 128 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknamePartyMon
 	goto NewProfessor_EventScript_Rowlet_1
 
 NewProfessor_EventScript_Rowlet_6:
-# 126 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 131 "data/maps/gBaIndoor_Prof/scripts.pory"
 	playfanfare MUS_OBTAIN_ITEM
-# 127 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 132 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NewProfessor_EventScript_Rowlet_Text_1
-# 128 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 133 "data/maps/gBaIndoor_Prof/scripts.pory"
 	removeobject 3
-# 129 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 134 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call NicknameBoxMon
 	goto NewProfessor_EventScript_Rowlet_1
 
 
 NicknamePartyMon::
-# 145 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 150 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
-# 146 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 151 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 147 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 152 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NicknamePartyMon_1
 	return
 
 NicknamePartyMon_1:
-# 148 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 153 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call Common_EventScript_GetGiftMonPartySlot
-# 149 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 154 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call Common_EventScript_NameReceivedPartyMon
 	return
 
 
 NicknameBoxMon::
-# 156 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 161 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NicknamePartyMon_Text_0, MSGBOX_YESNO
-# 157 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 162 "data/maps/gBaIndoor_Prof/scripts.pory"
 	hidemonpic
-# 158 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 163 "data/maps/gBaIndoor_Prof/scripts.pory"
 	compare VAR_RESULT, YES
 	goto_if_eq NicknameBoxMon_2
 NicknameBoxMon_1:
-# 161 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 166 "data/maps/gBaIndoor_Prof/scripts.pory"
 	msgbox NicknameBoxMon_Text_0
 	return
 
 NicknameBoxMon_2:
-# 159 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 164 "data/maps/gBaIndoor_Prof/scripts.pory"
 	call Common_EventScript_NameReceivedBoxMon
 	goto NicknameBoxMon_1
 
 
 Sigillaria::
-# 165 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 170 "data/maps/gBaIndoor_Prof/scripts.pory"
 	switch VAR_SIGILLARIA_STATE
-# 166 "data/maps/gBaIndoor_Prof/scripts.pory"
-	case 0, Sigillaria_2
 # 171 "data/maps/gBaIndoor_Prof/scripts.pory"
-	case 1, Sigillaria_3
+	case 0, Sigillaria_2
 # 176 "data/maps/gBaIndoor_Prof/scripts.pory"
+	case 1, Sigillaria_3
+# 181 "data/maps/gBaIndoor_Prof/scripts.pory"
 	case 2, Sigillaria_4
-# 184 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 194 "data/maps/gBaIndoor_Prof/scripts.pory"
 	case 3, Sigillaria_5
-# 190 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 200 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 191 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox Sigillaria_Text_1
-# 192 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 201 "data/maps/gBaIndoor_Prof/scripts.pory"
+	msgbox AllThisNewTech
+# 202 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
 Sigillaria_2:
-# 167 "data/maps/gBaIndoor_Prof/scripts.pory"
-	lockall
-# 168 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox Sigillaria_Text_0
-# 169 "data/maps/gBaIndoor_Prof/scripts.pory"
-	release
-	return
-
-Sigillaria_3:
 # 172 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
 # 173 "data/maps/gBaIndoor_Prof/scripts.pory"
@@ -343,66 +344,85 @@ Sigillaria_3:
 	release
 	return
 
-Sigillaria_4:
+Sigillaria_3:
 # 177 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
 # 178 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox PostChoice
+	msgbox Sigillaria_Text_0
 # 179 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox beforeyouleave
-# 180 "data/maps/gBaIndoor_Prof/scripts.pory"
-	setvar VAR_SIGILLARIA_STATE, 3
-# 181 "data/maps/gBaIndoor_Prof/scripts.pory"
-	setvar VAR_SIG_LAB_TRIGGER, 1
+	release
+	return
+
+Sigillaria_4:
 # 182 "data/maps/gBaIndoor_Prof/scripts.pory"
+	lockall
+# 183 "data/maps/gBaIndoor_Prof/scripts.pory"
+	msgbox PostChoice
+# 184 "data/maps/gBaIndoor_Prof/scripts.pory"
+	msgbox beforeyouleave
+# 185 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setvar VAR_SIGILLARIA_STATE, 3
+# 186 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setvar VAR_SIG_LAB_TRIGGER, 1
+# 187 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_SYS_POKEDEX_GET
+# 188 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_ADVENTURE_STARTED
+# 189 "data/maps/gBaIndoor_Prof/scripts.pory"
+	special SetUnlockedPokedexFlags
+# 190 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+# 191 "data/maps/gBaIndoor_Prof/scripts.pory"
+	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
+# 192 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
 Sigillaria_5:
-# 185 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 195 "data/maps/gBaIndoor_Prof/scripts.pory"
 	lockall
-# 186 "data/maps/gBaIndoor_Prof/scripts.pory"
-	msgbox Sigillaria_Text_1
-# 187 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 196 "data/maps/gBaIndoor_Prof/scripts.pory"
+	msgbox AllThisNewTech
+# 197 "data/maps/gBaIndoor_Prof/scripts.pory"
 	release
 	return
 
 
-# 213 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 223 "data/maps/gBaIndoor_Prof/scripts.pory"
 noticeleftmove:
-# 214 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 224 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_right
-# 215 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
-# 215 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
-# 215 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_down
 	step_end
 
-# 219 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
 postnoticeleftT:
-# 220 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 220 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 220 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 230 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
-# 221 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 231 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_left
-# 222 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 232 "data/maps/gBaIndoor_Prof/scripts.pory"
 	face_player
 	step_end
 
-# 225 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 235 "data/maps/gBaIndoor_Prof/scripts.pory"
 stopplayer:
-# 226 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 236 "data/maps/gBaIndoor_Prof/scripts.pory"
 	walk_up
 	step_end
 
-# 228 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 238 "data/maps/gBaIndoor_Prof/scripts.pory"
 playerlookup:
-# 229 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 239 "data/maps/gBaIndoor_Prof/scripts.pory"
 	face_up
 	step_end
 
@@ -411,68 +431,69 @@ noticeplayer_Text_0:
 	.string "Wait! Please take a pokemon!$"
 
 NewProfessor_EventScript_Cyndaquill_Text_0:
-# 47 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 52 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Do you want to choose Cyndaquil?$"
 
 NewProfessor_EventScript_Cyndaquill_Text_1:
-# 54 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 59 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Recieved Cyndaquil$"
 
 NewProfessor_EventScript_Cyndaquill_Text_2:
-# 66 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 71 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "No More Room$"
 
 NewProfessor_EventScript_Cyndaquill_Text_3:
-# 71 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 76 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Choose carefully!$"
 
 NewProfessor_EventScript_Oshawott_Text_0:
-# 80 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 85 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Do you want to choose Oshawott?$"
 
 NewProfessor_EventScript_Oshawott_Text_1:
-# 87 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 92 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Recieved Oshawott$"
 
 NewProfessor_EventScript_Rowlet_Text_0:
-# 114 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 119 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Do you want to choose Rowlet?$"
 
 NewProfessor_EventScript_Rowlet_Text_1:
-# 121 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 126 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Recieved Rowlet$"
 
 NicknamePartyMon_Text_0:
-# 145 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 150 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Give a nickname?$"
 
 NicknameBoxMon_Text_0:
-# 161 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 166 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Transferred to PC$"
 
 Sigillaria_Text_0:
-# 168 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 173 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Go on, pick a pokemon!$"
 
-Sigillaria_Text_1:
-# 186 "data/maps/gBaIndoor_Prof/scripts.pory"
-	.string "All this new technology makes my head spin!$"
-
 PostChoice::
-# 197 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 207 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Say could you do me a favor and check\n"
-	.string "on my granddaughter in Appleton? My\l"
-	.string "sister told me she lost her precious\l"
-	.string "Scyther.$"
+	.string "on my granddaughter in Appel? My sister\l"
+	.string "told me she lost her precious Scyther.$"
 
 beforeyouleave::
-# 202 "data/maps/gBaIndoor_Prof/scripts.pory"
+# 212 "data/maps/gBaIndoor_Prof/scripts.pory"
 	.string "Oh! and before you leave, take\n"
 	.string "this.Silph Co. sent it to me. It's a\l"
 	.string "PokeDex. It automatically records data\l"
 	.string "about the Pokemon you catch.$"
 
 TriggerGreet::
-# 207 "data/maps/gBaIndoor_Prof/scripts.pory"
-	.string "Hello! I just got the Pokemon from Silph\n"
-	.string "Co. in. Say, why don't you choose one?$"
+# 217 "data/maps/gBaIndoor_Prof/scripts.pory"
+	.string "Hello {PLAYER}! I just got the\n"
+	.string "Pokemon from Silph Co. in. Say, why don't\l"
+	.string "you choose one?$"
+
+AllThisNewTech::
+# 242 "data/maps/gBaIndoor_Prof/scripts.pory"
+	.string "All this new technology makes my head\n"
+	.string "spin!$"

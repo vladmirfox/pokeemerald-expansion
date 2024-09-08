@@ -7,18 +7,18 @@
         {
           "type": "land_mons",
           "encounter_rates": [
-            20,
-            20,
+            10,
+            10,
             10,
             10,
             10,
             10,
             5,
-            5,
-            4,
-            4,
+            10,
             1,
-            1
+            4,
+            10,
+            10
           ]
         },
         {
@@ -11557,6 +11557,130 @@
                 "min_level": 5,
                 "max_level": 5,
                 "species": "SPECIES_PIPLUP"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_APPEL_FOREST",
+          "base_label": "gAppel_Forest0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_SHUCKLE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_TEDDIURSA"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_SIZZLIPEDE"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_PINECO"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_VENONAT"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_PARAS"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_FOONGUS"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_TAILLOW"
+              },
+              {
+                "min_level": 2,
+                "max_level": 15,
+                "species": "SPECIES_SCYTHER"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_HOOTHOOT"
+              },
+              {
+                "min_level": 2,
+                "max_level": 8,
+                "species": "SPECIES_RATTATA_ALOLAN"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ANORITH"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_KABUTO"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_NONE"
               }
             ]
           }

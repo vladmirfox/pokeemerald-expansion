@@ -1084,3 +1084,11 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/BaMart/scripts.inc"
 
 	.include "data/maps/BaAlmondHouse/scripts.inc"
+
+	.include "data/maps/Appel_Forest/scripts.inc"
+
+	.include "data/maps/River/scripts.inc"
+
+	.include "data/maps/Agriville/scripts.inc"
+
+	.include "data/maps/OceanByway/scripts.inc"
