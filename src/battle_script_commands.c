@@ -1219,11 +1219,7 @@ static void Cmd_attackcanceler(void)
     if (B_STANCE_CHANGE_FAIL < GEN_7 && TryAegiFormChange())
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
-    {
-        if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
-            gBattleStruct->pledgeMove = FALSE;
         return;
-    }
 
     if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
     {
@@ -6442,6 +6438,8 @@ static void Cmd_moveend(void)
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;
             gBattleStruct->distortedTypeMatchups = 0;
+            if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+                gBattleStruct->pledgeMove = FALSE;
             if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
                 SetActiveGimmick(gBattlerAttacker, GIMMICK_NONE);
             if (B_CHARGE <= GEN_8 || moveType == TYPE_ELECTRIC)
