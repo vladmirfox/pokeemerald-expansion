@@ -4377,7 +4377,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 && !(gBattleMons[BATTLE_OPPOSITE(battler)].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
                 && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
                 && !(gBattleStruct->illusion[BATTLE_OPPOSITE(battler)].on)
-                && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE))
+                && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE2))
             {
                 gBattlerAttacker = battler;
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
@@ -4863,7 +4863,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && CountBattlerStatIncreases(BATTLE_PARTNER(battler), FALSE))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattlerAttacker = battler;
                 for (i = 0; i < NUM_BATTLE_STATS; i++)
                     gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
                 gBattlerTarget = BATTLE_PARTNER(battler);
@@ -4880,7 +4879,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !(gBattleStruct->transformZeroToHero[side] & (1u << gBattlerPartyIndexes[battler])))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleScripting.battler = battler;
                 gBattleStruct->transformZeroToHero[side] |= 1u << gBattlerPartyIndexes[battler];
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
                 effect++;
@@ -4961,13 +4959,13 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                SaveBattlerAttacker(gBattlerAttacker);
-                SaveBattlerTarget(gBattlerTarget);
-                gBattlerAttacker = battler;
-                gBattlerTarget = partner;
+                gBattlerAttacker = partner;
                 gBattleStruct->commandingDondozo |= 1u << battler;
                 gBattleStruct->commanderActive[partner] = gBattleMons[battler].species;
                 gStatuses3[battler] |= STATUS3_COMMANDER;
+                if (gBattleMons[battler].status2 & STATUS2_CONFUSION
+                 && !(gStatuses4[battler] & STATUS4_INFINITE_CONFUSION))
+                    gBattleMons[battler].status2 -= STATUS2_CONFUSION_TURN(1);
                 BtlController_EmitSpriteInvisibility(battler, BUFFER_A, TRUE);
                 MarkBattlerForControllerExec(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_CommanderActivates);

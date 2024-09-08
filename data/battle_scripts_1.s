@@ -8041,7 +8041,7 @@ BattleScript_SupremeOverlordActivates::
 
 BattleScript_CostarActivates::
 	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
+	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_PKMNCOPIEDSTATCHANGES
 	waitmessage B_WAIT_TIME_LONG
 	end3
@@ -8054,11 +8054,11 @@ BattleScript_ZeroToHeroActivates::
 	end3
 
 BattleScript_CommanderActivates::
+	saveattacker
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_COMMANDERACTIVATES
 	waitmessage B_WAIT_TIME_LONG
-	swapattackerwithtarget
 BattleScript_CommanderAtkIncrease:
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_ATK | BIT_DEF | BIT_SPATK | BIT_SPDEF | BIT_SPEED, STAT_CHANGE_BY_TWO
@@ -8093,7 +8093,6 @@ BattleScript_CommanderSpeedIncrease:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_CommanderEnd:
 	restoreattacker
-	restoretarget
 	end3
 
 BattleScript_HospitalityActivates::

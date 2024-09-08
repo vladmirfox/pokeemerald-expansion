@@ -241,7 +241,6 @@ DOUBLE_BATTLE_TEST("(Commander) Whirlwind can not be used against Dondozo or Tat
 
 DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is active")
 {
-    KNOWN_FAILING; // Technically it works like indended but the Red Card is not consumed which is a Red Card bug
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
@@ -308,9 +307,70 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri under Commander takes no damage")
     }
 }
 
-// doesn't get hit by Perish Song
-// When Dozo switches in with Tatsu on field, doesn't advance Sleep turn, advances confusion turn (only this turn)
-// Tatsu can be targeted by Imposter inside Dozo
+DOUBLE_BATTLE_TEST("(Commander) Transform can be used while Tatsugiri is commanding Dondozo")
+{
+    GIVEN {
+        PLAYER(SPECIES_DONDOZO);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_TRANSFORM, target: playerRight); }
+    } SCENE {
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRANSFORM, opponentRight);
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Imposter will transfrom into Tatsugiri while it is commanding Dondozo")
+{
+    GIVEN {
+        PLAYER(SPECIES_DONDOZO);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_IMPOSTER); }
+    } WHEN {
+        TURN { }
+        TURN { SWITCH(opponentRight, 2); }
+    } SCENE {
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ABILITY_POPUP(opponentRight, ABILITY_IMPOSTER);
+        MESSAGE("Foe Ditto transformed into Tatsugiri using Imposter!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will not be affected by Perish Song while controlling Dondozo")
+{
+    GIVEN {
+        PLAYER(SPECIES_DONDOZO);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_PERISH_SONG); }
+        TURN {}
+        TURN {}
+        TURN {}
+    } SCENE {
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PERISH_SONG, opponentLeft);
+        MESSAGE("All affected POKéMON will faint in three turns!");
+        MESSAGE("Dondozo's PERISH count fell to 0!");
+        MESSAGE("Dondozo fainted!");
+        MESSAGE("Foe Wobbuffet's PERISH count fell to 0!");
+        MESSAGE("Foe Wobbuffet fainted!");
+        NONE_OF {
+            MESSAGE("Tatsugiri's PERISH count fell to 0!");
+            MESSAGE("Tatsugiri fainted!");
+        }
+        MESSAGE("Foe Wynaut's PERISH count fell to 0!");
+        MESSAGE("Foe Wynaut fainted!");
+    }
+}
 
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is still affected by Haze while controlling Dondozo")
 {
@@ -330,5 +390,51 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is still affected by Haze while contro
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HAZE, opponentRight);
     } THEN {
         EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Left Slot)")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_TACKLE, target: opponentLeft); }
+        TURN { SWITCH(playerLeft, 2); MOVE(opponentLeft, MOVE_SURF); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
+        HP_BAR(playerLeft);
+        MESSAGE("Foe Wobbuffet's attack missed!");
+        HP_BAR(opponentRight);
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Right Slot)")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_DONDOZO);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_TACKLE, target: opponentLeft); }
+        TURN { SWITCH(playerRight, 2); MOVE(opponentLeft, MOVE_SURF); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        MESSAGE("Foe Wobbuffet's attack missed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
+        HP_BAR(playerRight);
+        HP_BAR(opponentRight);
     }
 }
