@@ -3914,9 +3914,9 @@ static const struct SpriteFrameImage sPicTable_Virizion[] = {
 static const struct SpriteFrameImage sPicTable_TornadusIncarnate[] = {
     overworld_ascending_frames(gObjectEventPic_TornadusIncarnate, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_TornadusTherian[] = {
+static const struct SpriteFrameImage sPicTable_TornadusTherian[] = {
     overworld_ascending_frames(gObjectEventPic_TornadusTherian, 4, 4),
-};*/
+};
 #endif //P_FAMILY_TORNADUS
 
 #if P_FAMILY_THUNDURUS
@@ -3924,9 +3924,9 @@ static const struct SpriteFrameImage sPicTable_TornadusIncarnate[] = {
 static const struct SpriteFrameImage sPicTable_ThundurusIncarnate[] = {
     overworld_ascending_frames(gObjectEventPic_ThundurusIncarnate, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_ThundurusTherian[] = {
+static const struct SpriteFrameImage sPicTable_ThundurusTherian[] = {
     overworld_ascending_frames(gObjectEventPic_ThundurusTherian, 4, 4),
-};*/
+};
 #endif //P_FAMILY_THUNDURUS
 
 #if P_FAMILY_RESHIRAM
@@ -3946,9 +3946,9 @@ static const struct SpriteFrameImage sPicTable_Zekrom[] = {
 static const struct SpriteFrameImage sPicTable_LandorusIncarnate[] = {
     overworld_ascending_frames(gObjectEventPic_LandorusIncarnate, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_LandorusTherian[] = {
+static const struct SpriteFrameImage sPicTable_LandorusTherian[] = {
     overworld_ascending_frames(gObjectEventPic_LandorusTherian, 4, 4),
-};*/
+};
 #endif //P_FAMILY_LANDORUS
 
 #if P_FAMILY_ENAMORUS
