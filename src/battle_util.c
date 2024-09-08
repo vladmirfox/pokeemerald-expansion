@@ -2465,9 +2465,9 @@ u8 DoBattlerEndTurnEffects(void)
                 MAGIC_GUARD_CHECK;
 
                 gBattlerTarget = gStatuses3[battler] & STATUS3_LEECHSEED_BATTLER; // Notice gBattlerTarget is actually the HP receiver.
-                gBattleStruct->calculatedDamage[gBattlerTarget] = GetNonDynamaxMaxHP(battler) / 8;
-                if (gBattleStruct->calculatedDamage[gBattlerTarget] == 0)
-                    gBattleStruct->calculatedDamage[gBattlerTarget] = 1;
+                gBattleStruct->calculatedDamage[gBattlerAttacker] = GetNonDynamaxMaxHP(battler) / 8;
+                if (gBattleStruct->calculatedDamage[gBattlerAttacker] == 0)
+                    gBattleStruct->calculatedDamage[gBattlerAttacker] = 1;
                 gBattleScripting.animArg1 = gBattlerTarget;
                 gBattleScripting.animArg2 = gBattlerAttacker;
                 BattleScriptExecute(BattleScript_LeechSeedTurnDrain);
@@ -11848,4 +11848,20 @@ u32 GetMoveType(u32 move)
           || move == MOVE_DOOM_DESIRE))
           return TYPE_MYSTERY;
     return gMovesInfo[move].type;
+}
+
+void ClearDamageCalcResults(void)
+{
+    for (u32 battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
+    {
+        gBattleStruct->calculatedDamage[battler] = 0;
+        gBattleStruct->calculatedCritChance[battler] = 0;
+        gBattleStruct->resultFlags[battler] = 0;
+        gBattleStruct->noResultString[battler] = 0;
+    }
+
+    gBattleStruct->doneDoublesSpreadHit = 0;
+    gBattleStruct->calculatedDamageDone = 0;
+    gBattleStruct->calculatedSpreadMoveAccuracy = 0;
+    gBattleStruct->numSpreadTargets = 0;
 }

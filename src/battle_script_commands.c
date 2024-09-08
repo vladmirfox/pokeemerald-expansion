@@ -2130,11 +2130,15 @@ static void Cmd_adjustdamage(void)
         if (gBattleStruct->calculatedDamageDone)
             break;
 
-        if (!calcSpreadMoveDamage)
-            battlerDef = gBattlerTarget;
+        if (!calcSpreadMoveDamage && battlerDef != gBattlerTarget)
+            continue;
+
+        // if (!calcSpreadMoveDamage)
+        //     battlerDef = gBattlerTarget;
 
         if (DoesSubstituteBlockMove(gBattlerAttacker, battlerDef, gCurrentMove))
             goto END;
+
         if (DoesDisguiseBlockMove(battlerDef, gCurrentMove))
         {
             gBattleStruct->enduredDamage |= 1u << battlerDef;
@@ -2176,8 +2180,8 @@ static void Cmd_adjustdamage(void)
         else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(battlerDef) == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
         {
             if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
-            || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
-            || (affectionScore == AFFECTION_THREE_HEARTS && rand < 10))
+             || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
+             || (affectionScore == AFFECTION_THREE_HEARTS && rand < 10))
                 gSpecialStatuses[battlerDef].affectionEndured = TRUE;
         }
 
@@ -2214,13 +2218,13 @@ static void Cmd_adjustdamage(void)
             gBattleStruct->resultFlags[battlerDef] |= MOVE_RESULT_FOE_ENDURED_AFFECTION;
         }
 
-
         END:
         if (!(gBattleStruct->resultFlags[battlerDef] & MOVE_RESULT_NO_EFFECT) && gBattleStruct->calculatedDamage[battlerDef] >= 1)
             gSpecialStatuses[gBattlerAttacker].damagedMons |= 1u << battlerDef;
 
-        if (!calcSpreadMoveDamage)
-            break;
+        // TODO: possibly remove
+        // if (!calcSpreadMoveDamage)
+        //     break;
     }
 
     gBattleStruct->calculatedDamageDone = TRUE;
@@ -6500,13 +6504,7 @@ static void Cmd_moveend(void)
                     if (nextDancer && AbilityBattleEffects(ABILITYEFFECT_MOVE_END_OTHER, nextDancer & 0x3, 0, 0, 0))
                         effect = TRUE;
 
-                    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-                    {
-                        gBattleStruct->calculatedDamage[i] = 0;
-                        gBattleStruct->calculatedCritChance[i] = 0;
-                        gBattleStruct->resultFlags[i] = 0;
-                        gBattleStruct->noResultString[i] = 0;
-                    }
+                    ClearDamageCalcResults();
                 }
             }
             gBattleScripting.moveendState++;
@@ -6599,23 +6597,6 @@ static void Cmd_moveend(void)
                 // #endif
             }
 
-
-            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-            {
-                gBattleStruct->calculatedDamage[i] = 0;
-                gBattleStruct->calculatedCritChance[i] = 0;
-                gBattleStruct->resultFlags[i] = 0;
-    	        gBattleStruct->noResultString[i] = 0;
-    	    }
-
-            gBattleStruct->calculatedDamageDone = 0;
-            gBattleStruct->doneDoublesSpreadHit = 0;
-            gBattleStruct->calculatedDamageDone = 0;
-            gBattleStruct->calculatedSpreadMoveAccuracy = 0;
-            gBattleStruct->numSpreadTargets = 0;
-
-
-
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
             gProtectStructs[gBattlerAttacker].shellTrap = FALSE;
@@ -6641,6 +6622,7 @@ static void Cmd_moveend(void)
             if (B_CHARGE <= GEN_8 || moveType == TYPE_ELECTRIC)
                 gStatuses3[gBattlerAttacker] &= ~(STATUS3_CHARGED_UP);
             memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
+            ClearDamageCalcResults();
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -11469,8 +11451,8 @@ static void Cmd_manipulatedamage(void)
         break;
     case DMG_SET_BIDE_DAMAGE:
         break;
-    case DMG_COPY_TO_HP_DEALT: // This can probably be simplified further since damage can be saved for all battlers
-        gHpDealt = gBattleStruct->calculatedDamage[gBattlerTarget];
+    case DMG_COPY_TO_HP_DEALT: // TODO: Leech Seed tests, This can probably be simplified further since damage can be saved for all battlers
+        gHpDealt = gBattleStruct->calculatedDamage[gBattlerAttacker];
         break;
     case DMG_COPY_FROM_HP_DEALT:
         gBattleStruct->calculatedDamage[gBattlerTarget] = gHpDealt;
