@@ -1220,7 +1220,8 @@ static void Cmd_attackcanceler(void)
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
     {
-        gBattleStruct->pledgeMove = FALSE;
+        if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+            gBattleStruct->pledgeMove = FALSE;
         return;
     }
 
