@@ -4967,9 +4967,9 @@ static const struct SpriteFrameImage sPicTable_NecrozmaDawnWings[] = {
 static const struct SpriteFrameImage sPicTable_Magearna[] = {
     overworld_ascending_frames(gObjectEventPic_Magearna, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_MagearnaOriginalColor[] = {
+static const struct SpriteFrameImage sPicTable_MagearnaOriginalColor[] = {
     overworld_ascending_frames(gObjectEventPic_MagearnaOriginalColor, 4, 4),
-};*/
+};
 #endif //P_FAMILY_MAGEARNA
 
 #if P_FAMILY_MARSHADOW

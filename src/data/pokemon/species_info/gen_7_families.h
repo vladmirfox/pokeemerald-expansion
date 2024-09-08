@@ -6490,6 +6490,14 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .iconSprite = gMonIcon_MagearnaOriginalColor,
         .iconPalIndex = 0,
         FOOTPRINT(Magearna)
+        OVERWORLD(
+            sPicTable_MagearnaOriginalColor,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_MagearnaOriginalColor,
+            gShinyOverworldPalette_MagearnaOriginalColor
+        )
         .isMythical = TRUE,
         .isFrontierBanned = TRUE,
         .levelUpLearnset = sMagearnaLevelUpLearnset,
