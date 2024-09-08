@@ -1824,6 +1824,10 @@
 	various BS_ATTACKER, VARIOUS_TRY_ACTIVATE_SOULHEART
 	.endm
 
+	.macro tryactivateinspire battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_INSPIRE
+	.endm
+
 	.macro tryactivatefellstinger battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_FELL_STINGER
 	.endm

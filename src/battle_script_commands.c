@@ -9803,6 +9803,31 @@ static void Cmd_various(void)
         gBattleStruct->soulheartBattlerId = 0;
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_INSPIRE:
+    {
+        VARIOUS_ARGS();
+        gBattlerAbility = BATTLE_PARTNER(battler);
+        i = GetBattlerAbility(gBattlerAbility);
+        if (!IsBattlerAlive(gBattlerAbility)
+        && (i == ABILITY_INSPIRE)
+        && IsBattlerAlive(gBattleScripting.battler)
+        && !NoAliveMonsForEitherParty()
+        && CompareStat(gBattleScripting.battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
+        && CompareStat(gBattleScripting.battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                SET_STATCHANGER(STAT_SPATK, 1, FALSE);
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ScriptingAbilityStatRaise;
+                return;
+                SET_STATCHANGER(STAT_ATK, 1, FALSE);
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_ScriptingAbilityStatRaise;
+                return;
+            }
+               
+    }
     case VARIOUS_TRY_ACTIVATE_FELL_STINGER:
     {
         VARIOUS_ARGS();

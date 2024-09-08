@@ -5489,6 +5489,7 @@ BattleScript_FaintAttacker::
 	cleareffectsonfaint BS_ATTACKER
 	tryactivatesoulheart
 	tryactivatereceiver BS_ATTACKER
+	tryactivateinspire BS_ATTACKER
 	trytrainerslidefirstdownmsg BS_ATTACKER
 	return
 
@@ -5504,6 +5505,7 @@ BattleScript_FaintTarget::
 	tryactivatefellstinger BS_ATTACKER
 	tryactivatesoulheart
 	tryactivatereceiver BS_TARGET
+	tryactivateinspire BS_TARGET
 	tryactivatemoxie BS_ATTACKER        @ and chilling neigh, as one ice rider
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER    @ and as one shadow rider
@@ -8525,12 +8527,6 @@ BattleScript_ScriptingAbilityStatRaise::
 	printstring STRINGID_ATTACKERABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 	copybyte gBattlerAttacker, sSAVED_DMG
-	return
-
-BattleScript_InspireActivates::
-	call BattleScript_AbilityPopUp
-	setstatchanger STAT_ATK, 1, FALSE
-	setstatchanger STAT_SPATK, 1, FALSE
 	return
 
 BattleScript_WeakArmorActivates::
