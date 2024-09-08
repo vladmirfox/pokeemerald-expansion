@@ -2348,11 +2348,11 @@
 	.endm
 
 	.macro getdifficulty var:req
-	.byte 0xe5
+    callnative ScrCmd_getdifficulty
 	.2byte \var
 	.endm
 
 	.macro setdifficulty difficulty:req
-	.byte 0xe6
-	.2byte \difficulty
+    callnative ScrCmd_setdifficulty
+	.byte \difficulty
 	.endm
