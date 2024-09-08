@@ -1160,7 +1160,9 @@ void PrepareStringBattle(u16 stringId, u32 battler)
     else if (battlerAbility == ABILITY_SHOCK_THREADS && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
     {
         BattleScriptPushCursorAndCallback(BattleScript_ShockThreadsActivates);
-                gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 16;
+                
+                gBattlerAbility = battlerAbility;
+                gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerTarget) / 16;
                 if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
     }
@@ -5511,17 +5513,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_EMERGENCY_EXIT;
-                effect++;
-            }
-            break;
-        case ABILITY_INSPIRE:
-            partner = BATTLE_PARTNER(battler);
-            if ((gBattleMons[battler].hp == 0)
-            && IsBattlerAlive(partner)
-            && (CompareStat(partner, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(partner, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)))
-            {
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_InspireActivates;
                 effect++;
             }
             break;
