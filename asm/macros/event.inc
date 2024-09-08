@@ -2339,13 +2339,13 @@
 	callnative ScriptHideItemDescription
 	.endm
 
-   .macro increasedifficulty
-    callnative Script_IncreaseDifficulty
-   .endm
+	.macro increasedifficulty
+	callnative Script_IncreaseDifficulty
+	.endm
 
-    .macro decreasedifficulty
-    callnative Script_DecreaseDifficulty
-    .endm
+	.macro decreasedifficulty
+	callnative Script_DecreaseDifficulty
+	.endm
 
 	.macro getdifficulty var:req
 	.byte 0xe5
