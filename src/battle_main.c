@@ -5894,9 +5894,9 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
             return TYPE_MYSTERY;
     }
     else if (moveEffect == EFFECT_RAGING_BULL
-            && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED
-             || species == SPECIES_TAUROS_PALDEAN_BLAZE_BREED
-             || species == SPECIES_TAUROS_PALDEAN_AQUA_BREED))
+             && (species == SPECIES_TAUROS_PALDEAN_COMBAT_BREED
+              || species == SPECIES_TAUROS_PALDEAN_BLAZE_BREED
+              || species == SPECIES_TAUROS_PALDEAN_AQUA_BREED))
     {
         return type2;
     }
