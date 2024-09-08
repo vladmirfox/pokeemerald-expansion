@@ -4484,12 +4484,12 @@ static const struct SpriteFrameImage sPicTable_Yveltal[] = {
 static const struct SpriteFrameImage sPicTable_Zygarde50[] = {
     overworld_ascending_frames(gObjectEventPic_Zygarde50, 4, 4),
 };
-//static const struct SpriteFrameImage sPicTable_Zygarde10[] = {
-//    overworld_ascending_frames(gObjectEventPic_Zygarde10, 4, 4),
-//};
-//static const struct SpriteFrameImage sPicTable_ZygardeComplete[] = {
-//    overworld_ascending_frames(gObjectEventPic_ZygardeComplete, 4, 4),
-//};
+static const struct SpriteFrameImage sPicTable_Zygarde10[] = {
+    overworld_ascending_frames(gObjectEventPic_Zygarde10, 4, 4),
+};
+static const struct SpriteFrameImage sPicTable_ZygardeComplete[] = {
+    overworld_ascending_frames(gObjectEventPic_ZygardeComplete, 4, 4),
+};
 
 #endif //P_FAMILY_ZYGARDE
 
