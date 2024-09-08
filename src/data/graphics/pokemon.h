@@ -11044,10 +11044,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/sky/shiny.gbapal.lz");
     const u8 gMonIcon_ShayminSky[] = INCBIN_U8("graphics/pokemon/shaymin/sky/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_ShayminSky[] = INCBIN_COMP("graphics/pokemon/shaymin/sky/overworld.4bpp");
+    const u32 gObjectEventPic_ShayminSky[] = INCBIN_COMP("graphics/pokemon/shaymin/sky/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/sky/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/sky/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/sky/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_ShayminSky[] = INCBIN_U32("graphics/pokemon/shaymin/sky/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_SHAYMIN

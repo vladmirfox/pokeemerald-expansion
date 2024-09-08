@@ -3078,9 +3078,9 @@ static const struct SpriteFrameImage sPicTable_Darkrai[] = {
 static const struct SpriteFrameImage sPicTable_ShayminLand[] = {
     overworld_ascending_frames(gObjectEventPic_ShayminLand, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_ShayminSky[] = {
+static const struct SpriteFrameImage sPicTable_ShayminSky[] = {
     overworld_ascending_frames(gObjectEventPic_ShayminSky, 4, 4),
-};*/
+};
 #endif //P_FAMILY_SHAYMIN
 
 #if P_FAMILY_ARCEUS
