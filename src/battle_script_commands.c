@@ -1219,7 +1219,10 @@ static void Cmd_attackcanceler(void)
     if (B_STANCE_CHANGE_FAIL < GEN_7 && TryAegiFormChange())
         return;
     if (AtkCanceller_UnableToUseMove(moveType))
+    {
+        gBattleStruct->pledgeMove = FALSE;
         return;
+    }
 
     if (WEATHER_HAS_EFFECT && gMovesInfo[gCurrentMove].power)
     {
