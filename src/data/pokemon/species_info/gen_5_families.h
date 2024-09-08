@@ -11549,6 +11549,14 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_KyuremWhite,
         .iconPalIndex = 0,
         FOOTPRINT(Kyurem)
+        OVERWORLD(
+            sPicTable_KyuremWhite,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_KyuremWhite,
+            gShinyOverworldPalette_KyuremWhite
+        )
         .isLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .isFrontierBanned = TRUE,
@@ -11612,6 +11620,14 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconSprite = gMonIcon_KyuremBlack,
         .iconPalIndex = 0,
         FOOTPRINT(Kyurem)
+        OVERWORLD(
+            sPicTable_KyuremBlack,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_KyuremBlack,
+            gShinyOverworldPalette_KyuremBlack
+        )
         .isLegendary = TRUE,
         .cannotBeTraded = TRUE,
         .isFrontierBanned = TRUE,

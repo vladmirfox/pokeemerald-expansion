@@ -14238,10 +14238,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/shiny.gbapal.lz");
     const u8 gMonIcon_KyuremWhite[] = INCBIN_U8("graphics/pokemon/kyurem/white/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_KyuremWhite[] = INCBIN_COMP("graphics/pokemon/kyurem/white/overworld.4bpp");
+    const u32 gObjectEventPic_KyuremWhite[] = INCBIN_COMP("graphics/pokemon/kyurem/white/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_KyuremWhite[] = INCBIN_U32("graphics/pokemon/kyurem/white/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
@@ -14251,10 +14251,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_KyuremBlack[] = INCBIN_U32("graphics/pokemon/kyurem/black/shiny.gbapal.lz");
     const u8 gMonIcon_KyuremBlack[] = INCBIN_U8("graphics/pokemon/kyurem/black/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    // const u32 gObjectEventPic_KyuremBlack[] = INCBIN_COMP("graphics/pokemon/kyurem/black/overworld.4bpp");
+    const u32 gObjectEventPic_KyuremBlack[] = INCBIN_COMP("graphics/pokemon/kyurem/black/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_KyuremBlack[] = INCBIN_U32("graphics/pokemon/kyurem/black/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_KyuremBlack[] = INCBIN_U32("graphics/pokemon/kyurem/black/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_KyuremBlack[] = INCBIN_U32("graphics/pokemon/kyurem/black/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_KyuremBlack[] = INCBIN_U32("graphics/pokemon/kyurem/black/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FUSION_FORMS

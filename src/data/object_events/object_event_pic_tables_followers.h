@@ -3965,12 +3965,12 @@ static const struct SpriteFrameImage sPicTable_Kyurem[] = {
     overworld_ascending_frames(gObjectEventPic_Kyurem, 4, 4),
 };
 #if P_FUSION_FORMS
-/*static const struct SpriteFrameImage sPicTable_KyuremWhite[] = {
+static const struct SpriteFrameImage sPicTable_KyuremWhite[] = {
     overworld_ascending_frames(gObjectEventPic_KyuremWhite, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_KyuremBlack[] = {
     overworld_ascending_frames(gObjectEventPic_KyuremBlack, 4, 4),
-};*/
+};
 #endif //P_FUSION_FORMS
 #endif //P_FAMILY_KYUREM
 
