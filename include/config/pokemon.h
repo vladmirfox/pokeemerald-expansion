@@ -43,6 +43,7 @@
 #define P_FOOTPRINTS                    TRUE        // If TRUE, Pokémon will have footprints (as was the case up to Gen 5 and in BDSP). Disabling this saves some ROM space.
 #define P_TWO_FRAME_FRONT_SPRITES       TRUE        // In Pokémon Emerald, Pokémon front sprites always consist of two frames. This config can revert it to only use the first frame, as is the case in the other Gen 3 games.
 #define P_GBA_SPECIES_GFX               FALSE       // By default, Pokémon sprites use Gen 4/5's style. This config can revert them back to GBA-style.
+#define P_GBA_ICONS                     FALSE       // By default, Pokémon have their updated icons. This config can revert them back to GBA-style.
 #define P_GBA_FOOTPRINTS                FALSE       // By default, Pokémon have their updated footprints. This config can revert them back to GBA-style.
 
 // Other settings
