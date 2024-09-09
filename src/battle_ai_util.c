@@ -2082,14 +2082,18 @@ bool32 HasAnyKnownMove(u32 battlerId)
 
 bool32 HasMoveThatLowersOwnStats(u32 battlerId)
 {
-    s32 i;
+    s32 i, j;
     u16 *moves = GetMovesArray(battlerId);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
-            && gMovesInfo[moves[i]].additionalEffects[i].self
-            && IsOwnStatLoweringEffect(gMovesInfo[moves[i]].additionalEffects[i].moveEffect))
-                return TRUE;
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE)
+        {
+            for (j = 0; j < gMovesInfo[moves[i]].numAdditionalEffects; j++)
+            {
+                if (IsSelfStatLoweringEffect(gMovesInfo[moves[i]].additionalEffects[j].moveEffect) && gMovesInfo[moves[i]].additionalEffects[j].self)
+                    return TRUE;
+            }
+        }
     }
     return FALSE;
 }
