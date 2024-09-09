@@ -860,6 +860,7 @@ static const u8 sText_PkmnTerastallizedInto[] = _("{B_ATK_NAME_WITH_PREFIX} tera
 static const u8 sText_SupersweetAromaWafts[] = _("A supersweet aroma is wafting from\nthe syrup covering {B_ATK_NAME_WITH_PREFIX2}!");
 static const u8 sText_TidyingUpComplete[] = _("Tidying up complete!");
 static const u8 sText_FickleBeamDoubled[] = _("{B_ATK_NAME_WITH_PREFIX} is going all\nout for this attack!");
+static const u8 sText_WagglingAFinger[] = _("Waggling a finger let it use\n{B_CURRENT_MOVE}!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1571,6 +1572,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_MISTSWIRLSAROUND - BATTLESTRINGS_TABLE_START] = sText_MistSwirlsAround,
     [STRINGID_ELECTRICCURRENTISRUNNING - BATTLESTRINGS_TABLE_START] = sText_ElectricCurrentIsRunning,
     [STRINGID_SEEMSWEIRD - BATTLESTRINGS_TABLE_START] = sText_SeemsWeird,
+    [STRINGID_WAGGLINGAFINGER - BATTLESTRINGS_TABLE_START] = sText_WagglingAFinger,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

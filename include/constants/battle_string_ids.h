@@ -719,8 +719,9 @@
 #define STRINGID_MISTSWIRLSAROUND                     717
 #define STRINGID_ELECTRICCURRENTISRUNNING             718
 #define STRINGID_SEEMSWEIRD                           719
+#define STRINGID_WAGGLINGAFINGER                      720
 
-#define BATTLESTRINGS_COUNT                           720
+#define BATTLESTRINGS_COUNT                           721
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
