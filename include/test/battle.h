@@ -95,7 +95,7 @@
  *           TURN { MOVE(player, MOVE_STUN_SPORE); } // 3.
  *       } SCENE {
  *           NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player); // 4.
- *           MESSAGE("It doesn't affect Foe Oddish…"); // 5.
+ *           MESSAGE("It doesn't affect the opposing Oddish…"); // 5.
  *       }
  *   }
  *

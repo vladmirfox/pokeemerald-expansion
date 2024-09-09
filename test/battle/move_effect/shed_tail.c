@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Shed Tail fails if the user doesn't have enough HP")
     } WHEN {
         TURN { MOVE(player, MOVE_SHED_TAIL); }
     } SCENE {
-        MESSAGE("It was too weak to make a SUBSTITUTE!");
+        MESSAGE("But it does not have enough HP left to make a substitute!");
     }
 }
 

@@ -158,6 +158,6 @@ SINGLE_BATTLE_TEST("Psychic Terrain lasts for 5 turns")
         MESSAGE("Wobbuffet used Celebrate!");
         MESSAGE("The opposing Wobbuffet used Celebrate!");
 
-        MESSAGE("The weirdness disappeared from the battlefield.");
+        MESSAGE("The weirdness disappeared from the battlefield!");
     }
 }

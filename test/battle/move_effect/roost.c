@@ -342,7 +342,7 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
         MESSAGE("The opposing Wobbuffet's type changed to match the Swellow's!");
         // Turn 3: EQ has no effect
         MESSAGE("Swellow used Earthquake!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("It doesn't affect the opposing Wobbuffet…");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
             HP_BAR(opponent);

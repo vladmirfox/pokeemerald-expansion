@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginni
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
-            MESSAGE("The weirdness disappeared from the battlefield.");
+            MESSAGE("The weirdness disappeared from the battlefield!");
             MESSAGE("The electricity disappeared from the battlefield.");
             MESSAGE("The mist disappeared from the battlefield.");
             MESSAGE("The grass disappeared from the battlefield.");

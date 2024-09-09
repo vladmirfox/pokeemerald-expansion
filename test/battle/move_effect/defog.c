@@ -208,12 +208,12 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
         SEND_IN_MESSAGE("Wobbuffet");
         if (move != MOVE_DEFOG || B_DEFOG_EFFECT_CLEARING <= GEN_5) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet is hurt by spikes!");
+            MESSAGE("Wobbuffet was hurt by the spikes!");
         }
         else {
             NONE_OF {
                 HP_BAR(player);
-                MESSAGE("Wobbuffet is hurt by spikes!");
+                MESSAGE("Wobbuffet was hurt by the spikes!");
             }
         }
     }
@@ -239,7 +239,7 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes terrain (Gen 8+)")
         MESSAGE("Wobbuffet's evasiveness fell!");
         if (B_DEFOG_EFFECT_CLEARING >= GEN_8) {
             if (move == MOVE_PSYCHIC_TERRAIN) {
-                MESSAGE("The weirdness disappeared from the battlefield.");
+                MESSAGE("The weirdness disappeared from the battlefield!");
             }
             else if (move == MOVE_ELECTRIC_TERRAIN) {
                 MESSAGE("The electricity disappeared from the battlefield.");
@@ -253,7 +253,7 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes terrain (Gen 8+)")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG, player);
         } else {
             NONE_OF {
-                MESSAGE("The weirdness disappeared from the battlefield.");
+                MESSAGE("The weirdness disappeared from the battlefield!");
                 MESSAGE("The electricity disappeared from the battlefield.");
                 MESSAGE("The mist disappeared from the battlefield.");
                 MESSAGE("The grass disappeared from the battlefield.");

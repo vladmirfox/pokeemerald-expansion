@@ -244,7 +244,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't block the effects of berries obtained throug
         // Turn 2
         MESSAGE("Wobbuffet used Pluck!");
         HP_BAR(opponent);
-        MESSAGE("Wobbuffet stole and ate Foe Wobbuffet's Oran Berry!");
+        MESSAGE("Wobbuffet stole and ate the opposing Wobbuffet's Oran Berry!");
         HP_BAR(player, damage: -hp);
     }
 }
@@ -377,7 +377,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
         MESSAGE("2 sent out Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
-        MESSAGE("The opposing Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("The opposing Groudon's Primal Reversion! It reverted to its primal state!");
         ABILITY_POPUP(opponent);
         // Turn 3
         MESSAGE("The opposing Groudon used Fling!");

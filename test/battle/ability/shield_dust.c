@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Shield Dust blocks secondary effects")
             MESSAGE("The opposing Vivillon is paralyzed! It may be unable to move!");
             MESSAGE("The opposing Vivillon was burned!");
             MESSAGE("The opposing Vivillon was poisoned!");
-            MESSAGE("The opposing Vivillon flinched!");
+            MESSAGE("The opposing Vivillon flinched and couldn't move!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Vivillon was prevented from healing!");
         }
@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("Shield Dust does not block primary effects")
                 MESSAGE("Neither Pokémon can run away!");
                 break;
             case MOVE_PAY_DAY:
-                MESSAGE("Coins scattered everywhere!");
+                MESSAGE("Coins were scattered everywhere!");
                 break;
         }
     } THEN { // Can't find good way to test trapping

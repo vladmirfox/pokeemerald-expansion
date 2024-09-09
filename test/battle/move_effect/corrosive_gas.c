@@ -22,10 +22,10 @@ SINGLE_BATTLE_TEST("Corrosive Gas destroys the target's item or fails if the tar
         MESSAGE("Wobbuffet used Corrosive Gas!");
         if (item == ITEM_POTION) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-            MESSAGE("Wobbuffet corroded Foe Wobbuffet's Potion!");
+            MESSAGE("Wobbuffet corroded the opposing Wobbuffet's Potion!");
         }
         else {
-            MESSAGE("It had no effect on Foe Wobbuffet!");
+            MESSAGE("It had no effect on the opposing Wobbuffet!");
         }
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_NONE);
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Corrosive Gas doesn't destroy the item of a Pokemon with the
     } SCENE {
         MESSAGE("Wobbuffet used Corrosive Gas!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-        NOT MESSAGE("Wobbuffet corroded Foe Wobbuffet's Potion!");
+        NOT MESSAGE("Wobbuffet corroded the opposing Wobbuffet's Potion!");
         ABILITY_POPUP(opponent, ABILITY_STICKY_HOLD);
         MESSAGE("The opposing Muk's Sticky Hold made Corrosive Gas ineffective!");
     } THEN {
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("Items lost to Corrosive Gas cannot be restored by Recycle")
     } SCENE {
         MESSAGE("Wobbuffet used Corrosive Gas!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-        MESSAGE("Wobbuffet corroded Foe Wobbuffet's Oran Berry!");
+        MESSAGE("Wobbuffet corroded the opposing Wobbuffet's Oran Berry!");
         MESSAGE("The opposing Wobbuffet used Recycle!");
         MESSAGE("But it failed!");
     } THEN {
@@ -100,14 +100,14 @@ DOUBLE_BATTLE_TEST("Corrosive Gas destroys foes and ally's items if they have on
             MESSAGE("It had no effect on Wobbuffet!");
         }
         if (itemOpponentLeft == ITEM_ORAN_BERRY) {
-            MESSAGE("Wynaut corroded Foe Abra's Oran Berry!");
+            MESSAGE("Wynaut corroded the opposing Abra's Oran Berry!");
         } else {
-            MESSAGE("It had no effect on Foe Abra!");
+            MESSAGE("It had no effect on the opposing Abra!");
         }
         if (itemOpponentRight == ITEM_CHESTO_BERRY) {
-            MESSAGE("Wynaut corroded Foe Kadabra's Chesto Berry!");
+            MESSAGE("Wynaut corroded the opposing Kadabra's Chesto Berry!");
         } else {
-            MESSAGE("It had no effect on Foe Kadabra!");
+            MESSAGE("It had no effect on the opposing Kadabra!");
         }
 
     } THEN {

@@ -19,13 +19,13 @@ SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact")
             ABILITY_POPUP(opponent, ABILITY_CUTE_CHARM);
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player);
             MESSAGE("The opposing Clefairy's Cute Charm infatuated Wobbuffet!");
-            MESSAGE("Wobbuffet is in love with Foe Clefairy!");
+            MESSAGE("Wobbuffet is in love with the opposing Clefairy!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(opponent, ABILITY_CUTE_CHARM);
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player);
                 MESSAGE("The opposing Clefairy's Cute Charm infatuated Wobbuffet!");
-                MESSAGE("Wobbuffet is in love with Foe Clefairy!");
+                MESSAGE("Wobbuffet is in love with the opposing Clefairy!");
             }
         }
     }
@@ -61,6 +61,6 @@ SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time")
         ABILITY_POPUP(opponent, ABILITY_CUTE_CHARM);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player);
         MESSAGE("The opposing Clefairy's Cute Charm infatuated Wobbuffet!");
-        MESSAGE("Wobbuffet is in love with Foe Clefairy!");
+        MESSAGE("Wobbuffet is in love with the opposing Clefairy!");
     }
 }

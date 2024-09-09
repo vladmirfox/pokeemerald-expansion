@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Inner Focus prevents flinching")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, player);
-        NONE_OF { MESSAGE("The opposing Zubat flinched!"); }
+        NONE_OF { MESSAGE("The opposing Zubat flinched and couldn't move!"); }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }
@@ -52,6 +52,6 @@ SINGLE_BATTLE_TEST("Inner Focus is ignored by Mold Breaker")
         TURN { MOVE(player, MOVE_FAKE_OUT); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, player);
-        MESSAGE("The opposing Zubat flinched!");
+        MESSAGE("The opposing Zubat flinched and couldn't move!");
     }
 }

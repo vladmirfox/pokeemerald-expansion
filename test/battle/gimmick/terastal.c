@@ -256,7 +256,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes the effect of Curse")
     } SCENE {
         MESSAGE("Wobbuffet used Curse!");
         HP_BAR(player);
-        MESSAGE("Wobbuffet cut its own HP and laid a CURSE on Foe Wobbuffet!");
+        MESSAGE("Wobbuffet cut its own HP and laid a CURSE on the opposing Wobbuffet!");
         NOT { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
     }
 }
@@ -350,7 +350,7 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Ty
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         // turn 3
         MESSAGE("Wobbuffet used Tackle!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("It doesn't affect the opposing Wobbuffet…");
         NOT { HP_BAR(opponent); }
     }
 }
@@ -383,7 +383,7 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Terastallized Pokemon's Tera 
         TURN { MOVE(player, MOVE_REVELATION_DANCE, gimmick: GIMMICK_TERA); }
     } SCENE {
         MESSAGE("Oricorio used Revelation Dance!");
-        MESSAGE("It doesn't affect Foe Gengar…");
+        MESSAGE("It doesn't affect the opposing Gengar…");
         NOT { HP_BAR(opponent); }
     }
 }
@@ -489,7 +489,7 @@ SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Stellar-type Pokemon's base typ
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         // turn 3
         MESSAGE("Banette used Tackle!");
-        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        MESSAGE("It doesn't affect the opposing Wobbuffet…");
         NOT { HP_BAR(opponent); }
     }
 }
@@ -504,7 +504,7 @@ SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Stellar-type Pokemon's base t
         TURN { MOVE(player, MOVE_REVELATION_DANCE, gimmick: GIMMICK_TERA); }
     } SCENE {
         MESSAGE("Oricorio used Revelation Dance!");
-        MESSAGE("It doesn't affect Foe Gumshoos…");
+        MESSAGE("It doesn't affect the opposing Gumshoos…");
         NOT { HP_BAR(opponent); }
     }
 }

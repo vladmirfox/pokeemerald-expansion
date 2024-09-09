@@ -29,14 +29,14 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
         SEND_IN_MESSAGE("Wynaut");
         NONE_OF {
-            MESSAGE("Wynaut is hurt by spikes!");
+            MESSAGE("Wynaut was hurt by the spikes!");
             MESSAGE("Pointed stones dug into Wynaut!");
             MESSAGE("Wynaut was poisoned!");
             MESSAGE("Wynaut was caught in a Sticky Web!");
         }
         MESSAGE("2 sent out Wobbuffet!");
-        MESSAGE("The opposing Wobbuffet is hurt by spikes!");
-        MESSAGE("Pointed stones dug into Foe Wobbuffet!");
+        MESSAGE("The opposing Wobbuffet was hurt by the spikes!");
+        MESSAGE("Pointed stones dug into the opposing Wobbuffet!");
         MESSAGE("The opposing Wobbuffet was poisoned!");
         MESSAGE("The opposing Wobbuffet was caught in a Sticky Web!");
     }
@@ -64,14 +64,14 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         MESSAGE("The opposing Wynaut used Court Change!");
         MESSAGE("The opposing Wynaut swapped the battle effects affecting each side!");
         SEND_IN_MESSAGE("Wobbuffet");
-        MESSAGE("Wobbuffet is hurt by spikes!");
+        MESSAGE("Wobbuffet was hurt by the spikes!");
         MESSAGE("Pointed stones dug into Wobbuffet!");
         MESSAGE("Wobbuffet was poisoned!");
         MESSAGE("Wobbuffet was caught in a Sticky Web!");
         MESSAGE("2 sent out Wynaut!");
         NONE_OF {
-            MESSAGE("The opposing Wynaut is hurt by spikes!");
-            MESSAGE("Pointed stones dug into Foe Wynaut!");
+            MESSAGE("The opposing Wynaut was hurt by the spikes!");
+            MESSAGE("Pointed stones dug into the opposing Wynaut!");
             MESSAGE("The opposing Wynaut was poisoned!");
             MESSAGE("The opposing Wynaut was caught in a Sticky Web!");
         }

@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Covert Cloak blocks secondary effects")
             MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
             MESSAGE("The opposing Wobbuffet was burned!");
             MESSAGE("The opposing Wobbuffet was poisoned!");
-            MESSAGE("The opposing Wobbuffet flinched!");
+            MESSAGE("The opposing Wobbuffet flinched and couldn't move!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Wobbuffet was prevented from healing!");
         }
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Covert Cloak does not block primary effects")
                 MESSAGE("Neither Pokémon can run away!");
                 break;
             case MOVE_PAY_DAY:
-                MESSAGE("Coins scattered everywhere!");
+                MESSAGE("Coins were scattered everywhere!");
                 break;
         }
     } THEN { // Can't find good way to test trapping

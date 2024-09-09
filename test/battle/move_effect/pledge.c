@@ -72,7 +72,7 @@ DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, playerLeft);
-        MESSAGE("The opposing Wynaut flinched!");
+        MESSAGE("The opposing Wynaut flinched and couldn't move!");
     }
 }
 
@@ -100,17 +100,17 @@ DOUBLE_BATTLE_TEST("Fire and Grass Pledge summons Sea Of Fire for four turns tha
         MESSAGE("A sea of fire enveloped the opposing team!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SEA_OF_FIRE, opponentRight);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentLeft);
-        MESSAGE("The opposing Foe Wobbuffet was hurt by the sea of fire!");
+        MESSAGE("The opposing Wobbuffet was hurt by the sea of fire!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
-        MESSAGE("The opposing Foe Wynaut was hurt by the sea of fire!");
+        MESSAGE("The opposing Wynaut was hurt by the sea of fire!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentLeft);
-        MESSAGE("The opposing Foe Wobbuffet was hurt by the sea of fire!");
+        MESSAGE("The opposing Wobbuffet was hurt by the sea of fire!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
-        MESSAGE("The opposing Foe Wynaut was hurt by the sea of fire!");
+        MESSAGE("The opposing Wynaut was hurt by the sea of fire!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentLeft);
-        MESSAGE("The opposing Foe Wobbuffet was hurt by the sea of fire!");
+        MESSAGE("The opposing Wobbuffet was hurt by the sea of fire!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
-        MESSAGE("The opposing Foe Wynaut was hurt by the sea of fire!");
+        MESSAGE("The opposing Wynaut was hurt by the sea of fire!");
         MESSAGE("The sea of fire around the opposing team disappeared!");
     }
 }

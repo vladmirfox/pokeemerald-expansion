@@ -77,11 +77,11 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct do not affect D
         }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect Foe Umbreon…");
+        MESSAGE("It doesn't affect the opposing Umbreon…");
         MESSAGE("Wobbuffet used Instruct!");
         MESSAGE("Volbeat used Confuse Ray!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect Foe Umbreon…");
+        MESSAGE("It doesn't affect the opposing Umbreon…");
     }
 }
 
@@ -182,7 +182,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
         MESSAGE("The opposing Murkrow's Confuse Ray was bounced back by MAGIC COAT!");
         if (sableyeAbility == ABILITY_PRANKSTER) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
-            MESSAGE("It doesn't affect Foe Murkrow…");
+            MESSAGE("It doesn't affect the opposing Murkrow…");
         } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
             MESSAGE("The opposing Murkrow became confused!");

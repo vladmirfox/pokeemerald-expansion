@@ -784,7 +784,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Rockfall sets up a sandstorm")
         TURN { MOVE(player, MOVE_ROCK_THROW, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         MESSAGE("Wobbuffet used Max Rockfall!");
-        MESSAGE("A sandstorm brewed!");
+        MESSAGE("A sandstorm kicked up!");
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SANDSTORM_CONTINUES);
     }
@@ -873,7 +873,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) G-Max Stonesurge sets up Stealth Rocks")
         MESSAGE("Drednaw used G-Max Stonesurge!");
         MESSAGE("Pointed stones float in the air around the opposing team!");
         // turn 2
-        MESSAGE("Pointed stones dug into Foe Wobbuffet!");
+        MESSAGE("Pointed stones dug into the opposing Wobbuffet!");
     }
 }
 
@@ -896,7 +896,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) G-Max Steelsurge sets up sharp steel")
         MESSAGE("Sharp-pointed steel floats around the opposing team!");
         // turn 2
         MESSAGE("2 sent out Hatterene!");
-        MESSAGE("Sharp steel bit into Foe Hatterene!");
+        MESSAGE("Sharp steel bit into the opposing Hatterene!");
         // turn 4
         MESSAGE("The opposing Hatterene used Defog!");
         MESSAGE("The sharp steel disappeared from the ground around the opposing team!");
@@ -1082,7 +1082,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Gold Rush confuses both opponents and genera
         MESSAGE("The opposing Wobbuffet became confused!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponentRight);
         MESSAGE("The opposing Wobbuffet became confused!");
-        MESSAGE("Coins scattered everywhere!");
+        MESSAGE("Coins were scattered everywhere!");
     }
 }
 
@@ -1177,8 +1177,8 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Meltdown torments both opponents for 3 turns
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         MESSAGE("The opposing Wynaut used Celebrate!");
         // end of turn 3
-        MESSAGE("The opposing Wobbuffet is tormented no more!");
-        MESSAGE("The opposing Wynaut is tormented no more!");
+        MESSAGE("The opposing Wobbuffet is no longer tormented!");
+        MESSAGE("The opposing Wynaut is no longer tormented!");
     }
 }
 
@@ -1248,8 +1248,8 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Replenish recycles allies' berries 50\% of t
         // turn 1
         MESSAGE("Using Apicot Berry, the Sp. Def of Snorlax rose!");
         MESSAGE("Using Apicot Berry, the Sp. Def of Munchlax rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Foe Wobbuffet rose!");
-        MESSAGE("Using Apicot Berry, the Sp. Def of Foe Wobbuffet rose!");
+        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
+        MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
         // turn 2
         MESSAGE("Snorlax used G-Max Replenish!");
         MESSAGE("Snorlax found one Apicot Berry!");
@@ -1273,7 +1273,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Snooze makes only the target drowsy")
     } SCENE {
         // turn 1
         MESSAGE("Grimmsnarl used G-Max Snooze!");
-        MESSAGE("Grimmsnarl made Foe Blissey drowsy!");
+        MESSAGE("Grimmsnarl made the opposing Blissey drowsy!");
         // turn 2
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
         MESSAGE("The opposing Blissey fell asleep!");
@@ -1397,7 +1397,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Depletion takes away 2 PP from the target's 
     } SCENE {
         MESSAGE("The opposing Sableye used Celebrate!");
         MESSAGE("Duraludon used G-Max Depletion!");
-        MESSAGE("Reduced Foe Sableye's Celebrate by 2!");
+        MESSAGE("Reduced the opposing Sableye's Celebrate by 2!");
     }
 }
 

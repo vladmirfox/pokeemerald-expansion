@@ -250,7 +250,7 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
         case ITEM_RAZOR_FANG:
         case ITEM_KINGS_ROCK:
             {
-                MESSAGE("The opposing Wobbuffet flinched!");
+                MESSAGE("The opposing Wobbuffet flinched and couldn't move!");
             }
             break;
         }
@@ -319,7 +319,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_KINGS_ROCK:
             {
                 NONE_OF {
-                    MESSAGE("The opposing Wobbuffet flinched!");
+                    MESSAGE("The opposing Wobbuffet flinched and couldn't move!");
                 }
                 switch (item)
                 {
@@ -403,23 +403,23 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         else if (statId != 0) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             if (statId == STAT_ATK) {
-                MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
+                MESSAGE("Using Liechi Berry, the Attack of the opposing Wobbuffet rose!");
             } else if (statId == STAT_DEF) {
                 if (item == ITEM_GANLON_BERRY) {
-                    MESSAGE("Using Ganlon Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Ganlon Berry, the Defense of the opposing Wobbuffet rose!");
                 } else {
-                    MESSAGE("Using Kee Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Kee Berry, the Defense of the opposing Wobbuffet rose!");
                 }
             } else if (statId == STAT_SPDEF) {
                 if (item == ITEM_APICOT_BERRY) {
-                    MESSAGE("Using Apicot Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Apicot Berry, the Sp. Def of the opposing Wobbuffet rose!");
                 } else {
-                    MESSAGE("Using Maranga Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Maranga Berry, the Sp. Def of the opposing Wobbuffet rose!");
                 }
             } else if (statId == STAT_SPEED) {
-                MESSAGE("Using Salac Berry, the Speed of Foe Wobbuffet rose!");
+                MESSAGE("Using Salac Berry, the Speed of the opposing Wobbuffet rose!");
             } else if (statId == STAT_SPATK) {
-                MESSAGE("Using Petaya Berry, the Sp. Atk of Foe Wobbuffet rose!");
+                MESSAGE("Using Petaya Berry, the Sp. Atk of the opposing Wobbuffet rose!");
             }
         }
     } THEN {

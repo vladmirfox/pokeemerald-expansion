@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Syrup Bomb covers the foe in sticky syrup for 3 turns")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
         MESSAGE("The opposing Wobbuffet's Speed fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
@@ -45,12 +45,12 @@ SINGLE_BATTLE_TEST("Sticky Syrup isn't applied again if the target is already co
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
         MESSAGE("The opposing Wobbuffet's Speed fell!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        NOT MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        NOT MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
     }
 }
 
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
         HP_BAR(opponent);
         if (species == SPECIES_BELDUM)
         {
-            MESSAGE("The opposing Beldum got covered in sticky syrup!");
+            MESSAGE("The opposing Beldum got covered in sticky candy syrup!");
             ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
             MESSAGE("The opposing Beldum's Clear Body prevents stat loss!");
@@ -102,7 +102,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
         }
         else if (species == SPECIES_TORKOAL)
         {
-            MESSAGE("The opposing Torkoal got covered in sticky syrup!");
+            MESSAGE("The opposing Torkoal got covered in sticky candy syrup!");
             ABILITY_POPUP(opponent, ABILITY_WHITE_SMOKE);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
             MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
         }
         else if (species == SPECIES_SOLGALEO)
         {
-            MESSAGE("The opposing Solgaleo got covered in sticky syrup!");
+            MESSAGE("The opposing Solgaleo got covered in sticky candy syrup!");
             ABILITY_POPUP(opponent, ABILITY_FULL_METAL_BODY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
@@ -133,7 +133,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Amulet")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         MESSAGE("The opposing Wobbuffet's Clear Amulet prevents its stats from being lowered!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
@@ -161,9 +161,9 @@ SINGLE_BATTLE_TEST("Sticky syrup will not decrease speed further then minus six"
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
-        MESSAGE("The opposing Wobbuffet's Speed won't go lower!");
+        MESSAGE("The opposing Wobbuffet's Speed won't go any lower!");
         NONE_OF {
             MESSAGE("The opposing Wobbuffet's Speed fell!");
         }
@@ -182,7 +182,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user switches out")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SYRUP_BOMB_SPEED_DROP, opponent);
         MESSAGE("The opposing Wobbuffet's Speed fell!");
         NONE_OF {
@@ -206,7 +206,7 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYRUP_BOMB, player);
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet got covered in sticky syrup!");
+        MESSAGE("The opposing Wobbuffet got covered in sticky candy syrup!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
         MESSAGE("Wobbuffet fainted!");
