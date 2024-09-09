@@ -2299,7 +2299,7 @@ bool32 IsStatLoweringEffect(u32 effect)
     }
 }
 
-bool32 IsOwnStatLoweringEffect(u32 effect)
+bool32 IsSelfStatLoweringEffect(u32 effect)
 {
     // Self stat lowering moves like Overheart, Superpower etc.
     switch (effect)
