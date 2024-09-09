@@ -15812,9 +15812,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_PumpkabooAverage[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/overworld.4bpp");
-    // const u32 gObjectEventPic_PumpkabooSmall[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/small/overworld.4bpp");
-    // const u32 gObjectEventPic_PumpkabooLarge[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/large/overworld.4bpp");
-    // const u32 gObjectEventPic_PumpkabooSuper[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/super/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooSmall[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/small/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooLarge[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/large/overworld.4bpp");
+    const u32 gObjectEventPic_PumpkabooSuper[] = INCBIN_COMP("graphics/pokemon/pumpkaboo/super/overworld.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonPalette_Gourgeist[] = INCBIN_U32("graphics/pokemon/gourgeist/normal.gbapal.lz");
@@ -15843,9 +15843,9 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_GourgeistAverage[] = INCBIN_COMP("graphics/pokemon/gourgeist/overworld.4bpp");
-    // const u32 gObjectEventPic_GourgeistSmall[] = INCBIN_COMP("graphics/pokemon/gourgeist/small/overworld.4bpp");
-    // const u32 gObjectEventPic_GourgeistLarge[] = INCBIN_COMP("graphics/pokemon/gourgeist/large/overworld.4bpp");
-    // const u32 gObjectEventPic_GourgeistSuper[] = INCBIN_COMP("graphics/pokemon/gourgeist/super/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistSmall[] = INCBIN_COMP("graphics/pokemon/gourgeist/small/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistLarge[] = INCBIN_COMP("graphics/pokemon/gourgeist/large/overworld.4bpp");
+    const u32 gObjectEventPic_GourgeistSuper[] = INCBIN_COMP("graphics/pokemon/gourgeist/super/overworld.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_PUMPKABOO
 

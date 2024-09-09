@@ -4416,7 +4416,7 @@ static const struct SpriteFrameImage sPicTable_Trevenant[] = {
 static const struct SpriteFrameImage sPicTable_PumpkabooAverage[] = {
     overworld_ascending_frames(gObjectEventPic_PumpkabooAverage, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_PumpkabooSmall[] = {
+static const struct SpriteFrameImage sPicTable_PumpkabooSmall[] = {
     overworld_ascending_frames(gObjectEventPic_PumpkabooSmall, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_PumpkabooLarge[] = {
@@ -4424,12 +4424,12 @@ static const struct SpriteFrameImage sPicTable_PumpkabooLarge[] = {
 };
 static const struct SpriteFrameImage sPicTable_PumpkabooSuper[] = {
     overworld_ascending_frames(gObjectEventPic_PumpkabooSuper, 4, 4),
-};*/
+};
 
 static const struct SpriteFrameImage sPicTable_GourgeistAverage[] = {
     overworld_ascending_frames(gObjectEventPic_GourgeistAverage, 4, 4),
 };
-/*static const struct SpriteFrameImage sPicTable_GourgeistSmall[] = {
+static const struct SpriteFrameImage sPicTable_GourgeistSmall[] = {
     overworld_ascending_frames(gObjectEventPic_GourgeistSmall, 4, 4),
 };
 static const struct SpriteFrameImage sPicTable_GourgeistLarge[] = {
@@ -4437,7 +4437,7 @@ static const struct SpriteFrameImage sPicTable_GourgeistLarge[] = {
 };
 static const struct SpriteFrameImage sPicTable_GourgeistSuper[] = {
     overworld_ascending_frames(gObjectEventPic_GourgeistSuper, 4, 4),
-};*/
+};
 #endif //P_FAMILY_PUMPKABOO
 
 #if P_FAMILY_BERGMITE

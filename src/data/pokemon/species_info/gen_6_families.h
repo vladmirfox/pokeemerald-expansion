@@ -4555,7 +4555,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_PumpkabooAverage,
+            sPicTable_PumpkabooSmall,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
@@ -4618,7 +4618,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_PumpkabooAverage,
+            sPicTable_PumpkabooLarge,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
@@ -4683,7 +4683,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Pumpkaboo)
         OVERWORLD(
-            sPicTable_PumpkabooAverage,
+            sPicTable_PumpkabooSuper,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
@@ -4808,7 +4808,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_GourgeistAverage,
+            sPicTable_GourgeistSmall,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
@@ -4869,7 +4869,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_GourgeistAverage,
+            sPicTable_GourgeistLarge,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
@@ -4932,7 +4932,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .iconPalIndex = 2,
         FOOTPRINT(Gourgeist)
         OVERWORLD(
-            sPicTable_GourgeistAverage,
+            sPicTable_GourgeistSuper,
             SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
