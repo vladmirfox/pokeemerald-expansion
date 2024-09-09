@@ -179,7 +179,7 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
     } SCENE {
         if (status == STATUS1_FREEZE) {
             MESSAGE("Wobbuffet is frozen solid!");
-            MESSAGE("Wobbuffet was defrosted!");
+            MESSAGE("Wobbuffet thawed out!");
         }
         else if (status == STATUS1_PARALYSIS) {
             MESSAGE("Wobbuffet couldn't move because it's paralyzed!");
@@ -243,7 +243,7 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
             break;
         case ITEM_TOXIC_ORB:
             {
-                MESSAGE("The opposing Wobbuffet is badly poisoned!");
+                MESSAGE("The opposing Wobbuffet was badly poisoned!");
                 STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
             }
             break;
@@ -309,7 +309,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_TOXIC_ORB:
             {
                 NONE_OF {
-                    MESSAGE("The opposing Wobbuffet is badly poisoned!");
+                    MESSAGE("The opposing Wobbuffet was badly poisoned!");
                     STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
                 }
                 MESSAGE("The Toxic Orb was used up...");
@@ -373,11 +373,11 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             if (item == ITEM_ORAN_BERRY) {
-                MESSAGE("The opposing Wobbuffet's Oran Berry restored health!");
+                MESSAGE("The opposing Wobbuffet restored its health using its Oran Berry!");
             } else if (item == ITEM_SITRUS_BERRY) {
-                MESSAGE("The opposing Wobbuffet's Sitrus Berry restored health!");
+                MESSAGE("The opposing Wobbuffet restored its health using its Sitrus Berry!");
             } else {
-                MESSAGE("Wobbuffet's Enigma Berry restored health!");
+                MESSAGE("Wobbuffet restored its health using its Enigma Berry!");
             }
             HP_BAR(opponent);
         }

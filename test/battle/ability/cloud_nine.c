@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but witho
         TURN {}
     } SCENE {
         ABILITY_POPUP(player, ability);
-        MESSAGE("The effects of weather disappeared.");
+        MESSAGE("The effects of the weather disappeared.");
         MESSAGE("The opposing Wobbuffet used Sandstorm!");
         MESSAGE("The sandstorm rages.");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SANDSTORM_CONTINUES);

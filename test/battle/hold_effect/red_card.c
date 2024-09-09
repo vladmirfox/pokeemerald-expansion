@@ -417,7 +417,7 @@ SINGLE_BATTLE_TEST("Red Card is consumed after dragged out replacement has its S
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("The opposing Wobbuffet held up its Red Card against Wobbuffet!");
         MESSAGE("Wynaut was dragged out!");
-        MESSAGE("Wynaut was caught in a Sticky Web!");
+        MESSAGE("Wynaut was caught in a sticky web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         // 3rd turn, Red Card was consumed, it can't trigger again
         NONE_OF {

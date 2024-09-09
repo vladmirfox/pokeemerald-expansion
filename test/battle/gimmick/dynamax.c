@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon cannot be flinched")
         TURN { MOVE(opponent, MOVE_FAKE_OUT); MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
         MESSAGE("The opposing Wobbuffet used Fake Out!");
-        NONE_OF { MESSAGE("Wobbuffet flinched!"); }
+        NONE_OF { MESSAGE("Wobbuffet flinched and couldn't move!"); }
         MESSAGE("Wobbuffet used Max Strike!");
     }
 }
@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon are affected by Grudge")
     } SCENE {
         MESSAGE("The opposing Wobbuffet used Grudge!");
         MESSAGE("Wobbuffet used Max Strike!");
-        MESSAGE("Wobbuffet's Tackle lost all its PP due to the GRUDGE!");
+        MESSAGE("Wobbuffet's Tackle lost all its PP due to the grudge!");
         MESSAGE("The opposing Wobbuffet fainted!");
     }
 }
@@ -355,7 +355,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon lose their substitutes")
         TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Wobbuffet used Substitute!");
-        MESSAGE("Wobbuffet made a SUBSTITUTE!");
+        MESSAGE("Wobbuffet put in a substitute!");
         MESSAGE("Wobbuffet used Max Strike!");
         MESSAGE("The opposing Wobbuffet used Tackle!");
         HP_BAR(player);
@@ -595,7 +595,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Sitrus Berries heal based on a Pokemon's non-Dynam
     } WHEN {
         TURN { MOVE(opponent, MOVE_FLING); MOVE(player, MOVE_TACKLE, gimmick: dynamax); }
     } SCENE {
-        MESSAGE("Wobbuffet's Sitrus Berry restored health!");
+        MESSAGE("Wobbuffet restored its health using its Sitrus Berry!");
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_EQ(results[0].damage, results[1].damage);
@@ -1202,7 +1202,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Wildfire sets a field effect that damages no
     } SCENE {
         // turn 1
         MESSAGE("Charizard used G-Max Wildfire!");
-        MESSAGE("The opposing team was surrounded by flames!");
+        MESSAGE("The opposing Pokémon were surrounded by fire!");
         MESSAGE("The opposing Wobbuffet is burning up within G-Max Wildfire's flames!");
         HP_BAR(opponentLeft, captureDamage: &damage);
         MESSAGE("The opposing Wynaut is burning up within G-Max Wildfire's flames!");
@@ -1273,7 +1273,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Snooze makes only the target drowsy")
     } SCENE {
         // turn 1
         MESSAGE("Grimmsnarl used G-Max Snooze!");
-        MESSAGE("Grimmsnarl made the opposing Blissey drowsy!");
+        MESSAGE("Blissey grew drowsy!");
         // turn 2
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
         MESSAGE("The opposing Blissey fell asleep!");

@@ -137,11 +137,11 @@ DOUBLE_BATTLE_TEST("Shield Dust does or does not block Sparkling Aria depending 
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, playerLeft);
         if (moveToUse == MOVE_TACKLE) {
-            MESSAGE("The opposing Vivillon's burn was healed.");
+            MESSAGE("The opposing Vivillon's burn was cured!");
             STATUS_ICON(opponentLeft, none: TRUE);
         } else {
             NONE_OF {
-                MESSAGE("The opposing Vivillon's burn was healed.");
+                MESSAGE("The opposing Vivillon's burn was cured!");
                 STATUS_ICON(opponentLeft, none: TRUE);
             }
         }
@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("Shield Dust blocks Sparkling Aria in singles")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLING_ARIA, player);
         NONE_OF {
-            MESSAGE("The opposing Vivillon's burn was healed.");
+            MESSAGE("The opposing Vivillon's burn was cured!");
             STATUS_ICON(opponent, none: TRUE);
         }
     }

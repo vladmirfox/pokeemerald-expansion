@@ -260,7 +260,7 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
         // MESSAGE("Rapidash used recoilMove!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, recoilMove, player);
-            MESSAGE("Rapidash is hit with recoil!");
+            MESSAGE("Rapidash was damaged by the recoil!");
         }
     }
 }

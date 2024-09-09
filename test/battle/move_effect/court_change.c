@@ -21,7 +21,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         TURN { MOVE(playerLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(playerLeft, 2); SWITCH(opponentLeft, 2); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used Sticky Web!");
+        MESSAGE("The opposing Wobbuffet used sticky web!");
         MESSAGE("The opposing Wobbuffet used Stealth Rock!");
         MESSAGE("The opposing Wobbuffet used Spikes!");
         MESSAGE("The opposing Wobbuffet used Toxic Spikes!");
@@ -32,13 +32,13 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
             MESSAGE("Wynaut was hurt by the spikes!");
             MESSAGE("Pointed stones dug into Wynaut!");
             MESSAGE("Wynaut was poisoned!");
-            MESSAGE("Wynaut was caught in a Sticky Web!");
+            MESSAGE("Wynaut was caught in a sticky web!");
         }
         MESSAGE("2 sent out Wobbuffet!");
         MESSAGE("The opposing Wobbuffet was hurt by the spikes!");
         MESSAGE("Pointed stones dug into the opposing Wobbuffet!");
         MESSAGE("The opposing Wobbuffet was poisoned!");
-        MESSAGE("The opposing Wobbuffet was caught in a Sticky Web!");
+        MESSAGE("The opposing Wobbuffet was caught in a sticky web!");
     }
 }
 
@@ -57,7 +57,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(opponentLeft, 2); SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used Sticky Web!");
+        MESSAGE("Wobbuffet used sticky web!");
         MESSAGE("Wobbuffet used Stealth Rock!");
         MESSAGE("Wobbuffet used Spikes!");
         MESSAGE("Wobbuffet used Toxic Spikes!");
@@ -67,13 +67,13 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         MESSAGE("Wobbuffet was hurt by the spikes!");
         MESSAGE("Pointed stones dug into Wobbuffet!");
         MESSAGE("Wobbuffet was poisoned!");
-        MESSAGE("Wobbuffet was caught in a Sticky Web!");
+        MESSAGE("Wobbuffet was caught in a sticky web!");
         MESSAGE("2 sent out Wynaut!");
         NONE_OF {
             MESSAGE("The opposing Wynaut was hurt by the spikes!");
             MESSAGE("Pointed stones dug into the opposing Wynaut!");
             MESSAGE("The opposing Wynaut was poisoned!");
-            MESSAGE("The opposing Wynaut was caught in a Sticky Web!");
+            MESSAGE("The opposing Wynaut was caught in a sticky web!");
         }
     }
 }

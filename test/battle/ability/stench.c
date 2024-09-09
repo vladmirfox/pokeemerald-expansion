@@ -51,7 +51,7 @@ DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage")
             MOVE(playerRight, MOVE_TACKLE, target: opponentRight);
         }
     } SCENE {
-        NONE_OF { MESSAGE("Wynaut flinched!"); }
+        NONE_OF { MESSAGE("Wynaut flinched and couldn't move!"); }
     }
 }
 
@@ -74,7 +74,7 @@ DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FAKE_OUT, playerLeft);
         MESSAGE("The opposing Grimer flinched and couldn't move!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
-        NOT MESSAGE("Wynaut flinched!");
+        NOT MESSAGE("Wynaut flinched and couldn't move!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }

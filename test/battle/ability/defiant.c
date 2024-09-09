@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
         // Switch-in - Sticky Web activates
         SEND_IN_MESSAGE("Mankey");
-        MESSAGE("Mankey was caught in a Sticky Web!");
+        MESSAGE("Mankey was caught in a sticky web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Speed fell!");
         // Defiant activates
@@ -153,7 +153,7 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Co
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
         // Switch-in - Sticky Web activates
         SEND_IN_MESSAGE("Mankey");
-        MESSAGE("Mankey was caught in a Sticky Web!");
+        MESSAGE("Mankey was caught in a sticky web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Speed fell!");
         // Defiant doesn't activate
@@ -180,7 +180,7 @@ SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
         // Switch-in - Sticky Web activates
         SEND_IN_MESSAGE("Mankey");
-        MESSAGE("Mankey was caught in a Sticky Web!");
+        MESSAGE("Mankey was caught in a sticky web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Speed fell!");
         // Defiant doesn't activate
@@ -257,11 +257,11 @@ SINGLE_BATTLE_TEST("Defiant activates before White Herb")
 
         if (move == MOVE_LEER) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Mankey's White Herb restored its status!");
+            MESSAGE("Mankey returned its stats to normal using its White Herb!");
         } else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-                MESSAGE("Mankey's White Herb restored its status!");
+                MESSAGE("Mankey returned its stats to normal using its White Herb!");
             }
         }
     } THEN {

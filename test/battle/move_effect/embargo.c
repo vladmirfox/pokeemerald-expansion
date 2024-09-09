@@ -59,7 +59,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect experience
     } WHEN {
         TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        MESSAGE("Wild Caterpie used Embargo!");
+        MESSAGE("The wild Caterpie used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         MESSAGE("Wobbuffet used Scratch!");
         MESSAGE("Wild Caterpie fainted!");
@@ -84,7 +84,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect effort val
         TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
         // Turn 1
-        MESSAGE("Wild Caterpie used Embargo!");
+        MESSAGE("The wild Caterpie used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Scratch!");

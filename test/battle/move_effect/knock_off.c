@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Knock Off knocks a healing berry before it has the chance to
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-            MESSAGE("The opposing Wobbuffet's Sitrus Berry restored health!");
+            MESSAGE("The opposing Wobbuffet restored its health using its Sitrus Berry!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
         MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Sitrus Berry!");
@@ -187,7 +187,7 @@ DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
         MESSAGE("The opposing Wobbuffet knocked off Wobbuffet's Leftovers!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT);
-            MESSAGE("Wobbuffet's Leftovers restored health!");
+            MESSAGE("Wobbuffet restored its health using its Leftovers!");
         }
     } THEN {
         EXPECT(playerLeft->item == ITEM_NONE);

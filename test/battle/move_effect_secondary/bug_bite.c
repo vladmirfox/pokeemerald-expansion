@@ -52,11 +52,11 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP || effect == HOLD_EFFECT_ENIGMA_BERRY) {
             if (item == ITEM_ORAN_BERRY) {
-                MESSAGE("Wobbuffet's Oran Berry restored health!");
+                MESSAGE("Wobbuffet restored its health using its Oran Berry!");
             } else if (item == ITEM_SITRUS_BERRY) {
-                MESSAGE("Wobbuffet's Sitrus Berry restored health!");
+                MESSAGE("Wobbuffet restored its health using its Sitrus Berry!");
             } else {
-                MESSAGE("Wobbuffet's Enigma Berry restored health!");
+                MESSAGE("Wobbuffet restored its health using its Enigma Berry!");
             }
             HP_BAR(player);
         }
