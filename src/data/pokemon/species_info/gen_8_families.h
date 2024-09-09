@@ -4804,7 +4804,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .shinyPalette = gMonShinyPalette_AlcremieGigantamax,
         .iconSprite = gMonIcon_AlcremieGigantamax,
         .iconPalIndex = 1,
-        SHADOW(0, 11, SHADOW_SIZE_L)
+        SHADOW(0, 10, SHADOW_SIZE_L)
         FOOTPRINT(Alcremie)
         .isGigantamax = TRUE,
         .levelUpLearnset = sAlcremieLevelUpLearnset,

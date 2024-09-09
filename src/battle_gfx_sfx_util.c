@@ -1144,9 +1144,9 @@ void CreateEnemyShadowSprite(u32 battler)
         u8 size = gSpeciesInfo[species].enemyShadowSize;
 
         gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary = CreateSprite(&gSpriteTemplate_EnemyShadow,
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
-                                                                                        0xC8);
+                                                                                             GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
+                                                                                             GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
+                                                                                             0xC8);
         if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary < MAX_SPRITES)
         {
             struct Sprite *sprite = &gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary];
@@ -1157,9 +1157,9 @@ void CreateEnemyShadowSprite(u32 battler)
         }
 
         gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary = CreateSprite(&gSpriteTemplate_EnemyShadow,
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
-                                                                                        0xC8);
+                                                                                               GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
+                                                                                               GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
+                                                                                               0xC8);
         if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary < MAX_SPRITES)
         {
             struct Sprite *sprite = &gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdSecondary];
@@ -1172,9 +1172,9 @@ void CreateEnemyShadowSprite(u32 battler)
     else
     {
         gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary = CreateSprite(&gSpriteTemplate_EnemyShadow,
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
-                                                                                        GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
-                                                                                        0xC8);
+                                                                                             GetBattlerSpriteCoord(battler, BATTLER_COORD_X),
+                                                                                             GetBattlerSpriteCoord(battler, BATTLER_COORD_Y),
+                                                                                             0xC8);
         if (gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary < MAX_SPRITES)
         {
             struct Sprite *sprite = &gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteIdPrimary];

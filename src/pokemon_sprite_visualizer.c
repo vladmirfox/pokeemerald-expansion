@@ -486,7 +486,8 @@ static void PrintInstructionsOnWindow(struct PokemonSpriteVisualizer *data)
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuTwo, x, 0, 0, NULL);
     }
     else if (data->currentSubmenu == 3)
-    {if (SpeciesHasGenderDifferences(species))
+    {
+        if (SpeciesHasGenderDifferences(species))
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuThreeGender, x, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_INSTRUCTIONS, fontId, textInstructionsSubmenuThree, x, 0, 0, NULL);

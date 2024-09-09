@@ -2745,7 +2745,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .shinyPalette = gMonShinyPalette_Surskit,
         .iconSprite = gMonIcon_Surskit,
         .iconPalIndex = 0,
-        SHADOW(2, -3, SHADOW_SIZE_L)
+        SHADOW(-1, -3, SHADOW_SIZE_S)
         FOOTPRINT(Surskit)
         OVERWORLD(
             sPicTable_Surskit,
@@ -3018,7 +3018,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .shinyPalette = gMonShinyPalette_Slakoth,
         .iconSprite = gMonIcon_Slakoth,
         .iconPalIndex = 2,
-        SHADOW(-1, -5, SHADOW_SIZE_L)
+        SHADOW(1, -4, SHADOW_SIZE_M)
         FOOTPRINT(Slakoth)
         OVERWORLD(
             sPicTable_Slakoth,

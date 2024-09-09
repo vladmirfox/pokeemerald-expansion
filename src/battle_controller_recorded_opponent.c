@@ -270,9 +270,7 @@ static void Intro_TryShinyAnimShowHealthbox(u32 battler)
         {
             TrySetBattlerShadowSpriteCallback(battler);
             if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy)
-            {
                 battlerAnimsDone = TRUE;
-            }
         }
     }
     else
