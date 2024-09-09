@@ -20,9 +20,9 @@ SINGLE_BATTLE_TEST("Sticky Web lowers Speed by 1 on switch-in")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         MESSAGE("2 sent out Wynaut!");
-        MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+        MESSAGE("The opposing Wynaut was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wynaut's Speed fell!");
+        MESSAGE("The opposing Wynaut's Speed fell!");
     }
 }
 
@@ -66,12 +66,12 @@ DOUBLE_BATTLE_TEST("Sticky Web lowers Speed by 1 in a double battle after Explos
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         MESSAGE("2 sent out Wynaut!");
         MESSAGE("2 sent out Alakazam!");
-        MESSAGE("Foe Alakazam was caught in a Sticky Web!");
+        MESSAGE("The opposing Alakazam was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Foe Alakazam's Speed fell!");
-        MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+        MESSAGE("The opposing Alakazam's Speed fell!");
+        MESSAGE("The opposing Wynaut was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Foe Wynaut's Speed fell!");
+        MESSAGE("The opposing Wynaut's Speed fell!");
     }
 }
 
@@ -89,9 +89,9 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         MESSAGE("2 sent out Shuckle!");
-        MESSAGE("Foe Shuckle was caught in a Sticky Web!");
+        MESSAGE("The opposing Shuckle was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Shuckle's Speed rose!");
+        MESSAGE("The opposing Shuckle's Speed rose!");
     }
 }
 
@@ -128,14 +128,14 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, BATTLER_OPPONENT);
         if (opponentSetUpper == 0) {
-            MESSAGE("Foe Caterpie's Speed fell!");
+            MESSAGE("The opposing Caterpie's Speed fell!");
             NONE_OF {
-                MESSAGE("Foe Caterpie was caught in a Sticky Web!");
+                MESSAGE("The opposing Caterpie was caught in a Sticky Web!");
             }
         } else {
-            MESSAGE("Foe Weedle's Speed fell!");
+            MESSAGE("The opposing Weedle's Speed fell!");
             NONE_OF {
-                MESSAGE("Foe Weedle was caught in a Sticky Web!");
+                MESSAGE("The opposing Weedle was caught in a Sticky Web!");
             }
         }
     }
@@ -220,7 +220,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         MESSAGE("A sticky web spreads out on the ground around your team!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEMENTO, opponentLeft);
-        MESSAGE("Foe Caterpie fainted!");
+        MESSAGE("The opposing Caterpie fainted!");
         if (hasReplacement) {
             MESSAGE("2 sent out Pidgey!");
         }

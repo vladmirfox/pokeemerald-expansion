@@ -24,12 +24,12 @@ SINGLE_BATTLE_TEST("Wake-Up Slap does not cure paralyzed pokemons behind substit
             MESSAGE("The SUBSTITUTE took damage for Foe Seismitoad!");
             NONE_OF
             {
-                MESSAGE("Foe Seismitoad's SUBSTITUTE faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
-                MESSAGE("Foe Seismitoad woke up!");
+                MESSAGE("The opposing Seismitoad's SUBSTITUTE faded!"); // Smelling Salts does 86 damage, the sub has 122 HP, if hitting a sub it shouldn't get boosted damage.
+                MESSAGE("The opposing Seismitoad woke up!");
                 STATUS_ICON(opponent, none: TRUE);
             }
         } else {
-            MESSAGE("Foe Seismitoad woke up!");
+            MESSAGE("The opposing Seismitoad woke up!");
             STATUS_ICON(opponent, none: TRUE);
         }
     }
@@ -48,9 +48,9 @@ SINGLE_BATTLE_TEST("Wake-Up Slap get incread power vs. sleeping targets")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, player);
         if (status1 == STATUS1_SLEEP) {
-            MESSAGE("Foe Lotad fainted!");
+            MESSAGE("The opposing Lotad fainted!");
         } else {
-            NOT MESSAGE("Foe Lotad fainted!");
+            NOT MESSAGE("The opposing Lotad fainted!");
             MESSAGE("The opposing Lotad used Celebrate!");
         }
     }

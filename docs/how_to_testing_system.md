@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Stun Spore inflicts paralysis")
         TURN { MOVE(player, MOVE_STUN_SPORE); } // 3.
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-        MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!"); // 4
+        MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!"); // 4
         STATUS_ICON(opponent, paralysis: TRUE); // 4.
     }
 }
@@ -226,7 +226,7 @@ SINGLE_BATTLE_TEST("Paralysis has a 25% chance of skipping the turn")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Wobbuffet is paralyzed! It can't move!");
+        MESSAGE("Wobbuffet couldn't move because it's paralyzed!");
     }
 }
 ```
@@ -428,7 +428,7 @@ Spaces in pattern match newlines (\n, \l, and \p) in the message.
 Often used to check that a battler took its turn but it failed, e.g.:
 ```
      MESSAGE("Wobbuffet used Dream Eater!");
-     MESSAGE("Foe Wobbuffet wasn't affected!");
+     MESSAGE("The opposing Wobbuffet wasn't affected!");
 ```
 
 ### `STATUS_ICON`
@@ -467,7 +467,7 @@ Causes the test to fail unless one of the `SCENE` commands succeeds.
 ```
      ONE_OF {
          MESSAGE("Wobbuffet used Celebrate!");
-         MESSAGE("Wobbuffet is paralyzed! It can't move!");
+         MESSAGE("Wobbuffet couldn't move because it's paralyzed!");
      }
 ```
 
@@ -482,7 +482,7 @@ Causes the test to fail if one of the `SCENE` commands succeeds before the comma
      // Our Wobbuffet does not move before the foe's.
      NONE_OF {
          MESSAGE("Wobbuffet used Celebrate!");
-         MESSAGE("Wobbuffet is paralyzed! It can't move!");
+         MESSAGE("Wobbuffet couldn't move because it's paralyzed!");
      }
      MESSAGE("The opposing Wobbuffet used Celebrate!");
 ```

@@ -23,22 +23,22 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
         switch (statId)
         {
         case STAT_DEF:
-            MESSAGE("Foe Wynaut's Defense fell!");
+            MESSAGE("The opposing Wynaut's Defense fell!");
             break;
         case STAT_ATK:
-            MESSAGE("Foe Wynaut's Attack fell!");
+            MESSAGE("The opposing Wynaut's Attack fell!");
             break;
         case STAT_EVASION:
-            MESSAGE("Foe Wynaut's evasiveness harshly fell!");
+            MESSAGE("The opposing Wynaut's evasiveness harshly fell!");
             break;
         case STAT_ACC:
-            MESSAGE("Foe Wynaut's accuracy fell!");
+            MESSAGE("The opposing Wynaut's accuracy fell!");
             break;
         case STAT_SPATK:
-            MESSAGE("Foe Wynaut's Sp. Atk fell!");
+            MESSAGE("The opposing Wynaut's Sp. Atk fell!");
             break;
         case STAT_SPDEF:
-            MESSAGE("Foe Wynaut's Sp. Def harshly fell!");
+            MESSAGE("The opposing Wynaut's Sp. Def harshly fell!");
             break;
         }
     } THEN {
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Corviknight's Defense fell!");
+        MESSAGE("The opposing Corviknight's Defense fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
         MESSAGE("The opposing Wynaut used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
-        MESSAGE("Foe Wynaut's Clear Body prevents stat loss!");
+        MESSAGE("The opposing Wynaut's Clear Body prevents stat loss!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers the Attack of Pokemon with Intimidate")
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Gyarados's Attack fell!");
+        MESSAGE("The opposing Gyarados's Attack fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
@@ -135,7 +135,7 @@ SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Co
         MESSAGE("The opposing Shuckle used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Shuckle's Defense rose!");
+        MESSAGE("The opposing Shuckle's Defense rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon
         MESSAGE("The opposing Wynaut used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wynaut's Defense won't go lower!");
+        MESSAGE("The opposing Wynaut's Defense won't go lower!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], MIN_STAT_STAGE);
@@ -187,7 +187,7 @@ DOUBLE_BATTLE_TEST("Mirror Armor lowers Speed of the partner Pokemon after Court
     } SCENE {
         MESSAGE("Wobbuffet used Sticky Web!");
         MESSAGE("The opposing Wynaut used Court Change!");
-        MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("The opposing Wynaut swapped the battle effects affecting each side!");
         SEND_IN_MESSAGE("Corviknight");
         MESSAGE("Corviknight was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);

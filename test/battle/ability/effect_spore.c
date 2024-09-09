@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, player);
-        MESSAGE("Foe Breloom's Effect Spore paralyzed Wobbuffet! It may be unable to move!");
+        MESSAGE("The opposing Breloom's Effect Spore paralyzed Wobbuffet! It may be unable to move!");
         STATUS_ICON(player, paralysis: TRUE);
     }
 }
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
-        MESSAGE("Foe Breloom's Effect Spore made Wobbuffet sleep!");
+        MESSAGE("The opposing Breloom's Effect Spore made Wobbuffet sleep!");
         STATUS_ICON(player, sleep: TRUE);
     }
 }

@@ -178,7 +178,7 @@ SINGLE_BATTLE_TEST("Zero to Hero's message displays correctly after all battlers
         SEND_IN_MESSAGE("Wobbuffet");
         MESSAGE("2 sent out Palafin!");
         ABILITY_POPUP(opponent, ABILITY_ZERO_TO_HERO);
-        MESSAGE("Foe Palafin underwent a heroic transformation!");
+        MESSAGE("The opposing Palafin underwent a heroic transformation!");
     }
 }
 

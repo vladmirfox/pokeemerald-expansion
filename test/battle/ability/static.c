@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("Static triggers 30% of the time")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_STATIC);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, player);
-        MESSAGE("Foe Pikachu's Static paralyzed Wobbuffet! It may be unable to move!");
+        MESSAGE("The opposing Pikachu's Static paralyzed Wobbuffet! It may be unable to move!");
         STATUS_ICON(player, paralysis: TRUE);
     }
 }

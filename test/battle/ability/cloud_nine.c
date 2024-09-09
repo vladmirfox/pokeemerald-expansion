@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but witho
         NONE_OF {
             HP_BAR(player);
             HP_BAR(opponent);
-            MESSAGE("Foe Wobbuffet is buffeted by the sandstorm!");
+            MESSAGE("The opposing Wobbuffet is buffeted by the sandstorm!");
         }
         MESSAGE("The sandstorm rages.");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SANDSTORM_CONTINUES);

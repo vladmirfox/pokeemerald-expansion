@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
             HP_BAR(player, hp: 0);
         }
         ABILITY_POPUP(opponent, ABILITY_DAMP);
-        MESSAGE("Foe Golduck's Damp prevents Wobbuffet from using Explosion!");
+        MESSAGE("The opposing Golduck's Damp prevents Wobbuffet from using Explosion!");
     }
 }
 
@@ -141,7 +141,7 @@ DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt 
         HP_BAR(playerRight, hp: 0);
         MESSAGE("Wynaut fainted!");
         HP_BAR(opponentRight, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("The opposing Wobbuffet fainted!");
         MESSAGE("Geodude fainted!");
     }
 }

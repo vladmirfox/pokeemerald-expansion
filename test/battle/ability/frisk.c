@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle")
         ABILITY_POPUP(player, ABILITY_FRISK);
         MESSAGE("Furret frisked Foe Sentret and found its Potion!");
         ABILITY_POPUP(opponent, ABILITY_FRISK);
-        MESSAGE("Foe Sentret frisked Furret and found its Potion!");
+        MESSAGE("The opposing Sentret frisked Furret and found its Potion!");
     }
 }
 
@@ -75,8 +75,8 @@ DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switchi
         TURN { MOVE(playerLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {
         MESSAGE("Wynaut used Pound!");
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("The opposing Wobbuffet fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
-        MESSAGE("Foe Furret frisked Wynaut and found its Potion!");
+        MESSAGE("The opposing Furret frisked Wynaut and found its Potion!");
     }
 }

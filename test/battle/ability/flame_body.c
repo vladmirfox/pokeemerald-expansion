@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("Flame Body triggers 30% of the time")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_FLAME_BODY);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, player);
-        MESSAGE("Foe Magmar's Flame Body burned Wobbuffet!");
+        MESSAGE("The opposing Magmar's Flame Body burned Wobbuffet!");
         STATUS_ICON(player, burn: TRUE);
     }
 }

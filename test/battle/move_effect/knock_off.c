@@ -137,7 +137,7 @@ SINGLE_BATTLE_TEST("Knock Off does not prevent targets from receiving another it
         if (B_KNOCK_OFF_REMOVAL >= GEN_5) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BESTOW, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT);
-            MESSAGE("Foe Wobbuffet's Leftovers restored its HP a little!");
+            MESSAGE("The opposing Wobbuffet's Leftovers restored its HP a little!");
         } else {
             NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_BESTOW, player); }
             MESSAGE("But it failed!");
@@ -184,7 +184,7 @@ DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
-        MESSAGE("Foe Wobbuffet knocked off Wobbuffet's Leftovers!");
+        MESSAGE("The opposing Wobbuffet knocked off Wobbuffet's Leftovers!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT);
             MESSAGE("Wobbuffet's Leftovers restored health!");

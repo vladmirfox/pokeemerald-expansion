@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asl
         MESSAGE("The opposing Claydol used Spore!");
         MESSAGE("Wobbuffet surrounds itself with electrified terrain!");
         MESSAGE("Wobbuffet used Spore!");
-        MESSAGE("Foe Claydol fell asleep!");
+        MESSAGE("The opposing Claydol fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
     }
 }
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Electric Terrain activates Electric Seed and Mimicry")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Electric Seed, the Defense of Wobbuffet rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Electric!");
+        MESSAGE("The opposing Stunfisk's type changed to Electric!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].types[0], TYPE_ELECTRIC);
     }

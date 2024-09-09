@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's evasiveness fell!");
+        MESSAGE("The opposing Wobbuffet's evasiveness fell!");
     }
 }
 
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Defog does not lower evasiveness if target behind Substitute
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("The opposing Wobbuffet's evasiveness fell!");
         }
     }
 }
@@ -72,7 +72,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Reflect and Light 
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("The opposing Wobbuffet's evasiveness fell!");
             MESSAGE("Foe's Reflect wore off!");
             MESSAGE("Foe's Light Screen wore off!");
         }
@@ -105,7 +105,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIST, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SAFEGUARD, opponentRight);
         if (move == MOVE_DEFOG) {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("The opposing Wobbuffet is protected by MIST!");
             ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
             MESSAGE("Foe's Mist wore off!");
             MESSAGE("Foe's Safeguard wore off!");
@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by MIST!");
+            MESSAGE("The opposing Wobbuffet is protected by MIST!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         MESSAGE("Wobbuffet used Toxic!");
@@ -125,7 +125,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             STATUS_ICON(opponentRight, badPoison: TRUE);
         }
         else {
-            MESSAGE("Foe Wobbuffet's party is protected by Safeguard!");
+            MESSAGE("The opposing Wobbuffet's party is protected by Safeguard!");
             NOT STATUS_ICON(opponentRight, badPoison: TRUE);
         }
     }
@@ -153,7 +153,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("The opposing Wobbuffet's evasiveness fell!");
             if (B_DEFOG_EFFECT_CLEARING >= GEN_6) {
                 MESSAGE("The pointed stones disappeared from around your team!");
                 MESSAGE("The sticky web has disappeared from the ground around your team!");
@@ -199,7 +199,7 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("The opposing Wobbuffet's evasiveness fell!");
             if (B_DEFOG_EFFECT_CLEARING >= GEN_6)
                 MESSAGE("The spikes disappeared from the ground around your team!");
         }
@@ -288,13 +288,13 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Toxic Spikes from 
         // Switch happens
         MESSAGE("2 sent out Wobbuffet!");
         if (move != MOVE_DEFOG || B_DEFOG_EFFECT_CLEARING <= GEN_5) {
-            MESSAGE("Foe Wobbuffet was poisoned!");
+            MESSAGE("The opposing Wobbuffet was poisoned!");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
             STATUS_ICON(opponent, poison: TRUE);
         }
         else {
             NONE_OF {
-                MESSAGE("Foe Wobbuffet was poisoned!");
+                MESSAGE("The opposing Wobbuffet was poisoned!");
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
                 STATUS_ICON(opponent, poison: TRUE);
             }

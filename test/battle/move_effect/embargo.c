@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("Embargo blocks the effect of an affected Pokémon's held ite
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Fissure!");
         HP_BAR(opponent, hp: 0);
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Embargo blocks an affected Pokémon's trainer from using ite
         TURN { USE_ITEM(opponent, ITEM_POTION, partyIndex: 0); }
     } SCENE {
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
     } THEN {
         EXPECT_EQ(opponent->hp, 1);
     }
@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("Embargo negates a held item's Speed reduction")
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("The opposing Wobbuffet used Scratch!");
         MESSAGE("Wobbuffet used Scratch!");
@@ -194,12 +194,12 @@ SINGLE_BATTLE_TEST("Embargo doesn't stop an item flung at an affected target fro
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Fling!");
         MESSAGE("Wobbuffet flung its Light Ball!");
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!");
+        MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
     }
 }
 
@@ -325,8 +325,8 @@ SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
         MESSAGE("Wobbuffet used Magic Coat!");
         MESSAGE("Wobbuffet shrouded itself in Magic Coat!");
         MESSAGE("The opposing Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet's Embargo was bounced back by MAGIC COAT!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet's Embargo was bounced back by MAGIC COAT!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("The opposing Wobbuffet used Fling!");
         MESSAGE("But it failed!");
@@ -346,15 +346,15 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution")
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("The opposing Wobbuffet used Baton Pass!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
         MESSAGE("2 sent out Charizard!");
         // Turn 3
-        MESSAGE("Foe Charizard's Charizardite Y is reacting to 2's Mega Ring!");
+        MESSAGE("The opposing Charizard's Charizardite Y is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
-        MESSAGE("Foe Charizard has Mega Evolved into Mega Charizard!");
+        MESSAGE("The opposing Charizard has Mega Evolved into Mega Charizard!");
     }
 }
 
@@ -371,13 +371,13 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Foe Wobbuffet can't use items anymore!");
+        MESSAGE("The opposing Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("The opposing Wobbuffet used Baton Pass!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
         MESSAGE("2 sent out Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
-        MESSAGE("Foe Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("The opposing Groudon's Primal Reversion! It reverted to its primal form!");
         ABILITY_POPUP(opponent);
         // Turn 3
         MESSAGE("The opposing Groudon used Fling!");

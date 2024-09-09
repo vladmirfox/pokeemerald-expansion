@@ -148,7 +148,7 @@ SINGLE_BATTLE_TEST("X Accuracy sharply raises battler's Accuracy stat")
         TURN { MOVE(player, MOVE_SING); }
     } SCENE {
         MESSAGE("Wobbuffet used Sing!");
-        MESSAGE("Foe Wobbuffet fell asleep!");
+        MESSAGE("The opposing Wobbuffet fell asleep!");
     }
 }
 

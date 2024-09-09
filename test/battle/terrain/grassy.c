@@ -101,11 +101,11 @@ SINGLE_BATTLE_TEST("Grassy Terrain heals the pokemon on the field for the durati
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
         MESSAGE("Grass grew to cover the battlefield!");
-        MESSAGE("Foe Wobbuffet is healed by the grassy terrain!");
-        MESSAGE("Foe Wobbuffet is healed by the grassy terrain!");
-        MESSAGE("Foe Wobbuffet is healed by the grassy terrain!");
-        MESSAGE("Foe Wobbuffet is healed by the grassy terrain!");
-        MESSAGE("Foe Wobbuffet is healed by the grassy terrain!");
+        MESSAGE("The opposing Wobbuffet is healed by the grassy terrain!");
+        MESSAGE("The opposing Wobbuffet is healed by the grassy terrain!");
+        MESSAGE("The opposing Wobbuffet is healed by the grassy terrain!");
+        MESSAGE("The opposing Wobbuffet is healed by the grassy terrain!");
+        MESSAGE("The opposing Wobbuffet is healed by the grassy terrain!");
         MESSAGE("The grass disappeared from the battlefield.");
     }
 }
