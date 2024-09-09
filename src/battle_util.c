@@ -2456,7 +2456,7 @@ u8 DoBattlerEndTurnEffects(void)
             break;
         case ENDTURN_ITEMS3:  // berry effects
             if (gItemsInfo[gBattleMons[battler].item].pocket == POCKET_BERRIES
-             || GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RESTORE_HP)
+             || GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_RESTORE_HP)  // Edge case for Berry Juice
             {
                 if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
                     effect++;
