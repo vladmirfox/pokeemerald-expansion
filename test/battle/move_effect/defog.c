@@ -125,7 +125,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             STATUS_ICON(opponentRight, badPoison: TRUE);
         }
         else {
-            MESSAGE("The opposing Wobbuffet's party is protected by Safeguard!");
+            MESSAGE("The opposing Wobbuffet is protected by Safeguard!");
             NOT STATUS_ICON(opponentRight, badPoison: TRUE);
         }
     }

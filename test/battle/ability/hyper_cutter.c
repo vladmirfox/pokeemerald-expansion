@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Topsy-Turvy")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWORDS_DANCE, opponent);
         MESSAGE("The opposing Krabby's Attack sharply rose!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
-        MESSAGE("The opposing Krabby's stat changes were all reversed!");
+        MESSAGE("All stat changes on the opposing Krabby were inverted!");
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 2);
     }

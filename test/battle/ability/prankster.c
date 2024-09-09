@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-t
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
         MESSAGE("The opposing Volbeat used Confuse Ray!");
-        MESSAGE("The opposing Volbeat's Confuse Ray was bounced back by MAGIC COAT!");
+        MESSAGE("Umbreon bounced the Confuse Ray back!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
         MESSAGE("The opposing Volbeat became confused!");
     }
@@ -179,7 +179,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
         MESSAGE("Sableye used Magic Coat!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
         MESSAGE("The opposing Murkrow used Confuse Ray!");
-        MESSAGE("The opposing Murkrow's Confuse Ray was bounced back by MAGIC COAT!");
+        MESSAGE("Sableye bounced the Confuse Ray back!");
         if (sableyeAbility == ABILITY_PRANKSTER) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
             MESSAGE("It doesn't affect the opposing Murkrow…");

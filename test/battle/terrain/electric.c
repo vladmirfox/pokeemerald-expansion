@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIC_TERRAIN, player);
-        MESSAGE("An electric current runs across the battlefield!");
+        MESSAGE("An electric current is running across the battlefield!");
 
         MESSAGE("Wobbuffet used Celebrate!");
         MESSAGE("The opposing Wobbuffet used Celebrate!");

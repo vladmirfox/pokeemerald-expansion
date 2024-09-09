@@ -124,7 +124,7 @@ SINGLE_BATTLE_TEST("Weak Armor still lowers Defense if Speed can't go any higher
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             MESSAGE("Slugma's Weak Armor raised its Speed!");
         }
-        MESSAGE("Slugma's Speed won't go higher!");
+        MESSAGE("Slugma's Speed won't go any higher!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
         EXPECT_EQ(player->statStages[STAT_SPEED], MAX_STAT_STAGE);
@@ -160,7 +160,7 @@ SINGLE_BATTLE_TEST("Weak Armor doesn't interrupt multi hit moves if Defense can'
             NONE_OF {
                 ABILITY_POPUP(player, ABILITY_WEAK_ARMOR);
                 MESSAGE("Magcargo's Defense won't go any lower!");
-                MESSAGE("Magcargo's Speed won't go higher!");
+                MESSAGE("Magcargo's Speed won't go any higher!");
             }
         }
     } THEN {
@@ -189,7 +189,7 @@ SINGLE_BATTLE_TEST("Weak Armor doesn't interrupt multi hit moves if Speed can't 
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FURY_SWIPES, opponent);
             ABILITY_POPUP(player, ABILITY_WEAK_ARMOR);
             MESSAGE("Magcargo's Weak Armor lowered its Defense!");
-            MESSAGE("Magcargo's Speed won't go higher!");
+            MESSAGE("Magcargo's Speed won't go any higher!");
         }
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 5);

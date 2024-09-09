@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginni
                 MESSAGE("Mist swirled about the battlefield!");
                 break;
             case STARTING_STATUS_ELECTRIC_TERRAIN:
-                MESSAGE("An electric current runs across the battlefield!");
+                MESSAGE("An electric current is running across the battlefield!");
                 break;
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         TURN { ; }
     } SCENE {
         // Electric Terrain at battle's start
-        MESSAGE("An electric current runs across the battlefield!");
+        MESSAGE("An electric current is running across the battlefield!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
         // Player uses Grassy Terrain
         if (viaMove) {

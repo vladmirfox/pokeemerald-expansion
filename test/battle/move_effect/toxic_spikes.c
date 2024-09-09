@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("Toxic Spikes inflicts poison on switch in")
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
-        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around the opposing team!");
         MESSAGE("2 sent out Wynaut!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         STATUS_ICON(opponent, poison: TRUE);
@@ -38,9 +38,9 @@ SINGLE_BATTLE_TEST("Toxic Spikes inflicts bad poison on switch in")
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
-        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
-        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around the opposing team!");
         MESSAGE("2 sent out Wynaut!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         STATUS_ICON(opponent, badPoison: TRUE);
@@ -61,9 +61,9 @@ SINGLE_BATTLE_TEST("Toxic Spikes fails after 2 layers")
         TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
-        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
-        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around the opposing team!");
         MESSAGE("Wobbuffet used Toxic Spikes!");
         MESSAGE("But it failed!");
         MESSAGE("2 sent out Wynaut!");
@@ -224,7 +224,7 @@ SINGLE_BATTLE_TEST("Toxic Spikes inflicts poison on switch in after Primal Rever
     } SCENE {
         MESSAGE("The opposing Wobbuffet used Toxic Spikes!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
-        MESSAGE("Poison Spikes were scattered all around your team's feet!");
+        MESSAGE("Poison spikes were scattered on the ground all around your team!");
         // Switch in
         SEND_IN_MESSAGE("Groudon");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
