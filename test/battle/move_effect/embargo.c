@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("Embargo negates a held item's Speed reduction")
         MESSAGE("Wobbuffet used Embargo!");
         MESSAGE("Foe Wobbuffet can't use items anymore!");
         // Turn 2
-        MESSAGE("Foe Wobbuffet used Scratch!");
+        MESSAGE("The opposing Wobbuffet used Scratch!");
         MESSAGE("Wobbuffet used Scratch!");
     }
 }
@@ -172,7 +172,7 @@ SINGLE_BATTLE_TEST("Embargo makes Fling and Natural Gift fail")
         TURN { MOVE(player, moveId); }
     } SCENE {
         // Turn 1
-        MESSAGE("Foe Wobbuffet used Embargo!");
+        MESSAGE("The opposing Wobbuffet used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         if (moveId == MOVE_FLING)
@@ -215,7 +215,7 @@ SINGLE_BATTLE_TEST("Baton Pass passes Embargo's effect")
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         // Turn 1
-        MESSAGE("Foe Wobbuffet used Embargo!");
+        MESSAGE("The opposing Wobbuffet used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Baton Pass!");
@@ -239,7 +239,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't block the effects of berries obtained throug
         TURN { MOVE(player, MOVE_PLUCK); }
     } SCENE {
         // Turn 1
-        MESSAGE("Foe Wobbuffet used Embargo!");
+        MESSAGE("The opposing Wobbuffet used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Pluck!");
@@ -261,7 +261,7 @@ SINGLE_BATTLE_TEST("Embargo disables the effect of the Plate items on the move J
     } WHEN {
         TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_JUDGMENT); }
     } SCENE {
-        MESSAGE("Foe Dragonite used Embargo!");
+        MESSAGE("The opposing Dragonite used Embargo!");
         MESSAGE("Arceus can't use items anymore!");
         MESSAGE("Arceus used Judgment!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
@@ -282,7 +282,7 @@ SINGLE_BATTLE_TEST("Embargo disables the effect of the Drive items on the move T
     } WHEN {
         TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_TECHNO_BLAST); }
     } SCENE {
-        MESSAGE("Foe Gyarados used Embargo!");
+        MESSAGE("The opposing Gyarados used Embargo!");
         MESSAGE("Genesect can't use items anymore!");
         MESSAGE("Genesect used Techno Blast!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
@@ -303,7 +303,7 @@ SINGLE_BATTLE_TEST("Embargo disables the effect of the Memory items on the move 
     } WHEN {
         TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_MULTI_ATTACK); }
     } SCENE {
-        MESSAGE("Foe Venusaur used Embargo!");
+        MESSAGE("The opposing Venusaur used Embargo!");
         MESSAGE("Silvally can't use items anymore!");
         MESSAGE("Silvally used Multi-Attack!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
@@ -324,11 +324,11 @@ SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
         // Turn 1
         MESSAGE("Wobbuffet used Magic Coat!");
         MESSAGE("Wobbuffet shrouded itself in Magic Coat!");
-        MESSAGE("Foe Wobbuffet used Embargo!");
+        MESSAGE("The opposing Wobbuffet used Embargo!");
         MESSAGE("Foe Wobbuffet's Embargo was bounced back by MAGIC COAT!");
         MESSAGE("Foe Wobbuffet can't use items anymore!");
         // Turn 2
-        MESSAGE("Foe Wobbuffet used Fling!");
+        MESSAGE("The opposing Wobbuffet used Fling!");
         MESSAGE("But it failed!");
     }
 }
@@ -348,7 +348,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Mega Evolution")
         MESSAGE("Wobbuffet used Embargo!");
         MESSAGE("Foe Wobbuffet can't use items anymore!");
         // Turn 2
-        MESSAGE("Foe Wobbuffet used Baton Pass!");
+        MESSAGE("The opposing Wobbuffet used Baton Pass!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
         MESSAGE("2 sent out Charizard!");
         // Turn 3
@@ -373,14 +373,14 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
         MESSAGE("Wobbuffet used Embargo!");
         MESSAGE("Foe Wobbuffet can't use items anymore!");
         // Turn 2
-        MESSAGE("Foe Wobbuffet used Baton Pass!");
+        MESSAGE("The opposing Wobbuffet used Baton Pass!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BATON_PASS, opponent);
         MESSAGE("2 sent out Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
         MESSAGE("Foe Groudon's Primal Reversion! It reverted to its primal form!");
         ABILITY_POPUP(opponent);
         // Turn 3
-        MESSAGE("Foe Groudon used Fling!");
+        MESSAGE("The opposing Groudon used Fling!");
         MESSAGE("But it failed!");
     }
 }

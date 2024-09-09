@@ -34,10 +34,10 @@ SINGLE_BATTLE_TEST("Thousand Arrows does neutral damage to non-grounded Flying t
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THOUSAND_ARROWS, player);
         if (pokemon == SPECIES_SKARMORY) {
             MESSAGE("Foe Skarmory fell straight down!");
-            MESSAGE("Foe Skarmory used Celebrate!");
+            MESSAGE("The opposing Skarmory used Celebrate!");
         } else {
             MESSAGE("Foe Scyther fell straight down!");
-            MESSAGE("Foe Scyther used Celebrate!");
+            MESSAGE("The opposing Scyther used Celebrate!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         MESSAGE("Congratulations, 1!");

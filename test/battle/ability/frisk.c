@@ -51,7 +51,7 @@ DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {
-        MESSAGE("Foe Wynaut used Pound!");
+        MESSAGE("The opposing Wynaut used Pound!");
         MESSAGE("Wobbuffet fainted!");
         ABILITY_POPUP(target, ABILITY_FRISK);
         MESSAGE("Furret frisked Foe Wynaut and found its Potion!");

@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Wake-Up Slap get incread power vs. sleeping targets")
             MESSAGE("Foe Lotad fainted!");
         } else {
             NOT MESSAGE("Foe Lotad fainted!");
-            MESSAGE("Foe Lotad used Celebrate!");
+            MESSAGE("The opposing Lotad used Celebrate!");
         }
     }
 }

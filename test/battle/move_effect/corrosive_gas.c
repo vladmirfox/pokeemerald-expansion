@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Items lost to Corrosive Gas cannot be restored by Recycle")
         MESSAGE("Wobbuffet used Corrosive Gas!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
         MESSAGE("Wobbuffet corroded Foe Wobbuffet's Oran Berry!");
-        MESSAGE("Foe Wobbuffet used Recycle!");
+        MESSAGE("The opposing Wobbuffet used Recycle!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_NONE);

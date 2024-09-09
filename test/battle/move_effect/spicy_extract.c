@@ -110,7 +110,7 @@ SINGLE_BATTLE_TEST("Spicy Extract will fail if target is in a semi-invulnerabili
     } WHEN {
         TURN { MOVE(opponent, MOVE_DIVE); MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Dive!");
+        MESSAGE("The opposing Wobbuffet used Dive!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DIVE, opponent);
         MESSAGE("Wobbuffet used Spicy Extract!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SPICY_EXTRACT, player);

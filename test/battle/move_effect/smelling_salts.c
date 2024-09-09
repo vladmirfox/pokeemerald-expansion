@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("Smelling Salts get incread power vs. paralyzed targets")
         else
         {
             NOT MESSAGE("Foe Lotad fainted!");
-            MESSAGE("Foe Lotad used Celebrate!");
+            MESSAGE("The opposing Lotad used Celebrate!");
         }
     }
 }

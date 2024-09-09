@@ -146,11 +146,11 @@ SINGLE_BATTLE_TEST("Disguised Mimikyu's types revert back to Ghost/Fairy when Di
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_SHADOW_CLAW); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Soak!");
+        MESSAGE("The opposing Wobbuffet used Soak!");
         MESSAGE("Mimikyu transformed into the Water type!");
-        MESSAGE("Foe Wobbuffet used Tackle!");
+        MESSAGE("The opposing Wobbuffet used Tackle!");
         ABILITY_POPUP(player, ABILITY_DISGUISE);
-        MESSAGE("Foe Wobbuffet used Shadow Claw!");
+        MESSAGE("The opposing Wobbuffet used Shadow Claw!");
         MESSAGE("It's super effective!");
     }
 }
