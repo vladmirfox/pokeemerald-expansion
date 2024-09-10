@@ -825,6 +825,17 @@ DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move 
                MOVE(opponentLeft, MOVE_GRASS_PLEDGE, target: playerLeft);
                MOVE(opponentRight, MOVE_FIRE_PLEDGE, target: playerLeft);
                MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentLeft); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, opponentLeft);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, opponentRight);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASS_PLEDGE, opponentRight);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, playerLeft);
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, playerRight);
+        HP_BAR(opponentLeft);
+    }
+}
 
 DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move - Electrify")
 {
@@ -897,7 +908,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move 
     }
 }
 
-//  Something else is wrong with this
 DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move - Dry Skin")
 {
     GIVEN {
@@ -982,7 +992,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move 
                MOVE(opponentLeft, MOVE_WATER_PLEDGE, target: playerLeft);
                MOVE(opponentRight, MOVE_GRASS_PLEDGE, target: playerLeft);
                MOVE(playerLeft, MOVE_GRASS_PLEDGE, target: opponentRight); }
->>>>>>> 6698fb8a92 (Fixes with Pledge combos and absorption moves)
     } SCENE {
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, opponentLeft);
@@ -990,10 +999,6 @@ DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move 
             ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASS_PLEDGE, opponentRight);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, playerLeft);
         }
-<<<<<<< HEAD
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PLEDGE, playerRight);
-        HP_BAR(opponentLeft);
-=======
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASS_PLEDGE, playerLeft);
         HP_BAR(opponentRight);
     }
@@ -1042,6 +1047,5 @@ DOUBLE_BATTLE_TEST("Pledge move combo doesn't trigger on opponent's Pledge move 
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerLeft);
         HP_BAR(opponentRight);
->>>>>>> 6698fb8a92 (Fixes with Pledge combos and absorption moves)
     }
 }
