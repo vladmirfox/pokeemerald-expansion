@@ -15,10 +15,8 @@ static void ReverseHorizontalLungeDirection(struct Sprite *sprite);
 static void DoVerticalDip(struct Sprite *sprite);
 static void ReverseVerticalDipDirection(struct Sprite *sprite);
 static void SlideMonToOriginalPos(struct Sprite *sprite);
-static void SlideMonToOriginalPosPartner(struct Sprite *sprite);
 static void SlideMonToOriginalPos_Step(struct Sprite *sprite);
 static void SlideMonToOffset(struct Sprite *sprite);
-static void SlideMonToOffsetPartner(struct Sprite *sprite);
 static void SlideMonToOffsetAndBack(struct Sprite *sprite);
 static void SlideMonToOffsetAndBack_End(struct Sprite *sprite);
 static void AnimTask_WindUpLunge_Step1(u8 taskId);
@@ -31,6 +29,8 @@ static void AnimTask_RotateMonSpriteToSide_Step(u8 taskId);
 static void AnimTask_ShakeTargetBasedOnMovePowerOrDmg_Step(u8 taskId);
 static void AnimTask_SlideOffScreen_Step(u8 taskId);
 static void AnimTask_RotateVerticallyStep(u8 taskId);
+static void SlideMonToOriginalPosPartner(struct Sprite *sprite);
+static void SlideMonToOffsetPartner(struct Sprite *sprite);
 
 const struct SpriteTemplate gHorizontalLungeSpriteTemplate =
 {
