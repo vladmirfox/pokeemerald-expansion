@@ -154,7 +154,7 @@ SINGLE_BATTLE_TEST("Spicy Extract against Clear Amulet and Contrary raises Defen
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Snivy's Attack harshly fell!");
         }
-        MESSAGE("The opposing Snivy's Clear Amulet prevents its stats from being lowered!");
+        MESSAGE("The effects of the Clear Amulet held by the opposing Snivy prevents its stats from being lowered!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("The opposing Snivy's Defense sharply rose!");
     } THEN {

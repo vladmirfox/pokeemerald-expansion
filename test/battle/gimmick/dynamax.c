@@ -736,7 +736,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Flare sets up sunlight")
         TURN { MOVE(player, MOVE_EMBER, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         MESSAGE("Wobbuffet used Max Flare!");
-        MESSAGE("The sunlight got bright!");
+        MESSAGE("The sunlight turned harsh!");
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SUN_CONTINUES);
     }
@@ -1138,8 +1138,8 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Terror traps both opponents")
         TURN { MOVE(playerLeft, MOVE_LICK, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
         MESSAGE("Gengar used G-Max Terror!");
-        MESSAGE("The opposing Wobbuffet can't escape now!");
-        MESSAGE("The opposing Wobbuffet can't escape now!");
+        MESSAGE("The opposing Wobbuffet can no longer escape!");
+        MESSAGE("The opposing Wobbuffet can no longer escape!");
     } THEN { // Can't find good way to test trapping
         EXPECT(opponentLeft->status2 & STATUS2_ESCAPE_PREVENTION);
     }

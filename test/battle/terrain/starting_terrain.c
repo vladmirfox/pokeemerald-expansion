@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginni
                 MESSAGE("The battlefield got weird!");
                 break;
             case STARTING_STATUS_MISTY_TERRAIN:
-                MESSAGE("Mist swirled about the battlefield!");
+                MESSAGE("Mist swirled around the battlefield!");
                 break;
             case STARTING_STATUS_ELECTRIC_TERRAIN:
                 MESSAGE("An electric current is running across the battlefield!");

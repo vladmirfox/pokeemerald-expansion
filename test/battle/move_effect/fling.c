@@ -285,7 +285,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
                     MESSAGE("The opposing Wobbuffet was burned!");
                     STATUS_ICON(opponent, STATUS1_BURN);
                 }
-                MESSAGE("The Flame Orb was used up...");
+                MESSAGE("The Flame Orb was used up…");
             }
             break;
         case ITEM_LIGHT_BALL:
@@ -294,7 +294,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
                     MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
                     STATUS_ICON(opponent, STATUS1_PARALYSIS);
                 }
-                MESSAGE("The Light Ball was used up...");
+                MESSAGE("The Light Ball was used up…");
             }
             break;
         case ITEM_POISON_BARB:
@@ -303,7 +303,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
                     MESSAGE("The opposing Wobbuffet was poisoned!");
                     STATUS_ICON(opponent, STATUS1_POISON);
                 }
-                MESSAGE("The Poison Barb was used up...");
+                MESSAGE("The Poison Barb was used up…");
             }
             break;
         case ITEM_TOXIC_ORB:
@@ -312,7 +312,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
                     MESSAGE("The opposing Wobbuffet was badly poisoned!");
                     STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
                 }
-                MESSAGE("The Toxic Orb was used up...");
+                MESSAGE("The Toxic Orb was used up…");
             }
             break;
         case ITEM_RAZOR_FANG:
@@ -324,10 +324,10 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
                 switch (item)
                 {
                     case ITEM_RAZOR_FANG:
-                        MESSAGE("The Razor Fang was used up...");
+                        MESSAGE("The Razor Fang was used up…");
                         break;
                     case ITEM_KINGS_ROCK:
-                        MESSAGE("The King's Rock was used up...");
+                        MESSAGE("The King's Rock was used up…");
                         break;
                 }
             }
@@ -382,7 +382,7 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
             HP_BAR(opponent);
         }
         else if (effect == HOLD_EFFECT_RESTORE_PP) {
-            MESSAGE("The opposing Wobbuffet's Leppa Berry restored Celebrate's PP!");
+            MESSAGE("The opposing Wobbuffet restored PP to its move Celebrate using its Leppa Berry!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
@@ -396,7 +396,7 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
             } else if (status1 == STATUS1_PARALYSIS) {
                 MESSAGE("The opposing Wobbuffet's Cheri Berry cured paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
-                MESSAGE("The opposing Wobbuffet's Pecha Berry cured poison!");
+                MESSAGE("The opposing Wobbuffet's Pecha Berry cured its poison!");
             }
             NOT STATUS_ICON(opponent, status1);
         }

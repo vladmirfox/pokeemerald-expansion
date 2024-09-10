@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
             HP_BAR(player);
         }
         else if (effect == HOLD_EFFECT_RESTORE_PP) {
-            MESSAGE("Wobbuffet's Leppa Berry restored Bug Bite's PP!");
+            MESSAGE("Wobbuffet restored PP to its move Bug Bite using its Leppa Berry!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
             } else if (status1 == STATUS1_PARALYSIS) {
                 MESSAGE("Wobbuffet's Cheri Berry cured paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
-                MESSAGE("Wobbuffet's Pecha Berry cured poison!");
+                MESSAGE("Wobbuffet's Pecha Berry cured its poison!");
             } else if (status1 == STATUS1_FROSTBITE) {
                 MESSAGE("Wobbuffet's Aspear Berry healed its frostbite!");
             }

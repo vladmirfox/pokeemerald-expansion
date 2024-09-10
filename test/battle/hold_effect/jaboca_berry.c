@@ -55,6 +55,6 @@ SINGLE_BATTLE_TEST("Jaboca Berry tirggers before Bug Bite can steal it")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         HP_BAR(player);
         MESSAGE("Wyanut was hurt by the opposing Wobbuffet's Jaboca Berry!");
-        NOT MESSAGE("Wynaut stole and ate the opposing Wobbuffet's Jaboca Berry!");
+        NOT MESSAGE("Wynaut stole and ate the opposing its target's Jaboca Berry!");
     }
 }

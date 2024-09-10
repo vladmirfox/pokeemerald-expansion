@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("Poison Touch applies between multi-hit move hits")
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         MESSAGE("The opposing Wobbuffet was poisoned by Grimer's Poison Touch!");
         STATUS_ICON(opponent, poison: TRUE);
-        MESSAGE("The opposing Wobbuffet's Pecha Berry cured poison!");
+        MESSAGE("The opposing Wobbuffet's Pecha Berry cured its poison!");
         STATUS_ICON(opponent, poison: FALSE);
         ABILITY_POPUP(player, ABILITY_POISON_TOUCH);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);

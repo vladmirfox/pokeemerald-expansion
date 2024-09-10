@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Corrosive Gas destroys the target's item or fails if the tar
             MESSAGE("Wobbuffet corroded the opposing Wobbuffet's Potion!");
         }
         else {
-            MESSAGE("It had no effect on the opposing Wobbuffet!");
+            MESSAGE("It won't have any effect on the opposing Wobbuffet!");
         }
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_NONE);
@@ -97,17 +97,17 @@ DOUBLE_BATTLE_TEST("Corrosive Gas destroys foes and ally's items if they have on
         if (itemPlayerLeft == ITEM_CHERI_BERRY) {
             MESSAGE("Wynaut corroded Wobbuffet's Cheri Berry!");
         } else {
-            MESSAGE("It had no effect on Wobbuffet!");
+            MESSAGE("It won't have any effect on Wobbuffet!");
         }
         if (itemOpponentLeft == ITEM_ORAN_BERRY) {
             MESSAGE("Wynaut corroded the opposing Abra's Oran Berry!");
         } else {
-            MESSAGE("It had no effect on the opposing Abra!");
+            MESSAGE("It won't have any effect on the opposing Abra!");
         }
         if (itemOpponentRight == ITEM_CHESTO_BERRY) {
             MESSAGE("Wynaut corroded the opposing Kadabra's Chesto Berry!");
         } else {
-            MESSAGE("It had no effect on the opposing Kadabra!");
+            MESSAGE("It won't have any effect on the opposing Kadabra!");
         }
 
     } THEN {

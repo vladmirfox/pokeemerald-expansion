@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's dual types")
     } SCENE {
         MESSAGE("Arcanine used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE("Arcanine's type changed to match the the opposing Poliwrath's!");
+        MESSAGE("Arcanine became the same type as the opposing Poliwrath!");
     } THEN {
         EXPECT_EQ(player->types[0], TYPE_WATER);
         EXPECT_EQ(player->types[1], TYPE_FIGHTING);
@@ -143,7 +143,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's pure type")
     } SCENE {
         MESSAGE("Arcanine used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE("Arcanine's type changed to match the the opposing Sudowoodo's!");
+        MESSAGE("Arcanine became the same type as the opposing Sudowoodo!");
     } THEN {
         EXPECT_EQ(player->types[0], TYPE_ROCK);
         EXPECT_EQ(player->types[1], TYPE_ROCK);
@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("Reflect Type defaults to Normal type for the user's types[0]
         // Turn 3
         MESSAGE("Wobbuffet used Reflect Type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE("Wobbuffet's type changed to match the the opposing Arcanine's!");
+        MESSAGE("Wobbuffet became the same type as the opposing Arcanine!");
     } THEN {
         EXPECT_EQ(player->types[0], TYPE_NORMAL);
         EXPECT_EQ(player->types[1], TYPE_NORMAL);

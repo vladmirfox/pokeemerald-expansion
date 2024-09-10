@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Misty Terrain lasts for 5 turns")
     } SCENE {
         MESSAGE("The opposing Wobbuffet used Celebrate!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MISTY_TERRAIN, player);
-        MESSAGE("Mist swirled about the battlefield!");
+        MESSAGE("Mist swirled around the battlefield!");
 
         MESSAGE("Wobbuffet used Celebrate!");
         MESSAGE("The opposing Wobbuffet used Celebrate!");

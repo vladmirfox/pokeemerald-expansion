@@ -256,7 +256,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes the effect of Curse")
     } SCENE {
         MESSAGE("Wobbuffet used Curse!");
         HP_BAR(player);
-        MESSAGE("Wobbuffet cut its own HP and laid a CURSE on the opposing Wobbuffet!");
+        MESSAGE("Wobbuffet cut its own HP and put a curse on the opposing Wobbuffet!");
         NOT { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
     }
 }
@@ -366,7 +366,7 @@ SINGLE_BATTLE_TEST("(TERA) Synchronoise uses a Terastallized Pokemon's Tera Type
     } SCENE {
         // turn 1
         MESSAGE("The opposing Wobbuffet used Synchronoise!");
-        MESSAGE("It had no effect on Wobbuffet!");
+        MESSAGE("It won't have any effect on Wobbuffet!");
         // turn 2
         MESSAGE("The opposing Wobbuffet used Synchronoise!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SYNCHRONOISE, opponent);

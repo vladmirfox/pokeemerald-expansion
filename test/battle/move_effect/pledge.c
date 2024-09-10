@@ -30,7 +30,7 @@ DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
         HP_BAR(opponentRight);
         MESSAGE("A rainbow appeared in the sky on your team's side!");
-        MESSAGE("The rainbow on your side disappeared!");
+        MESSAGE("The rainbow on your team's side disappeared!");
     }
 }
 
@@ -253,7 +253,7 @@ DOUBLE_BATTLE_TEST("Pledge status timer does not reset if combined move is used 
         if (pledgeMove1 == MOVE_WATER_PLEDGE && pledgeMove2 == MOVE_FIRE_PLEDGE)
         {
             NOT MESSAGE("A rainbow appeared in the sky on your team's side!");
-            MESSAGE("The rainbow on your side disappeared!");
+            MESSAGE("The rainbow on your team's side disappeared!");
         }
         if (pledgeMove1 == MOVE_FIRE_PLEDGE && pledgeMove2 == MOVE_GRASS_PLEDGE)
         {

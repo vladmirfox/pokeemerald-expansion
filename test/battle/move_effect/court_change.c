@@ -21,12 +21,12 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         TURN { MOVE(playerLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(playerLeft, 2); SWITCH(opponentLeft, 2); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used sticky web!");
+        MESSAGE("The opposing Wobbuffet used Sticky Web!");
         MESSAGE("The opposing Wobbuffet used Stealth Rock!");
         MESSAGE("The opposing Wobbuffet used Spikes!");
         MESSAGE("The opposing Wobbuffet used Toxic Spikes!");
         MESSAGE("Wynaut used Court Change!");
-        MESSAGE("Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("Wynaut swapped the battle effects affecting each side of the field!");
         SEND_IN_MESSAGE("Wynaut");
         NONE_OF {
             MESSAGE("Wynaut was hurt by the spikes!");
@@ -62,7 +62,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         MESSAGE("Wobbuffet used Spikes!");
         MESSAGE("Wobbuffet used Toxic Spikes!");
         MESSAGE("The opposing Wynaut used Court Change!");
-        MESSAGE("The opposing Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("The opposing Wynaut swapped the battle effects affecting each side of the field!");
         SEND_IN_MESSAGE("Wobbuffet");
         MESSAGE("Wobbuffet was hurt by the spikes!");
         MESSAGE("Pointed stones dug into Wobbuffet!");
@@ -105,7 +105,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Auror
         MESSAGE("The opposing Wobbuffet used Light Screen!");
         MESSAGE("The opposing Wobbuffet used Tailwind!");
         MESSAGE("Wynaut used Court Change!");
-        MESSAGE("Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("Wynaut swapped the battle effects affecting each side of the field!");
         // The effects now end for the player side.
         MESSAGE("Ally's Mist wore off!");
         MESSAGE("Ally's party is no longer protected by Safeguard!");
@@ -142,7 +142,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aur
         MESSAGE("Wobbuffet used Light Screen!");
         MESSAGE("Wobbuffet used Tailwind!");
         MESSAGE("The opposing Wynaut used Court Change!");
-        MESSAGE("The opposing Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("The opposing Wynaut swapped the battle effects affecting each side of the field!");
         // The effects now end for the player side.
         MESSAGE("Foe's Mist wore off!");
         MESSAGE("Foe's party is no longer protected by Safeguard!");

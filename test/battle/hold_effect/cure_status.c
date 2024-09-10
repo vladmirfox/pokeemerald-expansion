@@ -213,7 +213,7 @@ SINGLE_BATTLE_TEST("Opponent Pokemon can be further poisoned with Toxic spikes a
         STATUS_ICON(opponent, poison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         if (item == ITEM_PECHA_BERRY) {
-            MESSAGE("The opposing Wynaut's Pecha Berry cured poison!");
+            MESSAGE("The opposing Wynaut's Pecha Berry cured its poison!");
         } else {
             MESSAGE("The opposing Wynaut's Lum Berry cured its poison problem!");
         }
@@ -254,7 +254,7 @@ SINGLE_BATTLE_TEST("Player Pokemon can be further poisoned with Toxic spikes aft
         STATUS_ICON(player, poison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         if (item == ITEM_PECHA_BERRY) {
-            MESSAGE("Wobbuffet's Pecha Berry cured poison!");
+            MESSAGE("Wobbuffet's Pecha Berry cured its poison!");
         } else {
             MESSAGE("Wobbuffet's Lum Berry cured its poison problem!");
         }
