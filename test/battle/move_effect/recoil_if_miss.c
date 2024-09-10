@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
         MESSAGE("Wobbuffet used Jump Kick!");
         MESSAGE("The opposing Wobbuffet protected itself!");
         HP_BAR(player, damage: maxHp / 8);
-        MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Spiky Shield!");
+        MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Spiky Shield!");
         if (faintOnSpiky){
             MESSAGE("Wobbuffet fainted!");
             SEND_IN_MESSAGE("Wynaut");

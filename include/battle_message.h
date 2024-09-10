@@ -1,6 +1,8 @@
 #ifndef GUARD_BATTLE_MESSAGE_H
 #define GUARD_BATTLE_MESSAGE_H
 
+#include "constants/battle.h"
+
 // This buffer can hold many different things. Some of the things it can hold
 // that have explicit sizes are listed below to ensure it can contain them.
 #define TEXT_BUFF_ARRAY_COUNT   max(16, \
@@ -76,17 +78,18 @@
 #define B_TXT_EFF_NAME_WITH_PREFIX2 0x40 //lowercase
 #define B_TXT_SCR_ACTIVE_NAME_WITH_PREFIX2 0x41 //lowercase
 
-#define B_BUFF_STRING                   0
-#define B_BUFF_NUMBER                   1
-#define B_BUFF_MOVE                     2
-#define B_BUFF_TYPE                     3
-#define B_BUFF_MON_NICK_WITH_PREFIX     4
-#define B_BUFF_STAT                     5
-#define B_BUFF_SPECIES                  6
-#define B_BUFF_MON_NICK                 7
-#define B_BUFF_NEGATIVE_FLAVOR          8
-#define B_BUFF_ABILITY                  9
-#define B_BUFF_ITEM                     10
+#define B_BUFF_STRING                       0
+#define B_BUFF_NUMBER                       1
+#define B_BUFF_MOVE                         2
+#define B_BUFF_TYPE                         3
+#define B_BUFF_MON_NICK_WITH_PREFIX         4
+#define B_BUFF_STAT                         5
+#define B_BUFF_SPECIES                      6
+#define B_BUFF_MON_NICK                     7
+#define B_BUFF_NEGATIVE_FLAVOR              8
+#define B_BUFF_ABILITY                      9
+#define B_BUFF_ITEM                         10
+#define B_BUFF_MON_NICK_WITH_PREFIX_LOWER   11 // lowercase prefix
 
 #define B_BUFF_PLACEHOLDER_BEGIN        0xFD
 #define B_BUFF_EOS                      0xFF
@@ -201,6 +204,15 @@
     textVar[2] = battler;                                                   \
     textVar[3] = partyId;                                                   \
     textVar[4] = B_BUFF_EOS;                                                \
+}
+
+#define PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(textVar, battler, partyId)    \
+{                                                                               \
+    textVar[0] = B_BUFF_PLACEHOLDER_BEGIN;                                      \
+    textVar[1] = B_BUFF_MON_NICK_WITH_PREFIX_LOWER;                             \
+    textVar[2] = battler;                                                       \
+    textVar[3] = partyId;                                                       \
+    textVar[4] = B_BUFF_EOS;                                                    \
 }
 
 #define PREPARE_MON_NICK_BUFFER(textVar, battler, partyId)      \

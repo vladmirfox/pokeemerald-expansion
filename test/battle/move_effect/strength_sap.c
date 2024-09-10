@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("The opposing Wobbuffet's Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
-        NOT MESSAGE("The SUBSTITUTE took damage for Foe Wobbuffet!");
+        NOT MESSAGE("The substitute took damage for the opposing Wobbuffet!");
         MESSAGE("The opposing Wobbuffet had its energy drained!");
     } THEN {
         EXPECT_EQ(results[i].hp * -1, atkStat);
@@ -137,7 +137,7 @@ SINGLE_BATTLE_TEST("Strength Sap fails if target is at -6 Atk")
             HP_BAR(player);
             MESSAGE("The opposing Wobbuffet had its energy drained!");
         }
-        MESSAGE("The opposing Wobbuffet's Attack won't go lower!");
+        MESSAGE("The opposing Wobbuffet's Attack won't go any lower!");
     }
 }
 
@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("Strength Sap makes attacker lose HP if target's ability is L
         MESSAGE("The opposing Wobbuffet's Attack fell!");
         ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
         HP_BAR(player, captureDamage: &lostHp);
-        MESSAGE("It sucked up the liquid ooze!");
+        MESSAGE("Wobbuffet sucked up the liquid ooze!");
         if (atkStat >= 490) {
             MESSAGE("Wobbuffet fainted!");
             SEND_IN_MESSAGE("Wobbuffet");

@@ -260,7 +260,7 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
         // MESSAGE("Rapidash used recoilMove!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, recoilMove, player);
-            MESSAGE("Rapidash is hit with recoil!");
+            MESSAGE("Rapidash was damaged by the recoil!");
         }
     }
 }
@@ -304,10 +304,10 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
             } else if (move == MOVE_SPIKY_SHIELD) {
                 HP_BAR(player);
             }
-            MESSAGE("Hit 2 time(s)!");
-            MESSAGE("Hit 3 time(s)!");
-            MESSAGE("Hit 4 time(s)!");
-            MESSAGE("Hit 5 time(s)!");
+            MESSAGE("The Pokémon was hit 2 time(s)!");
+            MESSAGE("The Pokémon was hit 3 time(s)!");
+            MESSAGE("The Pokémon was hit 4 time(s)!");
+            MESSAGE("The Pokémon was hit 5 time(s)!");
         }
     }
 }
@@ -495,7 +495,7 @@ SINGLE_BATTLE_TEST("Protect does not block Confide")
         MESSAGE("Wobbuffet used Confide!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFIDE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        NOT MESSAGE("Foe Wobbuffet protected itself!");
+        NOT MESSAGE("The opposing Wobbuffet protected itself!");
     }
 }
 
@@ -511,9 +511,9 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from Confide")
         TURN { MOVE(opponentLeft, MOVE_CRAFTY_SHIELD); MOVE(playerLeft, MOVE_CONFIDE, target: opponentLeft); MOVE(playerRight, MOVE_CONFIDE, target: opponentRight); }
     } SCENE {
         MESSAGE("Wobbuffet used Confide!");
-        MESSAGE("Foe Wobbuffet protected itself!");
+        MESSAGE("The opposing Wobbuffet protected itself!");
         MESSAGE("Wynaut used Confide!");
-        MESSAGE("Foe Wynaut protected itself!");
+        MESSAGE("The opposing Wynaut protected itself!");
     }
 }
 
@@ -538,12 +538,12 @@ DOUBLE_BATTLE_TEST("Crafty Shield does not protect against moves that target all
         MESSAGE("Tangela's Defense rose!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Foe Sunkern's Defense rose!");
+        MESSAGE("The opposing Sunkern's Defense rose!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
         MESSAGE("Tangrowth's Defense rose!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Foe Sunflora's Defense rose!");
+        MESSAGE("The opposing Sunflora's Defense rose!");
     }
 }

@@ -27,7 +27,7 @@ DOUBLE_BATTLE_TEST("Ultra Burst's order is determined by Speed - opponent faster
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, gimmick: GIMMICK_ULTRA_BURST); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_ULTRA_BURST); }
     } SCENE {
-        MESSAGE("Bright light is about to burst out of Foe Necrozma!");
+        MESSAGE("Bright light is about to burst out of the opposing Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, opponentLeft);
         MESSAGE("The opposing Necrozma regained its true power through Ultra Burst!");
         MESSAGE("Bright light is about to burst out of Necrozma!");
@@ -49,7 +49,7 @@ DOUBLE_BATTLE_TEST("Ultra Burst's order is determined by Speed - player faster")
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, playerLeft);
         MESSAGE("Necrozma regained its true power through Ultra Burst!");
-        MESSAGE("Bright light is about to burst out of Foe Necrozma!");
+        MESSAGE("Bright light is about to burst out of the opposing Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, opponentLeft);
         MESSAGE("The opposing Necrozma regained its true power through Ultra Burst!");
     }
