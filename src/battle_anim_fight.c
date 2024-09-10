@@ -403,24 +403,24 @@ const struct SpriteTemplate gFocusPunchFistSpriteTemplate =
 
 const struct SpriteTemplate gPalmSpriteTemplate =
 {
-	.tileTag = ANIM_TAG_PURPLE_HAND_OUTLINE,
-	.paletteTag = ANIM_TAG_PURPLE_HAND_OUTLINE,
-	.oam = &gOamData_AffineOff_ObjNormal_32x32,
-	.anims = gAnims_HandsAndFeet,
-	.images = NULL,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = AnimBasicFistOrFoot,
+    .tileTag = ANIM_TAG_PURPLE_HAND_OUTLINE,
+    .paletteTag = ANIM_TAG_PURPLE_HAND_OUTLINE,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gAnims_HandsAndFeet,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimBasicFistOrFoot,
 };
 
 const struct SpriteTemplate gAuraSphereBlast =
 {
-	.tileTag = ANIM_TAG_IMPACT_2,
-	.paletteTag = ANIM_TAG_IMPACT_2,
+    .tileTag = ANIM_TAG_IMPACT_2,
+    .paletteTag = ANIM_TAG_IMPACT_2,
     .oam = &gOamData_AffineNormal_ObjNormal_32x32,
-	.anims = gDummySpriteAnimTable,
-	.images = NULL,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = AnimSuperpowerFireball,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSuperpowerFireball,
 };
 
 const union AffineAnimCmd gForcePalmAffineAnimCmd_1[] =
