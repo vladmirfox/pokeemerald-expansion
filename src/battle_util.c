@@ -9098,7 +9098,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
     return basePower;
 }
 
-static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType, bool32 updateFlags, u32 atkAbility, u32 defAbility, u32 holdEffectAtk, u32 weather)
+static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType, bool32 updateFlags, u32 atkAbility, u32 defAbility, u32 holdEffectAtk, u32 weather, bool32 isForUI)
 {
     u32 i;
     u32 holdEffectParamAtk;
@@ -9115,7 +9115,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_BRINE:
-        if (gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 2))
+        if (!isForUI && gBattleMons[battlerDef].hp <= (gBattleMons[battlerDef].maxHP / 2))
             modifier = uq4_12_multiply(modifier, UQ_4_12(2.0));
         break;
     case EFFECT_RETALIATE:
@@ -9132,11 +9132,12 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case EFFECT_MAGNITUDE:
     case EFFECT_EARTHQUAKE:
-        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
+        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE) && !isForUI)
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
         break;
     case EFFECT_KNOCK_OFF:
-        if (B_KNOCK_OFF_DMG >= GEN_6
+        if (!isForUI 
+            && B_KNOCK_OFF_DMG >= GEN_6
             && gBattleMons[battlerDef].item != ITEM_NONE
             && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item))
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
@@ -9154,7 +9155,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
     if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_GRASSY_TERRAIN) && moveType == TYPE_GRASS)
         modifier = uq4_12_multiply(modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8 ? UQ_4_12(1.3) : UQ_4_12(1.5)));
-    if (IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN) && moveType == TYPE_DRAGON)
+    if (!isForUI && IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN) && moveType == TYPE_DRAGON)
         modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
     if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN) && moveType == TYPE_ELECTRIC)
         modifier = uq4_12_multiply(modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8 ? UQ_4_12(1.3) : UQ_4_12(1.5)));
@@ -9201,10 +9202,13 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_RIVALRY:
-        if (AreBattlersOfSameGender(battlerAtk, battlerDef))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
-        else if (AreBattlersOfOppositeGender(battlerAtk, battlerDef))
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
+        if (!isForUI)
+        {
+            if (AreBattlersOfSameGender(battlerAtk, battlerDef))
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
+            else if (AreBattlersOfOppositeGender(battlerAtk, battlerDef))
+                modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
+        }
         break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
@@ -9342,37 +9346,40 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
     }
 
     // target's abilities
-    switch (defAbility)
+    if(!isForUI)
     {
-    case ABILITY_HEATPROOF:
-    case ABILITY_WATER_BUBBLE:
-        if (moveType == TYPE_FIRE)
+        switch (defAbility)
         {
-            modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
-            if (updateFlags)
-                RecordAbilityBattle(battlerDef, defAbility);
+        case ABILITY_HEATPROOF:
+        case ABILITY_WATER_BUBBLE:
+            if (moveType == TYPE_FIRE)
+            {
+                modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
+                if (updateFlags)
+                    RecordAbilityBattle(battlerDef, defAbility);
+            }
+            break;
+        case ABILITY_DRY_SKIN:
+            if (moveType == TYPE_FIRE)
+                modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
+            break;
+        case ABILITY_PROTOSYNTHESIS:
+            {
+                u8 defHighestStat = GetHighestStatId(battlerDef);
+                if ((weather & B_WEATHER_SUN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
+                && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
+                    modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
+            }
+            break;
+        case ABILITY_QUARK_DRIVE:
+            {
+                u8 defHighestStat = GetHighestStatId(battlerDef);
+                if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
+                && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
+                    modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
+            }
+            break;
         }
-        break;
-    case ABILITY_DRY_SKIN:
-        if (moveType == TYPE_FIRE)
-            modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
-        break;
-    case ABILITY_PROTOSYNTHESIS:
-        {
-            u8 defHighestStat = GetHighestStatId(battlerDef);
-            if ((weather & B_WEATHER_SUN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
-            && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
-                modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
-        }
-        break;
-    case ABILITY_QUARK_DRIVE:
-        {
-            u8 defHighestStat = GetHighestStatId(battlerDef);
-            if ((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN || gBattleStruct->boosterEnergyActivates & (1u << battlerDef))
-            && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
-                modifier = uq4_12_multiply(modifier, UQ_4_12(0.7));
-        }
-        break;
     }
 
     holdEffectParamAtk = GetBattlerHoldEffectParam(battlerAtk);
@@ -9466,9 +9473,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
 void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
 {
     u32 battlerAtk, i, movePower, moveAccuracy, atkAbility, holdEffectAtk;
-
-    static const u32 atkSpAtkMultipliers[13] = {25, 28, 33, 40, 50, 66, 100, 150, 200, 250, 300, 350, 400};  // for Attack, Special Attack
-    static const u32 accuracyMultipliers[13] = {33, 36, 43, 50, 60, 75, 100, 133, 166, 200, 233, 266, 300}; // for Accuracy
+    u32 weather = gBattleWeather;
 
     for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {
@@ -9482,150 +9487,31 @@ void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
 
             if (move != 0 && move != 0xFFFF)
             {
-                movePower = gMovesInfo[move].power;
-                moveAccuracy = gMovesInfo[move].accuracy;
-                
-                // Move category power-modifying ability (like Iron Fist)
-                if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ABILITY == TRUE)
-                {
-                    switch (atkAbility)
-                    {
-                    case ABILITY_IRON_FIST:
-                        if (gMovesInfo[move].punchingMove)
-                            movePower = (movePower * 120) / 100; // 1.2x boost
-                        break;
-                    case ABILITY_STRONG_JAW:
-                        if (gMovesInfo[move].bitingMove)
-                            movePower = (movePower * 150) / 100; // 1.5x boost
-                        break;
-                    case ABILITY_MEGA_LAUNCHER:
-                        if (gMovesInfo[move].pulseMove)
-                            movePower = (movePower * 150) / 100; // 1.5x boost
-                        break;
-                    case ABILITY_HUSTLE:
-                        if (IS_MOVE_PHYSICAL(move))
-                            movePower = (movePower * 150) / 100; // 1.5x boost
-                        break;
-                    }
-                }
+                // Call to calculate move power with the isForUI flag set to true
+                movePower = CalcMoveBasePowerAfterModifiers(
+                    move,
+                    battlerAtk,
+                    0, // Placeholder for battlerDef since we're in UI mode
+                    moveType,
+                    FALSE,  // updateFlags set to false for UI purposes
+                    atkAbility,
+                    ABILITY_NONE, // No defAbility needed for UI
+                    holdEffectAtk,
+                    weather,
+                    TRUE  // isForUI set to true
+                );
 
-                // Move category power-modifying item (like Punching Glove)
-                if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ITEM == TRUE)
-                {
-                    if (holdEffectAtk == HOLD_EFFECT_PUNCHING_GLOVE && gMovesInfo[move].punchingMove)
-                        movePower = (movePower * 120) / 100; // 1.2x boost
-                }
-
-                // Move category accuracy-modifying abilities (like Hustle)
-                if (B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ABILITY == TRUE)
-                {
-                    if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move))
-                        moveAccuracy = (moveAccuracy * 80) / 100; // 0.8x accuracy
-                }
-
-                // Move type power-modifying ability (like Steely Spirit)
-                if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ABILITY == TRUE)
-                {
-                    switch (atkAbility)
-                    {
-                    case ABILITY_STEELY_SPIRIT:
-                        if (moveType == TYPE_STEEL)
-                            movePower = (movePower * 150) / 100; // 1.5x boost
-                        break;
-                    case ABILITY_PIXILATE:
-                        if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
-                            movePower = (movePower * 120) / 100; // 1.2x boost
-                        break;
-                    }
-                }
-
-                // Move type power-modifying item (like Mystic Water)
-                if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ITEM == TRUE)
-                {
-                    if (holdEffectAtk == HOLD_EFFECT_WATER_POWER && moveType == TYPE_WATER)
-                        movePower = (movePower * 120) / 100; // 1.2x boost
-                }
-
-                // Overall power-modifying ability (like Supreme Overlord)
-                if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ABILITY == TRUE)
-                {
-                    if (atkAbility == ABILITY_SUPREME_OVERLORD)
-                        movePower = (movePower * GetSupremeOverlordModifier(battlerAtk)) / 100;
-                }
-
-                // Overall power-modifying item (like Life Orb)
-                if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ITEM == TRUE)
-                {
-                    if (holdEffectAtk == HOLD_EFFECT_LIFE_ORB)
-                        movePower = (movePower * 130) / 100; // 1.3x boost
-                }
-
-                // Overall accuracy-modifying ability (like Compound Eyes)
-                if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ABILITY == TRUE)
-                {
-                    switch (atkAbility)
-                    {
-                    case ABILITY_COMPOUND_EYES:
-                        moveAccuracy = (moveAccuracy * 130) / 100; // 1.3x boost
-                        break;
-                    case ABILITY_VICTORY_STAR:
-                        moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
-                        break;
-                    }
-                }
-
-                // Overall accuracy-modifying item (like Wide Lens)
-                if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ITEM == TRUE)
-                {
-                    if (holdEffectAtk == HOLD_EFFECT_WIDE_LENS)
-                        moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
-                }
-
-                // Move power from weather (like sunlight increasing Fire moves)
-                if (B_DYNAMIC_MOVE_POWER_FROM_WEATHER == TRUE)
-                {
-                    if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN) && moveType == TYPE_FIRE)
-                        movePower = (movePower * 150) / 100; // 1.5x boost
-                    else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_WATER)
-                        movePower = (movePower * 150) / 100; // 1.5x boost
-                    else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_FIRE)
-                        movePower = (movePower * 50) / 100; // 0.5x reduction
-                }
-
-                // Move power from terrain (like Electric Terrain increasing Electric moves)
-                if (B_DYNAMIC_MOVE_POWER_FROM_TERRAIN == TRUE)
-                {
-                    if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC)
-                        movePower = (movePower * 130) / 100; // 1.3x boost
-                }
-
-                // Apply stat stage to move power
-                if (B_DYNAMIC_MOVE_POWER_FROM_STAT_INCREASES == TRUE)
-                {
-                    if (IS_MOVE_PHYSICAL(move))
-                    {
-                        s8 atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK] - DEFAULT_STAT_STAGE;
-                        atkStage = atkStage < -6 ? -6 : (atkStage > 6 ? 6 : atkStage);
-                        u32 atkMultiplier = atkSpAtkMultipliers[atkStage + 6];
-                        movePower = (movePower * atkMultiplier) / 100;
-                    }
-                    else if (IS_MOVE_SPECIAL(move))
-                    {
-                        s8 spAtkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK] - DEFAULT_STAT_STAGE;
-                        spAtkStage = spAtkStage < -6 ? -6 : (spAtkStage > 6 ? 6 : spAtkStage);
-                        u32 spAtkMultiplier = atkSpAtkMultipliers[spAtkStage + 6];
-                        movePower = (movePower * spAtkMultiplier) / 100;
-                    }
-                }
-
-                // Apply stat stage to move accuracy
-                if (B_DYNAMIC_MOVE_ACCURACY_FROM_STAT_INCREASES == TRUE)
-                {
-                    s8 accStage = gBattleMons[battlerAtk].statStages[STAT_ACC] - DEFAULT_STAT_STAGE;
-                    accStage = accStage < -6 ? -6 : (accStage > 6 ? 6 : accStage);
-                    u32 accMultiplier = accuracyMultipliers[accStage + 6];
-                    moveAccuracy = (moveAccuracy * accMultiplier) / 100;
-                }
+                // Call to calculate move accuracy with the isForUI flag set to true
+                moveAccuracy = GetTotalAccuracy(
+                    battlerAtk,
+                    0, // Placeholder for battlerDef since we're in UI mode
+                    move,
+                    atkAbility,
+                    ABILITY_NONE, // No defAbility needed for UI
+                    holdEffectAtk,
+                    HOLD_EFFECT_NONE, // No holdEffectDef needed for UI
+                    TRUE  // isForUI set to true
+                );
 
                 if (moveAccuracy > 100)
                     moveAccuracy = 100;
@@ -10320,11 +10206,12 @@ static inline s32 DoMoveDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef,
     s32 dmg;
     u32 userFinalAttack;
     u32 targetFinalDefense;
+    bool32 isForUI = FALSE;
 
     if (fixedBasePower)
         gBattleMovePower = fixedBasePower;
     else
-        gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags, abilityAtk, abilityDef, holdEffectAtk, weather);
+        gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags, abilityAtk, abilityDef, holdEffectAtk, weather, isForUI);
 
     userFinalAttack = CalcAttackStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags, abilityAtk, abilityDef, holdEffectAtk);
     targetFinalDefense = CalcDefenseStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags, abilityAtk, abilityDef, holdEffectDef, weather);

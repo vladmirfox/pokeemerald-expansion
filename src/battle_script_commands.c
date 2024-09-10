@@ -1563,7 +1563,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     return FALSE;
 }
 
-u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect)
+u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u32 defAbility, u32 atkHoldEffect, u32 defHoldEffect, bool32 isForUI)
 {
     u32 calc, moveAcc;
     s8 buff, accStage, evasionStage;
@@ -1583,7 +1583,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (defAbility == ABILITY_UNAWARE)
         accStage = DEFAULT_STAT_STAGE;
 
-    if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
+    if (!isForUI && (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED))
         buff = accStage;
     else
         buff = accStage + DEFAULT_STAT_STAGE - evasionStage;
@@ -1594,12 +1594,16 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         buff = MAX_STAT_STAGE;
 
     moveAcc = gMovesInfo[move].accuracy;
-    // Check Thunder and Hurricane on sunny weather.
-    if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && gMovesInfo[move].effect == EFFECT_THUNDER)
-        moveAcc = 50;
-    // Check Wonder Skin.
-    if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
-        moveAcc = 50;
+
+    if (!isForUI)
+    {
+        // Check Thunder and Hurricane on sunny weather.
+        if (IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && gMovesInfo[move].effect == EFFECT_THUNDER)
+            moveAcc = 50;
+        // Check Wonder Skin.
+        if (defAbility == ABILITY_WONDER_SKIN && IS_MOVE_STATUS(move) && moveAcc > 50)
+            moveAcc = 50;
+    }
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
@@ -1620,20 +1624,23 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     }
 
     // Target's ability
-    switch (defAbility)
+    if (!isForUI)
     {
-    case ABILITY_SAND_VEIL:
-        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
-            calc = (calc * 80) / 100; // 1.2 sand veil loss
-        break;
-    case ABILITY_SNOW_CLOAK:
-        if (WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
-            calc = (calc * 80) / 100; // 1.2 snow cloak loss
-        break;
-    case ABILITY_TANGLED_FEET:
-        if (gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
-            calc = (calc * 50) / 100; // 1.5 tangled feet loss
-        break;
+        switch (defAbility)
+        {
+        case ABILITY_SAND_VEIL:
+            if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
+                calc = (calc * 80) / 100; // 1.2 sand veil loss
+            break;
+        case ABILITY_SNOW_CLOAK:
+            if (WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+                calc = (calc * 80) / 100; // 1.2 snow cloak loss
+            break;
+        case ABILITY_TANGLED_FEET:
+            if (gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+                calc = (calc * 50) / 100; // 1.5 tangled feet loss
+            break;
+        }
     }
 
     // Attacker's ally's ability
@@ -1652,20 +1659,23 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         calc = (calc * (100 + atkParam)) / 100;
         break;
     case HOLD_EFFECT_ZOOM_LENS:
-        if (GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef))
+        if (!isForUI && GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef))
             calc = (calc * (100 + atkParam)) / 100;
         break;
     }
 
-    // Target's hold effect
-    switch (defHoldEffect)
+    if (!isForUI)
     {
-    case HOLD_EFFECT_EVASION_UP:
-        calc = (calc * (100 - defParam)) / 100;
-        break;
+        // Target's hold effect
+        switch (defHoldEffect)
+        {
+        case HOLD_EFFECT_EVASION_UP:
+            calc = (calc * (100 - defParam)) / 100;
+            break;
+        }
     }
 
-    if (gProtectStructs[battlerAtk].usedMicleBerry)
+    if (!isForUI && gProtectStructs[battlerAtk].usedMicleBerry)
     {
         gProtectStructs[battlerAtk].usedMicleBerry = FALSE;
         if (atkAbility == ABILITY_RIPEN)
@@ -1677,7 +1687,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    if (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerDef) == AFFECTION_FIVE_HEARTS)
+    if (!isForUI && B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerDef) == AFFECTION_FIVE_HEARTS)
         calc = (calc * 90) / 100;
 
     if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_FOG)
@@ -1692,6 +1702,7 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+    bool32 isForUI = FALSE;
 
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
@@ -1730,7 +1741,8 @@ static void AccuracyCheck(bool32 recalcDragonDarts, const u8 *nextInstr, const u
             abilityAtk,
             abilityDef,
             holdEffectAtk,
-            GetBattlerHoldEffect(gBattlerTarget, TRUE)
+            GetBattlerHoldEffect(gBattlerTarget, TRUE),
+            isForUI
         );
 
         if (!RandomPercentage(RNG_ACCURACY, accuracy))
