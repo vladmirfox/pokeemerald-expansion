@@ -6805,7 +6805,7 @@ static u8 TrySetMicleBerry(u32 battler, u32 itemId, bool32 end2)
 {
     if (HasEnoughHpToEatBerry(battler, 4, itemId))
     {
-        gBattleStruct->micleBerry |= 1u << battler;
+        gBattleStruct->usedMicleBerry |= 1u << battler;
         if (end2)
         {
             BattleScriptExecute(BattleScript_MicleBerryActivateEnd2);

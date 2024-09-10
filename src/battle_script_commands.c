@@ -1689,7 +1689,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         break;
     }
 
-    if (gBattleStruct->micleBerry & 1u << battlerAtk)
+    if (gBattleStruct->usedMicleBerry & 1u << battlerAtk)
     {
         if (atkAbility == ABILITY_RIPEN)
             calc = (calc * 140) / 100;  // ripen gives 40% acc boost
@@ -6436,7 +6436,7 @@ static void Cmd_moveend(void)
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;
             gBattleStruct->distortedTypeMatchups = 0;
-            gBattleStruct->micleBerry &= ~(1u << gBattlerAttacker);
+            gBattleStruct->usedMicleBerry &= ~(1u << gBattlerAttacker);
             if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 gBattleStruct->pledgeMove = FALSE;
             if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE)
