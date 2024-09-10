@@ -1004,11 +1004,11 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
                                      MESSAGE(name ", good! Come back!");          \
                                  }
 
-#define SEND_IN_MESSAGE(name)    ONE_OF {                                            \
-                                     MESSAGE("Go! " name "!");                       \
-                                     MESSAGE("You're in charge, " name "!");         \
-                                     MESSAGE("Go for it, " name "!");                \
-                                     MESSAGE("Your foe's weak! Get 'em, " name "!"); \
+#define SEND_IN_MESSAGE(name)    ONE_OF {                                                   \
+                                     MESSAGE("Go! " name "!");                              \
+                                     MESSAGE("You're in charge, " name "!");                \
+                                     MESSAGE("Go for it, " name "!");                       \
+                                     MESSAGE("Your opponent's weak! Get 'em, " name "!");   \
                                  }
 
 enum QueueGroupType

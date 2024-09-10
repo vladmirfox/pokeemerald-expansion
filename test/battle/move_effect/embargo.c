@@ -62,7 +62,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect experience
         MESSAGE("The wild Caterpie used Embargo!");
         MESSAGE("Wobbuffet can't use items anymore!");
         MESSAGE("Wobbuffet used Scratch!");
-        MESSAGE("Wild Caterpie fainted!");
+        MESSAGE("The wild Caterpie fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
     } FINALLY {
         EXPECT_MUL_EQ(results[1].exp, Q_4_12(1.5), results[0].exp);
@@ -88,7 +88,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect effort val
         MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Scratch!");
-        MESSAGE("Wild Caterpie fainted!");
+        MESSAGE("The wild Caterpie fainted!");
     } THEN {
         finalHPEVAmount = (GetMonData(&PLAYER_PARTY[0], MON_DATA_HP_EV) + gItemsInfo[ITEM_POWER_WEIGHT].holdEffectParam + gSpeciesInfo[SPECIES_CATERPIE].evYield_HP);
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP_EV), finalHPEVAmount);
@@ -199,7 +199,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't stop an item flung at an affected target fro
         MESSAGE("Wobbuffet used Fling!");
         MESSAGE("Wobbuffet flung its Light Ball!");
         HP_BAR(opponent);
-        MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+        MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
     }
 }
 
@@ -244,7 +244,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't block the effects of berries obtained throug
         // Turn 2
         MESSAGE("Wobbuffet used Pluck!");
         HP_BAR(opponent);
-        MESSAGE("Wobbuffet stole and ate the opposing its target's Oran Berry!");
+        MESSAGE("Wobbuffet stole and ate its target's Oran Berry!");
         HP_BAR(player, damage: -hp);
     }
 }
@@ -323,7 +323,7 @@ SINGLE_BATTLE_TEST("Embargo can be reflected by Magic Coat")
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Magic Coat!");
-        MESSAGE("Wobbuffet shrouded itself in Magic Coat!");
+        MESSAGE("Wobbuffet shrouded itself with Magic Coat!");
         MESSAGE("The opposing Wobbuffet used Embargo!");
         MESSAGE("Wobbuffet bounced the Embargo back!");
         MESSAGE("The opposing Wobbuffet can't use items anymore!");

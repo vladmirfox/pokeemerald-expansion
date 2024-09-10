@@ -65,15 +65,15 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
-                MESSAGE("Wobbuffet's Rawst Berry healed its burn!");
+                MESSAGE("Wobbuffet's Rawst Berry cured its burn!");
             } else if (status1 == STATUS1_SLEEP) {
-                MESSAGE("Wobbuffet's Chesto Berry woke it from its sleep!");
+                MESSAGE("Wobbuffet's Chesto Berry woke it up!");
             } else if (status1 == STATUS1_PARALYSIS) {
-                MESSAGE("Wobbuffet's Cheri Berry cured paralysis!");
+                MESSAGE("Wobbuffet's Cheri Berry cured its paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
                 MESSAGE("Wobbuffet's Pecha Berry cured its poison!");
             } else if (status1 == STATUS1_FROSTBITE) {
-                MESSAGE("Wobbuffet's Aspear Berry healed its frostbite!");
+                MESSAGE("Wobbuffet's Aspear Berry cured its frostbite!");
             }
             NOT STATUS_ICON(player, status1);
         }
@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
         MESSAGE("The opposing Wobbuffet ate its Tanga Berry!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BITE, player);
         HP_BAR(opponent);
-        MESSAGE("Tanga Berry weakened the damage to the opposing Wobbuffet!");
+        MESSAGE("The Tanga Berry weakened the damage to the opposing Wobbuffet!");
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
     }

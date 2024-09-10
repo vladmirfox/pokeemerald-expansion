@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Stun Spore inflicts paralysis")
         TURN { MOVE(player, MOVE_STUN_SPORE); } // 3.
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-        MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!"); // 4
+        MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!"); // 4
         STATUS_ICON(opponent, paralysis: TRUE); // 4.
     }
 }

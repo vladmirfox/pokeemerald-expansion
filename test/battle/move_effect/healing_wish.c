@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Healing Wish causes the user to faint and fully heals the re
         MESSAGE("The healing wish came true for Wynaut!");
         HP_BAR(player, hp: 100);
         STATUS_ICON(player, none: TRUE);
-        MESSAGE("Wynaut's HP was restored.");
+        MESSAGE("Wynaut regained health!");
     }
 }
 
@@ -45,7 +45,7 @@ DOUBLE_BATTLE_TEST("Lunar Dance causes the user to faint and fully heals the rep
         MESSAGE("Wynaut became cloaked in mystical moonlight!");
         HP_BAR(playerLeft, hp: 100);
         STATUS_ICON(playerLeft, none: TRUE);
-        MESSAGE("Wynaut's HP was restored.");
+        MESSAGE("Wynaut regained health!");
     }
 }
 
@@ -72,6 +72,6 @@ SINGLE_BATTLE_TEST("Healing Wish effect activates only if the switched pokemon c
         MESSAGE("The healing wish came true for Wynaut!");
         HP_BAR(player, hp: 100);
         STATUS_ICON(player, none: TRUE);
-        MESSAGE("Wynaut's HP was restored.");
+        MESSAGE("Wynaut regained health!");
     }
 }

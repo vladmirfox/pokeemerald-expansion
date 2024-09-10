@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("Strength Sap makes attacker lose HP if target's ability is L
         MESSAGE("The opposing Wobbuffet's Attack fell!");
         ABILITY_POPUP(opponent, ABILITY_LIQUID_OOZE);
         HP_BAR(player, captureDamage: &lostHp);
-        MESSAGE("It sucked up the liquid ooze!");
+        MESSAGE("Wobbuffet sucked up the liquid ooze!");
         if (atkStat >= 490) {
             MESSAGE("Wobbuffet fainted!");
             SEND_IN_MESSAGE("Wobbuffet");

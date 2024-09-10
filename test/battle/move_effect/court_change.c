@@ -57,7 +57,7 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(opponentLeft, 2); SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used sticky web!");
+        MESSAGE("Wobbuffet used Sticky Web!");
         MESSAGE("Wobbuffet used Stealth Rock!");
         MESSAGE("Wobbuffet used Spikes!");
         MESSAGE("Wobbuffet used Toxic Spikes!");
@@ -106,13 +106,13 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Auror
         MESSAGE("The opposing Wobbuffet used Tailwind!");
         MESSAGE("Wynaut used Court Change!");
         MESSAGE("Wynaut swapped the battle effects affecting each side of the field!");
-        // The effects now end for the player side.
-        MESSAGE("Ally's Mist wore off!");
-        MESSAGE("Ally's party is no longer protected by Safeguard!");
-        MESSAGE("Ally's Reflect wore off!");
-        MESSAGE("Ally's Aurora Veil wore off!");
-        MESSAGE("Your team's tailwind petered out!");
-        MESSAGE("Ally's Light Screen wore off!");
+        // The effects now end for the player side.        
+        MESSAGE("Your team's Mist wore off!");
+        MESSAGE("Your team is no longer protected by Safeguard!");
+        MESSAGE("Your team's Reflect wore off!");
+        MESSAGE("Your team's Aurora Veil wore off!");
+        MESSAGE("Your team's Tailwind petered out!");
+        MESSAGE("Your team's Light Screen wore off!");
     }
 }
 
@@ -144,12 +144,12 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Aur
         MESSAGE("The opposing Wynaut used Court Change!");
         MESSAGE("The opposing Wynaut swapped the battle effects affecting each side of the field!");
         // The effects now end for the player side.
-        MESSAGE("Foe's Mist wore off!");
-        MESSAGE("Foe's party is no longer protected by Safeguard!");
-        MESSAGE("Foe's Reflect wore off!");
-        MESSAGE("Foe's Aurora Veil wore off!");
-        MESSAGE("The opposing team's tailwind petered out!");
-        MESSAGE("Foe's Light Screen wore off!");
+        MESSAGE("The opposing team's Mist wore off!");
+        MESSAGE("The opposing team is no longer protected by Safeguard!");
+        MESSAGE("The opposing team's Reflect wore off!");
+        MESSAGE("The opposing team's Aurora Veil wore off!");
+        MESSAGE("The opposing team's Tailwind petered out!");
+        MESSAGE("The opposing team's Light Screen wore off!");
     }
 }
 

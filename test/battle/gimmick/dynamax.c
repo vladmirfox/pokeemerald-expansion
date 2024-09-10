@@ -893,7 +893,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) G-Max Steelsurge sets up sharp steel")
     } SCENE {
         // turn 1
         MESSAGE("Copperajah used G-Max Steelsurge!");
-        MESSAGE("Sharp-pointed steel floats around the opposing team!");
+        MESSAGE("Sharp-pointed pieces of steel started\nfloating around the opposing Pokémon!");
         // turn 2
         MESSAGE("2 sent out Hatterene!");
         MESSAGE("Sharp steel bit into the opposing Hatterene!");
@@ -939,10 +939,10 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Volt Crash paralyzes both opponents")
         MESSAGE("Pikachu used G-Max Volt Crash!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponentLeft);
         STATUS_ICON(opponentLeft, paralysis: TRUE);
-        MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+        MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PRZ, opponentRight);
         STATUS_ICON(opponentRight, paralysis: TRUE);
-        MESSAGE("The opposing Wynaut is paralyzed! It may be unable to move!");
+        MESSAGE("The opposing Wynaut is paralyzed, so it may be unable to move!");
     }
 }
 
@@ -973,7 +973,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Stun Shock paralyzes or poisons both opponen
         }
         else {
             STATUS_ICON(opponentLeft, paralysis: TRUE);
-            MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
         }
         // opponent right
         ANIMATION(ANIM_TYPE_STATUS, statusAnim, opponentRight);
@@ -983,7 +983,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Stun Shock paralyzes or poisons both opponen
         }
         else {
             STATUS_ICON(opponentRight, paralysis: TRUE);
-            MESSAGE("The opposing Wynaut is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Wynaut is paralyzed, so it may be unable to move!");
         }
     }
 }
@@ -1007,12 +1007,12 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Stun Shock chooses statuses before consideri
             STATUS_ICON(opponentLeft, poison: TRUE);
             MESSAGE("The opposing Garbodor was poisoned!");
             STATUS_ICON(opponentLeft, paralysis: TRUE);
-            MESSAGE("The opposing Garbodor is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Garbodor is paralyzed, so it may be unable to move!");
             // opponent right
             STATUS_ICON(opponentRight, poison: TRUE);
             MESSAGE("The opposing Trubbish was poisoned!");
             STATUS_ICON(opponentRight, paralysis: TRUE);
-            MESSAGE("The opposing Trubbish is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Trubbish is paralyzed, so it may be unable to move!");
         }
     }
 }
@@ -1043,7 +1043,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Befuddle paralyzes, poisons, or sleeps both 
         }
         else if (statusAnim == B_ANIM_STATUS_PRZ) {
             STATUS_ICON(opponentLeft, paralysis: TRUE);
-            MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
         }
         else {
             STATUS_ICON(opponentLeft, sleep: TRUE);
@@ -1057,7 +1057,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Befuddle paralyzes, poisons, or sleeps both 
         }
         else if (statusAnim == B_ANIM_STATUS_PRZ) {
             STATUS_ICON(opponentRight, paralysis: TRUE);
-            MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+            MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
         }
         else {
             STATUS_ICON(opponentRight, sleep: TRUE);
@@ -1273,7 +1273,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Snooze makes only the target drowsy")
     } SCENE {
         // turn 1
         MESSAGE("Grimmsnarl used G-Max Snooze!");
-        MESSAGE("Blissey grew drowsy!");
+        MESSAGE("The opposing Blissey grew drowsy!");
         // turn 2
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
         MESSAGE("The opposing Blissey fell asleep!");
@@ -1397,7 +1397,7 @@ DOUBLE_BATTLE_TEST("(DYNAMAX) G-Max Depletion takes away 2 PP from the target's 
     } SCENE {
         MESSAGE("The opposing Sableye used Celebrate!");
         MESSAGE("Duraludon used G-Max Depletion!");
-        MESSAGE("Reduced the opposing Sableye's Celebrate by 2!");
+        MESSAGE("The opposing Sableye's PP was reduced!");
     }
 }
 

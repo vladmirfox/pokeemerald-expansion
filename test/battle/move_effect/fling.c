@@ -231,7 +231,7 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
             break;
         case ITEM_LIGHT_BALL:
             {
-                MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+                MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
                 STATUS_ICON(opponent, STATUS1_PARALYSIS);
             }
             break;
@@ -291,7 +291,7 @@ SINGLE_BATTLE_TEST("Fling's secondary effects are blocked by Shield Dust")
         case ITEM_LIGHT_BALL:
             {
                 NONE_OF {
-                    MESSAGE("The opposing Wobbuffet is paralyzed! It may be unable to move!");
+                    MESSAGE("The opposing Wobbuffet is paralyzed, so it may be unable to move!");
                     STATUS_ICON(opponent, STATUS1_PARALYSIS);
                 }
                 MESSAGE("The Light Ball was used up…");
@@ -386,15 +386,15 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
-                MESSAGE("The opposing Wobbuffet's Rawst Berry healed its burn!");
+                MESSAGE("The opposing Wobbuffet's Rawst Berry cured its burn!");
             } else if (status1 == STATUS1_SLEEP) {
-                MESSAGE("The opposing Wobbuffet's Chesto Berry woke it from its sleep!");
+                MESSAGE("The opposing Wobbuffet's Chesto Berry woke it up!");
             } else if (status1 == STATUS1_FREEZE) {
                 MESSAGE("The opposing Wobbuffet's Aspear Berry defrosted it!");
             } else if (status1 == STATUS1_FROSTBITE) {
-                MESSAGE("The opposing Wobbuffet's Aspear Berry healed its frostbite!");
+                MESSAGE("The opposing Wobbuffet's Aspear Berry cured its frostbite!");
             } else if (status1 == STATUS1_PARALYSIS) {
-                MESSAGE("The opposing Wobbuffet's Cheri Berry cured paralysis!");
+                MESSAGE("The opposing Wobbuffet's Cheri Berry cured its paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
                 MESSAGE("The opposing Wobbuffet's Pecha Berry cured its poison!");
             }
