@@ -45,6 +45,8 @@
 #include "menu.h"
 #include "pokemon_summary_screen.h"
 #include "type_icons.h"
+#include "battle_ai_util.h"
+#include "battle_ai_main.h"
 
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
@@ -1767,26 +1769,18 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
     u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
     u16 pwr = 0;
     u16 acc = 0;
-    u32 battlerAtk = battler;
-    u32 battlerDef = BATTLE_OPPOSITE(battlerAtk);
-    u32 moveType = gMovesInfo[move].type;
-    u32 atkAbility = GetBattlerAbility(battlerAtk);
-    u32 defAbility = GetBattlerAbility(battlerDef);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
-    u32 holdEffectDef = GetBattlerHoldEffect(battlerDef, TRUE);
-    u32 weather = gBattleWeather;
-    bool32 updateFlags = FALSE;
     u8 cat = gMovesInfo[move].category;
+    u32 moveIndex = gMoveSelectionCursor[battler];
 
-    if (B_UPDATED_BATTLE_MOVE_INFO == TRUE) // in include/config/battle.h
+    if (B_DYNAMIC_MOVE_DESCRIPTIONS == TRUE)
     {
-        pwr = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags, atkAbility, defAbility, holdEffectAtk, weather);  // shows real base power after modifiers
-        acc = GetTotalAccuracy(battlerAtk, battlerDef, move, atkAbility, defAbility, holdEffectAtk, holdEffectDef);                               // shows real accuracy after modifiers
+        pwr = gBattleResources->moveUIData->displayedMovePower[battler][moveIndex];
+        acc = gBattleResources->moveUIData->displayedMoveAccuracy[battler][moveIndex];
     }
     else
     {
-        pwr = gMovesInfo[move].power; // for base power without modifiers
-        acc = gMovesInfo[move].accuracy; // for base accuracy without modifiers
+        pwr = gMovesInfo[move].power;
+        acc = gMovesInfo[move].accuracy;
     }
 
     u8 pwr_num[3], acc_num[3];
