@@ -5740,7 +5740,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_Garbodor,
         .iconSprite = gMonIcon_Garbodor,
         .iconPalIndex = 1,
-        NO_SHADOW
+        SHADOW(3, 9, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Garbodor)
         OVERWORLD(
             sPicTable_Garbodor,
@@ -5807,7 +5807,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .shinyPalette = gMonShinyPalette_GarbodorGigantamax,
         .iconSprite = gMonIcon_GarbodorGigantamax,
         .iconPalIndex = 0,
-        SHADOW(4, 9, SHADOW_SIZE_XL_BATTLE_ONLY)
+        NO_SHADOW
         FOOTPRINT(Garbodor)
         .isGigantamax = TRUE,
         .levelUpLearnset = sGarbodorLevelUpLearnset,

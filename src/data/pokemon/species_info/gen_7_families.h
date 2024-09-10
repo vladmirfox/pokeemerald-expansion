@@ -2617,7 +2617,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .shinyPalette = gMonShinyPalette_Araquanid,
         .iconSprite = gMonIcon_Araquanid,
         .iconPalIndex = 2,
-        SHADOW(-6, 9, SHADOW_SIZE_S)
+        SHADOW(-6, 9, SHADOW_SIZE_M)
         FOOTPRINT(Araquanid)
         OVERWORLD(
             sPicTable_Araquanid,
