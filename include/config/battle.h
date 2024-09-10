@@ -227,27 +227,27 @@
 #define B_MOVE_DESCRIPTION_BUTTON   L_BUTTON // If set to a button other than B_LAST_USED_BALL_BUTTON, pressing this button will open the move description menu
 
 // Move Description settings
-#define B_DYNAMIC_MOVE_DESCRIPTIONS                         FALSE // If set to TRUE, battle move info will show the real base power and accuracy of moves after ability, stat or item modifier.
-#define B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ABILITY     FALSE //Like Iron Fist
-#define B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ITEM        FALSE //Like Punching Glove
-#define B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ABILITY  FALSE //Like Hustle
+#define B_DYNAMIC_MOVE_DESCRIPTIONS                         TRUE // If set to TRUE, battle move info will show the real base power and accuracy of moves after ability, stat or item modifier.
+#define B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ABILITY     TRUE //Like Iron Fist
+#define B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ITEM        TRUE //Like Punching Glove
+#define B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ABILITY  TRUE //Like Hustle
 //#define B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ITEM   FALSE //Doesn't exist currently?
-#define B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ABILITY         FALSE //Like Steely Spirit
-#define B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ITEM            FALSE //Like Mystic Water
+#define B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ABILITY         TRUE //Like Steely Spirit
+#define B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ITEM            TRUE //Like Mystic Water
 //#define B_DYNAMIC_MOVE_TYPE_ACCURACY_MODIFYING_ABILITY    FALSE //Doesn't exist currently?
 //#define B_DYNAMIC_MOVE_TYPE_ACCURACY_MODIFYING_ITEM       FALSE //Doesn't exist currently?
-#define B_DYNAMIC_OVERALL_POWER_MODIFYING_ABILITY           FALSE //Like Supreme Overlord
-#define B_DYNAMIC_OVERALL_POWER_MODIFYING_ITEM              FALSE //Like Life Orb
-#define B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ABILITY        FALSE //Like Compound Eyes
-#define B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ITEM           FALSE //Like Wide Lens
-#define B_DYNAMIC_MOVE_EFFECT_POWER                         FALSE //Like Eruption
+#define B_DYNAMIC_OVERALL_POWER_MODIFYING_ABILITY           TRUE //Like Supreme Overlord
+#define B_DYNAMIC_OVERALL_POWER_MODIFYING_ITEM              TRUE //Like Life Orb
+#define B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ABILITY        TRUE //Like Compound Eyes
+#define B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ITEM           TRUE //Like Wide Lens
+#define B_DYNAMIC_MOVE_EFFECT_POWER                         TRUE //Like Eruption
 //#define B_DYNAMIC_MOVE_EFFECT_ACCURACY                    FALSE //Doesn't exist currently?
-#define B_DYNAMIC_MOVE_POWER_FROM_WEATHER                   FALSE //Sunlight increasing Fire moves power
-#define B_DYNAMIC_MOVE_ACCURACY_FROM_WEATHER                FALSE //Rain increasing Thunder's accuracy
-#define B_DYNAMIC_MOVE_POWER_FROM_TERRAIN                   FALSE //Electric Terrain increasing Electric moves power
+#define B_DYNAMIC_MOVE_POWER_FROM_WEATHER                   TRUE //Sunlight increasing Fire moves power
+#define B_DYNAMIC_MOVE_ACCURACY_FROM_WEATHER                TRUE //Rain increasing Thunder's accuracy
+#define B_DYNAMIC_MOVE_POWER_FROM_TERRAIN                   TRUE //Electric Terrain increasing Electric moves power
 //#define B_DYNAMIC_MOVE_ACCURACY_FROM_TERRAIN              FALSE //Doesn't exist currently?
-#define B_DYNAMIC_MOVE_POWER_FROM_STAT_INCREASES            FALSE //Increasing power value of physical moves after Swords Dance
-#define B_DYNAMIC_MOVE_ACCURACY_FROM_STAT_INCREASES         FALSE //Increasing accuracy value after Hone Claws
+#define B_DYNAMIC_MOVE_POWER_FROM_STAT_INCREASES            TRUE //Increasing power value of physical moves after Swords Dance
+#define B_DYNAMIC_MOVE_ACCURACY_FROM_STAT_INCREASES         TRUE //Increasing accuracy value after Hone Claws
 
 // Catching settings
 #define B_SEMI_INVULNERABLE_CATCH   GEN_LATEST // In Gen4+, you cannot throw a ball against a Pokemon that is in a semi-invulnerable state (dig/fly/etc)

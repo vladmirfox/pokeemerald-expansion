@@ -45,8 +45,6 @@
 #include "menu.h"
 #include "pokemon_summary_screen.h"
 #include "type_icons.h"
-#include "battle_ai_util.h"
-#include "battle_ai_main.h"
 
 static void PlayerBufferExecCompleted(u32 battler);
 static void PlayerHandleLoadMonSprite(u32 battler);
@@ -1767,8 +1765,8 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
 {
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[battler][4]);
     u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];
-    u16 pwr = 0;
-    u16 acc = 0;
+    u16 pwr = gMovesInfo[move].power;
+    u16 acc = gMovesInfo[move].accuracy;
     u8 cat = gMovesInfo[move].category;
     u32 moveIndex = gMoveSelectionCursor[battler];
 
@@ -1776,11 +1774,6 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
     {
         pwr = gBattleResources->moveUIData->displayedMovePower[battler][moveIndex];
         acc = gBattleResources->moveUIData->displayedMoveAccuracy[battler][moveIndex];
-    }
-    else
-    {
-        pwr = gMovesInfo[move].power;
-        acc = gMovesInfo[move].accuracy;
     }
 
     u8 pwr_num[3], acc_num[3];

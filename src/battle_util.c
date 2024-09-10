@@ -9463,189 +9463,176 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
     return uq4_12_multiply_by_int_half_down(modifier, basePower);
 }
 
-void SetMoveUIDataForTurn(struct MoveUIData *moveUIData, u32 battlerAtk)
+void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
 {
-    u32 i;
-    u32 movePower, moveAccuracy;
-    u32 atkAbility = GetBattlerAbility(battlerAtk);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
+    u32 battlerAtk, i, movePower, moveAccuracy, atkAbility, holdEffectAtk;
 
     static const u32 atkSpAtkMultipliers[13] = {25, 28, 33, 40, 50, 66, 100, 150, 200, 250, 300, 350, 400};  // for Attack, Special Attack
     static const u32 accuracyMultipliers[13] = {33, 36, 43, 50, 60, 75, 100, 133, 166, 200, 233, 266, 300}; // for Accuracy
 
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {
-        u32 move = gBattleMons[battlerAtk].moves[i];
-        u32 moveType = gMovesInfo[move].type;
+        atkAbility = GetBattlerAbility(battlerAtk);
+        holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-        if (move != 0 && move != 0xFFFF)
+        for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            movePower = gMovesInfo[move].power;
-            moveAccuracy = gMovesInfo[move].accuracy;
-            
-            // Move category power-modifying ability (like Iron Fist)
-            if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ABILITY == TRUE)
+            u32 move = gBattleMons[battlerAtk].moves[i];
+            u32 moveType = gMovesInfo[move].type;
+
+            if (move != 0 && move != 0xFFFF)
             {
-                switch (atkAbility)
+                movePower = gMovesInfo[move].power;
+                moveAccuracy = gMovesInfo[move].accuracy;
+                
+                // Move category power-modifying ability (like Iron Fist)
+                if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ABILITY == TRUE)
                 {
-                case ABILITY_IRON_FIST:
-                    if (gMovesInfo[move].punchingMove)
-                        movePower = (movePower * 120) / 100; // 1.2x boost
-                    break;
-                case ABILITY_STRONG_JAW:
-                    if (gMovesInfo[move].bitingMove)
-                        movePower = (movePower * 150) / 100; // 1.5x boost
-                    break;
-                case ABILITY_MEGA_LAUNCHER:
-                    if (gMovesInfo[move].pulseMove)
-                        movePower = (movePower * 150) / 100; // 1.5x boost
-                    break;
-                case ABILITY_HUSTLE:
-                    if (IS_MOVE_PHYSICAL(move))
-                        movePower = (movePower * 150) / 100; // 0.8x accuracy
-                    break;
-                // Add other move category power-modifying abilities here
+                    switch (atkAbility)
+                    {
+                    case ABILITY_IRON_FIST:
+                        if (gMovesInfo[move].punchingMove)
+                            movePower = (movePower * 120) / 100; // 1.2x boost
+                        break;
+                    case ABILITY_STRONG_JAW:
+                        if (gMovesInfo[move].bitingMove)
+                            movePower = (movePower * 150) / 100; // 1.5x boost
+                        break;
+                    case ABILITY_MEGA_LAUNCHER:
+                        if (gMovesInfo[move].pulseMove)
+                            movePower = (movePower * 150) / 100; // 1.5x boost
+                        break;
+                    case ABILITY_HUSTLE:
+                        if (IS_MOVE_PHYSICAL(move))
+                            movePower = (movePower * 150) / 100; // 1.5x boost
+                        break;
+                    }
                 }
-            }
 
-            // Move category power-modifying item (like Punching Glove)
-            if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ITEM == TRUE)
-            {
-                if (holdEffectAtk == HOLD_EFFECT_PUNCHING_GLOVE && gMovesInfo[move].punchingMove)
-                    movePower = (movePower * 120) / 100; // 1.2x boost
-                // Add other move category power-modifying items here
-            }
-
-            // Move category accuracy-modifying abilities (like Hustle)
-            if (B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ABILITY == TRUE)
-            {
-                switch (atkAbility)
+                // Move category power-modifying item (like Punching Glove)
+                if (B_DYNAMIC_MOVE_CATEGORY_POWER_MODIFYING_ITEM == TRUE)
                 {
-                case ABILITY_HUSTLE:
-                    if (IS_MOVE_PHYSICAL(move))
+                    if (holdEffectAtk == HOLD_EFFECT_PUNCHING_GLOVE && gMovesInfo[move].punchingMove)
+                        movePower = (movePower * 120) / 100; // 1.2x boost
+                }
+
+                // Move category accuracy-modifying abilities (like Hustle)
+                if (B_DYNAMIC_MOVE_CATEGORY_ACCURACY_MODIFYING_ABILITY == TRUE)
+                {
+                    if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move))
                         moveAccuracy = (moveAccuracy * 80) / 100; // 0.8x accuracy
-                    break;
-                    // Add other move category accuracy-modifying abilities here
                 }
-            }
 
-            // Move type power-modifying ability (like Steely Spirit)
-            if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ABILITY == TRUE)
-            {
-                switch (atkAbility)
+                // Move type power-modifying ability (like Steely Spirit)
+                if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ABILITY == TRUE)
                 {
-                case ABILITY_STEELY_SPIRIT:
-                    if (moveType == TYPE_STEEL)
-                        movePower = (movePower * 150) / 100; // 1.5x boost
-                    break;
-                case ABILITY_PIXILATE:
-                    if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
+                    switch (atkAbility)
+                    {
+                    case ABILITY_STEELY_SPIRIT:
+                        if (moveType == TYPE_STEEL)
+                            movePower = (movePower * 150) / 100; // 1.5x boost
+                        break;
+                    case ABILITY_PIXILATE:
+                        if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
+                            movePower = (movePower * 120) / 100; // 1.2x boost
+                        break;
+                    }
+                }
+
+                // Move type power-modifying item (like Mystic Water)
+                if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ITEM == TRUE)
+                {
+                    if (holdEffectAtk == HOLD_EFFECT_WATER_POWER && moveType == TYPE_WATER)
                         movePower = (movePower * 120) / 100; // 1.2x boost
-                    break;
-                // Add more move type power-modifying abilities here
                 }
-            }
 
-            // Move type power-modifying item (like Mystic Water)
-            if (B_DYNAMIC_MOVE_TYPE_POWER_MODIFYING_ITEM == TRUE)
-            {
-                if (holdEffectAtk == HOLD_EFFECT_WATER_POWER && moveType == TYPE_WATER)
-                    movePower = (movePower * 120) / 100; // 1.2x boost
-            }
-
-            // Overall power-modifying ability (like Supreme Overlord)
-            if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ABILITY == TRUE)
-            {
-                switch (atkAbility)
+                // Overall power-modifying ability (like Supreme Overlord)
+                if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ABILITY == TRUE)
                 {
-                case ABILITY_SUPREME_OVERLORD:
-                    movePower = (movePower * GetSupremeOverlordModifier(battlerAtk)) / 100;
-                    break;
-                // Add more overall power-modifying abilities here
+                    if (atkAbility == ABILITY_SUPREME_OVERLORD)
+                        movePower = (movePower * GetSupremeOverlordModifier(battlerAtk)) / 100;
                 }
-            }
 
-            // Overall power-modifying item (like Life Orb)
-            if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ITEM == TRUE)
-            {
-                if (holdEffectAtk == HOLD_EFFECT_LIFE_ORB)
-                    movePower = (movePower * 130) / 100; // 1.3x boost
-            }
-
-            // Overall accuracy-modifying ability
-            if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ABILITY == TRUE)
-            {
-                switch (atkAbility)
+                // Overall power-modifying item (like Life Orb)
+                if (B_DYNAMIC_OVERALL_POWER_MODIFYING_ITEM == TRUE)
                 {
-                case ABILITY_COMPOUND_EYES:
-                    moveAccuracy = (moveAccuracy * 130) / 100; // 1.3x boost
-                    break;
-                case ABILITY_VICTORY_STAR:
-                    moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
-                    break;
+                    if (holdEffectAtk == HOLD_EFFECT_LIFE_ORB)
+                        movePower = (movePower * 130) / 100; // 1.3x boost
                 }
-            }
 
-            // Overall accuracy-modifying item (like Wide Lens)
-            if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ITEM == TRUE)
-            {
-                if (holdEffectAtk == HOLD_EFFECT_WIDE_LENS)
-                    moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
-            }
-
-            // Move power from weather (like sunlight increasing Fire moves)
-            if (B_DYNAMIC_MOVE_POWER_FROM_WEATHER == TRUE)
-            {
-                if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN) && moveType == TYPE_FIRE)
-                    movePower = (movePower * 150) / 100; // 1.5x boost for Fire-type moves in the sun
-                else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_WATER)
-                    movePower = (movePower * 150) / 100; // 1.5x boost for Water-type moves in the rain
-                else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_FIRE)
-                    movePower = (movePower * 50) / 100; // 0.5x reduction for Fire-type moves in the rain
-            }
-
-            // Move power from terrain (like Electric Terrain increasing Electric moves)
-            if (B_DYNAMIC_MOVE_POWER_FROM_TERRAIN == TRUE)
-            {
-                if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC)
-                    movePower = (movePower * 130) / 100; // 1.3x boost
-            }
-
-            // Apply stat stage to move power
-            if (B_DYNAMIC_MOVE_POWER_FROM_STAT_INCREASES == TRUE)
-            {
-                if (IS_MOVE_PHYSICAL(move))
+                // Overall accuracy-modifying ability (like Compound Eyes)
+                if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ABILITY == TRUE)
                 {
-                    s8 atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK] - DEFAULT_STAT_STAGE;
-                    if (atkStage < -6) atkStage = -6;
-                    if (atkStage > 6) atkStage = 6;
-                    u32 atkMultiplier = atkSpAtkMultipliers[atkStage + 6]; // +6 to match index
-                    movePower = (movePower * atkMultiplier) / 100; // Apply multiplier to move power
+                    switch (atkAbility)
+                    {
+                    case ABILITY_COMPOUND_EYES:
+                        moveAccuracy = (moveAccuracy * 130) / 100; // 1.3x boost
+                        break;
+                    case ABILITY_VICTORY_STAR:
+                        moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
+                        break;
+                    }
                 }
-                else if (IS_MOVE_SPECIAL(move))
+
+                // Overall accuracy-modifying item (like Wide Lens)
+                if (B_DYNAMIC_OVERALL_ACCURACY_MODIFYING_ITEM == TRUE)
                 {
-                    s8 spAtkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK] - DEFAULT_STAT_STAGE;
-                    if (spAtkStage < -6) spAtkStage = -6;
-                    if (spAtkStage > 6) spAtkStage = 6;
-                    u32 spAtkMultiplier = atkSpAtkMultipliers[spAtkStage + 6]; // +6 to match index
-                    movePower = (movePower * spAtkMultiplier) / 100; // Apply multiplier to move power
+                    if (holdEffectAtk == HOLD_EFFECT_WIDE_LENS)
+                        moveAccuracy = (moveAccuracy * 110) / 100; // 1.1x boost
                 }
+
+                // Move power from weather (like sunlight increasing Fire moves)
+                if (B_DYNAMIC_MOVE_POWER_FROM_WEATHER == TRUE)
+                {
+                    if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN) && moveType == TYPE_FIRE)
+                        movePower = (movePower * 150) / 100; // 1.5x boost
+                    else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_WATER)
+                        movePower = (movePower * 150) / 100; // 1.5x boost
+                    else if (IsBattlerWeatherAffected(battlerAtk, B_WEATHER_RAIN) && moveType == TYPE_FIRE)
+                        movePower = (movePower * 50) / 100; // 0.5x reduction
+                }
+
+                // Move power from terrain (like Electric Terrain increasing Electric moves)
+                if (B_DYNAMIC_MOVE_POWER_FROM_TERRAIN == TRUE)
+                {
+                    if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC)
+                        movePower = (movePower * 130) / 100; // 1.3x boost
+                }
+
+                // Apply stat stage to move power
+                if (B_DYNAMIC_MOVE_POWER_FROM_STAT_INCREASES == TRUE)
+                {
+                    if (IS_MOVE_PHYSICAL(move))
+                    {
+                        s8 atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK] - DEFAULT_STAT_STAGE;
+                        atkStage = atkStage < -6 ? -6 : (atkStage > 6 ? 6 : atkStage);
+                        u32 atkMultiplier = atkSpAtkMultipliers[atkStage + 6];
+                        movePower = (movePower * atkMultiplier) / 100;
+                    }
+                    else if (IS_MOVE_SPECIAL(move))
+                    {
+                        s8 spAtkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK] - DEFAULT_STAT_STAGE;
+                        spAtkStage = spAtkStage < -6 ? -6 : (spAtkStage > 6 ? 6 : spAtkStage);
+                        u32 spAtkMultiplier = atkSpAtkMultipliers[spAtkStage + 6];
+                        movePower = (movePower * spAtkMultiplier) / 100;
+                    }
+                }
+
+                // Apply stat stage to move accuracy
+                if (B_DYNAMIC_MOVE_ACCURACY_FROM_STAT_INCREASES == TRUE)
+                {
+                    s8 accStage = gBattleMons[battlerAtk].statStages[STAT_ACC] - DEFAULT_STAT_STAGE;
+                    accStage = accStage < -6 ? -6 : (accStage > 6 ? 6 : accStage);
+                    u32 accMultiplier = accuracyMultipliers[accStage + 6];
+                    moveAccuracy = (moveAccuracy * accMultiplier) / 100;
+                }
+
+                if (moveAccuracy > 100)
+                    moveAccuracy = 100;
+
+                moveUIData->displayedMovePower[battlerAtk][i] = movePower;
+                moveUIData->displayedMoveAccuracy[battlerAtk][i] = moveAccuracy;
             }
-
-            if (B_DYNAMIC_MOVE_ACCURACY_FROM_STAT_INCREASES == TRUE)
-            {
-                s8 accStage = gBattleMons[battlerAtk].statStages[STAT_ACC] - DEFAULT_STAT_STAGE;
-                if (accStage < -6) accStage = -6;
-                if (accStage > 6) accStage = 6;
-                u32 accMultiplier = accuracyMultipliers[accStage + 6]; // +6 to match index
-                moveAccuracy = (moveAccuracy * accMultiplier) / 100; // Apply multiplier to move accuracy
-            }
-
-            if (moveAccuracy > 100)
-                moveAccuracy = 100;
-
-            moveUIData->displayedMovePower[battlerAtk][i] = movePower;
-            moveUIData->displayedMoveAccuracy[battlerAtk][i] = moveAccuracy;
         }
     }
 }
