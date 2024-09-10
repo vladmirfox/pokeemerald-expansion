@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Miscle Berry increases the accuracy of the next used move")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROCK_SLIDE].accuracy == 90);
-        PASSES_RANDOMLY(gMovesInfo[MOVE_ROCK_SLIDE].accuracy * (6 / 5), 100, RNG_ACCURACY);
+        PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(100); HP(26); Item(ITEM_MICLE_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
