@@ -154,7 +154,6 @@ struct DisableStruct
     u8 usedProteanLibero:1;
 };
 
-// AI calcs clear the Protect Struct each turn so it should be avoided to use bits that can reach across multiply turns
 struct ProtectStruct
 {
     u32 protected:1;
