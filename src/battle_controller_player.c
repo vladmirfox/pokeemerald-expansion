@@ -1766,7 +1766,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
 static void MoveSelectionDisplayMoveDescription(u32 battler)
 {
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[battler][4]);
-    u32 move = moveInfo->moves[gMoveSelectionCursor[battler]];
+    u16 move = moveInfo->moves[gMoveSelectionCursor[battler]];
     u16 pwr = 0;
     u16 acc = 0;
     u8 cat = gMovesInfo[move].category;
