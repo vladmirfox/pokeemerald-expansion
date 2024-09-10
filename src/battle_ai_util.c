@@ -2083,7 +2083,8 @@ bool32 HasAnyKnownMove(u32 battlerId)
 bool32 HasMoveThatLowersOwnStats(u32 battlerId)
 {
     s32 i, j;
-    u16 *moves = GetMovesArray(battlerId), aiMove;
+    u32 aiMove;
+    u16 *moves = GetMovesArray(battlerId);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         aiMove = moves[i];
