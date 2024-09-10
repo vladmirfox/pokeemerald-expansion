@@ -198,6 +198,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Meganium,
             gShinyOverworldPalette_Meganium
         )
+        OVERWORLD_FEMALE(
+            sPicTable_MeganiumF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_MeganiumF,
+            gShinyOverworldPalette_MeganiumF
+        )
         .levelUpLearnset = sMeganiumLevelUpLearnset,
         .teachableLearnset = sMeganiumTeachableLearnset,
     },
@@ -3623,6 +3631,14 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Wobbuffet,
             gShinyOverworldPalette_Wobbuffet
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_WobbuffetF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_WobbuffetF,
+            gShinyOverworldPalette_WobbuffetF
         )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWobbuffetLevelUpLearnset,
