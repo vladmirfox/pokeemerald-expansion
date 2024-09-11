@@ -7384,6 +7384,17 @@ BattleScript_DoSelfConfusionDmg::
 BattleScript_MoveUsedIsConfusedRet::
 	return
 
+BattleScript_ZMoveActivatePowder::
+	flushtextbox
+	trytrainerslidezmovemsg
+	savetarget
+	printstring STRINGID_ZPOWERSURROUNDS
+	playanimation BS_ATTACKER, B_ANIM_ZMOVE_ACTIVATE, NULL
+	setzeffect
+	restoretarget
+	goto BattleScript_MoveUsedPowder
+
+
 BattleScript_MoveUsedPowder::
 	bicword gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_ATTACKSTRING_PRINTED
 	attackstring
