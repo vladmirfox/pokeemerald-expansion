@@ -80,11 +80,11 @@ SINGLE_BATTLE_TEST("Powder doesn't damage target if it has Magic Guard")
     }
 }
 
-SINGLE_BATTLE_TEST("Powder doesn't damage target under rain")
+SINGLE_BATTLE_TEST("Powder doesn't damage target under heavy rain")
 {
     GIVEN {
         ASSUME(B_POWDER_RAIN >= GEN_7);
-        PLAYER(SPECIES_KYOGRE);
+        PLAYER(SPECIES_KYOGRE_PRIMAL) { Ability(ABILITY_PRIMORDIAL_SEA); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
         TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
