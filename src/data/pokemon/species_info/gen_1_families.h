@@ -7442,6 +7442,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             gOverworldPalette_Politoed,
             gShinyOverworldPalette_Politoed
         )
+        OVERWORLD_FEMALE(
+            sPicTable_PolitoedF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_PolitoedF,
+            gShinyOverworldPalette_PolitoedF
+        )
         .levelUpLearnset = sPolitoedLevelUpLearnset,
         .teachableLearnset = sPolitoedTeachableLearnset,
     },
@@ -11036,6 +11044,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             gOverworldPalette_Steelix,
             gShinyOverworldPalette_Steelix
         )
+        OVERWORLD_FEMALE(
+            sPicTable_SteelixF,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_SteelixF,
+            gShinyOverworldPalette_SteelixF
+        )
         .levelUpLearnset = sSteelixLevelUpLearnset,
         .teachableLearnset = sSteelixTeachableLearnset,
         .formSpeciesIdTable = sSteelixFormSpeciesIdTable,
@@ -14358,6 +14374,14 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             TRACKS_FOOT,
             gOverworldPalette_Scizor,
             gShinyOverworldPalette_Scizor
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_ScizorF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_ScizorF,
+            gShinyOverworldPalette_ScizorF
         )
         .levelUpLearnset = sScizorLevelUpLearnset,
         .teachableLearnset = sScizorTeachableLearnset,

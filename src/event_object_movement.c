@@ -2072,7 +2072,7 @@ static bool8 GetMonInfo(struct Pokemon *mon, u16 *species, u8 *form, u8 *shiny)
         return FALSE;
     }
     *species = GetMonData(mon, MON_DATA_SPECIES);
-    *form = GetMonGender(mon) - 253;
+    *form = GetMonGender(mon) == MON_FEMALE;
     *shiny = IsMonShiny(mon);
     switch (*species)
     {
