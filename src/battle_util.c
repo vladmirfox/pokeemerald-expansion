@@ -3565,7 +3565,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 {
                     gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
-                    && !IsBattlerWeatherAffected(gBattlerAttacker, B_WEATHER_RAIN_PRIMAL))
+                    && (B_POWDER_RAIN < GEN_7 || !IsBattlerWeatherAffected(gBattlerAttacker, B_WEATHER_RAIN)))
                         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
 
                     if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE
