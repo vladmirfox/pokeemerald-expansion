@@ -1653,3 +1653,22 @@ const u16 gTilesetPalettes_Small_Towns[][16] =
 };
 
 const u32 gTilesetTiles_Small_Towns[] = INCBIN_U32("data/tilesets/secondary/small_towns/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_generaljohtotest[][16] =
+{
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/primary/generaljohtotest/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_generaljohtotest[] = INCBIN_U32("data/tilesets/primary/generaljohtotest/tiles.4bpp.lz");

@@ -26,9 +26,9 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_BUG_CATCHER_1] =
     {
-        .trainerClass = TRAINER_CLASS_BUG_MANIAC,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_BUG_MANIAC,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
         .trainerName = _("Rich"),
         .items = {},
         .doubleBattle = TRUE,
@@ -74,9 +74,9 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_BUG_CATCHER_2] =
     {
-        .trainerClass = TRAINER_CLASS_BUG_MANIAC,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_BUG_MANIAC,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
         .trainerName = _("Erwig"),
         .items = {},
         .doubleBattle = TRUE,
@@ -86,10 +86,10 @@ const struct Trainer gTrainers[] = {
 
     [APPEL_SILPH_1] =
     {
-        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
-        .trainerName = _("Researcher"),
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Intern"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
@@ -100,8 +100,8 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
-        .trainerName = _("Researcher"),
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Intern"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
@@ -112,8 +112,8 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
-        .trainerName = _("Researcher"),
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Intern"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
@@ -124,8 +124,8 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
-        .trainerName = _("Researcher"),
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Intern"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,
@@ -136,8 +136,8 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
-        .trainerName = _("Researcher"),
+        .trainerPic = TRAINER_PIC_SCIENTIST,
+        .trainerName = _("Intern"),
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY,

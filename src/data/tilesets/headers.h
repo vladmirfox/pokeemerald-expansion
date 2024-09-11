@@ -836,3 +836,14 @@ const struct Tileset gTileset_Small_Towns =
     .metatileAttributes = gMetatileAttributes_Small_Towns,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_generaljohtotest =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_generaljohtotest,
+    .palettes = gTilesetPalettes_generaljohtotest,
+    .metatiles = gMetatiles_generaljohtotest,
+    .metatileAttributes = gMetatileAttributes_generaljohtotest,
+    .callback = NULL,
+};

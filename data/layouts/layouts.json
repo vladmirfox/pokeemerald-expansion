@@ -4416,7 +4416,7 @@
       "name": "Ba_Layout",
       "width": 40,
       "height": 27,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_generaljohtotest",
       "secondary_tileset": "gTileset_Small_Towns",
       "border_filepath": "data/layouts/Ba/border.bin",
       "blockdata_filepath": "data/layouts/Ba/map.bin"
@@ -4496,7 +4496,7 @@
       "name": "Agriville_Layout",
       "width": 80,
       "height": 30,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_generaljohtotest",
       "secondary_tileset": "gTileset_Small_Towns",
       "border_filepath": "data/layouts/Agriville/border.bin",
       "blockdata_filepath": "data/layouts/Agriville/map.bin"
