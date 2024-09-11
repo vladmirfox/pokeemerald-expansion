@@ -4,6 +4,7 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_POWDER].effect == EFFECT_POWDER);
+    ASSUME(gMovesInfo[MOVE_POWDER].powderMove == TRUE);
     ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
 }
 
