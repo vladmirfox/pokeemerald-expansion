@@ -1096,18 +1096,18 @@ s32 AI_WhoStrikesFirst(u32 battlerAI, u32 battler, u32 moveConsidered)
     return AI_IS_SLOWER;
 }
 
-bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
+static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
 {
     if (!BATTLER_MAX_HP(battlerTarget) || gMovesInfo[move].effect == EFFECT_MULTI_HIT)
         return FALSE;
     if (gMovesInfo[move].strikeCount > 1 && !(gMovesInfo[move].effect == EFFECT_DRAGON_DARTS && IsValidDoubleBattle(battlerTarget)))
         return FALSE;
-    if (gBattleMons[battlerTarget].item == ITEM_FOCUS_SASH)
+    if (AI_DATA->holdEffects[battlerTarget] == HOLD_EFFECT_FOCUS_SASH)
         return TRUE;
 
     if (!DoesBattlerIgnoreAbilityChecks(AI_DATA->abilities[battler], move))
     {
-        if (B_STURDY >= GEN_5 && gBattleMons[battlerTarget].ability == ABILITY_STURDY)
+        if (B_STURDY >= GEN_5 && AI_DATA->abilities[battlerTarget] == ABILITY_STURDY)
             return TRUE;
         if (gBattleMons[battlerTarget].species == SPECIES_MIMIKYU_DISGUISED)
             return TRUE;
