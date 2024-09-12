@@ -1914,8 +1914,11 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             canSwitchinWin1v1 = CanSwitchinWin1v1(hitsToKOAI, GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler), isSwitchinFirst, isFreeSwitch);
 
             // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
-            if (aiMove == MOVE_BATON_PASS && canSwitchinWin1v1)
-                bits |= 1u << i;
+            if (aiMove == MOVE_BATON_PASS)
+            {
+                if ((isSwitchinFirst && hitsToKOAI > 1) || hitsToKOAI > 2)
+                    bits |= 1u << i;
+            }
 
             // Check that good type matchups gets at least two turns and set GetBestMonTypeMatchup if applicable
             if (typeMatchup < bestResist)
