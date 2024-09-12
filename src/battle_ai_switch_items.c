@@ -1888,7 +1888,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         hitsToKOAI = GetSwitchinHitsToKO(GetMaxDamagePlayerCouldDealToSwitchin(battler, opposingBattler, AI_DATA->switchinCandidate.battleMon), battler);
         typeMatchup = GetSwitchinTypeMatchup(opposingBattler, AI_DATA->switchinCandidate.battleMon);
 
-        // Track max hits to KO and set GetBestMonDefensive if applicable
+        // Track max hits to KO and set defensive mon
         if(hitsToKOAI > maxHitsToKO)
         {
             maxHitsToKO = hitsToKOAI;
@@ -1909,35 +1909,34 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                     damageDealt = AI_CalcPartyMonDamage(aiMove, battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, TRUE, DMG_ROLL_DEFAULT);
             }
 
-            // Offense switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
+            // Offensive switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
             isSwitchinFirst = DoesSwitchinMoveFirst(AI_DATA->switchinCandidate.battleMon.speed, gBattleMons[opposingBattler].speed, gMovesInfo[aiMove].priority);
             canSwitchinWin1v1 = CanSwitchinWin1v1(hitsToKOAI, GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler), isSwitchinFirst, isFreeSwitch);
 
             // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
             if (aiMove == MOVE_BATON_PASS)
             {
-                if ((isSwitchinFirst && hitsToKOAI > 1) || hitsToKOAI > 2)
+                if ((isSwitchinFirst && hitsToKOAI > 1) || hitsToKOAI > 2) // Need to take an extra hit if slower
                     bits |= 1u << i;
             }
 
-            // Check that good type matchups gets at least two turns and set GetBestMonTypeMatchup if applicable
+            // Check that good type matchups get at least two turns and set best type matchup mon
             if (typeMatchup < bestResist)
             {
-                if (canSwitchinWin1v1) // Need to take an extra hit if slower
+                if (canSwitchinWin1v1)
                 {
                     bestResist = typeMatchup;
                     typeMatchupId = i;
                 }
             }
 
-            // Check for mon with resistance and super effective move for GetBestMonTypeMatchup
+            // Check for mon with resistance and super effective move for best type matchup mon with effective move
             if (aiMove != MOVE_NONE && gMovesInfo[aiMove].power != 0)
             {
                 if (typeMatchup < bestResistEffective)
                 {
                     if (AI_GetTypeEffectiveness(aiMove, battler, opposingBattler) >= UQ_4_12(2.0))
                     {
-                        // Assuming a super effective move would do significant damage or scare the player out, so not being as conservative here
                         if (canSwitchinWin1v1)
                         {
                             bestResistEffective = typeMatchup;
@@ -1950,10 +1949,10 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 if (gMovesInfo[aiMove].effect == EFFECT_EXPLOSION && damageDealt < playerMonHP)
                     continue;
 
-                // Check that mon isn't one shot and set GetBestMonDmg if applicable
+                // Check that mon isn't one shot and set best damage mon
                 if (damageDealt > maxDamageDealt)
                 {
-                    if((isFreeSwitch && hitsToKOAI > 1) || (!isFreeSwitch && hitsToKOAI > 2)) // This is a "default", we have uniquely low standards
+                    if((isFreeSwitch && hitsToKOAI > 1) || hitsToKOAI > 2) // This is a "default", we have uniquely low standards
                     {
                         maxDamageDealt = damageDealt;
                         damageMonId = i;
@@ -1976,7 +1975,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 // If AI mon can two shot
                 if (damageDealt > playerMonHP / 2)
                 {
-                    // If mon wins 1v1
                     if (canSwitchinWin1v1)
                     {
                         if (isSwitchinFirst)
