@@ -9466,7 +9466,6 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
 void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
 {
     u32 battlerAtk, battlerDef, i, movePower, moveAccuracy, atkAbility, holdEffectAtk;
-    u32 weather = gBattleWeather;
 
     for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {
@@ -9491,7 +9490,7 @@ void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
                 continue;
 
 
-            movePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, FALSE, atkAbility, ABILITY_NONE, holdEffectAtk, weather);
+            movePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, FALSE, atkAbility, ABILITY_NONE, holdEffectAtk, gBattleWeather);
             moveAccuracy = GetTotalAccuracy(battlerAtk, battlerDef, move, atkAbility, ABILITY_NONE, holdEffectAtk, HOLD_EFFECT_NONE);
 
             if (moveAccuracy > 100)

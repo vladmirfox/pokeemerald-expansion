@@ -3744,9 +3744,6 @@ static void DoBattleIntro(void)
             gBattleStruct->overworldWeatherDone = FALSE;
             SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
             Ai_InitPartyStruct(); // Save mons party counts, and first 2/4 mons on the battlefield.
-            #if B_DYNAMIC_MOVE_DESCRIPTIONS == TRUE
-                SetMoveUIDataForTurn(MOVE_UI_DATA);
-            #endif
 
             // Try to set a status to start the battle with
             gBattleStruct->startingStatus = 0;
@@ -3937,9 +3934,6 @@ static void TryDoEventsBeforeFirstTurn(void)
         memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
         SetShellSideArmCategory();
         SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
-        #if B_DYNAMIC_MOVE_DESCRIPTIONS == TRUE
-            SetMoveUIDataForTurn(MOVE_UI_DATA);
-        #endif
 
         if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         {
@@ -4040,9 +4034,6 @@ void BattleTurnPassed(void)
     SetShellSideArmCategory();
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
     gBattleMainFunc = HandleTurnActionSelectionState;
-    #if B_DYNAMIC_MOVE_DESCRIPTIONS == TRUE
-        SetMoveUIDataForTurn(MOVE_UI_DATA);
-    #endif
 
     if (gSideTimers[B_SIDE_PLAYER].retaliateTimer > 0)
         gSideTimers[B_SIDE_PLAYER].retaliateTimer--;
