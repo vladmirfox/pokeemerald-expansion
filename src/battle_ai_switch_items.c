@@ -1619,7 +1619,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
 
     // Mon fainted to hazards
     if (startingHP == 0)
-        return 1;
+        return 0;
 
     // Find hits to KO
     while (currentHP > 0)
