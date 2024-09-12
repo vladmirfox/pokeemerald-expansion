@@ -9482,11 +9482,11 @@ void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
             u32 moveType = gMovesInfo[move].type;
 
             if (move == MOVE_NONE 
-            || move == 0xFFFF
-            || move == MOVE_KNOCK_OFF
-            || move == MOVE_BRINE
-            || move == MOVE_EARTHQUAKE
-            || move == MOVE_MAGNITUDE)
+            ||  move == 0xFFFF
+            ||  move == MOVE_KNOCK_OFF
+            ||  move == MOVE_BRINE
+            ||  move == MOVE_EARTHQUAKE
+            ||  move == MOVE_MAGNITUDE)
                 continue;
 
 

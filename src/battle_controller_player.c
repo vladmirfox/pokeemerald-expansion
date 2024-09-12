@@ -1770,7 +1770,7 @@ static void MoveSelectionDisplayMoveDescription(u32 battler)
     u8 cat = gMovesInfo[move].category;
     u32 moveIndex = gMoveSelectionCursor[battler];
 
-    if (B_DYNAMIC_MOVE_DESCRIPTIONS == TRUE)
+    if (B_DYNAMIC_MOVE_DESCRIPTIONS)
     {
         pwr = gBattleResources->moveUIData->displayedMovePower[battler][moveIndex];
         acc = gBattleResources->moveUIData->displayedMoveAccuracy[battler][moveIndex];
