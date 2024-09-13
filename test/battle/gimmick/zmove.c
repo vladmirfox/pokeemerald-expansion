@@ -397,7 +397,7 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Z-Sleep Talk turns Weather Ball into Breakneck Blit
     }
 }
 
-SINGLE_BATTLE_TEST("(Z-MOVE) Powder blocks Fire type Z-Moves")
+SINGLE_BATTLE_TEST("(Z-MOVE) Powder blocks Fire type Z-Moves and deals 25% of maximum HP to the user")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_EMBER].type == TYPE_FIRE);
@@ -409,6 +409,8 @@ SINGLE_BATTLE_TEST("(Z-MOVE) Powder blocks Fire type Z-Moves")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ZMOVE_ACTIVATE, player);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_INFERNO_OVERDRIVE, player);
+    } THEN {
+        EXPECT_MUL_EQ(player->maxHP, UQ_4_12(0.75), player->hp);
     }
 }
 
