@@ -3606,7 +3606,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     if (!alreadyUsed)
                     {
                         BattleScriptPushCursor();
-                        gBattlescriptCurrInstr = BattleScript_ZMoveUsedPowder;
+                        gBattlescriptCurrInstr = BattleScript_ZMoveActivatePowder;
                     }
                 }
                 else if (gMovesInfo[gCurrentMove].category == DAMAGE_CATEGORY_STATUS)
