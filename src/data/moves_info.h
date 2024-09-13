@@ -10031,7 +10031,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .contestCategory = CONTEST_CATEGORY_COOL,
         .contestComboStarterId = 0,
         .contestComboMoves = {0},
-        .battleAnimScript = gBattleAnimMove_DarkPulse,
+        .battleAnimScript = gBattleAnimMove_ClangorousSoulblaze,
     },
 
     [MOVE_NIGHT_SLASH] =
