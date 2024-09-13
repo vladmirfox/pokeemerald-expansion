@@ -3568,19 +3568,10 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     && (B_POWDER_RAIN < GEN_7 || !IsBattlerWeatherAffected(gBattlerAttacker, B_WEATHER_RAIN_PRIMAL)))
                         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
 
-                    if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_Z_MOVE
-                     && gBattleStruct->obedienceResult == OBEYS
-                     && !HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE))
-                    {
-                        RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_Z_CRYSTAL);
-                        SetGimmickAsActivated(gBattlerAttacker, GIMMICK_Z_MOVE);
-                        gBattleScripting.battler = gBattlerAttacker;
-                        gBattlescriptCurrInstr = BattleScript_ZMoveActivatePowder;
-                    }
-                    else
-                    {
+                    if (GetActiveGimmick(gBattlerAttacker) != GIMMICK_Z_MOVE
+                     || gBattleStruct->obedienceResult != OBEYS
+                     || HasTrainerUsedGimmick(gBattlerAttacker, GIMMICK_Z_MOVE))
                         gBattlescriptCurrInstr = BattleScript_MoveUsedPowder;
-                    }
                     gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     effect = 1;
                 }
@@ -3610,7 +3601,15 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 SetGimmickAsActivated(gBattlerAttacker, GIMMICK_Z_MOVE);
 
                 gBattleScripting.battler = gBattlerAttacker;
-                if (gMovesInfo[gCurrentMove].category == DAMAGE_CATEGORY_STATUS)
+                if (gProtectStructs[gBattlerAttacker].powderSelfDmg)
+                {
+                    if (!alreadyUsed)
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_ZMoveUsedPowder;
+                    }
+                }
+                else if (gMovesInfo[gCurrentMove].category == DAMAGE_CATEGORY_STATUS)
                 {
                     if (!alreadyUsed)
                     {
