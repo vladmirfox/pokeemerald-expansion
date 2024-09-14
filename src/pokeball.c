@@ -1572,7 +1572,7 @@ void FreeBallGfx(u8 ballId)
 static u16 GetBattlerPokeballItemId(u8 battlerId)
 {
     struct Pokemon *illusionMon;
-    struct Pokemon *mon = GetBattlerPartyData(battlerId);
+    struct Pokemon *mon = GetPartyBattlerData(battlerId);
 
     illusionMon = GetIllusionMonPtr(battlerId);
     if (illusionMon != NULL)

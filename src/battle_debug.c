@@ -2269,7 +2269,7 @@ static void UpdateMonData(struct BattleDebugMenu *data)
     {
         if (data->battlerWasChanged[i])
         {
-            struct Pokemon *mon = GetBattlerPartyData(i);
+            struct Pokemon *mon = GetPartyBattlerData(i);
             struct BattlePokemon *battleMon = &gBattleMons[i];
 
             SetMonData(mon, MON_DATA_HELD_ITEM, &battleMon->item);

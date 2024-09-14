@@ -3092,7 +3092,7 @@ static const u8 *TryGetStatusString(u8 *src)
 static void GetBattlerNick(u32 battler, u8 *dst)
 {
     struct Pokemon *illusionMon = GetIllusionMonPtr(battler);
-    struct Pokemon *mon = GetBattlerPartyData(battler);
+    struct Pokemon *mon = GetPartyBattlerData(battler);
 
     if (illusionMon != NULL)
         mon = illusionMon;
