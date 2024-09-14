@@ -16436,24 +16436,25 @@ gBattleAnimMove_BurningBulwark::
 	monbg ANIM_ATK_PARTNER
 	splitbgprio ANIM_ATTACKER
 	waitplaysewithpan SE_M_REFLECT, SOUND_PAN_ATTACKER 16
-	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_PROTECT, 0, 13, 13, 0x015B   @Gray
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_PROTECT, 0, 13, 13, 0x015B
 	createsprite gProtectSpriteTemplate, ANIM_ATTACKER, 2, 24, 0, 90
-	playsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_TARGET
-	call FireSpreadEffectAttacker
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 0
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 4
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 8
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 12
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 16
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 20
+	delay 2
+	createsprite gFireSpiralOutwardSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 56, 24
 	createvisualtask AnimTask_BlendMonInAndOut, 3, ANIM_ATTACKER, RGB_RED, 10, 0, 2
 	waitforvisualfinish
 	clearmonbg ANIM_ATK_PARTNER
 	end
-
-FireSpreadEffectAttacker:
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, 192, 176, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, -192, 240, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, 192, -160, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, -192, -112, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, 160, 48, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, -224, -32, 40
-	createsprite gFireSpreadSpriteTemplate, ANIM_ATTACKER, 1, 0, 10, 112, -128, 40
-	return
 
 gBattleAnimMove_AlluringVoice::
 	loadspritegfx ANIM_TAG_THIN_RING
