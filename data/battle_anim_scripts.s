@@ -13371,6 +13371,9 @@ gBattleAnimMove_ClangorousSoul::
 	createsprite gClangorousSoulRedFistTemplate, ANIM_ATTACKER, 2, 0x10, 0, 0, 0, 10, ANIM_ATTACKER, ANIM_LEFT_FIST, 1
 	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
 	waitforvisualfinish
+	unloadspritegfx ANIM_TAG_HORSESHOE_SIDE_FIST
+	unloadspritegfx ANIM_TAG_SPARKLE_2 @stars
+	waitforvisualfinish
 	loadspritegfx ANIM_TAG_THIN_RING @ring
 	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
 	createsprite gClangorousSoulRedRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0
