@@ -12871,9 +12871,7 @@ gBattleAnimMove_BaddyBad::
 	restorebg
 	waitbgfadein
 	waitforvisualfinish
-	clearmonbg ANIM_DEF_PARTNER
-	blendoff
-	delay 1
+	clearmonbg ANIM_ATTACKER
 	unloadspritegfx ANIM_TAG_STRAIGHT_BEAM
 	waitforvisualfinish
 	goto gBattleAnimMove_Reflect
