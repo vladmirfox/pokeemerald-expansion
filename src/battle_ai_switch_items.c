@@ -1787,7 +1787,6 @@ static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent)
 
 static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 opposingBattler)
 {
-    u32 i;
     bool32 movedSecond = GetBattlerTurnOrderNum(battlerSwitchingOut) > GetBattlerTurnOrderNum(opposingBattler) ? TRUE : FALSE;
     
     // Switch out effects
@@ -1799,15 +1798,9 @@ static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 
             return TRUE;
         if (gSpecialStatuses[battlerSwitchingOut].ejectPackSwitch)
         {
-            // If faster and lowered own stat, not a free switch
+            // If faster, not a free switch; likely lowered own stats
             if (!movedSecond)
-            {
-                for (i = 0; i < gMovesInfo[gLastUsedMove].numAdditionalEffects; i++)
-                {
-                    if (IsSelfStatLoweringEffect(gMovesInfo[gLastUsedMove].additionalEffects[i].moveEffect) && gMovesInfo[gLastUsedMove].additionalEffects[i].self)
-                        return FALSE;
-                }
-            }
+                return FALSE;
             // Otherwise, free switch
             return TRUE;
         }
@@ -1822,9 +1815,10 @@ static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 
 
 static bool32 DoesSwitchinMoveFirst(s32 aiMonSpeed, s32 playerMonSpeed, s32 aiMovePriority)
 {
-    if (((aiMonSpeed > playerMonSpeed && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)) || aiMovePriority > 0) // Outspeed if not Trick Room
-        || ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room
-        && (aiMonSpeed < playerMonSpeed || (ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item) == HOLD_EFFECT_ROOM_SERVICE && aiMonSpeed * 2 / 3 < playerMonSpeed)))) // Trick Room speeds
+    if ((aiMonSpeed > playerMonSpeed && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)) || aiMovePriority > 0) // Outspeed if not Trick Room
+        return TRUE;
+    if ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room
+        && (aiMonSpeed < playerMonSpeed || (ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item) == HOLD_EFFECT_ROOM_SERVICE && aiMonSpeed * 2 / 3 < playerMonSpeed))) // Trick Room speeds
         return TRUE;
     return FALSE;
 }
