@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2")
     }
 }
 
-SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move")
+SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move across turns")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROCK_SLIDE].accuracy == 90);
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move")
     }
 }
 
-SINGLE_BATTLE_TEST("Miscle Berry increases the accuracy of the next used move")
+SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move the same turn the berry was triggered")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_ROCK_SLIDE].accuracy == 90);
