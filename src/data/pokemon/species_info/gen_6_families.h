@@ -4933,7 +4933,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         FOOTPRINT(Gourgeist)
         OVERWORLD(
             sPicTable_GourgeistSuper,
-            SIZE_64x64,
+            SIZE_32x32,
             SHADOW_SIZE_M,
             TRACKS_FOOT,
             gOverworldPalette_Gourgeist,
