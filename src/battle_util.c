@@ -9457,7 +9457,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(u32 move, u32 battlerAtk, u32 
         break;
     case HOLD_EFFECT_OGERPON_MASK:
         if (gBattleMons[battlerAtk].species == SPECIES_OGERPON)
-           modifier = uq4_12_multiply(modifier, UQ_4_12(2.1));
+           modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
         break;
     }
 
