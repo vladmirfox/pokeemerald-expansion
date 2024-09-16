@@ -326,10 +326,6 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonBackPic_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/backf.4bpp.lz");
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_ButterfreeF[] = INCBIN_COMP("graphics/pokemon/butterfree/overworldf.4bpp");
-#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u32 gOverworldPalette_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/overworld_normalf.gbapal.lz");
-    const u32 gShinyOverworldPalette_ButterfreeF[] = INCBIN_U32("graphics/pokemon/butterfree/overworld_shinyf.gbapal.lz");
-#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 #if P_GIGANTAMAX_FORMS
