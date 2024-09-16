@@ -6270,8 +6270,15 @@ static void Cmd_moveend(void)
                             if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_ESCAPE)
                                 gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                             BattleScriptPushCursor();
-                            gBattlescriptCurrInstr = BattleScript_RedCardActivates;
-                            gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
+                            if (gBattleStruct->commanderActive[gBattlerAttacker] != SPECIES_NONE)
+                            {
+                                gBattlescriptCurrInstr = BattleScript_RedCardActivationNoSwitch;
+                            }
+                            else
+                            {
+                                gBattlescriptCurrInstr = BattleScript_RedCardActivates;
+                                gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
+                            }
                             effect = TRUE;
                             break;  // Only fastest red card activates
                         }

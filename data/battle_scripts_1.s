@@ -9597,6 +9597,14 @@ BattleScript_StickyBarbTransfer::
 	removeitem BS_TARGET
 	return
 
+BattleScript_RedCardActivationNoSwitch::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
+	printstring STRINGID_REDCARDACTIVATE
+	waitmessage B_WAIT_TIME_LONG
+	removeitem BS_SCRIPTING
+	restoretarget
+	return
+
 BattleScript_RedCardActivates::
 	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT
 	printstring STRINGID_REDCARDACTIVATE

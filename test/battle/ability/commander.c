@@ -235,16 +235,17 @@ DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is act
         ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
+    } THEN {
+        EXPECT(opponentLeft->item == ITEM_NONE);
+        EXPECT(playerRight->species == SPECIES_DONDOZO);
     }
+
 }
 
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move if Dondozo faints")
 {
     KNOWN_FAILING;
-    /*
-    test/battle/ability/commander.c:260:
-    1 TURNs specified, but 2 ran - (Commander) Tatsugiri is not damaged by a double target move if Dondozo faints.
-    */
+    // 1 TURNs specified, but 2 ran - (Commander) Tatsugiri is not damaged by a double target move if Dondozo faints.
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_DONDOZO) { HP(1); };
