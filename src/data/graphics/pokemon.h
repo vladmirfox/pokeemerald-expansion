@@ -11960,10 +11960,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_UnfezantF[] = INCBIN_U32("graphics/pokemon/unfezant/shinyf.gbapal.lz");
     const u8 gMonIcon_UnfezantF[] = INCBIN_U8("graphics/pokemon/unfezant/iconf.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_UnfezantF[] = INCBIN_COMP("graphics/pokemon/unfezant_f/overworld.4bpp");
+    const u32 gObjectEventPic_UnfezantF[] = INCBIN_COMP("graphics/pokemon/unfezant/overworldf.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_UnfezantF[] = INCBIN_U32("graphics/pokemon/unfezant_f/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_UnfezantF[] = INCBIN_U32("graphics/pokemon/unfezant_f/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_UnfezantF[] = INCBIN_U32("graphics/pokemon/unfezant/overworld_normalf.gbapal.lz");
+    const u32 gShinyOverworldPalette_UnfezantF[] = INCBIN_U32("graphics/pokemon/unfezant/overworld_shinyf.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_PIDOVE
@@ -13440,10 +13440,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_FrillishF[] = INCBIN_U32("graphics/pokemon/frillish/shinyf.gbapal.lz");
     const u8 gMonIcon_FrillishF[] = INCBIN_U8("graphics/pokemon/frillish/iconf.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_FrillishF[] = INCBIN_COMP("graphics/pokemon/frillish/followerf.4bpp");
+    const u32 gObjectEventPic_FrillishF[] = INCBIN_COMP("graphics/pokemon/frillish/overworldf.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_FrillishF[] = INCBIN_U32("graphics/pokemon/frillish/overworld_normalf.gbapal.lz");
-    // const u32 gShinyOverworldPalette_FrillishF[] = INCBIN_U32("graphics/pokemon/frillish/overworld_shinyf.gbapal.lz");
+    const u32 gOverworldPalette_FrillishF[] = INCBIN_U32("graphics/pokemon/frillish/overworld_normalf.gbapal.lz");
+    const u32 gShinyOverworldPalette_FrillishF[] = INCBIN_U32("graphics/pokemon/frillish/overworld_shinyf.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
@@ -13469,10 +13469,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_JellicentF[] = INCBIN_U32("graphics/pokemon/jellicent/shinyf.gbapal.lz");
     const u8 gMonIcon_JellicentF[] = INCBIN_U8("graphics/pokemon/jellicent/iconf.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_JellicentF[] = INCBIN_COMP("graphics/pokemon/jellicent/followerf.4bpp");
+    const u32 gObjectEventPic_JellicentF[] = INCBIN_COMP("graphics/pokemon/jellicent/overworldf.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_JellicentF[] = INCBIN_U32("graphics/pokemon/jellicent/overworld_normal.gbapal.lz");
-    // const u32 gShinyOverworldPalette_JellicentF[] = INCBIN_U32("graphics/pokemon/jellicent/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_JellicentF[] = INCBIN_U32("graphics/pokemon/jellicent/overworld_normalf.gbapal.lz");
+    const u32 gShinyOverworldPalette_JellicentF[] = INCBIN_U32("graphics/pokemon/jellicent/overworld_shinyf.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_FRILLISH
@@ -15133,11 +15133,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonBackPic_PyroarF[] = INCBIN_U32("graphics/pokemon/pyroar/backf.4bpp.lz");
     const u8 gMonIcon_PyroarF[] = INCBIN_U8("graphics/pokemon/pyroar/iconf.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_PyroarF[] = INCBIN_COMP("graphics/pokemon/pyroar/followerf.4bpp");
-#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    // const u32 gOverworldPalette_PyroarF[] = INCBIN_U32("graphics/pokemon/pyroar/overworld_normalf.gbapal.lz");
-    // const u32 gShinyOverworldPalette_PyroarF[] = INCBIN_U32("graphics/pokemon/pyroar/overworld_shinyf.gbapal.lz");
-#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+    const u32 gObjectEventPic_PyroarF[] = INCBIN_COMP("graphics/pokemon/pyroar/overworldf.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_LITLEO
 
