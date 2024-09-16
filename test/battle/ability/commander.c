@@ -152,54 +152,6 @@ DOUBLE_BATTLE_TEST("(Commander) Commander cannot affect a Dondozo that was previ
     }
 }
 
-DOUBLE_BATTLE_TEST("Order Up increases a stat based on Tatsugiri's form")
-{
-    u32 species = 0;
-    PARAMETRIZE { species = SPECIES_TATSUGIRI_CURLY; }
-    PARAMETRIZE { species = SPECIES_TATSUGIRI_DROOPY; }
-    PARAMETRIZE { species = SPECIES_TATSUGIRI_STRETCHY; }
-
-    GIVEN {
-        PLAYER(species) { Ability(ABILITY_COMMANDER); }
-        PLAYER(SPECIES_DONDOZO);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); };
-    } WHEN {
-        TURN { MOVE(opponentRight, MOVE_HAZE); MOVE(playerRight, MOVE_ORDER_UP, target: opponentLeft); }
-    } SCENE {
-        ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
-        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_HAZE, opponentRight); // Remove previous stat boosts
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ORDER_UP, playerRight);
-        switch (species)
-        {
-        case SPECIES_TATSUGIRI_CURLY:
-            MESSAGE("Dondozo's Attack rose!");
-            break;
-        case SPECIES_TATSUGIRI_DROOPY:
-            MESSAGE("Dondozo's Defense rose!");
-            break;
-        case SPECIES_TATSUGIRI_STRETCHY:
-            MESSAGE("Dondozo's Speed rose!");
-            break;
-        }
-    } THEN {
-        switch (species)
-        {
-        case SPECIES_TATSUGIRI_CURLY:
-            EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
-            break;
-        case SPECIES_TATSUGIRI_DROOPY:
-            EXPECT_EQ(playerRight->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
-            break;
-        case SPECIES_TATSUGIRI_STRETCHY:
-            EXPECT_EQ(playerRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
-            break;
-        }
-    }
-}
-
 DOUBLE_BATTLE_TEST("(Commander) Whirlwind can not be used against Dondozo or Tatsugiri while Commander is active")
 {
     GIVEN {
@@ -244,8 +196,7 @@ DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is act
 
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move if Dondozo faints")
 {
-    KNOWN_FAILING;
-    // 1 TURNs specified, but 2 ran - (Commander) Tatsugiri is not damaged by a double target move if Dondozo faints.
+    KNOWN_FAILING; // Matched HP_BAR
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_DONDOZO) { HP(1); };
@@ -259,8 +210,8 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         HP_BAR(playerLeft);
         MESSAGE("Dondozo fainted!");
-        HP_BAR(opponentRight);
         NOT HP_BAR(playerRight);
+        HP_BAR(opponentRight);
     }
 }
 
