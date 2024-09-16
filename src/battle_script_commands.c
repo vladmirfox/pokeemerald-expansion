@@ -1512,6 +1512,7 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
+    // If the attacker has the ability No Guard and they aren't targeting a Pokemon involved in a Sky Drop with the move Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
           && !(gStatuses3[gBattlerTarget] & STATUS3_COMMANDER)
           && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
@@ -1520,6 +1521,15 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
+    // If the target has the ability No Guard and they aren't involved in a Sky Drop or the current move isn't Sky Drop, move hits.
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD
+          && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
+    {
+        if (!JumpIfMoveFailed(7, move))
+            RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
+        return TRUE;
+    }
+    // If the target is under the effects of Telekinesis, and the move isn't a OH-KO move, move hits.
     else if (gStatuses3[gBattlerTarget] & STATUS3_TELEKINESIS
           && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
           && gMovesInfo[move].effect != EFFECT_OHKO)
