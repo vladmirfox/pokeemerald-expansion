@@ -1215,9 +1215,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
             sPicTable_ButterfreeF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT,
-            gOverworldPalette_ButterfreeF,
-            gShinyOverworldPalette_ButterfreeF
+            TRACKS_FOOT
         )
         .levelUpLearnset = sButterfreeLevelUpLearnset,
         .teachableLearnset = sButterfreeTeachableLearnset,
