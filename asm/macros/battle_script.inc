@@ -1720,7 +1720,7 @@
 	.4byte \failInstr
 	.endm
 
-	.macro jumpfifcommanderactive jumpInstr:req
+	.macro jumpifcommanderactive jumpInstr:req
 	callnative BS_JumpIfCommanderActive
 	.4byte \jumpInstr
 	.endm

@@ -3265,7 +3265,7 @@ BattleScript_EffectRoar::
 	attackstring
 	ppreduce
 	jumpifroarfails BattleScript_ButItFailed
-	jumpfifcommanderactive BattleScript_ButItFailed
+	jumpifcommanderactive BattleScript_ButItFailed
 	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_ButItFailed
 	jumpifability BS_TARGET, ABILITY_SUCTION_CUPS, BattleScript_AbilityPreventsPhasingOut
 	jumpifstatus3 BS_TARGET, STATUS3_ROOTED, BattleScript_PrintMonIsRooted
@@ -8047,7 +8047,6 @@ BattleScript_ZeroToHeroActivates::
 	end3
 
 BattleScript_CommanderActivates::
-	saveattacker
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_COMMANDERACTIVATES

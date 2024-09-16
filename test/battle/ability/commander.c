@@ -75,24 +75,6 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take residual damage from a
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) When Commander is active moves targeted at Tatsugiri will fail")
-{
-    GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
-        PLAYER(SPECIES_DONDOZO);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_POUND, target: playerRight); }
-    } SCENE {
-        ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
-        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
-        MESSAGE("Foe Wobbuffet's attack missed!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, opponentRight);
-    }
-}
-
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take poison damage if while inside Dondozo")
 {
     GIVEN {

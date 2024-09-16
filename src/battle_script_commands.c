@@ -1195,6 +1195,13 @@ static void Cmd_attackcanceler(void)
     u16 attackerAbility = GetBattlerAbility(gBattlerAttacker);
     u32 moveType = GetMoveType(gCurrentMove);
 
+    if (gBattleStruct->usedEjectItem & (1u << gBattlerAttacker))
+    {
+        gBattleStruct->usedEjectItem = 0;
+        gCurrentActionFuncId = B_ACTION_TRY_FINISH;
+        return;
+    }
+
     // Weight-based moves are blocked by Dynamax.
     if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX) && IsMoveBlockedByDynamax(gCurrentMove))
     {
@@ -6193,6 +6200,7 @@ static void Cmd_moveend(void)
                                 gBattlescriptCurrInstr = BattleScript_MoveEnd;  // Prevent user switch-in selection
                             effect = TRUE;
                             BattleScriptPushCursor();
+                            gBattleStruct->usedEjectItem |= 1u << battler;
                             if (ejectButtonBattlers & (1u << battler))
                             {
                                 gBattlescriptCurrInstr = BattleScript_EjectButtonActivates;
@@ -6426,8 +6434,6 @@ static void Cmd_moveend(void)
               && (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)         // And it is unusable
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
-
-
 
             if (gBattleStruct->savedAttackerCount > 0)
             {
@@ -12494,7 +12500,7 @@ static void Cmd_transformdataexecution(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_TRANSFORMED
         || gBattleStruct->illusion[gBattlerTarget].on
-        || gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE2)
+        || gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE_NO_COMMANDER)
     {
         gMoveResultFlags |= MOVE_RESULT_FAILED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TRANSFORM_FAILED;

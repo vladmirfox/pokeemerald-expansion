@@ -4380,7 +4380,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 && !(gBattleMons[BATTLE_OPPOSITE(battler)].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
                 && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
                 && !(gBattleStruct->illusion[BATTLE_OPPOSITE(battler)].on)
-                && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE2))
+                && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE_NO_COMMANDER))
             {
                 gBattlerAttacker = battler;
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
@@ -4961,6 +4961,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && gBattleMons[partner].species == SPECIES_DONDOZO
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
+                SaveBattlerAttacker(gBattlerAttacker);
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = partner;
                 gBattleStruct->commandingDondozo |= 1u << battler;
