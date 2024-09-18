@@ -1818,12 +1818,13 @@ void CalculateMonStats(struct Pokemon *mon)
     if (currentHP == 0 && oldMaxHP != 0)
         return;
 
+    // Only add to currentHP if newMaxHP went up.
     if (newMaxHP > oldMaxHP)
         currentHP += newMaxHP - oldMaxHP;
-    else if (currentHP > newMaxHP)
+
+    // Ensure currentHP does not surpass newMaxHP.
+    if (currentHP > newMaxHP)
         currentHP = newMaxHP;
-    else
-        return;
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
 }
