@@ -652,12 +652,9 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        if (i == battlerAi || gBattleMons[i].hp == 0)
-        {
-            actionOrMoveIndex[i] = 0xFF;
-            bestMovePointsForTarget[i] = -1;
-        }
-        else if (newTarget && gBattleStruct->aiChosenTarget[partnerBattlerAi] == i)
+        if (i == battlerAi
+         || gBattleMons[i].hp == 0
+         || (newTarget && gBattleStruct->aiChosenTarget[partnerBattlerAi] == i))
         {
             actionOrMoveIndex[i] = 0xFF;
             bestMovePointsForTarget[i] = -1;
