@@ -130,10 +130,10 @@ static void ReturnToPokeblockCaseOnField(void);
 static void CreateTossPokeblockYesNoMenu(u8);
 static void TossPokeblock(u8);
 
-static const u8 gText_StowCase[] = _("Stow CASE.");
-static const u8 gText_LvVar1[] = _("{LV}{STR_VAR_1}");
-static const u8 gText_ThrowAwayVar1[] = _("Throw away this\n{STR_VAR_1}?");
-static const u8 gText_Var1ThrownAway[] = _("The {STR_VAR_1}\nwas thrown away.");
+static const u8 sText_StowCase[] = _("Stow CASE.");
+static const u8 sText_LvVar1[] = _("{LV}{STR_VAR_1}");
+static const u8 sText_ThrowAwayVar1[] = _("Throw away this\n{STR_VAR_1}?");
+static const u8 sText_Var1ThrownAway[] = _("The {STR_VAR_1}\nwas thrown away.");
 
 EWRAM_DATA static struct PokeblockSavedData sSavedPokeblockData = {0};
 EWRAM_DATA static struct PokeblockMenuStruct *sPokeblockMenu = NULL;
@@ -728,7 +728,7 @@ static void UpdatePokeblockList(void)
         sPokeblockMenu->items[i].id = i;
     }
 
-    StringCopy(sPokeblockMenu->menuItemsStrings[i], gText_StowCase);
+    StringCopy(sPokeblockMenu->menuItemsStrings[i], sText_StowCase);
     sPokeblockMenu->items[i].name = sPokeblockMenu->menuItemsStrings[i];
     sPokeblockMenu->items[i].id = LIST_CANCEL;
 
@@ -749,7 +749,7 @@ static void PutPokeblockListMenuString(u8 *dst, u16 pkblId)
     *(txtPtr++) = CHAR_BLOCK_1;
 
     ConvertIntToDecimalStringN(gStringVar1, GetHighestPokeblocksFlavorLevel(pkblock), STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(txtPtr, gText_LvVar1);
+    StringExpandPlaceholders(txtPtr, sText_LvVar1);
 }
 
 static void MovePokeblockMenuCursor(s32 pkblId, bool8 onInit, struct ListMenu *list)
@@ -1208,7 +1208,7 @@ static void PokeblockAction_Toss(u8 taskId)
 
     ClearStdWindowAndFrameToTransparent(tWindowId, FALSE);
     StringCopy(gStringVar1, gPokeblockNames[gSaveBlock1Ptr->pokeblocks[gSpecialVar_ItemId].color]);
-    StringExpandPlaceholders(gStringVar4, gText_ThrowAwayVar1);
+    StringExpandPlaceholders(gStringVar4, sText_ThrowAwayVar1);
     DisplayMessageAndContinueTask(taskId, WIN_TOSS_MSG, 10, 13, FONT_NORMAL, GetPlayerTextSpeedDelay(), gStringVar4, CreateTossPokeblockYesNoMenu);
 }
 
@@ -1219,7 +1219,7 @@ static void CreateTossPokeblockYesNoMenu(u8 taskId)
 
 static void TossedPokeblockMessage(u8 taskId)
 {
-    StringExpandPlaceholders(gStringVar4, gText_Var1ThrownAway);
+    StringExpandPlaceholders(gStringVar4, sText_Var1ThrownAway);
     DisplayMessageAndContinueTask(taskId, WIN_TOSS_MSG, 10, 13, FONT_NORMAL, GetPlayerTextSpeedDelay(), gStringVar4, TossPokeblock);
 }
 
