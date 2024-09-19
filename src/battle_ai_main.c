@@ -640,16 +640,16 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
 {
-    s32 i, j;
-    u32 flags;
-    s32 bestMovePointsForTarget[MAX_BATTLERS_COUNT];
-    u8 mostViableTargetsArray[MAX_BATTLERS_COUNT];
-    u8 actionOrMoveIndex[MAX_BATTLERS_COUNT];
-    s32 mostViableMovesScores[MAX_MON_MOVES];
-    u8 mostViableMovesIndices[MAX_MON_MOVES];
-    u32 mostViableTargetsNo;
-    u32 mostViableMovesNo;
-    s32 mostMovePoints;
+    s32 i = 0, j = 0;
+    u32 flags = 0;
+    s32 bestMovePointsForTarget[MAX_BATTLERS_COUNT] = {0};
+    u8 mostViableTargetsArray[MAX_BATTLERS_COUNT] = {0};
+    u8 actionOrMoveIndex[MAX_BATTLERS_COUNT] = {0};
+    s32 mostViableMovesScores[MAX_MON_MOVES] = {0};
+    u8 mostViableMovesIndices[MAX_MON_MOVES] = {0};
+    u32 mostViableTargetsNo = 0;
+    u32 mostViableMovesNo = 0;
+    s32 mostMovePoints = 0;
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
@@ -660,13 +660,10 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
         }
         else
         {
-            if (!newTarget) // Skip if scores already calculated
-            {
-                if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
-                    BattleAI_SetupAIData(gBattleStruct->palaceFlags >> 4, battlerAi);
-                else
-                    BattleAI_SetupAIData(0xF, battlerAi);
-            }
+            if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+                BattleAI_SetupAIData(gBattleStruct->palaceFlags >> 4, battlerAi);
+            else
+                BattleAI_SetupAIData(0xF, battlerAi);
 
             gBattlerTarget = i;
 
@@ -675,17 +672,14 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
             AI_THINKING_STRUCT->movesetIndex = 0;
             flags = AI_THINKING_STRUCT->aiFlags[sBattler_AI];
 
-            if (!newTarget) // Skip if scores already calculated
+            while (flags != 0)
             {
-                while (flags != 0)
+                if (flags & 1)
                 {
-                    if (flags & 1)
-                    {
-                        BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
-                    }
-                    flags >>= 1;
-                    AI_THINKING_STRUCT->aiLogicId++;
+                    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
                 }
+                flags >>= 1;
+                AI_THINKING_STRUCT->aiLogicId++;
             }
 
             if (AI_THINKING_STRUCT->aiAction & AI_ACTION_FLEE)
@@ -781,7 +775,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
 
         if (battlerAiFaintsTarget)
             return ChooseMoveOrAction_Doubles(partnerBattlerAi, TRUE);
-        else if (partnerBattlerAiFaintsTarget)
+        if (partnerBattlerAiFaintsTarget)
             return ChooseMoveOrAction_Doubles(battlerAi, TRUE);
     }
 
