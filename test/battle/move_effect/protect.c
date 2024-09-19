@@ -548,7 +548,7 @@ DOUBLE_BATTLE_TEST("Crafty Shield does not protect against moves that target all
     }
 }
 
-SINGLE_BATTLE_TEST("Spikey Shield does not damage users on Counter or Mirror Coat")
+SINGLE_BATTLE_TEST("Spiky Shield does not damage users on Counter or Mirror Coat")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_MIRROR_COAT; }
