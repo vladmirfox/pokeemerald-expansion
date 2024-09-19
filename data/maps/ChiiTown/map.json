@@ -17,6 +17,11 @@
       "map": "MAP_TRANQUIL_ROUTE",
       "offset": -28,
       "direction": "up"
+    },
+    {
+      "map": "MAP_GINKO_WOODS",
+      "offset": -24,
+      "direction": "down"
     }
   ],
   "object_events": [

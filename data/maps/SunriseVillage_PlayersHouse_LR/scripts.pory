@@ -138,9 +138,6 @@ script SunriseVillage_PlayersHouse_LR_EventScript_Eevee {
     } else {
         speakername("Fluffy fox")
     }
-	msgbox(format(
-		"Glaglaglaglagla!"
-	))
 	msgbox(format("Eee!"))
 	waitmoncry
 	release

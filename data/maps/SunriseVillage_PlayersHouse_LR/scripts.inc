@@ -189,11 +189,9 @@ SunriseVillage_PlayersHouse_LR_EventScript_Eevee::
 SunriseVillage_PlayersHouse_LR_EventScript_Eevee_1:
 # 141 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_2
-# 144 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	msgbox SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_3
-# 145 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 142 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	waitmoncry
-# 146 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 143 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	return
 
@@ -204,13 +202,13 @@ SunriseVillage_PlayersHouse_LR_EventScript_Eevee_2:
 
 
 SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote::
-# 150 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 147 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	lock
-# 151 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 148 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	msgbox SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote_Text_0
-# 156 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 153 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	closemessage
-# 157 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 154 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	release
 	end
 
@@ -295,15 +293,11 @@ SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_1:
 	.string "Fluffy fox$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_2:
-# 142 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
-	.string "Glaglaglaglagla!$"
-
-SunriseVillage_PlayersHouse_LR_EventScript_Eevee_Text_3:
-# 144 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 141 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Eee!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote_Text_0:
-# 152 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
+# 149 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "“Hey {PLAYER},\n"
 	.string "I'm going down to the beach before\l"
 	.string "the giveaway, meet me there if you\l"

@@ -17,6 +17,11 @@
       "map": "MAP_SUNRISE_VILLAGE_BEACH",
       "offset": 2,
       "direction": "left"
+    },
+    {
+      "map": "MAP_GINKO_WOODS",
+      "offset": 4,
+      "direction": "up"
     }
   ],
   "object_events": [

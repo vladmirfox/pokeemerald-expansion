@@ -753,6 +753,9 @@ u8 BattleSetup_GetTerrainId(void)
     PlayerGetDestCoords(&x, &y);
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
 
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(GINKO_WOODS) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(GINKO_WOODS))
+        return BATTLE_TERRAIN_GINKO_WOODS;
+
     if (MetatileBehavior_IsTallGrass(tileBehavior))
         return BATTLE_TERRAIN_GRASS;
     if (MetatileBehavior_IsLongGrass(tileBehavior))

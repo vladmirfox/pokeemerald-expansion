@@ -1079,6 +1079,7 @@ static const struct PickupItem sPickupTable[] =
 static const u8 sTerrainToType[BATTLE_TERRAIN_COUNT] =
 {
     [BATTLE_TERRAIN_GRASS]            = TYPE_GRASS,
+    [BATTLE_TERRAIN_GINKO_WOODS]      = TYPE_ELECTRIC,
     [BATTLE_TERRAIN_LONG_GRASS]       = TYPE_GRASS,
     [BATTLE_TERRAIN_SAND]             = TYPE_GROUND,
     [BATTLE_TERRAIN_UNDERWATER]       = TYPE_WATER,
