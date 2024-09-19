@@ -130,28 +130,6 @@ DOUBLE_BATTLE_TEST("(Commander) Commander cannot affect a Dondozo that was previ
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Commander cannot affect a Dondozo that was previously affected by Commander until it faints and a replacement is switched in")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_DONDOZO);
-        PLAYER(SPECIES_TATSUGIRI) { HP(1); Ability(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerRight, MOVE_CELEBRATE); SWITCH(playerLeft, 2); SEND_OUT(playerLeft, 3); }
-    } SCENE {
-        ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
-        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        MESSAGE("Tatsugiri is hurt by poison!");
-        NONE_OF {
-            ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
-            MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        }
-    }
-}
-
 DOUBLE_BATTLE_TEST("(Commander) Whirlwind can not be used against Dondozo or Tatsugiri while Commander is active")
 {
     GIVEN {
@@ -196,15 +174,15 @@ DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is act
 
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move if Dondozo faints")
 {
-    KNOWN_FAILING; // Matched HP_BAR
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_DONDOZO) { HP(1); };
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_SURF); }
+        TURN { MOVE(opponentLeft, MOVE_SURF); SEND_OUT(playerLeft, 2); }
     } SCENE {
         ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");

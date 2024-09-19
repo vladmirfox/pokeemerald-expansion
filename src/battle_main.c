@@ -3345,11 +3345,8 @@ const u8* FaintClearSetData(u32 battler)
     if (gBattleStruct->commanderActive[battler] != SPECIES_NONE)
     {
         u32 partner = BATTLE_PARTNER(battler);
-        gBattleStruct->commanderActive[battler] = SPECIES_NONE;
         if (IsBattlerAlive(partner))
         {
-            gBattleStruct->commandingDondozo &= ~(1u << partner);
-            gStatuses3[partner] &= ~STATUS3_COMMANDER;
             BtlController_EmitSpriteInvisibility(partner, BUFFER_A, FALSE);
             MarkBattlerForControllerExec(partner);
         }

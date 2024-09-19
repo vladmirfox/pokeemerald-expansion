@@ -6486,6 +6486,21 @@ static void Cmd_moveend(void)
             if (B_CHARGE <= GEN_8 || moveType == TYPE_ELECTRIC)
                 gStatuses3[gBattlerAttacker] &= ~(STATUS3_CHARGED_UP);
             memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));
+
+            for (i = 0; i < gBattlersCount; i++)
+            {
+                if (gBattleStruct->commanderActive[i] != SPECIES_NONE && !IsBattlerAlive(i))
+                {
+                    u32 partner = BATTLE_PARTNER(i);
+                    gBattleStruct->commanderActive[i] = SPECIES_NONE;
+                    if (IsBattlerAlive(partner))
+                    {
+                        gBattleStruct->commandingDondozo &= ~(1u << partner);
+                        gStatuses3[partner] &= ~STATUS3_COMMANDER;
+                    }
+                }
+            }
+
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
