@@ -650,10 +650,16 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
     u32 mostViableTargetsNo = 0;
     u32 mostViableMovesNo = 0;
     s32 mostMovePoints = 0;
+    u32 partnerBattlerAi = BATTLE_PARTNER(battlerAi);
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         if (i == battlerAi || gBattleMons[i].hp == 0)
+        {
+            actionOrMoveIndex[i] = 0xFF;
+            bestMovePointsForTarget[i] = -1;
+        }
+        else if (newTarget && gBattleStruct->aiChosenTarget[partnerBattlerAi] == i)
         {
             actionOrMoveIndex[i] = 0xFF;
             bestMovePointsForTarget[i] = -1;
@@ -741,12 +747,8 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi, u32 newTarget)
     mostViableTargetsArray[0] = 0;
     mostViableTargetsNo = 1;
 
-    u32 partnerBattlerAi = BATTLE_PARTNER(battlerAi);
     for (i = 1; i < MAX_BATTLERS_COUNT; i++)
     {
-        if (newTarget && gBattleStruct->aiChosenTarget[partnerBattlerAi] == i)
-            continue;
-
         if (mostMovePoints == bestMovePointsForTarget[i])
         {
             mostViableTargetsArray[mostViableTargetsNo] = i;
