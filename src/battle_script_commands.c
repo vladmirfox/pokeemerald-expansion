@@ -12378,14 +12378,19 @@ static void Cmd_updatestatusicon(void)
     if (gBattleControllerExecFlags)
         return;
 
-    if (cmd->battler != BS_ATTACKER_WITH_PARTNER)
+    if (cmd->battler == BS_PLAYER2)
     {
-        battler = GetBattlerForBattleScript(cmd->battler);
-        BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
-        MarkBattlerForControllerExec(battler);
+        for (battler = gBattleControllerExecFlags; battler < gBattlersCount; battler++)
+        {
+            if (!(gAbsentBattlerFlags & (1u << battler)))
+            {
+                BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
+                MarkBattlerForControllerExec(battler);
+            }
+        }
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else
+    else if (cmd->battler == BS_ATTACKER_WITH_PARTNER)
     {
         battler = gBattlerAttacker;
         if (!(gAbsentBattlerFlags & (1u << battler)))
@@ -12402,6 +12407,13 @@ static void Cmd_updatestatusicon(void)
                 MarkBattlerForControllerExec(battler);
             }
         }
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        battler = GetBattlerForBattleScript(cmd->battler);
+        BtlController_EmitStatusIconUpdate(battler, BUFFER_A, gBattleMons[battler].status1, gBattleMons[battler].status2);
+        MarkBattlerForControllerExec(battler);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -17235,4 +17247,77 @@ void BS_TryRevivalBlessing(void)
         BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
         MarkBattlerForControllerExec(gBattlerAttacker);
     }
+}
+
+void BS_CheckPokeFlute(void)
+{
+    NATIVE_ARGS();
+    u8 battler;
+    s32 i;
+    u32 monToCheck, status;
+    u16 species;
+    u8 abilityNum;
+    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+    monToCheck = 0;
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (gBattleMons[i].ability != ABILITY_SOUNDPROOF)
+        {
+            gBattleMons[i].status1 &= ~STATUS1_SLEEP;
+            gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;
+
+        }
+    }
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM);
+        status = GetMonData(&gPlayerParty[i], MON_DATA_STATUS);
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            monToCheck |= (1 << i);
+    }
+    if (monToCheck)
+    {
+        battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+        status = 0;
+        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
+        MarkBattlerForControllerExec(battler);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+    }
+    monToCheck = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&gEnemyParty[i], MON_DATA_ABILITY_NUM);
+        status = GetMonData(&gEnemyParty[i], MON_DATA_STATUS);
+
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            monToCheck |= (1 << i);
+    }
+    if (monToCheck)
+    {
+        battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        status = 0;
+        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
+        MarkBattlerForControllerExec(battler);
+        gBattleCommunication[5] = 1;
+    }
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_WaitFanfare(void)
+{
+    NATIVE_ARGS();
+
+    if (!IsFanfareTaskInactive())
+        return;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }
