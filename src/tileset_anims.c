@@ -1263,6 +1263,15 @@ const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame5[] = INCBIN
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/06.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_dark_light/07.4bpp");
 
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/00.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/01.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/02.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/03.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/04.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame5[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/05.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/06.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/beach/07.4bpp");
+
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Sea[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame0,
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame1,
@@ -1273,7 +1282,6 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Sea[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame6,
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame7,
 };
-
 
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame0,
@@ -1286,7 +1294,6 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_SeaDark_Frame7,
 };
 
-
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame0,
     gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame1,
@@ -1298,25 +1305,39 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner_Frame7,
 };
 
+const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Beach[] = {
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame0,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame1,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame2,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame3,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame4,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame5,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame6,
+    gTilesetAnims_PorytilesPrimaryTutorial_Beach_Frame7,
+};
 
 static void QueueAnimTiles_ExteriorGeneric_Sea(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Sea);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Sea[i], 1, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Sea[i], 5, 4 * TILE_SIZE_4BPP);
 }
-
 
 static void QueueAnimTiles_ExteriorGeneric_SeaDark(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[i], 5, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[i], 9, 4 * TILE_SIZE_4BPP);
 }
-
 
 static void QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[i], 9, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[i], 13, 4 * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_ExteriorGeneric_Beach(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Beach);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Beach[i], 1, 4 * TILE_SIZE_4BPP);
 }
 
 static void TilesetAnim_ExteriorGeneric(u16 timer)
@@ -1326,6 +1347,7 @@ static void TilesetAnim_ExteriorGeneric(u16 timer)
         QueueAnimTiles_ExteriorGeneric_Sea(timer / 16);
         QueueAnimTiles_ExteriorGeneric_SeaDark(timer / 16);
         QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(timer / 16);
+        QueueAnimTiles_ExteriorGeneric_Beach(timer / 16);
     }
 }
 
