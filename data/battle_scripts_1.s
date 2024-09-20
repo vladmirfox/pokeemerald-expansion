@@ -6460,6 +6460,8 @@ BattleScript_SeedSowerActivates::
 	return
 
 BattleScript_AngerShellActivates::
+    saveattacker
+    copybyte gBattlerAttacker, gBattlerTarget
 	call BattleScript_AbilityPopUp
 	jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
 	jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_AngerShellTryDef
@@ -6479,6 +6481,7 @@ BattleScript_AngerShellTrySpAtk:
 BattleScript_AngerShellTrySpeed:
 	modifybattlerstatstage BS_ATTACKER, STAT_SPEED, INCREASE, 1, BattleScript_AngerShellRet, ANIM_ON
 BattleScript_AngerShellRet:
+    restoreattacker
 	return
 
 BattleScript_WindPowerActivates::
