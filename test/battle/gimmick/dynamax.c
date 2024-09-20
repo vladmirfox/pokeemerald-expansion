@@ -893,13 +893,13 @@ SINGLE_BATTLE_TEST("(DYNAMAX) G-Max Steelsurge sets up sharp steel")
     } SCENE {
         // turn 1
         MESSAGE("Copperajah used G-Max Steelsurge!");
-        MESSAGE("Sharp-pointed pieces of steel started\nfloating around the opposing Pokémon!");
+        MESSAGE("Sharp-pointed pieces of steel started floating around the opposing Pokémon!");
         // turn 2
         MESSAGE("2 sent out Hatterene!");
-        MESSAGE("Sharp steel bit into the opposing Hatterene!");
+        MESSAGE("The sharp steel bit into the opposing Hatterene!");
         // turn 4
         MESSAGE("The opposing Hatterene used Defog!");
-        MESSAGE("The sharp steel disappeared from the ground around the opposing team!");
+        MESSAGE("The pieces of steel surrounding the opposing Pokémon disappeared!");
     } THEN {
         EXPECT_MUL_EQ(opponent->maxHP, Q_4_12(0.75), opponent->hp);
     }
@@ -1505,7 +1505,7 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Max Moves don't bypass absorbing abilities")
     PARAMETRIZE { move = MOVE_WATER_GUN; ability = ABILITY_DRY_SKIN; species = SPECIES_PARASECT; }
     PARAMETRIZE { move = MOVE_MUD_BOMB; ability = ABILITY_EARTH_EATER; species = SPECIES_ORTHWORM; }
     PARAMETRIZE { move = MOVE_VINE_WHIP; ability = ABILITY_SAP_SIPPER; species = SPECIES_MILTANK; }
-    
+
     GIVEN {
         ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
         ASSUME(gMovesInfo[MOVE_SPARK].type == TYPE_ELECTRIC);

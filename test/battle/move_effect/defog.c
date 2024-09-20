@@ -397,7 +397,7 @@ SINGLE_BATTLE_TEST("Defog is used on the correct side if opposing mon is behind 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, opponent);
         MESSAGE("Wobbuffet used Defog!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, player);
-        MESSAGE("Foe Wobbuffet's evasiveness fell!");
-        MESSAGE("Foe's Light Screen wore off!");
+        MESSAGE("The opposing Wobbuffet's evasiveness fell!");
+        MESSAGE("The opposing team's Light Screen wore off!");
     }
 }

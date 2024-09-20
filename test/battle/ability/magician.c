@@ -18,12 +18,12 @@ SINGLE_BATTLE_TEST("Magician does not get self-damage recoil after stealing Life
         MESSAGE("Delphox stole the opposing Wobbuffet's Life Orb!");
         NONE_OF {
             HP_BAR(player);
-            MESSAGE("Delphox was hurt by its Life Orb!");
+            MESSAGE("Delphox was hurt by the Life Orb!");
         }
         // 2nd turn - Life Orb recoil happens now
         MESSAGE("Delphox used Tackle!");
         HP_BAR(player);
-        MESSAGE("Delphox was hurt by its Life Orb!");
+        MESSAGE("Delphox was hurt by the Life Orb!");
     }
 }
 
