@@ -1270,6 +1270,16 @@ const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame5[] = INCBIN_U16("
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame6[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/06.4bpp");
 const u16 gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame7[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/sea_rock/07.4bpp");
 
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/00.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/01.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/02.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame3[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/03.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame4[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_white/04.4bpp");
+
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame0[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_yellow/00.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame1[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_yellow/01.4bpp");
+const u16 gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame2[] = INCBIN_U16("data/tilesets/primary/porytiles_primary_tutorial/anim/flower_dandelion_yellow/02.4bpp");
+
 const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_Sea[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame0,
     gTilesetAnims_PorytilesPrimaryTutorial_Sea_Frame1,
@@ -1325,34 +1335,76 @@ const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_SeaRock[] = {
     gTilesetAnims_PorytilesPrimaryTutorial_SeaRock_Frame7,
 };
 
+const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite[] = {
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame1,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame0,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite_Frame3,
+};
+
+const u16 *const gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow[] = {
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame0,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame1,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame0,
+    gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow_Frame2,
+};
+
+#define NB_TILES_BEACH 4
+#define NB_TILES_FLOWER_DANDELION_WHITE 4
+#define NB_TILES_FLOWER_DANDELION_YELLOW 4
+#define NB_TILES_SEA 4
+#define NB_TILES_SEA_DARK 4
+#define NB_TILES_SEA_DARK_CORNER 4
+#define NB_TILES_SEA_ROCK 4
+
+#define STARTING_TILE_BEACH 1
+#define STARTING_TILE_FLOWER_DANDELION_WHITE (STARTING_TILE_BEACH + NB_TILES_BEACH)
+#define STARTING_TILE_FLOWER_DANDELION_YELLOW (STARTING_TILE_FLOWER_DANDELION_WHITE + NB_TILES_FLOWER_DANDELION_WHITE)
+#define STARTING_TILE_SEA (STARTING_TILE_FLOWER_DANDELION_YELLOW + NB_TILES_FLOWER_DANDELION_YELLOW)
+#define STARTING_TILE_SEA_DARK (STARTING_TILE_SEA + NB_TILES_SEA)
+#define STARTING_TILE_SEA_DARK_CORNER (STARTING_TILE_SEA_DARK + NB_TILES_SEA_DARK)
+#define STARTING_TILE_SEA_ROCK (STARTING_TILE_SEA_DARK_CORNER + NB_TILES_SEA_DARK_CORNER)
+
 static void QueueAnimTiles_ExteriorGeneric_Beach(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Beach);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Beach[i], 1, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Beach[i], STARTING_TILE_BEACH, NB_TILES_BEACH * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_ExteriorGeneric_FlowerDandelionWhite(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionWhite[i], STARTING_TILE_FLOWER_DANDELION_WHITE, NB_TILES_FLOWER_DANDELION_WHITE * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_ExteriorGeneric_FlowerDandelionYellow(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_FlowerDandelionYellow[i], STARTING_TILE_FLOWER_DANDELION_YELLOW, NB_TILES_FLOWER_DANDELION_YELLOW * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_ExteriorGeneric_Sea(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_Sea);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Sea[i], 5, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_Sea[i], STARTING_TILE_SEA, NB_TILES_SEA * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_ExteriorGeneric_SeaDark(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[i], 9, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDark[i], STARTING_TILE_SEA_DARK, NB_TILES_SEA_DARK * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[i], 13, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaDarkCorner[i], STARTING_TILE_SEA_DARK_CORNER, NB_TILES_SEA_DARK_CORNER * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_ExteriorGeneric_SeaRock(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_PorytilesPrimaryTutorial_SeaRock);
-    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaRock[i], 17, 4 * TILE_SIZE_4BPP);
+    AppendTilesetAnimToBuffer(gTilesetAnims_PorytilesPrimaryTutorial_SeaRock[i], STARTING_TILE_SEA_ROCK, NB_TILES_SEA_ROCK * TILE_SIZE_4BPP);
 }
 
 static void TilesetAnim_ExteriorGeneric(u16 timer)
@@ -1363,6 +1415,9 @@ static void TilesetAnim_ExteriorGeneric(u16 timer)
         QueueAnimTiles_ExteriorGeneric_SeaDarkCorner(timer / 16);
         QueueAnimTiles_ExteriorGeneric_Beach(timer / 16);
         QueueAnimTiles_ExteriorGeneric_SeaRock(timer / 16);
+
+        QueueAnimTiles_ExteriorGeneric_FlowerDandelionWhite(timer / 16);
+        QueueAnimTiles_ExteriorGeneric_FlowerDandelionYellow(timer / 16);
     }
 }
 
