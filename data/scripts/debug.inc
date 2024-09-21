@@ -454,7 +454,6 @@ Debug_EventScript_InflictStatus1_Text_Frostbite:
 
 Debug_EventScript_InflictStatus1_Text_Drowsy:
 	.string "Drowsy$"
-.endif
 
 Debug_EventScript_EWRAMCounters::
 	callnative CheckEWRAMCounters
