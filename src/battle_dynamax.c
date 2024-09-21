@@ -76,6 +76,10 @@ bool32 CanDynamax(u32 battler)
     u16 species = gBattleMons[battler].species;
     u16 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
+    // Prevents Zigzagoon from dynamaxing in vanilla.
+    if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE && GetBattlerSide(battler) == B_SIDE_OPPONENT)
+        return FALSE;
+
     // Check if Player has a Dynamax Band.
     if (!TESTING && (GetBattlerPosition(battler) == B_POSITION_PLAYER_LEFT
         || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)))
@@ -402,7 +406,6 @@ static u8 GetMaxPowerTier(u32 move)
         case EFFECT_NATURAL_GIFT:
         case EFFECT_MIRROR_COAT:
         case EFFECT_FINAL_GAMBIT:
-        //case EFFECT_DRAGON_DARTS:
             return MAX_POWER_TIER_2;
         case EFFECT_OHKO:
         case EFFECT_RETURN:
@@ -759,7 +762,7 @@ void BS_SetMaxMoveEffect(void)
         {
             static const u8 sSnoozeEffects[] = {TRUE, FALSE};
             if (!(gStatuses3[gBattlerTarget] & STATUS3_YAWN)
-                && CanSleep(gBattlerTarget)
+                && CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget))
                 && RandomElement(RNG_G_MAX_SNOOZE, sSnoozeEffects)) // 50% chance of success
             {
                 gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(2);
@@ -865,7 +868,7 @@ void BS_TrySetStatus1(void)
     switch (status1)
     {
         case STATUS1_POISON:
-            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget))
+            if (CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_POISON;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
@@ -873,7 +876,7 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_PARALYSIS:
-            if (CanBeParalyzed(gBattlerTarget))
+            if (CanBeParalyzed(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
             {
                 gBattleMons[gBattlerTarget].status1 |= STATUS1_PARALYSIS;
                 gBattleCommunication[MULTISTRING_CHOOSER] = 3;
@@ -889,7 +892,7 @@ void BS_TrySetStatus1(void)
             }
             break;
         case STATUS1_SLEEP:
-            if (CanSleep(gBattlerTarget))
+            if (CanBeSlept(gBattlerTarget, GetBattlerAbility(gBattlerTarget)))
             {
                 if (B_SLEEP_TURNS >= GEN_5)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
@@ -977,24 +980,6 @@ void BS_TrySetStatus2(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-}
-
-// Applies the endturn damage effect associated with the "Damage Non-" G-Max moves.
-void BS_DamageNonTypes(void)
-{
-    NATIVE_ARGS();
-    u8 side = GetBattlerSide(gBattlerAttacker);
-    gBattleMoveDamage = 0;
-    if (gSideTimers[side].damageNonTypesTimer
-        && !IS_BATTLER_OF_TYPE(gBattlerAttacker, gSideTimers[side].damageNonTypesType)
-        && IsBattlerAlive(gBattlerAttacker)
-        && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
-    {
-        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 6;
-        if (gBattleMoveDamage == 0)
-            gBattleMoveDamage = 1;
-    }
-    gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 // Heals one-sixth of the target's HP, including for Dynamaxed targets.
