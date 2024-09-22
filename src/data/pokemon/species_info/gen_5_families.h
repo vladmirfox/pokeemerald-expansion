@@ -11916,7 +11916,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif //P_FAMILY_MELOETTA
 
 #if P_FAMILY_GENESECT
-#define GENESECT_SPECIES_INFO(form)                                     \
+#define GENESECT_SPECIES_INFO(form, rzMode)                             \
     {                                                                   \
         .baseHP        = 71,                                            \
         .baseAttack    = 120,                                           \
@@ -11967,6 +11967,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .formSpeciesIdTable = sGenesectFormSpeciesIdTable,              \
         .formChangeTable = sGenesectFormChangeTable,                    \
         .isMythical = TRUE,                                             \
+        .randomizerMode = rzMode,                                       \
     }
 
     [SPECIES_GENESECT]             = GENESECT_SPECIES_INFO(Genesect,           MON_RANDOMIZER_NORMAL ),

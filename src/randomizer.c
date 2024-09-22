@@ -662,21 +662,20 @@ void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode m
     {
         u16 curOriginal = originalSpecies[i];
         bool32 foundNextMon = FALSE;
+        if (!IsSpeciesPermitted(curOriginal))
+        {
+            // If there's non-permitted Pokémon in here, something is wrong.
+            // Just pass them through without marking.
+            curMon = curOriginal;
+            continue;
+        }
 
+        // Find the next mon.
         while (!foundNextMon)
         {
             u16 wordIndex, adjustedCurMon;
             u32 bitVectorWord;
             u8 bitIndex;
-
-            if (!IsSpeciesPermitted(curOriginal))
-            {
-                // If there's non-permitted Pokémon in here, something is wrong.
-                // Just pass them through without marking.
-                foundNextMon = TRUE;
-                curMon = curOriginal;
-                continue;
-            }
 
             // Generate a Pokémon. If it has already been generated, keep generating new ones
             // until one that hasn't been seen is picked.
@@ -817,7 +816,7 @@ bool32 IsRandomizationPossible(u16 originalSpecies, u16 targetSpecies)
     if (!IsSpeciesPermitted(targetSpecies) || !IsSpeciesPermitted(originalSpecies))
     {
         // For a species that is not permitted, randomization is disabled.
-        // Therefore, if the two species are equal,
+        // Therefore, if the species are the same, they will "randomize".
         return originalSpecies == targetSpecies;
     }
 
@@ -860,6 +859,7 @@ u16 RandomizeFixedEncounterMon(u16 species, u8 mapNum, u8 mapGroup, u8 localId)
 {
     if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
     {
+        // The seed is based on the location of the object event.
         u32 seed;
         seed = (u32)mapNum << 16;
         seed |= (u32)mapGroup << 8;
