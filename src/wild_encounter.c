@@ -45,6 +45,7 @@ extern const u8 EventScript_SprayWoreOff[];
 
 static u16 FeebasRandom(void);
 static void FeebasSeedRng(u16 seed);
+static void UpdateChainFishingStreak();
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
@@ -60,6 +61,7 @@ EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
+EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
 
 #include "data/wild_encounters.h"
 
@@ -521,19 +523,20 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
 static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 rod)
 {
     u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+    u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
-    u16 species = wildMonInfo->wildPokemon[wildMonIndex].species;
 
+    UpdateChainFishingStreak();
     #if RANDOMIZER_AVAILABLE == TRUE
-        species = RandomizeWildEncounter(
-            species,
+        wildMonSpecies = RandomizeWildEncounter(
+            wildMonSpecies,
             gSaveBlock1Ptr->location.mapNum,
             gSaveBlock1Ptr->location.mapGroup,
             WILD_AREA_FISHING, wildMonIndex);
     #endif
 
-    CreateWildMon(species, level);
-    return species;
+    CreateWildMon(wildMonSpecies, level);
+    return wildMonSpecies;
 }
 
 static bool8 SetUpMassOutbreakEncounter(u8 flags)
@@ -683,9 +686,9 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
             else if (WildEncounterCheck(gWildMonHeaders[headerId].landMonsInfo->encounterRate, FALSE) != TRUE)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
-                roamer = &gSaveBlock1Ptr->roamer;
+                roamer = &gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex];
                 if (!IsWildLevelAllowedByRepel(roamer->level))
                     return FALSE;
 
@@ -732,9 +735,9 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
             else if (WildEncounterCheck(gWildMonHeaders[headerId].waterMonsInfo->encounterRate, FALSE) != TRUE)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
-                roamer = &gSaveBlock1Ptr->roamer;
+                roamer = &gSaveBlock1Ptr->roamer[gEncounteredRoamerIndex];
                 if (!IsWildLevelAllowedByRepel(roamer->level))
                     return FALSE;
 
@@ -834,7 +837,7 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
                 BattleSetup_StartRoamerBattle();
                 return TRUE;
@@ -855,7 +858,7 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].waterMonsInfo == NULL)
                 return FALSE;
 
-            if (TryStartRoamerEncounter() == TRUE)
+            if (TryStartRoamerEncounter())
             {
                 BattleSetup_StartRoamerBattle();
                 return TRUE;
@@ -880,10 +883,27 @@ bool8 DoesCurrentMapHaveFishingMons(void)
         return FALSE;
 }
 
+u32 CalculateChainFishingShinyRolls(void)
+{
+    return (2 * min(gChainFishingDexNavStreak, FISHING_CHAIN_SHINY_STREAK_MAX));
+}
+
+static void UpdateChainFishingStreak()
+{
+    if (!I_FISHING_CHAIN)
+        return;
+
+    if (gChainFishingDexNavStreak >= FISHING_CHAIN_LENGTH_MAX)
+        return;
+
+    gChainFishingDexNavStreak++;
+}
+
 void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
+    gIsFishingEncounter = TRUE;
     if (CheckFeebas() == TRUE)
     {
         u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
@@ -895,9 +915,9 @@ void FishingWildEncounter(u8 rod)
     {
         species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     }
+
     IncrementGameStat(GAME_STAT_FISHING_ENCOUNTERS);
     SetPokemonAnglerSpecies(species);
-    gIsFishingEncounter = TRUE;
     BattleSetup_StartWildBattle();
 }
 

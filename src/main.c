@@ -94,14 +94,7 @@ void AgbMain()
 {
     *(vu16 *)BG_PLTT = RGB_WHITE; // Set the backdrop to white on startup
     InitGpuRegManager();
-    // Setup waitstates for all ROM mirrors
-    if (DECAP_ENABLED && DECAP_MIRRORING)
-        REG_WAITCNT = WAITCNT_PREFETCH_ENABLE
-            | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3
-            | WAITCNT_WS1_S_1 | WAITCNT_WS1_N_3
-            | WAITCNT_WS2_S_1 | WAITCNT_WS2_N_3;
-    else
-        REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
+    REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
     InitKeys();
     InitIntrHandlers();
     m4aSoundInit();
@@ -456,7 +449,18 @@ static void IntrDummy(void)
 static void WaitForVBlank(void)
 {
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
-    VBlankIntrWait();
+
+    if (gWirelessCommType != 0)
+    {
+        // Desynchronization may occur if wireless adapter is connected
+        // and we call VBlankIntrWait();
+        while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
+            ;
+    }
+    else
+    {
+        VBlankIntrWait();
+    }
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)
