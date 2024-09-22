@@ -43,15 +43,15 @@ struct CameraObject gFieldCamera;
 u16 gTotalCameraPixelOffsetY;
 u16 gTotalCameraPixelOffsetX;
 
-#define TILE_TRANSPERANT 0
+#define TILE_TRANSPARENT 0
 #define TILE_GARBAGE     12308
 
-const u16 tilesTransperant[] =
+const u16 tilesTransparent[] =
 {
-    TILE_TRANSPERANT,
-    TILE_TRANSPERANT,
-    TILE_TRANSPERANT,
-    TILE_TRANSPERANT
+    TILE_TRANSPARENT,
+    TILE_TRANSPARENT,
+    TILE_TRANSPARENT,
+    TILE_TRANSPARENT
 };
 
 const u16 tilesGarbage[] =
@@ -283,7 +283,7 @@ static void DrawMetatile(s32 metatileLayerType, const u16 *tiles, u16 offset)
         // Draw metatile's bottom layer to the bottom background layer.
         DrawMetatileLayer(gOverworldTilemapBuffer_Bg3,tiles,offset,0);
         // Draw transparent tiles to the top background layer.
-        DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tilesTransperant,offset,0);
+        DrawMetatileLayer(gOverworldTilemapBuffer_Bg2,tilesTransparent,offset,0);
         // Draw metatile's top layer to the middle background layer.
         DrawMetatileLayer(gOverworldTilemapBuffer_Bg1,tiles,offset,4);
     }
