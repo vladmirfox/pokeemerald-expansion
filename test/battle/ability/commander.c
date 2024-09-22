@@ -350,3 +350,29 @@ DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Right Slot)")
         HP_BAR(opponentRight);
     }
 }
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not attack if Dondozo faints the same turn it's switched in")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            SWITCH(playerLeft, 2);
+            MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft);
+            MOVE(opponentRight, MOVE_TACKLE, target: playerRight);
+            MOVE(playerRight, MOVE_CELEBRATE);
+            SEND_OUT(playerLeft, 0);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        HP_BAR(playerLeft);
+        MESSAGE("Dondozo fainted!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
+        HP_BAR(playerRight);
+        NOT MESSAGE("Tatsugiri used Celebrate!");
+    }
+}

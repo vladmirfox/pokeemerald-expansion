@@ -6494,10 +6494,7 @@ static void Cmd_moveend(void)
                     u32 partner = BATTLE_PARTNER(i);
                     gBattleStruct->commanderActive[i] = SPECIES_NONE;
                     if (IsBattlerAlive(partner))
-                    {
-                        gBattleStruct->commandingDondozo &= ~(1u << partner);
                         gStatuses3[partner] &= ~STATUS3_COMMANDER;
-                    }
                 }
             }
 
