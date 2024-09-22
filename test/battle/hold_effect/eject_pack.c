@@ -82,7 +82,7 @@ DOUBLE_BATTLE_TEST("Eject Pack will activate before Eject Button since player Wo
         ABILITY_POPUP(playerLeft, ABILITY_COMMANDER);
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         NONE_OF {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
             MESSAGE("Wobbuffet is switched out with the Eject Pack!");
         }
     }
