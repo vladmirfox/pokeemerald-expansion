@@ -5939,8 +5939,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
 // Queues stat boosts for a given battler for totem battles
 void ScriptSetTotemBoost(struct ScriptContext *ctx)
 {
-    u8 battler = VarGet(ScriptReadHalfword(ctx));
-    u8 stat;
+    u32 battler = VarGet(ScriptReadHalfword(ctx));
+    u32 stat;
     u32 i;
 
     for (i = 0; i < (NUM_BATTLE_STATS - 1); i++)
