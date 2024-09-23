@@ -9475,23 +9475,26 @@ void SetMoveUIDataForTurn(struct MoveUIData *moveUIData)
         atkAbility = GetBattlerAbility(battlerAtk);
         holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
         battlerDef = BATTLE_OPPOSITE(battlerAtk);
+        
 
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             u32 move = gBattleMons[battlerAtk].moves[i];
             u32 moveType = gMovesInfo[move].type;
+            u32 moveEffect = gMovesInfo[move].effect;
 
-            if (move == MOVE_NONE 
+            if (move == MOVE_NONE
             ||  move == 0xFFFF
-            ||  move == MOVE_KNOCK_OFF
-            ||  move == MOVE_BRINE
-            ||  move == MOVE_EARTHQUAKE
-            ||  move == MOVE_MAGNITUDE)
+            ||  moveEffect == EFFECT_KNOCK_OFF
+            ||  moveEffect == EFFECT_BRINE)
                 continue;
 
 
             movePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, FALSE, atkAbility, ABILITY_NONE, holdEffectAtk, gBattleWeather);
             moveAccuracy = GetTotalAccuracy(battlerAtk, battlerDef, move, atkAbility, ABILITY_NONE, holdEffectAtk, HOLD_EFFECT_NONE);
+
+            if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && moveEffect == EFFECT_EARTHQUAKE)
+                movePower /= 2;
 
             if (moveAccuracy > 100)
                 moveAccuracy = 100;
