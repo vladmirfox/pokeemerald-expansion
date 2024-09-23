@@ -17127,30 +17127,18 @@ void BS_TryQuash(void)
 
     // If the above condition is not true, it means we are faster than the foe, so we can set the quash bit
     gProtectStructs[gBattlerTarget].quash = TRUE;
-    
-    if (B_QUASH_TURN_ORDER < GEN_8)
+
+    // this implementation assumes turn order is correct when using Quash
+    i = GetBattlerTurnOrderNum(gBattlerTarget);
+    for (j = i + 1; j < gBattlersCount; j++)
     {
         // Gen 7- config makes target go last so that the order of quash targets is kept for the correct turn order
-        j = GetBattlerTurnOrderNum(gBattlerTarget);
-        for (i = j + 1; i < gBattlersCount; i++)
-        {
+        // Gen 8+ config alters Turn Order of the target according to speed, dynamic speed should handle the rest
+        if (B_QUASH_TURN_ORDER < GEN_8 || GetWhichBattlerFaster(gBattlerByTurnOrder[i], gBattlerByTurnOrder[j], FALSE) == -1)
             SwapTurnOrder(i, j);
-            j++;
-        }
-    }
-    else
-    {
-        // Gen 8+ config only alters Turn Order of battlers affected by Quash, dynamic speed should handle the rest
-        for (i = gCurrentTurnActionNumber + 1; i < gBattlersCount - 1; i++)
-        {
-            for (j = i + 1; j < gBattlersCount; j++)
-            {
-                u32 battler1 = gBattlerByTurnOrder[i], battler2 = gBattlerByTurnOrder[j];
-                if ((gProtectStructs[battler1].quash || gProtectStructs[battler2].quash)
-                && GetWhichBattlerFaster(battler1, battler2, FALSE) == -1)
-                    SwapTurnOrder(i, j);
-            }
-        }
+        else
+            break;
+        i++;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
