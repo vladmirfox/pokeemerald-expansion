@@ -11566,6 +11566,11 @@ static void Cmd_stockpiletohpheal(void)
                 gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
                 gBattleScripting.animTurn = 1;
             }
+
+            if (gBattleMoveDamage == 0)
+                gBattleMoveDamage = 1;
+            gBattleMoveDamage *= -1;
+            
             gBattlescriptCurrInstr = cmd->nextInstr;
             gBattlerTarget = gBattlerAttacker;
         }
