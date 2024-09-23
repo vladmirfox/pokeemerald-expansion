@@ -17255,19 +17255,19 @@ void BS_CheckPokeFlute(void)
     u8 battler;
     s32 i;
     u32 monToCheck, status;
-    u16 species;
-    u8 abilityNum;
+    u16 species, abilityNum;
     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
-    monToCheck = 0;
+
     for (i = 0; i < gBattlersCount; i++)
     {
         if (gBattleMons[i].ability != ABILITY_SOUNDPROOF)
         {
             gBattleMons[i].status1 &= ~STATUS1_SLEEP;
             gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;
-
         }
     }
+
+    monToCheck = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
@@ -17287,6 +17287,7 @@ void BS_CheckPokeFlute(void)
         MarkBattlerForControllerExec(battler);
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
     }
+
     monToCheck = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -17306,7 +17307,7 @@ void BS_CheckPokeFlute(void)
         status = 0;
         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
         MarkBattlerForControllerExec(battler);
-        gBattleCommunication[5] = 1;
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;

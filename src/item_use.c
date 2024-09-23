@@ -1284,7 +1284,7 @@ void ItemUseInBattle_BagMenu(u8 taskId)
     else
     {
         PlaySE(SE_SELECT);
-        if (!(B_TRY_CATCH_TRAINER_BALL >= GEN_4 && (ItemId_GetBattleUsage(gSpecialVar_ItemId) == EFFECT_ITEM_THROW_BALL) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)) && ItemId_GetBattleUsage(gSpecialVar_ItemId) != EFFECT_ITEM_USE_POKE_FLUTE)
+        if (ItemId_GetImportance(gSpecialVar_ItemId) > 0 || !(B_TRY_CATCH_TRAINER_BALL >= GEN_4 && (ItemId_GetBattleUsage(gSpecialVar_ItemId) == EFFECT_ITEM_THROW_BALL) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
             RemoveUsedItem();
         ScheduleBgCopyTilemapToVram(2);
         if (!InBattlePyramid())
@@ -1518,8 +1518,8 @@ static void Task_PlayPokeFlute(u8 taskId)
 
 void ItemUseOutOfBattle_PokeFlute(u8 taskId)
 {
-    bool8 wokeSomeoneUp = FALSE;
-    u8 i;
+    bool32 wokeSomeoneUp = FALSE;
+    u32 i;
 
     for (i = 0; i < CalculatePlayerPartyCount(); i++)
     {
