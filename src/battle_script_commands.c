@@ -7427,6 +7427,7 @@ static void Cmd_switchineffects(void)
             // All battlers done, end
             gBattleStruct->multipleSwitchInBattlers = 0;
             gBattleStruct->multipleSwitchInState = 0;
+            gBattlerFainted = gBattlersCount;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         break;

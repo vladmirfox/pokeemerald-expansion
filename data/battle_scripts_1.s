@@ -5560,6 +5560,7 @@ BattleScript_HandleFaintedMonLoop::
 	jumpifbytenotequal gBattlerFainted, gBattlersCount, BattleScript_HandleFaintedMonLoop
 BattleScript_HandleFaintedMonMultipleEnd::
 	switchineffects BS_FAINTED_MULTIPLE_2
+	jumpifbytenotequal gBattlerFainted, gBattlersCount, BattleScript_HandleFaintedMonMultipleEnd
 	end2
 
 BattleScript_LocalTrainerBattleWon::
@@ -6961,12 +6962,12 @@ BattleScript_WishMegaEvolution::
 
 BattleScript_PrimalReversion::
 	call BattleScript_PrimalReversionRet
-	end2
+	end3
 
 BattleScript_PrimalReversionRestoreAttacker::
 	call BattleScript_PrimalReversionRet
 	copybyte gBattlerAttacker, sSAVED_BATTLER
-	end2
+	end3
 
 BattleScript_PrimalReversionRet::
 	flushtextbox
