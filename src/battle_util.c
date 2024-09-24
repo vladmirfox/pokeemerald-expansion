@@ -4390,10 +4390,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
                 if (effect != 0)
                 {
-                    BattleScriptPushCursorAndCallback(BattleScript_TraceActivatesEnd3);
+                    BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
                     gBattleStruct->tracedAbility[battler] = gLastUsedAbility = gBattleMons[chosenTarget].ability;
                     RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
-                    battler = gBattlerAbility = gBattleScripting.battler = battler;
+                    gBattlerAbility = battler;
 
                     PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, chosenTarget, gBattlerPartyIndexes[chosenTarget])
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)

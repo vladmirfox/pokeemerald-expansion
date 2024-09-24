@@ -7675,15 +7675,11 @@ BattleScript_EmergencyExitWildNoPopUp::
 
 BattleScript_TraceActivates::
 	pause B_WAIT_TIME_SHORT
-	call BattleScript_AbilityPopUp
+	call BattleScript_AbilityPopUpScripting
 	printstring STRINGID_PKMNTRACED
 	waitmessage B_WAIT_TIME_LONG
 	settracedability BS_SCRIPTING
 	switchinabilities BS_SCRIPTING
-	return
-
-BattleScript_TraceActivatesEnd3::
-	call BattleScript_TraceActivates
 	end3
 
 BattleScript_ReceiverActivates::
