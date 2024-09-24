@@ -355,6 +355,7 @@ const u32 gFieldEffectObjectPic_MountainDisguise[] = INCBIN_U32("graphics/field_
 const u32 gFieldEffectObjectPic_SandDisguisePlaceholder[] = INCBIN_U32("graphics/field_effects/pics/sand_disguise_placeholder.4bpp");
 const u32 gFieldEffectObjectPic_HotSpringsWater[] = INCBIN_U32("graphics/field_effects/pics/hot_springs_water.4bpp");
 const u16 gFieldEffectPal_Ash[] = INCBIN_U16("graphics/field_effects/palettes/ash.gbapal");
+const u16 gFieldEffectPal_TallGrass[] = INCBIN_U16("graphics/field_effects/palettes/tall_grass.gbapal");
 const u32 gFieldEffectObjectPic_AshPuff[] = INCBIN_U32("graphics/field_effects/pics/ash_puff.4bpp");
 const u32 gFieldEffectObjectPic_AshLaunch[] = INCBIN_U32("graphics/field_effects/pics/ash_launch.4bpp");
 const u32 gFieldEffectObjectPic_Bubbles[] = INCBIN_U32("graphics/field_effects/pics/bubbles.4bpp");
