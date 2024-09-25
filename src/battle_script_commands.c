@@ -6839,7 +6839,7 @@ static void Cmd_openpartyscreen(void)
             {
                 if (((1u << i) & hitmarkerFaintBits))
                 {
-                    if (i>1 && ((1u << BATTLE_PARTNER(i)) & hitmarkerFaintBits))
+                    if (i > 1 && ((1u << BATTLE_PARTNER(i)) & hitmarkerFaintBits))
                         continue;
                     
                     battler = i;
