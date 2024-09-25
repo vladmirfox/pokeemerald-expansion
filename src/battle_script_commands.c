@@ -17249,15 +17249,40 @@ void BS_TryRevivalBlessing(void)
     }
 }
 
+static void TryUpdatePartyStatus(struct Pokemon* party, u8 position)
+{
+    s32 i;
+    u8 battler;
+    u32 monToCheck, status;
+    u16 species, abilityNum;
+    monToCheck = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
+        status = GetMonData(&party[i], MON_DATA_STATUS);
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            monToCheck |= (1 << i);
+    }
+    if (monToCheck)
+    {
+        battler = GetBattlerAtPosition(position);
+        status = 0;
+        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
+        MarkBattlerForControllerExec(battler);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+    }
+}
+
 void BS_CheckPokeFlute(void)
 {
     NATIVE_ARGS();
-    u8 battler;
-    s32 i;
-    u32 monToCheck, status;
-    u16 species, abilityNum;
     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
 
+    s32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
         if (gBattleMons[i].ability != ABILITY_SOUNDPROOF)
@@ -17267,48 +17292,8 @@ void BS_CheckPokeFlute(void)
         }
     }
 
-    monToCheck = 0;
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
-        abilityNum = GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM);
-        status = GetMonData(&gPlayerParty[i], MON_DATA_STATUS);
-        if (species != SPECIES_NONE
-            && species != SPECIES_EGG
-            && status & AILMENT_FNT
-            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
-            monToCheck |= (1 << i);
-    }
-    if (monToCheck)
-    {
-        battler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-        status = 0;
-        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
-        MarkBattlerForControllerExec(battler);
-        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-    }
-
-    monToCheck = 0;
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG);
-        abilityNum = GetMonData(&gEnemyParty[i], MON_DATA_ABILITY_NUM);
-        status = GetMonData(&gEnemyParty[i], MON_DATA_STATUS);
-
-        if (species != SPECIES_NONE
-            && species != SPECIES_EGG
-            && status & AILMENT_FNT
-            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
-            monToCheck |= (1 << i);
-    }
-    if (monToCheck)
-    {
-        battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-        status = 0;
-        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
-        MarkBattlerForControllerExec(battler);
-        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
-    }
+    TryUpdatePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
+    TryUpdatePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
