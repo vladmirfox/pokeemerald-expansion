@@ -17249,7 +17249,7 @@ void BS_TryRevivalBlessing(void)
     }
 }
 
-static void TryUpdatePartyStatus(struct Pokemon* party, u8 position)
+static void UpdatePartyStatus(struct Pokemon* party, u8 position)
 {
     s32 i;
     u8 battler;
@@ -17292,8 +17292,8 @@ void BS_CheckPokeFlute(void)
         }
     }
 
-    TryUpdatePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
-    TryUpdatePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
+    UpdatePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
+    UpdatePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
