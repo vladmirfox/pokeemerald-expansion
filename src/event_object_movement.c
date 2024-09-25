@@ -473,6 +473,7 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    // Don't change the order of anything up to the end of berries
     {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
     {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
     {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
@@ -481,6 +482,13 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Npc2Reflection,        OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
     {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
     {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
+    {gObjectEventPal_BerryTreeSprout,       OBJ_EVENT_PAL_TAG_BERRY_TREE_SEED_SPROUT},
+    {gObjectEventPal_CheriBerryTree,        OBJ_EVENT_PAL_TAG_BERRY_TREE_CHERI},
+    {gObjectEventPal_ChestoBerryTree,       OBJ_EVENT_PAL_TAG_BERRY_TREE_CHESTO},
+    {gObjectEventPal_OranBerryTree,         OBJ_EVENT_PAL_TAG_BERRY_TREE_ORAN},
+    {gObjectEventPal_SitrusBerryTree,       OBJ_EVENT_PAL_TAG_BERRY_TREE_SITRUS},
+    {gObjectEventPal_PechaBerryTree,        OBJ_EVENT_PAL_TAG_BERRY_TREE_PECHA},
+    {gObjectEventPal_RawstBerryTree,        OBJ_EVENT_PAL_TAG_BERRY_TREE_RAWST},
     {gObjectEventPal_AromaLady,             OBJ_EVENT_PAL_TAG_AROMA_LADY},
     {gObjectEventPal_Shamisen_Blue,         OBJ_EVENT_PAL_TAG_SHAMISEN_BLUE},
     {gObjectEventPal_Shamisen_Green,        OBJ_EVENT_PAL_TAG_SHAMISEN_GREEN},
