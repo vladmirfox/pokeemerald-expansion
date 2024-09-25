@@ -6832,14 +6832,14 @@ static void Cmd_openpartyscreen(void)
         }
         else if (IsDoubleBattle())
         {
-            bool8 hasReplacement;
+            bool32 hasReplacement;
             
             hitmarkerFaintBits = gHitMarker >> 28;
             for (i = 0; i < gBattlersCount; i++)
             {
                 if (((1u << i) & hitmarkerFaintBits))
                 {
-                    if (i>1 && ((1u << BATTLE_PARTNER(i)) & hitmarkerFaintBits))
+                    if (i > 1 && ((1u << BATTLE_PARTNER(i)) & hitmarkerFaintBits))
                         continue;
                     
                     battler = i;
@@ -6855,7 +6855,7 @@ static void Cmd_openpartyscreen(void)
                         ChooseMonToSendOut(battler, gBattleStruct->monToSwitchIntoId[BATTLE_PARTNER(battler)]);
                         gSpecialStatuses[battler].faintedHasReplacement = TRUE;
                     }
-                    else if (battler<2 || (battler>1 && !(flags & BATTLE_PARTNER(battler))))
+                    else if (battler < 2 || (battler > 1 && !(flags & BATTLE_PARTNER(battler))))
                     {
                         BtlController_EmitLinkStandbyMsg(battler, BUFFER_A, LINK_STANDBY_MSG_ONLY, FALSE);
                         MarkBattlerForControllerExec(battler);
