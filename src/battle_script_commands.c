@@ -6855,7 +6855,7 @@ static void Cmd_openpartyscreen(void)
                         ChooseMonToSendOut(battler, gBattleStruct->monToSwitchIntoId[BATTLE_PARTNER(battler)]);
                         gSpecialStatuses[battler].faintedHasReplacement = TRUE;
                     }
-                    else if (battler<2 || (battler>1 && !(flags & BATTLE_PARTNER(battler))))
+                    else if (battler < 2 || (battler > 1 && !(flags & BATTLE_PARTNER(battler))))
                     {
                         BtlController_EmitLinkStandbyMsg(battler, BUFFER_A, LINK_STANDBY_MSG_ONLY, FALSE);
                         MarkBattlerForControllerExec(battler);
