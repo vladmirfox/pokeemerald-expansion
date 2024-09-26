@@ -1439,7 +1439,9 @@ static void TilesetAnim_ExteriorGeneric(u16 timer)
         QueueAnimTiles_ExteriorGeneric_FlowerDandelionWhite(timer / 16);
         QueueAnimTiles_ExteriorGeneric_FlowerDandelionYellow(timer / 16);
 
-        QueueAnimTiles_ExteriorGeneric_Waterfall(timer / 16);
+    }
+    if (timer % 32 == 0) {
+        QueueAnimTiles_ExteriorGeneric_Waterfall(timer / 32);
     }
 }
 
@@ -1452,53 +1454,53 @@ void InitTilesetAnim_ExteriorGeneric(void)
 
 // SAKU KURA
 
-// #define STARTING_TILE_WATER_RUNNING 512
-// #define STARTING_TILE_SPROUT (STARTING_TILE_WATER_RUNNING + NB_TILES_WATER_RUNNING)
-// #define NB_TILES_WATER_RUNNING 4
-// #define NB_TILES_SPROUT 16
+#define STARTING_TILE_WATER_RUNNING 512
+#define STARTING_TILE_SPROUT (STARTING_TILE_WATER_RUNNING + NB_TILES_WATER_RUNNING)
+#define NB_TILES_WATER_RUNNING 4
+#define NB_TILES_SPROUT 16
 
-// const u16 gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame0[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/running_water/00.4bpp");
-// const u16 gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame1[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/running_water/01.4bpp");
+const u16 gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame0[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/running_water/00.4bpp");
+const u16 gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame1[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/running_water/01.4bpp");
 
-// const u16 gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame0[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/sprout/00.4bpp");
-// const u16 gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame1[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/sprout/01.4bpp");
+const u16 gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame0[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/sprout/00.4bpp");
+const u16 gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame1[] = INCBIN_U16("data/tilesets/secondary/saku_kura/anim/sprout/01.4bpp");
 
-// const u16 *const gTilesetAnims_SakuKura_WaterRunning[] = {
-//     gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame0,
-//     gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame1,
-// };
+const u16 *const gTilesetAnims_SakuKura_WaterRunning[] = {
+    gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame0,
+    gTilesetAnims_gTilesetAnims_SakuKura_WaterRunning_Frame1,
+};
 
-// const u16 *const gTilesetAnims_SakuKura_Sprout[] = {
-//     gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame0,
-//     gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame1,
-// };
+const u16 *const gTilesetAnims_SakuKura_Sprout[] = {
+    gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame0,
+    gTilesetAnims_gTilesetAnims_SakuKura_Sprout_Frame1,
+};
 
-// static void QueueAnimTiles_SakuKura_WaterRunning(u16 timer)
-// {
-//     u16 i = timer % ARRAY_COUNT(gTilesetAnims_SakuKura_WaterRunning);
-//     AppendTilesetAnimToBuffer(gTilesetAnims_SakuKura_WaterRunning[i], STARTING_TILE_WATER_RUNNING, NB_TILES_WATER_RUNNING * TILE_SIZE_4BPP);
-// }
+static void QueueAnimTiles_SakuKura_WaterRunning(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_SakuKura_WaterRunning);
+    AppendTilesetAnimToBuffer(gTilesetAnims_SakuKura_WaterRunning[i], STARTING_TILE_WATER_RUNNING, NB_TILES_WATER_RUNNING * TILE_SIZE_4BPP);
+}
 
-// static void QueueAnimTiles_SakuKura_Sprout(u16 timer)
-// {
-//     u16 i = timer % ARRAY_COUNT(gTilesetAnims_SakuKura_Sprout);
-//     AppendTilesetAnimToBuffer(gTilesetAnims_SakuKura_Sprout[i], STARTING_TILE_SPROUT, NB_TILES_SPROUT * TILE_SIZE_4BPP);
-// }
+static void QueueAnimTiles_SakuKura_Sprout(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_SakuKura_Sprout);
+    AppendTilesetAnimToBuffer(gTilesetAnims_SakuKura_Sprout[i], STARTING_TILE_SPROUT, NB_TILES_SPROUT * TILE_SIZE_4BPP);
+}
 
-// static void TilesetAnim_SakuKura(u16 timer)
-// {
-//     if (timer % 8 == 0) {
-//         QueueAnimTiles_SakuKura_WaterRunning(timer / 8);
-//     }
-//     if (timer % 80 == 0) {
-//         // TODO pas 80
-//         QueueAnimTiles_SakuKura_Sprout(timer / 80);
-//     }
-// }
+static void TilesetAnim_SakuKura(u16 timer)
+{
+    if (timer % 8 == 0) {
+        QueueAnimTiles_SakuKura_WaterRunning(timer / 8);
+    }
+    if (timer % 80 == 0) {
+        // TODO pas 80
+        QueueAnimTiles_SakuKura_Sprout(timer / 80);
+    }
+}
 
-// void InitTilesetAnim_SakuKura(void)
-// {
-//     sPrimaryTilesetAnimCounter = 0;
-//     sPrimaryTilesetAnimCounterMax = 256;
-//     sPrimaryTilesetAnimCallback = TilesetAnim_SakuKura;
-// }
+void InitTilesetAnim_SakuKura(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_SakuKura;
+}

@@ -867,8 +867,7 @@ const struct Tileset gTileset_SakuKura =
     .palettes = gTilesetPalettes_SakuKura,
     .metatiles = gMetatiles_SakuKura,
     .metatileAttributes = gMetatileAttributes_SakuKura,
-    .callback = NULL,
-    // .callback = InitTilesetAnim_SakuKura,
+    .callback = InitTilesetAnim_SakuKura,
 };
 
 const struct Tileset gTileset_SilverTunnel =
