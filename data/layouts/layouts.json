@@ -4454,7 +4454,7 @@
     {
       "id": "LAYOUT_TRANQUIL_ROUTE",
       "name": "TranquilRoute_Layout",
-      "width": 63,
+      "width": 51,
       "height": 80,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SunriseVillage",
