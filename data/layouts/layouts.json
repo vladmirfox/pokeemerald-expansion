@@ -117,7 +117,7 @@
       "width": 20,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/DewfordTown/border.bin",
       "blockdata_filepath": "data/layouts/DewfordTown/map.bin"
     },
@@ -207,7 +207,7 @@
       "width": 40,
       "height": 80,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/Route105/border.bin",
       "blockdata_filepath": "data/layouts/Route105/map.bin"
     },
@@ -217,7 +217,7 @@
       "width": 80,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/Route106/border.bin",
       "blockdata_filepath": "data/layouts/Route106/map.bin"
     },
@@ -227,7 +227,7 @@
       "width": 60,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/Route107/border.bin",
       "blockdata_filepath": "data/layouts/Route107/map.bin"
     },
@@ -567,7 +567,7 @@
       "width": 60,
       "height": 30,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Unused2",
+      "secondary_tileset": "gTileset_Hospital",
       "border_filepath": "data/layouts/LittlerootTown_MaysHouse_2F/border.bin",
       "blockdata_filepath": "data/layouts/LittlerootTown_MaysHouse_2F/map.bin"
     },
@@ -4037,7 +4037,7 @@
       "width": 30,
       "height": 30,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/BirthIsland_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/BirthIsland_Exterior/map.bin"
     },
@@ -4207,7 +4207,7 @@
       "width": 21,
       "height": 24,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/NavelRock_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/NavelRock_Exterior/map.bin"
     },
@@ -4427,7 +4427,7 @@
       "width": 30,
       "height": 42,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_luxuraindoor",
+      "secondary_tileset": "gTileset_Luxuraindoor",
       "border_filepath": "data/layouts/LuxuraIndoor/border.bin",
       "blockdata_filepath": "data/layouts/LuxuraIndoor/map.bin"
     },
@@ -4437,7 +4437,7 @@
       "width": 20,
       "height": 25,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_luxuraindoor",
+      "secondary_tileset": "gTileset_Luxuraindoor",
       "border_filepath": "data/layouts/Luxuraliving/border.bin",
       "blockdata_filepath": "data/layouts/Luxuraliving/map.bin"
     },
@@ -4447,7 +4447,7 @@
       "width": 28,
       "height": 16,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_luxuraindoor",
+      "secondary_tileset": "gTileset_Luxuraindoor",
       "border_filepath": "data/layouts/Luxuradining/border.bin",
       "blockdata_filepath": "data/layouts/Luxuradining/map.bin"
     },
@@ -4487,7 +4487,7 @@
       "width": 30,
       "height": 15,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_luxuraindoor",
+      "secondary_tileset": "gTileset_Luxuraindoor",
       "border_filepath": "data/layouts/Luxuraupstair/border.bin",
       "blockdata_filepath": "data/layouts/Luxuraupstair/map.bin"
     },
@@ -4537,7 +4537,7 @@
       "width": 64,
       "height": 40,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_SeaportCity",
       "border_filepath": "data/layouts/LuxuraIsland1/border.bin",
       "blockdata_filepath": "data/layouts/LuxuraIsland1/map.bin"
     },
@@ -4557,7 +4557,7 @@
       "width": 90,
       "height": 30,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Unused2",
+      "secondary_tileset": "gTileset_Hospital",
       "border_filepath": "data/layouts/Hospital/border.bin",
       "blockdata_filepath": "data/layouts/Hospital/map.bin"
     },
@@ -4570,6 +4570,36 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/Servantquarter/border.bin",
       "blockdata_filepath": "data/layouts/Servantquarter/map.bin"
+    },
+    {
+      "id": "LAYOUT_SPARKBASE",
+      "name": "Sparkbase_Layout",
+      "width": 80,
+      "height": 16,
+      "primary_tileset": "gTileset_building2",
+      "secondary_tileset": "gTileset_Evilbase",
+      "border_filepath": "data/layouts/Sparkbase/border.bin",
+      "blockdata_filepath": "data/layouts/Sparkbase/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEWMAP11",
+      "name": "Newmap11_Layout",
+      "width": 20,
+      "height": 16,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/Newmap11/border.bin",
+      "blockdata_filepath": "data/layouts/Newmap11/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEWHOUSE",
+      "name": "newhouse_Layout",
+      "width": 11,
+      "height": 30,
+      "primary_tileset": "gTileset_building2",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/newhouse/border.bin",
+      "blockdata_filepath": "data/layouts/newhouse/map.bin"
     }
   ]
 }

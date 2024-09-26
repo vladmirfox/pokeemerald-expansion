@@ -66,6 +66,8 @@ static const u8 sEmotion_DoubleExclamationMarkGfx[] = INCBIN_U8("graphics/field_
 static const u8 sEmotion_XGfx[] = INCBIN_U8("graphics/field_effects/pics/emote_x.4bpp");
 // HGSS emote graphics ripped by Lemon on The Spriters Resource: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/30497/
 static const u8 sEmotion_Gfx[] = INCBIN_U8("graphics/misc/emotes.4bpp");
+static const u8 sEmotion_HappyGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_happy.4bpp");
+static const u8 sEmotion_UpsetGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_upset.4bpp");
 
 static u8 (*const sDirectionalApproachDistanceFuncs[])(struct ObjectEvent *trainerObj, s16 range, s16 x, s16 y) =
 {
@@ -150,6 +152,22 @@ static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[]
         .size = sizeof(sEmotion_XGfx)
     }
 };
+static const struct SpriteFrameImage sSpriteImageTable_HappyIcon[] =
+{
+    {
+        .data = sEmotion_HappyGfx,
+        .size = 0x80
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_UpsetIcon[] =
+{
+    {
+        .data = sEmotion_UpsetGfx,
+        .size = 0x80
+    }
+};
+
 
 static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
 {
@@ -350,6 +368,27 @@ static const struct SpriteTemplate sSpriteTemplate_Emote =
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Emotes,
     .images = sSpriteImageTable_Emotes,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_TrainerIcons
+};
+static const struct SpriteTemplate sSpriteTemplate_HappyIcon =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOTES,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_HappyIcon,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_UpsetIcon =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOTES,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_UpsetIcon,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_TrainerIcons
 };
@@ -1020,4 +1059,23 @@ void PlayerFaceTrainerAfterBattle(void)
     }
 
     SetMovingNpcId(OBJ_EVENT_ID_PLAYER);
+}
+u8 FldEff_HappyIcon(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_HappyIcon, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+        SetIconSpriteData(&gSprites[spriteId], FLDEFF_HAPPY_ICON, 0);
+
+    return 0;
+}
+
+u8 FldEff_UpsetIcon(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_UpsetIcon, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+        SetIconSpriteData(&gSprites[spriteId], FLDEFF_UPSET_ICON, 0);
+
+    return 0;
 }

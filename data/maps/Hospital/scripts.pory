@@ -6,7 +6,7 @@ Hospital_MapScripts::
 
 Hospital_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 # 3 "data/maps/Hospital/scripts.pory"
-	map_script_2 VAR_ROUTE102_STATE, 0, Luxura
+	map_script_2 LUXURA_TRAGEDY, 0, Luxura
 	.2byte 0
 
 
@@ -27,19 +27,19 @@ playse MUS_DUMMY
 # 14 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 15 "data/maps/Hospital/scripts.pory"
-	msgbox myloll
+	msgbox myloll , MSGBOX_AUTOCLOSE
 # 16 "data/maps/Hospital/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, mylol
 # 17 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 18 "data/maps/Hospital/scripts.pory"
-	msgbox scared
+	msgbox scared , MSGBOX_AUTOCLOSE
 # 19 "data/maps/Hospital/scripts.pory"
 	applymovement 11, thudd
 # 20 "data/maps/Hospital/scripts.pory"
 	applymovement 9, thud
 # 21 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_0
+	msgbox Luxura_Text_0 , MSGBOX_AUTOCLOSE
 # 22 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 23 "data/maps/Hospital/scripts.pory"
@@ -49,14 +49,14 @@ playse MUS_DUMMY
 # 25 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 26 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_1
+	msgbox Luxura_Text_1 , MSGBOX_AUTOCLOSE
 # 27 "data/maps/Hospital/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, main
 # 28 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 29 "data/maps/Hospital/scripts.pory"
     namebox(name1)
-	msgbox Luxura_Text_2
+	msgbox Luxura_Text_2 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 30 "data/maps/Hospital/scripts.pory"
     setvar VAR_0x8000, MUGSHOT_BABY
@@ -67,18 +67,18 @@ playse MUS_DUMMY
 	applymovement 2, heart
 # 32 "data/maps/Hospital/scripts.pory"
 	namebox(name2)
-	msgbox Luxura_Text_4
+	msgbox Luxura_Text_4 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 33 "data/maps/Hospital/scripts.pory"
 	waitmovement 0
 # 34 "data/maps/Hospital/scripts.pory"
     namebox(name3)
-	msgbox Luxura_Text_5
+	msgbox Luxura_Text_5 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 35 "data/maps/Hospital/scripts.pory"
     setvar VAR_0x8000, MUGSHOT_BABY
     callnative DrawMugshot
-	msgbox Luxura_Text_6
+	msgbox Luxura_Text_6 , MSGBOX_AUTOCLOSE
 	callnative ClearMugshot
 # 36 "data/maps/Hospital/scripts.pory"
 	applymovement 4, bye
@@ -88,25 +88,25 @@ playse MUS_DUMMY
 	waitmovement 0
 # 39 "data/maps/Hospital/scripts.pory"
     namebox(name2)
-	msgbox Luxura_Text_7
+	msgbox Luxura_Text_7 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 40 "data/maps/Hospital/scripts.pory"
     namebox(name3)
-	msgbox Luxura_Text_8
+	msgbox Luxura_Text_8 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 41 "data/maps/Hospital/scripts.pory"
     setvar VAR_0x8000, MUGSHOT_BABY
     callnative DrawMugshot
-	msgbox Luxura_Text_9
+	msgbox Luxura_Text_9 , MSGBOX_AUTOCLOSE
 	callnative ClearMugshot
 # 42 "data/maps/Hospital/scripts.pory"
 	namebox(name4)
-	msgbox Luxura_Text_10
+	msgbox Luxura_Text_10 , MSGBOX_AUTOCLOSE
 	hidenamebox
 # 43 "data/maps/Hospital/scripts.pory"
 	fadescreen FADE_TO_BLACK
 # 44 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_11
+	msgbox Luxura_Text_11 , MSGBOX_AUTOCLOSE
 	applymovement 1,heart
 	applymovement 2,heart
 	applymovement 5,heart
@@ -118,7 +118,7 @@ playse MUS_DUMMY
 # 47 "data/maps/Hospital/scripts.pory"
 	fadescreen FADE_FROM_BLACK
 # 48 "data/maps/Hospital/scripts.pory"
-	setvar VAR_ROUTE102_STATE, 1
+	setvar LUXURA_TRAGEDY, 1
 # 49 "data/maps/Hospital/scripts.pory"
 	releaseall
 	return

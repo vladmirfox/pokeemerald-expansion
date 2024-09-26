@@ -3,7 +3,7 @@
   "name": "LuxuraIndoor",
   "layout": "LAYOUT_LUXURA_INDOOR",
   "music": "MUS_LITTLEROOT",
-  "region_map_section": "MAPSEC_OLDALE_TOWN",
+  "region_map_section": "MAPSEC_LUXURA_MANSION",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -188,6 +188,20 @@
       "elevation": 0,
       "dest_map": "MAP_LUXURAUPSTAIR",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_SPARKBASE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 2,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_SPARKBASE",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
@@ -196,7 +210,7 @@
       "x": 14,
       "y": 40,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "3",
       "script": "waiting"
     },
@@ -205,7 +219,7 @@
       "x": 15,
       "y": 40,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "3",
       "script": "waiting"
     },
@@ -214,7 +228,7 @@
       "x": 13,
       "y": 41,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "3",
       "script": "waiting"
     },
@@ -223,40 +237,13 @@
       "x": 16,
       "y": 41,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "3",
       "script": "waiting"
     },
     {
       "type": "trigger",
       "x": 14,
-      "y": 39,
-      "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
-      "var_value": "5",
-      "script": "indoor"
-    },
-    {
-      "type": "trigger",
-      "x": 13,
-      "y": 40,
-      "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
-      "var_value": "5",
-      "script": "indo"
-    },
-    {
-      "type": "trigger",
-      "x": 14,
-      "y": 41,
-      "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
-      "var_value": "5",
-      "script": "indoo"
-    },
-    {
-      "type": "trigger",
-      "x": 14,
       "y": 41,
       "elevation": 0,
       "var": "VAR_ROUTE103_STATE",
@@ -274,12 +261,39 @@
     },
     {
       "type": "trigger",
-      "x": 15,
-      "y": 40,
+      "x": 7,
+      "y": 6,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
-      "var_value": "5",
-      "script": "ind"
+      "var": "LUXURA_TRAGEDY",
+      "var_value": "13",
+      "script": "strolll"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 6,
+      "elevation": 0,
+      "var": "LUXURA_TRAGEDY",
+      "var_value": "12",
+      "script": "caprun"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 7,
+      "elevation": 0,
+      "var": "LUXURA_TRAGEDY",
+      "var_value": "12",
+      "script": "caprun"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 6,
+      "elevation": 0,
+      "var": "LUXURA_TRAGEDY",
+      "var_value": "12",
+      "script": "caprun"
     }
   ],
   "bg_events": [

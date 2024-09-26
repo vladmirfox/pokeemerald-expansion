@@ -9,7 +9,7 @@ SeafloorCavern_Room4_MapScripts::
 # 5 "data/maps/SeafloorCavern_Room4/scripts.pory"
 SeafloorCavern_Room4_EventScript_Grunt3::
 # 6 "data/maps/SeafloorCavern_Room4/scripts.pory"
-	trainerbattle_single TRAINER_GRUNT_SEAFLOOR_CAVERN_3, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat
+	trainerbattle_single SPARK_ADMIN_SURGE, SeafloorCavern_Room4_Text_Grunt3Intro, SeafloorCavern_Room4_Text_Grunt3Defeat
 # 7 "data/maps/SeafloorCavern_Room4/scripts.pory"
 	msgbox SeafloorCavern_Room4_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
 # 8 "data/maps/SeafloorCavern_Room4/scripts.pory"

@@ -440,6 +440,7 @@ const u16 gObjectEventPal_Baller[] = INCBIN_U16("graphics/object_events/palettes
 const u16 gObjectEventPal_Beauty[] = INCBIN_U16("graphics/object_events/palettes/beauty.gbapal");
 const u16 gObjectEventPal_Biker[] = INCBIN_U16("graphics/object_events/palettes/biker.gbapal");
 const u16 gObjectEventPal_Bug[] = INCBIN_U16("graphics/object_events/palettes/bug.gbapal");
+const u16 gObjectEventPal_Portal[] = INCBIN_U16("graphics/object_events/palettes/portal.gbapal");
 const u16 gObjectEventPal_Burglar[] = INCBIN_U16("graphics/object_events/palettes/burglar.gbapal");
 const u16 gObjectEventPal_Camper[] = INCBIN_U16("graphics/object_events/palettes/camper.gbapal");
 const u16 gObjectEventPal_Clown[] = INCBIN_U16("graphics/object_events/palettes/clown.gbapal");
@@ -471,6 +472,10 @@ const u32 gObjectEventPic_Sparkleader[] = INCBIN_U32("graphics/object_events/pic
 const u32 gObjectEventPic_Blood[] = INCBIN_U32("graphics/object_events/pics/people/blood.4bpp");
 const u32 gObjectEventPic_Ashes[] = INCBIN_U32("graphics/object_events/pics/people/ashes.4bpp");
 const u32 gObjectEventPic_Surge[] = INCBIN_U32("graphics/object_events/pics/people/surge.4bpp");
+const u32 gObjectEventPic_Portal[] = INCBIN_U32("graphics/object_events/pics/people/portal.4bpp");
+const u32 gObjectEventPic_Fire[] = INCBIN_U32("graphics/object_events/pics/people/fire.4bpp");
+const u16 gObjectEventPal_Fire[] = INCBIN_U16("graphics/object_events/palettes/fire.gbapal");
+
 
 #if OW_FOLLOWERS_POKEBALLS
 const u32 gObjectEventPic_MasterBall[] = INCBIN_U32("graphics/object_events/pics/misc/ball_master.4bpp");

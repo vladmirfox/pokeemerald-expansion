@@ -247,6 +247,8 @@
 #define MOVEMENT_ACTION_EMOTE_DOUBLE_EXCL_MARK          0x9F
 #define MOVEMENT_ACTION_EXIT_POKEBALL                   0xA0
 #define MOVEMENT_ACTION_ENTER_POKEBALL                  0xA1
+#define MOVEMENT_ACTION_EMOTE_HAPPY                     0xA2
+#define MOVEMENT_ACTION_EMOTE_UPSET                     0xA3
 
 #define MOVEMENT_ACTION_STEP_END 0xFE
 #define MOVEMENT_ACTION_NONE     0xFF

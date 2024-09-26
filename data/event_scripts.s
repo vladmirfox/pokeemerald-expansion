@@ -1109,3 +1109,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Hospital/scripts.inc"
 
 	.include "data/maps/Servantquarter/scripts.inc"
+
+	.include "data/maps/Sparkbase/scripts.inc"
+
+	.include "data/maps/Newmap11/scripts.inc"
+
+	.include "data/maps/newhouse/scripts.inc"

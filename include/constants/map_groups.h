@@ -66,6 +66,7 @@
 #define MAP_LUXURA_ISLAND       (57 | (0 << 8))
 #define MAP_LUXURADINING        (58 | (0 << 8))
 #define MAP_LUXURA_ISLAND1      (59 | (0 << 8))
+#define MAP_NEWMAP11            (60 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))
@@ -85,6 +86,8 @@
 #define MAP_GUEST                                (14 | (1 << 8))
 #define MAP_HOSPITAL                             (15 | (1 << 8))
 #define MAP_SERVANTQUARTER                       (16 | (1 << 8))
+#define MAP_SPARKBASE                            (17 | (1 << 8))
+#define MAP_NEWHOUSE                             (18 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

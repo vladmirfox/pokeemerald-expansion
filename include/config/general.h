@@ -85,6 +85,6 @@
 
 // Config to toggle using the new shop menu.
 // Set this to either TRUE or FALSE.
-#define MUDSKIP_SHOP_UI
+#define MUDSKIP_SHOP_UI       TRUE
 
 #endif // GUARD_CONFIG_GENERAL_H

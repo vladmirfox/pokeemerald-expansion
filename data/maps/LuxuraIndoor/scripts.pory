@@ -1,19 +1,23 @@
 mapscripts LuxuraIndoor_MapScripts{
 MAP_SCRIPT_ON_LOAD: tragedy
+MAP_SCRIPT_ON_FRAME_TABLE[
+	LUXURA_TRAGEDY,5:indoor
+
+]
 }
 script MaidZ{
 	if(!flag(FLAG_UNUSED_0x4A2)){
 	lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master,please let me know if you need anything."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master, please let me know if you need anything."))
 	hidenamebox
 	releaseall}
 	else{
 	lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master,please let me know if you need anything."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master, please let me know if you need anything."))
 	hidenamebox
 	applymovement(1,exclam)
 	namebox ("Maid")
@@ -28,7 +32,7 @@ script MaidZ{
 	playfanfare(FANFARE_OBTAIN_ITEM)
 	msgbox(format("Recieved {COLOR BLUE}{SHADOW LIGHT_GRAY}RUNNING SHOES"))
 	waitfanfare
-	setvar(VAR_ROUTE102_STATE,8)
+	setvar(LUXURA_TRAGEDY,8)
 	clearflag(FLAG_UNUSED_0x4A2)
 	releaseall
 	}
@@ -38,7 +42,7 @@ script Maid{
 	lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master,please let me know if you need anything."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Young master, please let me know if you need anything."))
 	hidenamebox
 	releaseall
 }
@@ -84,14 +88,14 @@ script MaidE{
 	lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Lady Elysia is so considerate; she knows I love reading, so she's given me a break in the library to enjoy my book."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Lady Elysia is so considerate, she knows I love reading, so she's given me a break in the library to enjoy my book."))
 	hidenamebox
 	releaseall
 	}
 	else{lockall
 	faceplayer
 	namebox ("Maid")
-	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Lady Elysia is so considerate; she knows I love reading, so she's given me a break in the library to enjoy my book."))
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY} Lady Elysia is so considerate, she knows I love reading, so she's given me a break in the library to enjoy my book."))
 	hidenamebox
 	applymovement(2,exclam)
 	namebox (felicia)
@@ -103,7 +107,7 @@ script MaidE{
 	setflag(FLAG_UNUSED_0x49F)
 	fadescreen(FADE_FROM_BLACK)
 	releaseall
-	setvar (VAR_ROUTE102_STATE,7)
+	setvar (LUXURA_TRAGEDY,7)
 	setvar (VAR_ROUTE103_STATE,1)
 	}
 }
@@ -175,26 +179,27 @@ script strol{
 	msgbox(format("It's time for my stroll with Mira.\pI should go tell her."))
 	releaseall
 }
+
 script tragedy{
-	  if(var(VAR_ROUTE102_STATE)<9){
+	  if(var(LUXURA_TRAGEDY)<9){
 		removeobject(7)
 		removeobject(8)
 		removeobject(9)
 		setflag(FLAG_UNUSED_0x4A6)
     }
-     elif(var(VAR_ROUTE102_STATE)==9){
+     elif(var(LUXURA_TRAGEDY)==9){
 		removeobject(7)
 		removeobject(8)
 		removeobject(9)
 		setflag(FLAG_UNUSED_0x4A6)
     }
-    elif(var(VAR_ROUTE102_STATE)==10){
+    elif(var(LUXURA_TRAGEDY)==10){
 		removeobject(7)
 		removeobject(8)
 		removeobject(9)
 		setflag(FLAG_UNUSED_0x4A6)
     }
-    elif(var(VAR_ROUTE102_STATE)==11){
+    elif(var(LUXURA_TRAGEDY)==11){
 	    addobject(7)
 		addobject(8)
 		addobject(9)
@@ -251,7 +256,7 @@ script tragedy{
 		setmetatile(12,11,0x2B8,1)
 		setmetatile(13,11,0x2B9,1)
     }
-    elif(var(VAR_ROUTE102_STATE)>11){
+    elif(var(LUXURA_TRAGEDY)>11 && var(LUXURA_TRAGEDY)<19){
 		addobject(7)
 		addobject(8)
 		addobject(9)
@@ -263,7 +268,8 @@ script tragedy{
         setflag(FLAG_UNUSED_0x4A7)
 		setflag(FLAG_UNUSED_0x4A8)
 		clearflag(FLAG_UNUSED_0x4A6)
-	    setmetatile(6,26,0x2A0,1)
+	    setmetatile(7,5,0x2CF,1)
+		setmetatile(6,26,0x2A0,1)
 		setmetatile(7,26,0x2A1,1)
 		setmetatile(6,27,0x2A8,1)
 		setmetatile(7,27,0x2A9,1)
@@ -308,5 +314,103 @@ script tragedy{
 		setmetatile(12,11,0x2B8,1)
 		setmetatile(13,11,0x2B9,1)
     }
-    
+
+	elif(var(LUXURA_TRAGEDY)>19){
+        addobject(7)
+		addobject(8)
+		addobject(9)
+		removeobject(1)
+		removeobject(2)
+        removeobject(3)
+		removeobject(4)
+		removeobject(5)
+        setflag(FLAG_UNUSED_0x4A7)
+		setflag(FLAG_UNUSED_0x4A8)
+		clearflag(FLAG_UNUSED_0x4A6)
+	    setmetatile(7,5,0x2CF,1)
+		setmetatile(6,26,0x2A0,1)
+		setmetatile(7,26,0x2A1,1)
+		setmetatile(6,27,0x2A8,1)
+		setmetatile(7,27,0x2A9,1)
+		setmetatile(18,20,0x2A0,1)
+		setmetatile(19,20,0x2A1,1)
+		setmetatile(18,21,0x2A8,1)
+		setmetatile(19,21,0x2A9,1)
+		setmetatile(22,30,0x2B0,1)
+		setmetatile(23,30,0x2B1,1)
+		setmetatile(22,31,0x2B8,1)
+		setmetatile(23,31,0x2B9,1)
+		setmetatile(10,38,0x2B0,1)
+		setmetatile(11,38,0x2B1,1)
+		setmetatile(10,39,0x2B8,1)
+		setmetatile(11,39,0x2B9,1)
+		setmetatile(26,6,0x2B0,1)
+		setmetatile(27,6,0x2B1,1)
+		setmetatile(26,7,0x2B8,1)
+		setmetatile(27,7,0x2B9,1)
+		setmetatile(0,6,0x2A0,1)
+		setmetatile(1,6,0x2A1,1)
+		setmetatile(0,7,0x2A8,1)
+		setmetatile(1,7,0x2A9,1)
+		setmetatile(4,15,0x1E1,1)
+		setmetatile(5,15,0x1E2,1)
+		setmetatile(4,16,0x1E9,1)
+		setmetatile(5,16,0x1EA,1)
+		setmetatile(14,6,0x2A0,1)
+		setmetatile(15,6,0x2A1,1)
+		setmetatile(14,7,0x2A8,1)
+		setmetatile(15,7,0x2A9,1)
+		setmetatile(22,6,0x2A0,1)
+		setmetatile(23,6,0x2A1,1)
+		setmetatile(22,7,0x2A8,1)
+		setmetatile(23,7,0x2A9,1)
+		setmetatile(9,3,0x1E1,1)
+		setmetatile(10,3,0x1E2,1)
+		setmetatile(9,4,0x1E9,1)
+		setmetatile(10,4,0x1EA,1)
+		setmetatile(12,10,0x2B0,1)
+		setmetatile(13,10,0x2B1,1)
+		setmetatile(12,11,0x2B8,1)
+		setmetatile(13,11,0x2B9,1)
+		setmetatile(6,6,0x2B0,1)
+		setmetatile(7,6,0x2B1,1)
+		setmetatile(6,7,0x2B8,1)
+		setmetatile(7,7,0x2B9,1)
+		setmetatile(0,36,0x0E0,1)
+		setmetatile(1,36,0x0E1,1)
+		setmetatile(0,37,0x0E8,1)
+		setmetatile(1,37,0x0E9,1)
+		setmetatile(2,36,0x2B2,0)
+		setmetatile(2,37,0x2BA,0)
+}
+}
+script caprun {
+	lockall
+	facefollower
+	namebox(name4)
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Come on, Master Xylar we have to go quickly."))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}But what about Mom?and Dad, he's hurt! I can't leave them behind."))
+	hidenamebox
+	namebox(name4)
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}We don't have time Master Xylar.\pYour Mom and Dad...\pthey're strong.They'll be okay.\pBut you need to live!For them!"))
+	hidenamebox
+	namebox(Xylar)
+	msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}No! I can't leave Mom and Dad. I can't.."),MSGBOX_AUTOCLOSE)
+	hidenamebox
+	namebox(name4)
+	msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Please, Master Xylar, for your parents....run!"))
+	hidenamebox
+	releaseall
+	setvar(LUXURA_TRAGEDY,13)
+}
+movement rop {
+	walk_down
+	walk_right
+	
+}
+movement rope {
+	walk_down
+	
 }

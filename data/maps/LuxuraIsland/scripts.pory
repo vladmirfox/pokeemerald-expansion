@@ -5,7 +5,7 @@ map_script MAP_SCRIPT_ON_LOAD, LuxuraIsland_MapScripts_MAP_SCRIPT_ON_LOAD
 map_script MAP_SCRIPT_ON_TRANSITION, musicchange
 	.byte 0
 LuxuraIsland_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-map_script_2 VAR_ROUTE102_STATE, 9, stroll
+map_script_2 LUXURA_TRAGEDY, 9, stroll
 .2byte 0
 `
 script ran{
@@ -18,16 +18,16 @@ script ran{
     applymovement(2,mol)
     waitmovement(0)
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Now that's perfect."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Now that's perfect."),MSGBOX_AUTOCLOSE)
     hidenamebox
     namebox(gardener)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Wow! Lady Mira,You really have a knack for this.\pIt turned out so beautiful."))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Wow! Lady Mira, You really have a knack for this.\pIt turned out so beautiful."),MSGBOX_AUTOCLOSE)
     hidenamebox
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}No no,It's all your hard wor.."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}No no, It's all your hard wor.."),MSGBOX_AUTOCLOSE)
     hidenamebox
     namebox(Xylar)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Miiiirrrraaaa!!"))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Miiiirrrraaaa!!"),MSGBOX_AUTOCLOSE)
     hidenamebox
     applymovement(1,run)
     waitmovement(0)
@@ -35,29 +35,29 @@ script ran{
     waitmovement(0)
     special(RemoveCameraObject)
     namebox(Xylar)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}You tricked me with that Ramen,I ran down so fast and then they all started laughing.\pYou know Dad would never allow it.\pBut seroiusly, you won't get away with this so easily"))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}You tricked me with that Ramen, I ran down so fast and then they all started laughing.\pYou know Dad would never allow it.\pBut seroiusly, you won't get away with this so easily"),MSGBOX_AUTOCLOSE)
     hidenamebox
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}I'm sorry, Master Xylar, but I couldn't resist! You should've seen your face. "))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}I'm sorry, Master Xylar, but I couldn't resist! You should've seen your face. "),MSGBOX_AUTOCLOSE)
     hidenamebox
     namebox(Xylar)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Uhhhh!!!"))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Uhhhh!!!"),MSGBOX_AUTOCLOSE)
     hidenamebox
     applymovement(1,rum)
     applymovement(OBJ_EVENT_ID_PLAYER,rmu)
     waitmovement(0)
     namebox(Xylar)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}You can't escape that easily,Mira."))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}You can't escape that easily, Mira."),MSGBOX_AUTOCLOSE)
     hidenamebox
     waitmessage
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Catch me if you can,Master Xylar."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Catch me if you can, Master Xylar."),MSGBOX_AUTOCLOSE)
     hidenamebox
     applymovement(1,move)
     applymovement(OBJ_EVENT_ID_PLAYER,move2)
     waitmovement(0)
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha"))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Hahahaha"),MSGBOX_AUTOCLOSE)
     hidenamebox
     applymovement(1,falls)
     namebox(name4)
@@ -67,10 +67,10 @@ script ran{
     waitmovement(0)
     applymovement(3,fallss)
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Well,this wasn't part of the plan."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Well, this wasn't part of the plan."))
     hidenamebox
     namebox(Xylar)
-    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Hahahaha,Serves you right.\pI guess now I have to help you out,huh?"))
+    msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Hahahaha, Serves you right.\pI guess now I have to help you out,huh?"))
     hidenamebox
     applymovement(OBJ_EVENT_ID_PLAYER,falll)
     waitmovement(0)
@@ -116,16 +116,22 @@ script ran{
     msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Promise?"))
     hidenamebox
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Promise.Now,let's get inside before we catch a cold."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Promise. Now, let's get inside before we catch a cold."))
     hidenamebox
     fadescreen(FADE_TO_BLACK)
     removeobject(1)
     removeobject(OBJ_EVENT_ID_PLAYER)
     setflag(FLAG_UNUSED_0x497)
-    warp(MAP_LUXURA_INDOOR,14,40)
+    warp(MAP_LUXURA_INDOOR,14,41)
     releaseall
-    setvar(VAR_ROUTE102_STATE, 5)
+    setvar(LUXURA_TRAGEDY, 5)
     
+}
+movement talk{
+    face_left
+}
+movement tak {
+    face_right
 }
 movement inn {
     walk_up*3
@@ -169,20 +175,22 @@ movement fallss{
     set_visible
 }
 movement falls {
-    walk_faster_right*3
+    walk_faster_right*1
     jump_2_right
     set_invisible
 }
 
 movement fall {
-    walk_fast_right*3
+    walk_fast_right*1
 }
 movement move {
-    emote_double_exclamation_mark
+    emote_happy
     walk_fast_up*20
+    walk_fast_right*2
     face_left
 }
 movement move2 {
+    walk_fast_right*2
     walk_fast_up*20
     face_right
 }
@@ -245,7 +253,7 @@ script indoor {
     applymovement(6,in)
     waitmovement(0)
     namebox(name4)
-    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Master Xylar,You should take a bath and get changed before Lady Elysia sees you like this."))
+    msgbox(format("{COLOR RED}{SHADOW LIGHT_GRAY}Master Xylar, You should take a bath and get changed before Lady Elysia sees you like this."))
     hidenamebox
     namebox(Xylar)
     msgbox(format("{COLOR BLUE}{SHADOW LIGHT_GRAY}Yeah.I'll do that."))
@@ -255,15 +263,8 @@ script indoor {
     fadescreen(FADE_FROM_BLACK)
     releaseall
     setflag(FLAG_UNUSED_0x496)
-    setvar(VAR_ROUTE102_STATE,6)
 }
-script indo {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER,innn)
-    msgbox(format("I should hurry"))
-    goto(indoor)
-} 
-    
+  
 movement innn {
     walk_right
     walk_up
@@ -271,27 +272,16 @@ movement innn {
 movement ii {
     face_up
     set_visible
-    walk_up*2
 }
 movement innnn {
    face_down   
 }
 
-script indoo {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER,io)
-    msgbox(format("I should hurry"))
-    goto(indoor)
-} 
+
 movement io {
     walk_up*2
 }
-script ind {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER,ioo)
-    msgbox(format("I should hurry"))
-    goto(indoor)
-} 
+
 movement ioo {
     walk_left
     walk_up
@@ -312,7 +302,7 @@ script stroll {
     hidenamebox
     setfollower(5,CAN_LEAVE_ROUTE)
     releaseall
-    setvar(VAR_ROUTE102_STATE,10)
+    setvar(LUXURA_TRAGEDY,10)
     
 }
 movement str{
@@ -332,25 +322,25 @@ movement strp{
 }
 
 script LuxuraIsland_MapScripts_MAP_SCRIPT_ON_LOAD {
-    if(var(VAR_ROUTE102_STATE)<9){
+    if(var(LUXURA_TRAGEDY)<9){
         removeobject(5)
         setflag(FLAG_UNUSED_0x4EF)
         removeobject(6)
         setflag(FLAG_UNUSED_0x4A5)
     }
-     elif(var(VAR_ROUTE102_STATE)==9){
+     elif(var(LUXURA_TRAGEDY)==9){
         addobject(5)
         clearflag(FLAG_UNUSED_0x4EF)
         removeobject(6)
         setflag(FLAG_UNUSED_0x4A5)
     }
-    elif(var(VAR_ROUTE102_STATE)==10){
+    elif(var(LUXURA_TRAGEDY)==10){
         addobject(5)
         clearflag(FLAG_UNUSED_0x4EF)
         removeobject(6)
         setflag(FLAG_UNUSED_0x4A5)
     }
-    elif(var(VAR_ROUTE102_STATE)==11){
+    elif(var(LUXURA_TRAGEDY)==11){
         addobject(5)
         clearflag(FLAG_UNUSED_0x4EF)
         removeobject(2)
@@ -359,16 +349,42 @@ script LuxuraIsland_MapScripts_MAP_SCRIPT_ON_LOAD {
         clearflag(FLAG_UNUSED_0x4A5)
         setmetatile(6,28,0x001,1)
     }
-    elif(var(VAR_ROUTE102_STATE)>11){
-        removeobject(5)
-        setflag(FLAG_UNUSED_0x4EF)
+    elif(var(LUXURA_TRAGEDY)>11 && var(LUXURA_TRAGEDY)<14){
+        addobject(5)
+        clearflag(FLAG_UNUSED_0x4EF)
         removeobject(2)
         setflag(FLAG_UNUSED_0x4A4)
         addobject(6)
         clearflag(FLAG_UNUSED_0x4A5)
         setmetatile(6,28,0x001,1)
     }
-    
+    elif(var(LUXURA_TRAGEDY)>13){
+        removeobject(5)
+        setflag(FLAG_UNUSED_0x4EF)
+        removeobject(2)
+        setflag(FLAG_UNUSED_0x4A4)
+        addobject(6)
+        clearflag(FLAG_UNUSED_0x4A5)
+        setmetatile(6,28,0x001,1)   
+}
+  elif(var(LUXURA_TRAGEDY)==19 && var(LUXURA_TRAGEDY)==20){
+        removeobject(5)
+        setflag(FLAG_UNUSED_0x4EF)
+        removeobject(2)
+        setflag(FLAG_UNUSED_0x4A4)
+        addobject(6)
+        clearflag(FLAG_UNUSED_0x4A5)
+        setmetatile(6,28,0x001,1)    
+}
+  elif(var(LUXURA_TRAGEDY)>= 21){
+        removeobject(5)
+        setflag(FLAG_UNUSED_0x4EF)
+        removeobject(2)
+        setflag(FLAG_UNUSED_0x4A4)
+        addobject(6)
+        clearflag(FLAG_UNUSED_0x4A5)
+        setmetatile(6,28,0x001,1)    
+}
 }
 script strolll{
     lockall
@@ -402,7 +418,6 @@ script sail {
 script blood{
     lockall
     msgbox(format("The blood splatters on the ground, its vivid red stark against everything else."))
-    clearflag(FLAG_UNUSED_0x4AA)
     releaseall     
 
 }
@@ -434,5 +449,50 @@ script musicchange {
     if(flag(FLAG_UNUSED_0x4AA)){
     setweather(WEATHER_RAIN_THUNDERSTORM)
     doweather
+    playbgm(MUS_DUMMY,TRUE)
     
-}}
+}
+}
+
+script strollll{
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER,strp)
+    applymovement(OBJ_EVENT_ID_FOLLOWER,strp)
+    namebox(name4)
+    msgbox(format("I should go to mansion.\pI'm worried about Mom and Dad."))
+    hidenamebox
+    releaseall
+}
+script signluxura {
+    lock
+    msgbox(format("Luxura Island\p{COLOR BLUE}{SHADOW LIGHT_GRAY}A serene haven where beauty and mystery intertwine beneath tranquil skies."),MSGBOX_SIGN)
+    release
+}
+script signlmansion {
+    lock
+    msgbox(format("Luxura Mansion\p{COLOR BLUE}{SHADOW LIGHT_GRAY}A magnificent estate, home to wealth, power, and a legacy of prestige."),MSGBOX_SIGN)
+    release
+}
+script signforest {
+    lock
+    msgbox(format("Luxura Veilwood\p{COLOR BLUE}{SHADOW LIGHT_GRAY}A dense, ancient forest where secrets are whispered among the trees and shadows linger at every turn."),MSGBOX_SIGN)
+    release
+    
+}
+script signservantquarter {
+    lock
+    msgbox(format("Servant's Quarter"),MSGBOX_SIGN)
+    release
+    
+}
+script signluxuraharbor {
+    lock
+    msgbox(format("Harbor Haven\p{COLOR BLUE}{SHADOW LIGHT_GRAY}The central gathering place for sailors on Luxura Island, where voyages are planned and tales are shared."),MSGBOX_SIGN)
+    release
+    
+}
+script signend{
+    lock
+    msgbox(format("End of Beta 1."))
+    release
+}

@@ -3,7 +3,8 @@ Playerroom_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Playerroom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 	.byte 0
 	Playerroom_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-     map_script_2 VAR_ROUTE102_STATE, 1, mira
+     map_script_2 LUXURA_TRAGEDY, 1, mira
+	 map_script_2 LUXURA_TRAGEDY, 5, metdad
 	.2byte 0
 `
 script mira{
@@ -48,7 +49,7 @@ script mira{
 	removeobject (1)
 	releaseall
 	setflag(FLAG_UNUSED_0x0E9)
-	setvar (VAR_ROUTE102_STATE,2)
+	setvar (LUXURA_TRAGEDY,2)
 
 }
 movement miramove{
@@ -57,7 +58,7 @@ movement miramove{
 
 }
 movement miramove2{
-	emote_double_exclamation_mark
+	emote_happy
 	walk_right*2
 	walk_down*4
 }
@@ -65,7 +66,7 @@ movement miramove2{
 movement miramove1{
 	walk_up*4
 	walk_left*2
-	emote_x
+	emote_upset
 }
 movement xylar{
 	emote_exclamation_mark
@@ -113,4 +114,10 @@ script parent {
 	applymovement(OBJ_EVENT_ID_PLAYER,not)
 	msgbox(format("I can't sleep here, this bed is for Mom and Dad,not me"))
 	releaseall
+}
+script metdad {
+	lockall
+	msgbox(format("I should check on Dad.\pHe's probably busy with his work.\p(He usually works downstairs, in the first room on the left.)"))
+	releaseall
+	setvar(LUXURA_TRAGEDY,6)
 }

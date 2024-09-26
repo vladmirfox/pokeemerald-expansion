@@ -1953,3 +1953,27 @@ const struct SpriteFrameImage gObjectEventPicTable_Surge[] = {
     overworld_frame(gObjectEventPic_Surge, 4, 4, 7),
     overworld_frame(gObjectEventPic_Surge, 4, 4, 8),
 };
+
+const struct SpriteFrameImage gObjectEventPicTable_Portal[] = {
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 0),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 1),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 2),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 3),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 0),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 1),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 2),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 3),
+    overworld_frame(gObjectEventPic_Portal, 8, 8, 0),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_Fire[] = {
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 3),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 3),
+    overworld_frame(gObjectEventPic_Fire, 4, 4, 0),
+};

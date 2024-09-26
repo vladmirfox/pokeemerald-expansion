@@ -9,22 +9,22 @@ luxurakitchen_MapScripts::
 
 luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD::
 # 7 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 6
+	compare LUXURA_TRAGEDY, 6
 	goto_if_eq luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_1
 # 19 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 5
+	compare LUXURA_TRAGEDY, 5
 	goto_if_lt luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_2
 # 31 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 9
+	compare LUXURA_TRAGEDY, 9
 	goto_if_gt luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_3
 # 43 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 7
+	compare LUXURA_TRAGEDY, 7
 	goto_if_eq luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_4
 # 51 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 8
+	compare LUXURA_TRAGEDY, 8
 	goto_if_eq luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_5
 # 58 "data/maps/luxurakitchen/scripts.pory"
-	compare VAR_ROUTE102_STATE, 9
+	compare LUXURA_TRAGEDY, 9
 	goto_if_eq luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD_6
 	return
 
@@ -297,7 +297,7 @@ mirastrol::
 # 143 "data/maps/luxurakitchen/scripts.pory"
 	setflag FLAG_UNUSED_0x4A3
 # 144 "data/maps/luxurakitchen/scripts.pory"
-	setvar VAR_ROUTE102_STATE, 9
+	setvar LUXURA_TRAGEDY, 9
 # 145 "data/maps/luxurakitchen/scripts.pory"
 	setvar VAR_ROUTE103_STATE, 2
 	return

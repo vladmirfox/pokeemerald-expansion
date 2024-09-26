@@ -3,7 +3,7 @@
   "name": "Servantquarter",
   "layout": "LAYOUT_SERVANTQUARTER",
   "music": "MUS_RG_POKE_CENTER",
-  "region_map_section": "MAPSEC_TRAINER_HILL",
+  "region_map_section": "MAPSEC_SERVANTQUARTER",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",

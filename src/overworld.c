@@ -1208,13 +1208,13 @@ void Overworld_PlaySpecialMapMusic(void)
             music = MUS_SURF;   
     }
     if (FlagGet(FLAG_AFTERTRAGEDY_MUSIC)){
-        if (GetCurrentMapType() == MAP_TYPE_INDOOR)
-            music = MUS_ABNORMAL_WEATHER;
-        else if (GetCurrentMapType() == MAP_TYPE_TOWN)
-            music = MUS_DUMMY;
-        else if (GetCurrentMapType() == MAP_TYPE_CITY)
-            music = MUS_DUMMY;
-    }
+      if (GetCurrentMapType() == MAP_TYPE_INDOOR)
+          music = MUS_ABNORMAL_WEATHER;
+      else if (GetCurrentMapType() == MAP_TYPE_TOWN)
+          music = MUS_DUMMY;
+      else if (GetCurrentMapType() == MAP_TYPE_CITY)
+          music = MUS_DUMMY;
+  }
 
     if (music != GetCurrentMapMusic())
         PlayNewMapMusic(music);

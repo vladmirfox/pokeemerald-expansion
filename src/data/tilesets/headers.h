@@ -31,7 +31,7 @@ const struct Tileset gTileset_Rustboro =
     .callback = InitTilesetAnim_Rustboro,
 };
 
-const struct Tileset gTileset_Dewford =
+const struct Tileset gTileset_SeaportCity =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
@@ -240,7 +240,7 @@ const struct Tileset gTileset_PokemonFanClub =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_Unused1 =
+const struct Tileset gTileset_Evilbase =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
@@ -427,7 +427,7 @@ const struct Tileset gTileset_InsideOfTruck =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_Unused2 =
+const struct Tileset gTileset_Hospital =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
@@ -848,7 +848,7 @@ const struct Tileset gTileset_luxuraisland =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_luxuraindoor =
+const struct Tileset gTileset_Luxuraindoor =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,

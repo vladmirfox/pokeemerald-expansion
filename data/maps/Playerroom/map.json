@@ -3,7 +3,7 @@
   "name": "Playerroom",
   "layout": "LAYOUT_PLAYERROOM",
   "music": "MUS_LITTLEROOT",
-  "region_map_section": "MAPSEC_OLDALE_TOWN",
+  "region_map_section": "MAPSEC_LUXURA_MANSION",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -43,7 +43,7 @@
       "x": 4,
       "y": 9,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "2",
       "script": "clock"
     },
@@ -52,7 +52,7 @@
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "2",
       "script": "clock"
     },
@@ -61,7 +61,7 @@
       "x": 6,
       "y": 9,
       "elevation": 0,
-      "var": "VAR_ROUTE102_STATE",
+      "var": "LUXURA_TRAGEDY",
       "var_value": "2",
       "script": "clock"
     }

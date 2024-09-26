@@ -1634,7 +1634,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BreakableRock = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PushableBoulder = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_1,
+    .paletteTag = OBJ_EVENT_PAL_TAG_BRENDAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 128,
     .width = 16,
@@ -4636,7 +4636,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_3,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FIREBREATHER,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,
@@ -5619,5 +5619,43 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Surge = {
     .subspriteTables = sOamTables_32x32,
     .anims = sAnimTable_Standard,
     .images = gObjectEventPicTable_Surge,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Portal = { 
+    .tileTag = 0xFFFF,
+    .paletteTag = OBJ_EVENT_PAL_TAG_PORTAL,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 2048,
+    .width = 64,
+    .height = 64,
+    .paletteSlot = 0,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_64x64,
+    .subspriteTables = sOamTables_64x64,
+    .anims = sAnimTable_Standard,
+    .images = gObjectEventPicTable_Portal,
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fire = { 
+    .tileTag = 0xFFFF,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FIRE,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 512,
+    .width = 32,
+    .height = 32,
+    .paletteSlot = 0,
+    .shadowSize = SHADOW_SIZE_M,
+    .inanimate = FALSE,
+    .compressed = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_32x32,
+    .subspriteTables = sOamTables_32x32,
+    .anims = sAnimTable_Standard,
+    .images = gObjectEventPicTable_Fire,
     .affineAnims = gDummySpriteAffineAnimTable,
 };

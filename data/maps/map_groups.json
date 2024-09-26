@@ -95,7 +95,8 @@
     "Underwater_Route125",
     "LuxuraIsland",
     "Luxuradining",
-    "LuxuraIsland1"
+    "LuxuraIsland1",
+    "Newmap11"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -114,7 +115,9 @@
     "Playerroom",
     "guest",
     "Hospital",
-    "Servantquarter"
+    "Servantquarter",
+    "Sparkbase",
+    "newhouse"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",

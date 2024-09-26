@@ -15,7 +15,7 @@ Hospital_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 # 8 "data/maps/Hospital/scripts.pory"
 # 3 "data/maps/Hospital/scripts.pory"
 # 9 "data/maps/Hospital/scripts.pory"
-	map_script_2 VAR_ROUTE102_STATE, 0, Luxura
+	map_script_2 LUXURA_TRAGEDY, 0, Luxura
 # 10 "data/maps/Hospital/scripts.pory"
 	.2byte 0
 # 11 "data/maps/Hospital/scripts.pory"
@@ -57,7 +57,7 @@ playse MUS_DUMMY
 # 29 "data/maps/Hospital/scripts.pory"
 # 15 "data/maps/Hospital/scripts.pory"
 # 30 "data/maps/Hospital/scripts.pory"
-	msgbox myloll
+	msgbox myloll , MSGBOX_AUTOCLOSE
 # 31 "data/maps/Hospital/scripts.pory"
 # 16 "data/maps/Hospital/scripts.pory"
 # 32 "data/maps/Hospital/scripts.pory"
@@ -69,7 +69,7 @@ playse MUS_DUMMY
 # 35 "data/maps/Hospital/scripts.pory"
 # 18 "data/maps/Hospital/scripts.pory"
 # 36 "data/maps/Hospital/scripts.pory"
-	msgbox scared
+	msgbox scared , MSGBOX_AUTOCLOSE
 # 37 "data/maps/Hospital/scripts.pory"
 # 19 "data/maps/Hospital/scripts.pory"
 # 38 "data/maps/Hospital/scripts.pory"
@@ -81,7 +81,7 @@ playse MUS_DUMMY
 # 41 "data/maps/Hospital/scripts.pory"
 # 21 "data/maps/Hospital/scripts.pory"
 # 42 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_0
+	msgbox Luxura_Text_0 , MSGBOX_AUTOCLOSE
 # 43 "data/maps/Hospital/scripts.pory"
 # 22 "data/maps/Hospital/scripts.pory"
 # 44 "data/maps/Hospital/scripts.pory"
@@ -101,7 +101,7 @@ playse MUS_DUMMY
 # 51 "data/maps/Hospital/scripts.pory"
 # 26 "data/maps/Hospital/scripts.pory"
 # 52 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_1
+	msgbox Luxura_Text_1 , MSGBOX_AUTOCLOSE
 # 53 "data/maps/Hospital/scripts.pory"
 # 27 "data/maps/Hospital/scripts.pory"
 # 54 "data/maps/Hospital/scripts.pory"
@@ -115,7 +115,7 @@ playse MUS_DUMMY
 # 58 "data/maps/Hospital/scripts.pory"
     namebox(name1)
 # 59 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_2
+	msgbox Luxura_Text_2 , MSGBOX_AUTOCLOSE
 # 60 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 61 "data/maps/Hospital/scripts.pory"
@@ -137,7 +137,7 @@ playse MUS_DUMMY
 # 69 "data/maps/Hospital/scripts.pory"
 	namebox(name2)
 # 70 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_4
+	msgbox Luxura_Text_4 , MSGBOX_AUTOCLOSE
 # 71 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 72 "data/maps/Hospital/scripts.pory"
@@ -149,7 +149,7 @@ playse MUS_DUMMY
 # 75 "data/maps/Hospital/scripts.pory"
     namebox(name3)
 # 76 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_5
+	msgbox Luxura_Text_5 , MSGBOX_AUTOCLOSE
 # 77 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 78 "data/maps/Hospital/scripts.pory"
@@ -159,7 +159,7 @@ playse MUS_DUMMY
 # 80 "data/maps/Hospital/scripts.pory"
     callnative DrawMugshot
 # 81 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_6
+	msgbox Luxura_Text_6 , MSGBOX_AUTOCLOSE
 # 82 "data/maps/Hospital/scripts.pory"
 	callnative ClearMugshot
 # 83 "data/maps/Hospital/scripts.pory"
@@ -179,7 +179,7 @@ playse MUS_DUMMY
 # 90 "data/maps/Hospital/scripts.pory"
     namebox(name2)
 # 91 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_7
+	msgbox Luxura_Text_7 , MSGBOX_AUTOCLOSE
 # 92 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 93 "data/maps/Hospital/scripts.pory"
@@ -187,7 +187,7 @@ playse MUS_DUMMY
 # 94 "data/maps/Hospital/scripts.pory"
     namebox(name3)
 # 95 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_8
+	msgbox Luxura_Text_8 , MSGBOX_AUTOCLOSE
 # 96 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 97 "data/maps/Hospital/scripts.pory"
@@ -197,7 +197,7 @@ playse MUS_DUMMY
 # 99 "data/maps/Hospital/scripts.pory"
     callnative DrawMugshot
 # 100 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_9
+	msgbox Luxura_Text_9 , MSGBOX_AUTOCLOSE
 # 101 "data/maps/Hospital/scripts.pory"
 	callnative ClearMugshot
 # 102 "data/maps/Hospital/scripts.pory"
@@ -205,7 +205,7 @@ playse MUS_DUMMY
 # 103 "data/maps/Hospital/scripts.pory"
 	namebox(name4)
 # 104 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_10
+	msgbox Luxura_Text_10 , MSGBOX_AUTOCLOSE
 # 105 "data/maps/Hospital/scripts.pory"
 	hidenamebox
 # 106 "data/maps/Hospital/scripts.pory"
@@ -215,7 +215,7 @@ playse MUS_DUMMY
 # 108 "data/maps/Hospital/scripts.pory"
 # 44 "data/maps/Hospital/scripts.pory"
 # 109 "data/maps/Hospital/scripts.pory"
-	msgbox Luxura_Text_11
+	msgbox Luxura_Text_11 , MSGBOX_AUTOCLOSE
 # 110 "data/maps/Hospital/scripts.pory"
 	applymovement 1,heart
 # 111 "data/maps/Hospital/scripts.pory"
@@ -239,7 +239,7 @@ playse MUS_DUMMY
 # 120 "data/maps/Hospital/scripts.pory"
 # 48 "data/maps/Hospital/scripts.pory"
 # 121 "data/maps/Hospital/scripts.pory"
-	setvar VAR_ROUTE102_STATE, 1
+	setvar LUXURA_TRAGEDY, 1
 # 122 "data/maps/Hospital/scripts.pory"
 # 49 "data/maps/Hospital/scripts.pory"
 # 123 "data/maps/Hospital/scripts.pory"

@@ -4,7 +4,7 @@ luxurakitchen_MapScripts::
 	.byte 0
 `
 script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
-	if(var(VAR_ROUTE102_STATE)==6){
+	if(var(LUXURA_TRAGEDY)==6){
 		addobject(7)
 		addobject(8)
 		removeobject(9)
@@ -16,7 +16,7 @@ script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
 		clearflag(FLAG_UNUSED_0x49B)
 		clearflag(FLAG_UNUSED_0x49C)
 	}
-	elif(var(VAR_ROUTE102_STATE)<5){
+	elif(var(LUXURA_TRAGEDY)<5){
 		removeobject(7)
 		removeobject(8)
 		removeobject(9)
@@ -28,7 +28,7 @@ script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
 		setflag(FLAG_UNUSED_0x49B)
 		setflag(FLAG_UNUSED_0x49C)
 	}
-	elif(var(VAR_ROUTE102_STATE)>9){
+	elif(var(LUXURA_TRAGEDY)>9){
 		removeobject(7)
 		removeobject(8)
 		removeobject(9)
@@ -40,7 +40,7 @@ script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
 		setflag(FLAG_UNUSED_0x49B)
 		setflag(FLAG_UNUSED_0x49C)
 	}
-	elif(var(VAR_ROUTE102_STATE)==7){
+	elif(var(LUXURA_TRAGEDY)==7){
 		removeobject(7)
 		addobject(9)
 		addobject(10)
@@ -48,14 +48,14 @@ script luxurakitchen_MapScripts_MAP_SCRIPT_ON_LOAD {
 		clearflag(FLAG_UNUSED_0x4A0)
 		clearflag(FLAG_UNUSED_0x4A1)
 	}
-    elif(var(VAR_ROUTE102_STATE)==8){
+    elif(var(LUXURA_TRAGEDY)==8){
 	removeobject(8)
 	setflag(FLAG_UNUSED_0x49C)
 	addobject(11)
 	clearflag(FLAG_UNUSED_0x4A3)
 
 	}
-    elif(var(VAR_ROUTE102_STATE)==9){
+    elif(var(LUXURA_TRAGEDY)==9){
 		removeobject(11)
 		setflag(FLAG_UNUSED_0x4A3)
 		removeobject(8)
@@ -141,7 +141,7 @@ script mirastrol {
 	fadescreen(FADE_FROM_BLACK)
 	releaseall
 	setflag(FLAG_UNUSED_0x4A3)
-	setvar(VAR_ROUTE102_STATE,9)
+	setvar(LUXURA_TRAGEDY,9)
 	setvar(VAR_ROUTE103_STATE,2)
 	
 }

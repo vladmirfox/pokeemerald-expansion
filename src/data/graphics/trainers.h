@@ -280,6 +280,9 @@ const u32 gTrainerPalette_SparkAdmin[] = INCBIN_U32("graphics/trainers/front_pic
 const u32 gTrainerFrontPic_SparkLeader[] = INCBIN_U32("graphics/trainers/front_pics/spark_leader.4bpp.lz");
 const u32 gTrainerPalette_SparkLeader[] = INCBIN_U32("graphics/trainers/front_pics/spark_leader.gbapal.lz");
 
+const u32 gTrainerFrontPic_Surge[] = INCBIN_U32("graphics/trainers/front_pics/surge.4bpp.lz");
+const u32 gTrainerPalette_Surge[] = INCBIN_U32("graphics/trainers/front_pics/surge.gbapal.lz");
+
 const u32 gTrainerFrontPic_Spy[] = INCBIN_U32("graphics/trainers/front_pics/spy.4bpp.lz");
 const u32 gTrainerPalette_Spy[] = INCBIN_U32("graphics/trainers/front_pics/spy.gbapal.lz");
 
@@ -421,6 +424,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(SPARK_GRUNT_M, SparkGruntM),
     TRAINER_SPRITE(SPARK_GRUNT_F, SparkGruntF),
     TRAINER_SPRITE(SPY, Spy),
+    TRAINER_SPRITE(SURGE, Surge),
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

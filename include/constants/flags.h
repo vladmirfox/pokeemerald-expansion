@@ -1046,10 +1046,10 @@
 #define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
-#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8
-#define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
-#define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA
-#define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB
+#define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8 //revival herb for mewtwo
+#define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9 // fresh water for mewtwo
+#define FLAG_ITEM_ROUTE_104_PP_UP                                   0x3EA // paralyxe heal spark base
+#define FLAG_ITEM_ROUTE_105_IRON                                    0x3EB // potion spark base
 #define FLAG_ITEM_ROUTE_106_PROTEIN                                 0x3EC
 #define FLAG_ITEM_ROUTE_109_PP_UP                                   0x3ED
 #define FLAG_ITEM_ROUTE_110_RARE_CANDY                              0x3EE
@@ -1191,7 +1191,7 @@
 #define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476
 #define FLAG_ITEM_ROUTE_113_HYPER_POTION                            0x477
 #define FLAG_ITEM_ROUTE_115_HEAL_POWDER                             0x478
-#define FLAG_UNUSED_0x479                                           0x479 // Unused Flag
+#define FLAG_UNUSED_0x479                                           0x479 // used Flag
 #define FLAG_ITEM_ROUTE_116_POTION                                  0x47A
 #define FLAG_ITEM_ROUTE_119_ELIXIR_2                                0x47B
 #define FLAG_ITEM_ROUTE_120_REVIVE                                  0x47C
@@ -1243,19 +1243,19 @@
 #define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag nurse servant
 #define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag weather change luxura
 #define FLAG_AFTERTRAGEDY_MUSIC                                     0x4AB // Unused Flag 
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag 
-#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
-#define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
-#define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
-#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag
-#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
-#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
-#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
-#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
-#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
-#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
-#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
-#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
+#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag sailor blood
+#define FLAG_UNUSED_0x4AD                                           0x4AD // used Flag
+#define FLAG_UNUSED_0x4AE                                           0x4AE // used Flag
+#define FLAG_UNUSED_0x4AF                                           0x4AF // used Flag
+#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag revival herb applied
+#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag fresh water drank
+#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag gruts psycho
+#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag their blood
+#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag mewtwo cave
+#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag mewtwo recover cave
+#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag grunts appear
+#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag nurse healing luxura
+#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag surgeded 
 #define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
 #define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
 #define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag

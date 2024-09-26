@@ -945,3 +945,21 @@ void LoadMapTilesetPalettes(struct MapLayout const *mapLayout)
         LoadSecondaryTilesetPalette(mapLayout);
     }
 }
+
+extern void DrawWholeMapView(void);
+void CopyMetatileIdsFromMapLayout(u16 mapGroup, u16 mapNum, const struct UCoords8 *pos)
+{
+    u32 i, block, x, y;
+    struct MapLayout const *layout = Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->mapLayout;
+    
+    i = 0;
+    do {
+        x = pos[i].x;
+        y = pos[i].y;
+        block = layout->map[x + layout->width * y];
+        gBackupMapLayout.map[(x + MAP_OFFSET) + (y + MAP_OFFSET) * gBackupMapLayout.width] = block;
+        i++;
+    } while (pos[i].x != 0xFF);
+    
+    DrawWholeMapView();
+}
