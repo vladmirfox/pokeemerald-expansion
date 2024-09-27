@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("Eject Pack is triggered by self-inflicting stat decreases")
     }
 }
 
-DOUBLE_BATTLE_TEST("Eject Pack will activate before Eject Button since player Wobbuffet is the fastest mon and commander activation will follow")
+DOUBLE_BATTLE_TEST("Eject Pack activation will not trigger an attack from the incoming mon")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Speed(10); Ability(ABILITY_COMMANDER); }

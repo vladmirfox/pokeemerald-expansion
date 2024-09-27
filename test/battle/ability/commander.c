@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gMovesInfo[MOVE_ORDER_UP].additionalEffects[0].moveEffect == MOVE_EFFECT_ORDER_UP);
+}
+
 DOUBLE_BATTLE_TEST("(Commander) Commander will activate once Dondozo switches in")
 {
     GIVEN {
@@ -374,5 +379,43 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not attack if Dondozo faints the 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
         HP_BAR(playerRight);
         NOT MESSAGE("Tatsugiri used Celebrate!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri gets hit by Dragon Darts when a commanded Dondozo faints")
+{
+    KNOWN_FAILING; // Fails because of incomplete 2nd turn error. Works fine ingame
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO) { HP(1); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); SEND_OUT(playerRight, 2); }
+    } SCENE {
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, opponentRight);
+        MESSAGE("Dondozo fainted!");
+        NOT HP_BAR(playerLeft);
+    }
+}
+
+DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not get hit by Dragon Darts when commanding Dondozo")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_DONDOZO);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); }
+    } SCENE {
+        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, opponentRight);
+        HP_BAR(playerRight);
+        NOT HP_BAR(playerLeft);
     }
 }
