@@ -384,16 +384,15 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not attack if Dondozo faints the 
 
 DOUBLE_BATTLE_TEST("(Commander) Tatsugiri gets hit by Dragon Darts when a commanded Dondozo faints")
 {
-    KNOWN_FAILING; // Fails because of incomplete 2nd turn error. Works fine ingame
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
-        PLAYER(SPECIES_DONDOZO) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_DONDOZO) { HP(1); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); SEND_OUT(playerRight, 2); }
+        TURN { SWITCH(playerLeft, 2); MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); SEND_OUT(playerRight, 0); }
     } SCENE {
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, opponentRight);
