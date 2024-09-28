@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_ORDER_UP].additionalEffects[0].moveEffect == MOVE_EFFECT_ORDER_UP);
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Commander will activate once Dondozo switches in")
+DOUBLE_BATTLE_TEST("Commander will activate once Dondozo switches in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -22,7 +22,7 @@ DOUBLE_BATTLE_TEST("(Commander) Commander will activate once Dondozo switches in
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Commander increases all stats by 2 stages once it is triggered")
+DOUBLE_BATTLE_TEST("Commander increases all stats by 2 stages once it is triggered")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -43,7 +43,7 @@ DOUBLE_BATTLE_TEST("(Commander) Commander increases all stats by 2 stages once i
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) When Commander is active moves targeted at Tatsugiri will fail")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri avoids moves targetted towards it")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -61,7 +61,7 @@ DOUBLE_BATTLE_TEST("(Commander) When Commander is active moves targeted at Tatsu
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take residual damage from a field effect while inside Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri will still take residual damage from a field effect while inside Dondozo")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -80,7 +80,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take residual damage from a
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take poison damage if while inside Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri will still take poison damage if while inside Dondozo")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
@@ -96,7 +96,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will still take poison damage if while
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) No Guard affected moves will still fail while Tatsugiri is inside Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri still avoids moves even when the attacker has No Guard")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -113,7 +113,7 @@ DOUBLE_BATTLE_TEST("(Commander) No Guard affected moves will still fail while Ta
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Commander cannot affect a Dondozo that was previously affected by Commander until it faints and revived")
+DOUBLE_BATTLE_TEST("Commander cannot affect a Dondozo that was previously affected by Commander until it faints and revived")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -135,7 +135,7 @@ DOUBLE_BATTLE_TEST("(Commander) Commander cannot affect a Dondozo that was previ
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Whirlwind can not be used against Dondozo or Tatsugiri while Commander is active")
+DOUBLE_BATTLE_TEST("Commander prevents Whirlwind from working against Dondozo or Tatsugiri while it's active")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -156,7 +156,7 @@ DOUBLE_BATTLE_TEST("(Commander) Whirlwind can not be used against Dondozo or Tat
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is active")
+DOUBLE_BATTLE_TEST("Commander prevents Red Card from working while Commander is active")
 {
     GIVEN {
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -177,7 +177,7 @@ DOUBLE_BATTLE_TEST("(Commander) Red Card fails on Dondozo while Commander is act
 
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move if Dondozo faints")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri is not damaged by a double target move if Dondozo faints")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
@@ -198,7 +198,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is not damaged by a double target move
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri under Commander takes no damage")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri takes no damage from multi-target damaging moves")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -224,7 +224,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri under Commander takes no damage")
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Transform can be used while Tatsugiri is commanding Dondozo")
+DOUBLE_BATTLE_TEST("Commander doesn't prevent Transform from working on a Commander Tatsugiri")
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
@@ -240,7 +240,7 @@ DOUBLE_BATTLE_TEST("(Commander) Transform can be used while Tatsugiri is command
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Imposter will transfrom into Tatsugiri while it is commanding Dondozo")
+DOUBLE_BATTLE_TEST("Commander doesn't prevent Imposter from working on a Commander Tatsugiri")
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
@@ -259,7 +259,7 @@ DOUBLE_BATTLE_TEST("(Commander) Imposter will transfrom into Tatsugiri while it 
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will not be affected by Perish Song while controlling Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri is still affected by Haze while controlling Dondozo")
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
@@ -289,7 +289,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri will not be affected by Perish Song wh
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is still affected by Haze while controlling Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri is still affected by Haze while controlling Dondozo")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -310,7 +310,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri is still affected by Haze while contro
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Left Slot)")
+DOUBLE_BATTLE_TEST("Commander Attacker is kept (Dondozo Left Slot)")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
@@ -333,7 +333,7 @@ DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Left Slot)")
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Right Slot)")
+DOUBLE_BATTLE_TEST("Commander Attacker is kept (Dondozo Right Slot)")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
@@ -356,7 +356,7 @@ DOUBLE_BATTLE_TEST("(Commander) Attacker is kept (Dondozo Right Slot)")
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not attack if Dondozo faints the same turn it's switched in")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri does not attack if Dondozo faints the same turn it's switched in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -382,7 +382,7 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not attack if Dondozo faints the 
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri gets hit by Dragon Darts when a commanded Dondozo faints")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri does not get hit by Dragon Darts when a commanded Dondozo faints")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
@@ -401,8 +401,11 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri gets hit by Dragon Darts when a comman
     }
 }
 
-DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not get hit by Dragon Darts when commanding Dondozo")
+DOUBLE_BATTLE_TEST("Commander Tatsugiri does not get hit by Dragon Darts when commanding Dondozo")
 {
+    bool32 targetPlayerRight;
+    PARAMETRIZE { targetPlayerRight = TRUE; }
+    PARAMETRIZE { targetPlayerRight = FALSE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_DARTS].effect == EFFECT_DRAGON_DARTS);
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }
@@ -410,10 +413,15 @@ DOUBLE_BATTLE_TEST("(Commander) Tatsugiri does not get hit by Dragon Darts when 
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
-        TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); }
+        if (targetPlayerRight == TRUE)
+            TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerRight); }
+        else
+            TURN { MOVE(opponentRight, MOVE_DRAGON_DARTS, target: playerLeft); }
     } SCENE {
         MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, opponentRight);
+        HP_BAR(playerRight);
+        NOT HP_BAR(playerLeft);
         HP_BAR(playerRight);
         NOT HP_BAR(playerLeft);
     }

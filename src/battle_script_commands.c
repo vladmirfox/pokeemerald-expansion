@@ -1522,7 +1522,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     // If the attacker has the ability No Guard and they aren't targeting a Pokemon involved in a Sky Drop with the move Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
           && !(gStatuses3[gBattlerTarget] & STATUS3_COMMANDER)
-          && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
+          && (gMovesInfo[move].effect != EFFECT_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
@@ -1530,7 +1530,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     }
     // If the target has the ability No Guard and they aren't involved in a Sky Drop or the current move isn't Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD
-          && (move != MOVE_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
+          && (gMovesInfo[move].effect != EFFECT_SKY_DROP || gBattleStruct->skyDropTargets[gBattlerTarget] == 0xFF))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
@@ -3841,7 +3841,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
             case MOVE_EFFECT_ORDER_UP:
                 {
                     u32 stat = 0;
-                    u32 commanderAffected = TRUE;
+                    bool32 commanderAffected = TRUE;
                     switch (gBattleStruct->commanderActive[gEffectBattler])
                     {
                     case SPECIES_TATSUGIRI_CURLY:
