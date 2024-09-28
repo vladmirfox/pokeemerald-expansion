@@ -1,11 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-    ASSUME(gMovesInfo[MOVE_ORDER_UP].additionalEffects[0].moveEffect == MOVE_EFFECT_ORDER_UP);
-}
-
 DOUBLE_BATTLE_TEST("Commander will activate once Dondozo switches in")
 {
     GIVEN {
