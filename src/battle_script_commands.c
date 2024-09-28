@@ -6157,12 +6157,12 @@ static void Cmd_moveend(void)
                             if (ejectButtonBattlers & (1u << battler))
                             {
                                 gBattlescriptCurrInstr = BattleScript_EjectButtonActivates;
-                                gSpecialStatuses[battler].ejectButtonSwitch = TRUE;
+                                AI_DATA->ejectButtonSwitch = TRUE;
                             }
                             else // Eject Pack
                             {
                                 gBattlescriptCurrInstr = BattleScript_EjectPackActivates;
-                                gSpecialStatuses[battler].ejectPackSwitch = TRUE;
+                                AI_DATA->ejectPackSwitch = TRUE;
                                 // Are these 2 lines below needed?
                                 gProtectStructs[battler].statFell = FALSE;
                                 gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;

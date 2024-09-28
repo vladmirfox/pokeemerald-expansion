@@ -1794,9 +1794,9 @@ static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 
     {
         if (IsSwitchOutEffect(gMovesInfo[gLastUsedMove].effect) && movedSecond)
             return TRUE;
-        if (gSpecialStatuses[battlerSwitchingOut].ejectButtonSwitch)
+        if (AI_DATA->ejectButtonSwitch)
             return TRUE;
-        if (gSpecialStatuses[battlerSwitchingOut].ejectPackSwitch)
+        if (AI_DATA->ejectPackSwitch)
         {
             // If faster, not a free switch; likely lowered own stats
             if (!movedSecond)

@@ -3239,8 +3239,8 @@ void SwitchInClearSetData(u32 battler)
     gBattleStruct->enduredDamage &= ~(1u << battler);
 
     // Reset Eject Button / Eject Pack switch detection
-    gSpecialStatuses[battler].ejectButtonSwitch = FALSE;
-    gSpecialStatuses[battler].ejectPackSwitch = FALSE;
+    AI_DATA->ejectButtonSwitch = FALSE;
+    AI_DATA->ejectPackSwitch = FALSE;
 
     // Reset G-Max Chi Strike boosts.
     gBattleStruct->bonusCritStages[battler] = 0;
