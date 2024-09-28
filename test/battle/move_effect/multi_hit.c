@@ -172,7 +172,7 @@ SINGLE_BATTLE_TEST("Scale Shot is immune to Fairy types and will end the move co
         TURN { MOVE(player, MOVE_SCALE_SHOT); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
-        MESSAGE("It doesn't affect Foe Clefairy…");
+        MESSAGE("It doesn't affect the opposing Clefairy…");
     }
 }
 
@@ -192,7 +192,7 @@ DOUBLE_BATTLE_TEST("Scale Shot does not corrupt the next turn move used")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, playerRight);
         HP_BAR(opponentRight);
-        MESSAGE("Hit 1 time(s)!");
+        MESSAGE("The Pokémon was hit 1 time(s)!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLDOZE, playerRight);
         HP_BAR(playerLeft);
         HP_BAR(opponentLeft);
@@ -292,7 +292,7 @@ SINGLE_BATTLE_TEST("Multi Hit moves will not disrupt Destiny Bond flag")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
         }
-        MESSAGE("Wobbuffet took Foe Wobbuffet with it!");
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Wobbuffet took its attacker down with it!");
+        MESSAGE("The opposing Wobbuffet fainted!");
     }
 }

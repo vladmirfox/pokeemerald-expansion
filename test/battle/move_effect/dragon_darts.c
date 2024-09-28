@@ -109,7 +109,7 @@ DOUBLE_BATTLE_TEST("Dragon Darts strikes left ally twice if electrified and righ
         HP_BAR(opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, playerLeft);
         HP_BAR(opponentLeft);
-        MESSAGE("Hit 2 time(s)!");
+        MESSAGE("The Pokémon was hit 2 time(s)!");
     }
 }
 
@@ -128,7 +128,7 @@ DOUBLE_BATTLE_TEST("Dragon Darts strikes right ally twice if electrified and lef
         HP_BAR(opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, playerLeft);
         HP_BAR(opponentRight);
-        MESSAGE("Hit 2 time(s)!");
+        MESSAGE("The Pokémon was hit 2 time(s)!");
     }
 }
 
@@ -147,7 +147,7 @@ DOUBLE_BATTLE_TEST("Dragon Darts strikes left ally twice if electrified and righ
         HP_BAR(opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, playerLeft);
         HP_BAR(opponentLeft);
-        MESSAGE("Hit 2 time(s)!");
+        MESSAGE("The Pokémon was hit 2 time(s)!");
     }
 }
 
@@ -166,7 +166,7 @@ DOUBLE_BATTLE_TEST("Dragon Darts strikes right ally twice if electrified and lef
         HP_BAR(opponentRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DARTS, playerLeft);
         HP_BAR(opponentRight);
-        MESSAGE("Hit 2 time(s)!");
+        MESSAGE("The Pokémon was hit 2 time(s)!");
     }
 }
 
