@@ -5,6 +5,7 @@
 #include "battle_message.h"
 #include "battle_setup.h"
 #include "item.h"
+#include "malloc.h"
 #include "string_util.h"
 #include "text.h"
 #include "constants/abilities.h"
@@ -575,18 +576,24 @@ TEST("Type names fit on Pokedex Search Screen")
     EXPECT_LE(GetStringWidth(fontId, gTypesInfo[type].name, 0), widthPx);
 }
 
+extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 //*
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_TABLE_START + 20;
+    u32 start = BATTLESTRINGS_TABLE_START + 51;
+    u32 end = BATTLESTRINGS_TABLE_START + 100;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
+
+    s32 twoDigitNines = 99;
     s32 sixDigitNines = 999999;
     u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
     u32 longMoveID = MOVE_STOMPING_TANTRUM;
+    u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP; // 91 pixels.
+    u32 longStatName = STAT_EVASION;
+    u32 longTypeName = TYPE_ELECTRIC;
 
     RUN_OVERWORLD_SCRIPT(
         givemon SPECIES_WOBBUFFET, 100;
@@ -606,10 +613,22 @@ TEST("Battle strings fit on the battle message window")
     gBattlerPositions[1] = B_POSITION_OPPONENT_LEFT;
     gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
     gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
+    for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+    {
+        sBattlerAbilities[j] = longAbilityID;
+    }
+
+    // Add "The opposing " prefix to all messages.
     gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
-    // By default, the add "The opposing" prefix to the attacker.
     gBattlerAttacker = 1;
-    gBattlerTarget = 0;
+    gBattlerTarget = 1;
+    gBattleScripting.battler = 1;
+    gEffectBattler = 1;
+
+    gCurrentMove = longMoveID;
+
+    gBattleMsgDataPtr = AllocZeroed(sizeof(struct BattleMsgData));
+    gBattleMsgDataPtr->currentMove = longMoveID;
 
     switch (battleStringId + BATTLESTRINGS_TABLE_START)
     {
@@ -636,11 +655,33 @@ TEST("Battle strings fit on the battle message window")
         PREPARE_MOVE_BUFFER(gBattleTextBuff2, longMoveID);
         break;
     case STRINGID_PKMNLEARNEDMOVE2:
+    case STRINGID_TEAMSTOPPEDWORKING: // Unused
+    case STRINGID_FOESTOPPEDWORKING: // Unused
+    case STRINGID_PKMNHURTBY:
+    case STRINGID_PKMNFREEDFROM:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
-    case STRINGID_PKMNPROTECTEDITSELF:
-        gBattlerAttacker = 0;
-        gBattlerTarget = 1;
+    case STRINGID_PLAYERGOTMONEY:
+    case STRINGID_PLAYERWHITEOUT2:
+        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 6, sixDigitNines);
+        break;
+    case STRINGID_HITXTIMES:
+        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 2, twoDigitNines);
+        break;
+    case STRINGID_PKMNMADESLEEP:
+    case STRINGID_PKMNPOISONEDBY:
+    case STRINGID_PKMNBURNEDBY:
+    case STRINGID_PKMNFROZENBY:
+    case STRINGID_PKMNWASPARALYZEDBY:
+        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, longAbilityID);
+        break;
+    case STRINGID_STATSWONTINCREASE:
+    case STRINGID_STATSWONTDECREASE:
+        StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
+        break;
+    case STRINGID_PKMNCHANGEDTYPE:
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
+        break;
     default:
         break;
     }
@@ -654,5 +695,6 @@ TEST("Battle strings fit on the battle message window")
             break;
         EXPECT_LE(strWidth, widthPx);
     }
+    Free(gBattleMsgDataPtr);
 }
 //*/
