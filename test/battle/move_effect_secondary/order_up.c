@@ -119,3 +119,54 @@ DOUBLE_BATTLE_TEST("Order up does not boosts any stats if Dondozo is not affecte
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
    }
 }
+
+DOUBLE_BATTLE_TEST("Order Up is boosted by Sheer Force without removing the stat boosting effect")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_ENTRAINMENT].effect == EFFECT_ENTRAINMENT);
+        PLAYER(SPECIES_DONDOZO) { Speed(10); }
+        PLAYER(SPECIES_TATSUGIRI_CURLY) { Speed(9); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
+        OPPONENT(SPECIES_TAUROS) { Speed(21); Ability(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_ENTRAINMENT, target: playerLeft); MOVE(playerLeft, MOVE_ORDER_UP, target: opponentLeft); }
+    } SCENE {
+        MESSAGE("Foe Tauros used Entrainment!");
+        MESSAGE("Dondozo acquired Sheer Force!");
+        MESSAGE("Dondozo used Order Up!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+    }
+}
+DOUBLE_BATTLE_TEST("Order Up is always boosted by Sheer Force", s16 damage)
+{
+    u32 move;
+    u32 ability;
+    PARAMETRIZE(move = MOVE_CELEBRATE, ability = ABILITY_STORM_DRAIN);
+    PARAMETRIZE(move = MOVE_ENTRAINMENT, ability = ABILITY_STORM_DRAIN);
+    PARAMETRIZE(move = MOVE_ENTRAINMENT, ability = ABILITY_COMMANDER);
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_HAZE].effect == EFFECT_HAZE);
+        ASSUME(gMovesInfo[MOVE_ENTRAINMENT].effect == EFFECT_ENTRAINMENT);
+        PLAYER(SPECIES_DONDOZO) { Speed(10); }
+        PLAYER(SPECIES_TATSUGIRI_CURLY) { Speed(9); Ability(ability); }
+        OPPONENT(SPECIES_TAUROS) { Speed(21); Ability(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(22); }
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_HAZE);
+               MOVE(opponentLeft, move, target: playerLeft);
+               MOVE(playerLeft, MOVE_ORDER_UP, target: opponentRight); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Haze!");
+        if (move == MOVE_ENTRAINMENT)
+        {
+            MESSAGE("Foe Tauros used Entrainment!");
+            MESSAGE("Dondozo acquired Sheer Force!");
+        }
+        MESSAGE("Dondozo used Order Up!");
+        HP_BAR(opponentRight, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, UQ_4_12(1.3), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, UQ_4_12(1.3), results[2].damage);
+    }
+}

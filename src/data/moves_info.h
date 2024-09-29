@@ -19320,7 +19320,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Boosts a user's stats\n"
             "depending on Tatsugiri."),
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_ORDER_UP,
         .power = 80,
         .type = TYPE_DRAGON,
         .accuracy = 100,
