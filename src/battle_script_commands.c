@@ -1968,6 +1968,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
+    s32 bonusCritStage = gBattleStruct->bonusCritStages[gBattlerAttacker]; // G-Max Chi Strike
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
@@ -1978,8 +1979,11 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     // Crit scaling
     if (moveCritStage > 0)
         critChance = critChance * highCritRatioScaler * moveCritStage;
+    
+    if (bonusCritStage > 0)
+        critChance = critChance * bonusCritStage;
 
-    if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
+    if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
         critChance = critChance * focusEnergyScaler;
 
     if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
