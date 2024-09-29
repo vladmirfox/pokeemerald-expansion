@@ -1,14 +1,18 @@
 #include "global.h"
 #include "test/test.h"
+#include "battle.h"
 #include "battle_main.h"
 #include "battle_message.h"
+#include "battle_setup.h"
 #include "item.h"
+#include "string_util.h"
 #include "text.h"
 #include "constants/abilities.h"
 #include "constants/battle.h"
 #include "constants/battle_string_ids.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "test/overworld_script.h"
 
 TEST("Move names fit on Pokemon Summary Screen")
 {
@@ -571,22 +575,84 @@ TEST("Type names fit on Pokedex Search Screen")
     EXPECT_LE(GetStringWidth(fontId, gTypesInfo[type].name, 0), widthPx);
 }
 
-/*
+//*
 TEST("Battle strings fit on the battle message window")
 {
-    u32 i;
+    u32 i, j, strWidth;
+    u32 start = BATTLESTRINGS_TABLE_START;
+    u32 end = BATTLESTRINGS_TABLE_START + 20;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
-    u8 *battleString = NULL;
+    u8 battleString[1000] = {0};
+    s32 sixDigitNines = 999999;
+    u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
+    u32 longMoveID = MOVE_STOMPING_TANTRUM;
 
-    for (i = BATTLESTRINGS_TABLE_START; i < BATTLESTRINGS_COUNT; i++)
+    RUN_OVERWORLD_SCRIPT(
+        givemon SPECIES_WOBBUFFET, 100;
+        createmon 1, 0, SPECIES_WOBBUFFET, 100;
+    );
+    SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);
+    SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, nickname);
+
+    for (i = start; i <= end; i++) // BATTLESTRINGS_COUNT
     {
-        PARAMETRIZE_LABEL("%S", gBattleStringsTable[i]) { battleStringId = i; }
+        PARAMETRIZE_LABEL("%S", gBattleStringsTable[i - BATTLESTRINGS_TABLE_START]) { battleStringId = i - BATTLESTRINGS_TABLE_START; }
     }
+    PREPARE_STRING_BUFFER(gBattleTextBuff1, STRINGID_EMPTYSTRING3);
+    PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_EMPTYSTRING3);
+    PREPARE_STRING_BUFFER(gBattleTextBuff3, STRINGID_EMPTYSTRING3);
+    gBattlerPositions[0] = B_POSITION_PLAYER_LEFT;
+    gBattlerPositions[1] = B_POSITION_OPPONENT_LEFT;
+    gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
+    gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
+    gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
+    // By default, the add "The opposing" prefix to the attacker.
+    gBattlerAttacker = 1;
+    gBattlerTarget = 0;
+
+    switch (battleStringId + BATTLESTRINGS_TABLE_START)
+    {
+    case STRINGID_TRAINER1LOSETEXT:
+        // Out of scope: testing all trainer lose messages.
+        break;
+    case STRINGID_PKMNGAINEDEXP:
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
+        PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_ABOOSTED); // 'gained a boosted'
+        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, sixDigitNines);
+        break;
+    case STRINGID_PKMNGREWTOLV:
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff2, 3, 100);
+        break;
+    case STRINGID_PKMNLEARNEDMOVE:
+    case STRINGID_TRYTOLEARNMOVE1:
+    case STRINGID_TRYTOLEARNMOVE2:
+    case STRINGID_TRYTOLEARNMOVE3:
+    case STRINGID_PKMNFORGOTMOVE:
+    case STRINGID_STOPLEARNINGMOVE:
+    case STRINGID_DIDNOTLEARNMOVE:
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
+        PREPARE_MOVE_BUFFER(gBattleTextBuff2, longMoveID);
+        break;
+    case STRINGID_PKMNLEARNEDMOVE2:
+        PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
+        break;
+    case STRINGID_PKMNPROTECTEDITSELF:
+        gBattlerAttacker = 0;
+        gBattlerTarget = 1;
+    default:
+        break;
+    }
+    memset(battleString, EOS, 1000);
     BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString);
-    Test_MgbaPrintf("test1:%S", gBattleStringsTable[battleStringId]);
-    //Test_MgbaPrintf("test2:%S", battleString);
-    EXPECT_LE(GetStringWidth(fontId, gBattleStringsTable[battleStringId], 0), widthPx);
-    //EXPECT_LE(GetStringWidth(fontId, battleString, 0), widthPx);
+    DebugPrintf("Battle String ID %d: %S", battleStringId + BATTLESTRINGS_TABLE_START, battleString);
+    for (j = 1;; j++)
+    {
+        strWidth = GetStringLineWidth(fontId, battleString, 0, j);
+        if (strWidth == 0)
+            break;
+        EXPECT_LE(strWidth, widthPx);
+    }
 }
 //*/
