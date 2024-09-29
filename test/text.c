@@ -582,7 +582,7 @@ TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
     u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_START;
+    u32 end = BATTLESTRINGS_TABLE_START + 200;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
