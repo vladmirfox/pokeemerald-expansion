@@ -274,8 +274,11 @@ static inline bool32 IsRandomizerLegendary(u16 species)
         || gSpeciesInfo[species].isUltraBeast;
 }
 
+<<<<<<< HEAD
 #define RANDOMIZER_SPECIES_COUNT (RANDOMIZER_MAX_MON)
 
+=======
+>>>>>>> dd01a051d1 (Fix randomizer bugs)
 struct SpeciesTable
 {
     // Stores the group records for each species.
@@ -290,10 +293,6 @@ struct SpeciesTable
 static inline u16 GetSpeciesGroup(const struct SpeciesTable* table, u16 species)
 {
     u16 groupEntry;
-
-    if (species == SPECIES_NONE)
-        return GROUP_INVALID;
-    species -= 1;
     groupEntry = table->groupData[table->speciesToGroupIndex[species]];
 
     #ifndef NDEBUG
@@ -337,11 +336,11 @@ static void GetGroupRange(u16 group, enum RandomizerSpeciesMode mode, u16 *resul
 static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGroup, u16 maxGroup, u16 *start, u16 *end)
 {
     u16 index, leftBound, rightBound, maxRightBound;
-    maxRightBound = RANDOMIZER_SPECIES_COUNT;
+    maxRightBound = RANDOMIZER_SPECIES_COUNT-1;
     maxGroup = min(0xFFFEu, maxGroup);
     minGroup = min(0xFFFEu, minGroup);
     leftBound = 0;
-    rightBound = RANDOMIZER_SPECIES_COUNT;
+    rightBound = RANDOMIZER_SPECIES_COUNT-1;
     // Do leftmost binary search to find the lower limit.
     while (leftBound < rightBound)
     {
@@ -378,7 +377,7 @@ static void GetIndicesFromGroupRange(const struct SpeciesTable *table, u16 minGr
 struct RamSpeciesTable
 {
     enum RandomizerSpeciesMode mode;
-    bool32 tableInitialized;
+    bool16 tableInitialized;
     struct SpeciesTable speciesTable;
 };
 
@@ -387,25 +386,25 @@ EWRAM_DATA static struct RamSpeciesTable sRamSpeciesTable = {0};
 static void FillSpeciesGroupsRandom(struct SpeciesTable* entries)
 {
     u16 i;
-    for (i = 1; i <= RANDOMIZER_MAX_MON; i++)
+    for (i = 0; i < RANDOMIZER_SPECIES_COUNT; i++)
     {
-        entries->groupIndexToSpecies[i-1] = i;
+        entries->groupIndexToSpecies[i] = i;
         if (IsSpeciesPermitted(i))
-            entries->groupData[i-1] = 0;
+            entries->groupData[i] = 0;
         else
-            entries->groupData[i-1] = GROUP_INVALID;
+            entries->groupData[i] = GROUP_INVALID;
     }
 }
 
 static void FillSpeciesGroupsBST(struct SpeciesTable* entries)
 {
     u16 i;
-    for(i = 1; i <= RANDOMIZER_MAX_MON; i++)
+    for(i = 0; i < RANDOMIZER_SPECIES_COUNT; i++)
     {
         const struct SpeciesInfo *curSpeciesInfo;
         u16 group;
 
-        entries->groupIndexToSpecies[i-1] = i;
+        entries->groupIndexToSpecies[i] = i;
 
         if (IsSpeciesPermitted(i))
         {
@@ -422,20 +421,20 @@ static void FillSpeciesGroupsBST(struct SpeciesTable* entries)
         else
             group = GROUP_INVALID;
 
-        entries->groupData[i-1] = group;
+        entries->groupData[i] = group;
     }
 }
 
 static void FillSpeciesGroupsLegendary(struct SpeciesTable* entries)
 {
     u16 i;
-    for(i = 1; i <= RANDOMIZER_MAX_MON; i++)
+    for(i = 0; i <= RANDOMIZER_SPECIES_COUNT; i++)
     {
-        entries->groupIndexToSpecies[i-1] = i;
+        entries->groupIndexToSpecies[i] = i;
         if (!IsSpeciesPermitted(i))
-            entries->groupData[i-1] = GROUP_INVALID;
+            entries->groupData[i] = GROUP_INVALID;
         else
-            entries->groupData[i-1] = IsRandomizerLegendary(i);
+            entries->groupData[i] = IsRandomizerLegendary(i);
     }
 }
 
@@ -478,8 +477,8 @@ static void MarkEvolutions(struct SpeciesTable *entries, u16 species, u16 stage)
                 MarkEvolutions(entries, evos[i].targetSpecies, stage+1);
         }
     }
-    entries->groupIndexToSpecies[species-1] = species;
-    entries->groupData[species-1] = stage;
+    entries->groupIndexToSpecies[species] = species;
+    entries->groupData[species] = stage;
 }
 
 static void FillSpeciesGroupsEvolution(struct SpeciesTable* entries)
@@ -494,28 +493,27 @@ static void FillSpeciesGroupsEvolution(struct SpeciesTable* entries)
     // Step 1: pre-visit the special babies, and mark them as basic mons.
     for (i = 0; i < ARRAY_COUNT(sPreevolutionBabyMons); i++)
     {
-        u16 babyMonIndex = sPreevolutionBabyMons[i]-1;
-        entries->groupIndexToSpecies[babyMonIndex] = babyMonIndex + 1;
+        u16 babyMonIndex = sPreevolutionBabyMons[i];
+        entries->groupIndexToSpecies[babyMonIndex] = babyMonIndex;
         if(IsSpeciesPermitted(babyMonIndex))
             entries->groupData[babyMonIndex] = 0;
         else
             entries->groupData[babyMonIndex] = GROUP_INVALID;
     }
 
-    for(i = 1; i < RANDOMIZER_MAX_MON; i++)
+    for(i = 0; i < RANDOMIZER_SPECIES_COUNT; i++)
     {
-        u16 idx = i - 1;
-        if (entries->groupIndexToSpecies[idx] == 0)
+        if (entries->groupIndexToSpecies[i] == 0)
         {
             // This entry hasn't been visited yet, so we don't know if it evolves.
             const struct Evolution *evos = GetSpeciesEvolutions(i);
-           entries->groupIndexToSpecies[idx] = i;
+            entries->groupIndexToSpecies[i] = i;
             if (!IsSpeciesPermitted(i)) // This shouldn't show up in randomization.
-                entries->groupData[idx] = GROUP_INVALID;
+                entries->groupData[i] = GROUP_INVALID;
             else if (IsRandomizerLegendary(i)) // Legendaries get their own group.
-                entries->groupData[idx] = EVO_GROUP_LEGENDARY;
+                entries->groupData[i] = EVO_GROUP_LEGENDARY;
             else if (evos == NULL || evos->method == 0xFFFF)
-                entries->groupData[idx] = EVO_GROUP_NO_EVO;
+                entries->groupData[i] = EVO_GROUP_NO_EVO;
             else // There are evolutions! Let's check it out.
                 MarkEvolutions(entries, i, 0);
         }
@@ -561,7 +559,7 @@ static void BuildRandomizerSpeciesTable(enum RandomizerSpeciesMode mode)
 
     // Heap sort the table.
     start = RANDOMIZER_SPECIES_COUNT/2;
-    end = RANDOMIZER_SPECIES_COUNT;
+    end = RANDOMIZER_SPECIES_COUNT-1;
 
     while (end > 1)
     {
@@ -637,8 +635,6 @@ static u16 RandomizeMonTableLookup(struct Sfc32State* state, enum RandomizerSpec
     return table->groupIndexToSpecies[resultIndex];
 }
 
-#undef RANDOMIZER_SPECIES_COUNT
-
 static u16 RandomizeMonFromSeed(struct Sfc32State *state, enum RandomizerSpeciesMode mode, u16 species)
 {
     if (!IsSpeciesPermitted(species))
@@ -655,7 +651,7 @@ static u16 RandomizeMonFromSeed(struct Sfc32State *state, enum RandomizerSpecies
 void GetUniqueMonList(enum RandomizerReason reason, enum RandomizerSpeciesMode mode, u32 seed1, u16 seed2, u8 count, const u16 *originalSpecies, u16 *resultSpecies)
 {
     u32 i, curMon;
-    u32 seenMonBitVector[(RANDOMIZER_MAX_MON-1)/32+1] = {};
+    u32 seenMonBitVector[(RANDOMIZER_SPECIES_COUNT-1)/32+1] = {};
     struct Sfc32State state = RandomizerRandSeed(reason, seed1, seed2);
 
     for (i = 0; i < count; i++)

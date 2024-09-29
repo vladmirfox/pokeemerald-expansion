@@ -6,6 +6,7 @@
 // If this is TRUE, that doesn't necessarily mean that a particular part of the randomizer
 // will be enabled.
 #define RANDOMIZER_AVAILABLE                   TRUE
+#define RANDOMIZER_SEED_IS_TRAINER_ID          TRUE
 
 #if RANDOMIZER_AVAILABLE == TRUE
 

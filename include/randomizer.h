@@ -4,7 +4,8 @@
 #include "config/randomizer.h"
 #if RANDOMIZER_AVAILABLE == TRUE
 
-#define RANDOMIZER_MAX_MON  (SPECIES_DECIDUEYE_HISUIAN)
+#define RANDOMIZER_MAX_MON  (SPECIES_EGG-1)
+#define RANDOMIZER_SPECIES_COUNT (RANDOMIZER_MAX_MON+1)
 
 #include "global.h"
 #include "random.h"
