@@ -2055,7 +2055,6 @@ static void Cmd_critcalc(void)
         gIsCriticalHit = TRUE;
     else
     {
-        // Gen 1 crit chance
         #if B_CRIT_CHANCE == GEN_1
             u8 critRoll = RandomUniform(RNG_CRITICAL_HIT, 1, 256);
             if (critRoll <= critChance)
