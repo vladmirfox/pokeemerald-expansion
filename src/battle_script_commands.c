@@ -1957,14 +1957,14 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
 s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
 {
     // Vanilla
-    u8 focusEnergyScaler = 4;
-    u8 highCritRatioScaler = 8;
+    u32 focusEnergyScaler = 4;
+    u32 highCritRatioScaler = 8;
 
     // Not vanilla
-    u8 superLuckScaler = 4;
-    u8 scopeLensScaler = 4;
-    u8 luckyPunchScaler = 8;
-    u8 farfetchedLeekScaler = 8;
+    u32 superLuckScaler = 4;
+    u32 scopeLensScaler = 4;
+    u32 luckyPunchScaler = 8;
+    u32 farfetchedLeekScaler = 8;
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
