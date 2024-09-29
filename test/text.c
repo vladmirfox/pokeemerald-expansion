@@ -581,8 +581,8 @@ extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START + 101;
-    u32 end = BATTLESTRINGS_TABLE_START + 150;
+    u32 start = BATTLESTRINGS_TABLE_START;
+    u32 end = BATTLESTRINGS_COUNT - BATTLESTRINGS_TABLE_START;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
@@ -664,6 +664,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNMOVEWASDISABLED:
     case STRINGID_PKMNSKETCHEDMOVE:
     case STRINGID_PKMNGOTFREE:
+    case STRINGID_PKMNLOSTPPGRUDGE:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
     case STRINGID_PLAYERGOTMONEY:
@@ -691,10 +692,22 @@ TEST("Battle strings fit on the battle message window")
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         break;
     case STRINGID_PKMNCHANGEDTYPE:
+    case STRINGID_PKMNCHANGEDTYPEWITH:
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
         break;
     case STRINGID_PKMNTRANSFORMEDINTO:
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
+        break;
+    case STRINGID_PKMNATTACK:
+    case STRINGID_PKMNWISHCAMETRUE:
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 1, 0);
+        break;
+    case STRINGID_PKMNHURTSWITH:
+        PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
+        break;
+    case STRINGID_PKMNTRACED:
+        PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(gBattleTextBuff1, 1, 0);
+        PREPARE_ABILITY_BUFFER(gBattleTextBuff2, longAbilityID);
         break;
     default:
         break;
