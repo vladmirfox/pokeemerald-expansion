@@ -40,8 +40,18 @@ SigillariaSign::
 	return
 
 
+UnownProgressBlock::
+# 28 "data/maps/Ba/scripts.pory"
+	lockall
+# 29 "data/maps/Ba/scripts.pory"
+	msgbox UnownSwarm
+# 30 "data/maps/Ba/scripts.pory"
+	release
+	return
+
+
 SilphCoMsg::
-# 27 "data/maps/Ba/scripts.pory"
+# 33 "data/maps/Ba/scripts.pory"
 	.string "The Atlantia region used to be\n"
 	.string "completely shut off the rest of the\l"
 	.string "world. But then Silph Co. showed up in\l"
@@ -49,10 +59,15 @@ SilphCoMsg::
 	.string "so much busier here.$"
 
 BaSign_Text::
-# 31 "data/maps/Ba/scripts.pory"
+# 37 "data/maps/Ba/scripts.pory"
 	.string "Welcome to the town of Ba, miles\n"
 	.string "beneath Bel.$"
 
 SigillariaSign_Text::
-# 35 "data/maps/Ba/scripts.pory"
+# 41 "data/maps/Ba/scripts.pory"
 	.string "Prof. Sigillaria's lab.$"
+
+UnownSwarm::
+# 45 "data/maps/Ba/scripts.pory"
+	.string "Looks like the Unown are swarming. Best\n"
+	.string "not bother them...$"

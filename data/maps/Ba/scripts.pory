@@ -24,6 +24,12 @@ script SigillariaSign {
     release
 }
 
+script UnownProgressBlock {
+    lockall
+    msgbox(UnownSwarm)
+    release
+}
+
 text SilphCoMsg {
     format("The Atlantia region used to be completely shut off the rest of the world. But then Silph Co. showed up in their fancy submarine! Now things are so much busier here.")
 }
@@ -34,4 +40,8 @@ text BaSign_Text {
 
 text SigillariaSign_Text {
     format("Prof. Sigillaria's lab.")
+}
+
+text UnownSwarm {
+    format("Looks like the Unown are swarming. Best not bother them...")
 }

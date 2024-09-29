@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_AGRIVILLE",
-      "offset": 36,
+      "offset": 5,
       "direction": "left"
     }
   ],

@@ -4494,7 +4494,7 @@
     {
       "id": "LAYOUT_AGRIVILLE",
       "name": "Agriville_Layout",
-      "width": 80,
+      "width": 115,
       "height": 30,
       "primary_tileset": "gTileset_generaljohtotest",
       "secondary_tileset": "gTileset_Small_Towns",

@@ -210,7 +210,7 @@ text PostChoice{
 }
 
 text beforeyouleave{
-    format("Oh! and before you leave, take this.Silph Co. sent it to me. It's a PokeDex. It automatically records data about the Pokemon you catch."
+    format("Oh! and before you leave, take this. Silph Co. sent it to me. It's a PokeDex. It automatically records data about the Pokemon you catch."
      )
 }
 
