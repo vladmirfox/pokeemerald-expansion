@@ -6,6 +6,7 @@
 #include "battle_setup.h"
 #include "item.h"
 #include "malloc.h"
+#include "main_menu.h"
 #include "string_util.h"
 #include "text.h"
 #include "constants/abilities.h"
@@ -582,7 +583,7 @@ TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
     u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_TABLE_START + 200;
+    u32 end = BATTLESTRINGS_TABLE_START + 300;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
@@ -595,6 +596,8 @@ TEST("Battle strings fit on the battle message window")
     u32 longTypeName = TYPE_ELECTRIC;
     u32 longSpeciesName = SPECIES_SANDY_SHOCKS;   // 47 pixels
     u32 longItemName = ITEM_UNREMARKABLE_TEACUP;
+
+    NewGameBirchSpeech_SetDefaultPlayerName(10);  // JOHNNY
 
     RUN_OVERWORLD_SCRIPT(
         givemon SPECIES_WOBBUFFET, 100;
@@ -619,6 +622,8 @@ TEST("Battle strings fit on the battle message window")
         sBattlerAbilities[j] = longAbilityID;
     }
 
+    gTrainerBattleOpponent_A = 1;
+
     // Add "The opposing " prefix to all messages.
     gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
     gBattlerAttacker = 1;
@@ -635,7 +640,7 @@ TEST("Battle strings fit on the battle message window")
     switch (battleStringId + BATTLESTRINGS_TABLE_START)
     {
     case STRINGID_TRAINER1LOSETEXT:
-        // Out of scope: testing all trainer lose messages.
+        // Out of current scope: testing all trainer lose messages.
         break;
     case STRINGID_PKMNGAINEDEXP:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
@@ -665,6 +670,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNSKETCHEDMOVE:
     case STRINGID_PKMNGOTFREE:
     case STRINGID_PKMNLOSTPPGRUDGE:
+    case STRINGID_PKMNSITEMRESTOREDPP:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
     case STRINGID_PLAYERGOTMONEY:
@@ -689,6 +695,7 @@ TEST("Battle strings fit on the battle message window")
         break;
     case STRINGID_STATSWONTINCREASE:
     case STRINGID_STATSWONTDECREASE:
+    case STRINGID_PKMNSXPREVENTSYLOSS:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         break;
     case STRINGID_PKMNCHANGEDTYPE:
@@ -696,18 +703,41 @@ TEST("Battle strings fit on the battle message window")
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
         break;
     case STRINGID_PKMNTRANSFORMEDINTO:
+    case STRINGID_WILDPKMNFLED:
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
         break;
     case STRINGID_PKMNATTACK:
     case STRINGID_PKMNWISHCAMETRUE:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 1, 0);
         break;
+    case STRINGID_ENEMYABOUTTOSWITCHPKMN:
+        PREPARE_MON_NICK_BUFFER(gBattleTextBuff2, 1, 0);
+        break;
     case STRINGID_PKMNHURTSWITH:
+    case STRINGID_PKMNCURIOUSABOUTX:
+    case STRINGID_PKMNENTHRALLEDBYX:
+    case STRINGID_PKMNIGNOREDX:
         PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
         break;
     case STRINGID_PKMNTRACED:
         PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(gBattleTextBuff1, 1, 0);
         PREPARE_ABILITY_BUFFER(gBattleTextBuff2, longAbilityID);
+        break;
+    case STRINGID_ATTACKERSSTATROSE:
+    case STRINGID_DEFENDERSSTATROSE:
+        StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
+        StringCopy(gBattleTextBuff2, sText_drastically);
+        StringAppend(gBattleTextBuff2, gText_StatRose);
+        break;
+    case STRINGID_ATTACKERSSTATFELL:
+    case STRINGID_DEFENDERSSTATFELL:
+        StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
+        StringCopy(gBattleTextBuff2, sText_severely);
+        StringAppend(gBattleTextBuff2, sText_StatFell);
+        break;
+    case STRINGID_PKMNSITEMCUREDPROBLEM:
+    case STRINGID_PKMNSXCUREDYPROBLEM:
+        StringCopy(gBattleTextBuff1, gText_Paralysis);
         break;
     default:
         break;
