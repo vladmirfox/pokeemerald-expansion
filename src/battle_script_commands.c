@@ -2011,8 +2011,9 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
             RecordAbilityBattle(battlerDef, abilityDef);
         critChance = -1;
 
-    // Guaranteed crits
     }
+
+    // Guaranteed crits
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gMovesInfo[move].alwaysCriticalHit == TRUE
              || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
