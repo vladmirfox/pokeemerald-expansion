@@ -581,19 +581,20 @@ extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START + 51;
-    u32 end = BATTLESTRINGS_TABLE_START + 100;
+    u32 start = BATTLESTRINGS_TABLE_START + 101;
+    u32 end = BATTLESTRINGS_TABLE_START + 150;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
 
-    s32 twoDigitNines = 99;
     s32 sixDigitNines = 999999;
     u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
     u32 longMoveID = MOVE_STOMPING_TANTRUM;
     u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP; // 91 pixels.
     u32 longStatName = STAT_EVASION;
     u32 longTypeName = TYPE_ELECTRIC;
+    u32 longSpeciesName = SPECIES_SANDY_SHOCKS;   // 47 pixels
+    u32 longItemName = ITEM_UNREMARKABLE_TEACUP;
 
     RUN_OVERWORLD_SCRIPT(
         givemon SPECIES_WOBBUFFET, 100;
@@ -626,6 +627,7 @@ TEST("Battle strings fit on the battle message window")
     gEffectBattler = 1;
 
     gCurrentMove = longMoveID;
+    gLastUsedItem = longItemName;
 
     gBattleMsgDataPtr = AllocZeroed(sizeof(struct BattleMsgData));
     gBattleMsgDataPtr->currentMove = longMoveID;
@@ -659,14 +661,23 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_FOESTOPPEDWORKING: // Unused
     case STRINGID_PKMNHURTBY:
     case STRINGID_PKMNFREEDFROM:
+    case STRINGID_PKMNMOVEWASDISABLED:
+    case STRINGID_PKMNSKETCHEDMOVE:
+    case STRINGID_PKMNGOTFREE:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
     case STRINGID_PLAYERGOTMONEY:
     case STRINGID_PLAYERWHITEOUT2:
+    case STRINGID_PLAYERPICKEDUPMONEY:
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 6, sixDigitNines);
         break;
     case STRINGID_HITXTIMES:
-        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 2, twoDigitNines);
+    case STRINGID_MAGNITUDESTRENGTH:
+        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 2, 99);
+        break;
+    case STRINGID_PKMNSTOCKPILED:
+    case STRINGID_PKMNPERISHCOUNTFELL:
+        PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 1, 9);
         break;
     case STRINGID_PKMNMADESLEEP:
     case STRINGID_PKMNPOISONEDBY:
@@ -681,6 +692,9 @@ TEST("Battle strings fit on the battle message window")
         break;
     case STRINGID_PKMNCHANGEDTYPE:
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
+        break;
+    case STRINGID_PKMNTRANSFORMEDINTO:
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
         break;
     default:
         break;
