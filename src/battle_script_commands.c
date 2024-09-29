@@ -1956,13 +1956,15 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
 // Focus Energy = 4 * (Base Speed / 2)
 s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
 {
-    // Change these scalers if you want to change how much Focus Energy and high crit rate moves affect crit chance
-    u8 focusEnergyScaler = 4; // vanilla is 4
-    u8 highCritRatioScaler = 8; // vanilla is 8
-    u8 superLuckScaler = 4; // not in vanilla 
-    u8 scopeLensScaler = 4; // not in vanilla
-    u8 luckyPunchScaler = 8; // not in vanilla
-    u8 farfetchedLeekScaler = 8; // not in vanilla
+    // Vanilla
+    u8 focusEnergyScaler = 4;
+    u8 highCritRatioScaler = 8;
+
+    // Not vanilla
+    u8 superLuckScaler = 4;
+    u8 scopeLensScaler = 4;
+    u8 luckyPunchScaler = 8;
+    u8 farfetchedLeekScaler = 8;
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
@@ -1971,34 +1973,27 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
 
-    // Threshold is base speed / 2
     critChance = baseSpeed / 2;
 
-    // Scale for high crit chance moves
+    // Crit scaling
     if (moveCritStage > 0)
         critChance = critChance * highCritRatioScaler * moveCritStage;
 
-    // Scale for Focus Energy
     if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
         critChance = critChance * focusEnergyScaler;
 
-    // Scale for Scope Lens
     if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
         critChance = critChance * scopeLensScaler;
 
-    // Scale for Lucky Punch
     if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
         critChance = critChance * luckyPunchScaler;
 
-    // Scale for Farfetch'd holding Leek
     if (BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
         critChance = critChance * farfetchedLeekScaler;
 
-    // Scale for Super Luck
     if (abilityAtk == ABILITY_SUPER_LUCK)
         critChance = critChance * superLuckScaler;
 
-    // Capped at 255
     if (critChance > 255)
         critChance = 255;
 
@@ -2010,7 +2005,6 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
         critChance = -1;
-
     }
 
     // Guaranteed crits
@@ -2038,12 +2032,12 @@ static void Cmd_critcalc(void)
     CMD_ARGS();
 
     u16 partySlot;
+    s32 critChance;
 
-    #if B_CRIT_CHANCE == GEN_1
-        s32 critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
-    #else
-        s32 critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
-    #endif // B_CRIT_CHANCE
+    if (B_CRIT_CHANCE == GEN_1)
+        critChance = CalcCritChanceStageGen1(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
+    else
+        critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
 
     gPotentialItemEffectBattler = gBattlerAttacker;
 
@@ -2055,15 +2049,16 @@ static void Cmd_critcalc(void)
         gIsCriticalHit = TRUE;
     else
     {
-        #if B_CRIT_CHANCE == GEN_1
+        if (B_CRIT_CHANCE == GEN_1)
+        {
             u8 critRoll = RandomUniform(RNG_CRITICAL_HIT, 1, 256);
             if (critRoll <= critChance)
                 gIsCriticalHit = 1;
             else
                 gIsCriticalHit = 0;
-        #else
+        }
+        else
             gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, sCriticalHitOdds[critChance]);
-        #endif // B_CRIT_CHANCE
     }
 
     // Counter for EVO_CRITICAL_HITS.
