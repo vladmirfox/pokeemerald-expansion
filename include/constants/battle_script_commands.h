@@ -273,7 +273,7 @@
 #define PARTY_SCREEN_OPTIONAL (1 << 7) // Flag for first argument to openpartyscreen
 
 // cases for Cmd_moveend
-enum BerryEffect
+enum MoveEndEffects
 {
     MOVEEND_SUM_DAMAGE,
     MOVEEND_PROTECT_LIKE_EFFECT,
