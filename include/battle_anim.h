@@ -252,6 +252,7 @@ void AnimParticleBurst(struct Sprite *);
 void AnimPowerAbsorptionOrb(struct Sprite *sprite);
 void AnimNeedleArmSpike(struct Sprite *);
 void AnimTask_CompressTargetHorizontally(u8 taskId);
+void AnimTask_CompressTargetHorizontallyFast(u8 taskId);
 void AnimSporeParticle(struct Sprite *sprite);
 void AnimAbsorptionOrb(struct Sprite *sprite);
 void AnimPetalDanceSmallFlower(struct Sprite *sprite);
@@ -555,5 +556,8 @@ void AnimDracoMeteorRock(struct Sprite *sprite);
 void CoreEnforcerLoadBeamTarget(struct Sprite *sprite);
 void SpriteCB_RandomCentredHits(struct Sprite *sprite);
 void InitSpritePosToAnimTargetsCentre(struct Sprite *sprite, bool32 respectMonPicOffsets);
+
+// battle_anim_bug.c
+void AnimTranslateStinger(struct Sprite *sprite);
 
 #endif // GUARD_BATTLE_ANIM_H
