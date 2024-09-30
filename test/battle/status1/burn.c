@@ -1,8 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-#if B_BURN_DAMAGE >= GEN_7
-SINGLE_BATTLE_TEST("Burn deals 1/16th damage per turn")
+SINGLE_BATTLE_TEST("Burn deals 1/16th (Gen7+) or 1/8th damage per turn")
 {
     u32 j;
     GIVEN {
@@ -14,26 +13,9 @@ SINGLE_BATTLE_TEST("Burn deals 1/16th damage per turn")
     } SCENE {
         s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
         for (j = 0; j < 4; j++)
-            HP_BAR(player, damage: maxHP / 16);
+            HP_BAR(player, damage: maxHP / ((B_BURN_DAMAGE >= GEN_7) ? 16 : 8));
     }
 }
-#else
-SINGLE_BATTLE_TEST("Burn deals 1/8th damage per turn")
-{
-    u32 j;
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        for (j = 0; j < 4; j++)
-            TURN {}
-    } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        for (j = 0; j < 4; j++)
-            HP_BAR(player, damage: maxHP / 8);
-    }
-}
-#endif
 
 SINGLE_BATTLE_TEST("Burn reduces Attack by 50%", s16 damage)
 {
