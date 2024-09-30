@@ -1015,6 +1015,6 @@ extern const u8 gBattleAnimSpecial_MonToSubstitute[];
 extern const u8 gBattleAnimSpecial_CriticalCaptureBallThrow[];
 
 // new animations
-extern const u8 gBattleAnimSpecial_FlipperSplash[];
+extern const u8 gBattleAnimMove_FlipperSplash[];
 
 #endif // GUARD_BATTLE_ANIM_SCRIPTS_H

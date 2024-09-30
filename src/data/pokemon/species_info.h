@@ -219,7 +219,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Kotora,
         FOOTPRINT(Shinx)
-        FOLLOWER(sPicTable_Kotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Kotora, gShinyFollowerPalette_Kotora)
+        OVERWORLD(sPicTable_Kotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Kotora, gShinyFollowerPalette_Kotora)
         .levelUpLearnset = sKotoraLevelUpLearnset,
         .teachableLearnset = sKotoraTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_RAITORA}),
@@ -274,7 +274,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Raitora,
         FOOTPRINT(Luxio)
-        FOLLOWER(sPicTable_Raitora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Raitora, gShinyFollowerPalette_Raitora)
+        OVERWORLD(sPicTable_Raitora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Raitora, gShinyFollowerPalette_Raitora)
         .levelUpLearnset = sRaitoraLevelUpLearnset,
         .teachableLearnset = sRaitoraTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GAOTORA}),
@@ -337,7 +337,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Gaotora,
         FOOTPRINT(Luxio)
-        FOLLOWER(sPicTable_Gaotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Gaotora, gShinyFollowerPalette_Gaotora)
+        OVERWORLD(sPicTable_Gaotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Gaotora, gShinyFollowerPalette_Gaotora)
         .levelUpLearnset = sGaotoraLevelUpLearnset,
         .teachableLearnset = sGaotoraTeachableLearnset
     },

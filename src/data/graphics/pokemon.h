@@ -12069,11 +12069,11 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/shiny.gbapal.lz");
     const u8 gMonIcon_SewaddleTokuan[] = INCBIN_U8("graphics/pokemon/sewaddle/tokuan/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_SewaddleTokuan[] = INCBIN_COMP("graphics/pokemon/sewaddle/tokuan/follower.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gFollowerPalette_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/follow_normal.gbapal.lz");
     const u32 gShinyFollowerPalette_SewaddleTokuan[] = INCBIN_U32("graphics/pokemon/sewaddle/tokuan/follow_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
-    const u32 gObjectEventPic_SewaddleTokuan[] = INCBIN_COMP("graphics/pokemon/sewaddle/tokuan/follower.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonFrontPic_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/anim_front.4bpp.lz");
@@ -12082,11 +12082,11 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/shiny.gbapal.lz");
     const u8 gMonIcon_SwadloonTokuan[] = INCBIN_U8("graphics/pokemon/swadloon/tokuan/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_SwadloonTokuan[] = INCBIN_COMP("graphics/pokemon/swadloon/tokuan/follower.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gFollowerPalette_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/follow_normal.gbapal.lz");
     const u32 gShinyFollowerPalette_SwadloonTokuan[] = INCBIN_U32("graphics/pokemon/swadloon/tokuan/follow_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
-    const u32 gObjectEventPic_SwadloonTokuan[] = INCBIN_COMP("graphics/pokemon/swadloon/tokuan/follower.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 
     const u32 gMonFrontPic_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/anim_front.4bpp.lz");
@@ -12095,11 +12095,11 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonShinyPalette_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/shiny.gbapal.lz");
     const u8 gMonIcon_LeavannyTokuan[] = INCBIN_U8("graphics/pokemon/leavanny/tokuan/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_LeavannyTokuan[] = INCBIN_COMP("graphics/pokemon/leavanny/tokuan/follower.4bpp");
 #if OW_FOLLOWERS_SHARE_PALETTE == FALSE
     const u32 gFollowerPalette_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/follow_normal.gbapal.lz");
     const u32 gShinyFollowerPalette_LeavannyTokuan[] = INCBIN_U32("graphics/pokemon/leavanny/tokuan/follow_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
-    const u32 gObjectEventPic_LeavannyTokuan[] = INCBIN_COMP("graphics/pokemon/leavanny/tokuan/follower.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_TOKUAN_FORMS
 #endif //P_FAMILY_SEWADDLE
@@ -22100,19 +22100,19 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/normal.gbapal.lz");
     const u32 gMonShinyPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/shiny.gbapal.lz");
 
-    #if OW_FOLLOWERS_ENABLED
-        const u32 gObjectEventPic_Kotora[] = INCBIN_COMP("graphics/pokemon/kotora/follower.4bpp");
-        const u32 gObjectEventPic_Raitora[] = INCBIN_COMP("graphics/pokemon/raitora/follower.4bpp");
-        const u32 gObjectEventPic_Gaotora[] = INCBIN_COMP("graphics/pokemon/gaotora/follower.4bpp");
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_Kotora[] = INCBIN_COMP("graphics/pokemon/kotora/follower.4bpp");
+    const u32 gObjectEventPic_Raitora[] = INCBIN_COMP("graphics/pokemon/raitora/follower.4bpp");
+    const u32 gObjectEventPic_Gaotora[] = INCBIN_COMP("graphics/pokemon/gaotora/follower.4bpp");
 
-    #if OW_FOLLOWERS_SHARE_PALETTE == FALSE
-        const u32 gFollowerPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/follow_normal.gbapal.lz");
-        const u32 gShinyFollowerPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/follow_shiny.gbapal.lz");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u32 gFollowerPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/follow_normal.gbapal.lz");
+    const u32 gShinyFollowerPalette_Kotora[] = INCBIN_U32("graphics/pokemon/kotora/follow_shiny.gbapal.lz");
 
-        const u32 gFollowerPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/follow_normal.gbapal.lz");
-        const u32 gShinyFollowerPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/follow_shiny.gbapal.lz");
+    const u32 gFollowerPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/follow_normal.gbapal.lz");
+    const u32 gShinyFollowerPalette_Raitora[] = INCBIN_U32("graphics/pokemon/raitora/follow_shiny.gbapal.lz");
 
-        const u32 gFollowerPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/follow_normal.gbapal.lz");
-        const u32 gShinyFollowerPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/follow_shiny.gbapal.lz");
-    #endif //OW_FOLLOWERS_SHARE_PALETTE
-    #endif //OW_FOLLOWERS_ENABLED
+    const u32 gFollowerPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/follow_normal.gbapal.lz");
+    const u32 gShinyFollowerPalette_Gaotora[] = INCBIN_U32("graphics/pokemon/gaotora/follow_shiny.gbapal.lz");
+#endif //OW_POKEMON_OBJECT_EVENTS
+#endif //OW_POKEMON_OBJECT_EVENTS

@@ -3339,7 +3339,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 1,
         .iconSprite = gMonIcon_SewaddleTokuan,
         FOOTPRINT(Sewaddle)
-        FOLLOWER(sPicTable_SewaddleTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_SewaddleTokuan, gShinyFollowerPalette_SewaddleTokuan)
+        OVERWORLD(sPicTable_SewaddleTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_SewaddleTokuan, gShinyFollowerPalette_SewaddleTokuan)
         .levelUpLearnset = sSewaddleLevelUpLearnset,
         .teachableLearnset = sSewaddleTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SWADLOON}),
@@ -3395,7 +3395,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 1,
         .iconSprite = gMonIcon_SwadloonTokuan,
         FOOTPRINT(Swadloon)
-        FOLLOWER(sPicTable_SwadloonTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_SwadloonTokuan, gShinyFollowerPalette_SwadloonTokuan)
+        OVERWORLD(sPicTable_SwadloonTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_SwadloonTokuan, gShinyFollowerPalette_SwadloonTokuan)
         .levelUpLearnset = sSwadloonLevelUpLearnset,
         .teachableLearnset = sSwadloonTeachableLearnset,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LEAVANNY})
@@ -3458,7 +3458,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 1,
         .iconSprite = gMonIcon_LeavannyTokuan,
         FOOTPRINT(Leavanny)
-        FOLLOWER(sPicTable_LeavannyTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_LeavannyTokuan, gShinyFollowerPalette_LeavannyTokuan)
+        OVERWORLD(sPicTable_LeavannyTokuan, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_LeavannyTokuan, gShinyFollowerPalette_LeavannyTokuan)
         .levelUpLearnset = sLeavannyLevelUpLearnset,
         .teachableLearnset = sLeavannyTeachableLearnset
     },

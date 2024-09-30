@@ -34747,7 +34747,7 @@ gBattleAnimGeneral_DynamaxGrowth:: @ PORTED FROM CFRU
 
 @ CUSTOM MOVES
 
-Move_FLIPPER_SPLASH::
+gBattleAnimMove_FlipperSplash::
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_SMALL_BUBBLES
 	monbg ANIM_TARGET
