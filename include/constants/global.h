@@ -1,10 +1,11 @@
 #ifndef GUARD_CONSTANTS_GLOBAL_H
 #define GUARD_CONSTANTS_GLOBAL_H
 
+#include "config/general.h"
 #include "config/battle.h"
 #include "config/debug.h"
 #include "config/item.h"
-#include "config/level_caps.h"
+#include "config/caps.h"
 #include "config/pokemon.h"
 #include "config/overworld.h"
 
@@ -74,6 +75,7 @@
 #define GIFT_RIBBONS_COUNT 11
 #define SAVED_TRENDS_COUNT 5
 #define PYRAMID_BAG_ITEMS_COUNT 10
+#define ROAMER_COUNT 1 // Number of maximum concurrent active roamers
 
 //tx_registered_items_menu
 #define REGISTERED_ITEMS_MAX 10
@@ -104,7 +106,7 @@
 #define CONTEST_CATEGORIES_COUNT  5
 
 // string lengths
-#define ITEM_NAME_LENGTH ((I_EXPANDED_ITEM_NAMES == TRUE) ? 20 : 14)
+#define ITEM_NAME_LENGTH 20
 #define ITEM_NAME_PLURAL_LENGTH ITEM_NAME_LENGTH + 2 // 2 is used for the instance where a word's suffix becomes y->ies
 #define POKEMON_NAME_LENGTH 12
 #define VANILLA_POKEMON_NAME_LENGTH 10
@@ -112,15 +114,15 @@
 #define PLAYER_NAME_LENGTH 7
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
-#define MOVE_NAME_LENGTH ((B_EXPANDED_MOVE_NAMES == TRUE) ? 16 : 12)
+#define MOVE_NAME_LENGTH 16
 #define NUM_QUESTIONNAIRE_WORDS 4
 #define QUIZ_QUESTION_LEN 9
 #define WONDER_CARD_TEXT_LENGTH 40
 #define WONDER_NEWS_TEXT_LENGTH 40
 #define WONDER_CARD_BODY_TEXT_LINES 4
 #define WONDER_NEWS_BODY_TEXT_LINES 10
-#define TYPE_NAME_LENGTH ((B_EXPANDED_TYPE_NAMES == TRUE) ? 8 : 6)
-#define ABILITY_NAME_LENGTH ((B_EXPANDED_ABILITY_NAMES == TRUE) ? 16 : 12)
+#define TYPE_NAME_LENGTH 8
+#define ABILITY_NAME_LENGTH 16
 #define TRAINER_NAME_LENGTH 10
 
 #define MAX_STAMP_CARD_STAMPS 7
