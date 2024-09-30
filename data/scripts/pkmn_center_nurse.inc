@@ -38,9 +38,9 @@ EventScript_PkmnCenterNurse_TakeAndHealPkmn::
 	dofieldeffect FLDEFF_POKECENTER_HEAL
 .if OW_UNION_DISABLE_CHECK == FALSE
 .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
-    setflag OW_FLAG_MOVE_UNION_ROOM_CHECK
-    call CableClub_OnResume
-    clearflag OW_FLAG_MOVE_UNION_ROOM_CHECK
+	setflag OW_FLAG_MOVE_UNION_ROOM_CHECK
+	call CableClub_OnResume
+	clearflag OW_FLAG_MOVE_UNION_ROOM_CHECK
 .endif
 .endif
 	waitfieldeffect FLDEFF_POKECENTER_HEAL

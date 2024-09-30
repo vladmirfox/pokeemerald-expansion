@@ -1261,7 +1261,7 @@ CableClub_OnResume:
 .if OW_FLAG_MOVE_UNION_ROOM_CHECK != 0
 	return
 .else
-    end
+	end
 .endif
 
 
