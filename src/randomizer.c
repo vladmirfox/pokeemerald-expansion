@@ -274,11 +274,6 @@ static inline bool32 IsRandomizerLegendary(u16 species)
         || gSpeciesInfo[species].isUltraBeast;
 }
 
-<<<<<<< HEAD
-#define RANDOMIZER_SPECIES_COUNT (RANDOMIZER_MAX_MON)
-
-=======
->>>>>>> dd01a051d1 (Fix randomizer bugs)
 struct SpeciesTable
 {
     // Stores the group records for each species.
