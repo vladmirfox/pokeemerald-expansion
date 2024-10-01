@@ -218,18 +218,65 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfAllBadMoves(u32 battler, bool32 emitResult)
 {
-    if (AI_DATA->shouldSwitchIfBadMoves & (1u << battler))
+    u32 i, j;
+    bool32 switchOut = FALSE;
+
+    // Consider switching if all moves are worthless to use.
+    if (GetTotalBaseStat(gBattleMons[battler].species) >= 310 // Mon is not weak.
+        && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2) // Mon has more than 50% of its HP
     {
-        AI_DATA->shouldSwitchIfBadMoves &= ~(1u << battler);
-        gBattleStruct->AI_monToSwitchIntoId[battler] = AI_DATA->monToSwitchId[battler];
+        s32 cap = AI_THINKING_STRUCT->aiFlags[battler] & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
+        if (IsDoubleBattle())
+        {
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (i != battler && IsBattlerAlive(i))
+                {
+                    for (j = 0; j < MAX_MON_MOVES; j++)
+                    {
+                        if (gBattleStruct->aiFinalScore[battler][i][j] > cap)
+                            break;
+                    }
+                    if (j != MAX_MON_MOVES)
+                        break;
+                }
+            }
+            if (i == MAX_BATTLERS_COUNT && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+                switchOut = TRUE;
+        }
+        else
+        {
+            for (i = 0; i < MAX_MON_MOVES; i++)
+            {
+                if (AI_THINKING_STRUCT->score[i] > cap)
+                    break;
+            }
+
+            if (i == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+                switchOut = TRUE;
+        }
+    }
+
+    // Consider switching if your mon with truant is bodied by Protect spam.
+    // Or is using a double turn semi invulnerable move(such as Fly) and is faster.
+    if (AI_DATA->abilities[battler] == ABILITY_TRUANT
+        && IsTruantMonVulnerable(battler, gBattlerTarget)
+        && gDisableStructs[battler].truantCounter
+        && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
+        && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+    {
+        switchOut = TRUE;
+    }
+
+    if (switchOut)
+    {
+        // Switch mon out
+        gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
         if (emitResult)
-            BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_SWITCH, 0);
+            BtlController_EmitTwoReturnValues(battler, 1, B_ACTION_SWITCH, 0);
         return TRUE;
     }
-    else
-    {
-        return FALSE;
-    }
+    return FALSE;
 }
 
 static bool32 ShouldSwitchIfWonderGuard(u32 battler, bool32 emitResult)
@@ -1027,11 +1074,16 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
 
     if (IsDoubleBattle())
     {
+        u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerAtPosition(battler)));
         battlerIn1 = battler;
-        if (gAbsentBattlerFlags & (1u << GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)))))
+        if (gAbsentBattlerFlags & (1u << partner))
             battlerIn2 = battler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battler)));
+            battlerIn2 = partner;
+
+        // Edge case: See if partner already chose to switch into the same mon
+        if ((AI_DATA->shouldSwitch & (1u << partner)) && AI_DATA->monToSwitchInId[partner] == AI_DATA->mostSuitableMonId[battler])
+            return FALSE;
     }
     else
     {
@@ -1178,6 +1230,7 @@ void AI_TrySwitchOrUseItem(u32 battler)
             }
 
             *(gBattleStruct->monToSwitchIntoId + battler) = gBattleStruct->AI_monToSwitchIntoId[battler];
+            AI_DATA->monToSwitchInId[battler] = gBattleStruct->AI_monToSwitchIntoId[battler];
             return;
         }
         else if (ShouldUseItem(battler))
