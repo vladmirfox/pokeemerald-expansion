@@ -5141,7 +5141,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #endif //P_FAMILY_STONJOURNER
 
 #if P_FAMILY_EISCUE
-    [SPECIES_EISCUE_ICE_FACE] =
+    [SPECIES_EISCUE_ICE] =
     {
         .baseHP        = 75,
         .baseAttack    = 80,
@@ -5161,7 +5161,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .abilities = { ABILITY_ICE_FACE, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Eiscue"),
-        .cryId = CRY_EISCUE_ICE_FACE,
+        .cryId = CRY_EISCUE_ICE,
         .natDexNum = NATIONAL_DEX_EISCUE,
         .categoryName = _("Penguin"),
         .height = 14,
@@ -5263,7 +5263,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #endif //P_FAMILY_EISCUE
 
 #if P_FAMILY_INDEEDEE
-    [SPECIES_INDEEDEE_MALE] =
+    [SPECIES_INDEEDEE_M] =
     {
         .baseHP        = 60,
         .baseAttack    = 65,
@@ -5283,7 +5283,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Indeedee"),
-        .cryId = CRY_INDEEDEE_MALE,
+        .cryId = CRY_INDEEDEE_M,
         .natDexNum = NATIONAL_DEX_INDEEDEE,
         .categoryName = _("Emotion"),
         .height = 9,
@@ -5345,7 +5345,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Indeedee"),
-        .cryId = CRY_INDEEDEE_FEMALE,
+        .cryId = CRY_INDEEDEE_F,
         .natDexNum = NATIONAL_DEX_INDEEDEE,
         .categoryName = _("Emotion"),
         .height = 9,
@@ -6329,7 +6329,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #endif //P_FAMILY_DREEPY
 
 #if P_FAMILY_ZACIAN
-    [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
+    [SPECIES_ZACIAN_HERO] =
     {
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
@@ -6349,7 +6349,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .abilities = { ABILITY_INTREPID_SWORD, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Zacian"),
-        .cryId = CRY_ZACIAN_HERO_OF_MANY_BATTLES,
+        .cryId = CRY_ZACIAN_HERO,
         .natDexNum = NATIONAL_DEX_ZACIAN,
         .categoryName = _("Warrior"),
         .height = 28,
@@ -6462,7 +6462,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
 #endif //P_FAMILY_ZACIAN
 
 #if P_FAMILY_ZAMAZENTA
-    [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
+    [SPECIES_ZAMAZENTA_HERO] =
     {
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
@@ -6482,7 +6482,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .abilities = { ABILITY_DAUNTLESS_SHIELD, ABILITY_NONE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Zamazenta"),
-        .cryId = CRY_ZAMAZENTA_HERO_OF_MANY_BATTLES,
+        .cryId = CRY_ZAMAZENTA_HERO,
         .natDexNum = NATIONAL_DEX_ZAMAZENTA,
         .categoryName = _("Warrior"),
         .height = 29,

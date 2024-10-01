@@ -4028,11 +4028,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .levelUpLearnset = sBasculinWhiteStripedLevelUpLearnset,
         .teachableLearnset = sBasculinWhiteStripedTeachableLearnset,
         .formSpeciesIdTable = sBasculinFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_RECOIL_DAMAGE_MALE, 294, SPECIES_BASCULEGION_MALE},
+        .evolutions = EVOLUTION({EVO_RECOIL_DAMAGE_MALE, 294, SPECIES_BASCULEGION_M},
                                 {EVO_RECOIL_DAMAGE_FEMALE, 294, SPECIES_BASCULEGION_F}),
     },
 
-    [SPECIES_BASCULEGION_MALE] =
+    [SPECIES_BASCULEGION_M] =
     {
         .baseHP        = 120,
         .baseAttack    = 112,
@@ -4418,10 +4418,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sDarumakaTeachableLearnset,
         .eggMoveLearnset = sDarumakaEggMoveLearnset,
         .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD_MODE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD}),
     },
 
-    [SPECIES_DARMANITAN_STANDARD_MODE] =
+    [SPECIES_DARMANITAN_STANDARD] =
     {
         .baseHP        = 105,
         .baseAttack    = 140,
@@ -4601,10 +4601,10 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sDarumakaGalarianTeachableLearnset,
         .eggMoveLearnset = sDarumakaGalarianEggMoveLearnset,
         .formSpeciesIdTable = sDarumakaFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALAR_STANDARD_MODE}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALAR_STANDARD}),
     },
 
-    [SPECIES_DARMANITAN_GALAR_STANDARD_MODE] =
+    [SPECIES_DARMANITAN_GALAR_STANDARD] =
     {
         .baseHP        = 105,
         .baseAttack    = 140,
@@ -4668,7 +4668,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .formChangeTable = sDarmanitanGalarianFormChangeTable,
     },
 
-    [SPECIES_DARMANITAN_GALAR_ZEN_MODE] =
+    [SPECIES_DARMANITAN_GALAR_ZEN] =
     {
         .baseHP        = 105,
         .baseAttack    = 160,

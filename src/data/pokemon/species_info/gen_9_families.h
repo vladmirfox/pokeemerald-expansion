@@ -628,11 +628,11 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .levelUpLearnset = sLechonkLevelUpLearnset,
         .teachableLearnset = sLechonkTeachableLearnset,
         .eggMoveLearnset = sLechonkEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 18, SPECIES_OINKOLOGNE_MALE},
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 18, SPECIES_OINKOLOGNE_M},
                                 {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE_F}),
     },
 
-    [SPECIES_OINKOLOGNE_MALE] =
+    [SPECIES_OINKOLOGNE_M] =
     {
         .baseHP        = 110,
         .baseAttack    = 100,
@@ -652,7 +652,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .abilities = { ABILITY_LINGERING_AROMA, ABILITY_GLUTTONY, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Oinkologne"),
-        .cryId = CRY_OINKOLOGNE_MALE,
+        .cryId = CRY_OINKOLOGNE_M,
         .natDexNum = NATIONAL_DEX_OINKOLOGNE,
         .categoryName = _("Hog"),
         .height = 10,
@@ -713,7 +713,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .abilities = { ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Oinkologne"),
-        .cryId = CRY_OINKOLOGNE_FEMALE,
+        .cryId = CRY_OINKOLOGNE_F,
         .natDexNum = NATIONAL_DEX_OINKOLOGNE,
         .categoryName = _("Hog"),
         .height = 10,
@@ -7361,7 +7361,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             TRACKS_FOOT,
             gOverworldPalette_Fezandipiti,
             gShinyOverworldPalette_Fezandipiti
-        )        
+        )
         .isLegendary = TRUE,
         .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sFezandipitiLevelUpLearnset,
