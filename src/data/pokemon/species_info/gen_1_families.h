@@ -50,7 +50,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Bulbasaur,
         .shinyPalette = gMonShinyPalette_Bulbasaur,
         .iconSprite = gMonIcon_Bulbasaur,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 4,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 4,
         SHADOW(1, -1, SHADOW_SIZE_S)
         FOOTPRINT(Bulbasaur)
         OVERWORLD(
@@ -114,7 +114,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Ivysaur,
         .shinyPalette = gMonShinyPalette_Ivysaur,
         .iconSprite = gMonIcon_Ivysaur,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 4,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 4,
         SHADOW(-1, 3, SHADOW_SIZE_L)
         FOOTPRINT(Ivysaur)
         OVERWORLD(
@@ -187,7 +187,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Venusaur,
         .shinyPalette = gMonShinyPalette_Venusaur,
         .iconSprite = gMonIcon_Venusaur,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 4,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 4,
         SHADOW(2, 6, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Venusaur)
         OVERWORLD(
@@ -1321,7 +1321,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Weedle,
         .shinyPalette = gMonShinyPalette_Weedle,
         .iconSprite = gMonIcon_Weedle,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(0, 0, SHADOW_SIZE_S)
         FOOTPRINT(Weedle)
         OVERWORLD(
@@ -1931,7 +1931,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Raticate,
         .shinyPalette = gMonShinyPalette_Raticate,
         .iconSprite = gMonIcon_Raticate,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(0, 8, SHADOW_SIZE_L)
         FOOTPRINT(Raticate)
         OVERWORLD(
@@ -2447,7 +2447,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Pichu,
         .shinyPalette = gMonShinyPalette_Pichu,
         .iconSprite = gMonIcon_Pichu,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 1,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 1,
         SHADOW(0, 0, SHADOW_SIZE_S)
         FOOTPRINT(Pichu)
         OVERWORLD(
@@ -3947,7 +3947,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_NidoranF,
         .shinyPalette = gMonShinyPalette_NidoranF,
         .iconSprite = gMonIcon_NidoranF,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(1, 0, SHADOW_SIZE_S)
         FOOTPRINT(NidoranF)
         OVERWORLD(
@@ -4014,7 +4014,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Nidorina,
         .shinyPalette = gMonShinyPalette_Nidorina,
         .iconSprite = gMonIcon_Nidorina,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(3, 5, SHADOW_SIZE_M)
         FOOTPRINT(Nidorina)
         OVERWORLD(
@@ -4581,7 +4581,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Vulpix,
         .shinyPalette = gMonShinyPalette_Vulpix,
         .iconSprite = gMonIcon_Vulpix,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 5,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 5,
         SHADOW(0, 2, SHADOW_SIZE_M)
         FOOTPRINT(Vulpix)
         OVERWORLD(
@@ -4647,7 +4647,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Ninetales,
         .shinyPalette = gMonShinyPalette_Ninetales,
         .iconSprite = gMonIcon_Ninetales,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 3,
         SHADOW(1, 7, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Ninetales)
         OVERWORLD(
@@ -5273,7 +5273,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Oddish,
         .shinyPalette = gMonShinyPalette_Oddish,
         .iconSprite = gMonIcon_Oddish,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 4,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 4,
         SHADOW(0, -2, SHADOW_SIZE_S)
         FOOTPRINT(Oddish)
         OVERWORLD(
@@ -5698,7 +5698,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Venonat,
         .shinyPalette = gMonShinyPalette_Venonat,
         .iconSprite = gMonIcon_Venonat,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 2,
         SHADOW(-1, 5, SHADOW_SIZE_M)
         FOOTPRINT(Venonat)
         OVERWORLD(
@@ -6630,7 +6630,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Golduck,
         .shinyPalette = gMonShinyPalette_Golduck,
         .iconSprite = gMonIcon_Golduck,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(1, 6, SHADOW_SIZE_M)
         FOOTPRINT(Golduck)
         OVERWORLD(
@@ -6893,7 +6893,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Growlithe,
         .shinyPalette = gMonShinyPalette_Growlithe,
         .iconSprite = gMonIcon_Growlithe,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 3,
         SHADOW(0, 4, SHADOW_SIZE_M)
         FOOTPRINT(Growlithe)
         OVERWORLD(
@@ -6958,7 +6958,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Arcanine,
         .shinyPalette = gMonShinyPalette_Arcanine,
         .iconSprite = gMonIcon_Arcanine,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 3,
         SHADOW(-4, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Arcanine)
         OVERWORLD(
@@ -8191,7 +8191,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Tentacool,
         .shinyPalette = gMonShinyPalette_Tentacool,
         .iconSprite = gMonIcon_Tentacool,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(1, 6, SHADOW_SIZE_M)
         FOOTPRINT(Tentacool)
         OVERWORLD(
@@ -8255,7 +8255,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Tentacruel,
         .shinyPalette = gMonShinyPalette_Tentacruel,
         .iconSprite = gMonIcon_Tentacruel,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(2, 8, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Tentacruel)
         OVERWORLD(
@@ -8471,7 +8471,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Golem,
         .shinyPalette = gMonShinyPalette_Golem,
         .iconSprite = gMonIcon_Golem,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(3, 5, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Golem)
         OVERWORLD(
@@ -8735,7 +8735,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Ponyta,
         .shinyPalette = gMonShinyPalette_Ponyta,
         .iconSprite = gMonIcon_Ponyta,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 3,
         SHADOW(-1, 7, SHADOW_SIZE_M)
         FOOTPRINT(Ponyta)
         OVERWORLD(
@@ -8799,7 +8799,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Rapidash,
         .shinyPalette = gMonShinyPalette_Rapidash,
         .iconSprite = gMonIcon_Rapidash,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 3,
         SHADOW(-1, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Rapidash)
         OVERWORLD(
@@ -10003,7 +10003,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Seel,
         .shinyPalette = gMonShinyPalette_Seel,
         .iconSprite = gMonIcon_Seel,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(0, 3, SHADOW_SIZE_L)
         FOOTPRINT(Seel)
         OVERWORLD(
@@ -11133,7 +11133,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Hypno,
         .shinyPalette = gMonShinyPalette_Hypno,
         .iconSprite = gMonIcon_Hypno,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(-3, 9, SHADOW_SIZE_L)
         FOOTPRINT(Hypno)
         OVERWORLD(
@@ -11196,7 +11196,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Krabby,
         .shinyPalette = gMonShinyPalette_Krabby,
         .iconSprite = gMonIcon_Krabby,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(0, -1, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Krabby)
         OVERWORLD(
@@ -11261,7 +11261,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Kingler,
         .shinyPalette = gMonShinyPalette_Kingler,
         .iconSprite = gMonIcon_Kingler,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(-2, 4, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Kingler)
         OVERWORLD(
@@ -11855,7 +11855,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Cubone,
         .shinyPalette = gMonShinyPalette_Cubone,
         .iconSprite = gMonIcon_Cubone,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(1, 0, SHADOW_SIZE_S)
         FOOTPRINT(Cubone)
         OVERWORLD(
@@ -11921,7 +11921,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Marowak,
         .shinyPalette = gMonShinyPalette_Marowak,
         .iconSprite = gMonIcon_Marowak,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(6, 6, SHADOW_SIZE_M)
         FOOTPRINT(Marowak)
         OVERWORLD(
@@ -12380,7 +12380,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Lickitung,
         .shinyPalette = gMonShinyPalette_Lickitung,
         .iconSprite = gMonIcon_Lickitung,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 0,
         SHADOW(2, 6, SHADOW_SIZE_M)
         FOOTPRINT(Lickitung)
         OVERWORLD(
@@ -13060,7 +13060,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Blissey,
         .shinyPalette = gMonShinyPalette_Blissey,
         .iconSprite = gMonIcon_Blissey,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 0,
         SHADOW(1, 8, SHADOW_SIZE_L)
         FOOTPRINT(Blissey)
         OVERWORLD(
@@ -13258,7 +13258,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Kangaskhan,
         .shinyPalette = gMonShinyPalette_Kangaskhan,
         .iconSprite = gMonIcon_Kangaskhan,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 2,
         SHADOW(0, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Kangaskhan)
         OVERWORLD(
@@ -14745,7 +14745,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Magby,
         .shinyPalette = gMonShinyPalette_Magby,
         .iconSprite = gMonIcon_Magby,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 0,
         SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Magby)
         OVERWORLD(
@@ -15997,7 +15997,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Jolteon,
         .shinyPalette = gMonShinyPalette_Jolteon,
         .iconSprite = gMonIcon_Jolteon,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 2,
         SHADOW(0, 2, SHADOW_SIZE_M)
         FOOTPRINT(Jolteon)
         OVERWORLD(
@@ -16058,7 +16058,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Flareon,
         .shinyPalette = gMonShinyPalette_Flareon,
         .iconSprite = gMonIcon_Flareon,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 3,
         SHADOW(-2, 1, SHADOW_SIZE_L)
         FOOTPRINT(Flareon)
         OVERWORLD(
@@ -16181,7 +16181,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Umbreon,
         .shinyPalette = gMonShinyPalette_Umbreon,
         .iconSprite = gMonIcon_Umbreon,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 2 : 0,
+        .iconPalIndex = P_GBA_ICONS ? 2 : 0,
         SHADOW(0, 3, SHADOW_SIZE_M)
         FOOTPRINT(Umbreon)
         OVERWORLD(
@@ -16913,7 +16913,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Aerodactyl,
         .shinyPalette = gMonShinyPalette_Aerodactyl,
         .iconSprite = gMonIcon_Aerodactyl,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 2,
         SHADOW(-2, 16, SHADOW_SIZE_M)
         FOOTPRINT(Aerodactyl)
         OVERWORLD(
@@ -17107,7 +17107,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Snorlax,
         .shinyPalette = gMonShinyPalette_Snorlax,
         .iconSprite = gMonIcon_Snorlax,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 1 : 3,
+        .iconPalIndex = P_GBA_ICONS ? 1 : 3,
         SHADOW(0, 9, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Snorlax)
         OVERWORLD(
@@ -17240,7 +17240,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_Articuno,
         .shinyPalette = gMonShinyPalette_Articuno,
         .iconSprite = gMonIcon_Articuno,
-        .iconPalIndex = P_GBA_SPECIES_GFX ? 0 : 2,
+        .iconPalIndex = P_GBA_ICONS ? 0 : 2,
         SHADOW(3, 10, SHADOW_SIZE_M)
         FOOTPRINT(Articuno)
         OVERWORLD(
