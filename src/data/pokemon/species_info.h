@@ -100,11 +100,13 @@
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
     OVERWORLD_PAL_FEMALE(__VA_ARGS__)
-	
+
 #else
 #define OVERWORLD(picTable, _size, shadow, _tracks, ...)
 #define OVERWORLD_SET_ANIM(picTable, _size, shadow, _tracks, _anims, ...)
 #define OVERWORLD_FEMALE(picTable, _size, shadow, _tracks, ...)
+#define OVERWORLD_PAL(...)
+#define OVERWORLD_PAL_FEMALE(...)
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.

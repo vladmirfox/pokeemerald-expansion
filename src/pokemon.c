@@ -6678,10 +6678,7 @@ bool32 SpeciesHasGenderDifferences(u16 species)
      || gSpeciesInfo[species].backPicFemale != NULL
      || gSpeciesInfo[species].paletteFemale != NULL
      || gSpeciesInfo[species].shinyPaletteFemale != NULL
-     || gSpeciesInfo[species].iconSpriteFemale != NULL
-     || gSpeciesInfo[species].overworldDataFemale.paletteTag == OBJ_EVENT_PAL_TAG_DYNAMIC
-     || gSpeciesInfo[species].overworldPaletteFemale != NULL
-     || gSpeciesInfo[species].overworldShinyPaletteFemale != NULL)
+     || gSpeciesInfo[species].iconSpriteFemale != NULL)
         return TRUE;
 
     return FALSE;
