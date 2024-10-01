@@ -4680,6 +4680,16 @@
       "secondary_tileset": "gTileset_DojoMaguro",
       "border_filepath": "data/layouts/MaguroHarbor_Dojo/border.bin",
       "blockdata_filepath": "data/layouts/MaguroHarbor_Dojo/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_ROUTE",
+      "name": "TestRoute_Layout",
+      "width": 94,
+      "height": 34,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Yifu",
+      "border_filepath": "data/layouts/TestRoute/border.bin",
+      "blockdata_filepath": "data/layouts/TestRoute/map.bin"
     }
   ]
 }

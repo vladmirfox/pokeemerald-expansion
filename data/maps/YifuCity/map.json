@@ -17,6 +17,11 @@
       "map": "MAP_WHITESLATE_ROUTE",
       "offset": 19,
       "direction": "up"
+    },
+    {
+      "map": "MAP_TEST_ROUTE",
+      "offset": 14,
+      "direction": "left"
     }
   ],
   "object_events": [

@@ -1159,3 +1159,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/MaguroHarbor_Dojo/scripts.inc"
 
 	.include "data/maps/SakuTown_House3/scripts.inc"
+
+	.include "data/maps/TestRoute/scripts.inc"
