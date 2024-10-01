@@ -781,6 +781,7 @@ static void SetCursorInParty(void);
 static void SetCursorBoxPosition(u8);
 static void ClearSavedCursorPos(void);
 static void SaveCursorPos(void);
+static u8 GetSavedCursorPos(void);
 static void InitMonPlaceChange(u8);
 static bool8 DoMonPlaceChange(void);
 static bool8 MonPlaceChange_Shift(void);
