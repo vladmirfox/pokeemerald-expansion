@@ -3664,7 +3664,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 break;
             case CAN_TRY_PIVOT:
                 break;
-            case PIVOT:
+            case SHOULD_PIVOT:
                 ADJUST_SCORE(BEST_EFFECT);
                 break;
             }

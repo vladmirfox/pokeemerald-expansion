@@ -19,7 +19,7 @@ enum AIPivot
 {
     DONT_PIVOT,
     CAN_TRY_PIVOT,
-    PIVOT,
+    SHOULD_PIVOT,
 };
 
 bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move);
