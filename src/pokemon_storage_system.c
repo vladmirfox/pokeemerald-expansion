@@ -2029,7 +2029,7 @@ void EnterPokeStorage(u8 boxOption)
     sStorage = Alloc(sizeof(*sStorage));
     if (sStorage == NULL)
     {
-        if(boxOption == OPTION_SELECT_MON)
+        if (boxOption == OPTION_SELECT_MON)
             SetMainCallback2(CB2_ReturnToFieldContinueScript);
         else
             SetMainCallback2(CB2_ExitPokeStorage);
@@ -2052,7 +2052,7 @@ static void CB2_ReturnToPokeStorage(void)
     sStorage = Alloc(sizeof(*sStorage));
     if (sStorage == NULL)
     {
-        if(sStorage->boxOption == OPTION_SELECT_MON)
+        if (sStorage->boxOption == OPTION_SELECT_MON)
             SetMainCallback2(CB2_ReturnToFieldContinueScript);
         else
             SetMainCallback2(CB2_ExitPokeStorage);
@@ -2742,11 +2742,11 @@ static void Task_OnSelectedMon(u8 taskId)
             break;
         case MENU_SELECT:
             PlaySE(SE_SELECT);
-            if(sInPartyMenu)
-                VarSet(VAR_RESULT,GetBoxMonData(&gPlayerParty[sCursorPosition].box, MON_DATA_SPECIES));
+            if (sInPartyMenu)
+                VarSet(VAR_RESULT, GetBoxMonData(&gPlayerParty[sCursorPosition].box, MON_DATA_SPECIES));
             else
-                VarSet(VAR_RESULT,GetBoxMonDataAt(sStorage->newCurrBoxId, sCursorPosition, MON_DATA_SPECIES_OR_EGG));
-            VarSet(gSpecialVar_0x8004,sCursorPosition);
+                VarSet(VAR_RESULT, GetBoxMonDataAt(sStorage->newCurrBoxId, sCursorPosition, MON_DATA_SPECIES_OR_EGG));
+            VarSet(gSpecialVar_0x8004, sCursorPosition);
             SaveCursorPos();
             sStorage->screenChangeType = SCREEN_CHANGE_EXIT_BOX;
             SetPokeStorageTask(Task_ChangeScreen);
@@ -3801,12 +3801,15 @@ static void Task_ChangeScreen(u8 taskId)
     {
     case SCREEN_CHANGE_EXIT_BOX:
     default:
-        if(sStorage->boxOption == OPTION_SELECT_MON){
+        if (sStorage->boxOption == OPTION_SELECT_MON)
+        {
             SetMainCallback2(CB2_ReturnToFieldContinueScript);
             VarSet(gSpecialVar_0x8004,0xFF);
         }
         else
+        {
             SetMainCallback2(CB2_ExitPokeStorage);
+        }
         FreePokeStorageData();
         break;
     case SCREEN_CHANGE_SUMMARY_SCREEN:
@@ -7798,9 +7801,8 @@ static bool8 SetMenuTexts_Mon(void)
         }
         break;
     case OPTION_SELECT_MON:
-        if (species != SPECIES_NONE){
+        if (species != SPECIES_NONE)
             SetMenuText(MENU_SELECT);
-        }
         else
             return FALSE;
         break;
