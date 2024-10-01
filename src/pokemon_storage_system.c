@@ -2747,7 +2747,6 @@ static void Task_OnSelectedMon(u8 taskId)
             else
                 VarSet(VAR_RESULT, GetBoxMonDataAt(sStorage->newCurrBoxId, sCursorPosition, MON_DATA_SPECIES_OR_EGG));
             VarSet(gSpecialVar_0x8004, sCursorPosition);
-            SaveCursorPos();
             sStorage->screenChangeType = SCREEN_CHANGE_EXIT_BOX;
             SetPokeStorageTask(Task_ChangeScreen);
             break;
@@ -6224,7 +6223,7 @@ static void SaveCursorPos(void)
     sSavedCursorPosition = sCursorPosition;
 }
 
-u8 GetSavedCursorPos(void)
+static u8 GetSavedCursorPos(void)
 {
     return sSavedCursorPosition;
 }
