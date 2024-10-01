@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Zacian changes into its Crowned Form when holding the Rusted
         if (item == ITEM_NONE)
             EXPECT_EQ(player->species, SPECIES_ZACIAN_HERO_OF_MANY_BATTLES);
         else
-            EXPECT_EQ(player->species, SPECIES_ZACIAN_CROWNED_SWORD);
+            EXPECT_EQ(player->species, SPECIES_ZACIAN_CROWNED);
     }
 }
 
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("Zacian's Iron Head becomes Behemoth Blade upon form change")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
     } THEN {
-        ASSUME(player->species == SPECIES_ZACIAN_CROWNED_SWORD); // Assumes form change worked.
+        ASSUME(player->species == SPECIES_ZACIAN_CROWNED); // Assumes form change worked.
         EXPECT_EQ(player->moves[0], MOVE_BEHEMOTH_BLADE);
     }
 }
@@ -58,7 +58,7 @@ SINGLE_BATTLE_TEST("Zamazenta changes into its Crowned Form when holding the Rus
         if (item == ITEM_NONE)
             EXPECT_EQ(player->species, SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES);
         else
-            EXPECT_EQ(player->species, SPECIES_ZAMAZENTA_CROWNED_SHIELD);
+            EXPECT_EQ(player->species, SPECIES_ZAMAZENTA_CROWNED);
     }
 }
 
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("Zamazenta's Iron Head becomes Behemoth Bash upon form change
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
     } THEN {
-        ASSUME(player->species == SPECIES_ZAMAZENTA_CROWNED_SHIELD); // Assumes form change worked.
+        ASSUME(player->species == SPECIES_ZAMAZENTA_CROWNED); // Assumes form change worked.
         EXPECT_EQ(player->moves[0], MOVE_BEHEMOTH_BASH);
     }
 }

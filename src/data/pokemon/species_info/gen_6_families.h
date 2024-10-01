@@ -1390,7 +1390,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "This form is from a mysterious land.\n"
             "It scatters toxic color scales in battle."),
     },
-    [SPECIES_VIVILLON_POKE_BALL] =
+    [SPECIES_VIVILLON_POKEBALL] =
     {
         VIVILLON_MISC_INFO(PokeBall, BODY_COLOR_RED, 2),
         .description = COMPOUND_STRING(
@@ -1743,7 +1743,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             "without mercy. This Floette takes\n"
             "particularly good care of white flowers."),
     },
-    [SPECIES_FLOETTE_ETERNAL_FLOWER] =
+    [SPECIES_FLOETTE_ETERNAL] =
     {
         FLOETTE_MISC_INFO(Eternal, ETERNAL, 0),
         .baseHP        = 74,
@@ -2262,7 +2262,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sEspurrTeachableLearnset,
         .eggMoveLearnset = sEspurrEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL_MALE, 25, SPECIES_MEOWSTIC_MALE},
-                                {EVO_LEVEL_FEMALE, 25, SPECIES_MEOWSTIC_FEMALE}),
+                                {EVO_LEVEL_FEMALE, 25, SPECIES_MEOWSTIC_F}),
     },
 
     [SPECIES_MEOWSTIC_MALE] =
@@ -2327,7 +2327,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formSpeciesIdTable = sMeowsticFormSpeciesIdTable,
     },
 
-    [SPECIES_MEOWSTIC_FEMALE] =
+    [SPECIES_MEOWSTIC_F] =
     {
         .baseHP        = 74,
         .baseAttack    = 48,
@@ -4051,7 +4051,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sGoomyTeachableLearnset,
         .eggMoveLearnset = sGoomyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_SLIGGOO},
-                                {EVO_NONE, 0, SPECIES_SLIGGOO_HISUIAN}),
+                                {EVO_NONE, 0, SPECIES_SLIGGOO_HISUI}),
     },
 
     [SPECIES_SLIGGOO] =
@@ -4182,7 +4182,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_SLIGGOO_HISUIAN] =
+    [SPECIES_SLIGGOO_HISUI] =
     {
         .baseHP        = 58,
         .baseAttack    = 75,
@@ -4244,11 +4244,11 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .levelUpLearnset = sSliggooHisuianLevelUpLearnset,
         .teachableLearnset = sSliggooHisuianTeachableLearnset,
         .formSpeciesIdTable = sSliggooFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA_HISUIAN},
-                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA_HISUIAN}),
+        .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA_HISUI},
+                                {EVO_LEVEL_FOG, 50, SPECIES_GOODRA_HISUI}),
     },
 
-    [SPECIES_GOODRA_HISUIAN] =
+    [SPECIES_GOODRA_HISUI] =
     {
         .baseHP        = 80,
         .baseAttack    = 100,
@@ -5086,7 +5086,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .teachableLearnset = sBergmiteTeachableLearnset,
         .eggMoveLearnset = sBergmiteEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_AVALUGG},
-                                {EVO_NONE, 0, SPECIES_AVALUGG_HISUIAN}),
+                                {EVO_NONE, 0, SPECIES_AVALUGG_HISUI}),
     },
 
     [SPECIES_AVALUGG] =
@@ -5152,7 +5152,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_AVALUGG_HISUIAN] =
+    [SPECIES_AVALUGG_HISUI] =
     {
         .baseHP        = 95,
         .baseAttack    = 127,

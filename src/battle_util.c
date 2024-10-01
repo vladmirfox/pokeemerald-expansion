@@ -4972,7 +4972,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_ICE_FACE:
             if (IsBattlerWeatherAffected(battler, B_WEATHER_HAIL | B_WEATHER_SNOW)
-             && gBattleMons[battler].species == SPECIES_EISCUE_NOICE_FACE
+             && gBattleMons[battler].species == SPECIES_EISCUE_NOICE
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
                 // TODO: Convert this to a proper FORM_CHANGE type.
@@ -6339,7 +6339,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_ICE_FACE:
             if (IsBattlerWeatherAffected(battler, B_WEATHER_HAIL | B_WEATHER_SNOW)
-             && gBattleMons[battler].species == SPECIES_EISCUE_NOICE_FACE
+             && gBattleMons[battler].species == SPECIES_EISCUE_NOICE
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
             {
                 // TODO: Convert this to a proper FORM_CHANGE type.
