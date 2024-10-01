@@ -1542,7 +1542,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_SHIELDON
 
 #if P_FAMILY_BURMY
-    [SPECIES_BURMY_PLANT_CLOAK] =
+    [SPECIES_BURMY_PLANT] =
     {
         .baseHP        = 40,
         .baseAttack    = 29,

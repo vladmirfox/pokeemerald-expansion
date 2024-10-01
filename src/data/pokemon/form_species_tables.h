@@ -991,7 +991,7 @@ static const u16 sDeoxysFormSpeciesIdTable[] = {
 
 #if P_FAMILY_BURMY
 static const u16 sBurmyFormSpeciesIdTable[] = {
-    SPECIES_BURMY_PLANT_CLOAK,
+    SPECIES_BURMY_PLANT,
     SPECIES_BURMY_SANDY,
     SPECIES_BURMY_TRASH,
     FORM_SPECIES_END,
