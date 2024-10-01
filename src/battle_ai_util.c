@@ -3508,14 +3508,14 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     {
         gBattleMons[battlerAtk] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerDef].saved = TRUE;
-        SetBattlerData(battlerDef); // set known opposing battler data
+        SetBattlerAiData(battlerDef, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerDef].saved = FALSE;
     }
     else
     {
         gBattleMons[battlerDef] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerAtk].saved = TRUE;
-        SetBattlerData(battlerAtk); // set known opposing battler data
+        SetBattlerAiData(battlerAtk, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
@@ -3523,6 +3523,18 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg.expected;
+}
+
+u32 AI_WhoStrikesFirstPartyMon(u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, u32 moveConsidered)
+{
+    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
+    gBattleMons[battlerAtk] = switchinCandidate;
+
+    SetBattlerAiData(battlerAtk, AI_DATA);
+    u32 aiMonFaster = AI_IsFaster(battlerAtk, battlerDef, moveConsidered);
+    FreeRestoreBattleMons(savedBattleMons);
+
+    return aiMonFaster;
 }
 
 s32 CountUsablePartyMons(u32 battlerId)

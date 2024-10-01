@@ -1789,7 +1789,7 @@ static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent)
         return FALSE;
 }
 
-static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 opposingBattler)
+static inline bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 opposingBattler)
 {
     bool32 movedSecond = GetBattlerTurnOrderNum(battlerSwitchingOut) > GetBattlerTurnOrderNum(opposingBattler) ? TRUE : FALSE;
     
@@ -1817,17 +1817,7 @@ static bool32 IsFreeSwitch(bool32 isSwitchAfterKO, u32 battlerSwitchingOut, u32 
         return FALSE;
 }
 
-static bool32 DoesSwitchinMoveFirst(s32 aiMonSpeed, s32 playerMonSpeed, s32 aiMovePriority)
-{
-    if ((aiMonSpeed > playerMonSpeed && !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)) || aiMovePriority > 0) // Outspeed if not Trick Room
-        return TRUE;
-    if ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room
-        && (aiMonSpeed < playerMonSpeed || (ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item) == HOLD_EFFECT_ROOM_SERVICE && aiMonSpeed * 2 / 3 < playerMonSpeed))) // Trick Room speeds
-        return TRUE;
-    return FALSE;
-}
-
-static bool32 CanSwitchinWin1v1(u32 hitsToKOAI, u32 hitsToKOPlayer, bool32 isSwitchinFirst, bool32 isFreeSwitch)
+static inline bool32 CanSwitchinWin1v1(u32 hitsToKOAI, u32 hitsToKOPlayer, bool32 isSwitchinFirst, bool32 isFreeSwitch)
 {
     // Free switch, need to outspeed or take 1 extra hit
     if (isFreeSwitch)
@@ -1908,7 +1898,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             }
 
             // Offensive switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
-            isSwitchinFirst = DoesSwitchinMoveFirst(AI_DATA->switchinCandidate.battleMon.speed, gBattleMons[opposingBattler].speed, gMovesInfo[aiMove].priority);
+            isSwitchinFirst = AI_WhoStrikesFirstPartyMon(battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, aiMove);
             canSwitchinWin1v1 = CanSwitchinWin1v1(hitsToKOAI, GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler), isSwitchinFirst, isFreeSwitch);
 
             // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
