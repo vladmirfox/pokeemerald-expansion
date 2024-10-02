@@ -12943,12 +12943,12 @@ static void Cmd_settypetorandomresistance(void)
     if (B_UPDATED_CONVERSION_2 < GEN_5)
     {
         if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
-        || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+         || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else if (gBattleMoveEffects[gMovesInfo[gLastLandedMoves[gBattlerAttacker]].effect].twoTurnEffect
-                && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
+              && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -13001,12 +13001,12 @@ static void Cmd_settypetorandomresistance(void)
     else
     {
         //recalc moveType of last used move because dynamicMoveType was already reset
-        SetTypeBeforeUsingMove(gLastMoves[gBattlerTarget], gBattlerTarget);
-        GET_MOVE_TYPE(gLastMoves[gBattlerTarget], moveType);
+        SetTypeBeforeUsingMove(gLastResultingMoves[gBattlerTarget], gBattlerTarget);
+        GET_MOVE_TYPE(gLastResultingMoves[gBattlerTarget], moveType);
 
-        if (gLastMoves[gBattlerTarget] == MOVE_NONE
-        || gLastMoves[gBattlerTarget] == MOVE_UNAVAILABLE
-        || gLastMoves[gBattlerTarget] == MOVE_STRUGGLE)
+        if (gLastResultingMoves[gBattlerTarget] == MOVE_NONE
+         || gLastResultingMoves[gBattlerTarget] == MOVE_UNAVAILABLE
+         || gLastResultingMoves[gBattlerTarget] == MOVE_STRUGGLE)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -13018,7 +13018,6 @@ static void Cmd_settypetorandomresistance(void)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
-        //QUESTION: Is this gimmick section still relevant?
         else if (GetActiveGimmick(gBattlerAttacker) == GIMMICK_TERA)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
