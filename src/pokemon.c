@@ -6957,3 +6957,115 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
         return moveType;
     return gMovesInfo[move].type;
 }
+
+struct SmolHeader {
+    u32 loEncoded:1;
+    u32 symEncoded:1;
+    u32 loDelta:1;
+    u32 symDelta:1;
+    u32 lengthMod:4;
+    u32 loLength:12;
+    u32 symLength:12;
+};
+
+struct DecodeYK {
+    u32 yVal:8;
+    u32 kVal:8;
+    u32 symbol:4;
+    u32 padding:12;
+};
+
+void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
+{
+    freqs[15] = 0;
+    for (u32 i = 0; i < 3; i++)
+    {
+        for (u32 j = 0; j < 5; j++)
+        {
+            freqs[i*5 + j] = (packedFreqs[i] >> (6*j)) & 0x3f;
+        }
+        freqs[15] += (packedFreqs[i] & 0xC0000000) >> (30 - 2*i);
+    }
+}
+
+void PrintDecodeTable(struct DecodeYK *input)
+{
+    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].symbol, input[1].symbol, input[2].symbol, input[3].symbol, input[4].symbol, input[5].symbol, input[6].symbol, input[7].symbol, input[8].symbol, input[9].symbol, input[10].symbol, input[11].symbol, input[12].symbol, input[13].symbol, input[14].symbol, input[15].symbol, input[16].symbol, input[17].symbol, input[18].symbol, input[19].symbol, input[20].symbol, input[21].symbol, input[22].symbol, input[23].symbol, input[24].symbol, input[25].symbol, input[26].symbol, input[27].symbol, input[28].symbol, input[29].symbol, input[30].symbol, input[31].symbol, input[32].symbol, input[33].symbol, input[34].symbol, input[35].symbol, input[36].symbol, input[37].symbol, input[38].symbol, input[39].symbol, input[40].symbol, input[41].symbol, input[42].symbol, input[43].symbol, input[44].symbol, input[45].symbol, input[46].symbol, input[47].symbol, input[48].symbol, input[49].symbol, input[50].symbol, input[51].symbol, input[52].symbol, input[53].symbol, input[54].symbol, input[55].symbol, input[56].symbol, input[57].symbol, input[58].symbol, input[59].symbol, input[60].symbol, input[61].symbol, input[62].symbol, input[63].symbol);
+    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].yVal, input[1].yVal, input[2].yVal, input[3].yVal, input[4].yVal, input[5].yVal, input[6].yVal, input[7].yVal, input[8].yVal, input[9].yVal, input[10].yVal, input[11].yVal, input[12].yVal, input[13].yVal, input[14].yVal, input[15].yVal, input[16].yVal, input[17].yVal, input[18].yVal, input[19].yVal, input[20].yVal, input[21].yVal, input[22].yVal, input[23].yVal, input[24].yVal, input[25].yVal, input[26].yVal, input[27].yVal, input[28].yVal, input[29].yVal, input[30].yVal, input[31].yVal, input[32].yVal, input[33].yVal, input[34].yVal, input[35].yVal, input[36].yVal, input[37].yVal, input[38].yVal, input[39].yVal, input[40].yVal, input[41].yVal, input[42].yVal, input[43].yVal, input[44].yVal, input[45].yVal, input[46].yVal, input[47].yVal, input[48].yVal, input[49].yVal, input[50].yVal, input[51].yVal, input[52].yVal, input[53].yVal, input[54].yVal, input[55].yVal, input[56].yVal, input[57].yVal, input[58].yVal, input[59].yVal, input[60].yVal, input[61].yVal, input[62].yVal, input[63].yVal);
+    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].kVal, input[1].kVal, input[2].kVal, input[3].kVal, input[4].kVal, input[5].kVal, input[6].kVal, input[7].kVal, input[8].kVal, input[9].kVal, input[10].kVal, input[11].kVal, input[12].kVal, input[13].kVal, input[14].kVal, input[15].kVal, input[16].kVal, input[17].kVal, input[18].kVal, input[19].kVal, input[20].kVal, input[21].kVal, input[22].kVal, input[23].kVal, input[24].kVal, input[25].kVal, input[26].kVal, input[27].kVal, input[28].kVal, input[29].kVal, input[30].kVal, input[31].kVal, input[32].kVal, input[33].kVal, input[34].kVal, input[35].kVal, input[36].kVal, input[37].kVal, input[38].kVal, input[39].kVal, input[40].kVal, input[41].kVal, input[42].kVal, input[43].kVal, input[44].kVal, input[45].kVal, input[46].kVal, input[47].kVal, input[48].kVal, input[49].kVal, input[50].kVal, input[51].kVal, input[52].kVal, input[53].kVal, input[54].kVal, input[55].kVal, input[56].kVal, input[57].kVal, input[58].kVal, input[59].kVal, input[60].kVal, input[61].kVal, input[62].kVal, input[63].kVal);
+}
+
+void TestFlygonCompress()
+{
+    struct DecodeYK ykVal[128];
+
+    for (u32 i = 1; i < 128; i++)
+    {
+        u16 currK = 0;
+        while (i << currK < 64)
+            currK++;
+        ykVal[i].yVal = i;
+        ykVal[i].kVal = currK;
+    }
+
+    u32 currIndex = 0;
+    u32 allU32s[370];
+    memcpy(&allU32s[0], &gSmolFlygon[0], 1480);
+    struct SmolHeader header;
+    memcpy(&header, &allU32s[currIndex], 4);
+    currIndex++;
+
+    u32 loPackedFreqs[3];
+    u32 symPackedFreqs[3];
+    if (header.loLength < 4096)
+    {
+        memcpy(&loPackedFreqs, &allU32s[currIndex], 12);
+        currIndex += 3;
+    }
+
+    if (header.symLength < 4096)
+    {
+        memcpy(&symPackedFreqs, &allU32s[currIndex], 12);
+        currIndex += 3;
+    }
+
+    u8 loFreqs[16];
+    u8 symFreqs[16];
+    struct DecodeYK loDecode[64];
+    struct DecodeYK symDecode[64];
+    if (header.loEncoded)
+    {
+        UnpackFrequencies(&loPackedFreqs[0], &loFreqs[0]);
+        u32 currCol = 0;
+        for (u32 i = 0; i < 16; i++)
+        {
+            for (u32 j = 0; j < loFreqs[i]; j++)
+            {
+                loDecode[currCol] = ykVal[loFreqs[i] + j];
+                loDecode[currCol].symbol = i;
+                currCol++;
+            }
+        }
+    }
+    if (header.symEncoded)
+    {
+        UnpackFrequencies(&symPackedFreqs[0], &symFreqs[0]);
+        u32 currCol = 0;
+        for (u32 i = 0; i < 16; i++)
+        {
+            for (u32 j = 0; j < loFreqs[i]; j++)
+            {
+                loDecode[currCol] = ykVal[loFreqs[i] + j];
+                loDecode[currCol].symbol = i;
+                currCol++;
+            }
+        }
+    }
+    currState = allU32s[currIndex] & 0x3f;
+    u32 currBit = 6;
+    u32 loVec[loLength];
+    for (u32 i = 0; i < header.loLength; i++)
+    {
+        loVec[i] = loDecode[currState].symbol;
+    }
+}
