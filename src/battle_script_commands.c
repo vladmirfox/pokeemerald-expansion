@@ -1988,7 +1988,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     // Crit scaling
     if (moveCritStage > 0)
         critChance = critChance * highCritRatioScaler * moveCritStage;
-    
+
     if (bonusCritStage > 0)
         critChance = critChance * bonusCritStage;
 
@@ -11604,7 +11604,7 @@ static void Cmd_stockpiletohpheal(void)
             if (gBattleMoveDamage == 0)
                 gBattleMoveDamage = 1;
             gBattleMoveDamage *= -1;
-            
+
             gBattlescriptCurrInstr = cmd->nextInstr;
             gBattlerTarget = gBattlerAttacker;
         }
@@ -17438,7 +17438,7 @@ void BS_JumpIfCommanderActive(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void UpdatePartyStatus(struct Pokemon* party, u8 position)
+static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
 {
     s32 i;
     u8 battler;
@@ -17481,8 +17481,8 @@ void BS_CheckPokeFlute(void)
         }
     }
 
-    UpdatePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
-    UpdatePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
+    UpdatePokeFlutePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
+    UpdatePokeFlutePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
