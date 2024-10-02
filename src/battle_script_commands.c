@@ -17443,15 +17443,17 @@ static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
     s32 i;
     u8 battler;
     u32 monToCheck, status;
-    u16 species;
+    u16 species, abilityNum;
     monToCheck = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
         status = GetMonData(&party[i], MON_DATA_STATUS);
         if (species != SPECIES_NONE
             && species != SPECIES_EGG
-            && status & AILMENT_FNT)
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
             monToCheck |= (1 << i);
     }
     if (monToCheck)
