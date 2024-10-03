@@ -4143,7 +4143,7 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
     }
 
     if (!effect)
-        effect = CanPartnerAbilityBlockMove(battlerAtk, battlerDef, GetBattlerAbility(BATTLE_PARTNER(battlerDef)), move);
+        effect = CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, GetBattlerAbility(BATTLE_PARTNER(battlerDef)));
 
     return effect;
 }
