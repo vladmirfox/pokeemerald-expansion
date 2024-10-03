@@ -7089,6 +7089,8 @@ const struct DecodeYK ykTemplate[128] = {
     [127] = {127, 0, 0},
 };
 
+const u16 kValMasks[7] = {0, 1, 3, 7, 15, 31, 63};
+
 struct SmolHeader {
     u32 loEncoded:1;
     u32 symEncoded:1;
@@ -7182,15 +7184,42 @@ void TestFlygonCompress()
     }
     u32 currStream = allU32s[currIndex];
     u32 currState = currStream & 0x3f;
-    u32 currBit = 6;
+    u32 usedBits = 6;
     currIndex++;
     u32 loVec[header.loLength];
-    for (u32 i = 0; i < 1; i++)
+    for (u32 i = 0; i < 2; i++)
     {
         loVec[i] = loDecode[currState].symbol;
-        /*
         u32 currK = loDecode[currState].kVal;
         u32 nextState = loDecode[currState].yVal << currK;
+        if (usedBits + currK <= 32)
+        {
+            nextState += (currStream >> usedBits) & (kValMasks[currK]);
+            usedBits += currK;
+        }
+        else
+        {
+            currStream = allU32s[currIndex];
+            currIndex++;
+        }
+        currState = nextState - 64;
+
+        loVec[i] += loDecode[currState].symbol << 4;
+        currK = loDecode[currState].kVal;
+        nextState = loDecode[currState].yVal << currK;
+        if (usedBits + currK <= 32)
+        {
+            nextState += (currStream >> usedBits) & (kValMasks[currK]);
+            usedBits += currK;
+        }
+        else
+        {
+            currStream = allU32s[currIndex];
+            currIndex++;
+        }
+        currState = nextState - 64;
+
+        /*
         if (currBit + currK <= 32)
         {
             nextState += (currStream >> currBit) & ((1 << (currK+1)) - 1);
@@ -7228,5 +7257,5 @@ void TestFlygonCompress()
         }
         */
     }
-    MgbaPrintf(MGBA_LOG_WARN, "%u", loVec[0]);
+    MgbaPrintf(MGBA_LOG_WARN, "Vec: %u\nUsed bits: %u", loVec[2], usedBits);
 }

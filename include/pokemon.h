@@ -896,5 +896,6 @@ struct DecodeYK {
 };
 
 extern const struct DecodeYK ykTemplate[];
+extern const u16 kValMasks[];
 
 #endif // GUARD_POKEMON_H
