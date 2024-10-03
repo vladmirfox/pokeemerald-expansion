@@ -6958,6 +6958,137 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     return gMovesInfo[move].type;
 }
 
+const struct DecodeYK ykTemplate[128] = {
+    [0] = {0, 0, 0},
+    [1] = {1, 6, 0},
+    [2] = {2, 5, 0},
+    [3] = {3, 5, 0},
+    [4] = {4, 4, 0},
+    [5] = {5, 4, 0},
+    [6] = {6, 4, 0},
+    [7] = {7, 4, 0},
+    [8] = {8, 3, 0},
+    [9] = {9, 3, 0},
+    [10] = {10, 3, 0},
+    [11] = {11, 3, 0},
+    [12] = {12, 3, 0},
+    [13] = {13, 3, 0},
+    [14] = {14, 3, 0},
+    [15] = {15, 3, 0},
+    [16] = {16, 2, 0},
+    [17] = {17, 2, 0},
+    [18] = {18, 2, 0},
+    [19] = {19, 2, 0},
+    [20] = {20, 2, 0},
+    [21] = {21, 2, 0},
+    [22] = {22, 2, 0},
+    [23] = {23, 2, 0},
+    [24] = {24, 2, 0},
+    [25] = {25, 2, 0},
+    [26] = {26, 2, 0},
+    [27] = {27, 2, 0},
+    [28] = {28, 2, 0},
+    [29] = {29, 2, 0},
+    [30] = {30, 2, 0},
+    [31] = {31, 2, 0},
+    [32] = {32, 1, 0},
+    [33] = {33, 1, 0},
+    [34] = {34, 1, 0},
+    [35] = {35, 1, 0},
+    [36] = {36, 1, 0},
+    [37] = {37, 1, 0},
+    [38] = {38, 1, 0},
+    [39] = {39, 1, 0},
+    [40] = {40, 1, 0},
+    [41] = {41, 1, 0},
+    [42] = {42, 1, 0},
+    [43] = {43, 1, 0},
+    [44] = {44, 1, 0},
+    [45] = {45, 1, 0},
+    [46] = {46, 1, 0},
+    [47] = {47, 1, 0},
+    [48] = {48, 1, 0},
+    [49] = {49, 1, 0},
+    [50] = {50, 1, 0},
+    [51] = {51, 1, 0},
+    [52] = {52, 1, 0},
+    [53] = {53, 1, 0},
+    [54] = {54, 1, 0},
+    [55] = {55, 1, 0},
+    [56] = {56, 1, 0},
+    [57] = {57, 1, 0},
+    [58] = {58, 1, 0},
+    [59] = {59, 1, 0},
+    [60] = {60, 1, 0},
+    [61] = {61, 1, 0},
+    [62] = {62, 1, 0},
+    [63] = {63, 1, 0},
+    [64] = {64, 0, 0},
+    [65] = {65, 0, 0},
+    [66] = {66, 0, 0},
+    [67] = {67, 0, 0},
+    [68] = {68, 0, 0},
+    [69] = {69, 0, 0},
+    [70] = {70, 0, 0},
+    [71] = {71, 0, 0},
+    [72] = {72, 0, 0},
+    [73] = {73, 0, 0},
+    [74] = {74, 0, 0},
+    [75] = {75, 0, 0},
+    [76] = {76, 0, 0},
+    [77] = {77, 0, 0},
+    [78] = {78, 0, 0},
+    [79] = {79, 0, 0},
+    [80] = {80, 0, 0},
+    [81] = {81, 0, 0},
+    [82] = {82, 0, 0},
+    [83] = {83, 0, 0},
+    [84] = {84, 0, 0},
+    [85] = {85, 0, 0},
+    [86] = {86, 0, 0},
+    [87] = {87, 0, 0},
+    [88] = {88, 0, 0},
+    [89] = {89, 0, 0},
+    [90] = {90, 0, 0},
+    [91] = {91, 0, 0},
+    [92] = {92, 0, 0},
+    [93] = {93, 0, 0},
+    [94] = {94, 0, 0},
+    [95] = {95, 0, 0},
+    [96] = {96, 0, 0},
+    [97] = {97, 0, 0},
+    [98] = {98, 0, 0},
+    [99] = {99, 0, 0},
+    [100] = {100, 0, 0},
+    [101] = {101, 0, 0},
+    [102] = {102, 0, 0},
+    [103] = {103, 0, 0},
+    [104] = {104, 0, 0},
+    [105] = {105, 0, 0},
+    [106] = {106, 0, 0},
+    [107] = {107, 0, 0},
+    [108] = {108, 0, 0},
+    [109] = {109, 0, 0},
+    [110] = {110, 0, 0},
+    [111] = {111, 0, 0},
+    [112] = {112, 0, 0},
+    [113] = {113, 0, 0},
+    [114] = {114, 0, 0},
+    [115] = {115, 0, 0},
+    [116] = {116, 0, 0},
+    [117] = {117, 0, 0},
+    [118] = {118, 0, 0},
+    [119] = {119, 0, 0},
+    [120] = {120, 0, 0},
+    [121] = {121, 0, 0},
+    [122] = {122, 0, 0},
+    [123] = {123, 0, 0},
+    [124] = {124, 0, 0},
+    [125] = {125, 0, 0},
+    [126] = {126, 0, 0},
+    [127] = {127, 0, 0},
+};
+
 struct SmolHeader {
     u32 loEncoded:1;
     u32 symEncoded:1;
@@ -6966,13 +7097,6 @@ struct SmolHeader {
     u32 lengthMod:4;
     u32 loLength:12;
     u32 symLength:12;
-};
-
-struct DecodeYK {
-    u32 yVal:8;
-    u32 kVal:8;
-    u32 symbol:4;
-    u32 padding:12;
 };
 
 void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
@@ -6988,15 +7112,9 @@ void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
     }
 }
 
-void PrintDecodeTable(struct DecodeYK *input)
-{
-    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].symbol, input[1].symbol, input[2].symbol, input[3].symbol, input[4].symbol, input[5].symbol, input[6].symbol, input[7].symbol, input[8].symbol, input[9].symbol, input[10].symbol, input[11].symbol, input[12].symbol, input[13].symbol, input[14].symbol, input[15].symbol, input[16].symbol, input[17].symbol, input[18].symbol, input[19].symbol, input[20].symbol, input[21].symbol, input[22].symbol, input[23].symbol, input[24].symbol, input[25].symbol, input[26].symbol, input[27].symbol, input[28].symbol, input[29].symbol, input[30].symbol, input[31].symbol, input[32].symbol, input[33].symbol, input[34].symbol, input[35].symbol, input[36].symbol, input[37].symbol, input[38].symbol, input[39].symbol, input[40].symbol, input[41].symbol, input[42].symbol, input[43].symbol, input[44].symbol, input[45].symbol, input[46].symbol, input[47].symbol, input[48].symbol, input[49].symbol, input[50].symbol, input[51].symbol, input[52].symbol, input[53].symbol, input[54].symbol, input[55].symbol, input[56].symbol, input[57].symbol, input[58].symbol, input[59].symbol, input[60].symbol, input[61].symbol, input[62].symbol, input[63].symbol);
-    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].yVal, input[1].yVal, input[2].yVal, input[3].yVal, input[4].yVal, input[5].yVal, input[6].yVal, input[7].yVal, input[8].yVal, input[9].yVal, input[10].yVal, input[11].yVal, input[12].yVal, input[13].yVal, input[14].yVal, input[15].yVal, input[16].yVal, input[17].yVal, input[18].yVal, input[19].yVal, input[20].yVal, input[21].yVal, input[22].yVal, input[23].yVal, input[24].yVal, input[25].yVal, input[26].yVal, input[27].yVal, input[28].yVal, input[29].yVal, input[30].yVal, input[31].yVal, input[32].yVal, input[33].yVal, input[34].yVal, input[35].yVal, input[36].yVal, input[37].yVal, input[38].yVal, input[39].yVal, input[40].yVal, input[41].yVal, input[42].yVal, input[43].yVal, input[44].yVal, input[45].yVal, input[46].yVal, input[47].yVal, input[48].yVal, input[49].yVal, input[50].yVal, input[51].yVal, input[52].yVal, input[53].yVal, input[54].yVal, input[55].yVal, input[56].yVal, input[57].yVal, input[58].yVal, input[59].yVal, input[60].yVal, input[61].yVal, input[62].yVal, input[63].yVal);
-    MgbaPrintf(MGBA_LOG_WARN, "\n%u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u", input[0].kVal, input[1].kVal, input[2].kVal, input[3].kVal, input[4].kVal, input[5].kVal, input[6].kVal, input[7].kVal, input[8].kVal, input[9].kVal, input[10].kVal, input[11].kVal, input[12].kVal, input[13].kVal, input[14].kVal, input[15].kVal, input[16].kVal, input[17].kVal, input[18].kVal, input[19].kVal, input[20].kVal, input[21].kVal, input[22].kVal, input[23].kVal, input[24].kVal, input[25].kVal, input[26].kVal, input[27].kVal, input[28].kVal, input[29].kVal, input[30].kVal, input[31].kVal, input[32].kVal, input[33].kVal, input[34].kVal, input[35].kVal, input[36].kVal, input[37].kVal, input[38].kVal, input[39].kVal, input[40].kVal, input[41].kVal, input[42].kVal, input[43].kVal, input[44].kVal, input[45].kVal, input[46].kVal, input[47].kVal, input[48].kVal, input[49].kVal, input[50].kVal, input[51].kVal, input[52].kVal, input[53].kVal, input[54].kVal, input[55].kVal, input[56].kVal, input[57].kVal, input[58].kVal, input[59].kVal, input[60].kVal, input[61].kVal, input[62].kVal, input[63].kVal);
-}
-
 void TestFlygonCompress()
 {
+    /*
     struct DecodeYK ykVal[128];
 
     for (u32 i = 1; i < 128; i++)
@@ -7007,6 +7125,7 @@ void TestFlygonCompress()
         ykVal[i].yVal = i;
         ykVal[i].kVal = currK;
     }
+    */
 
     u32 currIndex = 0;
     u32 allU32s[370];
@@ -7041,7 +7160,7 @@ void TestFlygonCompress()
         {
             for (u32 j = 0; j < loFreqs[i]; j++)
             {
-                loDecode[currCol] = ykVal[loFreqs[i] + j];
+                loDecode[currCol] = ykTemplate[loFreqs[i] + j];
                 loDecode[currCol].symbol = i;
                 currCol++;
             }
@@ -7055,17 +7174,59 @@ void TestFlygonCompress()
         {
             for (u32 j = 0; j < loFreqs[i]; j++)
             {
-                loDecode[currCol] = ykVal[loFreqs[i] + j];
+                loDecode[currCol] = ykTemplate[loFreqs[i] + j];
                 loDecode[currCol].symbol = i;
                 currCol++;
             }
         }
     }
-    currState = allU32s[currIndex] & 0x3f;
+    u32 currStream = allU32s[currIndex];
+    u32 currState = currStream & 0x3f;
     u32 currBit = 6;
-    u32 loVec[loLength];
-    for (u32 i = 0; i < header.loLength; i++)
+    currIndex++;
+    u32 loVec[header.loLength];
+    for (u32 i = 0; i < 1; i++)
     {
         loVec[i] = loDecode[currState].symbol;
+        /*
+        u32 currK = loDecode[currState].kVal;
+        u32 nextState = loDecode[currState].yVal << currK;
+        if (currBit + currK <= 32)
+        {
+            nextState += (currStream >> currBit) & ((1 << (currK+1)) - 1);
+            currState = nextState - 64;
+            currBit += currK;
+        }
+        else
+        {
+            nextState += (currStream >> currBit) & (( 1 << (currK+1)) - 1);
+            currStream = allU32s[currIndex];
+            currIndex++;
+            currK -= (32-currBit);
+            nextState += (currStream & ((1 << (currK+1)) -1)) << (32-currBit);
+            currState = nextState - 64;
+            currBit = currK;
+        }
+        loVec[i] += loDecode[currState].symbol << 4;
+        currK = loDecode[currState].kVal;
+        nextState = loDecode[currState].yVal << currK;
+        if (currBit + currK <= 32)
+        {
+            nextState += (currStream >> currBit) & ((1 << (currK+1)) - 1);
+            currState = nextState - 64;
+            currBit += currK;
+        }
+        else
+        {
+            nextState += (currStream >> currBit) & (( 1 << (currK+1)) - 1);
+            currStream = allU32s[currIndex];
+            currIndex++;
+            currK -= (32-currBit);
+            nextState += (currStream & ((1 << (currK+1)) -1)) << (32-currBit);
+            currState = nextState - 64;
+            currBit = currK;
+        }
+        */
     }
+    MgbaPrintf(MGBA_LOG_WARN, "%u", loVec[0]);
 }
