@@ -2206,6 +2206,7 @@ static void SaveTowerChallenge(void)
     if (gSpecialVar_0x8005 == 0 && (challengeNum > 1 || gSaveBlock2Ptr->frontier.curChallengeBattleNum != 0))
         SaveBattleTowerRecord();
 
+    ClearEnemyPartyAfterChallenge();
     gSaveBlock2Ptr->frontier.challengeStatus = gSpecialVar_0x8005;
     VarSet(VAR_TEMP_CHALLENGE_STATUS, 0);
     gSaveBlock2Ptr->frontier.challengePaused = TRUE;
@@ -3037,9 +3038,7 @@ static void FillPartnerParty(u16 trainerId)
                 personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
                 personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
-            if (partyData[i].nature != 0)
-                ModifyPersonalityForNature(&personality, partyData[i].nature - 1);
-
+            ModifyPersonalityForNature(&personality, partyData[i].nature);
             CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 0, TRUE, personality, OT_ID_PRESET, otID);
             j = partyData[i].isShiny;
             SetMonData(&gPlayerParty[i + 3], MON_DATA_IS_SHINY, &j);

@@ -11,23 +11,31 @@
 #define FOOTPRINT(sprite)
 #endif
 
+#if B_ENEMY_MON_SHADOW_STYLE >= GEN_4
+#define SHADOW(x, y, size)  .enemyShadowXOffset = x, .enemyShadowYOffset = y, .enemyShadowSize = size,
+#define NO_SHADOW           .suppressEnemyShadow = TRUE,
+#else
+#define SHADOW(x, y, size)  .enemyShadowXOffset = 0, .enemyShadowYOffset = 0, .enemyShadowSize = 0,
+#define NO_SHADOW           .suppressEnemyShadow = FALSE,
+#endif
+
 #define SIZE_32x32 1
 #define SIZE_64x64 0
 
 // Set .compressed = OW_GFX_COMPRESS
 #define COMP OW_GFX_COMPRESS
 
-#if OW_FOLLOWERS_ENABLED
-#if OW_FOLLOWERS_SHARE_PALETTE == FALSE
-#define FOLLOWER_PAL(...)                                   \
-    .followerPalette = DEFAULT(NULL, __VA_ARGS__),          \
-    .followerShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
+#if OW_POKEMON_OBJECT_EVENTS
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+#define OVERWORLD_PAL(...)                                  \
+    .overworldPalette = DEFAULT(NULL, __VA_ARGS__),         \
+    .overworldShinyPalette = DEFAULT_2(NULL, __VA_ARGS__),
 #else
-#define FOLLOWER_PAL(...)
-#endif //OW_FOLLOWERS_SHARE_PALETTE == FALSE
+#define OVERWORLD_PAL(...)
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define FOLLOWER(picTable, _size, shadow, _tracks, ...)                                     \
-.followerData = {                                                                           \
+#define OVERWORLD(picTable, _size, shadow, _tracks, ...)                                    \
+.overworldData = {                                                                          \
     .tileTag = TAG_NONE,                                                                    \
     .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
@@ -45,10 +53,32 @@
     .images = picTable,                                                                     \
     .affineAnims = gDummySpriteAffineAnimTable,                                             \
 },                                                                                          \
-    FOLLOWER_PAL(__VA_ARGS__)
+    OVERWORLD_PAL(__VA_ARGS__)
+
+#define OVERWORLD_SET_ANIM(picTable, _size, shadow, _tracks, _anims, ...)                   \
+.overworldData = {                                                                          \
+    .tileTag = TAG_NONE,                                                                    \
+    .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                \
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                         \
+    .size = (_size == SIZE_32x32 ? 512 : 2048),                                             \
+    .width = (_size == SIZE_32x32 ? 32 : 64),                                               \
+    .height = (_size == SIZE_32x32 ? 32 : 64),                                              \
+    .paletteSlot = PALSLOT_NPC_1,                                                           \
+    .shadowSize = shadow,                                                                   \
+    .inanimate = FALSE,                                                                     \
+    .compressed = COMP,                                                                     \
+    .tracks = _tracks,                                                                      \
+    .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64), \
+    .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),         \
+    .anims = _anims,                                                                        \
+    .images = picTable,                                                                     \
+    .affineAnims = gDummySpriteAffineAnimTable,                                             \
+},                                                                                          \
+    OVERWORLD_PAL(__VA_ARGS__)
 #else
-#define FOLLOWER(picTable, _size, shadow, _tracks, ...)
-#endif //OW_FOLLOWERS_ENABLED
+#define OVERWORLD(picTable, _size, shadow, _tracks, ...)
+#define OVERWORLD_SET_ANIM(picTable, _size, shadow, _tracks, _anims, ...)
+#endif //OW_POKEMON_OBJECT_EVENTS
 
 // Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.
 // 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
@@ -60,12 +90,6 @@
 #define FLIP    0
 #define NO_FLIP 1
 
-#if POKEMON_NAME_LENGTH >= 12
-#define HANDLE_EXPANDED_SPECIES_NAME(_name, ...) _(DEFAULT(_name, __VA_ARGS__))
-#else
-#define HANDLE_EXPANDED_SPECIES_NAME(_name, ...) _(_name)
-#endif
-
 const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] =
@@ -76,11 +100,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Unknown"),
         .height = 0,
         .weight = 0,
-        .description = COMPOUND_STRING(
-            "This is a newly discovered Pokémon.\n"
-            "It is currently under investigation.\n"
-            "No detailed information is available\n"
-            "at this time."),
+        .description = gFallbackPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
@@ -99,8 +119,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_QuestionMark,
         .iconPalIndex = 0,
         FOOTPRINT(QuestionMark)
-    #if OW_FOLLOWERS_ENABLED
-        .followerData = {TAG_NONE, OBJ_EVENT_PAL_TAG_SUBSTITUTE, OBJ_EVENT_PAL_TAG_NONE, 512, 32, 32, 2, SHADOW_SIZE_M, FALSE, COMP, TRACKS_FOOT, &gObjectEventBaseOam_32x32, sOamTables_32x32, sAnimTable_Following, sPicTable_Substitute, gDummySpriteAffineAnimTable},
+    #if OW_POKEMON_OBJECT_EVENTS
+        .overworldData = {
+            .tileTag = TAG_NONE,
+            .paletteTag = OBJ_EVENT_PAL_TAG_SUBSTITUTE,
+            .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+            .size = 512,
+            .width = 32,
+            .height = 32,
+            .paletteSlot = PALSLOT_NPC_1,
+            .shadowSize = SHADOW_SIZE_M,
+            .inanimate = FALSE,
+            .compressed = COMP,
+            .tracks = TRACKS_FOOT,
+            .oam = &gObjectEventBaseOam_32x32,
+            .subspriteTables = sOamTables_32x32,
+            .anims = sAnimTable_Following,
+            .images = sPicTable_Substitute,
+            .affineAnims = gDummySpriteAffineAnimTable,
+        },
     #endif
         .levelUpLearnset = sNoneLevelUpLearnset,
         .teachableLearnset = sNoneTeachableLearnset,
@@ -182,7 +219,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Kotora,
         FOOTPRINT(Shinx)
-        FOLLOWER(sPicTable_Kotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Kotora, gShinyFollowerPalette_Kotora)
+        OVERWORLD(sPicTable_Kotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Kotora, gShinyFollowerPalette_Kotora)
         .levelUpLearnset = sKotoraLevelUpLearnset,
         .teachableLearnset = sKotoraTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_RAITORA}),
@@ -237,7 +274,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Raitora,
         FOOTPRINT(Luxio)
-        FOLLOWER(sPicTable_Raitora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Raitora, gShinyFollowerPalette_Raitora)
+        OVERWORLD(sPicTable_Raitora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Raitora, gShinyFollowerPalette_Raitora)
         .levelUpLearnset = sRaitoraLevelUpLearnset,
         .teachableLearnset = sRaitoraTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GAOTORA}),
@@ -300,7 +337,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconPalIndex = 0,
         .iconSprite = gMonIcon_Gaotora,
         FOOTPRINT(Luxio)
-        FOLLOWER(sPicTable_Gaotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Gaotora, gShinyFollowerPalette_Gaotora)
+        OVERWORLD(sPicTable_Gaotora, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, gFollowerPalette_Gaotora, gShinyFollowerPalette_Gaotora)
         .levelUpLearnset = sGaotoraLevelUpLearnset,
         .teachableLearnset = sGaotoraTeachableLearnset
     },
@@ -370,7 +407,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
                                 {EVO_ITEM, ITEM_MOOMOO_MILK, SPECIES_NONE}),
         //.formSpeciesIdTable = sNoneFormSpeciesIdTable,
         //.formChangeTable = sNoneFormChangeTable,
-        .allPerfectIVs = TRUE,
+        //.perfectIVCount = NUM_STATS,
     },
     */
 };

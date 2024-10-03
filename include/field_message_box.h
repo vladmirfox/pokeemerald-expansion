@@ -22,4 +22,6 @@ void StopFieldMessage(void);
 void InitFieldMessageBox(void);
 void SetSpeakerName(const u8* name);
 
+extern u8 gWalkAwayFromSignpostTimer;
+
 #endif // GUARD_FIELD_MESSAGE_BOX_H

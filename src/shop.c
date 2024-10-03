@@ -687,7 +687,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 gStringVar1,
                 ItemId_GetPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT),
                 STR_CONV_MODE_LEFT_ALIGN,
-                5);
+                MAX_MONEY_DIGITS);
         }
         else
         {
@@ -695,7 +695,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 gStringVar1,
                 gDecorations[itemId].price,
                 STR_CONV_MODE_LEFT_ALIGN,
-                5);
+                MAX_MONEY_DIGITS);
         }
 
         StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
@@ -1089,7 +1089,7 @@ static void PrintMoneyLocal(u8 windowId, u8 y, u32 amount, u8 width, u8 colorIdx
     s32 strLength;
     s32 x;
 
-    ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_RIGHT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar1, amount, STR_CONV_MODE_RIGHT_ALIGN, MAX_MONEY_DIGITS);
 
     strLength = 6 - StringLength(gStringVar1);
     txtPtr = gStringVar4;
@@ -1231,7 +1231,7 @@ static void Task_BuyMenuTryBuyingItem(u8 taskId)
             CopyItemName(sShopData->currentItemId, gStringVar1);
             if (ItemId_GetImportance(sShopData->currentItemId))
             {
-                ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+                ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
                 tItemCount = 1;
                 sShopData->totalCost = (ItemId_GetPrice(sShopData->currentItemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT)) * tItemCount;
                 BuyMenuDisplayMessage(taskId, gText_YouWantedVar1ThatllBeVar2, BuyMenuConfirmPurchase);
@@ -1249,7 +1249,7 @@ static void Task_BuyMenuTryBuyingItem(u8 taskId)
         {
             const u8 *str;
             StringCopy(gStringVar1, gDecorations[sShopData->currentItemId].name);
-            ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+            ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
             if (sMartInfo.martType == MART_TYPE_DECOR)
                 str = gText_Var1IsItThatllBeVar2;
             else // MART_TYPE_DECOR2
@@ -1332,7 +1332,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
             ClearWindowTilemap(WIN_QUANTITY_PRICE);
             CopyItemName(sShopData->currentItemId, gStringVar1);
             ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, BAG_ITEM_CAPACITY_DIGITS);
-            ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+            ConvertIntToDecimalStringN(gStringVar3, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, MAX_MONEY_DIGITS);
             FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
             if (tItemCount >= 2)
                 CopyItemNameHandlePlural(sShopData->currentItemId, gStringVar1, tItemCount);
@@ -1364,6 +1364,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     {
         if (AddBagItem(sShopData->currentItemId, tItemCount) == TRUE)
         {
+            GetSetItemObtained(sShopData->currentItemId, FLAG_SET_ITEM_OBTAINED);
             BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
             RecordItemPurchase(taskId);
         }
@@ -1470,9 +1471,9 @@ static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    FillWindowPixelBuffer(WIN_QUANTITY_PRICE, PIXEL_FILL(0));
-    PrintMoneyLocal(WIN_QUANTITY_PRICE, 0, sShopData->totalCost, 67, COLORID_BLACK, FALSE);
-    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, BAG_ITEM_CAPACITY_DIGITS);
+    FillWindowPixelBuffer(WIN_QUANTITY_PRICE, PIXEL_FILL(1));
+    PrintMoneyAmount(WIN_QUANTITY_PRICE, CalculateMoneyTextHorizontalPosition(sShopData->totalCost), 1, sShopData->totalCost, TEXT_SKIP_DRAW);
+    ConvertIntToDecimalStringN(gStringVar1, tItemCount, STR_CONV_MODE_LEADING_ZEROS, MAX_ITEM_DIGITS);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     BuyMenuPrint(WIN_QUANTITY_PRICE, gStringVar4, 0, 1, TEXT_SKIP_DRAW, COLORID_BLACK, FALSE);
     CopyWindowToVram(WIN_QUANTITY_PRICE, COPYWIN_FULL);
