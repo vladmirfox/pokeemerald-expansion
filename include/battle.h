@@ -377,6 +377,7 @@ struct AiLogicData
     bool8 ejectButtonSwitch; // Tracks whether current switch out was from Eject Button
     bool8 ejectPackSwitch; // Tracks whether current switch out was from Eject Pack
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
+    u8 aiCalcInProgress:1;
 };
 
 struct AI_ThinkingStruct
@@ -715,7 +716,6 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
-    u8 aiCalcInProgress:1;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
     u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.

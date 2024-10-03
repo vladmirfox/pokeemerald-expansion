@@ -4127,8 +4127,12 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
     case ABILITY_DAZZLING:
     case ABILITY_QUEENLY_MAJESTY:
     case ABILITY_ARMOR_TAIL:
-        if (GetChosenMovePriority(battlerAtk) > 0 && GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
-            effect = MOVE_BLOCKED_BY_DAZZLING;
+        if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
+        {
+            u32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+            if (priority > 0)
+                effect = MOVE_BLOCKED_BY_PARTNER_DAZZLING;
+        }
         break;
     case ABILITY_GOOD_AS_GOLD:
         if (IS_MOVE_STATUS(move)
@@ -4139,19 +4143,27 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
     }
 
     if (!effect)
-    {
-        switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
-        {
-        case ABILITY_DAZZLING:
-        case ABILITY_QUEENLY_MAJESTY:
-        case ABILITY_ARMOR_TAIL:
-            if (GetChosenMovePriority(battlerAtk) > 0 && GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
-                effect = MOVE_BLOCKED_BY_PARTNER_DAZZLING;
-            break;
-        }
-    }
+        effect = CanPartnerAbilityBlockMove(battlerAtk, battlerDef, GetBattlerAbility(BATTLE_PARTNER(battlerDef)), move);
 
     return effect;
+}
+
+u32 CanPartnerAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef)
+{
+    switch (abilityDef)
+    {
+    case ABILITY_DAZZLING:
+    case ABILITY_QUEENLY_MAJESTY:
+    case ABILITY_ARMOR_TAIL:
+        if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
+        {
+            u32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+            if (priority > 0)
+                return MOVE_BLOCKED_BY_PARTNER_DAZZLING;
+        }
+        break;
+    }
+    return MOVE_BLOCKED_BY_NO_ABILITY;
 }
 
 u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 move, u32 moveType)
@@ -5363,7 +5375,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
     case ABILITYEFFECT_ABSORBING:
         {
             u32 statId = 0;
-            u32 statAmount = 0;
+            u32 statAmount = 1;
             effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType);
             if (effect)
             {
@@ -10396,7 +10408,7 @@ static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 move
             mod = UQ_4_12(1.0);
     }
 
-    if (gBattleStruct->distortedTypeMatchups & (1u << battlerDef) || (gBattleStruct->aiCalcInProgress && ShouldTeraShellDistortTypeMatchups(move, battlerDef)))
+    if (gBattleStruct->distortedTypeMatchups & (1u << battlerDef) || (AI_DATA->aiCalcInProgress && ShouldTeraShellDistortTypeMatchups(move, battlerDef)))
     {
         mod = UQ_4_12(0.5);
         if (recordAbilities)
