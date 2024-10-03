@@ -1008,7 +1008,7 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
-    //These Functions can prompt switch to specific party members. The AI can't predict these.
+    //These Functions can prompt switch to specific party members
     if (FindMonThatHitsWonderGuard(battler, emitResult))
         return TRUE;
     if (FindMonThatAbsorbsOpponentsMove(battler, emitResult))
