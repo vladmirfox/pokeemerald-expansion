@@ -5908,12 +5908,14 @@ static void Cmd_moveend(void)
                         gLastMoves[gBattlerAttacker] = gChosenMove;
                         RecordKnownMove(gBattlerAttacker, gChosenMove);
                         gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
+                        GET_MOVE_TYPE(gCurrentMove, gLastUsedMoveType[gBattlerAttacker]);
                     }
                 }
                 else
                 {
                     gLastMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
                     gLastResultingMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
+                    gLastUsedMoveType[gBattlerAttacker] = 0;
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
@@ -12936,7 +12938,7 @@ static void Cmd_settypetorandomresistance(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    s32 moveType;
+    //s32 moveType;
 
     // Before Gen 5 Conversion 2 only worked on a move the attacker was actually hit by.
     // This changed later to the last move used by the selected target.
@@ -13000,10 +13002,6 @@ static void Cmd_settypetorandomresistance(void)
     }
     else
     {
-        //recalc moveType of last used move because dynamicMoveType was already reset
-        SetTypeBeforeUsingMove(gLastResultingMoves[gBattlerTarget], gBattlerTarget);
-        GET_MOVE_TYPE(gLastResultingMoves[gBattlerTarget], moveType);
-
         if (gLastResultingMoves[gBattlerTarget] == MOVE_NONE
          || gLastResultingMoves[gBattlerTarget] == MOVE_UNAVAILABLE
          || gLastResultingMoves[gBattlerTarget] == MOVE_STRUGGLE)
@@ -13014,7 +13012,7 @@ static void Cmd_settypetorandomresistance(void)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
-        else if (moveType == TYPE_NONE || moveType == TYPE_STELLAR || moveType == TYPE_MYSTERY)
+        else if (gLastUsedMoveType[gBattlerTarget] == TYPE_NONE || gLastUsedMoveType[gBattlerTarget] == TYPE_STELLAR || gLastUsedMoveType[gBattlerTarget] == TYPE_MYSTERY)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -13028,7 +13026,7 @@ static void Cmd_settypetorandomresistance(void)
 
             for (i = 0; i < NUMBER_OF_MON_TYPES; i++) // Find all types that resist.
             {
-                switch (GetTypeModifier(moveType, i))
+                switch (GetTypeModifier(gLastUsedMoveType[gBattlerTarget], i))
                 {
                 case UQ_4_12(0):
                 case UQ_4_12(0.5):
