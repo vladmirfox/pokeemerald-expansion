@@ -567,16 +567,14 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
             && !AiExpectsToFaintPlayer(battler))
         {
             //Toxic
-            moduloChance = 2; //50%
             if (((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >= STATUS1_TOXIC_TURN(2))
                 && gBattleMons[battler].hp >= (gBattleMons[battler].maxHP / 3)
-                && (Random() % (moduloChance*chanceReducer)) == 0)
+                && (!RandomPercentage(RNG_AI_SWITCH_GAME_STATE, 50)))
                 switchMon = TRUE;
 
             //Cursed
-            moduloChance = 2; //50%
             if (gBattleMons[battler].status2 & STATUS2_CURSED
-                && (Random() % (moduloChance*chanceReducer)) == 0)
+                && (!RandomPercentage(RNG_AI_SWITCH_GAME_STATE_2, 50)))
                 switchMon = TRUE;
 
             //Nightmare
