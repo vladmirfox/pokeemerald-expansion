@@ -414,7 +414,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     return FALSE;
 }
 
-static bool32 FindMonThatTrapsOpponent(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfTrapperInParty(u32 battler, bool32 emitResult)
 {
     s32 firstId;
     s32 lastId;
@@ -1008,10 +1008,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
-    //These Functions can prompt switch to specific party members
+    //These Functions can prompt switch to specific party members. The AI can't predict these.
     if (FindMonThatHitsWonderGuard(battler, emitResult))
-        return TRUE;
-    if (FindMonThatTrapsOpponent(battler, emitResult))
         return TRUE;
     if (FindMonThatAbsorbsOpponentsMove(battler, emitResult))
         return TRUE;
@@ -1019,6 +1017,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //These Functions can prompt switch to generic pary members
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
+    if (ShouldSwitchIfTrapperInParty(battler, emitResult))
+        return TRUE;
     if (ShouldSwitchIfAllBadMoves(battler, emitResult))
         return TRUE;
     if (ShouldSwitchIfBadlyStatused(battler, emitResult))
