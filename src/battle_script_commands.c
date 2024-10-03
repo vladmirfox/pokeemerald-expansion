@@ -12938,8 +12938,6 @@ static void Cmd_settypetorandomresistance(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    //s32 moveType;
-
     // Before Gen 5 Conversion 2 only worked on a move the attacker was actually hit by.
     // This changed later to the last move used by the selected target.
     if (B_UPDATED_CONVERSION_2 < GEN_5)

@@ -21,6 +21,26 @@ SINGLE_BATTLE_TEST("Conversion 2 randomly changes the type of the user to a type
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Conversion 2's type change considers Struggle to be Normal type (Gen 3-4)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_STRUGGLE); }
+        TURN { MOVE(player, MOVE_CONVERSION_2); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Foe Wobbuffet used Struggle!");
+        // turn 2
+        ONE_OF {
+         MESSAGE("Wobbuffet transformed into the Steel type!");
+         MESSAGE("Wobbuffet transformed into the Rock type!");
+         MESSAGE("Wobbuffet transformed into the Ghost type!");
+        }
+    }
+}
 #endif
 
 #if B_UPDATED_CONVERSION_2 >= GEN_5
@@ -41,9 +61,7 @@ SINGLE_BATTLE_TEST("Conversion 2 randomly changes the type of the user to a type
         }
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2's type change considers status moves (Gen 5+)")
 {
     GIVEN {
@@ -62,9 +80,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers status moves (Gen 5+)")
         }
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2's type change considers the type of moves called by other moves")
 {
     GIVEN {
@@ -83,9 +99,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers the type of moves calle
         }
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2's type change considers dynamic type moves")
 {
     GIVEN {
@@ -106,9 +120,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers dynamic type moves")
         }
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2's type change considers move types changed by Normalize and Electrify")
 {
     GIVEN {
@@ -138,31 +150,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change considers move types changed by N
         }
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 < GEN_5
-SINGLE_BATTLE_TEST("Conversion 2's type change considers Struggle to be Normal type (Gen 3-4)")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_STRUGGLE); }
-        TURN { MOVE(player, MOVE_CONVERSION_2); }
-    } SCENE {
-        // turn 1
-        MESSAGE("Foe Wobbuffet used Struggle!");
-        // turn 2
-        ONE_OF {
-         MESSAGE("Wobbuffet transformed into the Steel type!");
-         MESSAGE("Wobbuffet transformed into the Rock type!");
-         MESSAGE("Wobbuffet transformed into the Ghost type!");
-        }
-    }
-}
-#endif
-
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2's type change fails targeting Struggle (Gen 5+)")
 {
     GIVEN {
@@ -179,9 +167,7 @@ SINGLE_BATTLE_TEST("Conversion 2's type change fails targeting Struggle (Gen 5+)
         MESSAGE("But it failed!");
     }
 }
-#endif
 
-#if B_UPDATED_CONVERSION_2 >= GEN_5
 SINGLE_BATTLE_TEST("Conversion 2 fails if the move used is of typeless damage (Gen 5+)")
 {
     GIVEN {
