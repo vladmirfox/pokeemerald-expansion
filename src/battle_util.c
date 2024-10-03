@@ -5329,38 +5329,38 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
             effect = CanAbilityBlockMove(gBattlerAttacker, battler, move, gLastUsedAbility);
             const u8 * battleScriptBlocksMove = NULL;
-
-            if (effect == MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF)
+            switch (effect)
             {
+            case MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF:
                 if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
                 battleScriptBlocksMove = BattleScript_SoundproofProtected;
-            }
-            else if (effect == MOVE_BLOCKED_BY_DAZZLING || effect == MOVE_BLOCKED_BY_PARTNER_DAZZLING)
-            {
+                break;
+            case MOVE_BLOCKED_BY_DAZZLING:
+            case MOVE_BLOCKED_BY_PARTNER_DAZZLING:
                 if (effect == MOVE_BLOCKED_BY_PARTNER_DAZZLING)
                     gBattleScripting.battler = BATTLE_PARTNER(battler);
                 else
                     gBattleScripting.battler = battler;
-
                 if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
                 battleScriptBlocksMove = BattleScript_DazzlingProtected;
-            }
-            else if (effect == MOVE_BLOCKED_BY_GOOD_AS_GOLD)
-            {
+                break;
+            case MOVE_BLOCKED_BY_GOOD_AS_GOLD:
                 battleScriptBlocksMove = BattleScript_GoodAsGoldActivates;
-            }
-            else if (GetChosenMovePriority(gBattlerAttacker) > 0
-                  && BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-                  && !(IS_MOVE_STATUS(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[gBattlerTarget].bounceMove)))
-            {
-                if (!IsDoubleBattle()
-                 || !(GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
-                    CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
-                gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
-                battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;
-                effect = 1;
+                break;
+            default:
+                if (GetChosenMovePriority(gBattlerAttacker) > 0
+                 && BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
+                 && !(IS_MOVE_STATUS(move) && (gLastUsedAbility == ABILITY_MAGIC_BOUNCE || gProtectStructs[gBattlerTarget].bounceMove)))
+                {
+                    if (!IsDoubleBattle()
+                    || !(GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
+                        CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
+                    gBattleScripting.battler = gBattlerAbility = gBattlerTarget;
+                    battleScriptBlocksMove = BattleScript_DarkTypePreventsPrankster;
+                    effect = 1;
+                }
             }
             if (effect)
                 gBattlescriptCurrInstr = battleScriptBlocksMove;
@@ -5396,12 +5396,11 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     statAmount = 2;
                     statId = STAT_DEF;
                     break;
-
                 }
-
             }
-            if (effect == MOVE_ABSORBED_BY_DRAIN_HP_ABILITY)
+            switch (effect)
             {
+            case MOVE_ABSORBED_BY_DRAIN_HP_ABILITY:
                 gBattleStruct->pledgeMove = FALSE;
                 if (BATTLER_MAX_HP(battler) || (B_HEAL_BLOCKING >= GEN_5 && gStatuses3[battler] & STATUS3_HEAL_BLOCK))
                 {
@@ -5422,9 +5421,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
                 }
-            }
-            else if (effect == MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY)
-            {
+                break;
+            case MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY:
                 gBattleStruct->pledgeMove = FALSE;
                 if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
@@ -5444,9 +5442,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     if (B_ABSORBING_ABILITY_STRING < GEN_5)
                         PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
                 }
-            }
-            else if (effect == MOVE_ABSORBED_BY_STAT_FLASH_FIRE)
-            {
+                break;
+            case MOVE_ABSORBED_BY_STAT_FLASH_FIRE:
                 gBattleStruct->pledgeMove = FALSE;
                 if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
                 {
@@ -5465,6 +5462,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     else
                         gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
                 }
+                break;
             }
             if (effect)
                 gMultiHitCounter = 0; // Prevent multi-hit moves from hitting more than once after move has been absorbed.
