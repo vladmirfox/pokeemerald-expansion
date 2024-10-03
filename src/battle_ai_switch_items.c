@@ -68,7 +68,7 @@ void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
 // Note that as many return statements as possible are INTENTIONALLY put after all of the loops;
 // the function can take a max of about 0.06s to run, and this prevents the player from identifying
 // whether the mon will switch or not by seeing how long the delay is before they select a move
-static bool32 HasBadOdds(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfHasBadOdds(u32 battler, bool32 emitResult)
 {
     //Variable initialization
     u8 opposingPosition, atkType1, atkType2, defType1, defType2, effectiveness;
@@ -232,7 +232,7 @@ static bool32 ShouldSwitchIfAllBadMoves(u32 battler, bool32 emitResult)
     }
 }
 
-static bool32 ShouldSwitchIfWonderGuard(u32 battler, bool32 emitResult)
+static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
 {
     u8 opposingPosition;
     u8 opposingBattler;
@@ -1009,9 +1009,7 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
     //These Functions can prompt switch to specific party members
-    if (ShouldSwitchIfWonderGuard(battler, emitResult))
-        return TRUE;
-    if (ShouldSwitchIfBadlyStatused(battler, emitResult))
+    if (FindMonThatHitsWonderGuard(battler, emitResult))
         return TRUE;
     if (FindMonThatTrapsOpponent(battler, emitResult))
         return TRUE;
@@ -1023,9 +1021,11 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
         return FALSE;
     if (ShouldSwitchIfAllBadMoves(battler, emitResult))
         return TRUE;
+    if (ShouldSwitchIfBadlyStatused(battler, emitResult))
+        return TRUE;
     if (ShouldSwitchIfAbilityBenefit(battler, emitResult))
         return TRUE;
-    if (HasBadOdds(battler, emitResult))
+    if (ShouldSwitchIfHasBadOdds(battler, emitResult))
         return TRUE;
     if (ShouldSwitchIfEncored(battler, emitResult))
         return TRUE;
