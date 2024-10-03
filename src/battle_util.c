@@ -4154,11 +4154,9 @@ static u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abi
     return effect;
 }
 
-static u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 ability, u32 move, u32 moveType, u32 *statAmount, u32 *statId)
+static u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 ability, u32 move, u32 moveType)
 {
     enum MoveAbsorbed effect = MOVE_ABSORBED_BY_NO_ABILITY;
-    *statId = 0;
-    *statAmount = 1;
 
     switch (ability)
     {
@@ -4180,33 +4178,26 @@ static u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 ability, u32
         break;
     case ABILITY_MOTOR_DRIVE:
         if (moveType == TYPE_ELECTRIC && gMovesInfo[move].target != MOVE_TARGET_ALL_BATTLERS)
-            *statId = STAT_SPEED;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_LIGHTNING_ROD:
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5 && moveType == TYPE_ELECTRIC && gMovesInfo[move].target != MOVE_TARGET_ALL_BATTLERS)
-            *statId = STAT_SPATK;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_STORM_DRAIN:
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5 && moveType == TYPE_WATER)
-            *statId = STAT_SPATK;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_SAP_SIPPER:
         if (moveType == TYPE_GRASS)
-            *statId = STAT_ATK;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_WELL_BAKED_BODY:
         if (moveType == TYPE_FIRE)
-            *statAmount = 2;
-            *statId = STAT_DEF;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_WIND_RIDER:
         if (gMovesInfo[gCurrentMove].windMove && !(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) & MOVE_TARGET_USER))
-            *statId = STAT_ATK;
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_FLASH_FIRE:
@@ -5364,13 +5355,38 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         break;
     case ABILITYEFFECT_WOULD_ABSORB:
-        effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType, &i, &j);
+        effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType);
         gBattleStruct->pledgeMove = FALSE;
         if (effect && gLastUsedAbility != 0xFFFF)
             RecordAbilityBattle(battler, gLastUsedAbility);
         return effect;
     case ABILITYEFFECT_ABSORBING:
-        effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType, &i, &j);
+        effect = CanAbilityAbsorbMove(gBattlerAttacker, battler, gLastUsedAbility, move, moveType);
+        u32 statId = 0;
+        u32 statAmount = 0;
+        if (effect)
+        {
+            switch(gLastUsedAbility)
+            {
+            case ABILITY_MOTOR_DRIVE:
+                statId = STAT_SPEED;
+                break;
+            case ABILITY_LIGHTNING_ROD:
+            case ABILITY_STORM_DRAIN:
+                statId = STAT_SPATK;
+                break;
+            case ABILITY_SAP_SIPPER:
+            case ABILITY_WIND_RIDER:
+                statId = STAT_ATK;
+                break;
+            case ABILITY_WELL_BAKED_BODY:
+                statAmount = 2;
+                statId = STAT_DEF;
+                break;
+
+            }
+
+        }
         if (effect == MOVE_ABSORBED_BY_DRAIN_HP_ABILITY)
         {
             gBattleStruct->pledgeMove = FALSE;
@@ -5397,7 +5413,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         else if (effect == MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY)
         {
             gBattleStruct->pledgeMove = FALSE;
-            if (!CompareStat(battler, j, MAX_STAT_STAGE, CMP_LESS_THAN))
+            if (!CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
                 if ((gProtectStructs[gBattlerAttacker].notFirstStrike))
                     gBattlescriptCurrInstr = BattleScript_MonMadeMoveUseless;
@@ -5411,9 +5427,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 else
                     gBattlescriptCurrInstr = BattleScript_MoveStatDrain_PPLoss;
 
-                SET_STATCHANGER(j, i, FALSE);
+                SET_STATCHANGER(statId, statAmount, FALSE);
                 if (B_ABSORBING_ABILITY_STRING < GEN_5)
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, j);
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
             }
         }
         else if (effect == MOVE_ABSORBED_BY_STAT_FLASH_FIRE)
