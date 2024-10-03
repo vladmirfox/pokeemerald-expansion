@@ -376,8 +376,8 @@ struct AiLogicData
     u8 weatherHasEffect:1; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
     u8 ejectButtonSwitch:1; // Tracks whether current switch out was from Eject Button
     u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack 
-    u8 shouldSwitch:1; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
-    u8 padding:4;
+    u8 padding:5;
+    u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
 };
 
 struct AI_ThinkingStruct
