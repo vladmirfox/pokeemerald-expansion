@@ -236,5 +236,5 @@
 
 **Full Changelog**: https://github.com/rh-hideout/pokeemerald-expansion/compare/expansion/1.Y.Z...expansion/1.Y.Z
 
-<!--Last PR: ____-->
+<!--Last PR: 5405-->
 <!--Used to keep track of the last PR merged in case new ones come in before the changelog is done.-->
