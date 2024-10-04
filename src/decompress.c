@@ -122,6 +122,94 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
     LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
+struct SmolHead {
+    u32 loEncoded:1;
+    u32 symEncoded:1;
+    u32 loDelta:1;
+    u32 symDelta:1;
+    u32 lengthMod:4;
+    u32 loLength:12;
+    u32 symLength:12;
+};
+
+void SmolUnCompWram(const u32 *src, void *dest)
+{
+    CycleCountStart();
+    struct SmolHead header;
+    memcpy(&header, src, 4);
+    u8 *allU8s = Alloc(header.loLength + header.symLength);
+
+    CpuCopy32(&allU8s[0], &src[1], header.loLength + header.symLength);
+    u8 *loVec = &allU8s[0];
+    u8 *symVec = &allU8s[header.loLength];
+
+    u16 loIndex = 0;
+    u16 symIndex = 0;
+    u16 currLength = 0;
+    u16 currOffset = 0;
+    u32 imageIndex = 0;
+    u8 *image = Alloc(4096);
+
+    while (loIndex < header.loLength)
+    {
+        currLength = loVec[loIndex] & 0x7f;
+        loIndex++;
+        u32 currRepeat = 1;
+        while ((loVec[loIndex-1] & 0x80) == 0x80)
+        {
+            currLength += (loVec[loIndex] & 0x7f) << (7*currRepeat);
+            loIndex++;
+        }
+        currOffset = loVec[loIndex] & 0x7f;
+        loIndex++;
+        currRepeat = 1;
+        while ((loVec[loIndex-1] & 0x80) == 0x80)
+        {
+            currOffset += (loVec[loIndex] & 0x7f) << (7*currRepeat);
+            currRepeat++;
+            loIndex++;
+        }
+
+        if (currLength != 0)
+        {
+            currLength += header.lengthMod + 2;
+            if (currOffset == 1)
+            {
+                for (u32 i = 0; i <= currLength; i++)
+                {
+                    image[imageIndex + i] = symVec[symIndex];
+                }
+                imageIndex += currLength +1;
+                symIndex++;
+            }
+            else
+            {
+                image[imageIndex] = symVec[symIndex];
+                imageIndex++;
+                symIndex++;
+                for (u32 i = 0; i < currLength; i++)
+                {
+                    image[imageIndex] = image[imageIndex - currOffset];
+                    imageIndex++;
+                }
+            }
+        }
+        else
+        {
+            memcpy(&image[imageIndex], &symVec[symIndex], currOffset);
+            imageIndex += currOffset;
+            symIndex += currOffset;
+        }
+    }
+
+    CpuCopy32(image, dest, 4096);
+
+    Free(allU8s);
+    Free(image);
+    u32 totalTime = CycleCountEnd();
+    MgbaPrintf(MGBA_LOG_WARN, "Time: %u", totalTime);
+}
+
 void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic)
 {
     species = SanitizeSpeciesId(species);
@@ -133,7 +221,16 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
         if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
             LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
         else if (gSpeciesInfo[species].frontPic != NULL)
-            LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+        {
+            if (species != SPECIES_LUVDISC)
+            {
+                LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+            }
+            else
+            {
+                SmolUnCompWram(gSpeciesInfo[species].frontPic, dest);
+            }
+        }
         else
             LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
     }
