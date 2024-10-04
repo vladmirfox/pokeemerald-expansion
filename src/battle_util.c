@@ -6330,9 +6330,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_PROTOSYNTHESIS:
             if (!gDisableStructs[battler].weatherAbilityDone 
-            && (gBattleWeather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT
-            && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-            && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
+             && (gBattleWeather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT
+             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
+             && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
             {
                 gDisableStructs[battler].weatherAbilityDone = TRUE;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
