@@ -7274,10 +7274,9 @@ void TestLuvdiscCompress()
 
         if (currLength != 0)
         {
+            currLength += header.lengthMod + 2;
             if (currOffset == 1)
             {
-                //  memfill
-                //  doing naive right now
                 for (u32 i = 0; i <= currLength; i++)
                 {
                     image[imageIndex + i] = symVec[symIndex];
@@ -7285,15 +7284,8 @@ void TestLuvdiscCompress()
                 imageIndex += currLength +1;
                 symIndex++;
             }
-            //else if (currOffset < currLength)
-            //{
-            //    //  memcpy
-            //    gDecompressionBuffer[imageIndex] = symVec[symIndex];
-            //    symIndex++;
-            //}
             else
             {
-                //  loop
                 image[imageIndex] = symVec[symIndex];
                 imageIndex++;
                 symIndex++;
@@ -7306,14 +7298,10 @@ void TestLuvdiscCompress()
         }
         else
         {
-            memcpy(&image[imageIndex], &symVec[symIndex], currOffset+1);
-            imageIndex += currOffset + 1;
-            symIndex += currOffset + 1;
+            memcpy(&image[imageIndex], &symVec[symIndex], currOffset);
+            imageIndex += currOffset;
+            symIndex += currOffset;
         }
     }
-    u32 totalVal = 0;
-    for (u32 i = 0; i < 4096; i++)
-        totalVal += image[i];
-    MgbaPrintf(MGBA_LOG_WARN, "Total: %u", totalVal);
     Free(image);
 }
