@@ -398,3 +398,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon faints");
 
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> explosion"); // holy fuck if this requires special handling im uninstalling
+
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> move that KOs a mon that has used destiny bond");
+

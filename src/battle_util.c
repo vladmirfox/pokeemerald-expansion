@@ -2828,7 +2828,7 @@ u8 DoBattlerEndTurnEffects(void)
                         if (B_SLEEP_CLAUSE)
                         {
                             gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] = TRUE;
-                            gBattleStruct->sleepClause.doesSleepAffectSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = TRUE;
+                            gBattleStruct->sleepClause.isMonCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = TRUE;
                         }
 
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
@@ -3302,10 +3302,10 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     }
                     else
                     {
-                        if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.doesSleepAffectSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]])
+                        if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isMonCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]])
                         {
                             gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerAttacker)] = FALSE;
-                            gBattleStruct->sleepClause.doesSleepAffectSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = FALSE;
+                            gBattleStruct->sleepClause.isMonCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = FALSE;
                         }
 
                         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
