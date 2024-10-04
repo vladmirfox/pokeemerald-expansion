@@ -428,7 +428,6 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     if (CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, partnerBattlerDefAbility))
         return TRUE;
 
-    // This Also needs to look at partner for non spread attacks. Needs testing though
     if (CanAbilityAbsorbMove(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, moveType))
         return TRUE;
 
