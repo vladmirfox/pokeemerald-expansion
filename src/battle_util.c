@@ -4112,12 +4112,11 @@ static void ChooseStatBoostAnimation(u32 battler)
 u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef)
 {
     enum MoveBlocked effect = MOVE_BLOCKED_BY_NO_ABILITY;
-    u16 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
 
     switch (abilityDef)
     {
     case ABILITY_SOUNDPROOF:
-        if (gMovesInfo[move].soundMove && !(moveTarget & MOVE_TARGET_USER))
+        if (gMovesInfo[move].soundMove && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
             effect = MOVE_BLOCKED_BY_SOUNDPROOF_OR_BULLETPROOF;
         break;
     case ABILITY_BULLETPROOF:
@@ -4131,14 +4130,16 @@ u32 CanAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abilityDef
         {
             u32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
             if (priority > 0)
-                effect = MOVE_BLOCKED_BY_PARTNER_DAZZLING;
+                effect = MOVE_BLOCKED_BY_DAZZLING;
         }
         break;
     case ABILITY_GOOD_AS_GOLD:
-        if (IS_MOVE_STATUS(move)
-            && !(moveTarget & MOVE_TARGET_OPPONENTS_FIELD)
-            && !(moveTarget & MOVE_TARGET_ALL_BATTLERS))
-            effect = MOVE_BLOCKED_BY_GOOD_AS_GOLD;
+        if (IS_MOVE_STATUS(move))
+        {
+            u32 moveTarget = GetBattlerMoveTargetType(battlerAtk, move);
+            if (!(moveTarget & MOVE_TARGET_OPPONENTS_FIELD) && !(moveTarget & MOVE_TARGET_ALL_BATTLERS))
+                effect = MOVE_BLOCKED_BY_GOOD_AS_GOLD;
+        }
         break;
     }
 
@@ -4189,11 +4190,11 @@ u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 mov
             effect = MOVE_ABSORBED_BY_DRAIN_HP_ABILITY;
         break;
     case ABILITY_MOTOR_DRIVE:
-        if (moveType == TYPE_ELECTRIC && !(IsDoubleBattle() && GetBattlerMoveTargetType(battlerAtk, move) == MOVE_TARGET_ALL_BATTLERS))
+        if (moveType == TYPE_ELECTRIC && gMovesInfo[move].target != MOVE_TARGET_ALL_BATTLERS) // Potential bug in singles (might be solved with simu hp reudction)
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_LIGHTNING_ROD:
-        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5 && moveType == TYPE_ELECTRIC && !(IsDoubleBattle() && GetBattlerMoveTargetType(battlerAtk, move) == MOVE_TARGET_ALL_BATTLERS))
+        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5 && moveType == TYPE_ELECTRIC && gMovesInfo[move].target != MOVE_TARGET_ALL_BATTLERS) // Potential bug in singles (might be solved with simu hp reudction)
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_STORM_DRAIN:
@@ -4209,7 +4210,7 @@ u32 CanAbilityAbsorbMove(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 mov
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_WIND_RIDER:
-        if (gMovesInfo[move].windMove && GetBattlerMoveTargetType(battlerAtk, move) != MOVE_TARGET_USER)
+        if (gMovesInfo[move].windMove && !(GetBattlerMoveTargetType(battlerAtk, move) & MOVE_TARGET_USER))
             effect = MOVE_ABSORBED_BY_STAT_INCREASE_ABILITY;
         break;
     case ABILITY_FLASH_FIRE:
