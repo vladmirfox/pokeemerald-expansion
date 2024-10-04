@@ -5,6 +5,7 @@
 #endif
 
 const u32 gSmolFlygon[] = INCBIN_U32("graphics/flygon.4bpp.smol");
+const u32 gSmolLuvdisc[] = INCBIN_U32("graphics/luvdisc.4bpp.smol");
 
 const u32 gMonFrontPic_CircledQuestionMark[] = INCBIN_U32("graphics/pokemon/question_mark/circled/anim_front.4bpp.lz");
 const u32 gMonBackPic_CircledQuestionMark[] = INCBIN_U32("graphics/pokemon/question_mark/circled/back.4bpp.lz");

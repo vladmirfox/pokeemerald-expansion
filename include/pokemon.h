@@ -895,7 +895,7 @@ struct DecodeYK {
     u32 padding:12;
 };
 
-extern const struct DecodeYK ykTemplate[];
+extern struct DecodeYK ykTemplate[];
 extern const u16 kValMasks[];
 
 #endif // GUARD_POKEMON_H

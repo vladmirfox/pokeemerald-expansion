@@ -6958,7 +6958,7 @@ u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler)
     return gMovesInfo[move].type;
 }
 
-const struct DecodeYK ykTemplate[128] = {
+const struct DecodeYK romYK[128] = {
     [0] = {0, 0, 0},
     [1] = {1, 6, 0},
     [2] = {2, 5, 0},
@@ -7088,6 +7088,13 @@ const struct DecodeYK ykTemplate[128] = {
     [126] = {126, 0, 0},
     [127] = {127, 0, 0},
 };
+EWRAM_DATA struct DecodeYK ykTemplate[128];
+
+void InitDecodeHelper()
+{
+    for (u32 i = 0; i < 128; i++)
+        ykTemplate[i] = romYK[i];
+}
 
 const u16 kValMasks[7] = {0, 1, 3, 7, 15, 31, 63};
 
@@ -7116,18 +7123,7 @@ void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
 
 void TestFlygonCompress()
 {
-    /*
-    struct DecodeYK ykVal[128];
-
-    for (u32 i = 1; i < 128; i++)
-    {
-        u16 currK = 0;
-        while (i << currK < 64)
-            currK++;
-        ykVal[i].yVal = i;
-        ykVal[i].kVal = currK;
-    }
-    */
+    InitDecodeHelper();
 
     u32 currIndex = 0;
     u32 allU32s[370];
@@ -7154,6 +7150,7 @@ void TestFlygonCompress()
     u8 symFreqs[16];
     struct DecodeYK loDecode[64];
     struct DecodeYK symDecode[64];
+    CycleCountStart();
     if (header.loEncoded)
     {
         UnpackFrequencies(&loPackedFreqs[0], &loFreqs[0]);
@@ -7168,6 +7165,7 @@ void TestFlygonCompress()
             }
         }
     }
+    u32 timeTaken = CycleCountEnd();
     if (header.symEncoded)
     {
         UnpackFrequencies(&symPackedFreqs[0], &symFreqs[0]);
@@ -7186,76 +7184,136 @@ void TestFlygonCompress()
     u32 currState = currStream & 0x3f;
     u32 usedBits = 6;
     currIndex++;
-    u32 loVec[header.loLength];
-    for (u32 i = 0; i < 2; i++)
+    u8 *loVec = Alloc(header.loLength);
+    u32 totalValue = 0;
+    for (u32 i = 0; i < 100; i++)
+    //for (u32 i = 0; i < header.loLength; i++)
     {
         loVec[i] = loDecode[currState].symbol;
         u32 currK = loDecode[currState].kVal;
         u32 nextState = loDecode[currState].yVal << currK;
-        if (usedBits + currK <= 32)
+
+        nextState += (currStream >> usedBits) & (kValMasks[currK]);
+
+        if (usedBits + currK > 32)
         {
-            nextState += (currStream >> usedBits) & (kValMasks[currK]);
-            usedBits += currK;
+            u32 remainder = usedBits + currK - 32;
+            currStream = allU32s[currIndex];
+            currIndex++;
+            nextState += (currStream & kValMasks[remainder]) << (currK - remainder);
         }
-        else
+        if (usedBits == 32)
         {
+            usedBits = 0;
             currStream = allU32s[currIndex];
             currIndex++;
         }
+        usedBits += currK;
         currState = nextState - 64;
 
         loVec[i] += loDecode[currState].symbol << 4;
         currK = loDecode[currState].kVal;
         nextState = loDecode[currState].yVal << currK;
-        if (usedBits + currK <= 32)
-        {
-            nextState += (currStream >> usedBits) & (kValMasks[currK]);
-            usedBits += currK;
-        }
-        else
-        {
-            currStream = allU32s[currIndex];
-            currIndex++;
-        }
-        currState = nextState - 64;
 
-        /*
-        if (currBit + currK <= 32)
+        nextState += (currStream >> usedBits) & (kValMasks[currK]);
+        if (usedBits + currK > 32)
         {
-            nextState += (currStream >> currBit) & ((1 << (currK+1)) - 1);
-            currState = nextState - 64;
-            currBit += currK;
-        }
-        else
-        {
-            nextState += (currStream >> currBit) & (( 1 << (currK+1)) - 1);
+            u32 remainder = usedBits + currK - 32;
             currStream = allU32s[currIndex];
             currIndex++;
-            currK -= (32-currBit);
-            nextState += (currStream & ((1 << (currK+1)) -1)) << (32-currBit);
-            currState = nextState - 64;
-            currBit = currK;
+            nextState += (currStream & kValMasks[remainder]) << (currK - remainder);
         }
-        loVec[i] += loDecode[currState].symbol << 4;
-        currK = loDecode[currState].kVal;
-        nextState = loDecode[currState].yVal << currK;
-        if (currBit + currK <= 32)
+        if (usedBits == 32)
         {
-            nextState += (currStream >> currBit) & ((1 << (currK+1)) - 1);
-            currState = nextState - 64;
-            currBit += currK;
-        }
-        else
-        {
-            nextState += (currStream >> currBit) & (( 1 << (currK+1)) - 1);
+            usedBits = 0;
             currStream = allU32s[currIndex];
             currIndex++;
-            currK -= (32-currBit);
-            nextState += (currStream & ((1 << (currK+1)) -1)) << (32-currBit);
-            currState = nextState - 64;
-            currBit = currK;
         }
-        */
+        usedBits += currK;
+        currState = nextState - 64;
+        totalValue += loVec[i];
     }
-    MgbaPrintf(MGBA_LOG_WARN, "Vec: %u\nUsed bits: %u", loVec[2], usedBits);
+    Free(loVec);
+    MgbaPrintf(MGBA_LOG_WARN, "Total: %u\nTime: %u", totalValue, timeTaken);
+}
+
+void TestLuvdiscCompress()
+{
+    struct SmolHeader header;
+    memcpy(&header, &gSmolLuvdisc[0], 4);
+    u8 *allU8s = Alloc(header.loLength + header.symLength);
+
+    memcpy(&allU8s[0], &gSmolLuvdisc[1], header.loLength + header.symLength);
+    u8 *loVec = &allU8s[0];
+    u8 *symVec = &allU8s[header.loLength];
+    u32 symIndex = 0;
+    u32 loIndex = 0;
+    u32 currLength;
+    u32 currOffset;
+    u32 imageIndex = 0;
+    u8 *image = Alloc(4096);
+    while (loIndex < header.loLength)
+    {
+        currLength = loVec[loIndex] & 0x7f;
+        loIndex++;
+        u32 currRepeat = 1;
+        while ((loVec[loIndex-1] & 0x80) == 0x80)
+        {
+            currLength += (loVec[loIndex] & 0x7f) << (7*currRepeat);
+            loIndex++;
+        }
+        currOffset = loVec[loIndex] & 0x7f;
+        loIndex++;
+        currRepeat = 1;
+        while ((loVec[loIndex-1] & 0x80) == 0x80)
+        {
+            currOffset += (loVec[loIndex] & 0x7f) << (7*currRepeat);
+            currRepeat++;
+            loIndex++;
+        }
+
+        if (currLength != 0)
+        {
+            if (currOffset == 1)
+            {
+                //  memfill
+                //  doing naive right now
+                for (u32 i = 0; i <= currLength; i++)
+                {
+                    image[imageIndex + i] = symVec[symIndex];
+                }
+                imageIndex += currLength +1;
+                symIndex++;
+            }
+            //else if (currOffset < currLength)
+            //{
+            //    //  memcpy
+            //    gDecompressionBuffer[imageIndex] = symVec[symIndex];
+            //    symIndex++;
+            //}
+            else
+            {
+                //  loop
+                image[imageIndex] = symVec[symIndex];
+                imageIndex++;
+                symIndex++;
+                for (u32 i = 0; i < currLength; i++)
+                {
+                    image[imageIndex] = image[imageIndex - currOffset];
+                    imageIndex++;
+                }
+            }
+        }
+        else
+        {
+            memcpy(&image[imageIndex], &symVec[symIndex], currOffset+1);
+            imageIndex += currOffset + 1;
+            symIndex += currOffset + 1;
+        }
+    }
+    u32 totalVal = 0;
+    for (u32 i = 0; i < 4096; i++)
+        totalVal += image[i];
+    MgbaPrintf(MGBA_LOG_WARN, "Total: %u", totalVal);
+    Free(image);
 }
