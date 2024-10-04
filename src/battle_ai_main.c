@@ -879,6 +879,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[BATTLE_PARTNER(battlerDef)]))
                 RETURN_SCORE_MINUS(20);
 
+            // This Also needs to look at partner for non spread attacks. Needs testing though
             if (CanAbilityAbsorbMove(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, moveType))
                 RETURN_SCORE_MINUS(20);
 
