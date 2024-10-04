@@ -11476,7 +11476,7 @@ static void Cmd_setmiracleeye(void)
 bool8 UproarWakeUpCheck(u8 battler)
 {
     s32 i;
-    bool32 hasSoundproof = (GetBattlerAbility(battler) == ABILITY_SOUNDPROOF && B_UPROAR_IGNORE_SOUNDPROOF < GEN_5);
+    bool32 hasSoundproof = (B_UPROAR_IGNORE_SOUNDPROOF < GEN_5 && GetBattlerAbility(battler) == ABILITY_SOUNDPROOF);
 
     for (i = 0; i < gBattlersCount; i++)
     {
