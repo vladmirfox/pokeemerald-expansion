@@ -960,6 +960,14 @@ gBattleAnimMove_HeartSwap::
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -256, -40
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 128, -16
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 3, 8, 0, RGB(31, 24, 26)
+ 	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	playsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER
+	delay 15
+	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, -20, 20
+	playsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER
+	delay 15
+	createsprite gRedHeartCharmSpriteTemplate, ANIM_ATTACKER, 3, 20, 20
+	playsewithpan SE_M_CHARM, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	blendoff
 	end
