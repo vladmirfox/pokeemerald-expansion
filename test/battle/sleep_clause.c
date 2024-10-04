@@ -402,3 +402,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping use
 
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> move that KOs a mon that has used destiny bond");
 
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> role play/skill swap");
+
+
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping is sent out, has trace, and traces insomnia/vital spirit");

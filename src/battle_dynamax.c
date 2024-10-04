@@ -890,7 +890,7 @@ void BS_TrySetStatus1(void)
                 if (B_SLEEP_CLAUSE)
                 {
                     gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] = TRUE;
-                    gBattleStruct->sleepClause.isMonCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = TRUE;
+                    gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = TRUE;
                 }
                     
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
