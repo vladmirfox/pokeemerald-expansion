@@ -3086,6 +3086,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 if (B_SLEEP_CLAUSE && !gBattleStruct->sleepClause.effectExempt)
                 {
                     gBattleStruct->sleepClause.isActive[GetBattlerSide(gEffectBattler)] = TRUE;
+                    gBattleStruct->sleepClause.doesSleepAffectSleepClause[GetBattlerSide(gEffectBattler)][gBattlerPartyIndexes[gEffectBattler]] = TRUE;
                     gBattleStruct->sleepClause.effectExempt = FALSE;
                 }
             }
