@@ -6359,9 +6359,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_QUARK_DRIVE:
             if (!gDisableStructs[battler].terrainAbilityDone
-            && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN
-            && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-            && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
+             && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN
+             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
+             && !(gBattleStruct->boosterEnergyActivates & (1u << battler)))
             {
                 gDisableStructs[battler].terrainAbilityDone = TRUE;
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, GetHighestStatId(battler));
