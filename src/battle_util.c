@@ -2635,7 +2635,7 @@ u8 DoBattlerEndTurnEffects(void)
                 for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
                 {
                     if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-                     && ((B_UPROAR_IGNORE_SOUNDPROOF >= GEN_5) || (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF))
+                     && (B_UPROAR_IGNORE_SOUNDPROOF >= GEN_5 || GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_SLEEP;
                         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
