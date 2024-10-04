@@ -139,7 +139,7 @@ void SmolUnCompWram(const u32 *src, void *dest)
     memcpy(&header, src, 4);
     u8 *allU8s = Alloc(header.loLength + header.symLength);
 
-    CpuCopy32(&allU8s[0], &src[1], header.loLength + header.symLength);
+    CpuCopy32(&src[1], allU8s, header.loLength + header.symLength);
     u8 *loVec = &allU8s[0];
     u8 *symVec = &allU8s[header.loLength];
 
@@ -175,10 +175,15 @@ void SmolUnCompWram(const u32 *src, void *dest)
             currLength += header.lengthMod + 2;
             if (currOffset == 1)
             {
+                //CpuFastFill8(symVec[symIndex], &image[imageIndex], currLength + 1);
+                //symIndex++;
+                //imageIndex += currLength + 1;
+                /*
                 for (u32 i = 0; i <= currLength; i++)
                 {
                     image[imageIndex + i] = symVec[symIndex];
                 }
+                */
                 imageIndex += currLength +1;
                 symIndex++;
             }
