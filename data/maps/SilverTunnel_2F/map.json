@@ -31,7 +31,7 @@
   "warp_events": [
     {
       "x": 5,
-      "y": 23,
+      "y": 25,
       "elevation": 0,
       "dest_map": "MAP_SILVER_TUNNEL_1F",
       "dest_warp_id": "1"
