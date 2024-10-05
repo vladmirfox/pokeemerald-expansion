@@ -1,0 +1,11 @@
+mapscripts SilverTunnel_1F_MapScripts {
+	
+}
+
+script SilverTunnel_1F_TrainerTips {
+	msgbox(format(
+		"Warning!\p"
+		"There are a lot more wild Pokémon in sandy areas!\p"
+		"Cross at your own risk!"
+		), MSGBOX_SIGN)
+}

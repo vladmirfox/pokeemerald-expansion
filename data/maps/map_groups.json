@@ -466,7 +466,9 @@
     "TerraCave_End",
     "AlteringCave",
     "MeteorFalls_StevensCave",
-    "GinkoWoods"
+    "GinkoWoods",
+    "SilverTunnel_1F",
+    "SilverTunnel_2F"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

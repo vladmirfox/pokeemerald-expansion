@@ -4690,6 +4690,26 @@
       "secondary_tileset": "gTileset_Yifu",
       "border_filepath": "data/layouts/TestRoute/border.bin",
       "blockdata_filepath": "data/layouts/TestRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_TUNNEL_1F",
+      "name": "SilverTunnel_1F_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SilverTunnel",
+      "border_filepath": "data/layouts/SilverTunnel_1F/border.bin",
+      "blockdata_filepath": "data/layouts/SilverTunnel_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILVER_TUNNEL_2F",
+      "name": "SilverTunnel_2F_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SilverTunnel",
+      "border_filepath": "data/layouts/SilverTunnel_2F/border.bin",
+      "blockdata_filepath": "data/layouts/SilverTunnel_2F/map.bin"
     }
   ]
 }

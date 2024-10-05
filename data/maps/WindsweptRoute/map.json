@@ -180,7 +180,20 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 14,
+      "y": 79,
+      "elevation": 0,
+      "dest_map": "MAP_SILVER_TUNNEL_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 65,
+      "elevation": 0,
+      "dest_map": "MAP_SILVER_TUNNEL_2F",
+      "dest_warp_id": "2"
+    }
   ],
   "coord_events": [
 

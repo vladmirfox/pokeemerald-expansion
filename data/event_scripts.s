@@ -1237,3 +1237,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SakuTown_House3/scripts.inc"
 
 	.include "data/maps/TestRoute/scripts.inc"
+
+	.include "data/maps/SilverTunnel_1F/scripts.inc"
+
+	.include "data/maps/SilverTunnel_2F/scripts.inc"
