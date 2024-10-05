@@ -1264,7 +1264,6 @@ CableClub_OnResume:
 	end
 .endif
 
-
 MossdeepCity_GameCorner_1F_EventScript_InfoMan2::
 	lock
 	faceplayer
