@@ -169,6 +169,14 @@
       "height": 1
     },
     {
+      "map_section": "MAPSEC_ORCHARD_PATH",
+      "name": "Orchard Path",
+      "x": 4,
+      "y": 8,
+      "width": 4,
+      "height": 1
+    },
+    {
       "map_section": "MAPSEC_WHITESLATE_ROUTE",
       "name": "Whiteslate Route",
       "x": 0,

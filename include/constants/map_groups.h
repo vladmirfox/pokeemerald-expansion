@@ -79,7 +79,7 @@
 #define MAP_YIFU_CITY                             (70 | (0 << 8))
 #define MAP_BELVEDERE_ROUTE                       (71 | (0 << 8))
 #define MAP_SOULKEEP                              (72 | (0 << 8))
-#define MAP_TEST_ROUTE                            (73 | (0 << 8))
+#define MAP_ORCHARD_PATH                          (73 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))

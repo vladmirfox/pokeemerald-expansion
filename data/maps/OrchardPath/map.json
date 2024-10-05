@@ -1,9 +1,9 @@
 {
-  "id": "MAP_TEST_ROUTE",
-  "name": "TestRoute",
-  "layout": "LAYOUT_TEST_ROUTE",
+  "id": "MAP_ORCHARD_PATH",
+  "name": "OrchardPath",
+  "layout": "LAYOUT_ORCHARD_PATH",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_ROUTE_1",
+  "region_map_section": "MAPSEC_ORCHARD_PATH",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
