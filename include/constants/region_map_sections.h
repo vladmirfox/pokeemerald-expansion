@@ -5,11 +5,11 @@
 #define MAPSEC_CHII_TOWN                  0x01
 #define MAPSEC_SAKU_TOWN                 0x02
 #define MAPSEC_KURA_TOWN               0x03
-#define MAPSEC_FALLARBOR_TOWN               0x04
-#define MAPSEC_VERDANTURF_TOWN              0x05
-#define MAPSEC_PACIFIDLOG_TOWN              0x06
-#define MAPSEC_PETALBURG_CITY               0x07
-#define MAPSEC_SLATEPORT_CITY               0x08
+#define MAPSEC_SILVERIDGE               0x04
+#define MAPSEC_WINDYCAPE              0x05
+#define MAPSEC_YIFU_CITY              0x06
+#define MAPSEC_MAGURO_HARBOR               0x07
+#define MAPSEC_SOULKEEP               0x08
 #define MAPSEC_MAUVILLE_CITY                0x09
 #define MAPSEC_RUSTBORO_CITY                0x0A
 #define MAPSEC_FORTREE_CITY                 0x0B
@@ -20,8 +20,8 @@
 #define MAPSEC_TRANQUIL_ROUTE                    0x10
 #define MAPSEC_BEACHBOUND_ROUTE                    0x11
 #define MAPSEC_WINDSWEPT_ROUTE                    0x12
-#define MAPSEC_ROUTE_104                    0x13
-#define MAPSEC_ROUTE_105                    0x14
+#define MAPSEC_WHITESLATE_ROUTE                    0x13
+#define MAPSEC_SCENIC_ROUTE                    0x14
 #define MAPSEC_ROUTE_106                    0x15
 #define MAPSEC_ROUTE_107                    0x16
 #define MAPSEC_ROUTE_108                    0x17
@@ -60,7 +60,7 @@
 #define MAPSEC_MT_CHIMNEY                   0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A
-#define MAPSEC_PETALBURG_WOODS              0x3B
+#define MAPSEC_GINKO_WOODS              0x3B
 #define MAPSEC_RUSTURF_TUNNEL               0x3C
 #define MAPSEC_ABANDONED_SHIP               0x3D
 #define MAPSEC_NEW_MAUVILLE                 0x3E
@@ -215,7 +215,8 @@
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
 #define MAPSEC_SILVER_TUNNEL                0xD5
-#define MAPSEC_NONE                         0xD6
+#define MAPSEC_SEASTROLL_CHANNEL            0xD6
+#define MAPSEC_NONE                         0xD7
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

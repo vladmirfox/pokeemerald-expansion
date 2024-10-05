@@ -2,7 +2,7 @@
   "map_sections": [
     {
       "map_section": "MAPSEC_SUNRISE_VILLAGE",
-      "name": "SUNRISE VILLAGE",
+      "name": "Sunrise Village",
       "x": 4,
       "y": 11,
       "width": 1,
@@ -10,7 +10,7 @@
     },
     {
       "map_section": "MAPSEC_CHII_TOWN",
-      "name": "CHII TOWN",
+      "name": "Chii Town",
       "x": 4,
       "y": 9,
       "width": 1,
@@ -18,7 +18,7 @@
     },
     {
       "map_section": "MAPSEC_SAKU_TOWN",
-      "name": "SAKU VILLAGE",
+      "name": "Saku Village",
       "x": 2,
       "y": 14,
       "width": 1,
@@ -26,47 +26,47 @@
     },
     {
       "map_section": "MAPSEC_KURA_TOWN",
-      "name": "KURA VILLAGE",
+      "name": "Kura Village",
       "x": 5,
       "y": 3,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_FALLARBOR_TOWN",
-      "name": "FALLARBOR TOWN",
+      "map_section": "MAPSEC_SILVERIDGE",
+      "name": "Silveridge",
       "x": 3,
       "y": 0,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_VERDANTURF_TOWN",
-      "name": "VERDANTURF TOWN",
+      "map_section": "MAPSEC_WINDYCAPE",
+      "name": "Windycape",
       "x": 4,
       "y": 6,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PACIFIDLOG_TOWN",
-      "name": "PACIFIDLOG TOWN",
+      "map_section": "MAPSEC_YIFU_CITY",
+      "name": "Yifu City",
       "x": 17,
       "y": 10,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PETALBURG_CITY",
-      "name": "PETALBURG CITY",
+      "map_section": "MAPSEC_MAGURO_HARBOR",
+      "name": "Maguro Harbor",
       "x": 1,
       "y": 9,
       "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_SLATEPORT_CITY",
-      "name": "SLATEPORT CITY",
+      "map_section": "MAPSEC_SOULKEEP",
+      "name": "Soulkeep",
       "x": 8,
       "y": 10,
       "width": 1,
@@ -157,20 +157,28 @@
       "name": "Silver Tunnel",
       "x": 4,
       "y": 8,
-      "width": 4,
+      "width": 1,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_104",
-      "name": "ROUTE 104",
+      "map_section": "MAPSEC_SEASTROLL_CHANNEL",
+      "name": "Seastroll Channel",
+      "x": 4,
+      "y": 8,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_WHITESLATE_ROUTE",
+      "name": "Whiteslate Route",
       "x": 0,
       "y": 7,
       "width": 1,
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_105",
-      "name": "ROUTE 105",
+      "map_section": "MAPSEC_SCENIC_ROUTE",
+      "name": "Scenic Route",
       "x": 0,
       "y": 10,
       "width": 1,
@@ -481,8 +489,8 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_PETALBURG_WOODS",
-      "name": "PETALBURG WOODS",
+      "map_section": "MAPSEC_GINKO_WOODS",
+      "name": "Ginko Woods",
       "x": 0,
       "y": 8,
       "width": 1,

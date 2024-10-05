@@ -21,32 +21,32 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Lavaridge_0,
     },
     {
-        .mapSecId = MAPSEC_FALLARBOR_TOWN,
+        .mapSecId = MAPSEC_SILVERIDGE,
         .index = 0,
         .tilemap = gPokenavCityMap_Fallarbor_0,
     },
     {
-        .mapSecId = MAPSEC_VERDANTURF_TOWN,
+        .mapSecId = MAPSEC_WINDYCAPE,
         .index = 0,
         .tilemap = gPokenavCityMap_Verdanturf_0,
     },
     {
-        .mapSecId = MAPSEC_PACIFIDLOG_TOWN,
+        .mapSecId = MAPSEC_YIFU_CITY,
         .index = 0,
         .tilemap = gPokenavCityMap_Pacifidlog_0,
     },
     {
-        .mapSecId = MAPSEC_PETALBURG_CITY,
+        .mapSecId = MAPSEC_MAGURO_HARBOR,
         .index = 0,
         .tilemap = gPokenavCityMap_Petalburg_0,
     },
     {
-        .mapSecId = MAPSEC_SLATEPORT_CITY,
+        .mapSecId = MAPSEC_SOULKEEP,
         .index = 0,
         .tilemap = gPokenavCityMap_Slateport_0,
     },
     {
-        .mapSecId = MAPSEC_SLATEPORT_CITY,
+        .mapSecId = MAPSEC_SOULKEEP,
         .index = 1,
         .tilemap = gPokenavCityMap_Slateport_1,
     },
