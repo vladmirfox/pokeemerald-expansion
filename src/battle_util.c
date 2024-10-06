@@ -7222,6 +7222,11 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BerryCureSlpRet;
             effect = ITEM_STATUS_CHANGE;
+            if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
+            {
+                gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] = FALSE;
+                gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]] = FALSE;
+            }
         }
         break;
     case HOLD_EFFECT_CURE_CONFUSION:
@@ -7463,6 +7468,11 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     BattleScriptExecute(BattleScript_BerryCureSlpEnd2);
                     effect = ITEM_STATUS_CHANGE;
+                    if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
+                    {
+                        gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] = FALSE;
+                        gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]] = FALSE;
+                    }
                 }
                 break;
             case HOLD_EFFECT_CURE_STATUS:
@@ -7769,6 +7779,11 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     BattleScriptExecute(BattleScript_BerryCureSlpEnd2);
                     effect = ITEM_STATUS_CHANGE;
+                    if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
+                    {
+                        gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] = FALSE;
+                        gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]] = FALSE;
+                    }
                 }
                 break;
             case HOLD_EFFECT_CURE_CONFUSION:

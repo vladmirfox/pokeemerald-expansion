@@ -406,3 +406,5 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping use
 
 
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping is sent out, has trace, and traces insomnia/vital spirit");
+
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by a held item, like chesto");

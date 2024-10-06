@@ -4186,6 +4186,7 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
     u32 status = GetMonData(mon, MON_DATA_STATUS, 0);
     u32 i = 0;
     u32 battlerSide = GetBattlerSide(battlerId);
+    
     if (status & healMask)
     {
         status &= ~healMask;
@@ -4207,6 +4208,7 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
                     {
                         gBattleStruct->sleepClause.isActive[battlerSide] = FALSE;
                         gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][i] = FALSE;
+                        break;
                     }
                 }
             }
