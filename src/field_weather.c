@@ -253,7 +253,7 @@ static void Task_WeatherMain(u8 taskId)
 
 static void None_Init(void)
 {
-    if (EXPANSION_VERSION_MINOR >= 9 && MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_NON_CAVE) == FALSE)
+    if (EXPANSION_VERSION_MINOR >= 9 && MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == FALSE)
     {
         Weather_SetBlendCoeffs(8, 12); // Indoor shadows
     }
