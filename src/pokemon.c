@@ -4184,49 +4184,37 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
 {
     u32 status = GetMonData(mon, MON_DATA_STATUS, 0);
-
+    u32 i = 0;
+    u32 battlerSide = GetBattlerSide(battlerId);
     if (status & healMask)
     {
         status &= ~healMask;
         SetMonData(mon, MON_DATA_STATUS, &status);
-        // i THINK this is where the code should go to handle getting healed by items
-        // (lets use "awakening" item as an example)
-        // if you use an awakening on the mon thats in battle, it works as intended
-        // but if you use an awakening on a mon thats NOT in battle, it is not clearing sleep clause
-        // see the TODO sleep clause: a little further down
-        //DebugPrintf("here healing status");
         if (gMain.inBattle && battlerId != MAX_BATTLERS_COUNT)
         {
             gBattleMons[battlerId].status1 &= ~healMask;
-            // DebugPrintf("here healing status in battle");
-            // if (B_SLEEP_CLAUSE)
-            // {
-            //     DebugPrintf("passed check that sleep clause is active");
+            if((healMask & STATUS1_SLEEP) && B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[battlerSide])
+            {
+                struct Pokemon *party;
+                if (battlerSide == B_SIDE_PLAYER)
+                    party = gPlayerParty;
+                else
+                    party = gEnemyParty;
 
-            //     TODO sleep clause: make sure you account for full heals, whatever that healMask is. status_any or all or some shit
-
-            //     if(healMask & STATUS1_SLEEP)
-            //     {
-            //         DebugPrintf("passed check that status is sleep");
-
-            //  TODO sleep clause: need to access the index of the mon that is getting healed because gBattlerPartyIndexes[battlerId] is not the right way to do it
-            //         if(gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]])
-            //         {
-            //             DebugPrintf("passed check that the mon at the right index is the one with sleep clause");
-            //             gBattleStruct->sleepClause.isActive[GetBattlerSide(battlerId)] = FALSE;
-            //             gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]] = FALSE;
-            //         }
-            //     }
-            
-            // }
-            
+                for (i = 0; i < PARTY_SIZE; i++)
+                {
+                    if (&party[i] == mon && gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][i])
+                    {
+                        gBattleStruct->sleepClause.isActive[battlerSide] = FALSE;
+                        gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][i] = FALSE;
+                    }
+                }
+            }
         }
-            
         return FALSE;
     }
     else
     {
-         DebugPrintf("how do you even get here");
         return TRUE;
     }
 }
