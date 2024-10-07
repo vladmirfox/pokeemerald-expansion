@@ -1013,7 +1013,7 @@ void AnimTask_SkillSwap(u8 taskId)
     }
     else
     {
-        if (gBattleAnimArgs[0] == 1)
+        if (gBattleAnimArgs[0] == ANIM_TARGET)
         {
             task->data[10] = -10;
             task->data[11] = GetBattlerSpriteCoordAttr(gBattleAnimTarget, BATTLER_COORD_ATTR_LEFT) + 8;
@@ -1060,7 +1060,7 @@ void AnimTask_HeartSwap(u8 taskId)
     }
     else
     {
-        if (gBattleAnimArgs[0] == 1)
+        if (gBattleAnimArgs[0] == ANIM_TARGET)
         {
             task->data[10] = -10;
             task->data[11] = GetBattlerSpriteCoordAttr(gBattleAnimTarget, BATTLER_COORD_ATTR_LEFT) + 8;
