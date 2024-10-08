@@ -4664,8 +4664,8 @@
     {
       "id": "LAYOUT_SOULKEEP",
       "name": "Soulkeep_Layout",
-      "width": 40,
-      "height": 50,
+      "width": 42,
+      "height": 46,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Soulkeep",
       "border_filepath": "data/layouts/Soulkeep/border.bin",

@@ -17,6 +17,11 @@
       "map": "MAP_YIFU_CITY",
       "offset": -14,
       "direction": "right"
+    },
+    {
+      "map": "MAP_SOULKEEP",
+      "offset": -21,
+      "direction": "left"
     }
   ],
   "object_events": [
