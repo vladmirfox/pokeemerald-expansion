@@ -565,7 +565,7 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
             //Toxic
             if (((gBattleMons[battler].status1 & STATUS1_TOXIC_COUNTER) >= STATUS1_TOXIC_TURN(2))
                 && gBattleMons[battler].hp >= (gBattleMons[battler].maxHP / 3)
-                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_TOXICD, 20) : RandomPercentage(RNG_AI_SWITCH_TOXICD, 50)))
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, 20) : RandomPercentage(RNG_AI_SWITCH_BADLY_POISONED, 50)))
                 switchMon = TRUE;
 
             //Cursed
