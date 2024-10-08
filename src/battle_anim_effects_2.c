@@ -953,6 +953,7 @@ const struct SpriteTemplate gRedHeartRisingSpriteTemplate =
     .callback = AnimRedHeartRising,
 };
 
+// New struct that's just a copy of 'gMagentaHeartSpriteTemplate', without need to make new anim tags 
 const struct SpriteTemplate gRedHeartCharmSpriteTemplate =
 {
     .tileTag = ANIM_TAG_RED_HEART,
