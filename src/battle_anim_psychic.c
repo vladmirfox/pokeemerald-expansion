@@ -360,6 +360,7 @@ const struct SpriteTemplate gSkillSwapOrbSpriteTemplate =
     .callback = AnimSkillSwapOrb,
 };
 
+// Pink version of the Skill Swap orbs
 const struct SpriteTemplate gHeartSwapOrbSpriteTemplate =
 {
     .tileTag = ANIM_TAG_PINKVIO_ORB,
@@ -1035,6 +1036,8 @@ void AnimTask_SkillSwap(u8 taskId)
     task->func = AnimTask_SkillSwap_Step;
 }
 
+// Copy of Skill Swap's function to get position of the user and target
+// gBattleAnimArgs[0] is the target
 void AnimTask_HeartSwap(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
@@ -1115,6 +1118,9 @@ static void AnimTask_SkillSwap_Step(u8 taskId)
         break;
     }
 }
+
+// Copy of Skill Swap's function to vault the series of orbs between the user and target
+// CreateSprite modified so it uses the pink orbs instead of the blue/green ones
 
 static void AnimTask_HeartSwap_Step(u8 taskId)
 {
