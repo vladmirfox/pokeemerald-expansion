@@ -234,7 +234,7 @@ BattleScript_EffectDoodle_CopyAbility:
 	switchinabilities BS_ATTACKER
 	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0x0, BattleScript_MoveEnd
 	addbyte gBattleCommunication, 1
-	jumpifnoally BS_TARGET, BattleScript_MoveEnd
+	jumpifnoally BS_ATTACKER, BattleScript_MoveEnd
 	setallytonextattacker BattleScript_EffectDoodle_CopyAbility
 	goto BattleScript_MoveEnd
 
@@ -2346,6 +2346,16 @@ BattleScript_EffectSimpleBeam::
 	setabilitysimple BS_TARGET, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+.if B_ABILITY_POP_UP == TRUE
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	showabilitypopup BS_TARGET
+	pause 60
+	sethword sABILITY_OVERWRITE, 0
+	updateabilitypopup BS_TARGET
+	pause 20
+	destroyabilitypopup
+	pause 40
+.endif
 	printstring STRINGID_PKMNACQUIREDSIMPLE
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
@@ -2444,11 +2454,22 @@ BattleScript_EffectWorrySeed::
 	tryworryseed BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+.if B_ABILITY_POP_UP == TRUE
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	showabilitypopup BS_TARGET
+	pause 60
+	sethword sABILITY_OVERWRITE, 0
+	updateabilitypopup BS_TARGET
+	pause 20
+	destroyabilitypopup
+	pause 40
+.endif
 	printstring STRINGID_PKMNACQUIREDABILITY
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	tryrevertweatherform
 	flushtextbox
+	tryendneutralizinggas BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPowerSplit::
@@ -5185,12 +5206,28 @@ BattleScript_EffectSkillSwap::
 	tryswapabilities BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+	jumpiftargetally BattleScript_SkillSwapAfterAbilityPopUp
 .if B_ABILITY_POP_UP == TRUE
-	call BattleScript_AbilityPopUpTarget
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	showabilitypopup BS_ATTACKER
+	pause 60
+	sethword sABILITY_OVERWRITE, 0
+	updateabilitypopup BS_ATTACKER
 	pause 20
-	copybyte gBattlerAbility, gBattlerAttacker
-	call BattleScript_AbilityPopUp
+	destroyabilitypopup
+	pause 40
+	copybyte gBattlerAbility, gBattlerTarget
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	copyhword sABILITY_OVERWRITE, gLastUsedAbility
+	showabilitypopup BS_TARGET
+	pause 60
+	sethword sABILITY_OVERWRITE, 0
+	updateabilitypopup BS_TARGET
+	pause 20
+	destroyabilitypopup
+	pause 40
 .endif
+BattleScript_SkillSwapAfterAbilityPopUp:
 	printstring STRINGID_PKMNSWAPPEDABILITIES
 	waitmessage B_WAIT_TIME_LONG
 .if B_SKILL_SWAP >= GEN_4
@@ -8366,7 +8403,23 @@ BattleScript_CursedBodyActivates::
 	return
 
 BattleScript_MummyActivates::
-	call BattleScript_AbilityPopUp
+.if B_ABILITY_POP_UP == TRUE
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	showabilitypopup BS_TARGET
+	pause 40
+	destroyabilitypopup
+	pause 20
+	copybyte gBattlerAbility, gBattlerAttacker
+	setbyte sFIXED_ABILITY_POPUP, TRUE
+	copyhword sABILITY_OVERWRITE, gLastUsedAbility
+	showabilitypopup BS_ATTACKER
+	pause 60
+	sethword sABILITY_OVERWRITE, 0
+	updateabilitypopup BS_ATTACKER
+	pause 20
+	destroyabilitypopup
+	pause 40
+.endif
 	printstring STRINGID_ATTACKERACQUIREDABILITY
 	waitmessage B_WAIT_TIME_LONG
 	return
