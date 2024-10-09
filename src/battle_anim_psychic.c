@@ -1037,7 +1037,7 @@ void AnimTask_SkillSwap(u8 taskId)
 }
 
 // Copy of Skill Swap's function to get position of the user and target
-// gBattleAnimArgs[0] is the target
+// arg 0: move target
 void AnimTask_HeartSwap(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
