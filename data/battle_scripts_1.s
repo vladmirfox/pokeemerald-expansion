@@ -214,11 +214,14 @@ BattleScript_EffectDoodle::
 	attackcanceler
 	attackstring
 	ppreduce
+	trycopyability BS_ATTACKER, BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	setbyte gBattleCommunication, 0
+	goto BattleScript_EffectDoodle_AfterCopy
 BattleScript_EffectDoodle_CopyAbility:
 	trycopyability BS_ATTACKER, BattleScript_ButItFailed
+BattleScript_EffectDoodle_AfterCopy:
 .if B_ABILITY_POP_UP == TRUE
 	setbyte sFIXED_ABILITY_POPUP, TRUE
 	showabilitypopup BS_ATTACKER
@@ -5206,7 +5209,7 @@ BattleScript_EffectSkillSwap::
 	tryswapabilities BattleScript_ButItFailed
 	attackanimation
 	waitanimation
-	jumpiftargetally BattleScript_SkillSwapAfterAbilityPopUp
+	jumpiftargetally BattleScript_EffectSkillSwap_AfterAbilityPopUp
 .if B_ABILITY_POP_UP == TRUE
 	setbyte sFIXED_ABILITY_POPUP, TRUE
 	showabilitypopup BS_ATTACKER
@@ -5227,7 +5230,7 @@ BattleScript_EffectSkillSwap::
 	destroyabilitypopup
 	pause 40
 .endif
-BattleScript_SkillSwapAfterAbilityPopUp:
+BattleScript_EffectSkillSwap_AfterAbilityPopUp:
 	printstring STRINGID_PKMNSWAPPEDABILITIES
 	waitmessage B_WAIT_TIME_LONG
 .if B_SKILL_SWAP >= GEN_4
