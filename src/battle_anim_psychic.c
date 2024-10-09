@@ -1121,7 +1121,6 @@ static void AnimTask_SkillSwap_Step(u8 taskId)
 
 // Copy of Skill Swap's function to vault the series of orbs between the user and target
 // CreateSprite modified so it uses the pink orbs instead of the blue/green ones
-
 static void AnimTask_HeartSwap_Step(u8 taskId)
 {
     u8 spriteId;
