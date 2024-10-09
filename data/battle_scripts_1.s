@@ -220,7 +220,7 @@ BattleScript_EffectDoodle::
 	setbyte gBattleCommunication, 0
 	goto BattleScript_EffectDoodle_AfterCopy
 BattleScript_EffectDoodle_CopyAbility:
-	trycopyability BS_ATTACKER, BattleScript_ButItFailed
+	trycopyability BS_ATTACKER, BattleScript_MoveEnd
 BattleScript_EffectDoodle_AfterCopy:
 .if B_ABILITY_POP_UP == TRUE
 	setbyte sFIXED_ABILITY_POPUP, TRUE
