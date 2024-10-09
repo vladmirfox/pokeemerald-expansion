@@ -5,6 +5,27 @@
 
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
+struct CompressionHeader {
+    u32 lengthMod:4;
+    u32 lz77Bit:1;
+    u32 compressionMode:5;
+    u32 initialState:6;
+    u32 imageSize:16;
+    u16 instructionCount;
+    u16 symbolCount;
+};
+
+struct DecodeYK {
+    u8 yVal;
+    u8 kVal;
+    u16 symbol;
+};
+
+extern struct DecodeYK ykTemplate[128];
+void InitDecodeHelper();
+
+void UnpackFrequencies(u32 *packedFreqs, u8 *freqs);
+
 void LZDecompressWram(const u32 *src, void *dest);
 void LZDecompressVram(const u32 *src, void *dest);
 

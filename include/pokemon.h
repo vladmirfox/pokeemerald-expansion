@@ -888,14 +888,4 @@ void UpdateDaysPassedSinceFormChange(u16 days);
 void TrySetDayLimitToFormChange(struct Pokemon *mon);
 u32 CheckDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler);
 
-struct DecodeYK {
-    u32 yVal:8;
-    u32 kVal:8;
-    u32 symbol:4;
-    u32 padding:12;
-};
-
-extern struct DecodeYK ykTemplate[];
-extern const u16 kValMasks[];
-
 #endif // GUARD_POKEMON_H
