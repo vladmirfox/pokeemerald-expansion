@@ -485,6 +485,8 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
         SetBattlerAiData(battlerAtk, aiData);
     }
 
+    
+    gBattleStruct->aiCalcInProgress = TRUE;
     for (battlerAtk = 0; battlerAtk < battlersCount; battlerAtk++)
     {
         if (!IsBattlerAlive(battlerAtk))
@@ -492,6 +494,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
 
         SetBattlerAiMovesData(aiData, battlerAtk, battlersCount);
     }
+    gBattleStruct->aiCalcInProgress = FALSE;
 }
 
 static bool32 AI_SwitchMonIfSuitable(u32 battler, bool32 doubleBattle)

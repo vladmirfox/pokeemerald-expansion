@@ -6458,33 +6458,36 @@ static inline bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 
 
 u32 GetBattlerAbility(u32 battler)
 {
-    bool32 noAbilityShield = GetBattlerHoldEffectIgnoreAbility(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD;
-    bool32 abilityCantBeSuppressed = gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed;
-
-    if (abilityCantBeSuppressed)
+    if (!gBattleStruct->aiCalcInProgress)
     {
-        // Edge case: pokemon under the effect of gastro acid transforms into a pokemon with Comatose (Todo: verify how other unsuppressable abilities behave)
-        if (gBattleMons[battler].status2 & STATUS2_TRANSFORMED
-            && gStatuses3[battler] & STATUS3_GASTRO_ACID
-            && gBattleMons[battler].ability == ABILITY_COMATOSE)
+        bool32 noAbilityShield = GetBattlerHoldEffectIgnoreAbility(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD;
+        bool32 abilityCantBeSuppressed = gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed;
+
+        if (abilityCantBeSuppressed)
+        {
+            // Edge case: pokemon under the effect of gastro acid transforms into a pokemon with Comatose (Todo: verify how other unsuppressable abilities behave)
+            if (gBattleMons[battler].status2 & STATUS2_TRANSFORMED
+                && gStatuses3[battler] & STATUS3_GASTRO_ACID
+                && gBattleMons[battler].ability == ABILITY_COMATOSE)
+                    return ABILITY_NONE;
+
+            if (noAbilityShield && CanBreakThroughAbility(gBattlerAttacker, battler, gBattleMons[gBattlerAttacker].ability))
                 return ABILITY_NONE;
+
+            return gBattleMons[battler].ability;
+        }
+
+        if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
+            return ABILITY_NONE;
+
+        if (IsNeutralizingGasOnField()
+         && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS
+         && noAbilityShield)
+            return ABILITY_NONE;
 
         if (noAbilityShield && CanBreakThroughAbility(gBattlerAttacker, battler, gBattleMons[gBattlerAttacker].ability))
             return ABILITY_NONE;
-
-        return gBattleMons[battler].ability;
     }
-
-    if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
-        return ABILITY_NONE;
-
-    if (IsNeutralizingGasOnField()
-     && gBattleMons[battler].ability != ABILITY_NEUTRALIZING_GAS
-     && noAbilityShield)
-        return ABILITY_NONE;
-
-    if (noAbilityShield && CanBreakThroughAbility(gBattlerAttacker, battler, gBattleMons[gBattlerAttacker].ability))
-        return ABILITY_NONE;
 
     return gBattleMons[battler].ability;
 }
@@ -8507,6 +8510,9 @@ u32 GetBattlerHoldEffectIgnoreAbility(u32 battler, bool32 checkNegating)
 
 u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 checkAbility)
 {
+    if (gBattleStruct->aiCalcInProgress)
+        return ItemId_GetHoldEffect(gBattleMons[battler].item);
+    
     if (checkNegating)
     {
         if (gStatuses3[battler] & STATUS3_EMBARGO)
