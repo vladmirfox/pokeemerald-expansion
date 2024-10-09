@@ -4158,7 +4158,7 @@ u32 CanPartnerAbilityBlockMove(u32 battlerAtk, u32 battlerDef, u32 move, u32 abi
     case ABILITY_ARMOR_TAIL:
         if (GetBattlerSide(battlerAtk) != GetBattlerSide(battlerDef))
         {
-            u32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
+            s32 priority = AI_DATA->aiCalcInProgress ? GetMovePriority(battlerAtk, move) : GetChosenMovePriority(battlerAtk);
             if (priority > 0)
                 return MOVE_BLOCKED_BY_PARTNER_DAZZLING;
         }
