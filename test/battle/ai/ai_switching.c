@@ -572,7 +572,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an 
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if badly statused with >= 50% HP remaining and has Natural Cure and a good switchin 66% of the time")
+AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if badly statused with >= 50% HP remaining and has Natural Cure and a good switchin 66% of the time")
 {
     PASSES_RANDOMLY(66, 100, RNG_AI_SWITCH_NATURAL_CURE);
     GIVEN {
@@ -586,7 +586,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if badly stat
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has <= 66% HP remaining and has Regenerator and a good switchin 50% of the time")
+AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if it has <= 66% HP remaining and has Regenerator and a good switchin 50% of the time")
 {
     PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_REGENERATOR);
     GIVEN {

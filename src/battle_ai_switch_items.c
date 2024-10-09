@@ -312,6 +312,8 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     bool32 isOpposingBattlerInvulnerable = (gStatuses3[GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)))] & STATUS3_SEMI_INVULNERABLE);
     s32 i, j;
 
+    if (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
+        return FALSE;
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && Random() % 3 != 0)
         return FALSE;
     if (gLastLandedMoves[battler] == MOVE_NONE)
