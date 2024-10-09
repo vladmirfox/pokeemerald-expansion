@@ -402,12 +402,19 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
 {
     struct AiLogicData *aiData = AI_DATA;
     u32 battlerDefAbility;
+    u32 partnerBattlerDefAbility;
     u32 moveType = GetMoveType(move);
 
     if (DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move))
+    {
         battlerDefAbility = ABILITY_NONE;
+        partnerBattlerDefAbility = ABILITY_NONE;
+    }
     else
+    {
         battlerDefAbility = aiData->abilities[battlerDef];
+        partnerBattlerDefAbility = aiData->abilities[BATTLE_PARTNER(battlerDef)];
+    }
 
     if (battlerDef == BATTLE_PARTNER(battlerAtk))
         battlerDefAbility = aiData->abilities[battlerDef];
@@ -415,47 +422,14 @@ bool32 IsDamageMoveUnusable(u32 move, u32 battlerAtk, u32 battlerDef)
     if (gBattleStruct->commandingDondozo & (1u << battlerDef))
         return TRUE;
 
-    switch (battlerDefAbility)
-    {
-    case ABILITY_LIGHTNING_ROD:
-        if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5)
-            break;
-        // Fallthrough
-    case ABILITY_VOLT_ABSORB:
-    case ABILITY_MOTOR_DRIVE:
-        if (moveType == TYPE_ELECTRIC)
-            return TRUE;
-        break;
-    case ABILITY_STORM_DRAIN:
-        if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5)
-            break;
-        // Fallthrough
-    case ABILITY_WATER_ABSORB:
-    case ABILITY_DRY_SKIN:
-        if (moveType == TYPE_WATER)
-            return TRUE;
-        break;
-    case ABILITY_FLASH_FIRE:
-        if (moveType == TYPE_FIRE)
-            return TRUE;
-        break;
-    case ABILITY_SOUNDPROOF:
-        if (gMovesInfo[move].soundMove)
-            return TRUE;
-        break;
-    case ABILITY_BULLETPROOF:
-        if (gMovesInfo[move].ballisticMove)
-            return TRUE;
-        break;
-    case ABILITY_SAP_SIPPER:
-        if (moveType == TYPE_GRASS)
-            return TRUE;
-        break;
-    case ABILITY_EARTH_EATER:
-        if (moveType == TYPE_GROUND)
-            return TRUE;
-        break;
-    }
+    if (CanAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[battlerDef]))
+        return TRUE;
+
+    if (CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, partnerBattlerDefAbility))
+        return TRUE;
+
+    if (CanAbilityAbsorbMove(battlerAtk, battlerDef, aiData->abilities[battlerDef], move, moveType))
+        return TRUE;
 
     switch (gMovesInfo[move].effect)
     {
@@ -526,7 +500,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
-    gBattleStruct->aiCalcInProgress = TRUE;
+    AI_DATA->aiCalcInProgress = TRUE;
 
     if (moveEffect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove(battlerAtk);
@@ -736,12 +710,11 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     *typeEffectiveness = AI_GetEffectiveness(effectivenessMultiplier);
 
     // Undo temporary settings
-    gBattleStruct->aiCalcInProgress = FALSE;
     gBattleStruct->swapDamageCategory = FALSE;
     gBattleStruct->zmove.baseMoves[battlerAtk] = MOVE_NONE;
     if (toggledGimmick)
         SetActiveGimmick(battlerAtk, GIMMICK_NONE);
-
+    AI_DATA->aiCalcInProgress = FALSE;
     return simDamage;
 }
 
@@ -2375,6 +2348,22 @@ bool32 IsSelfStatLoweringEffect(u32 effect)
     }
 }
 
+bool32 IsSwitchOutEffect(u32 effect)
+{
+    // Switch out effects like U-Turn, Volt Switch, etc.
+    switch (effect)
+    {
+    case EFFECT_HIT_ESCAPE:
+    case EFFECT_PARTING_SHOT:
+    case EFFECT_BATON_PASS:
+    case EFFECT_CHILLY_RECEPTION:
+    case EFFECT_SHED_TAIL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 bool32 HasDamagingMove(u32 battlerId)
 {
     u32 i;
@@ -3492,14 +3481,14 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     {
         gBattleMons[battlerAtk] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerDef].saved = TRUE;
-        SetBattlerData(battlerDef); // set known opposing battler data
+        SetBattlerAiData(battlerDef, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerDef].saved = FALSE;
     }
     else
     {
         gBattleMons[battlerDef] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerAtk].saved = TRUE;
-        SetBattlerData(battlerAtk); // set known opposing battler data
+        SetBattlerAiData(battlerAtk, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
@@ -3507,6 +3496,18 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg.expected;
+}
+
+u32 AI_WhoStrikesFirstPartyMon(u32 battlerAtk, u32 battlerDef, struct BattlePokemon switchinCandidate, u32 moveConsidered)
+{
+    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
+    gBattleMons[battlerAtk] = switchinCandidate;
+
+    SetBattlerAiData(battlerAtk, AI_DATA);
+    u32 aiMonFaster = AI_IsFaster(battlerAtk, battlerDef, moveConsidered);
+    FreeRestoreBattleMons(savedBattleMons);
+
+    return aiMonFaster;
 }
 
 s32 CountUsablePartyMons(u32 battlerId)
@@ -3953,7 +3954,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
             return FALSE; // Don't waste a Z-Move busting disguise
         if (gBattleMons[battlerDef].ability == ABILITY_ICE_FACE
             && !gMovesInfo[zMove].ignoresTargetAbility
-            && gBattleMons[battlerDef].species == SPECIES_EISCUE_ICE_FACE && IS_MOVE_PHYSICAL(chosenMove))
+            && gBattleMons[battlerDef].species == SPECIES_EISCUE_ICE && IS_MOVE_PHYSICAL(chosenMove))
             return FALSE; // Don't waste a Z-Move busting Ice Face
 
         if (IS_MOVE_STATUS(chosenMove) && !IS_MOVE_STATUS(zMove))
