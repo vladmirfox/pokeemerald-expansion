@@ -1483,6 +1483,10 @@ static void AnimShockWaveLightning(struct Sprite *sprite)
     }
 }
 
+// [Explanation of what this task does here]
+// arg 0: 
+// arg 1:
+// arg 2:
 void AnimTask_CreateIons(u8 taskId)
 {
     u8 x, y;
