@@ -305,10 +305,11 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     u8 numAbsorbingAbilities = 0;
     u16 absorbingTypeAbilities[3]; // Array size is maximum number of absorbing abilities for a single type
     s32 firstId;
-    s32 lastId; // + 1
-    // u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-    // bool32 isOpposingBattlerInvulnerable = (gStatuses3[opposingBattler] & STATUS3_SEMI_INVULNERABLE);
+    s32 lastId;
     struct Pokemon *party;
+    u16 monAbility;
+    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    bool32 isOpposingBattlerInvulnerable = (gStatuses3[GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)))] & STATUS3_SEMI_INVULNERABLE);
     s32 i, j;
 
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && Random() % 3 != 0)
@@ -339,25 +340,25 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_FLASH_FIRE;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_WATER) // || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_WATER))
+    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_WATER || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_WATER))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WATER_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_DRY_SKIN;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_STORM_DRAIN;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_ELECTRIC) // || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_ELECTRIC))
+    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_ELECTRIC || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_ELECTRIC))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_MOTOR_DRIVE;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LIGHTNING_ROD;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GRASS) // || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GRASS))
+    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GRASS || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GRASS))
     {
-        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SAP_SIPPER;
+        absorbingTypeAbilities[numAbsorbingAbilities] = ABILITY_SAP_SIPPER;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GROUND) // || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GROUND))
+    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GROUND || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GROUND))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
     }
@@ -369,10 +370,11 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     // Check current mon for all absorbing abilities
     for (i = 0; i < numAbsorbingAbilities; i++)
     {
-        if (AI_DATA->abilities[battler] == absorbingTypeAbilities[i])
+        if (gBattleMons[battler].ability == absorbingTypeAbilities[i])
             return FALSE;
     }
 
+    // Check party for mon with ability that absorbs move
     GetAIPartyIndexes(battler, &firstId, &lastId);
 
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
@@ -382,8 +384,6 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
 
     for (i = firstId; i < lastId; i++)
     {
-        u16 monAbility;
-
         if (!IsValidForBattle(&party[i]))
             continue;
         if (i == gBattlerPartyIndexes[battlerIn1])
@@ -401,7 +401,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
 
         for (j = 0; j < numAbsorbingAbilities; j++)
         {
-            if (absorbingTypeAbilities[j] == monAbility && Random() & 1)
+            if (absorbingTypeAbilities[j] == monAbility)
             {
                 // we found a mon.
                 gBattleStruct->AI_monToSwitchIntoId[battler] = i;
@@ -441,12 +441,16 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler, bool32 emitResult)
 
     for (i = firstId; i < lastId; i++)
     {
+        if (IsAceMon(battler, i))
+            return FALSE;
+
         monAbility = GetMonAbility(&party[i]);
+
         if (CanAbilityTrapOpponent(monAbility, opposingBattler))
         {
             if (i == AI_DATA->mostSuitableMonId[battler]) // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             {
-                gBattleStruct->AI_monToSwitchIntoId[battler] = i;
+                gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
                 if (emitResult)
                     BtlController_EmitTwoReturnValues(battler, 1, B_ACTION_SWITCH, 0);
                 return TRUE;
@@ -561,42 +565,37 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfAbilityBenefit(u32 battler, bool32 emitResult)
 {
-    s32 moduloChance = 4; //25% Chance Default
-    s32 chanceReducer = 1; //No Reduce default. Increase to reduce
-
-    if (AnyStatIsRaised(battler))
-        chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
+    bool32 hasStatRaised = AnyStatIsRaised(battler);
 
     //Check if ability is blocked
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID
-        ||IsNeutralizingGasOnField())
+        || IsNeutralizingGasOnField())
         return FALSE;
 
     switch(AI_DATA->abilities[battler])
     {
         case ABILITY_NATURAL_CURE:
-            moduloChance = 4; //25%
             //Attempt to cure bad ailment
             if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
-                && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+                && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 10) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 66)))
                 break;
             //Attempt to cure lesser ailment
             if ((gBattleMons[battler].status1 & STATUS1_ANY)
                 && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
                 && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                && Random() % (moduloChance*chanceReducer) == 0)
+                && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 10) : RandomPercentage(RNG_AI_SWITCH_NATURAL_CURE, 25)))
                 break;
 
             return FALSE;
 
         case ABILITY_REGENERATOR:
-            moduloChance = 2; //50%
             //Don't switch if ailment
             if (gBattleMons[battler].status1 & STATUS1_ANY)
                 return FALSE;
             if ((gBattleMons[battler].hp <= ((gBattleMons[battler].maxHP * 2) / 3))
                  && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                 && Random() % (moduloChance*chanceReducer) == 0)
+                 && (hasStatRaised ? RandomPercentage(RNG_AI_SWITCH_REGENERATOR, 20) : RandomPercentage(RNG_AI_SWITCH_REGENERATOR, 50)))
                 break;
 
             return FALSE;

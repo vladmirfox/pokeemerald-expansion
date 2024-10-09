@@ -547,13 +547,54 @@ AI_DOUBLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has bee
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is semi-invulernable and it has an absorber")
 {
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_ATTRACT].effect == EFFECT_ATTRACT);
+        ASSUME(gMovesInfo[MOVE_DIVE].type == TYPE_WATER);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
         PLAYER(SPECIES_LUVDISC) { Moves(MOVE_DIVE); }
         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
         OPPONENT(SPECIES_MANTINE) { Moves(MOVE_TACKLE); Ability(ABILITY_WATER_ABSORB); }
     } WHEN {
         TURN { MOVE(player, MOVE_DIVE) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
-        TURN { MOVE(player, MOVE_DIVE) ; EXPECT_SWITCH(opponent, 1); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an absorber")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_LUVDISC) { Moves(MOVE_WATER_GUN); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_MANTINE) { Moves(MOVE_TACKLE); Ability(ABILITY_WATER_ABSORB); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if badly statused with >= 50% HP remaining and has Natural Cure and a good switchin 66% of the time")
+{
+    PASSES_RANDOMLY(66, 100, RNG_AI_SWITCH_NATURAL_CURE);
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_ODDISH) { Moves(MOVE_TOXIC, MOVE_TACKLE); }
+        OPPONENT(SPECIES_SWABLU) { Ability(ABILITY_NATURAL_CURE); Moves(MOVE_TACKLE, MOVE_PECK); }
+        OPPONENT(SPECIES_SWABLU) { Ability(ABILITY_NATURAL_CURE); Moves(MOVE_TACKLE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TOXIC); EXPECT_MOVE(opponent, MOVE_PECK); }
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has <= 66% HP remaining and has Regenerator and a good switchin 50% of the time")
+{
+    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_REGENERATOR);
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_SLOWBRO) { MaxHP(100); HP(65); Ability(ABILITY_REGENERATOR); Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_REGENERATOR); Moves(MOVE_TACKLE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
     }
 }
