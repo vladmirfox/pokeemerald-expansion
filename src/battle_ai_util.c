@@ -500,6 +500,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
+    AI_DATA->aiCalcInProgress = TRUE;
 
     if (moveEffect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove(battlerAtk);
@@ -713,7 +714,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     gBattleStruct->zmove.baseMoves[battlerAtk] = MOVE_NONE;
     if (toggledGimmick)
         SetActiveGimmick(battlerAtk, GIMMICK_NONE);
-
+    AI_DATA->aiCalcInProgress = FALSE;
     return simDamage;
 }
 
