@@ -6458,7 +6458,11 @@ static inline bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 
 
 u32 GetBattlerAbility(u32 battler)
 {
-    if (!gBattleStruct->aiCalcInProgress)
+    if (gBattleStruct->aiCalcInProgress)
+    {
+        return AI_DATA->abilities[battler];
+    }
+    else
     {
         bool32 noAbilityShield = GetBattlerHoldEffectIgnoreAbility(battler, TRUE) != HOLD_EFFECT_ABILITY_SHIELD;
         bool32 abilityCantBeSuppressed = gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed;
@@ -6487,9 +6491,9 @@ u32 GetBattlerAbility(u32 battler)
 
         if (noAbilityShield && CanBreakThroughAbility(gBattlerAttacker, battler, gBattleMons[gBattlerAttacker].ability))
             return ABILITY_NONE;
-    }
 
-    return gBattleMons[battler].ability;
+        return gBattleMons[battler].ability;
+    }
 }
 
 u32 IsAbilityOnSide(u32 battler, u32 ability)
@@ -8511,7 +8515,7 @@ u32 GetBattlerHoldEffectIgnoreAbility(u32 battler, bool32 checkNegating)
 u32 GetBattlerHoldEffectInternal(u32 battler, bool32 checkNegating, bool32 checkAbility)
 {
     if (gBattleStruct->aiCalcInProgress)
-        return ItemId_GetHoldEffect(gBattleMons[battler].item);
+        return AI_DATA->holdEffects[battler];
     
     if (checkNegating)
     {
