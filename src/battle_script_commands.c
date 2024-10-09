@@ -14370,7 +14370,7 @@ static void Cmd_trycopyability(void)
     if (gBattleMons[battler].ability == defAbility
       || defAbility == ABILITY_NONE
       || gAbilitiesInfo[gBattleMons[battler].ability].cantBeSuppressed
-      || (gAbilitiesInfo[gBattleMons[BATTLE_PARTNER(battler)].ability].cantBeSuppressed && gMovesInfo[gCurrentMove].effect == EFFECT_DOODLE)
+      || (IsBattlerAlive(BATTLE_PARTNER(battler)) && gAbilitiesInfo[gBattleMons[BATTLE_PARTNER(battler)].ability].cantBeSuppressed && gMovesInfo[gCurrentMove].effect == EFFECT_DOODLE)
       || gAbilitiesInfo[defAbility].cantBeCopied)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
