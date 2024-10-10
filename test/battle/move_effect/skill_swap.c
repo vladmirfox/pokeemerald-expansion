@@ -38,7 +38,9 @@ DOUBLE_BATTLE_TEST("Skill Swap only swaps user's ability with target's ability")
         ABILITY_POPUP(opponentLeft, ABILITY_OVERGROW);
     } THEN {
         EXPECT_EQ(playerLeft->ability, ABILITY_OVERGROW);
+        EXPECT_EQ(playerRight->ability, ABILITY_BLAZE);
         EXPECT_EQ(opponentLeft->ability, ABILITY_TELEPATHY);
+        EXPECT_EQ(opponentRight->ability, ABILITY_TORRENT);
     }
 }
 
