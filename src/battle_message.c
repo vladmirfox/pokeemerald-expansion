@@ -532,7 +532,10 @@ static const u8 sText_PkmnsItemRestoredHPALittle[] = _("{B_SCR_ACTIVE_NAME_WITH_
 static const u8 sText_ItemAllowsOnlyYMove[] = _("{B_LAST_ITEM} only allows\nthe use of {B_CURRENT_MOVE}!\p");
 static const u8 sText_PkmnHungOnWithX[] = _("{B_DEF_NAME_WITH_PREFIX} hung on\nusing its {B_LAST_ITEM}!");
 const u8 gText_EmptyString3[] = _("");
-static const u8 sText_YouThrowABallNowRight[] = _("You throw a Ball now, right?\nI… I'll do my best!");
+static const u8 sText_PlayedFluteCatchyTune[] = _("{B_PLAYER_NAME} played the {B_LAST_ITEM}.\pNow, that's a catchy tune!");
+static const u8 sText_PlayedThe[] = _("{B_PLAYER_NAME} played the\n{B_LAST_ITEM}.");
+static const u8 sText_PkmnHearingFluteAwoke[] = _("The POKéMON hearing the FLUTE\nawoke!");
+static const u8 sText_YouThrowABallNowRight[] = _("You throw a BALL now, right?\nI… I'll do my best!");
 
 // early declaration of strings
 static const u8 sText_PkmnIncapableOfPower[];
@@ -846,6 +849,7 @@ static const u8 sText_TargetIsHurtBySaltCure[] = _("{B_DEF_NAME_WITH_PREFIX} is 
 static const u8 sText_TargetCoveredInStickyCandySyrup[] = _("{B_DEF_NAME_WITH_PREFIX} got covered\nin sticky candy syrup!");
 static const u8 sText_PkmnTellChillingReceptionJoke[] = _("{B_ATK_NAME_WITH_PREFIX} is preparing\nto tell a chillingly bad joke!");
 static const u8 sText_ZeroToHeroTransformation[] = _("{B_ATK_NAME_WITH_PREFIX} underwent\na heroic transformation!");
+static const u8 sText_CommanderActivates[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} was swallowed by Dondozo\nand became Dondozo's commander!");
 static const u8 sText_TheTwoMovesBecomeOne[] = _("The two moves have become one!\nIt's a combined move!{PAUSE 16}");
 static const u8 sText_ARainbowAppearedOnSide[] = _("A rainbow appeared in the sky\non {B_ATK_TEAM2} team's side!");
 static const u8 sText_TheRainbowDisappeared[] = _("The rainbow on {B_ATK_TEAM2} team's\nside disappeared!");
@@ -885,6 +889,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ARAINBOWAPPEAREDONSIDE - BATTLESTRINGS_TABLE_START] = sText_ARainbowAppearedOnSide,
     [STRINGID_THETWOMOVESBECOMEONE - BATTLESTRINGS_TABLE_START] = sText_TheTwoMovesBecomeOne,
     [STRINGID_ZEROTOHEROTRANSFORMATION - BATTLESTRINGS_TABLE_START] = sText_ZeroToHeroTransformation,
+    [STRINGID_COMMANDERACTIVATES - BATTLESTRINGS_TABLE_START] = sText_CommanderActivates,
     [STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE - BATTLESTRINGS_TABLE_START] = sText_PkmnTellChillingReceptionJoke,
     [STRINGID_MOVEBLOCKEDBYDYNAMAX - BATTLESTRINGS_TABLE_START] = sText_MoveBlockedByDynamax,
     [STRINGID_TARGETISHURTBYSALTCURE - BATTLESTRINGS_TABLE_START] = sText_TargetIsHurtBySaltCure,
@@ -1569,6 +1574,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ITEMWASUSEDUP - BATTLESTRINGS_TABLE_START] = sText_ItemWasUsedUp,
     [STRINGID_ATTACKERLOSTITSTYPE - BATTLESTRINGS_TABLE_START] = sText_AttackerLostItsType,
     [STRINGID_CLOAKEDINAHARSHLIGHT - BATTLESTRINGS_TABLE_START] = sText_PkmnIsCloakedInAHarshLight,
+    [STRINGID_POKEFLUTECATCHY - BATTLESTRINGS_TABLE_START] = sText_PlayedFluteCatchyTune,
+    [STRINGID_POKEFLUTE - BATTLESTRINGS_TABLE_START] = sText_PlayedThe,
+    [STRINGID_MONHEARINGFLUTEAWOKE - BATTLESTRINGS_TABLE_START] = sText_PkmnHearingFluteAwoke,
 	[STRINGID_SUNLIGHTISHARSH - BATTLESTRINGS_TABLE_START] = sText_SunlightIsHarsh,
     [STRINGID_ITISHAILING - BATTLESTRINGS_TABLE_START] = sText_ItIsHailing,
     [STRINGID_ITISSNOWING - BATTLESTRINGS_TABLE_START] = sText_ItIsSnowing,
