@@ -272,13 +272,13 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
         }
         else
         {
-            for (battlerIndex = 0; battlerIndex < MAX_BATTLERS_COUNT; battlerIndex++)
+            for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
             {
-                if (AI_THINKING_STRUCT->score[battlerIndex] > cap)
+                if (AI_THINKING_STRUCT->score[moveIndex] > cap)
                     break;
             }
 
-            if (battlerIndex == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+            if (moveIndex == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
                 switchOut = TRUE;
         }
     }
