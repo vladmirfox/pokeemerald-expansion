@@ -272,7 +272,7 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
         }
         else
         {
-            for (battlerIndex = 0; battlerIndex < MAX_MON_MOVES; battlerIndex++)
+            for (battlerIndex = 0; battlerIndex < MAX_BATTLERS_COUNT; battlerIndex++)
             {
                 if (AI_THINKING_STRUCT->score[battlerIndex] > cap)
                     break;
