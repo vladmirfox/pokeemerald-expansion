@@ -37,7 +37,7 @@
 #define P_KADABRA_EVERSTONE         GEN_LATEST                 // Since Gen 4, Kadabra can evolve even when holding an Everstone.
 #define P_SHUCKLE_BERRY_JUICE       GEN_LATEST                 // In Gen 2, Shuckle had a 1/16 chance of converting Berry that it's holding into Berry Juice. Enabling this will allow Shuckle to do this with an Oran Berry, which is the spiritual succesor of the Berry item.
 #define P_ARCEUS_UNIQUE_FORM_ICONS  GEN_LATEST                 // Since Gen 9, Arceus additionally changes its icon to reflect its current form.
-#define P_VIVILLON_DEFAULT_FORM     SPECIES_VIVILLON_ICY_SNOW  // Choose the default form for the Vivillon line, basically aligning with the "location" of the player's game. This automatically changes which form the basic SPECIES_VIVILLON, SPECIES_SPEWPA, and SPECIES_SCATTERBUG defines will be, as well as being the form all Vivillon line breeding offspring become.
+#define P_VIVILLON_BREEDING_FORM    SPECIES_VIVILLON_ICY_SNOW  // Choose the form all Vivillon will breed into, basically aligning with the "location" of the player's game.
 
 // Other settings
 #define P_CUSTOM_GENDER_DIFF_ICONS       TRUE        // If TRUE, will give more Pokémon custom icons for their female forms, i.e. Hippopotas and Hippowdon
