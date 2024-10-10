@@ -1483,10 +1483,10 @@ static void AnimShockWaveLightning(struct Sprite *sprite)
     }
 }
 
-// [Explanation of what this task does here]
-// arg 0: 
-// arg 1:
-// arg 2:
+// Copy of Rain Dance's function but displays the ion sprite instead
+// arg 0: initial step
+// arg 1: amount (?)
+// arg 2: duration
 void AnimTask_CreateIons(u8 taskId)
 {
     u8 x, y;
