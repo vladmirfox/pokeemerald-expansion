@@ -242,9 +242,9 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfAllBadMoves(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
 {
-    u32 i, j;
+    u32 battlerIndex, moveIndex;
     bool32 switchOut = FALSE;
 
     // Consider switching if all moves are worthless to use.
@@ -254,31 +254,31 @@ static bool32 ShouldSwitchIfAllBadMoves(u32 battler, bool32 emitResult)
         s32 cap = AI_THINKING_STRUCT->aiFlags[battler] & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
         if (IsDoubleBattle())
         {
-            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            for (battlerIndex = 0; battlerIndex < MAX_BATTLERS_COUNT; battlerIndex++)
             {
-                if (i != battler && IsBattlerAlive(i))
+                if (battlerIndex != battler && IsBattlerAlive(battlerIndex))
                 {
-                    for (j = 0; j < MAX_MON_MOVES; j++)
+                    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
                     {
-                        if (gBattleStruct->aiFinalScore[battler][i][j] > cap)
+                        if (gBattleStruct->aiFinalScore[battler][battlerIndex][moveIndex] > cap)
                             break;
                     }
-                    if (j != MAX_MON_MOVES)
+                    if (moveIndex != MAX_MON_MOVES)
                         break;
                 }
             }
-            if (i == MAX_BATTLERS_COUNT && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+            if (battlerIndex == MAX_BATTLERS_COUNT && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
                 switchOut = TRUE;
         }
         else
         {
-            for (i = 0; i < MAX_MON_MOVES; i++)
+            for (battlerIndex = 0; battlerIndex < MAX_MON_MOVES; battlerIndex++)
             {
-                if (AI_THINKING_STRUCT->score[i] > cap)
+                if (AI_THINKING_STRUCT->score[battlerIndex] > cap)
                     break;
             }
 
-            if (i == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+            if (battlerIndex == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
                 switchOut = TRUE;
         }
     }
@@ -1211,7 +1211,7 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //These Functions can prompt switch to generic pary members
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
-    if (ShouldSwitchIfAllBadMoves(battler, emitResult))
+    if (ShouldSwitchIfAllMovesBad(battler, emitResult))
         return TRUE;
     if (ShouldSwitchIfAbilityBenefit(battler, emitResult))
         return TRUE;
