@@ -25,6 +25,7 @@ TEST("Move names fit on Pokemon Summary Screen")
     {
         PARAMETRIZE_LABEL("%S", gMovesInfo[i].name) { move = i; }
     }
+    //DebugPrintf("Move %d: %S", GetStringWidth(fontId, gMovesInfo[move].name, 0), gMovesInfo[move].name);
     EXPECT_LE(GetStringWidth(fontId, gMovesInfo[move].name, 0), widthPx);
 }
 
@@ -98,6 +99,7 @@ TEST("Item names fit on Bag Screen (list)")
     {
         PARAMETRIZE_LABEL("%S", gItemsInfo[i].name) { item = i; }
     }
+    //DebugPrintf("Item %d: %S", GetStringWidth(fontId, gItemsInfo[item].name, 0), gItemsInfo[item].name);
     if (gItemsInfo[item].pocket == POCKET_TM_HM || gItemsInfo[item].pocket == POCKET_BERRIES)
         EXPECT_LE(GetStringWidth(fontId, gItemsInfo[item].name, 0), tmHmBerryWidthPx);
     else
@@ -583,19 +585,20 @@ TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
     u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_TABLE_START + 300;
+    u32 end = BATTLESTRINGS_TABLE_START + 400;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
 
     s32 sixDigitNines = 999999;
     u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
-    u32 longMoveID = MOVE_STOMPING_TANTRUM;
+    u32 longMoveID = MOVE_NATURES_MADNESS;        // 64 pixels.
     u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP; // 91 pixels.
     u32 longStatName = STAT_EVASION;
     u32 longTypeName = TYPE_ELECTRIC;
     u32 longSpeciesName = SPECIES_SANDY_SHOCKS;   // 47 pixels
-    u32 longItemName = ITEM_UNREMARKABLE_TEACUP;
+    u32 longItemName = ITEM_UNREMARKABLE_TEACUP;  // 73 pixels
+    u8 boxName[9] = _("MMMMMMMM");
 
     NewGameBirchSpeech_SetDefaultPlayerName(10);  // JOHNNY
 
@@ -613,6 +616,10 @@ TEST("Battle strings fit on the battle message window")
     PREPARE_STRING_BUFFER(gBattleTextBuff1, STRINGID_EMPTYSTRING3);
     PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_EMPTYSTRING3);
     PREPARE_STRING_BUFFER(gBattleTextBuff3, STRINGID_EMPTYSTRING3);
+    *gStringVar1 = EOS;
+    *gStringVar2 = EOS;
+    *gStringVar3 = EOS;
+
     gBattlerPositions[0] = B_POSITION_PLAYER_LEFT;
     gBattlerPositions[1] = B_POSITION_OPPONENT_LEFT;
     gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
@@ -623,6 +630,7 @@ TEST("Battle strings fit on the battle message window")
     }
 
     gTrainerBattleOpponent_A = 1;
+    gTrainerBattleOpponent_B = 1;
 
     // Add "The opposing " prefix to all messages.
     gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
@@ -640,7 +648,10 @@ TEST("Battle strings fit on the battle message window")
     switch (battleStringId + BATTLESTRINGS_TABLE_START)
     {
     case STRINGID_TRAINER1LOSETEXT:
-        // Out of current scope: testing all trainer lose messages.
+    case STRINGID_TRAINER2LOSETEXT:
+    case STRINGID_TRAINER1WINTEXT:
+    case STRINGID_TRAINER2WINTEXT:
+        // Out of current scope: testing all trainer messages.
         break;
     case STRINGID_PKMNGAINEDEXP:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
@@ -671,6 +682,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNGOTFREE:
     case STRINGID_PKMNLOSTPPGRUDGE:
     case STRINGID_PKMNSITEMRESTOREDPP:
+    case STRINGID_PKMNSXWOREOFF:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
     case STRINGID_PLAYERGOTMONEY:
@@ -717,7 +729,16 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNCURIOUSABOUTX:
     case STRINGID_PKMNENTHRALLEDBYX:
     case STRINGID_PKMNIGNOREDX:
+    case STRINGID_PREVENTEDFROMWORKING:
+    case STRINGID_PKMNOBTAINEDX:
         PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
+        break;
+    case STRINGID_PKMNOBTAINEDX2:
+        PREPARE_ITEM_BUFFER(gBattleTextBuff2, longItemName);
+        break;
+    case STRINGID_PKMNOBTAINEDXYOBTAINEDZ:
+        PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
+        PREPARE_ITEM_BUFFER(gBattleTextBuff2, longItemName);
         break;
     case STRINGID_PKMNTRACED:
         PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(gBattleTextBuff1, 1, 0);
@@ -725,6 +746,7 @@ TEST("Battle strings fit on the battle message window")
         break;
     case STRINGID_ATTACKERSSTATROSE:
     case STRINGID_DEFENDERSSTATROSE:
+    case STRINGID_USINGITEMSTATOFPKMNROSE:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         StringCopy(gBattleTextBuff2, sText_drastically);
         StringAppend(gBattleTextBuff2, gText_StatRose);
@@ -737,7 +759,16 @@ TEST("Battle strings fit on the battle message window")
         break;
     case STRINGID_PKMNSITEMCUREDPROBLEM:
     case STRINGID_PKMNSXCUREDYPROBLEM:
-        StringCopy(gBattleTextBuff1, gText_Paralysis);
+    case STRINGID_PKMNSXCUREDITSYPROBLEM:
+        StringCopy(gBattleTextBuff1, gText_Confusion);
+        break;
+    case STRINGID_PKMNTRANSFERREDSOMEONESPC:
+    case STRINGID_PKMNTRANSFERREDLANETTESPC:
+    case STRINGID_PKMNBOXSOMEONESPCFULL:
+    case STRINGID_PKMNBOXLANETTESPCFULL:
+        StringCopy(gStringVar1, boxName);
+        StringCopy(gStringVar2, nickname);
+        StringCopy(gStringVar3, boxName);
         break;
     default:
         break;
