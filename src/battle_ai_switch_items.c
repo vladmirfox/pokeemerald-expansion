@@ -1005,13 +1005,13 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
-    //These Functions can prompt switch to specific party members
+    //These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
     if (FindMonThatHitsWonderGuard(battler, emitResult))
         return TRUE;
     if (FindMonThatAbsorbsOpponentsMove(battler, emitResult))
         return TRUE;
 
-    //These Functions can prompt switch to generic pary members
+    //These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
     if (ShouldSwitchIfTrapperInParty(battler, emitResult))
