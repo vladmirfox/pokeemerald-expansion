@@ -470,10 +470,6 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler, bool32 emitResult)
     u8 opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
     u8 opposingBattler = GetBattlerAtPosition(opposingPosition);
     bool32 hasStatRaised = AnyStatIsRaised(battler);
-    s32 firstId;
-    s32 lastId;
-    s32 i;
-    struct Pokemon *party;
 
     //Perish Song
     if (gStatuses3[battler] & STATUS3_PERISH_SONG
