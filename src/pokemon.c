@@ -1711,10 +1711,7 @@ void CreateEnemyEventMon(void)
     CreateEventMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     if (itemId)
     {
-        u8 heldItem[2];
-        heldItem[0] = itemId;
-        heldItem[1] = itemId >> 8;
-        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &itemId);
     }
 }
 
@@ -2862,9 +2859,9 @@ u32 GetBoxMonData2(struct BoxPokemon *boxMon, s32 field)
     return GetBoxMonData3(boxMon, field, NULL);
 }
 
-#define SET8(lhs) (lhs) = *data
-#define SET16(lhs) (lhs) = data[0] + (data[1] << 8)
-#define SET32(lhs) (lhs) = data[0] + (data[1] << 8) + (data[2] << 16) + (data[3] << 24)
+#define SET8(lhs) (lhs) = *(u8 *)dataArg
+#define SET16(lhs) (lhs) = *(u16 *)dataArg
+#define SET32(lhs) (lhs) = *(u32 *)dataArg
 
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
 {
@@ -3062,8 +3059,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_MET_LEVEL:
         {
-            u8 metLevel = *data;
-            substruct3->metLevel = metLevel;
+            SET8(substruct3->metLevel);
             break;
         }
         case MON_DATA_MET_GAME:
@@ -3071,8 +3067,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_POKEBALL:
         {
-            u8 pokeball = *data;
-            substruct0->pokeball = pokeball;
+            SET8(substruct0->pokeball);
             break;
         }
         case MON_DATA_OT_GENDER:
@@ -3162,7 +3157,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_IVS:
         {
-            u32 ivs = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24);
+            u32 ivs;
+            SET32(ivs);
             substruct3->hpIV = ivs & MAX_IV_MASK;
             substruct3->attackIV = (ivs >> 5) & MAX_IV_MASK;
             substruct3->defenseIV = (ivs >> 10) & MAX_IV_MASK;
