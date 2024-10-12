@@ -694,16 +694,22 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_RETURN_TO_FIELD:
         if (!gPaletteFade.active)
         {
-            if (gOriginSummaryScreenPage == PSS_PAGE_BATTLE_MOVES)
+            if (gInitialSummaryScreenCallback != NULL)
             {
-                ShowPokemonSummaryScreen(SUMMARY_MODE_RELEARNER_BATTLE, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
+                switch (gOriginSummaryScreenPage)
+                {
+                case PSS_PAGE_BATTLE_MOVES:
+                    ShowPokemonSummaryScreen(SUMMARY_MODE_RELEARNER_BATTLE, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, gInitialSummaryScreenCallback);
+                    break;
+                case PSS_PAGE_CONTEST_MOVES:
+                    ShowPokemonSummaryScreen(SUMMARY_MODE_RELEARNER_CONTEST, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, gInitialSummaryScreenCallback);
+                    break;
+                default:
+                    ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, gInitialSummaryScreenCallback);
+                    break;
+                }
                 gOriginSummaryScreenPage = 0;
-            } 
-            else if (gOriginSummaryScreenPage == PSS_PAGE_CONTEST_MOVES)
-            {
-                ShowPokemonSummaryScreen(SUMMARY_MODE_RELEARNER_CONTEST, gPlayerParty, sMoveRelearnerStruct->partyMon, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
-                gOriginSummaryScreenPage = 0;
-            } 
+            }
             else
             {
                 SetMainCallback2(CB2_ReturnToField);

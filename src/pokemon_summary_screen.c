@@ -193,6 +193,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
 EWRAM_DATA u8 gLastViewedMonIndex = 0;
 static EWRAM_DATA u8 sMoveSlotToReplace = 0;
 ALIGNED(4) static EWRAM_DATA u8 sAnimDelayTaskId = 0;
+EWRAM_DATA MainCallback gInitialSummaryScreenCallback = NULL; // stores callback from the first time the screen is opened from the party or PC menu
 
 // forward declarations
 static bool8 LoadGraphics(void);
@@ -1165,6 +1166,10 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     sMonSummaryScreen->curMonIndex = monIndex;
     sMonSummaryScreen->maxMonIndex = maxMonIndex;
     sMonSummaryScreen->callback = callback;
+    if (gInitialSummaryScreenCallback == NULL)
+    {
+        gInitialSummaryScreenCallback = callback;
+    }
 
     if (mode == SUMMARY_MODE_BOX)
         sMonSummaryScreen->isBoxMon = TRUE;
@@ -1175,6 +1180,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     {
     case SUMMARY_MODE_NORMAL:
     case SUMMARY_MODE_BOX:
+    case SUMMARY_MODE_BOX_CURSOR:
     case SUMMARY_MODE_RELEARNER_BATTLE:
     case SUMMARY_MODE_RELEARNER_CONTEST:
         sMonSummaryScreen->minPageIndex = 0;
@@ -1631,6 +1637,10 @@ static void CloseSummaryScreen(u8 taskId)
 {
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
+        if (sMonSummaryScreen->callback == gInitialSummaryScreenCallback)
+        {
+            gInitialSummaryScreenCallback = NULL;
+        }
         SetMainCallback2(sMonSummaryScreen->callback);
         gLastViewedMonIndex = sMonSummaryScreen->curMonIndex;
         SummaryScreen_DestroyAnimDelayTask();
@@ -4397,7 +4407,8 @@ static inline bool32 ShouldShowMoveRelearner(void)
 {
     return P_SUMMARY_SCREEN_MOVE_RELEARNER
            && !sMonSummaryScreen->lockMovesFlag
-           && !sMonSummaryScreen->isBoxMon
+           && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
+           && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
            && !InBattleFactory() 
            && !InSlateportBattleTent();
 }
@@ -4407,7 +4418,8 @@ static inline bool32 ShouldShowRename(void)
     return P_SUMMARY_SCREEN_RENAME
            && !sMonSummaryScreen->lockMovesFlag
            && !sMonSummaryScreen->summary.isEgg
-           && !sMonSummaryScreen->isBoxMon
+           && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
+           && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
            && !InBattleFactory() 
            && !InSlateportBattleTent()
            && GetPlayerIDAsU32() == sMonSummaryScreen->summary.OTID;
@@ -4429,7 +4441,7 @@ static void ShowCancelOrRenamePrompt(void)
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void)
 {
     SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
-    ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gPlayerParty, gSpecialVar_0x8004, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
+    ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gPlayerParty, gSpecialVar_0x8004, gPlayerPartyCount - 1, gInitialSummaryScreenCallback);
 }
 
 static void CB2_PssChangePokemonNickname(void)
