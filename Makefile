@@ -92,7 +92,7 @@ TEST_BUILDDIR = $(OBJ_DIR)/$(TEST_SUBDIR)
 ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=1
 
 CC1              = $(shell $(PATH_ARMCC) --print-prog-name=cc1) -quiet
-override CFLAGS += -mthumb -mthumb-interwork -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init
+override CFLAGS += -mthumb -mthumb-interwork -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias -Woverride-init
 
 ifeq ($(ANALYZE),1)
 override CFLAGS += -fanalyzer
@@ -313,6 +313,9 @@ COMPETITIVE_PARTY_SYNTAX := $(shell PATH="$(PATH)"; echo 'COMPETITIVE_PARTY_SYNT
 ifeq ($(COMPETITIVE_PARTY_SYNTAX),1)
 %.h: %.party tools ; $(CPP) $(CPPFLAGS) -traditional-cpp - < $< | $(TRAINERPROC) -o $@ -i $< -
 endif
+
+$(C_BUILDDIR)/m4a.o: CFLAGS += -fno-toplevel-reorder
+$(C_BUILDDIR)/agb_flash.o: CFLAGS += -fno-toplevel-reorder
 
 $(C_BUILDDIR)/berry_crush.o: override CFLAGS += -Wno-address-of-packed-member
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
