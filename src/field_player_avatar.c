@@ -2149,7 +2149,12 @@ static u32 CalculateFishingBiteOdds(u32 rod, bool32 isStickyHold)
     odds -= CalculateFishingFollowerBoost();
 
     if (isStickyHold)
-        odds -= FISHING_STICKY_BOOST;
+    {
+        if (I_FISHING_STICKY_BOOST >= GEN_4)
+            odds -= (100 - odds);
+        else
+            odds -= FISHING_STICKY_BOOST;
+    }
 
     odds -= CalculateFishingProximityBoost(odds);
 
