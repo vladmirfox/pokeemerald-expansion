@@ -727,13 +727,15 @@ static u16 GetFormFromRareFormInfo(struct Sfc32State *state, const struct Random
 static u16 ChooseFormSpecial(struct Sfc32State *state, const u16 baseSpecies)
 {
     switch (baseSpecies) {
-        // These species do entirely ordinary random form selection processes.
+        // These species do almost ordinary ordinary random form selection processes.
         // However, their form tables include forms that shouldn't normally be
         // selected, so they need to have special hard-coded form tables.
         case SPECIES_FLOETTE:
             return RANDOM_FROM_ARRAY(sFloetteFormChoices);
         case SPECIES_TAUROS_PALDEAN_COMBAT_BREED:
             return RANDOM_FROM_ARRAY(sPaldeanTaurosFormChoices);
+        case SPECIES_MINIOR:
+            return RANDOM_FROM_ARRAY(sMiniorFormChoices);
         // These are species, first appearing in Gen 8, that have one common
         // form and one rare form.
         // Note that as Maushold can only appear in raid battles in Gen 9, it
@@ -747,6 +749,8 @@ static u16 ChooseFormSpecial(struct Sfc32State *state, const u16 baseSpecies)
             return RARE_FORM(sSinistchaRareFormInfo);
         case SPECIES_POLTEAGEIST:
             return RARE_FORM(sPolteageistRareFormInfo);
+        case SPECIES_DUDUNSPARCE:
+            return RARE_FORM(sDudunsparceRareFormInfo);
         default:
             return baseSpecies;
     }
