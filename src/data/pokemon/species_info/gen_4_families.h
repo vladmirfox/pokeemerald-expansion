@@ -569,10 +569,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 17,
         .weight = 845,
         .description = COMPOUND_STRING(
-            "The three horns that extend from its beak\n"
-            "attest to its power. It avoids unnecessary\n"
-            "disputes, but it will decimate anything\n"
-            "that threatens its pride."),
+            "The three horns that extend from its\n"
+            "beak attest to its power. It avoids\n"
+            "unnecessary disputes, but it will decimate\n"
+            "anything that threatens its pride."),
         .pokemonScale = 259,
         .pokemonOffset = 0,
         .trainerScale = 290,
@@ -671,6 +671,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Starly,
             gShinyOverworldPalette_Starly
         )
+        OVERWORLD_FEMALE(
+            sPicTable_StarlyF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sStarlyLevelUpLearnset,
         .teachableLearnset = sStarlyTeachableLearnset,
         .eggMoveLearnset = sStarlyEggMoveLearnset,
@@ -737,6 +743,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Staravia,
             gShinyOverworldPalette_Staravia
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_StaraviaF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sStaraviaLevelUpLearnset,
         .teachableLearnset = sStaraviaTeachableLearnset,
@@ -810,6 +822,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Staraptor,
             gShinyOverworldPalette_Staraptor
         )
+        OVERWORLD_FEMALE(
+            sPicTable_StaraptorF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sStaraptorLevelUpLearnset,
         .teachableLearnset = sStaraptorTeachableLearnset,
     },
@@ -877,6 +895,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Bidoof,
             gShinyOverworldPalette_Bidoof
         )
+        OVERWORLD_FEMALE(
+            sPicTable_BidoofF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sBidoofLevelUpLearnset,
         .teachableLearnset = sBidoofTeachableLearnset,
         .eggMoveLearnset = sBidoofEggMoveLearnset,
@@ -941,6 +965,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Bibarel,
             gShinyOverworldPalette_Bibarel
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_BibarelF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sBibarelLevelUpLearnset,
         .teachableLearnset = sBibarelTeachableLearnset,
@@ -1010,6 +1040,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Kricketot,
             gShinyOverworldPalette_Kricketot
         )
+        OVERWORLD_FEMALE(
+            sPicTable_KricketotF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sKricketotLevelUpLearnset,
         .teachableLearnset = sKricketotTeachableLearnset,
@@ -1078,6 +1114,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Kricketune,
             gShinyOverworldPalette_Kricketune
         )
+        OVERWORLD_FEMALE(
+            sPicTable_KricketuneF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sKricketuneLevelUpLearnset,
         .teachableLearnset = sKricketuneTeachableLearnset,
     },
@@ -1145,6 +1187,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Shinx,
             gShinyOverworldPalette_Shinx
         )
+        OVERWORLD_FEMALE(
+            sPicTable_ShinxF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sShinxLevelUpLearnset,
         .teachableLearnset = sShinxTeachableLearnset,
         .eggMoveLearnset = sShinxEggMoveLearnset,
@@ -1211,6 +1259,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Luxio,
             gShinyOverworldPalette_Luxio
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LuxioF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sLuxioLevelUpLearnset,
         .teachableLearnset = sLuxioTeachableLearnset,
@@ -1283,6 +1337,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Luxray,
             gShinyOverworldPalette_Luxray
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LuxrayF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sLuxrayLevelUpLearnset,
         .teachableLearnset = sLuxrayTeachableLearnset,
@@ -1542,7 +1602,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_SHIELDON
 
 #if P_FAMILY_BURMY
-    [SPECIES_BURMY_PLANT_CLOAK] =
+    [SPECIES_BURMY_PLANT] =
     {
         .baseHP        = 40,
         .baseAttack    = 29,
@@ -1605,11 +1665,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sBurmyTeachableLearnset,
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
-        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_PLANT_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_PLANT_CLOAK}),
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_PLANT},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_PLANT}),
     },
 
-    [SPECIES_BURMY_SANDY_CLOAK] =
+    [SPECIES_BURMY_SANDY] =
     {
         .baseHP        = 40,
         .baseAttack    = 29,
@@ -1672,12 +1732,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sBurmyTeachableLearnset,
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
-        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_SANDY_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_SANDY_CLOAK}),
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_SANDY},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_SANDY}),
         .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
-    [SPECIES_BURMY_TRASH_CLOAK] =
+    [SPECIES_BURMY_TRASH] =
     {
         .baseHP        = 40,
         .baseAttack    = 29,
@@ -1740,12 +1800,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sBurmyTeachableLearnset,
         .formSpeciesIdTable = sBurmyFormSpeciesIdTable,
         .formChangeTable = sBurmyFormChangeTable,
-        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_TRASH_CLOAK},
-                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_TRASH_CLOAK}),
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_TRASH},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM_TRASH}),
         .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
-    [SPECIES_WORMADAM_PLANT_CLOAK] =
+    [SPECIES_WORMADAM_PLANT] =
     {
         .baseHP        = 60,
         .baseAttack    = 59,
@@ -1810,7 +1870,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .randomizerMode = MON_RANDOMIZER_RANDOM_FORM,
     },
 
-    [SPECIES_WORMADAM_SANDY_CLOAK] =
+    [SPECIES_WORMADAM_SANDY] =
     {
         .baseHP        = 60,
         .baseAttack    = 79,
@@ -1875,7 +1935,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
-    [SPECIES_WORMADAM_TRASH_CLOAK] =
+    [SPECIES_WORMADAM_TRASH] =
     {
         .baseHP        = 60,
         .baseAttack    = 69,
@@ -1941,7 +2001,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
-#define MOTHIM_SPECIES_INFO(rzInvalid)                                      \
+#define MOTHIM_SPECIES_INFO(rzMode)                                         \
     {                                                                       \
         .baseHP        = 70,                                                \
         .baseAttack    = 94,                                                \
@@ -2000,12 +2060,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sMothimLevelUpLearnset,                          \
         .teachableLearnset = sMothimTeachableLearnset,                      \
         .formSpeciesIdTable = sMothimFormSpeciesIdTable,                    \
-        .randomizerMode = rzInvalid                                         \
+        .randomizerMode = rzMode                                            \
     }
 
-    [SPECIES_MOTHIM_PLANT_CLOAK] = MOTHIM_SPECIES_INFO(MON_RANDOMIZER_RANDOM_FORM),
-    [SPECIES_MOTHIM_SANDY_CLOAK] = MOTHIM_SPECIES_INFO(    MON_RANDOMIZER_INVALID),
-    [SPECIES_MOTHIM_TRASH_CLOAK] = MOTHIM_SPECIES_INFO(    MON_RANDOMIZER_INVALID),
+    [SPECIES_MOTHIM_PLANT] = MOTHIM_SPECIES_INFO(MON_RANDOMIZER_RANDOM_FORM),
+    [SPECIES_MOTHIM_SANDY] = MOTHIM_SPECIES_INFO(    MON_RANDOMIZER_INVALID),
+    [SPECIES_MOTHIM_TRASH] = MOTHIM_SPECIES_INFO(    MON_RANDOMIZER_INVALID),
 #endif //P_FAMILY_BURMY
 
 #if P_FAMILY_COMBEE
@@ -2069,6 +2129,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Combee,
             gShinyOverworldPalette_Combee
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_CombeeF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sCombeeLevelUpLearnset,
@@ -2201,6 +2267,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Pachirisu,
             gShinyOverworldPalette_Pachirisu
         )
+        OVERWORLD_FEMALE(
+            sPicTable_PachirisuF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sPachirisuLevelUpLearnset,
         .teachableLearnset = sPachirisuTeachableLearnset,
         .eggMoveLearnset = sPachirisuEggMoveLearnset,
@@ -2267,6 +2339,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Buizel,
             gShinyOverworldPalette_Buizel
         )
+        OVERWORLD_FEMALE(
+            sPicTable_BuizelF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sBuizelLevelUpLearnset,
         .teachableLearnset = sBuizelTeachableLearnset,
         .eggMoveLearnset = sBuizelEggMoveLearnset,
@@ -2331,6 +2409,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Floatzel,
             gShinyOverworldPalette_Floatzel
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_FloatzelF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sFloatzelLevelUpLearnset,
         .teachableLearnset = sFloatzelTeachableLearnset,
@@ -2525,7 +2609,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
 #endif //P_FAMILY_CHERUBI
 
 #if P_FAMILY_SHELLOS
-    [SPECIES_SHELLOS_WEST_SEA] =
+    [SPECIES_SHELLOS_WEST] =
     {
         .baseHP        = 76,
         .baseAttack    = 48,
@@ -2586,11 +2670,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sShellosTeachableLearnset,
         .eggMoveLearnset = sShellosEggMoveLearnset,
         .formSpeciesIdTable = sShellosFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_WEST_SEA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_WEST}),
         .randomizerMode = MON_RANDOMIZER_RANDOM_FORM,
     },
 
-    [SPECIES_SHELLOS_EAST_SEA] =
+    [SPECIES_SHELLOS_EAST] =
     {
         .baseHP        = 76,
         .baseAttack    = 48,
@@ -2651,11 +2735,11 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sShellosTeachableLearnset,
         .eggMoveLearnset = sShellosEggMoveLearnset,
         .formSpeciesIdTable = sShellosFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST_SEA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST}),
         .randomizerMode = MON_RANDOMIZER_INVALID
     },
 
-    [SPECIES_GASTRODON_WEST_SEA] =
+    [SPECIES_GASTRODON_WEST] =
     {
         .baseHP        = 111,
         .baseAttack    = 83,
@@ -2718,7 +2802,7 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .randomizerMode = MON_RANDOMIZER_RANDOM_FORM,
     },
 
-    [SPECIES_GASTRODON_EAST_SEA] =
+    [SPECIES_GASTRODON_EAST] =
     {
         .baseHP        = 111,
         .baseAttack    = 83,
@@ -3671,6 +3755,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Gible,
             gShinyOverworldPalette_Gible
         )
+        OVERWORLD_FEMALE(
+            sPicTable_GibleF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sGibleLevelUpLearnset,
         .teachableLearnset = sGibleTeachableLearnset,
         .eggMoveLearnset = sGibleEggMoveLearnset,
@@ -3737,6 +3827,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Gabite,
             gShinyOverworldPalette_Gabite
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GabiteF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sGabiteLevelUpLearnset,
         .teachableLearnset = sGabiteTeachableLearnset,
@@ -3807,6 +3903,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Garchomp,
             gShinyOverworldPalette_Garchomp
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GarchompF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sGarchompLevelUpLearnset,
         .teachableLearnset = sGarchompTeachableLearnset,
@@ -4127,6 +4229,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Hippopotas,
             gShinyOverworldPalette_Hippopotas
         )
+        OVERWORLD_FEMALE(
+            sPicTable_HippopotasF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sHippopotasLevelUpLearnset,
         .teachableLearnset = sHippopotasTeachableLearnset,
         .eggMoveLearnset = sHippopotasEggMoveLearnset,
@@ -4195,6 +4303,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Hippowdon,
             gShinyOverworldPalette_Hippowdon
+        )
+        OVERWORLD_PAL_FEMALE(
+            gOverworldPalette_HippowdonF,
+            gShinyOverworldPalette_HippowdonF
         )
         .levelUpLearnset = sHippowdonLevelUpLearnset,
         .teachableLearnset = sHippowdonTeachableLearnset,
@@ -4392,6 +4504,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Croagunk,
             gShinyOverworldPalette_Croagunk
         )
+        OVERWORLD_FEMALE(
+            sPicTable_CroagunkF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sCroagunkLevelUpLearnset,
         .teachableLearnset = sCroagunkTeachableLearnset,
         .eggMoveLearnset = sCroagunkEggMoveLearnset,
@@ -4459,6 +4577,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Toxicroak,
             gShinyOverworldPalette_Toxicroak
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_ToxicroakF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sToxicroakLevelUpLearnset,
         .teachableLearnset = sToxicroakTeachableLearnset,
@@ -4592,6 +4716,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Finneon,
             gShinyOverworldPalette_Finneon
         )
+        OVERWORLD_FEMALE(
+            sPicTable_FinneonF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sFinneonLevelUpLearnset,
         .teachableLearnset = sFinneonTeachableLearnset,
         .eggMoveLearnset = sFinneonEggMoveLearnset,
@@ -4658,6 +4788,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Lumineon,
             gShinyOverworldPalette_Lumineon
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LumineonF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sLumineonLevelUpLearnset,
         .teachableLearnset = sLumineonTeachableLearnset,
@@ -4727,6 +4863,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             gOverworldPalette_Snover,
             gShinyOverworldPalette_Snover
         )
+        OVERWORLD_FEMALE(
+            sPicTable_SnoverF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sSnoverLevelUpLearnset,
         .teachableLearnset = sSnoverTeachableLearnset,
         .eggMoveLearnset = sSnoverEggMoveLearnset,
@@ -4793,6 +4935,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
             TRACKS_FOOT,
             gOverworldPalette_Abomasnow,
             gShinyOverworldPalette_Abomasnow
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_AbomasnowF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sAbomasnowLevelUpLearnset,
         .teachableLearnset = sAbomasnowTeachableLearnset,
@@ -4963,10 +5111,10 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .height = 3,
         .weight = 3,
         .description = COMPOUND_STRING(
-            "If the convection microwave oven is not\n"
-            "working properly, then the Rotom inhabiting\n"
-            "it will become lethargic. It will gleefully\n"
-            "burn your favorite outfit in mischief."),
+            "If the convection microwave oven is\n"
+            "not working properly, then the Rotom\n"
+            "inhabiting it will become lethargic. It\n"
+            "makes mischief by turning up the heat."),
         .pokemonScale = 530,
         .pokemonOffset = 13,
         .trainerScale = 256,

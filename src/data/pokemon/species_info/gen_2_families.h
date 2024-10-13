@@ -198,6 +198,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Meganium,
             gShinyOverworldPalette_Meganium
         )
+        OVERWORLD_FEMALE(
+            sPicTable_MeganiumF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sMeganiumLevelUpLearnset,
         .teachableLearnset = sMeganiumTeachableLearnset,
     },
@@ -328,7 +334,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
-                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
+                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUI}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -403,7 +409,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_TYPHLOSION_HISUIAN] =
+    [SPECIES_TYPHLOSION_HISUI] =
     {
         .baseHP        = 73,
         .baseAttack    = 84,
@@ -986,6 +992,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Ledyba,
             gShinyOverworldPalette_Ledyba
         )
+        OVERWORLD_FEMALE(
+            sPicTable_LedybaF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG
+        )
         .levelUpLearnset = sLedybaLevelUpLearnset,
         .teachableLearnset = sLedybaTeachableLearnset,
         .eggMoveLearnset = sLedybaEggMoveLearnset,
@@ -1053,6 +1065,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Ledian,
             gShinyOverworldPalette_Ledian
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LedianF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sLedianLevelUpLearnset,
         .teachableLearnset = sLedianTeachableLearnset,
@@ -1644,6 +1662,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Xatu,
             gShinyOverworldPalette_Xatu
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_XatuF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sXatuLevelUpLearnset,
         .teachableLearnset = sXatuTeachableLearnset,
@@ -2249,6 +2273,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Sudowoodo,
             gShinyOverworldPalette_Sudowoodo
         )
+        OVERWORLD_FEMALE(
+            sPicTable_SudowoodoF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sSudowoodoLevelUpLearnset,
         .teachableLearnset = sSudowoodoTeachableLearnset,
         .eggMoveLearnset = sSudowoodoEggMoveLearnset,
@@ -2528,6 +2558,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Aipom,
             gShinyOverworldPalette_Aipom
         )
+        OVERWORLD_FEMALE(
+            sPicTable_AipomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sAipomLevelUpLearnset,
         .teachableLearnset = sAipomTeachableLearnset,
         .eggMoveLearnset = sAipomEggMoveLearnset,
@@ -2595,6 +2631,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Ambipom,
             gShinyOverworldPalette_Ambipom
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_AmbipomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sAmbipomLevelUpLearnset,
         .teachableLearnset = sAmbipomTeachableLearnset,
@@ -2930,6 +2972,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Wooper,
             gShinyOverworldPalette_Wooper
         )
+        OVERWORLD_FEMALE(
+            sPicTable_WooperF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
         .eggMoveLearnset = sWooperEggMoveLearnset,
@@ -2998,12 +3046,18 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Quagsire,
             gShinyOverworldPalette_Quagsire
         )
+        OVERWORLD_FEMALE(
+            sPicTable_QuagsireF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sQuagsireLevelUpLearnset,
         .teachableLearnset = sQuagsireTeachableLearnset,
     },
 
 #if P_PALDEAN_FORMS
-    [SPECIES_WOOPER_PALDEAN] =
+    [SPECIES_WOOPER_PALDEA] =
     {
         .baseHP        = 55,
         .baseAttack    = 45,
@@ -3197,6 +3251,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Murkrow,
             gShinyOverworldPalette_Murkrow
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MurkrowF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sMurkrowLevelUpLearnset,
         .teachableLearnset = sMurkrowTeachableLearnset,
@@ -3464,34 +3524,34 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .randomizerMode = rzMode,                                                                               \
     }
 
-    [SPECIES_UNOWN]       = UNOWN_MISC_INFO(A,               FALSE, 24, 40, 24, 48,  8,   MON_RANDOMIZER_NORMAL ),
-    [SPECIES_UNOWN_B]     = UNOWN_MISC_INFO(B,               TRUE,  24, 32, 40, 48,  9,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_C]     = UNOWN_MISC_INFO(C,               TRUE,  32, 32, 48, 56,  6,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_D]     = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_E]     = UNOWN_MISC_INFO(E,               TRUE,  32, 32, 40, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_F]     = UNOWN_MISC_INFO(F,               TRUE,  32, 32, 48, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_G]     = UNOWN_MISC_INFO(G,               TRUE,  24, 40, 40, 56,  5,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_H]     = UNOWN_MISC_INFO(H,               TRUE,  32, 32, 48, 48,  8,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_I]     = UNOWN_MISC_INFO(I,               FALSE, 24, 32, 24, 56,  7,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_J]     = UNOWN_MISC_INFO(J,               TRUE,  24, 32, 32, 48,  9,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_K]     = UNOWN_MISC_INFO(K,               TRUE,  32, 32, 40, 56,  7,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_L]     = UNOWN_MISC_INFO(L,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_M]     = UNOWN_MISC_INFO(M,               FALSE, 32, 32, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_N]     = UNOWN_MISC_INFO(N,               TRUE,  32, 24, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_O]     = UNOWN_MISC_INFO(O,               FALSE, 32, 32, 48, 48,  8,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_P]     = UNOWN_MISC_INFO(P,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_Q]     = UNOWN_MISC_INFO(Q,               TRUE,  32, 24, 40, 40, 15,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_R]     = UNOWN_MISC_INFO(R,               TRUE,  24, 32, 32, 40, 12,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_S]     = UNOWN_MISC_INFO(S,               TRUE,  32, 40, 40, 56,  4,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_T]     = UNOWN_MISC_INFO(T,               FALSE, 24, 32, 32, 40, 13,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_U]     = UNOWN_MISC_INFO(U,               FALSE, 32, 32, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_V]     = UNOWN_MISC_INFO(V,               TRUE,  32, 32, 40, 48, 11,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_W]     = UNOWN_MISC_INFO(W,               FALSE, 32, 32, 40, 40, 13,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_X]     = UNOWN_MISC_INFO(X,               FALSE, 24, 24, 40, 40, 15,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_Y]     = UNOWN_MISC_INFO(Y,               FALSE, 24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_Z]     = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_EMARK] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6,  MON_RANDOMIZER_INVALID ),
-    [SPECIES_UNOWN_QMARK] = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN]             = UNOWN_MISC_INFO(A,               FALSE, 24, 40, 24, 48,  8,   MON_RANDOMIZER_NORMAL ),
+    [SPECIES_UNOWN_B]           = UNOWN_MISC_INFO(B,               TRUE,  24, 32, 40, 48,  9,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_C]           = UNOWN_MISC_INFO(C,               TRUE,  32, 32, 48, 56,  6,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_D]           = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_E]           = UNOWN_MISC_INFO(E,               TRUE,  32, 32, 40, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_F]           = UNOWN_MISC_INFO(F,               TRUE,  32, 32, 48, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_G]           = UNOWN_MISC_INFO(G,               TRUE,  24, 40, 40, 56,  5,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_H]           = UNOWN_MISC_INFO(H,               TRUE,  32, 32, 48, 48,  8,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_I]           = UNOWN_MISC_INFO(I,               FALSE, 24, 32, 24, 56,  7,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_J]           = UNOWN_MISC_INFO(J,               TRUE,  24, 32, 32, 48,  9,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_K]           = UNOWN_MISC_INFO(K,               TRUE,  32, 32, 40, 56,  7,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_L]           = UNOWN_MISC_INFO(L,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_M]           = UNOWN_MISC_INFO(M,               FALSE, 32, 32, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_N]           = UNOWN_MISC_INFO(N,               TRUE,  32, 24, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_O]           = UNOWN_MISC_INFO(O,               FALSE, 32, 32, 48, 48,  8,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_P]           = UNOWN_MISC_INFO(P,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_Q]           = UNOWN_MISC_INFO(Q,               TRUE,  32, 24, 40, 40, 15,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_R]           = UNOWN_MISC_INFO(R,               TRUE,  24, 32, 32, 40, 12,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_S]           = UNOWN_MISC_INFO(S,               TRUE,  32, 40, 40, 56,  4,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_T]           = UNOWN_MISC_INFO(T,               FALSE, 24, 32, 32, 40, 13,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_U]           = UNOWN_MISC_INFO(U,               FALSE, 32, 32, 48, 40, 13,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_V]           = UNOWN_MISC_INFO(V,               TRUE,  32, 32, 40, 48, 11,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_W]           = UNOWN_MISC_INFO(W,               FALSE, 32, 32, 40, 40, 13,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_X]           = UNOWN_MISC_INFO(X,               FALSE, 24, 24, 40, 40, 15,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_Y]           = UNOWN_MISC_INFO(Y,               FALSE, 24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_Z]           = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_EXCLAMATION] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6,  MON_RANDOMIZER_INVALID ),
+    [SPECIES_UNOWN_QUESTION]    = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6,  MON_RANDOMIZER_INVALID ),
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
@@ -3626,6 +3686,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Wobbuffet,
             gShinyOverworldPalette_Wobbuffet
         )
+        OVERWORLD_FEMALE(
+            sPicTable_WobbuffetF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWobbuffetLevelUpLearnset,
         .teachableLearnset = sWobbuffetTeachableLearnset,
@@ -3693,6 +3759,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Girafarig,
             gShinyOverworldPalette_Girafarig
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GirafarigF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sGirafarigLevelUpLearnset,
         .teachableLearnset = sGirafarigTeachableLearnset,
@@ -4053,8 +4125,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .weight = 474,
         .description = COMPOUND_STRING(
             "A recent study uncovered that the\n"
-            "number of segments a\n"
-            "Dudunsparce's body has is determined by the\n"
+            "number of segments a Dudunsparce's\n"
+            "body has is determined by the\n"
             "Pokémon's genes."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
@@ -4153,6 +4225,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_NONE,
             gOverworldPalette_Gligar,
             gShinyOverworldPalette_Gligar
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GligarF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE
         )
         .levelUpLearnset = sGligarLevelUpLearnset,
         .teachableLearnset = sGligarTeachableLearnset,
@@ -4440,7 +4518,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_QWILFISH_HISUIAN] =
+    [SPECIES_QWILFISH_HISUI] =
     {
         .baseHP        = 65,
         .baseAttack    = 95,
@@ -4702,6 +4780,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Heracross,
             gShinyOverworldPalette_Heracross
         )
+        OVERWORLD_FEMALE(
+            sPicTable_HeracrossF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sHeracrossLevelUpLearnset,
         .teachableLearnset = sHeracrossTeachableLearnset,
         .eggMoveLearnset = sHeracrossEggMoveLearnset,
@@ -4834,6 +4918,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Sneasel,
             gShinyOverworldPalette_Sneasel
         )
+        OVERWORLD_FEMALE(
+            sPicTable_SneaselF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sSneaselLevelUpLearnset,
         .teachableLearnset = sSneaselTeachableLearnset,
         .eggMoveLearnset = sSneaselEggMoveLearnset,
@@ -4906,13 +4996,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Weavile,
             gShinyOverworldPalette_Weavile
         )
+        OVERWORLD_FEMALE(
+            sPicTable_WeavileF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sWeavileLevelUpLearnset,
         .teachableLearnset = sWeavileTeachableLearnset,
     },
 #endif //P_GEN_4_CROSS_EVOS
 
 #if P_HISUIAN_FORMS
-    [SPECIES_SNEASEL_HISUIAN] =
+    [SPECIES_SNEASEL_HISUI] =
     {
         .baseHP        = 55,
         .baseAttack    = 95,
@@ -4974,6 +5070,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_SneaselHisuian,
             gShinyOverworldPalette_SneaselHisuian
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_SneaselHisuianF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .isHisuianForm = TRUE,
         .levelUpLearnset = sSneaselHisuianLevelUpLearnset,
@@ -5180,6 +5282,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Ursaring,
             gShinyOverworldPalette_Ursaring
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_UrsaringF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sUrsaringLevelUpLearnset,
         .teachableLearnset = sUrsaringTeachableLearnset,
@@ -5572,6 +5680,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Piloswine,
             gShinyOverworldPalette_Piloswine
         )
+        OVERWORLD_FEMALE(
+            sPicTable_PiloswineF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sPiloswineLevelUpLearnset,
         .teachableLearnset = sPiloswineTeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_MAMOSWINE}),
@@ -5642,6 +5756,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Mamoswine,
             gShinyOverworldPalette_Mamoswine
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MamoswineF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sMamoswineLevelUpLearnset,
         .teachableLearnset = sMamoswineTeachableLearnset,
@@ -5726,7 +5846,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     },
 
 #if P_GALARIAN_FORMS
-    [SPECIES_CORSOLA_GALARIAN] =
+    [SPECIES_CORSOLA_GALAR] =
     {
         .baseHP        = CORSOLA_HP - 5,
         .baseAttack    = 55,
@@ -5988,6 +6108,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_SLITHER,
             gOverworldPalette_Octillery,
             gShinyOverworldPalette_Octillery
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_OctilleryF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER
         )
         .levelUpLearnset = sOctilleryLevelUpLearnset,
         .teachableLearnset = sOctilleryTeachableLearnset,
@@ -6384,6 +6510,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             gOverworldPalette_Houndoom,
             gShinyOverworldPalette_Houndoom
         )
+        OVERWORLD_FEMALE(
+            sPicTable_HoundoomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sHoundoomLevelUpLearnset,
         .teachableLearnset = sHoundoomTeachableLearnset,
         .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,
@@ -6574,6 +6706,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
             TRACKS_FOOT,
             gOverworldPalette_Donphan,
             gShinyOverworldPalette_Donphan
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_DonphanF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
         )
         .levelUpLearnset = sDonphanLevelUpLearnset,
         .teachableLearnset = sDonphanTeachableLearnset,
