@@ -29,8 +29,8 @@
       "direction": "up"
     },
     {
-      "map": "MAP_BELVEDERE_ROUTE",
-      "offset": -3,
+      "map": "MAP_SCENIC_ROUTE",
+      "offset": 0,
       "direction": "left"
     }
   ],

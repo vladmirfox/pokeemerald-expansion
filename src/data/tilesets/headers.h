@@ -1023,3 +1023,14 @@ const struct Tileset gTileset_DojoMaguro =
     .metatileAttributes = gMetatileAttributes_DojoMaguro,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Saberside =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Saberside,
+    .palettes = gTilesetPalettes_Saberside,
+    .metatiles = gMetatiles_Saberside,
+    .metatileAttributes = gMetatileAttributes_Saberside,
+    .callback = NULL,
+};

@@ -113,7 +113,10 @@
     "YifuCity",
     "BelvedereRoute",
     "Soulkeep",
-    "OrchardPath"
+    "OrchardPath",
+    "SeastrollChannel",
+    "ScenicRoute",
+    "NewMap1"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",

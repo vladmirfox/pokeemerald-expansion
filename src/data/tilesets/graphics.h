@@ -1976,3 +1976,22 @@ const u16 gTilesetPalettes_DojoMaguro[][16] =
 };
 
 const u32 gTilesetTiles_DojoMaguro[] = INCBIN_U32("data/tilesets/secondary/dojo_maguro/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_Saberside[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/saberside/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_Saberside[] = INCBIN_U32("data/tilesets/secondary/saberside/tiles.4bpp.lz");
