@@ -1247,3 +1247,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ScenicRoute/scripts.inc"
 
 	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/HarvestShrine/scripts.inc"

@@ -4457,7 +4457,7 @@
       "width": 45,
       "height": 80,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
-      "secondary_tileset": "gTileset_SunriseVillage",
+      "secondary_tileset": "gTileset_SakuKura",
       "border_filepath": "data/layouts/TranquilRoute/border.bin",
       "blockdata_filepath": "data/layouts/TranquilRoute/map.bin"
     },
@@ -4504,7 +4504,7 @@
     {
       "id": "LAYOUT_MAGURO_HARBOR",
       "name": "MaguroHarbor_Layout",
-      "width": 40,
+      "width": 48,
       "height": 34,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Maguro",
@@ -4740,6 +4740,16 @@
       "secondary_tileset": "gTileset_Saberside",
       "border_filepath": "data/layouts/NewMap1/border.bin",
       "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+    },
+    {
+      "id": "LAYOUT_HARVEST_SHRINE",
+      "name": "HarvestShrine_Layout",
+      "width": 21,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_SakuKura",
+      "border_filepath": "data/layouts/HarvestShrine/border.bin",
+      "blockdata_filepath": "data/layouts/HarvestShrine/map.bin"
     }
   ]
 }

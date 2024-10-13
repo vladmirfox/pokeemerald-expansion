@@ -22,7 +22,7 @@
 #define MAPSEC_WINDSWEPT_ROUTE                    0x12
 #define MAPSEC_WHITESLATE_ROUTE                    0x13
 #define MAPSEC_SCENIC_ROUTE                    0x14
-#define MAPSEC_ROUTE_106                    0x15
+#define MAPSEC_HARVEST_SHRINE                    0x15
 #define MAPSEC_ROUTE_107                    0x16
 #define MAPSEC_ROUTE_108                    0x17
 #define MAPSEC_ROUTE_109                    0x18

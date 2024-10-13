@@ -22,6 +22,11 @@
       "map": "MAP_MAGURO_HARBOR",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_HARVEST_SHRINE",
+      "offset": 37,
+      "direction": "up"
     }
   ],
   "object_events": [

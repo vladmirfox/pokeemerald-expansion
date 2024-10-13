@@ -201,11 +201,11 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_106",
-      "name": "ROUTE 106",
+      "map_section": "MAPSEC_HARVEST_SHRINE",
+      "name": "Harvest Shrine",
       "x": 0,
       "y": 13,
-      "width": 2,
+      "width": 1,
       "height": 1
     },
     {
