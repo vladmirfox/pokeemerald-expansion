@@ -2,6 +2,9 @@ const LOCALID_ELDER = 1
 const LOCALID_BALL_ARON = 3
 const LOCALID_BALL_SPHEAL = 4
 const LOCALID_BALL_TRAPINCH = 5
+const LOCALID_ARON = 6
+const LOCALID_SPHEAL = 7
+const LOCALID_TRAPINCH = 8
 const LOCALID_RIVAL = 2
 
 mapscripts SunriseVillage_EldersHouse_MapScripts {
@@ -11,10 +14,19 @@ mapscripts SunriseVillage_EldersHouse_MapScripts {
 	MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: SunriseVillage_EldersHouse_EventScript_DistributionCutscene
     ]
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+		VAR_TEMP_0, 0 {
+			// Hiding the mons inside their ball
+			removeobject(LOCALID_ARON)
+			removeobject(LOCALID_SPHEAL)
+			removeobject(LOCALID_TRAPINCH)
+			clearflag(FLAG_RECEIVED_STARTER)
+		}
+	]
 }
 
 script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
-	lockall
+	lock
 	// Walk up to elder
 	applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_EldersHouse_Movement_PlayerWalkUpToElder)
 	waitmovement(0)
@@ -27,7 +39,8 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"I always have to run after you two! Now stay still for a minute and listen closely!\p"
 		"As you have heard, the woods, and even the roads, are no longer safe.\p"
 		"We don't yet know the reason, but the wild Pokémon that usually hide in the tall grass and live peacefully alongside men have started behaving aggressively.\p"
-		"There are reports of travelers being attacked from several nearby villages. This is all very worrying…"
+		"There are reports of travelers being attacked from several nearby villages.\p"
+		"This is all very worrying…"
 	))
 	closemessage
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderTurnsToThink)
@@ -39,21 +52,86 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 		"This is about to change.\p"
 		"More and more, people will be fighting alongside their own companion.\p"
 		"With a domesticated Pokémon by your side, you'll be able to defend yourselves even when you're on your own.\p"
-		"Without further ado, please choose one of the three creatures in the Pokéballs behind me!"
+		"Without further ado, please carefully choose your new companion!"
 	))
 	closemessage
 
+	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderOpensFirstBall)
+	waitmovement(0)
+	playse(SE_BALL_OPEN)
+	waitse
+	removeobject(LOCALID_BALL_ARON)
+	addobject(LOCALID_ARON)
+	playmoncry(SPECIES_ARON, CRY_MODE_NORMAL)
+	delay(30)
+
+	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderOpensSecondBall)
+	waitmovement(0)
+	playse(SE_BALL_OPEN)
+	waitse
+	removeobject(LOCALID_BALL_SPHEAL)
+	addobject(LOCALID_SPHEAL)
+	playmoncry(SPECIES_SPHEAL, CRY_MODE_NORMAL)
+	delay(30)
+
+	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderOpensThirdBall)
+	waitmovement(0)
+	playse(SE_BALL_OPEN)
+	waitse
+	removeobject(LOCALID_BALL_TRAPINCH)
+	addobject(LOCALID_TRAPINCH)
+	playmoncry(SPECIES_TRAPINCH, CRY_MODE_NORMAL)
+	delay(30)
+
+	clearflag(FLAG_RECEIVED_STARTER)
+
+	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderReturnsToInitialPos)
+	waitmovement(0)
+
+	playse(SE_LEDGE)
+	applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalIsDeslighted)
+	waitmovement(0)
+	speakername("{RIVAL}")
+	msgbox(format("Woah, this is so cool!!"))
+
 	// Rival is nice and lets you pick first
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(0)
 	speakername("{RIVAL}")
 	msgbox(format("C'mon {PLAYER}, pick yours, quick quick!"))
 	closemessage
-	turnobject(LOCALID_RIVAL, DIR_NORTH)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 5)
-	releaseall
+	release
+}
+
+movement SunriseVillage_EldersHouse_Movement_ElderOpensFirstBall {
+	walk_right
+	face_up
+	delay_16
+}
+
+movement SunriseVillage_EldersHouse_Movement_ElderOpensSecondBall {
+	walk_right
+	face_up
+	delay_16
+}
+
+movement SunriseVillage_EldersHouse_Movement_ElderOpensThirdBall {
+	walk_right
+	face_up
+	delay_16
+}
+
+movement SunriseVillage_EldersHouse_Movement_ElderReturnsToInitialPos {
+	walk_left * 3
+	face_down
+}
+
+movement SunriseVillage_EldersHouse_Movement_RivalIsDeslighted {
+	jump_in_place_up
 }
 
 script SunriseVillage_EldersHouse_Event_Rival {
@@ -130,24 +208,24 @@ movement SunriseVillage_EldersHouse_Movement_ElderTurnsToThink {
 }
 
 script SunriseVillage_EldersHouse_Event_Pokeball_Starter_Trapinch {
-	lockall
+	lock
 	setvar(VAR_TEMP_1, SPECIES_TRAPINCH)
 	call(SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter)
-	releaseall
+	release
 }
 
 script SunriseVillage_EldersHouse_Event_Pokeball_Starter_Aron {
-	lockall
+	lock
 	setvar(VAR_TEMP_1, SPECIES_ARON)
 	call(SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter)
-	releaseall
+	release
 }
 
 script SunriseVillage_EldersHouse_Event_Pokeball_Starter_Spheal {
-	lockall
+	lock
 	setvar(VAR_TEMP_1, SPECIES_SPHEAL)
 	call(SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter)
-	releaseall
+	release
 }
 
 script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
@@ -158,6 +236,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		closemessage
 		return
 	}
+	playmoncry(VAR_TEMP_1, CRY_MODE_NORMAL)
 	showmonpic(VAR_TEMP_1, 10, 3)
 	bufferspeciesname(STR_VAR_1, VAR_TEMP_1)
 	switch(var(VAR_TEMP_1)) {
@@ -191,12 +270,15 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		switch(var(VAR_TEMP_1)) {
 			case SPECIES_SPHEAL:
 				setvar(VAR_STARTER_MON, SPECIES_SPHEAL)
-				removeobject(LOCALID_BALL_SPHEAL)	
+				removeobject(LOCALID_SPHEAL)
+				removeobject(LOCALID_BALL_SPHEAL)
 			case SPECIES_ARON:
-				removeobject(LOCALID_BALL_ARON)	
+				removeobject(LOCALID_ARON)
+				removeobject(LOCALID_BALL_ARON)
 				setvar(VAR_STARTER_MON, SPECIES_ARON)
 			case SPECIES_TRAPINCH:
-				removeobject(LOCALID_BALL_TRAPINCH)	
+				removeobject(LOCALID_TRAPINCH)
+				removeobject(LOCALID_BALL_TRAPINCH)
 				setvar(VAR_STARTER_MON, SPECIES_TRAPINCH)
 		}
 
@@ -258,18 +340,21 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		case SPECIES_SPHEAL:
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkUpToAron)
 			waitmovement(0)
+			removeobject(LOCALID_ARON)
 			removeobject(LOCALID_BALL_ARON)
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromAron)
 			waitmovement(0)
 		case SPECIES_ARON:
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkUpToTrapinch)
 			waitmovement(0)
+			removeobject(LOCALID_TRAPINCH)
 			removeobject(LOCALID_BALL_TRAPINCH)
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromTrapinch)
 			waitmovement(0)
 		case SPECIES_TRAPINCH:
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkUpToSpheal)
 			waitmovement(0)
+			removeobject(LOCALID_SPHEAL)
 			removeobject(LOCALID_BALL_SPHEAL)
 			applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalWalkAwayFromSpheal)
 			waitmovement(0)
@@ -412,13 +497,13 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 	waitmovement(LOCALID_RIVAL)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	removeobject(LOCALID_RIVAL)
-	playse(SE_DOOR)
+	playse(SE_EXIT)
 	waitse
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay16)
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 7)
 
-	releaseall
+	release
 }
 
 movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToSpheal {

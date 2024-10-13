@@ -3,7 +3,7 @@
   "name": "HarvestShrine",
   "layout": "LAYOUT_HARVEST_SHRINE",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_ROUTE_106",
+  "region_map_section": "MAPSEC_HARVEST_SHRINE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",

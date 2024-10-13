@@ -61,9 +61,7 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	))
 	closemessage
 
-	applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
-	waitmovement(0)
-
+	delay(48)
 	// They face each other
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
@@ -104,6 +102,64 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	}
 	closemessage
 
+	delay(48)
+
+	// Volcano quake!
+	setvar(VAR_0x8004, 1)  // vertical pan
+	setvar(VAR_0x8005, 1)  // horizontal pan
+	setvar(VAR_0x8006, 20)  // num shakes
+	setvar(VAR_0x8007, 5)  // shake delay
+	special(ShakeCamera)
+	delay(16)
+	playse(SE_PIN)
+	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSurprisedByQuake)
+	delay(16)
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, SunriseVillage_Beach_Movement_PlayerSurprisedByQuake)
+	waitstate
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+	waitmovement(LOCALID_RIVAL)
+	delay(48)
+
+	// They face each other
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
+	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
+	waitmovement(0)
+
+	speakername("{RIVAL}")
+	msgbox(format(
+		"You alright, {PLAYER}?"
+	))
+
+	dynmultichoice(
+		16,
+		6,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"What was that?!",
+		"Fine and dandy!"
+	)
+
+	switch (var(VAR_RESULT)) {
+		case 0:
+			msgbox(format(
+				"The volcano's acting up again!\p"
+				"Whew, the quake was bigger this time…\p"
+				"… … …"
+			))
+		case 1:
+			msgbox(format(
+				"Whew! Volcano's acting up again, huh…\p"
+				"The quake was bigger this time…\p"
+				"… … …"
+			))
+	}
+	closemessage
+
+	delay(48)
+
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalSeesDistribution)
 	waitmovement(0)
 
@@ -114,6 +170,7 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	))
 	closemessage
 
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	// Rival runs towards the village
 	applymovement(LOCALID_RIVAL, SunriseVillage_Beach_Movement_RivalRaces)
 	waitmovement(0)
@@ -126,6 +183,38 @@ script SunriseVillage_Beach_EventScript_RivalSpeech {
 	removeobject(LOCALID_RIVAL)
     release
     end
+}
+
+movement SunriseVillage_Beach_Movement_PlayerSurprisedByQuake {
+	emote_exclamation_mark
+	delay_16
+	face_right
+	delay_16
+	face_up
+	delay_16
+	face_right
+	delay_16
+	face_down
+	delay_16
+	face_left
+	delay_16
+	face_up
+}
+
+movement SunriseVillage_Beach_Movement_RivalSurprisedByQuake {
+	emote_exclamation_mark
+	delay_16
+	face_down
+	delay_16
+	face_up
+	delay_16
+	face_left
+	delay_16
+	face_right
+	delay_16
+	face_up
+	delay_16
+	face_down
 }
 
 // Corsola
