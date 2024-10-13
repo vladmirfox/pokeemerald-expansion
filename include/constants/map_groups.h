@@ -80,6 +80,9 @@
 #define MAP_BELVEDERE_ROUTE                       (71 | (0 << 8))
 #define MAP_SOULKEEP                              (72 | (0 << 8))
 #define MAP_ORCHARD_PATH                          (73 | (0 << 8))
+#define MAP_SEASTROLL_CHANNEL                     (74 | (0 << 8))
+#define MAP_SCENIC_ROUTE                          (75 | (0 << 8))
+#define MAP_NEW_MAP1                              (76 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))

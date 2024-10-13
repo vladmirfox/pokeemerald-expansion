@@ -1241,3 +1241,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SilverTunnel_1F/scripts.inc"
 
 	.include "data/maps/SilverTunnel_2F/scripts.inc"
+
+	.include "data/maps/SeastrollChannel/scripts.inc"
+
+	.include "data/maps/ScenicRoute/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"

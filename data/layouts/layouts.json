@@ -4710,6 +4710,36 @@
       "secondary_tileset": "gTileset_SilverTunnel",
       "border_filepath": "data/layouts/SilverTunnel_2F/border.bin",
       "blockdata_filepath": "data/layouts/SilverTunnel_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEASTROLL_CHANNEL",
+      "name": "SeastrollChannel_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Yifu",
+      "border_filepath": "data/layouts/SeastrollChannel/border.bin",
+      "blockdata_filepath": "data/layouts/SeastrollChannel/map.bin"
+    },
+    {
+      "id": "LAYOUT_SCENIC_ROUTE",
+      "name": "ScenicRoute_Layout",
+      "width": 40,
+      "height": 20,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Silveridge",
+      "border_filepath": "data/layouts/ScenicRoute/border.bin",
+      "blockdata_filepath": "data/layouts/ScenicRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP1",
+      "name": "NewMap1_Layout",
+      "width": 30,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Saberside",
+      "border_filepath": "data/layouts/NewMap1/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap1/map.bin"
     }
   ]
 }
