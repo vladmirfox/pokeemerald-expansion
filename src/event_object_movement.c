@@ -203,7 +203,6 @@ static const struct ObjectEventGraphicsInfo *SpeciesToGraphicsInfo(u16 species, 
 static bool8 NpcTakeStep(struct Sprite *);
 static bool8 IsElevationMismatchAt(u8, s16, s16);
 static bool8 AreElevationsCompatible(u8, u8);
-static u16 PackGraphicsId(const struct ObjectEventTemplate *template);
 static void CopyObjectGraphicsInfoToSpriteTemplate_WithMovementType(u16 graphicsId, u16 movementType, struct SpriteTemplate *spriteTemplate, const struct SubspriteTable **subspriteTables);
 
 static const struct SpriteFrameImage sPicTable_PechaBerryTree[];
@@ -1404,7 +1403,7 @@ static u8 InitObjectEventStateFromTemplate(const struct ObjectEventTemplate *tem
     y = template->y + MAP_OFFSET;
     objectEvent->active = TRUE;
     objectEvent->triggerGroundEffectsOnMove = TRUE;
-    objectEvent->graphicsId = PackGraphicsId(template);
+    objectEvent->graphicsId = template->graphicsId;
     SetObjectEventDynamicGraphicsId(objectEvent);
     if (IS_OW_MON_OBJ(objectEvent))
     {
@@ -1722,34 +1721,10 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     return objectEventId;
 }
 
-// Pack pokemon form info into a graphicsId, from a template's script
-static u16 PackGraphicsId(const struct ObjectEventTemplate *template)
-{
-    u16 graphicsId = template->graphicsId;
-    u32 form = 0;
-    // set form based on template's script,
-    // if first command is bufferspeciesname
-    if (IS_OW_MON_OBJ(template))
-    {
-        if (template->script && template->script[0] == 0x7d)
-        {
-            form = T1_READ_16(&template->script[2]);
-            //form = (form >> 10) & 0x1F;
-            form = (form >> OBJ_EVENT_GFX_SPECIES_BITS) & 0xf;
-        }
-        else if (template->trainerRange_berryTreeId)
-        {
-            form = template->trainerRange_berryTreeId & 0x1F;
-        }
-        graphicsId |= form << OBJ_EVENT_GFX_SPECIES_BITS;
-    }
-    return graphicsId;
-}
-
 static u8 TrySpawnObjectEventTemplate(const struct ObjectEventTemplate *objectEventTemplate, u8 mapNum, u8 mapGroup, s16 cameraX, s16 cameraY)
 {
     u8 objectEventId;
-    u16 graphicsId = PackGraphicsId(objectEventTemplate);
+    u16 graphicsId = objectEventTemplate->graphicsId;
     struct SpriteTemplate spriteTemplate;
     struct SpriteFrameImage spriteFrameImage;
     const struct ObjectEventGraphicsInfo *graphicsInfo;
