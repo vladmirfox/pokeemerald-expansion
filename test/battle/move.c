@@ -223,7 +223,7 @@ SINGLE_BATTLE_TEST("Critical hits ignore negative stat stages", s16 damage)
     }
 }
 
-DOUBLE_BATTLE_TEST("Move fails if it targets partner but it faints before the move could have been used")
+DOUBLE_BATTLE_TEST("Moves fail if they target the partner but they faint before the move could have been used")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -238,9 +238,24 @@ DOUBLE_BATTLE_TEST("Move fails if it targets partner but it faints before the mo
     }
 }
 
-DOUBLE_BATTLE_TEST("Move fails if it targets into a pokemon that was fainted by the previous move")
+DOUBLE_BATTLE_TEST("Moves do not fail if an alive partner is the target")
 {
     GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_TACKLE, target: playerRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Moves fail if they target into a pokemon that was fainted by the previous move")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_HYPER_VOICE].target == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
@@ -257,5 +272,21 @@ DOUBLE_BATTLE_TEST("Move fails if it targets into a pokemon that was fainted by 
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Moves that target the field are not going to fail if one mon fainted by the previous move")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerRight); MOVE(playerLeft, MOVE_SURF); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, playerLeft);
     }
 }

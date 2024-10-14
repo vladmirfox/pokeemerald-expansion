@@ -373,9 +373,13 @@ void HandleAction_UseMove(void)
 
     if ((GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
      && (!IsBattlerAlive(gBattlerTarget) || gProtectStructs[BATTLE_PARTNER(gBattlerAttacker)].usedAllySwitch))
+    {
         gBattlescriptCurrInstr = BattleScript_FailedFromAtkCanceler;
+    }
     else
+    {
         gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
+    }
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_AddMindPoints(gBattlerAttacker);
