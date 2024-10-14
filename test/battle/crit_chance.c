@@ -1,11 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-    ASSUME(B_CRIT_CHANCE >= GEN_7);
-}
-
 SINGLE_BATTLE_TEST("Crit Chance: Side effected by Lucky Chant blocks critical hits")
 {
     GIVEN {
