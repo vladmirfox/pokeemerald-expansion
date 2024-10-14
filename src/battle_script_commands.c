@@ -1899,7 +1899,7 @@ static const u32 sGen7CriticalHitOdds[] = {24, 8, 2, 1, 1};
 static const u32 sGen6CriticalHitOdds[] = {16, 8, 2, 1, 1};
 static const u32 sCriticalHitOdds[]     = {16, 8, 4, 3, 2}; // Gens 2,3,4,5
 
-static inline u32 GetCritHitOdds(u32 critChance)
+static inline u32 GetCriticalHitOdds(u32 critChance)
 {
     if (B_CRIT_CHANCE >= GEN_7)
         return sGen7CriticalHitOdds[critChance];
@@ -1957,7 +1957,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
         {
             if (critChance == -2)
                 RecordAbilityBattle(battlerDef, abilityDef);
-            else if (GetCritHitOdds(critChance) == 1)
+            else if (GetCriticalHitOdds(critChance) == 1)
                 RecordAbilityBattle(battlerDef, abilityDef);
         }
         critChance = -1;
@@ -2052,7 +2052,7 @@ s32 GetCritHitOdds(s32 critChanceIndex)
     if (critChanceIndex < 0)
         return -1;
     else
-        return GetCritHitOdds(critChanceIndex);
+        return GetCriticalHitOdds(critChanceIndex);
 }
 
 static void Cmd_critcalc(void)
@@ -2086,7 +2086,7 @@ static void Cmd_critcalc(void)
                 gIsCriticalHit = 0;
         }
         else
-            gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, GetCritHitOdds(critChance));
+            gIsCriticalHit = RandomChance(RNG_CRITICAL_HIT, 1, GetCriticalHitOdds(critChance));
     }
 
     // Counter for EVO_CRITICAL_HITS.
