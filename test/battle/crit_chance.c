@@ -148,6 +148,7 @@ SINGLE_BATTLE_TEST("Crit Chance: High crit rate increases the critical hit ratio
 {
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
+        ASSUME(B_CRIT_CHANCE >= GEN_7);
         ASSUME(gMovesInfo[MOVE_SLASH].criticalHitStage == 1);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -163,6 +164,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Super Luck increases the critical hit ratio by 
 {
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
+        ASSUME(B_CRIT_CHANCE >= GEN_7);
         PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SUPER_LUCK); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -177,6 +179,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Scope Lens increases the critical hit ratio by 
 {
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
+        ASSUME(B_CRIT_CHANCE >= GEN_7);
         ASSUME(gItemsInfo[ITEM_SCOPE_LENS].holdEffect == HOLD_EFFECT_SCOPE_LENS);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SCOPE_LENS); };
         OPPONENT(SPECIES_WOBBUFFET);

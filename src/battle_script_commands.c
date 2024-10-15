@@ -1909,12 +1909,17 @@ static inline u32 GetCriticalHitOdds(u32 critChance)
     return sCriticalHitOdds[critChance];
 }
 
-static inline bool32 BattlerAffectedByLeek(u32 battler, u32 holdEffect)
+static inline bool32 IsCritChanceAffectedByHoldEffect(u32 battler, u32 holdEffect)
 {
-    if (holdEffect == HOLD_EFFECT_LEEK)
+    switch (holdEffect)
     {
+    case HOLD_EFFECT_LEEK:
         return GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_FARFETCHD
             || gBattleMons[battler].species == SPECIES_SIRFETCHD;
+    case HOLD_EFFECT_LUCKY_PUNCH:
+        return gBattleMons[battler].species == SPECIES_CHANSEY;
+    default:
+        return FALSE;
     }
 
     return FALSE;
@@ -1940,8 +1945,8 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
                     + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + gMovesInfo[move].criticalHitStage
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-                    + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
-                    + 2 * BattlerAffectedByLeek(battlerAtk, holdEffectAtk)
+                    + 2 * IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk)
+                    + 2 * IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk)
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + (abilityAtk == ABILITY_SUPER_LUCK)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
@@ -2017,7 +2022,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
         critChance = critChance * luckyPunchScaler;
 
-    if (BattlerAffectedByLeek(battlerAtk, holdEffectAtk))
+    if (IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk))
         critChance = critChance * farfetchedLeekScaler;
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
