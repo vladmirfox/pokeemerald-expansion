@@ -700,7 +700,7 @@ static const u8 sText_BelchCantUse[] = _("{B_ATK_NAME_WITH_PREFIX} hasn't eaten\
 static const u8 sText_SpectralThiefSteal[] = _("{B_ATK_NAME_WITH_PREFIX} stole the target's\nboosted stats!");
 static const u8 sText_GravityGrounding[] = _("{B_DEF_NAME_WITH_PREFIX} fell from the sky\ndue to the gravity!");
 static const u8 sText_MistyTerrainPreventsStatus[] = _("{B_DEF_NAME_WITH_PREFIX} surrounds itself\nwith a protective mist!");
-static const u8 sText_GrassyTerrainHeals[] = _("{B_ATK_NAME_WITH_PREFIX} is healed\nby the grassy terrain!");
+static const u8 sText_GrassyTerrainHeals[] = _("{B_ATK_NAME_WITH_PREFIX} is healed by the grassy terrain!");
 static const u8 sText_ElectricTerrainPreventsSleep[] = _("{B_DEF_NAME_WITH_PREFIX} surrounds itself\nwith electrified terrain!");
 static const u8 sText_PsychicTerrainPreventsPriority[] = _("{B_DEF_NAME_WITH_PREFIX} surrounds itself\nwith psychic terrain!");
 static const u8 sText_SafetyGogglesProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is not affected\nthanks to its {B_LAST_ITEM}!");
@@ -3092,7 +3092,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
 
 u32 BattleStringExpandPlaceholdersToDisplayedString(const u8 *src)
 {
-    return BattleStringExpandPlaceholders(src, gDisplayedStringBattle);
+    return BattleStringExpandPlaceholders(src, gDisplayedStringBattle, sizeof(gDisplayedStringBattle));
 }
 
 static const u8 *TryGetStatusString(u8 *src)
@@ -3313,22 +3313,53 @@ static const u8 *BattleStringGetOpponentClassByTrainerId(u16 trainerId)
 // This ensures that custom Enigma Berry names will fit in the text buffer at the top of BattleStringExpandPlaceholders.
 STATIC_ASSERT(BERRY_NAME_LENGTH + ARRAY_COUNT(sText_BerrySuffix) <= ITEM_NAME_LENGTH, BerryNameTooLong);
 
-u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
+u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 {
     u32 dstID = 0; // if they used dstID, why not use srcID as well?
     const u8 *toCpy = NULL;
+    u32 lastValidSkip = 0;
+    u32 lastLineBreakID = 0;
+    u32 toCpyWidth = 0;
+    u32 dstWidth = 0;
     // This buffer may hold either the name of a trainer, Pokémon, or item.
     u8 text[max(max(max(32, TRAINER_NAME_LENGTH + 1), POKEMON_NAME_LENGTH + 1), ITEM_NAME_LENGTH)];
     u8 multiplayerId;
+    u32 strWidth = 0;
+    u8 fontId = FONT_NORMAL;
+    s16 letterSpacing = 0;
+    u32 lineNum = 1;
 
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK)
         multiplayerId = gRecordedBattleMultiplayerId;
     else
         multiplayerId = GetMultiplayerId();
 
+    // Clear destination first
+    while (dstID < dstSize)
+    {
+        dst[dstID] = EOS;
+        dstID++;
+    }
+
+    dstID = 0;
+    DebugPrintf("BEGIN:    src:\"%S\"", src);
     while (*src != EOS)
     {
         toCpy = NULL;
+        dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum);
+        DebugPrintf("    line:%d, dstWidth:%d, strWidth:%d, checkWidth:%d, lastLB:%d, lastSkip:%d, \"%S\"", lineNum, dstWidth, strWidth, dstWidth - strWidth, lastLineBreakID, lastValidSkip, dst);
+        switch (*src)
+        {
+        case CHAR_NEWLINE:
+        case CHAR_PROMPT_SCROLL:
+        case CHAR_PROMPT_CLEAR:
+            lastLineBreakID = dstID;
+            //fallthrough
+        case CHAR_SPACE:
+            lastValidSkip = dstID;
+            break;
+        }
+
         if (*src == PLACEHOLDER_BEGIN)
         {
             src++;
@@ -3719,6 +3750,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
 
             if (toCpy != NULL)
             {
+                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, lineNum);
+                DebugPrintf("  toCpy width:%d, \"%S\"", toCpyWidth, toCpy);
                 while (*toCpy != EOS)
                 {
                     dst[dstID] = *toCpy;
@@ -3739,6 +3772,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
         else
         {
             dst[dstID] = *src;
+            if (dstWidth > BATTLE_MSG_MAX_WIDTH)
+            {
+                dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
+                lineNum++;
+                dstWidth = 0;
+            }
             dstID++;
         }
         src++;

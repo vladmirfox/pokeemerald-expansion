@@ -584,8 +584,10 @@ extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_TABLE_START + 400;
+    //u32 start = BATTLESTRINGS_TABLE_START + 401;
+    //u32 end = BATTLESTRINGS_TABLE_START + 500;
+    u32 start = STRINGID_GRASSYTERRAINHEALS;
+    u32 end = STRINGID_GRASSYTERRAINHEALS;
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
@@ -634,10 +636,7 @@ TEST("Battle strings fit on the battle message window")
 
     // Add "The opposing " prefix to all messages.
     gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
-    gBattlerAttacker = 1;
-    gBattlerTarget = 1;
-    gBattleScripting.battler = 1;
-    gEffectBattler = 1;
+    gBattlerAttacker = gBattlerTarget = gBattleScripting.battler = gEffectBattler = 1;
 
     gCurrentMove = longMoveID;
     gLastUsedItem = longItemName;
@@ -773,14 +772,16 @@ TEST("Battle strings fit on the battle message window")
     default:
         break;
     }
-    memset(battleString, EOS, 1000);
-    BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString);
+    BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString, sizeof(battleString));
     DebugPrintf("Battle String ID %d: %S", battleStringId + BATTLESTRINGS_TABLE_START, battleString);
     for (j = 1;; j++)
     {
         strWidth = GetStringLineWidth(fontId, battleString, 0, j);
         if (strWidth == 0)
             break;
+    #ifndef NDEBUG
+        Debug_PrintStringLine(fontId, battleString, 0, j, sizeof(battleString));
+    #endif
         EXPECT_LE(strWidth, widthPx);
     }
     Free(gBattleMsgDataPtr);

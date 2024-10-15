@@ -9,6 +9,7 @@
                                 max(MOVE_NAME_LENGTH + 2, /* +2 to hold the "!" and EOS. */ \
                                 max(POKEMON_NAME_LENGTH + 1, \
                                     ABILITY_NAME_LENGTH + 1)))
+#define BATTLE_MSG_MAX_WIDTH    208
 
 // for 0xFD
 #define B_TXT_BUFF1 0x0
@@ -257,7 +258,7 @@ enum
 
 void BufferStringBattle(u16 stringID, u32 battler);
 u32 BattleStringExpandPlaceholdersToDisplayedString(const u8 *src);
-u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst);
+u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize);
 void BattlePutTextOnWindow(const u8 *text, u8 windowId);
 void SetPpNumbersPaletteInMoveSelection(u32 battler);
 u8 GetCurrentPpToMaxPpState(u8 currentPp, u8 maxPp);
