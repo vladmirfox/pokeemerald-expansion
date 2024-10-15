@@ -1956,11 +1956,10 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     }
     else
     {
-        u32 getHoldEffectCritChanceIncrease = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, FALSE);
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
+                    + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + gMovesInfo[move].criticalHitStage
-                    + getHoldEffectCritChanceIncrease
+                    + GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, FALSE)
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + (abilityAtk == ABILITY_SUPER_LUCK)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
@@ -2008,7 +2007,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     u32 superLuckScaler = 4;
     u32 scopeLensScaler = 4;
     u32 luckyPunchScaler = 8;
-    u32 farfetchedLeekScaler = 0;
+    u32 farfetchedLeekScaler = 8;
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
@@ -2036,8 +2035,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
         critChance = critChance * luckyPunchScaler;
 
-    farfetchedLeekScaler = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, TRUE);
-    if (farfetchedLeekScaler)
+    if (GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, TRUE) == farfetchedLeekScaler)
         critChance = critChance * farfetchedLeekScaler;
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
