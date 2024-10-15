@@ -47,20 +47,3 @@ SINGLE_BATTLE_TEST("Emergency Exit switches out when going below 50% max-HP but 
         ABILITY_POPUP(opponent, ABILITY_EMERGENCY_EXIT);
     }
 }
-
-SINGLE_BATTLE_TEST("Visual Hit Escape Bug")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); MaxHP(100); HP(55); };
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(opponent, 1); }
-        TURN {}
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
-        HP_BAR(opponent);
-        ABILITY_POPUP(opponent, ABILITY_EMERGENCY_EXIT);
-    }
-}

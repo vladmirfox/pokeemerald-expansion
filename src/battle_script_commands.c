@@ -1909,20 +1909,35 @@ static inline u32 GetCriticalHitOdds(u32 critChance)
     return sCriticalHitOdds[critChance];
 }
 
-static inline bool32 IsCritChanceAffectedByHoldEffect(u32 battler, u32 holdEffect)
+static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect, u32 checkGenOneCritChance)
 {
+    u32 critStageIncrease = 0;
+
     switch (holdEffect)
     {
-    case HOLD_EFFECT_LEEK:
-        return GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_FARFETCHD
-            || gBattleMons[battler].species == SPECIES_SIRFETCHD;
+    case HOLD_EFFECT_SCOPE_LENS:
+        critStageIncrease = 1;
+        break;
     case HOLD_EFFECT_LUCKY_PUNCH:
-        return gBattleMons[battler].species == SPECIES_CHANSEY;
+        if (gBattleMons[battler].species == SPECIES_CHANSEY)
+            critStageIncrease = 2;
+        break;
+    case HOLD_EFFECT_LEEK:
+        if (GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_FARFETCHD
+         || gBattleMons[battler].species == SPECIES_SIRFETCHD)
+        {
+            if (checkGenOneCritChance)
+                critStageIncrease = 8;
+            else
+                critStageIncrease = 2;
+        }
+        break;
     default:
-        return FALSE;
+        critStageIncrease = 0;
+        break;
     }
 
-    return FALSE;
+    return critStageIncrease;
 }
 
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
@@ -1941,12 +1956,11 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     }
     else
     {
+        u32 getHoldEffectCritChanceIncrease = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, FALSE);
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
+                    + ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + gMovesInfo[move].criticalHitStage
-                    + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-                    + 2 * IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk)
-                    + 2 * IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk)
+                    + getHoldEffectCritChanceIncrease
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + (abilityAtk == ABILITY_SUPER_LUCK)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
@@ -1994,7 +2008,7 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     u32 superLuckScaler = 4;
     u32 scopeLensScaler = 4;
     u32 luckyPunchScaler = 8;
-    u32 farfetchedLeekScaler = 8;
+    u32 farfetchedLeekScaler = 0;
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
@@ -2022,7 +2036,8 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
         critChance = critChance * luckyPunchScaler;
 
-    if (IsCritChanceAffectedByHoldEffect(battlerAtk, holdEffectAtk))
+    farfetchedLeekScaler = GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, TRUE);
+    if (farfetchedLeekScaler)
         critChance = critChance * farfetchedLeekScaler;
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
