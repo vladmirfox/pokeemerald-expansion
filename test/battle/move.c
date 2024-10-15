@@ -271,7 +271,7 @@ DOUBLE_BATTLE_TEST("Moves fail if they target into a pokemon that was fainted by
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
     }
 }
 
