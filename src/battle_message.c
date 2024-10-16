@@ -3348,17 +3348,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         toCpy = NULL;
         dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum);
         DebugPrintf("    line:%d, dstWidth:%d, strWidth:%d, checkWidth:%d, lastLB:%d, lastSkip:%d, \"%S\"", lineNum, dstWidth, strWidth, dstWidth - strWidth, lastLineBreakID, lastValidSkip, dst);
-        switch (*src)
-        {
-        case CHAR_NEWLINE:
-        case CHAR_PROMPT_SCROLL:
-        case CHAR_PROMPT_CLEAR:
-            lastLineBreakID = dstID;
-            //fallthrough
-        case CHAR_SPACE:
-            lastValidSkip = dstID;
-            break;
-        }
 
         if (*src == PLACEHOLDER_BEGIN)
         {
@@ -3752,6 +3741,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
             {
                 toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, lineNum);
                 DebugPrintf("  toCpy width:%d, \"%S\"", toCpyWidth, toCpy);
+                if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
+                {
+                    dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
+                    dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum);
+                    lineNum++;
+                }
                 while (*toCpy != EOS)
                 {
                     dst[dstID] = *toCpy;
@@ -3777,6 +3772,19 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
                 lineNum++;
                 dstWidth = 0;
+            }
+            switch (*src)
+            {
+            case CHAR_NEWLINE:
+            case CHAR_PROMPT_SCROLL:
+            case CHAR_PROMPT_CLEAR:
+                lastLineBreakID = dstID;
+                lineNum++;
+                dstWidth = 0;
+                //fallthrough
+            case CHAR_SPACE:
+                lastValidSkip = dstID;
+                break;
             }
             dstID++;
         }

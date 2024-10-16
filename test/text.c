@@ -594,7 +594,7 @@ TEST("Battle strings fit on the battle message window")
 
     s32 sixDigitNines = 999999;
     u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
-    u32 longMoveID = MOVE_NATURES_MADNESS;        // 64 pixels.
+    u32 longMoveID = MOVE_NATURES_MADNESS;        // 89 pixels.
     u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP; // 91 pixels.
     u32 longStatName = STAT_EVASION;
     u32 longTypeName = TYPE_ELECTRIC;
