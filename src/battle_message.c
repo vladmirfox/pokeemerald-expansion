@@ -3092,7 +3092,20 @@ void BufferStringBattle(u16 stringID, u32 battler)
 
 u32 BattleStringExpandPlaceholdersToDisplayedString(const u8 *src)
 {
+#ifndef NDEBUG
+    u32 j, strWidth;
+    u32 dstID = BattleStringExpandPlaceholders(src, gDisplayedStringBattle, sizeof(gDisplayedStringBattle));
+    for (j = 1;; j++)
+    {
+        strWidth = GetStringLineWidth(0, gDisplayedStringBattle, 0, j);
+        if (strWidth == 0)
+            break;
+        Debug_PrintStringLine(0, gDisplayedStringBattle, 0, j, sizeof(gDisplayedStringBattle));
+    }
+    return dstID;
+#else
     return BattleStringExpandPlaceholders(src, gDisplayedStringBattle, sizeof(gDisplayedStringBattle));
+#endif
 }
 
 static const u8 *TryGetStatusString(u8 *src)
@@ -3739,7 +3752,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
             if (toCpy != NULL)
             {
-                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, lineNum);
+                toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, 1);
                 DebugPrintf("  toCpy width:%d, \"%S\"", toCpyWidth, toCpy);
                 if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
                 {
