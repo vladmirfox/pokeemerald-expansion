@@ -4315,3 +4315,32 @@ void UseBlankMessageToCancelPokemonPic(void)
     AddTextPrinterParameterized(0, FONT_NORMAL, &t, 0, 1, 0, NULL);
     ScriptMenu_HidePokemonPic();
 }
+
+void AssignRandomMonCryVars(void)
+{
+    gSpecialVar_0x8004 = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
+    gSpecialVar_0x8005 = gSpecialVar_0x8004;
+    gSpecialVar_0x8006 = gSpecialVar_0x8004;
+    gSpecialVar_0x8007 = gSpecialVar_0x8004;
+
+    do
+    {
+        gSpecialVar_0x8005 = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
+        
+    } while (gSpecialVar_0x8005 == gSpecialVar_0x8004);
+
+    do
+    {
+        gSpecialVar_0x8006 = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
+        
+    } while (gSpecialVar_0x8006 == gSpecialVar_0x8004 || gSpecialVar_0x8006 == gSpecialVar_0x8005);
+
+    do
+    {
+        gSpecialVar_0x8007 = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
+        
+    } while (gSpecialVar_0x8007 == gSpecialVar_0x8004 || gSpecialVar_0x8007 == gSpecialVar_0x8005 || gSpecialVar_0x8007 == gSpecialVar_0x8006);
+
+    u16 answersArray[] = { gSpecialVar_0x8004, gSpecialVar_0x8005, gSpecialVar_0x8006, gSpecialVar_0x8007 };
+    gSpecialVar_0x8008 = answersArray[Random() % 4];
+}

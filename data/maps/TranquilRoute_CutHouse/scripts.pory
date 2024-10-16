@@ -96,3 +96,43 @@ script TranquilRoute_CutHouse_EventScript_CutMaster {
 
 	release
 }
+
+
+
+
+script TranquilRoute_CutHouse_EventScript_RandomCryGuy {
+	lock
+	faceplayer
+	special(AssignRandomMonCryVars)
+	msgbox("yo dingus listen to this")
+	waitse
+	playmoncry(VAR_0x8008, CRY_MODE_NORMAL)
+	waitmoncry
+	msgbox("now tell me, whomst was it")
+
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	dynmultipush("{STR_VAR_1}", VAR_0x8004)
+
+	bufferspeciesname(STR_VAR_1, VAR_0x8005)
+	dynmultipush("{STR_VAR_1}", VAR_0x8005)
+	
+	bufferspeciesname(STR_VAR_1, VAR_0x8006)
+	dynmultipush("{STR_VAR_1}", VAR_0x8006)
+
+	bufferspeciesname(STR_VAR_1, VAR_0x8007)
+	dynmultipush("{STR_VAR_1}", VAR_0x8007)
+
+    // dynmultistack left:req, top:req, ignoreBPress:req, maxBeforeScroll:req, shouldSort:req, initialSelected:req, callbacks:req
+	dynmultistack(0, 0, FALSE, 6, TRUE, 3, DYN_MULTICHOICE_CB_NONE)
+
+    if (var(VAR_RESULT) == VAR_0x8008) 
+	{
+		msgbox("correct dingus")
+	}
+	else
+	{
+		msgbox("wrong dingus")
+	}
+	release
+	end
+}
