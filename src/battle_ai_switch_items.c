@@ -254,57 +254,39 @@ static bool32 ShouldSwitchIfTruant(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
 {
-    u32 battlerIndex, moveIndex;
-    bool32 switchOut = FALSE;
+    u32 moveIndex;
+    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    u32 aiMove;
 
-    // Consider switching if all moves are worthless to use.
-    if (GetTotalBaseStat(gBattleMons[battler].species) >= 310 // Mon is not weak.
-        && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2) // Mon has more than 50% of its HP
+    // Switch if no moves affect opponents
+    if (IsDoubleBattle())
     {
-        s32 scoreThreshold = AI_THINKING_STRUCT->aiFlags[battler] & (AI_FLAG_CHECK_VIABILITY) ? 95 : 93;
-        if (IsDoubleBattle())
+        u32 opposingPartner = GetBattlerAtPosition(BATTLE_PARTNER(opposingBattler));
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
         {
-            for (battlerIndex = 0; battlerIndex < MAX_BATTLERS_COUNT; battlerIndex++)
-            {
-                if (battlerIndex != battler && IsBattlerAlive(battlerIndex))
-                {
-                    for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-                    {
-                        if (gBattleStruct->aiFinalScore[battler][battlerIndex][moveIndex] > scoreThreshold)
-                            break;
-                    }
-                    if (moveIndex != MAX_MON_MOVES)
-                        break;
-                }
-            }
-            if (battlerIndex == MAX_BATTLERS_COUNT && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-                switchOut = TRUE;
+            aiMove = gBattleMons[battler].moves[moveIndex];
+            if ((AI_GetMoveEffectiveness(aiMove, battler, opposingBattler) > AI_EFFECTIVENESS_x0
+                    || AI_GetMoveEffectiveness(aiMove, battler, opposingPartner) > AI_EFFECTIVENESS_x0)
+                    && aiMove != MOVE_NONE)
+                return FALSE;
         }
-        else
+    }
+    else
+    {
+        for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
         {
-            for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
-            {
-                if (AI_THINKING_STRUCT->score[moveIndex] > scoreThreshold)
-                    break;
-            }
-
-            if (moveIndex == MAX_MON_MOVES && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-                switchOut = TRUE;
+            aiMove = gBattleMons[battler].moves[moveIndex];
+            if (AI_GetMoveEffectiveness(aiMove, battler, opposingBattler) > AI_EFFECTIVENESS_x0 && aiMove != MOVE_NONE)
+                return FALSE;
         }
     }
 
-    if (switchOut)
-    {
-        // Switch mon out
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
-    }
-    return FALSE;
+    return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
 }
 
 static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
 {
-    u8 opposingPosition;
-    u8 opposingBattler;
+    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
     s32 i, j;
     s32 firstId;
     s32 lastId; // + 1
@@ -314,13 +296,11 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
     if (IsDoubleBattle())
         return FALSE;
 
-    opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
-
-    if (AI_DATA->abilities[GetBattlerAtPosition(opposingPosition)] != ABILITY_WONDER_GUARD)
+    if (AI_DATA->abilities[opposingBattler] != ABILITY_WONDER_GUARD)
         return FALSE;
 
     // Check if Pokémon has a super effective move.
-    for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < MAX_MON_MOVES; i++)
+    for (i = 0; i < MAX_MON_MOVES; i++)
     {
         move = gBattleMons[battler].moves[i];
         if (move != MOVE_NONE)
@@ -348,12 +328,12 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
         if (IsAceMon(battler, i))
             continue;
 
-        for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
+        for (j = 0; j < MAX_MON_MOVES; j++)
         {
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
             {
-                if (AI_GetMoveEffectiveness(move, battler, opposingBattler) >= AI_EFFECTIVENESS_x2 && (RandomPercentage(RNG_AI_SWITCH_WONDER_GUARD, 66) || ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))))
+                if (AI_GetMoveEffectiveness(move, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
                 {
                     // We found a mon.
                     return SwitchAndEmitIfValid(battler, i, emitResult);
