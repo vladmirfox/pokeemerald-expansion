@@ -685,33 +685,33 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if it has <= 66% HP remaini
     }
 }
 
-// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Encore'd into a status move")
-// {
-//     GIVEN {
-//         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
-//         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-//         PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
-//         OPPONENT(SPECIES_ODDISH) { Moves(MOVE_TOXIC, MOVE_SWEET_SCENT, MOVE_INGRAIN, MOVE_TACKLE); }
-//         OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
-//     } WHEN {
-//         TURN { EXPECT_MOVE(opponent, MOVE_TOXIC); MOVE(player, MOVE_ENCORE); }
-//         TURN { MOVE(player, MOVE_ENCORE); EXPECT_SWITCH(opponent, 1); }
-//     }
-// }
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Encore'd into a status move")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
+        OPPONENT(SPECIES_ODDISH) { Moves(MOVE_TOXIC, MOVE_SWEET_SCENT, MOVE_INGRAIN, MOVE_TACKLE); }
+        OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_TOXIC); MOVE(player, MOVE_ENCORE); }
+        TURN { MOVE(player, MOVE_ENCORE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
 
-// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will stay in if Encore'd into super effective move")
-// {
-//     GIVEN {
-//         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
-//         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-//         PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
-//         OPPONENT(SPECIES_ODDISH) { Moves(MOVE_ACID); }
-//         OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
-//     } WHEN {
-//         TURN { EXPECT_MOVE(opponent, MOVE_ACID); MOVE(player, MOVE_ENCORE); }
-//         TURN { EXPECT_MOVE(opponent, MOVE_ACID); MOVE(player, MOVE_TACKLE); }
-//     }
-// }
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will stay in if Encore'd into super effective move")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
+        OPPONENT(SPECIES_ODDISH) { Moves(MOVE_ACID); }
+        OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_ACID); MOVE(player, MOVE_ENCORE); }
+        TURN { EXPECT_MOVE(opponent, MOVE_ACID); MOVE(player, MOVE_TACKLE); }
+    }
+}
 
 // AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if Encore'd into neutral move with good switchin 50% of the time")
 // {

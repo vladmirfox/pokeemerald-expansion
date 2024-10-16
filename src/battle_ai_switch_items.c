@@ -849,19 +849,28 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 
 static bool32 ShouldSwitchIfEncored(u32 battler, bool32 emitResult)
 {
+    u32 encoredMove = gDisableStructs[battler].encoredMove;
+    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
-    // If not Encored or if no good switchin, don't switch
-    if (gDisableStructs[battler].encoredMove == MOVE_NONE || AI_DATA->mostSuitableMonId[battler] == PARTY_SIZE)
+    // If not Encore'd don't switch
+    if (encoredMove == MOVE_NONE)
         return FALSE;
 
-    // Otherwise 50% chance to switch out
-    if (Random() & 1)
-    {
+    // Switch out if status move
+    if (gMovesInfo[encoredMove].category == DAMAGE_CATEGORY_STATUS)
         return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
-    }
+
+    // Stay in if effective move
+    else if (AI_GetMoveEffectiveness(encoredMove, battler, opposingBattler) >= AI_EFFECTIVENESS_x2) 
+        return FALSE;
+        
+    // Switch out 50% of the time otherwise
+    else if (RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
 
     return FALSE;
 }
@@ -1014,13 +1023,13 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
-    //These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
+    // These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
     if (FindMonThatHitsWonderGuard(battler, emitResult))
         return TRUE;
     if (FindMonThatAbsorbsOpponentsMove(battler, emitResult))
         return TRUE;
 
-    //These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
+    // These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
     if (ShouldSwitchIfTrapperInParty(battler, emitResult))
@@ -1049,8 +1058,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     if (AreStatsRaised(battler))
         return FALSE;
 
-    //Default Function
-    //Can prompt switch if AI has a pokemon in party that resists current opponent & has super effective move
+    // Default Function
+    // Can prompt switch if AI has a pokemon in party that resists current opponent & has super effective move
     if (FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_DOESNT_AFFECT_FOE, 2, emitResult)
         || FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_NOT_VERY_EFFECTIVE, 3, emitResult))
         return TRUE;
