@@ -148,7 +148,7 @@ static bool32 DoesFishingMinigameAllowCancel(void);
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
 static bool32 Fishing_RollForBite(u32, bool32);
 static u32 CalculateFishingBiteOdds(u32, bool32);
-static u32 CalculateFishingFollowerBoost();
+static u32 CalculateFishingFollowerBoost(void);
 static u32 CalculateFishingProximityBoost(u32 odds);
 static void GetCoordinatesAroundBobber(s16[], s16[][AXIS_COUNT], u32);
 static u32 CountQualifyingTiles(s16[][AXIS_COUNT], s16 player[], u8 facingDirection, struct ObjectEvent *objectEvent, bool32 isTileLand[]);
@@ -1726,9 +1726,20 @@ static void Task_WaitStopSurfing(u8 taskId)
 
 #define FISHING_PROXIMITY_BOOST 4
 #define FISHING_STICKY_BOOST    36
-#define FISHING_OLD_ROD_ODDS    ((I_FISHING_BITE_ODDS >= GEN_4) ? 75 : ((I_FISHING_BITE_ODDS >= GEN_3) ? 50 : ((I_FISHING_BITE_ODDS >= GEN_1) ? 0 : 50)))
-#define FISHING_GOOD_ROD_ODDS   ((I_FISHING_BITE_ODDS >= GEN_4) ? 50 : ((I_FISHING_BITE_ODDS >= GEN_3) ? 50 : ((I_FISHING_BITE_ODDS >= GEN_1) ? 33 : 50)))
-#define FISHING_SUPER_ROD_ODDS  ((I_FISHING_BITE_ODDS >= GEN_4) ? 25 : ((I_FISHING_BITE_ODDS >= GEN_3) ? 50 : ((I_FISHING_BITE_ODDS >= GEN_1) ? 50 : 50)))
+
+#if I_FISHING_BITE_ODDS >= GEN_4
+    #define FISHING_OLD_ROD_ODDS 75
+    #define FISHING_GOOD_ROD_ODDS 50
+    #define FISHING_SUPER_ROD_ODDS 25
+#elif I_FISHING_BITE_ODDS >= GEN_3
+    #define FISHING_OLD_ROD_ODDS 50
+    #define FISHING_GOOD_ROD_ODDS 50
+    #define FISHING_SUPER_ROD_ODDS 50
+#elif I_FISHING_BITE_ODDS >= GEN_1
+    #define FISHING_OLD_ROD_ODDS 0
+    #define FISHING_GOOD_ROD_ODDS 33
+    #define FISHING_SUPER_ROD_ODDS 50
+#endif
 
 enum
 {
@@ -2163,18 +2174,20 @@ static u32 CalculateFishingBiteOdds(u32 rod, bool32 isStickyHold)
 
 static u32 CalculateFishingFollowerBoost()
 {
+    u32 friendship;
     struct Pokemon *mon = GetFirstLiveMon();
 
     if (!I_FISHING_FOLLOWER_BOOST || !mon)
         return 0;
 
-    if (GetMonData(mon, MON_DATA_FRIENDSHIP) >= 250)
+    friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+    if (friendship >= 250)
         return 50;
-    else if (GetMonData(mon, MON_DATA_FRIENDSHIP) >= 200)
+    else if (friendship >= 200)
         return 40;
-    else if (GetMonData(mon, MON_DATA_FRIENDSHIP) >= 150)
+    else if (friendship >= 150)
         return 30;
-    else if (GetMonData(mon, MON_DATA_FRIENDSHIP) >= 100)
+    else if (friendship >= 100)
         return 20;
     else
         return 0;
