@@ -1919,7 +1919,7 @@ static inline u32 IsBattlerLeekAffected(u32 battler, u32 holdEffect)
     return FALSE;
 }
 
-static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect, u32 checkGenOneCritChance)
+static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect)
 {
     u32 critStageIncrease = 0;
 
@@ -1963,7 +1963,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
                     + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + gMovesInfo[move].criticalHitStage
-                    + GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, FALSE)
+                    + GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk)
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + (abilityAtk == ABILITY_SUPER_LUCK)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
