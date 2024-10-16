@@ -212,7 +212,6 @@ SINGLE_BATTLE_TEST("Crit Chance: Signature items Leek and Lucky Punch increase t
     u32 species;
     u32 item;
 
-    KNOWN_FAILING; // No idea. Recording seems correct
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
 
     PARAMETRIZE { species = SPECIES_FARFETCHD; item = ITEM_LEEK; }

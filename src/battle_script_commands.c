@@ -1909,7 +1909,6 @@ static inline u32 GetCriticalHitOdds(u32 critChance)
     return sCriticalHitOdds[critChance];
 }
 
-#define GEN_1_FARFETCHED_LEEK_SCALER 8
 static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect, u32 checkGenOneCritChance)
 {
     u32 critStageIncrease = 0;
@@ -1926,12 +1925,7 @@ static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect, u
     case HOLD_EFFECT_LEEK:
         if (GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_FARFETCHD
          || gBattleMons[battler].species == SPECIES_SIRFETCHD)
-        {
-            if (checkGenOneCritChance)
-                critStageIncrease = GEN_1_FARFETCHED_LEEK_SCALER;
-            else
-                critStageIncrease = 2;
-        }
+            critStageIncrease = 2;
         break;
     default:
         critStageIncrease = 0;
@@ -1998,7 +1992,7 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
 // Threshold = Base Speed / 2
 // High crit move = 8 * (Base Speed / 2)
 // Focus Energy = 4 * (Base Speed / 2)
-s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
+s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
 {
     // Vanilla
     u32 focusEnergyScaler = 4;
@@ -2008,12 +2002,13 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     u32 superLuckScaler = 4;
     u32 scopeLensScaler = 4;
     u32 luckyPunchScaler = 8;
+    u32 farfetchdLeekScaler = 8;
 
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
-    s32 bonusCritStage = gBattleStruct->bonusCritStages[gBattlerAttacker]; // G-Max Chi Strike
-    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    s32 bonusCritStage = gBattleStruct->bonusCritStages[battlerAtk]; // G-Max Chi Strike
+    u32 abilityAtk = GetBattlerAbility(battlerAtk);
+    u32 abilityDef = GetBattlerAbility(battlerDef);
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
 
@@ -2026,17 +2021,23 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
     if (bonusCritStage > 0)
         critChance = critChance * bonusCritStage;
 
-    if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
+    if ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY_ANY) != 0)
         critChance = critChance * focusEnergyScaler;
 
     if (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
+    {
         critChance = critChance * scopeLensScaler;
-
-    if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
+    }
+    else if (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
+    {
         critChance = critChance * luckyPunchScaler;
-
-    if (GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk, TRUE) == GEN_1_FARFETCHED_LEEK_SCALER)
-        critChance = critChance * GEN_1_FARFETCHED_LEEK_SCALER;
+    }
+    else if (holdEffectAtk == HOLD_EFFECT_LEEK)
+    {
+        if (GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species) == SPECIES_FARFETCHD
+         || gBattleMons[battlerAtk].species == SPECIES_SIRFETCHD)
+            critChance = critChance * farfetchdLeekScaler;
+    }
 
     if (abilityAtk == ABILITY_SUPER_LUCK)
         critChance = critChance * superLuckScaler;
@@ -2064,7 +2065,6 @@ s32 CalcCritChanceStageGen1(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recor
 
     return critChance;
 }
-#undef GEN_1_FARFETCHED_LEEK_SCALER
 
 s32 GetCritHitOdds(s32 critChanceIndex)
 {
