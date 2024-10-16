@@ -171,6 +171,7 @@ enum RandomTag
     RNG_AI_SWITCH_NATURAL_CURE,
     RNG_AI_SWITCH_REGENERATOR,
     RNG_SHELL_SIDE_ARM,
+    RNG_RANDOM_TARGET,
 };
 
 #define RandomWeighted(tag, ...) \
