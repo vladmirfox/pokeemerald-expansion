@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("Belly Drum minimizes the user's Attack stat with Contrary", 
         if (raiseAttack) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet cut its own HP and maximized ATTACK!");  // Message unaffected by Contrary
+            MESSAGE("Wobbuffet cut its own HP and maximized its Attack!");  // Message unaffected by Contrary
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
