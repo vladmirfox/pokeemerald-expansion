@@ -560,3 +560,4 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special UseBlankMessageToCancelPokemonPic
 	def_special IsMonSeen
+	def_special AssignRandomMonCryVars
