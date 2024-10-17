@@ -644,6 +644,21 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's m
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has an absorber")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].type == TYPE_GRASS);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_BELLOSSOM) { Moves(MOVE_SOLAR_BEAM); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_AZUMARILL) { Moves(MOVE_TACKLE); Ability(ABILITY_SAP_SIPPER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SOLAR_BEAM) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an absorber")
 {
     GIVEN {
@@ -797,4 +812,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if main attac
     }
 }
 
+TO_DO_BATTLE_TEST("FindMonThatAbsorbsOpponentsMove with SE move");
+TO_DO_BATTLE_TEST("ShouldSwitchIfOpponentChargingOrInvulnerable");
 TO_DO_BATTLE_TEST("FindMonWithFlagsAndSuperEffective");

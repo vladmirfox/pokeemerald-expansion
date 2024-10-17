@@ -355,18 +355,14 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     struct Pokemon *party;
     u16 monAbility;
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-    bool32 isOpposingBattlerInvulnerable = (gStatuses3[GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)))] & STATUS3_SEMI_INVULNERABLE);
+    u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
+    u32 predictedMove = incomingMove; // Update for move prediction
+    bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     s32 i, j;
 
     if (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && Random() % 3 != 0)
-        return FALSE;
-    if (gLastLandedMoves[battler] == MOVE_NONE)
-        return FALSE;
-    if (gLastLandedMoves[battler] == MOVE_UNAVAILABLE)
-        return FALSE;
-    if (IS_MOVE_STATUS(gLastLandedMoves[battler]))
         return FALSE;
 
     if (IsDoubleBattle())
@@ -384,29 +380,29 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
     }
 
     // Create an array of possible absorb abilities so the AI considers all of them
-    if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_FIRE)
+    if (gMovesInfo[predictedMove].type == TYPE_FIRE)
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_FLASH_FIRE;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_WATER || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_WATER))
+    else if (gMovesInfo[predictedMove].type == TYPE_WATER || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_WATER))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_WATER_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_DRY_SKIN;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_STORM_DRAIN;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_ELECTRIC || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_ELECTRIC))
+    else if (gMovesInfo[predictedMove].type == TYPE_ELECTRIC || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_ELECTRIC))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_VOLT_ABSORB;
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_MOTOR_DRIVE;
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
             absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_LIGHTNING_ROD;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GRASS || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GRASS))
+    else if (gMovesInfo[predictedMove].type == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GRASS))
     {
         absorbingTypeAbilities[numAbsorbingAbilities] = ABILITY_SAP_SIPPER;
     }
-    else if (gMovesInfo[gLastLandedMoves[battler]].type == TYPE_GROUND || (isOpposingBattlerInvulnerable && gLastUsedMoveType[opposingBattler] == TYPE_GROUND))
+    else if (gMovesInfo[predictedMove].type == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GROUND))
     {
         absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_EARTH_EATER;
     }
@@ -456,6 +452,20 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
             }
         }
     }
+    return FALSE;
+}
+
+static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler, bool32 emitResult)
+{
+    u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
+    bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, AI_DATA->lastUsedMove[opposingBattler]) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, AI_DATA->lastUsedMove[opposingBattler]));
+    
+    if (IsDoubleBattle() || !(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
+        return FALSE;
+
+    if (isOpposingBattlerChargingOrInvulnerable && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+
     return FALSE;
 }
 
@@ -1033,6 +1043,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
     if (ShouldSwitchIfTrapperInParty(battler, emitResult))
+        return TRUE;
+    if (ShouldSwitchIfOpponentChargingOrInvulnerable(battler, emitResult))
         return TRUE;
     if (ShouldSwitchIfTruant(battler, emitResult))
         return TRUE;
