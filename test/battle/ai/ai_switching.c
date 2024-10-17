@@ -754,5 +754,47 @@ AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if mon has Truant and oppon
     }
 }
 
-TO_DO_BATTLE_TEST("ShouldSwitchIfAttackingStatsLowered");
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if main attacking stat lowered by 2 stages with good switchin candidate 50% of the time")
+{
+    u32 aiSpecies = SPECIES_NONE, aiMove = MOVE_NONE, move = MOVE_NONE;
+
+    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_STATS_LOWERED);
+    PARAMETRIZE {move = MOVE_CHARM; aiSpecies = SPECIES_FLAREON; aiMove = MOVE_FIRE_FANG; };
+    PARAMETRIZE {move = MOVE_EERIE_IMPULSE; aiSpecies = SPECIES_ESPEON; aiMove = MOVE_CONFUSION; };
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_CHARM].effect == EFFECT_ATTACK_DOWN_2);
+        ASSUME(gMovesInfo[MOVE_EERIE_IMPULSE].effect == EFFECT_SPECIAL_ATTACK_DOWN_2);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_ARON) { Moves(move, MOVE_TACKLE); }
+        OPPONENT(aiSpecies) { Moves(aiMove); }
+        OPPONENT(SPECIES_MILOTIC) { Moves(MOVE_SURF); }
+    } WHEN {
+        TURN { MOVE(player, move); EXPECT_MOVE(opponent, aiMove); }
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if main attacking stat lowered by 3+ stages")
+{
+    u32 aiSpecies = SPECIES_NONE, aiMove = MOVE_NONE, move = MOVE_NONE, move2 = MOVE_NONE;
+
+    PASSES_RANDOMLY(100, 100, RNG_AI_SWITCH_STATS_LOWERED);
+    PARAMETRIZE {move = MOVE_GROWL; move2 = MOVE_CHARM; aiSpecies = SPECIES_FLAREON; aiMove = MOVE_FIRE_FANG; };
+    PARAMETRIZE {move = MOVE_CONFIDE; move2 = MOVE_EERIE_IMPULSE; aiSpecies = SPECIES_ESPEON; aiMove = MOVE_STORED_POWER; };
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_CHARM].effect == EFFECT_ATTACK_DOWN_2);
+        ASSUME(gMovesInfo[MOVE_EERIE_IMPULSE].effect == EFFECT_SPECIAL_ATTACK_DOWN_2);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_ARON) { Moves(move, move2, MOVE_TACKLE); }
+        OPPONENT(aiSpecies) { Moves(aiMove); }
+        OPPONENT(SPECIES_MILOTIC) { Moves(MOVE_SURF); }
+    } WHEN {
+        TURN { MOVE(player, move); EXPECT_MOVE(opponent, aiMove); }
+        TURN { MOVE(player, move2); EXPECT_MOVE(opponent, aiMove); }
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
 TO_DO_BATTLE_TEST("FindMonWithFlagsAndSuperEffective");

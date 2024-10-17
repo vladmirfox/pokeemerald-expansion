@@ -909,7 +909,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult
         // 50% chance if attack at -2 and have a good candidate mon
         else if (attackingStage == DEFAULT_STAT_STAGE - 2)
         {
-            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && (Random() & 1))
+            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
                 return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
             }
@@ -930,7 +930,7 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult
         // 50% chance if attack at -2 and have a good candidate mon
         else if (spAttackingStage == DEFAULT_STAT_STAGE - 2)
         {
-            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && (Random() & 1))
+            if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
                 return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
             }
