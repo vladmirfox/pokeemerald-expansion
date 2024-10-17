@@ -511,19 +511,22 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it can't d
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Toxic'd for at least two turns 50% of the time with more than 1/3 HP remaining")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has been Toxic'd for at least two turns 50% of the time with more than 1/3 HP remaining with good switchin")
 {
-    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_BADLY_POISONED);
+    u32 species = SPECIES_NONE, odds = 0;
+    PARAMETRIZE { species = SPECIES_ZIGZAGOON, odds = 0; }
+    PARAMETRIZE { species = SPECIES_HARIYAMA, odds = 50; }
+    PASSES_RANDOMLY(odds, 100, RNG_AI_SWITCH_BADLY_POISONED);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TOXIC].effect == EFFECT_TOXIC);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-        PLAYER(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE, MOVE_CELEBRATE, MOVE_TOXIC); }
+        PLAYER(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE, MOVE_CELEBRATE, MOVE_TOXIC, MOVE_AURA_SPHERE); }
         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(species) { Moves(MOVE_ROCK_SMASH); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); EXPECT_MOVE(opponent, MOVE_TACKLE); }
-        TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
-        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+        TURN { MOVE(player, MOVE_AURA_SPHERE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_AURA_SPHERE); EXPECT_SWITCH(opponent, 1); }
     }
 }
 
