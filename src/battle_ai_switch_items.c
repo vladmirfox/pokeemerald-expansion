@@ -891,7 +891,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
 }
 
 // AI should switch if it's become setup fodder and has something better to switch to
-static bool32 AreAttackingStatsLowered(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult)
 {
     s8 attackingStage = gBattleMons[battler].statStages[STAT_ATK];
     s8 spAttackingStage = gBattleMons[battler].statStages[STAT_SPATK];
@@ -1048,7 +1048,7 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
         return TRUE;
     if (ShouldSwitchIfBadChoiceLock(battler, emitResult))
         return TRUE;
-    if (AreAttackingStatsLowered(battler, emitResult))
+    if (ShouldSwitchIfAttackingStatsLowered(battler, emitResult))
         return TRUE;
 
     // Removing switch capabilites under specific conditions
