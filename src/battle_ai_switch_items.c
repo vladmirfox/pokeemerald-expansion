@@ -65,7 +65,7 @@ void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
     }
 }
 
-bool32 SwitchAndEmitIfValid(u32 battler, u32 switchinId)
+bool32 SwitchIfValid(u32 battler, u32 switchinId)
 {
     gBattleStruct->AI_monToSwitchIntoId[battler] = switchinId;
 
@@ -208,7 +208,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
             return FALSE;
 
         // Switch mon out
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
     }
 
     // General bad type matchups have more wiggle room
@@ -228,7 +228,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
                 return FALSE;
 
             // Switch mon out
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+            return SwitchIfValid(battler, PARTY_SIZE);
         }
     }
     return FALSE;
@@ -243,7 +243,7 @@ static bool32 ShouldSwitchIfTruant(u32 battler)
         && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
     {
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
     }
     return FALSE;
 }
@@ -277,7 +277,7 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler)
         }
     }
 
-    return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+    return SwitchIfValid(battler, PARTY_SIZE);
 }
 
 static bool32 FindMonThatHitsWonderGuard(u32 battler)
@@ -332,7 +332,7 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler)
                 if (AI_GetMoveEffectiveness(move, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
                 {
                     // We found a mon.
-                    return SwitchAndEmitIfValid(battler, i);
+                    return SwitchIfValid(battler, i);
                 }
             }
         }
@@ -444,7 +444,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
             if (absorbingTypeAbilities[j] == monAbility)
             {
                 // We found a mon.
-                return SwitchAndEmitIfValid(battler, i);
+                return SwitchIfValid(battler, i);
             }
         }
     }
@@ -461,7 +461,7 @@ static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
         return FALSE;
 
     if (isOpposingBattlerChargingOrInvulnerable && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
 
     return FALSE;
 }
@@ -502,7 +502,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
         {
             if (i == AI_DATA->mostSuitableMonId[battler]) // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+                return SwitchIfValid(battler, PARTY_SIZE);
             }
         }
     }
@@ -595,7 +595,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     }
 
     if (switchMon)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
     else
         return FALSE;
 }
@@ -641,7 +641,7 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
             return FALSE;
     }
 
-    return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+    return SwitchIfValid(battler, PARTY_SIZE);
 }
 
 static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
@@ -780,7 +780,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 modu
 
                 if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && Random() % moduloPercent == 0)
                 {
-                    return SwitchAndEmitIfValid(battler, i);
+                    return SwitchIfValid(battler, i);
                 }
             }
         }
@@ -870,7 +870,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
 
     // Switch out if status move
     if (gMovesInfo[encoredMove].category == DAMAGE_CATEGORY_STATUS)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
 
     // Stay in if effective move
     else if (AI_GetMoveEffectiveness(encoredMove, battler, opposingBattler) >= AI_EFFECTIVENESS_x2) 
@@ -878,7 +878,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler)
         
     // Switch out 50% of the time otherwise
     else if (RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+        return SwitchIfValid(battler, PARTY_SIZE);
 
     return FALSE;
 }
@@ -891,7 +891,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
     {
         if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+            return SwitchIfValid(battler, PARTY_SIZE);
         }
     }
 
@@ -919,13 +919,13 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+                return SwitchIfValid(battler, PARTY_SIZE);
             }
         }
         // If at -3 or worse, switch out regardless
         else if (attackingStage < DEFAULT_STAT_STAGE - 2)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+            return SwitchIfValid(battler, PARTY_SIZE);
         }
     }
 
@@ -940,13 +940,13 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+                return SwitchIfValid(battler, PARTY_SIZE);
             }
         }
         // If at -3 or worse, switch out regardless
         else if (spAttackingStage < DEFAULT_STAT_STAGE - 2)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
+            return SwitchIfValid(battler, PARTY_SIZE);
         }
     }
     return FALSE;
