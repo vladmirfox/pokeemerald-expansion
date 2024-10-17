@@ -1258,30 +1258,30 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
 
-    gSaveBlock2Ptr->playerGender = FEMALE;
-    NewGameBirchSpeech_SetDefaultPlayerName(Random() % NUM_PRESET_NAMES);
+    // gSaveBlock2Ptr->playerGender = FEMALE;
+    // NewGameBirchSpeech_SetDefaultPlayerName(Random() % NUM_PRESET_NAMES);
 
-    // LZ77UnCompVram(sBirchSpeechShadowGfx, (void *)VRAM);
-    // LZ77UnCompVram(sBirchSpeechBgMap, (void *)(BG_SCREEN_ADDR(7)));
-    // LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
-    // LoadPalette(sBirchSpeechPlatformBlackPal, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
+    LZ77UnCompVram(sBirchSpeechShadowGfx, (void *)VRAM);
+    LZ77UnCompVram(sBirchSpeechBgMap, (void *)(BG_SCREEN_ADDR(7)));
+    LoadPalette(sBirchSpeechBgPals, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
+    LoadPalette(sBirchSpeechPlatformBlackPal, BG_PLTT_ID(0) + 1, PLTT_SIZEOF(8));
     ScanlineEffect_Stop();
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetAllPicSprites();
-    // AddBirchSpeechObjects(taskId);
-    // BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    AddBirchSpeechObjects(taskId);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     gTasks[taskId].tBG1HOFS = 0;
-    gTasks[taskId].func = Task_NewGameBirchSpeech_FadePlayerToWhite;
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
     gTasks[taskId].tTimer = 0xD8;
-    // PlayBGM(MUS_ROUTE122);
+    PlayBGM(MUS_ROUTE122);
     ShowBg(0);
     ShowBg(1);
 }
 
-UNUSED static void Task_NewGameBirchSpeech_WaitToShowBirch(u8 taskId)
+static void Task_NewGameBirchSpeech_WaitToShowBirch(u8 taskId)
 {
     u8 spriteId;
 
@@ -1862,36 +1862,36 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
 
 static u8 NewGameBirchSpeech_CreateLotadSprite(u8 x, u8 y)
 {
-    return CreateMonPicSprite_Affine(SPECIES_KOTORA, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
+    return CreateMonPicSprite_Affine(SPECIES_JOLTIK, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
 }
 
 static void AddBirchSpeechObjects(u8 taskId)
 {
-    u8 birchSpriteId;
-    u8 lotadSpriteId;
-    u8 brendanSpriteId;
-    u8 maySpriteId;
+    // u8 birchSpriteId;
+    u8 joltikSpriteId;
+    // u8 brendanSpriteId;
+    // u8 maySpriteId;
 
-    birchSpriteId = AddNewGameBirchObject(0x88, 0x3C, 1);
-    gSprites[birchSpriteId].callback = SpriteCB_Null;
-    gSprites[birchSpriteId].oam.priority = 0;
-    gSprites[birchSpriteId].invisible = TRUE;
-    gTasks[taskId].tBirchSpriteId = birchSpriteId;
-    lotadSpriteId = NewGameBirchSpeech_CreateLotadSprite(100, 0x4B);
-    gSprites[lotadSpriteId].callback = SpriteCB_Null;
-    gSprites[lotadSpriteId].oam.priority = 0;
-    gSprites[lotadSpriteId].invisible = TRUE;
-    gTasks[taskId].tLotadSpriteId = lotadSpriteId;
-    brendanSpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN), 120, 60, 0, &gDecompressionBuffer[0]);
-    gSprites[brendanSpriteId].callback = SpriteCB_Null;
-    gSprites[brendanSpriteId].invisible = TRUE;
-    gSprites[brendanSpriteId].oam.priority = 0;
-    gTasks[taskId].tBrendanSpriteId = brendanSpriteId;
-    maySpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_MAY), 120, 60, 0, &gDecompressionBuffer[TRAINER_PIC_SIZE]);
-    gSprites[maySpriteId].callback = SpriteCB_Null;
-    gSprites[maySpriteId].invisible = TRUE;
-    gSprites[maySpriteId].oam.priority = 0;
-    gTasks[taskId].tMaySpriteId = maySpriteId;
+    // birchSpriteId = AddNewGameBirchObject(0x88, 0x3C, 1);
+    // gSprites[birchSpriteId].callback = SpriteCB_Null;
+    // gSprites[birchSpriteId].oam.priority = 0;
+    // gSprites[birchSpriteId].invisible = TRUE;
+    // gTasks[taskId].tBirchSpriteId = birchSpriteId;
+    joltikSpriteId = NewGameBirchSpeech_CreateLotadSprite(100, 0x4B);
+    gSprites[joltikSpriteId].callback = SpriteCB_Null;
+    gSprites[joltikSpriteId].oam.priority = 0;
+    gSprites[joltikSpriteId].invisible = TRUE;
+    gTasks[taskId].tLotadSpriteId = joltikSpriteId;
+    // brendanSpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN), 120, 60, 0, &gDecompressionBuffer[0]);
+    // gSprites[brendanSpriteId].callback = SpriteCB_Null;
+    // gSprites[brendanSpriteId].invisible = TRUE;
+    // gSprites[brendanSpriteId].oam.priority = 0;
+    // gTasks[taskId].tBrendanSpriteId = brendanSpriteId;
+    // maySpriteId = CreateTrainerSprite(FacilityClassToPicIndex(FACILITY_CLASS_MAY), 120, 60, 0, &gDecompressionBuffer[TRAINER_PIC_SIZE]);
+    // gSprites[maySpriteId].callback = SpriteCB_Null;
+    // gSprites[maySpriteId].invisible = TRUE;
+    // gSprites[maySpriteId].oam.priority = 0;
+    // gTasks[taskId].tMaySpriteId = maySpriteId;
 }
 
 #undef tPlayerSpriteId
