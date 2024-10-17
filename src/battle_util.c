@@ -10328,7 +10328,7 @@ static u32 GetWeather(void)
         return gBattleWeather;
 }
 
-static inline bool32 IsFutureSightAttackerInParty(u32 battlerAtk, u32 battlerDef, u32 move)
+static inline bool32 IsFutureSightAttackerNotOnField(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     if (gMovesInfo[move].effect != EFFECT_FUTURE_SIGHT)
         return FALSE;
@@ -10344,7 +10344,7 @@ s32 CalculateMoveDamage(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType, 
     struct Pokemon *party = GetSideParty(GetBattlerSide(gBattlerAttacker));
     u32 typeEffectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), updateFlags);
 
-    if (IsFutureSightAttackerInParty(battlerAtk, battlerDef, move))
+    if (IsFutureSightAttackerNotOnField(battlerAtk, battlerDef, move))
         return DoFutureSightAttackDamageCalc(move, battlerAtk, battlerDef, moveType, isCrit, randomFactor,
                                              updateFlags, typeEffectivenessMultiplier, GetWeather());
 
