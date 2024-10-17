@@ -1,4 +1,5 @@
 #include "config/battle.h"
+#include "constants/abilities.h"
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 #include "constants/battle_script_commands.h"
@@ -271,6 +272,22 @@ BattleScript_TrainerBSlideMsgEnd2::
 
 BattleScript_ItemActivateAbility::
 	call BattleScript_UseItemMessage
+	jumpifability BS_ATTACKER, ABILITY_ANTICIPATION, BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_DOWNLOAD,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_DRIZZLE,		 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_DROUGHT,		 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_FORECAST,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_FOREWARN,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_FRISK,		 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_INTIMIDATE,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_SAND_STREAM,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_SLOW_START,	 BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_SNOW_WARNING, BattleScript_DoActivateAbility
+	jumpifability BS_ATTACKER, ABILITY_TRACE,		 BattleScript_DoActivateAbility
+	goto BattleScript_ButItFailed
+
+BattleScript_DoActivateAbility::
+	switchinabilities BS_ATTACKER
 	end
 
 BattleScript_ItemResetStatStages::
