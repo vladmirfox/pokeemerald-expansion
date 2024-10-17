@@ -67,7 +67,7 @@ void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
 
 bool32 SwitchAndEmitIfValid(u32 battler, u32 switchinId, bool32 emitResult)
 {
-    gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
+    gBattleStruct->AI_monToSwitchIntoId[battler] = switchinId;
 
     // Return False if invalid
     if (IsDoubleBattle())
@@ -240,7 +240,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler, bool32 emitResult)
 
 static bool32 ShouldSwitchIfTruant(u32 battler, bool32 emitResult)
 {
-    // Switching if mon with truant is bodied by Protect or invulnerability spam
+    // Switch if mon with truant is bodied by Protect or invulnerability spam
     if (AI_DATA->abilities[battler] == ABILITY_TRUANT
         && IsTruantMonVulnerable(battler, gBattlerTarget)
         && gDisableStructs[battler].truantCounter
