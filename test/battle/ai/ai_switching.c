@@ -849,4 +849,19 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if opponent u
     }
 }
 
-TO_DO_BATTLE_TEST("FindMonWithFlagsAndSuperEffective");
+AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch into mon with good type matchup and SE move if current mon has no SE move and no stats raised")
+{
+    u32 odds = 0, species = SPECIES_NONE, move = MOVE_NONE;
+    PARAMETRIZE { odds = 33; species = SPECIES_SCIZOR; move = MOVE_X_SCISSOR; }
+    PARAMETRIZE { odds = 50; species = SPECIES_DUSCLOPS; move = MOVE_SHADOW_BALL; }
+    PASSES_RANDOMLY(odds, 100, RNG_AI_SWITCH_SE_DEFENSIVE);
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_MUNNA) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_MUNNA) { Moves(MOVE_TACKLE); }
+        OPPONENT(species) { Moves(move); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+    }
+}

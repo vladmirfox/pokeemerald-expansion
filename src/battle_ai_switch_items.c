@@ -709,7 +709,7 @@ static bool32 AreStatsRaised(u32 battler)
     return (buffedStatsValue > 3);
 }
 
-static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 moduloPercent)
+static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 percentChance)
 {
     u32 battlerIn1, battlerIn2;
     s32 firstId;
@@ -717,6 +717,10 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 modu
     struct Pokemon *party;
     s32 i, j;
     u16 move;
+
+    // Similar functionality handled more thoroughly by ShouldSwitchIfHasBadOdds
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING)
+        return FALSE;
 
     if (gLastLandedMoves[battler] == MOVE_NONE)
         return FALSE;
@@ -778,7 +782,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 modu
                 if (move == 0)
                     continue;
 
-                if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && Random() % moduloPercent == 0)
+                if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && RandomPercentage(RNG_AI_SWITCH_SE_DEFENSIVE, percentChance))
                 {
                     return SwitchIfValid(battler, i);
                 }
@@ -1028,8 +1032,8 @@ bool32 ShouldSwitch(u32 battler)
             return FALSE;
     }
 
-    //NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
-    //Since the order is sequencial, and some of these functions prompt switch to specific party members.
+    // NOTE: The sequence of the below functions matter! Do not change unless you have carefully considered the outcome.
+    // Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
     // These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
     if (FindMonThatHitsWonderGuard(battler))
@@ -1063,6 +1067,9 @@ bool32 ShouldSwitch(u32 battler)
 
     // Removing switch capabilites under specific conditions
     // These Functions prevent the "FindMonWithFlagsAndSuperEffective" from getting out of hand.
+    // We don't use FindMonWithFlagsAndSuperEffective with AI_FLAG_SMART_SWITCHING, so we can bail early.
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING)
+        return FALSE;
     if (HasSuperEffectiveMoveAgainstOpponents(battler, FALSE))
         return FALSE;
     if (AreStatsRaised(battler))
@@ -1070,8 +1077,8 @@ bool32 ShouldSwitch(u32 battler)
 
     // Default Function
     // Can prompt switch if AI has a pokemon in party that resists current opponent & has super effective move
-    if (FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_DOESNT_AFFECT_FOE, 2)
-        || FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_NOT_VERY_EFFECTIVE, 3))
+    if (FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_DOESNT_AFFECT_FOE, 50)
+        || FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_NOT_VERY_EFFECTIVE, 33))
         return TRUE;
 
     return FALSE;
