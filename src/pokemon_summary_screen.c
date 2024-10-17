@@ -4389,25 +4389,25 @@ static void KeepMoveSelectorVisible(u8 firstSpriteId)
 
 static inline bool32 ShouldShowMoveRelearner(void)
 {
-    return P_SUMMARY_SCREEN_MOVE_RELEARNER
-        && !sMonSummaryScreen->lockMovesFlag
-        && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
-        && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
-        && sMonSummaryScreen->relearnableMovesNum > 0
-        && !InBattleFactory() 
-        && !InSlateportBattleTent();
+    return (P_SUMMARY_SCREEN_MOVE_RELEARNER
+         && !sMonSummaryScreen->lockMovesFlag
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
+         && sMonSummaryScreen->relearnableMovesNum > 0
+         && !InBattleFactory() 
+         && !InSlateportBattleTent());
 }
 
 static inline bool32 ShouldShowRename(void)
 {
-    return P_SUMMARY_SCREEN_RENAME
-        && !sMonSummaryScreen->lockMovesFlag
-        && !sMonSummaryScreen->summary.isEgg
-        && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
-        && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
-        && !InBattleFactory() 
-        && !InSlateportBattleTent()
-        && GetPlayerIDAsU32() == sMonSummaryScreen->summary.OTID;
+    return (P_SUMMARY_SCREEN_RENAME
+         && !sMonSummaryScreen->lockMovesFlag
+         && !sMonSummaryScreen->summary.isEgg
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX
+         && sMonSummaryScreen->mode != SUMMARY_MODE_BOX_CURSOR
+         && !InBattleFactory() 
+         && !InSlateportBattleTent()
+         && GetPlayerIDAsU32() == sMonSummaryScreen->summary.OTID);
 }
 
 static void ShowCancelOrRenamePrompt(void)
