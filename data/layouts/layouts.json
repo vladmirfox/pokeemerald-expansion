@@ -4665,7 +4665,7 @@
       "id": "LAYOUT_SOULKEEP",
       "name": "Soulkeep_Layout",
       "width": 42,
-      "height": 46,
+      "height": 44,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Soulkeep",
       "border_filepath": "data/layouts/Soulkeep/border.bin",
@@ -4724,8 +4724,8 @@
     {
       "id": "LAYOUT_SCENIC_ROUTE",
       "name": "ScenicRoute_Layout",
-      "width": 40,
-      "height": 20,
+      "width": 100,
+      "height": 40,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Silveridge",
       "border_filepath": "data/layouts/ScenicRoute/border.bin",
@@ -4744,12 +4744,22 @@
     {
       "id": "LAYOUT_HARVEST_SHRINE",
       "name": "HarvestShrine_Layout",
-      "width": 21,
-      "height": 50,
+      "width": 31,
+      "height": 37,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SakuKura",
       "border_filepath": "data/layouts/HarvestShrine/border.bin",
       "blockdata_filepath": "data/layouts/HarvestShrine/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOULKEEP_GRAVEYARD",
+      "name": "SoulkeepGraveyard_Layout",
+      "width": 34,
+      "height": 20,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Soulkeep",
+      "border_filepath": "data/layouts/SoulkeepGraveyard/border.bin",
+      "blockdata_filepath": "data/layouts/SoulkeepGraveyard/map.bin"
     }
   ]
 }

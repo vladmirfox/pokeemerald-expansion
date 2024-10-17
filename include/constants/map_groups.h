@@ -84,6 +84,7 @@
 #define MAP_SCENIC_ROUTE                          (75 | (0 << 8))
 #define MAP_NEW_MAP1                              (76 | (0 << 8))
 #define MAP_HARVEST_SHRINE                        (77 | (0 << 8))
+#define MAP_SOULKEEP_GRAVEYARD                    (78 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))

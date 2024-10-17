@@ -1249,3 +1249,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/NewMap1/scripts.inc"
 
 	.include "data/maps/HarvestShrine/scripts.inc"
+
+	.include "data/maps/SoulkeepGraveyard/scripts.inc"
