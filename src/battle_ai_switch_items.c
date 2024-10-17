@@ -23,7 +23,7 @@
 
 // this file's functions
 static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng);
-static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 moduloPercent, bool32 emitResult);
+static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 moduloPercent);
 static bool32 ShouldUseItem(u32 battler);
 static bool32 AiExpectsToFaintPlayer(u32 battler);
 static bool32 AI_ShouldHeal(u32 battler, u32 healAmount);
@@ -65,7 +65,7 @@ void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
     }
 }
 
-bool32 SwitchAndEmitIfValid(u32 battler, u32 switchinId, bool32 emitResult)
+bool32 SwitchAndEmitIfValid(u32 battler, u32 switchinId)
 {
     gBattleStruct->AI_monToSwitchIntoId[battler] = switchinId;
 
@@ -86,17 +86,13 @@ bool32 SwitchAndEmitIfValid(u32 battler, u32 switchinId, bool32 emitResult)
         }
     }
 
-    // Emit result if applicable
-    if (emitResult)
-        BtlController_EmitTwoReturnValues(battler, 1, B_ACTION_SWITCH, 0);
-
     return TRUE;
 }
 
 // Note that as many return statements as possible are INTENTIONALLY put after all of the loops;
 // the function can take a max of about 0.06s to run, and this prevents the player from identifying
 // whether the mon will switch or not by seeing how long the delay is before they select a move
-static bool32 ShouldSwitchIfHasBadOdds(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
 {
     //Variable initialization
     u8 opposingPosition, atkType1, atkType2, defType1, defType2, effectiveness;
@@ -212,7 +208,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler, bool32 emitResult)
             return FALSE;
 
         // Switch mon out
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
     }
 
     // General bad type matchups have more wiggle room
@@ -232,13 +228,13 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler, bool32 emitResult)
                 return FALSE;
 
             // Switch mon out
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
         }
     }
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfTruant(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfTruant(u32 battler)
 {
     // Switch if mon with truant is bodied by Protect or invulnerability spam
     if (AI_DATA->abilities[battler] == ABILITY_TRUANT
@@ -247,12 +243,12 @@ static bool32 ShouldSwitchIfTruant(u32 battler, bool32 emitResult)
         && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
     {
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
     }
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfAllMovesBad(u32 battler)
 {
     u32 moveIndex;
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
@@ -281,10 +277,10 @@ static bool32 ShouldSwitchIfAllMovesBad(u32 battler, bool32 emitResult)
         }
     }
 
-    return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+    return SwitchAndEmitIfValid(battler, PARTY_SIZE);
 }
 
-static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
+static bool32 FindMonThatHitsWonderGuard(u32 battler)
 {
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
     s32 i, j;
@@ -336,7 +332,7 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
                 if (AI_GetMoveEffectiveness(move, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
                 {
                     // We found a mon.
-                    return SwitchAndEmitIfValid(battler, i, emitResult);
+                    return SwitchAndEmitIfValid(battler, i);
                 }
             }
         }
@@ -345,7 +341,7 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler, bool32 emitResult)
     return FALSE; // There is not a single Pokémon in the party that has a super effective move against a mon with Wonder Guard.
 }
 
-static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
+static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 {
     u8 battlerIn1, battlerIn2;
     u8 numAbsorbingAbilities = 0;
@@ -448,14 +444,14 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
             if (absorbingTypeAbilities[j] == monAbility)
             {
                 // We found a mon.
-                return SwitchAndEmitIfValid(battler, i, emitResult);
+                return SwitchAndEmitIfValid(battler, i);
             }
         }
     }
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
 {
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
@@ -465,12 +461,12 @@ static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler, bool32 e
         return FALSE;
 
     if (isOpposingBattlerChargingOrInvulnerable && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
 
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfTrapperInParty(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
 {
     s32 firstId;
     s32 lastId;
@@ -506,14 +502,14 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler, bool32 emitResult)
         {
             if (i == AI_DATA->mostSuitableMonId[battler]) // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
             }
         }
     }
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfBadlyStatused(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
 {
     bool32 switchMon = FALSE;
     u16 monAbility = AI_DATA->abilities[battler];
@@ -599,12 +595,12 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler, bool32 emitResult)
     }
 
     if (switchMon)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
     else
         return FALSE;
 }
 
-static bool32 ShouldSwitchIfAbilityBenefit(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfAbilityBenefit(u32 battler)
 {
     bool32 hasStatRaised = AnyStatIsRaised(battler);
 
@@ -645,7 +641,7 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler, bool32 emitResult)
             return FALSE;
     }
 
-    return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+    return SwitchAndEmitIfValid(battler, PARTY_SIZE);
 }
 
 static bool32 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool32 noRng)
@@ -713,7 +709,7 @@ static bool32 AreStatsRaised(u32 battler)
     return (buffedStatsValue > 3);
 }
 
-static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 moduloPercent, bool32 emitResult)
+static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 moduloPercent)
 {
     u32 battlerIn1, battlerIn2;
     s32 firstId;
@@ -784,7 +780,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 modu
 
                 if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && Random() % moduloPercent == 0)
                 {
-                    return SwitchAndEmitIfValid(battler, i, emitResult);
+                    return SwitchAndEmitIfValid(battler, i);
                 }
             }
         }
@@ -859,7 +855,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
     return TRUE;
 }
 
-static bool32 ShouldSwitchIfEncored(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfEncored(u32 battler)
 {
     u32 encoredMove = gDisableStructs[battler].encoredMove;
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
@@ -874,7 +870,7 @@ static bool32 ShouldSwitchIfEncored(u32 battler, bool32 emitResult)
 
     // Switch out if status move
     if (gMovesInfo[encoredMove].category == DAMAGE_CATEGORY_STATUS)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
 
     // Stay in if effective move
     else if (AI_GetMoveEffectiveness(encoredMove, battler, opposingBattler) >= AI_EFFECTIVENESS_x2) 
@@ -882,12 +878,12 @@ static bool32 ShouldSwitchIfEncored(u32 battler, bool32 emitResult)
         
     // Switch out 50% of the time otherwise
     else if (RandomPercentage(RNG_AI_SWITCH_ENCORE, 50) && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-        return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+        return SwitchAndEmitIfValid(battler, PARTY_SIZE);
 
     return FALSE;
 }
 
-static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
 {
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
@@ -895,7 +891,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
     {
         if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
         }
     }
 
@@ -903,7 +899,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
 }
 
 // AI should switch if it's become setup fodder and has something better to switch to
-static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult)
+static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
 {
     s8 attackingStage = gBattleMons[battler].statStages[STAT_ATK];
     s8 spAttackingStage = gBattleMons[battler].statStages[STAT_SPATK];
@@ -923,13 +919,13 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
             }
         }
         // If at -3 or worse, switch out regardless
         else if (attackingStage < DEFAULT_STAT_STAGE - 2)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
         }
     }
 
@@ -944,19 +940,19 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler, bool32 emitResult
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
             {
-                return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+                return SwitchAndEmitIfValid(battler, PARTY_SIZE);
             }
         }
         // If at -3 or worse, switch out regardless
         else if (spAttackingStage < DEFAULT_STAT_STAGE - 2)
         {
-            return SwitchAndEmitIfValid(battler, PARTY_SIZE, emitResult);
+            return SwitchAndEmitIfValid(battler, PARTY_SIZE);
         }
     }
     return FALSE;
 }
 
-bool32 ShouldSwitch(u32 battler, bool32 emitResult)
+bool32 ShouldSwitch(u32 battler)
 {
     u32 battlerIn1, battlerIn2;
     s32 firstId;
@@ -1036,33 +1032,33 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //Since the order is sequencial, and some of these functions prompt switch to specific party members.
 
     // These Functions can prompt switch to specific party members that override GetMostSuitableMonToSwitchInto
-    if (FindMonThatHitsWonderGuard(battler, emitResult))
+    if (FindMonThatHitsWonderGuard(battler))
         return TRUE;
-    if (FindMonThatAbsorbsOpponentsMove(battler, emitResult))
+    if (FindMonThatAbsorbsOpponentsMove(battler))
         return TRUE;
 
     // These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
-    if (ShouldSwitchIfTrapperInParty(battler, emitResult))
+    if (ShouldSwitchIfTrapperInParty(battler))
         return TRUE;
-    if (ShouldSwitchIfOpponentChargingOrInvulnerable(battler, emitResult))
+    if (ShouldSwitchIfOpponentChargingOrInvulnerable(battler))
         return TRUE;
-    if (ShouldSwitchIfTruant(battler, emitResult))
+    if (ShouldSwitchIfTruant(battler))
         return TRUE;
-    if (ShouldSwitchIfAllMovesBad(battler, emitResult))
+    if (ShouldSwitchIfAllMovesBad(battler))
         return TRUE;
-    if (ShouldSwitchIfBadlyStatused(battler, emitResult))
+    if (ShouldSwitchIfBadlyStatused(battler))
         return TRUE;
-    if (ShouldSwitchIfAbilityBenefit(battler, emitResult))
+    if (ShouldSwitchIfAbilityBenefit(battler))
         return TRUE;
-    if (ShouldSwitchIfHasBadOdds(battler, emitResult))
+    if (ShouldSwitchIfHasBadOdds(battler))
         return TRUE;
-    if (ShouldSwitchIfEncored(battler, emitResult))
+    if (ShouldSwitchIfEncored(battler))
         return TRUE;
-    if (ShouldSwitchIfBadChoiceLock(battler, emitResult))
+    if (ShouldSwitchIfBadChoiceLock(battler))
         return TRUE;
-    if (ShouldSwitchIfAttackingStatsLowered(battler, emitResult))
+    if (ShouldSwitchIfAttackingStatsLowered(battler))
         return TRUE;
 
     // Removing switch capabilites under specific conditions
@@ -1074,8 +1070,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
 
     // Default Function
     // Can prompt switch if AI has a pokemon in party that resists current opponent & has super effective move
-    if (FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_DOESNT_AFFECT_FOE, 2, emitResult)
-        || FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_NOT_VERY_EFFECTIVE, 3, emitResult))
+    if (FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_DOESNT_AFFECT_FOE, 2)
+        || FindMonWithFlagsAndSuperEffective(battler, MOVE_RESULT_NOT_VERY_EFFECTIVE, 3))
         return TRUE;
 
     return FALSE;
@@ -1096,8 +1092,9 @@ void AI_TrySwitchOrUseItem(u32 battler)
 
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (ShouldSwitch(battler, TRUE))
+        if (ShouldSwitch(battler))
         {
+            BtlController_EmitTwoReturnValues(battler, 1, B_ACTION_SWITCH, 0);
             if (gBattleStruct->AI_monToSwitchIntoId[battler] == PARTY_SIZE)
             {
                 s32 monToSwitchId = AI_DATA->mostSuitableMonId[battler];
