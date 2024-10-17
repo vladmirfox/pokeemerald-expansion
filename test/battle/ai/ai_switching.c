@@ -812,6 +812,24 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if main attac
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if opponent uses two-turn move and it has a switchin that wins 1v1")
+{
+    u32 move;
+    PARAMETRIZE { move = MOVE_SKY_ATTACK; }
+    PARAMETRIZE { move = MOVE_FLY; }
+
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
+        ASSUME(gMovesInfo[MOVE_SKY_ATTACK].effect == EFFECT_TWO_TURNS_ATTACK);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_SWELLOW) { Moves(move); }
+        OPPONENT(SPECIES_MILOTIC) { Moves(MOVE_SURF); }
+        OPPONENT(SPECIES_LAIRON) { Moves(MOVE_ROCK_SLIDE); }
+    } WHEN {
+        TURN { MOVE(player, move); EXPECT_MOVE(opponent, MOVE_SURF); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
 TO_DO_BATTLE_TEST("FindMonThatAbsorbsOpponentsMove with SE move");
-TO_DO_BATTLE_TEST("ShouldSwitchIfOpponentChargingOrInvulnerable");
 TO_DO_BATTLE_TEST("FindMonWithFlagsAndSuperEffective");

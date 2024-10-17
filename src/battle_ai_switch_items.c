@@ -458,7 +458,8 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
 static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler, bool32 emitResult)
 {
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-    bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, AI_DATA->lastUsedMove[opposingBattler]) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, AI_DATA->lastUsedMove[opposingBattler]));
+    u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
+    bool32 isOpposingBattlerChargingOrInvulnerable = (IsSemiInvulnerable(opposingBattler, incomingMove) || IsTwoTurnNotSemiInvulnerableMove(opposingBattler, incomingMove));
     
     if (IsDoubleBattle() || !(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
