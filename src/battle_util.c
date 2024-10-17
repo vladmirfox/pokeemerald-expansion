@@ -10328,23 +10328,29 @@ static u32 GetWeather(void)
         return gBattleWeather;
 }
 
+static inline bool32 IsFutureSightAttackerInParty(u32 battlerAtk, u32 battlerDef, u32 move)
+{
+    if (gMovesInfo[move].effect != EFFECT_FUTURE_SIGHT)
+        return FALSE;
+
+    struct Pokemon *party = GetSideParty(GetBattlerSide(battlerAtk));
+
+    return &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]]
+        != &party[gBattlerPartyIndexes[battlerAtk]];
+}
+
 s32 CalculateMoveDamage(u32 move, u32 battlerAtk, u32 battlerDef, u32 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags)
 {
     struct Pokemon *party = GetSideParty(GetBattlerSide(gBattlerAttacker));
+    u32 typeEffectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), updateFlags);
 
-    if (gMovesInfo[move].effect == EFFECT_FUTURE_SIGHT
-     && (&party[gWishFutureKnock.futureSightPartyIndex[battlerDef]] != &party[gBattlerPartyIndexes[battlerAtk]]) )
-    {
+    if (IsFutureSightAttackerInParty(battlerAtk, battlerDef, move))
         return DoFutureSightAttackDamageCalc(move, battlerAtk, battlerDef, moveType, isCrit, randomFactor,
-                                updateFlags, CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), updateFlags),
-                                GetWeather());
-    }
-    else
-    {
-        return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, fixedBasePower, isCrit, randomFactor,
-                            updateFlags, CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, GetBattlerAbility(battlerDef), updateFlags),
-                            GetWeather());
-    }
+                                             updateFlags, typeEffectivenessMultiplier, GetWeather());
+
+
+    return DoMoveDamageCalc(move, battlerAtk, battlerDef, moveType, fixedBasePower, isCrit, randomFactor,
+                            updateFlags, typeEffectivenessMultiplier, GetWeather());
 }
 
 // for AI so that typeEffectivenessModifier, weather, abilities and holdEffects are calculated only once
