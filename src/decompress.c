@@ -9,134 +9,134 @@
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
 EWRAM_INIT struct DecodeYK ykTemplate[128] = {
-    [0] = {0, 0, 0},
-    [1] = {1, 6, 0},
-    [2] = {2, 5, 0},
-    [3] = {3, 5, 0},
-    [4] = {4, 4, 0},
-    [5] = {5, 4, 0},
-    [6] = {6, 4, 0},
-    [7] = {7, 4, 0},
-    [8] = {8, 3, 0},
-    [9] = {9, 3, 0},
-    [10] = {10, 3, 0},
-    [11] = {11, 3, 0},
-    [12] = {12, 3, 0},
-    [13] = {13, 3, 0},
-    [14] = {14, 3, 0},
-    [15] = {15, 3, 0},
-    [16] = {16, 2, 0},
-    [17] = {17, 2, 0},
-    [18] = {18, 2, 0},
-    [19] = {19, 2, 0},
-    [20] = {20, 2, 0},
-    [21] = {21, 2, 0},
-    [22] = {22, 2, 0},
-    [23] = {23, 2, 0},
-    [24] = {24, 2, 0},
-    [25] = {25, 2, 0},
-    [26] = {26, 2, 0},
-    [27] = {27, 2, 0},
-    [28] = {28, 2, 0},
-    [29] = {29, 2, 0},
-    [30] = {30, 2, 0},
-    [31] = {31, 2, 0},
-    [32] = {32, 1, 0},
-    [33] = {33, 1, 0},
-    [34] = {34, 1, 0},
-    [35] = {35, 1, 0},
-    [36] = {36, 1, 0},
-    [37] = {37, 1, 0},
-    [38] = {38, 1, 0},
-    [39] = {39, 1, 0},
-    [40] = {40, 1, 0},
-    [41] = {41, 1, 0},
-    [42] = {42, 1, 0},
-    [43] = {43, 1, 0},
-    [44] = {44, 1, 0},
-    [45] = {45, 1, 0},
-    [46] = {46, 1, 0},
-    [47] = {47, 1, 0},
-    [48] = {48, 1, 0},
-    [49] = {49, 1, 0},
-    [50] = {50, 1, 0},
-    [51] = {51, 1, 0},
-    [52] = {52, 1, 0},
-    [53] = {53, 1, 0},
-    [54] = {54, 1, 0},
-    [55] = {55, 1, 0},
-    [56] = {56, 1, 0},
-    [57] = {57, 1, 0},
-    [58] = {58, 1, 0},
-    [59] = {59, 1, 0},
-    [60] = {60, 1, 0},
-    [61] = {61, 1, 0},
-    [62] = {62, 1, 0},
-    [63] = {63, 1, 0},
-    [64] = {64, 0, 0},
-    [65] = {65, 0, 0},
-    [66] = {66, 0, 0},
-    [67] = {67, 0, 0},
-    [68] = {68, 0, 0},
-    [69] = {69, 0, 0},
-    [70] = {70, 0, 0},
-    [71] = {71, 0, 0},
-    [72] = {72, 0, 0},
-    [73] = {73, 0, 0},
-    [74] = {74, 0, 0},
-    [75] = {75, 0, 0},
-    [76] = {76, 0, 0},
-    [77] = {77, 0, 0},
-    [78] = {78, 0, 0},
-    [79] = {79, 0, 0},
-    [80] = {80, 0, 0},
-    [81] = {81, 0, 0},
-    [82] = {82, 0, 0},
-    [83] = {83, 0, 0},
-    [84] = {84, 0, 0},
-    [85] = {85, 0, 0},
-    [86] = {86, 0, 0},
-    [87] = {87, 0, 0},
-    [88] = {88, 0, 0},
-    [89] = {89, 0, 0},
-    [90] = {90, 0, 0},
-    [91] = {91, 0, 0},
-    [92] = {92, 0, 0},
-    [93] = {93, 0, 0},
-    [94] = {94, 0, 0},
-    [95] = {95, 0, 0},
-    [96] = {96, 0, 0},
-    [97] = {97, 0, 0},
-    [98] = {98, 0, 0},
-    [99] = {99, 0, 0},
-    [100] = {100, 0, 0},
-    [101] = {101, 0, 0},
-    [102] = {102, 0, 0},
-    [103] = {103, 0, 0},
-    [104] = {104, 0, 0},
-    [105] = {105, 0, 0},
-    [106] = {106, 0, 0},
-    [107] = {107, 0, 0},
-    [108] = {108, 0, 0},
-    [109] = {109, 0, 0},
-    [110] = {110, 0, 0},
-    [111] = {111, 0, 0},
-    [112] = {112, 0, 0},
-    [113] = {113, 0, 0},
-    [114] = {114, 0, 0},
-    [115] = {115, 0, 0},
-    [116] = {116, 0, 0},
-    [117] = {117, 0, 0},
-    [118] = {118, 0, 0},
-    [119] = {119, 0, 0},
-    [120] = {120, 0, 0},
-    [121] = {121, 0, 0},
-    [122] = {122, 0, 0},
-    [123] = {123, 0, 0},
-    [124] = {124, 0, 0},
-    [125] = {125, 0, 0},
-    [126] = {126, 0, 0},
-    [127] = {127, 0, 0},
+    [0] = {0, 0},
+    [1] = {1, 6},
+    [2] = {2, 5},
+    [3] = {3, 5},
+    [4] = {4, 4},
+    [5] = {5, 4},
+    [6] = {6, 4},
+    [7] = {7, 4},
+    [8] = {8, 3},
+    [9] = {9, 3},
+    [10] = {10, 3},
+    [11] = {11, 3},
+    [12] = {12, 3},
+    [13] = {13, 3},
+    [14] = {14, 3},
+    [15] = {15, 3},
+    [16] = {16, 2},
+    [17] = {17, 2},
+    [18] = {18, 2},
+    [19] = {19, 2},
+    [20] = {20, 2},
+    [21] = {21, 2},
+    [22] = {22, 2},
+    [23] = {23, 2},
+    [24] = {24, 2},
+    [25] = {25, 2},
+    [26] = {26, 2},
+    [27] = {27, 2},
+    [28] = {28, 2},
+    [29] = {29, 2},
+    [30] = {30, 2},
+    [31] = {31, 2},
+    [32] = {32, 1},
+    [33] = {33, 1},
+    [34] = {34, 1},
+    [35] = {35, 1},
+    [36] = {36, 1},
+    [37] = {37, 1},
+    [38] = {38, 1},
+    [39] = {39, 1},
+    [40] = {40, 1},
+    [41] = {41, 1},
+    [42] = {42, 1},
+    [43] = {43, 1},
+    [44] = {44, 1},
+    [45] = {45, 1},
+    [46] = {46, 1},
+    [47] = {47, 1},
+    [48] = {48, 1},
+    [49] = {49, 1},
+    [50] = {50, 1},
+    [51] = {51, 1},
+    [52] = {52, 1},
+    [53] = {53, 1},
+    [54] = {54, 1},
+    [55] = {55, 1},
+    [56] = {56, 1},
+    [57] = {57, 1},
+    [58] = {58, 1},
+    [59] = {59, 1},
+    [60] = {60, 1},
+    [61] = {61, 1},
+    [62] = {62, 1},
+    [63] = {63, 1},
+    [64] = {64, 0},
+    [65] = {65, 0},
+    [66] = {66, 0},
+    [67] = {67, 0},
+    [68] = {68, 0},
+    [69] = {69, 0},
+    [70] = {70, 0},
+    [71] = {71, 0},
+    [72] = {72, 0},
+    [73] = {73, 0},
+    [74] = {74, 0},
+    [75] = {75, 0},
+    [76] = {76, 0},
+    [77] = {77, 0},
+    [78] = {78, 0},
+    [79] = {79, 0},
+    [80] = {80, 0},
+    [81] = {81, 0},
+    [82] = {82, 0},
+    [83] = {83, 0},
+    [84] = {84, 0},
+    [85] = {85, 0},
+    [86] = {86, 0},
+    [87] = {87, 0},
+    [88] = {88, 0},
+    [89] = {89, 0},
+    [90] = {90, 0},
+    [91] = {91, 0},
+    [92] = {92, 0},
+    [93] = {93, 0},
+    [94] = {94, 0},
+    [95] = {95, 0},
+    [96] = {96, 0},
+    [97] = {97, 0},
+    [98] = {98, 0},
+    [99] = {99, 0},
+    [100] = {100, 0},
+    [101] = {101, 0},
+    [102] = {102, 0},
+    [103] = {103, 0},
+    [104] = {104, 0},
+    [105] = {105, 0},
+    [106] = {106, 0},
+    [107] = {107, 0},
+    [108] = {108, 0},
+    [109] = {109, 0},
+    [110] = {110, 0},
+    [111] = {111, 0},
+    [112] = {112, 0},
+    [113] = {113, 0},
+    [114] = {114, 0},
+    [115] = {115, 0},
+    [116] = {116, 0},
+    [117] = {117, 0},
+    [118] = {118, 0},
+    [119] = {119, 0},
+    [120] = {120, 0},
+    [121] = {121, 0},
+    [122] = {122, 0},
+    [123] = {123, 0},
+    [124] = {124, 0},
+    [125] = {125, 0},
+    [126] = {126, 0},
+    [127] = {127, 0},
 };
 
 void LZDecompressWram(const u32 *src, void *dest)
@@ -263,7 +263,7 @@ struct SmolHead {
     u32 symLength:12;
 };
 
-void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
+void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
 {
     freqs[15] = 0;
     for (u32 i = 0; i < 3; i++)
@@ -276,106 +276,219 @@ void UnpackFrequencies(u32 *packedFreqs, u8 *freqs)
     }
 }
 
-//  Compression modes
-/*
-    instruct tANS
-    symbol tANS
-    symbol delta
-    something?
-    something?
-*/
-
-void DecompressData(void *src, void *dst)
+void DecompressData(const u32 *src, void *dest)
 {
     bool32 isVram;
-    if ((u32)dst > 0x06000000)
+    if ((u32)dest > 0x06000000)
         isVram = TRUE;
     else
-        isVram = false;
-
+        isVram = FALSE;
+    struct CompressionHeader header;
+    CpuCopy32(src, &header, 8);
+    if (header.lz77Bit == 1)
+    {
+        if (isVram)
+            LZ77UnCompVram(src, dest);
+        else
+            LZ77UnCompWram(src, dest);
+    }
+    else
+    {
+        SmolDecompressData(&header, &src[2], dest);
+    }
 }
 
-void SmolUnCompWram(const u32 *src, void *dest)
+void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
-    CycleCountStart();
-    struct SmolHead header;
-    memcpy(&header, src, 4);
-    u8 *allU8s = Alloc(header.loLength + header.symLength);
-
-    CpuCopy32(&src[1], allU8s, header.loLength + header.symLength);
-    u8 *loVec = &allU8s[0];
-    u8 *symVec = &allU8s[header.loLength];
-
-    u16 loIndex = 0;
-    u16 symIndex = 0;
-    u16 currLength = 0;
-    u16 currOffset = 0;
-    u32 imageIndex = 0;
-    u8 *image = Alloc(4096);
-
-    while (loIndex < header.loLength)
+    u8 freqs[16];
+    u32 currCol = 0;
+    UnpackFrequencies(packedFreqs, freqs);
+    for (u32 i = 0; i < 16; i++)
     {
-        currLength = loVec[loIndex] & 0x7f;
-        loIndex++;
-        u32 currRepeat = 1;
-        while ((loVec[loIndex-1] & 0x80) == 0x80)
+        if (freqs[i] != 0)
         {
-            currLength += (loVec[loIndex] & 0x7f) << (7*currRepeat);
-            loIndex++;
+            //  Copying 16-bit sized data from EWRAM to array, IMPROVEMENT POSSIBLE
+            memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
+            //  Setting 8-bit array elements to a single symbol, IMPROVEMENT POSSIBLE
+            for (u32 j = 0; j < freqs[i]; j++)
+                symbolTable[currCol + j] = i;
+            currCol += freqs[i];
         }
-        currOffset = loVec[loIndex] & 0x7f;
-        loIndex++;
-        currRepeat = 1;
-        while ((loVec[loIndex-1] & 0x80) == 0x80)
-        {
-            currOffset += (loVec[loIndex] & 0x7f) << (7*currRepeat);
-            currRepeat++;
-            loIndex++;
-        }
+    }
+}
 
+void DecodetANS(const u32 *data, u32 *readIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 numSymbols)
+{
+    u32 sumTotal = 0;
+    for (u32 i = 0; i < 64; i++)
+        sumTotal += symbolTable[i];
+    MgbaPrintf(MGBA_LOG_WARN, "Total: %u", sumTotal);
+}
+
+void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u8 *symVec, void *dest)
+{
+    u32 loIndex = 0;
+    u32 symIndex = 0;
+    u32 lengthMod = header->lengthMod;
+    u32 destIndex = 0;
+    while (loIndex < header->instructionCount)
+    {
+        u32 currLength = loVec[loIndex] & 0x7f;
+        if ((loVec[loIndex] & 0x80) == 0x80)
+        {
+            currLength += loVec[loIndex+1] << 7;
+            loIndex += 2;
+        }
+        else
+        {
+            loIndex++;
+        }
+        u32 currOffset = loVec[loIndex] & 0x7f;
+        if ((loVec[loIndex] & 0x80) == 0x80)
+        {
+            currOffset += loVec[loIndex+1] << 7;
+            loIndex += 2;
+        }
+        else
+        {
+            loIndex++;
+        }
         if (currLength != 0)
         {
-            currLength += header.lengthMod + 2;
+            currLength += lengthMod;
+            u16 currValue = symVec[symIndex] + (symVec[symIndex + 1] << 8);
+            symIndex += 2;
+            memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
+            destIndex++;
             if (currOffset == 1)
             {
-                //CpuFastFill8(symVec[symIndex], &image[imageIndex], currLength + 1);
-                //symIndex++;
-                //imageIndex += currLength + 1;
-                /*
-                for (u32 i = 0; i <= currLength; i++)
+                //  This should be some fill function
+                for (u32 i = 0; i < currLength; i++)
                 {
-                    image[imageIndex + i] = symVec[symIndex];
+                    memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
+                    destIndex++;
                 }
-                */
-                imageIndex += currLength +1;
-                symIndex++;
             }
             else
             {
-                image[imageIndex] = symVec[symIndex];
-                imageIndex++;
-                symIndex++;
                 for (u32 i = 0; i < currLength; i++)
                 {
-                    image[imageIndex] = image[imageIndex - currOffset];
-                    imageIndex++;
+                    memcpy(&gDecompressionBuffer[destIndex*2], &gDecompressionBuffer[destIndex*2 - currOffset*2], 2);
+                    destIndex++;
                 }
             }
         }
         else
         {
-            memcpy(&image[imageIndex], &symVec[symIndex], currOffset);
-            imageIndex += currOffset;
-            symIndex += currOffset;
+            //  It's not a repeated sequence, write raw bytes
+            //  Horrible implementation right now, rewrite symVec to work on unsigned shorts
+            for (u32 i = 0; i < currOffset; i++)
+            {
+                u16 currValue = symVec[symIndex] + (symVec[symIndex + 1] << 8);
+                symIndex += 2;
+                memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
+                destIndex++;
+            }
         }
     }
+}
 
-    CpuCopy32(image, dest, 4096);
+void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest)
+{
+    u32 currState = header->initialState;
+    u32 readIndex = 0;
+    struct DecodeYK *loTable;
+    u8 *loSymbols;
+    struct DecodeYK *symTable;
+    u8 *symSymbols;
+    u8 *dataVec = Alloc(header->instructionCount + header->symbolCount);
+    u8 *loVec = Alloc(header->instructionCount);
+    u8 *symVec = Alloc(header->symbolCount);
+    u32 packedLoFreqs[3];
+    u32 packedSymFreqs[3];
+    bool8 loEncoded = FALSE;
+    bool8 symEncoded = FALSE;
+    bool8 symDelta = FALSE;
 
-    Free(allU8s);
-    Free(image);
-    u32 totalTime = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "Time: %u", totalTime);
+    switch (header->mode)
+    {
+        case BASE_ONLY:
+            break;
+        case ENCODE_SYMS:
+            symEncoded = TRUE;
+            break;
+        case ENCODE_DELTA_SYMS:
+            symEncoded = TRUE;
+            symDelta = TRUE;
+            break;
+        case ENCODE_LO:
+            loEncoded = TRUE;
+            break;
+        case ENCODE_BOTH:
+            loEncoded = TRUE;
+            symEncoded = TRUE;
+            break;
+        case ENCODE_BOTH_DELTA_SYMS:
+            symEncoded = TRUE;
+            symDelta = TRUE;
+            break;
+    }
+
+    if (loEncoded == TRUE)
+    {
+        for (u32 i = 0; i < 3; i++)
+            packedLoFreqs[i] = data[readIndex + i];
+        readIndex += 3;
+    }
+    if (symEncoded == TRUE)
+    {
+        for (u32 i = 0; i < 3; i++)
+            packedSymFreqs[i] = data[readIndex + i];
+        readIndex += 3;
+    }
+
+    if (loEncoded == TRUE)
+    {
+        loTable = Alloc(64*sizeof(struct DecodeYK));
+        loSymbols = Alloc(64);
+        BuildDecompressionTable(packedLoFreqs, loTable, loSymbols);
+        DecodetANS(data, &readIndex, loTable, loSymbols, loVec, &currState, header->instructionCount);
+        Free(loTable);
+        Free(loSymbols);
+    }
+    if (symEncoded == TRUE)
+    {
+        symTable = Alloc(64*sizeof(struct DecodeYK));
+        symSymbols = Alloc(64);
+        BuildDecompressionTable(packedSymFreqs, symTable, symSymbols);
+        DecodetANS(data, &readIndex, symTable, symSymbols, symVec, &currState, header->symbolCount);
+        Free(symTable);
+        Free(symSymbols);
+    }
+
+    if (loEncoded != 1)
+    {
+        memcpy(loVec, &data[readIndex], header->instructionCount);
+        readIndex += header->instructionCount;
+    }
+
+    if (symEncoded != 1)
+    {
+        memcpy(symVec, &data[readIndex], header->symbolCount);
+        readIndex += header->symbolCount;
+    }
+
+    DecodeInstructions(header, loVec, symVec, dest);
+
+    u32 totalValue = 0;
+    for (u32 i = 0; i < header->imageSize; i++)
+        totalValue += gDecompressionBuffer[i];
+    MgbaPrintf(MGBA_LOG_WARN, "Check Value: %u", totalValue);
+    //memcpy(dest, &gDecompressionBuffer[0], header->imageSize);
+
+    Free(dataVec);
+    Free(loVec);
+    Free(symVec);
 }
 
 void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic)
@@ -396,7 +509,8 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
             }
             else
             {
-                SmolUnCompWram(gSpeciesInfo[species].frontPic, dest);
+                LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+                DecompressData(gSpeciesInfo[SPECIES_RELICANTH].frontPic, dest);
             }
         }
         else
