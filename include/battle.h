@@ -374,7 +374,7 @@ struct AiLogicData
     struct SwitchinCandidate switchinCandidate; // Struct used for deciding which mon to switch to in battle_ai_switch_items.c
     u8 weatherHasEffect:1; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
     u8 ejectButtonSwitch:1; // Tracks whether current switch out was from Eject Button
-    u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack 
+    u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack
     u8 padding:5;
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
     u8 aiCalcInProgress:1;
@@ -1035,6 +1035,19 @@ struct QueuedStatBoost
     u8 stats;   // bitfield for each battle stat that is set if the stat changes
     s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
 }; /* size = 8 */
+
+struct DamageCalculationData
+{
+    u32 battlerAtk:4;
+    u32 battlerDef:4;
+    u32 move:16;
+    u32 moveType:5;
+    u32 fixedBasePower:1;
+    u32 isCrit:1;
+    u32 randomFactor:1;
+    u32 updateFlags:1;
+    u32 padding:3;
+};
 
 // All battle variables are declared in battle_main.c
 extern u16 gBattle_BG0_X;

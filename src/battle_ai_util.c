@@ -502,6 +502,13 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
     struct AiLogicData *aiData = AI_DATA;
     AI_DATA->aiCalcInProgress = TRUE;
 
+    struct DamageCalculationData dmgCalcData;
+    dmgCalcData.battlerAtk = battlerAtk;
+    dmgCalcData.battlerDef = battlerDef;
+    dmgCalcData.move = move;
+    dmgCalcData.randomFactor = FALSE;
+    dmgCalcData.updateFlags = FALSE;
+
     if (moveEffect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove(battlerAtk);
 
@@ -541,6 +548,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
     SetTypeBeforeUsingMove(move, battlerAtk);
     moveType = GetMoveType(move);
+    dmgCalcData.moveType = move;
     effectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, aiData->abilities[battlerDef], FALSE);
 
     if (gMovesInfo[move].power)
@@ -566,15 +574,18 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
             break;
         }
 
+        dmgCalcData.fixedBasePower = FALSE;
         critChanceIndex = CalcCritChanceStageArgs(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         if (critChanceIndex > 1) // Consider crit damage only if a move has at least +2 crit chance
         {
-            s32 nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                     effectivenessMultiplier, weather, FALSE,
+            dmgCalcData.isCrit = FALSE;
+            s32 nonCritDmg = CalculateMoveDamageVars(&dmgCalcData,
+                                                     effectivenessMultiplier, weather,
                                                      aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                      aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-            s32 critDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                  effectivenessMultiplier, weather, TRUE,
+            dmgCalcData.isCrit = TRUE;
+            s32 critDmg = CalculateMoveDamageVars(&dmgCalcData,
+                                                  effectivenessMultiplier, weather,
                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
@@ -588,8 +599,8 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
-            s32 critDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                  effectivenessMultiplier, weather, TRUE,
+            s32 critDmg = CalculateMoveDamageVars(&dmgCalcData,
+                                                  effectivenessMultiplier, weather,
                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
@@ -603,16 +614,16 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
             {
                 for (gMultiHitCounter = gMovesInfo[move].strikeCount; gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
                 {
-                    nonCritDmg += CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                          effectivenessMultiplier, weather, FALSE,
+                    nonCritDmg += CalculateMoveDamageVars(&dmgCalcData,
+                                                          effectivenessMultiplier, weather,
                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
                 }
             }
             else
             {
-                nonCritDmg = CalculateMoveDamageVars(move, battlerAtk, battlerDef, moveType, fixedBasePower,
-                                                     effectivenessMultiplier, weather, FALSE,
+                nonCritDmg = CalculateMoveDamageVars(&dmgCalcData,
+                                                     effectivenessMultiplier, weather,
                                                      aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                      aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
             }

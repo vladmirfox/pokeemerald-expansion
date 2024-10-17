@@ -2122,10 +2122,21 @@ static void Cmd_damagecalc(void)
 {
     CMD_ARGS();
 
-    u32 moveType = GetMoveType(gCurrentMove);
+    struct DamageCalculationData dmgCalcData;
+
     if (gMovesInfo[gCurrentMove].effect == EFFECT_SHELL_SIDE_ARM)
         gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][gBattlerTarget] != gMovesInfo[gCurrentMove].category);
-    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+
+    dmgCalcData.battlerAtk = gBattlerAttacker;
+    dmgCalcData.battlerDef = gBattlerTarget;
+    dmgCalcData.move = gCurrentMove;
+    dmgCalcData.moveType = GetMoveType(gCurrentMove);
+    dmgCalcData.fixedBasePower = TRUE;
+    dmgCalcData.isCrit = gIsCriticalHit;
+    dmgCalcData.randomFactor = TRUE;
+    dmgCalcData.updateFlags = TRUE;
+
+    gBattleMoveDamage = CalculateMoveDamage(&dmgCalcData);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
