@@ -417,7 +417,7 @@ static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 ba
 }
 
 
-static inline u32 GetDmgRollModifier(u32 battlerAtk)
+static inline u32 GetDmgRollType(u32 battlerAtk)
 {
     if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
         return DMG_ROLL_HIGHEST;
@@ -429,9 +429,9 @@ static inline u32 GetDmgRollModifier(u32 battlerAtk)
 
 static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalculationData *dmgCalcData, u32 battlersCount, u32 weather)
 {
-    u32 battlerDef, moveIndex;
     u16 *moves;
-
+    u32 battlerDef, moveIndex, move;
+    u32 rollType = GetDmgRollType(battlerAtk);
     u32 battlerAtk = dmgCalcData->battlerAtk;
     SaveBattlerData(battlerAtk);
     moves = GetMovesArray(battlerAtk);
@@ -450,7 +450,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalcu
         {
             struct SimulatedDamage dmg = {0};
             u8 effectiveness = AI_EFFECTIVENESS_x0;
-            u32 move = moves[moveIndex];
+            move = moves[moveIndex];
 
             if (move != 0
              && move != 0xFFFF
@@ -460,7 +460,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalcu
                 dmgCalcData->battlerDef = battlerDef;
                 dmgCalcData->move = move;
 
-                dmg = AI_CalcDamage(dmgCalcData, &effectiveness, TRUE, weather, GetDmgRollModifier(battlerAtk));
+                dmg = AI_CalcDamage(dmgCalcData, &effectiveness, TRUE, weather, rollType);
                 aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
             }
             aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
