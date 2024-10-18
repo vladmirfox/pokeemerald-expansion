@@ -1,12 +1,12 @@
 {
-  "id": "MAP_SOULKEEP",
-  "name": "Soulkeep",
-  "layout": "LAYOUT_SOULKEEP",
+  "id": "MAP_SOULKEEP_GRAVEYARD",
+  "name": "SoulkeepGraveyard",
+  "layout": "LAYOUT_SOULKEEP_GRAVEYARD",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_SOULKEEP",
+  "region_map_section": "MAPSEC_MAUVILLE_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_TOWN",
+  "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
   "allow_running": true,
@@ -14,14 +14,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ORCHARD_PATH",
-      "offset": 19,
-      "direction": "right"
-    },
-    {
-      "map": "MAP_SOULKEEP_GRAVEYARD",
-      "offset": 8,
-      "direction": "up"
+      "map": "MAP_SOULKEEP",
+      "offset": -8,
+      "direction": "down"
     }
   ],
   "object_events": [

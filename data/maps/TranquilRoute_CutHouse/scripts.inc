@@ -134,6 +134,83 @@ TranquilRoute_CutHouse_EventScript_CutMaster_5:
 	goto TranquilRoute_CutHouse_EventScript_CutMaster_1
 
 
+TranquilRoute_CutHouse_EventScript_RandomCryGuy::
+# 104 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	lock
+# 105 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	faceplayer
+# 106 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	goto_if_set FLAG_MON_CRY_NPC_GIVE_ITEM, TranquilRoute_CutHouse_EventScript_RandomCryGuy_2
+# 113 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	goto_if_set FLAG_MON_CRY_NPC, TranquilRoute_CutHouse_EventScript_RandomCryGuy_5
+# 120 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	special AssignRandomMonCryVars
+# 121 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_2
+# 122 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	waitse
+# 123 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	playmoncry VAR_0x8008, CRY_MODE_NORMAL
+# 124 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	waitmoncry
+# 125 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_3
+# 127 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_0x8004
+# 128 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	dynmultipush TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_4, VAR_0x8004
+# 130 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_0x8005
+# 131 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	dynmultipush TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_4, VAR_0x8005
+# 133 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_0x8006
+# 134 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	dynmultipush TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_4, VAR_0x8006
+# 136 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_0x8007
+# 137 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	dynmultipush TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_4, VAR_0x8007
+# 139 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	dynmultistack 0, 0, FALSE, 6, TRUE, 3, DYN_MULTICHOICE_CB_NONE
+# 141 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	compare VAR_RESULT, VAR_0x8008
+	goto_if_eq TranquilRoute_CutHouse_EventScript_RandomCryGuy_8
+# 150 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_7:
+# 152 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	setflag FLAG_MON_CRY_NPC
+# 153 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_2:
+# 108 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_0
+# 109 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_5:
+# 115 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_1
+# 116 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_8:
+# 143 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_5
+# 144 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	giveitem ITEM_MEWTWONITE_X
+# 145 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	setflag FLAG_MON_CRY_NPC_GIVE_ITEM
+# 146 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6
+	goto TranquilRoute_CutHouse_EventScript_RandomCryGuy_7
+
+
 TranquilRoute_CutHouse_EventScript_CutGrassCutscene_Text_0:
 # 35 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "You actually cut ALL the tall grass?\p"
@@ -182,3 +259,35 @@ TranquilRoute_CutHouse_EventScript_CutMaster_Text_3:
 	.string "Oh, you will need at least one official\n"
 	.string "dojo badge to be able to cut trees\l"
 	.string "and grass, though.$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_0:
+# 108 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "you already got it right\ncome back tomorrow dingus$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_1:
+# 115 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "you guessed wrong\ncome back tomorrow dingus$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_2:
+# 121 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "yo dingus listen to this$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_3:
+# 125 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "now tell me, whomst was it$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_4:
+# 128 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "{STR_VAR_1}$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_5:
+# 143 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "correct dingus, here take this$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6:
+# 146 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "come back tomorrow$"
+
+TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7:
+# 150 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "wrong dingus, try again tomorrow$"
