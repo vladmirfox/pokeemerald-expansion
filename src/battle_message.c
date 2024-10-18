@@ -3352,12 +3352,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     }
 
     dstID = 0;
-    DebugPrintf("BEGIN:    src:\"%S\"", src);
+    //DebugPrintf("BEGIN:    src:\"%S\"", src);
     while (*src != EOS)
     {
         toCpy = NULL;
         dstWidth = GetStringLineWidth(fontId, dst, letterSpacing, lineNum, dstSize, FALSE);
-        DebugPrintf("    line:%d, dstWidth:%d, lastSkip:%d, \"%S\"", lineNum, dstWidth, lastValidSkip, dst);
+        //DebugPrintf("    line:%d, dstWidth:%d, lastSkip:%d, \"%S\"", lineNum, dstWidth, lastValidSkip, dst);
 
         if (*src == PLACEHOLDER_BEGIN)
         {
@@ -3750,7 +3750,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
             if (toCpy != NULL)
             {
                 toCpyWidth = GetStringLineWidth(fontId, toCpy, letterSpacing, 1, dstSize, FALSE);
-                DebugPrintf("  toCpy width:%d, \"%S\"", toCpyWidth, toCpy);
+                //DebugPrintf("  toCpy width:%d, \"%S\"", toCpyWidth, toCpy);
                 if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
                 {
                     dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
@@ -3776,8 +3776,9 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         }
         else
         {
+            toCpyWidth = GetGlyphWidth(dst[dstID + 1], FALSE, fontId);
             dst[dstID] = *src;
-            if (dstWidth > BATTLE_MSG_MAX_WIDTH)
+            if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
             {
                 dst[lastValidSkip] = lineNum == 1 ? CHAR_NEWLINE : CHAR_PROMPT_SCROLL;
                 lineNum++;
