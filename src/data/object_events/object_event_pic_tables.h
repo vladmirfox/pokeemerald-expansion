@@ -1190,9 +1190,9 @@ static const struct SpriteFrameImage sPicTable_Ball_SPORT[] = {
 static const struct SpriteFrameImage sPicTable_Ball_DREAM[] = {
     POKEBALL_PIC_FRAMES(Dream),
 };
-static const struct SpriteFrameImage sPicTable_Ball_BEAST[] = {
-    POKEBALL_PIC_FRAMES(Beast),
-};
+// static const struct SpriteFrameImage sPicTable_Ball_BEAST[] = {
+//     POKEBALL_PIC_FRAMES(Beast),
+// };
 #ifdef ITEM_STRANGE_BALL
 static const struct SpriteFrameImage sPicTable_Ball_STRANGE[] = {
     POKEBALL_PIC_FRAMES(Strange),
