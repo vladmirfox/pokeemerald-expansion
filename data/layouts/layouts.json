@@ -4434,8 +4434,8 @@
     {
       "id": "LAYOUT_GINKO_WOODS",
       "name": "GinkoWoods_Layout",
-      "width": 54,
-      "height": 60,
+      "width": 59,
+      "height": 54,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_GinkoWoods",
       "border_filepath": "data/layouts/GinkoWoods/border.bin",
