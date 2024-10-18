@@ -647,6 +647,21 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's m
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an absorber but current mon has SE move 33% of the time")
+{
+    PASSES_RANDOMLY(33, 100, RNG_AI_SWITCH_ABSORBING);
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_LUVDISC) { Moves(MOVE_WATER_GUN); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_SHOCK_WAVE); }
+        OPPONENT(SPECIES_MANTINE) { Moves(MOVE_TACKLE); Ability(ABILITY_WATER_ABSORB); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_MOVE(opponent, MOVE_SHOCK_WAVE); }
+        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
 // AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has an absorber")
 // {
 //     GIVEN {
@@ -660,7 +675,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's m
 //         TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
 //     }
 // }
-
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an absorber")
 {
@@ -676,18 +690,22 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an 
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an absorber but current mon has SE move 33% of the time")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if opponent uses two-turn move and it has a switchin that wins 1v1")
 {
-    PASSES_RANDOMLY(33, 100, RNG_AI_SWITCH_ABSORBING);
+    u32 move;
+    PARAMETRIZE { move = MOVE_SKY_ATTACK; }
+    PARAMETRIZE { move = MOVE_FLY; }
+
     GIVEN {
-        ASSUME(gMovesInfo[MOVE_WATER_GUN].type == TYPE_WATER);
+        ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
+        ASSUME(gMovesInfo[MOVE_SKY_ATTACK].effect == EFFECT_TWO_TURNS_ATTACK);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-        PLAYER(SPECIES_LUVDISC) { Moves(MOVE_WATER_GUN); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_SHOCK_WAVE); }
-        OPPONENT(SPECIES_MANTINE) { Moves(MOVE_TACKLE); Ability(ABILITY_WATER_ABSORB); }
+        PLAYER(SPECIES_SWELLOW) { Moves(move); }
+        OPPONENT(SPECIES_MILOTIC) { Moves(MOVE_SURF); }
+        OPPONENT(SPECIES_LAIRON) { Moves(MOVE_ROCK_SLIDE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_MOVE(opponent, MOVE_SHOCK_WAVE); }
-        TURN { MOVE(player, MOVE_WATER_GUN) ; EXPECT_SWITCH(opponent, 1); }
+        TURN { MOVE(player, move); EXPECT_MOVE(opponent, MOVE_SURF); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
     }
 }
 
@@ -827,25 +845,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if main attac
         TURN { MOVE(player, move); EXPECT_MOVE(opponent, aiMove); }
         TURN { MOVE(player, move2); EXPECT_MOVE(opponent, aiMove); }
         TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
-    }
-}
-
-AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if opponent uses two-turn move and it has a switchin that wins 1v1")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_SKY_ATTACK; }
-    PARAMETRIZE { move = MOVE_FLY; }
-
-    GIVEN {
-        ASSUME(gMovesInfo[MOVE_FLY].effect == EFFECT_SEMI_INVULNERABLE);
-        ASSUME(gMovesInfo[MOVE_SKY_ATTACK].effect == EFFECT_TWO_TURNS_ATTACK);
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-        PLAYER(SPECIES_SWELLOW) { Moves(move); }
-        OPPONENT(SPECIES_MILOTIC) { Moves(MOVE_SURF); }
-        OPPONENT(SPECIES_LAIRON) { Moves(MOVE_ROCK_SLIDE); }
-    } WHEN {
-        TURN { MOVE(player, move); EXPECT_MOVE(opponent, MOVE_SURF); }
-        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
     }
 }
 
