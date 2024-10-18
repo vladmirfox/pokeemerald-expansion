@@ -51,9 +51,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Chikorita,
         .iconSprite = gMonIcon_Chikorita,
         .iconPalIndex = 1,
+        SHADOW(-1, 2, SHADOW_SIZE_S)
         FOOTPRINT(Chikorita)
+        OVERWORLD(
+            sPicTable_Chikorita,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Chikorita,
+            gShinyOverworldPalette_Chikorita
+        )
         .levelUpLearnset = sChikoritaLevelUpLearnset,
         .teachableLearnset = sChikoritaTeachableLearnset,
+        .eggMoveLearnset = sChikoritaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_BAYLEEF}),
     },
 
@@ -105,7 +115,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Bayleef,
         .iconSprite = gMonIcon_Bayleef,
         .iconPalIndex = 1,
+        SHADOW(-1, 10, SHADOW_SIZE_M)
         FOOTPRINT(Bayleef)
+        OVERWORLD(
+            sPicTable_Bayleef,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Bayleef,
+            gShinyOverworldPalette_Bayleef
+        )
         .levelUpLearnset = sBayleefLevelUpLearnset,
         .teachableLearnset = sBayleefTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_MEGANIUM}),
@@ -169,7 +188,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Meganium,
         .iconSprite = gMonIcon_Meganium,
         .iconPalIndex = 1,
+        SHADOW(0, 13, SHADOW_SIZE_M)
         FOOTPRINT(Meganium)
+        OVERWORLD(
+            sPicTable_Meganium,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Meganium,
+            gShinyOverworldPalette_Meganium
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MeganiumF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sMeganiumLevelUpLearnset,
         .teachableLearnset = sMeganiumTeachableLearnset,
     },
@@ -223,9 +257,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Cyndaquil,
         .iconSprite = gMonIcon_Cyndaquil,
         .iconPalIndex = 3,
+        SHADOW(0, -1, SHADOW_SIZE_S)
         FOOTPRINT(Cyndaquil)
+        OVERWORLD(
+            sPicTable_Cyndaquil,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Cyndaquil,
+            gShinyOverworldPalette_Cyndaquil
+        )
         .levelUpLearnset = sCyndaquilLevelUpLearnset,
         .teachableLearnset = sCyndaquilTeachableLearnset,
+        .eggMoveLearnset = sCyndaquilEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_QUILAVA}),
     },
 
@@ -277,11 +321,20 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Quilava,
         .iconSprite = gMonIcon_Quilava,
         .iconPalIndex = 3,
+        SHADOW(0, 2, SHADOW_SIZE_M)
         FOOTPRINT(Quilava)
+        OVERWORLD(
+            sPicTable_Quilava,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Quilava,
+            gShinyOverworldPalette_Quilava
+        )
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
-                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
+                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUI}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -340,14 +393,23 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Typhlosion,
         .iconSprite = gMonIcon_Typhlosion,
         .iconPalIndex = 3,
+        SHADOW(4, 14, SHADOW_SIZE_L)
         FOOTPRINT(Typhlosion)
+        OVERWORLD(
+            sPicTable_Typhlosion,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Typhlosion,
+            gShinyOverworldPalette_Typhlosion
+        )
         .levelUpLearnset = sTyphlosionLevelUpLearnset,
         .teachableLearnset = sTyphlosionTeachableLearnset,
         .formSpeciesIdTable = sTyphlosionFormSpeciesIdTable,
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_TYPHLOSION_HISUIAN] =
+    [SPECIES_TYPHLOSION_HISUI] =
     {
         .baseHP        = 73,
         .baseAttack    = 84,
@@ -394,7 +456,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_TyphlosionHisuian,
         .iconSprite = gMonIcon_TyphlosionHisuian,
         .iconPalIndex = 1,
+        SHADOW(2, 14, SHADOW_SIZE_L)
         FOOTPRINT(Typhlosion)
+        OVERWORLD(
+            sPicTable_TyphlosionHisuian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_TyphlosionHisuian,
+            gShinyOverworldPalette_TyphlosionHisuian
+        )
         .isHisuianForm = TRUE,
         .levelUpLearnset = sTyphlosionHisuianLevelUpLearnset,
         .teachableLearnset = sTyphlosionHisuianTeachableLearnset,
@@ -451,9 +522,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Totodile,
         .iconSprite = gMonIcon_Totodile,
         .iconPalIndex = 0,
+        SHADOW(2, 0, SHADOW_SIZE_S)
         FOOTPRINT(Totodile)
+        OVERWORLD(
+            sPicTable_Totodile,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Totodile,
+            gShinyOverworldPalette_Totodile
+        )
         .levelUpLearnset = sTotodileLevelUpLearnset,
         .teachableLearnset = sTotodileTeachableLearnset,
+        .eggMoveLearnset = sTotodileEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_CROCONAW}),
     },
 
@@ -506,7 +587,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Croconaw,
         .iconSprite = gMonIcon_Croconaw,
         .iconPalIndex = 0,
+        SHADOW(2, 8, SHADOW_SIZE_M)
         FOOTPRINT(Croconaw)
+        OVERWORLD(
+            sPicTable_Croconaw,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Croconaw,
+            gShinyOverworldPalette_Croconaw
+        )
         .levelUpLearnset = sCroconawLevelUpLearnset,
         .teachableLearnset = sCroconawTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_FERALIGATR}),
@@ -567,7 +657,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Feraligatr,
         .iconSprite = gMonIcon_Feraligatr,
         .iconPalIndex = 0,
+        SHADOW(3, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Feraligatr)
+        OVERWORLD(
+            sPicTable_Feraligatr,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Feraligatr,
+            gShinyOverworldPalette_Feraligatr
+        )
         .levelUpLearnset = sFeraligatrLevelUpLearnset,
         .teachableLearnset = sFeraligatrTeachableLearnset,
     },
@@ -621,9 +720,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sentret,
         .iconSprite = gMonIcon_Sentret,
         .iconPalIndex = 2,
+        SHADOW(0, 11, SHADOW_SIZE_S)
         FOOTPRINT(Sentret)
+        OVERWORLD(
+            sPicTable_Sentret,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sentret,
+            gShinyOverworldPalette_Sentret
+        )
         .levelUpLearnset = sSentretLevelUpLearnset,
         .teachableLearnset = sSentretTeachableLearnset,
+        .eggMoveLearnset = sSentretEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_FURRET}),
     },
 
@@ -674,7 +783,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Furret,
         .iconSprite = gMonIcon_Furret,
         .iconPalIndex = 2,
+        SHADOW(-1, 9, SHADOW_SIZE_M)
         FOOTPRINT(Furret)
+        OVERWORLD(
+            sPicTable_Furret,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Furret,
+            gShinyOverworldPalette_Furret
+        )
         .levelUpLearnset = sFurretLevelUpLearnset,
         .teachableLearnset = sFurretTeachableLearnset,
     },
@@ -728,9 +846,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Hoothoot,
         .iconSprite = gMonIcon_Hoothoot,
         .iconPalIndex = 2,
+        SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Hoothoot)
+        OVERWORLD(
+            sPicTable_Hoothoot,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Hoothoot,
+            gShinyOverworldPalette_Hoothoot
+        )
         .levelUpLearnset = sHoothootLevelUpLearnset,
         .teachableLearnset = sHoothootTeachableLearnset,
+        .eggMoveLearnset = sHoothootEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_NOCTOWL}),
     },
 
@@ -787,7 +915,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Noctowl,
         .iconSprite = gMonIcon_Noctowl,
         .iconPalIndex = 2,
+        SHADOW(-2, 10, SHADOW_SIZE_S)
         FOOTPRINT(Noctowl)
+        OVERWORLD(
+            sPicTable_Noctowl,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Noctowl,
+            gShinyOverworldPalette_Noctowl
+        )
         .levelUpLearnset = sNoctowlLevelUpLearnset,
         .teachableLearnset = sNoctowlTeachableLearnset,
     },
@@ -845,9 +982,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ledyba,
         .iconSprite = gMonIcon_Ledyba,
         .iconPalIndex = 0,
+        SHADOW(2, 4, SHADOW_SIZE_M)
         FOOTPRINT(Ledyba)
+        OVERWORLD(
+            sPicTable_Ledyba,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Ledyba,
+            gShinyOverworldPalette_Ledyba
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LedybaF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG
+        )
         .levelUpLearnset = sLedybaLevelUpLearnset,
         .teachableLearnset = sLedybaTeachableLearnset,
+        .eggMoveLearnset = sLedybaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_LEDIAN}),
     },
 
@@ -903,7 +1056,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ledian,
         .iconSprite = gMonIcon_Ledian,
         .iconPalIndex = 0,
+        SHADOW(0, 15, SHADOW_SIZE_S)
         FOOTPRINT(Ledian)
+        OVERWORLD(
+            sPicTable_Ledian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Ledian,
+            gShinyOverworldPalette_Ledian
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_LedianF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sLedianLevelUpLearnset,
         .teachableLearnset = sLedianTeachableLearnset,
     },
@@ -957,9 +1125,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Spinarak,
         .iconSprite = gMonIcon_Spinarak,
         .iconPalIndex = 1,
+        SHADOW(0, -8, SHADOW_SIZE_M)
         FOOTPRINT(Spinarak)
+        OVERWORLD(
+            sPicTable_Spinarak,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Spinarak,
+            gShinyOverworldPalette_Spinarak
+        )
         .levelUpLearnset = sSpinarakLevelUpLearnset,
         .teachableLearnset = sSpinarakTeachableLearnset,
+        .eggMoveLearnset = sSpinarakEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARIADOS}),
     },
 
@@ -1016,7 +1194,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ariados,
         .iconSprite = gMonIcon_Ariados,
         .iconPalIndex = 0,
+        SHADOW(1, 3, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Ariados)
+        OVERWORLD(
+            sPicTable_Ariados,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Ariados,
+            gShinyOverworldPalette_Ariados
+        )
         .levelUpLearnset = sAriadosLevelUpLearnset,
         .teachableLearnset = sAriadosTeachableLearnset,
     },
@@ -1071,9 +1258,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Chinchou,
         .iconSprite = gMonIcon_Chinchou,
         .iconPalIndex = 2,
+        SHADOW(-1, 1, SHADOW_SIZE_M)
         FOOTPRINT(Chinchou)
+        OVERWORLD(
+            sPicTable_Chinchou,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Chinchou,
+            gShinyOverworldPalette_Chinchou
+        )
         .levelUpLearnset = sChinchouLevelUpLearnset,
         .teachableLearnset = sChinchouTeachableLearnset,
+        .eggMoveLearnset = sChinchouEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_LANTURN}),
     },
 
@@ -1125,7 +1322,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Lanturn,
         .iconSprite = gMonIcon_Lanturn,
         .iconPalIndex = 0,
+        SHADOW(5, 4, SHADOW_SIZE_M)
         FOOTPRINT(Lanturn)
+        OVERWORLD(
+            sPicTable_Lanturn,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Lanturn,
+            gShinyOverworldPalette_Lanturn
+        )
         .levelUpLearnset = sLanturnLevelUpLearnset,
         .teachableLearnset = sLanturnTeachableLearnset,
     },
@@ -1181,9 +1387,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Togepi,
         .iconSprite = gMonIcon_Togepi,
         .iconPalIndex = 0,
+        SHADOW(-1, -3, SHADOW_SIZE_S)
         FOOTPRINT(Togepi)
+        OVERWORLD(
+            sPicTable_Togepi,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Togepi,
+            gShinyOverworldPalette_Togepi
+        )
         .levelUpLearnset = sTogepiLevelUpLearnset,
         .teachableLearnset = sTogepiTeachableLearnset,
+        .eggMoveLearnset = sTogepiEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_TOGETIC}),
     },
 
@@ -1234,7 +1450,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Togetic,
         .iconSprite = gMonIcon_Togetic,
         .iconPalIndex = 0,
+        SHADOW(0, 6, SHADOW_SIZE_S)
         FOOTPRINT(Togetic)
+        OVERWORLD(
+            sPicTable_Togetic,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Togetic,
+            gShinyOverworldPalette_Togetic
+        )
         .levelUpLearnset = sTogeticLevelUpLearnset,
         .teachableLearnset = sTogeticTeachableLearnset,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_TOGEKISS}),
@@ -1297,7 +1522,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Togekiss,
         .iconSprite = gMonIcon_Togekiss,
         .iconPalIndex = 2,
+        SHADOW(4, 15, SHADOW_SIZE_M)
         FOOTPRINT(Togekiss)
+        OVERWORLD(
+            sPicTable_Togekiss,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Togekiss,
+            gShinyOverworldPalette_Togekiss
+        )
         .levelUpLearnset = sTogekissLevelUpLearnset,
         .teachableLearnset = sTogekissTeachableLearnset,
     },
@@ -1353,9 +1587,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Natu,
         .iconSprite = gMonIcon_Natu,
         .iconPalIndex = 1,
+        SHADOW(-2, -4, SHADOW_SIZE_S)
         FOOTPRINT(Natu)
+        OVERWORLD(
+            sPicTable_Natu,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Natu,
+            gShinyOverworldPalette_Natu
+        )
         .levelUpLearnset = sNatuLevelUpLearnset,
         .teachableLearnset = sNatuTeachableLearnset,
+        .eggMoveLearnset = sNatuEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_XATU}),
     },
 
@@ -1409,7 +1653,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Xatu,
         .iconSprite = gMonIcon_Xatu,
         .iconPalIndex = 1,
+        SHADOW(-1, 9, SHADOW_SIZE_S)
         FOOTPRINT(Xatu)
+        OVERWORLD(
+            sPicTable_Xatu,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Xatu,
+            gShinyOverworldPalette_Xatu
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_XatuF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sXatuLevelUpLearnset,
         .teachableLearnset = sXatuTeachableLearnset,
     },
@@ -1464,9 +1723,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Mareep,
         .iconSprite = gMonIcon_Mareep,
         .iconPalIndex = 0,
+        SHADOW(1, 1, SHADOW_SIZE_M)
         FOOTPRINT(Mareep)
+        OVERWORLD(
+            sPicTable_Mareep,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Mareep,
+            gShinyOverworldPalette_Mareep
+        )
         .levelUpLearnset = sMareepLevelUpLearnset,
         .teachableLearnset = sMareepTeachableLearnset,
+        .eggMoveLearnset = sMareepEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_FLAAFFY}),
     },
 
@@ -1517,7 +1786,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Flaaffy,
         .iconSprite = gMonIcon_Flaaffy,
         .iconPalIndex = 0,
+        SHADOW(0, 4, SHADOW_SIZE_S)
         FOOTPRINT(Flaaffy)
+        OVERWORLD(
+            sPicTable_Flaaffy,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Flaaffy,
+            gShinyOverworldPalette_Flaaffy
+        )
         .levelUpLearnset = sFlaaffyLevelUpLearnset,
         .teachableLearnset = sFlaaffyTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_AMPHAROS}),
@@ -1581,7 +1859,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ampharos,
         .iconSprite = gMonIcon_Ampharos,
         .iconPalIndex = 0,
+        SHADOW(3, 11, SHADOW_SIZE_M)
         FOOTPRINT(Ampharos)
+        OVERWORLD(
+            sPicTable_Ampharos,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Ampharos,
+            gShinyOverworldPalette_Ampharos
+        )
         .levelUpLearnset = sAmpharosLevelUpLearnset,
         .teachableLearnset = sAmpharosTeachableLearnset,
         .formSpeciesIdTable = sAmpharosFormSpeciesIdTable,
@@ -1636,6 +1923,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_AmpharosMega,
         .iconSprite = gMonIcon_AmpharosMega,
         .iconPalIndex = 0,
+        SHADOW(-7, 13, SHADOW_SIZE_M)
         FOOTPRINT(Ampharos)
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sAmpharosLevelUpLearnset,
@@ -1699,9 +1987,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Azurill,
         .iconSprite = gMonIcon_Azurill,
         .iconPalIndex = 0,
+        SHADOW(-4, 3, SHADOW_SIZE_S)
         FOOTPRINT(Azurill)
+        OVERWORLD(
+            sPicTable_Azurill,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Azurill,
+            gShinyOverworldPalette_Azurill
+        )
         .levelUpLearnset = sAzurillLevelUpLearnset,
         .teachableLearnset = sAzurillTeachableLearnset,
+        .eggMoveLearnset = sAzurillEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_MARILL}),
     },
 #endif //P_GEN_3_CROSS_EVOS
@@ -1757,9 +2055,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Marill,
         .iconSprite = gMonIcon_Marill,
         .iconPalIndex = 0,
+        SHADOW(-2, 0, SHADOW_SIZE_S)
         FOOTPRINT(Marill)
+        OVERWORLD(
+            sPicTable_Marill,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Marill,
+            gShinyOverworldPalette_Marill
+        )
         .levelUpLearnset = sMarillLevelUpLearnset,
         .teachableLearnset = sMarillTeachableLearnset,
+        .eggMoveLearnset = sMarillEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_AZUMARILL}),
     },
 
@@ -1822,7 +2130,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Azumarill,
         .iconSprite = gMonIcon_Azumarill,
         .iconPalIndex = 0,
+        SHADOW(-4, 8, SHADOW_SIZE_S)
         FOOTPRINT(Azumarill)
+        OVERWORLD(
+            sPicTable_Azumarill,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Azumarill,
+            gShinyOverworldPalette_Azumarill
+        )
         .levelUpLearnset = sAzumarillLevelUpLearnset,
         .teachableLearnset = sAzumarillTeachableLearnset,
     },
@@ -1877,9 +2194,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Bonsly,
         .iconSprite = gMonIcon_Bonsly,
         .iconPalIndex = 1,
+        SHADOW(-3, 4, SHADOW_SIZE_S)
         FOOTPRINT(Bonsly)
+        OVERWORLD(
+            sPicTable_Bonsly,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Bonsly,
+            gShinyOverworldPalette_Bonsly
+        )
         .levelUpLearnset = sBonslyLevelUpLearnset,
         .teachableLearnset = sBonslyTeachableLearnset,
+        .eggMoveLearnset = sBonslyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_MIMIC, SPECIES_SUDOWOODO}),
     },
 #endif //P_GEN_4_CROSS_EVOS
@@ -1935,9 +2262,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sudowoodo,
         .iconSprite = gMonIcon_Sudowoodo,
         .iconPalIndex = 1,
+        SHADOW(-2, 7, SHADOW_SIZE_S)
         FOOTPRINT(Sudowoodo)
+        OVERWORLD(
+            sPicTable_Sudowoodo,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sudowoodo,
+            gShinyOverworldPalette_Sudowoodo
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_SudowoodoF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sSudowoodoLevelUpLearnset,
         .teachableLearnset = sSudowoodoTeachableLearnset,
+        .eggMoveLearnset = sSudowoodoEggMoveLearnset,
     },
 #endif //P_FAMILY_SUDOWOODO
 
@@ -1959,7 +2302,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR },
+    #else
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
+    #endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Hoppip"),
         .cryId = CRY_HOPPIP,
@@ -1990,9 +2337,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Hoppip,
         .iconSprite = gMonIcon_Hoppip,
         .iconPalIndex = 1,
+        SHADOW(-5, 12, SHADOW_SIZE_S)
         FOOTPRINT(Hoppip)
+        OVERWORLD(
+            sPicTable_Hoppip,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Hoppip,
+            gShinyOverworldPalette_Hoppip
+        )
         .levelUpLearnset = sHoppipLevelUpLearnset,
         .teachableLearnset = sHoppipTeachableLearnset,
+        .eggMoveLearnset = sHoppipEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_SKIPLOOM}),
     },
 
@@ -2013,7 +2370,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR },
+    #else
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
+    #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Skiploom"),
         .cryId = CRY_SKIPLOOM,
@@ -2044,7 +2405,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Skiploom,
         .iconSprite = gMonIcon_Skiploom,
         .iconPalIndex = 1,
+        SHADOW(-1, 10, SHADOW_SIZE_S)
         FOOTPRINT(Skiploom)
+        OVERWORLD(
+            sPicTable_Skiploom,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Skiploom,
+            gShinyOverworldPalette_Skiploom
+        )
         .levelUpLearnset = sSkiploomLevelUpLearnset,
         .teachableLearnset = sSkiploomTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_JUMPLUFF}),
@@ -2075,7 +2445,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_INFILTRATOR },
+    #else
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_INFILTRATOR },
+    #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Jumpluff"),
         .cryId = CRY_JUMPLUFF,
@@ -2106,7 +2480,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Jumpluff,
         .iconSprite = gMonIcon_Jumpluff,
         .iconPalIndex = 2,
+        SHADOW(-2, 11, SHADOW_SIZE_S)
         FOOTPRINT(Jumpluff)
+        OVERWORLD(
+            sPicTable_Jumpluff,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Jumpluff,
+            gShinyOverworldPalette_Jumpluff
+        )
         .levelUpLearnset = sJumpluffLevelUpLearnset,
         .teachableLearnset = sJumpluffTeachableLearnset,
     },
@@ -2164,9 +2547,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Aipom,
         .iconSprite = gMonIcon_Aipom,
         .iconPalIndex = 2,
+        SHADOW(-1, 12, SHADOW_SIZE_S)
         FOOTPRINT(Aipom)
+        OVERWORLD(
+            sPicTable_Aipom,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Aipom,
+            gShinyOverworldPalette_Aipom
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_AipomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sAipomLevelUpLearnset,
         .teachableLearnset = sAipomTeachableLearnset,
+        .eggMoveLearnset = sAipomEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_DOUBLE_HIT, SPECIES_AMBIPOM}),
     },
 
@@ -2222,7 +2621,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ambipom,
         .iconSprite = gMonIcon_Ambipom,
         .iconPalIndex = 2,
+        SHADOW(-1, 13, SHADOW_SIZE_S)
         FOOTPRINT(Ambipom)
+        OVERWORLD(
+            sPicTable_Ambipom,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Ambipom,
+            gShinyOverworldPalette_Ambipom
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_AmbipomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sAmbipomLevelUpLearnset,
         .teachableLearnset = sAmbipomTeachableLearnset,
     },
@@ -2247,7 +2661,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD },
+    #else
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
+    #endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Sunkern"),
         .cryId = CRY_SUNKERN,
@@ -2277,9 +2695,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sunkern,
         .iconSprite = gMonIcon_Sunkern,
         .iconPalIndex = 1,
+        SHADOW(-1, -4, SHADOW_SIZE_S)
         FOOTPRINT(Sunkern)
+        OVERWORLD(
+            sPicTable_Sunkern,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Sunkern,
+            gShinyOverworldPalette_Sunkern
+        )
         .levelUpLearnset = sSunkernLevelUpLearnset,
         .teachableLearnset = sSunkernTeachableLearnset,
+        .eggMoveLearnset = sSunkernEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_SUNFLORA}),
     },
 
@@ -2300,7 +2728,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD },
+    #else
+        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_EARLY_BIRD },
+    #endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Sunflora"),
         .cryId = CRY_SUNFLORA,
@@ -2330,7 +2762,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sunflora,
         .iconSprite = gMonIcon_Sunflora,
         .iconPalIndex = 1,
+        SHADOW(-1, 6, SHADOW_SIZE_S)
         FOOTPRINT(Sunflora)
+        OVERWORLD(
+            sPicTable_Sunflora,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sunflora,
+            gShinyOverworldPalette_Sunflora
+        )
         .levelUpLearnset = sSunfloraLevelUpLearnset,
         .teachableLearnset = sSunfloraTeachableLearnset,
     },
@@ -2386,9 +2827,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Yanma,
         .iconSprite = gMonIcon_Yanma,
         .iconPalIndex = 1,
+        SHADOW(-2, 10, SHADOW_SIZE_S)
         FOOTPRINT(Yanma)
+        OVERWORLD(
+            sPicTable_Yanma,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Yanma,
+            gShinyOverworldPalette_Yanma
+        )
         .levelUpLearnset = sYanmaLevelUpLearnset,
         .teachableLearnset = sYanmaTeachableLearnset,
+        .eggMoveLearnset = sYanmaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_YANMEGA}),
     },
 
@@ -2442,7 +2893,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Yanmega,
         .iconSprite = gMonIcon_Yanmega,
         .iconPalIndex = 1,
+        SHADOW(-1, 12, SHADOW_SIZE_M)
         FOOTPRINT(Yanmega)
+        OVERWORLD(
+            sPicTable_Yanmega,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Yanmega,
+            gShinyOverworldPalette_Yanmega
+        )
         .levelUpLearnset = sYanmegaLevelUpLearnset,
         .teachableLearnset = sYanmegaTeachableLearnset,
     },
@@ -2501,9 +2961,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wooper,
         .iconSprite = gMonIcon_Wooper,
         .iconPalIndex = 0,
+        SHADOW(1, -2, SHADOW_SIZE_S)
         FOOTPRINT(Wooper)
+        OVERWORLD(
+            sPicTable_Wooper,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Wooper,
+            gShinyOverworldPalette_Wooper
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_WooperF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
+        .eggMoveLearnset = sWooperEggMoveLearnset,
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_QUAGSIRE}),
     },
@@ -2559,13 +3035,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Quagsire,
         .iconSprite = gMonIcon_Quagsire,
         .iconPalIndex = 0,
+        SHADOW(0, 8, SHADOW_SIZE_M)
         FOOTPRINT(Quagsire)
+        OVERWORLD(
+            sPicTable_Quagsire,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Quagsire,
+            gShinyOverworldPalette_Quagsire
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_QuagsireF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sQuagsireLevelUpLearnset,
         .teachableLearnset = sQuagsireTeachableLearnset,
     },
 
 #if P_PALDEAN_FORMS
-    [SPECIES_WOOPER_PALDEAN] =
+    [SPECIES_WOOPER_PALDEA] =
     {
         .baseHP        = 55,
         .baseAttack    = 45,
@@ -2612,10 +3103,20 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_WooperPaldean,
         .iconSprite = gMonIcon_WooperPaldean,
         .iconPalIndex = 2,
+        SHADOW(-1, -2, SHADOW_SIZE_S)
         FOOTPRINT(Wooper)
+        OVERWORLD(
+            sPicTable_WooperPaldean,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_WooperPaldean,
+            gShinyOverworldPalette_WooperPaldean
+        )
         .isPaldeanForm = TRUE,
         .levelUpLearnset = sWooperPaldeanLevelUpLearnset,
         .teachableLearnset = sWooperPaldeanTeachableLearnset,
+        .eggMoveLearnset = sWooperPaldeanEggMoveLearnset,
         .formSpeciesIdTable = sWooperFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CLODSIRE}),
     },
@@ -2667,7 +3168,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Clodsire,
         .iconSprite = gMonIcon_Clodsire,
         .iconPalIndex = 0,
-        //FOOTPRINT(Clodsire)
+        SHADOW(-2, 3, SHADOW_SIZE_L)
+        FOOTPRINT(Clodsire)
+        OVERWORLD(
+            sPicTable_Clodsire,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Clodsire,
+            gShinyOverworldPalette_Clodsire
+        )
         .levelUpLearnset = sClodsireLevelUpLearnset,
         .teachableLearnset = sClodsireTeachableLearnset,
     },
@@ -2692,7 +3202,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = 35,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_INSOMNIA, ABILITY_SUPER_LUCK, ABILITY_PRANKSTER },
+    #else
+        .abilities = { ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_PRANKSTER },
+    #endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Murkrow"),
         .cryId = CRY_MURKROW,
@@ -2727,9 +3241,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Murkrow,
         .iconSprite = gMonIcon_Murkrow,
         .iconPalIndex = 2,
+        SHADOW(-2, 8, SHADOW_SIZE_S)
         FOOTPRINT(Murkrow)
+        OVERWORLD(
+            sPicTable_Murkrow,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Murkrow,
+            gShinyOverworldPalette_Murkrow
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MurkrowF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sMurkrowLevelUpLearnset,
         .teachableLearnset = sMurkrowTeachableLearnset,
+        .eggMoveLearnset = sMurkrowEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_HONCHKROW}),
     },
 
@@ -2781,7 +3311,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Honchkrow,
         .iconSprite = gMonIcon_Honchkrow,
         .iconPalIndex = 2,
+        SHADOW(5, 7, SHADOW_SIZE_M)
         FOOTPRINT(Honchkrow)
+        OVERWORLD(
+            sPicTable_Honchkrow,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Honchkrow,
+            gShinyOverworldPalette_Honchkrow
+        )
         .levelUpLearnset = sHonchkrowLevelUpLearnset,
         .teachableLearnset = sHonchkrowTeachableLearnset,
     },
@@ -2838,9 +3377,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Misdreavus,
         .iconSprite = gMonIcon_Misdreavus,
         .iconPalIndex = 0,
+        SHADOW(0, 10, SHADOW_SIZE_S)
         FOOTPRINT(Misdreavus)
+        OVERWORLD(
+            sPicTable_Misdreavus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Misdreavus,
+            gShinyOverworldPalette_Misdreavus
+        )
         .levelUpLearnset = sMisdreavusLevelUpLearnset,
         .teachableLearnset = sMisdreavusTeachableLearnset,
+        .eggMoveLearnset = sMisdreavusEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_MISMAGIUS}),
     },
 
@@ -2894,7 +3443,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Mismagius,
         .iconSprite = gMonIcon_Mismagius,
         .iconPalIndex = 2,
+        SHADOW(1, 11, SHADOW_SIZE_M)
         FOOTPRINT(Mismagius)
+        OVERWORLD(
+            sPicTable_Mismagius,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Mismagius,
+            gShinyOverworldPalette_Mismagius
+        )
         .levelUpLearnset = sMismagiusLevelUpLearnset,
         .teachableLearnset = sMismagiusTeachableLearnset,
     },
@@ -2948,41 +3506,50 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Unown,                                                         \
         .iconSprite = gMonIcon_Unown ##letter,                                                          \
         .iconPalIndex = 0,                                                                              \
+        SHADOW(0, 3, SHADOW_SIZE_S)                                                                     \
         FOOTPRINT(Unown)                                                                                \
+        OVERWORLD(                                                                                      \
+            sPicTable_Unown ##letter,                                                                   \
+            SIZE_32x32,                                                                                 \
+            SHADOW_SIZE_M,                                                                              \
+            TRACKS_NONE,                                                                                \
+            gOverworldPalette_Unown,                                                                    \
+            gShinyOverworldPalette_Unown,                                                               \
+        )                                                                                               \
         .levelUpLearnset = sUnownLevelUpLearnset,                                                       \
         .teachableLearnset = sUnownTeachableLearnset,                                                   \
         .tmIlliterate = TRUE,                                                                           \
         .formSpeciesIdTable = sUnownFormSpeciesIdTable,                                                 \
     }
 
-    [SPECIES_UNOWN]       = UNOWN_MISC_INFO(A,               FALSE, 24, 40, 24, 48,  8 ),
-    [SPECIES_UNOWN_B]     = UNOWN_MISC_INFO(B,               TRUE,  24, 32, 40, 48,  9 ),
-    [SPECIES_UNOWN_C]     = UNOWN_MISC_INFO(C,               TRUE,  32, 32, 48, 56,  6 ),
-    [SPECIES_UNOWN_D]     = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8 ),
-    [SPECIES_UNOWN_E]     = UNOWN_MISC_INFO(E,               TRUE,  32, 32, 40, 48, 10 ),
-    [SPECIES_UNOWN_F]     = UNOWN_MISC_INFO(F,               TRUE,  32, 32, 48, 48, 10 ),
-    [SPECIES_UNOWN_G]     = UNOWN_MISC_INFO(G,               TRUE,  24, 40, 40, 56,  5 ),
-    [SPECIES_UNOWN_H]     = UNOWN_MISC_INFO(H,               TRUE,  32, 32, 48, 48,  8 ),
-    [SPECIES_UNOWN_I]     = UNOWN_MISC_INFO(I,               FALSE, 24, 32, 24, 56,  7 ),
-    [SPECIES_UNOWN_J]     = UNOWN_MISC_INFO(J,               TRUE,  24, 32, 32, 48,  9 ),
-    [SPECIES_UNOWN_K]     = UNOWN_MISC_INFO(K,               TRUE,  32, 32, 40, 56,  7 ),
-    [SPECIES_UNOWN_L]     = UNOWN_MISC_INFO(L,               TRUE,  24, 32, 32, 48, 10 ),
-    [SPECIES_UNOWN_M]     = UNOWN_MISC_INFO(M,               FALSE, 32, 32, 48, 40, 13 ),
-    [SPECIES_UNOWN_N]     = UNOWN_MISC_INFO(N,               TRUE,  32, 24, 48, 40, 13 ),
-    [SPECIES_UNOWN_O]     = UNOWN_MISC_INFO(O,               FALSE, 32, 32, 48, 48,  8 ),
-    [SPECIES_UNOWN_P]     = UNOWN_MISC_INFO(P,               TRUE,  24, 32, 32, 48, 10 ),
-    [SPECIES_UNOWN_Q]     = UNOWN_MISC_INFO(Q,               TRUE,  32, 24, 40, 40, 15 ),
-    [SPECIES_UNOWN_R]     = UNOWN_MISC_INFO(R,               TRUE,  24, 32, 32, 40, 12 ),
-    [SPECIES_UNOWN_S]     = UNOWN_MISC_INFO(S,               TRUE,  32, 40, 40, 56,  4 ),
-    [SPECIES_UNOWN_T]     = UNOWN_MISC_INFO(T,               FALSE, 24, 32, 32, 40, 13 ),
-    [SPECIES_UNOWN_U]     = UNOWN_MISC_INFO(U,               FALSE, 32, 32, 48, 40, 13 ),
-    [SPECIES_UNOWN_V]     = UNOWN_MISC_INFO(V,               TRUE,  32, 32, 40, 48, 11 ),
-    [SPECIES_UNOWN_W]     = UNOWN_MISC_INFO(W,               FALSE, 32, 32, 40, 40, 13 ),
-    [SPECIES_UNOWN_X]     = UNOWN_MISC_INFO(X,               FALSE, 24, 24, 40, 40, 15 ),
-    [SPECIES_UNOWN_Y]     = UNOWN_MISC_INFO(Y,               FALSE, 24, 32, 32, 48, 10 ),
-    [SPECIES_UNOWN_Z]     = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10 ),
-    [SPECIES_UNOWN_EMARK] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6 ),
-    [SPECIES_UNOWN_QMARK] = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6 ),
+    [SPECIES_UNOWN]             = UNOWN_MISC_INFO(A,               FALSE, 24, 40, 24, 48,  8 ),
+    [SPECIES_UNOWN_B]           = UNOWN_MISC_INFO(B,               TRUE,  24, 32, 40, 48,  9 ),
+    [SPECIES_UNOWN_C]           = UNOWN_MISC_INFO(C,               TRUE,  32, 32, 48, 56,  6 ),
+    [SPECIES_UNOWN_D]           = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8 ),
+    [SPECIES_UNOWN_E]           = UNOWN_MISC_INFO(E,               TRUE,  32, 32, 40, 48, 10 ),
+    [SPECIES_UNOWN_F]           = UNOWN_MISC_INFO(F,               TRUE,  32, 32, 48, 48, 10 ),
+    [SPECIES_UNOWN_G]           = UNOWN_MISC_INFO(G,               TRUE,  24, 40, 40, 56,  5 ),
+    [SPECIES_UNOWN_H]           = UNOWN_MISC_INFO(H,               TRUE,  32, 32, 48, 48,  8 ),
+    [SPECIES_UNOWN_I]           = UNOWN_MISC_INFO(I,               FALSE, 24, 32, 24, 56,  7 ),
+    [SPECIES_UNOWN_J]           = UNOWN_MISC_INFO(J,               TRUE,  24, 32, 32, 48,  9 ),
+    [SPECIES_UNOWN_K]           = UNOWN_MISC_INFO(K,               TRUE,  32, 32, 40, 56,  7 ),
+    [SPECIES_UNOWN_L]           = UNOWN_MISC_INFO(L,               TRUE,  24, 32, 32, 48, 10 ),
+    [SPECIES_UNOWN_M]           = UNOWN_MISC_INFO(M,               FALSE, 32, 32, 48, 40, 13 ),
+    [SPECIES_UNOWN_N]           = UNOWN_MISC_INFO(N,               TRUE,  32, 24, 48, 40, 13 ),
+    [SPECIES_UNOWN_O]           = UNOWN_MISC_INFO(O,               FALSE, 32, 32, 48, 48,  8 ),
+    [SPECIES_UNOWN_P]           = UNOWN_MISC_INFO(P,               TRUE,  24, 32, 32, 48, 10 ),
+    [SPECIES_UNOWN_Q]           = UNOWN_MISC_INFO(Q,               TRUE,  32, 24, 40, 40, 15 ),
+    [SPECIES_UNOWN_R]           = UNOWN_MISC_INFO(R,               TRUE,  24, 32, 32, 40, 12 ),
+    [SPECIES_UNOWN_S]           = UNOWN_MISC_INFO(S,               TRUE,  32, 40, 40, 56,  4 ),
+    [SPECIES_UNOWN_T]           = UNOWN_MISC_INFO(T,               FALSE, 24, 32, 32, 40, 13 ),
+    [SPECIES_UNOWN_U]           = UNOWN_MISC_INFO(U,               FALSE, 32, 32, 48, 40, 13 ),
+    [SPECIES_UNOWN_V]           = UNOWN_MISC_INFO(V,               TRUE,  32, 32, 40, 48, 11 ),
+    [SPECIES_UNOWN_W]           = UNOWN_MISC_INFO(W,               FALSE, 32, 32, 40, 40, 13 ),
+    [SPECIES_UNOWN_X]           = UNOWN_MISC_INFO(X,               FALSE, 24, 24, 40, 40, 15 ),
+    [SPECIES_UNOWN_Y]           = UNOWN_MISC_INFO(Y,               FALSE, 24, 32, 32, 48, 10 ),
+    [SPECIES_UNOWN_Z]           = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10 ),
+    [SPECIES_UNOWN_EXCLAMATION] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6 ),
+    [SPECIES_UNOWN_QUESTION]    = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6 ),
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
@@ -3035,7 +3602,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wynaut,
         .iconSprite = gMonIcon_Wynaut,
         .iconPalIndex = 0,
+        SHADOW(-1, 2, SHADOW_SIZE_S)
         FOOTPRINT(Wynaut)
+        OVERWORLD(
+            sPicTable_Wynaut,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Wynaut,
+            gShinyOverworldPalette_Wynaut
+        )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWynautLevelUpLearnset,
         .teachableLearnset = sWynautTeachableLearnset,
@@ -3098,7 +3674,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSpriteFemale = gMonIcon_WobbuffetF,
         .iconPalIndexFemale = 0,
     #endif
+        SHADOW(-3, 8, SHADOW_SIZE_M)
         FOOTPRINT(Wobbuffet)
+        OVERWORLD(
+            sPicTable_Wobbuffet,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Wobbuffet,
+            gShinyOverworldPalette_Wobbuffet
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_WobbuffetF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWobbuffetLevelUpLearnset,
         .teachableLearnset = sWobbuffetTeachableLearnset,
@@ -3157,9 +3748,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Girafarig,
         .iconSprite = gMonIcon_Girafarig,
         .iconPalIndex = 1,
+        SHADOW(2, 13, SHADOW_SIZE_M)
         FOOTPRINT(Girafarig)
+        OVERWORLD(
+            sPicTable_Girafarig,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Girafarig,
+            gShinyOverworldPalette_Girafarig
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GirafarigF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sGirafarigLevelUpLearnset,
         .teachableLearnset = sGirafarigTeachableLearnset,
+        .eggMoveLearnset = sGirafarigEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWIN_BEAM, SPECIES_FARIGIRAF}),
     },
 
@@ -3211,7 +3818,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Farigiraf,
         .iconSprite = gMonIcon_Farigiraf,
         .iconPalIndex = 0,
-        //FOOTPRINT(Farigiraf)
+        SHADOW(11, 13, SHADOW_SIZE_L)
+        FOOTPRINT(Farigiraf)
+        OVERWORLD(
+            sPicTable_Farigiraf,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Farigiraf,
+            gShinyOverworldPalette_Farigiraf
+        )
         .levelUpLearnset = sFarigirafLevelUpLearnset,
         .teachableLearnset = sFarigirafTeachableLearnset,
     },
@@ -3266,9 +3882,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Pineco,
         .iconSprite = gMonIcon_Pineco,
         .iconPalIndex = 0,
+        SHADOW(0, 2, SHADOW_SIZE_S)
         FOOTPRINT(Pineco)
+        OVERWORLD(
+            sPicTable_Pineco,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Pineco,
+            gShinyOverworldPalette_Pineco
+        )
         .levelUpLearnset = sPinecoLevelUpLearnset,
         .teachableLearnset = sPinecoTeachableLearnset,
+        .eggMoveLearnset = sPinecoEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_FORRETRESS}),
     },
 
@@ -3319,7 +3945,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Forretress,
         .iconSprite = gMonIcon_Forretress,
         .iconPalIndex = 2,
+        SHADOW(0, 6, SHADOW_SIZE_L)
         FOOTPRINT(Forretress)
+        OVERWORLD(
+            sPicTable_Forretress,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Forretress,
+            gShinyOverworldPalette_Forretress
+        )
         .levelUpLearnset = sForretressLevelUpLearnset,
         .teachableLearnset = sForretressTeachableLearnset,
     },
@@ -3380,9 +4015,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Dunsparce,
         .iconSprite = gMonIcon_Dunsparce,
         .iconPalIndex = 0,
+        SHADOW(0, -4, SHADOW_SIZE_M)
         FOOTPRINT(Dunsparce)
+        OVERWORLD(
+            sPicTable_Dunsparce,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Dunsparce,
+            gShinyOverworldPalette_Dunsparce
+        )
         .levelUpLearnset = sDunsparceLevelUpLearnset,
         .teachableLearnset = sDunsparceTeachableLearnset,
+        .eggMoveLearnset = sDunsparceEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_MOVE_TWO_SEGMENT, MOVE_HYPER_DRILL, SPECIES_DUDUNSPARCE_TWO_SEGMENT},
                                 {EVO_MOVE_THREE_SEGMENT, MOVE_HYPER_DRILL, SPECIES_DUDUNSPARCE_THREE_SEGMENT}),
     },
@@ -3407,7 +4052,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Dudunsprce", "Dudunsparce"),
+        .speciesName = _("Dudunsparce"),
         .cryId = CRY_DUDUNSPARCE,
         .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
         .categoryName = _("Land Snake"),
@@ -3435,7 +4080,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Dudunsparce,
         .iconSprite = gMonIcon_Dudunsparce,
         .iconPalIndex = 0,
-        //FOOTPRINT(Dudunsparce),
+        SHADOW(0, 5, SHADOW_SIZE_L)
+        FOOTPRINT(Dudunsparce)
+        OVERWORLD(
+            sPicTable_DudunsparceTwoSegment,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Dudunsparce,
+            gShinyOverworldPalette_Dudunsparce
+        )
         .levelUpLearnset = sDudunsparceLevelUpLearnset,
         .teachableLearnset = sDudunsparceTeachableLearnset,
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
@@ -3460,7 +4114,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
         .bodyColor = BODY_COLOR_YELLOW,
-        .speciesName = HANDLE_EXPANDED_SPECIES_NAME("Dudunsprce", "Dudunsparce"),
+        .speciesName = _("Dudunsparce"),
         .cryId = CRY_DUDUNSPARCE,
         .natDexNum = NATIONAL_DEX_DUDUNSPARCE,
         .categoryName = _("Land Snake"),
@@ -3468,8 +4122,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .weight = 474,
         .description = COMPOUND_STRING(
             "A recent study uncovered that the\n"
-            "number of segments a\n"
-            "Dudunsparce's body has is determined by the\n"
+            "number of segments a Dudunsparce's\n"
+            "body has is determined by the\n"
             "Pokémon's genes."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
@@ -3488,7 +4142,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Dudunsparce,
         .iconSprite = gMonIcon_Dudunsparce,
         .iconPalIndex = 0,
-        //FOOTPRINT(Dudunsparce),
+        SHADOW(4, 4, SHADOW_SIZE_L)
+        FOOTPRINT(Dudunsparce)
+        OVERWORLD(
+            sPicTable_DudunsparceThreeSegment,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_DudunsparceThreeSegment,
+            gShinyOverworldPalette_DudunsparceThreeSegment
+        )
         .levelUpLearnset = sDudunsparceLevelUpLearnset,
         .teachableLearnset = sDudunsparceTeachableLearnset,
         .formSpeciesIdTable = sDudunsparceFormSpeciesIdTable,
@@ -3549,9 +4212,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Gligar,
         .iconSprite = gMonIcon_Gligar,
         .iconPalIndex = 0,
+        SHADOW(0, 15, SHADOW_SIZE_S)
         FOOTPRINT(Gligar)
+        OVERWORLD(
+            sPicTable_Gligar,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Gligar,
+            gShinyOverworldPalette_Gligar
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_GligarF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE
+        )
         .levelUpLearnset = sGligarLevelUpLearnset,
         .teachableLearnset = sGligarTeachableLearnset,
+        .eggMoveLearnset = sGligarEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR},
                                 {EVO_ITEM_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR}),
     },
@@ -3605,7 +4284,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Gliscor,
         .iconSprite = gMonIcon_Gliscor,
         .iconPalIndex = 2,
+        SHADOW(-1, 13, SHADOW_SIZE_M)
         FOOTPRINT(Gliscor)
+        OVERWORLD(
+            sPicTable_Gliscor,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Gliscor,
+            gShinyOverworldPalette_Gliscor
+        )
         .levelUpLearnset = sGliscorLevelUpLearnset,
         .teachableLearnset = sGliscorTeachableLearnset,
     },
@@ -3664,9 +4352,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Snubbull,
         .iconSprite = gMonIcon_Snubbull,
         .iconPalIndex = 0,
+        SHADOW(-1, 1, SHADOW_SIZE_S)
         FOOTPRINT(Snubbull)
+        OVERWORLD(
+            sPicTable_Snubbull,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Snubbull,
+            gShinyOverworldPalette_Snubbull
+        )
         .levelUpLearnset = sSnubbullLevelUpLearnset,
         .teachableLearnset = sSnubbullTeachableLearnset,
+        .eggMoveLearnset = sSnubbullEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 23, SPECIES_GRANBULL}),
     },
 
@@ -3691,7 +4389,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_INTIMIDATE, ABILITY_QUICK_FEET, ABILITY_RATTLED },
+    #else
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RATTLED },
+    #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Granbull"),
         .cryId = CRY_GRANBULL,
@@ -3721,7 +4423,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Granbull,
         .iconSprite = gMonIcon_Granbull,
         .iconPalIndex = 2,
+        SHADOW(3, 10, SHADOW_SIZE_L)
         FOOTPRINT(Granbull)
+        OVERWORLD(
+            sPicTable_Granbull,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Granbull,
+            gShinyOverworldPalette_Granbull
+        )
         .levelUpLearnset = sGranbullLevelUpLearnset,
         .teachableLearnset = sGranbullTeachableLearnset,
     },
@@ -3786,14 +4497,24 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Qwilfish,
         .iconSprite = gMonIcon_Qwilfish,
         .iconPalIndex = 0,
+        SHADOW(-2, 3, SHADOW_SIZE_S)
         FOOTPRINT(Qwilfish)
+        OVERWORLD(
+            sPicTable_Qwilfish,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Qwilfish,
+            gShinyOverworldPalette_Qwilfish
+        )
         .levelUpLearnset = sQwilfishLevelUpLearnset,
         .teachableLearnset = sQwilfishTeachableLearnset,
+        .eggMoveLearnset = sQwilfishEggMoveLearnset,
         .formSpeciesIdTable = sQwilfishFormSpeciesIdTable,
     },
 
 #if P_HISUIAN_FORMS
-    [SPECIES_QWILFISH_HISUIAN] =
+    [SPECIES_QWILFISH_HISUI] =
     {
         .baseHP        = 65,
         .baseAttack    = 95,
@@ -3842,7 +4563,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_QwilfishHisuian,
         .iconSprite = gMonIcon_QwilfishHisuian,
         .iconPalIndex = 1,
+        SHADOW(-5, 4, SHADOW_SIZE_S)
         FOOTPRINT(Qwilfish)
+        OVERWORLD(
+            sPicTable_QwilfishHisuian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_QwilfishHisuian,
+            gShinyOverworldPalette_QwilfishHisuian
+        )
         .isHisuianForm = TRUE,
         .levelUpLearnset = sQwilfishHisuianLevelUpLearnset,
         .teachableLearnset = sQwilfishHisuianTeachableLearnset,
@@ -3886,18 +4616,27 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .trainerOffset = 8,
         .frontPic = gMonFrontPic_Overqwil,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 2,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Overqwil,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Overqwil,
-        .backPicSize = MON_COORDS_SIZE(64, 56),
-        .backPicYOffset = 7,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 11,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Overqwil,
         .shinyPalette = gMonShinyPalette_Overqwil,
         .iconSprite = gMonIcon_Overqwil,
         .iconPalIndex = 2,
-        //FOOTPRINT(Overqwil)
+        SHADOW(2, 11, SHADOW_SIZE_M)
+        FOOTPRINT(Overqwil)
+        OVERWORLD(
+            sPicTable_Overqwil,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Overqwil,
+            gShinyOverworldPalette_Overqwil
+        )
         .levelUpLearnset = sOverqwilLevelUpLearnset,
         .teachableLearnset = sOverqwilTeachableLearnset,
     },
@@ -3925,7 +4664,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_STURDY, ABILITY_GLUTTONY, ABILITY_CONTRARY },
+    #else
+        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_CONTRARY },
+    #endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Shuckle"),
         .cryId = CRY_SHUCKLE,
@@ -3955,9 +4698,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Shuckle,
         .iconSprite = gMonIcon_Shuckle,
         .iconPalIndex = 1,
+        SHADOW(1, 3, SHADOW_SIZE_M)
         FOOTPRINT(Shuckle)
+        OVERWORLD(
+            sPicTable_Shuckle,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Shuckle,
+            gShinyOverworldPalette_Shuckle
+        )
         .levelUpLearnset = sShuckleLevelUpLearnset,
         .teachableLearnset = sShuckleTeachableLearnset,
+        .eggMoveLearnset = sShuckleEggMoveLearnset,
     },
 #endif //P_FAMILY_SHUCKLE
 
@@ -4013,9 +4766,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Heracross,
         .iconSprite = gMonIcon_Heracross,
         .iconPalIndex = 0,
+        SHADOW(-1, 10, SHADOW_SIZE_M)
         FOOTPRINT(Heracross)
+        OVERWORLD(
+            sPicTable_Heracross,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Heracross,
+            gShinyOverworldPalette_Heracross
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_HeracrossF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sHeracrossLevelUpLearnset,
         .teachableLearnset = sHeracrossTeachableLearnset,
+        .eggMoveLearnset = sHeracrossEggMoveLearnset,
         .formSpeciesIdTable = sHeracrossFormSpeciesIdTable,
         .formChangeTable = sHeracrossFormChangeTable,
     },
@@ -4068,10 +4837,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_HeracrossMega,
         .iconSprite = gMonIcon_HeracrossMega,
         .iconPalIndex = 0,
+        SHADOW(2, 13, SHADOW_SIZE_M)
         FOOTPRINT(Heracross)
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sHeracrossLevelUpLearnset,
         .teachableLearnset = sHeracrossTeachableLearnset,
+        .eggMoveLearnset = sHeracrossEggMoveLearnset,
         .formSpeciesIdTable = sHeracrossFormSpeciesIdTable,
         .formChangeTable = sHeracrossFormChangeTable,
     },
@@ -4132,9 +4903,25 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sneasel,
         .iconSprite = gMonIcon_Sneasel,
         .iconPalIndex = 0,
+        SHADOW(-1, 5, SHADOW_SIZE_S)
         FOOTPRINT(Sneasel)
+        OVERWORLD(
+            sPicTable_Sneasel,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sneasel,
+            gShinyOverworldPalette_Sneasel
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_SneaselF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sSneaselLevelUpLearnset,
         .teachableLearnset = sSneaselTeachableLearnset,
+        .eggMoveLearnset = sSneaselEggMoveLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE},
                                 {EVO_ITEM_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE}),
@@ -4194,14 +4981,29 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Weavile,
         .iconSprite = gMonIcon_Weavile,
         .iconPalIndex = 0,
+        SHADOW(-4, 10, SHADOW_SIZE_M)
         FOOTPRINT(Weavile)
+        OVERWORLD(
+            sPicTable_Weavile,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Weavile,
+            gShinyOverworldPalette_Weavile
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_WeavileF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sWeavileLevelUpLearnset,
         .teachableLearnset = sWeavileTeachableLearnset,
     },
 #endif //P_GEN_4_CROSS_EVOS
 
 #if P_HISUIAN_FORMS
-    [SPECIES_SNEASEL_HISUIAN] =
+    [SPECIES_SNEASEL_HISUI] =
     {
         .baseHP        = 55,
         .baseAttack    = 95,
@@ -4254,7 +5056,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_SneaselHisuian,
         .iconSprite = gMonIcon_SneaselHisuian,
         .iconPalIndex = 0,
+        SHADOW(-1, 5, SHADOW_SIZE_S)
         FOOTPRINT(Sneasel)
+        OVERWORLD(
+            sPicTable_SneaselHisuian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_SneaselHisuian,
+            gShinyOverworldPalette_SneaselHisuian
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_SneaselHisuianF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .isHisuianForm = TRUE,
         .levelUpLearnset = sSneaselHisuianLevelUpLearnset,
         .teachableLearnset = sSneaselHisuianTeachableLearnset,
@@ -4299,18 +5116,27 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .trainerOffset = 0,
         .frontPic = gMonFrontPic_Sneasler,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 1,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_Sneasler,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Sneasler,
         .backPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicYOffset = 0,
+        .backPicYOffset = 6,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Sneasler,
         .shinyPalette = gMonShinyPalette_Sneasler,
         .iconSprite = gMonIcon_Sneasler,
         .iconPalIndex = 2,
-        //FOOTPRINT(Sneasler)
+        SHADOW(2, 11, SHADOW_SIZE_M)
+        FOOTPRINT(Sneasler)
+        OVERWORLD(
+            sPicTable_Sneasler,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sneasler,
+            gShinyOverworldPalette_Sneasler
+        )
         .levelUpLearnset = sSneaslerLevelUpLearnset,
         .teachableLearnset = sSneaslerTeachableLearnset,
     },
@@ -4330,12 +5156,17 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .catchRate = 120,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 66 : 124,
         .evYield_Attack = 1,
+        .itemCommon = ITEM_HONEY,
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_PICKUP, ABILITY_QUICK_FEET, ABILITY_HONEY_GATHER },
+    #else
+        .abilities = { ABILITY_PICKUP, ABILITY_NONE, ABILITY_HONEY_GATHER },
+    #endif
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .speciesName = _("Teddiursa"),
@@ -4366,9 +5197,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Teddiursa,
         .iconSprite = gMonIcon_Teddiursa,
         .iconPalIndex = 0,
+        SHADOW(-2, 1, SHADOW_SIZE_S)
         FOOTPRINT(Teddiursa)
+        OVERWORLD(
+            sPicTable_Teddiursa,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Teddiursa,
+            gShinyOverworldPalette_Teddiursa
+        )
         .levelUpLearnset = sTeddiursaLevelUpLearnset,
         .teachableLearnset = sTeddiursaTeachableLearnset,
+        .eggMoveLearnset = sTeddiursaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_URSARING}),
     },
 
@@ -4389,7 +5230,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_GUTS, ABILITY_QUICK_FEET, ABILITY_UNNERVE },
+    #else
+        .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_UNNERVE },
+    #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Ursaring"),
         .cryId = CRY_URSARING,
@@ -4423,7 +5268,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ursaring,
         .iconSprite = gMonIcon_Ursaring,
         .iconPalIndex = 2,
+        SHADOW(1, 14, SHADOW_SIZE_L)
         FOOTPRINT(Ursaring)
+        OVERWORLD(
+            sPicTable_Ursaring,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Ursaring,
+            gShinyOverworldPalette_Ursaring
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_UrsaringF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sUrsaringLevelUpLearnset,
         .teachableLearnset = sUrsaringTeachableLearnset,
         .evolutions = EVOLUTION({EVO_ITEM_NIGHT, ITEM_PEAT_BLOCK, SPECIES_URSALUNA},
@@ -4465,19 +5325,28 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .trainerScale = 369,
         .trainerOffset = 7,
         .frontPic = gMonFrontPic_Ursaluna,
-        .frontPicSize = MON_COORDS_SIZE(56, 56),
-        .frontPicYOffset = 2,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Ursaluna,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Ursaluna,
-        .backPicSize = MON_COORDS_SIZE(64, 40),
-        .backPicYOffset = 14,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 9,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_Ursaluna,
         .shinyPalette = gMonShinyPalette_Ursaluna,
         .iconSprite = gMonIcon_Ursaluna,
         .iconPalIndex = 2,
-        //FOOTPRINT(Ursaluna)
+        SHADOW(1, 4, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Ursaluna)
+        OVERWORLD(
+            sPicTable_Ursaluna,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Ursaluna,
+            gShinyOverworldPalette_Ursaluna
+        )
         .levelUpLearnset = sUrsalunaLevelUpLearnset,
         .teachableLearnset = sUrsalunaTeachableLearnset,
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,
@@ -4519,18 +5388,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .trainerOffset = 7,
         .frontPic = gMonFrontPic_UrsalunaBloodmoon,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.frontPicYOffset = 0,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_UrsalunaBloodmoon,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_UrsalunaBloodmoon,
-        .backPicSize = MON_COORDS_SIZE(64, 40),
-        .backPicYOffset = 3,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 9,
         //.backAnimId = BACK_ANIM_NONE,
         .palette = gMonPalette_UrsalunaBloodmoon,
         .shinyPalette = gMonShinyPalette_UrsalunaBloodmoon,
         .iconSprite = gMonIcon_UrsalunaBloodmoon,
         .iconPalIndex = 2,
-        //FOOTPRINT(UrsalunaBloodmoon)
+        SHADOW(6, 11, SHADOW_SIZE_L)
+        FOOTPRINT(Ursaluna)
         .levelUpLearnset = sUrsalunaBloodmoonLevelUpLearnset,
         .teachableLearnset = sUrsalunaBloodmoonTeachableLearnset,
         .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable,
@@ -4586,9 +5456,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Slugma,
         .iconSprite = gMonIcon_Slugma,
         .iconPalIndex = 0,
+        SHADOW(0, 0, SHADOW_SIZE_S)
         FOOTPRINT(Slugma)
+        OVERWORLD(
+            sPicTable_Slugma,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Slugma,
+            gShinyOverworldPalette_Slugma
+        )
         .levelUpLearnset = sSlugmaLevelUpLearnset,
         .teachableLearnset = sSlugmaTeachableLearnset,
+        .eggMoveLearnset = sSlugmaEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MAGCARGO}),
     },
 
@@ -4646,7 +5526,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Magcargo,
         .iconSprite = gMonIcon_Magcargo,
         .iconPalIndex = 0,
+        SHADOW(0, 5, SHADOW_SIZE_M)
         FOOTPRINT(Magcargo)
+        OVERWORLD(
+            sPicTable_Magcargo,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Magcargo,
+            gShinyOverworldPalette_Magcargo
+        )
         .levelUpLearnset = sMagcargoLevelUpLearnset,
         .teachableLearnset = sMagcargoTeachableLearnset,
     },
@@ -4670,7 +5559,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK, ABILITY_THICK_FAT },
+    #else
+        .abilities = { ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_THICK_FAT },
+    #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Swinub"),
         .cryId = CRY_SWINUB,
@@ -4700,9 +5593,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Swinub,
         .iconSprite = gMonIcon_Swinub,
         .iconPalIndex = 2,
+        SHADOW(-3, -6, SHADOW_SIZE_S)
         FOOTPRINT(Swinub)
+        OVERWORLD(
+            sPicTable_Swinub,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Swinub,
+            gShinyOverworldPalette_Swinub
+        )
         .levelUpLearnset = sSwinubLevelUpLearnset,
         .teachableLearnset = sSwinubTeachableLearnset,
+        .eggMoveLearnset = sSwinubEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_PILOSWINE}),
     },
 
@@ -4724,7 +5627,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK, ABILITY_THICK_FAT },
+    #else
+        .abilities = { ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_THICK_FAT },
+    #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Piloswine"),
         .cryId = CRY_PILOSWINE,
@@ -4758,7 +5665,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Piloswine,
         .iconSprite = gMonIcon_Piloswine,
         .iconPalIndex = 2,
+        SHADOW(-1, 3, SHADOW_SIZE_M)
         FOOTPRINT(Piloswine)
+        OVERWORLD(
+            sPicTable_Piloswine,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Piloswine,
+            gShinyOverworldPalette_Piloswine
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_PiloswineF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sPiloswineLevelUpLearnset,
         .teachableLearnset = sPiloswineTeachableLearnset,
         .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_MAMOSWINE}),
@@ -4820,7 +5742,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Mamoswine,
         .iconSprite = gMonIcon_Mamoswine,
         .iconPalIndex = 2,
+        SHADOW(7, 7, SHADOW_SIZE_L)
         FOOTPRINT(Mamoswine)
+        OVERWORLD(
+            sPicTable_Mamoswine,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Mamoswine,
+            gShinyOverworldPalette_Mamoswine
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_MamoswineF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sMamoswineLevelUpLearnset,
         .teachableLearnset = sMamoswineTeachableLearnset,
     },
@@ -4887,14 +5824,24 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Corsola,
         .iconSprite = gMonIcon_Corsola,
         .iconPalIndex = 0,
+        SHADOW(0, 1, SHADOW_SIZE_M)
         FOOTPRINT(Corsola)
+        OVERWORLD(
+            sPicTable_Corsola,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Corsola,
+            gShinyOverworldPalette_Corsola
+        )
         .levelUpLearnset = sCorsolaLevelUpLearnset,
         .teachableLearnset = sCorsolaTeachableLearnset,
+        .eggMoveLearnset = sCorsolaEggMoveLearnset,
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
     },
 
 #if P_GALARIAN_FORMS
-    [SPECIES_CORSOLA_GALARIAN] =
+    [SPECIES_CORSOLA_GALAR] =
     {
         .baseHP        = CORSOLA_HP - 5,
         .baseAttack    = 55,
@@ -4941,10 +5888,20 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_CorsolaGalarian,
         .iconSprite = gMonIcon_CorsolaGalarian,
         .iconPalIndex = 0,
+        SHADOW(0, 2, SHADOW_SIZE_M)
         FOOTPRINT(Corsola)
+        OVERWORLD(
+            sPicTable_CorsolaGalarian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_CorsolaGalarian,
+            gShinyOverworldPalette_CorsolaGalarian
+        )
         .isGalarianForm = TRUE,
         .levelUpLearnset = sCorsolaGalarianLevelUpLearnset,
         .teachableLearnset = sCorsolaGalarianTeachableLearnset,
+        .eggMoveLearnset = sCorsolaGalarianEggMoveLearnset,
         .formSpeciesIdTable = sCorsolaFormSpeciesIdTable,
         .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CURSOLA}),
     },
@@ -4996,7 +5953,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Cursola,
         .iconSprite = gMonIcon_Cursola,
         .iconPalIndex = 0,
+        SHADOW(-3, 13, SHADOW_SIZE_S)
         FOOTPRINT(Cursola)
+        OVERWORLD(
+            sPicTable_Cursola,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Cursola,
+            gShinyOverworldPalette_Cursola
+        )
         .levelUpLearnset = sCursolaLevelUpLearnset,
         .teachableLearnset = sCursolaTeachableLearnset,
     },
@@ -5021,7 +5987,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_HUSTLE, ABILITY_SNIPER, ABILITY_MOODY },
+    #else
+        .abilities = { ABILITY_HUSTLE, ABILITY_NONE, ABILITY_MOODY },
+    #endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Remoraid"),
         .cryId = CRY_REMORAID,
@@ -5051,9 +6021,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Remoraid,
         .iconSprite = gMonIcon_Remoraid,
         .iconPalIndex = 0,
+        SHADOW(-1, 0, SHADOW_SIZE_S)
         FOOTPRINT(Remoraid)
+        OVERWORLD(
+            sPicTable_Remoraid,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Remoraid,
+            gShinyOverworldPalette_Remoraid
+        )
         .levelUpLearnset = sRemoraidLevelUpLearnset,
         .teachableLearnset = sRemoraidTeachableLearnset,
+        .eggMoveLearnset = sRemoraidEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_OCTILLERY}),
     },
 
@@ -5075,7 +6055,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_SUCTION_CUPS, ABILITY_SNIPER, ABILITY_MOODY },
+    #else
+        .abilities = { ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_MOODY },
+    #endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Octillery"),
         .cryId = CRY_OCTILLERY,
@@ -5110,7 +6094,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Octillery,
         .iconSprite = gMonIcon_Octillery,
         .iconPalIndex = 0,
+        SHADOW(1, 4, SHADOW_SIZE_M)
         FOOTPRINT(Octillery)
+        OVERWORLD(
+            sPicTable_Octillery,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            gOverworldPalette_Octillery,
+            gShinyOverworldPalette_Octillery
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_OctilleryF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER
+        )
         .levelUpLearnset = sOctilleryLevelUpLearnset,
         .teachableLearnset = sOctilleryTeachableLearnset,
     },
@@ -5164,9 +6163,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Delibird,
         .iconSprite = gMonIcon_Delibird,
         .iconPalIndex = 1,
+        SHADOW(0, 7, SHADOW_SIZE_M)
         FOOTPRINT(Delibird)
+        OVERWORLD(
+            sPicTable_Delibird,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Delibird,
+            gShinyOverworldPalette_Delibird
+        )
         .levelUpLearnset = sDelibirdLevelUpLearnset,
         .teachableLearnset = sDelibirdTeachableLearnset,
+        .eggMoveLearnset = sDelibirdEggMoveLearnset,
     },
 #endif //P_FAMILY_DELIBIRD
 
@@ -5219,9 +6228,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Mantyke,
         .iconSprite = gMonIcon_Mantyke,
         .iconPalIndex = 0,
+        SHADOW(-1, 3, SHADOW_SIZE_S)
         FOOTPRINT(Mantyke)
+        OVERWORLD(
+            sPicTable_Mantyke,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Mantyke,
+            gShinyOverworldPalette_Mantyke
+        )
         .levelUpLearnset = sMantykeLevelUpLearnset,
         .teachableLearnset = sMantykeTeachableLearnset,
+        .eggMoveLearnset = sMantykeEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_SPECIFIC_MON_IN_PARTY, SPECIES_REMORAID, SPECIES_MANTINE}),
     },
 #endif //P_GEN_4_CROSS_EVOS
@@ -5280,9 +6299,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Mantine,
         .iconSprite = gMonIcon_Mantine,
         .iconPalIndex = 2,
+        SHADOW(-1, 8, SHADOW_SIZE_M)
         FOOTPRINT(Mantine)
+        OVERWORLD(
+            sPicTable_Mantine,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Mantine,
+            gShinyOverworldPalette_Mantine
+        )
         .levelUpLearnset = sMantineLevelUpLearnset,
         .teachableLearnset = sMantineTeachableLearnset,
+        .eggMoveLearnset = sMantineEggMoveLearnset,
     },
 #endif //P_FAMILY_MANTINE
 
@@ -5335,9 +6364,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Skarmory,
         .iconSprite = gMonIcon_Skarmory,
         .iconPalIndex = 0,
+        SHADOW(2, 9, SHADOW_SIZE_M)
         FOOTPRINT(Skarmory)
+        OVERWORLD(
+            sPicTable_Skarmory,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Skarmory,
+            gShinyOverworldPalette_Skarmory
+        )
         .levelUpLearnset = sSkarmoryLevelUpLearnset,
         .teachableLearnset = sSkarmoryTeachableLearnset,
+        .eggMoveLearnset = sSkarmoryEggMoveLearnset,
     },
 #endif //P_FAMILY_SKARMORY
 
@@ -5389,9 +6428,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Houndour,
         .iconSprite = gMonIcon_Houndour,
         .iconPalIndex = 0,
+        SHADOW(0, 4, SHADOW_SIZE_M)
         FOOTPRINT(Houndour)
+        OVERWORLD(
+            sPicTable_Houndour,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Houndour,
+            gShinyOverworldPalette_Houndour
+        )
         .levelUpLearnset = sHoundourLevelUpLearnset,
         .teachableLearnset = sHoundourTeachableLearnset,
+        .eggMoveLearnset = sHoundourEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HOUNDOOM}),
     },
 
@@ -5446,7 +6495,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Houndoom,
         .iconSprite = gMonIcon_Houndoom,
         .iconPalIndex = 0,
+        SHADOW(-5, 13, SHADOW_SIZE_L)
         FOOTPRINT(Houndoom)
+        OVERWORLD(
+            sPicTable_Houndoom,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Houndoom,
+            gShinyOverworldPalette_Houndoom
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_HoundoomF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sHoundoomLevelUpLearnset,
         .teachableLearnset = sHoundoomTeachableLearnset,
         .formSpeciesIdTable = sHoundoomFormSpeciesIdTable,
@@ -5500,6 +6564,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_HoundoomMega,
         .iconSprite = gMonIcon_HoundoomMega,
         .iconPalIndex = 0,
+        SHADOW(-5, 13, SHADOW_SIZE_L)
         FOOTPRINT(Houndoom)
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sHoundoomLevelUpLearnset,
@@ -5558,9 +6623,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Phanpy,
         .iconSprite = gMonIcon_Phanpy,
         .iconPalIndex = 0,
+        SHADOW(3, -2, SHADOW_SIZE_M)
         FOOTPRINT(Phanpy)
+        OVERWORLD(
+            sPicTable_Phanpy,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Phanpy,
+            gShinyOverworldPalette_Phanpy
+        )
         .levelUpLearnset = sPhanpyLevelUpLearnset,
         .teachableLearnset = sPhanpyTeachableLearnset,
+        .eggMoveLearnset = sPhanpyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DONPHAN}),
     },
 
@@ -5616,7 +6691,22 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Donphan,
         .iconSprite = gMonIcon_Donphan,
         .iconPalIndex = 0,
+        SHADOW(7, 2, SHADOW_SIZE_L)
         FOOTPRINT(Donphan)
+        OVERWORLD(
+            sPicTable_Donphan,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Donphan,
+            gShinyOverworldPalette_Donphan
+        )
+        OVERWORLD_FEMALE(
+            sPicTable_DonphanF,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT
+        )
         .levelUpLearnset = sDonphanLevelUpLearnset,
         .teachableLearnset = sDonphanTeachableLearnset,
     },
@@ -5640,7 +6730,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_INTIMIDATE, ABILITY_FRISK, ABILITY_SAP_SIPPER },
+    #else
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_SAP_SIPPER },
+    #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Stantler"),
         .cryId = CRY_STANTLER,
@@ -5670,10 +6764,20 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Stantler,
         .iconSprite = gMonIcon_Stantler,
         .iconPalIndex = 2,
+        SHADOW(3, 13, SHADOW_SIZE_M)
         FOOTPRINT(Stantler)
+        OVERWORLD(
+            sPicTable_Stantler,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Stantler,
+            gShinyOverworldPalette_Stantler
+        )
         .levelUpLearnset = sStantlerLevelUpLearnset,
         .teachableLearnset = sStantlerTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_MOVE_TWENTY_TIMES, MOVE_PSYSHIELD_BASH, SPECIES_WYRDEER}),
+        .eggMoveLearnset = sStantlerEggMoveLearnset,
+        .evolutions = EVOLUTION({EVO_USE_MOVE_TWENTY_TIMES, MOVE_PSYSHIELD_BASH, SPECIES_WYRDEER}),
     },
 
 #if P_GEN_8_CROSS_EVOS
@@ -5725,7 +6829,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wyrdeer,
         .iconSprite = gMonIcon_Wyrdeer,
         .iconPalIndex = 2,
-        //FOOTPRINT(Wyrdeer)
+        SHADOW(-1, 13, SHADOW_SIZE_M)
+        FOOTPRINT(Wyrdeer)
+        OVERWORLD(
+            sPicTable_Wyrdeer,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Wyrdeer,
+            gShinyOverworldPalette_Wyrdeer
+        )
         .levelUpLearnset = sWyrdeerLevelUpLearnset,
         .teachableLearnset = sWyrdeerTeachableLearnset,
     },
@@ -5750,7 +6863,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_TECHNICIAN, ABILITY_MOODY },
+    #else
+        .abilities = { ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_MOODY },
+    #endif
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Smeargle"),
         .cryId = CRY_SMEARGLE,
@@ -5780,7 +6897,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Smeargle,
         .iconSprite = gMonIcon_Smeargle,
         .iconPalIndex = 1,
+        SHADOW(6, 7, SHADOW_SIZE_S)
         FOOTPRINT(Smeargle)
+        OVERWORLD(
+            sPicTable_Smeargle,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Smeargle,
+            gShinyOverworldPalette_Smeargle
+        )
         .tmIlliterate = TRUE,
         .levelUpLearnset = sSmeargleLevelUpLearnset,
         .teachableLearnset = sSmeargleTeachableLearnset,
@@ -5807,7 +6933,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+    #if P_UPDATED_ABILITIES >= GEN_4
         .abilities = { ABILITY_THICK_FAT, ABILITY_SCRAPPY, ABILITY_SAP_SIPPER },
+    #else
+        .abilities = { ABILITY_THICK_FAT, ABILITY_NONE, ABILITY_SAP_SIPPER },
+    #endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Miltank"),
         .cryId = CRY_MILTANK,
@@ -5837,9 +6967,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Miltank,
         .iconSprite = gMonIcon_Miltank,
         .iconPalIndex = 0,
+        SHADOW(-3, 4, SHADOW_SIZE_M)
         FOOTPRINT(Miltank)
+        OVERWORLD(
+            sPicTable_Miltank,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Miltank,
+            gShinyOverworldPalette_Miltank
+        )
         .levelUpLearnset = sMiltankLevelUpLearnset,
         .teachableLearnset = sMiltankTeachableLearnset,
+        .eggMoveLearnset = sMiltankEggMoveLearnset,
     },
 #endif //P_FAMILY_MILTANK
 
@@ -5902,8 +7042,18 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Raikou,
         .iconSprite = gMonIcon_Raikou,
         .iconPalIndex = 2,
+        SHADOW(-4, 7, SHADOW_SIZE_L)
         FOOTPRINT(Raikou)
+        OVERWORLD(
+            sPicTable_Raikou,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Raikou,
+            gShinyOverworldPalette_Raikou
+        )
         .isLegendary = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sRaikouLevelUpLearnset,
         .teachableLearnset = sRaikouTeachableLearnset,
     },
@@ -5968,8 +7118,18 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Entei,
         .iconSprite = gMonIcon_Entei,
         .iconPalIndex = 2,
+        SHADOW(-1, 8, SHADOW_SIZE_L)
         FOOTPRINT(Entei)
+        OVERWORLD(
+            sPicTable_Entei,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Entei,
+            gShinyOverworldPalette_Entei
+        )
         .isLegendary = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sEnteiLevelUpLearnset,
         .teachableLearnset = sEnteiTeachableLearnset,
     },
@@ -6034,8 +7194,18 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Suicune,
         .iconSprite = gMonIcon_Suicune,
         .iconPalIndex = 2,
+        SHADOW(3, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Suicune)
+        OVERWORLD(
+            sPicTable_Suicune,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Suicune,
+            gShinyOverworldPalette_Suicune
+        )
         .isLegendary = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sSuicuneLevelUpLearnset,
         .teachableLearnset = sSuicuneTeachableLearnset,
     },
@@ -6089,9 +7259,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Larvitar,
         .iconSprite = gMonIcon_Larvitar,
         .iconPalIndex = 1,
+        SHADOW(0, 3, SHADOW_SIZE_S)
         FOOTPRINT(Larvitar)
+        OVERWORLD(
+            sPicTable_Larvitar,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Larvitar,
+            gShinyOverworldPalette_Larvitar
+        )
         .levelUpLearnset = sLarvitarLevelUpLearnset,
         .teachableLearnset = sLarvitarTeachableLearnset,
+        .eggMoveLearnset = sLarvitarEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_PUPITAR}),
     },
 
@@ -6142,7 +7322,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Pupitar,
         .iconSprite = gMonIcon_Pupitar,
         .iconPalIndex = 2,
+        SHADOW(3, 3, SHADOW_SIZE_S)
         FOOTPRINT(Pupitar)
+        OVERWORLD(
+            sPicTable_Pupitar,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SPOT,
+            gOverworldPalette_Pupitar,
+            gShinyOverworldPalette_Pupitar
+        )
         .levelUpLearnset = sPupitarLevelUpLearnset,
         .teachableLearnset = sPupitarTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_TYRANITAR}),
@@ -6202,7 +7391,16 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Tyranitar,
         .iconSprite = gMonIcon_Tyranitar,
         .iconPalIndex = 4,
+        SHADOW(-1, 11, SHADOW_SIZE_L)
         FOOTPRINT(Tyranitar)
+        OVERWORLD(
+            sPicTable_Tyranitar,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Tyranitar,
+            gShinyOverworldPalette_Tyranitar
+        )
         .levelUpLearnset = sTyranitarLevelUpLearnset,
         .teachableLearnset = sTyranitarTeachableLearnset,
         .formSpeciesIdTable = sTyranitarFormSpeciesIdTable,
@@ -6257,6 +7455,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_TyranitarMega,
         .iconSprite = gMonIcon_TyranitarMega,
         .iconPalIndex = 1,
+        SHADOW(-1, 13, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Tyranitar)
         .isMegaEvolution = TRUE,
         .levelUpLearnset = sTyranitarLevelUpLearnset,
@@ -6323,8 +7522,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Lugia,
         .iconSprite = gMonIcon_Lugia,
         .iconPalIndex = 0,
+        SHADOW(2, 17, SHADOW_SIZE_L)
         FOOTPRINT(Lugia)
+        OVERWORLD(
+            sPicTable_Lugia,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Lugia,
+            gShinyOverworldPalette_Lugia
+        )
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
     },
@@ -6387,8 +7597,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_HoOh,
         .iconSprite = gMonIcon_HoOh,
         .iconPalIndex = 1,
+        SHADOW(1, 17, SHADOW_SIZE_L)
         FOOTPRINT(HoOh)
+        OVERWORLD(
+            sPicTable_HoOh,
+            SIZE_64x64,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_HoOh,
+            gShinyOverworldPalette_HoOh
+        )
         .isLegendary = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sHoOhLevelUpLearnset,
         .teachableLearnset = sHoOhTeachableLearnset,
     },
@@ -6451,8 +7672,19 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Celebi,
         .iconSprite = gMonIcon_Celebi,
         .iconPalIndex = 1,
+        SHADOW(0, 14, SHADOW_SIZE_S)
         FOOTPRINT(Celebi)
+        OVERWORLD(
+            sPicTable_Celebi,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Celebi,
+            gShinyOverworldPalette_Celebi
+        )
         .isMythical = TRUE,
+        .isFrontierBanned = TRUE,
+        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,
         .levelUpLearnset = sCelebiLevelUpLearnset,
         .teachableLearnset = sCelebiTeachableLearnset,
     },

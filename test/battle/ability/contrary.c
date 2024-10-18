@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
-        ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_TWO_DOWN) == TRUE);
+        ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(gMovesInfo[MOVE_OVERHEAT].category == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SPINDA) { Ability(ability); }
@@ -219,5 +219,25 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
     FINALLY {
         EXPECT_MUL_EQ(results[0].damageBefore, UQ_4_12(0.25), results[0].damageAfter);
         EXPECT_MUL_EQ(results[1].damageBefore, UQ_4_12(4.0), results[1].damageAfter);
+    }
+}
+
+SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_STICKY_WEB); }
+        TURN { SWITCH(opponent, 1); }
+        TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
+        MESSAGE("A sticky web spreads out on the ground around the opposing team!");
+        MESSAGE("2 sent out Snivy!");
+        MESSAGE("Foe Snivy was caught in a Sticky Web!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Foe Snivy's Speed rose!");
     }
 }

@@ -90,13 +90,13 @@ SINGLE_BATTLE_TEST("Knock Off does not remove items through Substitute")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SUBSTITUTE); 
+        TURN { MOVE(opponent, MOVE_SUBSTITUTE);
                MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         NOT { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF); }
     } THEN {
-        EXPECT(opponent->item == ITEM_NONE);
+        EXPECT(opponent->item == ITEM_LEFTOVERS);
     }
 }
 
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("Recycle cannot recover an item removed by Knock Off")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
         MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Leftovers!");
-        
+
         MESSAGE("Foe Wobbuffet used Recycle!");
         MESSAGE("But it failed!");
     } THEN {
@@ -191,5 +191,17 @@ DOUBLE_BATTLE_TEST("Knock Off does not trigger the opposing ally's Symbiosis")
         }
     } THEN {
         EXPECT(playerLeft->item == ITEM_NONE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Knock Off doesn't knock off items from Pokemon behind substitutes")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_POKE_BALL); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_KNOCK_OFF); }
+    } SCENE {
+        NOT MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Poké Ball");
     }
 }

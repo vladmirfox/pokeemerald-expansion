@@ -18,12 +18,16 @@ struct Item
     u8 pluralName[ITEM_NAME_PLURAL_LENGTH];
     u8 holdEffect;
     u8 holdEffectParam;
-    u8 importance;
+    u8 importance:2;
+    u8 notConsumed:1;
+    u8 padding:5;
     u8 pocket;
     u8 type;
     u8 battleUsage;
     u8 flingPower;
     bool8 isConsumable;
+    const u32 *iconPic;
+    const u32 *iconPalette;
 };
 
 struct BagPocket
@@ -43,6 +47,7 @@ u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity);
 bool8 IsBagPocketNonEmpty(u8 pocket);
 bool8 CheckBagHasItem(u16 itemId, u16 count);
 bool8 HasAtLeastOneBerry(void);
+bool8 HasAtLeastOnePokeBall(void);
 bool8 CheckBagHasSpace(u16 itemId, u16 count);
 u32 GetFreeSpaceForItemInBag(u16 itemId);
 bool8 AddBagItem(u16 itemId, u16 count);
@@ -71,6 +76,7 @@ u32 ItemId_GetHoldEffect(u32 itemId);
 u32 ItemId_GetHoldEffectParam(u32 itemId);
 const u8 *ItemId_GetDescription(u16 itemId);
 u8 ItemId_GetImportance(u16 itemId);
+u8 ItemId_GetConsumability(u16 itemId);
 u8 ItemId_GetPocket(u16 itemId);
 u8 ItemId_GetType(u16 itemId);
 ItemUseFunc ItemId_GetFieldFunc(u16 itemId);

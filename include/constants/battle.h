@@ -89,7 +89,6 @@
 #define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
 #define BATTLE_TYPE_HAS_AI          (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER | BATTLE_TYPE_INGAME_PARTNER)
 
-
 // Battle Outcome defines
 #define B_OUTCOME_WON                  1
 #define B_OUTCOME_LOST                 2
@@ -138,7 +137,7 @@
 #define STATUS2_WRAPPED               (1 << 13)
 #define STATUS2_POWDER                (1 << 14)
 #define STATUS2_INFATUATION           (1 << 16 | 1 << 17 | 1 << 18 | 1 << 19)  // 4 bits, one for every battler
-#define STATUS2_INFATUATED_WITH(battler) (gBitTable[battler] << 16)
+#define STATUS2_INFATUATED_WITH(battler) (1u << (battler + 16))
 #define STATUS2_DEFENSE_CURL          (1 << 20)
 #define STATUS2_TRANSFORMED           (1 << 21)
 #define STATUS2_RECHARGE              (1 << 22)
@@ -166,7 +165,7 @@
 #define STATUS3_YAWN_TURN(num)          (((num) << 11) & STATUS3_YAWN)
 #define STATUS3_IMPRISONED_OTHERS       (1 << 13)
 #define STATUS3_GRUDGE                  (1 << 14)
-#define STATUS3___UNUSED                (1 << 15)
+#define STATUS3_COMMANDER               (1 << 15)
 #define STATUS3_GASTRO_ACID             (1 << 16)
 #define STATUS3_EMBARGO                 (1 << 17)
 #define STATUS3_UNDERWATER              (1 << 18)
@@ -183,7 +182,8 @@
 #define STATUS3_LASER_FOCUS             (1 << 29)
 #define STATUS3_POWER_TRICK             (1 << 30)
 #define STATUS3_SKY_DROPPED             (1 << 31) // Target of Sky Drop
-#define STATUS3_SEMI_INVULNERABLE       (STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER | STATUS3_PHANTOM_FORCE)
+#define STATUS3_SEMI_INVULNERABLE_NO_COMMANDER  (STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER | STATUS3_PHANTOM_FORCE) // Exception for Transform / Imposter
+#define STATUS3_SEMI_INVULNERABLE       (STATUS3_SEMI_INVULNERABLE_NO_COMMANDER | STATUS3_COMMANDER)
 
 #define STATUS4_ELECTRIFIED             (1 << 0)
 #define STATUS4_MUD_SPORT               (1 << 1)    // Only used if B_SPORT_TURNS < GEN_6
@@ -192,10 +192,10 @@
 #define STATUS4_SALT_CURE               (1 << 4)
 #define STATUS4_SYRUP_BOMB              (1 << 5)
 #define STATUS4_GLAIVE_RUSH             (1 << 6)
-#define STATUS4_CRIT_STAGE_1            (1 << 7)
-#define STATUS4_CRIT_STAGE_2            (1 << 8)
+#define STATUS4_CRIT_STAGE_1            (1 << 7)    // Previously STATUS2_DRAGON_CHEER
+#define STATUS4_CRIT_STAGE_2            (1 << 8)    // Previously STATUS2_FOCUS_ENERGY
 #define STATUS4_CRIT_STAGE_3            (1 << 9)
-#define STATUS4_CRIT_STAGE_RAISED       (STATUS4_CRIT_STAGE_1 | STATUS4_CRIT_STAGE_2 | STATUS4_CRIT_STAGE_3)
+#define STATUS4_CRIT_STAGE_RAISED       (STATUS4_CRIT_STAGE_1 | STATUS4_CRIT_STAGE_2 | STATUS4_CRIT_STAGE_3) // Previously STATUS2_FOCUS_ENERGY_ANY
 
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_IGNORE_BIDE           (1 << 5)
@@ -221,8 +221,8 @@
 #define HITMARKER_OBEYS                 (1 << 25)
 #define HITMARKER_NEVER_SET             (1 << 26) // Cleared as part of a large group. Never set or checked
 #define HITMARKER_CHARGING              (1 << 27)
-#define HITMARKER_FAINTED(battler)      (gBitTable[battler] << 28)
-#define HITMARKER_FAINTED2(battler)     ((1 << 28) << battler)
+#define HITMARKER_FAINTED(battler)      (1u << (battler + 28))
+#define HITMARKER_FAINTED2(battler)     HITMARKER_FAINTED(battler)
 #define HITMARKER_STRING_PRINTED        (1 << 29)
 
 // Per-side statuses that affect an entire party
@@ -383,29 +383,29 @@
 #define MOVE_EFFECT_KNOCK_OFF           55
 #define MOVE_EFFECT_DEF_SPDEF_DOWN      56
 #define MOVE_EFFECT_CLEAR_SMOG          57
-#define MOVE_EFFECT_SP_ATK_TWO_DOWN     58
-#define MOVE_EFFECT_SMACK_DOWN          59
-#define MOVE_EFFECT_FLAME_BURST         60
-#define MOVE_EFFECT_FEINT               61
-#define MOVE_EFFECT_SPECTRAL_THIEF      62
-#define MOVE_EFFECT_V_CREATE            63
-#define MOVE_EFFECT_HAPPY_HOUR          64
-#define MOVE_EFFECT_CORE_ENFORCER       65
-#define MOVE_EFFECT_THROAT_CHOP         66
-#define MOVE_EFFECT_INCINERATE          67
-#define MOVE_EFFECT_BUG_BITE            68
-#define MOVE_EFFECT_RECOIL_HP_25        69
-#define MOVE_EFFECT_TRAP_BOTH           70
-#define MOVE_EFFECT_ROUND               71
-#define MOVE_EFFECT_STOCKPILE_WORE_OFF  72
-#define MOVE_EFFECT_DIRE_CLAW           73
-#define MOVE_EFFECT_STEALTH_ROCK        74
-#define MOVE_EFFECT_SPIKES              75
-#define MOVE_EFFECT_SYRUP_BOMB          76
-#define MOVE_EFFECT_FLORAL_HEALING      77
-#define MOVE_EFFECT_SECRET_POWER        78
-#define MOVE_EFFECT_PSYCHIC_NOISE       79
-#define MOVE_EFFECT_TERA_BLAST          80
+#define MOVE_EFFECT_SMACK_DOWN          58
+#define MOVE_EFFECT_FLAME_BURST         59
+#define MOVE_EFFECT_FEINT               60
+#define MOVE_EFFECT_SPECTRAL_THIEF      61
+#define MOVE_EFFECT_V_CREATE            62
+#define MOVE_EFFECT_HAPPY_HOUR          63
+#define MOVE_EFFECT_CORE_ENFORCER       64
+#define MOVE_EFFECT_THROAT_CHOP         65
+#define MOVE_EFFECT_INCINERATE          66
+#define MOVE_EFFECT_BUG_BITE            67
+#define MOVE_EFFECT_RECOIL_HP_25        68
+#define MOVE_EFFECT_TRAP_BOTH           69
+#define MOVE_EFFECT_ROUND               70
+#define MOVE_EFFECT_STOCKPILE_WORE_OFF  71
+#define MOVE_EFFECT_DIRE_CLAW           72
+#define MOVE_EFFECT_STEALTH_ROCK        73
+#define MOVE_EFFECT_SPIKES              74
+#define MOVE_EFFECT_SYRUP_BOMB          75
+#define MOVE_EFFECT_FLORAL_HEALING      76
+#define MOVE_EFFECT_SECRET_POWER        77
+#define MOVE_EFFECT_PSYCHIC_NOISE       78
+#define MOVE_EFFECT_TERA_BLAST          79
+#define MOVE_EFFECT_ORDER_UP            80
 
 #define NUM_MOVE_EFFECTS                81
 
@@ -481,6 +481,7 @@
 #define B_WIN_VS_OUTCOME_DRAW    21
 #define B_WIN_VS_OUTCOME_LEFT    22
 #define B_WIN_VS_OUTCOME_RIGHT   23
+#define B_WIN_MOVE_DESCRIPTION   24
 
 // The following are duplicate id values for windows that Battle Arena uses differently.
 #define ARENA_WIN_PLAYER_NAME      15
