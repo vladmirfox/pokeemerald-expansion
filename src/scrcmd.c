@@ -1715,12 +1715,11 @@ bool8 ScrCmd_randomdexmessage(struct ScriptContext *ctx)
     u16 species = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
     struct WindowTemplate winTemplate;
 
+    do
+    {
+        species = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
 
-    // do
-    // {
-    //     species = NationalPokedexNumToSpecies(HoennToNationalOrder((Random() % HOENN_DEX_COUNT) + 1));
-
-    // } while (StringContains(GetSpeciesPokedexDescription(species), GetSpeciesName(species)) != NULL);
+    } while (DoesStringContainMonName(GetSpeciesPokedexDescription(species), GetSpeciesName(species)) != -1);
     
     const u8 *speciesName = GetSpeciesName(species);
     const u8 *randomDexDesc = GetSpeciesPokedexDescription(species);

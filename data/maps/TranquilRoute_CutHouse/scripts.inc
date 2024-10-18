@@ -211,6 +211,41 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy_8:
 	goto TranquilRoute_CutHouse_EventScript_RandomCryGuy_7
 
 
+TranquilRoute_CutHouse_EventScript_RandomDexGuy::
+# 160 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	lock
+# 161 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	faceplayer
+# 162 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0
+# 163 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	closemessage
+# 164 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	randomdexmsgbox
+# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1
+# 166 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	special EnterDexRiddleGuess
+# 167 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	waitstate
+# 168 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	special GetDexRiddleFeedback
+# 169 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	compare VAR_RESULT, 1
+	goto_if_eq TranquilRoute_CutHouse_EventScript_RandomDexGuy_2
+# 175 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_3
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_1:
+# 177 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_2:
+# 171 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_2
+	goto TranquilRoute_CutHouse_EventScript_RandomDexGuy_1
+
+
 TranquilRoute_CutHouse_EventScript_CutGrassCutscene_Text_0:
 # 35 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "You actually cut ALL the tall grass?\p"
@@ -291,3 +326,19 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6:
 TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7:
 # 150 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "wrong dingus, try again tomorrow$"
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0:
+# 162 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "alright dingus, ima give you a dex\ndescription, you give me the mon\pand remember, you only get to see\nthis once because im lazy$"
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1:
+# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "now whomst was that about$"
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_2:
+# 171 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "holy shit you got it right$"
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_3:
+# 175 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	.string "wrong as usual dingus$"
