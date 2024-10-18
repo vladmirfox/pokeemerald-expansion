@@ -15146,10 +15146,11 @@ static void Cmd_handleballthrow(void)
 
         if (gSpeciesInfo[gBattleMons[gBattlerTarget].species].isUltraBeast)
         {
-            if (gLastUsedItem == ITEM_BEAST_BALL)
-                ballMultiplier = 500;
-            else
-                ballMultiplier = 10;
+            // Should never be called anyways because there's no ultra beasts in this rom :masuda~1:
+            // if (gLastUsedItem == ITEM_BEAST_BALL)
+            //     ballMultiplier = 500;
+            // else
+            //     ballMultiplier = 10;
         }
         else
         {
@@ -15301,13 +15302,26 @@ static void Cmd_handleballthrow(void)
                         ballAddition = 40;
                 }
                 break;
+            case ITEM_LIGHT_POKE_BALL:
+                i = GetSpeciesWeight(gBattleMons[gBattlerTarget].species);
+                
+                if (i >= B_LIGHT_BALL_WEIGHT_KG_TOO_HEAVY * 10)
+                    ballAddition = B_LIGHT_BALL_MODIFIER_TOO_HEAVY;
+                else if (i >= B_LIGHT_BALL_WEIGHT_KG_AVERAGE * 10)
+                    ballAddition = B_LIGHT_BALL_MODIFIER_AVERAGE;
+                else if (i >= B_LIGHT_BALL_WEIGHT_KG_LIGHT * 10)
+                    ballAddition = B_LIGHT_BALL_MODIFIER_LIGHT;
+                else
+                    ballAddition = B_LIGHT_BALL_MODIFIER_VERY_LIGHT;
+
+                break;
             case ITEM_DREAM_BALL:
                 if (B_DREAM_BALL_MODIFIER >= GEN_8 && (gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP || GetBattlerAbility(gBattlerTarget) == ABILITY_COMATOSE))
                     ballMultiplier = 400;
                 break;
-            case ITEM_BEAST_BALL:
-                ballMultiplier = 10;
-                break;
+            // case ITEM_BEAST_BALL:
+            //     ballMultiplier = 10;
+            //     break;
             }
         }
 

@@ -74,6 +74,7 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 #define GFX_TAG_PARK_BALL    55024
 #define GFX_TAG_BEAST_BALL   55025
 #define GFX_TAG_CHERISH_BALL 55026
+// TODO: ITEM_LIGHT_POKE_BALL (Light Ball)
 
 const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
 {
@@ -102,8 +103,9 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
     [BALL_SAFARI]  = {gBallGfx_Safari,  384, GFX_TAG_SAFARI_BALL},
     [BALL_SPORT]   = {gBallGfx_Sport,   384, GFX_TAG_SPORT_BALL},
     [BALL_PARK]    = {gBallGfx_Park,    384, GFX_TAG_PARK_BALL},
-    [BALL_BEAST]   = {gBallGfx_Beast,   384, GFX_TAG_BEAST_BALL},
+    // [BALL_BEAST]   = {gBallGfx_Beast,   384, GFX_TAG_BEAST_BALL},
     [BALL_CHERISH] = {gBallGfx_Cherish, 384, GFX_TAG_CHERISH_BALL},
+    [BALL_LIGHT]   = {gBallGfx_Heavy,   384, GFX_TAG_HEAVY_BALL}, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
@@ -133,8 +135,9 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
     [BALL_SAFARI]  = {gBallPal_Safari,  GFX_TAG_SAFARI_BALL},
     [BALL_SPORT]   = {gBallPal_Sport,   GFX_TAG_SPORT_BALL},
     [BALL_PARK]    = {gBallPal_Park,    GFX_TAG_PARK_BALL},
-    [BALL_BEAST]   = {gBallPal_Beast,   GFX_TAG_BEAST_BALL},
+    // [BALL_BEAST]   = {gBallPal_Beast,   GFX_TAG_BEAST_BALL},
     [BALL_CHERISH] = {gBallPal_Cherish, GFX_TAG_CHERISH_BALL},
+    [BALL_LIGHT]   = {gBallPal_Heavy,   GFX_TAG_HEAVY_BALL}, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 static const struct OamData sBallOamData =
@@ -502,20 +505,30 @@ const struct SpriteTemplate gBallSpriteTemplates[POKEBALL_COUNT] =
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_BEAST] =
+    // [BALL_BEAST] =
+    // {
+    //     .tileTag = GFX_TAG_BEAST_BALL,
+    //     .paletteTag = GFX_TAG_BEAST_BALL,
+    //     .oam = &sBallOamData,
+    //     .anims = sBallAnimSequences,
+    //     .images = NULL,
+    //     .affineAnims = sAffineAnim_BallRotate,
+    //     .callback = SpriteCB_BallThrow,
+    // },
+    [BALL_CHERISH] =
     {
-        .tileTag = GFX_TAG_BEAST_BALL,
-        .paletteTag = GFX_TAG_BEAST_BALL,
+        .tileTag = GFX_TAG_CHERISH_BALL,
+        .paletteTag = GFX_TAG_CHERISH_BALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,
         .affineAnims = sAffineAnim_BallRotate,
         .callback = SpriteCB_BallThrow,
     },
-    [BALL_CHERISH] =
+    [BALL_LIGHT] =
     {
-        .tileTag = GFX_TAG_CHERISH_BALL,
-        .paletteTag = GFX_TAG_CHERISH_BALL,
+        .tileTag = GFX_TAG_HEAVY_BALL, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
+        .paletteTag = GFX_TAG_HEAVY_BALL, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
         .images = NULL,

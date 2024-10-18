@@ -7,7 +7,7 @@
 #define OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE           3
 #define OBJ_EVENT_GFX_QUINTY_PLUMP                 4
 #define OBJ_EVENT_GFX_NINJA_BOY                    5
-#define OBJ_EVENT_GFX_TWIN                         6
+#define OBJ_EVENT_GFX_TWIN_M                       6
 #define OBJ_EVENT_GFX_BOY_1                        7
 #define OBJ_EVENT_GFX_GIRL_1                       8
 #define OBJ_EVENT_GFX_BOY_2                        9
@@ -242,11 +242,12 @@
 #define OBJ_EVENT_GFX_HOOH                       238
 #define OBJ_EVENT_GFX_POKE_BALL                  239
 #define OBJ_EVENT_GFX_OW_MON                     240
+#define OBJ_EVENT_GFX_TWIN_F                     241
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        241
+#define NUM_OBJ_EVENT_GFX                        242
 
 
 // These are dynamic object gfx ids.
@@ -410,6 +411,7 @@
 #define OBJ_EVENT_PAL_TAG_BERRY_TREE_PECHA        0x1141
 #define OBJ_EVENT_PAL_TAG_BERRY_TREE_CHESTO       0x1142
 #define OBJ_EVENT_PAL_TAG_BERRY_TREE_RAWST        0x1143
+#define OBJ_EVENT_PAL_TAG_TWINS                   0x1144
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
@@ -434,7 +436,7 @@
 #define OBJ_EVENT_PAL_TAG_BALL_FAST               0x1160
 #define OBJ_EVENT_PAL_TAG_BALL_LEVEL              0x1161
 #define OBJ_EVENT_PAL_TAG_BALL_LURE               0x1162
-#define OBJ_EVENT_PAL_TAG_BALL_HEAVY              0x1163
+#define OBJ_EVENT_PAL_TAG_BALL_HEAVY              0x1163 // SUGGESTION: Consider adding an Object Event for ITEM_LIGHT_POKE_BALL (Light ball)
 #define OBJ_EVENT_PAL_TAG_BALL_LOVE               0x1164
 #define OBJ_EVENT_PAL_TAG_BALL_FRIEND             0x1165
 #define OBJ_EVENT_PAL_TAG_BALL_MOON               0x1166
@@ -442,7 +444,7 @@
 // Gen V
 #define OBJ_EVENT_PAL_TAG_BALL_DREAM              0x1168
 // Gen VII
-#define OBJ_EVENT_PAL_TAG_BALL_BEAST              0x1169
+#define OBJ_EVENT_PAL_TAG_BALL_BEAST              0x1169 // SUGGESTION: Since we don't need this anymore maybe delete or replace it
 // Gen VIII
 #define OBJ_EVENT_PAL_TAG_BALL_STRANGE            0x116A
 #endif //OW_FOLLOWERS_POKEBALLS

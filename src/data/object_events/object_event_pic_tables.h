@@ -49,8 +49,12 @@ static const struct SpriteFrameImage sPicTable_NinjaBoy[] = {
     overworld_ascending_frames(gObjectEventPic_NinjaBoy, 4, 4),
 };
 
-static const struct SpriteFrameImage sPicTable_Twin[] = {
-    overworld_ascending_frames(gObjectEventPic_Twin, 4, 4),
+static const struct SpriteFrameImage sPicTable_TwinF[] = {
+    overworld_ascending_frames(gObjectEventPic_TwinF, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_TwinM[] = {
+    overworld_ascending_frames(gObjectEventPic_TwinM, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_Boy1[] = {
@@ -1186,9 +1190,9 @@ static const struct SpriteFrameImage sPicTable_Ball_SPORT[] = {
 static const struct SpriteFrameImage sPicTable_Ball_DREAM[] = {
     POKEBALL_PIC_FRAMES(Dream),
 };
-static const struct SpriteFrameImage sPicTable_Ball_BEAST[] = {
-    POKEBALL_PIC_FRAMES(Beast),
-};
+// static const struct SpriteFrameImage sPicTable_Ball_BEAST[] = {
+//     POKEBALL_PIC_FRAMES(Beast),
+// };
 #ifdef ITEM_STRANGE_BALL
 static const struct SpriteFrameImage sPicTable_Ball_STRANGE[] = {
     POKEBALL_PIC_FRAMES(Strange),

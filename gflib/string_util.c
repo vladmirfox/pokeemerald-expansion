@@ -794,3 +794,58 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     *dest = EOS;
     return dest;
 }
+
+s32 DoesStringContainMonName(const u8 *string, const u8 *monName) 
+{
+    u8 wordBuffer[POKEMON_NAME_LENGTH + 1];
+    u32 wordLength = 0;
+    u32 index = 0;
+    u32 wordStartIndex = 0;
+    bool8 capturingWord = false;
+
+    while (*string != EOS) 
+    {
+        if (*string == CHAR_SPACE || *string == CHAR_PERIOD) 
+        {
+            // Check if the current character is a space or a period. If we've captured a word, compare it.
+            if (capturingWord) 
+            {
+                wordBuffer[wordLength + 1] = EOS; // Null-terminate the buffer to make it a valid string
+
+                if (StringCompareWithoutExtCtrlCodes(wordBuffer, monName) == 0)
+                    return wordStartIndex;
+
+                wordLength = 0;
+                capturingWord = false;
+            }
+        } 
+        else 
+        {
+            // Check if the character is a capital letter to start capturing
+            if (*string >= FIRST_CAPITAL && *string <= LAST_CAPITAL) 
+            {
+                if (!capturingWord) 
+                {
+                    wordStartIndex = index; // Track the position of the word start
+                    capturingWord = true;
+                    wordLength = 0;
+                }
+            }
+
+            // If we're capturing a word, store the character in the buffer
+            if (capturingWord) 
+            {
+                if (wordLength < POKEMON_NAME_LENGTH) // Ensure we don't overflow the buffer
+                {
+                    wordBuffer[wordLength] = *string;
+                    wordLength++;
+                }
+            }
+        }
+
+        string++;
+        index++;
+    }
+
+    return -1; // No match found
+}
