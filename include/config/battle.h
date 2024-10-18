@@ -178,6 +178,16 @@
 #define B_SAFARI_BALL_MODIFIER      GEN_LATEST // In Gen8+, Safari Ball's catch multiplier was reduced from x1.5 to x1.
 #define B_SERENE_GRACE_BOOST        GEN_LATEST // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
 
+// Weight thresholds for ITEM_LIGHT_POKE_BALL
+#define B_LIGHT_BALL_MODIFIER_TOO_HEAVY     -20
+#define B_LIGHT_BALL_MODIFIER_AVERAGE       0
+#define B_LIGHT_BALL_MODIFIER_LIGHT         20
+#define B_LIGHT_BALL_MODIFIER_VERY_LIGHT    30
+
+#define B_LIGHT_BALL_WEIGHT_KG_TOO_HEAVY    40
+#define B_LIGHT_BALL_WEIGHT_KG_AVERAGE      5
+#define B_LIGHT_BALL_WEIGHT_KG_LIGHT        2
+
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.

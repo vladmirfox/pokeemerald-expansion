@@ -183,8 +183,9 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
     [BALL_SAFARI]   = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SAFARIBALL},
     [BALL_SPORT]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_SPORTBALL},
     [BALL_PARK]     = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_PARKBALL},
-    [BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
+    //[BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
     [BALL_CHERISH]  = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_CHERISHBALL},
+    [BALL_LIGHT]    = {gBattleAnimSpriteGfx_Particles2,     0x100, TAG_PARTICLES_HEAVYBALL}, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 static const struct CompressedSpritePalette sBallParticlePalettes[] =
@@ -214,8 +215,9 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
     [BALL_SAFARI]   = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SAFARIBALL},
     [BALL_SPORT]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_SPORTBALL},
     [BALL_PARK]     = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_PARKBALL},
-    [BALL_BEAST]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_BEASTBALL},
+    // [BALL_BEAST]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_BEASTBALL},
     [BALL_CHERISH]  = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_CHERISHBALL},
+    [BALL_LIGHT]    = {gBattleAnimSpritePal_Particles2,     TAG_PARTICLES_HEAVYBALL}, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 static const union AnimCmd sAnim_RegularBall[] =
@@ -297,8 +299,9 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_SAFARI]  = 0,
     [BALL_SPORT]   = 0,
     [BALL_PARK]    = 5,
-    [BALL_BEAST]   = 5,
+    // [BALL_BEAST]   = 5,
     [BALL_CHERISH] = 0,
+    [BALL_LIGHT]   = 0, // (Might not actually be) TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
@@ -329,8 +332,9 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
     [BALL_SAFARI]  = SafariBallOpenParticleAnimation,
     [BALL_SPORT]   = UltraBallOpenParticleAnimation,
     [BALL_PARK]    = UltraBallOpenParticleAnimation,
-    [BALL_BEAST]   = UltraBallOpenParticleAnimation,
+    // [BALL_BEAST]   = UltraBallOpenParticleAnimation,
     [BALL_CHERISH] = MasterBallOpenParticleAnimation,
+    [BALL_LIGHT]   = GreatBallOpenParticleAnimation, // (Might not actually be) TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] =
@@ -560,18 +564,27 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_BEAST] = {
-        .tileTag = TAG_PARTICLES_BEASTBALL,
-        .paletteTag = TAG_PARTICLES_BEASTBALL,
+    // [BALL_BEAST] = {
+    //     .tileTag = TAG_PARTICLES_BEASTBALL,
+    //     .paletteTag = TAG_PARTICLES_BEASTBALL,
+    //     .oam = &gOamData_AffineOff_ObjNormal_8x8,
+    //     .anims = sAnims_BallParticles,
+    //     .images = NULL,
+    //     .affineAnims = gDummySpriteAffineAnimTable,
+    //     .callback = SpriteCallbackDummy,
+    // },
+    [BALL_CHERISH] = {
+        .tileTag = TAG_PARTICLES_CHERISHBALL,
+        .paletteTag = TAG_PARTICLES_CHERISHBALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
         .affineAnims = gDummySpriteAffineAnimTable,
         .callback = SpriteCallbackDummy,
     },
-    [BALL_CHERISH] = {
-        .tileTag = TAG_PARTICLES_CHERISHBALL,
-        .paletteTag = TAG_PARTICLES_CHERISHBALL,
+    [BALL_LIGHT] = {
+        .tileTag = TAG_PARTICLES_HEAVYBALL, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
+        .paletteTag = TAG_PARTICLES_HEAVYBALL, // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
         .anims = sAnims_BallParticles,
         .images = NULL,
@@ -608,8 +621,9 @@ const u16 gBallOpenFadeColors[] =
     [BALL_SAFARI] = RGB(23, 30, 20),
     [BALL_SPORT] = RGB(31, 31, 15),
     [BALL_PARK] = RGB(31, 31, 15),
-    [BALL_BEAST] = RGB(31, 31, 15),
+    // [BALL_BEAST] = RGB(31, 31, 15),
     [BALL_CHERISH] = RGB(25, 4, 3),
+    [BALL_LIGHT] = RGB(7, 11, 20), // TODO: ITEM_LIGHT_POKE_BALL (Light ball)
 };
 
 const struct SpriteTemplate gPokeblockSpriteTemplate =
@@ -997,8 +1011,8 @@ u8 ItemIdToBallId(u16 ballItem)
         return BALL_SPORT;
     case ITEM_PARK_BALL:
         return BALL_PARK;
-    case ITEM_BEAST_BALL:
-        return BALL_BEAST;
+    case ITEM_LIGHT_POKE_BALL:
+        return BALL_LIGHT;
     case ITEM_CHERISH_BALL:
         return BALL_CHERISH;
     default:
