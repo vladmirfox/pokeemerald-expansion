@@ -69,6 +69,7 @@
 #include "constants/metatile_labels.h"
 #include "palette.h"
 #include "battle_util.h"
+#include "naming_screen.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -4343,4 +4344,21 @@ void AssignRandomMonCryVars(void)
 
     u16 answersArray[] = { gSpecialVar_0x8004, gSpecialVar_0x8005, gSpecialVar_0x8006, gSpecialVar_0x8007 };
     gSpecialVar_0x8008 = answersArray[Random() % 4];
+}
+
+void EnterDexRiddleGuess(void)
+{
+    DoNamingScreen(NAMING_SCREEN_DEX_RIDDLE, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+void GetDexRiddleFeedback(void)
+{
+    if (!StringCompare(gStringVar1, gStringVar2))
+    {
+        gSpecialVar_Result = 1;
+    }
+    else
+    {
+        gSpecialVar_Result = 0;
+    }   
 }
