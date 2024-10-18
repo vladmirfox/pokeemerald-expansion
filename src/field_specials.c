@@ -4353,12 +4353,18 @@ void EnterDexRiddleGuess(void)
 
 void GetDexRiddleFeedback(void)
 {
-    if (!StringCompare(ToLowerCase(gStringVar1), ToLowerCase(gStringVar2)))
+    u8 *loweredString1 = ToLowerCase(gStringVar1);
+    u8 *loweredString2 = ToLowerCase(gStringVar2);
+
+    if (!StringCompare(loweredString1, loweredString2))
     {
         gSpecialVar_Result = 1;
     }
     else
     {
         gSpecialVar_Result = 0;
-    }   
+    }
+
+    Free(loweredString1);
+    Free(loweredString1);
 }

@@ -217,33 +217,59 @@ TranquilRoute_CutHouse_EventScript_RandomDexGuy::
 # 161 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	faceplayer
 # 162 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0
-# 163 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	closemessage
-# 164 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	randomdexmsgbox
-# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1
-# 166 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	special EnterDexRiddleGuess
-# 167 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	waitstate
-# 168 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	special GetDexRiddleFeedback
+	goto_if_set FLAG_DEX_RIDDLE_NPC_GIVE_ITEM, TranquilRoute_CutHouse_EventScript_RandomDexGuy_2
 # 169 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	compare VAR_RESULT, 1
-	goto_if_eq TranquilRoute_CutHouse_EventScript_RandomDexGuy_2
-# 175 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_3
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_1:
+	goto_if_set FLAG_DEX_RIDDLE_NPC, TranquilRoute_CutHouse_EventScript_RandomDexGuy_5
+# 176 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0
 # 177 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	closemessage
+# 178 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	randomdexmsgbox
+# 179 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1
+# 180 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	special EnterDexRiddleGuess
+# 181 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	waitstate
+# 182 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	special GetDexRiddleFeedback
+# 184 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	compare VAR_RESULT, 1
+	goto_if_eq TranquilRoute_CutHouse_EventScript_RandomDexGuy_8
+# 193 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_7:
+# 195 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	setflag FLAG_DEX_RIDDLE_NPC
+# 196 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	release
 	end
 
 TranquilRoute_CutHouse_EventScript_RandomDexGuy_2:
+# 164 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_0
+# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_5:
 # 171 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	msgbox TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_2
-	goto TranquilRoute_CutHouse_EventScript_RandomDexGuy_1
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_1
+# 172 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	release
+	end
+
+TranquilRoute_CutHouse_EventScript_RandomDexGuy_8:
+# 186 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_5
+# 187 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	giveitem ITEM_MEWTWONITE_Y
+# 188 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	setflag FLAG_DEX_RIDDLE_NPC_GIVE_ITEM
+# 189 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+	msgbox TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_6
+	goto TranquilRoute_CutHouse_EventScript_RandomDexGuy_7
 
 
 TranquilRoute_CutHouse_EventScript_CutGrassCutscene_Text_0:
@@ -328,17 +354,9 @@ TranquilRoute_CutHouse_EventScript_RandomCryGuy_Text_7:
 	.string "wrong dingus, try again tomorrow$"
 
 TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_0:
-# 162 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+# 176 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "alright dingus, ima give you a dex\ndescription, you give me the mon\pand remember, you only get to see\nthis once because im lazy$"
 
 TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_1:
-# 165 "data/maps/TranquilRoute_CutHouse/scripts.pory"
+# 179 "data/maps/TranquilRoute_CutHouse/scripts.pory"
 	.string "now whomst was that about$"
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_2:
-# 171 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	.string "holy shit you got it right$"
-
-TranquilRoute_CutHouse_EventScript_RandomDexGuy_Text_3:
-# 175 "data/maps/TranquilRoute_CutHouse/scripts.pory"
-	.string "wrong as usual dingus$"

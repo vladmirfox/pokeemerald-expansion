@@ -838,7 +838,7 @@ s32 DoesStringContainMonName(const u8 *string, const u8 *monName)
 
     while (*string != EOS) 
     {
-        if (*string == CHAR_SPACE || *string == CHAR_PERIOD) 
+        if (*string == CHAR_SPACE || *string == CHAR_PERIOD || *string == CHAR_SGL_QUOTE_RIGHT)
         {
             // Check if the current character is a space or a period. If we've captured a word, compare it.
             if (capturingWord) 
@@ -888,19 +888,22 @@ static u8 ToLowerCaseChar(u8 c)
     return (sToLowerCaseMap[c]) ? sToLowerCaseMap[c] : c;
 }
 
-u8 *ToLowerCase(const u8 *input)
+u8 *ToLowerCase(const u8 *input) 
 {
-    u8 *output = Alloc(StringLength(input) + 1);
-    if (!output)
+    u8 *buffer = Alloc(StringLength(input) + 1);
+    if (!buffer)
         return NULL; // Allocation failed
+
+    u8 *start = buffer;  // Save the start of the output buffer
 
     while (*input != EOS) 
     {
-        *output = ToLowerCaseChar(*input);
+        *buffer = ToLowerCaseChar(*input);
         input++;
-        output++;
+        buffer++;
     }
 
-    *output = EOS; 
-    return output;
+    *buffer = EOS;  // Null-terminate the string
+
+    return start;  // Return the start of the buffer
 }
