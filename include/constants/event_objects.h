@@ -436,7 +436,7 @@
 #define OBJ_EVENT_PAL_TAG_BALL_FAST               0x1160
 #define OBJ_EVENT_PAL_TAG_BALL_LEVEL              0x1161
 #define OBJ_EVENT_PAL_TAG_BALL_LURE               0x1162
-#define OBJ_EVENT_PAL_TAG_BALL_HEAVY              0x1163
+#define OBJ_EVENT_PAL_TAG_BALL_HEAVY              0x1163 // SUGGESTION: Consider adding an Object Event for ITEM_LIGHT_POKE_BALL (Light ball)
 #define OBJ_EVENT_PAL_TAG_BALL_LOVE               0x1164
 #define OBJ_EVENT_PAL_TAG_BALL_FRIEND             0x1165
 #define OBJ_EVENT_PAL_TAG_BALL_MOON               0x1166
@@ -444,7 +444,7 @@
 // Gen V
 #define OBJ_EVENT_PAL_TAG_BALL_DREAM              0x1168
 // Gen VII
-#define OBJ_EVENT_PAL_TAG_BALL_BEAST              0x1169
+#define OBJ_EVENT_PAL_TAG_BALL_BEAST              0x1169 // SUGGESTION: Since we don't need this anymore maybe delete or replace it
 // Gen VIII
 #define OBJ_EVENT_PAL_TAG_BALL_STRANGE            0x116A
 #endif //OW_FOLLOWERS_POKEBALLS

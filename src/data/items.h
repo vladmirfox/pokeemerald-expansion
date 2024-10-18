@@ -558,20 +558,20 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_ParkBall,
     },
 
-    [ITEM_BEAST_BALL] =
-    {
-        .name = _("Beast Ball"),
-        .price = 0,
-        .description = COMPOUND_STRING(
-            "A Ball designed to\n"
-            "catch Ultra Beasts."),
-        .pocket = POCKET_POKE_BALLS,
-        .type = ITEM_USE_BAG_MENU,
-        .battleUsage = EFFECT_ITEM_THROW_BALL,
-        .secondaryId = ITEM_BEAST_BALL - FIRST_BALL,
-        .iconPic = gItemIcon_BeastBall,
-        .iconPalette = gItemIconPalette_BeastBall,
-    },
+    // [ITEM_BEAST_BALL] =
+    // {
+    //     .name = _("Beast Ball"),
+    //     .price = 0,
+    //     .description = COMPOUND_STRING(
+    //         "A Ball designed to\n"
+    //         "catch Ultra Beasts."),
+    //     .pocket = POCKET_POKE_BALLS,
+    //     .type = ITEM_USE_BAG_MENU,
+    //     .battleUsage = EFFECT_ITEM_THROW_BALL,
+    //     .secondaryId = ITEM_BEAST_BALL - FIRST_BALL,
+    //     .iconPic = gItemIcon_BeastBall,
+    //     .iconPalette = gItemIconPalette_BeastBall,
+    // },
 
     [ITEM_CHERISH_BALL] =
     {
@@ -587,6 +587,22 @@ const struct Item gItemsInfo[] =
         .secondaryId = ITEM_CHERISH_BALL - FIRST_BALL,
         .iconPic = gItemIcon_CherishBall,
         .iconPalette = gItemIconPalette_CherishBall,
+    },
+
+    [ITEM_LIGHT_POKE_BALL] =
+    {
+        .name = _("Light Ball"),
+        .price = (I_PRICE >= GEN_7) ? 0 : 300,
+        .description = COMPOUND_STRING(
+            "Works well on\n"
+            "very light\n"
+            "Pokémon."),
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_USE_BAG_MENU,
+        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .secondaryId = ITEM_LIGHT_POKE_BALL - FIRST_BALL,
+        .iconPic = gItemIcon_HeavyBall, // TODO
+        .iconPalette = gItemIconPalette_HeavyBall, // TODO?
     },
 
 // Medicine
