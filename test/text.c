@@ -636,7 +636,7 @@ TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
     u32 start = BATTLESTRINGS_TABLE_START;
-    u32 end = BATTLESTRINGS_TABLE_START + 600; // BATTLESTRINGS_COUNT
+    u32 end = BATTLESTRINGS_COUNT - 1;
     const u32 fontId = FONT_NORMAL;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
@@ -750,12 +750,15 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_BUFFERENDS:
     case STRINGID_FOREWARNACTIVATES:
     case STRINGID_CUSEDBODYDISABLED:
+    case STRINGID_CURRENTMOVECANTSELECT:
+    case STRINGID_TARGETISHURTBYSALTCURE:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
     // Buffer "999999" to B_BUFF1
     case STRINGID_PLAYERGOTMONEY:
     case STRINGID_PLAYERWHITEOUT2:
     case STRINGID_PLAYERPICKEDUPMONEY:
+    case STRINGID_PLAYERPAIDPRIZEMONEY:
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 6, sixDigitNines);
         break;
     // Buffer "99" to B_BUFF1
@@ -789,6 +792,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_SCRIPTINGABILITYSTATRAISE:
     case STRINGID_BATTLERABILITYRAISEDSTAT:
     case STRINGID_ABILITYRAISEDSTATDRASTICALLY:
+    case STRINGID_STATWASHEIGHTENED:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         break;
     // Buffer Type name to B_BUFF1
@@ -797,12 +801,18 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_TARGETCHANGEDTYPE:
     case STRINGID_PROTEANTYPECHANGE:
     case STRINGID_THIRDTYPEADDED:
+    case STRINGID_ATTACKERLOSTITSTYPE:
+    case STRINGID_PKMNTERASTALLIZEDINTO:
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
         break;
     // Buffer Species name to B_BUFF1
     case STRINGID_PKMNTRANSFORMEDINTO:
     case STRINGID_WILDPKMNFLED:
     case STRINGID_MEGAEVOEVOLVED:
+    case STRINGID_PKMNREVIVEDREADYTOFIGHT:
+    case STRINGID_ITEMRESTOREDSPECIESHEALTH: // Should probably use nickname instead?
+    case STRINGID_ITEMCUREDSPECIESSTATUS: // Should probably use nickname instead?
+    case STRINGID_ITEMRESTOREDSPECIESPP: // Should probably use nickname instead?
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
         break;
     // Buffer nickname with prefix to B_BUFF1
