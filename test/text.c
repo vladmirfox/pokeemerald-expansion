@@ -635,21 +635,21 @@ extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START + 451;
-    u32 end = BATTLESTRINGS_TABLE_START + 500; // BATTLESTRINGS_COUNT
-    const u32 fontId = FONT_NORMAL, widthPx = 208;
+    u32 start = BATTLESTRINGS_TABLE_START;
+    u32 end = BATTLESTRINGS_TABLE_START + 600; // BATTLESTRINGS_COUNT
+    const u32 fontId = FONT_NORMAL;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
 
-    s32 sixDigitNines = 999999;
-    u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");
-    u32 longMoveID = MOVE_NATURES_MADNESS;        // 89 pixels.
-    u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP; // 91 pixels.
-    u32 longStatName = STAT_EVASION;
-    u32 longTypeName = TYPE_ELECTRIC;
-    u32 longSpeciesName = SPECIES_SANDY_SHOCKS;   // 47 pixels
-    u32 longItemName = ITEM_UNREMARKABLE_TEACUP;  // 73 pixels
-    u8 boxName[9] = _("MMMMMMMM");
+    s32 sixDigitNines = 999999;                                 // 36 pixels.
+    u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");   // 72 pixels.
+    u32 longMoveID = MOVE_NATURES_MADNESS;                      // 89 pixels.
+    u32 longAbilityID = ABILITY_SUPERSWEET_SYRUP;               // 91 pixels.
+    u32 longStatName = STAT_EVASION;                            // 40 pixels.
+    u32 longTypeName = TYPE_ELECTRIC;                           // 43 pixels.
+    u32 longSpeciesName = SPECIES_SANDY_SHOCKS;                 // 47 pixels.
+    u32 longItemName = ITEM_UNREMARKABLE_TEACUP;                // 73 pixels.
+    u8 boxName[9] = _("MMMMMMMM");                              // 54 pixels.
 
     // Set longest default player name, JOHNNY
     NewGameBirchSpeech_SetDefaultPlayerName(10);  // JOHNNY
@@ -701,7 +701,10 @@ TEST("Battle strings fit on the battle message window")
     // Set Items
     gLastUsedItem = longItemName;
 
-    // Buffer specific strings for each Battle String
+    // Buffer specific strings for each Battle String.
+    // In cases where a buffer is used with multiple contexts, the widest string is used.
+    // Eg. STRINGID_CANACTFASTERTHANKSTO is used for both with abilities and items,
+    // so ability is chosen because it's longer.
     switch (battleStringId + BATTLESTRINGS_TABLE_START)
     {
     // Testing Trainer messages is out of the current scope for this test.
@@ -771,6 +774,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNBURNEDBY:
     case STRINGID_PKMNFROZENBY:
     case STRINGID_PKMNWASPARALYZEDBY:
+    case STRINGID_CANACTFASTERTHANKSTO:
         PREPARE_ABILITY_BUFFER(gBattleTextBuff1, longAbilityID);
         break;
     // Buffer Stat name to B_BUFF1
@@ -782,6 +786,9 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_ATTACKERABILITYSTATRAISE:
     case STRINGID_LASTABILITYRAISEDSTAT:
     case STRINGID_TARGETABILITYSTATLOWER:
+    case STRINGID_SCRIPTINGABILITYSTATRAISE:
+    case STRINGID_BATTLERABILITYRAISEDSTAT:
+    case STRINGID_ABILITYRAISEDSTATDRASTICALLY:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         break;
     // Buffer Type name to B_BUFF1
@@ -798,10 +805,14 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_MEGAEVOEVOLVED:
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
         break;
-    // Buffer nickname with prefix to B_BUFF1, Move name to B_BUFF2
+    // Buffer nickname with prefix to B_BUFF1
     case STRINGID_PKMNATTACK:
     case STRINGID_PKMNWISHCAMETRUE:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 1, 0);
+        break;
+    // Buffer nickname with prefix in lower case to B_BUFF1
+    case STRINGID_USEDINSTRUCTEDMOVE:
+        PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(gBattleTextBuff1, 1, 0);
         break;
     // Buffer nickname to B_BUFF2
     case STRINGID_ENEMYABOUTTOSWITCHPKMN:
@@ -814,6 +825,7 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNIGNOREDX:
     case STRINGID_PREVENTEDFROMWORKING:
     case STRINGID_PKMNOBTAINEDX:
+    case STRINGID_ABOUTTOUSEPOLTERGEIST:
         PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
         break;
     // Buffer Item name to B_BUFF2
@@ -870,7 +882,7 @@ TEST("Battle strings fit on the battle message window")
         strWidth = GetStringLineWidth(fontId, battleString, 0, j, sizeof(battleString), TRUE);
         if (strWidth == 0)
             break;
-        EXPECT_LE(strWidth, widthPx);
+        EXPECT_LE(strWidth, BATTLE_MSG_MAX_WIDTH);
     }
     Free(gBattleMsgDataPtr);
 }
