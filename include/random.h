@@ -3,8 +3,8 @@
 
 // The number 1103515245 comes from the example implementation of rand and srand
 // in the ISO C standard.
-#define ISO_RANDOMIZE1(val)(1103515245 * (val) + 24691)
-#define ISO_RANDOMIZE2(val)(1103515245 * (val) + 12345)
+#define ISO_RANDOMIZE1(val) (1103515245 * (val) + 24691)
+#define ISO_RANDOMIZE2(val) (1103515245 * (val) + 12345)
 
 /* Some functions have been added to support Expansion's RNG implementation.
 *
@@ -163,7 +163,12 @@ enum RandomTag
     RNG_AI_ABILITY,
     RNG_AI_SWITCH_HASBADODDS,
     RNG_AI_SWITCH_WONDER_GUARD,
+    RNG_AI_SWITCH_BADLY_POISONED,
+    RNG_AI_SWITCH_CURSED,
+    RNG_AI_SWITCH_NIGHTMARE,
+    RNG_AI_SWITCH_SEEDED,
     RNG_SHELL_SIDE_ARM,
+    RNG_RANDOM_TARGET,
 };
 
 #define RandomWeighted(tag, ...) \
