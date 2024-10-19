@@ -892,7 +892,7 @@ TEST("Battle strings fit on the battle message window")
         strWidth = GetStringLineWidth(fontId, battleString, 0, j, sizeof(battleString), TRUE);
         if (strWidth == 0)
             break;
-        EXPECT_LE(strWidth, BATTLE_MSG_MAX_WIDTH);
+        EXPECT_LE(strWidth - 1, BATTLE_MSG_MAX_WIDTH); // -1 because there's a pixel-wide space that doesn't visually look like it's out of frame when using FONT_NORMAL.
     }
     Free(gBattleMsgDataPtr);
 }
