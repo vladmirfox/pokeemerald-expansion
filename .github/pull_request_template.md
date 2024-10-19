@@ -21,7 +21,7 @@
 <!-- If it doesn't apply, feel free to remove this section. -->
 
 ## Things to note in the release changelog:
-<!-- We use an automated system to generate our changelogs, so if there's something of note that our end users should know in regards to this change besides the title of this PR. -->
+<!-- We use an automated system to generate our changelogs, so if there's something of note that our end users should know in regards to this change besides the title of this PR, they should be added here. -->
 <!-- *MUST* be structured as bullet points. -->
 <!-- If it doesn't apply, feel free to remove this section. -->
 
