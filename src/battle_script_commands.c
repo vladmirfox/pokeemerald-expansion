@@ -5717,6 +5717,11 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
                         break;
                     case STATUS1_SLEEP:
+                        if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]])
+                        {
+                            gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] = FALSE;
+                            gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = FALSE;
+                        }
                         gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
                         break;
                     case STATUS1_BURN:
@@ -13185,6 +13190,7 @@ static void Cmd_healpartystatus(void)
     u32 zero = 0;
     u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
     u8 toHeal = 0;
+    bool32 isStatusSleep = (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP);
 
     if (gCurrentMove == MOVE_HEAL_BELL)
     {
@@ -13198,6 +13204,13 @@ static void Cmd_healpartystatus(void)
         {
             gBattleMons[gBattlerAttacker].status1 = 0;
             gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
+            if(B_SLEEP_CLAUSE && isStatusSleep 
+             && gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerAttacker)] 
+             && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]])
+            {
+                gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerAttacker)] = FALSE;
+                gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = FALSE;
+            }
         }
         else
         {
@@ -13211,8 +13224,16 @@ static void Cmd_healpartystatus(void)
         {
             if (GetBattlerAbility(partner) != ABILITY_SOUNDPROOF || B_HEAL_BELL_SOUNDPROOF == GEN_5)
             {
+                isStatusSleep = (gBattleMons[partner].status1 & STATUS1_SLEEP);
                 gBattleMons[partner].status1 = 0;
                 gBattleMons[partner].status2 &= ~STATUS2_NIGHTMARE;
+                if(B_SLEEP_CLAUSE && isStatusSleep 
+                 && gBattleStruct->sleepClause.isActive[GetBattlerSide(partner)] 
+                 && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(partner)][gBattlerPartyIndexes[partner]])
+                {
+                    gBattleStruct->sleepClause.isActive[GetBattlerSide(partner)] = FALSE;
+                    gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(partner)][gBattlerPartyIndexes[partner]] = FALSE;
+                }
             }
             else
             {
@@ -13267,6 +13288,23 @@ static void Cmd_healpartystatus(void)
 
         gBattleMons[gBattlerAttacker].status1 = 0;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
+
+        if(B_SLEEP_CLAUSE && isStatusSleep)
+        {
+            if(gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerAttacker)] 
+             && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]])
+            {
+                gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerAttacker)] = FALSE;
+                gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = FALSE;
+            }
+
+            else if(gBattleStruct->sleepClause.isActive[GetBattlerSide(partner)] 
+             && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(partner)][gBattlerPartyIndexes[partner]])
+            {
+                gBattleStruct->sleepClause.isActive[GetBattlerSide(partner)] = FALSE;
+                gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(partner)][gBattlerPartyIndexes[partner]] = FALSE;
+            }
+        }
 
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[partner]))
@@ -14635,6 +14673,7 @@ static void Cmd_switchoutabilities(void)
     {
         switch (GetBattlerAbility(battler))
         {
+            //todo sleep clause here natural cure
         case ABILITY_NATURAL_CURE:
             gBattleMons[battler].status1 = 0;
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE,

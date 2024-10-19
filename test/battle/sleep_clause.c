@@ -317,6 +317,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: G-Max Befuddle can only sleep one opposing mon
 
 //honestly some of these are probably covered by just normal sleep tests 
 // also possible that these should be done in doubles since its kinda just a nomral "mon woke up" test
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon wakes up");
 // something like:
     // player has wob
@@ -371,6 +372,8 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
     // AI switches, player uses spore, it fails
     // AI switches back to sleeping wob, player uses wake-up-slap/uproar, which wakes up enemy wob
     // AI switches AGAIN, player uses spore, it succeeds
+    // fun fact, uproar and wake-up slap are handled in 2 different places, so probably each require a test
+    // added handling for both though
 
 // this feels like a horribly complicated scenario that would probably not happen in a million runs but unfortunately i thought of it so i will
 // write it down
@@ -378,33 +381,43 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 // replace psycho shift with the following moves:
     // jungle healing, lunar blessing, refresh, purify (maybe?), take heart
 
+
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability hydration in the rain");
 
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability natural cure");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability shed skin");
 
 TO_DO_BATTLE_TEST("DOUBLES TEST: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability healer");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the item awakening");
 // replace awakening with the following items:
     // blue flute, chesto berry, big malasada, casteliacone, full heal, full restore, heal powder, lava cookie, lum berry
     // lumiose galett, miracle berry?, old gateau, pewter Crunchies, rage candy bar, shalour sable
     // idk wtf half these items even are and id imagine a lot of them share effects so i doubt a test will be needed for all of them
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Vital Spirit");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon faints");
 
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> explosion"); // holy fuck if this requires special handling im uninstalling
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon uses sleep talk -> explosion"); // holy fuck if this requires special handling im uninstalling
 
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> move that KOs a mon that has used destiny bond");
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon uses sleep talk -> move that KOs a mon that has used destiny bond");
 
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping uses sleep talk -> role play/skill swap");
+// ADDED HANDLING FOR THIS
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out, has trace, and traces insomnia/vital spirit");
 
-
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping is sent out, has trace, and traces insomnia/vital spirit");
-
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by a held item, like chesto");
+
+
+// ADDED HANDLING FOR THIS
+TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
