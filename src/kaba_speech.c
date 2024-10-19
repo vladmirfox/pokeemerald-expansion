@@ -6,6 +6,7 @@
 #include "window.h"
 #include "decompress.h"
 #include "text.h"
+#include "characters.h"
 #include "string_util.h"
 #include "palette.h"
 #include "palette_util.h"
@@ -80,6 +81,7 @@ struct KabaSpeech
     u16 pic1TilemapBuffer[0x800];
     u16 pic2TilemapBuffer[0x800];
     u8 platformSpriteIds[2]; // the platform is made out of 2 32x64sprites
+    u16 alphaCoeff;
     u8 timer;
 };
 
@@ -88,8 +90,11 @@ static EWRAM_DATA struct KabaSpeech *sKabaSpeech = NULL;
 
 // Function declarations
 static void Task_KabaSpeech_Begin(u8);
-static void Task_KabaSpeech_MainTalk(u8);
+static void Task_KabaSpeech_FadeInEverything(u8);
 static void DrawCharacterPic(u8);
+static inline void KabaSpeechPrintMessage(const u8 *);
+static void Task_KabaSpeech_WelcomeToTheWorld(u8);
+static void Task_KabaSpeech_ThisWorld(u8);
 
 // Const data
 static const u16 sKabaSpeech_BgGfx[] = INCBIN_U16("graphics/kaba_speech/bg.4bpp");
@@ -230,11 +235,17 @@ static void Task_KabaSpeech_Begin(u8 taskId)
         case STATE_FINISH:
             BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
             SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON);
+            SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_OBJ | BLDCNT_TGT2_BG3 | BLDCNT_EFFECT_BLEND);
+            SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
+            SetGpuReg(REG_OFFSET_BLDY, 0);
             ShowBg(BG_INTRO);
+            ShowBg(BG_PIC_1);
+            ShowBg(BG_TEXT);
             SetVBlankCallback(VBlankCB_KabaSpeech);
-            PlayBGM(MUS_LITTLEROOT);
-            sKabaSpeech->timer = 0x80;
-            gTasks[taskId].func = Task_KabaSpeech_MainTalk;
+            PlayBGM(MUS_ROUTE122);
+            sKabaSpeech->alphaCoeff = 0;
+            sKabaSpeech->timer = 0xD8;
+            gTasks[taskId].func = Task_KabaSpeech_FadeInEverything;
             gMain.state = 0;
             return;
     }
@@ -242,16 +253,46 @@ static void Task_KabaSpeech_Begin(u8 taskId)
     gMain.state++;
 }
 
-static void Task_KabaSpeech_MainTalk(u8 taskId)
+static void Task_KabaSpeech_FadeInEverything(u8 taskId)
 {
-    if (sKabaSpeech->timer != 0)
+    if (sKabaSpeech->timer)
     {
         sKabaSpeech->timer--;
     }
+    else if (sKabaSpeech->alphaCoeff >= 16)
+    {
+        sKabaSpeech->alphaCoeff = 16;
+        sKabaSpeech->timer = 80;
+        gTasks[taskId].func = Task_KabaSpeech_WelcomeToTheWorld;
+        return;
+    }
     else
     {
-        ShowBg(BG_PIC_1);
-        ShowBg(BG_TEXT);
+        sKabaSpeech->alphaCoeff++;
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(sKabaSpeech->alphaCoeff, 16 - sKabaSpeech->alphaCoeff));
+    }
+}
+
+static void Task_KabaSpeech_WelcomeToTheWorld(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        if (sKabaSpeech->timer)
+        {
+            sKabaSpeech->timer--;
+        }
+        else
+        {
+            KabaSpeechPrintMessage(a);
+            gTasks[taskId].func = Task_KabaSpeech_ThisWorld;
+        }
+    }
+}
+
+static void Task_KabaSpeech_ThisWorld(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_TEXT))
+    {
         DebugPrintf("hello");
     }
 }
@@ -275,5 +316,20 @@ static void DrawCharacterPic(u8 id)
         default:
             return;
     }
+}
+
+static inline void KabaSpeechPrintMessage(const u8 *str)
+{
+    DrawDialogueFrame(WIN_TEXT, FALSE);
+    if (str != gStringVar4)
+    {
+        StringExpandPlaceholders(gStringVar4, str);
+        AddTextPrinterParameterized2(WIN_TEXT, FONT_NORMAL, gStringVar4, GetPlayerTextSpeed(), NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    }
+    else
+    {
+        AddTextPrinterParameterized2(WIN_TEXT, FONT_NORMAL, str, GetPlayerTextSpeed(), NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+    }
+    CopyWindowToVram(WIN_TEXT, COPYWIN_FULL);
 }
 
