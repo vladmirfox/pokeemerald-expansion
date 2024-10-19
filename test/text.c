@@ -632,6 +632,7 @@ TEST("Type names fit on Pokedex Search Screen")
 
 extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 //*
+#define BATTLE_STRING_BUFFER_SIZE 1000
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
@@ -639,7 +640,7 @@ TEST("Battle strings fit on the battle message window")
     u32 end = BATTLESTRINGS_COUNT - 1;
     const u32 fontId = FONT_NORMAL;
     u32 battleStringId = 0;
-    u8 battleString[1000] = {0};
+    u8 *battleString = Alloc(BATTLE_STRING_BUFFER_SIZE);
 
     s32 sixDigitNines = 999999;                                 // 36 pixels.
     u8 nickname[POKEMON_NAME_LENGTH + 1] = _("MMMMMMMMMMMM");   // 72 pixels.
@@ -885,15 +886,16 @@ TEST("Battle strings fit on the battle message window")
     default:
         break;
     }
-    BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString, sizeof(battleString));
+    BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString, BATTLE_STRING_BUFFER_SIZE);
     DebugPrintf("Battle String ID %d: %S", battleStringId + BATTLESTRINGS_TABLE_START, battleString);
     for (j = 1;; j++)
     {
-        strWidth = GetStringLineWidth(fontId, battleString, 0, j, sizeof(battleString), TRUE);
+        strWidth = GetStringLineWidth(fontId, battleString, 0, j, BATTLE_STRING_BUFFER_SIZE, TRUE);
         if (strWidth == 0)
             break;
         EXPECT_LE(strWidth - 1, BATTLE_MSG_MAX_WIDTH); // -1 because there's a pixel-wide space that doesn't visually look like it's out of frame when using FONT_NORMAL.
     }
     Free(gBattleMsgDataPtr);
+    Free(battleString);
 }
 //*/
