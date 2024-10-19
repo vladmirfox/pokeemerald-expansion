@@ -635,8 +635,8 @@ extern u16 sBattlerAbilities[MAX_BATTLERS_COUNT];
 TEST("Battle strings fit on the battle message window")
 {
     u32 i, j, strWidth;
-    u32 start = BATTLESTRINGS_TABLE_START + 0;
-    u32 end = BATTLESTRINGS_TABLE_START + 100;
+    u32 start = BATTLESTRINGS_TABLE_START + 451;
+    u32 end = BATTLESTRINGS_TABLE_START + 500; // BATTLESTRINGS_COUNT
     const u32 fontId = FONT_NORMAL, widthPx = 208;
     u32 battleStringId = 0;
     u8 battleString[1000] = {0};
@@ -651,6 +651,7 @@ TEST("Battle strings fit on the battle message window")
     u32 longItemName = ITEM_UNREMARKABLE_TEACUP;  // 73 pixels
     u8 boxName[9] = _("MMMMMMMM");
 
+    // Set longest default player name, JOHNNY
     NewGameBirchSpeech_SetDefaultPlayerName(10);  // JOHNNY
 
     RUN_OVERWORLD_SCRIPT(
@@ -660,10 +661,12 @@ TEST("Battle strings fit on the battle message window")
     SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);
     SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, nickname);
 
-    for (i = start; i <= end; i++) // BATTLESTRINGS_COUNT
+    for (i = start; i <= end; i++)
     {
         PARAMETRIZE_LABEL("%S", gBattleStringsTable[i - BATTLESTRINGS_TABLE_START]) { battleStringId = i - BATTLESTRINGS_TABLE_START; }
     }
+
+    // Clear buffers
     PREPARE_STRING_BUFFER(gBattleTextBuff1, STRINGID_EMPTYSTRING3);
     PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_EMPTYSTRING3);
     PREPARE_STRING_BUFFER(gBattleTextBuff3, STRINGID_EMPTYSTRING3);
@@ -671,45 +674,54 @@ TEST("Battle strings fit on the battle message window")
     *gStringVar2 = EOS;
     *gStringVar3 = EOS;
 
+    // Set positions
     gBattlerPositions[0] = B_POSITION_PLAYER_LEFT;
     gBattlerPositions[1] = B_POSITION_OPPONENT_LEFT;
     gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
     gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
-    for (j = 0; j < MAX_BATTLERS_COUNT; j++)
-    {
-        sBattlerAbilities[j] = longAbilityID;
-    }
 
+    // Set abilities
+    gLastUsedAbility = longAbilityID;
+    for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+        sBattlerAbilities[j] = longAbilityID;
+
+    // Set Trainers
     gTrainerBattleOpponent_A = 1;
     gTrainerBattleOpponent_B = 1;
 
-    // Add "The opposing " prefix to all messages.
+    // Set battler to 1, so "The opposing " is prefixed when refering to battlers.
     gBattleTypeFlags |= BATTLE_TYPE_TRAINER;
     gBattlerAttacker = gBattlerTarget = gBattleScripting.battler = gEffectBattler = 1;
 
+    // Set moves
     gCurrentMove = longMoveID;
-    gLastUsedItem = longItemName;
-
     gBattleMsgDataPtr = AllocZeroed(sizeof(struct BattleMsgData));
     gBattleMsgDataPtr->currentMove = longMoveID;
 
+    // Set Items
+    gLastUsedItem = longItemName;
+
+    // Buffer specific strings for each Battle String
     switch (battleStringId + BATTLESTRINGS_TABLE_START)
     {
+    // Testing Trainer messages is out of the current scope for this test.
     case STRINGID_TRAINER1LOSETEXT:
     case STRINGID_TRAINER2LOSETEXT:
     case STRINGID_TRAINER1WINTEXT:
     case STRINGID_TRAINER2WINTEXT:
-        // Out of current scope: testing all trainer messages.
         break;
+    // Buffer Nickname with prefix to B_BUFF1, " a boosted" to B_BUFF2, "999999" to B_BUFF3
     case STRINGID_PKMNGAINEDEXP:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
         PREPARE_STRING_BUFFER(gBattleTextBuff2, STRINGID_ABOOSTED); // 'gained a boosted'
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, sixDigitNines);
         break;
+    // Buffer Nickname with prefix to B_BUFF1, "100" to B_BUFF2
     case STRINGID_PKMNGREWTOLV:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
         PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff2, 3, 100);
         break;
+    // Buffer Nickname with prefix to B_BUFF1, move name to B_BUFF2
     case STRINGID_PKMNLEARNEDMOVE:
     case STRINGID_TRYTOLEARNMOVE1:
     case STRINGID_TRYTOLEARNMOVE2:
@@ -720,6 +732,7 @@ TEST("Battle strings fit on the battle message window")
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 0, 0);
         PREPARE_MOVE_BUFFER(gBattleTextBuff2, longMoveID);
         break;
+    // Buffer Move name to B_BUFF1
     case STRINGID_PKMNLEARNEDMOVE2:
     case STRINGID_TEAMSTOPPEDWORKING: // Unused
     case STRINGID_FOESTOPPEDWORKING: // Unused
@@ -731,21 +744,28 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNLOSTPPGRUDGE:
     case STRINGID_PKMNSITEMRESTOREDPP:
     case STRINGID_PKMNSXWOREOFF:
+    case STRINGID_BUFFERENDS:
+    case STRINGID_FOREWARNACTIVATES:
+    case STRINGID_CUSEDBODYDISABLED:
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, longMoveID);
         break;
+    // Buffer "999999" to B_BUFF1
     case STRINGID_PLAYERGOTMONEY:
     case STRINGID_PLAYERWHITEOUT2:
     case STRINGID_PLAYERPICKEDUPMONEY:
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 6, sixDigitNines);
         break;
+    // Buffer "99" to B_BUFF1
     case STRINGID_HITXTIMES:
     case STRINGID_MAGNITUDESTRENGTH:
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 2, 99);
         break;
+    // Buffer "9" to B_BUFF1
     case STRINGID_PKMNSTOCKPILED:
     case STRINGID_PKMNPERISHCOUNTFELL:
         PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 1, 9);
         break;
+    // Buffer Ability name to B_BUFF1
     case STRINGID_PKMNMADESLEEP:
     case STRINGID_PKMNPOISONEDBY:
     case STRINGID_PKMNBURNEDBY:
@@ -753,26 +773,41 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNWASPARALYZEDBY:
         PREPARE_ABILITY_BUFFER(gBattleTextBuff1, longAbilityID);
         break;
+    // Buffer Stat name to B_BUFF1
     case STRINGID_STATSWONTINCREASE:
     case STRINGID_STATSWONTDECREASE:
     case STRINGID_PKMNSXPREVENTSYLOSS:
+    case STRINGID_TARGETABILITYSTATRAISE:
+    case STRINGID_TARGETSSTATWASMAXEDOUT:
+    case STRINGID_ATTACKERABILITYSTATRAISE:
+    case STRINGID_LASTABILITYRAISEDSTAT:
+    case STRINGID_TARGETABILITYSTATLOWER:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         break;
+    // Buffer Type name to B_BUFF1
     case STRINGID_PKMNCHANGEDTYPE:
     case STRINGID_PKMNCHANGEDTYPEWITH:
+    case STRINGID_TARGETCHANGEDTYPE:
+    case STRINGID_PROTEANTYPECHANGE:
+    case STRINGID_THIRDTYPEADDED:
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, longTypeName);
         break;
+    // Buffer Species name to B_BUFF1
     case STRINGID_PKMNTRANSFORMEDINTO:
     case STRINGID_WILDPKMNFLED:
+    case STRINGID_MEGAEVOEVOLVED:
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, longSpeciesName)
         break;
+    // Buffer nickname with prefix to B_BUFF1, Move name to B_BUFF2
     case STRINGID_PKMNATTACK:
     case STRINGID_PKMNWISHCAMETRUE:
         PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, 1, 0);
         break;
+    // Buffer nickname to B_BUFF2
     case STRINGID_ENEMYABOUTTOSWITCHPKMN:
         PREPARE_MON_NICK_BUFFER(gBattleTextBuff2, 1, 0);
         break;
+    // Buffer Item name to B_BUFF1
     case STRINGID_PKMNHURTSWITH:
     case STRINGID_PKMNCURIOUSABOUTX:
     case STRINGID_PKMNENTHRALLEDBYX:
@@ -781,17 +816,21 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_PKMNOBTAINEDX:
         PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
         break;
+    // Buffer Item name to B_BUFF2
     case STRINGID_PKMNOBTAINEDX2:
         PREPARE_ITEM_BUFFER(gBattleTextBuff2, longItemName);
         break;
+    // Buffer Item name to B_BUFF1 and B_BUFF2
     case STRINGID_PKMNOBTAINEDXYOBTAINEDZ:
         PREPARE_ITEM_BUFFER(gBattleTextBuff1, longItemName);
         PREPARE_ITEM_BUFFER(gBattleTextBuff2, longItemName);
         break;
+    // Buffer nickname with prefix to B_BUFF1, Ability name to B_BUFF2
     case STRINGID_PKMNTRACED:
         PREPARE_MON_NICK_WITH_PREFIX_LOWER_BUFFER(gBattleTextBuff1, 1, 0);
         PREPARE_ABILITY_BUFFER(gBattleTextBuff2, longAbilityID);
         break;
+    // Buffer Stat name to B_BUFF1, "drastically rose" to B_BUFF2
     case STRINGID_ATTACKERSSTATROSE:
     case STRINGID_DEFENDERSSTATROSE:
     case STRINGID_USINGITEMSTATOFPKMNROSE:
@@ -799,17 +838,20 @@ TEST("Battle strings fit on the battle message window")
         StringCopy(gBattleTextBuff2, sText_drastically);
         StringAppend(gBattleTextBuff2, gText_StatRose);
         break;
+    // Buffer Stat name to B_BUFF1, "severely fell" to B_BUFF2
     case STRINGID_ATTACKERSSTATFELL:
     case STRINGID_DEFENDERSSTATFELL:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
         StringCopy(gBattleTextBuff2, sText_severely);
         StringAppend(gBattleTextBuff2, sText_StatFell);
         break;
+    // Buffer Status name to B_BUFF2
     case STRINGID_PKMNSITEMCUREDPROBLEM:
     case STRINGID_PKMNSXCUREDYPROBLEM:
     case STRINGID_PKMNSXCUREDITSYPROBLEM:
         StringCopy(gBattleTextBuff1, gText_Confusion);
         break;
+    // Buffer Box name to STR_VAR_1 and STR_VAR_3, Nickname to STR_VAR_2
     case STRINGID_PKMNTRANSFERREDSOMEONESPC:
     case STRINGID_PKMNTRANSFERREDLANETTESPC:
     case STRINGID_PKMNBOXSOMEONESPCFULL:
