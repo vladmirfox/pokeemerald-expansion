@@ -5078,8 +5078,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gBattleScripting.battler = BATTLE_PARTNER(battler);
                 if (IsBattlerAlive(gBattleScripting.battler)
                     && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
-                    && (Random() % 100) < 30)
+                    && (Random() % 100) < 90)
                 {
+                    if (B_SLEEP_CLAUSE
+                     && (gBattleMons[gBattleScripting.battler].status1 & STATUS1_SLEEP )
+                     && gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattleScripting.battler)] 
+                     && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[gBattleScripting.battler]])
+                    {
+                        gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattleScripting.battler)] = FALSE;
+                        gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattleScripting.battler)][gBattlerPartyIndexes[gBattleScripting.battler]] = FALSE;
+                    }
                     BattleScriptPushCursorAndCallback(BattleScript_HealerActivates);
                     effect++;
                 }

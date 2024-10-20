@@ -333,7 +333,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
     // player celebrates until sleeping wob wakes up
     // AI switches, player uses spore, AI wob 2 falls asleep
 
-
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with aromatherapy");
 // something like:
     // player has wob
@@ -344,6 +344,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
     // AI wob uses aromatherapy, cures sleeping wob
     // player uses spore, it succeeds
 
+// ADDED HANDLING FOR THIS
 // might be redundant if they use the same effect
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with heal bell");
 // something like:
@@ -385,11 +386,13 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability hydration in the rain");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability natural cure");
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability shed skin");
 
+// ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("DOUBLES TEST: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability healer");
 
 // ADDED HANDLING FOR THIS
@@ -408,10 +411,6 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon faints");
 
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon uses sleep talk -> explosion"); // holy fuck if this requires special handling im uninstalling
-
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon uses sleep talk -> move that KOs a mon that has used destiny bond");
-
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out, has trace, and traces insomnia/vital spirit");
 
@@ -421,3 +420,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
+
+//TODO bug when the mon in the right slot in a double battle uses heal bell/aromatherapy, sleep clause is not deactivated
+
+//TODO treat falling asleep from disobeying the same as rest
