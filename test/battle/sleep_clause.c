@@ -378,6 +378,7 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 
 // this feels like a horribly complicated scenario that would probably not happen in a million runs but unfortunately i thought of it so i will
 // write it down
+//ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by using sleep talk into psycho shift");
 // replace psycho shift with the following moves:
     // jungle healing, lunar blessing, refresh, purify (maybe?), take heart
@@ -420,7 +421,5 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
-
-//TODO bug when the mon in the right slot in a double battle uses heal bell/aromatherapy, sleep clause is not deactivated
 
 //TODO treat falling asleep from disobeying the same as rest
