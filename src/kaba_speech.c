@@ -38,10 +38,20 @@
 
 // Define, enum, struct definitions
 
+// If you want to edit these pos defines, dont touch the `+ 32`!
 // positions for joltik + pokeball
-// If you want to edit these, dont touch the `+ 32`!
-#define MON_POS_X 55 + 32
+#define MON_POS_X 54 + 32
 #define MON_POS_Y 66 + 32
+// positions for platform (they're split into two sprites!)
+#define PLAT_POS_X 56 + 32
+#define PLAT_POS_Y 83 + 16
+// this is pos difference for the second platform sprite
+#define PLAT_POS_X2 64
+
+enum SpriteTags
+{
+    TAG_PLATFORM = 0x9000,
+};
 
 enum Bgs
 {
@@ -61,6 +71,8 @@ enum WindowIds
 {
     WIN_TEXT = 0,
     WIN_YESNO,
+    WIN_AO,
+    WIN_AKA,
     WIN_COUNT,
 };
 
@@ -91,7 +103,7 @@ struct KabaSpeech
     u16 pic2TilemapBuffer[0x800];
     u8 monSpriteId;
     u8 ballSpriteId;
-    u8 platformSpriteIds[2]; // the platform is made out of 2 32x64sprites
+    u8 platformSpriteIds[2]; // the platform is made out of 2 64x32sprites
     u16 alphaCoeff;
     u16 timer;
 };
@@ -109,12 +121,14 @@ static void Task_KabaSpeech_JoltikAPokemon(u8);
 static void Task_KabaSpeech_MainTalk(u8);
 static void Task_KabaSpeech_ReturnJoltik(u8);
 static void Task_KabaSpeech_FadeOutPokeball(u8);
-static void Task_KabaSpeech_FadeOutEverything(u8);
-static void Task_KabaSpeech_SpawnPlatform(u8);
+static void Task_KabaSpeech_FadeOutPlatform(u8);
+static void Task_KabaSpeech_SpawnPlayerChoice(u8);
+static void Task_KabaSpeech_WaitForChoice(u8);
 
 static void KabaSpeech_DrawCharacterPic(u8);
 static inline void KabaSpeech_PrintMessageBox(const u8 *);
 static void KabaSpeech_CreateMonSprite(void);
+static void KabaSpeech_CreatePlatformSprites(void);
 
 // Const data
 static const u8 sKabaSpeech_Greetings[] = _(
@@ -132,7 +146,7 @@ static const u8 sKabaSpeech_JoltikAPokemon[] = _(
     "…is Joltik, a Pokémon creature.{PAUSE 30}\p"
 );
 static const u8 sKabaSpeech_MainTalk[] = _(
-    "Joltik, with other Pokémon creatures,\n"
+    "Joltik, and other Pokémon creatures,\n"
     "initially lives seperately from us,\l"
     "humans.\p"
     "However, thanks to a latest discovery,\n"
@@ -141,14 +155,29 @@ static const u8 sKabaSpeech_MainTalk[] = _(
     "device we call Pokéball.\p"
     "More here blah blah i ran out of ideas\p"
 );
+static const u8 sKabaSpeech_GenderChoice[] = _(
+    "boy or girl ?"
+);
 
 static const u16 sKabaSpeech_BgGfx[] = INCBIN_U16("graphics/kaba_speech/bg.4bpp");
 static const u16 sKabaSpeech_BgPal[] = INCBIN_U16("graphics/kaba_speech/bg.gbapal");
 static const u32 sKabaSpeech_BgMap[] = INCBIN_U32("graphics/kaba_speech/bg.bin.lz");
 
-static const u8 sKabaSpeech_KabaPicGfx[] = INCBIN_U8("graphics/kaba_speech/pics/kaba.4bpp");
+static const u16 sKabaSpeech_KabaPicGfx[] = INCBIN_U16("graphics/kaba_speech/pics/kaba.4bpp");
 static const u16 sKabaSpeech_KabaPicPal[] = INCBIN_U16("graphics/kaba_speech/pics/kaba.gbapal");
 static const u32 sKabaSpeech_KabaPicMap[] = INCBIN_U32("graphics/kaba_speech/pics/kaba.bin.lz");
+
+//! NOTE: both aka and ao has the same palette as of writing
+static const u16 sKabaSpeech_PlayerPicPal[] = INCBIN_U16("graphics/kaba_speech/pics/ao.gbapal");
+
+static const u16 sKabaSpeech_AkaPicGfx[] = INCBIN_U16("graphics/kaba_speech/pics/aka.4bpp");
+static const u8 sKabaSpeech_AkaPicMap[] = INCBIN_U8("graphics/kaba_speech/pics/aka.bin");
+
+static const u16 sKabaSpeech_AoPicGfx[] = INCBIN_U16("graphics/kaba_speech/pics/ao.4bpp");
+static const u8 sKabaSpeech_AoPicMap[] = INCBIN_U8("graphics/kaba_speech/pics/ao.bin");
+
+static const u16 sKabaSpeech_PlatformGfx[] = INCBIN_U16("graphics/kaba_speech/platform.4bpp");
+static const u16 sKabaSpeech_PlatformPal[] = INCBIN_U16("graphics/kaba_speech/platform.gbapal");
 
 static const struct BgTemplate sKabaSpeech_BgTemplates[BG_COUNT] =
 {
@@ -168,13 +197,13 @@ static const struct BgTemplate sKabaSpeech_BgTemplates[BG_COUNT] =
     [BG_PIC_2] = {
         .bg = 2,
         .charBaseIndex = 2,
-        .mapBaseIndex = 29,
+        .mapBaseIndex = 28,
         .priority = 2,
     },
     [BG_INTRO] = {
         .bg = 3,
         .charBaseIndex = 3,
-        .mapBaseIndex = 28,
+        .mapBaseIndex = 27,
         .priority = 3,
     },
 };
@@ -202,6 +231,65 @@ static const struct WindowTemplate sKabaSpeech_WindowTemplates[] =
         .baseBlock = (26*4)+1,
     },
     DUMMY_WIN_TEMPLATE,
+};
+
+static const struct SpriteSheet sKabaSpeech_PlatformSpriteSheet = 
+{
+    .data = sKabaSpeech_PlatformGfx,
+    .size = 2048, // 64x128/2
+    .tag = TAG_PLATFORM,
+};
+
+static const struct SpritePalette sKabaSpeech_PlatformSpritePalette =
+{
+    .data = sKabaSpeech_PlatformPal,
+    .tag = TAG_PLATFORM,
+};
+
+static const struct OamData sKabaSpeech_PlatformOamData =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = FALSE,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(64x32),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(64x32),
+    .tileNum = 0,
+    .priority = 3,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sKabaSpeech_PlatformLeft[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sKabaSpeech_PlatformRight[] =
+{
+    ANIMCMD_FRAME(32, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sKabaSpeech_PlatformAnims[] =
+{
+    sKabaSpeech_PlatformLeft,
+    sKabaSpeech_PlatformRight
+};
+
+static const struct SpriteTemplate sKabaSpeech_PlatformTemplate =
+{
+    .tileTag = TAG_PLATFORM,
+    .paletteTag = TAG_PLATFORM,
+    .oam = &sKabaSpeech_PlatformOamData,
+    .anims = sKabaSpeech_PlatformAnims,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
 };
 
 // Code
@@ -254,6 +342,7 @@ static void Task_KabaSpeech_Begin(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDCNT, 0);
             SetGpuReg(REG_OFFSET_BLDALPHA, 0);
             SetGpuReg(REG_OFFSET_BLDY, 0);
+            SetGpuReg(REG_OFFSET_DISPCNT, 0);
             break;
         case STATE_BGS:
             ResetBgsAndClearDma3BusyFlags(0);
@@ -265,14 +354,11 @@ static void Task_KabaSpeech_Begin(u8 taskId)
             break;
         case STATE_BG_GFX:
             KabaSpeech_CreateMonSprite();
+            KabaSpeech_CreatePlatformSprites();
             LoadPalette(sKabaSpeech_BgPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-            LoadBgTiles(BG_INTRO, sKabaSpeech_BgGfx, 0x180, 0);
+            LoadBgTiles(BG_INTRO, sKabaSpeech_BgGfx, sizeof(sKabaSpeech_BgGfx), 0);
             CopyToBgTilemapBuffer(BG_INTRO, sKabaSpeech_BgMap, 0, 0);
             CopyBgTilemapBufferToVram(BG_INTRO);
-            FillBgTilemapBufferRect_Palette0(BG_PIC_2, 0, 0, 0, 32, 32);
-            CopyBgTilemapBufferToVram(BG_PIC_2);
-            FillBgTilemapBufferRect_Palette0(BG_TEXT, 0, 0, 0, 32, 32);
-            CopyBgTilemapBufferToVram(BG_TEXT);
             KabaSpeech_DrawCharacterPic(PIC_KABA);
             break;
         case STATE_WINDOWS:
@@ -290,6 +376,7 @@ static void Task_KabaSpeech_Begin(u8 taskId)
             SetGpuReg(REG_OFFSET_BLDY, 0);
             ShowBg(BG_INTRO);
             ShowBg(BG_PIC_1);
+            ShowBg(BG_PIC_2);
             ShowBg(BG_TEXT);
             SetVBlankCallback(VBlankCB_KabaSpeech);
             PlayBGM(MUS_ROUTE122);
@@ -411,17 +498,24 @@ static void Task_KabaSpeech_FadeOutPokeball(u8 taskId)
         DestroySprite(&gSprites[sKabaSpeech->monSpriteId]);
         DestroySprite(&gSprites[sKabaSpeech->ballSpriteId]);
         sKabaSpeech->alphaCoeff = 16;
-        gTasks[taskId].func = Task_KabaSpeech_FadeOutEverything;
+        gTasks[taskId].func = Task_KabaSpeech_FadeOutPlatform;
     }
 }
 
-static void Task_KabaSpeech_FadeOutEverything(u8 taskId)
+static void Task_KabaSpeech_FadeOutPlatform(u8 taskId)
 {
     if (sKabaSpeech->alphaCoeff <= 0)
     {
         sKabaSpeech->alphaCoeff = 0;
-        sKabaSpeech->timer = 80;
-        gTasks[taskId].func = Task_KabaSpeech_SpawnPlatform;
+        sKabaSpeech->timer = 0xD8;
+        gSprites[sKabaSpeech->platformSpriteIds[0]].invisible = FALSE;
+        gSprites[sKabaSpeech->platformSpriteIds[1]].invisible = FALSE;
+        ClearDialogWindowAndFrameToTransparent(WIN_TEXT, TRUE);
+        FillBgTilemapBufferRect_Palette0(BG_PIC_1, 0, 0, 0, 32, 32);
+        CopyBgTilemapBufferToVram(BG_PIC_1);
+        KabaSpeech_DrawCharacterPic(PIC_AO);
+        KabaSpeech_DrawCharacterPic(PIC_AKA);
+        gTasks[taskId].func = Task_KabaSpeech_SpawnPlayerChoice;
     }
     else
     {
@@ -430,7 +524,49 @@ static void Task_KabaSpeech_FadeOutEverything(u8 taskId)
     }
 }
 
-static void Task_KabaSpeech_SpawnPlatform(u8 taskId)
+static void Task_KabaSpeech_FadeOutPlayerChoice(u8 taskId)
+{
+    if (sKabaSpeech->alphaCoeff <= 0)
+    {
+        sKabaSpeech->alphaCoeff = 0;
+        sKabaSpeech->timer = 0xD8;
+        gSprites[sKabaSpeech->platformSpriteIds[0]].invisible = FALSE;
+        gSprites[sKabaSpeech->platformSpriteIds[1]].invisible = FALSE;
+        ClearDialogWindowAndFrameToTransparent(WIN_TEXT, TRUE);
+        FillBgTilemapBufferRect_Palette0(BG_PIC_1, 0, 0, 0, 32, 32);
+        CopyBgTilemapBufferToVram(BG_PIC_1);
+        KabaSpeech_DrawCharacterPic(PIC_AO);
+        KabaSpeech_DrawCharacterPic(PIC_AKA);
+        gTasks[taskId].func = Task_KabaSpeech_SpawnPlayerChoice;
+    }
+    else
+    {
+        sKabaSpeech->alphaCoeff--;
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(sKabaSpeech->alphaCoeff, 16 - sKabaSpeech->alphaCoeff));
+    }
+}
+
+static void Task_KabaSpeech_SpawnPlayerChoice(u8 taskId)
+{
+    if (sKabaSpeech->timer)
+    {
+        sKabaSpeech->timer--;
+    }
+    else if (sKabaSpeech->alphaCoeff >= 16)
+    {
+        sKabaSpeech->alphaCoeff = 16;
+        sKabaSpeech->timer = 0;
+        KabaSpeech_PrintMessageBox(sKabaSpeech_GenderChoice);
+        gTasks[taskId].func = Task_KabaSpeech_WaitForChoice;
+    }
+    else
+    {
+        sKabaSpeech->alphaCoeff++;
+        SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(sKabaSpeech->alphaCoeff, 16 - sKabaSpeech->alphaCoeff));
+    }
+}
+
+static void Task_KabaSpeech_WaitForChoice(u8 taskId)
 {
 
 }
@@ -442,12 +578,20 @@ static void KabaSpeech_DrawCharacterPic(u8 id)
     switch(id)
     {
         case PIC_AKA: // male
+            LoadPalette(sKabaSpeech_PlayerPicPal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
+            LoadBgTiles(BG_PIC_2, sKabaSpeech_AkaPicGfx, sizeof(sKabaSpeech_AkaPicGfx), 0);
+            CopyToBgTilemapBufferRect(BG_PIC_2, sKabaSpeech_AkaPicMap, 14, 0, 9, 13);
+            CopyBgTilemapBufferToVram(BG_PIC_2);
             return;
         case PIC_AO: // female
+            LoadPalette(sKabaSpeech_PlayerPicPal, BG_PLTT_ID(3), PLTT_SIZE_4BPP);
+            LoadBgTiles(BG_PIC_1, sKabaSpeech_AoPicGfx, sizeof(sKabaSpeech_AoPicGfx), 0x50);
+            CopyToBgTilemapBufferRect(BG_PIC_1, sKabaSpeech_AoPicMap, 7, 0, 9, 13);
+            CopyBgTilemapBufferToVram(BG_PIC_1);
             return;
         case PIC_KABA:
             LoadPalette(sKabaSpeech_KabaPicPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-            LoadBgTiles(BG_PIC_1, sKabaSpeech_KabaPicGfx, 0x1800, 0);
+            LoadBgTiles(BG_PIC_1, sKabaSpeech_KabaPicGfx, sizeof(sKabaSpeech_KabaPicGfx), 0);
             CopyToBgTilemapBuffer(BG_PIC_1, sKabaSpeech_KabaPicMap, 0, 0);
             CopyBgTilemapBufferToVram(BG_PIC_1);
             return;
@@ -481,5 +625,16 @@ static void KabaSpeech_CreateMonSprite(void)
 
 static void KabaSpeech_CreatePlatformSprites(void)
 {
-
+    u32 leftSpriteId, rightSpriteId;
+    LoadSpriteSheet(&sKabaSpeech_PlatformSpriteSheet);
+    LoadSpritePalette(&sKabaSpeech_PlatformSpritePalette);
+    leftSpriteId = CreateSprite(&sKabaSpeech_PlatformTemplate, PLAT_POS_X, PLAT_POS_Y, 0);
+    rightSpriteId = CreateSprite(&sKabaSpeech_PlatformTemplate, PLAT_POS_X, PLAT_POS_Y, 0);
+    gSprites[rightSpriteId].x2 = PLAT_POS_X2;
+    StartSpriteAnim(&gSprites[leftSpriteId], 0);
+    StartSpriteAnim(&gSprites[rightSpriteId], 1);
+    gSprites[leftSpriteId].invisible = TRUE;
+    gSprites[rightSpriteId].invisible = TRUE;
+    sKabaSpeech->platformSpriteIds[0] = leftSpriteId;
+    sKabaSpeech->platformSpriteIds[1] = rightSpriteId;
 }
