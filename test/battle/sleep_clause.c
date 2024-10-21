@@ -525,47 +525,46 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 }
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability hydration in the rain");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Hydration in the rain");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability natural cure");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Natural Cure");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability shed skin");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("DOUBLES TEST: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability healer");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer");
+    // Doubles test
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the item awakening");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by the item Awakening");
 // replace awakening with the following items:
     // blue flute, chesto berry, big malasada, casteliacone, full heal, full restore, heal powder, lava cookie, lum berry
     // lumiose galett, miracle berry?, old gateau, pewter Crunchies, rage candy bar, shalour sable
     // idk wtf half these items even are and id imagine a lot of them share effects so i doubt a test will be needed for all of them
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Vital Spirit");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Vital Spirit");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon faints");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon faints");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out, has trace, and traces insomnia/vital spirit");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out, has Trace, and Traces Insomnia / Vital spirit");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by a held item, like chesto");
-
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by a held item such as Chesto Berry");
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit");
 
-TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves when sleep clause has been deactivated");
+TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves again when sleep clause has been deactivated");
 
-//I think doubles
-TO_DO_BATTLE_TEST("DOUBLES: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with g-max sweetness whatever the fuck that is");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with G-Max Sweetness");
 // something like:
     // player has wob and wob
     // ai has wob and wob
