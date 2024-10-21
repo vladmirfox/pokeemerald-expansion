@@ -422,4 +422,6 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
 
+TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves when sleep clause has been deactivated");
+
 //TODO treat falling asleep from disobeying the same as rest
