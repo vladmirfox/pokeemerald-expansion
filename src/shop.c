@@ -1562,7 +1562,7 @@ void CreateTravellingMerchantMenu(void)
     u32 currentIndex = 0;
     memset(sTravellingMerchantInventory, 0, sizeof(sTravellingMerchantInventory));
     const u16 *locationItems = travellingMerchantLocation[gMapHeader.mapLayoutId];
-    const u16 *progressionItems = travellingMerchantProgression[0];
+    const u16 *progressionItems = travellingMerchantProgression[GetNumBadgesObtained()];
 
     // Add location-specific items
     for (u32 i = 0; locationItems[i] != ITEM_NONE; i++, currentIndex++)
