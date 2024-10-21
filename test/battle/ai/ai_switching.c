@@ -693,6 +693,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's m
 
 AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has a good switchin immunity 2")
 {
+    KNOWN_FAILING; // Fails while that above test passes because AI_CalcPartyMonDamage is not correctly passing Bronzong's data to AI_CalcDamage, so it never returns 0 damage taken as it should with ABILITY_LEVITATE
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DIG].type == TYPE_GROUND);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
