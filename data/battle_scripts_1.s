@@ -3883,13 +3883,9 @@ BattleScript_EffectDoNothing::
 	ppreduce
 	attackanimation
 	waitanimation
-	jumpifmove MOVE_HAPPY_HOUR, BattleScript_EffectHappyHour
 	incrementgamestat GAME_STAT_USED_SPLASH
 	printstring STRINGID_BUTNOTHINGHAPPENED
 	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
-BattleScript_EffectHappyHour:
-	seteffectprimary MOVE_EFFECT_HAPPY_HOUR
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectHoldHands::
@@ -3910,6 +3906,15 @@ BattleScript_EffectCelebrate::
 	waitanimation
 	printstring STRINGID_CELEBRATEMESSAGE
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectHappyHour::
+	attackcanceler
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	seteffectprimary MOVE_EFFECT_HAPPY_HOUR
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectDisable::

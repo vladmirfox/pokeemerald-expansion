@@ -15011,7 +15011,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Doubles the amount of\n"
             "Prize Money received."),
-        .effect = EFFECT_DO_NOTHING,
+        .effect = EFFECT_HAPPY_HOUR,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
