@@ -28,6 +28,19 @@ static bool32 DoesItemHavePluralName(u16);
 
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
 
+static const u32 sBadgesList[NUM_BADGES + 1] =
+{
+    FLAG_BADGE01_GET,
+    FLAG_BADGE02_GET,
+    FLAG_BADGE03_GET,
+    FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET,
+    FLAG_BADGE06_GET,
+    FLAG_BADGE07_GET,
+    FLAG_BADGE08_GET,
+    FLAG_IS_CHAMPION,
+};
+
 #include "data/pokemon/item_effects.h"
 #include "data/items.h"
 
@@ -660,6 +673,16 @@ u16 CountTotalItemQuantityInBag(u16 itemId)
     }
 
     return ownedCount;
+}
+
+u8 GetNumBadgesObtained(void)
+{
+    for (int i = NUM_BADGES - 1; i >= 0; i--) {
+        if (FlagGet(sBadgesList[i])) {
+            return i + 1;  // Returns number of badges obtained / 9 if champion
+        }
+    }
+    return 0;
 }
 
 static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count)
