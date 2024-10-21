@@ -2138,6 +2138,13 @@ bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
     return TRUE;
 }
 
+bool8 ScrCmd_travellingmerchant(struct ScriptContext *ctx)
+{
+    CreateTravellingMerchantMenu();
+    ScriptContext_Stop();
+    return TRUE;    
+}
+
 bool8 ScrCmd_pokemartdecoration(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);

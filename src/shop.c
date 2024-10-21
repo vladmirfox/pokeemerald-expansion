@@ -37,6 +37,7 @@
 #include "event_data.h"
 #include "constants/decorations.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -130,6 +131,7 @@ static EWRAM_DATA struct ListMenuItem *sListMenuItems = NULL;
 static EWRAM_DATA u8 (*sItemNames)[ITEM_NAME_LENGTH + 2] = {0};
 static EWRAM_DATA u8 sPurchaseHistoryId = 0;
 EWRAM_DATA struct ItemSlot gMartPurchaseHistory[SMARTSHOPPER_NUM_ITEMS] = {0};
+static EWRAM_DATA u16 sTravellingMerchantInventory[14] = {};
 
 static void Task_ShopMenu(u8 taskId);
 static void Task_HandleShopMenuQuit(u8 taskId);
@@ -172,6 +174,27 @@ static void Task_ReturnToItemListWaitMsg(u8 taskId);
 
 static const u8 sGridPosX[] = { (120 + 16), (160 + 16), (200 + 16) };
 static const u8 sGridPosY[] = { (24 + 16), (64 + 16) };
+
+const u16 travellingMerchantLocation[LAYOUT_HARVEST_SHRINE][5] = {
+    /*gMapHeader.mapLayoutId*/
+    [LAYOUT_SUNRISE_VILLAGE] = { ITEM_POKE_BALL, ITEM_NONE },
+    [LAYOUT_GINKO_WOODS] = { ITEM_GREAT_BALL, ITEM_NONE },
+};
+
+const u16 travellingMerchantProgression[NUM_BADGES + 2][5] = {
+    /*Badges obtained*/
+    [0] = { ITEM_POTION, ITEM_NONE },
+    [1] = { ITEM_SUPER_POTION, ITEM_NONE },
+    [2] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [3] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [4] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [5] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [6] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [7] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [8] = { ITEM_HYPER_POTION, ITEM_NONE },
+    [9] = { ITEM_HYPER_POTION, ITEM_NONE },
+    /*Is champion = 9*/
+};
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
@@ -1530,6 +1553,33 @@ void CreatePokemartMenu(const u16 *itemsForSale)
 {
     CreateShopMenu(MART_TYPE_NORMAL);
     SetShopItemsForSale(itemsForSale);
+    ClearItemPurchases();
+    SetShopMenuCallback(ScriptContext_Enable);
+}
+
+void CreateTravellingMerchantMenu(void)
+{
+    u32 currentIndex = 0;
+    memset(sTravellingMerchantInventory, 0, sizeof(sTravellingMerchantInventory));
+    const u16 *locationItems = travellingMerchantLocation[gMapHeader.mapLayoutId];
+    const u16 *progressionItems = travellingMerchantProgression[GetNumBadgesObtained()];
+
+    // Add location-specific items
+    for (u32 i = 0; locationItems[i] != ITEM_NONE; i++, currentIndex++)
+        sTravellingMerchantInventory[currentIndex] = locationItems[i];
+
+    // Add progression-specific items
+    for (u32 i = 0; progressionItems[i] != ITEM_NONE; i++, currentIndex++)
+        sTravellingMerchantInventory[currentIndex] = progressionItems[i];
+
+    // Add a default if no other items
+    if (currentIndex == 0)
+        sTravellingMerchantInventory[currentIndex++] = ITEM_POTION;
+
+    sTravellingMerchantInventory[currentIndex] = ITEM_NONE;
+
+    CreateShopMenu(MART_TYPE_NORMAL);
+    SetShopItemsForSale(sTravellingMerchantInventory);
     ClearItemPurchases();
     SetShopMenuCallback(ScriptContext_Enable);
 }

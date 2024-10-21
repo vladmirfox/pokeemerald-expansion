@@ -2385,3 +2385,8 @@
 	.macro hideitemdescription
 	callnative ScriptHideItemDescription
 	.endm
+
+	.macro travellingmerchant
+	callnative ScrCmd_travellingmerchant
+	waitstate
+	.endm
