@@ -662,16 +662,45 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if it has an 
     }
 }
 
-// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has an absorber")
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has an absorber")
+{
+    PASSES_RANDOMLY(100, 100, RNG_AI_SWITCH_ABSORBING);
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].type == TYPE_GRASS);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_BELLOSSOM) { Moves(MOVE_SOLAR_BEAM); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_AZUMARILL) { Moves(MOVE_PLAY_ROUGH); Ability(ABILITY_SAP_SIPPER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SOLAR_BEAM) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has a good switchin immunity")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_DIG].type == TYPE_GROUND);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_SANDSHREW) { Moves(MOVE_DIG); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_SWELLOW) { Moves(MOVE_WING_ATTACK); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_DIG) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+        TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
+    }
+}
+
+// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if player's mon is charging and it has a good switchin immunity 2")
 // {
 //     GIVEN {
-//         ASSUME(gMovesInfo[MOVE_SOLAR_BEAM].type == TYPE_GRASS);
+//         ASSUME(gMovesInfo[MOVE_DIG].type == TYPE_GROUND);
 //         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-//         PLAYER(SPECIES_BELLOSSOM) { Moves(MOVE_SOLAR_BEAM); }
+//         PLAYER(SPECIES_SANDSHREW) { Moves(MOVE_DIG); }
 //         OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_TACKLE); }
-//         OPPONENT(SPECIES_AZUMARILL) { Moves(MOVE_PLAY_ROUGH); Ability(ABILITY_SAP_SIPPER); }
+//         OPPONENT(SPECIES_BRONZONG) { Moves(MOVE_PSYCHIC); Ability(ABILITY_LEVITATE); }
 //     } WHEN {
-//         TURN { MOVE(player, MOVE_SOLAR_BEAM) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
+//         TURN { MOVE(player, MOVE_DIG) ; EXPECT_MOVE(opponent, MOVE_TACKLE); }
 //         TURN { SKIP_TURN(player); EXPECT_SWITCH(opponent, 1); }
 //     }
 // }
@@ -764,20 +793,21 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will stay in if Encore'd into
     }
 }
 
-// AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if Encore'd into neutral move with good switchin 50% of the time")
-// {
-//     PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_ENCORE);
-//     GIVEN {
-//         ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
-//         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
-//         PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
-//         OPPONENT(SPECIES_ODDISH) { Moves(MOVE_TACKLE); }
-//         OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
-//     } WHEN {
-//         TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_ENCORE); }
-//         TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
-//     }
-// }
+AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI will switch out if Encore'd into neutral move with good switchin 50% of the time")
+{
+    KNOWN_FAILING; // AI still switches even if ShouldSwitch is set to immediately return FALSE, something external seems to be triggering this
+    PASSES_RANDOMLY(50, 100, RNG_AI_SWITCH_ENCORE);
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_ENCORE].effect == EFFECT_ENCORE);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_AZURILL) { Moves(MOVE_TACKLE, MOVE_ENCORE); }
+        OPPONENT(SPECIES_ODDISH) { Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_ARON) { Moves(MOVE_METAL_CLAW); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_ENCORE); }
+        TURN { MOVE(player, MOVE_TACKLE); EXPECT_SWITCH(opponent, 1); }
+    }
+}
 
 AI_SINGLE_BATTLE_TEST("Switch AI: AI will switch out if mon has Truant and opponent has Protect")
 {

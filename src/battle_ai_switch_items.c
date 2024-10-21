@@ -396,7 +396,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     }
     else if (gMovesInfo[predictedMove].type == TYPE_GRASS || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GRASS))
     {
-        absorbingTypeAbilities[numAbsorbingAbilities] = ABILITY_SAP_SIPPER;
+        absorbingTypeAbilities[numAbsorbingAbilities++] = ABILITY_SAP_SIPPER;
     }
     else if (gMovesInfo[predictedMove].type == TYPE_GROUND || (isOpposingBattlerChargingOrInvulnerable && gMovesInfo[incomingMove].type == TYPE_GROUND))
     {
