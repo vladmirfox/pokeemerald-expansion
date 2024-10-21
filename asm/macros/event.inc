@@ -990,7 +990,7 @@
 
 	@ Displays a random mon's dex entry in a message box
 	.macro randomdexmessage
-	.byte 0xe9
+	callnative ScrCmd_randomdexmessage
 	.endm
 
 	@ Formatting for the braille window, to be put at the start of a pointer used by braillemessage.
@@ -1809,7 +1809,7 @@
 
 	@ Destroys the window created by randomdexmessage.
 	.macro closerandomdexmessage
-	.byte 0xea
+	callnative ScrCmd_closerandomdexmessage
 	.endm
 
 	@ Prints and draws the message all at once rather than character by character.
