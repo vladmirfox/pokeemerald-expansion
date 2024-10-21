@@ -315,74 +315,214 @@ DOUBLE_BATTLE_TEST("Sleep Clause: G-Max Befuddle can only sleep one opposing mon
     }
 }
 
-//honestly some of these are probably covered by just normal sleep tests 
-// also possible that these should be done in doubles since its kinda just a nomral "mon woke up" test
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon wakes up");
-// something like:
-    // player has wob
-    // ai has wob
-    // player uses spore, AI wob falls asleep
-    // player celebrates until sleeping wob wakes up
-    // player uses spore, AI wob falls asleep
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon wakes up")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(B_SLEEP_TURNS >= GEN_5);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN {}
+        TURN {}
+        TURN {}
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet woke up!");
+        MESSAGE("Wobbuffet used Spore!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Wobbuffet fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+    }
+}
 
-// OR something like
-    // player has wob
-    // ai has wob and wob
-    // player uses spore, AI wob falls asleep
-    // player celebrates until sleeping wob wakes up
-    // AI switches, player uses spore, AI wob 2 falls asleep
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with Aromatherapy or Heal Bell")
+{
+    u32 move;
+    PARAMETRIZE { move = MOVE_AROMATHERAPY; }
+    PARAMETRIZE { move = MOVE_HEAL_BELL; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+        ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+        ASSUME(B_SLEEP_TURNS >= GEN_5);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+        TURN { SWITCH(opponentLeft, 2); MOVE(playerLeft, MOVE_SPORE, target:opponentRight); }
+        TURN { SWITCH(opponentLeft, 0); MOVE(opponentRight, move); MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+        MESSAGE("Zigzagoon used Spore!");
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentRight);
+            STATUS_ICON(opponentRight, sleep: TRUE);
+            MESSAGE("Foe Zigzagoon fell asleep!");
+        }
+        MESSAGE("But it failed!");
+        if (move == MOVE_AROMATHERAPY)
+        {
+            MESSAGE("Foe Zigzagoon used Aromatherapy!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, opponentRight);
+        }
+        else
+        {
+            MESSAGE("Foe Zigzagoon used Heal Bell!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BELL, opponentRight);
+        }
+        STATUS_ICON(opponentLeft, sleep: FALSE);
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with aromatherapy");
-// something like:
-    // player has wob
-    // ai has wob and wob
-    // player uses spore, AI wob falls asleep
-    // AI switches, player uses spore, it fails
-    // player uses spore, it fails (or any move that can succeed)
-    // AI wob uses aromatherapy, cures sleeping wob
-    // player uses spore, it succeeds
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up forcefully by a move from an opponent")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(MoveHasAdditionalEffect(MOVE_WAKE_UP_SLAP, MOVE_EFFECT_REMOVE_STATUS));
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+        TURN { SWITCH(opponentLeft, 2); MOVE(playerLeft, MOVE_SPORE, target:opponentRight); }
+        TURN { SWITCH(opponentLeft, 0); MOVE(playerLeft, MOVE_WAKE_UP_SLAP, target:opponentLeft); }
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+        MESSAGE("Zigzagoon used Spore!");
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentRight);
+            STATUS_ICON(opponentRight, sleep: TRUE);
+            MESSAGE("Foe Zigzagoon fell asleep!");
+        }
+        MESSAGE("But it failed!");
+        MESSAGE("Zigzagoon used Wake-Up Slap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, playerLeft);
+        MESSAGE("Foe Zigzagoon woke up!");
+        STATUS_ICON(opponentLeft, sleep: FALSE);
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+    }
+}
 
-// ADDED HANDLING FOR THIS
-// might be redundant if they use the same effect
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with heal bell");
-// something like:
-    // player has wob
-    // ai has wob and wob
-    // player uses spore, AI wob falls asleep
-    // AI switches, player uses spore, it fails
-    // player uses spore, it fails (or any move that can succeed)
-    // AI wob uses heal bell, cures sleeping wob
-    // player uses spore, it succeeds
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up forcefully by Uproar")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_UPROAR].effect == EFFECT_UPROAR);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); MOVE(playerRight, MOVE_UPROAR); MOVE(opponentRight, MOVE_ROAR, target:playerRight); }
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+        MESSAGE("Zigzagoon used Uproar!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_UPROAR, playerRight);
+        MESSAGE("Zigzagoon caused an UPROAR!"); // Why is this one in all caps this should be brought up to RHH
+        MESSAGE("Foe Zigzagoon woke up in the UPROAR!");
+        STATUS_ICON(opponentLeft, sleep: FALSE);
+        MESSAGE("Foe Zigzagoon used Roar!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, opponentRight);
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+    }
+}
 
-//I think doubles
-TO_DO_BATTLE_TEST("DOUBLES: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with g-max sweetness whatever the fuck that is");
-// something like:
-    // player has wob and wob
-    // ai has wob and wob
-    // someone puts someone to sleep and someone on the sleeping team uses gmax sweetness, which should cure the party of status
-    // can sleep again after that
-
-// now that im writing the pseudo for this test it feels wack
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up forcefully by a move from an opponent");
-// something like:
-    // player has wob
-    // ai has wob and wob
-    // player uses spore, AI wob falls asleep
-    // AI switches, player uses spore, it fails
-    // AI switches back to sleeping wob, player uses wake-up-slap/uproar, which wakes up enemy wob
-    // AI switches AGAIN, player uses spore, it succeeds
-    // fun fact, uproar and wake-up slap are handled in 2 different places, so probably each require a test
-    // added handling for both though
-
-// this feels like a horribly complicated scenario that would probably not happen in a million runs but unfortunately i thought of it so i will
-// write it down
-//ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by using sleep talk into psycho shift");
-// replace psycho shift with the following moves:
-    // jungle healing, lunar blessing, refresh, purify (maybe?), take heart
-
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using Sleep Talk into a status curing move")
+{
+    u32 move;
+    PARAMETRIZE { move = MOVE_PSYCHO_SHIFT; }
+    PARAMETRIZE { move = MOVE_JUNGLE_HEALING; }
+    PARAMETRIZE { move = MOVE_LUNAR_BLESSING; }
+    PARAMETRIZE { move = MOVE_TAKE_HEART; }
+    PARAMETRIZE { move = MOVE_AROMATHERAPY; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_SLEEP_TALK].effect == EFFECT_SLEEP_TALK);
+        ASSUME(gMovesInfo[MOVE_PSYCHO_SHIFT].effect == EFFECT_PSYCHO_SHIFT);
+        ASSUME(gMovesInfo[MOVE_JUNGLE_HEALING].effect == EFFECT_JUNGLE_HEALING);
+        ASSUME(gMovesInfo[MOVE_LUNAR_BLESSING].effect == EFFECT_JUNGLE_HEALING);
+        ASSUME(gMovesInfo[MOVE_PURIFY].effect == EFFECT_PURIFY);
+        ASSUME(gMovesInfo[MOVE_TAKE_HEART].effect == EFFECT_TAKE_HEART);
+        ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+        ASSUME(gItemsInfo[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
+        PLAYER(SPECIES_ZIGZAGOON) { Item(ITEM_CHESTO_BERRY); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_SLEEP_TALK, move); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); MOVE(opponent, MOVE_SLEEP_TALK); }
+        TURN { MOVE(player, MOVE_SPORE); MOVE(opponent, move); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("Foe Zigzagoon used Sleep Talk!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, opponent);
+        if (move == MOVE_PSYCHO_SHIFT)
+        {
+            MESSAGE("Foe Zigzagoon used Psycho Shift!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHO_SHIFT, opponent);
+        }
+        else if (move == MOVE_JUNGLE_HEALING)
+        {
+            MESSAGE("Foe Zigzagoon used Jungle Healing!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_JUNGLE_HEALING, opponent);
+        }
+        else if (move == MOVE_LUNAR_BLESSING)
+        {
+            MESSAGE("Foe Zigzagoon used Lunar Blessing!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_LUNAR_BLESSING, opponent);
+        }
+        else if (move == MOVE_TAKE_HEART)
+        {
+            MESSAGE("Foe Zigzagoon used Take Heart!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_HEART, opponent);
+        }
+        else if (move == MOVE_AROMATHERAPY)
+        {
+            MESSAGE("Foe Zigzagoon used Aromatherapy!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, opponent);
+        }
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+    }
+}
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up by the ability hydration in the rain");
@@ -423,5 +563,13 @@ TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon
 TO_DO_BATTLE_TEST("Sleep Clause: sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with insomnia/vital spirit");
 
 TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves when sleep clause has been deactivated");
+
+//I think doubles
+TO_DO_BATTLE_TEST("DOUBLES: Sleep Clause: sleep clause is deactivated when a sleeping mon is woken up with g-max sweetness whatever the fuck that is");
+// something like:
+    // player has wob and wob
+    // ai has wob and wob
+    // someone puts someone to sleep and someone on the sleeping team uses gmax sweetness, which should cure the party of status
+    // can sleep again after that
 
 //TODO treat falling asleep from disobeying the same as rest
