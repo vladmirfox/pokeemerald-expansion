@@ -802,7 +802,5 @@ TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon
     // someone puts someone to sleep and someone on the sleeping team uses gmax sweetness, which should cure the party of status
     // can sleep again after that
 
-//TODO treat falling asleep from disobeying the same as rest
-// Hot take maybe, but I think we should treat obedience like Rest; the trainer's mon makes itself fall asleep through no intervention of the opponent's
-// Feel free to disagree! If you agree, we can use a test like
+// TODO treat falling asleep from disobeying the same as rest
 TO_DO_BATTLE_TEST("Sleep Clause: Falling asleep due to disobedience does not set sleep clause");
