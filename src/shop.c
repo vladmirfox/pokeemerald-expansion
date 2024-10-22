@@ -175,13 +175,15 @@ static void Task_ReturnToItemListWaitMsg(u8 taskId);
 static const u8 sGridPosX[] = { (120 + 16), (160 + 16), (200 + 16) };
 static const u8 sGridPosY[] = { (24 + 16), (64 + 16) };
 
-const u16 travellingMerchantLocation[LAYOUT_HARVEST_SHRINE][5] = {
+static const u16 sTravellingMerchantLocation[LAYOUT_HARVEST_SHRINE][5] = 
+{
     /*gMapHeader.mapLayoutId*/
     [LAYOUT_SUNRISE_VILLAGE] = { ITEM_POKE_BALL, ITEM_NONE },
     [LAYOUT_GINKO_WOODS] = { ITEM_GREAT_BALL, ITEM_NONE },
 };
 
-const u16 travellingMerchantProgression[NUM_BADGES + 2][5] = {
+static const u16 sTravellingMerchantProgression[NUM_BADGES + 2][5] = 
+{
     /*Badges obtained*/
     [0] = { ITEM_POTION, ITEM_NONE },
     [1] = { ITEM_SUPER_POTION, ITEM_NONE },
@@ -1561,8 +1563,8 @@ void CreateTravellingMerchantMenu(void)
 {
     u32 currentIndex = 0;
     memset(sTravellingMerchantInventory, 0, sizeof(sTravellingMerchantInventory));
-    const u16 *locationItems = travellingMerchantLocation[gMapHeader.mapLayoutId];
-    const u16 *progressionItems = travellingMerchantProgression[GetNumBadgesObtained()];
+    const u16 *locationItems = sTravellingMerchantLocation[gMapHeader.mapLayoutId];
+    const u16 *progressionItems = sTravellingMerchantProgression[GetNumBadgesObtained()];
 
     // Add location-specific items
     for (u32 i = 0; locationItems[i] != ITEM_NONE; i++, currentIndex++)
