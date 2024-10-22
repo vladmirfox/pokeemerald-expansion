@@ -5251,7 +5251,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gBattleScripting.battler = BATTLE_PARTNER(battler);
                 if (IsBattlerAlive(gBattleScripting.battler)
                     && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
-                    && (Random() % 100) < 90)
+                    && RandomPercentage(RNG_HEALER, 30))
                 {
                     if (FlagGet(B_FLAG_SLEEP_CLAUSE)
                      && (gBattleMons[gBattleScripting.battler].status1 & STATUS1_SLEEP )
