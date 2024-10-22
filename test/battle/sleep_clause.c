@@ -642,8 +642,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer")
 {
-    KNOWN_FAILING; // Fails due to lack of RNG_HEALER. PR # 5559 https://github.com/rh-hideout/pokeemerald-expansion/pull/5559
-    // PASSES_RANDOMLY(30, 100, RNG_HEALER);
+    PASSES_RANDOMLY(30, 100, RNG_HEALER);
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
