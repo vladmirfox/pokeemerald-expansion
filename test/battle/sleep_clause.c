@@ -524,14 +524,76 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Hydration in the rain");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Hydration in the rain")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_LUVDISC) { Ability(ABILITY_HYDRATION); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Pelipper used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Luvdisc fell asleep!");
+        MESSAGE("Foe Luvdisc's Hydration cured its sleep problem!");
+        STATUS_ICON(opponent, sleep: FALSE);
+        MESSAGE("Pelipper used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Luvdisc fell asleep!");
+    }
+}
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Natural Cure");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Natural Cure")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_SWABLU) { Ability(ABILITY_NATURAL_CURE); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(opponent, 1); }
+        TURN { SWITCH(opponent, 0); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Swablu fell asleep!");
+        MESSAGE("2 withdrew Swablu!");
+        MESSAGE("2 sent out Swablu!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Swablu fell asleep!");
+    }
+}
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin")
+{
+    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once my PR gets merged to RHH
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_DRATINI) { Ability(ABILITY_SHED_SKIN); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Dratini fell asleep!");
+        MESSAGE("Foe Dratini's Shed Skin cured its sleep problem!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Dratini fell asleep!");
+    }
+}
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer");
