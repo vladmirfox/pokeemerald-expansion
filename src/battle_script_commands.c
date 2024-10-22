@@ -13417,8 +13417,7 @@ static void Cmd_healpartystatus(void)
                         gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i] = FALSE;
                     }
 
-                    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-                     && !(gAbsentBattlerFlags & gBitTable[partner]))
+                    if (IsDoubleBattle() && !(gAbsentBattlerFlags & (1u << gBattlerTarget)))
                     {
                         if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isCausingSleepClause[partner][i])
                         {
