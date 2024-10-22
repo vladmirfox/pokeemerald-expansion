@@ -8,7 +8,7 @@
 
 EWRAM_DATA ALIGNED(4) u8 gDecompressionBuffer[0x4000] = {0};
 
-EWRAM_INIT struct DecodeYK ykTemplate[128] = {
+EWRAM_INIT struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE] = {
     [0] = {0, 0},
     [1] = {1, 6},
     [2] = {2, 5},
@@ -253,16 +253,6 @@ void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 pe
     LoadSpecialPokePic(dest, species, personality, isFrontPic);
 }
 
-struct SmolHead {
-    u32 loEncoded:1;
-    u32 symEncoded:1;
-    u32 loDelta:1;
-    u32 symDelta:1;
-    u32 lengthMod:4;
-    u32 loLength:12;
-    u32 symLength:12;
-};
-
 void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
 {
     freqs[15] = 0;
@@ -270,9 +260,9 @@ void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
     {
         for (u32 j = 0; j < 5; j++)
         {
-            freqs[i*5 + j] = (packedFreqs[i] >> (6*j)) & 0x3f;
+            freqs[i*5 + j] = (packedFreqs[i] >> (6*j)) & PACKED_FREQ_MASK;
         }
-        freqs[15] += (packedFreqs[i] & 0xC0000000) >> (30 - 2*i);
+        freqs[15] += (packedFreqs[i] & PARTIAL_FREQ_MASK) >> (30 - 2*i);
     }
 }
 
@@ -300,7 +290,7 @@ void DecompressData(const u32 *src, void *dest)
 
 void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
 {
-    u8 freqs[16];
+    u8 *freqs = Alloc(16);
     u32 currCol = 0;
     UnpackFrequencies(packedFreqs, freqs);
     for (u32 i = 0; i < 16; i++)
@@ -315,23 +305,86 @@ void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbo
             currCol += freqs[i];
         }
     }
+    Free(freqs);
 }
 
-void DecodetANS(const u32 *data, u32 *readIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 numSymbols)
+void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 count)
 {
-    u32 sumTotal = 0;
-    for (u32 i = 0; i < 64; i++)
-        sumTotal += symbolTable[i];
-    MgbaPrintf(MGBA_LOG_WARN, "Total: %u", sumTotal);
+    u32 currBits = data[*readIndex];
+    for (u32 currSym = 0; currSym < count; currSym++)
+    {
+        u8 symbol = 0;
+        for (u32 currNibble = 0; currNibble < 2; currNibble++)
+        {
+            symbol += symbolTable[*state] << (currNibble*4);
+            u16 currK = ykTable[*state].kVal;
+            u16 nextState = ykTable[*state].yVal << currK;
+            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            if (*bitIndex + currK < 32)
+            {
+                *bitIndex += currK;
+            }
+            else if (*bitIndex + currK == 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                *bitIndex = 0;
+            }
+            else if ((*bitIndex + currK) > 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                u32 remainder = *bitIndex + currK - 32;
+                nextState += (data[*readIndex] & ((1u << remainder) - 1)) << (currK - remainder);
+                *bitIndex = remainder;
+            }
+            *state = nextState-64;
+        }
+        resultVec[currSym] = symbol;
+    }
 }
 
-void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u8 *symVec, void *dest)
+void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count, bool8 symDelta)
+{
+    u32 currBits = data[*readIndex];
+    for (u32 currSym = 0; currSym < count; currSym++)
+    {
+        u16 symbol = 0;
+        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+        {
+            symbol += symbolTable[*state] << (currNibble*4);
+            u16 currK = ykTable[*state].kVal;
+            u16 nextState = ykTable[*state].yVal << currK;
+            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            if (*bitIndex + currK < 32)
+            {
+                *bitIndex += currK;
+            }
+            else if (*bitIndex + currK == 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                *bitIndex = 0;
+            }
+            else if ((*bitIndex + currK) > 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                u32 remainder = *bitIndex + currK - 32;
+                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
+                *bitIndex = remainder;
+            }
+            *state = nextState - 64;
+        }
+        resultVec[currSym] = symbol;
+    }
+}
+
+void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
     u32 symIndex = 0;
-    u32 lengthMod = header->lengthMod;
-    u32 destIndex = 0;
-    while (loIndex < header->instructionCount)
+    while (loIndex < header->loSize)
     {
         u32 currLength = loVec[loIndex] & 0x7f;
         if ((loVec[loIndex] & 0x80) == 0x80)
@@ -355,40 +408,29 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u8 *symVec,
         }
         if (currLength != 0)
         {
-            currLength += lengthMod;
-            u16 currValue = symVec[symIndex] + (symVec[symIndex + 1] << 8);
-            symIndex += 2;
-            memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
-            destIndex++;
+            //memcpy(&shortDest[destIndex], &currValue, 2);
+            CpuCopy16(&symVec[symIndex], dest, 2);
+            dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
                 //  This should be some fill function
-                for (u32 i = 0; i < currLength; i++)
-                {
-                    memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
-                    destIndex++;
-                }
+                CpuFill16(symVec[symIndex], dest, 2*currLength);
+                dest = (void *)(dest + currLength*2);
             }
             else
             {
-                for (u32 i = 0; i < currLength; i++)
-                {
-                    memcpy(&gDecompressionBuffer[destIndex*2], &gDecompressionBuffer[destIndex*2 - currOffset*2], 2);
-                    destIndex++;
-                }
+                CpuCopy16((void *)(dest - currOffset*2), dest, currLength*2);
+                dest = (void *)(dest + currLength*2);
             }
+            symIndex++;
         }
         else
         {
             //  It's not a repeated sequence, write raw bytes
             //  Horrible implementation right now, rewrite symVec to work on unsigned shorts
-            for (u32 i = 0; i < currOffset; i++)
-            {
-                u16 currValue = symVec[symIndex] + (symVec[symIndex + 1] << 8);
-                symIndex += 2;
-                memcpy(&gDecompressionBuffer[destIndex*2], &currValue, 2);
-                destIndex++;
-            }
+            CpuCopy16(&symVec[symIndex], dest, currOffset*2);
+            symIndex += currOffset;
+            dest = (void *)(dest + currOffset*2);
         }
     }
 }
@@ -401,94 +443,111 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     u8 *loSymbols;
     struct DecodeYK *symTable;
     u8 *symSymbols;
-    u8 *dataVec = Alloc(header->instructionCount + header->symbolCount);
-    u8 *loVec = Alloc(header->instructionCount);
-    u8 *symVec = Alloc(header->symbolCount);
+    u8 *loVec = Alloc(header->loSize);
+    u16 *symVec = Alloc(header->symSize);
     u32 packedLoFreqs[3];
     u32 packedSymFreqs[3];
-    bool8 loEncoded = FALSE;
-    bool8 symEncoded = FALSE;
-    bool8 symDelta = FALSE;
-
-    switch (header->mode)
-    {
-        case BASE_ONLY:
-            break;
-        case ENCODE_SYMS:
-            symEncoded = TRUE;
-            break;
-        case ENCODE_DELTA_SYMS:
-            symEncoded = TRUE;
-            symDelta = TRUE;
-            break;
-        case ENCODE_LO:
-            loEncoded = TRUE;
-            break;
-        case ENCODE_BOTH:
-            loEncoded = TRUE;
-            symEncoded = TRUE;
-            break;
-        case ENCODE_BOTH_DELTA_SYMS:
-            symEncoded = TRUE;
-            symDelta = TRUE;
-            break;
-    }
+    bool8 loEncoded = isModeLoEncoded(header->mode);
+    bool8 symEncoded = isModeSymEncoded(header->mode);
+    bool8 symDelta = isModeSymDelta(header->mode);
+    u8 *loPos;
+    MgbaPrintf(MGBA_LOG_WARN, "Mode: %u", header->mode);
 
     if (loEncoded == TRUE)
     {
         for (u32 i = 0; i < 3; i++)
             packedLoFreqs[i] = data[readIndex + i];
         readIndex += 3;
+        loTable = Alloc(64*sizeof(struct DecodeYK));
+        loSymbols = Alloc(64);
+        BuildDecompressionTable(packedLoFreqs, loTable, loSymbols);
     }
     if (symEncoded == TRUE)
     {
         for (u32 i = 0; i < 3; i++)
             packedSymFreqs[i] = data[readIndex + i];
         readIndex += 3;
-    }
-
-    if (loEncoded == TRUE)
-    {
-        loTable = Alloc(64*sizeof(struct DecodeYK));
-        loSymbols = Alloc(64);
-        BuildDecompressionTable(packedLoFreqs, loTable, loSymbols);
-        DecodetANS(data, &readIndex, loTable, loSymbols, loVec, &currState, header->instructionCount);
-        Free(loTable);
-        Free(loSymbols);
-    }
-    if (symEncoded == TRUE)
-    {
         symTable = Alloc(64*sizeof(struct DecodeYK));
         symSymbols = Alloc(64);
         BuildDecompressionTable(packedSymFreqs, symTable, symSymbols);
-        DecodetANS(data, &readIndex, symTable, symSymbols, symVec, &currState, header->symbolCount);
+    }
+
+    u32 bitIndex = 0;
+    if (loEncoded == TRUE)
+    {
+        DecodeLOtANS(data, &readIndex, &bitIndex, loTable, loSymbols, loVec, &currState, header->loSize);
+    }
+    if (symEncoded == TRUE)
+    {
+        DecodeSymtANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize, symDelta);
+        //MgbaPrintf(MGBA_LOG_WARN, "\nSyms");
+        //for (u32 i = 0; i < header->symSize; i++)
+        //    MgbaPrintf(MGBA_LOG_WARN, "%u", symVec[i]);
+    }
+
+    if (symEncoded == FALSE)
+    {
+        memcpy(symVec, &data[readIndex], header->symSize);
+        CpuCopy16(&data[readIndex], symVec, header->symSize*2);
+        if (!loEncoded)
+            loPos = loPos + header->symSize*2;
+    }
+
+    if (loEncoded == FALSE)
+    {
+        memcpy(loVec, &data[readIndex], header->loSize);
+        readIndex += header->loSize;
+    }
+
+    //MgbaPrintf(MGBA_LOG_WARN, "LO");
+    //for (u32 i = 0; i < header->loSize; i++)
+    //    MgbaPrintf(MGBA_LOG_WARN, "%u", loVec[i]);
+    //MgbaPrintf(MGBA_LOG_WARN, "\nSyms");
+    //for (u32 i = 0; i < header->symSize; i++)
+    //    MgbaPrintf(MGBA_LOG_WARN, "%u", symVec[i]);
+
+    //MgbaPrintf(MGBA_LOG_WARN, "Lo Size: %u", header->loSize);
+    DecodeInstructions(header, loVec, symVec, dest);
+
+    if (loEncoded)
+    {
+        Free(loTable);
+        Free(loSymbols);
+    }
+    if (symEncoded)
+    {
         Free(symTable);
         Free(symSymbols);
     }
-
-    if (loEncoded != 1)
-    {
-        memcpy(loVec, &data[readIndex], header->instructionCount);
-        readIndex += header->instructionCount;
-    }
-
-    if (symEncoded != 1)
-    {
-        memcpy(symVec, &data[readIndex], header->symbolCount);
-        readIndex += header->symbolCount;
-    }
-
-    DecodeInstructions(header, loVec, symVec, dest);
-
-    u32 totalValue = 0;
-    for (u32 i = 0; i < header->imageSize; i++)
-        totalValue += gDecompressionBuffer[i];
-    MgbaPrintf(MGBA_LOG_WARN, "Check Value: %u", totalValue);
-    //memcpy(dest, &gDecompressionBuffer[0], header->imageSize);
-
-    Free(dataVec);
     Free(loVec);
     Free(symVec);
+}
+
+bool32 isModeLoEncoded(enum CompressionMode mode)
+{
+    if (mode == ENCODE_LO
+     || mode == ENCODE_BOTH
+     || mode == ENCODE_BOTH_DELTA_SYMS)
+        return TRUE;
+    return FALSE;
+}
+
+bool32 isModeSymEncoded(enum CompressionMode mode)
+{
+    if (mode == ENCODE_SYMS
+     || mode == ENCODE_DELTA_SYMS
+     || mode == ENCODE_BOTH
+     || mode == ENCODE_BOTH_DELTA_SYMS)
+        return TRUE;
+    return FALSE;
+}
+
+bool32 isModeSymDelta(enum CompressionMode mode)
+{
+    if (mode == ENCODE_DELTA_SYMS
+     || mode == ENCODE_BOTH_DELTA_SYMS)
+        return TRUE;
+    return FALSE;
 }
 
 void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontPic)
@@ -503,14 +562,14 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
             LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
         else if (gSpeciesInfo[species].frontPic != NULL)
         {
-            if (species != SPECIES_LUVDISC)
+            if (species != SPECIES_LILLIGANT_HISUIAN)
             {
                 LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
             }
             else
             {
-                LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
-                DecompressData(gSpeciesInfo[SPECIES_RELICANTH].frontPic, dest);
+                //LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+                DecompressData(gSpeciesInfo[species].frontPic, dest);
             }
         }
         else

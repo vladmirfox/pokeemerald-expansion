@@ -3,16 +3,21 @@
 
 #include "sprite.h"
 
+#define TANS_TABLE_SIZE     64
+#define PACKED_FREQ_MASK    0x3F
+#define PARTIAL_FREQ_MASK   0xC0000000
+
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
 struct CompressionHeader {
-    u32 lengthMod:4;
+    u32 mode:4;
     u32 lz77Bit:1;
-    u32 mode:5;
+    u32 imageSize:11;
+    u32 symSize:15;
+    u32 padding:1;
     u32 initialState:6;
-    u32 imageSize:16;
-    u16 instructionCount;
-    u16 symbolCount;
+    u32 bitstreamSize:13;
+    u32 loSize:13;
 };
 
 struct DecodeYK {
@@ -29,7 +34,7 @@ enum CompressionMode {
     ENCODE_BOTH_DELTA_SYMS = 5,
 };
 
-extern struct DecodeYK ykTemplate[128];
+extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
 void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs);
 
@@ -39,9 +44,15 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
 
 void BuildDecompressionTable(u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTable);
 
-void DecodetANS(const u32 *data, u32 *readIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 numSymbols);
+void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 count);
 
-void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u8 *symVec, void *dest);
+void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count, bool8 symDelta);
+
+void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
+
+bool32 isModeLoEncoded(enum CompressionMode mode);
+bool32 isModeSymEncoded(enum CompressionMode mode);
+bool32 isModeSymDelta(enum CompressionMode mode);
 
 //  Default Decompression functions are below here
 void LZDecompressWram(const u32 *src, void *dest);
