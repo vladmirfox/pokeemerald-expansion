@@ -1,9 +1,12 @@
 #include "global.h"
 #include "test/battle.h"
 
+#if B_SLEEP_CLAUSE == TRUE
+
 AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will not use sleep moves while sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -18,6 +21,7 @@ AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will not use sleep moves while sleep cla
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep moves fail when sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -43,6 +47,8 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep moves fail when sleep clause is active")
 SINGLE_BATTLE_TEST("Sleep Clause: Rest does not activate sleep clause")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_REST].effect == EFFECT_REST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -60,6 +66,8 @@ SINGLE_BATTLE_TEST("Sleep Clause: Rest does not activate sleep clause")
 SINGLE_BATTLE_TEST("Sleep Clause: Rest can still be used when sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_REST].effect == EFFECT_REST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -81,6 +89,9 @@ SINGLE_BATTLE_TEST("Sleep Clause: Rest can still be used when sleep clause is ac
 SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will fail if sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_SLEEP_TALK].effect == EFFECT_SLEEP_TALK);
+        ASSUME(gMovesInfo[MOVE_PSYCHO_SHIFT].effect == EFFECT_PSYCHO_SHIFT);
         PLAYER(SPECIES_WOBBUFFET)
         PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_SLEEP_TALK, MOVE_PSYCHO_SHIFT); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -103,6 +114,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will fail if sleep clau
 AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will not use Yawn while sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -118,6 +130,7 @@ AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will not use Yawn while sleep clause is 
 SINGLE_BATTLE_TEST("Sleep Clause: Yawn will fail when sleep clause is active")
 {
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -145,6 +158,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Effect Spore causes sleep 11% of the time with
     GIVEN {
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
@@ -167,6 +181,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep from Effect Spore will not activate slee
     GIVEN {
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
@@ -190,6 +205,8 @@ SINGLE_BATTLE_TEST("Sleep Clause: Moves with sleep effect chance will activate s
 {
     PASSES_RANDOMLY(10, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
+        ASSUME(MoveHasAdditionalEffect(MOVE_RELIC_SONG, MOVE_EFFECT_SLEEP));
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -215,6 +232,8 @@ SINGLE_BATTLE_TEST("Sleep Clause: Moves with sleep effect chance will still do d
 {
     PASSES_RANDOMLY(100, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
+        ASSUME(MoveHasAdditionalEffect(MOVE_RELIC_SONG, MOVE_EFFECT_SLEEP));
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -235,18 +254,12 @@ SINGLE_BATTLE_TEST("Sleep Clause: Moves with sleep effect chance will still do d
     }
 }
 
-// I added a dire claw test because im too lazy to read what MOVE_EFFECT_DIRE_CLAW does and i suspect it could be
-// different than a normal "secondary sleep chance" effect -- feel free to delete this comment also
-// or even this test as it might be redundant
-ASSUMPTIONS
-{
-    ASSUME(MoveHasAdditionalEffect(MOVE_DIRE_CLAW, MOVE_EFFECT_DIRE_CLAW) == TRUE);
-}
-
 SINGLE_BATTLE_TEST("Sleep Clause: Dire Claw cannot sleep a mon when sleep clause is active")
 {
     PASSES_RANDOMLY(100, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
+        ASSUME(MoveHasAdditionalEffect(MOVE_DIRE_CLAW, MOVE_EFFECT_DIRE_CLAW));
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -271,6 +284,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Dark Void can only sleep one opposing mon if s
 {
     // Source: https://bulbapedia.bulbagarden.net/wiki/Dark_Void_(move)
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_DARK_VOID].effect == EFFECT_DARK_VOID);
         PLAYER(SPECIES_DARKRAI);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -793,14 +807,47 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
-TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves again when sleep clause has been deactivated");
+AI_SINGLE_BATTLE_TEST("Sleep Clause: AI will use sleep moves again when sleep clause has been deactivated")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gItemsInfo[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_CHESTO_BERRY); }
+        OPPONENT(SPECIES_BRELOOM) { Moves(MOVE_SPORE, MOVE_MACH_PUNCH); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_MOVE(opponent, MOVE_SPORE); }
+        TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_MOVE(opponent, MOVE_SPORE); }
+    }
+}
 
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with G-Max Sweetness");
-// something like:
-    // player has wob and wob
-    // ai has wob and wob
-    // someone puts someone to sleep and someone on the sleeping team uses gmax sweetness, which should cure the party of status
-    // can sleep again after that
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with G-Max Sweetness")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_G_MAX_SWEETNESS].argument == MAX_EFFECT_AROMATHERAPY);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_APPLETUN) { GigantamaxFactor(TRUE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_SPORE, target: playerRight); }
+        TURN { MOVE(playerLeft, MOVE_VINE_WHIP, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }
+        TURN { MOVE(opponentRight, MOVE_SPORE, target: playerRight); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentRight);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);
+        MESSAGE("Wobbuffet fell asleep!");
+        MESSAGE("Appletun used G-Max Sweetness!");
+        MESSAGE("Wobbuffet's status returned to normal!");
+        MESSAGE("Foe Wobbuffet used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentRight);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);
+        MESSAGE("Wobbuffet fell asleep!");
+    }
+}
 
-// TODO treat falling asleep from disobeying the same as rest
 TO_DO_BATTLE_TEST("Sleep Clause: Falling asleep due to disobedience does not set sleep clause");
+
+#endif
