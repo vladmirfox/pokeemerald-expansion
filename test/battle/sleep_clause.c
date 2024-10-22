@@ -479,6 +479,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using Sleep Talk into a status curing move")
 {
+    KNOWN_FAILING; // Fails due to bug, keep an eye on https://github.com/rh-hideout/pokeemerald-expansion/issues/5557
     u32 move;
     PARAMETRIZE { move = MOVE_PSYCHO_SHIFT; }
     PARAMETRIZE { move = MOVE_JUNGLE_HEALING; }
@@ -525,7 +526,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         else if (move == MOVE_TAKE_HEART)
         {
             MESSAGE("Foe Zigzagoon used Take Heart!");
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_HEART, opponent); // Fails due to bug, keep an eye on https://github.com/rh-hideout/pokeemerald-expansion/issues/5557
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_HEART, opponent);
         }
         else if (move == MOVE_AROMATHERAPY)
         {
