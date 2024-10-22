@@ -154,6 +154,22 @@ const struct Item gItemsInfo[] =
 
 // Poké Balls
 
+    [ITEM_STRANGE_BALL] =
+    {
+        .name = _("Strange Ball"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "An unusual Ball\n"
+            "warped through\n"
+            "space and time."),
+        .pocket = POCKET_POKE_BALLS,
+        .type = ITEM_USE_BAG_MENU,
+        .battleUsage = EFFECT_ITEM_THROW_BALL,
+        .secondaryId = BALL_STRANGE,
+        .iconPic = gItemIcon_StrangeBall,
+        .iconPalette = gItemIconPalette_StrangeBall,
+    },
+
     [ITEM_POKE_BALL] =
     {
         .name = _("Poké Ball"),

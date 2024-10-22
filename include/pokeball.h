@@ -3,7 +3,7 @@
 
 enum PokeBall
 {
-    BALL_NONE = 0,
+    BALL_STRANGE = 0,
     BALL_POKE = 1,
     BALL_GREAT = 2,
     BALL_ULTRA = 3,

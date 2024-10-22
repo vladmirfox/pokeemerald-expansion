@@ -722,10 +722,10 @@ static void InheritPokeball(struct Pokemon *egg, struct BoxPokemon *father, stru
     u16 fatherSpecies = GetBoxMonData(father, MON_DATA_SPECIES);
     u16 motherSpecies = GetBoxMonData(mother, MON_DATA_SPECIES);
 
-    if (fatherBall == BALL_MASTER || fatherBall == BALL_CHERISH)
+    if (fatherBall == BALL_MASTER || fatherBall == BALL_CHERISH || fatherBall == BALL_STRANGE)
         fatherBall = BALL_POKE;
 
-    if (motherBall == BALL_MASTER || motherBall == BALL_CHERISH)
+    if (motherBall == BALL_MASTER || motherBall == BALL_CHERISH || motherBall == BALL_STRANGE)
         motherBall = BALL_POKE;
 
     if (P_BALL_INHERITING >= GEN_7)

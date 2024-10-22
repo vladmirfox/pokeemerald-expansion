@@ -128,36 +128,38 @@ static const struct CaptureStar sCaptureStars[] =
     },
 };
 
-#define TAG_PARTICLES_POKEBALL    65030
-#define TAG_PARTICLES_GREATBALL   65031
-#define TAG_PARTICLES_ULTRABALL   65032
-#define TAG_PARTICLES_MASTERBALL  65033
-#define TAG_PARTICLES_PREMIERBALL 65034
-#define TAG_PARTICLES_HEALBALL    65035
-#define TAG_PARTICLES_NETBALL     65036
-#define TAG_PARTICLES_NESTBALL    65037
-#define TAG_PARTICLES_DIVEBALL    65038
-#define TAG_PARTICLES_DUSKBALL    65039
-#define TAG_PARTICLES_TIMERBALL   65040
-#define TAG_PARTICLES_QUICKBALL   65041
-#define TAG_PARTICLES_REPEATBALL  65042
-#define TAG_PARTICLES_LUXURYBALL  65043
-#define TAG_PARTICLES_LEVELBALL   65044
-#define TAG_PARTICLES_LUREBALL    65045
-#define TAG_PARTICLES_MOONBALL    65046
-#define TAG_PARTICLES_FRIENDBALL  65047
-#define TAG_PARTICLES_LOVEBALL    65048
-#define TAG_PARTICLES_FASTBALL    65049
-#define TAG_PARTICLES_HEAVYBALL   65050
-#define TAG_PARTICLES_DREAMBALL   65051
-#define TAG_PARTICLES_SAFARIBALL  65052
-#define TAG_PARTICLES_SPORTBALL   65053
-#define TAG_PARTICLES_PARKBALL    65054
-#define TAG_PARTICLES_BEASTBALL   65055
-#define TAG_PARTICLES_CHERISHBALL 65056
+#define TAG_PARTICLES_STRANGEBALL 65030
+#define TAG_PARTICLES_POKEBALL    65031
+#define TAG_PARTICLES_GREATBALL   65032
+#define TAG_PARTICLES_ULTRABALL   65033
+#define TAG_PARTICLES_MASTERBALL  65034
+#define TAG_PARTICLES_PREMIERBALL 65035
+#define TAG_PARTICLES_HEALBALL    65036
+#define TAG_PARTICLES_NETBALL     65037
+#define TAG_PARTICLES_NESTBALL    65038
+#define TAG_PARTICLES_DIVEBALL    65039
+#define TAG_PARTICLES_DUSKBALL    65040
+#define TAG_PARTICLES_TIMERBALL   65041
+#define TAG_PARTICLES_QUICKBALL   65042
+#define TAG_PARTICLES_REPEATBALL  65043
+#define TAG_PARTICLES_LUXURYBALL  65044
+#define TAG_PARTICLES_LEVELBALL   65045
+#define TAG_PARTICLES_LUREBALL    65046
+#define TAG_PARTICLES_MOONBALL    65047
+#define TAG_PARTICLES_FRIENDBALL  65048
+#define TAG_PARTICLES_LOVEBALL    65049
+#define TAG_PARTICLES_FASTBALL    65050
+#define TAG_PARTICLES_HEAVYBALL   65051
+#define TAG_PARTICLES_DREAMBALL   65052
+#define TAG_PARTICLES_SAFARIBALL  65053
+#define TAG_PARTICLES_SPORTBALL   65054
+#define TAG_PARTICLES_PARKBALL    65055
+#define TAG_PARTICLES_BEASTBALL   65056
+#define TAG_PARTICLES_CHERISHBALL 65057
 
 static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
 {
+    [BALL_STRANGE]  = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_STRANGEBALL},
     [BALL_POKE]     = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_POKEBALL},
     [BALL_GREAT]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_GREATBALL},
     [BALL_ULTRA]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_ULTRABALL},
@@ -189,6 +191,7 @@ static const struct CompressedSpriteSheet sBallParticleSpriteSheets[] =
 
 static const struct CompressedSpritePalette sBallParticlePalettes[] =
 {
+    [BALL_STRANGE]  = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_STRANGEBALL},
     [BALL_POKE]     = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_POKEBALL},
     [BALL_GREAT]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_GREATBALL},
     [BALL_ULTRA]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_ULTRABALL},
@@ -272,6 +275,7 @@ static const union AnimCmd *const sAnims_BallParticles[] =
 
 static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
 {
+    [BALL_STRANGE] = 0,
     [BALL_POKE]    = 0,
     [BALL_GREAT]   = 0,
     [BALL_ULTRA]   = 5,
@@ -304,6 +308,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
 static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
 {
     // Todo: assign and possibly create different particles
+    [BALL_STRANGE] = GreatBallOpenParticleAnimation,
     [BALL_POKE]    = PokeBallOpenParticleAnimation,
     [BALL_GREAT]   = GreatBallOpenParticleAnimation,
     [BALL_ULTRA]   = UltraBallOpenParticleAnimation,
@@ -335,6 +340,15 @@ static const TaskFunc sBallParticleAnimationFuncs[POKEBALL_COUNT] =
 
 static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] =
 {
+    [BALL_STRANGE] = {
+        .tileTag = TAG_PARTICLES_STRANGEBALL,
+        .paletteTag = TAG_PARTICLES_STRANGEBALL,
+        .oam = &gOamData_AffineOff_ObjNormal_8x8,
+        .anims = sAnims_BallParticles,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    },
     [BALL_POKE] = {
         .tileTag = TAG_PARTICLES_POKEBALL,
         .paletteTag = TAG_PARTICLES_POKEBALL,
@@ -583,6 +597,7 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
 const u16 gBallOpenFadeColors[] =
 {
     // Todo, assign different colors
+    [BALL_STRANGE] = RGB(16, 23, 30),
     [BALL_POKE] = RGB(31, 22, 30),
     [BALL_GREAT] = RGB(16, 23, 30),
     [BALL_ULTRA] = RGB(31, 31, 15),
