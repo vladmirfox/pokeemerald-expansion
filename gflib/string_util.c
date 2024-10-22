@@ -890,9 +890,9 @@ static u8 ToLowerCaseChar(u8 c)
 
 void ToLowerCase(u8 *string)
 {
-    while (*input != EOS)
+    while (*string != EOS)
     {
-        *input = ToLowerCaseChar(*input);  // Modify the input string in place
-        input++;
+        *string = ToLowerCaseChar(*string);  // Modify the string string in place
+        string++;
     }
 }
