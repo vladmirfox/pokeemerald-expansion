@@ -511,7 +511,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         else if (move == MOVE_TAKE_HEART)
         {
             MESSAGE("Foe Zigzagoon used Take Heart!");
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_HEART, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_TAKE_HEART, opponent); // Fails due to bug, keep an eye on https://github.com/rh-hideout/pokeemerald-expansion/issues/5557
         }
         else if (move == MOVE_AROMATHERAPY)
         {
@@ -574,7 +574,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin")
 {
-    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once my PR gets merged to RHH
+    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once my PR gets merged to RHH (https://github.com/rh-hideout/pokeemerald-expansion/pull/5558)
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_ZIGZAGOON);
@@ -595,31 +595,107 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer");
-    // Doubles test
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer")
+{
+    KNOWN_FAILING; // Needs to wait for PR to get merged to RHH (https://github.com/rh-hideout/pokeemerald-expansion/pull/5559)
+    // PASSES_RANDOMLY(30, 100, RNG_HEALER);
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_HEALER); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+        TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("The opposing Chansey's Healer cured the opposing Zigzagoon's problem!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using a held item")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gItemsInfo[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON) { Item(ITEM_CHESTO_BERRY); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("Foe Zigzagoon's Chesto Berry woke it from its sleep!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using an item")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gItemsInfo[ITEM_AWAKENING].battleUsage == EFFECT_ITEM_CURE_STATUS);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { USE_ITEM(opponent, ITEM_AWAKENING, partyIndex: 0); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("Zigzagoon had its status healed!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon faints")
+{
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON) { Level(5); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
+        TURN { MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("Foe Zigzagoon fainted!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
 
 // ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by the item Awakening");
-// replace awakening with the following items:
-    // blue flute, chesto berry, big malasada, casteliacone, full heal, full restore, heal powder, lava cookie, lum berry
-    // lumiose galett, miracle berry?, old gateau, pewter Crunchies, rage candy bar, shalour sable
-    // idk wtf half these items even are and id imagine a lot of them share effects so i doubt a test will be needed for all of them
-
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia");
-
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Vital Spirit");
-
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon faints");
+TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia / Vital Spirit");
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out, has Trace, and Traces Insomnia / Vital spirit");
-
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by a held item such as Chesto Berry");
 
 // ADDED HANDLING FOR THIS
 TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit");
@@ -634,3 +710,6 @@ TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon
     // can sleep again after that
 
 //TODO treat falling asleep from disobeying the same as rest
+// Hot take maybe, but I think we should treat obedience like Rest; the trainer's mon makes itself fall asleep through no intervention of the opponent's
+// Feel free to disagree! If you agree, we can use a test like
+TO_DO_BATTLE_TEST("Sleep Clause: Falling asleep due to disobedience does not set sleep clause");
