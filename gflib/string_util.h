@@ -45,6 +45,6 @@ void ConvertInternationalString(u8 *s, u8 language);
 void StripExtCtrlCodes(u8 *str);
 u8 *StringCopyUppercase(u8 *dest, const u8 *src);
 s32 DoesStringContainMonName(const u8 *string, const u8 *monName);
-u8 *ToLowerCase(const u8 *input);
+void ToLowerCase(u8 *string);
 
 #endif // GUARD_STRING_UTIL_H

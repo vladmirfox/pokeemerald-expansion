@@ -888,7 +888,7 @@ static u8 ToLowerCaseChar(u8 c)
     return (sToLowerCaseMap[c]) ? sToLowerCaseMap[c] : c;
 }
 
-void ToLowerCase(u8 *input)
+void ToLowerCase(u8 *string)
 {
     while (*input != EOS)
     {
