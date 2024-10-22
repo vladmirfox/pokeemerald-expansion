@@ -447,7 +447,6 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     bool8 symEncoded = isModeSymEncoded(header->mode);
     bool8 symDelta = isModeSymDelta(header->mode);
     u8 *loPos;
-    MgbaPrintf(MGBA_LOG_WARN, "Mode: %u", header->mode);
 
     if (loEncoded == TRUE)
     {
@@ -547,7 +546,7 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
             LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
         else if (gSpeciesInfo[species].frontPic != NULL)
         {
-            if (species != SPECIES_LILLIGANT_HISUIAN)
+            if (species != SPECIES_LILLIGANT_HISUI)
             {
                 LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
             }
