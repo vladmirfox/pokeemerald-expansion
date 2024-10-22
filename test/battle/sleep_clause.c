@@ -691,14 +691,107 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia / Vital Spirit");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by gaining the ability Insomnia / Vital Spirit")
+{
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_VITAL_SPIRIT; }
+    PARAMETRIZE { ability = ABILITY_INSOMNIA; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_DELIBIRD) { Ability(ability); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Moves(MOVE_SLEEP_TALK, MOVE_SKILL_SWAP); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); MOVE(opponent, MOVE_SLEEP_TALK); }
+        TURN { MOVE(opponent, MOVE_SKILL_SWAP); }
+        TURN { MOVE(player, MOVE_SPORE); MOVE(opponent, MOVE_SKILL_SWAP); }
+    } SCENE {
+        MESSAGE("Delibird used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+        MESSAGE("Foe Zigzagoon used Sleep Talk!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SLEEP_TALK, opponent);
+        MESSAGE("Foe Zigzagoon used Skill Swap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SKILL_SWAP, opponent);
+        if (ability == ABILITY_VITAL_SPIRIT)
+            MESSAGE("Foe Zigzagoon's Vital Spirit cured its sleep problem!");
+        if (ability == ABILITY_INSOMNIA)
+            MESSAGE("Foe Zigzagoon's Insomnia cured its sleep problem!");
+        MESSAGE("Foe Zigzagoon used Skill Swap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SKILL_SWAP, opponent);
+        MESSAGE("Delibird used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out, has Trace, and Traces Insomnia / Vital spirit");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out, has Trace, and Traces Insomnia / Vital spirit")
+{
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_VITAL_SPIRIT; }
+    PARAMETRIZE { ability = ABILITY_INSOMNIA; }
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON)
+        PLAYER(SPECIES_DELIBIRD) { Ability(ability); }
+        OPPONENT(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(player, 1); SWITCH(opponent, 1); }
+        TURN { SWITCH(opponent, 0); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Ralts fell asleep!");
+        MESSAGE("2 sent out Zigzagoon!");
+        MESSAGE("2 sent out Ralts!");
+        if (ability == ABILITY_VITAL_SPIRIT)
+            MESSAGE("Foe Ralts's Vital Spirit cured its sleep problem!");
+        if (ability == ABILITY_INSOMNIA)
+            MESSAGE("Foe Ralts's Insomnia cured its sleep problem!");
+        MESSAGE("2 sent out Zigzagoon!");
+        MESSAGE("Delibird used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
 
-// ADDED HANDLING FOR THIS
-TO_DO_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit");
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit")
+{
+    KNOWN_FAILING; // Sleep Clause parts work, but Imposter seems broken with battle messages / targeting. Make RHH issue if no response to dev message
+    GIVEN {
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gItemsInfo[ITEM_LAGGING_TAIL].holdEffect == HOLD_EFFECT_LAGGING_TAIL);
+        PLAYER(SPECIES_ZIGZAGOON)
+        PLAYER(SPECIES_DELIBIRD) { Ability(ABILITY_VITAL_SPIRIT); }
+        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_IMPOSTER); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(player, 1); SWITCH(opponent, 1); }
+        TURN { SWITCH(opponent, 0); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("Foe Ditto transformed into Zigzagoon using Imposter!");
+        MESSAGE("Zigzagoon used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Ditto fell asleep!");
+        MESSAGE("2 sent out Zigzagoon!");
+        MESSAGE("2 sent out Ditto!");
+        MESSAGE("Foe Ditto's Vital Spirit cured its sleep problem!");
+        MESSAGE("2 sent out Zigzagoon!");
+        MESSAGE("Delibird used Spore!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Foe Zigzagoon fell asleep!");
+    }
+}
 
 TO_DO_BATTLE_TEST("Sleep Clause: AI will use sleep moves again when sleep clause has been deactivated");
 
