@@ -55,6 +55,8 @@
 
 #define MAX_ITEMS_SHOWN sShopData->gridItems->numItems
 
+#define SHOP_ITEMS(...) { __VA_ARGS__, ITEM_NONE }
+
 enum {
     WIN_BUY_SELL_QUIT,
     WIN_BUY_QUIT,
@@ -175,25 +177,26 @@ static void Task_ReturnToItemListWaitMsg(u8 taskId);
 static const u8 sGridPosX[] = { (120 + 16), (160 + 16), (200 + 16) };
 static const u8 sGridPosY[] = { (24 + 16), (64 + 16) };
 
-const u16 travellingMerchantLocation[LAYOUT_HARVEST_SHRINE][5] = {
+static const u16 sTravellingMerchantLocation[LAYOUT_HARVEST_SHRINE][5] = 
+{
     /*gMapHeader.mapLayoutId*/
-    [LAYOUT_SUNRISE_VILLAGE] = { ITEM_POKE_BALL, ITEM_NONE },
-    [LAYOUT_GINKO_WOODS] = { ITEM_GREAT_BALL, ITEM_NONE },
+    [LAYOUT_SUNRISE_VILLAGE] = SHOP_ITEMS(ITEM_POKE_BALL),
+    [LAYOUT_GINKO_WOODS] = SHOP_ITEMS(ITEM_GREAT_BALL, ITEM_ULTRA_BALL),
 };
 
-const u16 travellingMerchantProgression[NUM_BADGES + 2][5] = {
+static const u16 sTravellingMerchantProgression[NUM_BADGES + 2][5] = 
+{
     /*Badges obtained*/
-    [0] = { ITEM_POTION, ITEM_NONE },
-    [1] = { ITEM_SUPER_POTION, ITEM_NONE },
-    [2] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [3] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [4] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [5] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [6] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [7] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [8] = { ITEM_HYPER_POTION, ITEM_NONE },
-    [9] = { ITEM_HYPER_POTION, ITEM_NONE },
-    /*Is champion = 9*/
+    [0] = SHOP_ITEMS(ITEM_POTION),
+    [1] = SHOP_ITEMS(ITEM_SUPER_POTION),
+    [2] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [3] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [4] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [5] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [6] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [7] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [8] = SHOP_ITEMS(ITEM_HYPER_POTION),
+    [9] = SHOP_ITEMS(ITEM_HYPER_POTION, ITEM_MAX_POTION), /*Is champion*/
 };
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
@@ -1561,8 +1564,8 @@ void CreateTravellingMerchantMenu(void)
 {
     u32 currentIndex = 0;
     memset(sTravellingMerchantInventory, 0, sizeof(sTravellingMerchantInventory));
-    const u16 *locationItems = travellingMerchantLocation[gMapHeader.mapLayoutId];
-    const u16 *progressionItems = travellingMerchantProgression[GetNumBadgesObtained()];
+    const u16 *locationItems = sTravellingMerchantLocation[gMapHeader.mapLayoutId];
+    const u16 *progressionItems = sTravellingMerchantProgression[GetNumBadgesObtained()];
 
     // Add location-specific items
     for (u32 i = 0; locationItems[i] != ITEM_NONE; i++, currentIndex++)

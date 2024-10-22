@@ -888,22 +888,11 @@ static u8 ToLowerCaseChar(u8 c)
     return (sToLowerCaseMap[c]) ? sToLowerCaseMap[c] : c;
 }
 
-u8 *ToLowerCase(const u8 *input) 
+void ToLowerCase(u8 *string)
 {
-    u8 *buffer = Alloc(StringLength(input) + 1);
-    if (!buffer)
-        return NULL; // Allocation failed
-
-    u8 *start = buffer;  // Save the start of the output buffer
-
-    while (*input != EOS) 
+    while (*string != EOS)
     {
-        *buffer = ToLowerCaseChar(*input);
-        input++;
-        buffer++;
+        *string = ToLowerCaseChar(*string);  // Modify the string string in place
+        string++;
     }
-
-    *buffer = EOS;  // Null-terminate the string
-
-    return start;  // Return the start of the buffer
 }

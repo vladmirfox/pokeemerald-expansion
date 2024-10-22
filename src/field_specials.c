@@ -4353,10 +4353,10 @@ void EnterDexRiddleGuess(void)
 
 void GetDexRiddleFeedback(void)
 {
-    u8 *loweredString1 = ToLowerCase(gStringVar1);
-    u8 *loweredString2 = ToLowerCase(gStringVar2);
+    ToLowerCase(gStringVar1);
+    ToLowerCase(gStringVar2);
 
-    if (!StringCompare(loweredString1, loweredString2))
+    if (!StringCompare(gStringVar1, gStringVar2))
     {
         gSpecialVar_Result = 1;
     }
@@ -4364,7 +4364,4 @@ void GetDexRiddleFeedback(void)
     {
         gSpecialVar_Result = 0;
     }
-
-    Free(loweredString1);
-    Free(loweredString1);
 }
