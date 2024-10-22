@@ -351,15 +351,17 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
-DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with Aromatherapy or Heal Bell")
+DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up with Aromatherapy / Heal Bell / Sparkly Swirl")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_AROMATHERAPY; }
     PARAMETRIZE { move = MOVE_HEAL_BELL; }
+    PARAMETRIZE { move = MOVE_SPARKLY_SWIRL; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
         ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+        ASSUME(gMovesInfo[MOVE_SPARKLY_SWIRL].effect == EFFECT_SPARKLY_SWIRL);
         ASSUME(B_SLEEP_TURNS >= GEN_5);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
@@ -369,7 +371,10 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
         TURN { SWITCH(opponentLeft, 2); MOVE(playerLeft, MOVE_SPORE, target:opponentRight); }
-        TURN { SWITCH(opponentLeft, 0); MOVE(opponentRight, move); MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+        if (move == MOVE_SPARKLY_SWIRL)
+            TURN { SWITCH(opponentLeft, 0); MOVE(opponentRight, move, target: playerRight); MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
+        else
+            TURN { SWITCH(opponentLeft, 0); MOVE(opponentRight, move); MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
     } SCENE {
         MESSAGE("Zigzagoon used Spore!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
@@ -389,10 +394,15 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
             MESSAGE("The opposing Zigzagoon used Aromatherapy!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, opponentRight);
         }
-        else
+        else if (move == MOVE_HEAL_BELL)
         {
             MESSAGE("The opposing Zigzagoon used Heal Bell!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BELL, opponentRight);
+        }
+        else
+        {
+            MESSAGE("The opposing Zigzagoon used Sparkly Swirl!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLY_SWIRL, opponentRight);
         }
         STATUS_ICON(opponentLeft, sleep: FALSE);
         MESSAGE("Zigzagoon used Spore!");
