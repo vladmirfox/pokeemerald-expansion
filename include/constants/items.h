@@ -35,8 +35,8 @@
 // Note: If moving ball IDs around, updating FIRST_BALL/LAST_BALL is not sufficient
 //       Several places expect the ball IDs to be first and contiguous (e.g. MON_DATA_POKEBALL)
 //       If adding new balls, it's easiest to insert them after the last ball and increment the below IDs (and removing ITEM_034 for example)
-#define FIRST_BALL ITEM_POKE_BALL
-#define LAST_BALL  ITEM_CHERISH_BALL
+#define FIRST_BALL BALL_POKE
+#define LAST_BALL  BALL_CHERISH
 
 // Medicine
 #define ITEM_POTION 28

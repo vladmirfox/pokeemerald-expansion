@@ -13,6 +13,7 @@
 #include "trig.h"
 #include "util.h"
 #include "data.h"
+#include "item.h"
 #include "constants/songs.h"
 
 static void Task_DoPokeballSendOutAnim(u8 taskId);
@@ -1579,4 +1580,14 @@ static u16 GetBattlerPokeballItemId(u8 battlerId)
         mon = illusionMon;
 
     return GetMonData(mon, MON_DATA_POKEBALL);
+}
+
+enum PokeBall ItemIdToBallId(u32 ballItem)
+{
+    enum PokeBall secondaryId = ItemId_GetSecondaryId(ballItem);
+
+    if (secondaryId <= BALL_NONE || secondaryId >= POKEBALL_COUNT)
+        return BALL_POKE;
+
+    return secondaryId;
 }

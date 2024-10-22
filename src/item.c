@@ -1,6 +1,7 @@
 #include "global.h"
 #include "item.h"
 #include "berry.h"
+#include "pokeball.h"
 #include "string_util.h"
 #include "text.h"
 #include "event_data.h"
@@ -968,7 +969,7 @@ u8 ItemId_GetBattleUsage(u16 itemId)
         return gItemsInfo[item].battleUsage;
 }
 
-u8 ItemId_GetSecondaryId(u16 itemId)
+u32 ItemId_GetSecondaryId(u32 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].secondaryId;
 }
