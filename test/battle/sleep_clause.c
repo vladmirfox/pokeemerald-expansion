@@ -489,7 +489,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using Sleep Talk into a status curing move")
 {
-    KNOWN_FAILING; // Fails due to bug, keep an eye on https://github.com/rh-hideout/pokeemerald-expansion/issues/5557
+    KNOWN_FAILING; // Sleep clause works, fails due to Take Heart bug. Issue #5557 https://github.com/rh-hideout/pokeemerald-expansion/issues/5557
     u32 move;
     PARAMETRIZE { move = MOVE_PSYCHO_SHIFT; }
     PARAMETRIZE { move = MOVE_JUNGLE_HEALING; }
@@ -599,7 +599,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin")
 {
-    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once my PR gets merged to RHH (https://github.com/rh-hideout/pokeemerald-expansion/pull/5558)
+    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once PR #5558 is accepted (https://github.com/rh-hideout/pokeemerald-expansion/pull/5558)
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         PLAYER(SPECIES_ZIGZAGOON);
@@ -622,7 +622,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Healer")
 {
-    KNOWN_FAILING; // Needs to wait for PR to get merged to RHH (https://github.com/rh-hideout/pokeemerald-expansion/pull/5559)
+    KNOWN_FAILING; // Fails due to lack of RNG_HEALER. PR # 5559 https://github.com/rh-hideout/pokeemerald-expansion/pull/5559
     // PASSES_RANDOMLY(30, 100, RNG_HEALER);
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
@@ -788,7 +788,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit")
 {
-    KNOWN_FAILING; // Sleep Clause parts work, but Imposter seems broken with battle messages / targeting. Make RHH issue if no response to dev message
+    KNOWN_FAILING; // Sleep Clause parts work, but Imposter seems broken with battle messages / targeting. Issue #5565 https://github.com/rh-hideout/pokeemerald-expansion/issues/5565
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         ASSUME(gItemsInfo[ITEM_LAGGING_TAIL].holdEffect == HOLD_EFFECT_LAGGING_TAIL);
