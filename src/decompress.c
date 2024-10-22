@@ -408,12 +408,10 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
         }
         if (currLength != 0)
         {
-            //memcpy(&shortDest[destIndex], &currValue, 2);
             CpuCopy16(&symVec[symIndex], dest, 2);
             dest = (void *)(dest + 2);
             if (currOffset == 1)
             {
-                //  This should be some fill function
                 CpuFill16(symVec[symIndex], dest, 2*currLength);
                 dest = (void *)(dest + currLength*2);
             }
@@ -426,8 +424,6 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
         }
         else
         {
-            //  It's not a repeated sequence, write raw bytes
-            //  Horrible implementation right now, rewrite symVec to work on unsigned shorts
             CpuCopy16(&symVec[symIndex], dest, currOffset*2);
             symIndex += currOffset;
             dest = (void *)(dest + currOffset*2);
@@ -480,9 +476,6 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     if (symEncoded == TRUE)
     {
         DecodeSymtANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize, symDelta);
-        //MgbaPrintf(MGBA_LOG_WARN, "\nSyms");
-        //for (u32 i = 0; i < header->symSize; i++)
-        //    MgbaPrintf(MGBA_LOG_WARN, "%u", symVec[i]);
     }
 
     if (symEncoded == FALSE)
@@ -499,14 +492,6 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
         readIndex += header->loSize;
     }
 
-    //MgbaPrintf(MGBA_LOG_WARN, "LO");
-    //for (u32 i = 0; i < header->loSize; i++)
-    //    MgbaPrintf(MGBA_LOG_WARN, "%u", loVec[i]);
-    //MgbaPrintf(MGBA_LOG_WARN, "\nSyms");
-    //for (u32 i = 0; i < header->symSize; i++)
-    //    MgbaPrintf(MGBA_LOG_WARN, "%u", symVec[i]);
-
-    //MgbaPrintf(MGBA_LOG_WARN, "Lo Size: %u", header->loSize);
     DecodeInstructions(header, loVec, symVec, dest);
 
     if (loEncoded)
