@@ -3238,7 +3238,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 1, 3));
                 else
                     gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 2, 5));
-                if (B_SLEEP_CLAUSE && !gBattleStruct->sleepClause.effectExempt)
+                if (FlagGet(B_FLAG_SLEEP_CLAUSE) && !gBattleStruct->sleepClause.effectExempt)
                 {
                     gBattleStruct->sleepClause.isActive[GetBattlerSide(gEffectBattler)] = TRUE;
                     gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gEffectBattler)][gBattlerPartyIndexes[gEffectBattler]] = TRUE;
@@ -4200,7 +4200,7 @@ static void Cmd_tryfaintmon(void)
 
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].moves[moveIndex])
             }
-            if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
+            if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
             {
                 gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] = FALSE;
                 gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]] = FALSE;
@@ -5917,7 +5917,7 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
                         break;
                     case STATUS1_SLEEP:
-                        if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]])
+                        if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]])
                         {
                             gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] = FALSE;
                             gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = FALSE;
@@ -10202,7 +10202,7 @@ static void Cmd_various(void)
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
             MarkBattlerForControllerExec(battler);
             gBattlescriptCurrInstr = cmd->nextInstr;
-            if (B_SLEEP_CLAUSE)
+            if (FlagGet(B_FLAG_SLEEP_CLAUSE))
             {
                 gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] = TRUE;
                 gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]] = TRUE;
@@ -10213,7 +10213,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
 
-        if (B_SLEEP_CLAUSE 
+        if (FlagGet(B_FLAG_SLEEP_CLAUSE) 
          && (gBattleMons[battler].status1 & STATUS1_SLEEP)
          && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] 
          && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])
@@ -13411,7 +13411,7 @@ static void Cmd_healpartystatus(void)
                 {
                     toHeal |= (1 << i);
 
-                    if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i])
+                    if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i])
                     {
                         gBattleStruct->sleepClause.isActive[gBattlerAttacker] = FALSE;
                         gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i] = FALSE;
@@ -13419,7 +13419,7 @@ static void Cmd_healpartystatus(void)
 
                     if (IsDoubleBattle() && !(gAbsentBattlerFlags & (1u << gBattlerTarget)))
                     {
-                        if (B_SLEEP_CLAUSE && gBattleStruct->sleepClause.isCausingSleepClause[partner][i])
+                        if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isCausingSleepClause[partner][i])
                         {
                             gBattleStruct->sleepClause.isActive[partner] = FALSE;
                             gBattleStruct->sleepClause.isCausingSleepClause[partner][i] = FALSE;
@@ -13434,7 +13434,7 @@ static void Cmd_healpartystatus(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOOTHING_AROMA;
         toHeal = (1 << PARTY_SIZE) - 1;
 
-        if (B_SLEEP_CLAUSE)
+        if (FlagGet(B_FLAG_SLEEP_CLAUSE))
         {
             gBattleStruct->sleepClause.isActive[gBattlerAttacker] = FALSE;
             for (i = 0; i < PARTY_SIZE; i++)
@@ -13449,7 +13449,7 @@ static void Cmd_healpartystatus(void)
         if (IsDoubleBattle()
             && !(gAbsentBattlerFlags & (1u <<partner)))
         {
-            if (B_SLEEP_CLAUSE)
+            if (FlagGet(B_FLAG_SLEEP_CLAUSE))
             {
                 gBattleStruct->sleepClause.isActive[partner] = FALSE;
                 for (i = 0; i < PARTY_SIZE; i++)
@@ -14828,7 +14828,7 @@ static void Cmd_switchoutabilities(void)
         switch (GetBattlerAbility(battler))
         {
         case ABILITY_NATURAL_CURE:
-            if (B_SLEEP_CLAUSE
+            if (FlagGet(B_FLAG_SLEEP_CLAUSE)
              && (gBattleMons[battler].status1 & STATUS1_SLEEP )
              && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)] 
              && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)][gBattlerPartyIndexes[battler]])

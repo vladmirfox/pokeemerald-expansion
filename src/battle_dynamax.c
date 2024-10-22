@@ -890,7 +890,7 @@ void BS_TrySetStatus1(void)
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 3) + 2);
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
-                if (B_SLEEP_CLAUSE)
+                if (FlagGet(B_FLAG_SLEEP_CLAUSE))
                 {
                     gBattleStruct->sleepClause.isActive[GetBattlerSide(gBattlerTarget)] = TRUE;
                     gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gBattlerTarget)][gBattlerPartyIndexes[gBattlerTarget]] = TRUE;
