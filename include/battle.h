@@ -201,10 +201,13 @@ struct ProtectStruct
     u16 eatMirrorHerb:1;
     u16 activateOpportunist:2; // 2 - to copy stats. 1 - stats copied (do not repeat). 0 - no stats to copy
     u16 usedAllySwitch:1;
+    u16 padding:2;
+    // End of 16-bit bitfield
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
+
 };
 
 struct SpecialStatus
@@ -366,12 +369,15 @@ struct AiLogicData
     u8 effectiveness[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveAccuracy[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
     u8 moveLimitations[MAX_BATTLERS_COUNT];
-    u8 shouldSwitchIfBadMoves; // Because all available moves have no/little effect. Each bit per battler.
-    u8 monToSwitchId[MAX_BATTLERS_COUNT]; // ID of the mon to switch.
-    bool8 weatherHasEffect; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
+    u8 monToSwitchInId[MAX_BATTLERS_COUNT]; // ID of the mon to switch in.
     u8 mostSuitableMonId[MAX_BATTLERS_COUNT]; // Stores result of GetMostSuitableMonToSwitchInto, which decides which generic mon the AI would switch into if they decide to switch. This can be overruled by specific mons found in ShouldSwitch; the final resulting mon is stored in AI_monToSwitchIntoId.
     struct SwitchinCandidate switchinCandidate; // Struct used for deciding which mon to switch to in battle_ai_switch_items.c
+    u8 weatherHasEffect:1; // The same as WEATHER_HAS_EFFECT. Stored here, so it's called only once.
+    u8 ejectButtonSwitch:1; // Tracks whether current switch out was from Eject Button
+    u8 ejectPackSwitch:1; // Tracks whether current switch out was from Eject Pack 
+    u8 padding:5;
     u8 shouldSwitch; // Stores result of ShouldSwitch, which decides whether a mon should be switched out
+    u8 aiCalcInProgress:1;
 };
 
 struct AI_ThinkingStruct
@@ -710,7 +716,6 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
-    u8 aiCalcInProgress:1;
     u8 overworldWeatherDone:1;
     u8 startingStatusDone:1;
     u8 isAtkCancelerForCalledMove:1; // Certain cases in atk canceler should only be checked once, when the original move is called, however others need to be checked the twice.
@@ -818,9 +823,13 @@ struct BattleStruct
     u8 boosterEnergyActivates;
     u8 distortedTypeMatchups;
     u8 categoryOverride; // for Z-Moves and Max Moves
+    u8 commandingDondozo;
+    u16 commanderActive[NUM_BATTLE_SIDES];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
     u8 fickleBeamBoosted:1;
     u8 obedienceResult:3;
+    u8 padding:4;
+    u8 usedEjectItem;
     u8 usedMicleBerry;
 };
 
@@ -873,14 +882,14 @@ STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLER
                                         || gProtectStructs[battlerId].obstructed                                       \
                                         || gProtectStructs[battlerId].silkTrapped)
 
-#define GET_STAT_BUFF_ID(n)((n & 7))              // first three bits 0x1, 0x2, 0x4
-#define GET_STAT_BUFF_VALUE_WITH_SIGN(n)((n & 0xF8))
-#define GET_STAT_BUFF_VALUE(n)(((n >> 3) & 0xF))      // 0x8, 0x10, 0x20, 0x40
+#define GET_STAT_BUFF_ID(n) ((n & 7))              // first three bits 0x1, 0x2, 0x4
+#define GET_STAT_BUFF_VALUE_WITH_SIGN(n) ((n & 0xF8))
+#define GET_STAT_BUFF_VALUE(n) (((n >> 3) & 0xF))      // 0x8, 0x10, 0x20, 0x40
 #define STAT_BUFF_NEGATIVE 0x80                     // 0x80, the sign bit
 
-#define SET_STAT_BUFF_VALUE(n)((((n) << 3) & 0xF8))
+#define SET_STAT_BUFF_VALUE(n) ((((n) << 3) & 0xF8))
 
-#define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
+#define SET_STATCHANGER(statId, stage, goesDown) (gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
 #define SET_STATCHANGER2(dst, statId, stage, goesDown)(dst = (statId) + ((stage) << 3) + (goesDown << 7))
 
 // NOTE: The members of this struct have hard-coded offsets
@@ -1084,6 +1093,7 @@ extern u16 gLastPrintedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastLandedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastHitByType[MAX_BATTLERS_COUNT];
+extern u16 gLastUsedMoveType[MAX_BATTLERS_COUNT];
 extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLockedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedMove;
