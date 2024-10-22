@@ -887,19 +887,17 @@ void AnimTask_SwitchOutShrinkMon(u8 taskId)
 void AnimTask_SwitchOutBallEffect(u8 taskId)
 {
     u8 spriteId;
-    u16 ball;
-    u8 ballId;
+    enum PokeBall ballId;
     u8 x, y;
     u8 priority, subpriority;
     u32 selectedPalettes;
 
     spriteId = gBattlerSpriteIds[gBattleAnimAttacker];
     if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-        ball = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
+        ballId = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
     else
-        ball = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
+        ballId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
 
-    ballId = ItemIdToBallId(ball);
     switch (gTasks[taskId].data[0])
     {
     case 0:
@@ -921,14 +919,14 @@ void AnimTask_SwitchOutBallEffect(u8 taskId)
 
 void AnimTask_LoadBallGfx(u8 taskId)
 {
-    u8 ballId = ItemIdToBallId(gLastUsedItem);
+    enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
     LoadBallGfx(ballId);
     DestroyAnimVisualTask(taskId);
 }
 
 void AnimTask_FreeBallGfx(u8 taskId)
 {
-    u8 ballId = ItemIdToBallId(gLastUsedItem);
+    enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
     FreeBallGfx(ballId);
     DestroyAnimVisualTask(taskId);
 }
@@ -943,7 +941,7 @@ void AnimTask_IsBallBlockedByTrainer(u8 taskId)
     DestroyAnimVisualTask(taskId);
 }
 
-u8 ItemIdToBallId(u16 ballItem)
+enum PokeBall ItemIdToBallId(u16 ballItem)
 {
     switch (ballItem)
     {
@@ -1014,10 +1012,9 @@ u8 ItemIdToBallId(u16 ballItem)
 
 void AnimTask_ThrowBall(u8 taskId)
 {
-    u8 ballId;
     u8 spriteId;
 
-    ballId = ItemIdToBallId(gLastUsedItem);
+    enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
     spriteId = CreateSprite(&gBallSpriteTemplates[ballId], 32, 80, 29);
     gSprites[spriteId].sDuration = 34;
     gSprites[spriteId].sTargetX = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X);
@@ -1039,7 +1036,7 @@ static void AnimTask_ThrowBall_Step(u8 taskId)
 void AnimTask_ThrowBall_StandingTrainer(u8 taskId)
 {
     s16 x, y;
-    u8 ballId;
+    enum PokeBall ballId;
     u8 subpriority;
     u8 spriteId;
 
@@ -1128,8 +1125,7 @@ static void SpriteCB_Ball_Throw(struct Sprite *sprite)
 
 static void SpriteCB_Ball_Arc(struct Sprite *sprite)
 {
-    s32 i;
-    u8 ballId;
+    u32 i;
 
     if (TranslateAnimHorizontalArc(sprite))
     {
@@ -1151,14 +1147,9 @@ static void SpriteCB_Ball_Arc(struct Sprite *sprite)
             sprite->sTimer = 0;
             sprite->callback = SpriteCB_Ball_MonShrink;
 
-            ballId = ItemIdToBallId(gLastUsedItem);
-            switch (ballId)
-            {
-            case 0 ... POKEBALL_COUNT - 1:
-                AnimateBallOpenParticles(sprite->x, sprite->y - 5, 1, 28, ballId);
-                LaunchBallFadeMonTask(FALSE, gBattleAnimTarget, 14, ballId);
-                break;
-            }
+            enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
+            AnimateBallOpenParticles(sprite->x, sprite->y - 5, 1, 28, ballId);
+            LaunchBallFadeMonTask(FALSE, gBattleAnimTarget, 14, ballId);
         }
     }
 }
@@ -1720,20 +1711,13 @@ static void SpriteCB_CaptureStar_Flicker(struct Sprite *sprite)
 // - Wild mon emerge from Poké Ball
 static void SpriteCB_Ball_Release_Step(struct Sprite *sprite)
 {
-    u8 ballId;
-
     StartSpriteAnim(sprite, 1);
     StartSpriteAffineAnim(sprite, 0);
     sprite->callback = SpriteCB_Ball_Release_Wait;
 
-    ballId = ItemIdToBallId(gLastUsedItem);
-    switch (ballId)
-    {
-    case 0 ... POKEBALL_COUNT - 1:
-        AnimateBallOpenParticles(sprite->x, sprite->y - 5, 1, 28, ballId);
-        LaunchBallFadeMonTask(TRUE, gBattleAnimTarget, 14, ballId);
-        break;
-    }
+    enum PokeBall ballId = ItemIdToBallId(gLastUsedItem);
+    AnimateBallOpenParticles(sprite->x, sprite->y - 5, 1, 28, ballId);
+    LaunchBallFadeMonTask(TRUE, gBattleAnimTarget, 14, ballId);
 
     // Animate Pokémon emerging from Poké Ball
     gSprites[gBattlerSpriteIds[gBattleAnimTarget]].invisible = FALSE;
