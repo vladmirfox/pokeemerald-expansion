@@ -142,13 +142,13 @@ EWRAM_INIT struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE] = {
 void LZDecompressWram(const u32 *src, void *dest)
 {
     //LZ77UnCompWram(src, dest);
-    DecompressData(src, dest);
+    DecompressDataWram(src, dest);
 }
 
 void LZDecompressVram(const u32 *src, void *dest)
 {
     //LZ77UnCompVram(src, dest);
-    DecompressData(src, dest);
+    DecompressDataVram(src, dest);
 }
 
 // Checks if `ptr` is likely LZ77 data
@@ -268,26 +268,24 @@ void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs)
     }
 }
 
-void DecompressData(const u32 *src, void *dest)
+void DecompressDataVram(const u32 *src, void *dest)
 {
-    bool32 isVram;
-    if ((u32)dest > 0x06000000)
-        isVram = TRUE;
-    else
-        isVram = FALSE;
     struct CompressionHeader header;
     CpuCopy32(src, &header, 8);
     if (header.lz77Bit == 1)
-    {
-        if (isVram)
-            LZ77UnCompVram(src, dest);
-        else
-            LZ77UnCompWram(src, dest);
-    }
+        LZ77UnCompVram(src, dest);
     else
-    {
         SmolDecompressData(&header, &src[2], dest);
-    }
+}
+
+void DecompressDataWram(const u32 *src, void *dest)
+{
+    struct CompressionHeader header;
+    CpuCopy32(src, &header, 8);
+    if (header.lz77Bit == 1)
+        LZ77UnCompWram(src, dest);
+    else
+        SmolDecompressData(&header, &src[2], dest);
 }
 
 void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)

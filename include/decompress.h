@@ -38,7 +38,8 @@ extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
 
 void UnpackFrequencies(const u32 *packedFreqs, u8 *freqs);
 
-void DecompressData(const u32 *src, void *dest);
+void DecompressDataVram(const u32 *src, void *dest);
+void DecompressDataWram(const u32 *src, void *dest);
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest);
 
