@@ -65,7 +65,7 @@ void GetAIPartyIndexes(u32 battler, s32 *firstId, s32 *lastId)
     }
 }
 
-bool32 SetSwitchinAndSwitch(u32 battler, u32 switchinId)
+static inline bool32 SetSwitchinAndSwitch(u32 battler, u32 switchinId)
 {
     gBattleStruct->AI_monToSwitchIntoId[battler] = switchinId;
     return TRUE;
@@ -311,11 +311,9 @@ static bool32 FindMonThatHitsWonderGuard(u32 battler)
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
             {
+                // Found a mon
                 if (AI_GetMoveEffectiveness(move, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
-                {
-                    // We found a mon.
                     return SetSwitchinAndSwitch(battler, i);
-                }
             }
         }
     }
@@ -423,11 +421,9 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
 
         for (j = 0; j < numAbsorbingAbilities; j++)
         {
+            // Found a mon
             if (absorbingTypeAbilities[j] == monAbility)
-            {
-                // We found a mon.
                 return SetSwitchinAndSwitch(battler, i);
-            }
         }
     }
     return FALSE;
@@ -482,10 +478,9 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
 
         if (CanAbilityTrapOpponent(monAbility, opposingBattler))
         {
-            if (i == AI_DATA->mostSuitableMonId[battler]) // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
-            {
+            // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
+            if (i == AI_DATA->mostSuitableMonId[battler])
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-            }
         }
     }
     return FALSE;
@@ -765,9 +760,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
                     continue;
 
                 if (AI_GetMoveEffectiveness(move, battler, battlerIn1) >= AI_EFFECTIVENESS_x2 && RandomPercentage(RNG_AI_SWITCH_SE_DEFENSIVE, percentChance))
-                {
                     return SetSwitchinAndSwitch(battler, i);
-                }
             }
         }
     }
@@ -876,9 +869,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
     if (HOLD_EFFECT_CHOICE(holdEffect) && gBattleMons[battler].ability != ABILITY_KLUTZ)
     {
         if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
-        {
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-        }
     }
 
     return FALSE;
@@ -904,15 +895,11 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         else if (attackingStage == DEFAULT_STAT_STAGE - 2)
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
-            {
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-            }
         }
         // If at -3 or worse, switch out regardless
         else if (attackingStage < DEFAULT_STAT_STAGE - 2)
-        {
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-        }
     }
 
     // Special attacker
@@ -925,15 +912,11 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
         else if (spAttackingStage == DEFAULT_STAT_STAGE - 2)
         {
             if (AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_STATS_LOWERED, 50))
-            {
                 return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-            }
         }
         // If at -3 or worse, switch out regardless
         else if (spAttackingStage < DEFAULT_STAT_STAGE - 2)
-        {
             return SetSwitchinAndSwitch(battler, PARTY_SIZE);
-        }
     }
     return FALSE;
 }
