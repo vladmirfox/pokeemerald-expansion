@@ -4203,7 +4203,8 @@ static void Cmd_tryfaintmon(void)
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].moves[moveIndex])
             }
 
-            TryDeactivateSleepClause(battler);
+            // Try to deactivate Sleep Clause when a mon faints
+            TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
         }
         else
         {
@@ -5916,7 +5917,8 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
                         break;
                     case STATUS1_SLEEP:
-                        TryDeactivateSleepClause(gBattlerTarget);
+                        // Try to deactivate Sleep Clause when a mon gets woken up by Wake-Up Slap
+                        TryDeactivateSleepClause(GetBattlerSide(gBattlerTarget), gBattlerPartyIndexes[gBattlerTarget]);
                         gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
                         break;
                     case STATUS1_BURN:
@@ -10204,8 +10206,9 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
 
+        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Jungle Healing, Purify, Psycho Shift, Healer, G-Max Sweetness
         if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-            TryDeactivateSleepClause(battler);
+            TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
 
         gBattleMons[battler].status1 = 0;
         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
@@ -13395,23 +13398,8 @@ static void Cmd_healpartystatus(void)
                 if (ability != ABILITY_SOUNDPROOF)
                 {
                     toHeal |= (1 << i);
-
-                    // TODO sleep clause: revisit this and determine if iriv is a bot
-                    if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i])
-                    {
-                        gBattleStruct->sleepClause.isActive[gBattlerAttacker] = FALSE;
-                        gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i] = FALSE;
-                    }
-
-                    // TODO sleep clause: revisit this and determine if iriv is a bot
-                    if (IsDoubleBattle() && !(gAbsentBattlerFlags & (1u << gBattlerTarget)))
-                    {
-                        if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isCausingSleepClause[partner][i])
-                        {
-                            gBattleStruct->sleepClause.isActive[partner] = FALSE;
-                            gBattleStruct->sleepClause.isCausingSleepClause[partner][i] = FALSE;
-                        }
-                    }         
+                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Heal Bell
+                    TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), i);
                 }
             }
         }
@@ -13421,14 +13409,10 @@ static void Cmd_healpartystatus(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOOTHING_AROMA;
         toHeal = (1 << PARTY_SIZE) - 1;
 
-        // TODO sleep clause: revisit this and determine if iriv is a bot
-        if (FlagGet(B_FLAG_SLEEP_CLAUSE))
+        for (i = 0; i < PARTY_SIZE; i++)
         {
-            gBattleStruct->sleepClause.isActive[gBattlerAttacker] = FALSE;
-            for (i = 0; i < PARTY_SIZE; i++)
-            {
-                gBattleStruct->sleepClause.isCausingSleepClause[gBattlerAttacker][i] = FALSE;
-            }
+            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Aromatherapy, Sparkly Swirl?
+            TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), i);
         }
 
         gBattleMons[gBattlerAttacker].status1 = 0;
@@ -13437,15 +13421,6 @@ static void Cmd_healpartystatus(void)
         if (IsDoubleBattle()
             && !(gAbsentBattlerFlags & (1u <<partner)))
         {
-            // TODO sleep clause: revisit this and determine if iriv is a bot
-            if (FlagGet(B_FLAG_SLEEP_CLAUSE))
-            {
-                gBattleStruct->sleepClause.isActive[partner] = FALSE;
-                for (i = 0; i < PARTY_SIZE; i++)
-                {
-                    gBattleStruct->sleepClause.isCausingSleepClause[partner][i] = FALSE;
-                }
-            }
             gBattleMons[partner].status1 = 0;
             gBattleMons[partner].status2 &= ~STATUS2_NIGHTMARE;
         }
@@ -14817,8 +14792,10 @@ static void Cmd_switchoutabilities(void)
         switch (GetBattlerAbility(battler))
         {
         case ABILITY_NATURAL_CURE:
+            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Natural Cure
             if (gBattleMons[battler].status1 & STATUS1_SLEEP)
-                TryDeactivateSleepClause(battler);
+                TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
+            
             gBattleMons[battler].status1 = 0;
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE,
                                          1u << *(gBattleStruct->battlerPartyIndexes + battler),

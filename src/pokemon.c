@@ -4174,8 +4174,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
 {
     u32 status = GetMonData(mon, MON_DATA_STATUS, 0);
-    u32 i = 0;
-    u32 battlerSide = GetBattlerSide(battlerId);
     
     if (status & healMask)
     {
@@ -4183,11 +4181,13 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
         SetMonData(mon, MON_DATA_STATUS, &status);
         if (gMain.inBattle && battlerId != MAX_BATTLERS_COUNT)
         {
-            // TODO sleep clause: revisit this and see if it can be cleaned up
             gBattleMons[battlerId].status1 &= ~healMask;
-            if((healMask & STATUS1_SLEEP) && FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.isActive[battlerSide])
+            if((healMask & STATUS1_SLEEP))
             {
+                u32 i = 0;
+                u32 battlerSide = GetBattlerSide(battlerId);
                 struct Pokemon *party;
+
                 if (battlerSide == B_SIDE_PLAYER)
                     party = gPlayerParty;
                 else
@@ -4195,10 +4195,10 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
 
                 for (i = 0; i < PARTY_SIZE; i++)
                 {
-                    if (&party[i] == mon && gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][i])
+                    if (&party[i] == mon)
                     {
-                        gBattleStruct->sleepClause.isActive[battlerSide] = FALSE;
-                        gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][i] = FALSE;
+                        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Used Item, such as Awakening or Full Heal
+                        TryDeactivateSleepClause(battlerSide, i);
                         break;
                     }
                 }

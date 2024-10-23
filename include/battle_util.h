@@ -301,6 +301,6 @@ bool8 IsMonBannedFromSkyBattles(u16 species);
 void RemoveBattlerType(u32 battler, u8 type);
 u32 GetMoveType(u32 move);
 void TryActivateSleepClause(u32 battler);
-void TryDeactivateSleepClause(u32 battler);
+void TryDeactivateSleepClause(u32 battlerSide, u32 indexInParty);
 
 #endif // GUARD_BATTLE_UTIL_H
