@@ -3242,8 +3242,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 // TODO sleep clause: revisit this and determine if effectExempt is needed
                 if (FlagGet(B_FLAG_SLEEP_CLAUSE) && !gBattleStruct->sleepClause.effectExempt)
                 {
-                    gBattleStruct->sleepClause.isActive[GetBattlerSide(gEffectBattler)] = TRUE;
-                    gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gEffectBattler)][gBattlerPartyIndexes[gEffectBattler]] = TRUE;
+                    gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gEffectBattler)] |= 1u << gBattlerPartyIndexes[gEffectBattler];
                     gBattleStruct->sleepClause.effectExempt = FALSE;
                 }
             }
@@ -10199,7 +10198,8 @@ static void Cmd_various(void)
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
             MarkBattlerForControllerExec(battler);
             gBattlescriptCurrInstr = cmd->nextInstr;
-            TryActivateSleepClause(battler);
+            // Try to activate Sleep Clause when a mon is put to Sleep by Psycho Shift
+            TryActivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
             return;
         }
     case VARIOUS_CURE_STATUS:
@@ -13411,7 +13411,7 @@ static void Cmd_healpartystatus(void)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Aromatherapy, Sparkly Swirl?
+            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Aromatherapy, Sparkly Swirl
             TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), i);
         }
 
@@ -17320,7 +17320,7 @@ void BS_JumpIfSleepClause(void)
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
     u8 battler = GetBattlerForBattleScript(cmd->battler);
 
-    if (gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)])
+    if (gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)])
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

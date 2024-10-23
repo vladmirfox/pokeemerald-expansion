@@ -2780,7 +2780,8 @@ u8 DoBattlerEndTurnEffects(void)
                         else
                             gBattleMons[battler].status1 |= ((Random() % 4) + 3);
 
-                        TryActivateSleepClause(gBattlerTarget);
+                        // Try to activate Sleep Clause when a mon is put to Sleep by Yawn
+                        TryActivateSleepClause(GetBattlerSide(gBattlerTarget), gBattlerPartyIndexes[gBattlerTarget]);
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                         MarkBattlerForControllerExec(battler);
                         BattleScriptExecute(BattleScript_YawnMakesAsleep);
@@ -6634,7 +6635,7 @@ bool32 CanBeSlept(u32 battler, u32 ability, u32 isBlockedBySleepClause)
      || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
      || IsAbilityStatusProtected(battler)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN)
-     || (FlagGet(B_FLAG_SLEEP_CLAUSE) && isBlockedBySleepClause && gBattleStruct->sleepClause.isActive[GetBattlerSide(battler)]))
+     || (FlagGet(B_FLAG_SLEEP_CLAUSE) && isBlockedBySleepClause && gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(battler)]))
         return FALSE;
     return TRUE;
 }
@@ -11892,14 +11893,12 @@ u32 GetMoveType(u32 move)
     return gMovesInfo[move].type;
 }
 
-void TryActivateSleepClause(u32 battler)
+void TryActivateSleepClause(u32 battlerSide, u32 indexInParty)
 {
     if (!FlagGet(B_FLAG_SLEEP_CLAUSE))
         return;
 
-    u32 side = GetBattlerSide(battler);
-    gBattleStruct->sleepClause.isActive[side] = TRUE;
-    gBattleStruct->sleepClause.isCausingSleepClause[side][gBattlerPartyIndexes[battler]] = TRUE;
+    gBattleStruct->sleepClause.isCausingSleepClause[battlerSide] |= 1u << indexInParty;
 }
 
 void TryDeactivateSleepClause(u32 battlerSide, u32 indexInParty)
@@ -11907,9 +11906,5 @@ void TryDeactivateSleepClause(u32 battlerSide, u32 indexInParty)
     if (!FlagGet(B_FLAG_SLEEP_CLAUSE))
         return;
 
-    if (gBattleStruct->sleepClause.isActive[battlerSide] && gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][indexInParty])
-    {
-        gBattleStruct->sleepClause.isActive[battlerSide] = FALSE;
-        gBattleStruct->sleepClause.isCausingSleepClause[battlerSide][indexInParty] = FALSE;
-    }
+    gBattleStruct->sleepClause.isCausingSleepClause[battlerSide] &= ~(1u << indexInParty);
 }
