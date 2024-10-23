@@ -598,6 +598,7 @@ struct SimulatedDamage AI_CalcDamage(u32 battlerAtk, u32 battlerDef, u32 move, u
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
+            damageCalcData.isCrit = TRUE;
             s32 critDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                   effectivenessMultiplier, weather,
                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
