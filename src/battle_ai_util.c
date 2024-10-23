@@ -367,16 +367,12 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
 struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, enum DamageRollType rollType)
 {
     struct SimulatedDamage dmg;
-    struct DamageCalculationData dmgCalcData;
 
     SaveBattlerData(battlerAtk);
     SaveBattlerData(battlerDef);
     SetBattlerData(battlerAtk);
     SetBattlerData(battlerDef);
-    dmgCalcData.battlerAtk = battlerAtk;
-    dmgCalcData.battlerDef = battlerDef;
-    dmgCalcData.move = move;
-    dmg = AI_CalcDamage(&dmgCalcData, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), rollType);
+    dmg = AI_CalcDamage(battlerAtk, battlerDef, move, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA), rollType);
     RestoreBattlerData(battlerAtk);
     RestoreBattlerData(battlerDef);
     return dmg;
@@ -403,16 +399,11 @@ static inline s32 DmgRoll(s32 dmg)
     return dmg;
 }
 
-bool32 IsDamageMoveUnusable(struct DamageCalculationData *dmgCalcData)
+bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType)
 {
     struct AiLogicData *aiData = AI_DATA;
     u32 battlerDefAbility;
     u32 partnerBattlerDefAbility;
-
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = GetMoveType(move);
 
     if (DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move))
     {
@@ -500,22 +491,16 @@ static inline s32 GetDamageByRollType(s32 dmg, enum DamageRollType rollType)
         return DmgRoll(dmg);
 }
 
-struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, enum DamageRollType rollType)
+struct SimulatedDamage AI_CalcDamage(u32 battlerAtk, u32 battlerDef, u32 move, u8 *typeEffectiveness, bool32 considerZPower, u32 weather, enum DamageRollType rollType)
 {
     struct SimulatedDamage simDamage;
     s32 moveType;
+    u32 moveEffect = gMovesInfo[move].effect;
     uq4_12_t effectivenessMultiplier;
     bool32 isDamageMoveUnusable = FALSE;
     bool32 toggledGimmick = FALSE;
     struct AiLogicData *aiData = AI_DATA;
     AI_DATA->aiCalcInProgress = TRUE;
-
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveEffect = gMovesInfo[move].effect;
-    dmgCalcData->randomFactor = FALSE;
-    dmgCalcData->updateFlags = FALSE;
 
     if (moveEffect == EFFECT_NATURE_POWER)
         move = GetNaturePowerMove(battlerAtk);
@@ -532,7 +517,6 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
         SetActiveGimmick(battlerAtk, gBattleStruct->gimmick.usableGimmick[battlerAtk]);
     }
 
-    moveEffect = gMovesInfo[move].effect;
     switch (moveEffect)
     {
     case EFFECT_PHOTON_GEYSER:
@@ -555,11 +539,11 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
     gBattleStruct->dynamicMoveType = 0;
 
     SetTypeBeforeUsingMove(move, battlerAtk);
-    moveType = dmgCalcData->moveType = GetMoveType(move);
+    moveType = GetMoveType(move);
     effectivenessMultiplier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, aiData->abilities[battlerDef], FALSE);
 
     if (gMovesInfo[move].power)
-        isDamageMoveUnusable = IsDamageMoveUnusable(dmgCalcData);
+        isDamageMoveUnusable = IsDamageMoveUnusable(battlerAtk, battlerDef, move, moveType);
 
     if (gMovesInfo[move].power && !isDamageMoveUnusable)
     {
@@ -581,17 +565,25 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
             break;
         }
 
-        dmgCalcData->fixedBasePower = FALSE;
+        struct DamageCalculationData damageCalcData;
+        damageCalcData.battlerAtk = battlerAtk;
+        damageCalcData.battlerDef = battlerDef;
+        damageCalcData.move = move;
+        damageCalcData.moveType = moveType;
+        damageCalcData.isCrit = FALSE;
+        damageCalcData.randomFactor = FALSE;
+        damageCalcData.updateFlags = FALSE;
+
         critChanceIndex = CalcCritChanceStageArgs(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         if (critChanceIndex > 1) // Consider crit damage only if a move has at least +2 crit chance
         {
-            dmgCalcData->isCrit = FALSE;
-            s32 nonCritDmg = CalculateMoveDamageVars(&dmgCalcData,
+            damageCalcData.isCrit = FALSE;
+            s32 nonCritDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                      effectivenessMultiplier, weather,
                                                      aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                      aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-            dmgCalcData->isCrit = TRUE;
-            s32 critDmg = CalculateMoveDamageVars(&dmgCalcData,
+            damageCalcData.isCrit = TRUE;
+            s32 critDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                   effectivenessMultiplier, weather,
                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
@@ -606,7 +598,7 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
         }
         else if (critChanceIndex == -2) // Guaranteed critical
         {
-            s32 critDmg = CalculateMoveDamageVars(&dmgCalcData,
+            s32 critDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                   effectivenessMultiplier, weather,
                                                   aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                   aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
@@ -621,7 +613,7 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
             {
                 for (gMultiHitCounter = gMovesInfo[move].strikeCount; gMultiHitCounter > 0; gMultiHitCounter--) // The global is used to simulate actual damage done
                 {
-                    nonCritDmg += CalculateMoveDamageVars(&dmgCalcData,
+                    nonCritDmg += CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                           effectivenessMultiplier, weather,
                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
@@ -629,7 +621,7 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
             }
             else
             {
-                nonCritDmg = CalculateMoveDamageVars(&dmgCalcData,
+                nonCritDmg = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
                                                      effectivenessMultiplier, weather,
                                                      aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
                                                      aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
@@ -697,7 +689,7 @@ struct SimulatedDamage AI_CalcDamage(struct DamageCalculationData *dmgCalcData, 
                     simDamage.expected = 0;
                     for (i = 0; i < partyCount; i++)
                     {
-                        simDamage.expected += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
+                        simDamage.expected += CalculateMoveDamage(&damageCalcData, 0);
                     }
                     simDamage.minimum = simDamage.expected;
                     gBattleStruct->beatUpSlot = 0;
@@ -3453,7 +3445,6 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     struct SimulatedDamage dmg;
     u8 effectiveness;
     struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
-    struct DamageCalculationData dmgCalcData;
 
     if (isPartyMonAttacker)
     {
@@ -3470,11 +3461,7 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
 
-    dmgCalcData.battlerAtk = battlerAtk;
-    dmgCalcData.battlerDef = battlerDef;
-    dmgCalcData.move = move;
-
-    dmg = AI_CalcDamage(&dmgCalcData, &effectiveness, FALSE, AI_GetWeather(AI_DATA), rollType);
+    dmg = AI_CalcDamage(battlerAtk, battlerDef, move, &effectiveness, FALSE, AI_GetWeather(AI_DATA), rollType);
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
     return dmg.expected;

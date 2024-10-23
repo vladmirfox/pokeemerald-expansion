@@ -1302,7 +1302,14 @@ static void Cmd_attackcanceler(void)
             return;
         case DISOBEYS_HITS_SELF:
             gBattlerTarget = gBattlerAttacker;
-            gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+            struct DamageCalculationData damageCalcData;
+            damageCalcData.battlerAtk = damageCalcData.battlerDef = gBattlerAttacker;
+            damageCalcData.move = MOVE_NONE;
+            damageCalcData.moveType = TYPE_MYSTERY;
+            damageCalcData.isCrit = FALSE;
+            damageCalcData.randomFactor = FALSE;
+            damageCalcData.updateFlags = TRUE;
+            gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 40);
             gBattlescriptCurrInstr = BattleScript_IgnoresAndHitsItself;
             gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
             gHitMarker |= HITMARKER_OBEYS;
@@ -2122,21 +2129,19 @@ static void Cmd_damagecalc(void)
 {
     CMD_ARGS();
 
-    struct DamageCalculationData dmgCalcData;
-
     if (gMovesInfo[gCurrentMove].effect == EFFECT_SHELL_SIDE_ARM)
         gBattleStruct->swapDamageCategory = (gBattleStruct->shellSideArmCategory[gBattlerAttacker][gBattlerTarget] != gMovesInfo[gCurrentMove].category);
 
-    dmgCalcData.battlerAtk = gBattlerAttacker;
-    dmgCalcData.battlerDef = gBattlerTarget;
-    dmgCalcData.move = gCurrentMove;
-    dmgCalcData.moveType = GetMoveType(gCurrentMove);
-    dmgCalcData.fixedBasePower = TRUE;
-    dmgCalcData.isCrit = gIsCriticalHit;
-    dmgCalcData.randomFactor = TRUE;
-    dmgCalcData.updateFlags = TRUE;
+    struct DamageCalculationData damageCalcData;
+    damageCalcData.battlerAtk = gBattlerAttacker;
+    damageCalcData.battlerDef = gBattlerTarget;
+    damageCalcData.move = gCurrentMove;
+    damageCalcData.moveType = GetMoveType(gCurrentMove);
+    damageCalcData.isCrit = gIsCriticalHit;
+    damageCalcData.randomFactor = TRUE;
+    damageCalcData.updateFlags = TRUE;
 
-    gBattleMoveDamage = CalculateMoveDamage(&dmgCalcData);
+    gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, TRUE);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

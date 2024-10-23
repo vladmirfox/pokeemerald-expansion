@@ -427,12 +427,11 @@ static inline u32 GetDmgRollType(u32 battlerAtk)
     return DMG_ROLL_DEFAULT;
 }
 
-static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalculationData *dmgCalcData, u32 battlersCount, u32 weather)
+static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u32 battlersCount, u32 weather)
 {
     u16 *moves;
     u32 battlerDef, moveIndex, move;
     u32 rollType = GetDmgRollType(battlerAtk);
-    u32 battlerAtk = dmgCalcData->battlerAtk;
     SaveBattlerData(battlerAtk);
     moves = GetMovesArray(battlerAtk);
 
@@ -457,10 +456,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalcu
              //&& gMovesInfo[move].power != 0  /* we want to get effectiveness and accuracy of status moves */
              && !(aiData->moveLimitations[battlerAtk] & (1u << moveIndex)))
             {
-                dmgCalcData->battlerDef = battlerDef;
-                dmgCalcData->move = move;
-
-                dmg = AI_CalcDamage(dmgCalcData, &effectiveness, TRUE, weather, rollType);
+                dmg = AI_CalcDamage(battlerAtk, battlerDef, move, &effectiveness, TRUE, weather, rollType);
                 aiData->moveAccuracy[battlerAtk][battlerDef][moveIndex] = Ai_SetMoveAccuracy(aiData, battlerAtk, battlerDef, move);
             }
             aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex] = dmg;
@@ -474,7 +470,6 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, struct DamageCalcu
 void SetAiLogicDataForTurn(struct AiLogicData *aiData)
 {
     u32 battlerAtk, battlersCount, weather;
-    struct DamageCalculationData dmgCalcData;
 
     memset(aiData, 0, sizeof(struct AiLogicData));
     if (!(gBattleTypeFlags & BATTLE_TYPE_HAS_AI) && !IsWildMonSmart())
@@ -503,8 +498,7 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData)
         if (!IsBattlerAlive(battlerAtk))
             continue;
 
-        dmgCalcData.battlerAtk = battlerAtk;
-        SetBattlerAiMovesData(aiData, &dmgCalcData, battlersCount, weather);
+        SetBattlerAiMovesData(aiData, battlerAtk, battlersCount, weather);
     }
     AI_DATA->aiCalcInProgress = FALSE;
 }

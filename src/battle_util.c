@@ -3403,7 +3403,14 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = TRUE;
                         gBattlerTarget = gBattlerAttacker;
-                        gBattleMoveDamage = CalculateMoveDamage(MOVE_NONE, gBattlerAttacker, gBattlerAttacker, TYPE_MYSTERY, 40, FALSE, FALSE, TRUE);
+                        struct DamageCalculationData damageCalcData;
+                        damageCalcData.battlerAtk = damageCalcData.battlerDef = gBattlerAttacker;
+                        damageCalcData.move = MOVE_NONE;
+                        damageCalcData.moveType = TYPE_MYSTERY;
+                        damageCalcData.isCrit = FALSE;
+                        damageCalcData.randomFactor = FALSE;
+                        damageCalcData.updateFlags = TRUE;
+                        gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 40);
                         gProtectStructs[gBattlerAttacker].confusionSelfDmg = TRUE;
                         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                     }
@@ -8747,11 +8754,11 @@ u32 CountBattlerStatIncreases(u32 battler, bool32 countEvasionAcc)
     return count;
 }
 
-u32 GetMoveTargetCount(struct DamageCalculationData *dmgCalcData)
+u32 GetMoveTargetCount(struct DamageCalculationData *damageCalcData)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
 
     switch (GetBattlerMoveTargetType(battlerAtk, move))
     {
@@ -8890,11 +8897,11 @@ u32 CalcFuryCutterBasePower(u32 basePower, u32 furyCutterCounter)
     return basePower;
 }
 
-static inline u32 CalcMoveBasePower(struct DamageCalculationData *dmgCalcData, u32 abilityDef, u32 weather)
+static inline u32 CalcMoveBasePower(struct DamageCalculationData *damageCalcData, u32 abilityDef, u32 weather)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
 
     u32 i;
     u32 basePower = gMovesInfo[move].power;
@@ -9157,15 +9164,15 @@ static inline u32 CalcMoveBasePower(struct DamageCalculationData *dmgCalcData, u
     return basePower;
 }
 
-static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *dmgCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectAtk, u32 weather)
+static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *damageCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectAtk, u32 weather)
 {
     u32 i;
     u32 holdEffectParamAtk;
-    u32 basePower = CalcMoveBasePower(dmgCalcData, defAbility, weather);
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 basePower = CalcMoveBasePower(damageCalcData, defAbility, weather);
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     uq4_12_t holdEffectModifier;
     uq4_12_t modifier = UQ_4_12(1.0);
@@ -9415,7 +9422,7 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
         if (moveType == TYPE_FIRE)
         {
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 RecordAbilityBattle(battlerDef, defAbility);
         }
         break;
@@ -9535,16 +9542,16 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageCalculationData *
     return uq4_12_multiply_by_int_half_down(modifier, basePower);
 }
 
-static inline u32 CalcAttackStat(struct DamageCalculationData *dmgCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectAtk)
+static inline u32 CalcAttackStat(struct DamageCalculationData *damageCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectAtk)
 {
     u8 atkStage;
     u32 atkStat;
     uq4_12_t modifier;
     u16 atkBaseSpeciesId;
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     atkBaseSpeciesId = GET_BASE_SPECIES_ID(gBattleMons[battlerAtk].species);
 
@@ -9593,7 +9600,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *dmgCalcData, u32 
     }
 
     // critical hits ignore attack stat's stage drops
-    if (dmgCalcData->isCrit && atkStage < DEFAULT_STAT_STAGE)
+    if (damageCalcData->isCrit && atkStage < DEFAULT_STAT_STAGE)
         atkStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore attack stat changes while taking damage
     if (defAbility == ABILITY_UNAWARE)
@@ -9688,7 +9695,7 @@ static inline u32 CalcAttackStat(struct DamageCalculationData *dmgCalcData, u32 
         if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.5));
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
         }
         break;
@@ -9765,16 +9772,16 @@ static bool32 CanEvolve(u32 species)
     return FALSE;
 }
 
-static inline u32 CalcDefenseStat(struct DamageCalculationData *dmgCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectDef, u32 weather)
+static inline u32 CalcDefenseStat(struct DamageCalculationData *damageCalcData, u32 atkAbility, u32 defAbility, u32 holdEffectDef, u32 weather)
 {
     bool32 usesDefStat;
     u8 defStage;
     u32 defStat, def, spDef;
     uq4_12_t modifier;
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM) // the defense stats are swapped
     {
@@ -9805,7 +9812,7 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *dmgCalcData, u32
         defStat /= 2;
 
     // critical hits ignore positive stat changes
-    if (dmgCalcData->isCrit && defStage > DEFAULT_STAT_STAGE)
+    if (damageCalcData->isCrit && defStage > DEFAULT_STAT_STAGE)
         defStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore defense stat changes while dealing damage
     if (atkAbility == ABILITY_UNAWARE)
@@ -9827,7 +9834,7 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *dmgCalcData, u32
         if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_MARVEL_SCALE);
         }
         break;
@@ -9835,7 +9842,7 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *dmgCalcData, u32
         if (usesDefStat)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
         }
         break;
@@ -9843,7 +9850,7 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *dmgCalcData, u32
         if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
         {
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
         }
         break;
@@ -9927,9 +9934,9 @@ static inline s32 CalculateBaseDamage(u32 power, u32 userFinalAttack, u32 level,
     return power * userFinalAttack * (2 * level / 5 + 2) / targetFinalDefense / 50 + 2;
 }
 
-static inline uq4_12_t GetTargetDamageModifier(struct DamageCalculationData *dmgCalcData)
+static inline uq4_12_t GetTargetDamageModifier(struct DamageCalculationData *damageCalcData)
 {
-    if (IsDoubleBattle() && GetMoveTargetCount(dmgCalcData) >= 2)
+    if (IsDoubleBattle() && GetMoveTargetCount(damageCalcData) >= 2)
         return B_MULTIPLE_TARGETS_DMG >= GEN_4 ? UQ_4_12(0.75) : UQ_4_12(0.5);
     return UQ_4_12(1.0);
 }
@@ -9941,11 +9948,11 @@ static inline uq4_12_t GetParentalBondModifier(u32 battlerAtk)
     return B_PARENTAL_BOND_DMG >= GEN_7 ? UQ_4_12(0.25) : UQ_4_12(0.5);
 }
 
-static inline uq4_12_t GetSameTypeAttackBonusModifier(struct DamageCalculationData *dmgCalcData, u32 abilityAtk)
+static inline uq4_12_t GetSameTypeAttackBonusModifier(struct DamageCalculationData *damageCalcData, u32 abilityAtk)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     if (moveType == TYPE_MYSTERY)
         return UQ_4_12(1.0);
@@ -9957,12 +9964,12 @@ static inline uq4_12_t GetSameTypeAttackBonusModifier(struct DamageCalculationDa
 }
 
 // Utility Umbrella holders take normal damage from what would be rain- and sun-weakened attacks.
-static uq4_12_t GetWeatherDamageModifier(struct DamageCalculationData *dmgCalcData, u32 holdEffectAtk, u32 holdEffectDef, u32 weather)
+static uq4_12_t GetWeatherDamageModifier(struct DamageCalculationData *damageCalcData, u32 holdEffectAtk, u32 holdEffectDef, u32 weather)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     if (weather == B_WEATHER_NONE)
         return UQ_4_12(1.0);
@@ -9986,10 +9993,10 @@ static uq4_12_t GetWeatherDamageModifier(struct DamageCalculationData *dmgCalcDa
     return UQ_4_12(1.0);
 }
 
-static inline uq4_12_t GetBurnOrFrostBiteModifier(struct DamageCalculationData *dmgCalcData, u32 abilityAtk)
+static inline uq4_12_t GetBurnOrFrostBiteModifier(struct DamageCalculationData *damageCalcData, u32 abilityAtk)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 move = dmgCalcData->move;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 move = damageCalcData->move;
 
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN
         && IS_MOVE_PHYSICAL(move)
@@ -10017,9 +10024,9 @@ static inline uq4_12_t GetGlaiveRushModifier(u32 battlerDef)
     return UQ_4_12(1.0);
 }
 
-static inline uq4_12_t GetZMaxMoveAgainstProtectionModifier(struct DamageCalculationData *dmgCalcData)
+static inline uq4_12_t GetZMaxMoveAgainstProtectionModifier(struct DamageCalculationData *damageCalcData)
 {
-    if ((IsZMove(dmgCalcData->move) || IsMaxMove(dmgCalcData->move)) && IS_BATTLER_PROTECTED(dmgCalcData->battlerDef))
+    if ((IsZMove(damageCalcData->move) || IsMaxMove(damageCalcData->move)) && IS_BATTLER_PROTECTED(damageCalcData->battlerDef))
         return UQ_4_12(0.25);
     return UQ_4_12(1.0);
 }
@@ -10160,13 +10167,13 @@ static inline uq4_12_t GetAttackerItemsModifier(u32 battlerAtk, uq4_12_t typeEff
     return UQ_4_12(1.0);
 }
 
-static inline uq4_12_t GetDefenderItemsModifier(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier, u32 abilityDef, u32 holdEffectDef)
+static inline uq4_12_t GetDefenderItemsModifier(struct DamageCalculationData *damageCalcData, uq4_12_t typeEffectivenessModifier, u32 abilityDef, u32 holdEffectDef)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 moveType = damageCalcData->moveType;
 
-    u32 holdEffectDefParam = GetBattlerHoldEffectParam(dmgCalcData->battlerDef);
+    u32 holdEffectDefParam = GetBattlerHoldEffectParam(damageCalcData->battlerDef);
     u32 itemDef = gBattleMons[battlerDef].item;
 
     switch (holdEffectDef)
@@ -10176,7 +10183,7 @@ static inline uq4_12_t GetDefenderItemsModifier(struct DamageCalculationData *dm
             return UQ_4_12(1.0);
         if (moveType == holdEffectDefParam && (moveType == TYPE_NORMAL || typeEffectivenessModifier >= UQ_4_12(2.0)))
         {
-            if (dmgCalcData->updateFlags)
+            if (damageCalcData->updateFlags)
                 gSpecialStatuses[battlerDef].berryReduced = TRUE;
             return (abilityDef == ABILITY_RIPEN) ? UQ_4_12(0.25) : UQ_4_12(0.5);
         }
@@ -10195,14 +10202,14 @@ static inline uq4_12_t GetDefenderItemsModifier(struct DamageCalculationData *dm
 // https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward
 // Please Note: Fixed Point Multiplication is not associative.
 // The order of operations is relevant.
-static inline uq4_12_t GetOtherModifiers(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier,
+static inline uq4_12_t GetOtherModifiers(struct DamageCalculationData *damageCalcData, uq4_12_t typeEffectivenessModifier,
                                          u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk, u32 holdEffectDef)
 {
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
-    u32 isCrit = dmgCalcData->isCrit;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
+    u32 isCrit = damageCalcData->isCrit;
 
     uq4_12_t finalModifier = UQ_4_12(1.0);
     u32 battlerDefPartner = BATTLE_PARTNER(battlerDef);
@@ -10222,14 +10229,14 @@ static inline uq4_12_t GetOtherModifiers(struct DamageCalculationData *dmgCalcDa
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(move, moveType, battlerAtk, battlerDef, typeEffectivenessModifier, abilityDef));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(battlerAtk, typeEffectivenessModifier, holdEffectAtk));
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(dmgCalcData, typeEffectivenessModifier, abilityDef, holdEffectDef));
+        DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(damageCalcData, typeEffectivenessModifier, abilityDef, holdEffectDef));
     }
     else
     {
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderAbilitiesModifier(move, moveType, battlerAtk, battlerDef, typeEffectivenessModifier, abilityDef));
         DAMAGE_MULTIPLY_MODIFIER(GetDefenderPartnerAbilitiesModifier(battlerDefPartner));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerAbilitiesModifier(battlerAtk, typeEffectivenessModifier, isCrit, abilityAtk));
-        DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(dmgCalcData, typeEffectivenessModifier, abilityDef, holdEffectDef));
+        DAMAGE_MULTIPLY_MODIFIER(GetDefenderItemsModifier(damageCalcData, typeEffectivenessModifier, abilityDef, holdEffectDef));
         DAMAGE_MULTIPLY_MODIFIER(GetAttackerItemsModifier(battlerAtk, typeEffectivenessModifier, holdEffectAtk));
     }
     return finalModifier;
@@ -10241,76 +10248,75 @@ static inline uq4_12_t GetOtherModifiers(struct DamageCalculationData *dmgCalcDa
     dmg = uq4_12_multiply_by_int_half_down(modifier, dmg); \
 } while (0)
 
-static inline s32 DoMoveDamageCalcVars(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier, u32 weather,
+static inline s32 DoMoveDamageCalcVars(struct DamageCalculationData *damageCalcData, u32 fixedBasePower, uq4_12_t typeEffectivenessModifier, u32 weather,
                                        u32 holdEffectAtk, u32 holdEffectDef, u32 abilityAtk, u32 abilityDef)
 {
     s32 dmg;
     u32 userFinalAttack;
     u32 targetFinalDefense;
-    u32 fixedBasePower = 0;
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
 
-    if (dmgCalcData->fixedBasePower)
+    if (fixedBasePower)
         gBattleMovePower = fixedBasePower;
     else
-        gBattleMovePower = CalcMoveBasePowerAfterModifiers(dmgCalcData, abilityAtk, abilityDef, holdEffectAtk, weather);
+        gBattleMovePower = CalcMoveBasePowerAfterModifiers(damageCalcData, abilityAtk, abilityDef, holdEffectAtk, weather);
 
-    userFinalAttack = CalcAttackStat(dmgCalcData, abilityAtk, abilityDef, holdEffectAtk);
-    targetFinalDefense = CalcDefenseStat(dmgCalcData, abilityAtk, abilityDef, holdEffectDef, weather);
+    userFinalAttack = CalcAttackStat(damageCalcData, abilityAtk, abilityDef, holdEffectAtk);
+    targetFinalDefense = CalcDefenseStat(damageCalcData, abilityAtk, abilityDef, holdEffectDef, weather);
 
     dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, gBattleMons[battlerAtk].level, targetFinalDefense);
-    DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(dmgCalcData));
+    DAMAGE_APPLY_MODIFIER(GetTargetDamageModifier(damageCalcData));
     DAMAGE_APPLY_MODIFIER(GetParentalBondModifier(battlerAtk));
-    DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(dmgCalcData, holdEffectAtk, holdEffectDef, weather));
-    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(dmgCalcData->isCrit));
+    DAMAGE_APPLY_MODIFIER(GetWeatherDamageModifier(damageCalcData, holdEffectAtk, holdEffectDef, weather));
+    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
     DAMAGE_APPLY_MODIFIER(GetGlaiveRushModifier(battlerDef));
 
-    if (dmgCalcData->randomFactor)
+    if (damageCalcData->randomFactor)
     {
         dmg *= DMG_ROLL_PERCENT_HI - RandomUniform(RNG_DAMAGE_MODIFIER, 0, DMG_ROLL_PERCENT_HI - DMG_ROLL_PERCENT_LO);
         dmg /= 100;
     }
 
     if (GetActiveGimmick(battlerAtk) == GIMMICK_TERA)
-        DAMAGE_APPLY_MODIFIER(GetTeraMultiplier(battlerAtk, dmgCalcData->moveType));
+        DAMAGE_APPLY_MODIFIER(GetTeraMultiplier(battlerAtk, damageCalcData->moveType));
     else
-        DAMAGE_APPLY_MODIFIER(GetSameTypeAttackBonusModifier(dmgCalcData, abilityAtk));
+        DAMAGE_APPLY_MODIFIER(GetSameTypeAttackBonusModifier(damageCalcData, abilityAtk));
     DAMAGE_APPLY_MODIFIER(typeEffectivenessModifier);
-    DAMAGE_APPLY_MODIFIER(GetBurnOrFrostBiteModifier(dmgCalcData, abilityAtk));
-    DAMAGE_APPLY_MODIFIER(GetZMaxMoveAgainstProtectionModifier(dmgCalcData));
-    DAMAGE_APPLY_MODIFIER(GetOtherModifiers(dmgCalcData, typeEffectivenessModifier, abilityAtk, abilityDef, holdEffectAtk, holdEffectDef));
+    DAMAGE_APPLY_MODIFIER(GetBurnOrFrostBiteModifier(damageCalcData, abilityAtk));
+    DAMAGE_APPLY_MODIFIER(GetZMaxMoveAgainstProtectionModifier(damageCalcData));
+    DAMAGE_APPLY_MODIFIER(GetOtherModifiers(damageCalcData, typeEffectivenessModifier, abilityAtk, abilityDef, holdEffectAtk, holdEffectDef));
 
     if (dmg == 0)
         dmg = 1;
     return dmg;
 }
 
-static inline s32 DoMoveDamageCalc(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier, u32 weather)
+static inline s32 DoMoveDamageCalc(struct DamageCalculationData *damageCalcData, u32 fixedBasePower, uq4_12_t typeEffectivenessModifier, u32 weather)
 {
     u32 holdEffectAtk, holdEffectDef, abilityAtk, abilityDef;
 
     if (typeEffectivenessModifier == UQ_4_12(0.0))
         return 0;
 
-    holdEffectAtk = GetBattlerHoldEffect(dmgCalcData->battlerAtk, TRUE);
-    holdEffectDef = GetBattlerHoldEffect(dmgCalcData->battlerDef, TRUE);
-    abilityAtk = GetBattlerAbility(dmgCalcData->battlerAtk);
-    abilityDef = GetBattlerAbility(dmgCalcData->battlerDef);
+    holdEffectAtk = GetBattlerHoldEffect(damageCalcData->battlerAtk, TRUE);
+    holdEffectDef = GetBattlerHoldEffect(damageCalcData->battlerDef, TRUE);
+    abilityAtk = GetBattlerAbility(damageCalcData->battlerAtk);
+    abilityDef = GetBattlerAbility(damageCalcData->battlerDef);
 
-    return DoMoveDamageCalcVars(dmgCalcData, typeEffectivenessModifier, weather, holdEffectAtk, holdEffectDef, abilityAtk, abilityDef);
+    return DoMoveDamageCalcVars(damageCalcData, fixedBasePower, typeEffectivenessModifier, weather, holdEffectAtk, holdEffectDef, abilityAtk, abilityDef);
 }
 
-static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier,
+static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData *damageCalcData, uq4_12_t typeEffectivenessModifier,
                                                     u32 weather, u32 holdEffectDef, u32 abilityDef)
 {
     s32 dmg;
     u32 userFinalAttack;
     u32 targetFinalDefense;
-    u32 battlerAtk = dmgCalcData->battlerAtk;
-    u32 battlerDef = dmgCalcData->battlerDef;
-    u32 move = dmgCalcData->move;
-    u32 moveType = dmgCalcData->moveType;
+    u32 battlerAtk = damageCalcData->battlerAtk;
+    u32 battlerDef = damageCalcData->battlerDef;
+    u32 move = damageCalcData->move;
+    u32 moveType = damageCalcData->moveType;
 
     struct Pokemon *party = GetSideParty(GetBattlerSide(battlerAtk));
     struct Pokemon *partyMon = &party[gWishFutureKnock.futureSightPartyIndex[battlerDef]];
@@ -10323,12 +10329,12 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData
     else
         userFinalAttack = GetMonData(partyMon, MON_DATA_SPATK, NULL);
 
-    targetFinalDefense = CalcDefenseStat(dmgCalcData, ABILITY_NONE, abilityDef, holdEffectDef, weather);
+    targetFinalDefense = CalcDefenseStat(damageCalcData, ABILITY_NONE, abilityDef, holdEffectDef, weather);
     dmg = CalculateBaseDamage(gBattleMovePower, userFinalAttack, partyMonLevel, targetFinalDefense);
 
-    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(dmgCalcData->isCrit));
+    DAMAGE_APPLY_MODIFIER(GetCriticalModifier(damageCalcData->isCrit));
 
-    if (dmgCalcData->randomFactor)
+    if (damageCalcData->randomFactor)
     {
         dmg *= DMG_ROLL_PERCENT_HI - RandomUniform(RNG_DAMAGE_MODIFIER, 0, DMG_ROLL_PERCENT_HI - DMG_ROLL_PERCENT_LO);
         dmg /= 100;
@@ -10349,17 +10355,17 @@ static inline s32 DoFutureSightAttackDamageCalcVars(struct DamageCalculationData
     return dmg;
 }
 
-static inline s32 DoFutureSightAttackDamageCalc(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier, u32 weather)
+static inline s32 DoFutureSightAttackDamageCalc(struct DamageCalculationData *damageCalcData, uq4_12_t typeEffectivenessModifier, u32 weather)
 {
     u32 holdEffectDef, abilityDef;
 
     if (typeEffectivenessModifier == UQ_4_12(0.0))
         return 0;
 
-    holdEffectDef = GetBattlerHoldEffect(dmgCalcData->battlerDef, TRUE);
-    abilityDef = GetBattlerAbility(dmgCalcData->battlerDef);
+    holdEffectDef = GetBattlerHoldEffect(damageCalcData->battlerDef, TRUE);
+    abilityDef = GetBattlerAbility(damageCalcData->battlerDef);
 
-    return DoFutureSightAttackDamageCalcVars(dmgCalcData, typeEffectivenessModifier, weather, holdEffectDef, abilityDef);
+    return DoFutureSightAttackDamageCalcVars(damageCalcData, typeEffectivenessModifier, weather, holdEffectDef, abilityDef);
 }
 
 #undef DAMAGE_APPLY_MODIFIER
@@ -10372,36 +10378,36 @@ static u32 GetWeather(void)
         return gBattleWeather;
 }
 
-static inline bool32 IsFutureSightAttackerInParty(struct DamageCalculationData *dmgCalcData)
+static inline bool32 IsFutureSightAttackerInParty(struct DamageCalculationData *damageCalcData)
 {
-    if (gMovesInfo[dmgCalcData->move].effect != EFFECT_FUTURE_SIGHT)
+    if (gMovesInfo[damageCalcData->move].effect != EFFECT_FUTURE_SIGHT)
         return FALSE;
 
     struct Pokemon *party = GetSideParty(GetBattlerSide(gBattlerAttacker));
-    return &party[gWishFutureKnock.futureSightPartyIndex[dmgCalcData->battlerDef]]
-        != &party[gBattlerPartyIndexes[dmgCalcData->battlerAtk]];
+    return &party[gWishFutureKnock.futureSightPartyIndex[damageCalcData->battlerDef]]
+        != &party[gBattlerPartyIndexes[damageCalcData->battlerAtk]];
 }
 
-s32 CalculateMoveDamage(struct DamageCalculationData *dmgCalcData)
+s32 CalculateMoveDamage(struct DamageCalculationData *damageCalcData, u32 fixedBasePower)
 {
-    u32 typeEffectivenessMultiplier = CalcTypeEffectivenessMultiplier(dmgCalcData->move,
-                                                                      dmgCalcData->moveType,
-                                                                      dmgCalcData->battlerAtk,
-                                                                      dmgCalcData->battlerDef,
-                                                                      GetBattlerAbility(dmgCalcData->battlerDef),
-                                                                      dmgCalcData->updateFlags);
+    u32 typeEffectivenessMultiplier = CalcTypeEffectivenessMultiplier(damageCalcData->move,
+                                                                      damageCalcData->moveType,
+                                                                      damageCalcData->battlerAtk,
+                                                                      damageCalcData->battlerDef,
+                                                                      GetBattlerAbility(damageCalcData->battlerDef),
+                                                                      damageCalcData->updateFlags);
 
-    if (IsFutureSightAttackerInParty(dmgCalcData))
-        return DoFutureSightAttackDamageCalc(dmgCalcData, typeEffectivenessMultiplier, GetWeather());
+    if (IsFutureSightAttackerInParty(damageCalcData))
+        return DoFutureSightAttackDamageCalc(damageCalcData, typeEffectivenessMultiplier, GetWeather());
 
-    return DoMoveDamageCalc(dmgCalcData, typeEffectivenessMultiplier, GetWeather());
+    return DoMoveDamageCalc(damageCalcData, fixedBasePower, typeEffectivenessMultiplier, GetWeather());
 }
 
 // for AI so that typeEffectivenessModifier, weather, abilities and holdEffects are calculated only once
-s32 CalculateMoveDamageVars(struct DamageCalculationData *dmgCalcData, uq4_12_t typeEffectivenessModifier,
+s32 CalculateMoveDamageVars(struct DamageCalculationData *damageCalcData, u32 fixedBasePower, uq4_12_t typeEffectivenessModifier,
                             u32 weather, u32 holdEffectAtk, u32 holdEffectDef, u32 abilityAtk, u32 abilityDef)
 {
-    return DoMoveDamageCalcVars(dmgCalcData, typeEffectivenessModifier, weather,
+    return DoMoveDamageCalcVars(damageCalcData, fixedBasePower, typeEffectivenessModifier, weather,
                                 holdEffectAtk, holdEffectDef, abilityAtk, abilityDef);
 }
 

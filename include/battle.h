@@ -1036,19 +1036,6 @@ struct QueuedStatBoost
     s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
 }; /* size = 8 */
 
-struct DamageCalculationData
-{
-    u32 battlerAtk:4;
-    u32 battlerDef:4;
-    u32 move:16;
-    u32 moveType:5;
-    u32 fixedBasePower:1;
-    u32 isCrit:1;
-    u32 randomFactor:1;
-    u32 updateFlags:1;
-    u32 padding:3;
-};
-
 // All battle variables are declared in battle_main.c
 extern u16 gBattle_BG0_X;
 extern u16 gBattle_BG0_Y;
