@@ -9778,7 +9778,6 @@ static inline u32 CalcDefenseStat(struct DamageCalculationData *damageCalcData, 
     u8 defStage;
     u32 defStat, def, spDef;
     uq4_12_t modifier;
-    u32 battlerAtk = damageCalcData->battlerAtk;
     u32 battlerDef = damageCalcData->battlerDef;
     u32 move = damageCalcData->move;
     u32 moveType = damageCalcData->moveType;
@@ -9966,8 +9965,6 @@ static inline uq4_12_t GetSameTypeAttackBonusModifier(struct DamageCalculationDa
 // Utility Umbrella holders take normal damage from what would be rain- and sun-weakened attacks.
 static uq4_12_t GetWeatherDamageModifier(struct DamageCalculationData *damageCalcData, u32 holdEffectAtk, u32 holdEffectDef, u32 weather)
 {
-    u32 battlerAtk = damageCalcData->battlerAtk;
-    u32 battlerDef = damageCalcData->battlerDef;
     u32 move = damageCalcData->move;
     u32 moveType = damageCalcData->moveType;
 
@@ -10169,11 +10166,10 @@ static inline uq4_12_t GetAttackerItemsModifier(u32 battlerAtk, uq4_12_t typeEff
 
 static inline uq4_12_t GetDefenderItemsModifier(struct DamageCalculationData *damageCalcData, uq4_12_t typeEffectivenessModifier, u32 abilityDef, u32 holdEffectDef)
 {
-    u32 battlerAtk = damageCalcData->battlerAtk;
     u32 battlerDef = damageCalcData->battlerDef;
     u32 moveType = damageCalcData->moveType;
 
-    u32 holdEffectDefParam = GetBattlerHoldEffectParam(damageCalcData->battlerDef);
+    u32 holdEffectDefParam = GetBattlerHoldEffectParam(battlerDef);
     u32 itemDef = gBattleMons[battlerDef].item;
 
     switch (holdEffectDef)
