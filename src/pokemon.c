@@ -4174,7 +4174,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
 {
     u32 status = GetMonData(mon, MON_DATA_STATUS, 0);
-    
+
     if (status & healMask)
     {
         status &= ~healMask;
