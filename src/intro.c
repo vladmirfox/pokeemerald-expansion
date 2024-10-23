@@ -114,6 +114,7 @@ extern const struct SpriteTemplate gAncientPowerRockSpriteTemplate[];
 
 enum {
     COPYRIGHT_INITIALIZE,
+    COPYRIGHT_EMULATOR_BLEND,
     COPYRIGHT_START_FADE = 140,
     COPYRIGHT_START_INTRO,
 };
@@ -1059,8 +1060,8 @@ static void MainCB2_EndIntro(void)
 
 static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 paletteOffset)
 {
-    LZ77UnCompVram(gIntroCopyright_Gfx, (void *)(VRAM + tilesetAddress));
-    LZ77UnCompVram(gIntroCopyright_Tilemap, (void *)(VRAM + tilemapAddress));
+    LZDecompressVram(gIntroCopyright_Gfx, (void *)(VRAM + tilesetAddress));
+    LZDecompressVram(gIntroCopyright_Tilemap, (void *)(VRAM + tilemapAddress));
     LoadPalette(gIntroCopyright_Pal, paletteOffset, PLTT_SIZE_4BPP);
 }
 
@@ -1104,7 +1105,7 @@ static u8 SetUpCopyrightScreen(void)
         GameCubeMultiBoot_Init(&gMultibootProgramStruct);
     // REG_DISPCNT needs to be overwritten the second time, because otherwise the intro won't show up on VBA 1.7.2 and John GBA Lite emulators.
     // The REG_DISPCNT overwrite is NOT needed in m-GBA, No$GBA, VBA 1.8.0, My Boy and Pizza Boy GBA emulators.
-    case 1:
+    case COPYRIGHT_EMULATOR_BLEND:
         REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON;
     default:
         UpdatePaletteFade();
@@ -1184,14 +1185,14 @@ void Task_Scene1_Load(u8 taskId)
     SetGpuReg(REG_OFFSET_BG2VOFS, 80);
     SetGpuReg(REG_OFFSET_BG1VOFS, 24);
     SetGpuReg(REG_OFFSET_BG0VOFS, 40);
-    LZ77UnCompVram(sIntro1Bg_Gfx, (void *)VRAM);
-    LZ77UnCompVram(sIntro1Bg0_Tilemap, (void *)(BG_CHAR_ADDR(2)));
+    LZDecompressVram(sIntro1Bg_Gfx, (void *)VRAM);
+    LZDecompressVram(sIntro1Bg0_Tilemap, (void *)(BG_CHAR_ADDR(2)));
     DmaClear16(3, BG_SCREEN_ADDR(17), BG_SCREEN_SIZE);
-    LZ77UnCompVram(sIntro1Bg1_Tilemap, (void *)(BG_SCREEN_ADDR(18)));
+    LZDecompressVram(sIntro1Bg1_Tilemap, (void *)(BG_SCREEN_ADDR(18)));
     DmaClear16(3, BG_SCREEN_ADDR(19), BG_SCREEN_SIZE);
-    LZ77UnCompVram(sIntro1Bg2_Tilemap, (void *)(BG_SCREEN_ADDR(20)));
+    LZDecompressVram(sIntro1Bg2_Tilemap, (void *)(BG_SCREEN_ADDR(20)));
     DmaClear16(3, BG_SCREEN_ADDR(21), BG_SCREEN_SIZE);
-    LZ77UnCompVram(sIntro1Bg3_Tilemap, (void *)(BG_SCREEN_ADDR(22)));
+    LZDecompressVram(sIntro1Bg3_Tilemap, (void *)(BG_SCREEN_ADDR(22)));
     DmaClear16(3, BG_SCREEN_ADDR(23), BG_SCREEN_SIZE);
     LoadPalette(sIntro1Bg_Pal, BG_PLTT_ID(0), sizeof(sIntro1Bg_Pal));
     SetGpuReg(REG_OFFSET_BG3CNT, BGCNT_PRIORITY(3) | BGCNT_CHARBASE(0) | BGCNT_SCREENBASE(22) | BGCNT_16COLOR | BGCNT_TXT256x512);
@@ -1730,8 +1731,8 @@ static void SpriteCB_Manectric(struct Sprite *sprite)
 static void Task_Scene3_Load(u8 taskId)
 {
     IntroResetGpuRegs();
-    LZ77UnCompVram(sIntroPokeball_Gfx, (void *)VRAM);
-    LZ77UnCompVram(sIntroPokeball_Tilemap, (void *)(BG_CHAR_ADDR(1)));
+    LZDecompressVram(sIntroPokeball_Gfx, (void *)VRAM);
+    LZDecompressVram(sIntroPokeball_Tilemap, (void *)(BG_CHAR_ADDR(1)));
     LoadPalette(sIntroPokeball_Pal, BG_PLTT_ID(0), sizeof(sIntroPokeball_Pal));
     gTasks[taskId].tAlpha = 0;
     gTasks[taskId].tZoomDiv = 0;

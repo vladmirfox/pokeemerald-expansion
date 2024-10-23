@@ -175,7 +175,7 @@ u16 LoadCompressedSpriteSheet(const struct CompressedSpriteSheet *src)
 {
     struct SpriteSheet dest;
 
-    LZ77UnCompWram(src->data, gDecompressionBuffer);
+    LZDecompressWram(src->data, gDecompressionBuffer);
     dest.data = gDecompressionBuffer;
     dest.size = src->size;
     dest.tag = src->tag;
@@ -193,7 +193,7 @@ u16 LoadCompressedSpriteSheetByTemplate(const struct SpriteTemplate *template, s
     if ((size = IsLZ77Data(template->images->data, TILE_SIZE_4BPP, sizeof(gDecompressionBuffer))) == 0)
         return LoadSpriteSheetByTemplate(template, 0, offset);
 
-    LZ77UnCompWram(template->images->data, gDecompressionBuffer);
+    LZDecompressWram(template->images->data, gDecompressionBuffer);
     myImage.data = gDecompressionBuffer;
     myImage.size = size + offset;
     myTemplate.images = &myImage;
@@ -206,7 +206,7 @@ void LoadCompressedSpriteSheetOverrideBuffer(const struct CompressedSpriteSheet 
 {
     struct SpriteSheet dest;
 
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
     dest.data = buffer;
     dest.size = src->size;
     dest.tag = src->tag;
@@ -217,7 +217,7 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
 {
     struct SpritePalette dest;
 
-    LZ77UnCompWram(src->data, gDecompressionBuffer);
+    LZDecompressWram(src->data, gDecompressionBuffer);
     dest.data = (void *) gDecompressionBuffer;
     dest.tag = src->tag;
     LoadSpritePalette(&dest);
@@ -227,7 +227,7 @@ void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
 {
     struct SpritePalette dest;
 
-    LZ77UnCompWram(pal, gDecompressionBuffer);
+    LZDecompressWram(pal, gDecompressionBuffer);
     dest.data = (void *) gDecompressionBuffer;
     dest.tag = tag;
     LoadSpritePalette(&dest);
@@ -237,7 +237,7 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
 {
     struct SpritePalette dest;
 
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
     dest.data = buffer;
     dest.tag = src->tag;
     LoadSpritePalette(&dest);
@@ -245,7 +245,7 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
 
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer)
 {
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
 }
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
@@ -543,7 +543,7 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     if (isFrontPic)
     {
         if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
+            LZDecompressWram(gSpeciesInfo[species].frontPicFemale, dest);
         else if (gSpeciesInfo[species].frontPic != NULL)
         {
             if (species != SPECIES_LILLIGANT_HISUI)
@@ -557,16 +557,16 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
             }
         }
         else
-            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
+            LZDecompressWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
     }
     else
     {
         if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gSpeciesInfo[species].backPicFemale, dest);
+            LZDecompressWram(gSpeciesInfo[species].backPicFemale, dest);
         else if (gSpeciesInfo[species].backPic != NULL)
-            LZ77UnCompWram(gSpeciesInfo[species].backPic, dest);
+            LZDecompressWram(gSpeciesInfo[species].backPic, dest);
         else
-            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].backPic, dest);
+            LZDecompressWram(gSpeciesInfo[SPECIES_NONE].backPic, dest);
     }
 
     if (species == SPECIES_SPINDA && isFrontPic)
@@ -578,7 +578,7 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
 
 void Unused_LZDecompressWramIndirect(const void **src, void *dest)
 {
-    LZ77UnCompWram(*src, dest);
+    LZDecompressWram(*src, dest);
 }
 
 static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u8 *src_tiles, u8 *dest_tiles)
@@ -742,7 +742,7 @@ bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src
     void *buffer;
 
     buffer = AllocZeroed(src->data[0] >> 8);
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
 
     dest.data = buffer;
     dest.size = src->size;
@@ -759,7 +759,7 @@ bool8 LoadCompressedSpritePaletteUsingHeap(const struct CompressedSpritePalette 
     void *buffer;
 
     buffer = AllocZeroed(src->data[0] >> 8);
-    LZ77UnCompWram(src->data, buffer);
+    LZDecompressWram(src->data, buffer);
     dest.data = buffer;
     dest.tag = src->tag;
 
