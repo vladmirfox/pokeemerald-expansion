@@ -4191,6 +4191,7 @@ static void HandleTurnActionSelectionState(void)
     for (battler = 0; battler < gBattlersCount; battler++)
     {
         u32 position = GetBattlerPosition(battler);
+        u32 isAiRisky = AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_RISKY; // Risky AI switches aggressively even mid battle
         switch (gBattleCommunication[battler])
         {
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.
@@ -4208,10 +4209,7 @@ static void HandleTurnActionSelectionState(void)
                 BattleAI_SetupAIData(0xF, sBattler_AI);
 
                 // Setup switching data
-                if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_RISKY) // Risky AI switches aggressively even mid battle
-                    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, TRUE);
-                else
-                    AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, FALSE);
+                AI_DATA->mostSuitableMonId[battler] = GetMostSuitableMonToSwitchInto(battler, isAiRisky);
                 if (ShouldSwitch(battler))
                     AI_DATA->shouldSwitch |= (1u << battler);
 
