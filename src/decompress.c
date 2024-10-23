@@ -141,12 +141,14 @@ EWRAM_INIT struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE] = {
 
 void LZDecompressWram(const u32 *src, void *dest)
 {
-    LZ77UnCompWram(src, dest);
+    //LZ77UnCompWram(src, dest);
+    DecompressData(src, dest);
 }
 
 void LZDecompressVram(const u32 *src, void *dest)
 {
-    LZ77UnCompVram(src, dest);
+    //LZ77UnCompVram(src, dest);
+    DecompressData(src, dest);
 }
 
 // Checks if `ptr` is likely LZ77 data
@@ -546,15 +548,18 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
             LZDecompressWram(gSpeciesInfo[species].frontPicFemale, dest);
         else if (gSpeciesInfo[species].frontPic != NULL)
         {
+            LZDecompressWram(gSpeciesInfo[species].frontPic, dest);
+            /*
             if (species != SPECIES_LILLIGANT_HISUI)
             {
-                LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+                LZDecompressWram(gSpeciesInfo[species].frontPic, dest);
             }
             else
             {
                 //LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
                 DecompressData(gSpeciesInfo[species].frontPic, dest);
             }
+            */
         }
         else
             LZDecompressWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
