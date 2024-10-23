@@ -994,4 +994,22 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
     }
 }
 
+SINGLE_BATTLE_TEST("Sleep Clause: Pre-existing sleep condition doesn't activate sleep clause")
+{
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON) { Status1(STATUS1_SLEEP); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+    }
+}
+
 TO_DO_BATTLE_TEST("Sleep Clause: Falling asleep due to disobedience does not set sleep clause");
