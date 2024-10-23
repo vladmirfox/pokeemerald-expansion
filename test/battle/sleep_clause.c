@@ -673,12 +673,16 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by using a held item")
 {
+    u32 heldItem = ITEM_NONE;
+    PARAMETRIZE { heldItem = ITEM_CHESTO_BERRY; }
+    PARAMETRIZE { heldItem = ITEM_LUM_BERRY; }
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         ASSUME(gItemsInfo[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
+        ASSUME(gItemsInfo[ITEM_LUM_BERRY].holdEffect == HOLD_EFFECT_CURE_STATUS);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_ZIGZAGOON) { Item(ITEM_CHESTO_BERRY); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Item(heldItem); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPORE); }
         TURN { MOVE(player, MOVE_SPORE); }
@@ -687,7 +691,10 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Zigzagoon fell asleep!");
-        MESSAGE("The opposing Zigzagoon's Chesto Berry woke it up!");
+        if (heldItem == ITEM_CHESTO_BERRY)
+            MESSAGE("The opposing Zigzagoon's Chesto Berry woke it up!");
+        else
+            MESSAGE("The opposing Zigzagoon's Lum Berry cured its sleep problem!");
         MESSAGE("Zigzagoon used Spore!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
