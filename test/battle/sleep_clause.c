@@ -1012,4 +1012,47 @@ SINGLE_BATTLE_TEST("Sleep Clause: Pre-existing sleep condition doesn't activate 
     }
 }
 
+DOUBLE_BATTLE_TEST("Sleep Clause: :(")
+{
+    KNOWN_FAILING; // WIP
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); MOVE(opponentRight, MOVE_SPORE, target:playerRight); }
+        TURN { SWITCH(playerLeft, 2); }
+        TURN { MOVE(playerLeft, MOVE_AROMATHERAPY); MOVE(opponentRight, MOVE_SPORE, target:playerRight); MOVE(opponentLeft, MOVE_SPORE, target:playerLeft); }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerLeft);
+        MESSAGE("The opposing Breloom's Effect Spore made Zigzagoon sleep!");
+        STATUS_ICON(playerLeft, sleep: TRUE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentRight);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);
+        MESSAGE("Zigzagoon fell asleep!");
+        STATUS_ICON(playerRight, sleep: TRUE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentRight);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerRight);
+        MESSAGE("Zigzagoon fell asleep!");
+        STATUS_ICON(playerRight, sleep: TRUE);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponentLeft);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, playerLeft);
+            MESSAGE("Zigzagoon fell asleep!");
+            STATUS_ICON(playerLeft, sleep: TRUE);
+        }
+        MESSAGE("But it failed!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Sleep Clause: Falling asleep due to disobedience does not set sleep clause");
