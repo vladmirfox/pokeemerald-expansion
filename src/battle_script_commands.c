@@ -2141,7 +2141,7 @@ static void Cmd_damagecalc(void)
     damageCalcData.randomFactor = TRUE;
     damageCalcData.updateFlags = TRUE;
 
-    gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, TRUE);
+    gBattleMoveDamage = CalculateMoveDamage(&damageCalcData, 0);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
