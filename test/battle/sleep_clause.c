@@ -1014,7 +1014,6 @@ SINGLE_BATTLE_TEST("Sleep Clause: Pre-existing sleep condition doesn't activate 
 
 DOUBLE_BATTLE_TEST("Sleep Clause: :(")
 {
-    KNOWN_FAILING; // WIP
     PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
