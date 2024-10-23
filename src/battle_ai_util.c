@@ -3440,20 +3440,27 @@ s32 AI_CalcPartyMonDamage(u32 move, u32 battlerAtk, u32 battlerDef, struct Battl
     {
         gBattleMons[battlerAtk] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerDef].saved = TRUE;
-        SetBattlerAiData(battlerDef, AI_DATA); // set known opposing battler data
+        SetBattlerAiData(battlerAtk, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerDef].saved = FALSE;
     }
     else
     {
         gBattleMons[battlerDef] = switchinCandidate;
         AI_THINKING_STRUCT->saved[battlerAtk].saved = TRUE;
-        SetBattlerAiData(battlerAtk, AI_DATA); // set known opposing battler data
+        SetBattlerAiData(battlerDef, AI_DATA); // set known opposing battler data
         AI_THINKING_STRUCT->saved[battlerAtk].saved = FALSE;
     }
+
 
     dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA), rollType);
     // restores original gBattleMon struct
     FreeRestoreBattleMons(savedBattleMons);
+
+    if (isPartyMonAttacker)
+        SetBattlerAiData(battlerAtk, AI_DATA);
+    else
+        SetBattlerAiData(battlerDef, AI_DATA);
+
     return dmg.expected;
 }
 
