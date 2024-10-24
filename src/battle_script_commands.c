@@ -3243,8 +3243,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 if (FlagGet(B_FLAG_SLEEP_CLAUSE) && !gBattleStruct->sleepClause.effectExempt)
                 {
                     gBattleStruct->sleepClause.isCausingSleepClause[GetBattlerSide(gEffectBattler)] |= 1u << gBattlerPartyIndexes[gEffectBattler];
-                    gBattleStruct->sleepClause.effectExempt = FALSE;
                 }
+                gBattleStruct->sleepClause.effectExempt = FALSE;
             }
             else
             {

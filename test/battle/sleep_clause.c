@@ -1012,7 +1012,81 @@ SINGLE_BATTLE_TEST("Sleep Clause: Pre-existing sleep condition doesn't activate 
     }
 }
 
-DOUBLE_BATTLE_TEST("Sleep Clause: :(")
+SINGLE_BATTLE_TEST("Sleep Clause: Sleep caused by Effect Spore does not prevent sleep clause from ever activating")
+{
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SPORE); }
+        TURN { SWITCH(player, 2); MOVE(opponent, MOVE_SPORE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("The opposing Breloom's Effect Spore made Zigzagoon sleep!");
+        STATUS_ICON(player, sleep: TRUE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponent);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("Zigzagoon fell asleep!");
+        STATUS_ICON(player, sleep: TRUE);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponent);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+            MESSAGE("Zigzagoon fell asleep!");
+            STATUS_ICON(player, sleep: TRUE);
+        }
+        MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Waking up after Effect Spore doesn't deactivate sleep clause")
+{
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN {}
+        TURN {}
+        TURN {}
+        TURN { MOVE(opponent, MOVE_SPORE); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SPORE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("The opposing Breloom's Effect Spore made Zigzagoon sleep!");
+        STATUS_ICON(player, sleep: TRUE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponent);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("Zigzagoon fell asleep!");
+        STATUS_ICON(player, sleep: TRUE);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, opponent);
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+            MESSAGE("Zigzagoon fell asleep!");
+            STATUS_ICON(player, sleep: TRUE);
+        }
+        MESSAGE("But it failed!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Sleep Clause: Waking up after Effect Spore doesn't deactivate sleep clause (Doubles)")
 {
     PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
     GIVEN {
