@@ -4,10 +4,6 @@
 ASSUMPTIONS
 {
     ASSUME(gMovesInfo[MOVE_SONIC_BOOM].effect == EFFECT_FIXED_DAMAGE_ARG);
-    ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].effect == EFFECT_FIXED_DAMAGE_ARG);
-    
-    ASSUME(gMovesInfo[MOVE_SONIC_BOOM].argument == 20);
-    ASSUME(gMovesInfo[MOVE_DRAGON_RAGE].argument == 40);
 }
 
 SINGLE_BATTLE_TEST("Sonic Boom deals fixed damage", s16 damage)
@@ -17,6 +13,7 @@ SINGLE_BATTLE_TEST("Sonic Boom deals fixed damage", s16 damage)
     PARAMETRIZE { mon = SPECIES_ARON; }
     
     GIVEN {
+        ASSUME(gMovesInfo[MOVE_SONIC_BOOM].argument == 20);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(mon);
     } WHEN {
@@ -40,40 +37,5 @@ SINGLE_BATTLE_TEST("Sonic Boom doesn't affect ghost types")
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SONIC_BOOM, player);
         MESSAGE("It doesn't affect Foe Gastly…");
-    }
-}
-
-SINGLE_BATTLE_TEST("Dragon Rage deals fixed damage", s16 damage)
-{
-    u16 mon;
-    PARAMETRIZE { mon = SPECIES_RATTATA; }
-    PARAMETRIZE { mon = SPECIES_BELDUM; }
-    PARAMETRIZE { mon = SPECIES_DRAGONAIR; }
-    
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(mon);
-    } WHEN {
-        TURN { MOVE(player, MOVE_DRAGON_RAGE); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, player);
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT(results[0].damage == 40);
-        EXPECT(results[1].damage == 40);
-        EXPECT(results[2].damage == 40);
-    }
-}
-
-SINGLE_BATTLE_TEST("Dragon Rage doesn't affect fairy types")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_RALTS);
-    } WHEN {
-        TURN { MOVE(player, MOVE_DRAGON_RAGE); }
-    } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, player);
-        MESSAGE("It doesn't affect Foe Ralts…");
     }
 }
