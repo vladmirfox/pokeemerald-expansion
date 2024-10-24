@@ -167,11 +167,11 @@ bool8 HasAtLeastOneBerry(void)
 
 bool8 HasAtLeastOnePokeBall(void)
 {
-    u16 i;
+    u16 ballId;
 
-    for (i = FIRST_BALL; i <= LAST_BALL; i++)
+    for (ballId = BALL_POKE; ballId < POKEBALL_COUNT; ballId++)
     {
-        if (CheckBagHasItem(i, 1) == TRUE)
+        if (CheckBagHasItem(ballId, 1) == TRUE)
             return TRUE;
     }
     return FALSE;
