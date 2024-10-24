@@ -302,5 +302,6 @@ void RemoveBattlerType(u32 battler, u8 type);
 u32 GetMoveType(u32 move);
 void TryActivateSleepClause(u32 battlerSide, u32 indexInParty);
 void TryDeactivateSleepClause(u32 battlerSide, u32 indexInParty);
+bool8 IsSleepClauseActiveForSide(u32 battlerSide);
 
 #endif // GUARD_BATTLE_UTIL_H

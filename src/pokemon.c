@@ -4186,12 +4186,7 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
             {
                 u32 i = 0;
                 u32 battlerSide = GetBattlerSide(battlerId);
-                struct Pokemon *party;
-
-                if (battlerSide == B_SIDE_PLAYER)
-                    party = gPlayerParty;
-                else
-                    party = gEnemyParty;
+                struct Pokemon *party = GetSideParty(battlerSide);
 
                 for (i = 0; i < PARTY_SIZE; i++)
                 {

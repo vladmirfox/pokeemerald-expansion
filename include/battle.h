@@ -604,7 +604,7 @@ struct BattleGimmickData
 struct SleepClauseData
 {
     bool8 effectExempt; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
-    u8 isCausingSleepClause[NUM_BATTLE_SIDES]; // stores which pokemon on a given side is causing Sleep Clause to be active as a bitfield
+    u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
 };
 
 struct LostItem
