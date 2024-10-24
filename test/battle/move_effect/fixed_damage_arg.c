@@ -39,6 +39,7 @@ SINGLE_BATTLE_TEST("Sonic Boom doesn't affect ghost types")
         TURN { MOVE(player, MOVE_SONIC_BOOM); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SONIC_BOOM, player);
+        MESSAGE("It doesn't affect Foe Gastly…");
     }
 }
 
@@ -61,5 +62,18 @@ SINGLE_BATTLE_TEST("Dragon Rage deals fixed damage", s16 damage)
         EXPECT(results[0].damage == 40);
         EXPECT(results[1].damage == 40);
         EXPECT(results[2].damage == 40);
+    }
+}
+
+SINGLE_BATTLE_TEST("Dragon Rage doesn't affect fairy types")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_RALTS);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAGON_RAGE); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, player);
+        MESSAGE("It doesn't affect Foe Ralts…");
     }
 }
