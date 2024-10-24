@@ -20,7 +20,7 @@ void SetCurrentDifficulty(u32 desiredDifficulty)
     if (desiredDifficulty > DIFFICULTY_MAX)
         desiredDifficulty = DIFFICULTY_MAX;
 
-    VarSet(B_VAR_DIFFICULTY,desiredDifficulty);
+    VarSet(B_VAR_DIFFICULTY, desiredDifficulty);
 }
 
 u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
