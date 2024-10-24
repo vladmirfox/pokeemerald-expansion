@@ -1,6 +1,7 @@
 #include "global.h"
 #include "data.h"
 #include "event_data.h"
+#include "script.h"
 #include "constants/battle.h"
 
 u32 GetCurrentDifficultyLevel(void)
@@ -9,6 +10,17 @@ u32 GetCurrentDifficultyLevel(void)
         return DIFFICULTY_NORMAL;
 
     return VarGet(B_VAR_DIFFICULTY);
+}
+
+void SetCurrentDifficulty(u32 desiredDifficulty)
+{
+    if (!B_VAR_DIFFICULTY)
+        return;
+
+    if (desiredDifficulty > DIFFICULTY_MAX)
+        desiredDifficulty = DIFFICULTY_MAX;
+
+    VarSet(B_VAR_DIFFICULTY,desiredDifficulty);
 }
 
 u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
@@ -40,7 +52,7 @@ u32 GetTrainerDifficultyLevel(u16 trainerId)
     return difficulty;
 }
 
-void Script_IncreaseDifficulty(void)
+void Script_IncreaseDifficulty(struct ScriptContext *ctx)
 {
     u32 currentDifficulty;
 
@@ -52,10 +64,10 @@ void Script_IncreaseDifficulty(void)
     if (currentDifficulty++ > DIFFICULTY_MAX)
         return;
 
-    Script_SetDifficulty(currentDifficulty);
+    SetCurrentDifficulty(currentDifficulty);
 }
 
-void Script_DecreaseDifficulty(void)
+void Script_DecreaseDifficulty(struct ScriptContext *ctx)
 {
     u32 currentDifficulty;
 
@@ -67,16 +79,17 @@ void Script_DecreaseDifficulty(void)
     if (!currentDifficulty)
         return;
 
-    Script_SetDifficulty(--currentDifficulty);
+    SetCurrentDifficulty(--currentDifficulty);
 }
 
-void Script_SetDifficulty(u32 desiredDifficulty)
+void Script_GetDifficulty(struct ScriptContext *ctx)
 {
-    if (!B_VAR_DIFFICULTY)
-        return;
+    gSpecialVar_Result = GetCurrentDifficultyLevel();
+}
 
-    if (desiredDifficulty > DIFFICULTY_MAX)
-        desiredDifficulty = DIFFICULTY_MAX;
+void Script_SetDifficulty(struct ScriptContext *ctx)
+{
+    u32 desiredDifficulty = ScriptReadByte(ctx);
 
-    VarSet(B_VAR_DIFFICULTY,desiredDifficulty);
+    SetCurrentDifficulty(desiredDifficulty);
 }
