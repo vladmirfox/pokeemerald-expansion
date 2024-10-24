@@ -12,7 +12,7 @@ u32 GetCurrentDifficultyLevel(void)
     return VarGet(B_VAR_DIFFICULTY);
 }
 
-void SetCurrentDifficulty(u32 desiredDifficulty)
+void SetCurrentDifficultyLevel(u32 desiredDifficulty)
 {
     if (!B_VAR_DIFFICULTY)
         return;
@@ -64,7 +64,7 @@ void Script_IncreaseDifficulty(struct ScriptContext *ctx)
     if (currentDifficulty++ > DIFFICULTY_MAX)
         return;
 
-    SetCurrentDifficulty(currentDifficulty);
+    SetCurrentDifficultyLevel(currentDifficulty);
 }
 
 void Script_DecreaseDifficulty(struct ScriptContext *ctx)
@@ -79,7 +79,7 @@ void Script_DecreaseDifficulty(struct ScriptContext *ctx)
     if (!currentDifficulty)
         return;
 
-    SetCurrentDifficulty(--currentDifficulty);
+    SetCurrentDifficultyLevel(--currentDifficulty);
 }
 
 void Script_GetDifficulty(struct ScriptContext *ctx)
@@ -91,5 +91,5 @@ void Script_SetDifficulty(struct ScriptContext *ctx)
 {
     u32 desiredDifficulty = ScriptReadByte(ctx);
 
-    SetCurrentDifficulty(desiredDifficulty);
+    SetCurrentDifficultyLevel(desiredDifficulty);
 }

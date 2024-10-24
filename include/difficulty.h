@@ -5,7 +5,7 @@
 #include "script.h"
 
 u32 GetCurrentDifficultyLevel(void);
-void SetCurrentDifficulty(u32);
+void SetCurrentDifficultyLevel(u32);
 
 u32 GetBattlePartnerDifficultyLevel(u16);
 u32 GetTrainerDifficultyLevel(u16);
