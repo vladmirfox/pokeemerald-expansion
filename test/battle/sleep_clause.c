@@ -693,7 +693,10 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is woken up by Shed Skin")
 {
-    PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN); // Needs to be changed to 33 once PR #5558 is accepted (https://github.com/rh-hideout/pokeemerald-expansion/pull/5558)
+    if (B_ABILITY_TRIGGER_CHANCE == GEN_4)
+        PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN);
+    else
+        PASSES_RANDOMLY(33, 100, RNG_SHED_SKIN);
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
