@@ -17320,7 +17320,7 @@ void BS_JumpIfSleepClause(void)
     u8 battler = GetBattlerForBattleScript(cmd->battler);
 
     // Can freely sleep own partner
-    if (IsDoubleBattle() && B_FLAG_SLEEP_CLAUSE && GetBattlerSide(battler) == GetBattlerSide(gBattlerTarget))
+    if (IsDoubleBattle() && B_FLAG_SLEEP_CLAUSE && GetBattlerSide(gBattlerAttacker) == GetBattlerSide(gBattlerTarget))
     {
         gBattleStruct->sleepClause.effectExempt = TRUE;
         gBattlescriptCurrInstr = cmd->nextInstr;
