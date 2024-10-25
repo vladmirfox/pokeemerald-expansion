@@ -2695,7 +2695,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         }
 
-        // If partner is using sleep move, clause isn't active, but we don't want both mons using a sleep move
+        // Don't use sleep effect if partner will activate sleep clause
         if (IsSleepClauseTriggeringEffect(partnerEffect) && IsSleepClauseTriggeringEffect(effect) && B_FLAG_SLEEP_CLAUSE)
             ADJUST_SCORE(-20);
             
