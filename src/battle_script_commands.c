@@ -17319,7 +17319,14 @@ void BS_JumpIfSleepClause(void)
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
     u8 battler = GetBattlerForBattleScript(cmd->battler);
 
-    if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
+    // Can freely sleep own partner
+    if (IsDoubleBattle() && B_FLAG_SLEEP_CLAUSE && GetBattlerSide(battler) == GetBattlerSide(gBattlerTarget))
+    {
+        gBattleStruct->sleepClause.effectExempt = TRUE;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    // Can't sleep if clause is active otherwise
+    else if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
