@@ -2773,6 +2773,15 @@ u8 DoBattlerEndTurnEffects(void)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINPREVENTS_MISTY;
                         BattleScriptExecute(BattleScript_TerrainPreventsEnd2);
                     }
+                    else if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
+                    {
+                        // TODO sleep clause: we potentially need a new message to show here
+                        // for the case of "a pokemon is about to fall asleep due to Yawn but it is blocked by sleep clause because another pokemon on the same side
+                        // fell asleep during the same turn"
+                        // see the test case "Yawn'd Pokémon who's partner is slept before Yawn triggers will not fall asleep due to sleep clause being activated"
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINPREVENTS_MISTY;
+                        BattleScriptExecute(BattleScript_TerrainPreventsEnd2);
+                    }
                     else
                     {
                         if (B_SLEEP_TURNS >= GEN_5)
@@ -2781,7 +2790,7 @@ u8 DoBattlerEndTurnEffects(void)
                             gBattleMons[battler].status1 |= ((Random() % 4) + 3);
 
                         // Try to activate Sleep Clause when a mon is put to Sleep by Yawn
-                        TryActivateSleepClause(GetBattlerSide(gBattlerTarget), gBattlerPartyIndexes[gBattlerTarget]);
+                        TryActivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                         MarkBattlerForControllerExec(battler);
                         BattleScriptExecute(BattleScript_YawnMakesAsleep);
