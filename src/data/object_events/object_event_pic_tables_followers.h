@@ -5822,8 +5822,8 @@ static const struct SpriteFrameImage sPicTable_CalyrexIce[] = {
 #endif //P_FUSION_FORMS
 
 #if P_FUSION_FORMS
-static const struct SpriteFrameImage sPicTable_CalyrexShadowRider[] = {
-    overworld_ascending_frames(gObjectEventPic_CalyrexShadowRider, 4, 4),
+static const struct SpriteFrameImage sPicTable_CalyrexShadow[] = {
+    overworld_ascending_frames(gObjectEventPic_CalyrexShadow, 4, 4),
 };
 #endif //P_FUSION_FORMS
 #endif //P_FAMILY_CALYREX

@@ -33428,7 +33428,7 @@ static const u16 sCalyrexIceTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sCalyrexShadowRiderTeachableLearnset[] = {
+static const u16 sCalyrexShadowTeachableLearnset[] = {
     MOVE_BULLET_SEED,
     MOVE_CALM_MIND,
     MOVE_FACADE,

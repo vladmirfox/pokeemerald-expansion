@@ -24360,31 +24360,31 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 
 #if P_FUSION_FORMS
-    const u32 gMonFrontPic_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/front.4bpp.lz");
-    const u32 gMonPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/normal.gbapal.lz");
-    const u32 gMonBackPic_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/back.4bpp.lz");
-    const u32 gMonShinyPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/shiny.gbapal.lz");
-    const u8 gMonIcon_CalyrexIce[] = INCBIN_U8("graphics/pokemon/calyrex/ice_rider/icon.4bpp");
+    const u32 gMonFrontPic_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/front.4bpp.lz");
+    const u32 gMonPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/normal.gbapal.lz");
+    const u32 gMonBackPic_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/back.4bpp.lz");
+    const u32 gMonShinyPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/shiny.gbapal.lz");
+    const u8 gMonIcon_CalyrexIce[] = INCBIN_U8("graphics/pokemon/calyrex/ice/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_CalyrexIce[] = INCBIN_COMP("graphics/pokemon/calyrex/ice_rider/overworld.4bpp");
+    const u32 gObjectEventPic_CalyrexIce[] = INCBIN_COMP("graphics/pokemon/calyrex/ice/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u32 gOverworldPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/overworld_normal.gbapal.lz");
-    const u32 gShinyOverworldPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice_rider/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_CalyrexIce[] = INCBIN_U32("graphics/pokemon/calyrex/ice/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FUSION_FORMS
 
 #if P_FUSION_FORMS
-    const u32 gMonFrontPic_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/front.4bpp.lz");
-    const u32 gMonPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/normal.gbapal.lz");
-    const u32 gMonBackPic_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/back.4bpp.lz");
-    const u32 gMonShinyPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/shiny.gbapal.lz");
-    const u8 gMonIcon_CalyrexShadowRider[] = INCBIN_U8("graphics/pokemon/calyrex/shadow_rider/icon.4bpp");
+    const u32 gMonFrontPic_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/front.4bpp.lz");
+    const u32 gMonPalette_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/normal.gbapal.lz");
+    const u32 gMonBackPic_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/back.4bpp.lz");
+    const u32 gMonShinyPalette_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/shiny.gbapal.lz");
+    const u8 gMonIcon_CalyrexShadow[] = INCBIN_U8("graphics/pokemon/calyrex/shadow/icon.4bpp");
 #if OW_POKEMON_OBJECT_EVENTS
-    const u32 gObjectEventPic_CalyrexShadowRider[] = INCBIN_COMP("graphics/pokemon/calyrex/shadow_rider/overworld.4bpp");
+    const u32 gObjectEventPic_CalyrexShadow[] = INCBIN_COMP("graphics/pokemon/calyrex/shadow/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
-    const u32 gOverworldPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/overworld_normal.gbapal.lz");
-    const u32 gShinyOverworldPalette_CalyrexShadowRider[] = INCBIN_U32("graphics/pokemon/calyrex/shadow_rider/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_CalyrexShadow[] = INCBIN_U32("graphics/pokemon/calyrex/shadow/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FUSION_FORMS
