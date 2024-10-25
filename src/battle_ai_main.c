@@ -2669,7 +2669,8 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     // check what effect partner is using
     if (aiData->partnerMove != 0)
     {
-        switch (gMovesInfo[aiData->partnerMove].effect)
+        u32 partnerEffect = gMovesInfo[aiData->partnerMove].effect;
+        switch (partnerEffect)
         {
         case EFFECT_HELPING_HAND:
             if (IS_MOVE_STATUS(move))
@@ -2693,6 +2694,11 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         }
+
+        // If partner is using sleep move, clause isn't active, but we don't want both mons using a sleep move
+        if (IsSleepClauseTriggeringEffect(partnerEffect) && IsSleepClauseTriggeringEffect(effect) && B_FLAG_SLEEP_CLAUSE)
+            ADJUST_SCORE(-20);
+            
     } // check partner move effect
 
     // Adjust for always crit moves

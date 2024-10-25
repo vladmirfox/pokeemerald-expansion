@@ -2328,6 +2328,19 @@ bool32 IsSwitchOutEffect(u32 effect)
     }
 }
 
+bool32 IsSleepClauseTriggeringEffect(u32 effect)
+{
+    // Move effects that directly induce sleep get blocked by sleep clause
+    switch (effect)
+    {
+    case EFFECT_SLEEP:
+    case EFFECT_YAWN:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 bool32 HasDamagingMove(u32 battlerId)
 {
     u32 i;
