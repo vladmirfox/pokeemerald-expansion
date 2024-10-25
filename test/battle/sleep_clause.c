@@ -976,13 +976,16 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
 
 SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mon is sent out and transforms into a mon with Insomnia / Vital spirit")
 {
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_VITAL_SPIRIT; }
+    PARAMETRIZE { ability = ABILITY_INSOMNIA; }
     KNOWN_FAILING; // Sleep Clause parts work, but Imposter seems broken with battle messages / targeting. Issue #5565 https://github.com/rh-hideout/pokeemerald-expansion/issues/5565
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
         ASSUME(gItemsInfo[ITEM_LAGGING_TAIL].holdEffect == HOLD_EFFECT_LAGGING_TAIL);
         PLAYER(SPECIES_ZIGZAGOON)
-        PLAYER(SPECIES_DELIBIRD) { Ability(ABILITY_VITAL_SPIRIT); }
+        PLAYER(SPECIES_DELIBIRD) { Ability(ability); }
         OPPONENT(SPECIES_DITTO) { Ability(ABILITY_IMPOSTER); }
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
@@ -998,7 +1001,10 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
         MESSAGE("The opposing Ditto fell asleep!");
         MESSAGE("2 sent out Zigzagoon!");
         MESSAGE("2 sent out Ditto!");
-        MESSAGE("The opposing Ditto's Vital Spirit cured its sleep problem!");
+        if (ability == ABILITY_VITAL_SPIRIT)
+            MESSAGE("The opposing Ditto's Vital Spirit cured its sleep problem!");
+        else
+            MESSAGE("The opposing Ditto's Insomnia cured its sleep problem!");
         MESSAGE("2 sent out Zigzagoon!");
         MESSAGE("Delibird used Spore!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
@@ -1251,5 +1257,145 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Waking up after Rest doesn't deactivate sleep 
             STATUS_ICON(playerRight, sleep: TRUE);
         }
         MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Suppressing and then sleeping Vital Spirit / Insomnia and switching back in deactivates sleep clause")
+{
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_VITAL_SPIRIT; }
+    PARAMETRIZE { ability = ABILITY_INSOMNIA; }
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_DELIBIRD) { Ability(ability); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_GASTRO_ACID); }
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(opponent, 0); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Delibird fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+        MESSAGE("But it failed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Mold Breaker Pokémon sleeping Vital Spirit / Insomnia activates sleep clause")
+{
+    KNOWN_FAILING; // Interaction between Mold Breaker and Vital Spirit / Insomnia is broken. Issue #5578 https://github.com/rh-hideout/pokeemerald-expansion/issues/5578
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_VITAL_SPIRIT; }
+    PARAMETRIZE { ability = ABILITY_INSOMNIA; }
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        PLAYER(SPECIES_PANCHAM) { Ability(ABILITY_MOLD_BREAKER); }
+        OPPONENT(SPECIES_DELIBIRD) { Ability(ability); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+        TURN { SWITCH(opponent, 0); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Delibird fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+        MESSAGE("But it failed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Sleep Clause: Yawn'd Pokémon slept due to Effect Spore before Yawn triggers does not activate sleep clause")
+{
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        ASSUME(gMovesInfo[MOVE_TACKLE].makesContact);
+        PLAYER(SPECIES_BRELOOM) { Ability(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_YAWN); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { SWITCH(opponent, 1); MOVE(player, MOVE_SPORE); }
+    } SCENE {
+        MESSAGE("The opposing Zigzagoon grew drowsy!");
+        ABILITY_POPUP(player, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("Breloom's Effect Spore made the opposing Zigzagoon sleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponent, sleep: TRUE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Sleep Clause: Yawn'd Pokémon who's partner is slept before Yawn triggers will not fall asleep due to sleep clause being activated")
+{
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        PLAYER(SPECIES_ZIGZAGOON);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_YAWN, target: opponentLeft); MOVE(playerRight, MOVE_YAWN, target: opponentRight); }
+        TURN { MOVE(playerLeft, MOVE_SPORE, target: opponentLeft); }
+    } SCENE {
+        MESSAGE("The opposing Zigzagoon grew drowsy!");
+        MESSAGE("The opposing Zigzagoon grew drowsy!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, playerLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponentLeft);
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+        NONE_OF { 
+            MESSAGE( "The opposing Zigzagoon fell asleep!");
+            STATUS_ICON(opponentRight, sleep: TRUE);
+        }
+    }
+}
+
+DOUBLE_BATTLE_TEST("Sleep Clause: If both Pokémon are Yawn'd at the same time, one will fall asleep and the other will not")
+{
+    GIVEN {
+        FLAG_SET(B_FLAG_SLEEP_CLAUSE);
+        ASSUME(gMovesInfo[MOVE_SPORE].effect == EFFECT_SLEEP);
+        ASSUME(gMovesInfo[MOVE_YAWN].effect == EFFECT_YAWN);
+        PLAYER(SPECIES_ZIGZAGOON) { Speed(5); }
+        PLAYER(SPECIES_ZIGZAGOON) { Speed(4); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Speed(3); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Speed(2); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_YAWN, target: opponentLeft); MOVE(playerRight, MOVE_YAWN, target: opponentRight); }
+        TURN { }
+    } SCENE {
+        MESSAGE("The opposing Zigzagoon grew drowsy!");
+        MESSAGE("The opposing Zigzagoon grew drowsy!");
+        MESSAGE("The opposing Zigzagoon fell asleep!");
+        STATUS_ICON(opponentLeft, sleep: TRUE);
+        NONE_OF {
+            MESSAGE( "The opposing Zigzagoon fell asleep!");
+            STATUS_ICON(opponentRight, sleep: TRUE);
+        }
     }
 }
