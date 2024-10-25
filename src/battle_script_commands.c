@@ -3239,11 +3239,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 else
                     gBattleMons[gEffectBattler].status1 |= STATUS1_SLEEP_TURN(1 + RandomUniform(RNG_SLEEP_TURNS, 2, 5));
 
-                if (!gBattleStruct->sleepClause.effectExempt)
-                {
-                    TryActivateSleepClause(GetBattlerSide(gEffectBattler), gBattlerPartyIndexes[gEffectBattler]);
-                }
-                gBattleStruct->sleepClause.effectExempt = FALSE;
+                TryActivateSleepClause(GetBattlerSide(gEffectBattler), gBattlerPartyIndexes[gEffectBattler]);
             }
             else
             {

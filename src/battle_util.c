@@ -11904,6 +11904,12 @@ u32 GetMoveType(u32 move)
 
 void TryActivateSleepClause(u32 battlerSide, u32 indexInParty)
 {
+    if (gBattleStruct->sleepClause.effectExempt)
+    {
+        gBattleStruct->sleepClause.effectExempt = FALSE;
+        return;
+    }
+
     if (FlagGet(B_FLAG_SLEEP_CLAUSE))
         gBattleStruct->sleepClause.monCausingSleepClause[battlerSide] = indexInParty;
 }
