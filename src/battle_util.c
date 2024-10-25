@@ -5762,7 +5762,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                  && IsMoveMakingContact(move, gBattlerAttacker))
                 {
                     if (FlagGet(B_FLAG_SLEEP_CLAUSE))
-                        gBattleStruct->sleepClause.effectExempt = TRUE;
+                        gBattleStruct->sleepClauseEffectExempt = TRUE;
                     gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     BattleScriptPushCursor();
@@ -11899,22 +11899,22 @@ u32 GetMoveType(u32 move)
 
 void TryActivateSleepClause(u32 battlerSide, u32 indexInParty)
 {
-    if (gBattleStruct->sleepClause.effectExempt)
+    if (gBattleStruct->sleepClauseEffectExempt)
     {
-        gBattleStruct->sleepClause.effectExempt = FALSE;
+        gBattleStruct->sleepClauseEffectExempt = FALSE;
         return;
     }
 
     if (FlagGet(B_FLAG_SLEEP_CLAUSE))
-        gBattleStruct->sleepClause.monCausingSleepClause[battlerSide] = indexInParty;
+        gBattleStruct->monCausingSleepClause[battlerSide] = indexInParty;
 }
 
 void TryDeactivateSleepClause(u32 battlerSide, u32 indexInParty)
 {
     // If the pokemon on the given side at the given index in the party is the one causing Sleep Clause to be active,
     // set monCausingSleepClause[battlerSide] = PARTY_SIZE, which means Sleep Clause is not active for the given side
-    if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->sleepClause.monCausingSleepClause[battlerSide] == indexInParty)
-        gBattleStruct->sleepClause.monCausingSleepClause[battlerSide] = PARTY_SIZE;
+    if (FlagGet(B_FLAG_SLEEP_CLAUSE) && gBattleStruct->monCausingSleepClause[battlerSide] == indexInParty)
+        gBattleStruct->monCausingSleepClause[battlerSide] = PARTY_SIZE;
 }
 
 bool8 IsSleepClauseActiveForSide(u32 battlerSide)
@@ -11922,5 +11922,5 @@ bool8 IsSleepClauseActiveForSide(u32 battlerSide)
     // If monCausingSleepClause[battlerSide] == PARTY_SIZE, Sleep Clause is not active for the given side.
     // If monCausingSleepClause[battlerSide] < PARTY_SIZE, it means it is storing the index of the mon that is causing Sleep Clause to be active,
     // from which it follows that Sleep Clause is active.
-    return (FlagGet(B_FLAG_SLEEP_CLAUSE) && (gBattleStruct->sleepClause.monCausingSleepClause[battlerSide] < PARTY_SIZE));
+    return (FlagGet(B_FLAG_SLEEP_CLAUSE) && (gBattleStruct->monCausingSleepClause[battlerSide] < PARTY_SIZE));
 }

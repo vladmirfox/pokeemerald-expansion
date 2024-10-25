@@ -3133,8 +3133,8 @@ static void BattleStartClearSetData(void)
     if(FlagGet(B_FLAG_SLEEP_CLAUSE))
     {
         // If monCausingSleepClause[side] equals PARTY_SIZE, Sleep Clause is not active for the given side.
-        gBattleStruct->sleepClause.monCausingSleepClause[B_SIDE_PLAYER] = PARTY_SIZE;
-        gBattleStruct->sleepClause.monCausingSleepClause[B_SIDE_OPPONENT] = PARTY_SIZE;
+        gBattleStruct->monCausingSleepClause[B_SIDE_PLAYER] = PARTY_SIZE;
+        gBattleStruct->monCausingSleepClause[B_SIDE_OPPONENT] = PARTY_SIZE;
     }
 }
 
