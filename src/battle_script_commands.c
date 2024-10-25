@@ -10168,7 +10168,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_PSYCHO_SHIFT:
         {
-            VARIOUS_ARGS(const u8 *failInstr);
+            VARIOUS_ARGS(const u8 *failInstr, const u8 * sleepClauseFailInstr);
             u32 targetAbility = GetBattlerAbility(gBattlerTarget);
             // Psycho shift works
             if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_POISON) && CanBePoisoned(gBattlerAttacker, gBattlerTarget, targetAbility))
@@ -10183,6 +10183,11 @@ static void Cmd_various(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
             else if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_FROSTBITE) && CanGetFrostbite(gBattlerTarget))
                 gBattleCommunication[MULTISTRING_CHOOSER] = 5;
+            else if (IsSleepClauseActiveForSide(GetBattlerSide(battler)))
+            {
+                gBattlescriptCurrInstr = cmd->sleepClauseFailInstr;
+                return;
+            }
             else
             {
                 gBattlescriptCurrInstr = cmd->failInstr;

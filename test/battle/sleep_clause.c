@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep moves fail when sleep clause is active")
             MESSAGE("The opposing Wobbuffet fell asleep!");
             STATUS_ICON(opponent, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Wobbuffet awake!");
     }
 }
 
@@ -100,7 +100,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep moves fail when sleep clause is active (
             MESSAGE("The opposing Wobbuffet fell asleep!");
             STATUS_ICON(opponentLeft, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Wobbuffet awake!");
     }
 }
 
@@ -214,7 +214,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will fail if sleep clau
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
             STATUS_ICON(opponent, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Wobbuffet awake!");
     } 
 }
 
@@ -244,7 +244,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Psycho Shift'ing sleep will activate sleep cla
             MESSAGE("The opposing Wobbuffet fell asleep!");
             STATUS_ICON(opponent, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     } 
 }
 
@@ -287,7 +287,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Yawn will fail when sleep clause is active")
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
             STATUS_ICON(player, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Wobbuffet awake!");
     }
 }
 
@@ -594,7 +594,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
             STATUS_ICON(healingSlot, sleep: TRUE);
             MESSAGE("The opposing Zigzagoon fell asleep!");
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
         if (move == MOVE_AROMATHERAPY)
         {
             MESSAGE("The opposing Zigzagoon used Aromatherapy!");
@@ -647,7 +647,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Sleep clause is deactivated when a sleeping mo
             STATUS_ICON(opponentRight, sleep: TRUE);
             MESSAGE("The opposing Zigzagoon fell asleep!");
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
         MESSAGE("Zigzagoon used Wake-Up Slap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WAKE_UP_SLAP, playerLeft);
         MESSAGE("The opposing Zigzagoon woke up!");
@@ -1206,7 +1206,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Sleep caused by Effect Spore does not prevent 
             MESSAGE("Zigzagoon fell asleep!");
             STATUS_ICON(player, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     }
 }
 
@@ -1243,7 +1243,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Waking up after Effect Spore doesn't deactivat
             MESSAGE("Zigzagoon fell asleep!");
             STATUS_ICON(player, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     }
 }
 
@@ -1285,7 +1285,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Waking up after Effect Spore doesn't deactivat
             MESSAGE("Zigzagoon fell asleep!");
             STATUS_ICON(playerLeft, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     }
 }
 
@@ -1321,7 +1321,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Waking up after Rest doesn't deactivate sleep 
             MESSAGE("Zigzagoon fell asleep!");
             STATUS_ICON(player, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     }
 }
 
@@ -1356,7 +1356,7 @@ DOUBLE_BATTLE_TEST("Sleep Clause: Waking up after Rest doesn't deactivate sleep 
             MESSAGE("Zigzagoon fell asleep!");
             STATUS_ICON(playerRight, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept Zigzagoon awake!");
     }
 }
 
@@ -1382,7 +1382,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Suppressing and then sleeping Vital Spirit / I
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Delibird fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Zigzagoon fell asleep!");
@@ -1412,7 +1412,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Mold Breaker Pokémon sleeping Vital Spirit / 
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Delibird fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Delibird awake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         MESSAGE("The opposing Zigzagoon fell asleep!");
@@ -1521,7 +1521,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Reflection moves (ie. Magic Coat) fail if slee
         STATUS_ICON(opponent, sleep: TRUE);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGIC_COAT, player);
         MESSAGE("The opposing Zigzagoon bounced the Spore back!"); // Should be MESSAGE("Zigzagoon bounced the Spore back!"); Issue #5579 https://github.com/rh-hideout/pokeemerald-expansion/issues/5579
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
     }
 }
 
@@ -1550,7 +1550,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Reflection moves (ie. Magic Coat) that reflect
             MESSAGE("The opposing Zigzagoon fell asleep!");
             STATUS_ICON(opponent, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
     }
 }
 
@@ -1604,7 +1604,7 @@ SINGLE_BATTLE_TEST("Sleep Clause: Magic Bounce'ing a sleep move activates sleep 
             MESSAGE("The opposing Zigzagoon fell asleep!");
             STATUS_ICON(opponent, sleep: TRUE);
         }
-        MESSAGE("But it failed!");
+        MESSAGE("Sleep Clause kept the opposing Zigzagoon awake!");
     }
 }
 
