@@ -31,7 +31,8 @@ enum
     //BALL_BEAST,
     BALL_CHERISH,
     BALL_LIGHT,
-    POKEBALL_COUNT
+    POKEBALL_COUNT,
+    BALL_KABA, // ah yes, srs: this is for kaba's speech and not for anything else
 };
 
 enum {
@@ -57,5 +58,9 @@ void StartHealthboxSlideIn(u8 battler);
 void DoHitAnimHealthboxEffect(u8 battler);
 void LoadBallGfx(u8 ballId);
 void FreeBallGfx(u8 ballId);
+
+// kaba's speech
+u8 CreateIntroPokeballSprite(u8 monSpriteId, u8 monPalNum, u8 x, u8 y, u8 oamPriority, u8 subPriority, u8 delay, u32 fadePalettes);
+void CreateKababallSpriteToReleaseMon(u8 monSpriteId, u8 monPalNum, u8 x, u8 y, u8 oamPriority, u8 subpriority, u8 delay, u32 fadePalettes, u16 species);
 
 #endif // GUARD_POKEBALL_H
