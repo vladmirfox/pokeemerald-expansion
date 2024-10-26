@@ -1512,10 +1512,10 @@ $(POKEMONGFXDIR)/unown/y/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/unown/z/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/unown/exclamation_mark/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/unown/exclamation/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/unown/question_mark/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/unown/question/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/wobbuffet/overworld.4bpp: %.4bpp: %.png
@@ -3897,7 +3897,7 @@ $(POKEMONGFXDIR)/linoone/galar/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/darumaka/galar/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/darmanitan/galar/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/darmanitan/galar_standard/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/yamask/galar/overworld.4bpp: %.4bpp: %.png
@@ -4005,22 +4005,22 @@ $(POKEMONGFXDIR)/deoxys/defense/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/deoxys/speed/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/burmy/sandy_cloak/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/burmy/sandy/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/burmy/trash_cloak/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/burmy/trash/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/wormadam/sandy_cloak/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/wormadam/sandy/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/wormadam/trash_cloak/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/wormadam/trash/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/shellos/east_sea/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/shellos/east/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(POKEMONGFXDIR)/gastrodon/east_sea/overworld.4bpp: %.4bpp: %.png
+$(POKEMONGFXDIR)/gastrodon/east/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(POKEMONGFXDIR)/rotom/heat/overworld.4bpp: %.4bpp: %.png
