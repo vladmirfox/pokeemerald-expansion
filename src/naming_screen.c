@@ -1435,13 +1435,13 @@ static void NamingScreen_CreateWaldaDadIcon(void)
 
 static void NamingScreen_CreateRivalIcon(void)
 {
-    u8 rivalGfxId;
+    u16 rivalGfxId;
     u8 spriteId;
 
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender ^ 1);
+    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies ^ 1);
     spriteId = CreateObjectGraphicsSprite(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
-    StartSpriteAnim(&gSprites[spriteId], 4);
+    StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
 }
 
 //--------------------------------------------------
