@@ -16441,7 +16441,7 @@ void BS_ItemCureStatus(void)
     if (!HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], GetItemStatus1Mask(gLastUsedItem), battler))
     {
         statusChanged = TRUE;
-        if (GetItemStatus1Mask(gLastUsedItem) & STATUS1_SLEEP)
+        if (GetItemStatus1Mask(gLastUsedItem) & (STATUS1_SLEEP | STATUS1_DROWSY))
             gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
         if (GetItemStatus2Mask(gLastUsedItem) & STATUS2_CONFUSION)
             gStatuses4[battler] &= ~STATUS4_INFINITE_CONFUSION;
@@ -17548,6 +17548,7 @@ void BS_CheckPokeFlute(void)
         if (GetBattlerAbility(i) != ABILITY_SOUNDPROOF)
         {
             gBattleMons[i].status1 &= ~STATUS1_SLEEP;
+            gBattleMons[i].status1 &= ~STATUS1_DROWSY;
             gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;
         }
     }

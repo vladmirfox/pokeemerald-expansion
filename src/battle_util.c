@@ -3437,7 +3437,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gBattlescriptCurrInstr = BattleScript_MoveUsedWokeUp;
                 effect = 2;
             }
-            else if (!gBattleStruct->isAtkCancelerForCalledMove && (gBattleMons[gBattlerAttacker].status1 & STATUS1_DROWSY) && !RandomPercentage(RNG_DROWSY, 50))
+            else if (!gBattleStruct->isAtkCancelerForCalledMove && (gBattleMons[gBattlerAttacker].status1 & STATUS1_DROWSY) && !RandomPercentage(RNG_DROWSY, 75))
             {
                 gProtectStructs[gBattlerAttacker].drsImmobility = TRUE;
                 gBattlescriptCurrInstr = BattleScript_MoveUsedIsDrowsy;
@@ -9933,9 +9933,6 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
     if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, battlerDef) && IS_MOVE_SPECIAL(move))
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.1));
 
-    if (gBattleMons[battlerDef].status1 & STATUS1_DROWSY)
-        modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(0.66)); //I believe this is correct
-
     return uq4_12_multiply_by_int_half_down(modifier, defStat);
 }
 
@@ -10006,6 +10003,13 @@ static inline uq4_12_t GetBurnOrFrostBiteModifier(u32 battlerAtk, u32 move, u32 
         && IS_MOVE_SPECIAL(move)
         && (B_BURN_FACADE_DMG < GEN_6 || gMovesInfo[move].effect != EFFECT_FACADE))
         return UQ_4_12(0.5);
+    return UQ_4_12(1.0);
+}
+
+static inline uq4_12_t GetDrowsyModifier(u32 battlerDef)
+{
+    if (gBattleMons[battlerDef].status1 & STATUS1_DROWSY)
+        return UQ_4_12(1.5);
     return UQ_4_12(1.0);
 }
 
@@ -10272,6 +10276,7 @@ static inline s32 DoMoveDamageCalcVars(u32 move, u32 battlerAtk, u32 battlerDef,
         DAMAGE_APPLY_MODIFIER(GetSameTypeAttackBonusModifier(battlerAtk, moveType, move, abilityAtk));
     DAMAGE_APPLY_MODIFIER(typeEffectivenessModifier);
     DAMAGE_APPLY_MODIFIER(GetBurnOrFrostBiteModifier(battlerAtk, move, abilityAtk));
+    DAMAGE_APPLY_MODIFIER(GetDrowsyModifier(battlerDef));
     DAMAGE_APPLY_MODIFIER(GetZMaxMoveAgainstProtectionModifier(battlerDef, move));
     DAMAGE_APPLY_MODIFIER(GetOtherModifiers(move, moveType, battlerAtk, battlerDef, isCrit, typeEffectivenessModifier, updateFlags, abilityAtk, abilityDef, holdEffectAtk, holdEffectDef));
 
