@@ -1309,6 +1309,8 @@ static void Cmd_attackcanceler(void)
             gHitMarker |= HITMARKER_OBEYS;
             return;
         case DISOBEYS_FALL_ASLEEP:
+            if (FlagGet(B_FLAG_SLEEP_CLAUSE))
+                gBattleStruct->sleepClauseEffectExempt = TRUE;
             gBattlescriptCurrInstr = BattleScript_IgnoresAndFallsAsleep;
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             return;
