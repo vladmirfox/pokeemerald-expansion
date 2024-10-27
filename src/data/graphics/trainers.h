@@ -208,6 +208,26 @@ const u32 gTrainerPalette_SwimmerF[] = INCBIN_U32("graphics/trainers/front_pics/
 const u32 gTrainerFrontPic_Twins[] = INCBIN_U32("graphics/trainers/front_pics/twins.4bpp.lz");
 const u32 gTrainerPalette_Twins[] = INCBIN_U32("graphics/trainers/front_pics/twins.gbapal.lz");
 
+const u32 gTrainerFrontPic_Firebringer[] = INCBIN_U32("graphics/trainers/front_pics/firebringer.4bpp.lz");
+const u32 gTrainerPalette_Firebringer[] = INCBIN_U32("graphics/trainers/front_pics/firebringer.gbapal.lz");
+
+const u32 gTrainerFrontPic_Artist[] = INCBIN_U32("graphics/trainers/front_pics/artist.4bpp.lz");
+const u32 gTrainerPalette_Artist[] = INCBIN_U32("graphics/trainers/front_pics/artist.gbapal.lz");
+
+const u32 gTrainerFrontPic_TravelingMerchant[] = INCBIN_U32("graphics/trainers/front_pics/traveling_merchant.4bpp.lz");
+const u32 gTrainerPalette_TravelingMerchant[] = INCBIN_U32("graphics/trainers/front_pics/traveling_merchant.gbapal.lz");
+
+const u32 gTrainerFrontPic_OnsenF[] = INCBIN_U32("graphics/trainers/front_pics/onsen_f.4bpp.lz");
+const u32 gTrainerPalette_OnsenF[] = INCBIN_U32("graphics/trainers/front_pics/onsen_f.gbapal.lz");
+
+const u32 gTrainerFrontPic_OnsenM[] = INCBIN_U32("graphics/trainers/front_pics/onsen_m.4bpp.lz");
+const u32 gTrainerPalette_OnsenM[] = INCBIN_U32("graphics/trainers/front_pics/onsen_m.gbapal.lz");
+
+const u32 gTrainerFrontPic_Shamisen[] = INCBIN_U32("graphics/trainers/front_pics/shamisen.4bpp.lz");
+const u32 gTrainerPalette_ShamisenBlue[] = INCBIN_U32("graphics/trainers/front_pics/shamisen_blue.gbapal.lz");
+const u32 gTrainerPalette_ShamisenGreen[] = INCBIN_U32("graphics/trainers/front_pics/shamisen_green.gbapal.lz");
+const u32 gTrainerPalette_ShamisenRed[] = INCBIN_U32("graphics/trainers/front_pics/shamisen_red.gbapal.lz");
+
 const u32 gTrainerFrontPic_Sailor[] = INCBIN_U32("graphics/trainers/front_pics/sailor.4bpp.lz");
 const u32 gTrainerPalette_Sailor[] = INCBIN_U32("graphics/trainers/front_pics/sailor.gbapal.lz");
 
@@ -379,6 +399,13 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_PARASOL_LADY, gTrainerFrontPic_ParasolLady, gTrainerPalette_ParasolLady),
     TRAINER_SPRITE(TRAINER_PIC_SWIMMER_F, gTrainerFrontPic_SwimmerF, gTrainerPalette_SwimmerF),
     TRAINER_SPRITE(TRAINER_PIC_TWINS, gTrainerFrontPic_Twins, gTrainerPalette_Twins),
+    TRAINER_SPRITE(TRAINER_PIC_ARTIST, gTrainerFrontPic_Artist, gTrainerPalette_Artist),
+    TRAINER_SPRITE(TRAINER_PIC_FIREBRINGER, gTrainerFrontPic_Firebringer, gTrainerPalette_Firebringer),
+    TRAINER_SPRITE(TRAINER_PIC_TRAVELING_MERCHANT, gTrainerFrontPic_TravelingMerchant, gTrainerPalette_TravelingMerchant),
+    TRAINER_SPRITE(TRAINER_PIC_ONSEN_F, gTrainerFrontPic_OnsenF, gTrainerPalette_OnsenF),
+    TRAINER_SPRITE(TRAINER_PIC_ONSEN_M, gTrainerFrontPic_OnsenM, gTrainerPalette_OnsenM),
+    // TODO random color
+    TRAINER_SPRITE(TRAINER_PIC_SHAMISEN, gTrainerFrontPic_Shamisen, gTrainerPalette_ShamisenBlue),
     TRAINER_SPRITE(TRAINER_PIC_SAILOR, gTrainerFrontPic_Sailor, gTrainerPalette_Sailor),
     TRAINER_SPRITE(TRAINER_PIC_MAGMA_ADMIN, gTrainerFrontPic_MagmaAdmin, gTrainerPalette_MagmaAdmin),
     TRAINER_SPRITE(TRAINER_PIC_WALLY, gTrainerFrontPic_Wally, gTrainerPalette_Wally),
