@@ -60,9 +60,9 @@
 #define FLAG_CUT_QUEST_CUT_ALL_GRASS    0x2A
 #define FLAG_CUT_QUEST_COMPLETED        0x2B
 #define FLAG_PC_EXPLAINED    0x2C
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+#define FLAG_HIDE_CROBAT_SHADOWS_TRANQUIL_RT 0x2D
+#define FLAG_HIDE_CROBAT_SHADOWS_SAKU_POKECENTER_GRUNTS 0x2E
+#define FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT 0x2F
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag

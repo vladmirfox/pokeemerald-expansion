@@ -7,6 +7,7 @@ script SunriseVillage_EldersHouse_PrivateQuarters_EventScript_Meowth {
     faceplayer
     waitse
     playmoncry(SPECIES_MEOWTH, CRY_MODE_NORMAL)
+    speakername("Meowth")
     msgbox(format(
         "Fss!"
     ))

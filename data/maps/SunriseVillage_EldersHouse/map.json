@@ -117,6 +117,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SunriseVillage_EldersHouse_Event_Pokeball_Starter_Trapinch",
       "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JOLTIK)",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SunriseVillage_EldersHouse_EventScript_Joltik",
+      "flag": "0"
     }
   ],
   "warp_events": [

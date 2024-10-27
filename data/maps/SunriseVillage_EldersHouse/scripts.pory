@@ -506,6 +506,19 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 	release
 }
 
+script SunriseVillage_EldersHouse_EventScript_Joltik {
+	lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_JOLTIK, CRY_MODE_NORMAL)
+    msgbox(format(
+        "Fss!"
+    ))
+    waitmoncry
+    release
+    end	
+}
+
 movement SunriseVillage_EldersHouse_Movement_RivalWalkUpToSpheal {
 	walk_up
 	delay_16

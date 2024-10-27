@@ -1,6 +1,10 @@
 const LOCALID_BERRYWOMAN = 5
 const LOCALID_MYSTERIOUS_SAMURAI = 9
 const LOCALID_CUT_MASTER = 22
+const LOCALID_CROBAT_SHADOW_BOSS = 26
+const LOCALID_CROBAT_SHADOW_GRUNT_TOP = 23
+const LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM = 25
+const LOCALID_CROBAT_SHADOW_GRUNT_LEFT = 24
 const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
 const VAR_DO_CUT_MASTER_CUTSCENE = VAR_TEMP_0
 const VAR_HOUR_OF_DAY = VAR_0x8000
@@ -203,7 +207,11 @@ script TranquilRoute_EventScript_Chikao {
 		format("I should have listened in class…")
 	)
 	speakername("Chikao")
-	msgbox("Some Pokémon have more attack, and some have more special attack!\p What's the difference? Uhh… It's too complicated to explain.", MSGBOX_AUTOCLOSE)
+	msgbox(format(
+		"Some Pokémon have more attack, and some have more special attack!\p"
+		"What's the difference? Uhh… It's too complicated to explain."
+	))
+	closemessage
 	end
 }
 
@@ -387,6 +395,131 @@ script TranquilRoute_TrainerTips1 {
 	), MSGBOX_SIGN)
 }
 
+script TranquilRoute_EventScript_CrobatShadows_Camera {
+	lock
+	special(SpawnCameraObject)
+	applymovement(OBJ_EVENT_ID_CAMERA, TranquilRoute_Movement_FocusOnCrobatShadows)
+	waitmovement(0)
+	call(TranquilRoute_EventScript_CrobatShadows_Cutscene)
+	applymovement(OBJ_EVENT_ID_CAMERA, TranquilRoute_Movement_FocusOnPlayer)
+	waitmovement(0)
+	release
+}
+
+script TranquilRoute_EventScript_CrobatShadows {
+	lock
+	call(TranquilRoute_EventScript_CrobatShadows_Cutscene)
+	release
+}
+
+script TranquilRoute_EventScript_CrobatShadows_Cutscene {
+	setvar(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 1)
+
+	speakername("Shady men")
+	msgbox(format(
+		"…Excellent idea…\p"
+		"…Yeah, and then…\p"
+		"… … …"
+	))
+	closemessage
+
+	delay(20)
+
+	applymovement(LOCALID_CROBAT_SHADOW_BOSS, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement(0)
+
+	speakername("Shady man")
+	msgbox(format(
+		"Alright boys, let's move."
+	))
+	closemessage
+
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_TopGruntAligns)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM, TranquilRoute_Movement_BottomGruntAligns)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM)
+
+	// o
+	// o o
+	// o
+	// TODO EVA: Zubats aligning anim
+	playse(SE_LEDGE)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_GruntAlign)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_GruntAlign)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM, TranquilRoute_Movement_GruntAlign)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM)
+	waitse
+
+	//
+	// oo o
+	//  o
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_TopGruntWalkDown)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_MiddleGruntWalkLeft)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
+
+	//
+	// oooo
+	//
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP, TranquilRoute_Movement_GruntsWalksAway)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT, TranquilRoute_Movement_GruntsWalksAway)
+	applymovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM, TranquilRoute_Movement_TopGruntWalkUpAndAway)
+	applymovement(LOCALID_CROBAT_SHADOW_BOSS, TranquilRoute_Movement_GruntsWalksAway)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
+	waitmovement(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM)
+	waitmovement(LOCALID_CROBAT_SHADOW_BOSS)
+
+	removeobject(LOCALID_CROBAT_SHADOW_GRUNT_TOP)
+	removeobject(LOCALID_CROBAT_SHADOW_GRUNT_LEFT)
+	removeobject(LOCALID_CROBAT_SHADOW_GRUNT_BOTTOM)
+	removeobject(LOCALID_CROBAT_SHADOW_BOSS)
+	setflag(FLAG_HIDE_CROBAT_SHADOWS_TRANQUIL_RT)
+}
+
+movement TranquilRoute_Movement_GruntAlign {
+	face_right
+	jump_in_place_right
+}
+
+movement TranquilRoute_Movement_TopGruntWalkUpAndAway {
+	walk_up
+	walk_left * 5
+}
+
+movement TranquilRoute_Movement_TopGruntWalkDown {
+	walk_down
+}
+
+movement TranquilRoute_Movement_MiddleGruntWalkLeft {
+	walk_left
+}
+
+movement TranquilRoute_Movement_GruntsWalksAway {
+	walk_left * 5
+	delay_16
+}
+
+movement TranquilRoute_Movement_FocusOnCrobatShadows {
+	walk_up * 2
+}
+
+movement TranquilRoute_Movement_FocusOnPlayer {
+	walk_down * 2
+}
+
+movement TranquilRoute_Movement_TopGruntAligns {
+	walk_left
+	face_right
+}
+
+movement TranquilRoute_Movement_BottomGruntAligns {
+	delay_16
+	walk_left
+	face_right
+}
 
 script TranquilRoute_TrainerTips2 {
 	msgbox(format(

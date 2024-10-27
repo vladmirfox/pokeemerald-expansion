@@ -1,3 +1,5 @@
+const LOCALID_GRUNT = 3
+
 mapscripts SakuTown_PokemonCenter_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
 		setrespawn(HEAL_LOCATION_SAKU_TOWN)
@@ -15,6 +17,8 @@ script SakuTown_PokemonCenter_EventScript_Nurse {
 
 script SakuTown_PokemonCenter_EventScript_Traveler {
 	lock
+	faceplayer
+	speakername("Man")
 	msgbox(format(
 		"This Pokémon refuge is brand-new, courtesy of the Pokémon League!\p"
 		"As you can see, it's still being built. Watch out for the falling bricks, ha ha, just kidding!\p"
@@ -23,4 +27,93 @@ script SakuTown_PokemonCenter_EventScript_Traveler {
 	closemessage
 	release
 	end
+}
+
+script SakuTown_PokemonCenter_EventScript_Pushing {
+	delay(30)
+
+	faceplayer
+	speakername("Shady man")
+	msgbox(format(
+		"Watchu lookin' at? Scram!"
+	))
+	closemessage
+
+	switch(var(VAR_FACING)) {
+		case DIR_EAST:
+			applymovement(LOCALID_GRUNT, SakuTown_PokemonCenter_Movement_PushesPlayer)
+			applymovement(OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushed)
+		case DIR_SOUTH:
+			applymovement(LOCALID_GRUNT, SakuTown_PokemonCenter_Movement_PushesPlayerUp)
+			applymovement(OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushedUp)
+	}
+
+	waitmovement(LOCALID_GRUNT)
+	waitmovement(OBJ_EVENT_ID_PLAYER)
+}
+
+script SakuTown_PokemonCenter_EventScript_Grunt1 {
+	lock
+	speakername("Shady man")
+	msgbox(format(
+		"Great plan…"
+	))
+	closemessage
+
+	call(SakuTown_PokemonCenter_EventScript_Pushing)
+
+	release
+	end
+}
+
+script SakuTown_PokemonCenter_EventScript_Grunt2 {
+	lock
+	speakername("Shady man")
+	msgbox(format(
+		"We should do this next…"
+	))
+	closemessage
+	
+	call(SakuTown_PokemonCenter_EventScript_Pushing)
+
+	release
+	end
+}
+
+script SakuTown_PokemonCenter_EventScript_Grunt3 {
+	lock
+	speakername("Shady man")
+	msgbox(format(
+		"On Beachbound Route…"
+	))
+	closemessage
+	
+	call(SakuTown_PokemonCenter_EventScript_Pushing)
+
+	release
+	end
+}
+
+movement SakuTown_PokemonCenter_Movement_PlayerPushed {
+	lock_facing_direction
+	jump_2_left
+	unlock_facing_direction
+}
+
+movement SakuTown_PokemonCenter_Movement_PushesPlayer {
+	walk_left
+	delay_16
+	walk_right
+}
+
+movement SakuTown_PokemonCenter_Movement_PlayerPushedUp {
+	lock_facing_direction
+	jump_2_up
+	unlock_facing_direction
+}
+
+movement SakuTown_PokemonCenter_Movement_PushesPlayerUp {
+	walk_up
+	delay_16
+	walk_down
 }

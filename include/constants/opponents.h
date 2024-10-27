@@ -13,7 +13,7 @@
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_2       7
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8
 #define TRAINER_GABRIELLE_1                   9
-#define TRAINER_GRUNT_PETALBURG_WOODS        10
+#define TRAINER_GRUNT_BEACHBOUND_ROUTE_1     10
 #define TRAINER_MARCEL                       11
 #define TRAINER_ALBERTO                      12
 #define TRAINER_ED                           13
@@ -340,7 +340,7 @@
 #define TRAINER_TIMMY                       334
 #define TRAINER_WALLACE                     335
 #define TRAINER_ANDREW                      336
-#define TRAINER_IVAN                        337
+#define TRAINER_GRUNT_BEACHBOUND_ROUTE_2    337
 #define TRAINER_CLAUDE                      338
 #define TRAINER_ELLIOT_1                    339
 #define TRAINER_NED                         340

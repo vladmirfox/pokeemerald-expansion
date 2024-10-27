@@ -3,6 +3,11 @@ const FLAG_HIDE_SHEPHERD = FLAG_TEMP_6
 const FLAG_HIDE_KIDS = FLAG_TEMP_7
 const VAR_TIME_OF_DAY = VAR_0x8000
 const LOCALID_HOPPIP = 10
+const LOCALID_GRUNT_1 = 23
+const LOCALID_GRUNT_2 = 26
+const LOCALID_GRUNT_3 = 25
+const LOCALID_GRUNT_BOSS = 24
+const LOCALID_MUGGED_WOMAN = 22
 
 mapscripts BeachboundRoute_MapScripts {
 		MAP_SCRIPT_ON_LOAD {
@@ -131,4 +136,372 @@ script BeachboundRoute_EventScript_Kin {
 	speakername("Kin")
 	msgbox(format("You really don't look strong at all, and yet…"), MSGBOX_AUTOCLOSE)
 	end
+}
+
+script BeachboundRoute_EventScript_SomeoneCallingForHelp {
+	lock
+
+	speakername("???")
+	msgbox(format(
+		"Help! Someone help me!"
+	))
+
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	waitse
+
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+
+	release
+}
+
+script BeachboundRoute_EventScript_WhereAreYouGoing {
+	lock
+
+	speakername("???")
+	msgbox(format(
+		"Hey, you! In the red and blue clothes!\p"
+		"Are you… Are you leaving?!\p"
+		"Can't you be a decent human being and help me out?"
+	))
+	
+	specialvar(VAR_RESULT, GetPlayerFacingDirection)
+	switch(var(VAR_RESULT)) {
+		case DIR_EAST:
+			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksLeft)
+		case DIR_WEST:
+			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksRight)
+		case DIR_SOUTH:
+			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksUp)
+	}
+	waitmovement(0)
+
+	release
+}
+
+script BeachboundRoute_EventScript_Mugging_Left {
+	lock
+	applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksRight)
+	waitmovement(0)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+	call(BeachboundRoute_EventScript_Mugging)
+	release
+}
+
+script BeachboundRoute_EventScript_Mugging_Right {
+	lock
+	applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksLeft)
+	waitmovement(0)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+	call(BeachboundRoute_EventScript_Mugging)
+	release
+}
+
+script BeachboundRoute_EventScript_Mugging_Center {
+	lock
+	call(BeachboundRoute_EventScript_Mugging)
+	release
+}
+
+script BeachboundRoute_EventScript_Mugging {
+	// Lost to them once
+	if (var(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE) == 3) {
+		setvar(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 3)
+		applymovement(LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFasterUp)
+		waitmovement(0)
+
+		speakername("Shady Man")
+		msgbox(format(
+			"Stop yappin', lady! Just give us yer Pokémon already!"
+		))
+		closemessage
+
+		applymovement(LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFasterUp)
+		waitmovement(0)
+
+		speakername("Shady Man")
+		msgbox(format(
+			"C'mon, don't make this difficult! Just hand it over!"
+		))
+		closemessage
+
+		delay(40)
+
+		turnobject(LOCALID_GRUNT_BOSS, DIR_SOUTH)
+		playse(SE_PIN)
+		applymovement(LOCALID_GRUNT_BOSS, Common_Movement_ExclamationMark)
+		waitmovement(0)
+		waitse
+
+		speakername("Shady Man")
+		msgbox(format(
+			"Just what d'you think yer doin'?\p"
+			"Can't ya see we're in the middle of something 'ere?"
+		))
+
+		applymovement(LOCALID_GRUNT_1, Common_Movement_FaceDown)
+		applymovement(LOCALID_GRUNT_2, Common_Movement_FaceDown)
+		applymovement(LOCALID_GRUNT_3, Common_Movement_FaceDown)
+		waitmovement(LOCALID_GRUNT_1)
+		waitmovement(LOCALID_GRUNT_2)
+		waitmovement(LOCALID_GRUNT_3)
+
+		dynmultichoice(
+			0,
+			0,
+			TRUE,
+			10,
+			0,
+			DYN_MULTICHOICE_CB_NONE,
+			"Leave her alone!",
+			"Actually, I was just leaving!",
+			"Uh…"
+		)
+		closemessage
+
+		speakername("Shady Man")
+		switch (var(VAR_RESULT)) {
+			case 0:
+				msgbox(format(
+					"Ooh, feelin' heroic today, are we?\p"
+					"D'ya know what we do to nosy brats who're not clever enough to mind their own business?\p"
+					"Ya have no self-preservation instinct whatsoever, do ya?\p"
+					"D'ya even know who we are?\p"
+					"We're the world-famous Crobat Shadows!\p"
+					"Thievin', muggin', wreakin' havoc… Ya name it!\p"
+					"We're basically the allegory of crime!"
+				))
+			case 1:
+				msgbox(format(
+					"'S a little too late fer that, don't ya think?"
+					"D'ya know what we do to nosy brats who're not clever enough to mind their own business?\p"
+					"Ya have no self-preservation instinct whatsoever, do ya?\p"
+					"D'ya even know who we are?\p"
+					"We're the world-famous Crobat Shadows!\p"
+					"Thievin', muggin', wreakin' havoc… Ya name it!\p"
+					"We're basically the allegory of crime!"
+				))
+			case 2:
+				msgbox(format(
+					"Got nothin' to say, huh?\p"
+					"D'ya know what we do to nosy brats who're not clever enough to mind their own business?\p"
+					"Ya have no self-preservation instinct whatsoever, do ya?\p"
+					"D'ya even know who we are?\p"
+					"We're the world-famous Crobat Shadows!\p"
+					"Thievin', muggin', wreakin' havoc… Ya name it!\p"
+					"We're basically the allegory of crime!"
+				))
+		}
+		closemessage
+
+		applymovement(LOCALID_GRUNT_3, Common_Movement_WalkInPlaceFasterDown)
+		waitmovement(0)
+		speakername("Crobat Shadow")
+		msgbox(format(
+			"Uh… What's an allergory, boss?"
+		))
+		closemessage
+
+		turnobject(LOCALID_GRUNT_BOSS, DIR_NORTH)
+		delay(40)
+
+		speakername("Crobat boss")
+		msgbox(format(
+			"…Nevermind that!"
+		))
+		closemessage
+
+		turnobject(LOCALID_GRUNT_BOSS, DIR_SOUTH)
+
+		speakername("Crobat Boss")
+		msgbox(format(
+			"'nuff yappin' already! Take care of this clown, boys!"
+		))
+		closemessage
+	} else {
+		turnobject(LOCALID_GRUNT_BOSS, DIR_SOUTH)
+		speakername("Crobat Shadow Boss")
+		msgbox(format(
+			"Can't believe it! Look who's back!\p"
+			"Back fer another whoopin', are we?\p"
+			"Take care of this clown, boys!"
+		))
+	}
+
+	applymovement(LOCALID_GRUNT_BOSS, BeachboundRoute_Movement_BossToTheSide)
+	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_GruntWalksToPlayer)
+	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_GruntWalksToPlayer)
+	waitmovement(LOCALID_GRUNT_BOSS)
+	waitmovement(LOCALID_GRUNT_1)
+	waitmovement(LOCALID_GRUNT_2)
+
+	// TODO EVA Samurai joins for a 2v2
+	trainerbattle_two_trainers(
+		TRAINER_GRUNT_BEACHBOUND_ROUTE_1,
+		format("Aw, man!"),
+		TRAINER_GRUNT_BEACHBOUND_ROUTE_2,
+		format("Mama!")
+	)
+
+	setvar(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 4)
+
+	applymovement(LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(LOCALID_GRUNT_1)
+	speakername("Zubat Grunt")
+	msgbox(format(
+		"Sorry, boss!"
+	))
+	closemessage
+	
+	applymovement(LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(LOCALID_GRUNT_2)
+	speakername("Zubat Grunt")
+	msgbox(format(
+		"We got stomped proper, boss!"
+	))
+	closemessage
+
+	speakername("Crobat Boss")
+	msgbox(format(
+		"Ya gotta be kiddin' me…\p"
+		"Can't even do no regular muggin' in peace anymore!\p"
+		"Well, I ain't gonna stoop to fighting you myself!"
+	))
+	closemessage
+
+	applymovement(LOCALID_GRUNT_3, Common_Movement_WalkInPlaceFasterDown)
+	waitmovement(0)
+	speakername("Crobat Shadow")
+	msgbox(format(
+		"Boss, what's a stoop?"
+	))
+	closemessage
+
+	speakername("Crobat Boss")
+	msgbox(format(
+		"For the love of god, Kevin…"
+	))
+	closemessage
+
+	delay(40)
+	
+	speakername("Crobat Boss")
+	msgbox(format(
+		"Movin' on! You've not seen the last of us, ya annoying brat!\p"
+		"Ya better steer clear of the Crobat Shadows from now on!\p"
+		"Let's move it, boys!"
+	))
+	closemessage
+
+	turnobject(LOCALID_GRUNT_BOSS, DIR_NORTH)
+
+	speakername("Crobat Boss")
+	msgbox(format(
+		"ZUBATS, ALIGN!!"
+	))
+	closemessage
+
+	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_ZubatsAlign)
+	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_ZubatsAlign)
+	applymovement(LOCALID_GRUNT_3, BeachboundRoute_Movement_ZubatsAlign)
+	waitmovement(LOCALID_GRUNT_1)
+	waitmovement(LOCALID_GRUNT_2)
+	waitmovement(LOCALID_GRUNT_3)
+
+	applymovement(LOCALID_GRUNT_BOSS, BeachboundRoute_Movement_BossExits)
+	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_Grunt1Exits)
+	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_Grunt2Exits)
+	applymovement(LOCALID_GRUNT_3, BeachboundRoute_Movement_Grunt3Exits)
+	waitmovement(LOCALID_GRUNT_BOSS)
+	waitmovement(LOCALID_GRUNT_1)
+	waitmovement(LOCALID_GRUNT_2)
+	waitmovement(LOCALID_GRUNT_3)
+
+	delay(60)
+
+	applymovement(LOCALID_MUGGED_WOMAN, BeachboundRoute_Movement_WomanWalksDown)
+	waitmovement(LOCALID_MUGGED_WOMAN)
+
+	speakername("Woman")
+	msgbox(format(
+		"Thank you so much for helping me!\p"
+		"Those ruffians were about to steal my Pokémon!\p"
+		"I don't have much to offer you as a thanks, but please take this!"
+	))
+	closemessage
+
+	// TODO EVA: reward
+	giveitem(ITEM_WHITE_HERB)
+
+	speakername("Woman")
+	msgbox(format(
+		"What's your name?\n"
+		"{PLAYER}?\p"
+		"I'll be sure to tell everyone what a hero you are!"
+	))
+	closemessage
+
+	addvar(VAR_PLAYER_REPUTATION, 1)
+
+	applymovement(LOCALID_MUGGED_WOMAN, BeachboundRoute_Movement_WomanExits)
+	waitmovement(LOCALID_MUGGED_WOMAN)
+	waitmovement(0)
+}
+
+movement BeachboundRoute_Movement_WomanWalksDown {
+	walk_down * 2
+}
+
+movement BeachboundRoute_Movement_WomanExits {
+	walk_left
+	walk_down * 5
+	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_BossExits {
+	walk_down * 5
+	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_Grunt1Exits {
+	walk_right * 2
+	walk_down * 6
+	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_Grunt2Exits {
+	walk_right
+	walk_down * 6
+	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_Grunt3Exits {
+	walk_down * 6
+	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_ZubatsAlign {
+	jump_in_place_down
+}
+
+movement BeachboundRoute_Movement_GruntWalksToPlayer {
+	walk_down
+}
+
+movement BeachboundRoute_Movement_BossToTheSide {
+	walk_right
+	face_left
+}
+
+movement BeachboundRoute_Movement_PlayerWalksLeft {
+	walk_left
+}
+
+movement BeachboundRoute_Movement_PlayerWalksUp {
+	walk_up
+}
+
+movement BeachboundRoute_Movement_PlayerWalksRight {
+	walk_right
 }
