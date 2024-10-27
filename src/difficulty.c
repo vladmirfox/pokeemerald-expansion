@@ -25,7 +25,7 @@ void SetCurrentDifficultyLevel(u32 desiredDifficulty)
 
 u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
 {
-    u32 difficulty = GetCurrentDifficultyLevel();
+    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
     if (partnerId > TRAINER_PARTNER(PARTNER_NONE))
         partnerId -= TRAINER_PARTNER(PARTNER_NONE);
@@ -41,7 +41,7 @@ u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
 
 u32 GetTrainerDifficultyLevel(u16 trainerId)
 {
-    u32 difficulty = GetCurrentDifficultyLevel();
+    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
     if (difficulty == DIFFICULTY_NORMAL)
         return DIFFICULTY_NORMAL;

@@ -4168,7 +4168,7 @@ u32 BattlerHPPercentage(u32 battler, u32 operation, u32 threshold)
 u32 ShouldDoTrainerSlide(u32 battler, u32 which)
 {
     u32 i, firstId, lastId, trainerId, retValue = 1;
-    u32 difficulty = GetCurrentDifficultyLevel();
+    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) || GetBattlerSide(battler) != B_SIDE_OPPONENT)
         return 0;

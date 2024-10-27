@@ -5087,7 +5087,7 @@ s32 GetBattlerMultiplayerId(u16 id)
 u8 GetTrainerEncounterMusicId(u16 trainerOpponentId)
 {
     u32 sanitizedTrainerId = SanitizeTrainerId(trainerOpponentId);
-    u32 difficulty = GetTrainerDifficultyLevel(sanitizedTrainerId);
+    enum DifficultyLevel difficulty = GetTrainerDifficultyLevel(sanitizedTrainerId);
 
     if (InBattlePyramid())
         return GetTrainerEncounterMusicIdInBattlePyramid(trainerOpponentId);

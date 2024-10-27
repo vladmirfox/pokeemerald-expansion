@@ -1355,7 +1355,7 @@ u8 GetFrontierTrainerFrontSpriteId(u16 trainerId)
 u8 GetFrontierOpponentClass(u16 trainerId)
 {
     u8 trainerClass = 0;
-    u32 difficulty = GetBattlePartnerDifficultyLevel(trainerId);
+    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
     SetFacilityPtrsGetLevel();
 
 #if FREE_BATTLE_TOWER_E_READER == FALSE
@@ -1442,7 +1442,7 @@ static u8 GetFrontierTrainerFacilityClass(u16 trainerId)
 void GetFrontierTrainerName(u8 *dst, u16 trainerId)
 {
     s32 i = 0;
-    u32 difficulty = GetBattlePartnerDifficultyLevel(trainerId);
+    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
     SetFacilityPtrsGetLevel();
 
     if (trainerId == TRAINER_EREADER)
@@ -3000,7 +3000,7 @@ static void FillPartnerParty(u16 trainerId)
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
     s32 ball = -1;
-    u32 difficulty = GetBattlePartnerDifficultyLevel(trainerId);
+    enum DifficultyLevel difficulty = GetBattlePartnerDifficultyLevel(trainerId);
     SetFacilityPtrsGetLevel();
 
     if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
