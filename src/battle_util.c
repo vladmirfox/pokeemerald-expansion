@@ -9605,7 +9605,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         }
         break;
     case ABILITY_ORICHALCUM_PULSE:
-        if (weather & B_WEATHER_SUN && WEATHER_HAS_EFFECT && IS_MOVE_PHYSICAL(move))
+        if ((weather & B_WEATHER_SUN) && WEATHER_HAS_EFFECT && IS_MOVE_PHYSICAL(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.33));
         break;
     case ABILITY_HADRON_ENGINE:
