@@ -128,19 +128,6 @@ struct Trainer
     int difficulty_line;
 };
 
-static bool strings_equal(struct String s1, struct String s2)
-{
-    if (s1.string_n != s2.string_n)
-        return false;
-
-    for (int i = 0; i < s1.string_n ; i++)
-        if (s1.string[i] != s2.string[i])
-            return false;
-
-    return true;
-}
-
-
 static bool is_empty_string(struct String s)
 {
     return s.string_n == 0;
@@ -1614,34 +1601,6 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
     }
 }
 
-static int build_difficulty_list(struct Trainer *trainers, int trainers_n, struct String *difficultyList)
-{
-    int numDifficulty = 0;
-
-    for (int i = 0; i < trainers_n; i++)
-    {
-        struct Trainer *trainer = &trainers[i];
-        if (is_empty_string(trainer->difficulty))
-            trainer->difficulty = literal_string("Normal");
-
-        bool stringMatch = false;
-        for (int j = 0; j < numDifficulty; j++)
-        {
-            if (strings_equal(difficultyList[j], trainer->difficulty))
-            {
-                stringMatch = true;
-                break;
-            }
-        }
-
-        if (stringMatch)
-            continue;
-
-        difficultyList[numDifficulty++] = trainer->difficulty;
-    }
-    return numDifficulty;
-}
-
 static bool current_loop_is_test_trainers(const char *f)
 {
     return (strcmp(f, "test/battle/trainer_control.party") == 0);
@@ -1649,9 +1608,6 @@ static bool current_loop_is_test_trainers(const char *f)
 
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
-    struct String difficultyList[99];
-    int numDifficulty = build_difficulty_list(parsed->trainers, parsed->trainers_n, difficultyList);
-
     fprintf(f, "//\n");
     fprintf(f, "// DO NOT MODIFY THIS FILE! It is auto-generated from %s\n", parsed->source->path);
     fprintf(f, "//\n");
@@ -1664,289 +1620,273 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     fprintf(f, "#line 1 \"%s\"\n", parsed->source->path);
     fprintf(f, "\n");
 
-
-    for (int difficulty = 0; difficulty < numDifficulty; difficulty++)
+    for (int i = 0; i < parsed->trainers_n; i++)
     {
+        struct Trainer *trainer = &parsed->trainers[i];
+        if (is_empty_string(trainer->difficulty))
+            trainer->difficulty = literal_string("Normal");
 
+        fprintf(f, "#line %d\n", trainer->difficulty_line);
         if (!current_loop_is_test_trainers(parsed->source->path))
+            fprint_constant(f, "[DIFFICULTY",trainer->difficulty);
+
+        fprintf(f, "][");
+        fprint_string(f, trainer->id);
+        fprintf(f, "] =\n");
+        fprintf(f, "    {\n");
+        fprintf(f, "#line %d\n", trainer->id_line);
+
+        if (!is_empty_string(trainer->name))
         {
-            fprintf(f, "[");
-            fprint_constant(f, "DIFFICULTY", difficultyList[difficulty]);
-            fprintf(f, "] =\n");
-            fprintf(f, "{\n");
+            fprintf(f, "#line %d\n", trainer->name_line);
+            fprintf(f, "        .trainerName = _(\"");
+            fprint_string(f, trainer->name);
+            fprintf(f, "\"),\n");
         }
 
-        for (int i = 0; i < parsed->trainers_n; i++)
+        if (!is_empty_string(trainer->class))
         {
-            struct Trainer *trainer = &parsed->trainers[i];
+            fprintf(f, "#line %d\n", trainer->class_line);
+            fprintf(f, "        .trainerClass = ");
+            fprint_constant(f, "TRAINER_CLASS", trainer->class);
+            fprintf(f, ",\n");
+        }
 
-            if (!strings_equal(trainer->difficulty,difficultyList[difficulty]))
-                continue;
+        if (!is_empty_string(trainer->pic))
+        {
+            fprintf(f, "#line %d\n", trainer->pic_line);
+            fprintf(f, "        .trainerPic = ");
+            if (starts_with(trainer->id, "PARTNER_"))
+                fprint_constant(f, "TRAINER_BACK_PIC", trainer->pic);
+            else
+                fprint_constant(f, "TRAINER_PIC", trainer->pic);
+            fprintf(f, ",\n");
+        }
 
-            fprintf(f, "#line %d\n", trainer->id_line);
-            fprintf(f, "    [");
-            fprint_string(f, trainer->id);
-            fprintf(f, "] =\n");
-            fprintf(f, "    {\n");
+        fprintf(f, "        .encounterMusic_gender = \n");
+        if (trainer->gender == GENDER_FEMALE)
+        {
+            fprintf(f, "#line %d\n", trainer->gender_line);
+            fprintf(f, "F_TRAINER_FEMALE | \n");
+        }
+        if (!is_empty_string(trainer->encounter_music))
+        {
+            fprintf(f, "#line %d\n", trainer->encounter_music_line);
+            fprintf(f, "            ");
+            fprint_constant(f, "TRAINER_ENCOUNTER_MUSIC", trainer->encounter_music);
+        }
+        else
+        {
+            fprintf(f, "0");
+        }
+        fprintf(f, ",\n");
 
-            if (!is_empty_string(trainer->name))
+        if (trainer->items_n > 0)
+        {
+            fprintf(f, "#line %d\n", trainer->items_line);
+            fprintf(f, "        .items = { ");
+            for (int i = 0; i < trainer->items_n; i++)
             {
-                fprintf(f, "#line %d\n", trainer->name_line);
-                fprintf(f, "        .trainerName = _(\"");
-                fprint_string(f, trainer->name);
+                if (i > 0)
+                    fprintf(f, ", ");
+                fprint_constant(f, "ITEM", trainer->items[i]);
+            }
+            fprintf(f, " },\n");
+        }
+
+        if (trainer->double_battle_line)
+        {
+            fprintf(f, "#line %d\n", trainer->double_battle_line);
+            fprintf(f, "        .doubleBattle = ");
+            fprint_bool(f, trainer->double_battle);
+            fprintf(f, ",\n");
+        }
+
+        if (trainer->ai_flags_n > 0)
+        {
+            fprintf(f, "#line %d\n", trainer->ai_flags_line);
+            fprintf(f, "        .aiFlags = ");
+            for (int i = 0; i < trainer->ai_flags_n; i++)
+            {
+                if (i > 0)
+                    fprintf(f, " | ");
+                fprint_constant(f, "AI_FLAG", trainer->ai_flags[i]);
+            }
+            fprintf(f, ",\n");
+        }
+
+        if (!is_empty_string(trainer->mugshot))
+        {
+            fprintf(f, "#line %d\n", trainer->mugshot_line);
+            fprintf(f, "        .mugshotEnabled = TRUE,\n");
+            fprintf(f, "        .mugshotColor = ");
+            fprint_constant(f, "MUGSHOT_COLOR", trainer->mugshot);
+            fprintf(f, ",\n");
+        }
+
+        if (!is_empty_string(trainer->starting_status))
+        {
+            fprintf(f, "#line %d\n", trainer->starting_status_line);
+            fprintf(f, "        .startingStatus = ");
+            fprint_constant(f, "STARTING_STATUS", trainer->starting_status);
+            fprintf(f, ",\n");
+        }
+
+        fprintf(f, "        .partySize = %d,\n", trainer->pokemon_n);
+        fprintf(f, "        .party = (const struct TrainerMon[])\n");
+        fprintf(f, "        {\n");
+        for (int j = 0; j < trainer->pokemon_n; j++)
+        {
+            struct Pokemon *pokemon = &trainer->pokemon[j];
+            fprintf(f, "            {\n");
+
+            if (!is_empty_string(pokemon->nickname))
+            {
+                fprintf(f, "#line %d\n", pokemon->header_line);
+                fprintf(f, "            .nickname = COMPOUND_STRING(\"");
+                fprint_string(f, pokemon->nickname);
                 fprintf(f, "\"),\n");
             }
 
-            if (!is_empty_string(trainer->class))
+            fprintf(f, "#line %d\n", pokemon->header_line);
+            fprintf(f, "            .species = ");
+            fprint_species(f, "SPECIES", pokemon->species);
+            fprintf(f, ",\n");
+
+            switch (pokemon->gender)
             {
-                fprintf(f, "#line %d\n", trainer->class_line);
-                fprintf(f, "        .trainerClass = ");
-                fprint_constant(f, "TRAINER_CLASS", trainer->class);
+                case GENDER_ANY:
+                    fprintf(f, "            .gender = TRAINER_MON_RANDOM_GENDER,\n");
+                    break;
+                case GENDER_MALE:
+                    fprintf(f, "#line %d\n", pokemon->header_line);
+                    fprintf(f, "            .gender = TRAINER_MON_MALE,\n");
+                    break;
+                case GENDER_FEMALE:
+                    fprintf(f, "#line %d\n", pokemon->header_line);
+                    fprintf(f, "            .gender = TRAINER_MON_FEMALE,\n");
+                    break;
+            }
+
+            if (!is_empty_string(pokemon->item))
+            {
+                fprintf(f, "#line %d\n", pokemon->header_line);
+                fprintf(f, "            .heldItem = ");
+                fprint_constant(f, "ITEM", pokemon->item);
                 fprintf(f, ",\n");
             }
 
-            if (!is_empty_string(trainer->pic))
+            if (pokemon->evs_line)
             {
-                fprintf(f, "#line %d\n", trainer->pic_line);
-                fprintf(f, "        .trainerPic = ");
-                if (starts_with(trainer->id, "PARTNER_"))
-                    fprint_constant(f, "TRAINER_BACK_PIC", trainer->pic);
-                else
-                    fprint_constant(f, "TRAINER_PIC", trainer->pic);
+                fprintf(f, "#line %d\n", pokemon->evs_line);
+                fprintf(f, "            .ev = ");
+                fprint_stats(f, "TRAINER_PARTY_EVS", pokemon->evs);
                 fprintf(f, ",\n");
             }
 
-            fprintf(f, "        .encounterMusic_gender = \n");
-            if (trainer->gender == GENDER_FEMALE)
+            if (pokemon->ivs_line)
             {
-                fprintf(f, "#line %d\n", trainer->gender_line);
-                fprintf(f, "F_TRAINER_FEMALE | \n");
+                fprintf(f, "#line %d\n", pokemon->ivs_line);
+                fprintf(f, "            .iv = ");
+                fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);
+                fprintf(f, ",\n");
             }
-            if (!is_empty_string(trainer->encounter_music))
+
+            if (pokemon->ability_line)
             {
-                fprintf(f, "#line %d\n", trainer->encounter_music_line);
-                fprintf(f, "            ");
-                fprint_constant(f, "TRAINER_ENCOUNTER_MUSIC", trainer->encounter_music);
+                fprintf(f, "#line %d\n", pokemon->ability_line);
+                fprintf(f, "            .ability = ");
+                fprint_constant(f, "ABILITY", pokemon->ability);
+                fprintf(f, ",\n");
+            }
+
+            if (pokemon->level_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->level_line);
+                fprintf(f, "            .lvl = %d,\n", pokemon->level);
+            }
+
+            if (pokemon->ball_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->ball_line);
+                fprintf(f, "            .ball = ");
+                fprint_constant(f, "ITEM", pokemon->ball);
+                fprintf(f, ",\n");
+            }
+
+            if (pokemon->friendship_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->friendship_line);
+                fprintf(f, "            .friendship = %d,\n", pokemon->friendship);
+            }
+
+            if (pokemon->nature_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->nature_line);
+                fprintf(f, "            .nature = ");
+                fprint_constant(f, "NATURE", pokemon->nature);
+                fprintf(f, ",\n");
             }
             else
             {
-                fprintf(f, "0");
-            }
-            fprintf(f, ",\n");
-
-            if (trainer->items_n > 0)
-            {
-                fprintf(f, "#line %d\n", trainer->items_line);
-                fprintf(f, "        .items = { ");
-                for (int i = 0; i < trainer->items_n; i++)
-                {
-                    if (i > 0)
-                        fprintf(f, ", ");
-                    fprint_constant(f, "ITEM", trainer->items[i]);
-                }
-                fprintf(f, " },\n");
+                fprintf(f, "            .nature = NATURE_HARDY,\n");
             }
 
-            if (trainer->double_battle_line)
+            if (pokemon->shiny_line)
             {
-                fprintf(f, "#line %d\n", trainer->double_battle_line);
-                fprintf(f, "        .doubleBattle = ");
-                fprint_bool(f, trainer->double_battle);
+                fprintf(f, "#line %d\n", pokemon->shiny_line);
+                fprintf(f, "            .isShiny = ");
+                fprint_bool(f, pokemon->shiny);
                 fprintf(f, ",\n");
             }
 
-            if (trainer->ai_flags_n > 0)
+            if (pokemon->dynamax_level_line)
             {
-                fprintf(f, "#line %d\n", trainer->ai_flags_line);
-                fprintf(f, "        .aiFlags = ");
-                for (int i = 0; i < trainer->ai_flags_n; i++)
-                {
-                    if (i > 0)
-                        fprintf(f, " | ");
-                    fprint_constant(f, "AI_FLAG", trainer->ai_flags[i]);
-                }
+                fprintf(f, "#line %d\n", pokemon->dynamax_level_line);
+                fprintf(f, "            .dynamaxLevel = %d,\n", pokemon->dynamax_level);
+            }
+            else
+            {
+                fprintf(f, "            .dynamaxLevel = MAX_DYNAMAX_LEVEL,\n");
+            }
+
+            if (pokemon->gigantamax_factor_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->gigantamax_factor_line);
+                fprintf(f, "            .gigantamaxFactor = ");
+                fprint_bool(f, pokemon->gigantamax_factor);
                 fprintf(f, ",\n");
             }
 
-            if (!is_empty_string(trainer->mugshot))
+            if (pokemon->dynamax_level_line || pokemon->gigantamax_factor_line)
             {
-                fprintf(f, "#line %d\n", trainer->mugshot_line);
-                fprintf(f, "        .mugshotEnabled = TRUE,\n");
-                fprintf(f, "        .mugshotColor = ");
-                fprint_constant(f, "MUGSHOT_COLOR", trainer->mugshot);
+                fprintf(f, "            .shouldUseDynamax = TRUE,\n");
+            }
+            else if (pokemon->tera_type_line)
+            {
+                fprintf(f, "#line %d\n", pokemon->tera_type_line);
+                fprintf(f, "            .teraType = ");
+                fprint_constant(f, "TYPE", pokemon->tera_type);
                 fprintf(f, ",\n");
             }
 
-            if (!is_empty_string(trainer->starting_status))
+            if (pokemon->moves_n > 0)
             {
-                fprintf(f, "#line %d\n", trainer->starting_status_line);
-                fprintf(f, "        .startingStatus = ");
-                fprint_constant(f, "STARTING_STATUS", trainer->starting_status);
-                fprintf(f, ",\n");
-            }
-
-            fprintf(f, "        .partySize = %d,\n", trainer->pokemon_n);
-            fprintf(f, "        .party = (const struct TrainerMon[])\n");
-            fprintf(f, "        {\n");
-            for (int j = 0; j < trainer->pokemon_n; j++)
-            {
-                struct Pokemon *pokemon = &trainer->pokemon[j];
-                fprintf(f, "            {\n");
-
-                if (!is_empty_string(pokemon->nickname))
+                fprintf(f, "            .moves = {\n");
+                fprintf(f, "#line %d\n", pokemon->move1_line);
+                for (int k = 0; k < pokemon->moves_n; k++)
                 {
-                    fprintf(f, "#line %d\n", pokemon->header_line);
-                    fprintf(f, "            .nickname = COMPOUND_STRING(\"");
-                    fprint_string(f, pokemon->nickname);
-                    fprintf(f, "\"),\n");
-                }
-
-                fprintf(f, "#line %d\n", pokemon->header_line);
-                fprintf(f, "            .species = ");
-                fprint_species(f, "SPECIES", pokemon->species);
-                fprintf(f, ",\n");
-
-                switch (pokemon->gender)
-                {
-                    case GENDER_ANY:
-                        fprintf(f, "            .gender = TRAINER_MON_RANDOM_GENDER,\n");
-                        break;
-                    case GENDER_MALE:
-                        fprintf(f, "#line %d\n", pokemon->header_line);
-                        fprintf(f, "            .gender = TRAINER_MON_MALE,\n");
-                        break;
-                    case GENDER_FEMALE:
-                        fprintf(f, "#line %d\n", pokemon->header_line);
-                        fprintf(f, "            .gender = TRAINER_MON_FEMALE,\n");
-                        break;
-                }
-
-                if (!is_empty_string(pokemon->item))
-                {
-                    fprintf(f, "#line %d\n", pokemon->header_line);
-                    fprintf(f, "            .heldItem = ");
-                    fprint_constant(f, "ITEM", pokemon->item);
+                    fprintf(f, "                ");
+                    fprint_constant(f, "MOVE", pokemon->moves[k]);
                     fprintf(f, ",\n");
                 }
-
-                if (pokemon->evs_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->evs_line);
-                    fprintf(f, "            .ev = ");
-                    fprint_stats(f, "TRAINER_PARTY_EVS", pokemon->evs);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->ivs_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->ivs_line);
-                    fprintf(f, "            .iv = ");
-                    fprint_stats(f, "TRAINER_PARTY_IVS", pokemon->ivs);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->ability_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->ability_line);
-                    fprintf(f, "            .ability = ");
-                    fprint_constant(f, "ABILITY", pokemon->ability);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->level_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->level_line);
-                    fprintf(f, "            .lvl = %d,\n", pokemon->level);
-                }
-
-                if (pokemon->ball_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->ball_line);
-                    fprintf(f, "            .ball = ");
-                    fprint_constant(f, "ITEM", pokemon->ball);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->friendship_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->friendship_line);
-                    fprintf(f, "            .friendship = %d,\n", pokemon->friendship);
-                }
-
-                if (pokemon->nature_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->nature_line);
-                    fprintf(f, "            .nature = ");
-                    fprint_constant(f, "NATURE", pokemon->nature);
-                    fprintf(f, ",\n");
-                }
-                else
-                {
-                    fprintf(f, "            .nature = NATURE_HARDY,\n");
-                }
-
-                if (pokemon->shiny_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->shiny_line);
-                    fprintf(f, "            .isShiny = ");
-                    fprint_bool(f, pokemon->shiny);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->dynamax_level_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->dynamax_level_line);
-                    fprintf(f, "            .dynamaxLevel = %d,\n", pokemon->dynamax_level);
-                }
-                else
-                {
-                    fprintf(f, "            .dynamaxLevel = MAX_DYNAMAX_LEVEL,\n");
-                }
-
-                if (pokemon->gigantamax_factor_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->gigantamax_factor_line);
-                    fprintf(f, "            .gigantamaxFactor = ");
-                    fprint_bool(f, pokemon->gigantamax_factor);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->dynamax_level_line || pokemon->gigantamax_factor_line)
-                {
-                    fprintf(f, "            .shouldUseDynamax = TRUE,\n");
-                }
-                else if (pokemon->tera_type_line)
-                {
-                    fprintf(f, "#line %d\n", pokemon->tera_type_line);
-                    fprintf(f, "            .teraType = ");
-                    fprint_constant(f, "TYPE", pokemon->tera_type);
-                    fprintf(f, ",\n");
-                }
-
-                if (pokemon->moves_n > 0)
-                {
-                    fprintf(f, "            .moves = {\n");
-                    fprintf(f, "#line %d\n", pokemon->move1_line);
-                    for (int k = 0; k < pokemon->moves_n; k++)
-                    {
-                        fprintf(f, "                ");
-                        fprint_constant(f, "MOVE", pokemon->moves[k]);
-                        fprintf(f, ",\n");
-                    }
-                    fprintf(f, "            },\n");
-                }
-
                 fprintf(f, "            },\n");
             }
-            fprintf(f, "        },\n");
-            fprintf(f, "    },\n");
+
+            fprintf(f, "            },\n");
         }
-
-        if (current_loop_is_test_trainers(parsed->source->path))
-            break;
-
-        fprintf(f, "},\n");
-
+        fprintf(f, "        },\n");
+        fprintf(f, "    },\n");
     }
 }
 
