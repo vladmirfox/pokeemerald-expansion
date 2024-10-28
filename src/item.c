@@ -169,7 +169,7 @@ bool8 HasAtLeastOnePokeBall(void)
 {
     u16 ballId;
 
-    for (ballId = BALL_POKE; ballId < POKEBALL_COUNT; ballId++)
+    for (ballId = BALL_STRANGE; ballId < POKEBALL_COUNT; ballId++)
     {
         if (CheckBagHasItem(ballId, 1) == TRUE)
             return TRUE;

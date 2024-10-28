@@ -48,7 +48,6 @@ static u16 GetBattlerPokeballItemId(u8 battlerId);
 
 // rom const data
 
-
 #define GFX_TAG_STRANGE_BALL 55000
 #define GFX_TAG_POKE_BALL    55001
 #define GFX_TAG_GREAT_BALL   55002
