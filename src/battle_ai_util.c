@@ -35,6 +35,16 @@
 static u32 AI_GetEffectiveness(uq4_12_t multiplier);
 
 // Functions
+u32 GetDmgRollType(u32 battlerAtk)
+{
+    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
+        return DMG_ROLL_HIGHEST;
+    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_CONSERVATIVE)
+        return DMG_ROLL_LOWEST;
+
+    return DMG_ROLL_DEFAULT;
+}
+
 bool32 AI_IsFaster(u32 battlerAi, u32 battlerDef, u32 move)
 {
     return (AI_WhoStrikesFirst(battlerAi, battlerDef, move) == AI_IS_FASTER);
@@ -364,7 +374,7 @@ bool32 MovesWithCategoryUnusable(u32 attacker, u32 target, u32 category)
 }
 
 // To save computation time this function has 2 variants. One saves, sets and restores battlers, while the other doesn't.
-struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, enum DamageRollType rollType)
+struct SimulatedDamage AI_CalcDamageSaveBattlers(u32 battlerAtk, u32 battlerDef, u32 move, u8 *typeEffectiveness, bool32 considerZPower, enum DamageRollType rollType)
 {
     struct SimulatedDamage dmg;
 
@@ -687,6 +697,7 @@ struct SimulatedDamage AI_CalcDamage(u32 battlerAtk, u32 battlerDef, u32 move, u
                     u32 partyCount = CalculatePartyCount(GetBattlerParty(battlerAtk));
                     u32 i;
                     gBattleStruct->beatUpSlot = 0;
+                    damageCalcData.isCrit = FALSE;
                     simDamage.expected = 0;
                     for (i = 0; i < partyCount; i++)
                     {
@@ -3923,7 +3934,7 @@ bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove)
         else if (!IS_MOVE_STATUS(chosenMove) && IS_MOVE_STATUS(zMove))
             return FALSE;
 
-        dmg = AI_CalcDamageSaveBattlers(chosenMove, battlerAtk, battlerDef, &effectiveness, FALSE, DMG_ROLL_DEFAULT);
+        dmg = AI_CalcDamageSaveBattlers(battlerAtk, battlerDef, chosenMove, &effectiveness, FALSE, DMG_ROLL_DEFAULT);
 
         if (!IS_MOVE_STATUS(chosenMove) && dmg.minimum >= gBattleMons[battlerDef].hp)
             return FALSE;   // don't waste damaging z move if can otherwise faint target

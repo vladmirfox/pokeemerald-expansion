@@ -407,17 +407,6 @@ static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 ba
     return accuracy;
 }
 
-
-static inline u32 GetDmgRollType(u32 battlerAtk)
-{
-    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_RISKY)
-        return DMG_ROLL_HIGHEST;
-    if (AI_THINKING_STRUCT->aiFlags[battlerAtk] & AI_FLAG_CONSERVATIVE)
-        return DMG_ROLL_LOWEST;
-
-    return DMG_ROLL_DEFAULT;
-}
-
 static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u32 battlersCount, u32 weather)
 {
     u16 *moves;
