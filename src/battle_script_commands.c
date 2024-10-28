@@ -1215,6 +1215,7 @@ static void Cmd_attackcanceler(void)
         gCurrentActionFuncId = B_ACTION_FINISHED;
         return;
     }
+
     if (!IsBattlerAlive(gBattlerAttacker) && gMovesInfo[gCurrentMove].effect != EFFECT_EXPLOSION && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
     {
         gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -12785,8 +12786,8 @@ static void Cmd_metronome(void)
 #endif
 
     gCurrentMove = RandomUniformExcept(RNG_METRONOME, 1, moveCount - 1, InvalidMetronomeMove);
-    gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
     SetAtkCancellerForCalledMove();
+    PrepareStringBattle(STRINGID_WAGGLINGAFINGER, gBattlerAttacker);
     gBattlescriptCurrInstr = GET_MOVE_BATTLESCRIPT(gCurrentMove);
     gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
 }
@@ -17456,7 +17457,10 @@ void BS_TryRevivalBlessing(void)
         if (IsDoubleBattle() &&
             gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
         {
-            gBattleScripting.battler = BATTLE_PARTNER(gBattlerAttacker);
+            u32 i = BATTLE_PARTNER(gBattlerAttacker);
+            gAbsentBattlerFlags &= ~(1u << i);
+            gBattleStruct->monToSwitchIntoId[i] = gSelectedMonPartyId;
+            gBattleScripting.battler = i;
             gBattleCommunication[MULTIUSE_STATE] = TRUE;
         }
 
