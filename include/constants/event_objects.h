@@ -418,6 +418,7 @@
 #define OBJ_EVENT_PAL_TAG_FIREBRINGER             0x1145
 #define OBJ_EVENT_PAL_TAG_TRAVELING_MERCHANT      0x1146
 #define OBJ_EVENT_PAL_TAG_ONSEN                   0x1147
+#define OBJ_EVENT_PAL_TAG_BEAUTY                   0x1148
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
