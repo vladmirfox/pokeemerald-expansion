@@ -4,7 +4,7 @@
 #include "script.h"
 #include "constants/battle.h"
 
-u32 GetCurrentDifficultyLevel(void)
+enum DifficultyLevel GetCurrentDifficultyLevel(void)
 {
     if (!B_VAR_DIFFICULTY)
         return DIFFICULTY_NORMAL;
@@ -12,7 +12,7 @@ u32 GetCurrentDifficultyLevel(void)
     return VarGet(B_VAR_DIFFICULTY);
 }
 
-void SetCurrentDifficultyLevel(u32 desiredDifficulty)
+void SetCurrentDifficultyLevel(enum DifficultyLevel desiredDifficulty)
 {
     if (!B_VAR_DIFFICULTY)
         return;
@@ -23,7 +23,7 @@ void SetCurrentDifficultyLevel(u32 desiredDifficulty)
     VarSet(B_VAR_DIFFICULTY, desiredDifficulty);
 }
 
-u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
+enum DifficultyLevel GetBattlePartnerDifficultyLevel(u16 partnerId)
 {
     enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
@@ -39,7 +39,7 @@ u32 GetBattlePartnerDifficultyLevel(u16 partnerId)
     return difficulty;
 }
 
-u32 GetTrainerDifficultyLevel(u16 trainerId)
+enum DifficultyLevel GetTrainerDifficultyLevel(u16 trainerId)
 {
     enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
 
@@ -54,7 +54,7 @@ u32 GetTrainerDifficultyLevel(u16 trainerId)
 
 void Script_IncreaseDifficulty(struct ScriptContext *ctx)
 {
-    u32 currentDifficulty;
+    enum DifficultyLevel currentDifficulty;
 
     if (!B_VAR_DIFFICULTY)
         return;
@@ -69,7 +69,7 @@ void Script_IncreaseDifficulty(struct ScriptContext *ctx)
 
 void Script_DecreaseDifficulty(struct ScriptContext *ctx)
 {
-    u32 currentDifficulty;
+    enum DifficultyLevel currentDifficulty;
 
     if (!B_VAR_DIFFICULTY)
         return;
@@ -89,7 +89,7 @@ void Script_GetDifficulty(struct ScriptContext *ctx)
 
 void Script_SetDifficulty(struct ScriptContext *ctx)
 {
-    u32 desiredDifficulty = ScriptReadByte(ctx);
+    enum DifficultyLevel desiredDifficulty = ScriptReadByte(ctx);
 
     SetCurrentDifficultyLevel(desiredDifficulty);
 }

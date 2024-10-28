@@ -1623,14 +1623,17 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
     for (int i = 0; i < parsed->trainers_n; i++)
     {
         struct Trainer *trainer = &parsed->trainers[i];
-        if (is_empty_string(trainer->difficulty))
-            trainer->difficulty = literal_string("Normal");
-
-        fprintf(f, "#line %d\n", trainer->difficulty_line);
         if (!current_loop_is_test_trainers(parsed->source->path))
-            fprint_constant(f, "[DIFFICULTY",trainer->difficulty);
+        {
+            if (is_empty_string(trainer->difficulty))
+                trainer->difficulty = literal_string("Normal");
 
-        fprintf(f, "][");
+            fprintf(f, "#line %d\n", trainer->difficulty_line);
+            fprint_constant(f, "[DIFFICULTY",trainer->difficulty);
+            fprintf(f, "]");
+        }
+
+        fprintf(f, "[");
         fprint_string(f, trainer->id);
         fprintf(f, "] =\n");
         fprintf(f, "    {\n");
