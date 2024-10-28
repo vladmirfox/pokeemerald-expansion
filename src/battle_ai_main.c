@@ -2696,7 +2696,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         }
 
         // Don't use sleep effect if partner will activate sleep clause
-        if (IsSleepClauseTriggeringEffect(partnerEffect) && IsSleepClauseTriggeringEffect(effect) && B_FLAG_SLEEP_CLAUSE)
+        if (IsEffectBlockedBySleepClause(partnerEffect) && IsEffectBlockedBySleepClause(effect))
             ADJUST_SCORE(-20);
             
     } // check partner move effect

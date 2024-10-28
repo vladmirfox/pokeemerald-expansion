@@ -2328,8 +2328,11 @@ bool32 IsSwitchOutEffect(u32 effect)
     }
 }
 
-bool32 IsSleepClauseTriggeringEffect(u32 effect)
+bool32 IsEffectBlockedBySleepClause(u32 effect)
 {
+    if (!FlagGet(B_FLAG_SLEEP_CLAUSE))
+        return FALSE;
+    
     // Move effects that directly induce sleep get blocked by sleep clause
     switch (effect)
     {
