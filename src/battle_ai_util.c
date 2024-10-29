@@ -2328,22 +2328,6 @@ bool32 IsSwitchOutEffect(u32 effect)
     }
 }
 
-bool32 IsEffectBlockedBySleepClause(u32 effect)
-{
-    if (!FlagGet(B_FLAG_SLEEP_CLAUSE))
-        return FALSE;
-    
-    // Move effects that directly induce sleep get blocked by sleep clause
-    switch (effect)
-    {
-    case EFFECT_SLEEP:
-    case EFFECT_YAWN:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
 bool32 HasDamagingMove(u32 battlerId)
 {
     u32 i;
@@ -3364,6 +3348,17 @@ bool32 PartnerMoveIsSameNoTarget(u32 battlerAtkPartner, u32 move, u32 partnerMov
     if (!IsDoubleBattle())
         return FALSE;
     if (partnerMove != MOVE_NONE && move == partnerMove)
+        return TRUE;
+    return FALSE;
+}
+
+bool32 PartnerMoveActivatesSleepClause(u32 partnerMove)
+{
+    u32 effect = gMovesInfo[partnerMove].effect;
+    if (!IsDoubleBattle() || !FlagGet(B_FLAG_SLEEP_CLAUSE))
+        return FALSE;
+    if (effect == EFFECT_SLEEP
+        || effect == EFFECT_YAWN)
         return TRUE;
     return FALSE;
 }
