@@ -2249,9 +2249,7 @@ END:
     if (gSpecialStatuses[gBattlerAttacker].gemBoost
         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         && gBattleMons[gBattlerAttacker].item
-        && gMovesInfo[gCurrentMove].effect != EFFECT_WATER_PLEDGE
-        && gMovesInfo[gCurrentMove].effect != EFFECT_FIRE_PLEDGE
-        && gMovesInfo[gCurrentMove].effect != EFFECT_GRASS_PLEDGE
+        && gMovesInfo[gCurrentMove].effect != EFFECT_PLEDGE
         && gCurrentMove != MOVE_STRUGGLE)
     {
         BattleScriptPushCursor();
@@ -16754,10 +16752,10 @@ void BS_SetPledge(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
 
-    u32 currentEffect = gMovesInfo[gCurrentMove].effect;
+    u32 moveType = gMovesInfo[gCurrentMove].type;
     u32 partner = BATTLE_PARTNER(gBattlerAttacker);
     u32 partnerMove = gBattleMons[partner].moves[gBattleStruct->chosenMovePositions[partner]];
-    u32 partnerEffect = gMovesInfo[partnerMove].effect;
+    u32 partnerMoveType = gMovesInfo[partnerMove].type;
     u32 i = 0;
     u32 k = 0;
 
@@ -16766,29 +16764,29 @@ void BS_SetPledge(void)
         PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
         gHitMarker |= HITMARKER_ATTACKSTRING_PRINTED;
 
-        if ((currentEffect == EFFECT_GRASS_PLEDGE && partnerEffect == EFFECT_WATER_PLEDGE))
+        if ((moveType == TYPE_GRASS && partnerMoveType == TYPE_WATER))
         {
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Grass;
         }
-        else if ((currentEffect == EFFECT_WATER_PLEDGE && partnerEffect == EFFECT_GRASS_PLEDGE))
+        else if ((moveType == TYPE_WATER && partnerMoveType == TYPE_GRASS))
         {
             gCurrentMove = partnerMove;
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Grass;
         }
-        else if ((currentEffect == EFFECT_FIRE_PLEDGE && partnerEffect == EFFECT_GRASS_PLEDGE))
+        else if ((moveType == TYPE_FIRE && partnerMoveType == TYPE_GRASS))
         {
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Fire;
         }
-        else if ((currentEffect == EFFECT_GRASS_PLEDGE && partnerEffect == EFFECT_FIRE_PLEDGE))
+        else if ((moveType == TYPE_GRASS && partnerMoveType == TYPE_FIRE))
         {
             gCurrentMove = partnerMove;
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Fire;
         }
-        else if ((currentEffect == EFFECT_WATER_PLEDGE && partnerEffect == EFFECT_FIRE_PLEDGE))
+        else if ((moveType == TYPE_WATER && partnerMoveType == TYPE_FIRE))
         {
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Water;
         }
-        else if ((currentEffect == EFFECT_FIRE_PLEDGE && partnerEffect == EFFECT_WATER_PLEDGE))
+        else if ((moveType == TYPE_FIRE && partnerMoveType == TYPE_WATER))
         {
             gCurrentMove = partnerMove;
             gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Water;
@@ -16801,8 +16799,8 @@ void BS_SetPledge(void)
           && IsBattlerAlive(partner)
           && GetBattlerTurnOrderNum(gBattlerAttacker) < GetBattlerTurnOrderNum(partner)
           && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
-          && currentEffect != partnerEffect
-          && (partnerEffect == EFFECT_WATER_PLEDGE || partnerEffect == EFFECT_FIRE_PLEDGE || partnerEffect == EFFECT_GRASS_PLEDGE))
+          && moveType != partnerMoveType
+          && gMovesInfo[partnerMove].effect == EFFECT_PLEDGE)
     {
         u32 currPledgeUser = 0;
         u32 newTurnOrder[] = {0xFF, 0xFF};
