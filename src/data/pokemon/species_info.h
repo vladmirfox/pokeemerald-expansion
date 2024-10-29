@@ -42,24 +42,24 @@
 #define OVERWORLD_PAL_FEMALE(...)
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
 
-#define OVERWORLD_DATA(objEventPic, _size, shadow, _tracks, _anims)                                 \
-{                                                                                                   \
-    .tileTag = TAG_NONE,                                                                            \
-    .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                        \
-    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                                 \
-    .size = (_size == SIZE_32x32 ? 512 : 2048),                                                     \
-    .width = (_size == SIZE_32x32 ? 32 : 64),                                                       \
-    .height = (_size == SIZE_32x32 ? 32 : 64),                                                      \
-    .paletteSlot = PALSLOT_NPC_1,                                                                   \
-    .shadowSize = shadow,                                                                           \
-    .inanimate = FALSE,                                                                             \
-    .compressed = COMP,                                                                             \
-    .tracks = _tracks,                                                                              \
-    .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64),         \
-    .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),                 \
-    .anims = _anims,                                                                                \
-    .images = (const struct SpriteFrameImage[]) { overworld_ascending_frames(objEventPic, 4, 4), }, \
-    .affineAnims = gDummySpriteAffineAnimTable,                                                     \
+#define OVERWORLD_DATA(objEventPic, _size, shadow, _tracks, _anims)                                                                     \
+{                                                                                                                                       \
+    .tileTag = TAG_NONE,                                                                                                                \
+    .paletteTag = OBJ_EVENT_PAL_TAG_DYNAMIC,                                                                                            \
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,                                                                                     \
+    .size = (_size == SIZE_32x32 ? 512 : 2048),                                                                                         \
+    .width = (_size == SIZE_32x32 ? 32 : 64),                                                                                           \
+    .height = (_size == SIZE_32x32 ? 32 : 64),                                                                                          \
+    .paletteSlot = PALSLOT_NPC_1,                                                                                                       \
+    .shadowSize = shadow,                                                                                                               \
+    .inanimate = FALSE,                                                                                                                 \
+    .compressed = COMP,                                                                                                                 \
+    .tracks = _tracks,                                                                                                                  \
+    .oam = (_size == SIZE_32x32 ? &gObjectEventBaseOam_32x32 : &gObjectEventBaseOam_64x64),                                             \
+    .subspriteTables = (_size == SIZE_32x32 ? sOamTables_32x32 : sOamTables_64x64),                                                     \
+    .anims = _anims,                                                                                                                    \
+    .images = (const struct SpriteFrameImage[]) { overworld_ascending_frames(objEventPic, SIZE_32x32 ? 4 : 8, SIZE_32x32 ? 4 : 8), },   \
+    .affineAnims = gDummySpriteAffineAnimTable,                                                                                         \
 }
 
 #define OVERWORLD(objEventPic, _size, shadow, _tracks, _anims, ...)                                 \
