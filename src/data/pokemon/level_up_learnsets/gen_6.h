@@ -15542,6 +15542,7 @@ static const struct LevelUpMove sLitleoLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sPyroarLevelUpLearnset[] = {
+    
     LEVEL_UP_MOVE( 1, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_LEER),

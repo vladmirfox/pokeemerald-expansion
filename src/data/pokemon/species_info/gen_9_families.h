@@ -2144,12 +2144,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #if P_FAMILY_CHARCADET
     [SPECIES_CHARCADET] =
     {
-        .baseHP        = 40,
-        .baseAttack    = 50,
-        .baseDefense   = 40,
-        .baseSpeed     = 35,
-        .baseSpAttack  = 50,
-        .baseSpDefense = 40,
+        .baseHP        = 45,
+        .baseAttack    = 60,
+        .baseDefense   = 46,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 46,
         .types = MON_TYPES(TYPE_FIRE),
         .catchRate = 90,
         .expYield = 51,
@@ -2159,7 +2159,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-        .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_FLAME_BODY },
+        .abilities = { ABILITY_FLASH_FIRE },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Charcadet"),
         .cryId = CRY_CHARCADET,
@@ -2208,12 +2208,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_ARMAROUGE] =
     {
-        .baseHP        = 85,
+        .baseHP        = 90,
         .baseAttack    = 60,
         .baseDefense   = 100,
         .baseSpeed     = 75,
         .baseSpAttack  = 125,
-        .baseSpDefense = 80,
+        .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_FIRE, TYPE_PSYCHIC),
         .catchRate = 25,
         .expYield = 263,
@@ -2223,7 +2223,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = 20,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-        .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_WEAK_ARMOR },
+        .abilities = { ABILITY_FLASH_FIRE },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Armarouge"),
         .cryId = CRY_ARMAROUGE,
@@ -2269,9 +2269,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 
     [SPECIES_CERULEDGE] =
     {
-        .baseHP        = 75,
+        .baseHP        = 85,
         .baseAttack    = 125,
-        .baseDefense   = 80,
+        .baseDefense   = 85,
         .baseSpeed     = 85,
         .baseSpAttack  = 60,
         .baseSpDefense = 100,
@@ -2284,7 +2284,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = 20,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-        .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_WEAK_ARMOR },
+        .abilities = { ABILITY_WEAK_ARMOR },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Ceruledge"),
         .cryId = CRY_CERULEDGE,
@@ -3157,12 +3157,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #if P_FAMILY_CAPSAKID
     [SPECIES_CAPSAKID] =
     {
-        .baseHP        = 50,
-        .baseAttack    = 62,
-        .baseDefense   = 40,
+        .baseHP        = 55,
+        .baseAttack    = 67,
+        .baseDefense   = 45,
         .baseSpeed     = 50,
         .baseSpAttack  = 62,
-        .baseSpDefense = 40,
+        .baseSpDefense = 45,
         .types = MON_TYPES(TYPE_GRASS),
         .catchRate = 190,
         .expYield = 61,
@@ -3172,7 +3172,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_KLUTZ },
+        .abilities = { ABILITY_CHLOROPHYLL },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Capsakid"),
         .cryId = CRY_CAPSAKID,
@@ -3215,17 +3215,17 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .levelUpLearnset = sCapsakidLevelUpLearnset,
         .teachableLearnset = sCapsakidTeachableLearnset,
         .eggMoveLearnset = sCapsakidEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_SCOVILLAIN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_SCOVILLAIN}),
     },
 
     [SPECIES_SCOVILLAIN] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 108,
-        .baseDefense   = 65,
+        .baseHP        = 75,
+        .baseAttack    = 118,
+        .baseDefense   = 75,
         .baseSpeed     = 75,
-        .baseSpAttack  = 108,
-        .baseSpDefense = 65,
+        .baseSpAttack  = 118,
+        .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_GRASS, TYPE_FIRE),
         .catchRate = 75,
         .expYield = 170,
@@ -3235,7 +3235,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_MOODY },
+        .abilities = { ABILITY_CHLOROPHYLL },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Scovillain"),
         .cryId = CRY_SCOVILLAIN,
@@ -6927,9 +6927,9 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
 #if P_FAMILY_POLTCHAGEIST
     [SPECIES_POLTCHAGEIST_COUNTERFEIT] =
     {
-        .baseHP        = 40,
+        .baseHP        = 45,
         .baseAttack    = 45,
-        .baseDefense   = 45,
+        .baseDefense   = 50,
         .baseSpeed     = 50,
         .baseSpAttack  = 74,
         .baseSpDefense = 54,
@@ -6942,7 +6942,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Poltchageist"),
         .cryId = CRY_POLTCHAGEIST,
@@ -6985,7 +6985,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         )
         .levelUpLearnset = sPoltchageistLevelUpLearnset,
         .teachableLearnset = sPoltchageistTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UNREMARKABLE_TEACUP, SPECIES_SINISTCHA_UNREMARKABLE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_SINISTCHA_UNREMARKABLE}),
     },
     [SPECIES_POLTCHAGEIST_ARTISAN] =
     {
@@ -7004,7 +7004,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Poltchageist"),
         .cryId = CRY_POLTCHAGEIST,
@@ -7047,17 +7047,19 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         )
         .levelUpLearnset = sPoltchageistLevelUpLearnset,
         .teachableLearnset = sPoltchageistTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
-    },
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_SINISTCHA_MASTERPIECE}), 
+        },
+
+    
 
     [SPECIES_SINISTCHA_UNREMARKABLE] =
     {
-        .baseHP        = 71,
+        .baseHP        = 81,
         .baseAttack    = 60,
         .baseDefense   = 106,
         .baseSpeed     = 70,
         .baseSpAttack  = 121,
-        .baseSpDefense = 80,
+        .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),
         .catchRate = 60,
         .expYield = 178,
@@ -7067,7 +7069,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sinistcha"),
         .cryId = CRY_SINISTCHA,
@@ -7113,12 +7115,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     },
     [SPECIES_SINISTCHA_MASTERPIECE] =
     {
-        .baseHP        = 71,
+        .baseHP        = 81,
         .baseAttack    = 60,
         .baseDefense   = 106,
         .baseSpeed     = 70,
         .baseSpAttack  = 121,
-        .baseSpDefense = 80,
+        .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_GRASS, TYPE_GHOST),
         .catchRate = 60,
         .expYield = 178,
@@ -7128,7 +7130,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS),
-        .abilities = { ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF },
+        .abilities = { ABILITY_HOSPITALITY, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sinistcha"),
         .cryId = CRY_SINISTCHA,

@@ -450,11 +450,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_OSHAWOTT] =
     {
         .baseHP        = 55,
-        .baseAttack    = 55,
-        .baseDefense   = 45,
+        .baseAttack    = 65,
+        .baseDefense   = 50,
         .baseSpeed     = 45,
         .baseSpAttack  = 63,
-        .baseSpDefense = 45,
+        .baseSpDefense = 50,
         .types = MON_TYPES(TYPE_WATER),
         .catchRate = 45,
         .expYield = 62,
@@ -464,7 +464,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_SHARPNESS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Oshawott"),
         .cryId = CRY_OSHAWOTT,
@@ -513,11 +513,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_DEWOTT] =
     {
         .baseHP        = 75,
-        .baseAttack    = 75,
-        .baseDefense   = 60,
+        .baseAttack    = 85,
+        .baseDefense   = 75,
         .baseSpeed     = 60,
         .baseSpAttack  = 83,
-        .baseSpDefense = 60,
+        .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_WATER),
         .catchRate = 45,
         .expYield = 145,
@@ -527,7 +527,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR },
+        .abilities = { ABILITY_SHARPNESS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Dewott"),
         .cryId = CRY_DEWOTT,
@@ -569,8 +569,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         )
         .levelUpLearnset = sDewottLevelUpLearnset,
         .teachableLearnset = sDewottTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SAMUROTT},
-                                {EVO_NONE, 0, SPECIES_SAMUROTT_HISUI}),
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_SAMUROTT},
+                                {EVO_LEVEL, 36, SPECIES_SAMUROTT_HISUIAN}),
     },
 
     [SPECIES_SAMUROTT] =
@@ -639,11 +639,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
     [SPECIES_SAMUROTT_HISUI] =
     {
         .baseHP        = 90,
-        .baseAttack    = 108,
-        .baseDefense   = 80,
+        .baseAttack    = 118,
+        .baseDefense   = 95,
         .baseSpeed     = 85,
         .baseSpAttack  = 100,
-        .baseSpDefense = 65,
+        .baseSpDefense = 80,
         .types = MON_TYPES(TYPE_WATER, TYPE_DARK),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_8) ? 264 : 238,
@@ -653,7 +653,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHARPNESS },
+        .abilities = { ABILITY_SHARPNESS },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Samurott"),
         .cryId = CRY_SAMUROTT,
@@ -7062,12 +7062,12 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_DEERLING_AUTUMN] =
     {
-        .baseHP        = 60,
-        .baseAttack    = 60,
-        .baseDefense   = 50,
+        .baseHP        = 65,
+        .baseAttack    = 70,
+        .baseDefense   = 55,
         .baseSpeed     = 75,
         .baseSpAttack  = 40,
-        .baseSpDefense = 50,
+        .baseSpDefense = 55,
         .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),
         .catchRate = 190,
         .expYield = 67,
@@ -7077,7 +7077,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE },
+        .abilities = { ABILITY_CHLOROPHYLL },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Deerling"),
         .cryId = CRY_DEERLING,
@@ -7121,7 +7121,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .teachableLearnset = sDeerlingTeachableLearnset,
         .eggMoveLearnset = sDeerlingEggMoveLearnset,
         .formSpeciesIdTable = sDeerlingFormSpeciesIdTable,
-        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_AUTUMN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_SAWSBUCK_AUTUMN}),
     },
 
     [SPECIES_DEERLING_WINTER] =
@@ -7314,12 +7314,12 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 
     [SPECIES_SAWSBUCK_AUTUMN] =
     {
-        .baseHP        = 80,
-        .baseAttack    = 100,
-        .baseDefense   = 70,
+        .baseHP        = 90,
+        .baseAttack    = 110,
+        .baseDefense   = 90,
         .baseSpeed     = 95,
         .baseSpAttack  = 60,
-        .baseSpDefense = 70,
+        .baseSpDefense = 90,
         .types = MON_TYPES(TYPE_NORMAL, TYPE_GRASS),
         .catchRate = 75,
         .expYield = 166,
@@ -7329,7 +7329,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE },
+        .abilities = { ABILITY_CHLOROPHYLL },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Sawsbuck"),
         .cryId = CRY_SAWSBUCK,
