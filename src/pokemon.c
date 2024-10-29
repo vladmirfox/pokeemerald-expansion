@@ -3369,16 +3369,16 @@ u8 CalculatePartyCount(struct Pokemon *party)
 
 u8 CalculatePartyCountOfSide(u32 battler, struct Pokemon *party)
 {
-    s32 partyStart, partySize;
-    GetAIPartyIndexes(battler, &partyStart, &partySize);
+    s32 partyCount, partySize;
+    GetAIPartyIndexes(battler, &partyCount, &partySize);
 
-    while (partyStart < partySize
-        && GetMonData(&party[partyStart], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
+    while (partyCount < partySize
+        && GetMonData(&party[partyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
     {
-        partyStart++;
+        partyCount++;
     }
 
-    return partyStart;
+    return partyCount;
 }
 
 u8 CalculatePlayerPartyCount(void)
@@ -3393,8 +3393,6 @@ u8 CalculateEnemyPartyCount(void)
     return gEnemyPartyCount;
 }
 
-// Not messing with gEnemyPartyCount here because I'm unsure if it always has to be the total count
-// - GhoulMage
 u8 CalculateEnemyPartyCountInSide(u32 battler)
 {
     return CalculatePartyCountOfSide(battler, gEnemyParty);
