@@ -327,7 +327,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_TorchicF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sTorchicLevelUpLearnset,
         .teachableLearnset = sTorchicTeachableLearnset,
@@ -404,7 +405,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_CombuskenF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sCombuskenLevelUpLearnset,
         .teachableLearnset = sCombuskenTeachableLearnset,
@@ -485,7 +487,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_BlazikenF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sBlazikenLevelUpLearnset,
         .teachableLearnset = sBlazikenTeachableLearnset,
@@ -1512,7 +1515,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_BeautiflyF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_NONE
+            TRACKS_NONE,
+            sAnimTable_Following
         )
         .levelUpLearnset = sBeautiflyLevelUpLearnset,
         .teachableLearnset = sBeautiflyTeachableLearnset,
@@ -1668,7 +1672,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_DustoxF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_NONE
+            TRACKS_NONE,
+            sAnimTable_Following
         )
         .levelUpLearnset = sDustoxLevelUpLearnset,
         .teachableLearnset = sDustoxTeachableLearnset,
@@ -1880,7 +1885,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_LudicoloF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sLudicoloLevelUpLearnset,
         .teachableLearnset = sLudicoloTeachableLearnset,
@@ -2022,7 +2028,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_NuzleafF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sNuzleafLevelUpLearnset,
         .teachableLearnset = sNuzleafTeachableLearnset,
@@ -2108,7 +2115,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_ShiftryF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sShiftryLevelUpLearnset,
         .teachableLearnset = sShiftryTeachableLearnset,
@@ -4668,7 +4676,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_MedititeF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sMedititeLevelUpLearnset,
         .teachableLearnset = sMedititeTeachableLearnset,
@@ -4744,7 +4753,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_MedichamF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sMedichamLevelUpLearnset,
         .teachableLearnset = sMedichamTeachableLearnset,
@@ -5423,7 +5433,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_RoseliaF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sRoseliaLevelUpLearnset,
         .teachableLearnset = sRoseliaTeachableLearnset,
@@ -5510,7 +5521,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_RoseradeF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sRoseradeLevelUpLearnset,
         .teachableLearnset = sRoseradeTeachableLearnset,
@@ -5589,7 +5601,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_GulpinF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_SPOT
+            TRACKS_SPOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sGulpinLevelUpLearnset,
         .teachableLearnset = sGulpinTeachableLearnset,
@@ -5667,7 +5680,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_SwalotF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_SLITHER
+            TRACKS_SLITHER,
+            sAnimTable_Following
         )
         .levelUpLearnset = sSwalotLevelUpLearnset,
         .teachableLearnset = sSwalotTeachableLearnset,
@@ -6068,7 +6082,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_NumelF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sNumelLevelUpLearnset,
         .teachableLearnset = sNumelTeachableLearnset,
@@ -6149,7 +6164,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_CameruptF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sCameruptLevelUpLearnset,
         .teachableLearnset = sCameruptTeachableLearnset,
@@ -6833,7 +6849,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_CacturneF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sCacturneLevelUpLearnset,
         .teachableLearnset = sCacturneTeachableLearnset,
@@ -8134,7 +8151,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_MiloticF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_SLITHER
+            TRACKS_SLITHER,
+            sAnimTable_Following
         )
         .levelUpLearnset = sMiloticLevelUpLearnset,
         .teachableLearnset = sMiloticTeachableLearnset,
@@ -9994,7 +10012,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
             gObjectEventPic_RelicanthF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_NONE
+            TRACKS_NONE,
+            sAnimTable_Following
         )
         .levelUpLearnset = sRelicanthLevelUpLearnset,
         .teachableLearnset = sRelicanthTeachableLearnset,

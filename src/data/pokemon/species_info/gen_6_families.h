@@ -1550,7 +1550,8 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
             gObjectEventPic_PyroarF,
             SIZE_32x32,
             SHADOW_SIZE_M,
-            TRACKS_FOOT
+            TRACKS_FOOT,
+            sAnimTable_Following
         )
         .levelUpLearnset = sPyroarLevelUpLearnset,
         .teachableLearnset = sPyroarTeachableLearnset,
