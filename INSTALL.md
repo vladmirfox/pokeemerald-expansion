@@ -3,7 +3,7 @@ Install instructions for each supported operating system can be found in their r
 This file only contains a short introduction to each supported system.
 If you run into trouble, ask for help on Discord or IRC (see [README.md](README.md)).
 
-After completing the install instructions for your OS, proceed to [Building pokeemerald Expansion](#building-pokeemerald-expansion).
+After completing the install instructions for your OS, proceed to [Building pokeemerald-expansion](#building-pokeemerald-expansion).
 
 ## Windows
 **A note of caution**: As Windows 7 and Windows 8 are officially unsupported by Microsoft, some maintainers are unwilling to maintain the Windows 7/8 instructions. Thus, these instructions may break in the future with fixes taking longer than fixes to the Windows 10/11 instructions.
@@ -31,7 +31,7 @@ Some extra considerations exist to get the testing system working.
 ## ChromeOS
 Only tested on x86_64 based systems.
 
-# Building pokeemerald Expansion
+# Building pokeemerald-expansion
 Follow these steps to build `pokeemerald-expansion`.
 1. Navigate to the directory you want to keep the project in, be aware of any system specific limitations.
 2. Download `pokeemerald-expansion` with `git`
