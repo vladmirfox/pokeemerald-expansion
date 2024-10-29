@@ -3,9 +3,9 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_WATER_PLEDGE].effect == EFFECT_PLEDGE);
-    ASSUME(gMovesInfo[MOVE_FIRE_PLEDGE].effect == EFFECT_PLEDGE);
-    ASSUME(gMovesInfo[MOVE_GRASS_PLEDGE].effect == EFFECT_PLEDGE);
+    ASSUME(gMovesInfo[MOVE_WATER_PLEDGE].effect == EFFECT_WATER_PLEDGE);
+    ASSUME(gMovesInfo[MOVE_FIRE_PLEDGE].effect == EFFECT_FIRE_PLEDGE);
+    ASSUME(gMovesInfo[MOVE_GRASS_PLEDGE].effect == EFFECT_GRASS_PLEDGE);
 }
 
 DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of the field for four turns")

@@ -2241,12 +2241,15 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (PartnerMoveEffectIsTerrain(BATTLE_PARTNER(battlerAtk), aiData->partnerMove) || gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
                 ADJUST_SCORE(-10);
             break;
-        case EFFECT_PLEDGE:
+        case EFFECT_WATER_PLEDGE:
+        case EFFECT_FIRE_PLEDGE:
+        case EFFECT_GRASS_PLEDGE:
             if (isDoubleBattle && gBattleMons[BATTLE_PARTNER(battlerAtk)].hp > 0)
             {
+                u32 partnerEffect = gMovesInfo[aiData->partnerMove].effect;
                 if (aiData->partnerMove != MOVE_NONE
-                  && gMovesInfo[aiData->partnerMove].effect == EFFECT_PLEDGE
-                  && move != aiData->partnerMove) // Different pledge moves
+                  && (partnerEffect == EFFECT_WATER_PLEDGE || partnerEffect == EFFECT_FIRE_PLEDGE || partnerEffect == EFFECT_GRASS_PLEDGE)
+                  && moveEffect != partnerEffect) // Different pledge moves
                 {
                     if (gBattleMons[BATTLE_PARTNER(battlerAtk)].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
                     // && gBattleMons[BATTLE_PARTNER(battlerAtk)].status1 != 1) // Will wake up this turn - how would AI know
@@ -4237,8 +4240,16 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_TERRAIN_EXTENDER)
             ADJUST_SCORE(GOOD_EFFECT);
         break;
-    case EFFECT_PLEDGE:
-        if (isDoubleBattle && HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_PLEDGE))
+    case EFFECT_WATER_PLEDGE:
+        if (isDoubleBattle && (HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_FIRE_PLEDGE) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_GRASS_PLEDGE)))
+            ADJUST_SCORE(GOOD_EFFECT); // Partner might use pledge move
+        break;
+    case EFFECT_FIRE_PLEDGE:
+        if (isDoubleBattle && (HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_WATER_PLEDGE) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_GRASS_PLEDGE)))
+            ADJUST_SCORE(GOOD_EFFECT); // Partner might use pledge move
+        break;
+    case EFFECT_GRASS_PLEDGE:
+        if (isDoubleBattle && (HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_WATER_PLEDGE) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_FIRE_PLEDGE)))
             ADJUST_SCORE(GOOD_EFFECT); // Partner might use pledge move
         break;
     case EFFECT_TRICK_ROOM:

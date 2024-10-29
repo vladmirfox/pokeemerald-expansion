@@ -322,7 +322,9 @@ BattleScript_MoveSwitchOpenPartyScreen:
 BattleScript_MoveSwitchEnd:
 	end
 
-BattleScript_EffectPledge::
+BattleScript_EffectWaterPledge::
+BattleScript_EffectFirePledge::
+BattleScript_EffectGrassPledge::
 	attackcanceler
 	setpledge BattleScript_HitFromAccCheck
 	attackstring

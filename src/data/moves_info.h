@@ -12915,7 +12915,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Attacks with a column of\n"
             "water. May make a rainbow."),
-        .effect = EFFECT_PLEDGE,
+        .effect = EFFECT_WATER_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -12937,7 +12937,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Attacks with a column of\n"
             "fire. May burn the grass."),
-        .effect = EFFECT_PLEDGE,
+        .effect = EFFECT_FIRE_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -12959,7 +12959,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .description = COMPOUND_STRING(
             "Attacks with a column of\n"
             "grass. May create a swamp."),
-        .effect = EFFECT_PLEDGE,
+        .effect = EFFECT_GRASS_PLEDGE,
         .power = B_UPDATED_MOVE_DATA >= GEN_6 ? 80 : 50,
         .type = TYPE_GRASS,
         .accuracy = 100,

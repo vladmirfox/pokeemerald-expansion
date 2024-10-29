@@ -240,7 +240,9 @@ void HandleAction_UseMove(void)
                  || (GetBattlerAbility(battler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(battler) < var
                 && gMovesInfo[gCurrentMove].effect != EFFECT_SNIPE_SHOT
-                && gMovesInfo[gCurrentMove].effect != EFFECT_PLEDGE
+                && gMovesInfo[gCurrentMove].effect != EFFECT_WATER_PLEDGE
+                && gMovesInfo[gCurrentMove].effect != EFFECT_FIRE_PLEDGE
+                && gMovesInfo[gCurrentMove].effect != EFFECT_GRASS_PLEDGE
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_STALWART)
             {
@@ -3522,10 +3524,10 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_POWDER_STATUS:
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
             {
-                u32 partnerMove = gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]];
+                u32 partnerEffect = gMovesInfo[gBattleMons[BATTLE_PARTNER(gBattlerAttacker)].moves[gBattleStruct->chosenMovePositions[BATTLE_PARTNER(gBattlerAttacker)]]].effect;
                 if ((moveType == TYPE_FIRE && !gBattleStruct->pledgeMove)
-                 || (gCurrentMove == MOVE_FIRE_PLEDGE && partnerMove == MOVE_GRASS_PLEDGE)
-                 || (gCurrentMove == MOVE_GRASS_PLEDGE && partnerMove == MOVE_FIRE_PLEDGE && gBattleStruct->pledgeMove))
+                 || (gMovesInfo[gCurrentMove].effect == EFFECT_FIRE_PLEDGE && partnerEffect == EFFECT_GRASS_PLEDGE)
+                 || (gMovesInfo[gCurrentMove].effect == EFFECT_GRASS_PLEDGE && partnerEffect == EFFECT_FIRE_PLEDGE && gBattleStruct->pledgeMove))
                 {
                     gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
@@ -8888,7 +8890,9 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
 
     switch (gMovesInfo[move].effect)
     {
-    case EFFECT_PLEDGE:
+    case EFFECT_WATER_PLEDGE:
+    case EFFECT_FIRE_PLEDGE:
+    case EFFECT_GRASS_PLEDGE:
         if (gBattleStruct->pledgeMove)
             basePower = 150;
         break;

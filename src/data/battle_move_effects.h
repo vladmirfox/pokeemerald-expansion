@@ -1124,9 +1124,21 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .encourageEncore = TRUE,
     },
 
-    [EFFECT_PLEDGE] =
+    [EFFECT_WATER_PLEDGE] =
     {
-        .battleScript = BattleScript_EffectPledge,
+        .battleScript = BattleScript_EffectWaterPledge,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_FIRE_PLEDGE] =
+    {
+        .battleScript = BattleScript_EffectFirePledge,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_GRASS_PLEDGE] =
+    {
+        .battleScript = BattleScript_EffectGrassPledge,
         .battleTvScore = 0, // TODO: Assign points
     },
 
