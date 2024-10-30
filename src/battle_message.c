@@ -3776,7 +3776,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         }
         else
         {
-            toCpyWidth = GetGlyphWidth(dst[dstID + 1], FALSE, fontId);
+            toCpyWidth = GetGlyphWidth(*src, FALSE, fontId);
             dst[dstID] = *src;
             if (dstWidth + toCpyWidth > BATTLE_MSG_MAX_WIDTH)
             {
