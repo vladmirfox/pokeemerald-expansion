@@ -16748,6 +16748,14 @@ void BS_TryRelicSong(void)
     }
 }
 
+static const struct PledgeCombo sPledgeCombos[] =
+{
+    // Dominant,  Passive,    Script to execute
+    { TYPE_GRASS, TYPE_WATER, BattleScript_EffectCombinedPledge_Grass },
+    { TYPE_WATER, TYPE_FIRE,  BattleScript_EffectCombinedPledge_Water },
+    { TYPE_FIRE,  TYPE_GRASS, BattleScript_EffectCombinedPledge_Fire },
+};
+
 void BS_SetPledge(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
@@ -16764,32 +16772,19 @@ void BS_SetPledge(void)
         PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
         gHitMarker |= HITMARKER_ATTACKSTRING_PRINTED;
 
-        if ((moveType == TYPE_GRASS && partnerMoveType == TYPE_WATER))
+        for (i = 0; i < ARRAY_COUNT(sPledgeCombos); i++)
         {
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Grass;
-        }
-        else if ((moveType == TYPE_WATER && partnerMoveType == TYPE_GRASS))
-        {
-            gCurrentMove = partnerMove;
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Grass;
-        }
-        else if ((moveType == TYPE_FIRE && partnerMoveType == TYPE_GRASS))
-        {
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Fire;
-        }
-        else if ((moveType == TYPE_GRASS && partnerMoveType == TYPE_FIRE))
-        {
-            gCurrentMove = partnerMove;
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Fire;
-        }
-        else if ((moveType == TYPE_WATER && partnerMoveType == TYPE_FIRE))
-        {
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Water;
-        }
-        else if ((moveType == TYPE_FIRE && partnerMoveType == TYPE_WATER))
-        {
-            gCurrentMove = partnerMove;
-            gBattlescriptCurrInstr = BattleScript_EffectCombinedPledge_Water;
+            if (moveType == sPledgeCombos[i].mainType && partnerMoveType == sPledgeCombos[i].subType)
+            {
+                gBattlescriptCurrInstr = sPledgeCombos[i].battleScript;
+                break;
+            }
+            else if (moveType == sPledgeCombos[i].subType && partnerMoveType == sPledgeCombos[i].mainType)
+            {
+                gCurrentMove = partnerMove;
+                gBattlescriptCurrInstr = sPledgeCombos[i].battleScript;
+                break;
+            }
         }
 
         gBattleCommunication[MSG_DISPLAY] = 0;
