@@ -440,7 +440,7 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     struct DecodeYK *symTable;
     u8 *symSymbols;
     u8 *loVec = Alloc(header->loSize);
-    u16 *symVec = Alloc(header->symSize);
+    u16 *symVec = Alloc(header->symSize*2);
     u32 packedLoFreqs[3];
     u32 packedSymFreqs[3];
     bool8 loEncoded = isModeLoEncoded(header->mode);
@@ -471,15 +471,21 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     if (loEncoded == TRUE)
     {
         DecodeLOtANS(data, &readIndex, &bitIndex, loTable, loSymbols, loVec, &currState, header->loSize);
+        Free(loTable);
+        Free(loSymbols);
     }
     if (symEncoded == TRUE)
     {
         DecodeSymtANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize, symDelta);
+        Free(symTable);
+        Free(symSymbols);
     }
+
+    if (bitIndex != 0)
+        readIndex++;
 
     if (symEncoded == FALSE)
     {
-        memcpy(symVec, &data[readIndex], header->symSize);
         CpuCopy16(&data[readIndex], symVec, header->symSize*2);
         if (!loEncoded)
             loPos = loPos + header->symSize*2;
@@ -488,21 +494,19 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     if (loEncoded == FALSE)
     {
         memcpy(loVec, &data[readIndex], header->loSize);
-        readIndex += header->loSize;
     }
+
+    /*
+    DebugPrintf("LOs");
+    for (u32 i = 0; i < header->loSize; i++)
+        DebugPrintf("%u", loVec[i]);
+    DebugPrintf("Syms");
+    for (u32 i = 0; i < header->symSize; i++)
+        DebugPrintf("%u", symVec[i]);
+    */
 
     DecodeInstructions(header, loVec, symVec, dest);
 
-    if (loEncoded)
-    {
-        Free(loTable);
-        Free(loSymbols);
-    }
-    if (symEncoded)
-    {
-        Free(symTable);
-        Free(symSymbols);
-    }
     Free(loVec);
     Free(symVec);
 }
@@ -735,8 +739,16 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 
 u32 GetDecompressedDataSize(const u32 *ptr)
 {
-    const u8 *ptr8 = (const u8 *)ptr;
-    return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
+    const struct CompressionHeader *header = (const struct CompressionHeader *)ptr;
+    if (header->lz77Bit == 1)
+    {
+        const u8 *ptr8 = (const u8 *)ptr;
+        return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
+    }
+    else
+    {
+        return header->imageSize*32;
+    }
 }
 
 bool8 LoadCompressedSpriteSheetUsingHeap(const struct CompressedSpriteSheet *src)
