@@ -16776,13 +16776,15 @@ void BS_SetPledge(void)
         {
             if (moveType == sPledgeCombos[i].mainType && partnerMoveType == sPledgeCombos[i].subType)
             {
-                gBattlescriptCurrInstr = sPledgeCombos[i].battleScript;
+                BattleScriptPush(sPledgeCombos[i].battleScript);
+                gBattlescriptCurrInstr = BattleScript_TwoMovesBecomeOne;
                 break;
             }
             else if (moveType == sPledgeCombos[i].subType && partnerMoveType == sPledgeCombos[i].mainType)
             {
                 gCurrentMove = partnerMove;
-                gBattlescriptCurrInstr = sPledgeCombos[i].battleScript;
+                BattleScriptPush(sPledgeCombos[i].battleScript);
+                gBattlescriptCurrInstr = BattleScript_TwoMovesBecomeOne;
                 break;
             }
         }
