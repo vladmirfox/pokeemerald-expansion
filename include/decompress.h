@@ -10,8 +10,7 @@
 extern u8 ALIGNED(4) gDecompressionBuffer[0x4000];
 
 struct CompressionHeader {
-    u32 mode:4;
-    u32 lz77Bit:1;
+    u32 mode:5;
     u32 imageSize:11;
     u32 symSize:15;
     u32 padding:1;
@@ -32,6 +31,7 @@ enum CompressionMode {
     ENCODE_LO = 3,
     ENCODE_BOTH = 4,
     ENCODE_BOTH_DELTA_SYMS = 5,
+    MODE_LZ77 = 16,
 };
 
 extern struct DecodeYK ykTemplate[2*TANS_TABLE_SIZE];
@@ -47,7 +47,9 @@ void BuildDecompressionTable(u32 *freqs, struct DecodeYK *ykTable, u8 *symbolTab
 
 void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 count);
 
-void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count, bool8 symDelta);
+void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count);
+
+void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count);
 
 void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest);
 

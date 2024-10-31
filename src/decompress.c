@@ -272,20 +272,28 @@ void DecompressDataVram(const u32 *src, void *dest)
 {
     struct CompressionHeader header;
     CpuCopy32(src, &header, 8);
-    if (header.lz77Bit == 1)
-        LZ77UnCompVram(src, dest);
-    else
-        SmolDecompressData(&header, &src[2], dest);
+    switch (header.mode)
+    {
+        case MODE_LZ77:
+            LZ77UnCompVram(src, dest);
+            break;
+        default:
+            SmolDecompressData(&header, &src[2], dest);
+    }
 }
 
 void DecompressDataWram(const u32 *src, void *dest)
 {
     struct CompressionHeader header;
     CpuCopy32(src, &header, 8);
-    if (header.lz77Bit == 1)
-        LZ77UnCompWram(src, dest);
-    else
-        SmolDecompressData(&header, &src[2], dest);
+    switch (header.mode)
+    {
+        case MODE_LZ77:
+            LZ77UnCompWram(src, dest);
+            break;
+        default:
+            SmolDecompressData(&header, &src[2], dest);
+    }
 }
 
 void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbolTable)
@@ -344,7 +352,7 @@ void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeY
     }
 }
 
-void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count, bool8 symDelta)
+void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count)
 {
     u32 currBits = data[*readIndex];
     for (u32 currSym = 0; currSym < count; currSym++)
@@ -380,6 +388,44 @@ void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct Decode
     }
 }
 
+void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count)
+{
+    u32 currBits = data[*readIndex];
+    u16 prevSymbol = 0;
+    for (u32 currSym = 0; currSym < count; currSym++)
+    {
+        u16 symbol = 0;
+        for (u32 currNibble = 0; currNibble < 4; currNibble++)
+        {
+            u16 currSymbol = (prevSymbol + symbolTable[*state]) & 0xf;
+            prevSymbol = currSymbol;
+            symbol += currSymbol << (currNibble*4);
+            u16 currK = ykTable[*state].kVal;
+            u16 nextState = ykTable[*state].yVal << currK;
+            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            if (*bitIndex + currK < 32)
+            {
+                *bitIndex += currK;
+            }
+            else if (*bitIndex + currK == 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                *bitIndex = 0;
+            }
+            else if ((*bitIndex + currK) > 32)
+            {
+                *readIndex += 1;
+                currBits = data[*readIndex];
+                u32 remainder = *bitIndex + currK - 32;
+                nextState += (currBits & ((1u << remainder) - 1)) << (currK - remainder);
+                *bitIndex = remainder;
+            }
+            *state = nextState - 64;
+        }
+        resultVec[currSym] = symbol;
+    }
+}
 void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec, void *dest)
 {
     u32 loIndex = 0;
@@ -433,6 +479,7 @@ void DecodeInstructions(struct CompressionHeader *header, u8 *loVec, u16 *symVec
 
 void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void *dest)
 {
+    DebugPrintf("Start Decompress");
     u32 currState = header->initialState;
     u32 readIndex = 0;
     struct DecodeYK *loTable;
@@ -446,13 +493,15 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     bool8 loEncoded = isModeLoEncoded(header->mode);
     bool8 symEncoded = isModeSymEncoded(header->mode);
     bool8 symDelta = isModeSymDelta(header->mode);
-    u8 *loPos;
+    u8 *leftoverPos = (u8 *)data;
+    DebugPrintf("Finished initializing");
 
     if (loEncoded == TRUE)
     {
         for (u32 i = 0; i < 3; i++)
             packedLoFreqs[i] = data[readIndex + i];
         readIndex += 3;
+        leftoverPos += 3*4;
         loTable = Alloc(64*sizeof(struct DecodeYK));
         loSymbols = Alloc(64);
         BuildDecompressionTable(packedLoFreqs, loTable, loSymbols);
@@ -462,10 +511,12 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
         for (u32 i = 0; i < 3; i++)
             packedSymFreqs[i] = data[readIndex + i];
         readIndex += 3;
+        leftoverPos += 3*4;
         symTable = Alloc(64*sizeof(struct DecodeYK));
         symSymbols = Alloc(64);
         BuildDecompressionTable(packedSymFreqs, symTable, symSymbols);
     }
+    DebugPrintf("Finished creating tables");
 
     u32 bitIndex = 0;
     if (loEncoded == TRUE)
@@ -476,24 +527,27 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     }
     if (symEncoded == TRUE)
     {
-        DecodeSymtANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize, symDelta);
+        if (symDelta)
+            DecodeSymDeltatANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize);
+        else
+            DecodeSymtANS(data, &readIndex, &bitIndex, symTable, symSymbols, symVec, &currState, header->symSize);
         Free(symTable);
         Free(symSymbols);
     }
+    DebugPrintf("Finished tANSing");
 
-    if (bitIndex != 0)
-        readIndex++;
+    if (loEncoded || symEncoded)
+        leftoverPos += 4*header->bitstreamSize;
 
     if (symEncoded == FALSE)
     {
-        CpuCopy16(&data[readIndex], symVec, header->symSize*2);
-        if (!loEncoded)
-            loPos = loPos + header->symSize*2;
+        CpuCopy16(leftoverPos, symVec, header->symSize*2);
+        leftoverPos += header->symSize*2;
     }
 
     if (loEncoded == FALSE)
     {
-        memcpy(loVec, &data[readIndex], header->loSize);
+        memcpy(loVec, leftoverPos, header->loSize);
     }
 
     /*
@@ -506,6 +560,7 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     */
 
     DecodeInstructions(header, loVec, symVec, dest);
+    DebugPrintf("All done");
 
     Free(loVec);
     Free(symVec);
@@ -548,11 +603,11 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     {
     #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
+            LZDecompressWram(gSpeciesInfo[species].frontPicFemale, dest);
         else
     #endif
         if (gSpeciesInfo[species].frontPic != NULL)
-            LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
+            LZDecompressWram(gSpeciesInfo[species].frontPic, dest);
         else
             LZDecompressWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
     }
@@ -560,17 +615,11 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     {
     #if P_GENDER_DIFFERENCES
         if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
-<<<<<<< HEAD
             LZDecompressWram(gSpeciesInfo[species].backPicFemale, dest);
-        else if (gSpeciesInfo[species].backPic != NULL)
-            LZDecompressWram(gSpeciesInfo[species].backPic, dest);
-=======
-            LZ77UnCompWram(gSpeciesInfo[species].backPicFemale, dest);
         else
     #endif
         if (gSpeciesInfo[species].backPic != NULL)
-            LZ77UnCompWram(gSpeciesInfo[species].backPic, dest);
->>>>>>> upcoming
+            LZDecompressWram(gSpeciesInfo[species].backPic, dest);
         else
             LZDecompressWram(gSpeciesInfo[SPECIES_NONE].backPic, dest);
     }
@@ -739,7 +788,7 @@ static void UNUSED StitchObjectsOn8x8Canvas(s32 object_size, s32 object_count, u
 u32 GetDecompressedDataSize(const u32 *ptr)
 {
     const struct CompressionHeader *header = (const struct CompressionHeader *)ptr;
-    if (header->lz77Bit == 1)
+    if (header->mode == MODE_LZ77)
     {
         const u8 *ptr8 = (const u8 *)ptr;
         return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
