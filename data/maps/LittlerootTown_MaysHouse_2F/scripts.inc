@@ -352,7 +352,7 @@ LittlerootTown_PlayersHouse_KayaTeam::
 	givemon SPECIES_TREECKO, 5, ball=ITEM_SAFARI_BALL, nature=NATURE_MODEST, abilityNum=0, gender=MON_FEMALE, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_ABSORB, move2=MOVE_DRAGON_CLAW, isShiny=TRUE
 	givemon SPECIES_GASTLY, 5, item=ITEM_LINKING_CORD, ball=ITEM_DUSK_BALL, nature=NATURE_MODEST, abilityNum=0, gender=MON_FEMALE, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SLUDGE_BOMB, move2=MOVE_LICK, move3=MOVE_HEX, isShiny=TRUE
 	givemon SPECIES_DRATINI, 5, ball=ITEM_LUXURY_BALL, nature=NATURE_MODEST, abilityNum=0, gender=MON_FEMALE, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_THUNDERSHOCK, move2=MOVE_WRAP, move3=MOVE_TWISTER, isShiny=TRUE
-	givemon SPECIES_GRIMER_ALOLAN, 5, item=ITEM_LEFTOVERS ball=ITEM_PREMIER_BALL, nature=NATURE_ADAMANT, abilityNum=0, gender=MON_FEMALE, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_BITE, move2=MOVE_DIRE_CLAW, isShiny=TRUE
+	givemon SPECIES_GRIMER_ALOLA, 5, item=ITEM_LEFTOVERS ball=ITEM_PREMIER_BALL, nature=NATURE_ADAMANT, abilityNum=0, gender=MON_FEMALE, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_BITE, move2=MOVE_DIRE_CLAW, isShiny=TRUE
 
 	clearflag P_FLAG_FORCE_POKERUS
 	goto PlayersHouse_LoggingOut_IsNameKaya

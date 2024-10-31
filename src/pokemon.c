@@ -5496,7 +5496,7 @@ void InfectMonWithPokerus(u8 slot, u8 days)
 
     if (P_FLAG_INFECT_RANDOM_MON_POKERUS != 0 && FlagGet(P_FLAG_INFECT_RANDOM_MON_POKERUS))
     {
-        u16 rnd;
+        u8 rnd;
 
         do
         {
@@ -5504,7 +5504,7 @@ void InfectMonWithPokerus(u8 slot, u8 days)
             mon = &gPlayerParty[rnd];
         } while (!GetMonData(mon, MON_DATA_SPECIES, 0) || GetMonData(mon, MON_DATA_IS_EGG, 0));
 
-        if (!(CheckPartyHasHadPokerus(&gPlayerParty[rnd], gBitTable[rnd])))
+        if (!(CheckPartyHasHadPokerus(&gPlayerParty[rnd], rnd)))
         {
             SetMonData(&gPlayerParty[rnd], MON_DATA_POKERUS, &days);
         }
