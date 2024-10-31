@@ -2931,6 +2931,7 @@ bool32 AI_CanParalyze(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move, 
 {
     if (!CanBeParalyzed(battlerDef, defAbility)
       || AI_DATA->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] == AI_EFFECTIVENESS_x0
+      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(BATTLE_PARTNER(battlerAtk), battlerDef, partnerMove))
         return FALSE;
@@ -2945,7 +2946,6 @@ bool32 AI_CanGiveDrowsy(u32 battlerAtk, u32 battlerDef, u32 defAbility, u32 move
         return FALSE;
     return TRUE;
 }
-
 
 bool32 AI_CanBeConfused(u32 battlerAtk, u32 battlerDef, u32 move, u32 ability)
 {

@@ -3500,7 +3500,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         IncreaseParalyzeScore(battlerAtk, battlerDef, move, &score);
         break;
     case EFFECT_SUBSTITUTE:
-	case EFFECT_SHED_TAIL:
+    case EFFECT_SHED_TAIL:
         IncreaseSubstituteMoveScore(battlerAtk, battlerDef, move, &score);
     case EFFECT_MIMIC:
         if (AI_IsFaster(battlerAtk, battlerDef, move))

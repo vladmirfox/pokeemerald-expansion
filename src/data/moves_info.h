@@ -9044,7 +9044,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
-        .argument = (STATUS1_SLEEP | STATUS1_DROWSY),
+        .argument = B_USE_DROWSY == TRUE ? STATUS1_DROWSY : STATUS1_SLEEP,
         .makesContact = TRUE,
         .additionalEffects = ADDITIONAL_EFFECTS({
             .moveEffect = MOVE_EFFECT_REMOVE_STATUS,
@@ -13602,7 +13602,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .category = DAMAGE_CATEGORY_SPECIAL,
-        .argument = (STATUS1_SLEEP | STATUS1_DROWSY),
         .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
         .metronomeBanned = TRUE,

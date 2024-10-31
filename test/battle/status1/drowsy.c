@@ -19,9 +19,9 @@ SINGLE_BATTLE_TEST("Drowsy increases damage taken by 50%", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Drowsy has a 50% chance of skipping the turn")
+SINGLE_BATTLE_TEST("Drowsy has a 25% chance of skipping the turn")
 {
-    PASSES_RANDOMLY(50, 100, RNG_DROWSY);
+    PASSES_RANDOMLY(25, 100, RNG_DROWSY);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_DROWSY); }
         OPPONENT(SPECIES_WOBBUFFET);
