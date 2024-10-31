@@ -3,6 +3,7 @@
 .set LOCALID_RIVAL, 7
 
 LittlerootTown_MaysHouse_1F_MapScripts::
+    checkifplayeriskaya
 	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MaysHouse_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_MaysHouse_1F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_MaysHouse_1F_OnFrame

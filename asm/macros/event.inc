@@ -2321,3 +2321,14 @@
 	.macro togglefakertc
 	callnative Script_ToggleFakeRtc
 	.endm
+
+	@ 
+	.macro infectmonwithpokerus slot:req, days:req
+	callnative InfectMonWithPokerus 
+	.2byte \slot
+	.2byte \days
+	.endm
+
+	.macro checkifplayeriskaya 
+	callnative CheckIfPlayerIsKaya
+	.endm 

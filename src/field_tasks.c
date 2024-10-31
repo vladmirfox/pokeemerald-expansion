@@ -20,6 +20,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
+#include "string_util.h"
 
 /*  This file handles some persistent tasks that run in the overworld.
  *  - Task_RunTimeBasedEvents: Periodically updates local time and RTC events. Also triggers ambient cries.
@@ -134,6 +135,14 @@ static const u16 sSootopolisGymIceRowVars[] =
 };
 
 #define tCallbackId data[0]
+
+void CheckIfPlayerIsKaya(void)
+{
+    const u8 *kayaName = COMPOUND_STRING("Kaya");
+  
+    if (StringCompare(kayaName, gSaveBlock2Ptr->playerName) == 0)
+        FlagSet(FLAG_IS_KAYA);       
+}
 
 static void Task_RunPerStepCallback(u8 taskId)
 {
