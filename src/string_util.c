@@ -2,6 +2,7 @@
 #include "string_util.h"
 #include "text.h"
 #include "strings.h"
+#include "malloc.h"
 #include "union_room_chat.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
@@ -817,4 +818,150 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
 
     *dest = EOS;
     return dest;
+}
+
+void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
+{
+    s32 bestBadness = -1;
+    u16 numChars = 1;
+    u16 numWords = 1;
+    u16 currWordIndex = 0;
+    u8 currWordLength = 1;
+    if (src[0] == EOS)
+        return;
+    bool32 isPrevCharSplitting = FALSE;
+    bool32 isCurrCharSplitting;
+    while (src[numChars] != EOS)
+    {
+        isCurrCharSplitting = IsWordSplittingChar(src, &numChars);
+        if (isCurrCharSplitting == TRUE && isPrevCharSplitting == FALSE)
+            numWords++;
+        isPrevCharSplitting = isCurrCharSplitting;
+        numChars++;
+    }
+    MgbaPrintf(MGBA_LOG_WARN, "\n%S", src);
+    MgbaPrintf(MGBA_LOG_WARN, "Words: %u", numWords);
+    struct StringWord *allWords = Alloc(numWords*sizeof(struct StringWord));
+
+    allWords[currWordIndex].startIndex = 0;
+    allWords[currWordIndex].width = 0;
+    isPrevCharSplitting = FALSE;
+    for (u16 i = 1; i < numChars; i++)
+    {
+        isCurrCharSplitting = IsWordSplittingChar(src, &i);
+        if (isCurrCharSplitting == TRUE && isPrevCharSplitting == FALSE)
+        {
+            allWords[currWordIndex].length = currWordLength;
+            currWordIndex++;
+            currWordLength = 0;
+        }
+        else if (isCurrCharSplitting == FALSE && isPrevCharSplitting == TRUE)
+        {
+            allWords[currWordIndex].startIndex = i;
+            allWords[currWordIndex].width = 0;
+            currWordLength++;
+        }
+        else
+        {
+            currWordLength++;
+        }
+        isPrevCharSplitting = isCurrCharSplitting;
+    }
+    allWords[currWordIndex].length = currWordLength;
+
+    for (u32 i = 0; i < numWords; i++)
+        for (u32 j = 0; j < allWords[i].length; j++)
+            allWords[i].width += GetGlyphWidth(src[allWords[i].startIndex + j], FALSE, fontId);
+
+    //  Step 1: Does it all fit one one line? Then no break
+    //  Step 2: Try to split across minimum number of lines
+    u32 spaceWidth = GetGlyphWidth(0, FALSE, fontId);
+    u32 totalWidth = allWords[0].width;
+    for (u32 i = 1; i < numWords; i++)
+        totalWidth += allWords[i].width + spaceWidth;
+
+    if (totalWidth > maxWidth)
+    {
+        u16 targetNumLines = 2;
+        u16 trueNumLines = 0;
+        while (targetNumLines*maxWidth < totalWidth)
+            targetNumLines++;
+        MgbaPrintf(MGBA_LOG_WARN, "Target lines: %u", targetNumLines);
+        struct StringLine *stringLines = Alloc(sizeof(struct StringLine)*(targetNumLines+1));
+        u16 targetWidth = totalWidth/targetNumLines;
+        u16 currWordIndex = 0;
+        u16 currWordCount = 0;
+        u16 currWidth = 0;
+        for (u32 i = 0; i < targetNumLines; i++)
+        {
+            if (currWordIndex >= numWords)
+                break;
+            trueNumLines++;
+            stringLines[i].words = &allWords[currWordIndex];
+            currWidth = allWords[currWordIndex].width;
+            currWordCount = 1;
+            while (currWidth < targetWidth && (currWordIndex + currWordCount) < numWords)
+            {
+                currWidth += allWords[currWordIndex + currWordCount].width + spaceWidth;
+                currWordCount++;
+            }
+            currWordIndex += currWordCount;
+            stringLines[i].numWords = currWordCount;
+            stringLines[i].spaceWidth = spaceWidth;
+        }
+        u32 currBadness = GetStringBadness(stringLines, trueNumLines, maxWidth);
+        MgbaPrintf(MGBA_LOG_WARN, "Badness: %u", currBadness);
+        //  Can't actually print the strings at this stage, but all the info is there
+        //  But more variations of the lines needs to be done for badness comparison
+    }
+
+    Free(allWords);
+}
+
+bool32 IsWordSplittingChar(const u8 *src, u16 *index)
+{
+    switch (src[*index])
+    {
+        case 0:             //  " "
+            return TRUE;
+        case 0xFE:          //  "\n"
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
+{
+    u32 badness = 0;
+    u16 *lineWidths = Alloc(numLines*2);
+    u16 widestWidth = 0;
+    for (u32 i = 0; i < numLines; i++)
+    {
+        lineWidths[i] = 0;
+        for (u32 j = 0; j < stringLines[i].numWords; j++)
+            lineWidths[i] += stringLines[i].words[j].width;
+        lineWidths[i] += (stringLines[i].numWords-1)*stringLines[i].spaceWidth;
+        if (lineWidths[i] > widestWidth)
+            widestWidth = lineWidths[i];
+        if (stringLines[i].numWords == 1)
+            badness += BADNESS_RUNT;
+    }
+    for (u32 i = 0; i < numLines; i++)
+    {
+        u32 extraSpaceWidth = 0;
+        if (lineWidths[i] != widestWidth)
+        {
+            //  Not the best way to do this, ideally a line should be allowed to get longer than current widest
+            //  line. But then the widest line has to be recalculated.
+            while (lineWidths[i] + (extraSpaceWidth + 1)*(stringLines[i].numWords-1) < widestWidth && extraSpaceWidth < MAX_SPACE_WIDTH)
+                extraSpaceWidth++;
+            lineWidths[i] += extraSpaceWidth*(stringLines[i].numWords-1);
+        }
+        badness += (maxWidth - lineWidths[i])*BADNESS_UNFILLED;
+        u32 baseBadness = (widestWidth - lineWidths[i])*BADNESS_JAGGED;
+        badness += baseBadness*baseBadness;
+    }
+    Free(lineWidths);
+    return badness;
 }

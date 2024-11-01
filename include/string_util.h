@@ -1,6 +1,13 @@
 #ifndef GUARD_STRING_UTIL_H
 #define GUARD_STRING_UTIL_H
 
+#define BADNESS_UNFILLED    1       //  Badness added per pixel diff from max width
+#define BADNESS_JAGGED      1       //  Badness added per pixel diff from longest, squared per line
+#define BADNESS_RUNT        100     //  Badness added if there's a runt
+#define BADNESS_OVERFLOW    100     //  Badness added per pixel overflow, squared per line (not used)
+#define BADNESS_WIDE_SPACE  1       //  Badness added per extra pixel width (not used)
+#define MAX_SPACE_WIDTH     5
+
 extern u8 gStringVar1[0x100];
 extern u8 gStringVar2[0x100];
 extern u8 gStringVar3[0x100];
@@ -11,6 +18,18 @@ enum StringConvertMode
     STR_CONV_MODE_LEFT_ALIGN,
     STR_CONV_MODE_RIGHT_ALIGN,
     STR_CONV_MODE_LEADING_ZEROS
+};
+
+struct StringWord {
+    u32 startIndex:16;
+    u32 length:8;
+    u32 width:8;
+};
+
+struct StringLine {
+    struct StringWord *words;
+    u16 numWords;
+    u16 spaceWidth;
 };
 
 u8 *StringCopy_Nickname(u8 *dest, const u8 *src);
@@ -44,5 +63,9 @@ s32 StringCompareWithoutExtCtrlCodes(const u8 *str1, const u8 *str2);
 void ConvertInternationalString(u8 *s, u8 language);
 void StripExtCtrlCodes(u8 *str);
 u8 *StringCopyUppercase(u8 *dest, const u8 *src);
+void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId);
+
+bool32 IsWordSplittingChar(const u8 *src, u16 *index);
+u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth);
 
 #endif // GUARD_STRING_UTIL_H
