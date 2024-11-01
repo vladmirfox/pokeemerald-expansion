@@ -891,7 +891,6 @@ void BS_TrySetStatus1(void)
                 else
                     gBattleMons[gBattlerTarget].status1 |=  STATUS1_SLEEP_TURN((Random() % 4) + 3);
                 
-                // Try to activate Sleep Clause when a mon is put to Sleep
                 TryActivateSleepClause(gBattlerTarget, gBattlerPartyIndexes[gBattlerTarget]);    
                 gBattleCommunication[MULTISTRING_CHOOSER] = 4;
                 effect++;

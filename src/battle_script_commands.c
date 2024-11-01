@@ -4199,7 +4199,6 @@ static void Cmd_tryfaintmon(void)
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].moves[moveIndex])
             }
 
-            // Try to deactivate Sleep Clause when a mon faints
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
         }
         else
@@ -5913,7 +5912,6 @@ static void Cmd_moveend(void)
                         gBattlescriptCurrInstr = BattleScript_TargetPRLZHeal;
                         break;
                     case STATUS1_SLEEP:
-                        // Try to deactivate Sleep Clause when a mon gets woken up by Wake-Up Slap
                         TryDeactivateSleepClause(GetBattlerSide(gBattlerTarget), gBattlerPartyIndexes[gBattlerTarget]);
                         gBattlescriptCurrInstr = BattleScript_TargetWokeUp;
                         break;
@@ -10200,7 +10198,6 @@ static void Cmd_various(void)
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
             MarkBattlerForControllerExec(battler);
             gBattlescriptCurrInstr = cmd->nextInstr;
-            // Try to activate Sleep Clause when a mon is put to Sleep by Psycho Shift
             TryActivateSleepClause(battler, gBattlerPartyIndexes[battler]);
             return;
         }
@@ -10208,7 +10205,6 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
 
-        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Jungle Healing, Purify, Psycho Shift, Healer, G-Max Sweetness
         if (gBattleMons[battler].status1 & STATUS1_SLEEP)
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
 
@@ -13400,7 +13396,6 @@ static void Cmd_healpartystatus(void)
                 if (ability != ABILITY_SOUNDPROOF)
                 {
                     toHeal |= (1 << i);
-                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Heal Bell
                     TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), i);
                 }
             }
@@ -13413,7 +13408,6 @@ static void Cmd_healpartystatus(void)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Aromatherapy, Sparkly Swirl
             TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), i);
         }
 
@@ -14794,7 +14788,6 @@ static void Cmd_switchoutabilities(void)
         switch (GetBattlerAbility(battler))
         {
         case ABILITY_NATURAL_CURE:
-            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Natural Cure
             if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
             
