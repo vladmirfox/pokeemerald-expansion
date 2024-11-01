@@ -619,6 +619,11 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         minimum *= gMovesInfo[move].strikeCount;
     }
 
+    if (expected == 0)
+        expected = 1;
+    if (minimum == 0)
+        minimum = 1;
+
     *expectedDamage = expected;
     *minimumDamage = minimum;
 }
