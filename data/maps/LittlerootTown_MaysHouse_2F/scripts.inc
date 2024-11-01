@@ -6,6 +6,8 @@ LittlerootTown_MaysHouse_2F_MapScripts::
 	.byte 0
 
 LittlerootTown_MaysHouse_2F_OnTransition:
+	checkifplayeriskaya
+	call_if_set FLAG_IS_KAYA, LittlerootTown_MaysHouse_1F_CheckIsKaya_ShowDoll
 	call_if_lt VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
 	call_if_ge VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 4, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
@@ -310,12 +312,61 @@ LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC::
 	releaseall
 	end
 
+PlayersHouse_2F_EventScript_GameCube::
+	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
+	goto_if_set FLAG_IS_KAYA, PlayersHouse_2F_EventScript_KayasGameCube_CheckFindBoxLink
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_KayasGameCube_CheckFindBoxLink::
+	goto_if_unset FLAG_KAYA_BOXLINK_FOUND, PlayersHouse_2F_EventScript_KayasGameCube
+	closemessage
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_KayasGameCube::
+	msgbox PlayersHouse_Text_2F_EventScript_KayasGameCube, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PlayersHouse_2F_EventScript_KayasGameCube_FindBoxLink
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_KayasGameCube_FindBoxLink::
+	setflag FLAG_KAYA_BOXLINK_FOUND
+	giveitem ITEM_POKEMON_BOX_LINK
+	closemessage
+	releaseall
+	return
+
+LittlerootTown_PlayersHouse_Porygon2DollInteract::
+	goto_if_set FLAG_IS_KAYA, LittlerootTown_PlayersHouse_Porygon2DollInteract_Kaya
+	goto_if_unset FLAG_IS_KAYA, LittlerootTown_PlayersHouse_Porygon2DollInteract_NotKaya
+	releaseall
+	end
+
+LittlerootTown_PlayersHouse_Porygon2DollInteract_Kaya::
+	msgbox LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_Kaya, MSGBOX_DEFAULT
+	goto_if_unset FLAG_KAYA_EXPSHARE_FOUND, LittlerootTown_PlayersHouse_Porygon2DollInteract_Kaya_FindExpShare
+	closemessage
+	releaseall
+	return
+
+LittlerootTown_PlayersHouse_Porygon2DollInteract_Kaya_FindExpShare::
+	msgbox LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_Kaya_GetExpShare, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
+	setflag FLAG_KAYA_EXPSHARE_FOUND
+	closemessage
+	releaseall
+	return
+
+LittlerootTown_PlayersHouse_Porygon2DollInteract_NotKaya::
+	msgbox LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_NotKaya, MSGBOX_DEFAULT
+	releaseall
+	return
+
 LittlerootTown_PlayersHouse_IsNameKaya::
-	checkifplayeriskaya
-	goto_if_set KAYA_TERMINAL_FOUND, PlayersHouse_LoggingIn_IsNameKaya
+	goto_if_set FLAG_KAYA_TERMINAL_FOUND, PlayersHouse_LoggingIn_IsNameKaya
 	goto_if_set FLAG_IS_KAYA, LittlerootTown_DoRecognize_IsNameKaya
 	goto_if_unset FLAG_IS_KAYA, LittlerootTown_DontRecognize_IsNameKaya
-	releaseall
 	end
 
 LittlerootTown_DontRecognize_IsNameKaya::
@@ -325,18 +376,20 @@ LittlerootTown_DontRecognize_IsNameKaya::
 
 LittlerootTown_DoRecognize_IsNameKaya::
 	msgbox PlayersHouse_Text_DoRecognize_IsNameKaya, MSGBOX_DEFAULT
-	setflag KAYA_TERMINAL_FOUND
+	setflag FLAG_KAYA_TERMINAL_FOUND
 	goto PlayersHouse_LoggingIn_IsNameKaya
 	releaseall
 	end
 
 PlayersHouse_LoggingIn_IsNameKaya::
+	playse SE_PC_ON
 	msgbox PlayersHouse_Text_LoggingIn_IsNameKaya, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, LittlerootTown_PlayersHouse_KayaTeam
 	goto_if_eq VAR_RESULT, NO, PlayersHouse_LoggingOut_IsNameKaya
 	end
 
 PlayersHouse_LoggingOut_IsNameKaya::
+	playse SE_PC_OFF
 	msgbox PlayersHouse_Text_LoggingOut_IsNameKaya, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -357,6 +410,26 @@ LittlerootTown_PlayersHouse_KayaTeam::
 	clearflag P_FLAG_FORCE_POKERUS
 	goto PlayersHouse_LoggingOut_IsNameKaya
 	end
+
+PlayersHouse_Text_2F_EventScript_KayasGameCube::
+	.string "Woah, is that your {PKMN} Box Link?\p"
+	.string "How is it plugged into your\n"
+	.string "GameCube?\p"
+	.string "Pull it out?$"
+
+LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_Kaya::
+	.string "The Porygon2 doll you got for \n"
+	.string "working on your dad's website!$"
+
+LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_Kaya_GetExpShare::
+	.string "There's something around its foot...\p$"
+
+LittlerootTown_Text_PlayersHouse_Porygon2DollInteract_NotKaya::
+	.string "A slightly dated Porygon2 doll.\p"
+	.string "...\p"
+	.string "You don't recognize it.\p"
+	.string "Was this left on the moving van\n"
+	.string "by someone else?$"
 
 PlayersHouse_Text_DontRecognize_IsNameKaya::
 	.string "An old computer terminal login prompt\n"

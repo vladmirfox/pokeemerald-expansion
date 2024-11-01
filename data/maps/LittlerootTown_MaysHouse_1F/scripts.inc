@@ -3,7 +3,6 @@
 .set LOCALID_RIVAL, 7
 
 LittlerootTown_MaysHouse_1F_MapScripts::
-    checkifplayeriskaya
 	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MaysHouse_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_MaysHouse_1F_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_MaysHouse_1F_OnFrame
@@ -29,6 +28,8 @@ LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual::
 	return
 
 LittlerootTown_MaysHouse_1F_OnTransition:
+	checkifplayeriskaya
+	call_if_set FLAG_IS_KAYA, LittlerootTown_MaysHouse_1F_CheckIsKaya_ShowDoll
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_MoveMomToTV
@@ -147,6 +148,10 @@ RivalsHouse_1F_EventScript_RivalSibling::
 	msgbox RivalsHouse_1F_Text_DoYouHavePokemon, MSGBOX_DEFAULT
 	release
 	end
+
+LittlerootTown_MaysHouse_1F_CheckIsKaya_ShowDoll::
+	clearflag FLAG_KAYA_DOLL_APPEAR
+	return
 
 LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom::
 	lockall
