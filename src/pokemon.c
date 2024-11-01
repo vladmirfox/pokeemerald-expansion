@@ -4192,7 +4192,6 @@ bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, u8 battlerId)
                 {
                     if (&party[i] == mon)
                     {
-                        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Used Item, such as Awakening or Full Heal
                         TryDeactivateSleepClause(battlerSide, i);
                         break;
                     }

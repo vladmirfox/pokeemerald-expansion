@@ -2784,7 +2784,6 @@ u8 DoBattlerEndTurnEffects(void)
                         else
                             gBattleMons[battler].status1 |= ((Random() % 4) + 3);
 
-                        // Try to activate Sleep Clause when a mon is put to Sleep by Yawn
                         TryActivateSleepClause(battler, gBattlerPartyIndexes[battler]);
                         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
                         MarkBattlerForControllerExec(battler);
@@ -3230,7 +3229,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             {
                 if (UproarWakeUpCheck(gBattlerAttacker))
                 {
-                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Uproar
                     TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), gBattlerPartyIndexes[gBattlerAttacker]);
                     gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_SLEEP;
                     gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
@@ -3261,7 +3259,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     }
                     else
                     {
-                        // Try to deactivate Sleep Clause when a mon wakes up
                         TryDeactivateSleepClause(GetBattlerSide(gBattlerAttacker), gBattlerPartyIndexes[gBattlerAttacker]);
                         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
                         BattleScriptPushCursor();
@@ -5150,7 +5147,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                     {
                         StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via Shed Skin, Hydration
                         TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                     }
                         
@@ -6195,7 +6191,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             case ABILITY_VITAL_SPIRIT:
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
-                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via gaining the ability Insomnia or Vital Spirit
                     TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
@@ -6630,6 +6625,9 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
 
 bool32 CanBeSlept(u32 battler, u32 ability, u32 isBlockedBySleepClause)
 {
+    if(IsSleepClauseActiveForSide(GetBattlerSide(battler)) && isBlockedBySleepClause)
+        return FALSE;
+        
     if (ability == ABILITY_INSOMNIA
      || ability == ABILITY_VITAL_SPIRIT
      || ability == ABILITY_COMATOSE
@@ -6638,8 +6636,7 @@ bool32 CanBeSlept(u32 battler, u32 ability, u32 isBlockedBySleepClause)
      || gBattleMons[battler].status1 & STATUS1_ANY
      || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
      || IsAbilityStatusProtected(battler)
-     || IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN)
-     || (isBlockedBySleepClause && IsSleepClauseActiveForSide(GetBattlerSide(battler))))
+     || IsBattlerTerrainAffected(battler, STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
 }
@@ -7282,7 +7279,6 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BerryCureSlpRet;
             effect = ITEM_STATUS_CHANGE;
-            // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Chesto Berry
             TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
         }
         break;
@@ -7315,7 +7311,6 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
             {
                 gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                 StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
-                // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Lum Berry
                 TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
             }
 
@@ -7527,7 +7522,6 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     BattleScriptExecute(BattleScript_BerryCureSlpEnd2);
                     effect = ITEM_STATUS_CHANGE;
-                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Chesto Berry
                     TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                 }
                 break;
@@ -7547,7 +7541,6 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                         gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                         StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
                         i++;
-                        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Lum Berry
                         TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                     }
                     if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
@@ -7838,7 +7831,6 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                     gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                     BattleScriptExecute(BattleScript_BerryCureSlpEnd2);
                     effect = ITEM_STATUS_CHANGE;
-                    // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Chesto Berry
                     TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                 }
                 break;
@@ -7864,7 +7856,6 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
                         gBattleMons[battler].status2 &= ~STATUS2_NIGHTMARE;
                         StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
                         i++;
-                        // Try to deactivate Sleep Clause when a mon gets woken up by curing sleep via a Lum Berry
                         TryDeactivateSleepClause(GetBattlerSide(battler), gBattlerPartyIndexes[battler]);
                     }
                     if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
