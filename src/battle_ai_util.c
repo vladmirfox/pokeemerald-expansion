@@ -603,9 +603,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
             damageCalcData->isCrit = FALSE;
             expected = 0;
             for (i = 0; i < partyCount; i++)
-            {
                 expected += CalculateMoveDamage(damageCalcData, 0);
-            }
             minimum = expected;
             gBattleStruct->beatUpSlot = 0;
         }
