@@ -475,7 +475,7 @@ CompressedImage processImage(std::string fileName, InputSettings settings)
     std::vector<unsigned char> bestLO;
     std::vector<unsigned short> bestSym;
     std::vector<ShortCompressionInstruction> bestInstructions;
-    for (size_t minCodeLength = 2; minCodeLength <= 2; minCodeLength++)
+    for (size_t minCodeLength = 2; minCodeLength <= 10; minCodeLength++)
     {
         std::vector<ShortCopy> shortCopies = getShortCopies(usBase, minCodeLength);
         if (!verifyShortCopies(&shortCopies, &usBase))

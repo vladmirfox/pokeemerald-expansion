@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     std::string input;
     std::string output;
     int numThreads = 1;
-    InputSettings settings(true, true, false);
+    InputSettings settings(true, true, true);
 
     if (argc > 1)
     {
