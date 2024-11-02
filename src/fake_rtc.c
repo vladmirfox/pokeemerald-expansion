@@ -65,7 +65,7 @@ void FakeRtc_AdvanceTimeBy(u32 hours, u32 minutes, u32 seconds)
     time->hours = hours;
 }
 
-void FakeRtc_ManuallySetTime(u32 hour, u32 minute, u32 second)
+void FakeRtc_ManuallySetTime(u32 dayOfWeek, u32 hour, u32 minute, u32 second)
 {
     struct Time diff, target;
     RtcCalcLocalTime();
@@ -73,7 +73,7 @@ void FakeRtc_ManuallySetTime(u32 hour, u32 minute, u32 second)
     target.hours = hour;
     target.minutes = minute;
     target.seconds = second;
-    target.days = gLocalTime.days;
+    target.days = dayOfWeek;
 
     CalcTimeDifference(&diff, &gLocalTime, &target);
     FakeRtc_AdvanceTimeBy(diff.hours, diff.minutes, diff.seconds);
