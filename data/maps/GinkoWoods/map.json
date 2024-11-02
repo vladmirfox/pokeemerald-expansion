@@ -92,8 +92,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 7,
-      "y": 15,
+      "x": 49,
+      "y": 12,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -102,6 +102,19 @@
       "trainer_sight_or_berry_tree_id": "ITEM_POTION",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_GINKO_WOODS_POTION_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BEAN",
+      "x": 13,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "GinkoWoods_EventScript_Bean",
+      "flag": "FLAG_HIDE_BEAN_GINKO_WOODS"
     }
   ],
   "warp_events": [
@@ -149,7 +162,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 7,
+      "elevation": 0,
+      "var": "FLAG_HIDE_BEAN_GINKO_WOODS",
+      "var_value": "0",
+      "script": "GinkoWoods_EventScript_Tracks"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 7,
+      "elevation": 0,
+      "var": "FLAG_HIDE_BEAN_GINKO_WOODS",
+      "var_value": "0",
+      "script": "GinkoWoods_EventScript_Tracks"
+    }
   ],
   "bg_events": [
     {

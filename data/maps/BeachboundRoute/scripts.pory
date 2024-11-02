@@ -150,6 +150,7 @@ script BeachboundRoute_EventScript_SomeoneCallingForHelp {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
 	waitmovement(0)
 	waitse
+	delay(48)
 
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 

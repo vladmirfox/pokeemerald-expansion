@@ -1,3 +1,5 @@
+const LOCALID_BEAN = 7
+
 mapscripts GinkoWoods_MapScripts {
 
 }
@@ -39,6 +41,126 @@ script GinkoWoods_EventScript_OldMan {
 	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps because they can hide from predators thanks to the color of these trees."))
 	release
 	end
+}
+
+script GinkoWoods_EventScript_Bean {
+	lock
+	faceplayer
+
+	msgbox(format(
+		"Hello!"
+	))
+	closemessage
+
+	turnobject(LOCALID_BEAN, DIR_EAST)
+
+	msgbox(format(
+		"I just noticed there are some neat tracks in the dirt here."
+	))
+	closemessage
+
+	turnobject(LOCALID_BEAN, DIR_SOUTH)
+
+	msgbox(format(
+		"It looks like a small mammal's footprints, see?\p"
+		"Studying Pokémon tracks is so fascinating. One can find out about a Pokémon's nesting place, their hunting habits, at what time they sleep, what they eat… Interesting, isn't it?\p"
+		"These woods host a lot of yellow Pokémon, so I'd bet these are a Pikachu's, or a Kotora's."
+		"Do you know why there's a lot of yellow Pokémon here? Well, that's because smaller Pokémon can easily hide from predators in the foliage, and said predators can stalk their prey without being seen."
+		"Additionally, the high concentration of electric-type Pokémon, which seems to have happened fortuitously, explains the unnaturally high static electricity in the air here."
+		"Some of the non-electric Pokémon that live here have adapted by developing specific traits, like the Sewaddle you've probably seen on your way here that blah, blah blah blah blah, blah blah…"
+	))
+	closemessage
+
+	fadescreen(FADE_TO_BLACK)
+
+	advancefakertcby(0, 30, 0)
+	delay(60)
+
+	fadescreen(FADE_FROM_BLACK)
+
+	delay(48)
+
+	msgbox(format(
+		"…And that's all that is currently known about Joltik's habitat during the winter.\p"
+		"Interesting, isn't it?"
+	))
+
+	dynmultichoice(
+		0,
+		0,
+		TRUE,
+		10,
+		0,
+		DYN_MULTICHOICE_CB_NONE,
+		"… …Yes?",
+		"Do I know you?",
+		"I was just passing through…"
+	)
+	closemessage
+
+	switch(var(VAR_RESULT)) {
+		case 0:
+			msgbox(format(
+				"Right! I'm glad you share my interest for Pokémon habitat.\p"
+				"I am Hariko. And what is your name?\p"
+				"{PLAYER}. It's been nice chatting with you. I will see you around, then.\p"
+				"Okay, bye!"
+			))
+		case 1:
+			msgbox(format(
+				"Right! I haven't introduced myself yet.\p"
+				"I am Hariko. And what is your name?\p"
+				"{PLAYER}. It's been nice chatting with you. I will see you around, then.\p"
+				"Okay, bye!"
+			))
+		case 2:
+			msgbox(format(
+				"…Oh. I am blocking your path. I see.\p"
+				"I guess I got carried away, haven't I? That… tends to happen.\p"
+				"I am Hariko. And what is your name?\p"
+				"{PLAYER}. It's been nice chatting with you. I am moving now, so that you can go through.\p"
+				"I will see you around, then.\p"
+				"Okay, bye!"
+			))
+	}
+	closemessage
+
+	applymovement(LOCALID_BEAN, GinkoWoods_Movement_BeanWalksAway)
+	waitmovement(0)
+	removeobject(LOCALID_BEAN)
+	setflag(FLAG_HIDE_BEAN_GINKO_WOODS)
+
+	release
+}
+
+movement GinkoWoods_Movement_BeanWalksAway {
+	walk_up * 7
+}
+
+script GinkoWoods_EventScript_Tracks {
+	lock
+	
+	playse(SE_PIN)
+	applymovement(LOCALID_BEAN, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
+	delay(48)
+	applymovement(LOCALID_BEAN, Common_Movement_WalkInPlaceFasterRight)
+	turnobject(OBJ_EVENT_ID_PLAYER, DIR_WEST)
+
+	msgbox(format(
+		"THE TRACKS!! YOU'RE STEPPING ON THEM!!!"
+	))
+	closemessage
+
+	applymovement(OBJ_EVENT_ID_PLAYER, GinkoWoods_Movement_PlayerWalkDown)
+	waitmovement(0)
+
+	release
+}
+
+movement GinkoWoods_Movement_PlayerWalkDown {
+	walk_down
 }
 
 script GinkoWoods_EventScript_TrainerTips1 {
