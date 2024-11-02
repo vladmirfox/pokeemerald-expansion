@@ -113,7 +113,7 @@ static inline void Shuffle(void *data, size_t n, size_t size)
  * inclusive. The return value is proportional to the weights, e.g.
  * RandomWeighted(..., 1, 1) returns 50% 0s and 50% 1s.
  * RandomWeighted(..., 2, 1) returns 2/3 0s and 1/3 1s.
- * 
+ *
  * RandomChance(tag, successes, total) returns FALSE with probability
  * 1-successes/total, and TRUE with probability successes/total. */
 
