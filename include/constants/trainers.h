@@ -114,7 +114,8 @@
 #define TRAINER_PIC_ONSEN_F               96
 #define TRAINER_PIC_ONSEN_M               97
 #define TRAINER_PIC_SHAMISEN              98
-#define TRAINER_PIC_COUNT                 98
+#define TRAINER_PIC_BEAN                  99
+#define TRAINER_PIC_COUNT                 100
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_BRENDAN                0

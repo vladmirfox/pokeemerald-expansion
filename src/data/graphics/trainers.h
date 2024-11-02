@@ -217,6 +217,9 @@ const u32 gTrainerPalette_Artist[] = INCBIN_U32("graphics/trainers/front_pics/ar
 const u32 gTrainerFrontPic_TravelingMerchant[] = INCBIN_U32("graphics/trainers/front_pics/traveling_merchant.4bpp.lz");
 const u32 gTrainerPalette_TravelingMerchant[] = INCBIN_U32("graphics/trainers/front_pics/traveling_merchant.gbapal.lz");
 
+const u32 gTrainerFrontPic_Bean[] = INCBIN_U32("graphics/trainers/front_pics/bean.4bpp.lz");
+const u32 gTrainerPalette_Bean[] = INCBIN_U32("graphics/trainers/front_pics/bean.gbapal.lz");
+
 const u32 gTrainerFrontPic_OnsenF[] = INCBIN_U32("graphics/trainers/front_pics/onsen_f.4bpp.lz");
 const u32 gTrainerPalette_OnsenF[] = INCBIN_U32("graphics/trainers/front_pics/onsen_f.gbapal.lz");
 
@@ -402,6 +405,7 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_ARTIST, gTrainerFrontPic_Artist, gTrainerPalette_Artist),
     TRAINER_SPRITE(TRAINER_PIC_FIREBRINGER, gTrainerFrontPic_Firebringer, gTrainerPalette_Firebringer),
     TRAINER_SPRITE(TRAINER_PIC_TRAVELING_MERCHANT, gTrainerFrontPic_TravelingMerchant, gTrainerPalette_TravelingMerchant),
+    TRAINER_SPRITE(TRAINER_PIC_BEAN, gTrainerFrontPic_Bean, gTrainerPalette_Bean),
     TRAINER_SPRITE(TRAINER_PIC_ONSEN_F, gTrainerFrontPic_OnsenF, gTrainerPalette_OnsenF),
     TRAINER_SPRITE(TRAINER_PIC_ONSEN_M, gTrainerFrontPic_OnsenM, gTrainerPalette_OnsenM),
     // TODO random color

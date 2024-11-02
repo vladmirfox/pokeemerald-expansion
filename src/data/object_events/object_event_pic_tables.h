@@ -121,6 +121,10 @@ static const struct SpriteFrameImage sPicTable_Firebringer[] = {
     overworld_ascending_frames(gObjectEventPic_Firebringer, 4, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_Bean[] = {
+    overworld_ascending_frames(gObjectEventPic_Bean, 4, 4),
+};
+
 static const struct SpriteFrameImage sPicTable_TravelingMerchant[] = {
     overworld_ascending_frames(gObjectEventPic_TravelingMerchant, 4, 4),
 };

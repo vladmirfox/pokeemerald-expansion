@@ -78,6 +78,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lucy;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedNatuDoll;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Farmer;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Firebringer;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Bean;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_TravelingMerchant;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OnsenF;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BattleGirl;
@@ -339,6 +340,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LUCY] =                     &gObjectEventGraphicsInfo_Lucy,
     [OBJ_EVENT_GFX_FARMER] =                   &gObjectEventGraphicsInfo_Farmer,
     [OBJ_EVENT_GFX_FIREBRINGER] =              &gObjectEventGraphicsInfo_Firebringer,
+    [OBJ_EVENT_GFX_BEAN] =                     &gObjectEventGraphicsInfo_Bean,
     [OBJ_EVENT_GFX_TRAVELING_MERCHANT] =       &gObjectEventGraphicsInfo_TravelingMerchant,
     [OBJ_EVENT_GFX_ONSEN_F] =                  &gObjectEventGraphicsInfo_OnsenF,
     [OBJ_EVENT_GFX_CUTTABLE_TREE_KURA_DOJO] =  &gObjectEventGraphicsInfo_CuttableTreeKuraDojo,
