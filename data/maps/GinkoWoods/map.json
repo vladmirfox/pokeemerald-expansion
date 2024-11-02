@@ -15,12 +15,12 @@
   "connections": [
     {
       "map": "MAP_SUNRISE_VILLAGE",
-      "offset": 32,
+      "offset": 26,
       "direction": "down"
     },
     {
       "map": "MAP_CHII_TOWN",
-      "offset": 0,
+      "offset": -6,
       "direction": "up"
     }
   ],
@@ -92,8 +92,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 29,
-      "y": 6,
+      "x": 7,
+      "y": 15,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -105,7 +105,48 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 43,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 44,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 45,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_SUNRISE_VILLAGE",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 13,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_CHII_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 14,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_CHII_TOWN",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 15,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_CHII_TOWN",
+      "dest_warp_id": "2"
+    }
   ],
   "coord_events": [
 
