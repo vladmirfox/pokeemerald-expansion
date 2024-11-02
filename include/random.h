@@ -113,7 +113,7 @@ static inline void Shuffle(void *data, size_t n, size_t size)
  * inclusive. The return value is proportional to the weights, e.g.
  * RandomWeighted(..., 1, 1) returns 50% 0s and 50% 1s.
  * RandomWeighted(..., 2, 1) returns 2/3 0s and 1/3 1s.
- *
+ * RandomWeighted(..., 0, 0, 3, 3, 1, 1); // (0/8 0s, 0/8 1s, 3/8 2s, 3/8 3s, 1/8 4s, 1/8 5s || 37.5%: 2 hits, 37.5%: 3 hits, 12.5% 4 hits, 12.5% 5 hits
  * RandomChance(tag, successes, total) returns FALSE with probability
  * 1-successes/total, and TRUE with probability successes/total. */
 
@@ -174,6 +174,7 @@ enum RandomTag
     RNG_AI_SWITCH_SE_DEFENSIVE,
     RNG_SHELL_SIDE_ARM,
     RNG_RANDOM_TARGET,
+    RNG_AI_PREDICT_ABILITY,
     RNG_HEALER,
 };
 

@@ -1312,6 +1312,8 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
     u32 validAbilities[NUM_ABILITY_SLOTS];
     u8 i, numValidAbilities = 0;
     u32 knownAbility = AI_GetBattlerAbility(battlerId);
+    u32 indexAbility;
+    u32 abilityAiRatings[NUM_ABILITY_SLOTS] = {0};
 
     // We've had ability overwritten by e.g. Worry Seed. It is not part of AI_PARTY in case of switching
     if (gBattleStruct->overwrittenAbilities[battlerId])
@@ -1334,9 +1336,16 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
 
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
     {
-        if (gSpeciesInfo[gBattleMons[battlerId].species].abilities[i] != ABILITY_NONE)
-            validAbilities[numValidAbilities++] = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
+        indexAbility = gSpeciesInfo[gBattleMons[battlerId].species].abilities[i];
+        if (indexAbility != ABILITY_NONE)
+        {
+            abilityAiRatings[numValidAbilities] = gAbilitiesInfo[indexAbility].aiRating;
+            validAbilities[numValidAbilities++] = indexAbility;
+        }
     }
+
+    if (numValidAbilities > 0 && (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_PREDICT_ABILITY))
+        return validAbilities[RandomWeighted(RNG_AI_PREDICT_ABILITY, abilityAiRatings[0], abilityAiRatings[1], abilityAiRatings[2])];
 
     if (numValidAbilities > 0)
         return validAbilities[RandomUniform(RNG_AI_ABILITY, 0, numValidAbilities - 1)];
@@ -1353,7 +1362,7 @@ u32 AI_DecideHoldEffectForTurn(u32 battlerId)
     else
         holdEffect = GetBattlerHoldEffect(battlerId, FALSE);
 
-    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
         return holdEffect;
 
     if (gStatuses3[battlerId] & STATUS3_EMBARGO)
