@@ -286,7 +286,7 @@ SINGLE_BATTLE_TEST("Parental Bond Snore strikes twice while asleep")
     }
 }
 
-SINGLE_BATTLE_TEST("Parental Bond will block hit switch target effects before the second hit")
+SINGLE_BATTLE_TEST("Parental Bond only triggers Dragon Tail's target switch out on the second hit")
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_DRAGON_TAIL].effect == EFFECT_HIT_SWITCH_TARGET);
