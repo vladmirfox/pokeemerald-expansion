@@ -417,6 +417,9 @@ $(OBJEVENTGFXDIR)/people/onsen_f.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/people/bean.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(OBJEVENTGFXDIR)/people/natsuki.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(OBJEVENTGFXDIR)/people/traveling_merchant.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
