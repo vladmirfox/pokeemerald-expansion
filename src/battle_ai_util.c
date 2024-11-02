@@ -102,6 +102,15 @@ bool32 IsAiBattlerAware(u32 battlerId)
     return BattlerHasAi(battlerId);
 }
 
+bool32 IsAiBattlerPredictingAbility(u32 battlerId)
+{
+    if (AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_LEFT] & AI_FLAG_PREDICT_ABILITY
+     || AI_THINKING_STRUCT->aiFlags[B_POSITION_OPPONENT_RIGHT] & AI_FLAG_PREDICT_ABILITY)
+        return TRUE;
+
+    return BattlerHasAi(battlerId);
+}
+
 void ClearBattlerMoveHistory(u32 battlerId)
 {
     memset(BATTLE_HISTORY->usedMoves[battlerId], 0, sizeof(BATTLE_HISTORY->usedMoves[battlerId]));
@@ -1344,7 +1353,7 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
         }
     }
 
-    if (numValidAbilities > 0 && (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_PREDICT_ABILITY))
+    if (numValidAbilities > 0 && IsAiBattlerPredictingAbility(battlerId))
         return validAbilities[RandomWeighted(RNG_AI_PREDICT_ABILITY, abilityAiRatings[0], abilityAiRatings[1], abilityAiRatings[2])];
 
     if (numValidAbilities > 0)
@@ -1362,7 +1371,7 @@ u32 AI_DecideHoldEffectForTurn(u32 battlerId)
     else
         holdEffect = GetBattlerHoldEffect(battlerId, FALSE);
 
-    if (AI_THINKING_STRUCT->aiFlags[sBattler_AI] & AI_FLAG_NEGATE_UNAWARE)
+    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_NEGATE_UNAWARE)
         return holdEffect;
 
     if (gStatuses3[battlerId] & STATUS3_EMBARGO)
