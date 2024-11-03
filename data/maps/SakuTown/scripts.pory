@@ -216,11 +216,6 @@ script SakuTown_EventScript_GuardSeesYou {
 	release
 }
 
-script TESTEVA {
-	setvar(VAR_SAKU_KURA_VILLAGES_STATE, 0)
-	setvar(VAR_RIVAL_ENCOUNTER_STATE, 1)
-}
-
 script SakuTown_EventScript_GuardStopsYou {
 	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	applymovement(LOCALID_GUARD, Common_Movement_WalkInPlaceFasterLeft)

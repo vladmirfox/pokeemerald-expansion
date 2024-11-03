@@ -317,7 +317,7 @@
       "flag": "FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
       "x": 60,
       "y": 10,
       "elevation": 0,
@@ -330,7 +330,7 @@
       "flag": "FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
       "x": 61,
       "y": 11,
       "elevation": 0,
@@ -343,7 +343,7 @@
       "flag": "FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
       "x": 62,
       "y": 10,
       "elevation": 0,
@@ -356,7 +356,7 @@
       "flag": "FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M",
       "x": 61,
       "y": 10,
       "elevation": 0,

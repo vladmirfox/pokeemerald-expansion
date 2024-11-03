@@ -337,159 +337,151 @@ SakuTown_EventScript_GuardSeesYou_4:
 	goto SakuTown_EventScript_GuardSeesYou_1
 
 
-TESTEVA::
-# 220 "data/maps/SakuTown/scripts.pory"
-	setvar VAR_SAKU_KURA_VILLAGES_STATE, 0
-# 221 "data/maps/SakuTown/scripts.pory"
-	setvar VAR_RIVAL_ENCOUNTER_STATE, 1
-	return
-
-
 SakuTown_EventScript_GuardStopsYou::
-# 225 "data/maps/SakuTown/scripts.pory"
+# 220 "data/maps/SakuTown/scripts.pory"
 	specialvar VAR_RESULT, GetPlayerFacingDirection
-# 226 "data/maps/SakuTown/scripts.pory"
+# 221 "data/maps/SakuTown/scripts.pory"
 	applymovement 8, Common_Movement_WalkInPlaceFasterLeft
-# 227 "data/maps/SakuTown/scripts.pory"
+# 222 "data/maps/SakuTown/scripts.pory"
 	waitmovement 8
-# 228 "data/maps/SakuTown/scripts.pory"
+# 223 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Guard_Text_0
-# 229 "data/maps/SakuTown/scripts.pory"
+# 224 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_GuardStopsYou_Text_0
-# 230 "data/maps/SakuTown/scripts.pory"
+# 225 "data/maps/SakuTown/scripts.pory"
 	closemessage
-# 231 "data/maps/SakuTown/scripts.pory"
+# 226 "data/maps/SakuTown/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
-# 232 "data/maps/SakuTown/scripts.pory"
+# 227 "data/maps/SakuTown/scripts.pory"
 	waitmovement OBJ_EVENT_ID_PLAYER
-# 233 "data/maps/SakuTown/scripts.pory"
+# 228 "data/maps/SakuTown/scripts.pory"
 	delay 20
-# 235 "data/maps/SakuTown/scripts.pory"
+# 230 "data/maps/SakuTown/scripts.pory"
 	compare VAR_RESULT, DIR_SOUTH
 	goto_if_eq SakuTown_EventScript_GuardStopsYou_2
-# 245 "data/maps/SakuTown/scripts.pory"
+# 240 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Guard_Text_0
-# 246 "data/maps/SakuTown/scripts.pory"
+# 241 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_GuardStopsYou_Text_2
-# 251 "data/maps/SakuTown/scripts.pory"
+# 246 "data/maps/SakuTown/scripts.pory"
 	closemessage
-# 252 "data/maps/SakuTown/scripts.pory"
+# 247 "data/maps/SakuTown/scripts.pory"
 	setvar VAR_SAKU_KURA_VILLAGES_STATE, 1
 SakuTown_EventScript_GuardStopsYou_1:
-# 255 "data/maps/SakuTown/scripts.pory"
+# 250 "data/maps/SakuTown/scripts.pory"
 	applymovement 8, Common_Movement_FaceDown
 	return
 
 SakuTown_EventScript_GuardStopsYou_2:
-# 236 "data/maps/SakuTown/scripts.pory"
+# 231 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Guard_Text_0
-# 237 "data/maps/SakuTown/scripts.pory"
+# 232 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_GuardStopsYou_Text_1
-# 242 "data/maps/SakuTown/scripts.pory"
+# 237 "data/maps/SakuTown/scripts.pory"
 	closemessage
-# 243 "data/maps/SakuTown/scripts.pory"
+# 238 "data/maps/SakuTown/scripts.pory"
 	setvar VAR_SAKU_KURA_VILLAGES_STATE, 3
 	goto SakuTown_EventScript_GuardStopsYou_1
 
 
 SakuTown_EventScript_TownSign::
-# 260 "data/maps/SakuTown/scripts.pory"
+# 255 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_TownSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SakuTown_EventScript_TrainerTips::
-# 264 "data/maps/SakuTown/scripts.pory"
+# 259 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_TrainerTips_Text_0, MSGBOX_SIGN
 	return
 
 
 SakuTown_EventScript_TrainerTips2::
-# 268 "data/maps/SakuTown/scripts.pory"
+# 263 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
 
 SakuTown_EventScript_FloristSign::
-# 272 "data/maps/SakuTown/scripts.pory"
+# 267 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_FloristSign_Text_0, MSGBOX_SIGN
 	return
 
 
 SakuTown_EventScript_BoardGame::
-# 276 "data/maps/SakuTown/scripts.pory"
+# 271 "data/maps/SakuTown/scripts.pory"
 	goto_if_set FLAG_SAKU_KURA_REUNITED, SakuTown_EventScript_BoardGame_1
 	return
 
 SakuTown_EventScript_BoardGame_1:
-# 277 "data/maps/SakuTown/scripts.pory"
+# 272 "data/maps/SakuTown/scripts.pory"
 	lock
-# 278 "data/maps/SakuTown/scripts.pory"
+# 273 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_BoardGame_Text_0, MSGBOX_DEFAULT
-# 279 "data/maps/SakuTown/scripts.pory"
+# 274 "data/maps/SakuTown/scripts.pory"
 	closemessage
-# 280 "data/maps/SakuTown/scripts.pory"
+# 275 "data/maps/SakuTown/scripts.pory"
 	release
 	return
 
 
 SakuTown_EventScript_Mart::
-# 285 "data/maps/SakuTown/scripts.pory"
+# 280 "data/maps/SakuTown/scripts.pory"
 	lock
-# 286 "data/maps/SakuTown/scripts.pory"
+# 281 "data/maps/SakuTown/scripts.pory"
 	faceplayer
-# 287 "data/maps/SakuTown/scripts.pory"
+# 282 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Mart_Text_0
-# 288 "data/maps/SakuTown/scripts.pory"
+# 283 "data/maps/SakuTown/scripts.pory"
 	message gText_HowMayIServeYou
-# 289 "data/maps/SakuTown/scripts.pory"
+# 284 "data/maps/SakuTown/scripts.pory"
 	waitmessage
-# 290 "data/maps/SakuTown/scripts.pory"
+# 285 "data/maps/SakuTown/scripts.pory"
 	pokemart SakuTown_Mart
-# 291 "data/maps/SakuTown/scripts.pory"
+# 286 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Mart_Text_0
-# 292 "data/maps/SakuTown/scripts.pory"
+# 287 "data/maps/SakuTown/scripts.pory"
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-# 293 "data/maps/SakuTown/scripts.pory"
+# 288 "data/maps/SakuTown/scripts.pory"
 	release
 	return
 
 
 	.align 2
-# 296 "data/maps/SakuTown/scripts.pory"
+# 291 "data/maps/SakuTown/scripts.pory"
 SakuTown_Mart:
-# 297 "data/maps/SakuTown/scripts.pory"
+# 292 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_POKE_BALL
-# 298 "data/maps/SakuTown/scripts.pory"
+# 293 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_BERRY_JUICE
-# 299 "data/maps/SakuTown/scripts.pory"
+# 294 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_PARALYZE_HEAL
-# 300 "data/maps/SakuTown/scripts.pory"
+# 295 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_ANTIDOTE
-# 301 "data/maps/SakuTown/scripts.pory"
+# 296 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_AWAKENING
-# 302 "data/maps/SakuTown/scripts.pory"
+# 297 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_ESCAPE_ROPE
-# 303 "data/maps/SakuTown/scripts.pory"
+# 298 "data/maps/SakuTown/scripts.pory"
 	.2byte ITEM_REPEL
 	.2byte ITEM_NONE
 
 SakuTown_EventScript_Makuhita::
-# 307 "data/maps/SakuTown/scripts.pory"
+# 302 "data/maps/SakuTown/scripts.pory"
 	lock
-# 308 "data/maps/SakuTown/scripts.pory"
+# 303 "data/maps/SakuTown/scripts.pory"
 	faceplayer
-# 309 "data/maps/SakuTown/scripts.pory"
+# 304 "data/maps/SakuTown/scripts.pory"
 	waitse
-# 310 "data/maps/SakuTown/scripts.pory"
+# 305 "data/maps/SakuTown/scripts.pory"
 	playmoncry SPECIES_MAKUHITA, CRY_MODE_NORMAL
-# 311 "data/maps/SakuTown/scripts.pory"
+# 306 "data/maps/SakuTown/scripts.pory"
 	speakername SakuTown_EventScript_Makuhita_Text_0
-# 312 "data/maps/SakuTown/scripts.pory"
+# 307 "data/maps/SakuTown/scripts.pory"
 	msgbox SakuTown_EventScript_Makuhita_Text_1
-# 313 "data/maps/SakuTown/scripts.pory"
+# 308 "data/maps/SakuTown/scripts.pory"
 	waitmoncry
-# 314 "data/maps/SakuTown/scripts.pory"
+# 309 "data/maps/SakuTown/scripts.pory"
 	release
 	return
 
@@ -605,11 +597,11 @@ SakuTown_EventScript_KuraGuard_Text_0:
 	.string "herd!$"
 
 SakuTown_EventScript_GuardStopsYou_Text_0:
-# 229 "data/maps/SakuTown/scripts.pory"
+# 224 "data/maps/SakuTown/scripts.pory"
 	.string "Hey!$"
 
 SakuTown_EventScript_GuardStopsYou_Text_1:
-# 238 "data/maps/SakuTown/scripts.pory"
+# 233 "data/maps/SakuTown/scripts.pory"
 	.string "Are you trying to sneak in from Kura\n"
 	.string "Village?\p"
 	.string "…Oh, you're that traveler from before.\n"
@@ -618,7 +610,7 @@ SakuTown_EventScript_GuardStopsYou_Text_1:
 	.string "to Saku Village!$"
 
 SakuTown_EventScript_GuardStopsYou_Text_2:
-# 247 "data/maps/SakuTown/scripts.pory"
+# 242 "data/maps/SakuTown/scripts.pory"
 	.string "Are you trying to sneak into Kura\n"
 	.string "Village?\p"
 	.string "…Oh, you're just a traveler. Nevermind\n"
@@ -628,42 +620,42 @@ SakuTown_EventScript_GuardStopsYou_Text_2:
 	.string "nothing interesting there.$"
 
 SakuTown_EventScript_TownSign_Text_0:
-# 260 "data/maps/SakuTown/scripts.pory"
+# 255 "data/maps/SakuTown/scripts.pory"
 	.string "Saku Village\n"
 	.string "“A village of tender flower petals.”$"
 
 SakuTown_EventScript_TrainerTips_Text_0:
-# 264 "data/maps/SakuTown/scripts.pory"
+# 259 "data/maps/SakuTown/scripts.pory"
 	.string "Did you know?\p"
 	.string "Saku Village is in all ways superior to\n"
 	.string "Kura Village!$"
 
 SakuTown_EventScript_TrainerTips2_Text_0:
-# 268 "data/maps/SakuTown/scripts.pory"
+# 263 "data/maps/SakuTown/scripts.pory"
 	.string "Did you know?\p"
 	.string "The folks from Kura Village are a\n"
 	.string "bunch of mean jerks!$"
 
 SakuTown_EventScript_FloristSign_Text_0:
-# 272 "data/maps/SakuTown/scripts.pory"
+# 267 "data/maps/SakuTown/scripts.pory"
 	.string "Humble Blossom\n"
 	.string "Bonsai & flower shop$"
 
 SakuTown_EventScript_BoardGame_Text_0:
-# 278 "data/maps/SakuTown/scripts.pory"
+# 273 "data/maps/SakuTown/scripts.pory"
 	.string "They're playing Tauros Herder, a\n"
 	.string "popular board game!$"
 
 SakuTown_EventScript_Mart_Text_0:
-# 287 "data/maps/SakuTown/scripts.pory"
+# 282 "data/maps/SakuTown/scripts.pory"
 	.string "Saleswoman$"
 
 SakuTown_EventScript_Makuhita_Text_0:
-# 311 "data/maps/SakuTown/scripts.pory"
+# 306 "data/maps/SakuTown/scripts.pory"
 	.string "Makuhita$"
 
 SakuTown_EventScript_Makuhita_Text_1:
-# 312 "data/maps/SakuTown/scripts.pory"
+# 307 "data/maps/SakuTown/scripts.pory"
 	.string "Kuhi!$"
 
 SakuTown_Text_RivalDefeat::

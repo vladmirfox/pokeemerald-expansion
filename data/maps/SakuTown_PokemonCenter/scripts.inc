@@ -58,21 +58,21 @@ SakuTown_PokemonCenter_EventScript_Pushing::
 	case DIR_SOUTH, SakuTown_PokemonCenter_EventScript_Pushing_4
 SakuTown_PokemonCenter_EventScript_Pushing_1:
 # 51 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	waitmovement 3
+	waitmovement VAR_LAST_TALKED
 # 52 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	waitmovement OBJ_EVENT_ID_PLAYER
 	return
 
 SakuTown_PokemonCenter_EventScript_Pushing_3:
 # 44 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	applymovement 3, SakuTown_PokemonCenter_Movement_PushesPlayer
+	applymovement VAR_LAST_TALKED, SakuTown_PokemonCenter_Movement_PushesPlayer
 # 45 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushed
 	goto SakuTown_PokemonCenter_EventScript_Pushing_1
 
 SakuTown_PokemonCenter_EventScript_Pushing_4:
 # 47 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	applymovement 3, SakuTown_PokemonCenter_Movement_PushesPlayerUp
+	applymovement VAR_LAST_TALKED, SakuTown_PokemonCenter_Movement_PushesPlayerUp
 # 48 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	applymovement OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushedUp
 	goto SakuTown_PokemonCenter_EventScript_Pushing_1
@@ -144,26 +144,30 @@ SakuTown_PokemonCenter_Movement_PushesPlayer:
 	delay_16
 # 106 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	walk_right
+# 107 "data/maps/SakuTown_PokemonCenter/scripts.pory"
+	face_original_direction
 	step_end
 
-# 109 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-SakuTown_PokemonCenter_Movement_PlayerPushedUp:
 # 110 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	lock_facing_direction
+SakuTown_PokemonCenter_Movement_PlayerPushedUp:
 # 111 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	jump_2_up
+	lock_facing_direction
 # 112 "data/maps/SakuTown_PokemonCenter/scripts.pory"
+	jump_2_up
+# 113 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	unlock_facing_direction
 	step_end
 
-# 115 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-SakuTown_PokemonCenter_Movement_PushesPlayerUp:
 # 116 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	walk_up
+SakuTown_PokemonCenter_Movement_PushesPlayerUp:
 # 117 "data/maps/SakuTown_PokemonCenter/scripts.pory"
-	delay_16
+	walk_up
 # 118 "data/maps/SakuTown_PokemonCenter/scripts.pory"
+	delay_16
+# 119 "data/maps/SakuTown_PokemonCenter/scripts.pory"
 	walk_down
+# 120 "data/maps/SakuTown_PokemonCenter/scripts.pory"
+	face_original_direction
 	step_end
 
 SakuTown_PokemonCenter_EventScript_Traveler_Text_0:

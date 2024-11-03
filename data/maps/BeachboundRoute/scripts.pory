@@ -153,6 +153,7 @@ script BeachboundRoute_EventScript_SomeoneCallingForHelp {
 	delay(48)
 
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+	setvar(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 2)
 
 	release
 }
@@ -207,7 +208,7 @@ script BeachboundRoute_EventScript_Mugging_Center {
 
 script BeachboundRoute_EventScript_Mugging {
 	// Lost to them once
-	if (var(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE) == 3) {
+	if (var(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE) < 3) {
 		setvar(VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 3)
 		applymovement(LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFasterUp)
 		waitmovement(0)
@@ -234,6 +235,7 @@ script BeachboundRoute_EventScript_Mugging {
 		applymovement(LOCALID_GRUNT_BOSS, Common_Movement_ExclamationMark)
 		waitmovement(0)
 		waitse
+		delay(48)
 
 		speakername("Shady Man")
 		msgbox(format(
@@ -309,20 +311,22 @@ script BeachboundRoute_EventScript_Mugging {
 
 		speakername("Crobat boss")
 		msgbox(format(
-			"…Nevermind that!"
+			"…Gonna pretend ya didn't say that."
 		))
 		closemessage
 
 		turnobject(LOCALID_GRUNT_BOSS, DIR_SOUTH)
 
+		delay(24)
+
 		speakername("Crobat Boss")
 		msgbox(format(
-			"'nuff yappin' already! Take care of this clown, boys!"
+			"'Nuff yappin' already! Take care of this clown, boys!"
 		))
 		closemessage
 	} else {
 		turnobject(LOCALID_GRUNT_BOSS, DIR_SOUTH)
-		speakername("Crobat Shadow Boss")
+		speakername("Crobat Boss")
 		msgbox(format(
 			"Can't believe it! Look who's back!\p"
 			"Back fer another whoopin', are we?\p"
@@ -363,11 +367,13 @@ script BeachboundRoute_EventScript_Mugging {
 	))
 	closemessage
 
+	delay(24)
+
 	speakername("Crobat Boss")
 	msgbox(format(
 		"Ya gotta be kiddin' me…\p"
 		"Can't even do no regular muggin' in peace anymore!\p"
-		"Well, I ain't gonna stoop to fighting you myself!"
+		"Well, I ain't gonna stoop to fighting ya myself!"
 	))
 	closemessage
 
@@ -379,13 +385,15 @@ script BeachboundRoute_EventScript_Mugging {
 	))
 	closemessage
 
+	delay(24)
+
 	speakername("Crobat Boss")
 	msgbox(format(
 		"For the love of god, Kevin…"
 	))
 	closemessage
 
-	delay(40)
+	delay(48)
 	
 	speakername("Crobat Boss")
 	msgbox(format(
@@ -403,6 +411,10 @@ script BeachboundRoute_EventScript_Mugging {
 	))
 	closemessage
 
+	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_ZubatsAligning)
+	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_ZubatsAligning)
+	waitmovement(LOCALID_GRUNT_1)
+	waitmovement(LOCALID_GRUNT_2)
 	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_ZubatsAlign)
 	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_ZubatsAlign)
 	applymovement(LOCALID_GRUNT_3, BeachboundRoute_Movement_ZubatsAlign)
@@ -418,6 +430,12 @@ script BeachboundRoute_EventScript_Mugging {
 	waitmovement(LOCALID_GRUNT_1)
 	waitmovement(LOCALID_GRUNT_2)
 	waitmovement(LOCALID_GRUNT_3)
+
+	removeobject(LOCALID_GRUNT_BOSS)
+	removeobject(LOCALID_GRUNT_1)
+	removeobject(LOCALID_GRUNT_2)
+	removeobject(LOCALID_GRUNT_3)
+	setflag(FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT)
 
 	delay(60)
 
@@ -480,6 +498,11 @@ movement BeachboundRoute_Movement_Grunt2Exits {
 movement BeachboundRoute_Movement_Grunt3Exits {
 	walk_down * 6
 	walk_left * 9
+}
+
+movement BeachboundRoute_Movement_ZubatsAligning {
+	walk_up
+	face_down
 }
 
 movement BeachboundRoute_Movement_ZubatsAlign {

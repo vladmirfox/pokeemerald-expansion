@@ -513,6 +513,14 @@ static const struct SpriteFrameImage sPicTable_MagmaMemberF[] = {
     overworld_ascending_frames(gObjectEventPic_MagmaMemberF, 2, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_CrobatShadowsGruntM[] = {
+    overworld_ascending_frames(gObjectEventPic_CrobatShadowsGruntM, 4, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_CrobatShadowsGruntF[] = {
+    overworld_ascending_frames(gObjectEventPic_CrobatShadowsGruntF, 4, 4),
+};
+
 static const struct SpriteFrameImage sPicTable_Sidney[] = {
     overworld_frame(gObjectEventPic_Sidney, 2, 4, 0),
     overworld_frame(gObjectEventPic_Sidney, 2, 4, 1),

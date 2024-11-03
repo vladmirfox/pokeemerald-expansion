@@ -41,14 +41,14 @@ script SakuTown_PokemonCenter_EventScript_Pushing {
 
 	switch(var(VAR_FACING)) {
 		case DIR_EAST:
-			applymovement(LOCALID_GRUNT, SakuTown_PokemonCenter_Movement_PushesPlayer)
+			applymovement(VAR_LAST_TALKED, SakuTown_PokemonCenter_Movement_PushesPlayer)
 			applymovement(OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushed)
 		case DIR_SOUTH:
-			applymovement(LOCALID_GRUNT, SakuTown_PokemonCenter_Movement_PushesPlayerUp)
+			applymovement(VAR_LAST_TALKED, SakuTown_PokemonCenter_Movement_PushesPlayerUp)
 			applymovement(OBJ_EVENT_ID_PLAYER, SakuTown_PokemonCenter_Movement_PlayerPushedUp)
 	}
 
-	waitmovement(LOCALID_GRUNT)
+	waitmovement(VAR_LAST_TALKED)
 	waitmovement(OBJ_EVENT_ID_PLAYER)
 }
 
@@ -104,6 +104,7 @@ movement SakuTown_PokemonCenter_Movement_PushesPlayer {
 	walk_left
 	delay_16
 	walk_right
+	face_original_direction
 }
 
 movement SakuTown_PokemonCenter_Movement_PlayerPushedUp {
@@ -116,4 +117,5 @@ movement SakuTown_PokemonCenter_Movement_PushesPlayerUp {
 	walk_up
 	delay_16
 	walk_down
+	face_original_direction
 }
