@@ -64,7 +64,7 @@ GinkoWoods_EventScript_Bean::
 # 74 "data/maps/GinkoWoods/scripts.pory"
 	fadescreen FADE_TO_BLACK
 # 76 "data/maps/GinkoWoods/scripts.pory"
-	advancefakertcby 0, 30, 0
+	advancefakertcby 1, 30, 0
 # 77 "data/maps/GinkoWoods/scripts.pory"
 	delay 60
 # 79 "data/maps/GinkoWoods/scripts.pory"
@@ -277,7 +277,7 @@ GinkoWoods_EventScript_Bean_Text_3:
 	.string "…And that's all that is currently\n"
 	.string "known about Joltik's habitat during\l"
 	.string "the winter.\p"
-	.string "Interesting, isn't it?$"
+	.string "Neat, isn't it?$"
 
 GinkoWoods_EventScript_Bean_Text_4:
 # 95 "data/maps/GinkoWoods/scripts.pory"

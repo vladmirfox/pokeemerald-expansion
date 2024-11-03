@@ -47,6 +47,8 @@
 #include "constants/items.h"
 #include "tx_registered_items_menu.h"
 #include "naming_screen.h"
+#include "clock.h"
+#include "fake_rtc.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -218,6 +220,10 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     ResetItemFlags();
+
+    // Custom
+    FakeRtc_ManuallySetTime(0, 8, 0, 0);
+    InitTimeBasedEvents();
 }
 
 static void ResetMiniGamesRecords(void)

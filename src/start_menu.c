@@ -497,6 +497,9 @@ static void ShowTimeWindow(void)
     u8* ptr;
     u8 convertedHours;
 
+    // This allows the clock to tick forward while the menu is opened
+    RtcCalcLocalTime();
+
     // print window
     sStartClockWindowId = AddWindow(&sWindowTemplate_StartClock);
     PutWindowTilemap(sStartClockWindowId);
