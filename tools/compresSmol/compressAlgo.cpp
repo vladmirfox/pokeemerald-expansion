@@ -475,7 +475,7 @@ CompressedImage processImage(std::string fileName, InputSettings settings)
     std::vector<unsigned char> bestLO;
     std::vector<unsigned short> bestSym;
     std::vector<ShortCompressionInstruction> bestInstructions;
-    for (size_t minCodeLength = 2; minCodeLength <= 10; minCodeLength++)
+    for (size_t minCodeLength = 2; minCodeLength <= 15; minCodeLength++)
     {
         std::vector<ShortCopy> shortCopies = getShortCopies(usBase, minCodeLength);
         if (!verifyShortCopies(&shortCopies, &usBase))
@@ -1320,11 +1320,10 @@ std::vector<unsigned short> readRawDataVecs(std::vector<unsigned int> *pInput)
 void deltaEncode(std::vector<unsigned char> *buffer, int length)
 {
     unsigned char last = 0;
-    for (size_t i = 0; i < length; i++)
+    for (int i = 0; i < length; i++)
     {
-        unsigned char current = (*buffer)[i];
-        current = (current - last) & 0xf;
-        (*buffer)[i] = current;
+        unsigned char current =(*buffer)[i];
+        (*buffer)[i] = (current-last) & 0xf;
         last = current;
     }
 }
@@ -1332,11 +1331,10 @@ void deltaEncode(std::vector<unsigned char> *buffer, int length)
 void deltaDecode(std::vector<unsigned char> *buffer, int length)
 {
     unsigned char last = 0;
-    for (size_t i = 0; i < length; i++)
+    for (int i = 0; i < length; i++)
     {
-        unsigned char current = (*buffer)[i];
-        current = (current + last) & 0xf;
-        (*buffer)[i] = current;
-        last = current;
+        unsigned char delta =(*buffer)[i];
+        (*buffer)[i] = (delta+last) & 0xf;
+        last = (*buffer)[i];
     }
 }

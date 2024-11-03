@@ -1,6 +1,6 @@
 CXX ?= g++
 
-CXXFLAGS := -Werror -O2
+CXXFLAGS := -Werror -std=c++17 -O2
 
 INCLUDES := -I .
 
