@@ -3805,7 +3805,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     dstID++;
 
     //  Remove this when done testing
-    BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, fontId);
+    BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
     return dstID;
 }
 

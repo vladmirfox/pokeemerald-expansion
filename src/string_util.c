@@ -820,7 +820,7 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     return dest;
 }
 
-void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
+void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
 {
     s32 bestBadness = -1;
     u16 numChars = 1;
@@ -831,6 +831,7 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
         return;
     bool32 isPrevCharSplitting = FALSE;
     bool32 isCurrCharSplitting;
+    //  Get numbers of chars in string and count words
     while (src[numChars] != EOS)
     {
         isCurrCharSplitting = IsWordSplittingChar(src, &numChars);
@@ -839,13 +840,13 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
         isPrevCharSplitting = isCurrCharSplitting;
         numChars++;
     }
-    MgbaPrintf(MGBA_LOG_WARN, "\n%S", src);
-    MgbaPrintf(MGBA_LOG_WARN, "Words: %u", numWords);
+    //  Allocate enough space for word data
     struct StringWord *allWords = Alloc(numWords*sizeof(struct StringWord));
 
     allWords[currWordIndex].startIndex = 0;
     allWords[currWordIndex].width = 0;
     isPrevCharSplitting = FALSE;
+    //  Fill in word begin index and lengths
     for (u16 i = 1; i < numChars; i++)
     {
         isCurrCharSplitting = IsWordSplittingChar(src, &i);
@@ -869,6 +870,7 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
     }
     allWords[currWordIndex].length = currWordLength;
 
+    //  Fill in individual word widths
     for (u32 i = 0; i < numWords; i++)
         for (u32 j = 0; j < allWords[i].length; j++)
             allWords[i].width += GetGlyphWidth(src[allWords[i].startIndex + j], FALSE, fontId);
@@ -877,21 +879,25 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
     //  Step 2: Try to split across minimum number of lines
     u32 spaceWidth = GetGlyphWidth(0, FALSE, fontId);
     u32 totalWidth = allWords[0].width;
+    //  Calculate total widths without any line breaks
     for (u32 i = 1; i < numWords; i++)
         totalWidth += allWords[i].width + spaceWidth;
 
+    //  If it doesn't fit on 1 line, do fancy line break calculation
     if (totalWidth > maxWidth)
     {
         u16 targetNumLines = 2;
         u16 trueNumLines = 0;
+        //  Make quick estimation of lines required
         while (targetNumLines*maxWidth < totalWidth)
             targetNumLines++;
-        MgbaPrintf(MGBA_LOG_WARN, "Target lines: %u", targetNumLines);
+        //  Allocate space for line data
         struct StringLine *stringLines = Alloc(sizeof(struct StringLine)*(targetNumLines+1));
         u16 targetWidth = totalWidth/targetNumLines;
         u16 currWordIndex = 0;
         u16 currWordCount = 0;
         u16 currWidth = 0;
+        //  Build lines
         for (u32 i = 0; i < targetNumLines; i++)
         {
             if (currWordIndex >= numWords)
@@ -900,7 +906,9 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
             stringLines[i].words = &allWords[currWordIndex];
             currWidth = allWords[currWordIndex].width;
             currWordCount = 1;
-            while (currWidth < targetWidth && (currWordIndex + currWordCount) < numWords)
+            while (currWidth < targetWidth
+                && (currWidth + allWords[currWordIndex + currWordCount].width + spaceWidth) < maxWidth
+                && (currWordIndex + currWordCount) < numWords)
             {
                 currWidth += allWords[currWordIndex + currWordCount].width + spaceWidth;
                 currWordCount++;
@@ -909,15 +917,18 @@ void BreakStringKnuth(const u8 *src, u32 maxWidth, u8 fontId)
             stringLines[i].numWords = currWordCount;
             stringLines[i].spaceWidth = spaceWidth;
         }
+        //  Get badbess for the current layout
         u32 currBadness = GetStringBadness(stringLines, trueNumLines, maxWidth);
         MgbaPrintf(MGBA_LOG_WARN, "Badness: %u", currBadness);
-        //  Can't actually print the strings at this stage, but all the info is there
         //  But more variations of the lines needs to be done for badness comparison
+        BuildNewString(stringLines, trueNumLines, src);
+        Free(stringLines);
     }
 
     Free(allWords);
 }
 
+//  Only allow word splitting on allowed chars
 bool32 IsWordSplittingChar(const u8 *src, u16 *index)
 {
     switch (src[*index])
@@ -931,6 +942,11 @@ bool32 IsWordSplittingChar(const u8 *src, u16 *index)
     }
 }
 
+//  Badness calculation
+//  unfilled lines scale linerarly
+//  jagged lines scales by the square
+//  runts scale linearly
+//  numbers not final
 u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
 {
     u32 badness = 0;
@@ -961,7 +977,59 @@ u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
         badness += (maxWidth - lineWidths[i])*BADNESS_UNFILLED;
         u32 baseBadness = (widestWidth - lineWidths[i])*BADNESS_JAGGED;
         badness += baseBadness*baseBadness;
+        stringLines[i].extraSpaceWidth = extraSpaceWidth;
     }
     Free(lineWidths);
     return badness;
+}
+
+//  Build the new string from the data stored in the StringLine structs
+void BuildNewString(struct StringLine *stringLines, u16 numLines, u8 *str)
+{
+    u16 numCharsNeeded = 1;
+    u16 newStrIndex = 0;
+    for (u32 i = 0; i < numLines; i++)
+    {
+        for (u32 j = 0; j < stringLines[i].numWords; j++)
+            numCharsNeeded += stringLines[i].words[j].length;
+        if (stringLines[i].extraSpaceWidth != 0)
+            numCharsNeeded += stringLines[i].numWords - 1;
+        else
+            numCharsNeeded += (stringLines[i].numWords - 1) * 4;
+    }
+    u8 *newStr = Alloc(numCharsNeeded);
+    for (u32 lineIndex = 0; lineIndex < numLines; lineIndex++)
+    {
+        for (u32 wordIndex = 0; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
+        {
+            //  Add space if not first word
+            if (wordIndex != 0)
+            {
+                newStr[newStrIndex] = 0;
+                newStrIndex++;
+                if (stringLines[lineIndex].extraSpaceWidth != 0)
+                {
+                    newStr[newStrIndex] = 0xFC;
+                    newStr[newStrIndex + 1] = 0x0D;
+                    newStr[newStrIndex + 2] = stringLines[lineIndex].extraSpaceWidth;
+                    newStrIndex += 3;
+                }
+            }
+            //  Add word characters
+            for (u32 charIndex = 0; charIndex < stringLines[lineIndex].words[wordIndex].length; charIndex++)
+            {
+                newStr[newStrIndex] = str[stringLines[lineIndex].words[wordIndex].startIndex + charIndex];
+                newStrIndex++;
+            }
+        }
+        if (lineIndex < numLines)
+        {
+            newStr[newStrIndex] = 0xFE;
+            newStrIndex++;
+        }
+    }
+    newStr[newStrIndex] = EOS;
+    for (u32 i = 0; i < numCharsNeeded; i++)
+        str[i] = newStr[i];
+    Free(newStr);
 }
