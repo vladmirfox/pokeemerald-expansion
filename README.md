@@ -24,34 +24,30 @@ With this, you'll get the latest version of pokeemerald-expansion, plus a couple
 [Please click here to visit our documentation page.](https://rh-hideout.github.io/pokeemerald-expansion/)
 
 ## **How do I update my version of pokeemerald-expansion?**
-0.- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
-1.- Check your current version.
+- If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
+- Check your current version.
     - You can check in the debug menu's `Utilities -> Expansion Version` option.
     - If the option is not available, you possibly have version 1.6.2 or older. In that case, please check the [changelogs](docs/CHANGELOG.md) to determine your version based on the features available on your repository.
-2.- ***Important:*** If you are several versions behind, we recommend updating one minor version at a time, skipping directly to the latest patch version (eg, 1.5.3 -> 1.6.2 -> 1.7.4 and so on. Check the [online documentation site](https://rh-hideout.github.io/pokeemerald-expansion/CHANGELOG.html) to see the latest versions of each step.)
-3a.- Once you have your remote set up, run the command `git pull RHH expansion/X.Y.Z`, replacing X, Y and Z with the digits of the respective version you want to update to (eg, to update to 1.9.3, use `git pull RHH expansion/1.9.3`).
+- ***Important:*** If you are several versions behind, we recommend updating one minor version at a time, skipping directly to the latest patch version (eg, 1.5.3 -> 1.6.2 -> 1.7.4 and so on. Check the [online documentation site](https://rh-hideout.github.io/pokeemerald-expansion/CHANGELOG.html) to see the latest versions of each step.)
+- Once you have your remote set up, run the command `git pull RHH expansion/X.Y.Z`, replacing X, Y and Z with the digits of the respective version you want to update to (eg, to update to 1.9.3, use `git pull RHH expansion/1.9.3`).
     - ***Important:*** If you are several versions behind, we recommend updating one minor version at a time, skipping directly to the latest patch version (eg, 1.5.3 -> 1.6.2 -> 1.7.4 and so on)
-3b.- Alternatively, you can update to unreleased versions of the expansion.
-    - ***master (stable):*** It contains unreleased **bugfixes** that will come in the next patch version. To merge, use `git pull RHH master`.
-    - ***upcoming (unstable, with potential bugs):*** It contains unreleased **features** that will come in the next minor version. To merge, use `git pull RHH upcoming`.
+- Alternatively, you can update to unreleased versions of the expansion.
+    a- ***master (stable):*** It contains unreleased **bugfixes** that will come in the next patch version. To merge, use `git pull RHH master`.
+    b- ***upcoming (unstable, with potential bugs):*** It contains unreleased **features** that will come in the next minor version. To merge, use `git pull RHH upcoming`.
 
 ### Please consider crediting the entire [list of contributors](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) in your project, as they have all worked hard to develop this project :)
 
 ## Who maintains the project?
-The project was originally started by DizzyEgg alongside other contributors.
-
-The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
-
-## There's a bug in the project. How do I let you guys know?
-Please submit any issues with the project [here](https://github.com/rh-hideout/pokeemerald-expansion/issues). Make sure that the issue wasn't reported by someone else by searching using the filters.
-
-## Can I contribute even if I'm not a member of ROM Hacking Hideout?
-Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Don't feel discouraged if we take a bit to review your PR, we'll get to it.
-
-## What is the ROM Hacking Hideout?
-A Discord-based ROM hacking community that has many members who hack using the disassembly and decompilation projects for Pokémon. Quite a few contributors to the original feature branches by DizzyEgg were members of ROM Hacking Hideout. You can call it RHH for short!
+The project was originally started by DizzyEgg alongside other contributors. Now it is maintained by a team in the ROM Hacking Hideout's community called the "Expansion Senate". ROM Hacking Hideout (RHH for short) is a Discord-based ROM hacking community specialized in Pokémon romhacks. A lot of the discussion in regards of the development of the project happens there.
 
 [Click here to join the RHH Discord Server!](https://discord.gg/6CzjAG6GZk)
+
+## There's a bug in the project. How do I let you guys know?
+Please submit any issues with the project [here](https://github.com/rh-hideout/pokeemerald-expansion/issues) and make sure that the issue wasn't reported by someone else by searching using the filters. You may also join the Discord server to try getting more in-depth support from the team and other members of the server.
+
+## Can I contribute even if I'm not a member of ROM Hacking Hideout?
+Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers in due time.
+Also, *please follow the Pull Request template and feel free to discuss how the reviews are being handled. **Communication is key!***  Don't feel discouraged if we take a bit to review your PR, we'll get to it.
 
 ## What features are included?
 - ***IMPORTANT*❗❗ Read through these to learn what features you can toggle**:
