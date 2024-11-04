@@ -163,7 +163,6 @@ u8 MovementAction_JumpInPlaceRightLeft_Step1(struct ObjectEvent *, struct Sprite
 u8 MovementAction_FaceOriginalDirection_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_NurseJoyBowDown_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_ZubatsAlign_Step0(struct ObjectEvent *, struct Sprite *);
-u8 MovementAction_ZubatsAlign_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_EnableJumpLandingGroundEffect_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_DisableJumpLandingGroundEffect_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_DisableAnimation_Step0(struct ObjectEvent *, struct Sprite *);
