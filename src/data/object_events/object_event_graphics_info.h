@@ -2501,7 +2501,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrobatShadowsGrunt
     .tracks = TRACKS_FOOT,
     .oam = &gObjectEventBaseOam_32x32,
     .subspriteTables = sOamTables_32x32,
-    .anims = sAnimTable_Standard,
+    .anims = sAnimTable_CrobatShadow,
     .images = sPicTable_CrobatShadowsGruntM,
     .affineAnims = gDummySpriteAffineAnimTable,
 };
@@ -2520,7 +2520,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrobatShadowsGrunt
     .tracks = TRACKS_FOOT,
     .oam = &gObjectEventBaseOam_32x32,
     .subspriteTables = sOamTables_32x32,
-    .anims = sAnimTable_Standard,
+    .anims = sAnimTable_CrobatShadow,
     .images = sPicTable_CrobatShadowsGruntF,
     .affineAnims = gDummySpriteAffineAnimTable,
 };

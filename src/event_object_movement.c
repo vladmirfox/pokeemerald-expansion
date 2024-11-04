@@ -8409,6 +8409,41 @@ bool8 MovementAction_NurseJoyBowDown_Step0(struct ObjectEvent *objectEvent, stru
     return FALSE;
 }
 
+// bool8 MovementAction_ZubatsAlign_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+// {
+//     StartSpriteAnimInDirection(objectEvent, sprite, DIR_SOUTH, ANIM_ZUBATS_ALIGN);
+//     return FALSE;
+// }
+
+bool8 MovementAction_ZubatsAlign_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    StartSpriteAnimInDirection(objectEvent, sprite, DIR_SOUTH, ANIM_ZUBATS_ALIGN);
+    return FALSE;
+}
+
+bool8 MovementAction_ZubatsAlign_Step1(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    
+    return sprite->animEnded;
+    // if (SpriteAnimEnded(sprite))
+    // {
+    //     SetMovementDelay(sprite, 32);
+    //     sprite->sActionFuncId = 2;
+    // }
+    // return FALSE;
+}
+
+// bool8 MovementAction_ZubatsAlign_Step2(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+// {
+//     objectEvent->invisible ^= TRUE;
+//     if (WaitForMovementDelay(sprite))
+//     {
+//         objectEvent->invisible = TRUE;
+//         sprite->sActionFuncId = 3;
+//     }
+//     return FALSE;
+// }
+
 bool8 MovementAction_EnableJumpLandingGroundEffect_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     objectEvent->disableJumpLandingGroundEffect = FALSE;
