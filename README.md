@@ -12,6 +12,8 @@ You can phrase it as the following:
 Based off RHH's pokeemerald-expansion 1.9.3 https://github.com/rh-hideout/pokeemerald-expansion/
 ```
 
+Please follow the instructions in `INSTALL.md` to get pokeemerald-expansion set up on your machine.
+
 ## What features are included?
 - ***IMPORTANT*❗❗ Read through these to learn what features you can toggle**:
     - [Battle configurations](https://github.com/rh-hideout/pokeemerald-expansion/blob/master/include/config/battle.h)
