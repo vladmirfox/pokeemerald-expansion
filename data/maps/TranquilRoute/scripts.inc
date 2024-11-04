@@ -647,7 +647,7 @@ TranquilRoute_Movement_GruntAlign:
 # 475 "data/maps/TranquilRoute/scripts.pory"
 	face_down
 # 476 "data/maps/TranquilRoute/scripts.pory"
-	jump_in_place_down
+	zubats_align
 # 477 "data/maps/TranquilRoute/scripts.pory"
 	delay_16
 # 478 "data/maps/TranquilRoute/scripts.pory"

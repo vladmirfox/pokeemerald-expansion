@@ -473,7 +473,7 @@ script TranquilRoute_EventScript_CrobatShadows_Cutscene {
 
 movement TranquilRoute_Movement_GruntAlign {
 	face_down
-	jump_in_place_down
+	zubats_align
 	delay_16
 	delay_16
 }
