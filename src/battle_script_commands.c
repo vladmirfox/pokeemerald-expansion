@@ -1353,6 +1353,7 @@ static void Cmd_attackcanceler(void)
         }
         else
         {
+            gBattleScripting.battler = gBattlerAttacker;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MagicCoat;
         }
@@ -17326,7 +17327,7 @@ void BS_SetMagicCoatTarget(void)
 {
     NATIVE_ARGS();
     u32 side;
-    gBattleStruct->attackerBeforeBounce = gBattlerAttacker;
+    gBattleStruct->attackerBeforeBounce = gBattleScripting.battler = gBattlerAttacker;
     gBattlerAttacker = gBattlerTarget;
     side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
     if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
