@@ -3336,6 +3336,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     u32 dstWidth = 0;
     // This buffer may hold either the name of a trainer, Pokémon, or item.
     u8 text[max(max(max(32, TRAINER_NAME_LENGTH + 1), POKEMON_NAME_LENGTH + 1), ITEM_NAME_LENGTH)];
+    u8 *textStart = &text[0];
     u8 multiplayerId;
     u8 fontId = FONT_NORMAL;
     s16 letterSpacing = 0;
@@ -3540,10 +3541,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 toCpy = BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, text, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
                 break;
             case B_TXT_TRAINER1_NAME_WITH_CLASS: // trainer1 name with trainer class
-                StringCopy(text, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
-                StringAppend(text, gText_Space2);
-                StringAppend(text, BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, text, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)));
-                toCpy = text;
+                toCpy = textStart;
+                textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
+                textStart = StringAppend(textStart, gText_Space2);
+                textStart = StringAppend(textStart, BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, textStart, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)));
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name
                 toCpy = gLinkPlayers[multiplayerId].name;
@@ -3662,10 +3663,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 toCpy = BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_B, text, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT));
                 break;
             case B_TXT_TRAINER2_NAME_WITH_CLASS:
-                StringCopy(text, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_B));
-                StringAppend(text, gText_Space2);
-                StringAppend(text, BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_B, text, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)));
-                toCpy = text;
+                toCpy = textStart;
+                textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_B));
+                textStart = StringAppend(textStart, gText_Space2);
+                textStart = StringAppend(textStart, BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_B, textStart, multiplayerId, GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)));
                 break;
             case B_TXT_TRAINER2_LOSE_TEXT:
                 if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
@@ -3702,10 +3703,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 toCpy = BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT));
                 break;
             case B_TXT_PARTNER_NAME_WITH_CLASS:
-                StringCopy(text, gTrainerClasses[GetFrontierOpponentClass(gPartnerTrainerId)].name);
-                StringAppend(text, gText_Space2);
-                StringAppend(text, BattleStringGetPlayerName(text, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)));
-                toCpy = text;
+                toCpy = textStart;
+                textStart = StringCopy(textStart, gTrainerClasses[GetFrontierOpponentClass(gPartnerTrainerId)].name);
+                textStart = StringAppend(textStart, gText_Space2);
+                textStart = StringAppend(textStart, BattleStringGetPlayerName(textStart, GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)));
                 break;
             case B_TXT_ATK_TRAINER_NAME:
                 toCpy = BattleStringGetTrainerName(text, multiplayerId, gBattlerAttacker);
@@ -3729,9 +3730,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 }
                 break;
             case B_TXT_ATK_TRAINER_NAME_WITH_CLASS:
+                toCpy = textStart;
                 if (GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_LEFT)
                 {
-                    StringCopy(text, BattleStringGetTrainerName(text, multiplayerId, gBattlerAttacker));
+                    textStart = StringCopy(textStart, BattleStringGetTrainerName(textStart, multiplayerId, gBattlerAttacker));
                 }
                 else
                 {
@@ -3739,22 +3741,21 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     {
                     case B_POSITION_PLAYER_RIGHT:
                         if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
-                            StringCopy(text, gTrainerClasses[GetFrontierOpponentClass(gPartnerTrainerId)].name);
+                            textStart = StringCopy(textStart, gTrainerClasses[GetFrontierOpponentClass(gPartnerTrainerId)].name);
                         break;
                     case B_POSITION_OPPONENT_LEFT:
-                        StringCopy(text, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
+                        textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
                         break;
                     case B_POSITION_OPPONENT_RIGHT:
                         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && !BATTLE_TWO_VS_ONE_OPPONENT)
-                            StringCopy(text, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_B));
+                            textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_B));
                         else
-                            StringCopy(text, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
+                            textStart = StringCopy(textStart, BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A));
                         break;
                     }
-                    StringAppend(text, gText_Space2);
-                    StringAppend(text, BattleStringGetTrainerName(text, multiplayerId, gBattlerAttacker));
+                    textStart = StringAppend(textStart, gText_Space2);
+                    textStart = StringAppend(textStart, BattleStringGetTrainerName(textStart, multiplayerId, gBattlerAttacker));
                 }
-                toCpy = text;
                 break;
             case B_TXT_ATK_TEAM1:
                 if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
