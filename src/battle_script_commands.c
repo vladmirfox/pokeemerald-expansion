@@ -1353,7 +1353,6 @@ static void Cmd_attackcanceler(void)
         }
         else
         {
-            gBattleScripting.battler = gBattlerAttacker;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MagicCoat;
         }
