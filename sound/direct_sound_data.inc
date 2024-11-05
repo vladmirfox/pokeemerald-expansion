@@ -6399,3 +6399,11 @@ DirectSoundWaveData_prosamples_15_dance_drums_kick::
 	.align 2
 DirectSoundWaveData_drum_and_percussion_stick::
 	.incbin "sound/direct_sound_samples/drum_and_percussion_stick.bin"
+
+	.align 2
+DirectSoundWaveData_sc88pro_shamisen::
+    .incbin "sound/direct_sound_samples/sc88pro_shamisen.bin"
+
+	.align 2
+DirectSoundWaveData_sd90_power_snare::
+    .incbin "sound/direct_sound_samples/sd90_power_snare.bin"

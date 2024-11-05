@@ -786,6 +786,9 @@ $(MID_SUBDIR)/ph_trap_held.s: %.s: %.mid
 $(MID_SUBDIR)/ph_trap_solo.s: %.s: %.mid
 	$(MID) $< $@ -E -G_bard -P4
 
+$(MID_SUBDIR)/mus_hh_sunrise.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G_hh_sunrise -V090
+
 $(MID_SUBDIR)/se_a.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G_sfx_rs_2 -V095 -P4
 
