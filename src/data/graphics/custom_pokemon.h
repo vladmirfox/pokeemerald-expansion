@@ -30,6 +30,8 @@ const u32 gShinyOverworldPalette_Bulbasaur[] = INCBIN_U32("graphics/pokemon/bulb
 
 */
 
+const u32 gMonPalette_WurmpleDelta[] = INCBIN_U32("graphics/pokemon/wurmple/delta.gbapal.lz");
+const u32 gMonPalette_SilcoonDelta[] = INCBIN_U32("graphics/pokemon/silcoon/delta.gbapal.lz");
 const u32 gMonPalette_DustoxDelta[] = INCBIN_U32("graphics/pokemon/dustox/delta.gbapal.lz");
 const u8 gMonIcon_DustoxDelta[] = INCBIN_U8("graphics/pokemon/dustox/icon_delta.4bpp");
 

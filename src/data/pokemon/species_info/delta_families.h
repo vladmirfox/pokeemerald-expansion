@@ -70,81 +70,217 @@
 */
 
 
-[SPECIES_DUSTOX_DELTA] =
-{
-    .baseHP        = 60,
-    .baseAttack    = 70,
-    .baseDefense   = 70,
-    .baseSpeed     = 65,
-    .baseSpAttack  = 70,
-    .baseSpDefense = 90,
-    .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
-    .catchRate = 45,
-#if P_UPDATED_EXP_YIELDS >= GEN_8
-    .expYield = 193,
-#elif P_UPDATED_EXP_YIELDS >= GEN_7
-    .expYield = 173,
-#elif P_UPDATED_EXP_YIELDS >= GEN_5
-    .expYield = 135,
-#elif P_UPDATED_EXP_YIELDS >= GEN_4
-    .expYield = 161,
-#else
-    .expYield = 160,
-#endif
-    .evYield_SpDefense = 3,
-    .itemRare = ITEM_SHED_SHELL,
-    .genderRatio = PERCENT_FEMALE(50),
-    .eggCycles = 15,
-    .friendship = STANDARD_FRIENDSHIP,
-    .growthRate = GROWTH_MEDIUM_FAST,
-    .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-    .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_COMPOUND_EYES },
-    .bodyColor = BODY_COLOR_GREEN,
-    .speciesName = _("Dustox δ"),
-    .cryId = CRY_DUSTOX,
-    .natDexNum = NATIONAL_DEX_DUSTOX,
-    .categoryName = _("Poison Moth"),
-    .height = 12,
-    .weight = 316,
-    .description = COMPOUND_STRING(
-        "It is a nocturnal Pokémon that flies from\n"
-        "fields and mountains to the attraction of\n"
-        "streetlights at night. It looses highly\n"
-        "toxic powder from its wings."),
-    .pokemonScale = 269,
-    .pokemonOffset = 1,
-    .trainerScale = 256,
-    .trainerOffset = 0,
-    .frontPic = gMonFrontPic_Dustox,
-    .frontPicFemale = gMonFrontPic_DustoxF,
-    .frontPicSize = MON_COORDS_SIZE(64, 48),
-    .frontPicSizeFemale = MON_COORDS_SIZE(64, 48),
-    .frontPicYOffset = 12,
-    .frontAnimFrames = sAnims_Dustox,
-    .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
-    .enemyMonElevation = 12,
-    .backPic = gMonBackPic_Dustox,
-    .backPicFemale = gMonBackPic_DustoxF,
-    .backPicSize = MON_COORDS_SIZE(64, 64),
-    .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-    .backPicYOffset = 1,
-    .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-    .palette = gMonPalette_DustoxDelta,
-    .shinyPalette = gMonShinyPalette_Dustox,
-    .iconSprite = gMonIcon_DustoxDelta,
-    .iconPalIndex = 0,
-    FOOTPRINT(Dustox)
-    OVERWORLD(
-        sPicTable_Dustox,
-        SIZE_32x32,
-        SHADOW_SIZE_M,
-        TRACKS_NONE,
-        gOverworldPalette_Dustox,
-        gShinyOverworldPalette_Dustox
-    )
-    .levelUpLearnset = sDustoxDeltaLevelUpLearnset,
-    .teachableLearnset = sDustoxTeachableLearnset,
-},
+// WURMPLE FAMILY
+    [SPECIES_WURMPLE_DELTA] =
+    {
+        .baseHP        = 48,
+        .baseAttack    = 65,
+        .baseDefense   = 47,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 74,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_DRAGON, TYPE_BUG),
+        .catchRate = 155,
+    #if P_UPDATED_EXP_YIELDS >= GEN_7
+        .expYield = 78,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 39,
+    #else
+        .expYield = 54,
+    #endif
+        .evYield_SpAttack = 1,
+        .evYield_SpDefense = 1,
+        .itemCommon = ITEM_PECHA_BERRY,
+        .itemRare = ITEM_BRIGHT_POWDER,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_RUN_AWAY },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Wurmple δ"),
+        .cryId = CRY_WURMPLE,
+        .natDexNum = NATIONAL_DEX_WURMPLE,
+        .categoryName = _("Worm"),
+        .height = 3,
+        .weight = 36,
+        .description = COMPOUND_STRING(
+            "It sticks to tree branches and eats\n"
+            "leaves. The thread it spits from its mouth,\n"
+            "which becomes gooey when it touches\n"
+            "air, slows the movement of its foes."),
+        .pokemonScale = 711,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Wurmple,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_Wurmple,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Wurmple,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .palette = gMonPalette_WurmpleDelta,
+        .shinyPalette = gMonShinyPalette_Wurmple,
+        .iconSprite = gMonIcon_Wurmple,
+        .iconPalIndex = 0,
+        FOOTPRINT(Wurmple)
+        OVERWORLD(
+            sPicTable_Wurmple,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Wurmple,
+            gShinyOverworldPalette_Wurmple
+        )
+        .tmIlliterate = TRUE,
+        .levelUpLearnset = sWurmpleDeltaLevelUpLearnset,
+        .teachableLearnset = sWurmpleTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 7, SPECIES_SILCOON},
+                                {EVO_LEVEL_CASCOON, 7, SPECIES_CASCOON}),
+    },
+
+    [SPECIES_SILCOON_DELTA] =
+    {
+        .baseHP        = 61,
+        .baseAttack    = 35,
+        .baseDefense   = 155,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 129,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_BUG),
+        .catchRate = 120,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_4) ? 72 : 71,
+        .evYield_Defense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_WHITE,
+        .speciesName = _("Silcoon δ"),
+        .cryId = CRY_SILCOON,
+        .natDexNum = NATIONAL_DEX_SILCOON,
+        .categoryName = _("Cocoon"),
+        .height = 6,
+        .weight = 100,
+        .description = COMPOUND_STRING(
+            "It prepares for evolution using the\n"
+            "energy it stored while it was a Wurmple.\n"
+            "It keeps watch over the surroundings with\n"
+            "its two eyes."),
+        .pokemonScale = 431,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Silcoon,
+        .frontPicSize = MON_COORDS_SIZE(56, 48),
+        .frontPicYOffset = 10,
+        .frontAnimFrames = sAnims_Silcoon,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Silcoon,
+        .backPicSize = MON_COORDS_SIZE(64, 40),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_H_SHAKE,
+        .palette = gMonPalette_SilcoonDelta,
+        .shinyPalette = gMonShinyPalette_Silcoon,
+        .iconSprite = gMonIcon_Silcoon,
+        .iconPalIndex = 2,
+        FOOTPRINT(Silcoon)
+        OVERWORLD(
+            sPicTable_Silcoon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_BUG,
+            gOverworldPalette_Silcoon,
+            gShinyOverworldPalette_Silcoon
+        )
+        .tmIlliterate = TRUE,
+        .levelUpLearnset = sSilcoonDeltaLevelUpLearnset,
+        .teachableLearnset = sSilcoonTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEAUTIFLY}),
+    },
+
+    [SPECIES_DUSTOX_DELTA] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 70,
+        .baseDefense   = 70,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 193,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_7
+        .expYield = 173,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 135,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_4
+        .expYield = 161,
+    #else
+        .expYield = 160,
+    #endif
+        .evYield_SpDefense = 3,
+        .itemRare = ITEM_SHED_SHELL,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_COMPOUND_EYES },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Dustox δ"),
+        .cryId = CRY_DUSTOX,
+        .natDexNum = NATIONAL_DEX_DUSTOX,
+        .categoryName = _("Poison Moth"),
+        .height = 12,
+        .weight = 316,
+        .description = COMPOUND_STRING(
+            "It is a nocturnal Pokémon that flies from\n"
+            "fields and mountains to the attraction of\n"
+            "streetlights at night. It looses highly\n"
+            "toxic powder from its wings."),
+        .pokemonScale = 269,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Dustox,
+        .frontPicFemale = gMonFrontPic_DustoxF,
+        .frontPicSize = MON_COORDS_SIZE(64, 48),
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 48),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_Dustox,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .enemyMonElevation = 12,
+        .backPic = gMonBackPic_Dustox,
+        .backPicFemale = gMonBackPic_DustoxF,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 1,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
+        .palette = gMonPalette_DustoxDelta,
+        .shinyPalette = gMonShinyPalette_Dustox,
+        .iconSprite = gMonIcon_DustoxDelta,
+        .iconPalIndex = 0,
+        FOOTPRINT(Dustox)
+        OVERWORLD(
+            sPicTable_Dustox,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Dustox,
+            gShinyOverworldPalette_Dustox
+        )
+        .levelUpLearnset = sDustoxDeltaLevelUpLearnset,
+        .teachableLearnset = sDustoxTeachableLearnset,
+    },
+// END WURMPLE FAMILY
 
 // NINCADA FAMILY
 [SPECIES_NINCADA_DELTA] =

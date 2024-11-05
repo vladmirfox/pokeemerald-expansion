@@ -1629,17 +1629,19 @@
 #define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX   1522
 #define SPECIES_MIMIKYU_TOTEM_BUSTED                    1523
 // CUSTOM MONS
-#define SPECIES_DUSTOX_DELTA                            1524
-#define SPECIES_NINCADA_DELTA                           1525
-#define SPECIES_NINJASK_DELTA                           1526
-#define SPECIES_SHEDINJA_DELTA                          1527
-#define SPECIES_SANDSHREW_DELTA                         1528
-#define SPECIES_SANDSLASH_DELTA                         1529
-#define SPECIES_CACNEA_DELTA                            1530
-#define SPECIES_CACTURNE_DELTA                          1531
-#define SPECIES_GOLBAT_DELTA                            1532
-#define SPECIES_VENONAT_DELTA                           1533
-#define SPECIES_VENOMOTH_DELTA                          1534
+#define SPECIES_WURMPLE_DELTA                           1524
+#define SPECIES_SILCOON_DELTA                           1525
+#define SPECIES_DUSTOX_DELTA                            1526
+#define SPECIES_NINCADA_DELTA                           1527
+#define SPECIES_NINJASK_DELTA                           1528
+#define SPECIES_SHEDINJA_DELTA                          1529
+#define SPECIES_SANDSHREW_DELTA                         1530
+#define SPECIES_SANDSLASH_DELTA                         1531
+#define SPECIES_CACNEA_DELTA                            1532
+#define SPECIES_CACTURNE_DELTA                          1533
+#define SPECIES_GOLBAT_DELTA                            1534
+#define SPECIES_VENONAT_DELTA                           1535
+#define SPECIES_VENOMOTH_DELTA                          1536
 
 #define SPECIES_EGG (SPECIES_VENOMOTH_DELTA + 1)
 
