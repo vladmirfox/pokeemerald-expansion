@@ -891,6 +891,10 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 if (effectiveness < AI_EFFECTIVENESS_x2)
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_WONDER_CLOUD:
+                if (effectiveness < AI_EFFECTIVENESS_x2 || moveType == TYPE_GROUND)
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_JUSTIFIED:
                 if (moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
                     RETURN_SCORE_MINUS(10);
@@ -1453,6 +1457,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             if (aiData->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
                 ADJUST_SCORE(-10);
             break;
+            if (aiData->abilities[battlerDef] == ABILITY_WONDER_CLOUD && (effectiveness < AI_EFFECTIVENESS_x2 || moveType == TYPE_GROUND))
+                ADJUST_SCORE(-10);
+            break;
         case EFFECT_COUNTER:
         case EFFECT_MIRROR_COAT:
             if (IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef]) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
@@ -1720,7 +1727,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_MAGNITUDE:
-            if (aiData->abilities[battlerDef] == ABILITY_LEVITATE)
+            if (aiData->abilities[battlerDef] == ABILITY_LEVITATE || aiData->abilities[battlerDef] == ABILITY_WONDER_CLOUD)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_PARTING_SHOT:

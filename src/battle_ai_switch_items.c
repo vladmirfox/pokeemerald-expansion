@@ -299,6 +299,83 @@ static bool32 ShouldSwitchIfWonderGuard(u32 battler, bool32 emitResult)
     return FALSE; // There is not a single Pokémon in the party that has a super effective move against a mon with Wonder Guard.
 }
 
+static bool32 ShouldSwitchIfWonderCloud(u32 battler, bool32 emitResult)
+{
+    u8 opposingPosition;
+    u8 opposingBattler;
+    s32 i, j;
+    s32 firstId;
+    s32 lastId; // + 1
+    struct Pokemon *party = NULL;
+    u16 move;
+    u32 moveType;
+
+    // moveType = gMovesInfo[move].type
+
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        return FALSE;
+
+    opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
+
+    if (AI_DATA->abilities[GetBattlerAtPosition(opposingPosition)] != ABILITY_WONDER_CLOUD)
+        return FALSE;
+
+    // Check if Pokémon has a super effective move.
+    for (opposingBattler = GetBattlerAtPosition(opposingPosition), i = 0; i < MAX_MON_MOVES; i++)
+    {
+        move = gBattleMons[battler].moves[i];
+
+        GET_MOVE_TYPE(move, moveType);
+
+        if (move != MOVE_NONE && moveType != TYPE_GROUND)
+        {
+            if (AI_GetTypeEffectiveness(move, battler, opposingBattler) >= UQ_4_12(2.0)
+                || moveType == TYPE_GROUND)
+                return FALSE;
+        }
+    }
+
+    // Get party information.
+    GetAIPartyIndexes(battler, &firstId, &lastId);
+
+    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+        party = gPlayerParty;
+    else
+        party = gEnemyParty;
+
+    // Find a Pokémon in the party that has a super effective move.
+    for (i = firstId; i < lastId; i++)
+    {
+        if (!IsValidForBattle(&party[i]))
+            continue;
+        if (i == gBattlerPartyIndexes[battler])
+            continue;
+        if (IsAceMon(battler, i))
+            continue;
+
+        for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
+        {
+            move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
+
+            GET_MOVE_TYPE(move, moveType);
+
+            if (move != MOVE_NONE || moveType != TYPE_GROUND)
+            {
+                if (AI_GetTypeEffectiveness(move, battler, opposingBattler) >= UQ_4_12(2.0) && (RandomPercentage(RNG_AI_SWITCH_WONDER_GUARD, 66) || ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))))
+                {
+                    // We found a mon.
+                    gBattleStruct->AI_monToSwitchIntoId[battler] = i;
+                    if (emitResult)
+                        BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_SWITCH, 0);
+                    return TRUE;
+                }
+            }
+        }
+    }
+
+    return FALSE; // There is not a single Pokémon in the party that has a super effective move against a mon with Wonder Cloud.
+}
+
 static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler, bool32 emitResult)
 {
     u8 battlerIn1, battlerIn2;
@@ -1079,6 +1156,8 @@ bool32 ShouldSwitch(u32 battler, bool32 emitResult)
     //These Functions can prompt switch to specific party members
     if (ShouldSwitchIfWonderGuard(battler, emitResult))
         return TRUE;
+    if (ShouldSwitchIfWonderCloud(battler, emitResult))
+        return TRUE;
     if (ShouldSwitchIfGameStatePrompt(battler, emitResult))
         return TRUE;
     if (FindMonThatTrapsOpponent(battler, emitResult))
@@ -1321,7 +1400,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
 static bool32 IsMonGrounded(u16 heldItemEffect, u32 ability, u8 type1, u8 type2)
 {
     // List that makes mon not grounded
-    if (type1 == TYPE_FLYING || type2 == TYPE_FLYING || ability == ABILITY_LEVITATE
+    if (type1 == TYPE_FLYING || type2 == TYPE_FLYING || ability == ABILITY_LEVITATE || ABILITY_WONDER_CLOUD
          || (heldItemEffect == HOLD_EFFECT_AIR_BALLOON && ability != ABILITY_KLUTZ))
     {
         // List that overrides being off the ground

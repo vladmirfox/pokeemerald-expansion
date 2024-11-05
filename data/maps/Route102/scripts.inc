@@ -1,4 +1,5 @@
 Route102_MapScripts::
+	@ map_script MAP_SCRIPT_ON_FRAME_TABLE, Route102_OnFrame
 	.byte 0
 
 Route102_EventScript_LittleBoy::
@@ -107,3 +108,19 @@ Route102_Text_RouteSignOldale:
 Route102_Text_RouteSignPetalburg:
 	.string "ROUTE 102\n"
 	.string "{LEFT_ARROW} PETALBURG CITY$"
+
+@ CUSTOM SCRIPTS
+
+@ Route102_OnFrame:
+	@ map_script_2
+	@ FLAG_STOLE_GOODY_BAG
+	@ end
+
+Route102_EventScript_MagmaRouteAGuard::
+	msgbox Route102_Text_MagmaGuard, MSGBOX_NPC
+	end
+
+Route102_Text_MagmaGuard:
+	.string "You're too weak to help with\n"
+	.string "our experiments...$"
+

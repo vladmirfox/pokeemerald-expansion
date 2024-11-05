@@ -236,4 +236,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .allPerfectIVs = TRUE,
     },
     */
+
+    #include "species_info/delta_families.h"
 };

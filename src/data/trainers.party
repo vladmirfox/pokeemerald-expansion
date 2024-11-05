@@ -73,6 +73,45 @@ Comments can be added as C comment blocks
 /*Comments can also be on a single line*/
 
 
+/* CUSTOM TRAINERS */
+
+=== TRAINER_GRUNT_ROUTE_A_1 ===
+Name: GRUNT
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_DUSTOX_DELTA
+Level: 18
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_SCIENTIST_ROUTE_A_1 ===
+Name: SCIENTIST
+Class: Team Magma
+Pic: Magma Grunt M
+Gender: Male
+Music: Magma
+Double Battle: No
+AI: Check Bad Move
+
+SPECIES_SHEDINJA_DELTA
+Level: 14
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+SPECIES_NINCADA_DELTA
+Level: 14
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+SPECIES_DUSTOX_DELTA
+Level: 14
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+/* END CUSTOM TRAINERS */
+
+
 === TRAINER_NONE ===
 Name:
 Class: Pkmn Trainer 1
@@ -11054,12 +11093,20 @@ Double Battle: No
 AI: Check Bad Move
 
 Zigzagoon
-Level: 4
+Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Extrasensory
+- Psybeam
+- Scald
+- Surf
 
 Shroomish
-Level: 4
+Level: 69
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Splash
+- Splash
+- Splash
+- Splash
 
 === TRAINER_HALEY_1 ===
 Name: HALEY

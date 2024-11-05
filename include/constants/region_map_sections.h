@@ -214,7 +214,16 @@
 #define MAPSEC_ALTERING_CAVE                0xD2
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
-#define MAPSEC_NONE                         0xD5
+// Custom maps
+#define MAPSEC_ROUTE_ALPHA                  0xD5
+#define MAPSEC_ZONE_ALPHA                   0xD6
+#define MAPSEC_NONE                         0xD7
+// #define MAPSEC_ROUTE_BETTA                  0xD6
+// #define MAPSEC_ROUTE_GAMMA                  0xD8
+// #define MAPSEC_ROUTE_DELTA                  0xD9
+// #define MAPSEC_ZONE_BETTA                   0xDB
+// #define MAPSEC_ZONE_GAMMA                   0xDC
+// #define MAPSEC_ZONE_DELTA                   0xDD
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

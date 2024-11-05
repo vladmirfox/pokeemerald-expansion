@@ -205,6 +205,16 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .breakable = TRUE,
     },
 
+    [ABILITY_WONDER_CLOUD] =
+    {
+        .name = _("Wonder Cloud"),
+        .description = COMPOUND_STRING("Suprefectve hits & floats."),
+        .aiRating = 10,
+        .cantBeCopied = TRUE,
+        .cantBeSwapped = TRUE,
+        .breakable = TRUE,
+    },
+
     [ABILITY_LEVITATE] =
     {
         .name = _("Levitate"),

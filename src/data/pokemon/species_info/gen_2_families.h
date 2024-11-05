@@ -3396,7 +3396,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSprite = gMonIcon_Unown ##letter,                                                          \
         .iconPalIndex = 0,                                                                              \
         FOOTPRINT(Unown)                                                                                \
-        OVERWORLD(                                                                                       \
+        OVERWORLD(                                                                                      \
             sPicTable_Unown ##letter,                                                                   \
             SIZE_32x32,                                                                                 \
             SHADOW_SIZE_M,                                                                              \
@@ -3413,7 +3413,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_UNOWN]       = UNOWN_MISC_INFO(A,               FALSE, 24, 40, 24, 48,  8 ),
     [SPECIES_UNOWN_B]     = UNOWN_MISC_INFO(B,               TRUE,  24, 32, 40, 48,  9 ),
     [SPECIES_UNOWN_C]     = UNOWN_MISC_INFO(C,               TRUE,  32, 32, 48, 56,  6 ),
-    [SPECIES_UNOWN_D]     = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8 ),
+    // [SPECIES_UNOWN_D]     = UNOWN_MISC_INFO(D,               TRUE,  32, 32, 40, 48,  8 ),
     [SPECIES_UNOWN_E]     = UNOWN_MISC_INFO(E,               TRUE,  32, 32, 40, 48, 10 ),
     [SPECIES_UNOWN_F]     = UNOWN_MISC_INFO(F,               TRUE,  32, 32, 48, 48, 10 ),
     [SPECIES_UNOWN_G]     = UNOWN_MISC_INFO(G,               TRUE,  24, 40, 40, 56,  5 ),
@@ -3438,6 +3438,67 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
     [SPECIES_UNOWN_Z]     = UNOWN_MISC_INFO(Z,               TRUE,  24, 32, 32, 48, 10 ),
     [SPECIES_UNOWN_EMARK] = UNOWN_MISC_INFO(ExclamationMark, FALSE, 24, 40, 24, 56,  6 ),
     [SPECIES_UNOWN_QMARK] = UNOWN_MISC_INFO(QuestionMark,    TRUE,  24, 40, 32, 56,  6 ),
+
+    [SPECIES_UNOWN_D] =
+    {
+        .baseHP        = 72,
+        .baseAttack    = 72,
+        .baseDefense   = 72,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 72,
+        .baseSpDefense = 120,
+        .types = MON_TYPES(TYPE_GHOST, TYPE_DARK),
+        .catchRate = 40,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 118 : 61,
+        .evYield_SpAttack = 1,
+        .evYield_Speed = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 40,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_SIMPLE },
+        .bodyColor = BODY_COLOR_BLACK,
+        .noFlip = TRUE,
+        .speciesName = _("Unown"),
+        .cryId = CRY_UNOWN,
+        .natDexNum = NATIONAL_DEX_UNOWN,
+        .categoryName = _("Symbol"),
+        .height = 5,
+        .weight = 50,
+        .description = gUnownPokedexText,
+        .pokemonScale = 411,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_UnownD,
+        .frontPicSize = MON_COORDS_SIZE(32, 32),
+        .frontPicYOffset = 16,
+        .frontAnimFrames = sAnims_Unown,
+        .frontAnimId = ANIM_ZIGZAG_FAST,
+        .frontAnimDelay = 8,
+        .backPic = gMonBackPic_UnownD,
+        .backPicSize = MON_COORDS_SIZE(40, 48),
+        .backPicYOffset = 8,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Unown,
+        .shinyPalette = gMonShinyPalette_Unown,
+        .iconSprite = gMonIcon_UnownD,
+        .iconPalIndex = 0,
+        FOOTPRINT(Unown)
+        OVERWORLD(
+            sPicTable_UnownD,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Unown,
+            gShinyOverworldPalette_Unown
+        )
+        .levelUpLearnset = sUnownLevelUpLearnset,
+        .teachableLearnset = sUnownTeachableLearnset,
+        .tmIlliterate = TRUE,
+        .formSpeciesIdTable = sUnownFormSpeciesIdTable,                                                 \
+    },
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
