@@ -17325,9 +17325,10 @@ void BS_TryHitSwitchTarget(void)
 void BS_SetMagicCoatTarget(void)
 {
     NATIVE_ARGS();
+    u32 side;
     gBattleStruct->attackerBeforeBounce = gBattlerAttacker;
     gBattlerAttacker = gBattlerTarget;
-    u32 side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
+    side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
     if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
         gBattlerTarget = gSideTimers[side].followmeTarget;
     else
