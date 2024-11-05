@@ -1,6 +1,7 @@
 {
   "group_order": [
     "gMapGroup_TownsAndRoutes",
+    "gMapGroup_IndoorZoneA",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
     "gMapGroup_IndoorDewford",
@@ -95,6 +96,10 @@
     "Underwater_Route125",
     "ZoneA",
     "ZoneAlpha"
+  ],
+  "gMapGroup_IndoorZoneA": [
+    "ZoneA_Warehouse_1F",
+    "ZoneA_Warehouse_B1F"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

@@ -1078,3 +1078,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ZoneA/scripts.inc"
 
 	.include "data/maps/ZoneAlpha/scripts.inc"
+
+	.include "data/maps/ZoneA_Warehouse_1F/scripts.inc"
+
+	.include "data/maps/ZoneA_Warehouse_B1F/scripts.inc"

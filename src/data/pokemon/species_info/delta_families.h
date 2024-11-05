@@ -73,10 +73,10 @@
 [SPECIES_DUSTOX_DELTA] =
 {
     .baseHP        = 60,
-    .baseAttack    = 50,
+    .baseAttack    = 70,
     .baseDefense   = 70,
     .baseSpeed     = 65,
-    .baseSpAttack  = 50,
+    .baseSpAttack  = 70,
     .baseSpDefense = 90,
     .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIRE),
     .catchRate = 45,
@@ -142,7 +142,7 @@
         gOverworldPalette_Dustox,
         gShinyOverworldPalette_Dustox
     )
-    .levelUpLearnset = sDustoxLevelUpLearnset,
+    .levelUpLearnset = sDustoxDeltaLevelUpLearnset,
     .teachableLearnset = sDustoxTeachableLearnset,
 },
 
@@ -207,8 +207,8 @@
     .levelUpLearnset = sNincadaLevelUpLearnset,
     .teachableLearnset = sNincadaTeachableLearnset,
     .eggMoveLearnset = sNincadaEggMoveLearnset,
-    .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK},
-                            {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA}),
+    .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK_DELTA},
+                            {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA_DELTA}),
 },
 
 [SPECIES_NINJASK_DELTA] =
@@ -275,11 +275,11 @@
 [SPECIES_SHEDINJA_DELTA] =
 {
     .baseHP        = 1,
-    .baseAttack    = 90,
-    .baseDefense   = 45,
-    .baseSpeed     = 40,
-    .baseSpAttack  = 30,
-    .baseSpDefense = 30,
+    .baseAttack    = 66,
+    .baseDefense   = 50,
+    .baseSpeed     = 44,
+    .baseSpAttack  = 66,
+    .baseSpDefense = 33,
     .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FAIRY),
     .catchRate = 45,
     .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 83 : 95,
@@ -316,7 +316,7 @@
     .backPicSize = MON_COORDS_SIZE(64, 56),
     .backPicYOffset = 6,
     .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-    .palette = gMonPalette_Shedinja,
+    .palette = gMonPalette_ShedinjaDelta,
     .shinyPalette = gMonShinyPalette_Shedinja,
     .iconSprite = gMonIcon_Shedinja,
     .iconPalIndex = 1,
@@ -329,7 +329,337 @@
         gOverworldPalette_Shedinja,
         gShinyOverworldPalette_Shedinja
     )
-    .levelUpLearnset = sShedinjaLevelUpLearnset,
+    .levelUpLearnset = sShedinjaDeltaLevelUpLearnset,
     .teachableLearnset = sShedinjaTeachableLearnset,
 },
 // END NINCADA FAMILY
+
+// SANDSHREW FAMILY
+    [SPECIES_SANDSHREW_DELTA] =
+    {
+        .baseHP        = 50,
+        .baseAttack    = 75,
+        .baseDefense   = 85,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 20,
+        .baseSpDefense = 30,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
+        .catchRate = 255,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 60 : 93,
+        .evYield_Defense = 1,
+        .itemRare = ITEM_GRIP_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Sandshrew δ"),
+        .cryId = CRY_SANDSHREW,
+        .natDexNum = NATIONAL_DEX_SANDSHREW,
+        .categoryName = _("Mouse"),
+        .height = 6,
+        .weight = 120,
+        .description = COMPOUND_STRING(
+            "When it curls up in a ball, it can make any\n"
+            "attack bounce off harmlessly. Its hide has\n"
+            "turned tough and solid as a result of\n"
+            "living in the desert."),
+        .pokemonScale = 365,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Sandshrew,
+        .frontPicSize = MON_COORDS_SIZE(48, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_Sandshrew,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
+        .backPic = gMonBackPic_Sandshrew,
+        .backPicSize = MON_COORDS_SIZE(48, 40),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_Sandshrew,
+        .shinyPalette = gMonShinyPalette_Sandshrew,
+        .iconSprite = gMonIcon_Sandshrew,
+        .iconPalIndex = 2,
+        FOOTPRINT(Sandshrew)
+        OVERWORLD(
+            sPicTable_Sandshrew,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sandshrew,
+            gShinyOverworldPalette_Sandshrew
+        )
+        .levelUpLearnset = sSandshrewLevelUpLearnset,
+        .teachableLearnset = sSandshrewTeachableLearnset,
+        .eggMoveLearnset = sSandshrewEggMoveLearnset,
+        .formSpeciesIdTable = sSandshrewFormSpeciesIdTable,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH_DELTA}),
+    },
+
+    [SPECIES_SANDSLASH_DELTA] =
+    {
+        .baseHP        = 83,
+        .baseAttack    = 100,
+        .baseDefense   = 122,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 61,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_DARK),
+        .catchRate = 90,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 158 : 163,
+        .evYield_Defense = 2,
+        .itemRare = ITEM_GRIP_CLAW,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_IRON_FIST, ABILITY_BATTLE_ARMOR, ABILITY_SCRAPPY },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Sandslash δ"),
+        .cryId = CRY_SANDSLASH,
+        .natDexNum = NATIONAL_DEX_SANDSLASH,
+        .categoryName = _("Mouse"),
+        .height = 10,
+        .weight = 295,
+        .description = COMPOUND_STRING(
+            "It curls up in a ball to protect itself from\n"
+            "enemy attacks. It also curls up to prevent\n"
+            "heatstroke during the daytime when\n"
+            "temperatures rise sharply."),
+        .pokemonScale = 341,
+        .pokemonOffset = 11,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Sandslash,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = sAnims_Sandslash,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backPic = gMonBackPic_Sandslash,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
+        .backPicYOffset = 11,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
+        .palette = gMonPalette_SandslashDelta,
+        .shinyPalette = gMonShinyPalette_Sandslash,
+        .iconSprite = gMonIcon_Sandslash,
+        .iconPalIndex = 2,
+        FOOTPRINT(Sandslash)
+        OVERWORLD(
+            sPicTable_Sandslash,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Sandslash,
+            gShinyOverworldPalette_Sandslash
+        )
+        .levelUpLearnset = sSandslashDeltaLevelUpLearnset,
+        .teachableLearnset = sSandslashTeachableLearnset,
+        .formSpeciesIdTable = sSandslashFormSpeciesIdTable,
+    },
+// END SANDSHREW FAMILY
+
+// VENONAT FAMILY
+    [SPECIES_VENONAT_DELTA] =
+    {
+        .baseHP        = 67,
+        .baseAttack    = 59,
+        .baseDefense   = 55,
+        .baseSpeed     = 49,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 59,
+        .types = MON_TYPES(TYPE_FAIRY),
+        .catchRate = 190,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 61 : 75,
+        .evYield_SpDefense = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+    #if P_UPDATED_ABILITIES >= GEN_4
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_TINTED_LENS, ABILITY_RUN_AWAY },
+    #else
+        .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_RUN_AWAY },
+    #endif
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Venonat δ"),
+        .cryId = CRY_VENONAT,
+        .natDexNum = NATIONAL_DEX_VENONAT,
+        .categoryName = _("Insect"),
+        .height = 10,
+        .weight = 300,
+        .description = COMPOUND_STRING(
+            "Its coat of thin, stiff hair that covers\n"
+            "its entire body is said to have evolved\n"
+            "for protection. Its large eyes never fail\n"
+            "to spot even miniscule prey."),
+        .pokemonScale = 360,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = -1,
+        .frontPic = gMonFrontPic_Venonat,
+        .frontPicSize = MON_COORDS_SIZE(40, 56),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = sAnims_Venonat,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .frontAnimDelay = 20,
+        .backPic = gMonBackPic_Venonat,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
+        .palette = gMonPalette_VenonatDelta,
+        .shinyPalette = gMonShinyPalette_Venonat,
+        .iconSprite = gMonIcon_Venonat,
+        .iconPalIndex = 2,
+        FOOTPRINT(Venonat)
+        OVERWORLD(
+            sPicTable_Venonat,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Venonat,
+            gShinyOverworldPalette_Venonat
+        )
+        .levelUpLearnset = sVenonatDeltaLevelUpLearnset,
+        .teachableLearnset = sVenonatTeachableLearnset,
+        .eggMoveLearnset = sVenonatEggMoveLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_VENOMOTH_DELTA}),
+    },
+
+    [SPECIES_VENOMOTH_DELTA] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 60,
+        .baseDefense   = 55,
+        .baseSpeed     = 99,
+        .baseSpAttack  = 99,
+        .baseSpDefense = 89,
+        .types = MON_TYPES(TYPE_FAIRY, TYPE_STEEL),
+        .catchRate = 75,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 158 : 138,
+        .evYield_Speed = 1,
+        .evYield_SpAttack = 1,
+        .itemRare = ITEM_SHED_SHELL,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+    #if P_UPDATED_ABILITIES >= GEN_4
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_TINTED_LENS, ABILITY_WONDER_SKIN },
+    #else
+        .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_WONDER_SKIN },
+    #endif
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Venomoth δ"),
+        .cryId = CRY_VENOMOTH,
+        .natDexNum = NATIONAL_DEX_VENOMOTH,
+        .categoryName = _("Poison Moth"),
+        .height = 15,
+        .weight = 125,
+        .description = COMPOUND_STRING(
+            "Venomoth are nocturnal--they are only\n"
+            "active at night. Their favorite prey are\n"
+            "insects that gather around streetlights,\n"
+            "attracted by the light in the darkness."),
+        .pokemonScale = 285,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_Venomoth,
+        .frontPicSize = MON_COORDS_SIZE(64, 48),
+        .frontPicYOffset = 9,
+        .frontAnimFrames = sAnims_Venomoth,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .enemyMonElevation = 16,
+        .backPic = gMonBackPic_Venomoth,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        .palette = gMonPalette_VenomothDelta,
+        .shinyPalette = gMonShinyPalette_Venomoth,
+        .iconSprite = gMonIcon_Venomoth,
+        .iconPalIndex = 2,
+        FOOTPRINT(Venomoth)
+        OVERWORLD(
+            sPicTable_Venomoth,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Venomoth,
+            gShinyOverworldPalette_Venomoth
+        )
+        .levelUpLearnset = sVenomothDeltaLevelUpLearnset,
+        .teachableLearnset = sVenomothTeachableLearnset,
+    },
+// END VENONAT FAMILY
+
+    [SPECIES_GOLBAT_DELTA] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 95,
+        .baseDefense   = 80,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 70,
+        .baseSpDefense = 98,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_STEEL),
+        .catchRate = 60,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 159 : 171,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
+        .abilities = { ABILITY_INNER_FOCUS, ABILITY_INFILTRATOR, ABILITY_STRONG_JAW },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Golbat δ"),
+        .cryId = CRY_GOLBAT,
+        .natDexNum = NATIONAL_DEX_GOLBAT,
+        .categoryName = _("Bat"),
+        .height = 16,
+        .weight = 550,
+        .description = COMPOUND_STRING(
+            "Its fangs easily puncture even thick\n"
+            "animal hide. It loves to feast on the blood\n"
+            "of people and Pokémon. It flits about in\n"
+            "darkness and strikes from behind."),
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Golbat,
+        .frontPicFemale = gMonFrontPic_GolbatF,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 7,
+        .frontAnimFrames = sAnims_Golbat,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .enemyMonElevation = 10,
+        .backPic = gMonBackPic_Golbat,
+        .backPicFemale = gMonBackPic_GolbatF,
+        .backPicSize = MON_COORDS_SIZE(56, 40),
+        .backPicSizeFemale = MON_COORDS_SIZE(56, 40),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .palette = gMonPalette_GolbatDelta,
+        .shinyPalette = gMonShinyPalette_Golbat,
+        .iconSprite = gMonIcon_Golbat,
+        .iconPalIndex = 2,
+        FOOTPRINT(Golbat)
+        OVERWORLD(
+            sPicTable_Golbat,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Golbat,
+            gShinyOverworldPalette_Golbat
+        )
+        .levelUpLearnset = sGolbatDeltaLevelUpLearnset,
+        .teachableLearnset = sGolbatTeachableLearnset,
+        // .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_CROBAT}),
+    },

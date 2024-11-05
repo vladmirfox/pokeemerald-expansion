@@ -1035,11 +1035,12 @@ sLittlerootTown_GiveTestingMonEtc::
 	getpartysize
 	compare VAR_RESULT, 6
 	goto_if_eq Script_PlayerHasFullParty
-	goto LittlerootTown_Script_GiveTextMons
+	goto LittlerootTown_Script_GiveTestMons
 	removeobject 9
 	setflag FLAG_BIRCH_SKIP
+	call LittlerootTown_Script_SkipBirchEncounter
+	msgbox LittlerootTown_Text_Test, MSGBOX_DEFAULT
 	closemessage
-	call cLittlerootTown_SkipBirchEncounter
 	release
 	end
 
@@ -1049,26 +1050,23 @@ Script_PlayerHasFullParty::
 	end
 
 @ Pokeball to test new species
-LittlerootTown_Script_GiveTextMons::
+LittlerootTown_Script_GiveTestMons::
 	getpartysize
 	compare VAR_RESULT, 6
 	goto_if_eq Script_PlayerHasFullParty
-	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SURF, move2=MOVE_FLAMETHROWER, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
-	givemon SPECIES_SHEDINJA_DELTA, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_POISON_STING, move2=MOVE_EARTHQUAKE, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
-	givemon SPECIES_DUSTOX_DELTA, 60
-	return
-
-LittlerootTown_Script_GiveStartingMons::
-	getpartysize
-	compare VAR_RESULT, 6
-	goto_if_eq Script_PlayerHasFullParty
-	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SURF, move2=MOVE_FLAMETHROWER, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
-	givemon SPECIES_SHEDINJA_DELTA, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_POISON_STING, move2=MOVE_EARTHQUAKE, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
-	givemon SPECIES_DUSTOX_DELTA, 60
+	@ givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SURF, move2=MOVE_FLAMETHROWER, move3=MOVE_ICE_BEAM, move4=MOVE_SPLASH, isShiny=TRUE;
+	givemon SPECIES_GOLBAT_DELTA, 64
+	givemon SPECIES_SHEDINJA_DELTA, 69
+	givemon SPECIES_DUSTOX_DELTA, 60	
+	givemon SPECIES_VENOMOTH_DELTA, 63
+	givemon SPECIES_SANDSLASH_DELTA, 65
 	return
 
 LittlerootTown_Text_TakePokeball:
 	.string "Oh look! A POKéBALL!$"
+
+LittlerootTown_Text_Test:
+	.string "TEST$"
 
 cLittlerootTown_Text_ReceivedVaporeon:
 	.string "{PLAYER} received a VAPOREON!$"
@@ -1076,7 +1074,24 @@ cLittlerootTown_Text_ReceivedVaporeon:
 cLittlerootTown_Text_PlayerHasFullParty:
 	.string "Better leave this for later.$"
 
-cLittlerootTown_SkipBirchEncounter::
+cLittlerootTown_EventScript_PickupGoodyBag::
+	lock
+	msgbox cLittlerootTown_Text_PickupGoodyBag
+	msgbox cLittlerootTown_Text_FoundRustyOldBadges
+	giveitem ITEM_MASTER_BALL, 50
+	call LittlerootTown_Script_SkipBirchEncounter
+	call LittlerootTown_Script_GiveStartingMons
+	call LittlerootTown_Script_GiveBadges
+	removeobject LOCALID_GOODY_BAG
+	setflag FLAG_STOLE_GOODY_BAG
+	setflag FLAG_HIDE_ROUTE_102_MAGMA_GUARD
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	closemessage
+	release
+	end
+
+
+LittlerootTown_Script_SkipBirchEncounter::
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	removeobject LOCALID_ZIGZAGOON
@@ -1091,20 +1106,15 @@ cLittlerootTown_SkipBirchEncounter::
 	call_if_eq VAR_RESULT, FEMALE, Route101_EventScript_HideBrendanInBedroom
 	return
 
-cLittlerootTown_EventScript_PickupGoodyBag::
-	lock
-	msgbox cLittlerootTown_Text_PickupGoodyBag
-	msgbox cLittlerootTown_Text_FoundRustyOldBadges
-	giveitem ITEM_MASTER_BALL, 50
-	call LittlerootTown_Script_GiveBadges
-	call LittlerootTown_Script_GiveStartingMons
-	removeobject LOCALID_GOODY_BAG
-	setflag FLAG_STOLE_GOODY_BAG
-	setflag FLAG_HIDE_ROUTE_102_MAGMA_GUARD
-	setflag FLAG_RECEIVED_RUNNING_SHOES
-	closemessage
-	release
-	end
+LittlerootTown_Script_GiveStartingMons::
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_eq Script_PlayerHasFullParty
+	givemon SPECIES_VAPOREON, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_SURF, move2=MOVE_FLAMETHROWER, move3=MOVE_ICE_BEAM, move4=MOVE_SPLASH, isShiny=TRUE;
+	@ givemon SPECIES_SHEDINJA_DELTA, 65, item=ITEM_LEFTOVERS, ball=ITEM_MASTER_BALL, nature=NATURE_MODEST, abilityNum=1, gender=MON_FEMALE, hpEv=252, atkEv=0, defEv=0, speedEv=4, spAtkEv=252, spDefEv=0, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_POISON_STING, move2=MOVE_EARTHQUAKE, move3=MOVE_GIGA_DRAIN, move4=MOVE_SPLASH, isShiny=TRUE;
+	@ givemon SPECIES_DUSTOX_DELTA, 60
+	return
+
 
 LittlerootTown_Script_GiveBadges::
 	setflag FLAG_BADGE01_GET

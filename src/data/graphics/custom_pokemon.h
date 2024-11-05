@@ -32,3 +32,12 @@ const u32 gShinyOverworldPalette_Bulbasaur[] = INCBIN_U32("graphics/pokemon/bulb
 
 const u32 gMonPalette_DustoxDelta[] = INCBIN_U32("graphics/pokemon/dustox/delta.gbapal.lz");
 const u8 gMonIcon_DustoxDelta[] = INCBIN_U8("graphics/pokemon/dustox/icon_delta.4bpp");
+
+const u32 gMonPalette_SandslashDelta[] = INCBIN_U32("graphics/pokemon/sandslash/delta.gbapal.lz");
+
+const u32 gMonPalette_VenonatDelta[] = INCBIN_U32("graphics/pokemon/venonat/delta.gbapal.lz");
+const u32 gMonPalette_VenomothDelta[] = INCBIN_U32("graphics/pokemon/venomoth/delta.gbapal.lz");
+
+const u32 gMonPalette_GolbatDelta[] = INCBIN_U32("graphics/pokemon/golbat/delta.gbapal.lz");
+
+const u32 gMonPalette_ShedinjaDelta[] = INCBIN_U32("graphics/pokemon/shedinja/delta.gbapal.lz");
