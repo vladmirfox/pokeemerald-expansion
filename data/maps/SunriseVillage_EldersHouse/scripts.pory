@@ -8,9 +8,6 @@ const LOCALID_TRAPINCH = 8
 const LOCALID_RIVAL = 2
 
 mapscripts SunriseVillage_EldersHouse_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION {
-		call(Common_EventScript_SetupRivalGfxId)
-	}
 	MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: SunriseVillage_EldersHouse_EventScript_DistributionCutscene
     ]
@@ -34,25 +31,25 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 
 	// Elder speaks
 	speakername("Elder Kaba")
-	msgbox(format(
-		"{PLAYER}, {RIVAL}.\nYou are late. Why am I surprised?\p"
-		"I always have to run after you two! Now stay still for a minute and listen closely!\p"
-		"As you have heard, the woods, and even the roads, are no longer safe.\p"
-		"We don't yet know the reason, but the wild Pokémon that usually hide in the tall grass and live peacefully alongside men have started behaving aggressively.\p"
-		"There are reports of travelers being attacked from several nearby villages.\p"
-		"This is all very worrying…"
+	msgbox((
+		"{PLAYER}, Natsuki.\nYou are late. Why am I surprised?\p"
+		"I always have to run after you two!\nNow stay still for a minute and\llisten closely!\p"
+		"As you have heard, the woods, and even\nthe roads, are no longer safe.\p"
+		"We don't yet know why, but the wild\nPokémon that usually hide in the\ltall grass and live peacefully\lalongside men have started behaving\laggressively.\p"
+		"There are reports of travelers being\nattacked from several nearby villages.\p"
+		"This is all very worrying…$"
 	))
 	closemessage
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderTurnsToThink)
 	waitmovement(0)
 	speakername("Elder Kaba")
 	msgbox(format(
-		"Which is why the Toku council has decided that, for the time being, the best way to handle this is to use the Pokémon themselves as a means of protection!\p"
-		"There were very few experienced Pokémon wielders in Toku until now.\p"
-		"This is about to change.\p"
-		"More and more, people will be fighting alongside their own companion.\p"
-		"With a domesticated Pokémon by your side, you'll be able to defend yourselves even when you're on your own.\p"
-		"Without further ado, please carefully choose your new companion!"
+		"Which is why!\p"
+		"The Toku council has decided that,\nfor the time being, the best way to\lhandle this is to use the Pokémon\lthemselves as a means of protection!\p"
+		"There were very few experienced\nPokémon wielders in Toku until now.\l"
+		"This is about  change.\p"
+		"With a trained Pokémon by your side,\nyou'll be able to defend yourselves\lon your own.\p"
+		"Without further ado, please carefully\nchoose your new companion!"
 	))
 	closemessage
 
@@ -91,15 +88,18 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 	playse(SE_LEDGE)
 	applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalIsDeslighted)
 	waitmovement(0)
-	speakername("{RIVAL}")
-	msgbox(format("Woah, this is so cool!!"))
+	speakername("Natsuki")
+	msgbox(format("Woah! Cool."))
 
 	// Rival is nice and lets you pick first
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	waitmovement(0)
-	speakername("{RIVAL}")
-	msgbox(format("C'mon {PLAYER}, pick yours, quick quick!"))
+	speakername("Natsuki")
+	msgbox(format(
+		"{PLAYER}, choose yours first!\n"
+		"I don't mind being second pick."
+	))
 	closemessage
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 
@@ -137,7 +137,7 @@ movement SunriseVillage_EldersHouse_Movement_RivalIsDeslighted {
 script SunriseVillage_EldersHouse_Event_Rival {
 	lock
 	faceplayer
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	if (flag(FLAG_RECEIVED_STARTER)) {
 		msgbox(format(
 			"You alright?\p"
@@ -147,9 +147,10 @@ script SunriseVillage_EldersHouse_Event_Rival {
 		// Battle!
 		goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
 	} else {
-		msgbox(format("What are you waiting for? Choose one already!"))
+		msgbox(format("Don't ask me to pick for you!"))
 		closemessage
-		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
+		applymovement(LOCALID_RIVAL, Common_Movement_FaceUp)
+		waitmovement(0)
 	}
 	release
 }
@@ -160,12 +161,12 @@ script SunriseVillage_EldersHouse_Event_Elder {
 	speakername("Elder Kaba")
 	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
 		// TODO EVA dex evaluation, letter delivery, etc
-		msgbox(format("How is your Pokémon research going?"))
+		msgbox(format("How is your Pokémon adventure going?"))
 		closemessage
 	} else {
 		// Player has yet to pick a Pokémon
 		if (!flag(FLAG_RECEIVED_STARTER)) {
-			msgbox(format("Choose your new partner wisely. No takebacks."))
+			msgbox(format("Choose your new partner wisely.\nNo takebacks."))
 			closemessage
 			// Player has lost their first battle and has to do it again
 		} else {
@@ -189,6 +190,19 @@ script SunriseVillage_EldersHouse_EventScript_TryToLeave {
 	release
 }
 
+script SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom {
+	lock
+	turnobject(LOCALID_ELDER, DIR_NORTH)
+	speakername("Elder Kaba")
+	msgbox(format(
+		"Where do you think you're going?"
+	))
+	closemessage
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown)
+	waitmovement(0)
+	release
+}
+
 movement SunriseVillage_EldersHouse_Movement_PlayerGetAwayFromExit {
 	walk_up
 	step_end
@@ -203,7 +217,6 @@ movement SunriseVillage_EldersHouse_Movement_ElderTurnsToThink {
 	walk_in_place_faster_up
 	delay_16 * 4
 	walk_in_place_faster_down
-	delay_16 * 2
 	step_end
 }
 
@@ -231,7 +244,7 @@ script SunriseVillage_EldersHouse_Event_Pokeball_Starter_Spheal {
 script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	if (flag(FLAG_RECEIVED_STARTER)) {
 		msgbox(format(
-			"You already got a Pokémon. Better leave this one here."
+			"You already got a Pokémon.\nBetter leave this one here."
 		))
 		closemessage
 		return
@@ -332,8 +345,8 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay48)
 
 	// Rival walks up to his Pokémon
-	speakername("{RIVAL}")
-	msgbox(format("Alright, I'm taking this one!"))
+	speakername("Natsuki")
+	msgbox(format("Alright. I'm taking this one!"))
 	closemessage
 
 	switch(var(VAR_STARTER_MON)) {
@@ -363,10 +376,10 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	// Elder gives Pokédex
 	speakername("Elder Kaba")
 	msgbox(format(
-		"Now that you have your own Pokémon, you two are officially Pokémon wielders!\p"
-		"The more wielders there are, the deeper our understanding of Pokémon will be.\p"
-		"We need to study these creatures from up close to find the root of this issue.\p"
-		"Actually, there's something I wanted to ask you."
+		"Now that you have your own Pokémon,\nyou two are officially\lPokémon wielders!\p"
+		"The more wielders there are,\nthe deeper our understanding\lof Pokémon will be.\p"
+		"We need to study these creatures\nfrom up close to find the root of\lthis issue.\p"
+		"Actually, there's something\nI wanted to ask you."
 	))
 	closemessage
 
@@ -383,7 +396,7 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	delay(20)
 
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	msgbox(format(
 		"What's this? A book?"
 	))
@@ -393,11 +406,11 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	speakername("Elder Kaba")
 	msgbox(format(
-		"I call this the “Pokédex”. It is an encyclopedia containing vital information about Pokémon from the whole region!\p"
-		"Except it's, well, empty. That's where you come in!\p"
-		"Explore Toku and fill its pages with your findings!\p"
-		"You can start by going all the way to Silveridge, north of here in the mountains.\p"
-		"Another Elder lives there and, hopefully, has more information as to why the Pokémon are lashing out.\p"
+		"I call this the “Pokédex”.\nIt is an encyclopedia containing\lvital information about Pokémon\lfrom the whole region!\p"
+		"Except it's, well, empty.\nThat's where you come in!\p"
+		"Explore Toku and fill its pages with\nyour findings!\p"
+		"You can start by going all the way to\nSilveridge, north of here in the\lmountains.\p"
+		"Another Elder lives there and,\nhopefully, has more information\las to why the Pokémon are lashing out.\p"
 		"Could you deliver him this letter?"
 	))
 	closemessage
@@ -408,16 +421,16 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	waitfanfare
 	closemessage
 
-	speakername("{RIVAL}")
-	msgbox(format("Understood, Grandma Kaba! We're going adventuring!"))
+	speakername("Natsuki")
+	msgbox(format("Understood, Grandma Kaba.\nWe're going adventuring!"))
 	closemessage
 
 	applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_EAST)
 	waitmovement(LOCALID_RIVAL)
 
-	speakername("{RIVAL}")
-	msgbox(format("{PLAYER}, are you ready?"))
+	speakername("Natsuki")
+	msgbox(format("{PLAYER}… Are you ready?"))
 	dynmultichoice(
 		16,
 		6,
@@ -431,13 +444,13 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 
 	if (var(VAR_RESULT) == 0) {
 		msgbox(format(
-				"That's what I'm talking about!\p"
+				"That's what I'm talking about!"
 			))
 		closemessage
 	} else {
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
 
-		speakername("{RIVAL}")
+		speakername("Natsuki")
 		checkplayergender
 		if (var(VAR_RESULT) == MALE) {
 			msgbox(format(
@@ -453,17 +466,27 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 		applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterLeft)
 	}
 
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	msgbox(format(
-		"{PLAYER}! Let's see what our brand-new Pokémon are capable of!\p"
-		"I request an official Pokémon wielder battle!"
+		"{PLAYER}!\nLet's see what our brand-new Pokémon\lare capable of!\p"
+		"I request an official Pokémon\nwielder battle!"
 	))
 	closemessage
+
+	applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalPreBattlePose)
+	waitmovement(0)
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 6)
 
 	// Battle!
+	// TODO EVA: scripted loss
 	goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
+}
+
+movement SunriseVillage_EldersHouse_Movement_RivalPreBattlePose {
+	// TODO EVA
+	// zubats_align
+	face_player
 }
 
 script SunriseVillage_EldersHouse_EventScript_RivalBattle {
@@ -476,12 +499,12 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("I lost!"))
 	}
 
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	msgbox(format(
-		"Whew! That was so stressful!\p"
-		"I went easy on you this time, but next time… You'll see!\p"
+		"Oh, man!\nThat was the most fun I've ever had!\p"
+		"I went easy on you this time, but\nnext time… You'll see!\p"
 		"Well, I'm going off now.\p"
-		"Don't dilly-dally, or you'll never catch up!\p"
+		"Don't dilly-dally, or you'll never\ncatch up!\p"
 		"See ya, {PLAYER}."
 	))
 	closemessage
