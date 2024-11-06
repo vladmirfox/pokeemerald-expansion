@@ -505,7 +505,7 @@ script SunriseVillage_EldersHouse_EventScript_PostBattle {
 		speakername("Natsuki")
 		msgbox(format(
 			"Oh, man!\nThat was the most fun I've ever had!\p"
-			"{PLAYER}!\nWe're now officially rivals!"
+			"{PLAYER}!\nWe're now officially rivals!\p"
 			"You better work hard to keep up!\p"
 			"I'm going home to pack some things.\p"
 			"See ya later, Feraligatr."
@@ -535,24 +535,16 @@ script SunriseVillage_EldersHouse_EventScript_PostBattle {
 }
 
 script SunriseVillage_EldersHouse_EventScript_RivalBattle {
-	// TODO EVA make this work ffs
-	// switch(var(VAR_STARTER_MON)) {
-	// 	case SPECIES_SPHEAL:
-	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
-	// 	case SPECIES_ARON:
-	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
-	// 	case SPECIES_TRAPINCH:
-	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
-	// }
-
 	switch(var(VAR_STARTER_MON)) {
 		case SPECIES_SPHEAL:
-			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+			trainerbattle_no_intro_no_whiteout(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("Looks like I lost!"))
 		case SPECIES_ARON:
-			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+			trainerbattle_no_intro_no_whiteout(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("Looks like I lost!"))
 		case SPECIES_TRAPINCH:
-			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+			trainerbattle_no_intro_no_whiteout(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("Looks like I lost!"))
 	}
+
+	goto(SunriseVillage_EldersHouse_EventScript_PostBattle)
 }
 
 script SunriseVillage_EldersHouse_EventScript_Joltik {
