@@ -734,6 +734,7 @@
     },
 // END VENONAT FAMILY
 
+// ZUBAT FAMILY
     [SPECIES_GOLBAT_DELTA] =
     {
         .baseHP        = 75,
@@ -799,3 +800,72 @@
         .teachableLearnset = sGolbatTeachableLearnset,
         // .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_CROBAT}),
     },
+// END ZUBAT FAMILY
+
+// WEEDLE FAMILY
+    [SPECIES_BEEDRILL_DELTA] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 99,
+        .baseDefense   = 81,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_FIGHTING, TYPE_FLYING),
+        .catchRate = 25,
+        .expYield = 248,
+    #endif
+        .evYield_Attack = 2,
+        .evYield_Speed = 1,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_DEFIANT, ABILITY_SNIPER, ABILITY_SHARPNESS },
+        .bodyColor = BODY_COLOR_YELLOW,
+        .speciesName = _("Beedrill δ"),
+        .cryId = CRY_BEEDRILL,
+        .natDexNum = NATIONAL_DEX_BEEDRILL,
+        .categoryName = _("Poison Bee"),
+        .height = 10,
+        .weight = 295,
+        .description = COMPOUND_STRING(
+            "A Beedrill is extremely territorial.\n"
+            "For safety reasons, no one should ever\n"
+            "approach its nest. If angered, they will\n"
+            "attack in a swarm."),
+        .pokemonScale = 366,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Beedrill,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_Beedrill,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .enemyMonElevation = 9,
+        .backPic = gMonBackPic_Beedrill,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_Beedrill,
+        .shinyPalette = gMonShinyPalette_Beedrill,
+        .iconSprite = gMonIcon_Beedrill,
+        .iconPalIndex = 2,
+        FOOTPRINT(Beedrill)
+        OVERWORLD(
+            sPicTable_Beedrill,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Beedrill,
+            gShinyOverworldPalette_Beedrill
+        )
+        .levelUpLearnset = sBeedrillLevelUpLearnset,
+        .teachableLearnset = sBeedrillTeachableLearnset,
+        .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
+        .formChangeTable = sBeedrillFormChangeTable,
+    },
+// END WEEDLE FAMILY
