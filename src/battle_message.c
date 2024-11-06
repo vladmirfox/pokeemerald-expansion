@@ -143,20 +143,13 @@ const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
     sText_Speed, sText_SpAttack, sText_SpDefense,
     sText_Accuracy, sText_Evasiveness
 };
-
-static const u8 sText_PokeblockWasTooSpicy[] = _("was too spicy!");
-static const u8 sText_PokeblockWasTooDry[] = _("was too dry!");
-static const u8 sText_PokeblockWasTooSweet[] = _("was too sweet!");
-static const u8 sText_PokeblockWasTooBitter[] = _("was too bitter!");
-static const u8 sText_PokeblockWasTooSour[] = _("was too sour!");
-
 const u8 *const gPokeblockWasTooXStringTable[FLAVOR_COUNT] =
 {
-    [FLAVOR_SPICY]  = sText_PokeblockWasTooSpicy,
-    [FLAVOR_DRY]    = sText_PokeblockWasTooDry,
-    [FLAVOR_SWEET]  = sText_PokeblockWasTooSweet,
-    [FLAVOR_BITTER] = sText_PokeblockWasTooBitter,
-    [FLAVOR_SOUR]   = sText_PokeblockWasTooSour
+    [FLAVOR_SPICY]  = COMPOUND_STRING("was too spicy!"),
+    [FLAVOR_DRY]    = COMPOUND_STRING("was too dry!"),
+    [FLAVOR_SWEET]  = COMPOUND_STRING("was too sweet!"),
+    [FLAVOR_BITTER] = COMPOUND_STRING("was too bitter!"),
+    [FLAVOR_SOUR]   = COMPOUND_STRING("was too sour!"),
 };
 
 static const u8 sText_Someones[] = _("someone's");
@@ -1426,14 +1419,6 @@ const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNA
 const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
 const u8 gText_BattleSwitchWhich5[] = _("-");
-
-// Unused
-static const u8 *const sStatNamesTable2[] =
-{
-    gText_HP3, gText_SpAtk, gText_Attack,
-    gText_SpDef, gText_Defense, gText_Speed
-};
-
 const u8 gText_SafariBalls[] = _("{HIGHLIGHT DARK_GRAY}Safari Balls");
 const u8 gText_SafariBallLeft[] = _("{HIGHLIGHT DARK_GRAY}Left: $" "{HIGHLIGHT DARK_GRAY}");
 const u8 gText_Sleep[] = _("sleep");
@@ -1458,17 +1443,13 @@ const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Draw");
 static const u8 sText_SpaceIs[] = _(" is");
 static const u8 sText_ApostropheS[] = _("'s");
 const u8 gText_BattleTourney[] = _("BATTLE TOURNEY");
-static const u8 sText_Round1[] = _("Round 1");
-static const u8 sText_Round2[] = _("Round 2");
-static const u8 sText_Semifinal[] = _("Semifinal");
-static const u8 sText_Final[] = _("Final");
 
 const u8 *const gRoundsStringTable[DOME_ROUNDS_COUNT] =
 {
-    [DOME_ROUND1]    = sText_Round1,
-    [DOME_ROUND2]    = sText_Round2,
-    [DOME_SEMIFINAL] = sText_Semifinal,
-    [DOME_FINAL]     = sText_Final
+    [DOME_ROUND1]    = COMPOUND_STRING("Round 1"),
+    [DOME_ROUND2]    = COMPOUND_STRING("Round 2"),
+    [DOME_SEMIFINAL] = COMPOUND_STRING("Semifinal"),
+    [DOME_FINAL]     = COMPOUND_STRING("Final"),
 };
 
 const u8 gText_TheGreatNewHope[] = _("The great new hope!\p");
@@ -1496,27 +1477,17 @@ const u16 gBattlePalaceFlavorTextTable[] =
     [B_MSG_EAGER_FOR_MORE] = STRINGID_PKMNEAGERFORMORE,
 };
 
-static const u8 sText_RefIfNothingIsDecided[] = _("REFEREE: If nothing is decided in 3 turns, we will go to judging!");
-static const u8 sText_RefThatsIt[] = _("REFEREE: That's it! We will now go to judging to determine the winner!");
-static const u8 sText_RefJudgeMind[] = _("REFEREE: Judging category 1, Mind! The POKéMON showing the most guts!\p");
-static const u8 sText_RefJudgeSkill[] = _("REFEREE: Judging category 2, Skill! The POKéMON using moves the best!\p");
-static const u8 sText_RefJudgeBody[] = _("REFEREE: Judging category 3, Body! The POKéMON with the most vitality!\p");
-static const u8 sText_RefPlayerWon[] = _("REFEREE: Judgment: {B_BUFF1} to {B_BUFF2}! The winner is {B_PLAYER_NAME}'s {B_PLAYER_MON1_NAME}!\p");
-static const u8 sText_RefOpponentWon[] = _("REFEREE: Judgment: {B_BUFF1} to {B_BUFF2}! The winner is {B_TRAINER1_NAME}'s {B_OPPONENT_MON1_NAME}!\p");
-static const u8 sText_RefDraw[] = _("REFEREE: Judgment: 3 to 3! We have a draw!\p");
-static const u8 sText_RefCommenceBattle[] = _("REFEREE: {B_PLAYER_MON1_NAME} VS {B_OPPONENT_MON1_NAME}! Commence battling!");
-
 const u8 *const gRefereeStringsTable[] =
 {
-    [B_MSG_REF_NOTHING_IS_DECIDED] = sText_RefIfNothingIsDecided,
-    [B_MSG_REF_THATS_IT]           = sText_RefThatsIt,
-    [B_MSG_REF_JUDGE_MIND]         = sText_RefJudgeMind,
-    [B_MSG_REF_JUDGE_SKILL]        = sText_RefJudgeSkill,
-    [B_MSG_REF_JUDGE_BODY]         = sText_RefJudgeBody,
-    [B_MSG_REF_PLAYER_WON]         = sText_RefPlayerWon,
-    [B_MSG_REF_OPPONENT_WON]       = sText_RefOpponentWon,
-    [B_MSG_REF_DRAW]               = sText_RefDraw,
-    [B_MSG_REF_COMMENCE_BATTLE]    = sText_RefCommenceBattle,
+    [B_MSG_REF_NOTHING_IS_DECIDED] = COMPOUND_STRING("REFEREE: If nothing is decided in 3 turns, we will go to judging!"),
+    [B_MSG_REF_THATS_IT]           = COMPOUND_STRING("REFEREE: That's it! We will now go to judging to determine the winner!"),
+    [B_MSG_REF_JUDGE_MIND]         = COMPOUND_STRING("REFEREE: Judging category 1, Mind! The POKéMON showing the most guts!\p"),
+    [B_MSG_REF_JUDGE_SKILL]        = COMPOUND_STRING("REFEREE: Judging category 2, Skill! The POKéMON using moves the best!\p"),
+    [B_MSG_REF_JUDGE_BODY]         = COMPOUND_STRING("REFEREE: Judging category 3, Body! The POKéMON with the most vitality!\p"),
+    [B_MSG_REF_PLAYER_WON]         = COMPOUND_STRING("REFEREE: Judgment: {B_BUFF1} to {B_BUFF2}! The winner is {B_PLAYER_NAME}'s {B_PLAYER_MON1_NAME}!\p"),
+    [B_MSG_REF_OPPONENT_WON]       = COMPOUND_STRING("REFEREE: Judgment: {B_BUFF1} to {B_BUFF2}! The winner is {B_TRAINER1_NAME}'s {B_OPPONENT_MON1_NAME}!\p"),
+    [B_MSG_REF_DRAW]               = COMPOUND_STRING("REFEREE: Judgment: 3 to 3! We have a draw!\p"),
+    [B_MSG_REF_COMMENCE_BATTLE]    = COMPOUND_STRING("REFEREE: {B_PLAYER_MON1_NAME} VS {B_OPPONENT_MON1_NAME}! Commence battling!"),
 };
 
 static const u8 sText_Trainer1Fled[] = _( "{PLAY_SE SE_FLEE}{B_TRAINER1_CLASS} {B_TRAINER1_NAME} fled!");
