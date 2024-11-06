@@ -664,7 +664,7 @@ TEST("Battle strings fit on the battle message window")
 
     for (i = start; i <= end; i++)
     {
-        PARAMETRIZE_LABEL("%S", gBattleStringsTable[i - BATTLESTRINGS_TABLE_START]) { battleStringId = i - BATTLESTRINGS_TABLE_START; }
+        PARAMETRIZE_LABEL("%S", gBattleStringsTable[i]) { battleStringId = i; }
     }
 
     // Clear buffers
@@ -706,7 +706,7 @@ TEST("Battle strings fit on the battle message window")
     // In cases where a buffer is used with multiple contexts, the widest string is used.
     // Eg. STRINGID_CANACTFASTERTHANKSTO is used for both with abilities and items,
     // so ability is chosen because it's longer.
-    switch (battleStringId + BATTLESTRINGS_TABLE_START)
+    switch (battleStringId)
     {
     // Testing Trainer messages is out of the current scope for this test.
     case STRINGID_TRAINER1LOSETEXT:
@@ -887,7 +887,7 @@ TEST("Battle strings fit on the battle message window")
         break;
     }
     BattleStringExpandPlaceholders(gBattleStringsTable[battleStringId], battleString, BATTLE_STRING_BUFFER_SIZE);
-    DebugPrintf("Battle String ID %d: %S", battleStringId + BATTLESTRINGS_TABLE_START, battleString);
+    DebugPrintf("Battle String ID %d: %S", battleStringId, battleString);
     for (j = 1;; j++)
     {
         strWidth = GetStringLineWidth(fontId, battleString, 0, j, BATTLE_STRING_BUFFER_SIZE);
