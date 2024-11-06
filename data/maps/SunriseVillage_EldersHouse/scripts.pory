@@ -479,7 +479,6 @@ script SunriseVillage_EldersHouse_Event_Common_Pokeball_Starter {
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 6)
 
 	// Battle!
-	// TODO EVA: scripted loss
 	goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
 }
 
@@ -489,27 +488,33 @@ movement SunriseVillage_EldersHouse_Movement_RivalPreBattlePose {
 	face_player
 }
 
-script SunriseVillage_EldersHouse_EventScript_RivalBattle {
-	switch(var(VAR_STARTER_MON)) {
-		case SPECIES_SPHEAL:
-			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("I lost!"))
-		case SPECIES_ARON:
-			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("I lost!"))
-		case SPECIES_TRAPINCH:
-			trainerbattle_no_intro(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("I lost!"))
+script SunriseVillage_EldersHouse_EventScript_PostBattle {
+	special(HealPlayerParty)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+	if (var(VAR_RESULT) == B_OUTCOME_WON) {
+		speakername("Natsuki")
+		msgbox(format(
+			"Oh, man!\nThat was the most fun I've ever had!\p"
+			"{PLAYER}!\nWe're now officially rivals!"
+			"I went easy on you this time, but\nnext time… You'll see!\p"
+			"I'm going home to pack some things.\p"
+			"See ya later, Feraligatr."
+		))
+		closemessage
+	} else {
+		speakername("Natsuki")
+		msgbox(format(
+			"Oh, man!\nThat was the most fun I've ever had!\p"
+			"{PLAYER}!\nWe're now officially rivals!"
+			"You better work hard to keep up!\p"
+			"I'm going home to pack some things.\p"
+			"See ya later, Feraligatr."
+		))
+		closemessage
 	}
 
-	speakername("Natsuki")
-	msgbox(format(
-		"Oh, man!\nThat was the most fun I've ever had!\p"
-		"I went easy on you this time, but\nnext time… You'll see!\p"
-		"Well, I'm going off now.\p"
-		"Don't dilly-dally, or you'll never\ncatch up!\p"
-		"See ya, {PLAYER}."
-	))
-	closemessage
-
 	// No idea why VAR_FACING doesn't work here, fuck it
+	// TODO EVA: specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
 	if (var(VAR_TEMP_0) == 6 && var(VAR_TEMP_1) == 7) {
 		applymovement(LOCALID_RIVAL, SunriseVillage_EldersHouse_Movement_RivalLeavesWhenPlayerIsBottom)
@@ -522,11 +527,32 @@ script SunriseVillage_EldersHouse_EventScript_RivalBattle {
 	removeobject(LOCALID_RIVAL)
 	playse(SE_EXIT)
 	waitse
-	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_Delay16)
+	delay(16)
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 7)
 
 	release
+}
+
+script SunriseVillage_EldersHouse_EventScript_RivalBattle {
+	// TODO EVA make this work ffs
+	// switch(var(VAR_STARTER_MON)) {
+	// 	case SPECIES_SPHEAL:
+	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+	// 	case SPECIES_ARON:
+	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+	// 	case SPECIES_TRAPINCH:
+	// 		trainerbattle_no_intro_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+	// }
+
+	switch(var(VAR_STARTER_MON)) {
+		case SPECIES_SPHEAL:
+			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_SPHEAL, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+		case SPECIES_ARON:
+			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_ARON, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+		case SPECIES_TRAPINCH:
+			trainerbattle_no_whiteout_continue_script(TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH, format("Let us battle!"), format("Looks like I lost!"), SunriseVillage_EldersHouse_EventScript_PostBattle)
+	}
 }
 
 script SunriseVillage_EldersHouse_EventScript_Joltik {

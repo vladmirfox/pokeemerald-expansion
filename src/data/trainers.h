@@ -24133,16 +24133,14 @@ F_TRAINER_FEMALE |
     [TRAINER_RIVAL_FIRST_BATTLE_TRAPINCH] =
     {
 #line 9662
-        .trainerName = _("{B_RIVAL_NAME}"),
+        .trainerName = _("Natsuki"),
 #line 9663
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9664
-        .trainerPic = TRAINER_PIC_MAY,
+        .trainerPic = TRAINER_PIC_NATSUKI,
         .encounterMusic_gender = 
-#line 9665
-F_TRAINER_FEMALE | 
 #line 9666
-            TRAINER_ENCOUNTER_MUSIC_FEMALE,
+            TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 9667
         .doubleBattle = FALSE,
 #line 9668
@@ -24172,16 +24170,14 @@ F_TRAINER_FEMALE |
     [TRAINER_RIVAL_FIRST_BATTLE_ARON] =
     {
 #line 9677
-        .trainerName = _("{B_RIVAL_NAME}"),
+        .trainerName = _("Natsuki"),
 #line 9678
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9679
-        .trainerPic = TRAINER_PIC_MAY,
+        .trainerPic = TRAINER_PIC_NATSUKI,
         .encounterMusic_gender = 
-#line 9680
-F_TRAINER_FEMALE | 
 #line 9681
-            TRAINER_ENCOUNTER_MUSIC_FEMALE,
+            TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 9682
         .doubleBattle = FALSE,
 #line 9683
@@ -24211,16 +24207,14 @@ F_TRAINER_FEMALE |
     [TRAINER_RIVAL_FIRST_BATTLE_SPHEAL] =
     {
 #line 9692
-        .trainerName = _("{B_RIVAL_NAME}"),
+        .trainerName = _("Natsuki"),
 #line 9693
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 9694
-        .trainerPic = TRAINER_PIC_MAY,
+        .trainerPic = TRAINER_PIC_NATSUKI,
         .encounterMusic_gender = 
-#line 9695
-F_TRAINER_FEMALE | 
 #line 9696
-            TRAINER_ENCOUNTER_MUSIC_FEMALE,
+            TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 9697
         .doubleBattle = FALSE,
 #line 9698
