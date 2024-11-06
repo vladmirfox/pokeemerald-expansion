@@ -67,7 +67,7 @@ const u8 gText_PkmnGettingPumped[] = _("{B_DEF_NAME_WITH_PREFIX} is getting pump
 const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1} is preventing switching out with its {B_LAST_ABILITY} Ability!\p");
 const u8 gText_StatSharply[] = _("sharply ");
 const u8 gText_StatRose[] = _("rose!");
-const u8 sText_StatFell[] = _("fell!");
+const u8 gText_StatFell[] = _("fell!");
 const u8 gText_DefendersStatRose[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1} {B_BUFF2}");
 static const u8 sText_GotAwaySafely[] = _("{PLAY_SE SE_FLEE}You got away safely!\p");
 static const u8 sText_PlayerDefeatedLinkTrainer[] = _("You defeated {B_LINK_OPPONENT1_NAME}!");
@@ -183,9 +183,9 @@ static const u8 sText_TwoInGameTrainersDefeated[];
 static const u8 sText_Trainer2LoseText[];
 
 // New battle strings.
-const u8 sText_drastically[] = _("drastically ");
-const u8 sText_severely[] = _("severely ");
-static const u8 sText_TerrainReturnedToNormal[] = _("The terrain returned to normal!");
+const u8 gText_drastically[] = _("drastically ");
+const u8 gText_severely[] = _("severely ");
+static const u8 sText_TerrainReturnedToNormal[] = _("The terrain returned to normal!"); // Unused
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -541,7 +541,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_STATSHARPLY - BATTLESTRINGS_TABLE_START] = gText_StatSharply,
     [STRINGID_STATROSE - BATTLESTRINGS_TABLE_START] = gText_StatRose,
     [STRINGID_STATHARSHLY - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("harshly "),
-    [STRINGID_STATFELL - BATTLESTRINGS_TABLE_START] = sText_StatFell,
+    [STRINGID_STATFELL - BATTLESTRINGS_TABLE_START] = gText_StatFell,
     [STRINGID_ATTACKERSSTATROSE - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1} {B_BUFF2}"),
     [STRINGID_DEFENDERSSTATROSE - BATTLESTRINGS_TABLE_START] = gText_DefendersStatRose,
     [STRINGID_ATTACKERSSTATFELL - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1} {B_BUFF2}"),
@@ -848,8 +848,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_MEGAEVOREACTING - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}'s {B_LAST_ITEM} is reacting to {B_ATK_TRAINER_NAME}'s Mega Ring!"), //actually displays the type of mega ring in inventory, but we didnt implement them :(
     [STRINGID_FERVENTWISHREACHED - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_ATK_TRAINER_NAME}'s fervent wish has reached {B_ATK_NAME_WITH_PREFIX2}!"),
     [STRINGID_MEGAEVOEVOLVED - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} has Mega Evolved into Mega {B_BUFF1}!"),
-    [STRINGID_DRASTICALLY - BATTLESTRINGS_TABLE_START] = sText_drastically,
-    [STRINGID_SEVERELY - BATTLESTRINGS_TABLE_START] = sText_severely,
+    [STRINGID_DRASTICALLY - BATTLESTRINGS_TABLE_START] = gText_drastically,
+    [STRINGID_SEVERELY - BATTLESTRINGS_TABLE_START] = gText_severely,
     [STRINGID_INFESTATION - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("{B_DEF_NAME_WITH_PREFIX} has been afflicted with an infestation by {B_ATK_NAME_WITH_PREFIX2}!"),
     [STRINGID_NOEFFECTONTARGET - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("It won't have any effect on {B_DEF_NAME_WITH_PREFIX2}!"),
     [STRINGID_BURSTINGFLAMESHIT - BATTLESTRINGS_TABLE_START] = COMPOUND_STRING("The bursting flames hit {B_SCR_ACTIVE_NAME_WITH_PREFIX2}!"),

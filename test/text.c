@@ -858,15 +858,15 @@ TEST("Battle strings fit on the battle message window")
     case STRINGID_DEFENDERSSTATROSE:
     case STRINGID_USINGITEMSTATOFPKMNROSE:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
-        StringCopy(gBattleTextBuff2, sText_drastically);
+        StringCopy(gBattleTextBuff2, gText_drastically);
         StringAppend(gBattleTextBuff2, gText_StatRose);
         break;
     // Buffer Stat name to B_BUFF1, "severely fell" to B_BUFF2
     case STRINGID_ATTACKERSSTATFELL:
     case STRINGID_DEFENDERSSTATFELL:
         StringCopy(gBattleTextBuff1, gStatNamesTable[longStatName]);
-        StringCopy(gBattleTextBuff2, sText_severely);
-        StringAppend(gBattleTextBuff2, sText_StatFell);
+        StringCopy(gBattleTextBuff2, gText_severely);
+        StringAppend(gBattleTextBuff2, gText_StatFell);
         break;
     // Buffer Status name to B_BUFF2
     case STRINGID_PKMNSITEMCUREDPROBLEM:
