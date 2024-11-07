@@ -828,6 +828,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     s32 paletteIndex;
 
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
+    PlaySE(SE_M_REVERSAL);
 
     // Dont transition map music between BF Outside West/East
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER)
@@ -840,17 +841,19 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
-#if FREE_MATCH_CALL == FALSE
-    TryUpdateRandomTrainerRematches(mapGroup, mapNum);
-#endif //FREE_MATCH_CALL
 
-if (I_VS_SEEKER_CHARGING != 0)
-    MapResetTrainerRematches(mapGroup, mapNum);
+    #if FREE_MATCH_CALL == FALSE
+        TryUpdateRandomTrainerRematches(mapGroup, mapNum);
+    #endif //FREE_MATCH_CALL
+
+    if (I_VS_SEEKER_CHARGING != 0)
+        MapResetTrainerRematches(mapGroup, mapNum);
 
     DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
     SetDefaultFlashLevel();
+    CheckUseAutoFlash();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
@@ -885,7 +888,6 @@ static void LoadMapFromWarp(bool32 a1)
     bool8 isOutdoors;
     bool8 isIndoors;
 
-    LoadCurrentMapData();
     if (!(sObjectEventLoadFlag & SKIP_OBJECT_EVENT_LOAD))
     {
         if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
@@ -904,20 +906,25 @@ static void LoadMapFromWarp(bool32 a1)
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
-#if FREE_MATCH_CALL == FALSE
-    TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
-#endif //FREE_MATCH_CALL
 
-if (I_VS_SEEKER_CHARGING != 0)
+    #if FREE_MATCH_CALL == FALSE
+        TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+    #endif //FREE_MATCH_CALL
+
+    if (I_VS_SEEKER_CHARGING != 0)
      MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
 
     if (a1 != TRUE)
         DoTimeBasedEvents();
+
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
+
     if (isOutdoors)
         FlagClear(FLAG_SYS_USE_FLASH);
+
     SetDefaultFlashLevel();
+    CheckUseAutoFlash();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();
@@ -1041,6 +1048,8 @@ void SetDefaultFlashLevel(void)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
         gSaveBlock1Ptr->flashLevel = 1;
+    else if (gMapHeader.cave && (GetFlashLevel() >= (gMaxFlashLevel - 1)))
+        CheckUseAutoFlash();
     else
         gSaveBlock1Ptr->flashLevel = gMaxFlashLevel - 1;
 }
@@ -1055,6 +1064,23 @@ void SetFlashLevel(s32 flashLevel)
 u8 GetFlashLevel(void)
 {
     return gSaveBlock1Ptr->flashLevel;
+}
+
+// Checks if HM05 Flash can be auto-used, and if yes, uses it
+void CheckUseAutoFlash(void)
+{
+    PlaySE(SE_M_REVERSAL);
+    bool8 CanAutoUseFlash = (FlagGet(OW_FLAG_AUTO_USE_FLASH) && FlagGet(FLAG_RECEIVED_HM_FLASH) && FlagGet(FLAG_BADGE02_GET));
+
+    if (CanAutoUseFlash > 0)
+        FlagSet(FLAG_UNUSED_0x8EE); // debugging, will remove later
+
+    if (gMapHeader.cave && (CanAutoUseFlash > 0))
+    {
+        PlaySE(SE_M_REFLECT);
+        SetFlashLevel(1);
+        FlagSet(FLAG_SYS_USE_FLASH);
+    }
 }
 
 void SetCurrentMapLayout(u16 mapLayoutId)

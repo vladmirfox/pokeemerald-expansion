@@ -1514,8 +1514,8 @@
 #define FLAG_FORCE_SHINY                            (SYSTEM_FLAGS + 0x8A) // 0x8EA
 #define FLAG_FORCE_NO_SHINY                         (SYSTEM_FLAGS + 0x8B) // 0x8E1
 #define FLAG_FORCE_POKERUS                          (SYSTEM_FLAGS + 0x8C) // 0x8E2
-#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
-#define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
+#define FLAG_MAP_NEEDS_FLASH                        (SYSTEM_FLAGS + 0x8D) // 0x8ED
+#define FLAG_UNUSED_0x8EE	                        (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag
 #define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag

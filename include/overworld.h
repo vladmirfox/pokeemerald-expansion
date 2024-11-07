@@ -97,6 +97,7 @@ void ResetInitialPlayerAvatarState(void);
 void StoreInitialPlayerAvatarState(void);
 bool32 Overworld_IsBikingAllowed(void);
 void SetDefaultFlashLevel(void);
+void CheckUseAutoFlash(void);
 void SetFlashLevel(s32 flashLevel);
 u8 GetFlashLevel(void);
 void SetCurrentMapLayout(u16 mapLayoutId);
