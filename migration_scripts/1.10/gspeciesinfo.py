@@ -39,7 +39,7 @@ for match in double_placeholder_pattern.findall(anim_table_content):
 updated = False
 issuesCounter = 0
 
-# Modify gen_X_families.h content
+# Modify gen_X_families.h's animation content
 def add_anim_data(match):
     global updated
     global issuesCounter
@@ -62,6 +62,39 @@ def add_anim_data(match):
             issuesCounter = issuesCounter + 1
         return f'.frontAnimFrames = sAnims_{mon_name},),'
 
+def update_basic_follower_data(match):
+    global updated
+    global issuesCounter
+
+    # Alignment spaces
+    sp1 = "        "
+    sp = "            "
+    mon_name1 = match.group(1)
+    size = match.group(2)
+    shadow = match.group(3)
+    footprint = match.group(4)
+    mon_name2 = match.group(5)
+    mon_name3 = match.group(6)
+
+    return f'{sp1}OVERWORLD(\n{sp}gObjectEventPic_{mon_name1},\n{sp}SIZE_{size},\n{sp}SHADOW_SIZE_{shadow},\n{sp}TRACKS_{footprint},\n{sp}sAnimTable_Following,\n{sp}gOverworldPalette_{mon_name2},\n{sp}gShinyOverworldPalette_{mon_name3}\n{sp1})'
+
+def update_set_anim_follower_data(match):
+    global updated
+    global issuesCounter
+
+    # Alignment spaces
+    sp1 = "        "
+    sp = "            "
+    mon_name1 = match.group(1)
+    print(mon_name1)
+    size = match.group(2)
+    shadow = match.group(3)
+    footprint = match.group(4)
+    setAnim = match.group(5)
+    mon_name2 = match.group(6)
+    mon_name3 = match.group(7)
+
+    return f'{sp1}OVERWORLD(\n{sp}gObjectEventPic_{mon_name1},\n{sp}SIZE_{size},\n{sp}SHADOW_SIZE_{shadow},\n{sp}TRACKS_{footprint},\n{sp}{setAnim},\n{sp}gOverworldPalette_{mon_name2},\n{sp}gShinyOverworldPalette_{mon_name3}\n{sp1})'
 
 for gen in range(1,10):
     updated = False
@@ -72,14 +105,21 @@ for gen in range(1,10):
         with open(file, 'r') as f:
             species_content = f.read()
 
-    item_pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
-    modified_species_content = item_pattern.sub(add_anim_data, species_content)
+    # Alter front animations
+    pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
+    species_content = pattern.sub(add_anim_data, species_content)
+    
+    # Alter follower data
+    pattern = re.compile(r' {8}OVERWORLD\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
+    species_content = pattern.sub(update_basic_follower_data, species_content)
+    pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
+    species_content = pattern.sub(update_set_anim_follower_data, species_content)
 
     if updated:
         # Write the modified content back to gen_X_families.h
         for file in glob.glob('./src/data/pokemon/species_info/gen_%d_families.h' % gen):
             with open(file, 'w') as f:
-                f.write(modified_species_content)
+                f.write(species_content)
         print("was updated.", end="")
     elif issuesCounter == 0:
         print("was NOT updated.", end="")
