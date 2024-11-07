@@ -159,7 +159,7 @@
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-        .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
+        .abilities = { ABILITY_ROUGH_SKIN, ABILITY_CLEAR_BODY, ABILITY_HEATPROOF },
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Silcoon δ"),
         .cryId = CRY_SILCOON,
@@ -861,7 +861,7 @@
             gOverworldPalette_Beedrill,
             gShinyOverworldPalette_Beedrill
         )
-        .levelUpLearnset = sBeedrillLevelUpLearnset,
+        .levelUpLearnset = sBeedrillDeltaLevelUpLearnset,
         .teachableLearnset = sBeedrillTeachableLearnset,
         .formSpeciesIdTable = sBeedrillFormSpeciesIdTable,
         .formChangeTable = sBeedrillFormChangeTable,
