@@ -60,7 +60,7 @@ def add_anim_data(match):
         if mon_name != 'SingleFramePlaceHolder' and mon_name != 'TwoFramePlaceHolder':
             print(f"\n - {mon_name} animations were NOT updated.", end="")
             issuesCounter = issuesCounter + 1
-        return f'.frontAnimFrames = sAnims_{mon_name},),'
+        return f'.frontAnimFrames = sAnims_{mon_name},'
 
 def update_basic_follower_data(match):
     global updated
@@ -86,7 +86,6 @@ def update_set_anim_follower_data(match):
     sp1 = "        "
     sp = "            "
     mon_name1 = match.group(1)
-    print(mon_name1)
     size = match.group(2)
     shadow = match.group(3)
     footprint = match.group(4)
@@ -107,13 +106,20 @@ for gen in range(1,10):
 
     # Alter front animations
     pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
-    species_content = pattern.sub(add_anim_data, species_content)
+    modified_species_content = pattern.sub(add_anim_data, species_content)
+    species_content = modified_species_content
     
     # Alter follower data
     pattern = re.compile(r' {8}OVERWORLD\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
-    species_content = pattern.sub(update_basic_follower_data, species_content)
+    modified_species_content = pattern.sub(update_basic_follower_data, species_content)
+    if (species_content != modified_species_content):
+        updated = True
+    species_content = modified_species_content
     pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
     species_content = pattern.sub(update_set_anim_follower_data, species_content)
+    if (species_content != modified_species_content):
+        updated = True
+    species_content = modified_species_content
 
     if updated:
         # Write the modified content back to gen_X_families.h
