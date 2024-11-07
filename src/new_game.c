@@ -164,7 +164,7 @@ void ResetMenuAndMonGlobals(void)
 
 void NewGameInitData(void)
 {
-    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+    // if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
         RtcReset();
 
     gDifferentSaveFile = TRUE;
@@ -209,6 +209,8 @@ void NewGameInitData(void)
     ResetFanClub();
     ResetLotteryCorner();
     WarpToStartPositionInPlayersBedroom();
+    gSaveBlock1Ptr->initialVBlank = 0;
+    WarpToTruck();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
