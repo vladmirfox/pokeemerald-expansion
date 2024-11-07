@@ -179,6 +179,19 @@ const u8 gItemEffect_SacredAsh[7] = {
     [(i) + 1] = 3, /* Friendship change, mid */  \
     [(i) + 2] = 2  /* Friendship change, high */
 
+#define ITEM4_IS_NATSHROOM 0x3
+#define ITEM5_IS_NATSHROOM 0x5
+
+const u8 gItemEffect_AdamantMushroom[11] = {
+    [4] = ITEM4_IS_NATSHROOM,
+    [5] = ITEM5_IS_NATSHROOM,
+    [6] = 0x7,
+    [7] = 0x1,
+    [8] = 0x1,
+    [9] = 0x1,
+    [10] = ITEM10_IS_VITAMIN,
+};
+
 const u8 gItemEffect_HPUp[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,

@@ -1642,8 +1642,10 @@
 #define SPECIES_GOLBAT_DELTA                            1534
 #define SPECIES_VENONAT_DELTA                           1535
 #define SPECIES_VENOMOTH_DELTA                          1536
+#define SPECIES_BEEDRILL_DELTA                          1537
+#define SPECIES_BUTTERFREE_DELTA                        1538
 
-#define SPECIES_EGG (SPECIES_VENOMOTH_DELTA + 1)
+#define SPECIES_EGG (SPECIES_BUTTERFREE_DELTA + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

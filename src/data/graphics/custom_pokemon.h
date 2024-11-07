@@ -43,3 +43,5 @@ const u32 gMonPalette_VenomothDelta[] = INCBIN_U32("graphics/pokemon/venomoth/de
 const u32 gMonPalette_GolbatDelta[] = INCBIN_U32("graphics/pokemon/golbat/delta.gbapal.lz");
 
 const u32 gMonPalette_ShedinjaDelta[] = INCBIN_U32("graphics/pokemon/shedinja/delta.gbapal.lz");
+
+const u32 gMonPalette_BeedrillDelta[] = INCBIN_U32("graphics/pokemon/beedrill/delta.gbapal.lz");

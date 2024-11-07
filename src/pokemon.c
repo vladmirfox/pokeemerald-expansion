@@ -3787,6 +3787,15 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     // Get item effect
     itemEffect = ItemId_GetEffect(item);
 
+    MgbaPrintf(2, "========");
+
+    if (itemEffect[5] == 0x3 && itemEffect[6] == 0x7)
+    {
+        MgbaPrintf(2, "PROTEIN TEST");
+        return FALSE;
+    }
+
+
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)
     {
@@ -4073,6 +4082,18 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     {
                     case 0: // ITEM5_EV_DEF
                     case 1: // ITEM5_EV_SPEED
+                        // MgbaPrintf(1, "This is a test message: %d, %s\n", 42, "hello");
+                        MgbaPrintf(1, "temp1: %d", temp1);
+                        MgbaPrintf(1, "MonData: %d", GetMonData(mon, MON_DATA_HP_IV, NULL));
+                        MgbaPrintf(1, "itemEffect: %d", itemEffect);
+                        MgbaPrintf(1, "itemEffect[4]: %d", itemEffect[4]);
+                        MgbaPrintf(1, "itemEffect[5]: %d", itemEffect[5]);
+                        MgbaPrintf(1, "itemEffect[6]: %d", itemEffect[6]);
+                        MgbaPrintf(1, "itemEffect[7]: %d", itemEffect[7]);
+                        MgbaPrintf(1, "itemEffect[8]: %d", itemEffect[8]);
+                        MgbaPrintf(1, "itemEffect[9]: %d", itemEffect[9]);
+                        MgbaPrintf(1, "itemEffect[10]: %d", itemEffect[10]);
+                        MgbaPrintf(1, "effectFlags: %d", effectFlags);
                     case 2: // ITEM5_EV_SPDEF
                     case 3: // ITEM5_EV_SPATK
                         evCount = GetMonEVCount(mon);

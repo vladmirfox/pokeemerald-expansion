@@ -1421,6 +1421,24 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_PPMax,
     },
 
+    [ITEM_ADAMANT_MUSHROOM] =
+    {
+        .name = _("Adamant Mushroom"),
+        .price = 25000,
+        .description = COMPOUND_STRING(
+            "Changes a\n"
+            "Pokémon's nature\n"
+            "to Adamant."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .effect = gItemEffect_AdamantMushroom,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Mushroom,
+        .iconPalette = gItemIconPalette_Protein,
+    },
+
+
 // EV Feathers
 
     [ITEM_HEALTH_FEATHER] =
@@ -11759,8 +11777,8 @@ const struct Item gItemsInfo[] =
         .price = 0,
         .description = COMPOUND_STRING(
             "Attacks the foe\n"
-            "with sharp blades\n"
-            "or claws."),
+            "with sharp metal,\n"
+            "may crit."),
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -11820,7 +11838,7 @@ const struct Item gItemsInfo[] =
         .description = COMPOUND_STRING(
             "Looses a powerful\n"
             "blast of light that\n"
-            "reduces accuracy."),
+            "may cut speed."),
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,

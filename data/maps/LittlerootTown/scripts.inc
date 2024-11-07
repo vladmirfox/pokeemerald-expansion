@@ -1079,6 +1079,9 @@ cLittlerootTown_EventScript_PickupGoodyBag::
 	msgbox cLittlerootTown_Text_PickupGoodyBag
 	msgbox cLittlerootTown_Text_FoundRustyOldBadges
 	giveitem ITEM_MASTER_BALL, 50
+	giveitem ITEM_CARBOS, 10
+	giveitem ITEM_PROTEIN, 10
+	giveitem ITEM_ADAMANT_MUSHROOM, 10
 	call LittlerootTown_Script_SkipBirchEncounter
 	call LittlerootTown_Script_GiveStartingMons
 	call LittlerootTown_Script_GiveBadges

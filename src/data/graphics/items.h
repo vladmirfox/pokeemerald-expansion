@@ -211,6 +211,8 @@ const u32 gItemIconPalette_PPUp[] = INCBIN_U32("graphics/items/icon_palettes/pp_
 const u32 gItemIcon_PPMax[] = INCBIN_U32("graphics/items/icons/pp_max.4bpp.lz");
 const u32 gItemIconPalette_PPMax[] = INCBIN_U32("graphics/items/icon_palettes/pp_max.gbapal.lz");
 
+const u32 gItemIcon_Mushroom[] = INCBIN_U32("graphics/items/icons/mushroom.4bpp.lz");
+
 // EV Feathers
 
 const u32 gItemIcon_HealthFeather[] = INCBIN_U32("graphics/items/icons/health_feather.4bpp.lz");

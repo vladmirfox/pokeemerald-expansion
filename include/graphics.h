@@ -489,6 +489,7 @@ extern const u32 gItemIcon_PPUp[];
 extern const u32 gItemIconPalette_PPUp[];
 extern const u32 gItemIcon_PPMax[];
 extern const u32 gItemIconPalette_PPMax[];
+extern const u32 gItemIcon_Mushroom[];
 // EV Feathers
 extern const u32 gItemIcon_HealthFeather[];
 extern const u32 gItemIconPalette_HealthFeather[];

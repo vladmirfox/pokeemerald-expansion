@@ -139,8 +139,7 @@
         .tmIlliterate = TRUE,
         .levelUpLearnset = sWurmpleDeltaLevelUpLearnset,
         .teachableLearnset = sWurmpleTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 7, SPECIES_SILCOON},
-                                {EVO_LEVEL_CASCOON, 7, SPECIES_CASCOON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_SILCOON_DELTA}),
     },
 
     [SPECIES_SILCOON_DELTA] =
@@ -814,7 +813,6 @@
         .types = MON_TYPES(TYPE_FIGHTING, TYPE_FLYING),
         .catchRate = 25,
         .expYield = 248,
-    #endif
         .evYield_Attack = 2,
         .evYield_Speed = 1,
         .itemRare = ITEM_POISON_BARB,
@@ -850,7 +848,7 @@
         .backPicSize = MON_COORDS_SIZE(64, 56),
         .backPicYOffset = 5,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .palette = gMonPalette_Beedrill,
+        .palette = gMonPalette_BeedrillDelta,
         .shinyPalette = gMonShinyPalette_Beedrill,
         .iconSprite = gMonIcon_Beedrill,
         .iconPalIndex = 2,
