@@ -152,6 +152,7 @@ struct DisableStruct
     u8 weatherAbilityDone:1;
     u8 terrainAbilityDone:1;
     u8 usedProteanLibero:1;
+    u8 usedDestinyBond:1;
 };
 
 struct ProtectStruct
