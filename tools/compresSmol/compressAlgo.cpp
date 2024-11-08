@@ -498,8 +498,19 @@ CompressedImage processImage(std::string fileName, InputSettings settings)
         {
             mode = currMode;
             if (!settings.canDeltaSyms
-            && (mode == ENCODE_DELTA_SYMS
-             || mode == ENCODE_BOTH_DELTA_SYMS))
+             && (mode == ENCODE_DELTA_SYMS
+              || mode == ENCODE_BOTH_DELTA_SYMS))
+                continue;
+            if (!settings.canEncodeLO
+             && (mode == ENCODE_LO
+              || mode == ENCODE_BOTH
+              || mode == ENCODE_BOTH_DELTA_SYMS))
+                continue;
+            if (!settings.canEncodeSyms
+             && (mode == ENCODE_SYMS
+              || mode == ENCODE_BOTH
+              || mode == ENCODE_DELTA_SYMS
+              || mode == ENCODE_BOTH_DELTA_SYMS))
                 continue;
             CompressedImage image = fillCompressVecNew(loVec, symVec, mode,rawBase.size());
             if (!verifyCompressionShort(&image, &usBase))
