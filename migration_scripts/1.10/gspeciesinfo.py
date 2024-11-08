@@ -6,12 +6,25 @@ if not os.path.exists("Makefile"):
     print("Please run this script from your root folder.")
     quit()
 
-animationSpecies = []
-
 # Read front_pic_anims.h
 for file in glob.glob('./src/data/pokemon_graphics/front_pic_anims.h'):
     with open(file, 'r') as f:
         anim_table_content = f.read()
+
+# Read existing animations present to avoid removing shared animations
+anim_table_data = {}
+shared_anim_table_data = {}
+pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
+for gen in range(1,10):
+    for file in glob.glob('./src/data/pokemon/species_info/gen_%d_families.h' % gen):
+        with open(file, 'r') as f:
+            species_content = f.read()
+        for match in pattern.findall(species_content):
+            if match in anim_table_data:
+                if match not in shared_anim_table_data:
+                    shared_anim_table_data[match] = match
+            else:
+                anim_table_data[match] = match
 
 # Extract animation data from front_pic_anims.h
 anim_table_pattern = re.compile(r'static const union AnimCmd sAnim_(\w+)_1\[\] =\n\{\n((    (ANIMCMD_FRAME\(\d+ *, \d+ *\)|ANIMCMD_LOOP\(\d+\)),\n){1,})    ANIMCMD_END,\n\};', re.MULTILINE)
@@ -45,7 +58,7 @@ def add_anim_data(match):
     global issuesCounter
     mon_name = match.group(1)
     #print(match.group(0))
-    if mon_name in anim_table_data:
+    if mon_name in anim_table_data and mon_name not in shared_anim_table_data:
         anim_frames = anim_table_data[mon_name]
         anim_frames = re.sub('    ANIMCMD_FRAME\(', '            ANIMCMD_FRAME(', anim_frames)
         updated = True
@@ -57,7 +70,7 @@ def add_anim_data(match):
         updated = True
         return f'.frontAnimFrames = sAnims_TwoFramePlaceHolder,'
     else:
-        if mon_name != 'SingleFramePlaceHolder' and mon_name != 'TwoFramePlaceHolder':
+        if mon_name != 'SingleFramePlaceHolder' and mon_name != 'TwoFramePlaceHolder' and mon_name not in shared_anim_table_data:
             print(f"\n - {mon_name} animations were NOT updated.", end="")
             issuesCounter = issuesCounter + 1
         return f'.frontAnimFrames = sAnims_{mon_name},'
