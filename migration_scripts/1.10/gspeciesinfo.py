@@ -2,6 +2,8 @@ import re
 import glob
 import os
 
+main_dir = "./src/data/pokemon/species_info"
+
 label_renames = [
     ["Alolan", "Alola", "ALOLAN", "ALOLA"],
     ["Galarian", "Galar", "GALARIAN", "GALAR"],
@@ -22,16 +24,18 @@ for file in glob.glob('./src/data/pokemon_graphics/front_pic_anims.h'):
 anim_table_data = {}
 shared_anim_table_data = {}
 pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
-for gen in range(1,10):
-    for file in glob.glob('./src/data/pokemon/species_info/gen_%d_families.h' % gen):
-        with open(file, 'r') as f:
-            species_content = f.read()
-        for match in pattern.findall(species_content):
-            if match in anim_table_data:
-                if match not in shared_anim_table_data:
-                    shared_anim_table_data[match] = match
-            else:
-                anim_table_data[match] = match
+for root, dirs, files in os.walk(main_dir):
+    files.sort()
+    for fileName in files:
+        for file in glob.glob(main_dir + "/" + fileName):
+            with open(file, 'r') as f:
+                species_content = f.read()
+            for match in pattern.findall(species_content):
+                if match in anim_table_data:
+                    if match not in shared_anim_table_data:
+                        shared_anim_table_data[match] = match
+                else:
+                    anim_table_data[match] = match
 
 # Extract animation data from front_pic_anims.h
 anim_table_pattern = re.compile(r'static const union AnimCmd sAnim_(\w+)_1\[\] =\n\{\n((    (ANIMCMD_FRAME\(\d+ *, \d+ *\)|ANIMCMD_LOOP\(\d+\)),\n){1,})    ANIMCMD_END,\n\};', re.MULTILINE)
@@ -138,49 +142,51 @@ def add_jump_data(match):
     else:
         return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,\n        FOOTPRINT'
 
-for gen in range(1,10):
-    updated = False
-    issuesCounter = 0
-    print("\ngen_%d_families.h" % gen, end =" ")
-    # Read gen_X_families.h content
-    for file in glob.glob('./src/data/pokemon/species_info/gen_%d_families.h' % gen):
-        with open(file, 'r') as f:
-            species_content = f.read()
+for root, dirs, files in os.walk(main_dir):
+    files.sort()
+    for fileName in files:
+        updated = False
+        issuesCounter = 0
+        print("\n" + fileName, end =" ")
+        # Read gen_X_families.h content
+        for file in glob.glob(main_dir + '/' + fileName):
+            with open(file, 'r') as f:
+                species_content = f.read()
 
-    original_species_content = species_content
+        original_species_content = species_content
 
-    # Alter front animations
-    pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
-    species_content = pattern.sub(add_anim_data, species_content)
-    
-    # Alter follower data
-    pattern = re.compile(r' {8}OVERWORLD\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
-    species_content = pattern.sub(update_basic_follower_data, species_content)
-    pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
-    species_content = pattern.sub(update_set_anim_follower_data, species_content)
+        # Alter front animations
+        pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
+        species_content = pattern.sub(add_anim_data, species_content)
+        
+        # Alter follower data
+        pattern = re.compile(r' {8}OVERWORLD\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
+        species_content = pattern.sub(update_basic_follower_data, species_content)
+        pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
+        species_content = pattern.sub(update_set_anim_follower_data, species_content)
 
-    # Alter Pokémon Jump data
-    pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?)        \.iconPalIndex = (.*),\n        FOOTPRINT', re.MULTILINE)
-    species_content = pattern.sub(add_jump_data, species_content)
+        # Alter Pokémon Jump data
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?)        \.iconPalIndex = (.*),\n        FOOTPRINT', re.MULTILINE)
+        species_content = pattern.sub(add_jump_data, species_content)
 
-    # Rename form labels and defines
-    for form_labels in label_renames:
-        species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
-        species_content = re.sub(r"(gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
-        species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
-        species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
-        species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
+        # Rename form labels and defines
+        for form_labels in label_renames:
+            species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+            species_content = re.sub(r"(gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+            species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
+            species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
+            species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
 
-    if (species_content != original_species_content):
-        updated = True
+        if (species_content != original_species_content):
+            updated = True
 
-    if updated:
-        # Write the modified content back to gen_X_families.h
-        for file in glob.glob('./src/data/pokemon/species_info/gen_%d_families.h' % gen):
-            with open(file, 'w') as f:
-                f.write(species_content)
-        print("was updated.", end="")
-    elif issuesCounter == 0:
-        print("was NOT updated.", end="")
+        if updated:
+            # Write the modified content back to gen_X_families.h
+            for file in glob.glob(main_dir + '/' + fileName):
+                with open(file, 'w') as f:
+                    f.write(species_content)
+            print("was updated.", end="")
+        elif issuesCounter == 0:
+            print("was NOT updated.", end="")
 
 print("")
