@@ -2,6 +2,13 @@ import re
 import glob
 import os
 
+label_renames = [
+    ["Alolan", "Alola", "ALOLAN", "ALOLA"],
+    ["Galarian", "Galar", "GALARIAN", "GALAR"],
+    ["Hisuian", "Hisui", "HISUIAN", "HISUI"],
+    ["Paldean", "Paldea", "PALDEAN", "PALDEA"],
+]
+
 if not os.path.exists("Makefile"):
     print("Please run this script from your root folder.")
     quit()
@@ -155,7 +162,15 @@ for gen in range(1,10):
     # Alter Pokémon Jump data
     pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?)        \.iconPalIndex = (.*),\n        FOOTPRINT', re.MULTILINE)
     species_content = pattern.sub(add_jump_data, species_content)
-    
+
+    # Rename form labels and defines
+    for form_labels in label_renames:
+        species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+        species_content = re.sub(r"(gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+        species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
+        species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
+        species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
+
     if (species_content != original_species_content):
         updated = True
 
