@@ -870,6 +870,9 @@ static const u8 sText_TidyingUpComplete[] = _("Tidying up complete!");
 static const u8 sText_FickleBeamDoubled[] = _("{B_ATK_NAME_WITH_PREFIX} is going all out for this attack!");
 static const u8 sText_WagglingAFinger[] = _("Waggling a finger let it use {B_CURRENT_MOVE}!");
 
+static const u8 sTest_TempTestText1[] = _("This is a text for testing stuff.");
+static const u8 sTest_TempTestText2[] = _("This is a text for testing stuff that should be two lines.");
+
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
     [STRINGID_FICKLEBEAMDOUBLED - BATTLESTRINGS_TABLE_START] = sText_FickleBeamDoubled,
@@ -3805,7 +3808,18 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     dstID++;
 
     //  Remove this when done testing
+    /*
+    MgbaPrintf(MGBA_LOG_WARN, "%S", sTest_TempTestText2);
+    u32 currChar = 0;
+    while (sTest_TempTestText2[currChar] != EOS)
+    {
+        dst[currChar] = sTest_TempTestText2[currChar];
+        currChar++;
+    }
+    dst[currChar] = EOS;
+    MgbaPrintf(MGBA_LOG_WARN, "%u", currChar);
     BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
+    */
     return dstID;
 }
 

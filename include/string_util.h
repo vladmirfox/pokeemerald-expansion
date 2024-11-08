@@ -69,5 +69,6 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId);
 bool32 IsWordSplittingChar(const u8 *src, u16 *index);
 u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth);
 void BuildNewString(struct StringLine *stringLines, u16 numLines, u8 *str);
+bool32 StringHasManualBreaks(u8 *src);
 
 #endif // GUARD_STRING_UTIL_H
