@@ -13148,14 +13148,14 @@ static void Cmd_trysetdestinybond(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (B_UPDATED_MOVE_DATA >= GEN_7 && gDisableStructs[gBattlerAttacker].usedDestinyBond)
+    if (B_DESTINY_BOND_FAIL >= GEN_7 && gDisableStructs[gBattlerAttacker].usedDestinyBond)
     {
         gDisableStructs[gBattlerAttacker].usedDestinyBond = FALSE;
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        if (B_UPDATED_MOVE_DATA >= GEN_7)
+        if (B_DESTINY_BOND_FAIL >= GEN_7)
             gDisableStructs[gBattlerAttacker].usedDestinyBond = TRUE;
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_DESTINY_BOND;
         gBattlescriptCurrInstr = cmd->nextInstr;

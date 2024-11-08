@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Destiny Bond faints the opposing mon if it fainted from the 
 SINGLE_BATTLE_TEST("Destiny Bond fails if used sequentially in Gen 7+")
 {
     GIVEN {
-        ASSUME(B_UPDATED_MOVE_DATA >= GEN_7);
+        ASSUME(B_DESTINY_BOND_FAIL >= GEN_7);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
