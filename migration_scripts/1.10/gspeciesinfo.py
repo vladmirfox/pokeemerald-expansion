@@ -48,6 +48,17 @@ for match in double_placeholder_pattern.findall(anim_table_content):
     anim_name = match
     double_placeholder_data[anim_name] = (anim_name)
 
+# Read pokemon_jump.c
+for file in glob.glob('./src/pokemon_jump.c'):
+    with open(file, 'r') as f:
+        pokemon_jump_content = f.read()
+pokemon_jump_pattern = re.compile(r'\{ \.species = SPECIES_(\w+), *\.jumpType = JUMP_TYPE_(\w+), \},', re.MULTILINE)
+pokemon_jump_data = {}
+for match in pokemon_jump_pattern.findall(pokemon_jump_content):
+    if len(match) == 2:
+        mon_name, jump_type = match
+        pokemon_jump_data[mon_name] = (jump_type)
+
 # Trackers
 updated = False
 issuesCounter = 0
@@ -57,7 +68,6 @@ def add_anim_data(match):
     global updated
     global issuesCounter
     mon_name = match.group(1)
-    #print(match.group(0))
     if mon_name in anim_table_data and mon_name not in shared_anim_table_data:
         anim_frames = anim_table_data[mon_name]
         anim_frames = re.sub('    ANIMCMD_FRAME\(', '            ANIMCMD_FRAME(', anim_frames)
@@ -108,6 +118,19 @@ def update_set_anim_follower_data(match):
 
     return f'{sp1}OVERWORLD(\n{sp}gObjectEventPic_{mon_name1},\n{sp}SIZE_{size},\n{sp}SHADOW_SIZE_{shadow},\n{sp}TRACKS_{footprint},\n{sp}{setAnim},\n{sp}gOverworldPalette_{mon_name2},\n{sp}gShinyOverworldPalette_{mon_name3}\n{sp1})'
 
+def add_jump_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    iconPalIndex = match.group(4)
+    if mon_name in pokemon_jump_data:
+        updated = True
+        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_' + pokemon_jump_data[mon_name] + f',\n        FOOTPRINT'
+    else:
+        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,\n        FOOTPRINT'
+
 for gen in range(1,10):
     updated = False
     issuesCounter = 0
@@ -117,22 +140,24 @@ for gen in range(1,10):
         with open(file, 'r') as f:
             species_content = f.read()
 
+    original_species_content = species_content
+
     # Alter front animations
     pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
-    modified_species_content = pattern.sub(add_anim_data, species_content)
-    species_content = modified_species_content
+    species_content = pattern.sub(add_anim_data, species_content)
     
     # Alter follower data
     pattern = re.compile(r' {8}OVERWORLD\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
-    modified_species_content = pattern.sub(update_basic_follower_data, species_content)
-    if (species_content != modified_species_content):
-        updated = True
-    species_content = modified_species_content
+    species_content = pattern.sub(update_basic_follower_data, species_content)
     pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
     species_content = pattern.sub(update_set_anim_follower_data, species_content)
-    if (species_content != modified_species_content):
+
+    # Alter Pokémon Jump data
+    pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?)        \.iconPalIndex = (.*),\n        FOOTPRINT', re.MULTILINE)
+    species_content = pattern.sub(add_jump_data, species_content)
+    
+    if (species_content != original_species_content):
         updated = True
-    species_content = modified_species_content
 
     if updated:
         # Write the modified content back to gen_X_families.h
