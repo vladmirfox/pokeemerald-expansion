@@ -13,6 +13,13 @@ mapscripts ChiiTown_MapScripts {
     ]
 }
 
+script ChiiTown_EventScript_MomWaiting {
+	speakername("Woman")
+	msgbox(format(
+		"I'm waiting to pick up my children after school."
+	), MSGBOX_NPC)
+}
+
 script ChiiTown_EventScript_SpawnBirds {
 	// Random birds on roofs
 	// Taillow

@@ -2014,3 +2014,22 @@ const u16 gTilesetPalettes_UumeForest[][16] =
 };
 
 const u32 gTilesetTiles_UumeForest[] = INCBIN_U32("data/tilesets/secondary/uume_forest/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_School[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/school/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/school/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_School[] = INCBIN_U32("data/tilesets/secondary/school/tiles.4bpp.lz");

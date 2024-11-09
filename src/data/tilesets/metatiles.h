@@ -268,3 +268,6 @@ const u16 gMetatileAttributes_Saberside[] = INCBIN_U16("data/tilesets/secondary/
 
 const u16 gMetatiles_UumeForest[] = INCBIN_U16("data/tilesets/secondary/uume_forest/metatiles.bin");
 const u16 gMetatileAttributes_UumeForest[] = INCBIN_U16("data/tilesets/secondary/uume_forest/metatile_attributes.bin");
+
+const u16 gMetatiles_School[] = INCBIN_U16("data/tilesets/secondary/school/metatiles.bin");
+const u16 gMetatileAttributes_School[] = INCBIN_U16("data/tilesets/secondary/school/metatile_attributes.bin");
