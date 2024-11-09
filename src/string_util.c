@@ -950,11 +950,17 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
         }
         u32 currBadness = GetStringBadness(stringLines, totalLines, maxWidth);
         MgbaPrintf(MGBA_LOG_WARN, "Badness: %u", currBadness);
-        BuildNewString(stringLines, totalLines, src);
+        BuildNewString(stringLines, totalLines, screenLines, src);
         MgbaPrintf(MGBA_LOG_WARN, "%S", src);
         Free(stringLines);
     }
 
+    //u32 wat = 0;
+    //while (src[wat] != EOS)
+    //{
+    //    MgbaPrintf(MGBA_LOG_WARN, "%u", src[wat]);
+    //    wat++;
+    //}
     Free(allWords);
 }
 
@@ -1012,7 +1018,7 @@ u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
 }
 
 //  Build the new string from the data stored in the StringLine structs
-void BuildNewString(struct StringLine *stringLines, u16 numLines, u8 *str)
+void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, u8 *str)
 {
     u16 numCharsNeeded = 1;
     u16 newStrIndex = 0;
@@ -1022,15 +1028,15 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u8 *str)
         for (u32 j = 0; j < stringLines[i].numWords; j++)
             numCharsNeeded += stringLines[i].words[j].length;
         //  Spaces
-        if (stringLines[i].extraSpaceWidth == 0)
-            numCharsNeeded += stringLines[i].numWords - 1;
-        else
-            numCharsNeeded += (stringLines[i].numWords - 1) * 4;
+        //if (stringLines[i].extraSpaceWidth == 0)
+        //    numCharsNeeded += stringLines[i].numWords - 1;
+        //else
+        //    numCharsNeeded += (stringLines[i].numWords - 1) * 4;
+        numCharsNeeded += stringLines[i].numWords - 1;
         //  Line breaks
         numCharsNeeded++;
     }
     u8 *newStr = Alloc(numCharsNeeded);
-    newStrIndex += 3;
     for (u32 lineIndex = 0; lineIndex < numLines; lineIndex++)
     {
         for (u32 wordIndex = 0; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
@@ -1061,7 +1067,10 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u8 *str)
         }
         if (lineIndex + 1 < numLines)
         {
-            newStr[newStrIndex] = 0xFE;
+            if (lineIndex >= maxLines-1 && numLines > maxLines)
+                newStr[newStrIndex] = 0xFA;
+            else
+                newStr[newStrIndex] = 0xFE;
             newStrIndex++;
         }
     }

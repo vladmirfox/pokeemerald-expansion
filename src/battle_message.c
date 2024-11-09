@@ -872,6 +872,7 @@ static const u8 sText_WagglingAFinger[] = _("Waggling a finger let it use {B_CUR
 
 static const u8 sTest_TempTestText1[] = _("This is a text for testing stuff.");
 static const u8 sTest_TempTestText2[] = _("This is a text for testing stuff that should be two lines.");
+static const u8 sTest_TempTestText3[] = _("This is a text for testing stuff that should be three lines so it has to have some extra text.");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -3808,18 +3809,17 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
     dstID++;
 
     //  Remove this when done testing
-    /*
-    MgbaPrintf(MGBA_LOG_WARN, "%S", sTest_TempTestText2);
+    const u8 *textToPrint = sTest_TempTestText3;
+    MgbaPrintf(MGBA_LOG_WARN, "%S", textToPrint);
     u32 currChar = 0;
-    while (sTest_TempTestText2[currChar] != EOS)
+    while (textToPrint[currChar] != EOS)
     {
-        dst[currChar] = sTest_TempTestText2[currChar];
+        dst[currChar] = textToPrint[currChar];
         currChar++;
     }
     dst[currChar] = EOS;
     MgbaPrintf(MGBA_LOG_WARN, "%u", currChar);
     BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
-    */
     return dstID;
 }
 
