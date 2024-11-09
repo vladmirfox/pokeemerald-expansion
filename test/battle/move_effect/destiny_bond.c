@@ -38,3 +38,42 @@ SINGLE_BATTLE_TEST("Destiny Bond fails if used sequentially in Gen 7+")
         MESSAGE("But it failed!");
     }
 }
+
+SINGLE_BATTLE_TEST("Destiny Bond does not fail if used repeatedly separated by other moves in Gen 7+")
+{
+    GIVEN {
+        ASSUME(B_DESTINY_BOND_FAIL >= GEN_7);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DESTINY_BOND); }
+        TURN { MOVE(player, MOVE_GROWL); SWITCH(opponent, 1); }
+        TURN { MOVE(player, MOVE_DESTINY_BOND); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player);
+        MESSAGE("2 sent out Zigzagoon!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player);
+        NOT { MESSAGE("But it failed!"); }
+    }
+}
+
+SINGLE_BATTLE_TEST("Destiny Bond does not fail if used after failing in Gen 7+")
+{
+    GIVEN {
+        ASSUME(B_DESTINY_BOND_FAIL >= GEN_7);
+        PLAYER(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+        OPPONENT(SPECIES_ZIGZAGOON);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DESTINY_BOND); }
+        TURN { MOVE(player, MOVE_DESTINY_BOND); SWITCH(opponent, 1); }
+        TURN { MOVE(player, MOVE_DESTINY_BOND); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player);
+        MESSAGE("2 sent out Zigzagoon!");
+        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player); }
+        MESSAGE("But it failed!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DESTINY_BOND, player);
+    }
+}

@@ -13148,6 +13148,9 @@ static void Cmd_trysetdestinybond(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
+    if (gMovesInfo[gLastResultingMoves[gBattlerAttacker]].effect != EFFECT_DESTINY_BOND)
+        gDisableStructs[gBattlerAttacker].usedDestinyBond = FALSE;
+
     if (B_DESTINY_BOND_FAIL >= GEN_7 && gDisableStructs[gBattlerAttacker].usedDestinyBond)
     {
         gDisableStructs[gBattlerAttacker].usedDestinyBond = FALSE;
