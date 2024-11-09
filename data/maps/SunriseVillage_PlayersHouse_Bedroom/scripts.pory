@@ -1,8 +1,10 @@
 mapscripts SunriseVillage_PlayersHouse_Bedroom_MapScripts {
 	MAP_SCRIPT_ON_LOAD {
 		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 1) {
-			// setrespawn(HEAL_LOCATION_SUNRISE_VILLAGE)
+			setrespawn(HEAL_LOCATION_SUNRISE_VILLAGE)
 			setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 1)
+			// Fake RTC will resume once the adventure starts!
+			pausefakertc
 		}
 	}
 }
@@ -15,36 +17,24 @@ script SunriseVillage_PlayersHouse_Bedroom_EventScript_Doll {
 	release
 }
 
-script SunriseVillage_PlayersHouse_Bedroom_EventScript_MUGSHOT {
-	lock
-	setvar(VAR_0x8000, MUGSHOT_AO)
-	callnative(DrawMugshot)
-	msgbox(format(
-		"What up dumdum?"
-	))
-	closemessage
-	callnative(ClearMugshot)
-	release
-}
-
 // Big Sis calls player when he gets out of bed
 script SunriseVillage_PlayersHouse_Bedroom_Event_BigSisCalling {
     lock
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_SOUTH)
 	speakername("Big sis")
 	msgbox(format(
-		"{PLAYER}! {PLAYER}! Are you still sleeping?"
+		"{PLAYER}! {PLAYER}!\nAre you still sleeping?"
 	))
 	
 	dynmultichoice(
-		16,
-		6,
+		0,
+		0,
 		TRUE,
 		10,
 		0,
 		DYN_MULTICHOICE_CB_NONE,
-		"Not anymore!",
-		"I'm coming!",
+		"…Yes?",
+		"Coming!",
 		"…"
 	)
 

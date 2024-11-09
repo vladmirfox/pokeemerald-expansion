@@ -38,7 +38,7 @@ script GinkoWoods_EventScript_OldMan {
 	lock
 	faceplayer
 	speakername("Old man")
-	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here.\pPerhaps because they can hide from predators thanks to the color of these trees."))
+	msgbox(format("These woods are fascinating.\pThere seem to be a lot of yellow Pokémon here."))
 	release
 	end
 }
@@ -52,6 +52,8 @@ script GinkoWoods_EventScript_Bean {
 	))
 	closemessage
 
+	delay(48)
+
 	turnobject(LOCALID_BEAN, DIR_EAST)
 
 	msgbox(format(
@@ -60,6 +62,8 @@ script GinkoWoods_EventScript_Bean {
 	closemessage
 
 	turnobject(LOCALID_BEAN, DIR_SOUTH)
+	
+	delay(48)
 
 	msgbox(format(
 		"It looks like a small mammal's footprints, see?\p"
@@ -101,24 +105,24 @@ script GinkoWoods_EventScript_Bean {
 	switch(var(VAR_RESULT)) {
 		case 0:
 			msgbox(format(
-				"Right! I'm glad you share my interest for Pokémon habitat.\p"
+				"Right! I am glad you share my interest for Pokémon habitat.\p"
 				"I am Hariko. And what is your name?\p"
-				"{PLAYER}. It's been nice chatting with you. I will see you around, then.\p"
+				"{PLAYER}. It has been nice chatting with you. I will see you around, then.\p"
 				"Okay, bye!"
 			))
 		case 1:
 			msgbox(format(
 				"Right! I haven't introduced myself yet.\p"
 				"I am Hariko. And what is your name?\p"
-				"{PLAYER}. It's been nice chatting with you. I will see you around, then.\p"
+				"{PLAYER}. It has been nice chatting with you. I will see you around, then.\p"
 				"Okay, bye!"
 			))
 		case 2:
 			msgbox(format(
 				"…Oh. I am blocking your path. I see.\p"
-				"I guess I got carried away, haven't I? That… tends to happen.\p"
+				"I guess I got carried away, have I not? That… tends to happen.\p"
 				"I am Hariko. And what is your name?\p"
-				"{PLAYER}. It's been nice chatting with you. I am moving now, so that you can go through.\p"
+				"{PLAYER}. It has been nice chatting with you. I am moving now, so that you can go through.\p"
 				"I will see you around, then.\p"
 				"Okay, bye!"
 			))

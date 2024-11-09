@@ -426,14 +426,14 @@ KuraTown_Dojo_EventScript_DojoStatue_Text_0:
 # 203 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Dojo of Kura Village\p"
 	.string "Certified wielders:\n"
-	.string "{RIVAL},"
+	.string "Natsuki,"
 	.string "{PLAYER}$"
 
 KuraTown_Dojo_EventScript_DojoStatue_Text_1:
 # 211 "data/maps/KuraTown_Dojo/scripts.pory"
 	.string "Dojo of Kura Village\p"
 	.string "Certified wielders:\n"
-	.string "{RIVAL}$"
+	.string "Natsuki$"
 
 KuraTown_Dojo_EventScript_KuraDojoTree_CanCut_Text_0:
 # 223 "data/maps/KuraTown_Dojo/scripts.pory"

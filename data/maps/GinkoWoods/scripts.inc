@@ -50,134 +50,138 @@ GinkoWoods_EventScript_Bean::
 # 53 "data/maps/GinkoWoods/scripts.pory"
 	closemessage
 # 55 "data/maps/GinkoWoods/scripts.pory"
-	turnobject 7, DIR_EAST
-# 57 "data/maps/GinkoWoods/scripts.pory"
-	msgbox GinkoWoods_EventScript_Bean_Text_1
-# 60 "data/maps/GinkoWoods/scripts.pory"
-	closemessage
-# 62 "data/maps/GinkoWoods/scripts.pory"
-	turnobject 7, DIR_SOUTH
-# 64 "data/maps/GinkoWoods/scripts.pory"
-	msgbox GinkoWoods_EventScript_Bean_Text_2
-# 72 "data/maps/GinkoWoods/scripts.pory"
-	closemessage
-# 74 "data/maps/GinkoWoods/scripts.pory"
-	fadescreen FADE_TO_BLACK
-# 76 "data/maps/GinkoWoods/scripts.pory"
-	advancefakertcby 1, 30, 0
-# 77 "data/maps/GinkoWoods/scripts.pory"
-	delay 60
-# 79 "data/maps/GinkoWoods/scripts.pory"
-	fadescreen FADE_FROM_BLACK
-# 81 "data/maps/GinkoWoods/scripts.pory"
 	delay 48
-# 83 "data/maps/GinkoWoods/scripts.pory"
-	msgbox GinkoWoods_EventScript_Bean_Text_3
-# 88 "data/maps/GinkoWoods/scripts.pory"
-	dynmultichoice 0, 0, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, GinkoWoods_EventScript_Bean_Text_4, GinkoWoods_EventScript_Bean_Text_5, GinkoWoods_EventScript_Bean_Text_6
-# 99 "data/maps/GinkoWoods/scripts.pory"
+# 57 "data/maps/GinkoWoods/scripts.pory"
+	turnobject 7, DIR_EAST
+# 59 "data/maps/GinkoWoods/scripts.pory"
+	msgbox GinkoWoods_EventScript_Bean_Text_1
+# 62 "data/maps/GinkoWoods/scripts.pory"
 	closemessage
-# 101 "data/maps/GinkoWoods/scripts.pory"
+# 64 "data/maps/GinkoWoods/scripts.pory"
+	turnobject 7, DIR_SOUTH
+# 66 "data/maps/GinkoWoods/scripts.pory"
+	delay 48
+# 68 "data/maps/GinkoWoods/scripts.pory"
+	msgbox GinkoWoods_EventScript_Bean_Text_2
+# 76 "data/maps/GinkoWoods/scripts.pory"
+	closemessage
+# 78 "data/maps/GinkoWoods/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 80 "data/maps/GinkoWoods/scripts.pory"
+	advancefakertcby 1, 30, 0
+# 81 "data/maps/GinkoWoods/scripts.pory"
+	delay 60
+# 83 "data/maps/GinkoWoods/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 85 "data/maps/GinkoWoods/scripts.pory"
+	delay 48
+# 87 "data/maps/GinkoWoods/scripts.pory"
+	msgbox GinkoWoods_EventScript_Bean_Text_3
+# 92 "data/maps/GinkoWoods/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 10, 0, DYN_MULTICHOICE_CB_NONE, GinkoWoods_EventScript_Bean_Text_4, GinkoWoods_EventScript_Bean_Text_5, GinkoWoods_EventScript_Bean_Text_6
+# 103 "data/maps/GinkoWoods/scripts.pory"
+	closemessage
+# 105 "data/maps/GinkoWoods/scripts.pory"
 	switch VAR_RESULT
-# 102 "data/maps/GinkoWoods/scripts.pory"
+# 106 "data/maps/GinkoWoods/scripts.pory"
 	case 0, GinkoWoods_EventScript_Bean_3
-# 109 "data/maps/GinkoWoods/scripts.pory"
+# 113 "data/maps/GinkoWoods/scripts.pory"
 	case 1, GinkoWoods_EventScript_Bean_4
-# 116 "data/maps/GinkoWoods/scripts.pory"
+# 120 "data/maps/GinkoWoods/scripts.pory"
 	case 2, GinkoWoods_EventScript_Bean_5
 GinkoWoods_EventScript_Bean_1:
-# 126 "data/maps/GinkoWoods/scripts.pory"
-	closemessage
-# 128 "data/maps/GinkoWoods/scripts.pory"
-	applymovement 7, GinkoWoods_Movement_BeanWalksAway
-# 129 "data/maps/GinkoWoods/scripts.pory"
-	waitmovement 0
 # 130 "data/maps/GinkoWoods/scripts.pory"
-	removeobject 7
-# 131 "data/maps/GinkoWoods/scripts.pory"
-	setflag FLAG_HIDE_BEAN_GINKO_WOODS
+	closemessage
+# 132 "data/maps/GinkoWoods/scripts.pory"
+	applymovement 7, GinkoWoods_Movement_BeanWalksAway
 # 133 "data/maps/GinkoWoods/scripts.pory"
+	waitmovement 0
+# 134 "data/maps/GinkoWoods/scripts.pory"
+	removeobject 7
+# 135 "data/maps/GinkoWoods/scripts.pory"
+	setflag FLAG_HIDE_BEAN_GINKO_WOODS
+# 137 "data/maps/GinkoWoods/scripts.pory"
 	release
 	return
 
 GinkoWoods_EventScript_Bean_3:
-# 103 "data/maps/GinkoWoods/scripts.pory"
+# 107 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_Bean_Text_7
 	goto GinkoWoods_EventScript_Bean_1
 
 GinkoWoods_EventScript_Bean_4:
-# 110 "data/maps/GinkoWoods/scripts.pory"
+# 114 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_Bean_Text_8
 	goto GinkoWoods_EventScript_Bean_1
 
 GinkoWoods_EventScript_Bean_5:
-# 117 "data/maps/GinkoWoods/scripts.pory"
+# 121 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_Bean_Text_9
 	goto GinkoWoods_EventScript_Bean_1
 
 
-# 136 "data/maps/GinkoWoods/scripts.pory"
+# 140 "data/maps/GinkoWoods/scripts.pory"
 GinkoWoods_Movement_BeanWalksAway:
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
-# 137 "data/maps/GinkoWoods/scripts.pory"
+# 141 "data/maps/GinkoWoods/scripts.pory"
 	walk_up
 	step_end
 
 GinkoWoods_EventScript_Tracks::
-# 141 "data/maps/GinkoWoods/scripts.pory"
-	lock
-# 143 "data/maps/GinkoWoods/scripts.pory"
-	playse SE_PIN
-# 144 "data/maps/GinkoWoods/scripts.pory"
-	applymovement 7, Common_Movement_ExclamationMark
 # 145 "data/maps/GinkoWoods/scripts.pory"
-	waitse
-# 146 "data/maps/GinkoWoods/scripts.pory"
-	waitmovement 0
+	lock
 # 147 "data/maps/GinkoWoods/scripts.pory"
-	delay 48
+	playse SE_PIN
 # 148 "data/maps/GinkoWoods/scripts.pory"
-	applymovement 7, Common_Movement_WalkInPlaceFasterRight
+	applymovement 7, Common_Movement_ExclamationMark
 # 149 "data/maps/GinkoWoods/scripts.pory"
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
-# 151 "data/maps/GinkoWoods/scripts.pory"
-	msgbox GinkoWoods_EventScript_Tracks_Text_0
-# 154 "data/maps/GinkoWoods/scripts.pory"
-	closemessage
-# 156 "data/maps/GinkoWoods/scripts.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, GinkoWoods_Movement_PlayerWalkDown
-# 157 "data/maps/GinkoWoods/scripts.pory"
+	waitse
+# 150 "data/maps/GinkoWoods/scripts.pory"
 	waitmovement 0
-# 159 "data/maps/GinkoWoods/scripts.pory"
+# 151 "data/maps/GinkoWoods/scripts.pory"
+	delay 48
+# 152 "data/maps/GinkoWoods/scripts.pory"
+	applymovement 7, Common_Movement_WalkInPlaceFasterRight
+# 153 "data/maps/GinkoWoods/scripts.pory"
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+# 155 "data/maps/GinkoWoods/scripts.pory"
+	msgbox GinkoWoods_EventScript_Tracks_Text_0
+# 158 "data/maps/GinkoWoods/scripts.pory"
+	closemessage
+# 160 "data/maps/GinkoWoods/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, GinkoWoods_Movement_PlayerWalkDown
+# 161 "data/maps/GinkoWoods/scripts.pory"
+	waitmovement 0
+# 163 "data/maps/GinkoWoods/scripts.pory"
 	release
 	return
 
 
-# 162 "data/maps/GinkoWoods/scripts.pory"
+# 166 "data/maps/GinkoWoods/scripts.pory"
 GinkoWoods_Movement_PlayerWalkDown:
-# 163 "data/maps/GinkoWoods/scripts.pory"
+# 167 "data/maps/GinkoWoods/scripts.pory"
 	walk_down
 	step_end
 
 GinkoWoods_EventScript_TrainerTips1::
-# 167 "data/maps/GinkoWoods/scripts.pory"
+# 171 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_TrainerTips1_Text_0, MSGBOX_SIGN
 	return
 
 
 GinkoWoods_EventScript_TrainerTips2::
-# 175 "data/maps/GinkoWoods/scripts.pory"
+# 179 "data/maps/GinkoWoods/scripts.pory"
 	msgbox GinkoWoods_EventScript_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
@@ -228,22 +232,19 @@ GinkoWoods_EventScript_OldMan_Text_1:
 # 41 "data/maps/GinkoWoods/scripts.pory"
 	.string "These woods are fascinating.\p"
 	.string "There seem to be a lot of yellow\n"
-	.string "Pokémon here.\p"
-	.string "Perhaps because they can hide from\n"
-	.string "predators thanks to the color of\l"
-	.string "these trees.$"
+	.string "Pokémon here.$"
 
 GinkoWoods_EventScript_Bean_Text_0:
 # 51 "data/maps/GinkoWoods/scripts.pory"
 	.string "Hello!$"
 
 GinkoWoods_EventScript_Bean_Text_1:
-# 58 "data/maps/GinkoWoods/scripts.pory"
+# 60 "data/maps/GinkoWoods/scripts.pory"
 	.string "I just noticed there are some neat\n"
 	.string "tracks in the dirt here.$"
 
 GinkoWoods_EventScript_Bean_Text_2:
-# 65 "data/maps/GinkoWoods/scripts.pory"
+# 69 "data/maps/GinkoWoods/scripts.pory"
 	.string "It looks like a small mammal's\n"
 	.string "footprints, see?\p"
 	.string "Studying Pokémon tracks is so\n"
@@ -273,67 +274,67 @@ GinkoWoods_EventScript_Bean_Text_2:
 	.string "blah blah, blah blah…$"
 
 GinkoWoods_EventScript_Bean_Text_3:
-# 84 "data/maps/GinkoWoods/scripts.pory"
+# 88 "data/maps/GinkoWoods/scripts.pory"
 	.string "…And that's all that is currently\n"
 	.string "known about Joltik's habitat during\l"
 	.string "the winter.\p"
 	.string "Neat, isn't it?$"
 
 GinkoWoods_EventScript_Bean_Text_4:
-# 95 "data/maps/GinkoWoods/scripts.pory"
+# 99 "data/maps/GinkoWoods/scripts.pory"
 	.string "… …Yes?$"
 
 GinkoWoods_EventScript_Bean_Text_5:
-# 96 "data/maps/GinkoWoods/scripts.pory"
+# 100 "data/maps/GinkoWoods/scripts.pory"
 	.string "Do I know you?$"
 
 GinkoWoods_EventScript_Bean_Text_6:
-# 97 "data/maps/GinkoWoods/scripts.pory"
+# 101 "data/maps/GinkoWoods/scripts.pory"
 	.string "I was just passing through…$"
 
 GinkoWoods_EventScript_Bean_Text_7:
-# 104 "data/maps/GinkoWoods/scripts.pory"
-	.string "Right! I'm glad you share my interest\n"
+# 108 "data/maps/GinkoWoods/scripts.pory"
+	.string "Right! I am glad you share my interest\n"
 	.string "for Pokémon habitat.\p"
 	.string "I am Hariko. And what is your name?\p"
-	.string "{PLAYER}. It's been nice chatting\n"
+	.string "{PLAYER}. It has been nice chatting\n"
 	.string "with you. I will see you around, then.\p"
 	.string "Okay, bye!$"
 
 GinkoWoods_EventScript_Bean_Text_8:
-# 111 "data/maps/GinkoWoods/scripts.pory"
+# 115 "data/maps/GinkoWoods/scripts.pory"
 	.string "Right! I haven't introduced myself\n"
 	.string "yet.\p"
 	.string "I am Hariko. And what is your name?\p"
-	.string "{PLAYER}. It's been nice chatting\n"
+	.string "{PLAYER}. It has been nice chatting\n"
 	.string "with you. I will see you around, then.\p"
 	.string "Okay, bye!$"
 
 GinkoWoods_EventScript_Bean_Text_9:
-# 118 "data/maps/GinkoWoods/scripts.pory"
+# 122 "data/maps/GinkoWoods/scripts.pory"
 	.string "…Oh. I am blocking your path. I see.\p"
-	.string "I guess I got carried away, haven't I?\n"
-	.string "That… tends to happen.\p"
+	.string "I guess I got carried away, have I\n"
+	.string "not? That… tends to happen.\p"
 	.string "I am Hariko. And what is your name?\p"
-	.string "{PLAYER}. It's been nice chatting\n"
+	.string "{PLAYER}. It has been nice chatting\n"
 	.string "with you. I am moving now, so that you\l"
 	.string "can go through.\p"
 	.string "I will see you around, then.\p"
 	.string "Okay, bye!$"
 
 GinkoWoods_EventScript_Tracks_Text_0:
-# 152 "data/maps/GinkoWoods/scripts.pory"
+# 156 "data/maps/GinkoWoods/scripts.pory"
 	.string "THE TRACKS!! YOU'RE STEPPING ON\n"
 	.string "THEM!!!$"
 
 GinkoWoods_EventScript_TrainerTips1_Text_0:
-# 168 "data/maps/GinkoWoods/scripts.pory"
+# 172 "data/maps/GinkoWoods/scripts.pory"
 	.string "Did you know?\p"
 	.string "Some items can be hidden under the\n"
 	.string "forest's thick canopy. Look around!$"
 
 GinkoWoods_EventScript_TrainerTips2_Text_0:
-# 176 "data/maps/GinkoWoods/scripts.pory"
+# 180 "data/maps/GinkoWoods/scripts.pory"
 	.string "Did you know?\p"
 	.string "You can sort the contents of your\n"
 	.string "bag by pressing START.$"

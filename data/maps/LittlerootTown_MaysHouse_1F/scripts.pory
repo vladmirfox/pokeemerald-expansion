@@ -12,7 +12,7 @@ script LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi {
 		"Oh, hi {PLAYER}{KUN}, you're up! Ready for the big event?\p"
 		"Are you excited? I sure hope you are, because I'm VERY EXCITED!\p"
 		"I have to head out, but I'll meet you there, okay?\p"
-		"Oh, by the way, your friend {RIVAL} left you a note.\p"
+		"Oh, by the way, your friend Natsuki left you a note.\p"
 		"Make sure you read it!"
 	))
 	closemessage
@@ -55,7 +55,7 @@ script LittlerootTown_MaysHouse_1F_EventScript_ReadRivalsNote {
 	msgbox(format(
 			"“Hey {PLAYER}{KUN},\p"
 			"“I'm going down to the beach before the giveaway, meet me there if you wanna hang out.\p"
-			"“-{RIVAL}”"
+			"“-Natsuki”"
 		))
     release
     end

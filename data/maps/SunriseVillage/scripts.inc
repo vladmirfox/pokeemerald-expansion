@@ -561,7 +561,7 @@ SunriseVillage_Event_PlayersHouseSign_Text_0:
 
 SunriseVillage_Event_RivalsHouseSign_Text_0:
 # 296 "data/maps/SunriseVillage/scripts.pory"
-	.string "{RIVAL}'s house$"
+	.string "Natsuki's house$"
 
 SunriseVillage_Event_EldersHouseSign_Text_0:
 # 300 "data/maps/SunriseVillage/scripts.pory"

@@ -34,7 +34,7 @@ script SakuTown_EventScript_RivalAtSakuWall {
 	applymovement(LOCALID_RIVAL, SakuTown_Movement_WalkUp)
 	waitmovement(0)
 
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	msgbox(format(
 		"I was wondering if you'd already reached Saku Village by now. Looks like we almost missed each other!\p"
 		"Have you caught any Pokémon on your way here?\p"
@@ -51,7 +51,7 @@ script SakuTown_EventScript_RivalAtSakuWall {
 			trainerbattle_no_intro(TRAINER_RIVAL_SAKU_TRAPINCH, SakuTown_Text_RivalDefeat)
 	}
 
-	speakername("{RIVAL}")
+	speakername("Natsuki")
 	msgbox(format(
 		"Okay, I… I didn't think you'd go that hard, honestly!\p"
 		"Hahaha…\p"

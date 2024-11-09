@@ -119,7 +119,7 @@ LittlerootTown_MaysHouse_1F_EventScript_BigSisSaysHi_Text_0:
 	.string "because I'm VERY EXCITED!\p"
 	.string "I have to head out, but I'll meet you\n"
 	.string "there, okay?\p"
-	.string "Oh, by the way, your friend {RIVAL}\n"
+	.string "Oh, by the way, your friend Natsuki\n"
 	.string "left you a note.\p"
 	.string "Make sure you read it!$"
 
@@ -133,7 +133,7 @@ LittlerootTown_MaysHouse_1F_EventScript_ReadRivalsNote_Text_0:
 	.string "“I'm going down to the beach before\n"
 	.string "the giveaway, meet me there if you\l"
 	.string "wanna hang out.\p"
-	.string "“-{RIVAL}”$"
+	.string "“-Natsuki”$"
 
 LittlerootTown_MaysHouse_1F_EventScript_RunningShoesBox_Text_0:
 # 67 "data/maps/LittlerootTown_MaysHouse_1F/scripts.pory"

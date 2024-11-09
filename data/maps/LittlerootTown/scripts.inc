@@ -1719,7 +1719,7 @@ LittlerootTown_Text_PlayersHouse:
 # 860 "data/maps/LittlerootTown/scripts.pory"
 LittlerootTown_Text_RivalsHouse:
 # 861 "data/maps/LittlerootTown/scripts.pory"
-	.string "{RIVAL}'s HOUSE$"
+	.string "Natsuki's HOUSE$"
 # 862 "data/maps/LittlerootTown/scripts.pory"
 
 # 863 "data/maps/LittlerootTown/scripts.pory"
