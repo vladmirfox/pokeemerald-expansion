@@ -822,13 +822,15 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
 
 void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
 {
+    //  If the string already has line breaks, don't interfere with them
     if (StringHasManualBreaks(src))
         return;
-    s32 bestBadness = -1;
+    //s32 bestBadness = -1;
     u16 numChars = 1;
     u16 numWords = 1;
     u16 currWordIndex = 0;
     u8 currWordLength = 1;
+    //  Sanity check
     if (src[0] == EOS)
         return;
     bool32 isPrevCharSplitting = FALSE;
@@ -912,6 +914,7 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
             stringLines[lineIndex].spaceWidth = spaceWidth;
             stringLines[lineIndex].extraSpaceWidth = 0;
         }
+        //  LINE LAYOUT STARTS HERE
         currWordIndex = 0;
         u16 currLineIndex = 0;
         stringLines[currLineIndex].words = &allWords[currWordIndex];

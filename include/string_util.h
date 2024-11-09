@@ -20,6 +20,11 @@ enum StringConvertMode
     STR_CONV_MODE_LEADING_ZEROS
 };
 
+struct SubString {
+    u16 startIndex;
+    u16 length;
+};
+
 struct StringWord {
     u32 startIndex:16;
     u32 length:8;
