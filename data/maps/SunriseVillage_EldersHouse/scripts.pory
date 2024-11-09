@@ -467,6 +467,11 @@ movement SunriseVillage_EldersHouse_Movement_RivalPreBattlePose {
 	face_player
 }
 
+script SunriseVillage_EldersHouse_EventScript_Natsuki {
+	speakername("Natsuki")
+	msgbox(format("Hm, which one will I choose?…"), MSGBOX_NPC)
+}
+
 script SunriseVillage_EldersHouse_EventScript_PostBattle {
 	special(HealPlayerParty)
 	specialvar(VAR_RESULT, GetBattleOutcome)

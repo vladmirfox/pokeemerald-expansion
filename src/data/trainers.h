@@ -32458,7 +32458,7 @@ F_TRAINER_FEMALE |
     [TRAINER_KENJI] =
     {
 #line 12957
-        .trainerName = _("KENJI"),
+        .trainerName = _("Kenji"),
 #line 12958
         .trainerClass = TRAINER_CLASS_ARTIST,
 #line 12959
