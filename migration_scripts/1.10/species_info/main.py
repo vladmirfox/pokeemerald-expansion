@@ -20,22 +20,52 @@ for file in glob.glob('./src/data/pokemon_graphics/front_pic_anims.h'):
     with open(file, 'r') as f:
         anim_table_content = f.read()
 
+# Read GBA front pic coordinates
+for file in glob.glob('./migration_scripts/1.10/species_info/front_pic_coordinates.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *\{ *\.size *= *MON_COORDS_SIZE\( *(\w+) *, *(\w+) *\) *, \.y_offset = *(\w+) \},', re.MULTILINE)
+gba_data_front_pic_coords = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 4:
+        species_define, width, height, yOffset = match
+        gba_data_front_pic_coords[species_define] = (width, height, yOffset)
+
+# Read GBA front pic coordinates
+for file in glob.glob('./migration_scripts/1.10/species_info/back_pic_coordinates.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *\{ *\.size *= *MON_COORDS_SIZE\( *(\w+) *, *(\w+) *\) *, \.y_offset = *(\w+) \},', re.MULTILINE)
+gba_data_back_pic_coords = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 4:
+        species_define, width, height, yOffset = match
+        gba_data_back_pic_coords[species_define] = (width, height, yOffset)
+
 # Read existing animations present to avoid removing shared animations
 anim_table_data = {}
 shared_anim_table_data = {}
+species_data = {}
 pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
+species_pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?) {8}\.frontPicSize = MON_COORDS_SIZE\((\w+), (\w+)\),\n {8}\.frontPicYOffset = (.*),\n', re.MULTILINE)
 for root, dirs, files in os.walk(main_dir):
     files.sort()
     for fileName in files:
         for file in glob.glob(main_dir + "/" + fileName):
             with open(file, 'r') as f:
                 species_content = f.read()
+            # Find animation label pattern
             for match in pattern.findall(species_content):
                 if match in anim_table_data:
                     if match not in shared_anim_table_data:
                         shared_anim_table_data[match] = match
                 else:
                     anim_table_data[match] = match
+            # Find sprite data
+            for match in species_pattern.findall(species_content):
+                if len(match) == 6:
+                    species_define, fillerLines, unused1, frontPicWidth, frontPicHeight, frontPicYOffset = match
+                    species_data[species_define] = (frontPicWidth, frontPicHeight, frontPicYOffset)
 
 # Extract animation data from front_pic_anims.h
 anim_table_pattern = re.compile(r'static const union AnimCmd sAnim_(\w+)_1\[\] =\n\{\n((    (ANIMCMD_FRAME\(\d+ *, \d+ *\)|ANIMCMD_LOOP\(\d+\)),\n){1,})    ANIMCMD_END,\n\};', re.MULTILINE)
@@ -142,6 +172,72 @@ def add_jump_data(match):
     else:
         return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,\n        FOOTPRINT'
 
+def add_gba_frontPicSize_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    width = match.group(4)
+    height = match.group(5)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_front_pic_coords:
+        updated = True
+        str = str + f'        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE({gba_data_front_pic_coords[mon_name][0]}, {gba_data_front_pic_coords[mon_name][1]}) : MON_COORDS_SIZE({width}, {height}),\n'
+    else:
+        str = str + f'        .frontPicSize = MON_COORDS_SIZE({width}, {height}),\n'
+    return str
+
+def add_gba_frontPicYOffset_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    frontPicYOffset = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_front_pic_coords:
+        updated = True
+        str = str + f'        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? {gba_data_front_pic_coords[mon_name][2]} : {frontPicYOffset},\n'
+    else:
+        str = str + f'        .frontPicYOffset = {frontPicYOffset},\n'
+    return str
+
+def add_gba_backPicSize_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    width = match.group(4)
+    height = match.group(5)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_back_pic_coords:
+        updated = True
+        str = str + f'        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE({gba_data_back_pic_coords[mon_name][0]}, {gba_data_back_pic_coords[mon_name][1]}) : MON_COORDS_SIZE({width}, {height}),\n'
+    else:
+        str = str + f'        .backPicSize = MON_COORDS_SIZE({width}, {height}),\n'
+    return str
+
+def add_gba_backPicYOffset_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    backPicYOffset = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_back_pic_coords:
+        updated = True
+        str = str + f'        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? {gba_data_back_pic_coords[mon_name][2]} : {backPicYOffset},\n'
+    else:
+        str = str + f'        .backPicYOffset = {backPicYOffset},\n'
+    return str
+
 for root, dirs, files in os.walk(main_dir):
     files.sort()
     for fileName in files:
@@ -166,8 +262,18 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(update_set_anim_follower_data, species_content)
 
         # Alter Pokémon Jump data
-        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n((.*\n){1,}?)        \.iconPalIndex = (.*),\n        FOOTPRINT', re.MULTILINE)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (.*),\n {8}FOOTPRINT', re.MULTILINE)
         species_content = pattern.sub(add_jump_data, species_content)
+
+        # Alter GBA data
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontPicSize = MON_COORDS_SIZE\((\w+), (\w+)\),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_frontPicSize_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontPicYOffset = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_frontPicYOffset_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.backPicSize = MON_COORDS_SIZE\((\w+), (\w+)\),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_backPicSize_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.backPicYOffset = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_backPicYOffset_data, species_content)
 
         # Rename form labels and defines
         for form_labels in label_renames:
