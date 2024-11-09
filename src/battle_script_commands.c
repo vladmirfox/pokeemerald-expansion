@@ -13147,19 +13147,12 @@ static void Cmd_trychoosesleeptalkmove(void)
 static void Cmd_trysetdestinybond(void)
 {
     CMD_ARGS(const u8 *failInstr);
-
-    if (gMovesInfo[gLastResultingMoves[gBattlerAttacker]].effect != EFFECT_DESTINY_BOND)
-        gDisableStructs[gBattlerAttacker].usedDestinyBond = FALSE;
-
-    if (B_DESTINY_BOND_FAIL >= GEN_7 && gDisableStructs[gBattlerAttacker].usedDestinyBond)
+    if (DoesDestinyBondFail(gBattlerAttacker))
     {
-        gDisableStructs[gBattlerAttacker].usedDestinyBond = FALSE;
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        if (B_DESTINY_BOND_FAIL >= GEN_7)
-            gDisableStructs[gBattlerAttacker].usedDestinyBond = TRUE;
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_DESTINY_BOND;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

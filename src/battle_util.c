@@ -11923,3 +11923,12 @@ u32 GetMoveType(u32 move)
           return TYPE_MYSTERY;
     return gMovesInfo[move].type;
 }
+
+bool32 DoesDestinyBondFail(u32 battler)
+{
+    if (B_DESTINY_BOND_FAIL >= GEN_7
+        && gMovesInfo[gLastResultingMoves[battler]].effect == EFFECT_DESTINY_BOND
+        && !(gBattleStruct->lastMoveFailed & (1u << battler)))
+        return TRUE;
+    return FALSE;
+}
