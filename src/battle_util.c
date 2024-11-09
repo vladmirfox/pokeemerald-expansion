@@ -3438,21 +3438,24 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_DROWSY:
-            if (UproarWakeUpCheck(gBattlerAttacker))
+            if (gBattleMons[gBattlerAttacker].status1 & STATUS1_DROWSY)
             {
-                gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_DROWSY;
-                gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
-                BattleScriptPushCursor();
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WOKE_UP_UPROAR;
-                gBattlescriptCurrInstr = BattleScript_MoveUsedWokeUp;
-                effect = 2;
-            }
-            else if (!gBattleStruct->isAtkCancelerForCalledMove && (gBattleMons[gBattlerAttacker].status1 & STATUS1_DROWSY) && !RandomPercentage(RNG_DROWSY, 75))
-            {
-                gProtectStructs[gBattlerAttacker].drsImmobility = TRUE;
-                gBattlescriptCurrInstr = BattleScript_MoveUsedIsDrowsy;
-                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
+                if (UproarWakeUpCheck(gBattlerAttacker))
+                {
+                    gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_DROWSY;
+                    gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
+                    BattleScriptPushCursor();
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WOKE_UP_UPROAR;
+                    gBattlescriptCurrInstr = BattleScript_MoveUsedWokeUp;
+                    effect = 2;
+                }
+                else if (gChosenMove != MOVE_SNORE && gChosenMove != MOVE_SLEEP_TALK && !gBattleStruct->isAtkCancelerForCalledMove && !RandomPercentage(RNG_DROWSY, 75))
+                {
+                    gProtectStructs[gBattlerAttacker].drsImmobility = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_MoveUsedIsDrowsy;
+                    gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                    effect = 1;
+                }
             }
             gBattleStruct->atkCancellerTracker++;
             break;
