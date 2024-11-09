@@ -9,6 +9,7 @@ label_renames = [
     ["Galarian", "Galar", "GALARIAN", "GALAR"],
     ["Hisuian", "Hisui", "HISUIAN", "HISUI"],
     ["Paldean", "Paldea", "PALDEAN", "PALDEA"],
+    ["Gigantamax", "Gmax", "GIGANTAMAX", "GMAX"],
 ]
 
 if not os.path.exists("Makefile"):
@@ -182,7 +183,7 @@ def add_gba_frontPicSize_data(match):
     height = match.group(5)
     str = f'    [SPECIES_{mon_name}] =\n'
     str = str + f'    {brace}\n{in_bewteen_rows}'
-    if mon_name in gba_data_front_pic_coords:
+    if mon_name in gba_data_front_pic_coords and (gba_data_front_pic_coords[mon_name][0] != width or gba_data_front_pic_coords[mon_name][1] != height):
         updated = True
         str = str + f'        .frontPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE({gba_data_front_pic_coords[mon_name][0]}, {gba_data_front_pic_coords[mon_name][1]}) : MON_COORDS_SIZE({width}, {height}),\n'
     else:
@@ -198,7 +199,7 @@ def add_gba_frontPicYOffset_data(match):
     frontPicYOffset = match.group(4)
     str = f'    [SPECIES_{mon_name}] =\n'
     str = str + f'    {brace}\n{in_bewteen_rows}'
-    if mon_name in gba_data_front_pic_coords:
+    if mon_name in gba_data_front_pic_coords and (gba_data_front_pic_coords[mon_name][2] != frontPicYOffset):
         updated = True
         str = str + f'        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? {gba_data_front_pic_coords[mon_name][2]} : {frontPicYOffset},\n'
     else:
@@ -215,7 +216,7 @@ def add_gba_backPicSize_data(match):
     height = match.group(5)
     str = f'    [SPECIES_{mon_name}] =\n'
     str = str + f'    {brace}\n{in_bewteen_rows}'
-    if mon_name in gba_data_back_pic_coords:
+    if mon_name in gba_data_back_pic_coords and (gba_data_back_pic_coords[mon_name][0] != width or gba_data_back_pic_coords[mon_name][1] != height):
         updated = True
         str = str + f'        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE({gba_data_back_pic_coords[mon_name][0]}, {gba_data_back_pic_coords[mon_name][1]}) : MON_COORDS_SIZE({width}, {height}),\n'
     else:
@@ -231,7 +232,7 @@ def add_gba_backPicYOffset_data(match):
     backPicYOffset = match.group(4)
     str = f'    [SPECIES_{mon_name}] =\n'
     str = str + f'    {brace}\n{in_bewteen_rows}'
-    if mon_name in gba_data_back_pic_coords:
+    if mon_name in gba_data_back_pic_coords and (gba_data_back_pic_coords[mon_name][2] != backPicYOffset):
         updated = True
         str = str + f'        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? {gba_data_back_pic_coords[mon_name][2]} : {backPicYOffset},\n'
     else:
