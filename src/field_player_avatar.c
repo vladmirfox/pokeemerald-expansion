@@ -9,6 +9,7 @@
 #include "field_screen_effect.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
+#include "fldeff.h"
 #include "menu.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -740,6 +741,19 @@ u8 CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16 x, s16 y, u
         CheckAcroBikeCollision(x, y, metatileBehavior, &collision);
     }
 
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_CUTTABLE_TREE) && OW_FLAG_AUTO_USE_CUT)
+        AutoUseCut();
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_BREAKABLE_ROCK) && OW_FLAG_AUTO_USE_ROCK_SMASH)
+        AutoUseRockSmash();
+    if (IsPlayerFacingSurfableFishableWater() && OW_FLAG_AUTO_USE_SURF)
+    {
+        AutoUseSurf();
+    }
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_PUSHABLE_BOULDER) && OW_FLAG_AUTO_USE_STRENGTH)
+    {
+        AutoUseStrength();
+    }
+
     return collision;
 }
 
@@ -791,13 +805,14 @@ static bool8 TryPushBoulder(s16 x, s16 y, u8 direction)
             y = gObjectEvents[objectEventId].currentCoords.y;
             MoveCoords(direction, &x, &y);
             if (GetCollisionAtCoords(&gObjectEvents[objectEventId], x, y, direction) == COLLISION_NONE
-             && MetatileBehavior_IsNonAnimDoor(MapGridGetMetatileBehaviorAt(x, y)) == FALSE)
+                && MetatileBehavior_IsNonAnimDoor(MapGridGetMetatileBehaviorAt(x, y)) == FALSE)
             {
                 StartStrengthAnim(objectEventId, direction);
                 return TRUE;
             }
         }
     }
+
     return FALSE;
 }
 

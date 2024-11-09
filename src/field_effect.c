@@ -2,6 +2,7 @@
 #include "data.h"
 #include "decompress.h"
 #include "event_object_movement.h"
+#include "event_data.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
 #include "field_effect.h"
@@ -24,6 +25,7 @@
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
+#include "string_util.h"
 #include "task.h"
 #include "trainer_pokemon_sprites.h"
 #include "trig.h"
@@ -1912,18 +1914,21 @@ static bool8 WaterfallFieldEffect_ContinueRideOrEnd(struct Task *task, struct Ob
     return FALSE;
 }
 
-#undef tState
-#undef tMonId
-
 bool8 FldEff_UseDive(void)
 {
     u8 taskId;
     taskId = CreateTask(Task_UseDive, 0xff);
+    if (OW_FLAG_AUTO_USE_DIVE)
+        gTasks[taskId].tMonId = 1;
+
     gTasks[taskId].data[15] = gFieldEffectArguments[0];
     gTasks[taskId].data[14] = gFieldEffectArguments[1];
     Task_UseDive(taskId);
     return FALSE;
 }
+
+#undef tState
+#undef tMonId
 
 void Task_UseDive(u8 taskId)
 {

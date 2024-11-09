@@ -1,5 +1,6 @@
 #ifndef GUARD_CONFIG_OVERWORLD_H
 #define GUARD_CONFIG_OVERWORLD_H
+#include "constants/flags.h"
 
 // Movement config
 #define OW_RUNNING_INDOORS          GEN_LATEST  // In Gen4+, players are allowed to run indoors.
@@ -84,8 +85,18 @@
 #define OW_FLAG_PAUSE_TIME          0  // If this flag is set and OW_USE_FAKE_RTC is enabled, seconds on the in-game clock will not advance.
 #define OW_FLAG_NO_ENCOUNTER        0x20  // If this flag is set, wild encounters will be disabled.
 #define OW_FLAG_NO_TRAINER_SEE      0  // If this flag is set, trainers will not battle the player unless they're talked to.
-#define OW_FLAG_NO_COLLISION        0  // If this flag is set, the player will be able to walk over tiles with collision. Mainly intended for debugging purposes.
-#define OW_FLAG_AUTO_USE_FLASH      TRUE // If this flag is set, if the player has Badge 2 and HM05 Flash, the game will attempt to auto-use HM05 Flash in dark caves.
+#define OW_FLAG_NO_COLLISION        FLAG_UNUSED_0x95E  // If this flag is set, the player will be able to walk over tiles with collision. Mainly intended for debugging purposes.
+
+// Auto HM flags
+#define OW_FLAG_AUTO_HMS                   TRUE // If this flag is set, the game will attempt to use HMs when they are contextually relevant; ie, facing a cuttable tree or in dark caves.
+#define OW_FLAG_AUTO_USE_CUT               OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 1 and the HM Cut, the game will attempt to auto-use Cut when facing cuttable trees.
+#define OW_FLAG_AUTO_USE_FLASH             OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 2 and the HM Flash, the game will attempt to auto-use Flash in dark caves.
+#define OW_FLAG_AUTO_USE_ROCK_SMASH        OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 3 and the HM Rock Smash, the game will attempt to auto-use Rock Smash when facing breakable rocks.
+#define OW_FLAG_AUTO_USE_STRENGTH          OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 4 and the HM Strength, the game will attempt to auto-use Strength when facing pushable rocks.
+#define OW_FLAG_AUTO_USE_SURF              OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 5 and the HM Surf, the game will attempt to auto-use Surf when facing surfable water.
+#define OW_FLAG_AUTO_USE_FLY               OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 6 and the HM Fly, the player can use Fly from the PokeNav Map directly. // will need testing
+#define OW_FLAG_AUTO_USE_WATERFALL         OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 7 and the HM Waterfall, the game will attempt to auto-use Waterfall when facing a climbable waterfall.
+#define OW_FLAG_AUTO_USE_DIVE              OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 8 and the HM Dive, the game will attempt to auto-use Dive when A or B is pressed on or in deeper water.
 
 #define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    FALSE    // If set to TRUE, battle pyramid Pokemon will be generated randomly based on the round's challenge instead of hardcoded in src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (or open_level_wild_mons.h)
 

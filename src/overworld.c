@@ -67,6 +67,7 @@
 #include "constants/abilities.h"
 #include "constants/layouts.h"
 #include "constants/map_types.h"
+#include "constants/moves.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
@@ -828,7 +829,6 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     s32 paletteIndex;
 
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
-    PlaySE(SE_M_REVERSAL);
 
     // Dont transition map music between BF Outside West/East
     if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER)
@@ -853,7 +853,6 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
     SetDefaultFlashLevel();
-    CheckUseAutoFlash();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
@@ -924,7 +923,6 @@ static void LoadMapFromWarp(bool32 a1)
         FlagClear(FLAG_SYS_USE_FLASH);
 
     SetDefaultFlashLevel();
-    CheckUseAutoFlash();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     UpdateLocationHistoryForRoamer();
@@ -941,6 +939,11 @@ static void LoadMapFromWarp(bool32 a1)
     {
         UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
         InitSecretBaseAppearance(TRUE);
+    }
+
+    if (OW_FLAG_AUTO_USE_FLASH)
+    {
+        AutoUseFlash();
     }
 }
 
@@ -1048,8 +1051,6 @@ void SetDefaultFlashLevel(void)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
         gSaveBlock1Ptr->flashLevel = 1;
-    else if (gMapHeader.cave && (GetFlashLevel() >= (gMaxFlashLevel - 1)))
-        CheckUseAutoFlash();
     else
         gSaveBlock1Ptr->flashLevel = gMaxFlashLevel - 1;
 }
@@ -1066,20 +1067,97 @@ u8 GetFlashLevel(void)
     return gSaveBlock1Ptr->flashLevel;
 }
 
-// Checks if HM05 Flash can be auto-used, and if yes, uses it
-void CheckUseAutoFlash(void)
+void DEBUG_SetAllHMFlags(void) 
 {
-    PlaySE(SE_M_REVERSAL);
-    bool8 CanAutoUseFlash = (FlagGet(OW_FLAG_AUTO_USE_FLASH) && FlagGet(FLAG_RECEIVED_HM_FLASH) && FlagGet(FLAG_BADGE02_GET));
+    FlagSet(FLAG_RECEIVED_HM_CUT);
+    FlagSet(FLAG_RECEIVED_HM_FLASH);
+    FlagSet(FLAG_RECEIVED_HM_ROCK_SMASH);
+    FlagSet(FLAG_RECEIVED_HM_STRENGTH);
+    FlagSet(FLAG_RECEIVED_HM_SURF);
+    FlagSet(FLAG_RECEIVED_HM_FLY);
+    FlagSet(FLAG_RECEIVED_HM_DIVE);
+    FlagSet(FLAG_RECEIVED_HM_WATERFALL);
+}
 
-    if (CanAutoUseFlash > 0)
-        FlagSet(FLAG_UNUSED_0x8EE); // debugging, will remove later
+void DEBUG_SetAllBadges(void)
+{
+    FlagSet(FLAG_BADGE01_GET);
+    FlagSet(FLAG_BADGE02_GET);
+    FlagSet(FLAG_BADGE03_GET);
+    FlagSet(FLAG_BADGE04_GET);
+    FlagSet(FLAG_BADGE05_GET);
+    FlagSet(FLAG_BADGE06_GET);
+    FlagSet(FLAG_BADGE07_GET);
+    FlagSet(FLAG_BADGE08_GET);
 
-    if (gMapHeader.cave && (CanAutoUseFlash > 0))
+}
+
+bool32 CanAutoUseFieldMove(u16 move) {
+    if (move == MOVE_CUT)
+        return FlagGet(FLAG_RECEIVED_HM_CUT) && FlagGet(FLAG_BADGE01_GET);
+    else if (move == MOVE_FLASH)
+        return FlagGet(FLAG_RECEIVED_HM_FLASH) && FlagGet(FLAG_BADGE02_GET);
+    else if (move == MOVE_ROCK_SMASH)
+        return FlagGet(FLAG_RECEIVED_HM_ROCK_SMASH) && FlagGet(FLAG_BADGE03_GET);
+    else if (move == MOVE_STRENGTH)
+        return FlagGet(FLAG_RECEIVED_HM_STRENGTH) && FlagGet(FLAG_BADGE04_GET);
+    else if (move == MOVE_SURF)
+        return FlagGet(FLAG_RECEIVED_HM_SURF) && FlagGet(FLAG_BADGE05_GET);
+    else if (move == MOVE_FLY)
+        return FlagGet(FLAG_RECEIVED_HM_FLY) && FlagGet(FLAG_BADGE06_GET);
+    else if (move == MOVE_DIVE)
+        return FlagGet(FLAG_RECEIVED_HM_DIVE) && FlagGet(FLAG_BADGE07_GET);
+    else if (move == MOVE_WATERFALL)
+        return FlagGet(FLAG_RECEIVED_HM_WATERFALL) && FlagGet(FLAG_BADGE08_GET);
+    
+    return FALSE;
+}
+
+void AutoUseCut(void)
+{
+    if (CanAutoUseFieldMove(MOVE_CUT))
     {
-        PlaySE(SE_M_REFLECT);
-        SetFlashLevel(1);
-        FlagSet(FLAG_SYS_USE_FLASH);
+        FieldCallback_CutTree();
+    }
+}
+
+// Checks if the HM Flash can be auto-used, and if yes, uses it
+void AutoUseFlash(void)
+{
+    if (gMapHeader.cave && CanAutoUseFieldMove(MOVE_FLASH) && !FlagGet(FLAG_SYS_USE_FLASH))
+        SetUpFieldMove_Flash();
+}
+
+void AutoUseRockSmash(void)
+{
+    if (CanAutoUseFieldMove(MOVE_ROCK_SMASH))
+    {
+        FieldCallback_RockSmash();
+    }
+}
+
+void AutoUseStrength(void)
+{
+    if (CanAutoUseFieldMove(MOVE_STRENGTH) && !FlagGet(FLAG_SYS_USE_STRENGTH))
+    {
+        FlagSet(FLAG_SYS_USE_STRENGTH);
+        FieldCallback_Strength();
+    }
+}
+
+void AutoUseSurf(void)
+{
+    if (CanAutoUseFieldMove(MOVE_SURF) && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
+    {
+        FldEff_UseSurf();
+    }
+}
+
+void AutoUseDive(void)
+{
+    if (CanAutoUseFieldMove(MOVE_DIVE))
+    {
+        FldEff_UseDive();
     }
 }
 
@@ -1852,6 +1930,13 @@ void CB2_ContinueSavedGame(void)
         SetMainCallback1(CB1_Overworld);
         CB2_ReturnToField();
     }
+
+    if (OW_FLAG_AUTO_USE_FLASH)
+    {
+        AutoUseFlash();
+    }
+    DEBUG_SetAllHMFlags(); // remember to delete this once you're done!
+    DEBUG_SetAllBadges(); // remember to delete this once you're done!
 }
 
 static void FieldClearVBlankHBlankCallbacks(void)

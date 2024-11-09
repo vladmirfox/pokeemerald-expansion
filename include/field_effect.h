@@ -49,4 +49,10 @@ void FreeResourcesAndDestroySprite(struct Sprite *sprite, u8 spriteId);
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority);
 void StartEscapeRopeFieldEffect(void);
 
+// surf
+u8 FldEff_UseSurf(void);
+
+// dive
+bool8 FldEff_UseDive(void);
+
 #endif // GUARD_FIELD_EFFECTS_H

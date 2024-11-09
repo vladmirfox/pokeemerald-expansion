@@ -335,6 +335,16 @@ EventScript_UseDive::
 	goto EventScript_EndDive
 	end
 
+EventScript_AutoUseDive::
+	setfieldeffectargument 1, 1
+	msgbox Text_WantToDive, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EventScript_EndDive
+	msgbox Text_MonUsedDive, MSGBOX_DEFAULT
+	dofieldeffect FLDEFF_USE_DIVE
+	goto EventScript_EndDive
+	end
+
+
 EventScript_CantDive::
 	msgbox Text_CantDive, MSGBOX_DEFAULT
 	releaseall
