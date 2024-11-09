@@ -7,19 +7,25 @@ const LOCALID_SPHEAL = 7
 const LOCALID_TRAPINCH = 8
 const LOCALID_RIVAL = 2
 
+const FLAG_HIDE_STARTERS = FLAG_TEMP_1
+
 mapscripts SunriseVillage_EldersHouse_MapScripts {
 	MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_SUNRISE_VILLAGE_INTRO_STATE, 4: SunriseVillage_EldersHouse_EventScript_DistributionCutscene
     ]
-	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-		VAR_TEMP_0, 0 {
-			// Hiding the mons inside their ball
-			removeobject(LOCALID_ARON)
-			removeobject(LOCALID_SPHEAL)
-			removeobject(LOCALID_TRAPINCH)
-			clearflag(FLAG_RECEIVED_STARTER)
+	MAP_SCRIPT_ON_TRANSITION {
+		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) < 7) {
+			setflag(FLAG_HIDE_STARTERS)
 		}
-	]
+	}
+	// MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+	// 	VAR_SUNRISE_VILLAGE_INTRO_STATE, 4 {
+	// 		// Hiding the mons inside their ball
+	// 		removeobject(LOCALID_ARON)
+	// 		removeobject(LOCALID_SPHEAL)
+	// 		removeobject(LOCALID_TRAPINCH)
+	// 	}
+	// ]
 }
 
 script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
@@ -53,6 +59,8 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 	))
 	closemessage
 
+	clearflag(FLAG_HIDE_STARTERS)
+
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderOpensFirstBall)
 	waitmovement(0)
 	playse(SE_BALL_OPEN)
@@ -79,8 +87,6 @@ script SunriseVillage_EldersHouse_EventScript_DistributionCutscene {
 	addobject(LOCALID_TRAPINCH)
 	playmoncry(SPECIES_TRAPINCH, CRY_MODE_NORMAL)
 	delay(30)
-
-	clearflag(FLAG_RECEIVED_STARTER)
 
 	applymovement(LOCALID_ELDER, SunriseVillage_EldersHouse_Movement_ElderReturnsToInitialPos)
 	waitmovement(0)
@@ -134,27 +140,6 @@ movement SunriseVillage_EldersHouse_Movement_RivalIsDeslighted {
 	jump_in_place_up
 }
 
-script SunriseVillage_EldersHouse_Event_Rival {
-	lock
-	faceplayer
-	speakername("Natsuki")
-	if (flag(FLAG_RECEIVED_STARTER)) {
-		msgbox(format(
-			"You alright?\p"
-			"C'mon, let's fight again, and give it your all this time!"
-		))
-		closemessage
-		// Battle!
-		goto(SunriseVillage_EldersHouse_EventScript_RivalBattle)
-	} else {
-		msgbox(format("Don't ask me to pick for you!"))
-		closemessage
-		applymovement(LOCALID_RIVAL, Common_Movement_FaceUp)
-		waitmovement(0)
-	}
-	release
-}
-
 script SunriseVillage_EldersHouse_Event_Elder {
 	lock
 	faceplayer
@@ -165,14 +150,8 @@ script SunriseVillage_EldersHouse_Event_Elder {
 		closemessage
 	} else {
 		// Player has yet to pick a Pokémon
-		if (!flag(FLAG_RECEIVED_STARTER)) {
-			msgbox(format("Choose your new partner wisely.\nNo takebacks."))
-			closemessage
-			// Player has lost their first battle and has to do it again
-		} else {
-			msgbox(format("You're free to battle here, but please don't break anything…"))
-			closemessage
-		}
+		msgbox(format("Choose your new partner wisely.\nNo takebacks."))
+		closemessage
 	}
 	release
 }
@@ -488,6 +467,11 @@ movement SunriseVillage_EldersHouse_Movement_RivalPreBattlePose {
 	face_player
 }
 
+script SunriseVillage_EldersHouse_EventScript_Natsuki {
+	speakername("Natsuki")
+	msgbox(format("Hm, which one will I choose?…"), MSGBOX_NPC)
+}
+
 script SunriseVillage_EldersHouse_EventScript_PostBattle {
 	special(HealPlayerParty)
 	specialvar(VAR_RESULT, GetBattleOutcome)
@@ -495,7 +479,7 @@ script SunriseVillage_EldersHouse_EventScript_PostBattle {
 		speakername("Natsuki")
 		msgbox(format(
 			"Oh, man!\nThat was the most fun I've ever had!\p"
-			"{PLAYER}!\nWe're now officially rivals!"
+			"{PLAYER}!\nWe're now officially rivals!\p"
 			"I went easy on you this time, but\nnext time… You'll see!\p"
 			"I'm going home to pack some things.\p"
 			"See ya later, Feraligatr."
@@ -530,6 +514,9 @@ script SunriseVillage_EldersHouse_EventScript_PostBattle {
 	delay(16)
 
 	setvar(VAR_SUNRISE_VILLAGE_INTRO_STATE, 7)
+
+	// Time starts ticking!
+	resumefakertc
 
 	release
 }

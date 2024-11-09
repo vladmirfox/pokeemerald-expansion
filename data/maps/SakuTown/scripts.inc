@@ -496,7 +496,7 @@ SakuTown_EventScript_RivalAtSakuWall_Text_1:
 
 SakuTown_EventScript_RivalAtSakuWall_Text_2:
 # 37 "data/maps/SakuTown/scripts.pory"
-	.string "{RIVAL}$"
+	.string "Natsuki$"
 
 SakuTown_EventScript_RivalAtSakuWall_Text_3:
 # 39 "data/maps/SakuTown/scripts.pory"

@@ -1,36 +1,84 @@
+const LOCALID_NATSUKI = 5
+const FLAG_HIDE_NATSUKI = FLAG_TEMP_1
+const FLAG_TEMP_TALKED_TO_NATSUKI = FLAG_TEMP_2
+
 mapscripts SunriseVillage_RivalsHouse_MapScripts {
-	
+	MAP_SCRIPT_ON_TRANSITION {
+		// Natsuki's home for a little while after getting your Pokémon
+		if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) != 7) {
+			setflag(FLAG_HIDE_NATSUKI)
+		}
+	}
 }
 
 script SunriseVillage_RivalsHouse_EventScript_Woman {
 	lock
 	faceplayer
-	speakername("{RIVAL}'s mom")
-	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+	speakername("Natsuki's mom")
+	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
 		msgbox(format(
-			"The house feels a little empty now that {RIVAL} has left home.\p"
-			"I'm glad for our Pokémon and the companionship they provide us."
+			"The house feels a little empty\nnow that Natsuki has left home.\p"
+			"I'm glad for our Pokémon and the\ncompanionship they provide us."
 		))
 	} else {
 		msgbox(format(
-			"Hello, {PLAYER}! How are you doing? Off to some trouble with {RIVAL}, I bet?"
+			"Good morning, {PLAYER}!\nToday's the big day, huh?\p"
+			"Break a leg! Don't talk to strangers!"
 		))
 	}
+	release
+}
+
+script SunriseVillage_RivalsHouse_EventScript_Natsuki {
+	lock
+	applymovement(LOCALID_NATSUKI, Common_Movement_FaceUp)
+	waitmovement(0)
+
+	if (flag(FLAG_TEMP_TALKED_TO_NATSUKI)) {
+		speakername("Natsuki")
+		msgbox(format(
+			"Region map, check…\nFavorite plushie, check…"
+		))
+		closemessage
+	} else {
+		speakername("Natsuki")
+		msgbox(format(
+			"Pokéballs, check…\nMedicine, check…\lSpare pair of underwear, check…"
+		))
+		closemessage
+
+		delay(48)
+
+		faceplayer
+		speakername("Natsuki")
+		msgbox(format(
+			"Oh, hey, {PLAYER}. I'm just sorting\nout my stuff for the journey.\p"
+			"I'm traveling as light as possible!\p"
+			"See you around, yeah?"
+		))
+		closemessage
+
+		applymovement(LOCALID_NATSUKI, Common_Movement_FaceUp)
+		waitmovement(0)
+
+		setflag(FLAG_TEMP_TALKED_TO_NATSUKI)
+	}
+
 	release
 }
 
 script SunriseVillage_RivalsHouse_EventScript_Man {
 	lock
 	faceplayer
-	speakername("{RIVAL}'s dad")
-	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 7) {
+	speakername("Natsuki's dad")
+	if (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) >= 8) {
 		msgbox(format(
-			"Hello, {PLAYER}. How is your adventure going?\p"
-			"Make sure you come back to see your sister sometimes, I'm sure she misses you."
+			"Hello, {PLAYER}.\nHow is your adventure going?\p"
+			"Make sure you come back home\nto see your sister sometimes,\lI'm sure she misses you."
 		))
 	} else {
 		msgbox(format(
-			"Hi, {PLAYER}!"
+			"Hello, {PLAYER}! How are you doing? Off to some trouble with Natsuki, I bet?"
 		))
 	}
 	release

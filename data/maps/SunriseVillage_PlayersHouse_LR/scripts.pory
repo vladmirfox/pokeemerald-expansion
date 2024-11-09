@@ -31,7 +31,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi {
 		"Oh, {PLAYER}, you're up! Ready for the big event?\p"
 		"Are you excited? I sure hope you are, because I'm VERY EXCITED!\p"
 		"I have to head out! Don't be late, I know you, little {STR_VAR_1}!\p"
-		"By the way, your friend {RIVAL} left you a note.\p"
+		"By the way, your friend Natsuki left you a note.\p"
 		"Make sure you read it!"
 	))
 	closemessage
@@ -70,7 +70,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_BigSis {
 		special(GetPlayerBrotherSisterString)
 		msgbox(format(
 			"Hey little {STR_VAR_1}! See how cute my new Pokémon is?\p"
-			"By the way, I heard {RIVAL} was waiting for you at Elder Kaba's house. You should probably go see them."
+			"By the way, I heard Natsuki was waiting for you at Elder Kaba's house. You should probably go see them."
 		))
 		closemessage
 	} elif (var(VAR_SUNRISE_VILLAGE_INTRO_STATE) == 7) {
@@ -148,7 +148,7 @@ script SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote {
 	msgbox(format(
 		"“Hey {PLAYER},\n"
 		"I'm going down to the beach before the giveaway, meet me there if you wanna hang out.\p"
-		"-{RIVAL}”"
+		"-Natsuki”"
 	))
 	closemessage
     release

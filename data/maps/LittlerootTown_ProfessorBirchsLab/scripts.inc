@@ -1691,7 +1691,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 865 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "and distribution of POKéMON.\p"
 # 866 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "The PROF enjoys {RIVAL}'s help, too.\n"
+	.string "The PROF enjoys Natsuki's help, too.\n"
 # 867 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 	.string "There's a lot of love there.$"
 # 868 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1743,13 +1743,13 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 891 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "an extremely good TRAINER.\p"
 # 892 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "My kid, {RIVAL}, is also studying\n"
+@ .string "My kid, Natsuki, is also studying\n"
 # 893 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "POKéMON while helping me out.\p"
 # 894 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "{PLAYER}{KUN}, don't you think it might be\n"
 # 895 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "a good idea to go see {RIVAL}?$"
+@ .string "a good idea to go see Natsuki?$"
 # 896 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 
 # 897 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1757,9 +1757,9 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 898 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "PROF. BIRCH: Great!\n"
 # 899 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "{RIVAL} should be happy, too.\p"
+@ .string "Natsuki should be happy, too.\p"
 # 900 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "Get {RIVAL} to teach you what it\n"
+@ .string "Get Natsuki to teach you what it\n"
 # 901 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "means to be a TRAINER.$"
 # 902 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1775,7 +1775,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 907 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome:
 # 908 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "PROF. BIRCH: {RIVAL}?\n"
+@ .string "PROF. BIRCH: Natsuki?\n"
 # 909 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "Gone home, I think.\p"
 # 910 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1793,15 +1793,15 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 916 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "PROF. BIRCH: Oh, hi, {PLAYER}{KUN}!\p"
 # 917 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "I heard you beat {RIVAL} on\n"
+@ .string "I heard you beat Natsuki on\n"
 # 918 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "your first try. That's excellent!\p"
 # 919 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "{RIVAL}'s been helping with my research\n"
+@ .string "Natsuki's been helping with my research\n"
 # 920 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "for a long time.\p"
 # 921 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "{RIVAL} has an extensive history as\n"
+@ .string "Natsuki has an extensive history as\n"
 # 922 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "a TRAINER already.\p"
 # 923 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1827,7 +1827,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 933 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "of any POKéMON you meet or catch.\p"
 # 934 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "My kid, {RIVAL}, goes everywhere\n"
+@ .string "My kid, Natsuki, goes everywhere\n"
 # 935 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "with it.\p"
 # 936 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1835,7 +1835,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 937 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "and records its data in the POKéDEX,\l"
 # 938 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "why, {RIVAL} looks for me while I'm out\l"
+@ .string "why, Natsuki looks for me while I'm out\l"
 # 939 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "doing fieldwork, and shows me.$"
 # 940 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -1969,7 +1969,7 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 # 1004 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "PROF. BIRCH: Now…\p"
 # 1005 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-@ .string "{PLAYER}{KUN} and {RIVAL}, I've had the two\n"
+@ .string "{PLAYER}{KUN} and Natsuki, I've had the two\n"
 # 1006 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
 @ .string "of you help me study POKéMON.\p"
 # 1007 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2321,13 +2321,12 @@ LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo:
 
 LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene_Text_0:
 # 24 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "Elder IWA: {PLAYER}, {RIVAL},\n"
-	.string "take one of these Pokémon.$"
+	.string "Elder IWA: {PLAYER}, Natsuki, take\n"
+	.string "one of these Pokémon.$"
 
 LittlerootTown_ProfessorBirchsLab_Event_DistributionCutscene_Text_1:
 # 30 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "{RIVAL}: C'mon {PLAYER}, pick\n"
-	.string "yours!$"
+	.string "Natsuki: C'mon {PLAYER}, pick yours!$"
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_0:
 # 69 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2349,8 +2348,7 @@ LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_3:
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_4:
 # 101 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "{RIVAL}: I'm choosing this one\n"
-	.string "then!$"
+	.string "Natsuki: I'm choosing this one then!$"
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_5:
 # 122 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
@@ -2363,5 +2361,4 @@ LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_6:
 
 LittlerootTown_ProfessorBirchsLab_Event_Common_Pokeball_Starter_Text_7:
 # 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
-	.string "{RIVAL}: Catch ya later,\n"
-	.string "{PLAYER}!$"
+	.string "Natsuki: Catch ya later, {PLAYER}!$"

@@ -66,6 +66,11 @@ Debug_CheatStart::
 	setflag FLAG_LANDMARK_BATTLE_FRONTIER
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+
+	@ Custom Hearth flags
+	setvar VAR_SUNRISE_VILLAGE_INTRO_STATE, 8
+	setflag FLAG_HIDE_SUNRISE_BEACH_RIVAL
+	setflag FLAG_RECEIVED_STARTER
 	release
 	end
 

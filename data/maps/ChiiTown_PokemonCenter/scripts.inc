@@ -329,7 +329,7 @@ ChiiTown_PokemonCenter_EventScript_ShamisenFan_Text_0:
 ChiiTown_PokemonCenter_EventScript_ShamisenFan_Text_1:
 # 72 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	.string "Such a beautiful voice…\p"
-	.string "Such sorrowful notes…\p"
+	.string "Such sorrowful melodies…\p"
 	.string "Such ethereal beauty…\p"
 	.string "I could listen to her forever…\p"
 	.string "Even though she can't see me, I sure\n"

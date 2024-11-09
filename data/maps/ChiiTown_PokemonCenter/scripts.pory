@@ -70,7 +70,7 @@ script ChiiTown_PokemonCenter_EventScript_ShamisenFan {
 	speakername("Shamisen fan")
 	msgbox(format(
 		"Such a beautiful voice…\p"
-		"Such sorrowful notes…\p"
+		"Such sorrowful melodies…\p"
 		"Such ethereal beauty…\p"
 		"I could listen to her forever…\p"
 		"Even though she can't see me, I sure hope she'll notice me one day…"

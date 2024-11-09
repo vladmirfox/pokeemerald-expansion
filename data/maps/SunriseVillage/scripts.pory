@@ -293,7 +293,7 @@ script SunriseVillage_Event_PlayersHouseSign {
 }
 
 script SunriseVillage_Event_RivalsHouseSign {
-    msgbox(format("{RIVAL}'s house"), MSGBOX_SIGN)
+    msgbox(format("Natsuki's house"), MSGBOX_SIGN)
 }
 
 script SunriseVillage_Event_EldersHouseSign {

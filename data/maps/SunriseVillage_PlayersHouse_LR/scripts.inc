@@ -225,8 +225,8 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSisSaysHi_Text_1:
 	.string "because I'm VERY EXCITED!\p"
 	.string "I have to head out! Don't be late, I\n"
 	.string "know you, little {STR_VAR_1}!\p"
-	.string "By the way, your friend {RIVAL}\n"
-	.string "left you a note.\p"
+	.string "By the way, your friend Natsuki left\n"
+	.string "you a note.\p"
 	.string "Make sure you read it!$"
 
 SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_0:
@@ -239,7 +239,7 @@ SunriseVillage_PlayersHouse_LR_EventScript_BigSis_Text_1:
 # 72 "data/maps/SunriseVillage_PlayersHouse_LR/scripts.pory"
 	.string "Hey little {STR_VAR_1}! See how\n"
 	.string "cute my new Pokémon is?\p"
-	.string "By the way, I heard {RIVAL} was\n"
+	.string "By the way, I heard Natsuki was\n"
 	.string "waiting for you at Elder Kaba's house.\l"
 	.string "You should probably go see them.$"
 
@@ -302,4 +302,4 @@ SunriseVillage_PlayersHouse_LR_EventScript_RivalsNote_Text_0:
 	.string "I'm going down to the beach before\l"
 	.string "the giveaway, meet me there if you\l"
 	.string "wanna hang out.\p"
-	.string "-{RIVAL}”$"
+	.string "-Natsuki”$"

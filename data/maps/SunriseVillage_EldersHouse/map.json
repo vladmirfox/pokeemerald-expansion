@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SunriseVillage_EldersHouse_Event_Rival",
+      "script": "SunriseVillage_EldersHouse_EventScript_Natsuki",
       "flag": "FLAG_RECEIVED_STARTER"
     },
     {
@@ -180,6 +180,24 @@
       "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
       "var_value": "5",
       "script": "SunriseVillage_EldersHouse_EventScript_TryToLeave"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "5",
+      "script": "SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_SUNRISE_VILLAGE_INTRO_STATE",
+      "var_value": "5",
+      "script": "SunriseVillage_EldersHouse_EventScript_TryToEnterOtherRoom"
     }
   ],
   "bg_events": [
