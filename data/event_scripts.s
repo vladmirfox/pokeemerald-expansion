@@ -1253,3 +1253,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SoulkeepGraveyard/scripts.inc"
 
 	.include "data/maps/ChiiTown_School/scripts.inc"
+
+	.include "data/maps/Beachbound_Route_Decay/scripts.inc"

@@ -1056,3 +1056,14 @@ const struct Tileset gTileset_School =
     .metatileAttributes = gMetatileAttributes_School,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Decay =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Decay,
+    .palettes = gTilesetPalettes_Decay,
+    .metatiles = gMetatiles_Decay,
+    .metatileAttributes = gMetatileAttributes_Decay,
+    .callback = NULL,
+};

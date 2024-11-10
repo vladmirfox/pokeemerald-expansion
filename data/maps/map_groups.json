@@ -118,7 +118,8 @@
     "ScenicRoute",
     "NewMap1",
     "HarvestShrine",
-    "SoulkeepGraveyard"
+    "SoulkeepGraveyard",
+    "Beachbound_Route_Decay"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",

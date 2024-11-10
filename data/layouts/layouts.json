@@ -4770,6 +4770,16 @@
       "secondary_tileset": "gTileset_School",
       "border_filepath": "data/layouts/ChiiTown_School/border.bin",
       "blockdata_filepath": "data/layouts/ChiiTown_School/map.bin"
+    },
+    {
+      "id": "LAYOUT_BEACHBOUND_ROUTE_DECAY",
+      "name": "Beachbound_Route_Decay_Layout",
+      "width": 65,
+      "height": 34,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Decay",
+      "border_filepath": "data/layouts/Beachbound_Route_Decay/border.bin",
+      "blockdata_filepath": "data/layouts/Beachbound_Route_Decay/map.bin"
     }
   ]
 }
