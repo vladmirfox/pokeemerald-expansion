@@ -397,6 +397,15 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct D
     u32 totalTime = 0;
     u32 currBits = data[*readIndex];
     u16 prevSymbol = 0;
+    u8 maskTable[7] = {
+        0,
+        1,
+        3,
+        7,
+        15,
+        31,
+        63
+    };
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u16 symbol = 0;
@@ -408,7 +417,7 @@ void DecodeSymDeltatANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct D
             symbol += currSymbol << (currNibble*4);
             u16 currK = ykTable[*state].kVal;
             u16 nextState = ykTable[*state].yVal;
-            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
             {
                 *bitIndex += currK;
