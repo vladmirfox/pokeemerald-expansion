@@ -54,6 +54,17 @@ for match in gba_pattern.findall(gba_content):
         species_define, palIdx = match
         gba_data_pal_indexes[species_define] = palIdx
 
+# Read 1.10 shadow data
+for file in glob.glob('./migration_scripts/1.10/species_info/shadows.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+shadow_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *SHADOW(.*)(,|)\n', re.MULTILINE)
+shadow_data = {}
+for match in shadow_pattern.findall(gba_content):
+    if len(match) == 3:
+        species_define, data, unused = match
+        shadow_data[species_define] = data
+
 # Read existing animations present to avoid removing shared animations
 anim_table_data = {}
 shared_anim_table_data = {}
@@ -266,6 +277,23 @@ def add_gba_iconPalIndex_data(match):
         str = str + f'        .iconPalIndex = {iconPalIndex},\n'
     return str
 
+def add_shadow_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    jump_type = match.group(4)
+    footprint = match.group(5)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in shadow_data:
+        updated = True
+        str = str + f'        .pokemonJumpType = {jump_type},\n        SHADOW{shadow_data[mon_name]}\n        FOOTPRINT({footprint})\n'
+    else:
+        str = str + f'        .pokemonJumpType = {jump_type},\n        FOOTPRINT({footprint})\n'
+    return str
+
 for root, dirs, files in os.walk(main_dir):
     files.sort()
     for fileName in files:
@@ -304,6 +332,8 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(add_gba_backPicYOffset_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_iconPalIndex_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.pokemonJumpType = (\w+),\n {8}FOOTPRINT\((\w+)\)\n', re.MULTILINE)
+        species_content = pattern.sub(add_shadow_data, species_content)
 
         # Rename form labels and defines
         for form_labels in label_renames:
