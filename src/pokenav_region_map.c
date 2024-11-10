@@ -1,9 +1,13 @@
 #include "global.h"
 #include "bg.h"
 #include "decompress.h"
+#include "field_effect.h"
 #include "landmark.h"
 #include "main.h"
+#include "malloc.h"
 #include "menu.h"
+#include "overworld.h"
+#include "party_menu.h"
 #include "palette.h"
 #include "pokenav.h"
 #include "region_map.h"
@@ -13,9 +17,10 @@
 #include "task.h"
 #include "text_window.h"
 #include "window.h"
+#include "constants/heal_locations.h"
+#include "constants/region_map_sections.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "constants/region_map_sections.h"
 
 #define GFXTAG_CITY_ZOOM 6
 #define PALTAG_CITY_ZOOM 11
@@ -73,6 +78,7 @@ static u32 LoopedTask_UpdateInfoAfterCursorMove(s32);
 static u32 LoopedTask_RegionMapZoomOut(s32);
 static u32 LoopedTask_RegionMapZoomIn(s32);
 static u32 LoopedTask_ExitRegionMap(s32);
+static u32 LoopedTask_TreatAsPokeNavFlyMap(s32);
 
 extern const u16 gRegionMapCityZoomTiles_Pal[];
 extern const u32 gRegionMapCityZoomText_Gfx[];
@@ -119,7 +125,8 @@ static const LoopedTask sRegionMapLoopTaskFuncs[] =
     [POKENAV_MAP_FUNC_CURSOR_MOVED] = LoopedTask_UpdateInfoAfterCursorMove,
     [POKENAV_MAP_FUNC_ZOOM_OUT]     = LoopedTask_RegionMapZoomOut,
     [POKENAV_MAP_FUNC_ZOOM_IN]      = LoopedTask_RegionMapZoomIn,
-    [POKENAV_MAP_FUNC_EXIT]         = LoopedTask_ExitRegionMap
+    [POKENAV_MAP_FUNC_EXIT]         = LoopedTask_ExitRegionMap,
+    [POKENAV_MAP_FUNC_FLY]          = LoopedTask_TreatAsPokeNavFlyMap
 };
 
 static const struct CompressedSpriteSheet sCityZoomTextSpriteSheet[1] =
@@ -204,6 +211,8 @@ u32 GetRegionMapCallback(void)
 
 static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
 {
+    struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
+
     switch (DoRegionMapInputCallback())
     {
     case MAP_INPUT_MOVE_END:
@@ -215,8 +224,10 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
     case MAP_INPUT_B_BUTTON:
         state->callback = GetExitRegionMapMenuId;
         return POKENAV_MAP_FUNC_EXIT;
+    case MAP_INPUT_R_BUTTON:
+        if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY)
+            return POKENAV_MAP_FUNC_FLY;
     }
-
     return POKENAV_MAP_FUNC_NONE;
 }
 
@@ -449,6 +460,34 @@ static u32 LoopedTask_RegionMapZoomIn(s32 taskState)
 
         UpdateRegionMapRightHeaderTiles(POKENAV_GFX_MAP_MENU_ZOOMED_IN);
         break;
+    }
+
+    return LT_FINISH;
+}
+
+static u32 LoopedTask_TreatAsPokeNavFlyMap(s32 taskState)
+{
+    switch (taskState)
+    {
+    case 0:
+        PlaySE(SE_M_REVERSAL);
+        // sFlyMap->choseFlyLocation = TRUE;
+        // SetFlyMapCallback(CB_ExitFlyMap);
+
+        return LT_INC_AND_PAUSE;
+    case 1:
+        if (IsPaletteFadeActive())
+            return LT_PAUSE;
+
+        SetLeftHeaderSpritesInvisibility();
+        SlideMenuHeaderDown();
+        return LT_INC_AND_PAUSE;
+    case 2:
+        if (MainMenuLoopedTaskIsBusy())
+            return LT_PAUSE;
+
+        //CB_ExitFlyMap();
+        return LT_INC_AND_PAUSE;
     }
 
     return LT_FINISH;

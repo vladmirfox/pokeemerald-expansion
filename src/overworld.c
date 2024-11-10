@@ -381,6 +381,7 @@ void Overworld_ResetStateAfterFly(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    FlagClear(FLAG_SYS_USE_SURF);
 }
 
 void Overworld_ResetStateAfterTeleport(void)
@@ -391,6 +392,7 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    FlagClear(FLAG_SYS_USE_SURF);
     RunScriptImmediately(EventScript_ResetMrBriney);
 }
 
@@ -402,6 +404,7 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    FlagClear(FLAG_SYS_USE_SURF);
 }
 
 #if B_RESET_FLAGS_VARS_AFTER_WHITEOUT  == TRUE
@@ -438,6 +441,7 @@ static void Overworld_ResetStateAfterWhiteOut(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
+    FlagClear(FLAG_SYS_USE_SURF);
     if (B_RESET_FLAGS_VARS_AFTER_WHITEOUT == TRUE)
         Overworld_ResetBattleFlagsAndVars();
     // If you were defeated by Kyogre/Groudon and the step counter has
@@ -1116,9 +1120,7 @@ bool32 CanAutoUseFieldMove(u16 move) {
 void AutoUseCut(void)
 {
     if (CanAutoUseFieldMove(MOVE_CUT))
-    {
         FieldCallback_CutTree();
-    }
 }
 
 // Checks if the HM Flash can be auto-used, and if yes, uses it
@@ -1131,11 +1133,8 @@ void AutoUseFlash(void)
 void AutoUseRockSmash(void)
 {
     if (CanAutoUseFieldMove(MOVE_ROCK_SMASH))
-    {
         FieldCallback_RockSmash();
-    }
 }
-
 void AutoUseStrength(void)
 {
     if (CanAutoUseFieldMove(MOVE_STRENGTH) && !FlagGet(FLAG_SYS_USE_STRENGTH))
@@ -1149,7 +1148,14 @@ void AutoUseSurf(void)
 {
     if (CanAutoUseFieldMove(MOVE_SURF) && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
     {
-        FldEff_UseSurf();
+        if (FlagGet(FLAG_SYS_USE_SURF))
+            ScriptContext_SetupScript(EventScript_AutoUseConsecutiveSurf);
+        else
+        {
+            FlagSet(FLAG_SYS_USE_SURF);
+            ScriptContext_SetupScript(EventScript_AutoUseSurf);
+        }
+            
     }
 }
 
@@ -1157,7 +1163,10 @@ void AutoUseDive(void)
 {
     if (CanAutoUseFieldMove(MOVE_DIVE))
     {
-        FldEff_UseDive();
+        if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
+            ScriptContext_SetupScript(EventScript_AutoUseDiveUnderwater);
+        else
+            ScriptContext_SetupScript(EventScript_AutoUseDive);
     }
 }
 

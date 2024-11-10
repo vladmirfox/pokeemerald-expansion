@@ -55,4 +55,7 @@ u8 FldEff_UseSurf(void);
 // dive
 bool8 FldEff_UseDive(void);
 
+// fly
+u8 FldEff_UseFly(void);
+
 #endif // GUARD_FIELD_EFFECTS_H

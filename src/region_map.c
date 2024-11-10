@@ -106,7 +106,7 @@ static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite);
 static void SpriteCB_PlayerIcon(struct Sprite *sprite);
 static void VBlankCB_FlyMap(void);
 static void CB2_FlyMap(void);
-static void SetFlyMapCallback(void callback(void));
+void SetFlyMapCallback(void callback(void));
 static void DrawFlyDestTextWindow(void);
 static void LoadFlyDestIcons(void);
 static void CreateFlyDestIcons(void);
@@ -114,7 +114,6 @@ static void TryCreateRedOutlineFlyDestIcons(void);
 static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
 static void CB_FadeInFlyMap(void);
 static void CB_HandleFlyMapInput(void);
-static void CB_ExitFlyMap(void);
 
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map/cursor.gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.lz");
@@ -680,6 +679,10 @@ static u8 ProcessRegionMapInput_Full(void)
     {
         input = MAP_INPUT_B_BUTTON;
     }
+    else if (JOY_NEW(R_BUTTON))
+    {
+        input = MAP_INPUT_R_BUTTON;
+    }
     if (input == MAP_INPUT_MOVE_START)
     {
         sRegionMap->cursorMovementFrameCounter = 4;
@@ -755,9 +758,13 @@ static u8 ProcessRegionMapInput_Zoomed(void)
     {
         input = MAP_INPUT_A_BUTTON;
     }
-    if (JOY_NEW(B_BUTTON))
+    else if (JOY_NEW(B_BUTTON))
     {
         input = MAP_INPUT_B_BUTTON;
+    }
+    else if (JOY_NEW(R_BUTTON))
+    {
+        input = MAP_INPUT_R_BUTTON;
     }
     if (input == MAP_INPUT_MOVE_START)
     {
@@ -1751,7 +1758,7 @@ static void CB2_FlyMap(void)
     DoScheduledBgTilemapCopiesToVram();
 }
 
-static void SetFlyMapCallback(void callback(void))
+void SetFlyMapCallback(void callback(void))
 {
     sFlyMap->callback = callback;
     sFlyMap->state = 0;
@@ -1978,7 +1985,7 @@ static void CB_HandleFlyMapInput(void)
     }
 }
 
-static void CB_ExitFlyMap(void)
+void CB_ExitFlyMap(void)
 {
     switch (sFlyMap->state)
     {
