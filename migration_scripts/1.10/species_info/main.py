@@ -10,6 +10,13 @@ label_renames = [
     ["Hisuian", "Hisui", "HISUIAN", "HISUI"],
     ["Paldean", "Paldea", "PALDEAN", "PALDEA"],
     ["Gigantamax", "Gmax", "GIGANTAMAX", "GMAX"],
+    ["OriginalCap", "Original", "ORIGINAL_CAP", "ORIGINAL"],
+    ["HoennCap", "Hoenn", "HOENN_CAP", "HOENN"],
+    ["SinnohCap", "Sinnoh", "SINNOH_CAP", "SINNOH"],
+    ["UnovaCap", "Unova", "UNOVA_CAP", "UNOVA"],
+    ["KalosCap", "Kalos", "KALOS_CAP", "KALOS"],
+    ["Partner", "Starter", "PARTNER", "STARTER"],
+    ["StarterCap", "Partner", "STARTER_CAP", "PARTNER"], # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
 ]
 
 if not os.path.exists("Makefile"):
@@ -307,6 +314,14 @@ for root, dirs, files in os.walk(main_dir):
 
         original_species_content = species_content
 
+        # Rename form labels and defines
+        for form_labels in label_renames:
+            species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+            species_content = re.sub(r"(sPicTable_|gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
+            species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
+            species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
+            species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
+
         # Alter front animations
         pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
         species_content = pattern.sub(add_anim_data, species_content)
@@ -334,14 +349,6 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(add_gba_iconPalIndex_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.pokemonJumpType = (\w+),\n {8}FOOTPRINT\((\w+)\)\n', re.MULTILINE)
         species_content = pattern.sub(add_shadow_data, species_content)
-
-        # Rename form labels and defines
-        for form_labels in label_renames:
-            species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
-            species_content = re.sub(r"(gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
-            species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
-            species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
-            species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
 
         if (species_content != original_species_content):
             updated = True
