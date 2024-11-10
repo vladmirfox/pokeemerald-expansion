@@ -116,10 +116,11 @@
     "OrchardPath",
     "SeastrollChannel",
     "ScenicRoute",
-    "NewMap1",
+    "SabersideTown",
     "HarvestShrine",
     "SoulkeepGraveyard",
-    "Beachbound_Route_Decay"
+    "Beachbound_Route_Decay",
+    "SabersideChannel"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",

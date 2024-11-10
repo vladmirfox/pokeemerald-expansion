@@ -82,10 +82,11 @@
 #define MAP_ORCHARD_PATH                          (73 | (0 << 8))
 #define MAP_SEASTROLL_CHANNEL                     (74 | (0 << 8))
 #define MAP_SCENIC_ROUTE                          (75 | (0 << 8))
-#define MAP_NEW_MAP1                              (76 | (0 << 8))
+#define MAP_SABERSIDE_TOWN                        (76 | (0 << 8))
 #define MAP_HARVEST_SHRINE                        (77 | (0 << 8))
 #define MAP_SOULKEEP_GRAVEYARD                    (78 | (0 << 8))
 #define MAP_BEACHBOUND_ROUTE_DECAY                (79 | (0 << 8))
+#define MAP_SABERSIDE_CHANNEL                     (80 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))

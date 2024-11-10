@@ -274,3 +274,6 @@ const u16 gMetatileAttributes_School[] = INCBIN_U16("data/tilesets/secondary/sch
 
 const u16 gMetatiles_Decay[] = INCBIN_U16("data/tilesets/secondary/decay/metatiles.bin");
 const u16 gMetatileAttributes_Decay[] = INCBIN_U16("data/tilesets/secondary/decay/metatile_attributes.bin");
+
+const u16 gMetatiles_OpenSea[] = INCBIN_U16("data/tilesets/secondary/open_sea/metatiles.bin");
+const u16 gMetatileAttributes_OpenSea[] = INCBIN_U16("data/tilesets/secondary/open_sea/metatile_attributes.bin");

@@ -4733,13 +4733,13 @@
     },
     {
       "id": "LAYOUT_NEW_MAP1",
-      "name": "NewMap1_Layout",
+      "name": "SabersideTown_Layout",
       "width": 30,
-      "height": 40,
+      "height": 48,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Saberside",
-      "border_filepath": "data/layouts/NewMap1/border.bin",
-      "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+      "border_filepath": "data/layouts/SabersideTown/border.bin",
+      "blockdata_filepath": "data/layouts/SabersideTown/map.bin"
     },
     {
       "id": "LAYOUT_HARVEST_SHRINE",
@@ -4780,6 +4780,16 @@
       "secondary_tileset": "gTileset_Decay",
       "border_filepath": "data/layouts/Beachbound_Route_Decay/border.bin",
       "blockdata_filepath": "data/layouts/Beachbound_Route_Decay/map.bin"
+    },
+    {
+      "id": "LAYOUT_SABERSIDE_CHANNEL",
+      "name": "SabersideChannel_Layout",
+      "width": 50,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/SabersideChannel/border.bin",
+      "blockdata_filepath": "data/layouts/SabersideChannel/map.bin"
     }
   ]
 }

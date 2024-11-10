@@ -185,6 +185,14 @@
       "height": 1
     },
     {
+      "map_section": "MAPSEC_SABERSIDE_CHANNEL",
+      "name": "Saberside Channel",
+      "x": 0,
+      "y": 0,
+      "width": 3,
+      "height": 1
+    },
+    {
       "map_section": "MAPSEC_WHITESLATE_ROUTE",
       "name": "Whiteslate Route",
       "x": 0,

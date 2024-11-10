@@ -1246,7 +1246,7 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/ScenicRoute/scripts.inc"
 
-	.include "data/maps/NewMap1/scripts.inc"
+	.include "data/maps/SabersideTown/scripts.inc"
 
 	.include "data/maps/HarvestShrine/scripts.inc"
 
@@ -1255,3 +1255,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ChiiTown_School/scripts.inc"
 
 	.include "data/maps/Beachbound_Route_Decay/scripts.inc"
+
+	.include "data/maps/SabersideChannel/scripts.inc"
