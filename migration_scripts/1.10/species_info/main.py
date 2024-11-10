@@ -15,8 +15,8 @@ label_renames = [
     ["SinnohCap", "Sinnoh", "SINNOH_CAP", "SINNOH"],
     ["UnovaCap", "Unova", "UNOVA_CAP", "UNOVA"],
     ["KalosCap", "Kalos", "KALOS_CAP", "KALOS"],
-    ["Partner", "Starter", "PARTNER", "STARTER"],
-    ["StarterCap", "Partner", "STARTER_CAP", "PARTNER"], # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
+    ["Partner", "Starter", r"PARTNER\] =\n    \{\n {8}\.baseHP * = 45,", r"STARTER] =\n    {\n        .baseHP        = 45,"],        # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
+    ["PartnerCap", "Partner", r"PARTNER_CAP\] =\n    \{\n {8}\.baseHP * = 35,", r"PARTNER] =\n    {\n        .baseHP        = 35,"], # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
 ]
 
 if not os.path.exists("Makefile"):
