@@ -43,6 +43,17 @@ for match in gba_pattern.findall(gba_content):
         species_define, width, height, yOffset = match
         gba_data_back_pic_coords[species_define] = (width, height, yOffset)
 
+# Read GBA icon pal indexes
+for file in glob.glob('./migration_scripts/1.10/species_info/pokemon_icon.c'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *(\w+),', re.MULTILINE)
+gba_data_pal_indexes = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 2:
+        species_define, palIdx = match
+        gba_data_pal_indexes[species_define] = palIdx
+
 # Read existing animations present to avoid removing shared animations
 anim_table_data = {}
 shared_anim_table_data = {}
@@ -239,6 +250,22 @@ def add_gba_backPicYOffset_data(match):
         str = str + f'        .backPicYOffset = {backPicYOffset},\n'
     return str
 
+def add_gba_iconPalIndex_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    iconPalIndex = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_pal_indexes and (gba_data_pal_indexes[mon_name] != iconPalIndex):
+        updated = True
+        str = str + f'        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? {gba_data_pal_indexes[mon_name]} : {iconPalIndex},\n'
+    else:
+        str = str + f'        .iconPalIndex = {iconPalIndex},\n'
+    return str
+
 for root, dirs, files in os.walk(main_dir):
     files.sort()
     for fileName in files:
@@ -275,6 +302,8 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(add_gba_backPicSize_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.backPicYOffset = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_backPicYOffset_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_iconPalIndex_data, species_content)
 
         # Rename form labels and defines
         for form_labels in label_renames:
