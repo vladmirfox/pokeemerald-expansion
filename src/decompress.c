@@ -304,25 +304,42 @@ void BuildDecompressionTable(u32 *packedFreqs, struct DecodeYK *table, u8 *symbo
 {
     u8 *freqs = Alloc(16);
     u32 currCol = 0;
+    CycleCountStart();
     UnpackFrequencies(packedFreqs, freqs);
+    u32 timeTaken = CycleCountEnd();
+    MgbaPrintf(MGBA_LOG_WARN, "Unpacking: %u", timeTaken);
+    CycleCountStart();
     for (u32 i = 0; i < 16; i++)
     {
         if (freqs[i] != 0)
         {
             //  Copying 16-bit sized data from EWRAM to array, IMPROVEMENT POSSIBLE
-            memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
+            //memcpy(&table[currCol], &ykTemplate[freqs[i]], freqs[i]*sizeof(struct DecodeYK));
+            CpuCopy16(&ykTemplate[freqs[i]], &table[currCol], freqs[i]*sizeof(struct DecodeYK));
             //  Setting 8-bit array elements to a single symbol, IMPROVEMENT POSSIBLE
+            //  Or it's not possible? Using CpuFill with 16-bit variables was worse
             for (u32 j = 0; j < freqs[i]; j++)
                 symbolTable[currCol + j] = i;
             currCol += freqs[i];
         }
     }
+    timeTaken = CycleCountEnd();
+    MgbaPrintf(MGBA_LOG_WARN, "Building: %u", timeTaken);
     Free(freqs);
 }
 
 void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u8 *resultVec, u32 *state, u32 count)
 {
     u32 currBits = data[*readIndex];
+    u8 maskTable[7] = {
+        0,
+        1,
+        3,
+        7,
+        15,
+        31,
+        63
+    };
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u8 symbol = 0;
@@ -331,7 +348,7 @@ void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeY
             symbol += symbolTable[*state] << (currNibble*4);
             u16 currK = ykTable[*state].kVal;
             u16 nextState = ykTable[*state].yVal;
-            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
             {
                 *bitIndex += currK;
@@ -359,6 +376,15 @@ void DecodeLOtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeY
 void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct DecodeYK *ykTable, u8 *symbolTable, u16 *resultVec, u32 *state, u32 count)
 {
     u32 currBits = data[*readIndex];
+    u8 maskTable[7] = {
+        0,
+        1,
+        3,
+        7,
+        15,
+        31,
+        63
+    };
     for (u32 currSym = 0; currSym < count; currSym++)
     {
         u16 symbol = 0;
@@ -367,7 +393,7 @@ void DecodeSymtANS(const u32 *data, u32 *readIndex, u32 *bitIndex, struct Decode
             symbol += symbolTable[*state] << (currNibble*4);
             u16 currK = ykTable[*state].kVal;
             u16 nextState = ykTable[*state].yVal;
-            nextState += (currBits >> *bitIndex) & ((1u << currK)-1);
+            nextState += (currBits >> *bitIndex) & maskTable[currK];
             if (*bitIndex + currK < 32)
             {
                 *bitIndex += currK;
@@ -514,9 +540,11 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
 
     u32 cycleCountTotal = 0;
 
-    MgbaPrintf(MGBA_LOG_WARN, "Mode: %u", header->mode);
-    MgbaPrintf(MGBA_LOG_WARN, "Bitsteam size: %u", header->bitstreamSize);
-    CycleCountStart();
+    //MgbaPrintf(MGBA_LOG_WARN, "Mode: %u", header->mode);
+    //MgbaPrintf(MGBA_LOG_WARN, "Bitsteam size: %u", header->bitstreamSize);
+    //CycleCountStart();
+    //  Move the actual table creation into the tANS decoding functions
+    //  since the tables aren't needed outside of them
     if (loEncoded == TRUE)
     {
         for (u32 i = 0; i < 3; i++)
@@ -537,9 +565,9 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
         symSymbols = Alloc(64);
         BuildDecompressionTable(packedSymFreqs, symTable, symSymbols);
     }
-    u32 subCycleCount = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "tANS table build time: %u", subCycleCount);
-    cycleCountTotal = subCycleCount;
+    u32 subCycleCount = 0;//CycleCountEnd();
+    //MgbaPrintf(MGBA_LOG_WARN, "tANS table build time: %u", subCycleCount);
+    //cycleCountTotal = subCycleCount;
 
     CycleCountStart();
     u32 bitIndex = 0;
@@ -550,7 +578,7 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
         Free(loSymbols);
     }
     subCycleCount = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "LO decoding time: %u", subCycleCount);
+    //MgbaPrintf(MGBA_LOG_WARN, "LO decoding time: %u", subCycleCount);
     cycleCountTotal += subCycleCount;
     //CycleCountStart();
     if (symEncoded == TRUE)
@@ -581,7 +609,7 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
         memcpy(loVec, leftoverPos, header->loSize);
     }
     subCycleCount = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "Unencoded copy time: %u", subCycleCount);
+    //MgbaPrintf(MGBA_LOG_WARN, "Unencoded copy time: %u", subCycleCount);
     cycleCountTotal += subCycleCount;
 
     /*
@@ -596,9 +624,9 @@ void SmolDecompressData(struct CompressionHeader *header, const u32 *data, void 
     CycleCountStart();
     DecodeInstructions(header, loVec, symVec, dest);
     subCycleCount = CycleCountEnd();
-    MgbaPrintf(MGBA_LOG_WARN, "Instruction decoding time: %u", subCycleCount);
+    //MgbaPrintf(MGBA_LOG_WARN, "Instruction decoding time: %u", subCycleCount);
     cycleCountTotal += subCycleCount;
-    MgbaPrintf(MGBA_LOG_WARN, "Total time: %u", cycleCountTotal);
+    //MgbaPrintf(MGBA_LOG_WARN, "Total time: %u", cycleCountTotal);
 
     Free(loVec);
     Free(symVec);
