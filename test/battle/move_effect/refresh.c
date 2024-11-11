@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_REFRESH].effect == EFFECT_REFRESH);
 }
 
-SINGLE_BATTLE_TEST("Refresh cures the user of burn, poison, and paralysis")
+SINGLE_BATTLE_TEST("Refresh cures the user of burn, frostbite, poison, and paralysis")
 {
     u32 status1;
     PARAMETRIZE { status1 = STATUS1_POISON; }
