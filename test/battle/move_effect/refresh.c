@@ -13,6 +13,7 @@ SINGLE_BATTLE_TEST("Refresh cures the user of burn, frostbite, poison, and paral
     PARAMETRIZE { status1 = STATUS1_BURN; }
     PARAMETRIZE { status1 = STATUS1_PARALYSIS; }
     PARAMETRIZE { status1 = STATUS1_TOXIC_POISON; }
+    PARAMETRIZE { status1 = STATUS1_FROSTBITE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Status1(status1); };
         OPPONENT(SPECIES_WOBBUFFET);
