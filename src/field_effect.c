@@ -3473,7 +3473,7 @@ static void SpriteCB_FlyBirdReturnToBall(struct Sprite *sprite)
 
 static void StartFlyBirdReturnToBall(u8 spriteId)
 {
-    StartFlyBirdSwoopDown(spriteId); // Set up is the same, but overrwrites the callback below
+    StartFlyBirdSwoopDown(spriteId); // Set up is the same, but overwrites the callback below
     gSprites[spriteId].callback = SpriteCB_FlyBirdReturnToBall;
 }
 

@@ -104,16 +104,6 @@ static void UnhideRegionMapPlayerIcon(void);
 static void SpriteCB_PlayerIconMapZoomed(struct Sprite *sprite);
 static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite);
 static void SpriteCB_PlayerIcon(struct Sprite *sprite);
-static void VBlankCB_FlyMap(void);
-static void CB2_FlyMap(void);
-void SetFlyMapCallback(void callback(void));
-static void DrawFlyDestTextWindow(void);
-static void LoadFlyDestIcons(void);
-static void CreateFlyDestIcons(void);
-static void TryCreateRedOutlineFlyDestIcons(void);
-static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
-static void CB_FadeInFlyMap(void);
-static void CB_HandleFlyMapInput(void);
 
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map/cursor.gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.lz");
@@ -1743,14 +1733,14 @@ void CB2_OpenFlyMap(void)
     }
 }
 
-static void VBlankCB_FlyMap(void)
+void VBlankCB_FlyMap(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
 }
 
-static void CB2_FlyMap(void)
+void CB2_FlyMap(void)
 {
     sFlyMap->callback();
     AnimateSprites();
@@ -1764,7 +1754,7 @@ void SetFlyMapCallback(void callback(void))
     sFlyMap->state = 0;
 }
 
-static void DrawFlyDestTextWindow(void)
+void DrawFlyDestTextWindow(void)
 {
     u16 i;
     bool32 namePrinted;
@@ -1825,7 +1815,7 @@ static void DrawFlyDestTextWindow(void)
 }
 
 
-static void LoadFlyDestIcons(void)
+void LoadFlyDestIcons(void)
 {
     struct SpriteSheet sheet;
 
@@ -1843,7 +1833,7 @@ static void LoadFlyDestIcons(void)
 #define sIconMapSec   data[0]
 #define sFlickerTimer data[1]
 
-static void CreateFlyDestIcons(void)
+void CreateFlyDestIcons(void)
 {
     u16 canFlyFlag;
     u16 mapSecId;
@@ -1887,7 +1877,7 @@ static void CreateFlyDestIcons(void)
 
 // Draw a red outline box on the mapsec if its corresponding flag has been set
 // Only used for Battle Frontier, but set up to handle more
-static void TryCreateRedOutlineFlyDestIcons(void)
+void TryCreateRedOutlineFlyDestIcons(void)
 {
     u16 i;
     u16 x;
@@ -1918,7 +1908,7 @@ static void TryCreateRedOutlineFlyDestIcons(void)
 }
 
 // Flickers fly destination icon color (by hiding the fly icon sprite) if the cursor is currently on it
-static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
+void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 {
     if (sFlyMap->regionMap.mapSecId == sprite->sIconMapSec)
     {
@@ -1938,7 +1928,7 @@ static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 #undef sIconMapSec
 #undef sFlickerTimer
 
-static void CB_FadeInFlyMap(void)
+void CB_FadeInFlyMap(void)
 {
     switch (sFlyMap->state)
     {
@@ -1955,7 +1945,7 @@ static void CB_FadeInFlyMap(void)
     }
 }
 
-static void CB_HandleFlyMapInput(void)
+void CB_HandleFlyMapInput(void)
 {
     if (sFlyMap->state == 0)
     {

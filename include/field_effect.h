@@ -56,6 +56,16 @@ u8 FldEff_UseSurf(void);
 bool8 FldEff_UseDive(void);
 
 // fly
+void VBlankCB_FlyMap(void);
+void CB2_FlyMap(void);
+void SetFlyMapCallback(void callback(void));
+void DrawFlyDestTextWindow(void);
+void LoadFlyDestIcons(void);
+void CreateFlyDestIcons(void);
+void TryCreateRedOutlineFlyDestIcons(void);
+void SpriteCB_FlyDestIcon(struct Sprite* sprite);
+void CB_FadeInFlyMap(void);
+void CB_HandleFlyMapInput(void);
 u8 FldEff_UseFly(void);
 
 #endif // GUARD_FIELD_EFFECTS_H
