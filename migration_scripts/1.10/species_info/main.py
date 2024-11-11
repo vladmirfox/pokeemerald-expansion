@@ -16,12 +16,17 @@ label_renames = [
     ["UnovaCap", "Unova", "UNOVA_CAP", "UNOVA"],
     ["KalosCap", "Kalos", "KALOS_CAP", "KALOS"],
     ["AlolaCap", "Alola", "ALOLA_CAP", "ALOLA"],
+    ["WorldCap", "World", "WORLD_CAP", "WORLD"],
     ["Partner", "Starter", r"PARTNER\] =\n    \{\n {8}\.baseHP * = 45,", r"STARTER] =\n    {\n        .baseHP        = 45,"],        # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
     ["PartnerCap", "Partner", r"PARTNER_CAP\] =\n    \{\n {8}\.baseHP * = 35,", r"PARTNER] =\n    {\n        .baseHP        = 35,"], # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
     ["CombatBreed", "Combat", "COMBAT_BREED", "COMBAT"],
     ["BlazeBreed", "Blaze", "BLAZE_BREED", "BLAZE"],
     ["AquaBreed", "Aqua", "AQUA_BREED", "AQUA"],
     ["OriginalColor", "Original", "ORIGINAL_COLOR", "ORIGINAL"],
+    ["StandardMode", "Standard", "STANDARD_MODE", "STANDARD"],
+    ["ZenMode", "Zen", "ZEN_MODE", "ZEN"],
+    ["Male", "M", "MALE", "M"],
+    ["Female", "F", "FEMALE", "F"],
 ]
 
 if not os.path.exists("Makefile"):
@@ -203,9 +208,9 @@ def add_jump_data(match):
     iconPalIndex = match.group(4)
     if mon_name in pokemon_jump_data:
         updated = True
-        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_' + pokemon_jump_data[mon_name] + f',\n        FOOTPRINT'
+        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}{iconPalIndex}\n        .pokemonJumpType = PKMN_JUMP_TYPE_' + pokemon_jump_data[mon_name] + f',\n        FOOTPRINT'
     else:
-        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}        .iconPalIndex = {iconPalIndex},\n        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,\n        FOOTPRINT'
+        return f'    [SPECIES_{mon_name}] =\n    {brace}\n{in_bewteen_rows}{iconPalIndex}\n        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,\n        FOOTPRINT'
 
 def add_gba_frontPicSize_data(match):
     global updated
@@ -397,7 +402,7 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(update_set_anim_follower_data, species_content)
 
         # Alter Pokémon Jump data
-        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (.*),\n {8}FOOTPRINT', re.MULTILINE)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)( {8}\.iconPalIndex = .*,|#endif //P_GENDER_DIFFERENCES)\n {8}FOOTPRINT', re.MULTILINE)
         species_content = pattern.sub(add_jump_data, species_content)
 
         # Alter GBA data
