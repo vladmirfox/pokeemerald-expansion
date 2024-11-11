@@ -1106,7 +1106,7 @@ bool32 CanAutoUseFieldMove(u16 move) {
     else if (move == MOVE_STRENGTH)
         return FlagGet(FLAG_RECEIVED_HM_STRENGTH) && FlagGet(FLAG_BADGE04_GET);
     else if (move == MOVE_SURF)
-        return FlagGet(FLAG_RECEIVED_HM_SURF) && FlagGet(FLAG_BADGE05_GET);
+        return FlagGet(FLAG_RECEIVED_HM_SURF) && FlagGet(FLAG_BADGE05_GET) && IsPlayerFacingSurfableFishableWater();
     else if (move == MOVE_FLY)
         return FlagGet(FLAG_RECEIVED_HM_FLY) && FlagGet(FLAG_BADGE06_GET);
     else if (move == MOVE_DIVE)
@@ -1152,7 +1152,6 @@ void AutoUseSurf(void)
             ScriptContext_SetupScript(EventScript_AutoUseConsecutiveSurf);
         else
         {
-            FlagSet(FLAG_SYS_USE_SURF);
             ScriptContext_SetupScript(EventScript_AutoUseSurf);
         }
             

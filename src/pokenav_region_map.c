@@ -486,7 +486,7 @@ static u32 LoopedTask_TreatAsPokeNavFlyMap(s32 taskState)
         if (MainMenuLoopedTaskIsBusy())
             return LT_PAUSE;
 
-        //CB_ExitFlyMap();
+        CB_ExitFlyMap();
         return LT_INC_AND_PAUSE;
     }
 
