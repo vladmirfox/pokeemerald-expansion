@@ -25,6 +25,11 @@ label_renames = [
     ["CombatBreed", "Combat", "COMBAT_BREED", "COMBAT"],
     ["BlazeBreed", "Blaze", "BLAZE_BREED", "BLAZE"],
     ["AquaBreed", "Aqua", "AQUA_BREED", "AQUA"],
+    ["PlantCloak", "Plant", "PLANT_CLOAK", "PLANT"],
+    ["SandyCloak", "Sandy", "SANDY_CLOAK", "SANDY"],
+    ["TrashCloak", "Trash", "TRASH_CLOAK", "TRASH"],
+    ["WestSea", "West", "WEST_SEA", "WEST"],
+    ["EastSea", "East", "EAST_SEA", "EAST"],
     ["OriginalColor", "Original", "ORIGINAL_COLOR", "ORIGINAL"],
     ["StandardMode", "Standard", "STANDARD_MODE", "STANDARD"],
     ["ZenMode", "Zen", "ZEN_MODE", "ZEN"],
@@ -106,6 +111,17 @@ for match in gba_pattern.findall(gba_content):
     if len(match) == 2:
         species_define, delay = match
         gba_data_anim_delays[species_define] = delay
+
+# Read 1.10 female follower data
+for file in glob.glob('./migration_scripts/1.10/species_info/female_followers.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+female_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *OVERWORLD_FEMALE\(gObjectEventPic_(\w+), SIZE_(\w+), SHADOW_SIZE_(\w+), TRACKS_(\w+), sAnimTable_Following\)', re.MULTILINE)
+female_follow_data = {}
+for match in female_pattern.findall(gba_content):
+    if len(match) == 5:
+        species_define, pic, size, shadow, tracks = match
+        female_follow_data[species_define] = (pic, size, shadow, tracks)
 
 # Read 1.10 shadow data
 for file in glob.glob('./migration_scripts/1.10/species_info/shadows.h'):
@@ -235,6 +251,27 @@ def update_set_anim_follower_data(match):
     mon_name3 = match.group(7)
 
     return f'{sp1}OVERWORLD(\n{sp}gObjectEventPic_{mon_name1},\n{sp}SIZE_{size},\n{sp}SHADOW_SIZE_{shadow},\n{sp}TRACKS_{footprint},\n{sp}{setAnim},\n{sp}gOverworldPalette_{mon_name2},\n{sp}gShinyOverworldPalette_{mon_name3}\n{sp1})'
+
+def add_female_follower_data(match):
+    global updated
+    global issuesCounter
+
+    # Alignment spaces
+    br = "{"
+    sp1 = "        "
+    sp2 = "            "
+    mon_define = match.group(1)
+    rows = match.group(2)
+    owmale = match.group(4)
+
+    string = f"    [SPECIES_{mon_define}] =\n    {br}\n" + rows + owmale
+    if mon_define in female_follow_data:
+        pic = female_follow_data[mon_define][0]
+        size = female_follow_data[mon_define][1]
+        shad = female_follow_data[mon_define][2]
+        tra = female_follow_data[mon_define][3]
+        string = string + f"\n" + f"{sp1}OVERWORLD_FEMALE(\n{sp2}gObjectEventPic_{pic},\n{sp2}SIZE_{size},\n{sp2}SHADOW_SIZE_{shad},\n{sp2}TRACKS_{tra},\n{sp2}sAnimTable_Following\n{sp1})"
+    return string
 
 def add_jump_data(match):
     global updated
@@ -413,7 +450,7 @@ for root, dirs, files in os.walk(main_dir):
         for form_labels in label_renames:
             species_content = re.sub(r"(gMonFrontPic_|gMonBackPic_|gMonPalette_|gMonShinyPalette_|gMonIcon_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
             species_content = re.sub(r"(sPicTable_|gObjectEventPic_|gOverworldPalette_|gShinyOverworldPalette_)(\w+)" + form_labels[0], r"\1\2" + form_labels[1], species_content)
-            species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
+            species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUpLearnset|TeachableLearnset|EggMoveLearnset|FormChangeTable)", r"s\1" + form_labels[1] + r"\2", species_content)
             species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
             species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
             species_content = re.sub(r"CRY_(\w+)_" + form_labels[2] + r"", r"CRY_\1_" + form_labels[3] + r"", species_content)
@@ -474,6 +511,8 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(update_basic_follower_data, species_content)
         pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
         species_content = pattern.sub(update_set_anim_follower_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)( {8}OVERWORLD\(\n {12}gObjectEventPic_\w+,\n {12}SIZE_\w+,\n {12}SHADOW_SIZE_\w+,\n {12}TRACKS_\w+,\n {12}sAnimTable_Following(_Asym|),\n {12}gOverworldPalette_\w+,\n {12}gShinyOverworldPalette_\w+\n {8}\))', re.MULTILINE)
+        species_content = pattern.sub(add_female_follower_data, species_content)
 
         # Alter Pokémon Jump data
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)( {8}\.iconPalIndex = .*,|#endif //P_GENDER_DIFFERENCES)\n {8}FOOTPRINT', re.MULTILINE)
