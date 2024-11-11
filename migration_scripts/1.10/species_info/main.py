@@ -71,6 +71,39 @@ for match in gba_pattern.findall(gba_content):
         species_define, palIdx = match
         gba_data_pal_indexes[species_define] = palIdx
 
+# Read GBA enemy mon elevation
+for file in glob.glob('./migration_scripts/1.10/species_info/enemy_mon_elevation.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *(\w+),', re.MULTILINE)
+gba_data_enemy_mon_elevation = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 2:
+        species_define, elevation = match
+        gba_data_enemy_mon_elevation[species_define] = elevation
+
+# Read GBA front pic anim ID
+for file in glob.glob('./migration_scripts/1.10/species_info/front_pic_anim_ids.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+) - 1\] *= *(\w+),', re.MULTILINE)
+gba_data_front_pic_anim_ids = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 2:
+        species_define, id = match
+        gba_data_front_pic_anim_ids[species_define] = id
+
+# Read GBA anim delays
+for file in glob.glob('./migration_scripts/1.10/species_info/animation_delay.h'):
+    with open(file, 'r') as f:
+        gba_content = f.read()
+gba_pattern = re.compile(r'\[SPECIES_(\w+) - 1\] *= *(\w+),', re.MULTILINE)
+gba_data_anim_delays = {}
+for match in gba_pattern.findall(gba_content):
+    if len(match) == 2:
+        species_define, delay = match
+        gba_data_anim_delays[species_define] = delay
+
 # Read 1.10 shadow data
 for file in glob.glob('./migration_scripts/1.10/species_info/shadows.h'):
     with open(file, 'r') as f:
@@ -152,6 +185,7 @@ def add_anim_data(match):
     if mon_name in anim_table_data and mon_name not in shared_anim_table_data:
         anim_frames = anim_table_data[mon_name]
         anim_frames = re.sub('    ANIMCMD_FRAME\(', '            ANIMCMD_FRAME(', anim_frames)
+        anim_frames = re.sub('    ANIMCMD_LOOP\(', '            ANIMCMD_LOOP(', anim_frames)
         updated = True
         return f'.frontAnimFrames = ANIM_FRAMES(\n{anim_frames}        ),'
     elif mon_name in single_placeholder_data:
@@ -294,6 +328,54 @@ def add_gba_iconPalIndex_data(match):
         str = str + f'        .iconPalIndex = {iconPalIndex},\n'
     return str
 
+def add_gba_enemyMonElevation_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    enemyMonElevation = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_enemy_mon_elevation and (gba_data_enemy_mon_elevation[mon_name] != enemyMonElevation):
+        updated = True
+        str = str + f'        .enemyMonElevation = P_GBA_STYLE_SPECIES_GFX ? {gba_data_enemy_mon_elevation[mon_name]} : {enemyMonElevation},\n'
+    else:
+        str = str + f'        .enemyMonElevation = {enemyMonElevation},\n'
+    return str
+
+def add_gba_frontAnimId_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    frontAnimId = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_front_pic_anim_ids and (gba_data_front_pic_anim_ids[mon_name] != frontAnimId):
+        updated = True
+        str = str + f'        .frontAnimId = P_GBA_STYLE_SPECIES_GFX ? {gba_data_front_pic_anim_ids[mon_name]} : {frontAnimId},\n'
+    else:
+        str = str + f'        .frontAnimId = {frontAnimId},\n'
+    return str
+
+def add_gba_frontAnimDelay_data(match):
+    global updated
+    global issuesCounter
+    brace = "{"
+    mon_name = match.group(1)
+    in_bewteen_rows = match.group(2)
+    frontAnimDelay = match.group(4)
+    str = f'    [SPECIES_{mon_name}] =\n'
+    str = str + f'    {brace}\n{in_bewteen_rows}'
+    if mon_name in gba_data_anim_delays and (gba_data_anim_delays[mon_name] != frontAnimDelay):
+        updated = True
+        str = str + f'        .frontAnimDelay = P_GBA_STYLE_SPECIES_GFX ? {gba_data_anim_delays[mon_name]} : {frontAnimDelay},\n'
+    else:
+        str = str + f'        .frontAnimDelay = {frontAnimDelay},\n'
+    return str
+
 def add_shadow_data(match):
     global updated
     global issuesCounter
@@ -331,6 +413,7 @@ for root, dirs, files in os.walk(main_dir):
             species_content = re.sub(r"s(\w+)" + form_labels[0] + r"(LevelUp|Teachable|EggMove)Learnset", r"s\1" + form_labels[1] + r"\2Learnset", species_content)
             species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
             species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
+            species_content = re.sub(r"CRY_(\w+)_" + form_labels[2] + r"", r"CRY_\1_" + form_labels[3] + r"", species_content)
 
         # Reorder Female fields
         species_content = re.sub(r" {8}\.frontPic = (.*),"
@@ -388,7 +471,7 @@ for root, dirs, files in os.walk(main_dir):
         species_content = re.sub(r"\.(isLegendary|isMythical|isTotem|isUltraBeast) = TRUE,((\n(?! {8}\.perfectIVCount).*){0,}?|)\n {8}\.levelUpLearnset ="
                             , r".\1 = TRUE,\2\n        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,\n        .levelUpLearnset ="
                             , species_content)
-        species_content = re.sub(r"\.allPerfectIVs = TRUE,", r"\.perfectIVCount = NUM_STATS,", species_content)
+        species_content = re.sub(r"\.allPerfectIVs = TRUE,", r".perfectIVCount = NUM_STATS,", species_content)
 
         # Remove HANDLE_EXPANDED_SPECIES_NAME
         species_content = re.sub(r'\.speciesName = HANDLE_EXPANDED_SPECIES_NAME\("(.*)", "(.*)"\),', r'.speciesName = _("\2"),', species_content)
@@ -412,12 +495,18 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(add_gba_frontPicSize_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontPicYOffset = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_frontPicYOffset_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontAnimId = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_frontAnimId_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontAnimDelay = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_frontAnimDelay_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.backPicSize = MON_COORDS_SIZE\((\w+), (\w+)\),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_backPicSize_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.backPicYOffset = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_backPicYOffset_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_iconPalIndex_data, species_content)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.enemyMonElevation = (\w+),\n', re.MULTILINE)
+        species_content = pattern.sub(add_gba_enemyMonElevation_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.pokemonJumpType = (\w+),\n {8}FOOTPRINT\((\w+)\)\n', re.MULTILINE)
         species_content = pattern.sub(add_shadow_data, species_content)
 
