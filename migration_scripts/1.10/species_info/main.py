@@ -15,11 +15,13 @@ label_renames = [
     ["SinnohCap", "Sinnoh", "SINNOH_CAP", "SINNOH"],
     ["UnovaCap", "Unova", "UNOVA_CAP", "UNOVA"],
     ["KalosCap", "Kalos", "KALOS_CAP", "KALOS"],
+    ["AlolaCap", "Alola", "ALOLA_CAP", "ALOLA"],
     ["Partner", "Starter", r"PARTNER\] =\n    \{\n {8}\.baseHP * = 45,", r"STARTER] =\n    {\n        .baseHP        = 45,"],        # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
     ["PartnerCap", "Partner", r"PARTNER_CAP\] =\n    \{\n {8}\.baseHP * = 35,", r"PARTNER] =\n    {\n        .baseHP        = 35,"], # Hacky way of avoiding conflict between Partner and Partner Cap Pikachu
     ["CombatBreed", "Combat", "COMBAT_BREED", "COMBAT"],
     ["BlazeBreed", "Blaze", "BLAZE_BREED", "BLAZE"],
     ["AquaBreed", "Aqua", "AQUA_BREED", "AQUA"],
+    ["OriginalColor", "Original", "ORIGINAL_COLOR", "ORIGINAL"],
 ]
 
 if not os.path.exists("Makefile"):
@@ -325,52 +327,7 @@ for root, dirs, files in os.walk(main_dir):
             species_content = re.sub(r"g(\w+)" + form_labels[0] + r"PokedexText", r"g\1" + form_labels[1] + r"PokedexText", species_content)
             species_content = re.sub(r"SPECIES_(\w+)_" + form_labels[2] + r"", r"SPECIES_\1_" + form_labels[3] + r"", species_content)
 
-        '''
-        .frontPicFemale = gMonFrontPic_JellicentF,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 3,
-        .frontAnimFrames = ANIM_FRAMES(
-            ANIMCMD_FRAME(0, 8),
-            ANIMCMD_FRAME(1, 30),
-            ANIMCMD_FRAME(0, 8),
-            ANIMCMD_FRAME(1, 30),
-            ANIMCMD_FRAME(0, 8),
-        ),
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backPic = gMonBackPic_Jellicent,
-        .backPicFemale = gMonBackPic_JellicentF,
-        .backPicSize = MON_COORDS_SIZE(64, 48),
-        .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
-        .backPicYOffset = 10,
-        .backAnimId = BACK_ANIM_GROW_STUTTER,
-        .palette = gMonPalette_Jellicent,
-        .paletteFemale = gMonPalette_JellicentF,
-        .shinyPalette = gMonShinyPalette_Jellicent,
-        .iconSprite = gMonIcon_Jellicent,
-        .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
-        .shinyPaletteFemale = gMonShinyPalette_JellicentF,
-        .iconSpriteFemale = gMonIcon_JellicentF,
-        .iconPalIndexFemale = 1,
-#endif //P_GENDER_DIFFERENCES
-        FOOTPRINT(Jellicent)
-        '''
-        
         # Reorder Female fields
-        '''
-        species_content = re.sub(r"    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)(        \.iconPalIndexFemale = \w+,\n|)        FOOTPRINT\((\w+)\)",
-                                 r"    [SPECIES_\1] =\n    {\n\2#if P_GENDER_DIFFERENCES\n\4#endif //P_GENDER_DIFFERENCES\n        FOOTPRINT(\5)", species_content)
-        species_content = re.sub(r"    \[SPECIES_(\w+)\] =\n    \{\n(((?!(    \[SPECIES_)|\.iconSpriteFemale).*\n){1,}?)(        \.iconSpriteFemale = \w+,\n|) {8}\.iconPalIndex = (\w+),\n#if P_GENDER_DIFFERENCES\n",
-                                 r"    [SPECIES_\1] =\n    {\n\2        .iconPalIndex = \6,\n#if P_GENDER_DIFFERENCES\n\5", species_content)
-        species_content = re.sub(r"    \[SPECIES_(\w+)\] =\n    \{\n(((?!(    \[SPECIES_)|\.shinyPaletteFemale).*\n){1,}?)(        \.shinyPaletteFemale = \w+,\n|) {8}\.iconSprite = (\w+),\n#if P_GENDER_DIFFERENCES\n",
-                                 r"    [SPECIES_\1] =\n    {\n\2        .iconSprite = \6,\n#if P_GENDER_DIFFERENCES\n\5", species_content)
-
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
-        .frontPicYOffset = 3,
-        .frontAnimFrames = sAnims_Venusaur,
-        '''
         species_content = re.sub(r" {8}\.frontPic = (.*),"
                                + r"(\n {8}\.frontPicFemale = .*,|)"
                                + r"\n {8}\.frontPicSize = (.*),"
@@ -416,11 +373,15 @@ for root, dirs, files in os.walk(main_dir):
                             + r"\19"
                             + r"\21"
                             + r"\n#endif //P_GENDER_DIFFERENCES"
-                            #+ r"\n        FOOTPRINT(Frillish)"
                             , species_content
         )
-
         species_content = re.sub(r"#if P_GENDER_DIFFERENCES\n#endif //P_GENDER_DIFFERENCES\n", r"", species_content)
+
+        # Add perfectIVCount for Legendaries and Mythicals
+        species_content = re.sub(r"\.(isLegendary|isMythical|isTotem|isUltraBeast) = TRUE,((\n(?! {8}\.perfectIVCount).*){0,}?|)\n {8}\.levelUpLearnset ="
+                            , r".\1 = TRUE,\2\n        .perfectIVCount = LEGENDARY_PERFECT_IV_COUNT,\n        .levelUpLearnset ="
+                            , species_content)
+        species_content = re.sub(r"\.allPerfectIVs = TRUE,", r"\.perfectIVCount = NUM_STATS,", species_content)
 
         # Alter front animations
         pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
