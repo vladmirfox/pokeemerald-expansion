@@ -468,4 +468,21 @@ SINGLE_BATTLE_TEST("Red Card does not activate if holder is switched in mid-turn
     }
 }
 
+SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_GOLISOPOD) { Item(ITEM_RED_CARD); Ability(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(262); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUPER_FANG); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPER_FANG, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+        NOT ABILITY_POPUP(opponent, ABILITY_EMERGENCY_EXIT);
+    }
+}
+
 // SINGLE_BATTLE_TEST("Red Card activates but fails if the attacker has Dynamaxed")
