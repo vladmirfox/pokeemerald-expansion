@@ -828,6 +828,7 @@ struct BattleStruct
     u8 commandingDondozo;
     u16 commanderActive[NUM_BATTLE_SIDES];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
+    u8 redCardActivates:1;
     u8 usedEjectItem;
     u8 usedMicleBerry;
     u8 monCausingSleepClause[NUM_BATTLE_SIDES]; // Stores which pokemon on a given side is causing Sleep Clause to be active as the mon's index in the party
