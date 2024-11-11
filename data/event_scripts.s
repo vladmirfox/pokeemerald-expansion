@@ -1257,3 +1257,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Beachbound_Route_Decay/scripts.inc"
 
 	.include "data/maps/SabersideChannel/scripts.inc"
+
+	.include "data/maps/CoreefIsle/scripts.inc"

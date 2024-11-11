@@ -193,6 +193,14 @@
       "height": 1
     },
     {
+      "map_section": "MAPSEC_COREEF_ISLE",
+      "name": "Coreef Isle",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
       "map_section": "MAPSEC_WHITESLATE_ROUTE",
       "name": "Whiteslate Route",
       "x": 0,

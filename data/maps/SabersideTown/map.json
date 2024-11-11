@@ -14,19 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_SCENIC_ROUTE",
-      "offset": 3,
-      "direction": "right"
-    },
-    {
-      "map": "MAP_SCENIC_ROUTE",
-      "offset": 3,
-      "direction": "right"
-    },
-    {
       "map": "MAP_SABERSIDE_CHANNEL",
       "offset": 28,
       "direction": "left"
+    },
+    {
+      "map": "MAP_SCENIC_ROUTE",
+      "offset": -12,
+      "direction": "right"
     }
   ],
   "object_events": [

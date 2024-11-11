@@ -219,7 +219,8 @@
 #define MAPSEC_ORCHARD_PATH                 0xD7
 #define MAPSEC_SABERSIDE_TOWN               0xD8
 #define MAPSEC_SABERSIDE_CHANNEL            0xD9
-#define MAPSEC_NONE                         0xE0
+#define MAPSEC_COREEF_ISLE                  0xE0
+#define MAPSEC_NONE                         0xE1
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE
