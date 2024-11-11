@@ -6192,7 +6192,7 @@ static void Cmd_moveend(void)
                                 }
                             }
                             break; // Only the fastest Eject item activates
-                            }
+                        }
                     }
                 }
             }
