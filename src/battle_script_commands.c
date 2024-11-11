@@ -6180,7 +6180,7 @@ static void Cmd_moveend(void)
                             {
                                 if (gBattleResources->flags->flags[gBattlerTarget] & RESOURCE_FLAG_EMERGENCY_EXIT)
                                 {
-                                    gBattlescriptCurrInstr = BattleScript_EjectPackMissisTiming;
+                                    gBattlescriptCurrInstr = BattleScript_EjectPackMissesTiming;
                                     gProtectStructs[battler].statFell = FALSE;
                                 }
                                 else
