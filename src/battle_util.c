@@ -7081,9 +7081,9 @@ static inline u32 TryBoosterEnergy(u32 battler)
         gBattlerAbility = gBattleScripting.battler = battler;
         gBattleStruct->boosterEnergyActivates |= gBitTable[battler];
         BattleScriptExecute(BattleScript_BoosterEnergyEnd2);
-
         return ITEM_EFFECT_OTHER;
     }
+
     return ITEM_NO_EFFECT;
 }
 
