@@ -130,7 +130,7 @@ for match in double_placeholder_pattern.findall(anim_table_content):
     double_placeholder_data[anim_name] = (anim_name)
 
 # Read pokemon_jump.c
-for file in glob.glob('./src/pokemon_jump.c'):
+for file in glob.glob('./migration_scripts/1.10/species_info/pokemon_jump.c'):
     with open(file, 'r') as f:
         pokemon_jump_content = f.read()
 pokemon_jump_pattern = re.compile(r'\{ \.species = SPECIES_(\w+), *\.jumpType = JUMP_TYPE_(\w+), \},', re.MULTILINE)
@@ -340,6 +340,7 @@ for root, dirs, files in os.walk(main_dir):
                                + r"(\n {8}\.frontPicYOffset = .*,|)"
                                + r"\n {8}\.frontAnimFrames = (.*),"
                                + r"\n {8}\.frontAnimId = (.*),"
+                               + r"(\n {8}\.enemyMonElevation = .*,|)"
                                + r"\n {8}\.backPic = (.*),"
                                + r"(\n {8}\.backPicFemale = .*,|)"
                                + r"\n {8}\.backPicSize = (.*),"
@@ -360,23 +361,24 @@ for root, dirs, files in os.walk(main_dir):
                             + r"\5"
                             + r"\n        .frontAnimFrames = \6,"
                             + r"\n        .frontAnimId = \7,"
-                            + r"\n        .backPic = \8,"
-                            + r"\n        .backPicSize = \10,"
-                            + r"\12"
+                            + r"\8"
+                            + r"\n        .backPic = \9,"
+                            + r"\n        .backPicSize = \11,"
                             + r"\13"
-                            + r"\n        .palette = \14,"
-                            + r"\n        .shinyPalette = \16,"
-                            + r"\n        .iconSprite = \18,"
-                            + r"\n        .iconPalIndex = \20,"
+                            + r"\14"
+                            + r"\n        .palette = \15,"
+                            + r"\n        .shinyPalette = \17,"
+                            + r"\n        .iconSprite = \19,"
+                            + r"\n        .iconPalIndex = \21,"
                             + r"\n#if P_GENDER_DIFFERENCES"
                             + r"\2"
                             + r"\4"
-                            + r"\9"
-                            + r"\11"
-                            + r"\15"
-                            + r"\17"
-                            + r"\19"
-                            + r"\21"
+                            + r"\10"
+                            + r"\12"
+                            + r"\16"
+                            + r"\18"
+                            + r"\20"
+                            + r"\22"
                             + r"\n#endif //P_GENDER_DIFFERENCES"
                             , species_content
         )
