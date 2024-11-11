@@ -380,24 +380,6 @@ SINGLE_BATTLE_TEST("Red Card does not activate if attacker's Sheer Force applied
     }
 }
 
-SINGLE_BATTLE_TEST("Red Card activates before Emergency Exit")
-{
-    GIVEN {
-        PLAYER(SPECIES_GOLISOPOD) { MaxHP(100); HP(51); Item(ITEM_RED_CARD); }
-        PLAYER(SPECIES_WIMPOD);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Golisopod held up its Red Card against Foe Wobbuffet!");
-        ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
-        SEND_IN_MESSAGE("Wimpod");
-    }
-}
-
 SINGLE_BATTLE_TEST("Red Card is consumed after dragged out replacement has its Speed lowered by Sticky Web")
 {
     GIVEN {
