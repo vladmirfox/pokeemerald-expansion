@@ -383,6 +383,9 @@ for root, dirs, files in os.walk(main_dir):
                             , species_content)
         species_content = re.sub(r"\.allPerfectIVs = TRUE,", r"\.perfectIVCount = NUM_STATS,", species_content)
 
+        # Remove HANDLE_EXPANDED_SPECIES_NAME
+        species_content = re.sub(r'\.speciesName = HANDLE_EXPANDED_SPECIES_NAME\("(.*)", "(.*)"\),', r'.speciesName = _("\2"),', species_content)
+
         # Alter front animations
         pattern = re.compile(r'\.frontAnimFrames = sAnims_(\w+),', re.DOTALL)
         species_content = pattern.sub(add_anim_data, species_content)
