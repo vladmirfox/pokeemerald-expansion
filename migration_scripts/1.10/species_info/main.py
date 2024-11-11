@@ -8,6 +8,9 @@ label_renames = [
     ["Alolan", "Alola", "ALOLAN", "ALOLA"],
     ["Galarian", "Galar", "GALARIAN", "GALAR"],
     ["Hisuian", "Hisui", "HISUIAN", "HISUI"],
+    ["PaldeanCombatBreed", "PaldeaCombat", "PALDEAN_COMBAT_BREED", "PALDEA_COMBAT"],
+    ["PaldeanBlazeBreed", "PaldeaBlaze", "PALDEAN_BLAZE_BREED", "PALDEA_BLAZE"],
+    ["PaldeanAquaBreed", "PaldeaAqua", "PALDEAN_AQUA_BREED", "PALDEA_AQUA"],
     ["Paldean", "Paldea", "PALDEAN", "PALDEA"],
     ["Gigantamax", "Gmax", "GIGANTAMAX", "GMAX"],
     ["OriginalCap", "Original", "ORIGINAL_CAP", "ORIGINAL"],
@@ -108,7 +111,7 @@ for match in gba_pattern.findall(gba_content):
 for file in glob.glob('./migration_scripts/1.10/species_info/shadows.h'):
     with open(file, 'r') as f:
         gba_content = f.read()
-shadow_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *SHADOW(.*)(,|)\n', re.MULTILINE)
+shadow_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *(SHADOW\(.*\)|NO_SHADOW)(,|)\n', re.MULTILINE)
 shadow_data = {}
 for match in shadow_pattern.findall(gba_content):
     if len(match) == 3:
@@ -388,7 +391,7 @@ def add_shadow_data(match):
     str = str + f'    {brace}\n{in_bewteen_rows}'
     if mon_name in shadow_data:
         updated = True
-        str = str + f'        .pokemonJumpType = {jump_type},\n        SHADOW{shadow_data[mon_name]}\n        FOOTPRINT({footprint})\n'
+        str = str + f'        .pokemonJumpType = {jump_type},\n        {shadow_data[mon_name]}\n        FOOTPRINT({footprint})\n'
     else:
         str = str + f'        .pokemonJumpType = {jump_type},\n        FOOTPRINT({footprint})\n'
     return str
@@ -424,6 +427,7 @@ for root, dirs, files in os.walk(main_dir):
                                + r"\n {8}\.frontAnimFrames = (.*),"
                                + r"\n {8}\.frontAnimId = (.*),"
                                + r"(\n {8}\.enemyMonElevation = .*,|)"
+                               + r"(\n {8}\.frontAnimDelay = .*,|)"
                                + r"\n {8}\.backPic = (.*),"
                                + r"(\n {8}\.backPicFemale = .*,|)"
                                + r"\n {8}\.backPicSize = (.*),"
@@ -445,23 +449,24 @@ for root, dirs, files in os.walk(main_dir):
                             + r"\n        .frontAnimFrames = \6,"
                             + r"\n        .frontAnimId = \7,"
                             + r"\8"
-                            + r"\n        .backPic = \9,"
-                            + r"\n        .backPicSize = \11,"
-                            + r"\13"
+                            + r"\9"
+                            + r"\n        .backPic = \10,"
+                            + r"\n        .backPicSize = \12,"
                             + r"\14"
-                            + r"\n        .palette = \15,"
-                            + r"\n        .shinyPalette = \17,"
-                            + r"\n        .iconSprite = \19,"
-                            + r"\n        .iconPalIndex = \21,"
+                            + r"\15"
+                            + r"\n        .palette = \16,"
+                            + r"\n        .shinyPalette = \18,"
+                            + r"\n        .iconSprite = \20,"
+                            + r"\n        .iconPalIndex = \22,"
                             + r"\n#if P_GENDER_DIFFERENCES"
                             + r"\2"
                             + r"\4"
-                            + r"\10"
-                            + r"\12"
-                            + r"\16"
-                            + r"\18"
-                            + r"\20"
-                            + r"\22"
+                            + r"\11"
+                            + r"\13"
+                            + r"\17"
+                            + r"\19"
+                            + r"\21"
+                            + r"\23"
                             + r"\n#endif //P_GENDER_DIFFERENCES"
                             , species_content
         )
