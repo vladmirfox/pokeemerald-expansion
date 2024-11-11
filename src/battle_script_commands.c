@@ -6178,13 +6178,21 @@ static void Cmd_moveend(void)
                             }
                             else // Eject Pack
                             {
-                                gBattlescriptCurrInstr = BattleScript_EjectPackActivates;
-                                // Are these 2 lines below needed?
-                                gProtectStructs[battler].statFell = FALSE;
-                                gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
+                                if (gBattleResources->flags->flags[gBattlerTarget] & RESOURCE_FLAG_EMERGENCY_EXIT)
+                                {
+                                    gBattlescriptCurrInstr = BattleScript_EjectPackMissisTiming;
+                                    gProtectStructs[battler].statFell = FALSE;
+                                }
+                                else
+                                {
+                                    gBattlescriptCurrInstr = BattleScript_EjectPackActivates;
+                                    // Are these 2 lines below needed?
+                                    gProtectStructs[battler].statFell = FALSE;
+                                    gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
+                                }
                             }
                             break; // Only the fastest Eject item activates
-                        }
+                            }
                     }
                 }
             }
