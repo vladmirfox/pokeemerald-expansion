@@ -19,9 +19,9 @@
       "direction": "right"
     },
     {
-      "map": "MAP_SABERSIDE_TOWN",
-      "offset": 12,
-      "direction": "left"
+      "map": "MAP_SCENIC_ROUTE_SABERSIDE",
+      "offset": -40,
+      "direction": "down"
     }
   ],
   "object_events": [
