@@ -265,7 +265,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_114",
+      "map_section": "MAPSEC_DRYUGON",
       "name": "ROUTE 114",
       "x": 1,
       "y": 0,
@@ -273,7 +273,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_115",
+      "map_section": "MAPSEC_BURNFOOT_PASS_BOTTOM",
       "name": "ROUTE 115",
       "x": 0,
       "y": 2,
@@ -281,7 +281,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_116",
+      "map_section": "MAPSEC_STEEPSTONE_PASS_BOTTOM",
       "name": "ROUTE 116",
       "x": 1,
       "y": 5,
@@ -289,7 +289,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_117",
+      "map_section": "MAPSEC_BURNFOOT_PASS",
       "name": "ROUTE 117",
       "x": 5,
       "y": 6,
@@ -305,7 +305,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_119",
+      "map_section": "MAPSEC_STEEPSTONE_PASS",
       "name": "ROUTE 119",
       "x": 11,
       "y": 0,
@@ -313,7 +313,7 @@
       "height": 6
     },
     {
-      "map_section": "MAPSEC_ROUTE_120",
+      "map_section": "MAPSEC_SHOGUNATE",
       "name": "ROUTE 120",
       "x": 13,
       "y": 0,
@@ -321,7 +321,7 @@
       "height": 4
     },
     {
-      "map_section": "MAPSEC_ROUTE_121",
+      "map_section": "MAPSEC_SCENIC_ROUTE_SABERSIDE",
       "name": "ROUTE 121",
       "x": 14,
       "y": 3,
@@ -329,7 +329,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_122",
+      "map_section": "MAPSEC_UUME_FOREST",
       "name": "ROUTE 122",
       "x": 16,
       "y": 4,
