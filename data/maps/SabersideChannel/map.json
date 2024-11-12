@@ -17,6 +17,11 @@
       "map": "MAP_SABERSIDE_TOWN",
       "offset": -18,
       "direction": "right"
+    },
+    {
+      "map": "MAP_COREEF_ISLE",
+      "offset": 0,
+      "direction": "left"
     }
   ],
   "object_events": [

@@ -4794,10 +4794,10 @@
     {
       "id": "LAYOUT_COREEF_ISLE",
       "name": "CoreefIsle_Layout",
-      "width": 30,
-      "height": 30,
+      "width": 42,
+      "height": 36,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
-      "secondary_tileset": "gTileset_OpenSea",
+      "secondary_tileset": "gTileset_Coral",
       "border_filepath": "data/layouts/CoreefIsle/border.bin",
       "blockdata_filepath": "data/layouts/CoreefIsle/map.bin"
     }

@@ -17,6 +17,11 @@
       "map": "MAP_SABERSIDE_CHANNEL",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_SABERSIDE_CHANNEL",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [
