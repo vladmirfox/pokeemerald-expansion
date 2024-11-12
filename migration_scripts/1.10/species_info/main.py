@@ -37,6 +37,7 @@ label_renames = [
     ["Female", "F", "FEMALE", "F"],
     ["FamilyOfFour", "Four", "FAMILY_OF_FOUR", "FOUR"],
     ["FamilyOfThree", "Three", "FAMILY_OF_THREE", "THREE"],
+    ["PhD", "PhD", "PH_D", "PHD"],
 ]
 
 if not os.path.exists("Makefile"):
