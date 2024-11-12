@@ -15,7 +15,7 @@
   "connections": [
     {
       "map": "MAP_SABERSIDE_CHANNEL",
-      "offset": 28,
+      "offset": 18,
       "direction": "left"
     },
     {
