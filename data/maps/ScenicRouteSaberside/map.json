@@ -1,9 +1,9 @@
 {
-  "id": "MAP_SCENIC_ROUTE",
-  "name": "ScenicRoute",
-  "layout": "LAYOUT_SCENIC_ROUTE",
+  "id": "MAP_SCENIC_ROUTE_SABERSIDE",
+  "name": "ScenicRouteSaberside",
+  "layout": "LAYOUT_SCENIC_ROUTE_SABERSIDE",
   "music": "MUS_DUMMY",
-  "region_map_section": "MAPSEC_SCENIC_ROUTE",
+  "region_map_section": "MAPSEC_ROUTE_121",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_WINDSWEPT_ROUTE",
-      "offset": 2,
-      "direction": "right"
+      "map": "MAP_SABERSIDE_TOWN",
+      "offset": -5,
+      "direction": "left"
     },
     {
-      "map": "MAP_SABERSIDE_TOWN",
-      "offset": 12,
-      "direction": "left"
+      "map": "MAP_SCENIC_ROUTE",
+      "offset": 36,
+      "direction": "up"
     }
   ],
   "object_events": [

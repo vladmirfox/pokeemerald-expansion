@@ -5000,6 +5000,16 @@
       "secondary_tileset": "gTileset_OpenSea",
       "border_filepath": "data/layouts/Shogunate/border.bin",
       "blockdata_filepath": "data/layouts/Shogunate/map.bin"
+    },
+    {
+      "id": "LAYOUT_SCENIC_ROUTE_SABERSIDE",
+      "name": "ScenicRouteSaberside_Layout",
+      "width": 50,
+      "height": 20,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_Saberside",
+      "border_filepath": "data/layouts/ScenicRouteSaberside/border.bin",
+      "blockdata_filepath": "data/layouts/ScenicRouteSaberside/map.bin"
     }
   ]
 }

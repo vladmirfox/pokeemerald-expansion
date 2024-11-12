@@ -1299,3 +1299,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/BurnfootPassBottom/scripts.inc"
 
 	.include "data/maps/Shogunate/scripts.inc"
+
+	.include "data/maps/ScenicRouteSaberside/scripts.inc"
