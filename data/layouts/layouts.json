@@ -5002,14 +5002,24 @@
       "blockdata_filepath": "data/layouts/Shogunate/map.bin"
     },
     {
-      "id": "LAYOUT_SCENIC_ROUTE_SABERSIDE",
-      "name": "ScenicRouteSaberside_Layout",
+      "id": "LAYOUT_SCENIC_ROUTE_COREEF",
+      "name": "ScenicRouteCoreef_Layout",
       "width": 50,
       "height": 20,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_Saberside",
-      "border_filepath": "data/layouts/ScenicRouteSaberside/border.bin",
-      "blockdata_filepath": "data/layouts/ScenicRouteSaberside/map.bin"
+      "border_filepath": "data/layouts/ScenicRouteCoreef/border.bin",
+      "blockdata_filepath": "data/layouts/ScenicRouteCoreef/map.bin"
+    },
+    {
+      "id": "LAYOUT_UUME_FOREST",
+      "name": "UumeForest_Layout",
+      "width": 80,
+      "height": 80,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_UumeForest",
+      "border_filepath": "data/layouts/UumeForest/border.bin",
+      "blockdata_filepath": "data/layouts/UumeForest/map.bin"
     }
   ]
 }

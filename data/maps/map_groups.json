@@ -142,7 +142,7 @@
     "MtKazanExterior",
     "SteepstonePass",
     "Shogunate",
-    "ScenicRouteSaberside"
+    "ScenicRouteCoreef"
   ],
   "gMapGroup_IndoorSunriseVillage": [
     "LittlerootTown_BrendansHouse_1F",
@@ -498,7 +498,8 @@
     "MeteorFalls_StevensCave",
     "GinkoWoods",
     "SilverTunnel_1F",
-    "SilverTunnel_2F"
+    "SilverTunnel_2F",
+    "UumeForest"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

@@ -108,7 +108,7 @@
 #define MAP_MT_KAZAN_EXTERIOR                     (99 | (0 << 8))
 #define MAP_STEEPSTONE_PASS                       (100 | (0 << 8))
 #define MAP_SHOGUNATE                             (101 | (0 << 8))
-#define MAP_SCENIC_ROUTE_SABERSIDE                (102 | (0 << 8))
+#define MAP_SCENIC_ROUTE_COREEF                   (102 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
@@ -465,6 +465,7 @@
 #define MAP_GINKO_WOODS                              (108 | (24 << 8))
 #define MAP_SILVER_TUNNEL_1F                         (109 | (24 << 8))
 #define MAP_SILVER_TUNNEL_2F                         (110 | (24 << 8))
+#define MAP_UUME_FOREST                              (111 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))

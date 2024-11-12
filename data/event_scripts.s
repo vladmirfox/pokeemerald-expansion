@@ -1301,3 +1301,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Shogunate/scripts.inc"
 
 	.include "data/maps/ScenicRouteSaberside/scripts.inc"
+
+	.include "data/maps/UumeForest/scripts.inc"
