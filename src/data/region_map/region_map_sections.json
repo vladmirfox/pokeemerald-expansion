@@ -209,7 +209,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_107",
+      "map_section": "MAPSEC_HAVENISLE",
       "name": "ROUTE 107",
       "x": 3,
       "y": 14,
@@ -217,7 +217,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_108",
+      "map_section": "MAPSEC_MIDDLEISLE",
       "name": "ROUTE 108",
       "x": 6,
       "y": 14,
@@ -225,7 +225,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_109",
+      "map_section": "MAPSEC_TOPISLE",
       "name": "ROUTE 109",
       "x": 8,
       "y": 12,
@@ -233,7 +233,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_110",
+      "map_section": "MAPSEC_SEATURF_ROUTE",
       "name": "ROUTE 110",
       "x": 8,
       "y": 7,
@@ -241,7 +241,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_111",
+      "map_section": "MAPSEC_LONGTIDE_CHANNEL",
       "name": "ROUTE 111",
       "x": 8,
       "y": 0,
@@ -249,7 +249,7 @@
       "height": 6
     },
     {
-      "map_section": "MAPSEC_ROUTE_112",
+      "map_section": "MAPSEC_LONGTIDE_CHANNEL_SOULKEEP",
       "name": "ROUTE 112",
       "x": 6,
       "y": 3,
@@ -257,7 +257,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_113",
+      "map_section": "MAPSEC_DRAGONS_PASS",
       "name": "ROUTE 113",
       "x": 4,
       "y": 0,
@@ -265,7 +265,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_114",
+      "map_section": "MAPSEC_DRYUGON",
       "name": "ROUTE 114",
       "x": 1,
       "y": 0,
@@ -273,7 +273,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_115",
+      "map_section": "MAPSEC_BURNFOOT_PASS_BOTTOM",
       "name": "ROUTE 115",
       "x": 0,
       "y": 2,
@@ -281,7 +281,7 @@
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_116",
+      "map_section": "MAPSEC_STEEPSTONE_PASS_BOTTOM",
       "name": "ROUTE 116",
       "x": 1,
       "y": 5,
@@ -289,7 +289,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_117",
+      "map_section": "MAPSEC_BURNFOOT_PASS",
       "name": "ROUTE 117",
       "x": 5,
       "y": 6,
@@ -297,7 +297,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_118",
+      "map_section": "MAPSEC_MT_KAZAN_EXTERIOR",
       "name": "ROUTE 118",
       "x": 10,
       "y": 6,
@@ -305,7 +305,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_119",
+      "map_section": "MAPSEC_STEEPSTONE_PASS",
       "name": "ROUTE 119",
       "x": 11,
       "y": 0,
@@ -313,7 +313,7 @@
       "height": 6
     },
     {
-      "map_section": "MAPSEC_ROUTE_120",
+      "map_section": "MAPSEC_SHOGUNATE",
       "name": "ROUTE 120",
       "x": 13,
       "y": 0,
@@ -321,7 +321,7 @@
       "height": 4
     },
     {
-      "map_section": "MAPSEC_ROUTE_121",
+      "map_section": "MAPSEC_SCENIC_ROUTE_SABERSIDE",
       "name": "ROUTE 121",
       "x": 14,
       "y": 3,
@@ -329,7 +329,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_122",
+      "map_section": "MAPSEC_UUME_FOREST",
       "name": "ROUTE 122",
       "x": 16,
       "y": 4,
@@ -337,48 +337,48 @@
       "height": 2
     },
     {
-      "map_section": "MAPSEC_ROUTE_123",
-      "name": "ROUTE 123",
+      "map_section": "MAPSEC_COREEF_ISLE",
+      "name": "Coreef Isle",
       "x": 12,
       "y": 6,
       "width": 5,
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_124",
-      "name": "ROUTE 124",
+      "map_section": "MAPSEC_OPEN_SEA_CORAL",
+      "name": "Coral Waters",
       "x": 20,
       "y": 3,
       "width": 4,
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_125",
-      "name": "ROUTE 125",
+      "map_section": "MAPSEC_OPEN_SEA_HAVEN",
+      "name": "Haven Waters",
       "x": 24,
       "y": 3,
       "width": 2,
       "height": 2
     },
     {
-      "map_section": "MAPSEC_ROUTE_126",
-      "name": "ROUTE 126",
+      "map_section": "MAPSEC_OPEN_SEA_LEAGUE",
+      "name": "Victory Waters",
       "x": 20,
       "y": 6,
       "width": 3,
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_127",
-      "name": "ROUTE 127",
+      "map_section": "MAPSEC_OPEN_SEA_ICY",
+      "name": "Icy Waters",
       "x": 23,
       "y": 6,
       "width": 3,
       "height": 3
     },
     {
-      "map_section": "MAPSEC_ROUTE_128",
-      "name": "ROUTE 128",
+      "map_section": "MAPSEC_SABERSIDE_CHANNEL",
+      "name": "Saberside Channel",
       "x": 23,
       "y": 9,
       "width": 4,

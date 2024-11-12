@@ -22,13 +22,24 @@
       "map": "MAP_SOULKEEP",
       "offset": -21,
       "direction": "left"
+    },
+    {
+      "map": "MAP_PUDDLE_PATH",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [
 
   ],
   "warp_events": [
-
+    {
+      "x": 68,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_UUME_FOREST",
+      "dest_warp_id": "0"
+    }
   ],
   "coord_events": [
 
