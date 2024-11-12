@@ -25,10 +25,10 @@ label_renames = [
     ["CombatBreed", "Combat", "COMBAT_BREED", "COMBAT"],
     ["BlazeBreed", "Blaze", "BLAZE_BREED", "BLAZE"],
     ["AquaBreed", "Aqua", "AQUA_BREED", "AQUA"],
-    ["PlantCloak", "Plant", "PLANT_CLOAK", "PLANT"],
+    ["PlantCloak", "PlantCloak", "PLANT_CLOAK", "PLANT"],
     ["SandyCloak", "Sandy", "SANDY_CLOAK", "SANDY"],
     ["TrashCloak", "Trash", "TRASH_CLOAK", "TRASH"],
-    ["WestSea", "West", "WEST_SEA", "WEST"],
+    ["WestSea", "WestSea", "WEST_SEA", "WEST"],
     ["EastSea", "East", "EAST_SEA", "EAST"],
     ["OriginalColor", "Original", "ORIGINAL_COLOR", "ORIGINAL"],
     ["StandardMode", "Standard", "STANDARD_MODE", "STANDARD"],
@@ -151,7 +151,7 @@ for root, dirs, files in os.walk(main_dir):
                 species_content = f.read()
             # Find animation label pattern
             for match in pattern.findall(species_content):
-                if match in anim_table_data:
+                if match in anim_table_data or match == 'Mothim':
                     if match not in shared_anim_table_data:
                         shared_anim_table_data[match] = match
                 else:
@@ -377,14 +377,27 @@ def add_gba_enemyMonElevation_data(match):
     brace = "{"
     mon_name = match.group(1)
     in_bewteen_rows = match.group(2)
-    enemyMonElevation = match.group(4)
+    frontAnimId = match.group(4)
+    enemyMonElevation = match.group(5)
+    ele = match.group(6)
+    delay = match.group(7)
+    backPic = match.group(9)
+
     str = f'    [SPECIES_{mon_name}] =\n'
     str = str + f'    {brace}\n{in_bewteen_rows}'
-    if mon_name in gba_data_enemy_mon_elevation and (gba_data_enemy_mon_elevation[mon_name] != enemyMonElevation):
-        updated = True
-        str = str + f'        .enemyMonElevation = P_GBA_STYLE_SPECIES_GFX ? {gba_data_enemy_mon_elevation[mon_name]} : {enemyMonElevation},\n'
-    else:
-        str = str + f'        .enemyMonElevation = {enemyMonElevation},\n'
+    str = str + f'        .frontAnimId = {frontAnimId},'
+
+    if mon_name in gba_data_enemy_mon_elevation:
+        if enemyMonElevation != "":
+            if gba_data_enemy_mon_elevation[mon_name] != ele:
+                str = str + f'\n        .enemyMonElevation = P_GBA_STYLE_SPECIES_GFX ? {gba_data_enemy_mon_elevation[mon_name]} : {ele},'
+            else:
+                str = str + f'\n        .enemyMonElevation = {gba_data_enemy_mon_elevation[mon_name]},'
+        else:
+            str = str + f'\n        .enemyMonElevation = P_GBA_STYLE_SPECIES_GFX ? {gba_data_enemy_mon_elevation[mon_name]} : 0,'
+    elif enemyMonElevation != "":
+        str = str + enemyMonElevation
+    str = str + f'{delay}\n        .backPic = gMonBackPic_{backPic},'
     return str
 
 def add_gba_frontAnimId_data(match):
@@ -536,7 +549,7 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(add_gba_backPicYOffset_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.iconPalIndex = (\w+),\n', re.MULTILINE)
         species_content = pattern.sub(add_gba_iconPalIndex_data, species_content)
-        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.enemyMonElevation = (\w+),\n', re.MULTILINE)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.frontAnimId = (.*),(\n {8}\.enemyMonElevation = (\w+),|)(\n {8}\.frontAnimDelay = (.*),|)\n {8}\.backPic = gMonBackPic_(\w+),', re.MULTILINE)
         species_content = pattern.sub(add_gba_enemyMonElevation_data, species_content)
         pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?) {8}\.pokemonJumpType = (\w+),\n {8}FOOTPRINT\((\w+)\)\n', re.MULTILINE)
         species_content = pattern.sub(add_shadow_data, species_content)
