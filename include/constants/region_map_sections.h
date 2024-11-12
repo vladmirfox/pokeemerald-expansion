@@ -23,7 +23,7 @@
 #define MAPSEC_WHITESLATE_ROUTE                    0x13
 #define MAPSEC_SCENIC_ROUTE                    0x14
 #define MAPSEC_HARVEST_SHRINE                    0x15
-#define MAPSEC_ROUTE_107                    0x16
+#define MAPSEC_HAVENISLE                    0x16
 #define MAPSEC_ROUTE_108                    0x17
 #define MAPSEC_ROUTE_109                    0x18
 #define MAPSEC_ROUTE_110                    0x19
@@ -220,7 +220,11 @@
 #define MAPSEC_SABERSIDE_TOWN               0xD8
 #define MAPSEC_SABERSIDE_CHANNEL            0xD9
 #define MAPSEC_COREEF_ISLE                  0xE0
-#define MAPSEC_NONE                         0xE1
+#define MAPSEC_OPEN_SEA_CORAL               0xE1
+#define MAPSEC_OPEN_SEA_HAVEN               0xE2
+#define MAPSEC_OPEN_SEA_LEAGUE              0xE3
+#define MAPSEC_OPEN_SEA_ICY                 0xE4
+#define MAPSEC_NONE                         0xE5
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

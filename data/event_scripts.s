@@ -1259,3 +1259,43 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/SabersideChannel/scripts.inc"
 
 	.include "data/maps/CoreefIsle/scripts.inc"
+
+	.include "data/maps/OpenSeaCoral/scripts.inc"
+
+	.include "data/maps/OpenSeaHaven/scripts.inc"
+
+	.include "data/maps/OpenSeaIcy/scripts.inc"
+
+	.include "data/maps/OpenSeaLeague/scripts.inc"
+
+	.include "data/maps/HavenIsle/scripts.inc"
+
+	.include "data/maps/MiddleIsle/scripts.inc"
+
+	.include "data/maps/TopIsle/scripts.inc"
+
+	.include "data/maps/LongtideChannel/scripts.inc"
+
+	.include "data/maps/LongTideChannelSoulkeep/scripts.inc"
+
+	.include "data/maps/SeaTurfRoute/scripts.inc"
+
+	.include "data/maps/HanabiCity/scripts.inc"
+
+	.include "data/maps/PuddlePath/scripts.inc"
+
+	.include "data/maps/DragonsPass/scripts.inc"
+
+	.include "data/maps/Dryugon/scripts.inc"
+
+	.include "data/maps/SteepstonePass/scripts.inc"
+
+	.include "data/maps/SteepstonePassBottom/scripts.inc"
+
+	.include "data/maps/BurnfootPass/scripts.inc"
+
+	.include "data/maps/MtKazanExterior/scripts.inc"
+
+	.include "data/maps/BurnfootPassBottom/scripts.inc"
+
+	.include "data/maps/Shogunate/scripts.inc"

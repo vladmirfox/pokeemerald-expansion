@@ -27,6 +27,16 @@
       "map": "MAP_YIFU_CITY",
       "offset": -19,
       "direction": "down"
+    },
+    {
+      "map": "MAP_STEEPSTONE_PASS_BOTTOM",
+      "offset": -23,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_SHOGUNATE",
+      "offset": 7,
+      "direction": "left"
     }
   ],
   "object_events": [

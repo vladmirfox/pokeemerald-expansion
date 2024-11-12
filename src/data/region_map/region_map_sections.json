@@ -201,6 +201,38 @@
       "height": 1
     },
     {
+      "map_section": "MAPSEC_OPEN_SEA_CORAL",
+      "name": "Coral Waters",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_OPEN_SEA_HAVEN",
+      "name": "Haven Waters",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_OPEN_SEA_ICY",
+      "name": "Icy Waters",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_OPEN_SEA_LEAGUE",
+      "name": "Victory Waters",
+      "x": 0,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
       "map_section": "MAPSEC_WHITESLATE_ROUTE",
       "name": "Whiteslate Route",
       "x": 0,
@@ -225,7 +257,7 @@
       "height": 1
     },
     {
-      "map_section": "MAPSEC_ROUTE_107",
+      "map_section": "MAPSEC_HAVENISLE",
       "name": "ROUTE 107",
       "x": 3,
       "y": 14,

@@ -22,6 +22,11 @@
       "map": "MAP_SOULKEEP",
       "offset": -21,
       "direction": "left"
+    },
+    {
+      "map": "MAP_PUDDLE_PATH",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [

@@ -4800,6 +4800,206 @@
       "secondary_tileset": "gTileset_Coral",
       "border_filepath": "data/layouts/CoreefIsle/border.bin",
       "blockdata_filepath": "data/layouts/CoreefIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_OPEN_SEA_CORAL",
+      "name": "OpenSeaCoral_Layout",
+      "width": 50,
+      "height": 90,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/OpenSeaCoral/border.bin",
+      "blockdata_filepath": "data/layouts/OpenSeaCoral/map.bin"
+    },
+    {
+      "id": "LAYOUT_OPEN_SEA_HAVEN",
+      "name": "OpenSeaHaven_Layout",
+      "width": 50,
+      "height": 70,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/OpenSeaHaven/border.bin",
+      "blockdata_filepath": "data/layouts/OpenSeaHaven/map.bin"
+    },
+    {
+      "id": "LAYOUT_OPEN_SEA_ICY",
+      "name": "OpenSeaIcy_Layout",
+      "width": 80,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/OpenSeaIcy/border.bin",
+      "blockdata_filepath": "data/layouts/OpenSeaIcy/map.bin"
+    },
+    {
+      "id": "LAYOUT_OPEN_SEA_LEAGUE",
+      "name": "OpenSeaLeague_Layout",
+      "width": 70,
+      "height": 80,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/OpenSeaLeague/border.bin",
+      "blockdata_filepath": "data/layouts/OpenSeaLeague/map.bin"
+    },
+    {
+      "id": "LAYOUT_HAVEN_ISLE",
+      "name": "HavenIsle_Layout",
+      "width": 50,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/HavenIsle/border.bin",
+      "blockdata_filepath": "data/layouts/HavenIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_MIDDLE_ISLE",
+      "name": "MiddleIsle_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/MiddleIsle/border.bin",
+      "blockdata_filepath": "data/layouts/MiddleIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_TOP_ISLE",
+      "name": "TopIsle_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/TopIsle/border.bin",
+      "blockdata_filepath": "data/layouts/TopIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_LONGTIDE_CHANNEL",
+      "name": "LongtideChannel_Layout",
+      "width": 40,
+      "height": 80,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/LongtideChannel/border.bin",
+      "blockdata_filepath": "data/layouts/LongtideChannel/map.bin"
+    },
+    {
+      "id": "LAYOUT_LONG_TIDE_CHANNEL_SOULKEEP",
+      "name": "LongTideChannelSoulkeep_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/LongTideChannelSoulkeep/border.bin",
+      "blockdata_filepath": "data/layouts/LongTideChannelSoulkeep/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEA_TURF_ROUTE",
+      "name": "SeaTurfRoute_Layout",
+      "width": 100,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/SeaTurfRoute/border.bin",
+      "blockdata_filepath": "data/layouts/SeaTurfRoute/map.bin"
+    },
+    {
+      "id": "LAYOUT_HANABI_CITY",
+      "name": "HanabiCity_Layout",
+      "width": 40,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/HanabiCity/border.bin",
+      "blockdata_filepath": "data/layouts/HanabiCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUDDLE_PATH",
+      "name": "PuddlePath_Layout",
+      "width": 50,
+      "height": 90,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/PuddlePath/border.bin",
+      "blockdata_filepath": "data/layouts/PuddlePath/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRAGONS_PASS",
+      "name": "DragonsPass_Layout",
+      "width": 30,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/DragonsPass/border.bin",
+      "blockdata_filepath": "data/layouts/DragonsPass/map.bin"
+    },
+    {
+      "id": "LAYOUT_DRYUGON",
+      "name": "Dryugon_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/Dryugon/border.bin",
+      "blockdata_filepath": "data/layouts/Dryugon/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_KAZAN_EXTERIOR",
+      "name": "BurnfootPassBottom_Layout",
+      "width": 60,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/SteepstonePass/border.bin",
+      "blockdata_filepath": "data/layouts/SteepstonePass/map.bin"
+    },
+    {
+      "id": "LAYOUT_STEEP_STONE_PASS_BOTTOM",
+      "name": "SteepstonePassBottom_Layout",
+      "width": 50,
+      "height": 30,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/SteepstonePassBottom/border.bin",
+      "blockdata_filepath": "data/layouts/SteepstonePassBottom/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNFOOT_PASS",
+      "name": "BurnfootPass_Layout",
+      "width": 30,
+      "height": 50,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/BurnfootPass/border.bin",
+      "blockdata_filepath": "data/layouts/BurnfootPass/map.bin"
+    },
+    {
+      "id": "LAYOUT_BURNFOOT_PASS_RIGHT",
+      "name": "MtKazanExterior_Layout",
+      "width": 85,
+      "height": 85,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/MtKazanExterior/border.bin",
+      "blockdata_filepath": "data/layouts/MtKazanExterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_STEEP_STONE_PASS",
+      "name": "SteepstonePass_Layout",
+      "width": 20,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/SteepstonePass/border.bin",
+      "blockdata_filepath": "data/layouts/SteepstonePass/map.bin"
+    },
+    {
+      "id": "LAYOUT_SHOGUNATE",
+      "name": "Shogunate_Layout",
+      "width": 30,
+      "height": 40,
+      "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
+      "secondary_tileset": "gTileset_OpenSea",
+      "border_filepath": "data/layouts/Shogunate/border.bin",
+      "blockdata_filepath": "data/layouts/Shogunate/map.bin"
     }
   ]
 }
