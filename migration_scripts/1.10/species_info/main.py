@@ -35,6 +35,8 @@ label_renames = [
     ["ZenMode", "Zen", "ZEN_MODE", "ZEN"],
     ["Male", "M", "MALE", "M"],
     ["Female", "F", "FEMALE", "F"],
+    ["FamilyOfFour", "Four", "FAMILY_OF_FOUR", "FOUR"],
+    ["FamilyOfThree", "Three", "FAMILY_OF_THREE", "THREE"],
 ]
 
 if not os.path.exists("Makefile"):
@@ -511,7 +513,7 @@ for root, dirs, files in os.walk(main_dir):
         species_content = pattern.sub(update_basic_follower_data, species_content)
         pattern = re.compile(r' {8}OVERWORLD_SET_ANIM\(\n {12}sPicTable_(\w+),\n {12}SIZE_(\w+),\n {12}SHADOW_SIZE_(\w+),\n {12}TRACKS_(\w+),\n {12}(\w+),\n {12}gOverworldPalette_(\w+),\n {12}gShinyOverworldPalette_(\w+)\n {8}\)', re.MULTILINE)
         species_content = pattern.sub(update_set_anim_follower_data, species_content)
-        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)( {8}OVERWORLD\(\n {12}gObjectEventPic_\w+,\n {12}SIZE_\w+,\n {12}SHADOW_SIZE_\w+,\n {12}TRACKS_\w+,\n {12}sAnimTable_Following(_Asym|),\n {12}gOverworldPalette_\w+,\n {12}gShinyOverworldPalette_\w+\n {8}\))', re.MULTILINE)
+        pattern = re.compile(r'    \[SPECIES_(\w+)\] =\n    \{\n(((?!    \[SPECIES_).*\n){1,}?)( {8}OVERWORLD\(\n {12}gObjectEventPic_\w+,\n {12}SIZE_\w+,\n {12}SHADOW_SIZE_\w+,\n {12}TRACKS_\w+,\n {12}sAnimTable_Following(_Asym|),\n {12}gOverworldPalette_\w+,\n {12}gShinyOverworldPalette_\w+\n {8}\))(?!\n {8}OVERWORLD_FEMALE)', re.MULTILINE)
         species_content = pattern.sub(add_female_follower_data, species_content)
 
         # Alter Pokémon Jump data
