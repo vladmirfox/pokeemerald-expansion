@@ -96,7 +96,7 @@
 #define MAP_MIDDLE_ISLE                           (87 | (0 << 8))
 #define MAP_TOP_ISLE                              (88 | (0 << 8))
 #define MAP_LONGTIDE_CHANNEL                      (89 | (0 << 8))
-#define MAP_LONG_TIDE_CHANNEL_SOULKEEP            (90 | (0 << 8))
+#define MAP_LONGTIDE_CHANNEL_SOULKEEP            (90 | (0 << 8))
 #define MAP_SEA_TURF_ROUTE                        (91 | (0 << 8))
 #define MAP_HANABI_CITY                           (92 | (0 << 8))
 #define MAP_PUDDLE_PATH                           (93 | (0 << 8))
@@ -108,7 +108,7 @@
 #define MAP_MT_KAZAN_EXTERIOR                     (99 | (0 << 8))
 #define MAP_STEEPSTONE_PASS                       (100 | (0 << 8))
 #define MAP_SHOGUNATE                             (101 | (0 << 8))
-#define MAP_SCENIC_ROUTE_COREEF                   (102 | (0 << 8))
+#define MAP_SCENIC_ROUTE_SABERSIDE                (102 | (0 << 8))
 
 // gMapGroup_IndoorSunriseVillage
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F             (0 | (1 << 8))
