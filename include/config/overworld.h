@@ -88,7 +88,7 @@
 #define OW_FLAG_NO_COLLISION        FLAG_UNUSED_0x95E  // If this flag is set, the player will be able to walk over tiles with collision. Mainly intended for debugging purposes.
 
 // Auto HM flags
-#define OW_FLAG_AUTO_HMS                   TRUE // If this flag is set, the game will attempt to use HMs when they are contextually relevant; ie, facing a cuttable tree or in dark caves.
+#define OW_FLAG_AUTO_HMS                   TRUE             // If this flag is set, the game will attempt to use HMs when they are contextually relevant; ie, facing a cuttable tree or in dark caves.
 #define OW_FLAG_AUTO_USE_CUT               OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 1 and the HM Cut, the game will attempt to auto-use Cut when facing cuttable trees.
 #define OW_FLAG_AUTO_USE_FLASH             OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 2 and the HM Flash, the game will attempt to auto-use Flash in dark caves.
 #define OW_FLAG_AUTO_USE_ROCK_SMASH        OW_FLAG_AUTO_HMS // If this flag is set, if the player has Badge 3 and the HM Rock Smash, the game will attempt to auto-use Rock Smash when facing breakable rocks.

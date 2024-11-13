@@ -171,6 +171,8 @@ enum
     HELPBAR_NONE,
     HELPBAR_MAP_ZOOMED_OUT,
     HELPBAR_MAP_ZOOMED_IN,
+    HELPBAR_MAP_ZOOMED_OUT_CANFLY,
+    HELPBAR_MAP_ZOOMED_IN_CANFLY,
     HELPBAR_CONDITION_MON_LIST,
     HELPBAR_CONDITION_MON_STATUS,
     HELPBAR_CONDITION_MARKINGS,
@@ -439,6 +441,7 @@ void CreateRegionMapLoopedTask(s32);
 bool32 IsRegionMapLoopedTaskActive(void);
 void FreeRegionMapSubstruct1(void);
 void FreeRegionMapSubstruct2(void);
+void UpdateHelpBarText(void);
 
 // pokenav_conditions.c
 u32 PokenavCallback_Init_ConditionGraph_Party(void);

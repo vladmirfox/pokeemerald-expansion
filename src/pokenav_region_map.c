@@ -396,6 +396,8 @@ static u32 LoopedTask_UpdateInfoAfterCursorMove(s32 taskState)
     {
     case 0:
         UpdateMapSecInfoWindow(state);
+        UpdateHelpBarText();
+
         return LT_INC_AND_PAUSE;
     case 1:
         if (IsDma3ManagerBusyWithBgCopy_(state))
@@ -419,13 +421,13 @@ static u32 LoopedTask_RegionMapZoomOut(s32 taskState)
         if (UpdateRegionMapZoom() || IsChangeBgYForZoomActive())
             return LT_PAUSE;
 
-        PrintHelpBarText(HELPBAR_MAP_ZOOMED_OUT);
+        UpdateHelpBarText();
         return LT_INC_AND_PAUSE;
     case 2:
         if (WaitForHelpBar())
             return LT_PAUSE;
 
-        UpdateRegionMapRightHeaderTiles(POKENAV_GFX_MAP_MENU_ZOOMED_OUT);
+        UpdateRegionMapRightHeaderTiles(POKENAV_GFX_MAP_MENU_ZOOMED_OUT); // 
         break;
     }
 
@@ -507,6 +509,26 @@ static u32 LoopedTask_ExitRegionMap(s32 taskState)
     }
 
     return LT_FINISH;
+}
+
+void UpdateHelpBarText(void)
+{
+    struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
+
+    if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_AUTO_USE_FLY)
+    {
+        if (IsRegionMapZoomed())
+            PrintHelpBarText(HELPBAR_MAP_ZOOMED_IN_CANFLY);
+        else
+            PrintHelpBarText(HELPBAR_MAP_ZOOMED_OUT_CANFLY);
+    }
+    else
+    {
+        if (IsRegionMapZoomed())
+            PrintHelpBarText(HELPBAR_MAP_ZOOMED_IN);
+        else
+            PrintHelpBarText(HELPBAR_MAP_ZOOMED_OUT);
+    }
 }
 
 static void LoadCityZoomViewGfx(void)
