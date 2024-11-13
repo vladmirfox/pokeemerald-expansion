@@ -3967,12 +3967,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_NIDOQUEEN] =
     {
-        .baseHP        = 90,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 92 : 82,
-        .baseDefense   = 87,
+        .baseHP        = 95,
+        .baseAttack    = 92,
+        .baseDefense   = 97,
         .baseSpeed     = 76,
-        .baseSpAttack  = 75,
-        .baseSpDefense = 85,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 95,
         .types = MON_TYPES(TYPE_POISON, TYPE_GROUND),
         .catchRate = 45,
     #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -3990,11 +3990,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
-    #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY, ABILITY_SHEER_FORCE },
-    #else
-        .abilities = { ABILITY_POISON_POINT, ABILITY_NONE, ABILITY_SHEER_FORCE },
-    #endif
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_RIVALRY, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Nidoqueen"),
         .cryId = CRY_NIDOQUEEN,
@@ -4170,10 +4166,10 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_NIDOKING] =
     {
-        .baseHP        = 81,
-        .baseAttack    = P_UPDATED_STATS >= GEN_6 ? 102 : 92,
+        .baseHP        = 96,
+        .baseAttack    = 117,
         .baseDefense   = 77,
-        .baseSpeed     = 85,
+        .baseSpeed     = 90,
         .baseSpAttack  = 85,
         .baseSpDefense = 75,
         .types = MON_TYPES(TYPE_POISON, TYPE_GROUND),
@@ -4193,11 +4189,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_FIELD),
-    #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_POISON_POINT, ABILITY_RIVALRY, ABILITY_SHEER_FORCE },
-    #else
-        .abilities = { ABILITY_POISON_POINT, ABILITY_NONE, ABILITY_SHEER_FORCE },
-    #endif
+        .abilities = { ABILITY_POISON_TOUCH, ABILITY_RIVALRY, ABILITY_SHEER_FORCE },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Nidoking"),
         .cryId = CRY_NIDOKING,
