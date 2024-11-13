@@ -18,6 +18,7 @@ EventScript_AutoUseSurf::
 	goto_if_eq VAR_RESULT, NO, EventScript_ReleaseUseSurf
 	setflag FLAG_SYS_USE_SURF
 	msgbox gText_PlayerUsedSurf, MSGBOX_DEFAULT
+	closemessage
 	dofieldeffect FLDEFF_USE_SURF
 	end
 
@@ -31,4 +32,5 @@ EventScript_AutoUseConsecutiveSurf::
 EventScript_ReleaseUseSurf::
 	releaseall
 EventScript_EndUseSurf::
+	closemessage
 	end

@@ -9,6 +9,8 @@ extern s32 gFieldEffectArguments[8];
 extern void (*gPostMenuFieldCallback)(void);
 extern bool8 (*gFieldCallback2)(void);
 
+#include "region_map.h"
+
 u32 FieldEffectStart(u8);
 bool8 FieldEffectActiveListContains(u8 id);
 void FieldEffectActiveListClear(void);
@@ -67,5 +69,7 @@ void SpriteCB_FlyDestIcon(struct Sprite* sprite);
 void CB_FadeInFlyMap(void);
 void CB_HandleFlyMapInput(void);
 u8 FldEff_UseFly(void);
+u8 FilterFlyDestination(struct RegionMap *regionMap);
+void SetFlyDestination(struct RegionMap *regionMap);
 
 #endif // GUARD_FIELD_EFFECTS_H

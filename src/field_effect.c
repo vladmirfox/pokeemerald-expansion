@@ -3024,7 +3024,7 @@ static void (*const sSurfFieldEffectFuncs[])(struct Task *) = {
 static void Task_SurfFieldEffect(u8 taskId)
 {
     sSurfFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
-}
+}   
 
 static void SurfFieldEffect_Init(struct Task *task)
 {

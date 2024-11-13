@@ -470,24 +470,12 @@ static u32 LoopedTask_TreatAsPokeNavFlyMap(s32 taskState)
     switch (taskState)
     {
     case 0:
-        PlaySE(SE_M_REVERSAL);
-        // sFlyMap->choseFlyLocation = TRUE;
-        // SetFlyMapCallback(CB_ExitFlyMap);
+        PlaySE(SE_SELECT);
+        struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
+        SetFlyDestination(regionMap);
+        ReturnToFieldFromFlyMapSelect();
 
-        return LT_INC_AND_PAUSE;
-    case 1:
-        if (IsPaletteFadeActive())
-            return LT_PAUSE;
-
-        SetLeftHeaderSpritesInvisibility();
-        SlideMenuHeaderDown();
-        return LT_INC_AND_PAUSE;
-    case 2:
-        if (MainMenuLoopedTaskIsBusy())
-            return LT_PAUSE;
-
-        CB_ExitFlyMap();
-        return LT_INC_AND_PAUSE;
+        return LT_FINISH;
     }
 
     return LT_FINISH;

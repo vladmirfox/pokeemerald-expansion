@@ -7,6 +7,9 @@
 #include "constants/maps.h"
 #include "constants/map_groups.h"
 #include "constants/region_map_sections.h"
+
+extern const u8 sMapHealLocations[][3];
+
 // Exported type declarations
 #define MAP_NAME_LENGTH 16
 
@@ -30,7 +33,7 @@ enum {
     NUM_MAPSEC_TYPES
 };
 
-struct RegionMap {
+typedef struct RegionMap {
     /*0x000*/ u16 mapSecId;
     /*0x002*/ u8 mapSecType;
     /*0x003*/ u8 posWithinMapSec;
@@ -83,7 +86,7 @@ struct RegionMap {
     /*0x084*/ u8 filler_084[0x100];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
-}; // size = 0x884
+} RegionMap; // size = 0x884
 
 struct RegionMapLocation
 {

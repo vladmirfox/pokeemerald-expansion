@@ -1151,10 +1151,7 @@ void AutoUseSurf(void)
         if (FlagGet(FLAG_SYS_USE_SURF))
             ScriptContext_SetupScript(EventScript_AutoUseConsecutiveSurf);
         else
-        {
             ScriptContext_SetupScript(EventScript_AutoUseSurf);
-        }
-            
     }
 }
 
