@@ -1989,7 +1989,8 @@ void CB_ExitFlyMap(void)
             FreeRegionMapIconResources();
             if (sFlyMap->choseFlyLocation)
             {
-                switch (sFlyMap->regionMap.mapSecId)
+                // keeping this here just in case i find something broken
+                /* switch (sFlyMap->regionMap.mapSecId)
                 {
                 case MAPSEC_SOUTHERN_ISLAND:
                     SetWarpDestinationToHealLocation(HEAL_LOCATION_SOUTHERN_ISLAND_EXTERIOR);
@@ -2009,7 +2010,10 @@ void CB_ExitFlyMap(void)
                     else
                         SetWarpDestinationToMapWarp(sMapHealLocations[sFlyMap->regionMap.mapSecId][0], sMapHealLocations[sFlyMap->regionMap.mapSecId][1], WARP_ID_NONE);
                     break;
-                }
+                }*/
+                
+                struct RegionMap *tempRegionMap = &sFlyMap->regionMap;
+                SetFlyDestination(tempRegionMap);
                 ReturnToFieldFromFlyMapSelect();
             }
             else
