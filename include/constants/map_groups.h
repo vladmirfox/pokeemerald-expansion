@@ -96,7 +96,7 @@
 #define MAP_MIDDLE_ISLE                           (87 | (0 << 8))
 #define MAP_TOP_ISLE                              (88 | (0 << 8))
 #define MAP_LONGTIDE_CHANNEL                      (89 | (0 << 8))
-#define MAP_LONGTIDE_CHANNEL_SOULKEEP             (90 | (0 << 8))
+#define MAP_LONG_TIDE_CHANNEL_SOULKEEP            (90 | (0 << 8))
 #define MAP_SEA_TURF_ROUTE                        (91 | (0 << 8))
 #define MAP_HANABI_CITY                           (92 | (0 << 8))
 #define MAP_PUDDLE_PATH                           (93 | (0 << 8))
