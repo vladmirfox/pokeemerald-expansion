@@ -454,7 +454,7 @@ static u32 LoopedTask_RegionMapZoomIn(s32 taskState)
         if (UpdateRegionMapZoom() || IsChangeBgYForZoomActive())
             return LT_PAUSE;
 
-        PrintHelpBarText(HELPBAR_MAP_ZOOMED_IN);
+        UpdateHelpBarText();
         return LT_INC_AND_PAUSE;
     case 3:
         if (WaitForHelpBar())
