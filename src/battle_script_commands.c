@@ -11376,6 +11376,9 @@ static void Cmd_manipulatedamage(void)
     case DMG_FULL_ATTACKER_HP:
         gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker);
         break;
+    case DMG_BIG_ROOT:
+        gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
+        break;
     case DMG_CURR_ATTACKER_HP:
         gBattleMoveDamage = GetNonDynamaxHP(gBattlerAttacker);
         break;
@@ -11590,6 +11593,13 @@ static void Cmd_setdrainedhp(void)
 {
     CMD_ARGS();
 
+    if (gMovesInfo[gCurrentMove].argument != 0)
+        gBattleMoveDamage = (gHpDealt * gMovesInfo[gCurrentMove].argument / 100);
+    else
+        gBattleMoveDamage = (gHpDealt / 2);
+
+    if (gBattleMoveDamage == 0)
+        gBattleMoveDamage = 1;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
