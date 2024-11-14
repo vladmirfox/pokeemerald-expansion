@@ -1,5 +1,5 @@
 {
-  "id": "MAP_LONGTIDE_CHANNEL_SOULKEEP",
+  "id": "MAP_LONG_TIDE_CHANNEL_SOULKEEP",
   "name": "LongTideChannelSoulkeep",
   "layout": "LAYOUT_LONG_TIDE_CHANNEL_SOULKEEP",
   "music": "MUS_DUMMY",
@@ -17,6 +17,11 @@
       "map": "MAP_LONGTIDE_CHANNEL",
       "offset": 0,
       "direction": "up"
+    },
+    {
+      "map": "MAP_SOULKEEP",
+      "offset": -2,
+      "direction": "right"
     }
   ],
   "object_events": [
