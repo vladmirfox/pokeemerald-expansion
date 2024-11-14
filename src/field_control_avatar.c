@@ -559,7 +559,7 @@ static bool32 TrySetupDiveEmergeScript(void)
 {
     if (OW_FLAG_AUTO_USE_DIVE && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
-        AutoUseDive();
+        AutoUseDiveEmerge();
         return TRUE;
     }
     else if (FlagGet(FLAG_BADGE07_GET) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)

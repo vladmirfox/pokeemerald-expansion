@@ -1158,11 +1158,19 @@ void AutoUseSurf(void)
 void AutoUseDive(void)
 {
     if (CanAutoUseFieldMove(MOVE_DIVE))
+        ScriptContext_SetupScript(EventScript_AutoUseDive);
+}
+
+void AutoUseDiveEmerge(void)
+{
+    if (CanAutoUseFieldMove(MOVE_DIVE))
+        ScriptContext_SetupScript(EventScript_AutoUseDiveUnderwater);
+}
+
+void AutoUseWaterfall(void)
+{
+    if (CanAutoUseFieldMove(MOVE_WATERFALL) && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
     {
-        if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_UNDERWATER))
-            ScriptContext_SetupScript(EventScript_AutoUseDiveUnderwater);
-        else
-            ScriptContext_SetupScript(EventScript_AutoUseDive);
     }
 }
 
