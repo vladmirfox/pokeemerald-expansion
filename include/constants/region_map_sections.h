@@ -28,7 +28,7 @@
 #define MAPSEC_TOPISLE                    0x18
 #define MAPSEC_SEATURF_ROUTE                    0x19
 #define MAPSEC_LONGTIDE_CHANNEL                    0x1A
-#define MAPSEC_LONGTIDE_CHANNEL_SOULKEEP                    0x1B
+#define MAPSEC_LONG_TIDE_CHANNEL_SOULKEEP                    0x1B
 #define MAPSEC_DRAGONS_PASS                    0x1C
 #define MAPSEC_DRYUGON                    0x1D
 #define MAPSEC_BURNFOOT_PASS_BOTTOM                    0x1E
