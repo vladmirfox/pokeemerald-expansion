@@ -79,7 +79,7 @@
     [SPECIES_SHINX] = OVERWORLD_FEMALE(gObjectEventPic_ShinxF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
     [SPECIES_LUXIO] = OVERWORLD_FEMALE(gObjectEventPic_LuxioF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
     [SPECIES_LUXRAY] = OVERWORLD_FEMALE(gObjectEventPic_LuxrayF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
-    [SPECIES_COMBEE] = OVERWORLD_FEMALE(gObjectEventPic_ , SIZE_CombeeF, SHADOW_SIZE_32x32, TRACKS_M, sAnimTable_Following),
+    [SPECIES_COMBEE] = OVERWORLD_FEMALE(gObjectEventPic_CombeeF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
     [SPECIES_PACHIRISU] = OVERWORLD_FEMALE(gObjectEventPic_PachirisuF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
     [SPECIES_BUIZEL] = OVERWORLD_FEMALE(gObjectEventPic_BuizelF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),
     [SPECIES_FLOATZEL] = OVERWORLD_FEMALE(gObjectEventPic_FloatzelF, SIZE_32x32, SHADOW_SIZE_M, TRACKS_FOOT, sAnimTable_Following),

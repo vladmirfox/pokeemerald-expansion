@@ -38,6 +38,35 @@ label_renames = [
     ["FamilyOfFour", "Four", "FAMILY_OF_FOUR", "FOUR"],
     ["FamilyOfThree", "Three", "FAMILY_OF_THREE", "THREE"],
     ["PhD", "PhD", "PH_D", "PHD"],
+    ["BustedTotem", "BustedTotem", "TOTEM_BUSTED", "BUSTED_TOTEM"],
+    ["IceFace", "Ice", "ICE_FACE", "ICE"],
+    ["NoiceFace", "Noice", "NOICE_FACE", "NOICE"],
+    ["HeroOfManyBattles", "Hero", "HERO_OF_MANY_BATTLES", "HERO"],
+    ["CrownedSword", "Crowned", "CROWNED_SWORD", "CROWNED"],
+    ["CrownedShield", "Crowned", "CROWNED_SHIELD", "CROWNED"],
+    ["SingleStrikeStyle", "SingleStrike", "SINGLE_STRIKE_STYLE", "SINGLE_STRIKE"],
+    ["RapidStrikeStyle", "RapidStrike", "RAPID_STRIKE_STYLE", "RAPID_STRIKE"],
+    ["IceRider", "Ice", "ICE_RIDER", "ICE"],
+    ["ShadowRider", "Shadow", "SHADOW_RIDER", "SHADOW"],
+    ["GreenPlumage", "Green", "GREEN_PLUMAGE", "GREEN"],
+    ["BluePlumage", "Blue", "BLUE_PLUMAGE", "BLUE"],
+    ["YellowPlumage", "Yellow", "YELLOW_PLUMAGE", "YELLOW"],
+    ["WhitePlumage", "White", "WHITE_PLUMAGE", "WHITE"],
+    ["RedFlower", "Red", "RED_FLOWER", "RED"],
+    ["BlueFlower", "Blue", "BLUE_FLOWER", "BLUE"],
+    ["OrangeFlower", "Orange", "ORANGE_FLOWER", "ORANGE"],
+    ["YellowFlower", "Yellow", "YELLOW_FLOWER", "YELLOW"],
+    ["WhiteFlower", "White", "WHITE_FLOWER", "WHITE"],
+    ["EternalFlower", "Eternal", "ETERNAL_FLOWER", "ETERNAL"],
+]
+
+species_macros = [
+    "Mothim",
+    "Arceus",
+    "Genesect",
+    "Flabebe",
+    "Floette",
+    "Florges",
 ]
 
 if not os.path.exists("Makefile"):
