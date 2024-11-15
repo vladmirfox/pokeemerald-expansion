@@ -7585,6 +7585,12 @@ BattleScript_ItemSteal::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_OverworldWeatherPrevents::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BUTITFAILED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_DrizzleActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp

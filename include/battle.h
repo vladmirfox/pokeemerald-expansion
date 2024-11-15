@@ -828,9 +828,12 @@ struct BattleStruct
     u8 commandingDondozo;
     u16 commanderActive[MAX_BATTLERS_COUNT];
     u32 stellarBoostFlags[NUM_BATTLE_SIDES]; // stored as a bitfield of flags for all types for each side
-    u8 redCardActivates:1;
     u8 usedEjectItem;
     u8 usedMicleBerry;
+    u8 redCardActivates:1;
+    u8 overworldWeatherActivated:1;
+    u8 overworldTerrainActivated:1;
+    u8 padding:5;
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,

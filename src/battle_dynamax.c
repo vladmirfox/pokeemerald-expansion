@@ -606,7 +606,8 @@ void BS_SetMaxMoveEffect(void)
                     msg = B_MSG_STARTED_HAIL;
                     break;
             }
-            if (TryChangeBattleWeather(gBattlerAttacker, weather, FALSE))
+            if ((B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+             || !TryChangeBattleWeather(gBattlerAttacker, weather, FALSE))
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = msg;
                 BattleScriptPush(gBattlescriptCurrInstr + 1);

@@ -11227,7 +11227,8 @@ static void Cmd_setfieldweather(void)
 
     u8 weather = cmd->weather;
 
-    if (!TryChangeBattleWeather(gBattlerAttacker, weather, FALSE))
+    if ((B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+     || !TryChangeBattleWeather(gBattlerAttacker, weather, FALSE))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEATHER_FAILED;

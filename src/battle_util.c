@@ -3885,6 +3885,7 @@ static const u16 sWeatherFlagsInfo[][3] =
 bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility)
 {
     u16 battlerAbility = GetBattlerAbility(battler);
+
     if (gBattleWeather & B_WEATHER_PRIMAL_ANY
         && battlerAbility != ABILITY_DESOLATE_LAND
         && battlerAbility != ABILITY_PRIMORDIAL_SEA
@@ -4436,6 +4437,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         if (effect != 0)
         {
+            gBattleStruct->overworldWeatherActivated = TRUE;
             gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();
             BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
         }
@@ -4715,7 +4717,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_DRIZZLE:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
                 effect++;
@@ -4728,7 +4735,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_SAND_STREAM:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
                 effect++;
@@ -4741,7 +4753,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_DROUGHT:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
@@ -4754,7 +4771,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_SNOW_WARNING:
-            if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesSnow);
                 effect++;
@@ -4893,14 +4915,24 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_DESOLATE_LAND:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
                 effect++;
             }
             break;
         case ABILITY_PRIMORDIAL_SEA:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
                 effect++;
@@ -4950,7 +4982,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_ORICHALCUM_PULSE:
-            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
+            if (B_OVERWOLD_WEATHER_PREVENTION >= GEN_9 && gBattleStruct->overworldWeatherActivated)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherPrevents);
+                effect++;
+            }
+            else if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
