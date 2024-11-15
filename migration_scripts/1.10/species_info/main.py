@@ -58,6 +58,7 @@ label_renames = [
     ["YellowFlower", "Yellow", "YELLOW_FLOWER", "YELLOW"],
     ["WhiteFlower", "White", "WHITE_FLOWER", "WHITE"],
     ["EternalFlower", "Eternal", "ETERNAL_FLOWER", "ETERNAL"],
+    ["ygarde50", "ygarde50", "50_AURA_BREAK", "50"],
 ]
 
 species_macros = [
@@ -67,6 +68,9 @@ species_macros = [
     "Flabebe",
     "Floette",
     "Florges",
+    "Spewpa",
+    "Vivillon",
+    "Furfrou",
 ]
 
 if not os.path.exists("Makefile"):
@@ -148,12 +152,12 @@ for match in gba_pattern.findall(gba_content):
 for file in glob.glob('./migration_scripts/1.10/species_info/female_followers.h'):
     with open(file, 'r') as f:
         gba_content = f.read()
-female_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *OVERWORLD_FEMALE\(gObjectEventPic_(\w+), SIZE_(\w+), SHADOW_SIZE_(\w+), TRACKS_(\w+), sAnimTable_Following\)', re.MULTILINE)
+female_pattern = re.compile(r'\[SPECIES_(\w+)\] *= *OVERWORLD_FEMALE\(gObjectEventPic_(\w+), SIZE_(\w+), SHADOW_SIZE_(\w+), TRACKS_(\w+), sAnimTable_Following(, gOverworldPalette_(\w+), gShinyOverworldPalette_(\w+)|)\)', re.MULTILINE)
 female_follow_data = {}
 for match in female_pattern.findall(gba_content):
-    if len(match) == 5:
-        species_define, pic, size, shadow, tracks = match
-        female_follow_data[species_define] = (pic, size, shadow, tracks)
+    if len(match) == 8:
+        species_define, pic, size, shadow, tracks, palettes, normalPal, shinyPal = match
+        female_follow_data[species_define] = (pic, size, shadow, tracks, palettes, normalPal, shinyPal)
 
 # Read 1.10 shadow data
 for file in glob.glob('./migration_scripts/1.10/species_info/shadows.h'):
@@ -180,7 +184,7 @@ for root, dirs, files in os.walk(main_dir):
                 species_content = f.read()
             # Find animation label pattern
             for match in pattern.findall(species_content):
-                if match in anim_table_data or match == 'Mothim':
+                if match in anim_table_data or match in species_macros:
                     if match not in shared_anim_table_data:
                         shared_anim_table_data[match] = match
                 else:
@@ -302,7 +306,13 @@ def add_female_follower_data(match):
         size = female_follow_data[mon_define][1]
         shad = female_follow_data[mon_define][2]
         tra = female_follow_data[mon_define][3]
-        string = string + f"\n" + f"{sp1}OVERWORLD_FEMALE(\n{sp2}gObjectEventPic_{pic},\n{sp2}SIZE_{size},\n{sp2}SHADOW_SIZE_{shad},\n{sp2}TRACKS_{tra},\n{sp2}sAnimTable_Following\n{sp1})"
+        pals = female_follow_data[mon_define][4]
+        normPal = female_follow_data[mon_define][5]
+        shinPal = female_follow_data[mon_define][5]
+        string = string + f"\n{sp1}OVERWORLD_FEMALE(\n{sp2}gObjectEventPic_{pic},\n{sp2}SIZE_{size},\n{sp2}SHADOW_SIZE_{shad},\n{sp2}TRACKS_{tra},\n{sp2}sAnimTable_Following"
+        if (pals != ""):
+            string = string + f",\n{sp2}gOverworldPalette_{normPal},\n{sp2}gShinyOverworldPalette_{shinPal}"
+        string = string + f"\n{sp1})"
     return string
 
 def add_jump_data(match):
@@ -505,34 +515,35 @@ for root, dirs, files in os.walk(main_dir):
                                + r"\n {8}\.frontPicSize = (.*),(\n {8}\.frontPicSizeFemale = MON_COORDS_SIZE\(\w+, \w+\),|)"
                                + r"(\n {8}\.frontPicYOffset = .*,|)"
                                + r"\n {8}\.frontAnimFrames = (.*),"
-                               + r"\n {8}\.frontAnimId = (.*),"
+                               + r"\n {8}(//|)\.frontAnimId = (.*),"
                                + r"(\n {8}\.enemyMonElevation = .*,|)"
                                + r"(\n {8}\.frontAnimDelay = .*,|)"
                                + r"\n {8}\.backPic = (.*),(\n {8}\.backPicFemale = .*,|)"
                                + r"\n {8}\.backPicSize = (.*),(\n {8}\.backPicSizeFemale = MON_COORDS_SIZE\(\w+, \w+\),|)"
                                + r"(\n {8}\.backPicYOffset = .*,|)"
-                               + r"(\n {8}\.backAnimId = .*,|)"
+                               + r"(\n {8}(//|)\.backAnimId = .*,|)"
                                + r"\n {8}\.palette = (.*),(\n {8}\.paletteFemale = .*,|)"
                                + r"\n {8}\.shinyPalette = (.*),(\n {8}\.shinyPaletteFemale = .*,|)"
                                + r"\n {8}\.iconSprite = (.*),(\n {8}\.iconSpriteFemale = .*,|)"
                                + r"\n {8}\.iconPalIndex = (.*),(\n {8}\.iconPalIndexFemale = .*,|)"
+                               + r"(\n {4}#if P_CUSTOM_GENDER_DIFF_ICONS == TRUE\n {8}\.iconSpriteFemale = gMonIcon_(.*),\n {8}\.iconPalIndexFemale = (.*),\n {4}#endif|)"
                             , r"        .frontPic = \1,"
                             + r"\n        .frontPicSize = \3,"
                             + r"\5"       #frontPicYOffset
                             + r"\n        .frontAnimFrames = \6,"
-                            + r"\n        .frontAnimId = \7,"
-                            + r"\8"       #enemyMonElevation
-                            + r"\9"       #frontAnimDelay
-                            + r"\n        .backPic = \10,"
-                            + r"\n        .backPicSize = \12,"
-                            + r"\14"      #backPicYOffset
-                            + r"\15"      #backAnimId
-                            + r"\n        .palette = \16,"
-                            + r"\n        .shinyPalette = \18,"
-                            + r"\n        .iconSprite = \20,"
-                            + r"\n        .iconPalIndex = \22,"
+                            + r"\n        \7.frontAnimId = \8,"
+                            + r"\9"       #enemyMonElevation
+                            + r"\10"      #frontAnimDelay
+                            + r"\n        .backPic = \11,"
+                            + r"\n        .backPicSize = \13,"
+                            + r"\15"      #backPicYOffset
+                            + r"\16"      #backAnimId
+                            + r"\n        .palette = \18,"
+                            + r"\n        .shinyPalette = \20,"
+                            + r"\n        .iconSprite = \22,"
+                            + r"\n        .iconPalIndex = \24,"
                             + r"\n#if P_GENDER_DIFFERENCES"
-                            + r"\2\4\11\13\17\19\21\23"
+                            + r"\2\4\12\14\19\21\23\25\26"
                             + r"\n#endif //P_GENDER_DIFFERENCES"
                             , species_content
         )
