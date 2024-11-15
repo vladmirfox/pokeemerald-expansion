@@ -1236,9 +1236,8 @@
 	.byte 0xe6
 	.endm
 
-	.macro tryaddcaughtmontofullparty successInstr:req
+	.macro unused4 successInstr:req
 	.byte 0xe7
-	.4byte \successInstr
 	.endm
 
 	.macro settypebasedhalvers failInstr:req
@@ -1693,6 +1692,11 @@
 
 	.macro setmagiccoattarget
 	callnative BS_SetMagicCoatTarget
+	.endm
+
+	.macro tryaddcaughtmontofullparty successInstr:req
+	callnative BS_tryaddcaughtmontofullparty
+	.4byte \successInstr
 	.endm
 
 @ various command changed to more readable macros
