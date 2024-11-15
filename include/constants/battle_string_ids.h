@@ -713,11 +713,12 @@
 #define STRINGID_PKMNMADESHELLGLEAM                   711
 #define STRINGID_FICKLEBEAMDOUBLED                    712
 
-#define STRINGID_EXPANSION_END                        STRINGID_BLOCKEDBYSLEEPCLAUSE
+#define STRINGID_EXPANSION_END                        STRINGID_FICKLEBEAMDOUBLED
 
 #define STRINGID_SENDCAUGHTMONPARTYORBOX              (STRINGID_EXPANSION_END + 1)
+#define STRINGID_PKMNSENTTOPCAFTERCATCH               (STRINGID_EXPANSION_END + 2)
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_SENDCAUGHTMONPARTYORBOX + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNSENTTOPCAFTERCATCH + 1)
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

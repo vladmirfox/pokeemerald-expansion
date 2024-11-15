@@ -1236,7 +1236,7 @@
 	.byte 0xe6
 	.endm
 
-	.macro tryaddcaughtmontofullparty
+	.macro tryaddcaughtmontofullparty successInstr:req
 	.byte 0xe7
 	.4byte \successInstr
 	.endm
