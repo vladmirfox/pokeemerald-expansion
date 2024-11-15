@@ -188,8 +188,8 @@
 #define FLAG_SMART_PAINTING_MADE             0xA3
 #define FLAG_TOUGH_PAINTING_MADE             0xA4
 #define FLAG_RECEIVED_TM_ROCK_TOMB           0xA5
-#define FLAG_RECEIVED_TM_BULLDOZE             0xA6
-#define FLAG_RECEIVED_TM_SHOCK_WAVE          0xA7
+#define FLAG_RECEIVED_TM_BONSAI_DOJO             0xA6
+#define FLAG_RECEIVED_TM_KOI_DOJO            0xA7
 #define FLAG_RECEIVED_TM_OVERHEAT            0xA8
 #define FLAG_RECEIVED_TM_FACADE              0xA9
 #define FLAG_RECEIVED_TM_AERIAL_ACE          0xAA

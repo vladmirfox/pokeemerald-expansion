@@ -11,9 +11,9 @@ Common_EventScript_SetGymTrainers::
 	end
 
 RustboroCity_Gym_SetGymTrainers::
-	settrainerflag TRAINER_JOSH
-	settrainerflag TRAINER_TOMMY
-	settrainerflag TRAINER_MARC
+	settrainerflag TRAINER_DUMMY
+	settrainerflag TRAINER_DUMMY
+	settrainerflag TRAINER_DUMMY
 	return
 
 DewfordTown_Gym_SetGymTrainers::

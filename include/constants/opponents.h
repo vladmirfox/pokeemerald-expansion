@@ -323,8 +323,8 @@
 #define TRAINER_SHELBY_5                    317
 #define TRAINER_TOSHIO_1                    318
 #define TRAINER_TAKESHI                       319
-#define TRAINER_JOSH                        320
-#define TRAINER_TOMMY                       321
+#define TRAINER_IZUMI                       320
+#define TRAINER_REN                         321
 #define TRAINER_JOEY                        322
 #define TRAINER_BEN                         323
 #define TRAINER_QUINCY                      324
@@ -574,7 +574,7 @@
 #define TRAINER_GRUNT_UNUSED                568
 #define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
-#define TRAINER_MARC                        571
+#define TRAINER_MIZU                        571
 #define TRAINER_BRENDEN                     572
 #define TRAINER_LILITH                      573
 #define TRAINER_CRISTIAN                    574
