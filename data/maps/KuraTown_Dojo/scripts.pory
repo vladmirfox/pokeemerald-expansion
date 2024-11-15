@@ -2,13 +2,13 @@ mapscripts KuraTown_Dojo_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
 		// All the trees are cut from the start if the player has already beaten the dojo
 		if (flag(FLAG_BADGE02_GET)) {
-			clearflag(FLAG_TEMP_1)
-			clearflag(FLAG_TEMP_2)
-			clearflag(FLAG_TEMP_3)
-			clearflag(FLAG_TEMP_5)
-			clearflag(FLAG_TEMP_6)
-			clearflag(FLAG_TEMP_8)
-			clearflag(FLAG_TEMP_9)
+			setflag(FLAG_TEMP_1)
+			setflag(FLAG_TEMP_2)
+			setflag(FLAG_TEMP_3)
+			setflag(FLAG_TEMP_5)
+			setflag(FLAG_TEMP_6)
+			setflag(FLAG_TEMP_8)
+			setflag(FLAG_TEMP_9)
 		}
 	}
 }
@@ -65,7 +65,7 @@ script KuraTown_Dojo_EventScript_Cristian {
 		format("Did you know any tree can be bonsaified by pruning its leaves regularly?"),
 		format("You're not here because you're particularly interested in bonsai, are you?")
 	)
-	msgbox(format("I feel bad sometimes, not letting the tree grow like it wants."), MSGBOX_AUTOCLOSE)
+	msgbox(format("I feel bad sometimes, not letting the tree grow the way it wants."), MSGBOX_AUTOCLOSE)
 	end
 }
 
@@ -79,7 +79,9 @@ script KuraTown_Dojo_EventScript_Lilith {
 		msgbox(format(
 			"I saw your fight peeking through the leaves! That was amazing!\p"
 			"I'm officially a fan!"
-		), MSGBOX_AUTOCLOSE)
+		))
+		closemessage
+		addvar(VAR_PLAYER_REPUTATION, 1)
 	} else {
 		msgbox(format("I wish I could see you two fight! Good luck!"), MSGBOX_AUTOCLOSE)
 	}
@@ -102,7 +104,8 @@ script KuraTown_Dojo_EventScript_Hana {
 	)
 	// specialvar(VAR_RESULT, ShouldTryRematchBattle)
 	// goto_if_eq(VAR_RESULT, TRUE, KuraTown_Dojo_EventScript_HanaRematch)
-	if (!flag(FLAG_RECEIVED_TM_BULLDOZE)) {
+	if (!flag(FLAG_RECEIVED_TM_BONSAI_DOJO)) {
+		addvar(VAR_PLAYER_REPUTATION, 5)
 		call(KuraTown_Dojo_EventScript_GiveBulldoze)
 	} else {
 		msgbox(
@@ -118,14 +121,17 @@ script KuraTown_Dojo_EventScript_Hana {
 
 script KuraTown_Dojo_EventScript_HanaDefeated {
 	message(format(
-		"{PLAYER} received the Bonsai badge\n"
+		"{PLAYER} received the Carved Token\n"
 		"from Hana."
 	))
 	waitmessage
 	call(Common_EventScript_PlayGymBadgeFanfare)
 	msgbox(
 		format(
-			"Thanks to the Bonsai badge, your Pokémon will obey you without question, even those you trade with others.\p"
+			// TODO EVA boost atk?
+			"Thanks to this Token, your Pokémon will obey you without question, even those you trade with others.\p"
+			"If you are interested in submitting to the Pokémon Council challenge, you will need to collect a Token from each of the eight Dojos scattered throughout the region.\p"
+			"It is not an easy task, but I can feel determination taking root in your heart.\p"
 			"Here, let me also give you this."
 		),
 		MSGBOX_DEFAULT
@@ -155,7 +161,7 @@ script KuraTown_Dojo_EventScript_GiveBulldoze {
 		),
 		MSGBOX_DEFAULT
 	)
-	setflag(FLAG_RECEIVED_TM_BULLDOZE)
+	setflag(FLAG_RECEIVED_TM_BONSAI_DOJO)
 	return
 }
 

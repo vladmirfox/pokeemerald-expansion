@@ -1,0 +1,113 @@
+mapscripts MaguroHarbor_Dojo_MapScripts {
+	
+}
+
+script MaguroHarbor_Dojo_EventScript_Koishi {
+	trainerbattle_single(
+		TRAINER_KOISHI_1,
+		format(
+			"Welcome to Maguro's Koi Pond Dojo, one of the eight Dojos officially appointed by the Toku Council.\p"
+			"We Dojo Masters fight wielders that have taken on the Pokémon Council's challenge.\p"
+			"We each give out a different Token to anyone who succeeds in defeating us.\p"
+			"I am Koishi. I have raised elegant, graceful Pokémon since I was way younger than you.\p"
+			"I may behave and speak in a soft manner, but do not for one second mistake soft-spokenness for weakness.\p"
+			"Now… Shall we battle?"
+		),
+		format("I see…"),
+		MaguroHarbor_Dojo_EventScript_KoishiDefeated,
+		NO_MUSIC
+	)
+	// specialvar(VAR_RESULT, ShouldTryRematchBattle)
+	// goto_if_eq(VAR_RESULT, TRUE, MaguroHarbor_Dojo_EventScript_KoishiRematch)
+	if (!flag(FLAG_RECEIVED_TM_KOI_DOJO)) {
+		addvar(VAR_PLAYER_REPUTATION, 5)
+		call(MaguroHarbor_Dojo_EventScript_GiveReward)
+	} else {
+		msgbox(
+			format(
+				"You shall achieve great things. I hope we meet again."
+			),
+			MSGBOX_DEFAULT
+		)
+	}
+	release
+	end
+}
+
+script MaguroHarbor_Dojo_EventScript_GiveReward {
+	giveitem(ITEM_TM_WATER_PULSE)
+	goto_if_eq(VAR_RESULT, 0, Common_EventScript_BagIsFull)
+	msgbox(
+		format(
+			"This scroll contains Water Pulse, a water-type move that can confuse your foes.\p"
+			"Going through the Toku Council's challenge is not an easy undertaking, but I can feel your spirit overflowing with determination.\p"
+			"Good luck, {PLAYER}."
+		),
+		MSGBOX_DEFAULT
+	)
+	setflag(FLAG_RECEIVED_TM_BONSAI_DOJO)
+	return
+}
+
+script MaguroHarbor_Dojo_EventScript_KoishiDefeated {
+	message(format(
+		"{PLAYER} received the Flowing Token\n"
+		"from Koishi."
+	))
+	waitmessage
+	call(Common_EventScript_PlayGymBadgeFanfare)
+	msgbox(
+		format(
+			"I applaud your skill. You are still a child, yet you obviously have a natural aptitude for battle.\p"
+			"With the Token I just gave you, your Pokémon will obey you without question, even those you trade with others.\p"
+			"I am also supposed to give you this."
+		),
+		MSGBOX_DEFAULT
+	)
+	setflag(FLAG_BADGE02_GET)
+	call(MaguroHarbor_Dojo_EventScript_GiveReward)
+	closemessage
+	// TODO rematch
+	// delay(30)
+	// playfanfare(MUS_REGISTER_MATCH_CALL)
+	// msgbox(format("Registered Hana\nin the address log."), MSGBOX_DEFAULT)
+	// waitfanfare
+	// closemessage
+	release
+	end
+}
+
+// Random trainers
+
+script MaguroHarbor_Dojo_EventScript_Izumi {
+	trainerbattle_single(
+		TRAINER_IZUMI,
+		format("My Pokémon is the daintiest there is!"),
+		format("My poor Goldeen!")
+	)
+	msgbox(format(
+		"You'll go far. I can tell."
+	), MSGBOX_AUTOCLOSE)
+}
+
+script MaguroHarbor_Dojo_EventScript_Ren {
+	trainerbattle_single(
+		TRAINER_REN,
+		format("Come in! The water's nice and toasty!"),
+		format("Nooo!")
+	)
+	msgbox(format(
+		"I l-lied. I'm f-f-freezing in h-here."
+	), MSGBOX_AUTOCLOSE)
+}
+
+script MaguroHarbor_Dojo_EventScript_Mizu {
+	trainerbattle_single(
+		TRAINER_MIZU,
+		format("Do not disturb the koi pond!"),
+		format("Stop making so much noise!")
+	)
+	msgbox(format(
+		"These are sophisticated fish. They need peace and quiet to thrive."
+	), MSGBOX_AUTOCLOSE)
+}

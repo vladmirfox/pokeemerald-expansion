@@ -268,7 +268,7 @@
 #define TRAINER_PHOEBE                      262
 #define TRAINER_GLACIA                      263
 #define TRAINER_DRAKE                       264
-#define TRAINER_ROXANNE_1                   265
+#define TRAINER_KOISHI_1                    265
 #define TRAINER_HANA_1                      266
 #define TRAINER_WATTSON_1                   267
 #define TRAINER_FLANNERY_1                  268
@@ -323,8 +323,8 @@
 #define TRAINER_SHELBY_5                    317
 #define TRAINER_TOSHIO_1                    318
 #define TRAINER_TAKESHI                       319
-#define TRAINER_JOSH                        320
-#define TRAINER_TOMMY                       321
+#define TRAINER_IZUMI                       320
+#define TRAINER_REN                         321
 #define TRAINER_JOEY                        322
 #define TRAINER_BEN                         323
 #define TRAINER_QUINCY                      324
@@ -574,7 +574,7 @@
 #define TRAINER_GRUNT_UNUSED                568
 #define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
-#define TRAINER_MARC                        571
+#define TRAINER_MIZU                        571
 #define TRAINER_BRENDEN                     572
 #define TRAINER_LILITH                      573
 #define TRAINER_CRISTIAN                    574
@@ -858,12 +858,13 @@
 #define TRAINER_LEAF                        852
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
+#define TRAINER_DUMMY                       855
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      855
+#define TRAINERS_COUNT                      856
 #define MAX_TRAINERS_COUNT                  864
 #define TRAINER_PARTNER(partner)           (MAX_TRAINERS_COUNT + partner)
 

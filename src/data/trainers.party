@@ -4792,39 +4792,23 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Crunch
 
-=== TRAINER_ROXANNE_1 ===
-Name: ROXANNE
+=== TRAINER_KOISHI_1 ===
+Name: Koishi
 Class: Leader
-Pic: Leader Roxanne
+Pic: Leader Koishi
 Gender: Female
 Music: Female
 Items: Potion / Potion
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 12
+Lotad
+Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
 
-Geodude
-Level: 12
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
-- Defense Curl
-- Rock Throw
-- Rock Tomb
-
-Nosepass @ Oran Berry
+Feebas @ Oran Berry
 Level: 15
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Block
-- Harden
-- Tackle
-- Rock Tomb
 
 === TRAINER_HANA_1 ===
 Name: Hana
@@ -5970,35 +5954,34 @@ Nickit
 Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_JOSH ===
-Name: JOSH
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
+=== TRAINER_IZUMI ===
+Name: Izumi
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 10
+Goldeen
+Level: 12
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
 
-=== TRAINER_TOMMY ===
-Name: TOMMY
-Class: Youngster
-Pic: Youngster
-Gender: Male
-Music: Male
+=== TRAINER_REN ===
+Name: Ren
+Class: Swimmer F
+Pic: Beauty
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 8
+Lotad
+Level: 10
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
-Geodude
-Level: 8
+Surskit
+Level: 10
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
 === TRAINER_JOEY ===
@@ -10549,21 +10532,21 @@ Numel
 Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-=== TRAINER_MARC ===
-Name: MARC
-Class: Hiker
-Pic: Hiker
-Gender: Male
-Music: Hiker
+=== TRAINER_MIZU ===
+Name: Mizu
+Class: Beauty
+Pic: Onsen F
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 8
+Magikarp
+Level: 10
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
-Geodude
-Level: 8
+Lotad
+Level: 10
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_BRENDEN ===
@@ -14146,7 +14129,7 @@ IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 === TRAINER_ROXANNE_2 ===
 Name: ROXANNE
 Class: Leader
-Pic: Leader Roxanne
+Pic: Leader Koishi
 Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
@@ -14188,7 +14171,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_ROXANNE_3 ===
 Name: ROXANNE
 Class: Leader
-Pic: Leader Roxanne
+Pic: Leader Koishi
 Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
@@ -14238,7 +14221,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_ROXANNE_4 ===
 Name: ROXANNE
 Class: Leader
-Pic: Leader Roxanne
+Pic: Leader Koishi
 Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
@@ -14288,7 +14271,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 === TRAINER_ROXANNE_5 ===
 Name: ROXANNE
 Class: Leader
-Pic: Leader Roxanne
+Pic: Leader Koishi
 Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
@@ -16863,3 +16846,17 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_DUMMY ===
+Name: DUMMY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Kyogre
+Level: 10
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Splash
