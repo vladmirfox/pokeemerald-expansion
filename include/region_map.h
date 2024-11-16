@@ -14,6 +14,7 @@ enum
     MAP_INPUT_MOVE_END,
     MAP_INPUT_A_BUTTON,
     MAP_INPUT_B_BUTTON,
+    MAP_INPUT_R_BUTTON
 };
 
 enum {
@@ -25,7 +26,7 @@ enum {
     NUM_MAPSEC_TYPES
 };
 
-struct RegionMap {
+typedef struct RegionMap {
     /*0x000*/ u16 mapSecId;
     /*0x002*/ u8 mapSecType;
     /*0x003*/ u8 posWithinMapSec;
@@ -78,7 +79,7 @@ struct RegionMap {
     /*0x084*/ u8 filler_084[0x100];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
-}; // size = 0x884
+} RegionMap; // size = 0x884
 
 struct RegionMapLocation
 {
@@ -114,6 +115,10 @@ bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void BlendRegionMap(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
+
+//Pokenav Fly funcs
+u8 FilterFlyDestination(struct RegionMap* regionMap);
+void SetFlyDestination(struct RegionMap* regionMap);
 
 extern const struct RegionMapLocation gRegionMapEntries[];
 
