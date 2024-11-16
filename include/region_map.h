@@ -26,7 +26,7 @@ enum {
     NUM_MAPSEC_TYPES
 };
 
-typedef struct RegionMap {
+struct RegionMap {
     /*0x000*/ u16 mapSecId;
     /*0x002*/ u8 mapSecType;
     /*0x003*/ u8 posWithinMapSec;
@@ -79,7 +79,7 @@ typedef struct RegionMap {
     /*0x084*/ u8 filler_084[0x100];
     /*0x184*/ u8 cursorSmallImage[0x100];
     /*0x284*/ u8 cursorLargeImage[0x600];
-} RegionMap; // size = 0x884
+}; // size = 0x884
 
 struct RegionMapLocation
 {
@@ -117,7 +117,7 @@ void BlendRegionMap(u16 color, u32 coeff);
 void SetRegionMapDataForZoom(void);
 
 //Pokenav Fly funcs
-u8 FilterFlyDestination(struct RegionMap* regionMap);
+u32 FilterFlyDestination(struct RegionMap* regionMap);
 void SetFlyDestination(struct RegionMap* regionMap);
 
 extern const struct RegionMapLocation gRegionMapEntries[];

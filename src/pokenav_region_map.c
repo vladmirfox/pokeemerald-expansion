@@ -6,6 +6,7 @@
 #include "field_effect.h"
 #include "main.h"
 #include "menu.h"
+#include "overworld.h"
 #include "palette.h"
 #include "pokenav.h"
 #include "region_map.h"
@@ -212,18 +213,18 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
 
     switch (DoRegionMapInputCallback())
     {
-        case MAP_INPUT_MOVE_END:
-            return POKENAV_MAP_FUNC_CURSOR_MOVED;
-        case MAP_INPUT_A_BUTTON:
-            if (!IsRegionMapZoomed())
-                return POKENAV_MAP_FUNC_ZOOM_IN;
-            return POKENAV_MAP_FUNC_ZOOM_OUT;
-        case MAP_INPUT_B_BUTTON:
-            state->callback = GetExitRegionMapMenuId;
-            return POKENAV_MAP_FUNC_EXIT;
-        case MAP_INPUT_R_BUTTON:
-            if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_USE_FLY_FROM_POKENAV)
-                return POKENAV_MAP_FUNC_FLY;
+    case MAP_INPUT_MOVE_END:
+        return POKENAV_MAP_FUNC_CURSOR_MOVED;
+    case MAP_INPUT_A_BUTTON:
+        if (!IsRegionMapZoomed())
+            return POKENAV_MAP_FUNC_ZOOM_IN;
+        return POKENAV_MAP_FUNC_ZOOM_OUT;
+    case MAP_INPUT_B_BUTTON:
+        state->callback = GetExitRegionMapMenuId;
+        return POKENAV_MAP_FUNC_EXIT;
+    case MAP_INPUT_R_BUTTON:
+        if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_POKE_RIDER)
+            return POKENAV_MAP_FUNC_FLY;
     }
 
     return POKENAV_MAP_FUNC_NONE;
@@ -501,7 +502,7 @@ static u32 LoopedTask_TreatAsPokeNavFlyMap(s32 taskState)
         PlaySE(SE_SELECT);
         struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
         SetFlyDestination(regionMap);
-        FlagSet(FLAG_SYS_POKENAV_FLY);
+        FlagSet(USING_POKE_RIDER);
         ReturnToFieldFromFlyMapSelect();
 
         return LT_FINISH;
@@ -773,7 +774,7 @@ void UpdateRegionMapHelpBarText(void)
 {
     struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
 
-    if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_USE_FLY_FROM_POKENAV)
+    if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_POKE_RIDER)
     {
         if (IsRegionMapZoomed())
             PrintHelpBarText(HELPBAR_MAP_ZOOMED_IN_CANFLY);

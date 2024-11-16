@@ -3228,7 +3228,7 @@ static void FlyOutFieldEffect_ShowMon(struct Task *task)
     {
         task->tState++;
         gFieldEffectArguments[0] = task->tMonId;
-        if (!FlagGet(FLAG_SYS_POKENAV_FLY))
+        if (!FlagGet(USING_POKE_RIDER))
             FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
     }
 }
@@ -3478,7 +3478,7 @@ static void StartFlyBirdReturnToBall(u8 spriteId)
 u8 FldEff_FlyIn(void)
 {
     CreateTask(Task_FlyIn, 254);
-    FlagClear(FLAG_SYS_POKENAV_FLY); // Clears this flag so flying via the party menu shows the mon
+    FlagClear(USING_POKE_RIDER); // Clears this define so flying via the party menu shows the mon
     return 0;
 }
 
