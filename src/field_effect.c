@@ -3478,7 +3478,7 @@ static void StartFlyBirdReturnToBall(u8 spriteId)
 u8 FldEff_FlyIn(void)
 {
     CreateTask(Task_FlyIn, 254);
-    FlagClear(USING_POKE_RIDER); // Clears this define so flying via the party menu shows the mon
+    FlagClear(USING_POKE_RIDER); // Clears this define so flying via the party menu keeps the show mon animation
     return 0;
 }
 
