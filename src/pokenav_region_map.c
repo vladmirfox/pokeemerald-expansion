@@ -226,7 +226,7 @@ static u32 HandleRegionMapInput(struct Pokenav_RegionMapMenu *state)
         state->callback = GetExitRegionMapMenuId;
         return POKENAV_MAP_FUNC_EXIT;
     case MAP_INPUT_R_BUTTON:
-        if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY)
+        if (regionMap->mapSecType == MAPSECTYPE_CITY_CANFLY && OW_FLAG_AUTO_USE_FLY)
             return POKENAV_MAP_FUNC_FLY;
     }
     return POKENAV_MAP_FUNC_NONE;

@@ -665,11 +665,11 @@ static u8 ProcessRegionMapInput_Full(void)
     {
         input = MAP_INPUT_A_BUTTON;
     }
-    else if (JOY_NEW(B_BUTTON))
+    if (JOY_NEW(B_BUTTON))
     {
         input = MAP_INPUT_B_BUTTON;
     }
-    else if (JOY_NEW(R_BUTTON))
+    if (JOY_NEW(R_BUTTON))
     {
         input = MAP_INPUT_R_BUTTON;
     }
