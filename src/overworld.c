@@ -67,7 +67,6 @@
 #include "constants/abilities.h"
 #include "constants/layouts.h"
 #include "constants/map_types.h"
-#include "constants/moves.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
@@ -381,7 +380,6 @@ void Overworld_ResetStateAfterFly(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    FlagClear(FLAG_SYS_USE_SURF);
 }
 
 void Overworld_ResetStateAfterTeleport(void)
@@ -392,7 +390,6 @@ void Overworld_ResetStateAfterTeleport(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    FlagClear(FLAG_SYS_USE_SURF);
     RunScriptImmediately(EventScript_ResetMrBriney);
 }
 
@@ -404,7 +401,6 @@ void Overworld_ResetStateAfterDigEscRope(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    FlagClear(FLAG_SYS_USE_SURF);
 }
 
 #if B_RESET_FLAGS_VARS_AFTER_WHITEOUT  == TRUE
@@ -441,7 +437,6 @@ static void Overworld_ResetStateAfterWhiteOut(void)
     FlagClear(FLAG_SYS_SAFARI_MODE);
     FlagClear(FLAG_SYS_USE_STRENGTH);
     FlagClear(FLAG_SYS_USE_FLASH);
-    FlagClear(FLAG_SYS_USE_SURF);
     if (B_RESET_FLAGS_VARS_AFTER_WHITEOUT == TRUE)
         Overworld_ResetBattleFlagsAndVars();
     // If you were defeated by Kyogre/Groudon and the step counter has
@@ -845,13 +840,12 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
+#if FREE_MATCH_CALL == FALSE
+    TryUpdateRandomTrainerRematches(mapGroup, mapNum);
+#endif //FREE_MATCH_CALL
 
-    #if FREE_MATCH_CALL == FALSE
-        TryUpdateRandomTrainerRematches(mapGroup, mapNum);
-    #endif //FREE_MATCH_CALL
-
-    if (I_VS_SEEKER_CHARGING != 0)
-        MapResetTrainerRematches(mapGroup, mapNum);
+if (I_VS_SEEKER_CHARGING != 0)
+    MapResetTrainerRematches(mapGroup, mapNum);
 
     DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
@@ -891,6 +885,7 @@ static void LoadMapFromWarp(bool32 a1)
     bool8 isOutdoors;
     bool8 isIndoors;
 
+    LoadCurrentMapData();
     if (!(sObjectEventLoadFlag & SKIP_OBJECT_EVENT_LOAD))
     {
         if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
@@ -909,23 +904,19 @@ static void LoadMapFromWarp(bool32 a1)
     ClearTempFieldEventData();
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
+#if FREE_MATCH_CALL == FALSE
+    TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+#endif //FREE_MATCH_CALL
 
-    #if FREE_MATCH_CALL == FALSE
-        TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
-    #endif //FREE_MATCH_CALL
-
-    if (I_VS_SEEKER_CHARGING != 0)
+if (I_VS_SEEKER_CHARGING != 0)
      MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
 
     if (a1 != TRUE)
         DoTimeBasedEvents();
-
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
-
     if (isOutdoors)
         FlagClear(FLAG_SYS_USE_FLASH);
-
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
@@ -943,11 +934,6 @@ static void LoadMapFromWarp(bool32 a1)
     {
         UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
         InitSecretBaseAppearance(TRUE);
-    }
-
-    if (OW_FLAG_AUTO_USE_FLASH)
-    {
-        AutoUseFlash();
     }
 }
 
@@ -1069,109 +1055,6 @@ void SetFlashLevel(s32 flashLevel)
 u8 GetFlashLevel(void)
 {
     return gSaveBlock1Ptr->flashLevel;
-}
-
-void DEBUG_SetAllHMFlags(void) 
-{
-    FlagSet(FLAG_RECEIVED_HM_CUT);
-    FlagSet(FLAG_RECEIVED_HM_FLASH);
-    FlagSet(FLAG_RECEIVED_HM_ROCK_SMASH);
-    FlagSet(FLAG_RECEIVED_HM_STRENGTH);
-    FlagSet(FLAG_RECEIVED_HM_SURF);
-    FlagSet(FLAG_RECEIVED_HM_FLY);
-    FlagSet(FLAG_RECEIVED_HM_DIVE);
-    FlagSet(FLAG_RECEIVED_HM_WATERFALL);
-}
-
-void DEBUG_SetAllBadges(void)
-{
-    FlagSet(FLAG_BADGE01_GET);
-    FlagSet(FLAG_BADGE02_GET);
-    FlagSet(FLAG_BADGE03_GET);
-    FlagSet(FLAG_BADGE04_GET);
-    FlagSet(FLAG_BADGE05_GET);
-    FlagSet(FLAG_BADGE06_GET);
-    FlagSet(FLAG_BADGE07_GET);
-    FlagSet(FLAG_BADGE08_GET);
-
-}
-
-bool32 CanAutoUseFieldMove(u16 move) {
-    if (move == MOVE_CUT)
-        return FlagGet(FLAG_RECEIVED_HM_CUT) && FlagGet(FLAG_BADGE01_GET);
-    else if (move == MOVE_FLASH)
-        return FlagGet(FLAG_RECEIVED_HM_FLASH) && FlagGet(FLAG_BADGE02_GET);
-    else if (move == MOVE_ROCK_SMASH)
-        return FlagGet(FLAG_RECEIVED_HM_ROCK_SMASH) && FlagGet(FLAG_BADGE03_GET);
-    else if (move == MOVE_STRENGTH)
-        return FlagGet(FLAG_RECEIVED_HM_STRENGTH) && FlagGet(FLAG_BADGE04_GET);
-    else if (move == MOVE_SURF)
-        return FlagGet(FLAG_RECEIVED_HM_SURF) && FlagGet(FLAG_BADGE05_GET) && IsPlayerFacingSurfableFishableWater();
-    else if (move == MOVE_FLY)
-        return FlagGet(FLAG_RECEIVED_HM_FLY) && FlagGet(FLAG_BADGE06_GET);
-    else if (move == MOVE_DIVE)
-        return FlagGet(FLAG_RECEIVED_HM_DIVE) && FlagGet(FLAG_BADGE07_GET);
-    else if (move == MOVE_WATERFALL)
-        return FlagGet(FLAG_RECEIVED_HM_WATERFALL) && FlagGet(FLAG_BADGE08_GET);
-    
-    return FALSE;
-}
-
-void AutoUseCut(void)
-{
-    if (CanAutoUseFieldMove(MOVE_CUT))
-        FieldCallback_CutTree();
-}
-
-// Checks if the HM Flash can be auto-used, and if yes, uses it
-void AutoUseFlash(void)
-{
-    if (gMapHeader.cave && CanAutoUseFieldMove(MOVE_FLASH) && !FlagGet(FLAG_SYS_USE_FLASH))
-        SetUpFieldMove_Flash();
-}
-
-void AutoUseRockSmash(void)
-{
-    if (CanAutoUseFieldMove(MOVE_ROCK_SMASH))
-        FieldCallback_RockSmash();
-}
-void AutoUseStrength(void)
-{
-    if (CanAutoUseFieldMove(MOVE_STRENGTH) && !FlagGet(FLAG_SYS_USE_STRENGTH))
-    {
-        FlagSet(FLAG_SYS_USE_STRENGTH);
-        FieldCallback_Strength();
-    }
-}
-
-void AutoUseSurf(void)
-{
-    if (CanAutoUseFieldMove(MOVE_SURF) && !TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-    {
-        if (FlagGet(FLAG_SYS_USE_SURF))
-            ScriptContext_SetupScript(EventScript_AutoUseConsecutiveSurf);
-        else
-            ScriptContext_SetupScript(EventScript_AutoUseSurf);
-    }
-}
-
-void AutoUseDive(void)
-{
-    if (CanAutoUseFieldMove(MOVE_DIVE))
-        ScriptContext_SetupScript(EventScript_AutoUseDive);
-}
-
-void AutoUseDiveEmerge(void)
-{
-    if (CanAutoUseFieldMove(MOVE_DIVE))
-        ScriptContext_SetupScript(EventScript_AutoUseDiveUnderwater);
-}
-
-void AutoUseWaterfall(void)
-{
-    if (CanAutoUseFieldMove(MOVE_WATERFALL) && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-    {
-    }
 }
 
 void SetCurrentMapLayout(u16 mapLayoutId)
@@ -1943,13 +1826,6 @@ void CB2_ContinueSavedGame(void)
         SetMainCallback1(CB1_Overworld);
         CB2_ReturnToField();
     }
-
-    if (OW_FLAG_AUTO_USE_FLASH)
-    {
-        AutoUseFlash();
-    }
-    DEBUG_SetAllHMFlags(); // remember to delete this once you're done!
-    DEBUG_SetAllBadges(); // remember to delete this once you're done!
 }
 
 static void FieldClearVBlankHBlankCallbacks(void)

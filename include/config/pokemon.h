@@ -50,11 +50,11 @@
 
 // Other settings
 #define P_CRIES_ENABLED                  TRUE        // If TRUE, Pokémon will have cries. Disabling this saves around a LOT of ROM space (over 25%!), but instead we recommend disabling individual unused Pokémon families in include/config/species_enabled.h.
-#define P_LEGENDARY_PERFECT_IVS          6           // Since Gen 6, Legendaries, Mythicals and Ultra Beasts found in the wild or given through gifts have at least 3 perfect IVs.
+#define P_LEGENDARY_PERFECT_IVS          GEN_LATEST  // Since Gen 6, Legendaries, Mythicals and Ultra Beasts found in the wild or given through gifts have at least 3 perfect IVs.
 #define P_EV_CAP                         GEN_LATEST  // Since Gen 6, the max EVs per stat is 252 instead of 255.
 #define P_SHOW_TERA_TYPE                 GEN_8       // Since Gen 9, the Tera Type is shown on the summary screen.
 #define P_TM_LITERACY                    GEN_LATEST  // Since Gen 6, TM illiterate Pokémon can learn TMs that teach moves that are in their level-up learnsets.
-#define P_CAN_FORGET_HIDDEN_MOVE         TRUE        // If TRUE, Pokémon can forget any move, even if it is a Hidden Move.
+#define P_CAN_FORGET_HIDDEN_MOVE         FALSE       // If TRUE, Pokémon can forget any move, even if it is a Hidden Move.
 #define P_EGG_CYCLE_LENGTH               GEN_LATEST  // Since Gen 8, egg cycles take half as many steps as before.
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // If TRUE, Pokémon encountered in the Battle Pyramid won't be shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // If TRUE, Pokémon encountered when the player is out of Poké Balls won't be shiny
@@ -69,10 +69,8 @@
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.
-#define P_FLAG_FORCE_SHINY               FLAG_FORCE_SHINY        // If this flag is set, all wild and gift Pokémon will forced into being Shiny.
-#define P_FLAG_FORCE_NO_SHINY            FLAG_FORCE_NO_SHINY     // If this flag is set, all wild and gift Pokémon will be forced into NOT being Shiny.
-#define P_FLAG_FORCE_POKERUS             FLAG_FORCE_POKERUS      // If this flag is set, all wild and gift Pokémon will be forced into having Pokérus.
-#define P_FLAG_INFECT_RANDOM_MON_POKERUS FLAG_INFECT_RANDOM_MON_POKERUS     // If this flag is set, the special InfectMonWithPokerus will infect a random mon in your party and ignore the var in var0.
+#define P_FLAG_FORCE_SHINY      0     // If this flag is set, all wild and gift Pokémon will forced into being Shiny.
+#define P_FLAG_FORCE_NO_SHINY   0     // If this flag is set, all wild and gift Pokémon will forced into NOT being Shiny.
 
 // Go here if you want to disable specific families of Pokémon.
 #include "config/species_enabled.h"

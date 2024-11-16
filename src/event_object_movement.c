@@ -18,7 +18,6 @@
 #include "field_player_avatar.h"
 #include "field_weather.h"
 #include "fieldmap.h"
-#include "fldeff.h"
 #include "follower_helper.h"
 #include "gpu_regs.h"
 #include "graphics.h"

@@ -85,12 +85,12 @@
 #define FLAG_UNUSED_0x047    0x47 // Unused Flag
 #define FLAG_UNUSED_0x048    0x48 // Unused Flag
 #define FLAG_UNUSED_0x049    0x49 // Unused Flag
-#define FLAG_KAYA_DOLL_APPEAR       0x4A // NEEDS TO NEVER BE SET
-#define FLAG_KAYA_BOXLINK_FOUND     0x4B
-#define FLAG_KAYA_EXPSHARE_FOUND    0x4C
-#define FLAG_KAYA_TERMINAL_FOUND    0x4D
-#define FLAG_IS_KAYA	       0x4E
-#define FLAG_INFECT_RANDOM_MON_POKERUS    0x4F
+#define FLAG_UNUSED_0x04A    0x4A // Unused Flag
+#define FLAG_UNUSED_0x04B    0x4B // Unused Flag
+#define FLAG_UNUSED_0x04C    0x4C // Unused Flag
+#define FLAG_UNUSED_0x04D    0x4D // Unused Flag
+#define FLAG_UNUSED_0x04E    0x4E // Unused Flag
+#define FLAG_UNUSED_0x04F    0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -1402,7 +1402,7 @@
 #define FLAG_SYS_SAFARI_MODE                        (SYSTEM_FLAGS + 0x2C)
 #define FLAG_SYS_CRUISE_MODE                        (SYSTEM_FLAGS + 0x2D)
 
-#define FLAG_SYS_USE_SURF                           (SYSTEM_FLAGS + 0x2E) // 0x88E
+#define FLAG_UNUSED_0x88E                           (SYSTEM_FLAGS + 0x2E) // Unused Flag
 #define FLAG_UNUSED_0x88F                           (SYSTEM_FLAGS + 0x2F) // Unused Flag
 
 #define FLAG_SYS_TV_HOME                            (SYSTEM_FLAGS + 0x30)
@@ -1511,11 +1511,11 @@
 #define FLAG_UNUSED_0x8E7                           (SYSTEM_FLAGS + 0x87) // Unused Flag
 #define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
 #define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
-#define FLAG_FORCE_SHINY                            (SYSTEM_FLAGS + 0x8A) // 0x8EA
-#define FLAG_FORCE_NO_SHINY                         (SYSTEM_FLAGS + 0x8B) // 0x8E1
-#define FLAG_FORCE_POKERUS                          (SYSTEM_FLAGS + 0x8C) // 0x8E2
-#define FLAG_MAP_NEEDS_FLASH                        (SYSTEM_FLAGS + 0x8D) // 0x8ED
-#define FLAG_UNUSED_0x8EE	                        (SYSTEM_FLAGS + 0x8E) // Unused Flag
+#define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
+#define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
+#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
+#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
+#define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag
 #define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag
@@ -1592,7 +1592,7 @@
 #define FLAG_UNUSED_0x933                           (DAILY_FLAGS_START + 0x13) // Unused Flag
 #define FLAG_DAILY_APPRENTICE_LEAVES                (DAILY_FLAGS_START + 0x14)
 
-#define FLAG_FLYING_FROM_POKENAV                    (DAILY_FLAGS_START + 0x15) // 0x935
+#define FLAG_UNUSED_0x935                           (DAILY_FLAGS_START + 0x15) // Unused Flag
 #define FLAG_UNUSED_0x936                           (DAILY_FLAGS_START + 0x16) // Unused Flag
 #define FLAG_UNUSED_0x937                           (DAILY_FLAGS_START + 0x17) // Unused Flag
 #define FLAG_UNUSED_0x938                           (DAILY_FLAGS_START + 0x18) // Unused Flag

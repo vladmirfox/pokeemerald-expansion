@@ -104,6 +104,17 @@ static void UnhideRegionMapPlayerIcon(void);
 static void SpriteCB_PlayerIconMapZoomed(struct Sprite *sprite);
 static void SpriteCB_PlayerIconMapFull(struct Sprite *sprite);
 static void SpriteCB_PlayerIcon(struct Sprite *sprite);
+static void VBlankCB_FlyMap(void);
+static void CB2_FlyMap(void);
+static void SetFlyMapCallback(void callback(void));
+static void DrawFlyDestTextWindow(void);
+static void LoadFlyDestIcons(void);
+static void CreateFlyDestIcons(void);
+static void TryCreateRedOutlineFlyDestIcons(void);
+static void SpriteCB_FlyDestIcon(struct Sprite *sprite);
+static void CB_FadeInFlyMap(void);
+static void CB_HandleFlyMapInput(void);
+static void CB_ExitFlyMap(void);
 
 static const u16 sRegionMapCursorPal[] = INCBIN_U16("graphics/pokenav/region_map/cursor.gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCBIN_U32("graphics/pokenav/region_map/cursor_small.4bpp.lz");
@@ -275,7 +286,7 @@ static const u32 sRegionMapFrameTilemapLZ[] = INCBIN_U32("graphics/pokenav/regio
 static const u16 sFlyTargetIcons_Pal[] = INCBIN_U16("graphics/pokenav/region_map/fly_target_icons.gbapal");
 static const u32 sFlyTargetIcons_Gfx[] = INCBIN_U32("graphics/pokenav/region_map/fly_target_icons.4bpp.lz");
 
-const u8 sMapHealLocations[][3] =
+static const u8 sMapHealLocations[][3] =
 {
     [MAPSEC_LITTLEROOT_TOWN] = {MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
     [MAPSEC_OLDALE_TOWN] = {MAP_GROUP(OLDALE_TOWN), MAP_NUM(OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
@@ -665,7 +676,7 @@ static u8 ProcessRegionMapInput_Full(void)
     {
         input = MAP_INPUT_A_BUTTON;
     }
-    if (JOY_NEW(B_BUTTON))
+    else if (JOY_NEW(B_BUTTON))
     {
         input = MAP_INPUT_B_BUTTON;
     }
@@ -748,7 +759,7 @@ static u8 ProcessRegionMapInput_Zoomed(void)
     {
         input = MAP_INPUT_A_BUTTON;
     }
-    else if (JOY_NEW(B_BUTTON))
+    if (JOY_NEW(B_BUTTON))
     {
         input = MAP_INPUT_B_BUTTON;
     }
@@ -1733,14 +1744,14 @@ void CB2_OpenFlyMap(void)
     }
 }
 
-void VBlankCB_FlyMap(void)
+static void VBlankCB_FlyMap(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
 }
 
-void CB2_FlyMap(void)
+static void CB2_FlyMap(void)
 {
     sFlyMap->callback();
     AnimateSprites();
@@ -1748,13 +1759,13 @@ void CB2_FlyMap(void)
     DoScheduledBgTilemapCopiesToVram();
 }
 
-void SetFlyMapCallback(void callback(void))
+static void SetFlyMapCallback(void callback(void))
 {
     sFlyMap->callback = callback;
     sFlyMap->state = 0;
 }
 
-void DrawFlyDestTextWindow(void)
+static void DrawFlyDestTextWindow(void)
 {
     u16 i;
     bool32 namePrinted;
@@ -1815,7 +1826,7 @@ void DrawFlyDestTextWindow(void)
 }
 
 
-void LoadFlyDestIcons(void)
+static void LoadFlyDestIcons(void)
 {
     struct SpriteSheet sheet;
 
@@ -1833,7 +1844,7 @@ void LoadFlyDestIcons(void)
 #define sIconMapSec   data[0]
 #define sFlickerTimer data[1]
 
-void CreateFlyDestIcons(void)
+static void CreateFlyDestIcons(void)
 {
     u16 canFlyFlag;
     u16 mapSecId;
@@ -1877,7 +1888,7 @@ void CreateFlyDestIcons(void)
 
 // Draw a red outline box on the mapsec if its corresponding flag has been set
 // Only used for Battle Frontier, but set up to handle more
-void TryCreateRedOutlineFlyDestIcons(void)
+static void TryCreateRedOutlineFlyDestIcons(void)
 {
     u16 i;
     u16 x;
@@ -1908,7 +1919,7 @@ void TryCreateRedOutlineFlyDestIcons(void)
 }
 
 // Flickers fly destination icon color (by hiding the fly icon sprite) if the cursor is currently on it
-void SpriteCB_FlyDestIcon(struct Sprite *sprite)
+static void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 {
     if (sFlyMap->regionMap.mapSecId == sprite->sIconMapSec)
     {
@@ -1928,7 +1939,7 @@ void SpriteCB_FlyDestIcon(struct Sprite *sprite)
 #undef sIconMapSec
 #undef sFlickerTimer
 
-void CB_FadeInFlyMap(void)
+static void CB_FadeInFlyMap(void)
 {
     switch (sFlyMap->state)
     {
@@ -1945,7 +1956,7 @@ void CB_FadeInFlyMap(void)
     }
 }
 
-void CB_HandleFlyMapInput(void)
+static void CB_HandleFlyMapInput(void)
 {
     if (sFlyMap->state == 0)
     {
@@ -1975,7 +1986,7 @@ void CB_HandleFlyMapInput(void)
     }
 }
 
-void CB_ExitFlyMap(void)
+static void CB_ExitFlyMap(void)
 {
     switch (sFlyMap->state)
     {

@@ -5471,55 +5471,6 @@ void PartySpreadPokerus(struct Pokemon *party)
     }
 }
 
-void InfectMonWithPokerus(u8 slot, u8 days)
-{
-    struct Pokemon* mon;
-
-    if (days < -1)
-    {
-        u8 rnd2;
-
-        do
-        {
-            rnd2 = Random();
-        } while ((rnd2 & 0x7) == 0);
-
-        if (rnd2 & 0xF0)
-            rnd2 &= 0x7;
-
-        rnd2 |= (rnd2 << 4);
-        rnd2 &= 0xF3;
-        rnd2++;
-
-        days = rnd2;
-    }
-
-    if (P_FLAG_INFECT_RANDOM_MON_POKERUS != 0 && FlagGet(P_FLAG_INFECT_RANDOM_MON_POKERUS))
-    {
-        u8 rnd;
-
-        do
-        {
-            rnd = Random() % PARTY_SIZE;
-            mon = &gPlayerParty[rnd];
-        } while (!GetMonData(mon, MON_DATA_SPECIES, 0) || GetMonData(mon, MON_DATA_IS_EGG, 0));
-
-        if (!(CheckPartyHasHadPokerus(&gPlayerParty[rnd], rnd)))
-        {
-            SetMonData(&gPlayerParty[rnd], MON_DATA_POKERUS, &days);
-        }
-    }
-    else
-    {
-        mon = &gPlayerParty[slot];
-
-        if (GetMonData(mon, MON_DATA_SPECIES, 0) || !GetMonData(mon, MON_DATA_IS_EGG, 0))
-        {
-            SetMonData(mon, MON_DATA_POKERUS, &days);
-        }
-    }
-}
-
 bool8 TryIncrementMonLevel(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);

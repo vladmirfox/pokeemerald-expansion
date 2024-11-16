@@ -11,6 +11,7 @@
 #include "constants/field_effects.h"
 
 // static functions
+static void FieldCallback_Strength(void);
 static void StartStrengthFieldEffect(void);
 
 // text
@@ -26,7 +27,7 @@ bool8 SetUpFieldMove_Strength(void)
     return FALSE;
 }
 
-void FieldCallback_Strength(void)
+static void FieldCallback_Strength(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
     ScriptContext_SetupScript(EventScript_UseStrength);

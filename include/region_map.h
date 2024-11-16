@@ -2,13 +2,6 @@
 #define GUARD_REGION_MAP_H
 
 #include "bg.h"
-#include "event_data.h"
-#include "constants/heal_locations.h"
-#include "constants/maps.h"
-#include "constants/map_groups.h"
-#include "constants/region_map_sections.h"
-
-extern const u8 sMapHealLocations[][3];
 
 // Exported type declarations
 #define MAP_NAME_LENGTH 16
@@ -118,8 +111,6 @@ u16 CorrectSpecialMapSecId(u16 mapSecId);
 void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void CB2_OpenFlyMap(void);
-void SetFlyMapCallback(void callback(void));
-void CB_ExitFlyMap(void);
 bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);
 void BlendRegionMap(u16 color, u32 coeff);

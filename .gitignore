@@ -32,6 +32,7 @@ build/
 porymap.*.cfg
 prefabs.json
 .vscode/
+.vs/
 *.a
 .fuse_hidden*
 *.sna
@@ -41,4 +42,4 @@ prefabs.json
 /pokeemerald-*.png
 src/data/map_group_count.h
 tools/trainerproc/trainerproc
-.vs/
+.gitignore
