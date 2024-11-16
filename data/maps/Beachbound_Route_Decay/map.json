@@ -49,7 +49,7 @@
       "x": 15,
       "y": 19,
       "elevation": 0,
-      "var": "FLAG_DECAY_BEACHBOUND_ROUTE",
+      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "2",
       "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
     },
@@ -58,7 +58,7 @@
       "x": 15,
       "y": 20,
       "elevation": 0,
-      "var": "FLAG_DECAY_BEACHBOUND_ROUTE",
+      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "2",
       "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
     },
@@ -67,7 +67,7 @@
       "x": 15,
       "y": 21,
       "elevation": 0,
-      "var": "FLAG_DECAY_BEACHBOUND_ROUTE",
+      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "2",
       "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
     },
@@ -76,7 +76,7 @@
       "x": 15,
       "y": 22,
       "elevation": 0,
-      "var": "FLAG_DECAY_BEACHBOUND_ROUTE",
+      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
       "var_value": "2",
       "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
     }

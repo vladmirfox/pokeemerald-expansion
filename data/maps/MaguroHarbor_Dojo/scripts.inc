@@ -22,7 +22,7 @@ MaguroHarbor_Dojo_EventScript_Koishi_2:
 # 25 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	clearflag FLAG_HIDE_BONSAI_SHOP_OWNER
 # 26 "data/maps/MaguroHarbor_Dojo/scripts.pory"
-	setflag VAR_DECAY_BEACHBOUND_ROUTE
+	setvar VAR_DECAY_BEACHBOUND_ROUTE, 1
 # 27 "data/maps/MaguroHarbor_Dojo/scripts.pory"
 	call MaguroHarbor_Dojo_EventScript_GiveReward
 	goto MaguroHarbor_Dojo_EventScript_Koishi_1

@@ -575,6 +575,22 @@ BeachboundRoute_EventScript_Mugging_9:
 
 
 BeachboundRoute_EventScript_SeeDecay::
+# 478 "data/maps/BeachboundRoute/scripts.pory"
+	lockall
+# 480 "data/maps/BeachboundRoute/scripts.pory"
+	playse SE_PIN
+# 481 "data/maps/BeachboundRoute/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+# 482 "data/maps/BeachboundRoute/scripts.pory"
+	waitse
+# 483 "data/maps/BeachboundRoute/scripts.pory"
+	waitmovement 0
+# 485 "data/maps/BeachboundRoute/scripts.pory"
+	setflag FLAG_SPAWN_INVISIBLE
+# 486 "data/maps/BeachboundRoute/scripts.pory"
+	warpsilent MAP_BEACHBOUND_ROUTE_DECAY, 43, 17
+# 488 "data/maps/BeachboundRoute/scripts.pory"
+	releaseall
 	return
 
 
