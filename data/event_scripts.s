@@ -1303,3 +1303,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ScenicRouteSaberside/scripts.inc"
 
 	.include "data/maps/UumeForest/scripts.inc"
+
+	.include "data/maps/Beachbound_Maguro_Gate/scripts.inc"
+
+	.include "data/maps/Kura_Beachbound_Gate/scripts.inc"

@@ -62,3 +62,6 @@ porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/refuge/ ./ref
 # School
 echo "SCHOOL"
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/school/ ./school/ ./building-generic/ ../../include/constants/metatile_behaviors.h
+# Gate
+echo "GATE"
+porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/gate/ ./gate/ ./building-generic/ ../../include/constants/metatile_behaviors.h

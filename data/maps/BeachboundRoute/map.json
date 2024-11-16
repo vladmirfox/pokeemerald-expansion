@@ -370,7 +370,20 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 73,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_BEACHBOUND_MAGURO_GATE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_KURA_BEACHBOUND_GATE",
+      "dest_warp_id": "1"
+    }
   ],
   "coord_events": [
     {

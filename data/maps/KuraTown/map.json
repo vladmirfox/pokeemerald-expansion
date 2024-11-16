@@ -114,10 +114,10 @@
       "dest_warp_id": "5"
     },
     {
-      "x": 54,
-      "y": 14,
+      "x": 56,
+      "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_KURA_TOWN",
+      "dest_map": "MAP_KURA_BEACHBOUND_GATE",
       "dest_warp_id": "0"
     }
   ],

@@ -159,6 +159,41 @@
     "SunriseVillage_RivalsHouse",
     "SunriseVillage_House1"
   ],
+  "gMapGroup_IndoorChii": [
+    "ChiiTown_House1",
+    "ChiiTown_House2",
+    "ChiiTown_School",
+    "ChiiTown_PokemonCenter"
+  ],
+  "gMapGroup_IndoorTranquilRoute": [
+    "TranquilRoute_CutHouse"
+  ],
+  "gMapGroup_IndoorSaku": [
+    "SakuTown_PokemonCenter",
+    "SakuTown_BonsaiShop",
+    "SakuTown_House1",
+    "SakuTown_House2",
+    "SakuTown_House3"
+  ],
+  "gMapGroup_IndoorKura": [
+    "KuraTown_House1",
+    "KuraTown_House2",
+    "KuraTown_House3",
+    "KuraTown_Dojo"
+  ],
+  "gMapGroup_IndoorBeachboundRoute": [
+    "Beachbound_Maguro_Gate",
+    "Kura_Beachbound_Gate"
+  ],
+  "gMapGroup_IndoorMaguro": [
+    "MaguroHarbor_House1",
+    "MaguroHarbor_Dojo"
+  ],
+  "gMapGroup_IndoorSilveridge": [
+    "Silveridge_SculptorsHouse",
+    "Silveridge_EldersHouse",
+    "Silveridge_House1"
+  ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
     "OldaleTown_House2",
@@ -682,38 +717,5 @@
   ],
   "gMapGroup_IndoorRoute124": [
     "Route124_DivingTreasureHuntersHouse"
-  ],
-  "gMapGroup_IndoorTranquilRoute": [
-    "TranquilRoute_CutHouse"
-  ],
-  "gMapGroup_IndoorSaku": [
-    "SakuTown_PokemonCenter",
-    "SakuTown_BonsaiShop",
-    "SakuTown_House1",
-    "SakuTown_House2",
-    "SakuTown_House3"
-  ],
-  "gMapGroup_IndoorKura": [
-    "KuraTown_House1",
-    "KuraTown_House2",
-    "KuraTown_House3",
-    "KuraTown_Dojo"
-  ],
-  "gMapGroup_IndoorChii": [
-    "ChiiTown_House1",
-    "ChiiTown_House2",
-    "ChiiTown_School",
-    "ChiiTown_PokemonCenter"
-  ],
-  "gMapGroup_IndoorSilveridge": [
-    "Silveridge_SculptorsHouse",
-    "Silveridge_EldersHouse",
-    "Silveridge_House1"
-  ],
-  "gMapGroup_IndoorMaguro": [
-    "MaguroHarbor_House1",
-    "MaguroHarbor_Dojo"
-  ],
-  "gMapGroup_IndoorBeachboundRoute": [
   ]
 }

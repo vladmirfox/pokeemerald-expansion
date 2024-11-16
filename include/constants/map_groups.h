@@ -145,6 +145,8 @@
 #define MAP_KURA_TOWN_DOJO   (3 | (5 << 8))
 
 // gMapGroup_IndoorBeachboundRoute
+#define MAP_BEACHBOUND_MAGURO_GATE (0 | (6 << 8))
+#define MAP_KURA_BEACHBOUND_GATE   (1 | (6 << 8))
 
 // gMapGroup_IndoorMaguro
 #define MAP_MAGURO_HARBOR_HOUSE1 (0 | (7 << 8))
