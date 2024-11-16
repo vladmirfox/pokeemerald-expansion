@@ -7684,6 +7684,85 @@ void MoveDeleterChooseMoveToForget(void)
     gFieldCallback = FieldCB_ContinueScriptHandleMusic;
 }
 
+void UpgradeToDeltaSpecies(void)
+{
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    u16 species = GetMonData(mon, MON_DATA_SPECIES + gSpecialVar_0x8005);
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    GetMonData(mon, MON_DATA_NICKNAME, nickname);
+    StringGet_Nickname(nickname);
+    u16 deltaSpecies;
+
+    switch (species) {
+        case SPECIES_WURMPLE: deltaSpecies = SPECIES_WURMPLE_DELTA;
+            break;
+        case SPECIES_SILCOON: deltaSpecies = SPECIES_SILCOON_DELTA;
+            break;
+        case SPECIES_DUSTOX: deltaSpecies = SPECIES_DUSTOX_DELTA;
+            break;
+        case SPECIES_NINCADA: deltaSpecies = SPECIES_NINCADA_DELTA;
+            break;
+        case SPECIES_NINJASK: deltaSpecies = SPECIES_NINJASK_DELTA;
+            break;
+        case SPECIES_SHEDINJA: deltaSpecies = SPECIES_SHEDINJA_DELTA;
+            break;
+        case SPECIES_SANDSHREW: deltaSpecies = SPECIES_SANDSHREW_DELTA;
+            break;
+        case SPECIES_SANDSLASH: deltaSpecies = SPECIES_SANDSLASH_DELTA;
+            break;
+        case SPECIES_VENONAT: deltaSpecies = SPECIES_VENONAT_DELTA;
+            break;
+        case SPECIES_VENOMOTH: deltaSpecies = SPECIES_VENOMOTH_DELTA;
+            break;
+        case SPECIES_GOLBAT: deltaSpecies = SPECIES_GOLBAT_DELTA;
+            break;
+        case SPECIES_BEEDRILL: deltaSpecies = SPECIES_BEEDRILL_DELTA;
+            break;
+        // default: deltaSpecies = SPECIES_NONE;
+        default: deltaSpecies = SPECIES_BEEDRILL_DELTA;
+    }
+
+    if (deltaSpecies != SPECIES_NONE)
+    {
+        PlayCry_NormalNoDucking(deltaSpecies, 0, CRY_VOLUME_RS, CRY_VOLUME_RS);
+        SetMonData(mon, MON_DATA_SPECIES, &deltaSpecies);
+        CalculateMonStats(mon);
+        if (StringCompare(nickname, GetSpeciesName(species)) == 0)
+        {
+            u8 name[POKEMON_NAME_LENGTH + 1];
+            StringCopy(name, GetSpeciesName(deltaSpecies));
+            StringGet_Nickname(name);
+            SetMonData(mon, MON_DATA_NICKNAME, name);
+        }
+
+        // Set mon delta moves
+        u8 i, level, learnsetIndex;
+        const struct LevelUpMove *learnset;
+
+        level = GetMonData(mon, MON_DATA_LEVEL);
+        learnset = GetSpeciesLevelUpLearnset(deltaSpecies);
+        for (i = 0; learnset[i].move != LEVEL_UP_MOVE_END; i++)
+        {
+            if (learnset[i].level > level)
+                break;
+        }
+
+        learnsetIndex = i;
+
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            u16 moveId = MOVE_NONE;
+            if (learnsetIndex - 1 - i >= 0)
+            {
+                moveId = learnset[learnsetIndex - 1 - i].move;
+            }
+            SetMonData(mon, MON_DATA_MOVE1 + i, &moveId);
+            SetMonData(mon, MON_DATA_PP1 + i, &gMovesInfo[moveId].pp);
+        }
+
+    }
+}
+
 void GetNumMovesSelectedMonHas(void)
 {
     u8 i;

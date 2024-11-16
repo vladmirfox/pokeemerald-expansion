@@ -81,13 +81,7 @@
         .baseSpDefense = 70,
         .types = MON_TYPES(TYPE_DRAGON, TYPE_BUG),
         .catchRate = 155,
-    #if P_UPDATED_EXP_YIELDS >= GEN_7
         .expYield = 78,
-    #elif P_UPDATED_EXP_YIELDS >= GEN_5
-        .expYield = 39,
-    #else
-        .expYield = 54,
-    #endif
         .evYield_SpAttack = 1,
         .evYield_SpDefense = 1,
         .itemCommon = ITEM_PECHA_BERRY,
@@ -867,3 +861,126 @@
         .formChangeTable = sBeedrillFormChangeTable,
     },
 // END WEEDLE FAMILY
+
+    [SPECIES_IGNEOUSAUR] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 107,
+        .baseDefense   = 93,
+        .baseSpeed     = 128,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_FIRE),
+        .catchRate = 45,
+        .expYield = 202,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_RECKLESS, ABILITY_OBLIVIOUS, ABILITY_ANGER_POINT },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Igneousaur"),
+        .cryId = CRY_AERODACTYL,
+        .natDexNum = NATIONAL_DEX_AERODACTYL,
+        .categoryName = _("Volcanic"),
+        .height = 18,
+        .weight = 629,
+        .description = COMPOUND_STRING(
+            "Aerodactyl is a Pokémon from the age\n"
+            "of dinosaurs. It was regenerated from DNA\n"
+            "extracted from amber. It is imagined to\n"
+            "have been the king of the skies."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 302,
+        .trainerOffset = 4,
+        .frontPic = gMonFrontPic_Igneousaur,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 4,
+        .frontAnimFrames = sAnims_Aerodactyl,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_Igneousaur,
+        .backPicSize = MON_COORDS_SIZE(64, 48),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
+        .palette = gMonPalette_Igneousaur,
+        .shinyPalette = gMonShinyPalette_Igneousaur,
+        .iconSprite = gMonIcon_Aerodactyl,
+        .iconPalIndex = 2,
+        FOOTPRINT(Aerodactyl)
+        OVERWORLD(
+            sPicTable_Aerodactyl,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            gOverworldPalette_Aerodactyl,
+            gShinyOverworldPalette_Aerodactyl
+        )
+        .levelUpLearnset = sAerodactylLevelUpLearnset,
+        .teachableLearnset = sAerodactylTeachableLearnset,
+        .eggMoveLearnset = sAerodactylEggMoveLearnset,
+        .formSpeciesIdTable = sAerodactylFormSpeciesIdTable,
+        .formChangeTable = sAerodactylFormChangeTable,
+    },
+
+    [SPECIES_POLARIS] =
+    {
+        .baseHP        = 104,
+        .baseAttack    = 45,
+        .baseDefense   = 100,
+        .baseSpeed     = 58,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 85,
+        .types = MON_TYPES(TYPE_ROCK, TYPE_PSYCHIC),
+        .catchRate = 45,
+        .expYield = 104,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 30,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER),
+        .abilities = { ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Polaris"),
+        .cryId = CRY_AURORUS,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        .categoryName = _("North Column"),
+        .height = 27,
+        .weight = 2250,
+        .description = COMPOUND_STRING(
+            "Using the diamond-shaped crystals on its\n"
+            "body it can instantly create a wall of ice\n"
+            "to block an opponent's attack, or encase\n"
+            "them in ice."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Polaris,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_Aurorus,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backPic = gMonBackPic_Polaris,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_Polaris,
+        .shinyPalette = gMonShinyPalette_Polaris,
+        .iconSprite = gMonIcon_Aurorus,
+        .iconPalIndex = 0,
+        FOOTPRINT(Polaris)
+        OVERWORLD(
+            sPicTable_Aurorus,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            gOverworldPalette_Aurorus,
+            gShinyOverworldPalette_Aurorus
+        )
+        .levelUpLearnset = sAurorusLevelUpLearnset,
+        .teachableLearnset = sAurorusTeachableLearnset,
+    },
