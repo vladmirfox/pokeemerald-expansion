@@ -22,6 +22,9 @@ porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/open_sea/ ./o
 # Saku
 echo "SAKU KURA"
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/saku_kura ./saku-kura ./exterior-generic ../../include/constants/metatile_behaviors.h
+# Harvest Shrine
+echo "HARVEST SHRINE"
+porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/harvest_shrine ./harvest-shrine ./exterior-generic ../../include/constants/metatile_behaviors.h
 # Silveridge
 echo "SILVERIDGE"
 porytiles compile-secondary -Wall -o ../../data/tilesets/secondary/silveridge/ ./silveridge/ ./exterior-generic ../../include/constants/metatile_behaviors.h

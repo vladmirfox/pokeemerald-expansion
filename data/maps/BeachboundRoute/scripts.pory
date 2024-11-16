@@ -171,11 +171,11 @@ script BeachboundRoute_EventScript_WhereAreYouGoing {
 	specialvar(VAR_RESULT, GetPlayerFacingDirection)
 	switch(var(VAR_RESULT)) {
 		case DIR_EAST:
-			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksLeft)
+			applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
 		case DIR_WEST:
-			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksRight)
+			applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right))
 		case DIR_SOUTH:
-			applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksUp)
+			applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up))
 	}
 	waitmovement(0)
 
@@ -184,7 +184,7 @@ script BeachboundRoute_EventScript_WhereAreYouGoing {
 
 script BeachboundRoute_EventScript_Mugging_Left {
 	lock
-	applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksRight)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right))
 	waitmovement(0)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 	call(BeachboundRoute_EventScript_Mugging)
@@ -193,7 +193,7 @@ script BeachboundRoute_EventScript_Mugging_Left {
 
 script BeachboundRoute_EventScript_Mugging_Right {
 	lock
-	applymovement(OBJ_EVENT_ID_PLAYER, BeachboundRoute_Movement_PlayerWalksLeft)
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
 	waitmovement(0)
 	turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
 	call(BeachboundRoute_EventScript_Mugging)
@@ -334,9 +334,9 @@ script BeachboundRoute_EventScript_Mugging {
 		))
 	}
 
-	applymovement(LOCALID_GRUNT_BOSS, BeachboundRoute_Movement_BossToTheSide)
-	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_GruntWalksToPlayer)
-	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_GruntWalksToPlayer)
+	applymovement(LOCALID_GRUNT_BOSS, moves(walk_right, face_left))
+	applymovement(LOCALID_GRUNT_1, moves(walk_down))
+	applymovement(LOCALID_GRUNT_2, moves(walk_down))
 	waitmovement(LOCALID_GRUNT_BOSS)
 	waitmovement(LOCALID_GRUNT_1)
 	waitmovement(LOCALID_GRUNT_2)
@@ -387,6 +387,9 @@ script BeachboundRoute_EventScript_Mugging {
 
 	delay(24)
 
+	applymovement(LOCALID_GRUNT_BOSS, moves(face_up))
+	waitmovement(0)
+
 	speakername("Crobat Boss")
 	msgbox(format(
 		"For the love of god, Kevin…"
@@ -394,6 +397,9 @@ script BeachboundRoute_EventScript_Mugging {
 	closemessage
 
 	delay(48)
+
+	applymovement(LOCALID_GRUNT_BOSS, moves(face_right))
+	waitmovement(0)
 	
 	speakername("Crobat Boss")
 	msgbox(format(
@@ -411,21 +417,21 @@ script BeachboundRoute_EventScript_Mugging {
 	))
 	closemessage
 
-	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_ZubatsAligning)
-	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_ZubatsAligning)
+	applymovement(LOCALID_GRUNT_1, moves(walk_up, face_down))
+	applymovement(LOCALID_GRUNT_2, moves(walk_up, face_down))
 	waitmovement(LOCALID_GRUNT_1)
 	waitmovement(LOCALID_GRUNT_2)
-	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_ZubatsAlign)
-	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_ZubatsAlign)
-	applymovement(LOCALID_GRUNT_3, BeachboundRoute_Movement_ZubatsAlign)
+	applymovement(LOCALID_GRUNT_1, moves(face_down, zubats_align, delay_16 * 2))
+	applymovement(LOCALID_GRUNT_2, moves(face_down, zubats_align, delay_16 * 2))
+	applymovement(LOCALID_GRUNT_3, moves(face_down, zubats_align, delay_16 * 2))
 	waitmovement(LOCALID_GRUNT_1)
 	waitmovement(LOCALID_GRUNT_2)
 	waitmovement(LOCALID_GRUNT_3)
 
-	applymovement(LOCALID_GRUNT_BOSS, BeachboundRoute_Movement_BossExits)
-	applymovement(LOCALID_GRUNT_1, BeachboundRoute_Movement_Grunt1Exits)
-	applymovement(LOCALID_GRUNT_2, BeachboundRoute_Movement_Grunt2Exits)
-	applymovement(LOCALID_GRUNT_3, BeachboundRoute_Movement_Grunt3Exits)
+	applymovement(LOCALID_GRUNT_BOSS, moves(walk_down * 5, walk_left * 9))
+	applymovement(LOCALID_GRUNT_1, moves(walk_right * 2, walk_down * 6, walk_left * 9))
+	applymovement(LOCALID_GRUNT_2, moves(walk_right, walk_down * 6, walk_left * 9))
+	applymovement(LOCALID_GRUNT_3, moves(walk_down * 6, walk_left * 9))
 	waitmovement(LOCALID_GRUNT_BOSS)
 	waitmovement(LOCALID_GRUNT_1)
 	waitmovement(LOCALID_GRUNT_2)
@@ -439,7 +445,7 @@ script BeachboundRoute_EventScript_Mugging {
 
 	delay(60)
 
-	applymovement(LOCALID_MUGGED_WOMAN, BeachboundRoute_Movement_WomanWalksDown)
+	applymovement(LOCALID_MUGGED_WOMAN, moves(walk_down * 2))
 	waitmovement(LOCALID_MUGGED_WOMAN)
 
 	speakername("Woman")
@@ -463,69 +469,21 @@ script BeachboundRoute_EventScript_Mugging {
 
 	addvar(VAR_PLAYER_REPUTATION, 1)
 
-	applymovement(LOCALID_MUGGED_WOMAN, BeachboundRoute_Movement_WomanExits)
+	applymovement(LOCALID_MUGGED_WOMAN, moves(walk_left, walk_down * 5, walk_left * 9))
 	waitmovement(LOCALID_MUGGED_WOMAN)
 	waitmovement(0)
 }
 
-movement BeachboundRoute_Movement_WomanWalksDown {
-	walk_down * 2
-}
+script BeachboundRoute_EventScript_SeeDecay {
+	lockall
+	
+	playse(SE_PIN)
+	applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark)
+	waitse
+	waitmovement(0)
 
-movement BeachboundRoute_Movement_WomanExits {
-	walk_left
-	walk_down * 5
-	walk_left * 9
-}
+	setflag(FLAG_SPAWN_INVISIBLE)
+	warpsilent(MAP_BEACHBOUND_ROUTE_DECAY, 43, 17)
 
-movement BeachboundRoute_Movement_BossExits {
-	walk_down * 5
-	walk_left * 9
-}
-
-movement BeachboundRoute_Movement_Grunt1Exits {
-	walk_right * 2
-	walk_down * 6
-	walk_left * 9
-}
-
-movement BeachboundRoute_Movement_Grunt2Exits {
-	walk_right
-	walk_down * 6
-	walk_left * 9
-}
-
-movement BeachboundRoute_Movement_Grunt3Exits {
-	walk_down * 6
-	walk_left * 9
-}
-
-movement BeachboundRoute_Movement_ZubatsAligning {
-	walk_up
-	face_down
-}
-
-movement BeachboundRoute_Movement_ZubatsAlign {
-	jump_in_place_down
-}
-
-movement BeachboundRoute_Movement_GruntWalksToPlayer {
-	walk_down
-}
-
-movement BeachboundRoute_Movement_BossToTheSide {
-	walk_right
-	face_left
-}
-
-movement BeachboundRoute_Movement_PlayerWalksLeft {
-	walk_left
-}
-
-movement BeachboundRoute_Movement_PlayerWalksUp {
-	walk_up
-}
-
-movement BeachboundRoute_Movement_PlayerWalksRight {
-	walk_right
+	releaseall
 }

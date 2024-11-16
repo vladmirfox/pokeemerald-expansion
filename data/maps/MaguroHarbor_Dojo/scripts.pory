@@ -21,6 +21,9 @@ script MaguroHarbor_Dojo_EventScript_Koishi {
 	// goto_if_eq(VAR_RESULT, TRUE, MaguroHarbor_Dojo_EventScript_KoishiRematch)
 	if (!flag(FLAG_RECEIVED_TM_KOI_DOJO)) {
 		addvar(VAR_PLAYER_REPUTATION, 5)
+		setflag(FLAG_KURA_DOJO_CLOSED)
+		clearflag(FLAG_HIDE_BONSAI_SHOP_OWNER)
+		setvar(VAR_DECAY_BEACHBOUND_ROUTE, 1)
 		call(MaguroHarbor_Dojo_EventScript_GiveReward)
 	} else {
 		msgbox(

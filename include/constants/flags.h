@@ -65,7 +65,9 @@
 #define FLAG_HIDE_CROBAT_SHADOWS_BEACHBOUND_RT 0x2F
 #define FLAG_HIDE_BEAN_GINKO_WOODS 0x30
 #define FLAG_SMART_GLASSES   0x31
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
+// Lets the player be invisible when warping into a new map
+// (useful for cutscenes)
+#define FLAG_SPAWN_INVISIBLE 0x32
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag

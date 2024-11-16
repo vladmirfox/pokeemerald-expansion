@@ -117,7 +117,7 @@ script SakuTown_BonsaiShop_EventScript_LittleSister {
 			goto_if_eq(VAR_RESULT, 0, Common_EventScript_BagIsFull)
 			msgbox(
 				format(
-					"This scroll contains the move Acrobatics.\p"
+					"This scroll contains Acrobatics.\p"
 					"Your Pokémon will strike harder if he isn't holding an item.\p"
 					"Sounds like a good match for a Pokémon holding a berry, right?\p"
 					"First eat a little snack, then mercilessly crush your opponent!"

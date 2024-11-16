@@ -1,0 +1,26 @@
+mapscripts Beachbound_Route_Decay_MapScripts {
+	MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_DECAY_BEACHBOUND_ROUTE, 1: Beachbound_Route_Decay_SeeDecay
+    ]
+}
+
+script Beachbound_Route_Decay_SeeDecay {
+	lock
+	setvar(VAR_DECAY_BEACHBOUND_ROUTE, 2)
+
+	special(SpawnCameraObject)
+	applymovement(OBJ_EVENT_ID_CAMERA, moves(walk_left * 20))
+	waitmovement(0)
+	special(RemoveCameraObject)
+
+	warpsilent(MAP_BEACHBOUND_ROUTE_DECAY, 59, 16)
+
+	release
+}
+
+script BeachboundRoute_Decay_EventScript_ReturnToKura {
+	lock
+	warpsilent(MAP_KURA_TOWN)
+	waitstate
+	release
+}

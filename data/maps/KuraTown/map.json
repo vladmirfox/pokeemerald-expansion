@@ -79,8 +79,8 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 34,
-      "y": 20,
+      "x": 43,
+      "y": 23,
       "elevation": 0,
       "dest_map": "MAP_KURA_TOWN_HOUSE2",
       "dest_warp_id": "0"
@@ -112,6 +112,13 @@
       "elevation": 0,
       "dest_map": "MAP_SAKU_TOWN",
       "dest_warp_id": "5"
+    },
+    {
+      "x": 54,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_KURA_TOWN",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

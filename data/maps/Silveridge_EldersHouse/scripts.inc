@@ -22,8 +22,12 @@ Silveridge_EldersHouse_EventScript_Elder::
 	msgbox Silveridge_EldersHouse_EventScript_Elder_Text_2
 # 34 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	closemessage
-Silveridge_EldersHouse_EventScript_Elder_1:
 # 36 "data/maps/Silveridge_EldersHouse/scripts.pory"
+	clearflag FLAG_KURA_DOJO_CLOSED
+# 37 "data/maps/Silveridge_EldersHouse/scripts.pory"
+	setflag FLAG_HIDE_BONSAI_SHOP_OWNER
+Silveridge_EldersHouse_EventScript_Elder_1:
+# 39 "data/maps/Silveridge_EldersHouse/scripts.pory"
 	release
 	return
 

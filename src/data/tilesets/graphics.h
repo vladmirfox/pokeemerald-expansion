@@ -2090,3 +2090,22 @@ const u16 gTilesetPalettes_Coral[][16] =
 };
 
 const u32 gTilesetTiles_Coral[] = INCBIN_U32("data/tilesets/secondary/coral/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_HarvestShrine[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/harvest_shrine/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_HarvestShrine[] = INCBIN_U32("data/tilesets/secondary/harvest_shrine/tiles.4bpp.lz");
