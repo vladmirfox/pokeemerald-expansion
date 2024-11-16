@@ -29,57 +29,15 @@
   ],
   "warp_events": [
     {
-      "x": 59,
-      "y": 16,
+      "x": 73,
+      "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_BEACHBOUND_ROUTE_DECAY",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 16,
-      "y": 20,
-      "elevation": 0,
-      "dest_map": "MAP_BEACHBOUND_ROUTE_DECAY",
+      "dest_map": "MAP_BEACHBOUND_MAGURO_GATE",
       "dest_warp_id": "0"
     }
   ],
   "coord_events": [
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
-      "var_value": "2",
-      "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
-    },
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 20,
-      "elevation": 0,
-      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
-      "var_value": "2",
-      "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
-    },
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 21,
-      "elevation": 0,
-      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
-      "var_value": "2",
-      "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
-    },
-    {
-      "type": "trigger",
-      "x": 15,
-      "y": 22,
-      "elevation": 0,
-      "var": "VAR_DECAY_BEACHBOUND_ROUTE",
-      "var_value": "2",
-      "script": "BeachboundRoute_Decay_EventScript_ReturnToKura"
-    }
+
   ],
   "bg_events": [
 
