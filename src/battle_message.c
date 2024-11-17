@@ -3810,7 +3810,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
 
     //  Remove this when done testing
     const u8 *textToPrint = sTest_TempTestText3;
-    MgbaPrintf(MGBA_LOG_WARN, "%S", textToPrint);
     u32 currChar = 0;
     while (textToPrint[currChar] != EOS)
     {
@@ -3818,7 +3817,6 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
         currChar++;
     }
     dst[currChar] = EOS;
-    MgbaPrintf(MGBA_LOG_WARN, "%u", currChar);
     BreakStringKnuth(dst, BATTLE_MSG_MAX_WIDTH, 2, fontId);
     return dstID;
 }

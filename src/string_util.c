@@ -828,9 +828,10 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     {
         if (src[currIndex] == 0xFB)
         {
-            src[currIndex] = EOS;
+            u8 replacedChar = src[currIndex + 1];
+            src[currIndex + 1] = EOS;
             BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
-            src[currIndex] = 0xFB;
+            src[currIndex + 1] = replacedChar;
             currSrc = &src[currIndex + 1];
         }
         currIndex++;
@@ -843,7 +844,6 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     //  If the string already has line breaks, don't interfere with them
     if (StringHasManualBreaks(src))
         return;
-    //s32 bestBadness = -1;
     u16 numChars = 1;
     u16 numWords = 1;
     u16 currWordIndex = 0;
@@ -910,8 +910,9 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
     if (totalWidth > maxWidth)
     {
         //  Figure out how many lines are needed with naive method
-        u16 totalLines = 1;
         u16 currLineWidth = 0;
+        u16 totalLines = 1;
+        bool8 shouldTryAgain;
         for (currWordIndex = 0; currWordIndex < numWords; currWordIndex++)
         {
             if (currLineWidth + allWords[currWordIndex].length > maxWidth)
@@ -924,65 +925,74 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
                 currLineWidth += allWords[currWordIndex].width + spaceWidth;
             }
         }
-        u16 targetLineWidth = totalWidth/totalLines;
-        MgbaPrintf(MGBA_LOG_WARN, "Target: %u", targetLineWidth);
-        struct StringLine *stringLines = Alloc(totalLines*sizeof(struct StringLine));
-        for (u32 lineIndex = 0; lineIndex < totalLines; lineIndex++)
-        {
-            stringLines[lineIndex].numWords = 0;
-            stringLines[lineIndex].spaceWidth = spaceWidth;
-            stringLines[lineIndex].extraSpaceWidth = 0;
-        }
         //  LINE LAYOUT STARTS HERE
-        currWordIndex = 0;
-        u16 currLineIndex = 0;
-        stringLines[currLineIndex].words = &allWords[currWordIndex];
-        stringLines[currLineIndex].numWords = 1;
-        currLineWidth = allWords[currWordIndex].width;
-        currWordIndex++;
-        while (currWordIndex < numWords)
+        struct StringLine *stringLines;
+        do
         {
-            if (currLineWidth + spaceWidth + allWords[currWordIndex].width > maxWidth)
+            shouldTryAgain = FALSE;
+            u16 targetLineWidth = totalWidth/totalLines;
+            stringLines = Alloc(totalLines*sizeof(struct StringLine));
+            for (u32 lineIndex = 0; lineIndex < totalLines; lineIndex++)
             {
-                //  go to next line
-                currLineIndex++;
-                stringLines[currLineIndex].words = &allWords[currWordIndex];
-                stringLines[currLineIndex].numWords = 1;
-                currLineWidth = allWords[currWordIndex].width;
-                currWordIndex++;
+                stringLines[lineIndex].numWords = 0;
+                stringLines[lineIndex].spaceWidth = spaceWidth;
+                stringLines[lineIndex].extraSpaceWidth = 0;
             }
-            else if (currLineWidth > targetLineWidth)
+            currWordIndex = 0;
+            u16 currLineIndex = 0;
+            stringLines[currLineIndex].words = &allWords[currWordIndex];
+            stringLines[currLineIndex].numWords = 1;
+            currLineWidth = allWords[currWordIndex].width;
+            currWordIndex++;
+            while (currWordIndex < numWords)
             {
-                //  go to next line
-                currLineIndex++;
-                stringLines[currLineIndex].words = &allWords[currWordIndex];
-                stringLines[currLineIndex].numWords = 1;
-                currLineWidth = allWords[currWordIndex].width;
-                currWordIndex++;
+                if (currLineWidth + spaceWidth + allWords[currWordIndex].width > maxWidth)
+                {
+                    //  go to next line
+                    currLineIndex++;
+                    stringLines[currLineIndex].words = &allWords[currWordIndex];
+                    stringLines[currLineIndex].numWords = 1;
+                    currLineWidth = allWords[currWordIndex].width;
+                    currWordIndex++;
+                    if (currLineIndex == totalLines)
+                    {
+                        totalLines++;
+                        Free(stringLines);
+                        shouldTryAgain = TRUE;
+                        break;
+                    }
+                }
+                else if (currLineWidth > targetLineWidth)
+                {
+                    //  go to next line
+                    currLineIndex++;
+                    if (currLineIndex == totalLines)
+                    {
+                        totalLines++;
+                        Free(stringLines);
+                        shouldTryAgain = TRUE;
+                        break;
+                    }
+                    stringLines[currLineIndex].words = &allWords[currWordIndex];
+                    stringLines[currLineIndex].numWords = 1;
+                    currLineWidth = allWords[currWordIndex].width;
+                    currWordIndex++;
+                }
+                else
+                {
+                    //  continue on current line
+                    //  add word and space width
+                    currLineWidth += spaceWidth + allWords[currWordIndex].width;
+                    stringLines[currLineIndex].numWords++;
+                    currWordIndex++;
+                }
             }
-            else
-            {
-                //  continue on current line
-                //  add word and space width
-                currLineWidth += spaceWidth + allWords[currWordIndex].width;
-                stringLines[currLineIndex].numWords++;
-                currWordIndex++;
-            }
-            //MgbaPrintf(MGBA_LOG_WARN, "%u",allWords[currWordIndex].length);
-        }
-        u32 currBadness = GetStringBadness(stringLines, totalLines, maxWidth);
-        MgbaPrintf(MGBA_LOG_WARN, "Badness: %u", currBadness);
+        } while (shouldTryAgain);
+        //u32 currBadness = GetStringBadness(stringLines, totalLines, maxWidth);
         BuildNewString(stringLines, totalLines, screenLines, src);
-        MgbaPrintf(MGBA_LOG_WARN, "%S", src);
         Free(stringLines);
     }
 
-    //u32 wat = 0;
-    //while (src[wat] != EOS)
-    //{
-    //    MgbaPrintf(MGBA_LOG_WARN, "%u", src[wat]);
-    //    wat++;
-    //}
     Free(allWords);
 }
 
@@ -1042,8 +1052,10 @@ u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth)
 //  Build the new string from the data stored in the StringLine structs
 void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, u8 *str)
 {
-    u16 numCharsNeeded = 1;
+    //  Most of this function is useless right now
+    //u16 numCharsNeeded = 1;
     u16 newStrIndex = 0;
+    /*
     for (u32 i = 0; i < numLines; i++)
     {
         //  Words
@@ -1058,7 +1070,8 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
         //  Line breaks
         numCharsNeeded++;
     }
-    u8 *newStr = Alloc(numCharsNeeded);
+    */
+    //u8 *newStr = Alloc(numCharsNeeded);
     for (u32 lineIndex = 0; lineIndex < numLines; lineIndex++)
     {
         for (u32 wordIndex = 0; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
@@ -1066,7 +1079,7 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
             //  Add space if not first word
             if (wordIndex != 0)
             {
-                newStr[newStrIndex] = 0;
+                //newStr[newStrIndex] = 0;
                 newStrIndex++;
                 //  Widen space if needed
                 //  current SHIFT_RIGHT doesn't seem to work
@@ -1083,7 +1096,7 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
             //  Add word characters
             for (u32 charIndex = 0; charIndex < stringLines[lineIndex].words[wordIndex].length; charIndex++)
             {
-                newStr[newStrIndex] = str[stringLines[lineIndex].words[wordIndex].startIndex + charIndex];
+                //newStr[newStrIndex] = str[stringLines[lineIndex].words[wordIndex].startIndex + charIndex];
                 newStrIndex++;
             }
         }
@@ -1091,27 +1104,21 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
         {
             if (lineIndex >= maxLines-1 && numLines > maxLines)
             {
-                newStr[newStrIndex] = 0xFA;
+                //  Add scroll if past maxlines and there are more lines
+                //newStr[newStrIndex] = 0xFA;
                 str[newStrIndex] = 0xFA;
             }
             else
             {
-                newStr[newStrIndex] = 0xFE;
+                //  Otherwise just add a newline
+                //newStr[newStrIndex] = 0xFE;
                 str[newStrIndex] = 0xFE;
             }
             newStrIndex++;
         }
     }
-    newStr[newStrIndex] = EOS;
-    /*
-    u16 currIndex = 0;
-    while (newStr[currIndex] != EOS)
-    {
-        str[currIndex] = newStr[currIndex];
-        currIndex++;
-    }
-    */
-    Free(newStr);
+    //newStr[newStrIndex] = EOS;
+    //Free(newStr);
 }
 
 bool32 StringHasManualBreaks(u8 *src)
