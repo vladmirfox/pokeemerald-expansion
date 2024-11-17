@@ -41,6 +41,7 @@
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
 EWRAM_DATA s32 gFieldEffectArguments[8] = {0};
+EWRAM_DATA bool8 gSkipShowMonAnim = FALSE;
 
 // Static type declarations
 
@@ -3228,7 +3229,7 @@ static void FlyOutFieldEffect_ShowMon(struct Task *task)
     {
         task->tState++;
         gFieldEffectArguments[0] = task->tMonId;
-        if (!FlagGet(USING_POKE_RIDER))
+        if (!gSkipShowMonAnim)
             FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
     }
 }
@@ -3478,7 +3479,7 @@ static void StartFlyBirdReturnToBall(u8 spriteId)
 u8 FldEff_FlyIn(void)
 {
     CreateTask(Task_FlyIn, 254);
-    FlagClear(USING_POKE_RIDER); // Clears this define so flying via the party menu keeps the show mon animation
+    gSkipShowMonAnim = FALSE; // Clears this define so flying via the party menu keeps the show mon animation
     return 0;
 }
 
