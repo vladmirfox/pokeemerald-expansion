@@ -70,6 +70,7 @@ void ConvertInternationalString(u8 *s, u8 language);
 void StripExtCtrlCodes(u8 *str);
 u8 *StringCopyUppercase(u8 *dest, const u8 *src);
 void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId);
+void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId);
 
 bool32 IsWordSplittingChar(const u8 *src, u16 *index);
 u32 GetStringBadness(struct StringLine *stringLines, u16 numLines, u16 maxWidth);

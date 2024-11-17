@@ -822,6 +822,24 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
 
 void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
 {
+    u16 currIndex = 0;
+    u8 *currSrc = src;
+    while (src[currIndex] != EOS)
+    {
+        if (src[currIndex] == 0xFB)
+        {
+            src[currIndex] = EOS;
+            BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
+            src[currIndex] = 0xFB;
+            currSrc = &src[currIndex + 1];
+        }
+        currIndex++;
+    }
+    BreakSubStringKnuth(currSrc, maxWidth, screenLines, fontId);
+}
+
+void BreakSubStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
+{
     //  If the string already has line breaks, don't interfere with them
     if (StringHasManualBreaks(src))
         return;
@@ -888,6 +906,7 @@ void BreakStringKnuth(u8 *src, u32 maxWidth, u8 screenLines, u8 fontId)
         totalWidth += allWords[i].width + spaceWidth;
 
     //  If it doesn't fit on 1 line, do fancy line break calculation
+    //  NOTE: Currently the line break calculation isn't fancy
     if (totalWidth > maxWidth)
     {
         //  Figure out how many lines are needed with naive method
@@ -1071,19 +1090,27 @@ void BuildNewString(struct StringLine *stringLines, u16 numLines, u16 maxLines, 
         if (lineIndex + 1 < numLines)
         {
             if (lineIndex >= maxLines-1 && numLines > maxLines)
+            {
                 newStr[newStrIndex] = 0xFA;
+                str[newStrIndex] = 0xFA;
+            }
             else
+            {
                 newStr[newStrIndex] = 0xFE;
+                str[newStrIndex] = 0xFE;
+            }
             newStrIndex++;
         }
     }
     newStr[newStrIndex] = EOS;
+    /*
     u16 currIndex = 0;
     while (newStr[currIndex] != EOS)
     {
         str[currIndex] = newStr[currIndex];
         currIndex++;
     }
+    */
     Free(newStr);
 }
 
