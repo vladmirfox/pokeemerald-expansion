@@ -95,7 +95,10 @@
     "Underwater_Route105",
     "Underwater_Route125",
     "ZoneA",
-    "ZoneAlpha"
+    "ZoneAlpha",
+    "DigSite1",
+    "RouteB",
+    "ZoneB"
   ],
   "gMapGroup_IndoorZoneA": [
     "ZoneA_Warehouse_1F",
@@ -436,7 +439,9 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "MeteorFalls_StevensCave",
+    "DigSite1_Interior",
+    "BleakisleWoods"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

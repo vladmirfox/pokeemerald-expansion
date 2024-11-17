@@ -22,6 +22,11 @@
       "map": "MAP_ROUTE118",
       "offset": 0,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE_B",
+      "offset": 0,
+      "direction": "down"
     }
   ],
   "object_events": [
@@ -365,7 +370,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "x": 38,
+      "x": 31,
       "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -378,7 +383,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "x": 37,
+      "x": 30,
       "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",

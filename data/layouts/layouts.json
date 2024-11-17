@@ -4450,6 +4450,56 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/ZoneA_Warehouse_B1F/border.bin",
       "blockdata_filepath": "data/layouts/ZoneA_Warehouse_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_DIG_SITE1",
+      "name": "DigSite1_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/DigSite1/border.bin",
+      "blockdata_filepath": "data/layouts/DigSite1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DIG_SITE1_INTERIOR",
+      "name": "DigSite1_Interior_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/DigSite1_Interior/border.bin",
+      "blockdata_filepath": "data/layouts/DigSite1_Interior/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_B",
+      "name": "RouteB_Layout",
+      "width": 40,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/RouteB/border.bin",
+      "blockdata_filepath": "data/layouts/RouteB/map.bin"
+    },
+    {
+      "id": "LAYOUT_ZONE_B",
+      "name": "ZoneB_Layout",
+      "width": 30,
+      "height": 70,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/ZoneB/border.bin",
+      "blockdata_filepath": "data/layouts/ZoneB/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_WOODS",
+      "name": "BleakisleWoods_Layout",
+      "width": 40,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/BleakisleWoods/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleWoods/map.bin"
     }
   ]
 }

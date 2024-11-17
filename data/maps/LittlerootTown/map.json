@@ -186,6 +186,20 @@
       "elevation": 0,
       "dest_map": "MAP_ZONE_A",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_DEWFORD_TOWN",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 41,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_ZONE_B",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

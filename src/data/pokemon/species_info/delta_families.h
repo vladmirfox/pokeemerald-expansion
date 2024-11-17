@@ -903,12 +903,12 @@
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backPic = gMonBackPic_Igneousaur,
         .backPicSize = MON_COORDS_SIZE(64, 48),
-        .backPicYOffset = 6,
+        .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .palette = gMonPalette_Igneousaur,
         .shinyPalette = gMonShinyPalette_Igneousaur,
-        .iconSprite = gMonIcon_Aerodactyl,
-        .iconPalIndex = 2,
+        .iconSprite = gMonIcon_Igneousaur,
+        .iconPalIndex = 1,
         FOOTPRINT(Aerodactyl)
         OVERWORLD(
             sPicTable_Aerodactyl,
@@ -970,7 +970,7 @@
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .palette = gMonPalette_Polaris,
         .shinyPalette = gMonShinyPalette_Polaris,
-        .iconSprite = gMonIcon_Aurorus,
+        .iconSprite = gMonIcon_Polaris,
         .iconPalIndex = 0,
         FOOTPRINT(Polaris)
         OVERWORLD(

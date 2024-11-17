@@ -50,11 +50,11 @@ const u32 gMonFrontPic_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/an
 const u32 gMonPalette_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/normal.gbapal.lz");
 const u32 gMonBackPic_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/back.4bpp.lz");
 const u32 gMonShinyPalette_Igneousaur[] = INCBIN_U32("graphics/pokemon/igneousaur/normal.gbapal.lz");
-// const u8 gMonIcon_Igneousaur[] = INCBIN_U8("graphics/pokemon/aerodactyl/icon.4bpp");
+const u8 gMonIcon_Igneousaur[] = INCBIN_U8("graphics/pokemon/igneousaur/icon.4bpp");
 
 const u32 gMonFrontPic_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/anim_front.4bpp.lz");
 const u32 gMonPalette_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/normal.gbapal.lz");
 const u32 gMonBackPic_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/back.4bpp.lz");
 const u32 gMonShinyPalette_Polaris[] = INCBIN_U32("graphics/pokemon/polaris/normal.gbapal.lz");
 const u8 gMonFootprint_Polaris[] = INCBIN_U8("graphics/pokemon/polaris/footprint.1bpp");
-// const u8 gMonIcon_Igneousaur[] = INCBIN_U8("graphics/pokemon/aerodactyl/icon.4bpp");
+const u8 gMonIcon_Polaris[] = INCBIN_U8("graphics/pokemon/polaris/icon.4bpp");
