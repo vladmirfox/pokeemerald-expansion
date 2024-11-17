@@ -151,6 +151,7 @@
 // gMapGroup_IndoorMaguro
 #define MAP_MAGURO_HARBOR_HOUSE1 (0 | (7 << 8))
 #define MAP_MAGURO_HARBOR_DOJO   (1 | (7 << 8))
+#define MAP_MAGURO_HARBOR_HOUSE2 (2 | (7 << 8))
 
 // gMapGroup_IndoorSilveridge
 #define MAP_SILVERIDGE_SCULPTORS_HOUSE (0 | (8 << 8))

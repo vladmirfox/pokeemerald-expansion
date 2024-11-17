@@ -5,7 +5,7 @@ mapscripts Beachbound_Maguro_Gate_MapScripts {
 
 script Beachbound_Maguro_Gate_EventScript_SetupDecayWarp {
 	if (var(VAR_DECAY_BEACHBOUND_ROUTE) > 0) {
-		setdynamicwarp(MAP_BEACHBOUND_ROUTE_DECAY)
+		setdynamicwarp(MAP_BEACHBOUND_ROUTE_DECAY, 0)
 	} else {
 		setdynamicwarp(MAP_BEACHBOUND_ROUTE, 0)
 	}

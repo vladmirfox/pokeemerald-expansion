@@ -14,6 +14,6 @@ Beachbound_Maguro_Gate_EventScript_SetupDecayWarp::
 
 Beachbound_Maguro_Gate_EventScript_SetupDecayWarp_1:
 # 8 "data/maps/Beachbound_Maguro_Gate/scripts.pory"
-	setdynamicwarp MAP_BEACHBOUND_ROUTE_DECAY
+	setdynamicwarp MAP_BEACHBOUND_ROUTE_DECAY, 0
 	return
 

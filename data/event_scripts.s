@@ -1307,3 +1307,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/Beachbound_Maguro_Gate/scripts.inc"
 
 	.include "data/maps/Kura_Beachbound_Gate/scripts.inc"
+
+	.include "data/maps/MaguroHarbor_House2/scripts.inc"
