@@ -6,20 +6,61 @@ script MaguroHarbor_House1_EventScript_PokedexRiddler {
 	lock
 	faceplayer
 
-	// TODO EVA random dex entry
-	// random(10)
-	bufferspeciesdexdesc(STR_VAR_2, SPECIES_GROWLITHE)
+	if(flag(FLAG_DAILY_MON_DEX_RIDDLE))
+	{
+		msgbox(format(
+			"Come back tomorrow for more Pokémon riddles… Hehe…"
+		))
+		closemessage
+		release
+		end
+	}
 
-	speakername("Nerd")
 	msgbox(format(
-		"I know a lot about Pokémon. And I mean a LOT.\p"
-		"If you prove that you know as much as I do, I'll give you a little something.\p"
-		"Can you guess which Pokémon I'm talking about?\p"
-		"Here goes…\p"
-		"{STR_VAR_2}\p"
-		"So?"
+		"Hehe… Hullo, kid…\nPeople call me the Pokémon Nerd.\p"
+		"(Not sure why…)\p"
+		"I know a whole lot about Pokémon… Wanna play a game?\p"
+		"If you can guess what Pokémon I'm talking about, I'll share my knowledge with you.\p"
+		"Hehe… Think you can solve my riddle? Ahem…"
 	))
 	closemessage
 
+	randomdexmsgbox
+
+	msgbox("Well? What Pokémon am I talking about?")
+	closemessage
+
+	special(EnterDexRiddleGuess)
+	waitstate
+	special(GetDexRiddleFeedback)
+
+	if(var(VAR_RESULT) == 1)
+	{
+		msgbox(format(
+			"Woah, you… You solved my riddle!\p"
+			"Could you… be a true Pokémon Nerd?\p"
+			"You have bested me today. Can you feel the rush of pure knowledge that's coursing through your veins?\p"
+			"Your Pokémon… They will gain more experience for a while.\p"
+			"Knowledge is power, after all, hehe…\p"
+			"Come back another time for another riddle…"
+		))
+		closemessage
+
+		// TODO EVA reward
+		giveitem(ITEM_ORAN_BERRY)
+		msgbox("come back tomorrow")
+	}
+	else
+	{
+		msgbox(format(
+			"Wrong, wrong, WRONG!\nYou are wrong!\p"
+			"I'm honestly disappointed.\p"
+			"Come back tomorrow, or when you've accumulated more Pokémon knowledge."
+		))
+	}
+
+	setflag(FLAG_DAILY_MON_DEX_RIDDLE)
+
 	release
+	end
 }

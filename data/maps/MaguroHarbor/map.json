@@ -87,15 +87,15 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-      "x": 26,
-      "y": 14,
+      "x": 40,
+      "y": 10,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 3,
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MaguroHarbor_EventScript_FishPokemonSalesman",
+      "script": "MaguroHarbor_EventScript_FishermanOldRod",
       "flag": "0"
     },
     {
@@ -108,7 +108,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MaguroHarbor_EventScript_FishPokemonSalesman",
+      "script": "MaguroHarbor_EventScript_Man",
       "flag": "0"
     },
     {
@@ -122,6 +122,32 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MaguroHarbor_EventScript_FishPokemonSalesman",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRAMORANT)",
+      "x": 43,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MaguroHarbor_EventScript_Cramorant",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRAMORANT)",
+      "x": 46,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "movement_range_x": 2,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MaguroHarbor_EventScript_Cramorant",
       "flag": "0"
     }
   ],
@@ -152,6 +178,13 @@
       "y": 13,
       "elevation": 0,
       "dest_map": "MAP_MAGURO_HARBOR_HOUSE2",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 24,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MAGURO_HARBOR_REFUGE",
       "dest_warp_id": "0"
     }
   ],

@@ -14097,4 +14097,25 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    // Custom Hearth items
+
+    [ITEM_FISHCAKE] =
+    {
+        .name = _("Fishcake"),
+        .price = 500,
+        .description = COMPOUND_STRING(
+            "A fish-shaped cake.\n"
+            "Heals all status\n"
+            "problems."
+        ),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_FullHeal,
+        .flingPower = 30,
+        .iconPic = gItemIcon_Fishcake,
+        .iconPalette = gItemIconPalette_Fishcake,
+    },
 };
