@@ -27,7 +27,7 @@
 #define SKIP_OBJECT_EVENT_LOAD  1
 
 // Toggles Show Mon animation when using Poke Rider feature
-#define USING_POKE_RIDER 0
+#define USING_POKE_RIDER 0x1F
 
 struct InitialPlayerAvatarState
 {
