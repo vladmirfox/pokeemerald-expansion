@@ -496,7 +496,7 @@ static const u8 sText_PkmnSentToPC[] = _("{B_DEF_NAME} was sent to\n{B_PC_CREATO
 static const u8 sText_Someones[] = _("someone's");
 static const u8 sText_Lanettes[] = _("LANETTE's");
 static const u8 sText_PkmnDataAddedToDex[] = _("{B_DEF_NAME}'s data was\nadded to the POKéDEX.\p");
-static const u8 sText_SendCaughtMonPartyOrBox[] = _("Add {B_DEF_NAME} to your party?");
+static const u8 sText_AddCaughtMonToFullParty[] = _("Add {B_DEF_NAME} to your party?");
 
 static const u8 sText_ItIsRaining[] = _("It is raining.");
 static const u8 sText_SandstormIsRaging[] = _("A sandstorm is raging.");
