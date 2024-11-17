@@ -4500,6 +4500,56 @@
       "secondary_tileset": "gTileset_EverGrande",
       "border_filepath": "data/layouts/BleakisleWoods/border.bin",
       "blockdata_filepath": "data/layouts/BleakisleWoods/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_CAVE",
+      "name": "BleakisleCave_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BleakisleCave/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_CAVE_2R",
+      "name": "BleakisleCave_2R_Layout",
+      "width": 30,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BleakisleCave_2R/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleCave_2R/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_CAVE_3R",
+      "name": "BleakisleCave_3R_Layout",
+      "width": 25,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BleakisleCave_3R/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleCave_3R/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_CAVE_B1F_1R",
+      "name": "BleakisleCave_B1F_1R_Layout",
+      "width": 30,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BleakisleCave_B1F_1R/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleCave_B1F_1R/map.bin"
+    },
+    {
+      "id": "LAYOUT_BLEAKISLE_CAVE_B1F_2R",
+      "name": "BleakisleCave_B1F_2R_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BleakisleCave_B1F_2R/border.bin",
+      "blockdata_filepath": "data/layouts/BleakisleCave_B1F_2R/map.bin"
     }
   ]
 }

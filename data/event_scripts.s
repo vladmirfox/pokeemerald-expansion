@@ -1092,3 +1092,13 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/ZoneB/scripts.inc"
 
 	.include "data/maps/BleakisleWoods/scripts.inc"
+
+	.include "data/maps/BleakisleCave/scripts.inc"
+
+	.include "data/maps/BleakisleCave_2R/scripts.inc"
+
+	.include "data/maps/BleakisleCave_3R/scripts.inc"
+
+	.include "data/maps/BleakisleCave_B1F_1R/scripts.inc"
+
+	.include "data/maps/BleakisleCave_B1F_2R/scripts.inc"

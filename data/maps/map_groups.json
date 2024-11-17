@@ -441,7 +441,12 @@
     "AlteringCave",
     "MeteorFalls_StevensCave",
     "DigSite1_Interior",
-    "BleakisleWoods"
+    "BleakisleWoods",
+    "BleakisleCave",
+    "BleakisleCave_2R",
+    "BleakisleCave_3R",
+    "BleakisleCave_B1F_1R",
+    "BleakisleCave_B1F_2R"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

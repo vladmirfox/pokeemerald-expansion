@@ -217,7 +217,11 @@
 // Custom maps
 #define MAPSEC_ROUTE_ALPHA                  0xD5
 #define MAPSEC_ZONE_ALPHA                   0xD6
-#define MAPSEC_NONE                         0xD7
+#define MAPSEC_BLEAKISLE_WOODS              0xD7
+#define MAPSEC_BLEAKISLE_CAVE               0xD8
+#define MAPSEC_ROUTE_135                    0xD9
+#define MAPSEC_ROUTE_136                    0xDA
+#define MAPSEC_NONE                         0xDB
 // #define MAPSEC_ROUTE_BETTA                  0xD6
 // #define MAPSEC_ROUTE_GAMMA                  0xD8
 // #define MAPSEC_ROUTE_DELTA                  0xD9

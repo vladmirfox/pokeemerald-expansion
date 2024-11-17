@@ -1726,6 +1726,38 @@
       "y": 8,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_ROUTE_135",
+      "name": "ROUTE 135",
+      "x": 13,
+      "y": 7,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_ROUTE_136",
+      "name": "ROUTE 136",
+      "x": 12,
+      "y": 7,
+      "width": 1,
+      "height": 2
+    },
+    {
+      "map_section": "MAPSEC_BLEAKISLE_WOODS",
+      "name": "BLEAKISLE WOODS",
+      "x": 11,
+      "y": 9,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_BLEAKISLE_CAVE",
+      "name": "BLEAKISLE CAVE",
+      "x": 11,
+      "y": 9,
+      "width": 1,
+      "height": 1
     }
   ]
 }
