@@ -651,17 +651,17 @@ static void OpponentHandleChooseItem(u32 battler)
 static inline bool32 IsAcePokemon(u32 chosenMonId, u32 pokemonInBattle, u32 battler)
 {
     return AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_ACE_POKEMON
-        || (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 1)
-        || CountAIAliveNonEggMonsExcept(PARTY_SIZE) != pokemonInBattle;
+        && (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 1)
+        && CountAIAliveNonEggMonsExcept(PARTY_SIZE) != pokemonInBattle;
 }
 
 static inline bool32 IsDoubleAcePokemon(u32 chosenMonId, u32 pokemonInBattle, u32 battler)
 {
     return AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_DOUBLE_ACE_POKEMON
-        || (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 1)
-        || (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 2)
-        || CountAIAliveNonEggMonsExcept(PARTY_SIZE) != pokemonInBattle
-        || CountAIAliveNonEggMonsExcept(PARTY_SIZE-1) != pokemonInBattle;
+        && (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 1)
+        && (chosenMonId == CalculateEnemyPartyCountInSide(battler) - 2)
+        && CountAIAliveNonEggMonsExcept(PARTY_SIZE) != pokemonInBattle
+        && CountAIAliveNonEggMonsExcept(PARTY_SIZE-1) != pokemonInBattle;
 }
 
 static void OpponentHandleChoosePokemon(u32 battler)
