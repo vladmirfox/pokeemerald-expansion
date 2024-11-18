@@ -3479,7 +3479,7 @@ static void StartFlyBirdReturnToBall(u8 spriteId)
 u8 FldEff_FlyIn(void)
 {
     CreateTask(Task_FlyIn, 254);
-    gSkipShowMonAnim = FALSE; // Clears this define so flying via the party menu keeps the show mon animation
+    gSkipShowMonAnim = FALSE; // Clears this variable so flying via the party menu keeps the show mon animation
     return 0;
 }
 
