@@ -103,6 +103,13 @@ mart ChiiTown_Mart {
 	ITEM_REPEL
 }
 
+script ChiiTown_EventScript_Samurai {
+	speakername("Samurai")
+	msgbox(format(
+		"There's been reports of some shady men dressed in blue loitering around the area.\pBe careful when traveling!"
+	), MSGBOX_NPC)
+}
+
 script ChiiTown_EventScript_TownSign {
 	msgbox(format("Chii Town\n“The smallest town, with the biggest heart.”"), MSGBOX_SIGN)
 }

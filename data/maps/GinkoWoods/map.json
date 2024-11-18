@@ -66,8 +66,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 9,
-      "y": 52,
+      "x": 24,
+      "y": 39,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -200,8 +200,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 8,
-      "y": 48,
+      "x": 31,
+      "y": 41,
       "elevation": 0,
       "item": "ITEM_POKE_BALL",
       "flag": "FLAG_HIDDEN_ITEM_GINKO_WOODS_POKEBALL"

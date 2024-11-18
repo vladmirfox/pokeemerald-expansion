@@ -5296,9 +5296,9 @@
     {
       "id": "LAYOUT_SUNRISE_VILLAGE",
       "name": "SunriseVillage_Layout",
-      "width": 33,
-      "height": 35,
-      "border_width": 2,
+      "width": 30,
+      "height": 34,
+      "border_width": 6,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",
       "secondary_tileset": "gTileset_SunriseVillage",
@@ -5541,7 +5541,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building_Generic",
-      "secondary_tileset": "gTileset_House",
+      "secondary_tileset": "gTileset_HouseStone",
       "border_filepath": "data/layouts/Silveridge_EldersHouse/border.bin",
       "blockdata_filepath": "data/layouts/Silveridge_EldersHouse/map.bin"
     },
@@ -5752,8 +5752,8 @@
     {
       "id": "LAYOUT_COREEF_ISLE",
       "name": "CoreefIsle_Layout",
-      "width": 42,
-      "height": 36,
+      "width": 50,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_PorytilesPrimaryTutorial",

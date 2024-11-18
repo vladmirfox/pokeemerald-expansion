@@ -158,6 +158,7 @@
 #define MAP_SILVERIDGE_SCULPTORS_HOUSE (0 | (8 << 8))
 #define MAP_SILVERIDGE_ELDERS_HOUSE    (1 | (8 << 8))
 #define MAP_SILVERIDGE_HOUSE1          (2 | (8 << 8))
+#define MAP_SILVERIDGE_REFUGE          (3 | (8 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (9 << 8))

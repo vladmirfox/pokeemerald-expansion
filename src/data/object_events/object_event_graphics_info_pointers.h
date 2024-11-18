@@ -65,6 +65,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeEa
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeLateStages;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanAcroBike;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kaba;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elder2;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man4;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man5;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ReporterM;
@@ -129,6 +130,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagmaMember
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MagmaMemberF;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrobatShadowsGruntM;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrobatShadowsGruntF;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Samurai;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sidney;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Phoebe;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Glacia;
@@ -332,6 +334,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_BERRY_TREE_LATE_STAGES] =   &gObjectEventGraphicsInfo_BerryTreeLateStages,
     [OBJ_EVENT_GFX_BRENDAN_ACRO_BIKE] =        &gObjectEventGraphicsInfo_BrendanAcroBike,
     [OBJ_EVENT_GFX_KABA] =                     &gObjectEventGraphicsInfo_Kaba,
+    [OBJ_EVENT_GFX_ELDER2] =                   &gObjectEventGraphicsInfo_Elder2,
     [OBJ_EVENT_GFX_MAN_4] =                    &gObjectEventGraphicsInfo_Man4,
     [OBJ_EVENT_GFX_MAN_5] =                    &gObjectEventGraphicsInfo_Man5,
     [OBJ_EVENT_GFX_REPORTER_M] =               &gObjectEventGraphicsInfo_ReporterM,
@@ -393,6 +396,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_MAGMA_MEMBER_F] =           &gObjectEventGraphicsInfo_MagmaMemberF,
     [OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_M] =   &gObjectEventGraphicsInfo_CrobatShadowsGruntM,
     [OBJ_EVENT_GFX_CROBAT_SHADOWS_GRUNT_F] =   &gObjectEventGraphicsInfo_CrobatShadowsGruntF,
+    [OBJ_EVENT_GFX_SAMURAI] =           &gObjectEventGraphicsInfo_Samurai,
     [OBJ_EVENT_GFX_SIDNEY] =                   &gObjectEventGraphicsInfo_Sidney,
     [OBJ_EVENT_GFX_PHOEBE] =                   &gObjectEventGraphicsInfo_Phoebe,
     [OBJ_EVENT_GFX_GLACIA] =                   &gObjectEventGraphicsInfo_Glacia,

@@ -318,6 +318,10 @@ static const struct SpriteFrameImage sPicTable_Kaba[] = {
     overworld_ascending_frames(gObjectEventPic_Kaba, 4, 4),
 };
 
+static const struct SpriteFrameImage sPicTable_Elder2[] = {
+    overworld_ascending_frames(gObjectEventPic_Elder2, 4, 4),
+};
+
 static const struct SpriteFrameImage sPicTable_Man4[] = {
     overworld_ascending_frames(gObjectEventPic_Man4, 2, 4),
 };
@@ -515,6 +519,10 @@ static const struct SpriteFrameImage sPicTable_MagmaMemberM[] = {
 
 static const struct SpriteFrameImage sPicTable_MagmaMemberF[] = {
     overworld_ascending_frames(gObjectEventPic_MagmaMemberF, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_Samurai[] = {
+    overworld_ascending_frames(gObjectEventPic_Samurai, 4, 4),
 };
 
 static const struct SpriteFrameImage sPicTable_CrobatShadowsGruntM[] = {

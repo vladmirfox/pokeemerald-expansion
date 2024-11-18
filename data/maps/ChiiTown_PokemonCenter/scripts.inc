@@ -262,17 +262,17 @@ ChiiTown_PokemonCenter_EventScript_RefugePresentation_1:
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_3:
 # 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	applymovement 2, ChiiTown_PokemonCenter_Movement_LeaveWhenFromBottom
+	applymovement 2, ChiiTown_PokemonCenter_EventScript_RefugePresentation_Movement_0
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_4:
 # 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	applymovement 2, ChiiTown_PokemonCenter_Movement_Leave
+	applymovement 2, ChiiTown_PokemonCenter_EventScript_RefugePresentation_Movement_1
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 ChiiTown_PokemonCenter_EventScript_RefugePresentation_5:
 # 183 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
-	applymovement 2, ChiiTown_PokemonCenter_Movement_Leave
+	applymovement 2, ChiiTown_PokemonCenter_EventScript_RefugePresentation_Movement_1
 	goto ChiiTown_PokemonCenter_EventScript_RefugePresentation_1
 
 
@@ -307,6 +307,40 @@ ChiiTown_PokemonCenter_Movement_Leave:
 # 201 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
 # 201 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+	step_end
+
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+ChiiTown_PokemonCenter_EventScript_RefugePresentation_Movement_0:
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_right
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 179 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+	step_end
+
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+ChiiTown_PokemonCenter_EventScript_RefugePresentation_Movement_1:
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
+	walk_down
+# 181 "data/maps/ChiiTown_PokemonCenter/scripts.pory"
 	walk_down
 	step_end
 

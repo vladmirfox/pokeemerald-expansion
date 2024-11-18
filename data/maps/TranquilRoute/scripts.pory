@@ -1,11 +1,11 @@
 const LOCALID_BERRYWOMAN = 5
-const LOCALID_MYSTERIOUS_SAMURAI = 9
+const LOCALID_SAMURAI = 21
 const LOCALID_CUT_MASTER = 22
 const LOCALID_CROBAT_SHADOW_BOSS = 25
 const LOCALID_CROBAT_SHADOW_GRUNT_TOP = 23
 const LOCALID_CROBAT_SHADOW_GRUNT_RIGHT = 26
 const LOCALID_CROBAT_SHADOW_GRUNT_LEFT = 24
-const LOCALID_KECLEON = 28
+const LOCALID_KECLEON = 27
 const FLAG_HIDE_CUT_MASTER = FLAG_TEMP_1
 const VAR_DO_CUT_MASTER_CUTSCENE = VAR_TEMP_0
 const VAR_HOUR_OF_DAY = VAR_0x8000
@@ -257,9 +257,19 @@ script TranquilRoute_EventScript_Girl {
 	msgbox(format("What? Oh, I don't fight.\pMy Pokémon and I are just strolling."), MSGBOX_NPC)
 }
 
-script TranquilRoute_EventScript_WhiteslateRoadblockGuard {
-	speakername("Man")
-	msgbox(format("Sorry, you can't go through."), MSGBOX_NPC)
+script TranquilRoute_EventScript_WhiteslateRoadblock {
+	lock
+	applymovement(LOCALID_SAMURAI, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(0)
+
+	speakername("Samurai")
+	msgbox(format("Sorry, you can't go through. The road ahead is blocked."))
+	closemessage
+
+	applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left))
+	waitmovement(0)
+
+	release
 }
 
 script TranquilRoute_EventScript_Shellos {
@@ -471,7 +481,14 @@ script TranquilRoute_EventScript_TravelingMerchantFirstTime {
 		"I'm sold out on, well, pretty much everything right now… But you're definitely going to see me around!\p"
 		"What's your name? {PLAYER}? It's nice to meet you, {PLAYER}!"
 		"I see you're a young wielder, eh? Maybe we can even have a friendly battle next time!\p"
-		"Now if you'll excuse me, I'm running late! See you around, {PLAYER}!\p"
+		"Now if you'll excuse me, I'm running late! See you around, {PLAYER}!"
+	))
+	closemessage
+
+	turnobject(VAR_LAST_TALKED, DIR_EAST)
+
+	speakername("Man")
+	msgbox(format(
 		"Come on, Keke."
 	))
 	closemessage

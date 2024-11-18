@@ -347,398 +347,420 @@ TranquilRoute_EventScript_Girl::
 	return
 
 
-TranquilRoute_EventScript_WhiteslateRoadblockGuard::
+TranquilRoute_EventScript_WhiteslateRoadblock::
 # 261 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0
+	lock
 # 262 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_1, MSGBOX_NPC
+	applymovement 21, Common_Movement_WalkInPlaceFasterRight
+# 263 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 0
+# 265 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_WhiteslateRoadblock_Text_0
+# 266 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_WhiteslateRoadblock_Text_1
+# 267 "data/maps/TranquilRoute/scripts.pory"
+	closemessage
+# 269 "data/maps/TranquilRoute/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, TranquilRoute_EventScript_WhiteslateRoadblock_Movement_0
+# 270 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 0
+# 272 "data/maps/TranquilRoute/scripts.pory"
+	release
 	return
 
 
 TranquilRoute_EventScript_Shellos::
-# 266 "data/maps/TranquilRoute/scripts.pory"
+# 276 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 267 "data/maps/TranquilRoute/scripts.pory"
+# 277 "data/maps/TranquilRoute/scripts.pory"
 	faceplayer
-# 268 "data/maps/TranquilRoute/scripts.pory"
+# 278 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_SHELLOS, CRY_MODE_NORMAL
-# 269 "data/maps/TranquilRoute/scripts.pory"
+# 279 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Shellos_2
-# 272 "data/maps/TranquilRoute/scripts.pory"
+# 282 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Shellos_Text_1
 TranquilRoute_EventScript_Shellos_1:
-# 274 "data/maps/TranquilRoute/scripts.pory"
+# 284 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Shellos_Text_2
-# 277 "data/maps/TranquilRoute/scripts.pory"
+# 287 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 278 "data/maps/TranquilRoute/scripts.pory"
+# 288 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 279 "data/maps/TranquilRoute/scripts.pory"
+# 289 "data/maps/TranquilRoute/scripts.pory"
 	release
 	end
 
 TranquilRoute_EventScript_Shellos_2:
-# 270 "data/maps/TranquilRoute/scripts.pory"
+# 280 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Shellos_Text_0
 	goto TranquilRoute_EventScript_Shellos_1
 
 
 TranquilRoute_EventScript_BerryWoman::
-# 284 "data/maps/TranquilRoute/scripts.pory"
-	lock
-# 285 "data/maps/TranquilRoute/scripts.pory"
-	faceplayer
-# 287 "data/maps/TranquilRoute/scripts.pory"
-	goto_if_set FLAG_RECEIVED_WAILMER_PAIL, TranquilRoute_EventScript_BerryWoman_2
-# 293 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_BerryWoman_Text_0
 # 294 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_2
+	lock
 # 295 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
-# 296 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 5, Common_Movement_FaceRight
+	faceplayer
 # 297 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
-# 298 "data/maps/TranquilRoute/scripts.pory"
-	delay 48
-# 299 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 5, Common_Movement_FacePlayer
-# 300 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
-# 301 "data/maps/TranquilRoute/scripts.pory"
+	goto_if_set FLAG_RECEIVED_WAILMER_PAIL, TranquilRoute_EventScript_BerryWoman_2
+# 303 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 302 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_3
-# 309 "data/maps/TranquilRoute/scripts.pory"
+# 304 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_2
+# 305 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
+# 306 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 5, Common_Movement_FaceRight
+# 307 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 0
+# 308 "data/maps/TranquilRoute/scripts.pory"
+	delay 48
+# 309 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 5, Common_Movement_FacePlayer
 # 310 "data/maps/TranquilRoute/scripts.pory"
-	giveitem ITEM_ORAN_BERRY, 3
+	waitmovement 0
 # 311 "data/maps/TranquilRoute/scripts.pory"
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-# 313 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 314 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_4
+# 312 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_3
 # 319 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
 # 320 "data/maps/TranquilRoute/scripts.pory"
-	giveitem ITEM_WAILMER_PAIL
+	giveitem ITEM_ORAN_BERRY, 3
 # 321 "data/maps/TranquilRoute/scripts.pory"
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 # 323 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
 # 324 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_BerryWoman_Text_5
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_4
 # 329 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
+# 330 "data/maps/TranquilRoute/scripts.pory"
+	giveitem ITEM_WAILMER_PAIL
 # 331 "data/maps/TranquilRoute/scripts.pory"
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+# 333 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_BerryWoman_Text_0
+# 334 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_BerryWoman_Text_5
+# 339 "data/maps/TranquilRoute/scripts.pory"
+	closemessage
+# 341 "data/maps/TranquilRoute/scripts.pory"
 	setflag FLAG_RECEIVED_WAILMER_PAIL
 TranquilRoute_EventScript_BerryWoman_1:
-# 333 "data/maps/TranquilRoute/scripts.pory"
+# 343 "data/maps/TranquilRoute/scripts.pory"
 	release
 	end
 
 TranquilRoute_EventScript_BerryWoman_2:
-# 288 "data/maps/TranquilRoute/scripts.pory"
+# 298 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_BerryWoman_Text_0
-# 289 "data/maps/TranquilRoute/scripts.pory"
+# 299 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_BerryWoman_Text_1
-# 290 "data/maps/TranquilRoute/scripts.pory"
+# 300 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
 	goto TranquilRoute_EventScript_BerryWoman_1
 
 
 TranquilRoute_EventScript_Mareep::
-# 338 "data/maps/TranquilRoute/scripts.pory"
+# 348 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 339 "data/maps/TranquilRoute/scripts.pory"
+# 349 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_MAREEP, CRY_MODE_NORMAL
-# 340 "data/maps/TranquilRoute/scripts.pory"
+# 350 "data/maps/TranquilRoute/scripts.pory"
 	ismonseen SPECIES_MAREEP
-# 341 "data/maps/TranquilRoute/scripts.pory"
+# 351 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Mareep_2
-# 344 "data/maps/TranquilRoute/scripts.pory"
+# 354 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_1
 TranquilRoute_EventScript_Mareep_1:
-# 346 "data/maps/TranquilRoute/scripts.pory"
+# 356 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Mareep_Text_2
-# 347 "data/maps/TranquilRoute/scripts.pory"
+# 357 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 348 "data/maps/TranquilRoute/scripts.pory"
+# 358 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 TranquilRoute_EventScript_Mareep_2:
-# 342 "data/maps/TranquilRoute/scripts.pory"
+# 352 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_0
 	goto TranquilRoute_EventScript_Mareep_1
 
 
 TranquilRoute_EventScript_Mareep2::
-# 352 "data/maps/TranquilRoute/scripts.pory"
+# 362 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 353 "data/maps/TranquilRoute/scripts.pory"
+# 363 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_MAREEP, CRY_MODE_WEAK
-# 354 "data/maps/TranquilRoute/scripts.pory"
+# 364 "data/maps/TranquilRoute/scripts.pory"
 	ismonseen SPECIES_MAREEP
-# 355 "data/maps/TranquilRoute/scripts.pory"
+# 365 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, 0
 	goto_if_ne TranquilRoute_EventScript_Mareep2_2
-# 358 "data/maps/TranquilRoute/scripts.pory"
+# 368 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_1
 TranquilRoute_EventScript_Mareep2_1:
-# 360 "data/maps/TranquilRoute/scripts.pory"
+# 370 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Mareep2_Text_0
-# 361 "data/maps/TranquilRoute/scripts.pory"
+# 371 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 362 "data/maps/TranquilRoute/scripts.pory"
+# 372 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 TranquilRoute_EventScript_Mareep2_2:
-# 356 "data/maps/TranquilRoute/scripts.pory"
+# 366 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Mareep_Text_0
 	goto TranquilRoute_EventScript_Mareep2_1
 
 
 TranquilRoute_TrainerTips1::
-# 366 "data/maps/TranquilRoute/scripts.pory"
+# 376 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_TrainerTips1_Text_0, MSGBOX_SIGN
 	return
 
 
 TranquilRoute_EventScript_CrobatShadows_Camera::
-# 374 "data/maps/TranquilRoute/scripts.pory"
+# 384 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 375 "data/maps/TranquilRoute/scripts.pory"
+# 385 "data/maps/TranquilRoute/scripts.pory"
 	special SpawnCameraObject
-# 376 "data/maps/TranquilRoute/scripts.pory"
+# 386 "data/maps/TranquilRoute/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, TranquilRoute_EventScript_CrobatShadows_Camera_Movement_0
-# 377 "data/maps/TranquilRoute/scripts.pory"
+# 387 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement 0
-# 378 "data/maps/TranquilRoute/scripts.pory"
+# 388 "data/maps/TranquilRoute/scripts.pory"
 	call TranquilRoute_EventScript_CrobatShadows_Cutscene
-# 379 "data/maps/TranquilRoute/scripts.pory"
+# 389 "data/maps/TranquilRoute/scripts.pory"
 	applymovement OBJ_EVENT_ID_CAMERA, TranquilRoute_EventScript_CrobatShadows_Camera_Movement_1
-# 380 "data/maps/TranquilRoute/scripts.pory"
+# 390 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement 0
-# 381 "data/maps/TranquilRoute/scripts.pory"
+# 391 "data/maps/TranquilRoute/scripts.pory"
 	special RemoveCameraObject
-# 382 "data/maps/TranquilRoute/scripts.pory"
+# 392 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 
 TranquilRoute_EventScript_CrobatShadows::
-# 386 "data/maps/TranquilRoute/scripts.pory"
+# 396 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 387 "data/maps/TranquilRoute/scripts.pory"
+# 397 "data/maps/TranquilRoute/scripts.pory"
 	call TranquilRoute_EventScript_CrobatShadows_Cutscene
-# 388 "data/maps/TranquilRoute/scripts.pory"
+# 398 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 
 TranquilRoute_EventScript_CrobatShadows_Cutscene::
-# 392 "data/maps/TranquilRoute/scripts.pory"
-	setvar VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 1
-# 394 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_0
-# 395 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_1
-# 400 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
 # 402 "data/maps/TranquilRoute/scripts.pory"
-	delay 20
+	setvar VAR_CROBAT_SHADOWS_FIRST_ENCOUNTERS_STATE, 1
 # 404 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 25, Common_Movement_WalkInPlaceFasterUp
+	speakername TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_0
 # 405 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
-# 407 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_2
-# 408 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_3
-# 411 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_1
+# 410 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 413 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_0
+# 412 "data/maps/TranquilRoute/scripts.pory"
+	delay 20
 # 414 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_0
+	applymovement 25, Common_Movement_WalkInPlaceFasterUp
 # 415 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 23
-# 416 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 26
+	waitmovement 0
+# 417 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_2
+# 418 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_3
 # 421 "data/maps/TranquilRoute/scripts.pory"
-	playse SE_LEDGE
-# 422 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
+	closemessage
 # 423 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 23, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
+	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_0
 # 424 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
+	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_0
 # 425 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 24
+	waitmovement 23
 # 426 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 23
-# 427 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement 26
-# 428 "data/maps/TranquilRoute/scripts.pory"
-	waitse
+# 431 "data/maps/TranquilRoute/scripts.pory"
+	playse SE_LEDGE
+# 432 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
 # 433 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 23, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
+	applymovement 23, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
 # 434 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
+	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1
 # 435 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
-# 436 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 25, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_3
-# 437 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 23
-# 438 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement 24
-# 439 "data/maps/TranquilRoute/scripts.pory"
+# 436 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 23
+# 437 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement 26
-# 440 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 25
-# 442 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 23
+# 438 "data/maps/TranquilRoute/scripts.pory"
+	waitse
 # 443 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 24
+	applymovement 23, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
 # 444 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 26
+	applymovement 24, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
 # 445 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 25
+	applymovement 26, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2
 # 446 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 25, TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_3
+# 447 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 23
+# 448 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 24
+# 449 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 26
+# 450 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 25
+# 452 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 23
+# 453 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 24
+# 454 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 26
+# 455 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 25
+# 456 "data/maps/TranquilRoute/scripts.pory"
 	setflag FLAG_HIDE_CROBAT_SHADOWS_TRANQUIL_RT
 	return
 
 
 TranquilRoute_EventScript_TravelingMerchantFirstTime::
-# 450 "data/maps/TranquilRoute/scripts.pory"
-	lock
-# 451 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0
-# 452 "data/maps/TranquilRoute/scripts.pory"
-	msgbox TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_0
-# 455 "data/maps/TranquilRoute/scripts.pory"
-	closemessage
-# 457 "data/maps/TranquilRoute/scripts.pory"
-	delay 24
-# 458 "data/maps/TranquilRoute/scripts.pory"
-	playse SE_PIN
-# 459 "data/maps/TranquilRoute/scripts.pory"
-	applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark
 # 460 "data/maps/TranquilRoute/scripts.pory"
-	waitse
+	lock
 # 461 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 0
+	speakername TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_0
 # 462 "data/maps/TranquilRoute/scripts.pory"
-	delay 48
-# 464 "data/maps/TranquilRoute/scripts.pory"
-	faceplayer
-# 466 "data/maps/TranquilRoute/scripts.pory"
-	speakername TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0
-# 467 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_1
-# 477 "data/maps/TranquilRoute/scripts.pory"
+# 465 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 479 "data/maps/TranquilRoute/scripts.pory"
+# 467 "data/maps/TranquilRoute/scripts.pory"
+	delay 24
+# 468 "data/maps/TranquilRoute/scripts.pory"
+	playse SE_PIN
+# 469 "data/maps/TranquilRoute/scripts.pory"
+	applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark
+# 470 "data/maps/TranquilRoute/scripts.pory"
+	waitse
+# 471 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 0
+# 472 "data/maps/TranquilRoute/scripts.pory"
+	delay 48
+# 474 "data/maps/TranquilRoute/scripts.pory"
+	faceplayer
+# 476 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_0
+# 477 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_2
+# 486 "data/maps/TranquilRoute/scripts.pory"
+	closemessage
+# 488 "data/maps/TranquilRoute/scripts.pory"
+	turnobject VAR_LAST_TALKED, DIR_EAST
+# 490 "data/maps/TranquilRoute/scripts.pory"
+	speakername TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_0
+# 491 "data/maps/TranquilRoute/scripts.pory"
+	msgbox TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_3
+# 494 "data/maps/TranquilRoute/scripts.pory"
+	closemessage
+# 496 "data/maps/TranquilRoute/scripts.pory"
 	specialvar VAR_RESULT, GetPlayerFacingDirection
-# 480 "data/maps/TranquilRoute/scripts.pory"
+# 497 "data/maps/TranquilRoute/scripts.pory"
 	compare VAR_RESULT, DIR_EAST
 	goto_if_eq TranquilRoute_EventScript_TravelingMerchantFirstTime_2
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	applymovement VAR_LAST_TALKED, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_2
-# 485 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 28, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_3
+# 502 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 27, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_3
 TranquilRoute_EventScript_TravelingMerchantFirstTime_1:
-# 487 "data/maps/TranquilRoute/scripts.pory"
+# 504 "data/maps/TranquilRoute/scripts.pory"
 	waitmovement VAR_LAST_TALKED
-# 488 "data/maps/TranquilRoute/scripts.pory"
-	waitmovement 28
-# 490 "data/maps/TranquilRoute/scripts.pory"
+# 505 "data/maps/TranquilRoute/scripts.pory"
+	waitmovement 27
+# 507 "data/maps/TranquilRoute/scripts.pory"
 	removeobject VAR_LAST_TALKED
-# 491 "data/maps/TranquilRoute/scripts.pory"
-	removeobject 28
-# 493 "data/maps/TranquilRoute/scripts.pory"
+# 508 "data/maps/TranquilRoute/scripts.pory"
+	removeobject 27
+# 510 "data/maps/TranquilRoute/scripts.pory"
 	setflag FLAG_MET_TRAVELING_MERCHANT
-# 494 "data/maps/TranquilRoute/scripts.pory"
+# 511 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 TranquilRoute_EventScript_TravelingMerchantFirstTime_2:
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	applymovement VAR_LAST_TALKED, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_0
-# 482 "data/maps/TranquilRoute/scripts.pory"
-	applymovement 28, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_1
+# 499 "data/maps/TranquilRoute/scripts.pory"
+	applymovement 27, TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_1
 	goto TranquilRoute_EventScript_TravelingMerchantFirstTime_1
 
 
 TranquilRoute_EventScript_Kecleon::
-# 498 "data/maps/TranquilRoute/scripts.pory"
+# 515 "data/maps/TranquilRoute/scripts.pory"
 	lock
-# 499 "data/maps/TranquilRoute/scripts.pory"
+# 516 "data/maps/TranquilRoute/scripts.pory"
 	faceplayer
-# 501 "data/maps/TranquilRoute/scripts.pory"
+# 518 "data/maps/TranquilRoute/scripts.pory"
 	playmoncry SPECIES_KECLEON, CRY_MODE_NORMAL
-# 502 "data/maps/TranquilRoute/scripts.pory"
+# 519 "data/maps/TranquilRoute/scripts.pory"
 	speakername TranquilRoute_EventScript_Kecleon_Text_0
-# 503 "data/maps/TranquilRoute/scripts.pory"
+# 520 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_EventScript_Kecleon_Text_1
-# 506 "data/maps/TranquilRoute/scripts.pory"
+# 523 "data/maps/TranquilRoute/scripts.pory"
 	waitmoncry
-# 507 "data/maps/TranquilRoute/scripts.pory"
+# 524 "data/maps/TranquilRoute/scripts.pory"
 	closemessage
-# 509 "data/maps/TranquilRoute/scripts.pory"
+# 526 "data/maps/TranquilRoute/scripts.pory"
 	release
 	return
 
 
 TranquilRoute_TrainerTips2::
-# 513 "data/maps/TranquilRoute/scripts.pory"
+# 530 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_TrainerTips2_Text_0, MSGBOX_SIGN
 	return
 
 
 TranquilRoute_DirectionSign::
-# 526 "data/maps/TranquilRoute/scripts.pory"
+# 543 "data/maps/TranquilRoute/scripts.pory"
 	goto_if_set FLAG_SAKU_KURA_REUNITED, TranquilRoute_DirectionSign_1
-# 533 "data/maps/TranquilRoute/scripts.pory"
+# 550 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_DirectionSign_Text_1, MSGBOX_SIGN
 	return
 
 TranquilRoute_DirectionSign_1:
-# 527 "data/maps/TranquilRoute/scripts.pory"
+# 544 "data/maps/TranquilRoute/scripts.pory"
 	msgbox TranquilRoute_DirectionSign_Text_0, MSGBOX_SIGN
 	return
 
 
-# 540 "data/maps/TranquilRoute/scripts.pory"
+# 557 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_CutMasterWalkLeft:
-# 541 "data/maps/TranquilRoute/scripts.pory"
+# 558 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 541 "data/maps/TranquilRoute/scripts.pory"
+# 558 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
 	step_end
 
-# 544 "data/maps/TranquilRoute/scripts.pory"
+# 561 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_CutMasterWalkRight:
-# 545 "data/maps/TranquilRoute/scripts.pory"
+# 562 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 545 "data/maps/TranquilRoute/scripts.pory"
+# 562 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
-# 545 "data/maps/TranquilRoute/scripts.pory"
+# 562 "data/maps/TranquilRoute/scripts.pory"
 	walk_right
 	step_end
 
-# 548 "data/maps/TranquilRoute/scripts.pory"
+# 565 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_CutMasterWalkBackToPlayer:
-# 549 "data/maps/TranquilRoute/scripts.pory"
+# 566 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 550 "data/maps/TranquilRoute/scripts.pory"
+# 567 "data/maps/TranquilRoute/scripts.pory"
 	walk_in_place_faster_down
 	step_end
 
@@ -784,179 +806,185 @@ TranquilRoute_EventScript_GrassCutscene_Movement_1:
 	walk_up
 	step_end
 
-# 376 "data/maps/TranquilRoute/scripts.pory"
+# 269 "data/maps/TranquilRoute/scripts.pory"
+TranquilRoute_EventScript_WhiteslateRoadblock_Movement_0:
+# 269 "data/maps/TranquilRoute/scripts.pory"
+	walk_left
+	step_end
+
+# 386 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Camera_Movement_0:
-# 376 "data/maps/TranquilRoute/scripts.pory"
+# 386 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 376 "data/maps/TranquilRoute/scripts.pory"
+# 386 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
 	step_end
 
-# 379 "data/maps/TranquilRoute/scripts.pory"
+# 389 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Camera_Movement_1:
-# 379 "data/maps/TranquilRoute/scripts.pory"
+# 389 "data/maps/TranquilRoute/scripts.pory"
 	walk_down
-# 379 "data/maps/TranquilRoute/scripts.pory"
+# 389 "data/maps/TranquilRoute/scripts.pory"
 	walk_down
 	step_end
 
-# 413 "data/maps/TranquilRoute/scripts.pory"
+# 423 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_0:
-# 413 "data/maps/TranquilRoute/scripts.pory"
+# 423 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 413 "data/maps/TranquilRoute/scripts.pory"
+# 423 "data/maps/TranquilRoute/scripts.pory"
 	face_down
 	step_end
 
-# 422 "data/maps/TranquilRoute/scripts.pory"
+# 432 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_1:
-# 422 "data/maps/TranquilRoute/scripts.pory"
+# 432 "data/maps/TranquilRoute/scripts.pory"
 	face_down
-# 422 "data/maps/TranquilRoute/scripts.pory"
+# 432 "data/maps/TranquilRoute/scripts.pory"
 	zubats_align
-# 422 "data/maps/TranquilRoute/scripts.pory"
+# 432 "data/maps/TranquilRoute/scripts.pory"
 	delay_16
-# 422 "data/maps/TranquilRoute/scripts.pory"
+# 432 "data/maps/TranquilRoute/scripts.pory"
 	delay_16
 	step_end
 
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_2:
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 433 "data/maps/TranquilRoute/scripts.pory"
+# 443 "data/maps/TranquilRoute/scripts.pory"
 	delay_16
 	step_end
 
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Movement_3:
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 436 "data/maps/TranquilRoute/scripts.pory"
+# 446 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
 	step_end
 
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_0:
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 481 "data/maps/TranquilRoute/scripts.pory"
+# 498 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
 	step_end
 
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_1:
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 482 "data/maps/TranquilRoute/scripts.pory"
+# 499 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
 	step_end
 
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_2:
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 484 "data/maps/TranquilRoute/scripts.pory"
+# 501 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
 	step_end
 
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 TranquilRoute_EventScript_TravelingMerchantFirstTime_Movement_3:
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_left
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
-# 485 "data/maps/TranquilRoute/scripts.pory"
+# 502 "data/maps/TranquilRoute/scripts.pory"
 	walk_up
 	step_end
 
@@ -1074,40 +1102,41 @@ TranquilRoute_EventScript_Girl_Text_1:
 	.string "What? Oh, I don't fight.\p"
 	.string "My Pokémon and I are just strolling.$"
 
-TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_0:
-# 261 "data/maps/TranquilRoute/scripts.pory"
-	.string "Man$"
+TranquilRoute_EventScript_WhiteslateRoadblock_Text_0:
+# 265 "data/maps/TranquilRoute/scripts.pory"
+	.string "Samurai$"
 
-TranquilRoute_EventScript_WhiteslateRoadblockGuard_Text_1:
-# 262 "data/maps/TranquilRoute/scripts.pory"
-	.string "Sorry, you can't go through.$"
+TranquilRoute_EventScript_WhiteslateRoadblock_Text_1:
+# 266 "data/maps/TranquilRoute/scripts.pory"
+	.string "Sorry, you can't go through. The road\n"
+	.string "ahead is blocked.$"
 
 TranquilRoute_EventScript_Shellos_Text_0:
-# 270 "data/maps/TranquilRoute/scripts.pory"
+# 280 "data/maps/TranquilRoute/scripts.pory"
 	.string "Shellos$"
 
 TranquilRoute_EventScript_Shellos_Text_1:
-# 272 "data/maps/TranquilRoute/scripts.pory"
+# 282 "data/maps/TranquilRoute/scripts.pory"
 	.string "Slug$"
 
 TranquilRoute_EventScript_Shellos_Text_2:
-# 275 "data/maps/TranquilRoute/scripts.pory"
+# 285 "data/maps/TranquilRoute/scripts.pory"
 	.string "Clelel!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_0:
-# 288 "data/maps/TranquilRoute/scripts.pory"
+# 298 "data/maps/TranquilRoute/scripts.pory"
 	.string "Woman$"
 
 TranquilRoute_EventScript_BerryWoman_Text_1:
-# 289 "data/maps/TranquilRoute/scripts.pory"
+# 299 "data/maps/TranquilRoute/scripts.pory"
 	.string "Enjoy gardening!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_2:
-# 294 "data/maps/TranquilRoute/scripts.pory"
+# 304 "data/maps/TranquilRoute/scripts.pory"
 	.string "Hi, young one! See this?$"
 
 TranquilRoute_EventScript_BerryWoman_Text_3:
-# 303 "data/maps/TranquilRoute/scripts.pory"
+# 313 "data/maps/TranquilRoute/scripts.pory"
 	.string "You can plant berries in the ground in\n"
 	.string "fertile spots like this.\p"
 	.string "The seeds will eventually grow into a\n"
@@ -1121,37 +1150,37 @@ TranquilRoute_EventScript_BerryWoman_Text_3:
 	.string "Here, try planting a few!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_4:
-# 315 "data/maps/TranquilRoute/scripts.pory"
+# 325 "data/maps/TranquilRoute/scripts.pory"
 	.string "Oh, right, I was almost forgetting!\p"
 	.string "You must remember to water them\n"
 	.string "regularly, or they won't grow!\p"
 	.string "I like you. Take this!$"
 
 TranquilRoute_EventScript_BerryWoman_Text_5:
-# 325 "data/maps/TranquilRoute/scripts.pory"
+# 335 "data/maps/TranquilRoute/scripts.pory"
 	.string "Isn't it cute? It's friend-shaped!\p"
 	.string "Don't worry about it, I have a spare\n"
 	.string "one.\p"
 	.string "Have fun gardening!$"
 
 TranquilRoute_EventScript_Mareep_Text_0:
-# 342 "data/maps/TranquilRoute/scripts.pory"
+# 352 "data/maps/TranquilRoute/scripts.pory"
 	.string "Mareep$"
 
 TranquilRoute_EventScript_Mareep_Text_1:
-# 344 "data/maps/TranquilRoute/scripts.pory"
+# 354 "data/maps/TranquilRoute/scripts.pory"
 	.string "Static sheep$"
 
 TranquilRoute_EventScript_Mareep_Text_2:
-# 346 "data/maps/TranquilRoute/scripts.pory"
+# 356 "data/maps/TranquilRoute/scripts.pory"
 	.string "Beeeeeh…$"
 
 TranquilRoute_EventScript_Mareep2_Text_0:
-# 360 "data/maps/TranquilRoute/scripts.pory"
+# 370 "data/maps/TranquilRoute/scripts.pory"
 	.string "Baaaaah…$"
 
 TranquilRoute_TrainerTips1_Text_0:
-# 367 "data/maps/TranquilRoute/scripts.pory"
+# 377 "data/maps/TranquilRoute/scripts.pory"
 	.string "Did you know?\p"
 	.string "Some Pokémon only come out in the\n"
 	.string "morning, in the evening, or at night.\p"
@@ -1160,31 +1189,35 @@ TranquilRoute_TrainerTips1_Text_0:
 	.string "seeing rare Pokémon!$"
 
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_0:
-# 394 "data/maps/TranquilRoute/scripts.pory"
+# 404 "data/maps/TranquilRoute/scripts.pory"
 	.string "Shady men$"
 
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_1:
-# 396 "data/maps/TranquilRoute/scripts.pory"
+# 406 "data/maps/TranquilRoute/scripts.pory"
 	.string "…Excellent idea…\p"
 	.string "…Yeah, and then…\p"
 	.string "… … …$"
 
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_2:
-# 407 "data/maps/TranquilRoute/scripts.pory"
+# 417 "data/maps/TranquilRoute/scripts.pory"
 	.string "Shady man$"
 
 TranquilRoute_EventScript_CrobatShadows_Cutscene_Text_3:
-# 409 "data/maps/TranquilRoute/scripts.pory"
+# 419 "data/maps/TranquilRoute/scripts.pory"
 	.string "Alright boys, let's move.$"
 
 TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_0:
-# 453 "data/maps/TranquilRoute/scripts.pory"
+# 461 "data/maps/TranquilRoute/scripts.pory"
+	.string "Man$"
+
+TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_1:
+# 463 "data/maps/TranquilRoute/scripts.pory"
 	.string "Mumble mumble… Should restock on\n"
 	.string "ointment… Damn, where did I put my\l"
 	.string "purse?…$"
 
-TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_1:
-# 468 "data/maps/TranquilRoute/scripts.pory"
+TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_2:
+# 478 "data/maps/TranquilRoute/scripts.pory"
 	.string "Oh, hello! Sorry, shop's closed at the\n"
 	.string "moment!\p"
 	.string "… …Oh, sorry, we haven't met, have we?\n"
@@ -1201,32 +1234,35 @@ TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_1:
 	.string "can even have a friendly battle next\l"
 	.string "time!\p"
 	.string "Now if you'll excuse me, I'm running\n"
-	.string "late! See you around, {PLAYER}!\p"
+	.string "late! See you around, {PLAYER}!$"
+
+TranquilRoute_EventScript_TravelingMerchantFirstTime_Text_3:
+# 492 "data/maps/TranquilRoute/scripts.pory"
 	.string "Come on, Keke.$"
 
 TranquilRoute_EventScript_Kecleon_Text_0:
-# 502 "data/maps/TranquilRoute/scripts.pory"
+# 519 "data/maps/TranquilRoute/scripts.pory"
 	.string "Kecleon$"
 
 TranquilRoute_EventScript_Kecleon_Text_1:
-# 504 "data/maps/TranquilRoute/scripts.pory"
+# 521 "data/maps/TranquilRoute/scripts.pory"
 	.string "Keckecke!$"
 
 TranquilRoute_TrainerTips2_Text_0:
-# 514 "data/maps/TranquilRoute/scripts.pory"
+# 531 "data/maps/TranquilRoute/scripts.pory"
 	.string "Did you know?\p"
 	.string "You can swap the Pokémon in your\n"
 	.string "party using {R_BUTTON}.\p"
 	.string "Set the lead Pokémon with {SELECT_BUTTON}.$"
 
 TranquilRoute_DirectionSign_Text_0:
-# 528 "data/maps/TranquilRoute/scripts.pory"
+# 545 "data/maps/TranquilRoute/scripts.pory"
 	.string "{LEFT_ARROW} Whiteslate route\n"
 	.string "{UP_ARROW} Sakura Village\p"
 	.string "It looks like the sign has been\n"
 	.string "written over recently…$"
 
 TranquilRoute_DirectionSign_Text_1:
-# 534 "data/maps/TranquilRoute/scripts.pory"
+# 551 "data/maps/TranquilRoute/scripts.pory"
 	.string "{LEFT_ARROW} Whiteslate route\n"
 	.string "{UP_ARROW} Saku and Kura Villages$"
