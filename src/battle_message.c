@@ -22,6 +22,7 @@
 #include "text.h"
 #include "trainer_hill.h"
 #include "window.h"
+#include "line_break.h"
 #include "constants/abilities.h"
 #include "constants/battle_dome.h"
 #include "constants/battle_string_ids.h"
