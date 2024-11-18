@@ -91,8 +91,8 @@ static const struct MenuAction MultichoiceList_YesNoInfo2[] =
 
 static const struct MenuAction MultichoiceList_ChallengeInfo[] =
 {
-    {gText_Challenge},
-    {gText_Info3},
+    {COMPOUND_STRING("CHALLENGE")},
+    {COMPOUND_STRING("INFO")},
     {gText_Exit},
 };
 
@@ -452,8 +452,8 @@ static const struct MenuAction MultichoiceList_TourneyNoRecord[] =
 
 static const struct MenuAction MultichoiceList_Tent[] =
 {
-    {gText_RedTent},
-    {gText_BlueTent},
+    {COMPOUND_STRING("RED TENT")},
+    {COMPOUND_STRING("BLUE TENT")},
 };
 
 static const struct MenuAction MultichoiceList_LinkServicesNoBerry[] =
@@ -473,9 +473,9 @@ static const struct MenuAction MultichoiceList_YesNoInfo[] =
 
 static const struct MenuAction MultichoiceList_BattleMode[] =
 {
-    {gText_SingleBattle},
-    {gText_DoubleBattle},
-    {gText_MultiBattle},
+    {COMPOUND_STRING("SINGLE BATTLE")},
+    {COMPOUND_STRING("DOUBLE BATTLE")},
+    {COMPOUND_STRING("MULTI BATTLE")},
     {gText_Info2},
     {gText_Exit},
 };
@@ -608,7 +608,7 @@ static const struct MenuAction MultichoiceList_Fossil[] =
 static const struct MenuAction MultichoiceList_YesNo[] =
 {
     {gText_Yes},
-    {gText_No4},
+    {COMPOUND_STRING("NO")},
 };
 
 static const struct MenuAction MultichoiceList_FrontierRules[] =
@@ -661,7 +661,7 @@ static const struct MenuAction MultichoiceList_BattleFactoryRules[] =
     {gText_SwapPartners},
     {gText_SwapNumber},
     {gText_SwapNotes},
-    {gText_OpenLevel3},
+    {COMPOUND_STRING("OPEN LEVEL")},
     {gText_Exit},
 };
 
