@@ -106,7 +106,7 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
         //  Figure out how many lines are needed with naive method
         u32 currLineWidth = 0;
         u32 totalLines = 1;
-        bool8 shouldTryAgain;
+        bool32 shouldTryAgain;
         for (currWordIndex = 0; currWordIndex < numWords; currWordIndex++)
         {
             if (currLineWidth + allWords[currWordIndex].length > maxWidth)
@@ -144,10 +144,6 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
                 {
                     //  go to next line
                     currLineIndex++;
-                    stringLines[currLineIndex].words = &allWords[currWordIndex];
-                    stringLines[currLineIndex].numWords = 1;
-                    currLineWidth = allWords[currWordIndex].width;
-                    currWordIndex++;
                     if (currLineIndex == totalLines)
                     {
                         totalLines++;
@@ -155,6 +151,10 @@ void BreakSubStringKnuth(u8 *src, u32 maxWidth, u32 screenLines, u8 fontId)
                         shouldTryAgain = TRUE;
                         break;
                     }
+                    stringLines[currLineIndex].words = &allWords[currWordIndex];
+                    stringLines[currLineIndex].numWords = 1;
+                    currLineWidth = allWords[currWordIndex].width;
+                    currWordIndex++;
                 }
                 else if (currLineWidth > targetLineWidth)
                 {
@@ -246,42 +246,21 @@ u32 GetStringBadness(struct StringLine *stringLines, u32 numLines, u32 maxWidth)
 //  Build the new string from the data stored in the StringLine structs
 void BuildNewString(struct StringLine *stringLines, u32 numLines, u32 maxLines, u8 *str)
 {
-    u16 newStrIndex = 0;
+    u32 srcCharIndex = 0;
     for (u32 lineIndex = 0; lineIndex < numLines; lineIndex++)
     {
-        for (u32 wordIndex = 0; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
-        {
-            //  Add space if not first word
-            if (wordIndex != 0)
-            {
-                newStrIndex++;
-                //  Widen space if needed
-                //  current SHIFT_RIGHT doesn't seem to work
-                /*
-                if (stringLines[lineIndex].extraSpaceWidth != 0)
-                {
-                }
-                */
-            }
-            //  Add word characters
-            for (u32 charIndex = 0; charIndex < stringLines[lineIndex].words[wordIndex].length; charIndex++)
-            {
-                newStrIndex++;
-            }
-        }
+        srcCharIndex += stringLines[lineIndex].words[0].length;
+        for (u32 wordIndex = 1; wordIndex < stringLines[lineIndex].numWords; wordIndex++)
+            //  Add length of word and a space
+            srcCharIndex += stringLines[lineIndex].words[wordIndex].length + 1;
         if (lineIndex + 1 < numLines)
         {
-            if (lineIndex >= maxLines-1 && numLines > maxLines)
-            {
-                //  Add scroll if past maxlines and there are more lines
-                str[newStrIndex] = 0xFA;
-            }
+            //  Add the appropriate line break depending on line number
+            if (lineIndex >= maxLines - 1 && numLines > maxLines)
+                str[srcCharIndex] = 0xFA;
             else
-            {
-                //  Otherwise just add a newline
-                str[newStrIndex] = 0xFE;
-            }
-            newStrIndex++;
+                str[srcCharIndex] = 0xFE;
+            srcCharIndex++;
         }
     }
 }

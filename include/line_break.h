@@ -8,11 +8,6 @@
 #define BADNESS_WIDE_SPACE  1       //  Badness added per extra pixel width (not used)
 #define MAX_SPACE_WIDTH     5
 
-struct SubString {
-    u16 startIndex;
-    u16 length;
-};
-
 struct StringWord {
     u32 startIndex:16;
     u32 length:8;
